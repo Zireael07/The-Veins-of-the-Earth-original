@@ -24,7 +24,7 @@ newEntity{
     type = "weapon", subtype="battleaxe",
     display = "/", color=colors.SLATE,
     encumber = 12,
-    rarity = 5,
+    rarity = 3,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic battleaxe",
     desc = [[A normal battleaxe.]],
@@ -35,7 +35,7 @@ newEntity{ base = "BASE_BATTLEAXE",
     level_range = {1, 10},
     cost = 5,
     combat = {
-        dam = rng.dice(1,6),
+        dam = {1,6},
     },
 }
 
@@ -53,11 +53,11 @@ newEntity{
 }
 
 newEntity{ base = "BASE_SWORD",
-    name = "iron battleaxe",
+    name = "long sword",
     level_range = {1, 10},
     cost = 15,
     combat = {
-        dam = rng.dice(1,8),
+        dam = {1,8},
     },
 }
 
@@ -68,17 +68,84 @@ newEntity{
     type = "weapon", subtype="battleaxe",
     display = "/", color=colors.SLATE,
     encumber = 3,
-    rarity = 5,
+    rarity = 8,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic dagger",
     desc = [[A normal trusty dagger.]],
 }
 
-newEntity{ base = "BASE_BATTLEAXE",
-    name = "iron battleaxe",
+newEntity{ base = "BASE_DAGGER",
+    name = "iron dagger",
     level_range = {1, 10},
     cost = 5,
     combat = {
-        dam = rng.dice(1,4),
+        dam = {1,4},
     },
+}
+
+newEntity{
+    define_as = "BASE_LIGHT_ARMOR",
+    slot = "BODY",
+    type = "armor", subtype="light",
+    display = "[", color=colors.SLATE,
+    encumber = 10,
+    rarity = 5,
+    name = "light armor",
+    desc = [[A simple padded armor. Doesn't protect from much.]],
+    }
+
+newEntity{ base = "BASE_LIGHT_ARMOR",
+    name = "padded armor",
+    level_range = {1, 10},
+    cost = 5,
+    wielder = {
+		combat_def = 1
+	},
+}
+
+newEntity{ base = "BASE_LIGHT_ARMOR",
+    name = "leather armor",
+    level_range = {1, 10},
+    cost = 10,
+    wielder = {
+		combat_def = 2
+	},
+}
+
+newEntity{ base = "BASE_LIGHT_ARMOR",
+    name = "studded leather",
+    level_range = {1, 10},
+    cost = 25,
+    wielder = {
+		combat_def = 3
+	},
+}
+
+newEntity{ base = "BASE_LIGHT_ARMOR",
+    name = "chain shirt",
+    level_range = {1, 10},
+    cost = 100,
+    wielder = {
+		combat_def = 4
+	},
+}
+
+newEntity{
+    define_as = "BASE_HEAVY_ARMOR",
+    slot = "BODY",
+    type = "armor", subtype="heavy",
+    display = "[", color=colors.SLATE,
+    encumber = 40,
+    rarity = 2,
+    name = "heavy armor",
+    desc = [[A suit of armour made of mail.]],
+}
+
+newEntity{ base = "BASE_HEAVY_ARMOR",
+    name = "chain mail",
+    level_range = {1, 10},
+    cost = 150,
+    wielder = {
+		combat_def = 5
+	},
 }

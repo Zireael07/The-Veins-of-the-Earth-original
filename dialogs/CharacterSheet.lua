@@ -21,7 +21,7 @@ function _M:init(actor)
     }
     
     self:setupUI()
-    
+
     self:drawDialog()
     
     self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
@@ -45,9 +45,17 @@ function _M:drawDialog()
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "Level : "..(player.level or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "EXP : "..(player.exp or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Gold : "..(player.money or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
+    h = h + self.font_h -- Adds an empty row
+    s:drawStringBlended(self.font, "AC : "..(player.combat_def or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Attack : "..(player.combat_attack or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+--    s:drawStringBlended(self.font, "SP : "..(player.mana or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+
+    h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "Hit Dice : "..(player.hit_die or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Hit Points : "..(player.life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Max Hit Points : "..(player.max_life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "Darkvision : "..(player.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h

@@ -47,8 +47,9 @@ end
 --- Makes the death happen!
 function _M:attackTarget(target, mult)
 	if self.combat then
-		local dam = self.combat.dam + self:getStr() - target.combat_armor
-		DamageType:get(DamageType.PHYSICAL).projector(self, target.x, target.y, DamageType.PHYSICAL, math.max(0, dam))
+		local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + self:getStr() - target.combat_armor
+--		dam = math.max(dam, 1)
+		DamageType:get(DamageType.PHYSICAL).projector(self, target.x, target.y, DamageType.PHYSICAL, math.max(1, dam))
 	end
 
 	-- We use up our own energy

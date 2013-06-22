@@ -1,4 +1,3 @@
--- $Id: race-class.lua 93 2012-11-10 04:58:24Z dsb $
 -- Underdark
 -- Zireael
 --
@@ -34,7 +33,7 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'race',
   name = 'Elf',
-  desc = [[Elves are also called the Fair Folk.]],
+  desc = [[Elves are also called the Fair Folk. Dex +1 Con -1.]],
   stats = { dex = 1, con = -1, },
 copy_add = {
   infravision = 1,
@@ -44,7 +43,7 @@ copy_add = {
 newBirthDescriptor {
   type = 'race',
   name = 'Drow',
-  desc = [[The drow are kin to the Fair Folk, who descended underground long ago.]],
+  desc = [[The drow are kin to the Fair Folk, who descended underground long ago. Dex +1 Con -1 Int +1 Cha +1 Luc -1.]],
   stats = { dex = 1, con = -1, int = 1, cha = 1, luc = -1, },
 copy_add = {
   infravision = 3,
@@ -53,37 +52,43 @@ copy_add = {
 
 newBirthDescriptor {
   type = 'class',
-  name = 'Warrior',
-  desc = [[Simple fighters, they hack away with their trusty weapon.]],
+  name = 'Fighter',
+  desc = [[Simple fighters, they hack away with their trusty weapon. HD d10, BAB +1.]],
   copy_add = {
-  hit_die = 10
-  }
+  hit_die = 10,
+  max_life = 10,
+  combat_attack = 1,
+  },
 }
 
 newBirthDescriptor {
   type = 'class',
   name = 'Mage',
-  desc = [[The basic unspecialized warrior-spellcaster]],
+  desc = [[Masters of arcane magic. HD d4.]],
     copy_add = {
-  hit_die = 4
-  }
-  }
+  hit_die = 4,
+  max_life = 4,
+--  sp = 10,
+  },
+}
 
 newBirthDescriptor {
   type = 'class',
   name = 'Ranger',
-  desc = [[Rangers are capable archers but are also trained in hand to hand combat and nature/conveyance/divination magic schools]],
+  desc = [[Rangers are capable archers but are also trained in hand to hand combat and divine magic. HD d8.]],
   copy_add = {
-  hit_die = 8
-  }
+  hit_die = 8,
+  max_life = 8,
+  },
 }
 
 newBirthDescriptor {
   type = 'class',
   name = 'Rogue',
-  desc = [[Rogues are masters of tricks. They can steal from shops and monsters, and lure monsters into deadly monster traps.]],
+  desc = [[Rogues are masters of tricks. HD d6.]],
     copy_add = {
-  hit_die = 6
-  }
+  hit_die = 6,
+  max_life = 6,
+  },
   }
 

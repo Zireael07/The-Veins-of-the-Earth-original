@@ -42,7 +42,7 @@ ActorTalents:loadDefinition("/data/talents.lua")
 ActorTemporaryEffects:loadDefinition("/data/timed_effects.lua")
 
 -- Actor resources
-ActorResource:defineResource("Power", "power", nil, "power_regen", "Power represent your ability to use special talents.")
+ActorResource:defineResource("SP", "SP", nil, "sp_regen", "SP represent your ability to cast spells.")
 
 -- Actor inventory
 ActorInventory:defineInventory('MAIN_HAND', 'Main hand', true, 'Weapon')

@@ -1,5 +1,5 @@
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Underdark
+-- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,9 +13,7 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
+
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -27,16 +25,15 @@ newEntity{
         desc = [[Ugly and green!]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	stats = { str=0, dex=1, con=0, int=0, wis=0, cha=-1, luc=1 },
-	combat_armor = 1,
-}
+	stats = { str=-1, dex=1, con=0, int=0, wis=0, cha=-1, luc=1 },
+	combat = { dam= {1,6} },
+        }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
 	name = "kobold warrior", color=colors.GREEN,
 	level_range = {1, 4}, exp_worth = 1,
 	rarity = 4,
 	max_life = resolvers.rngavg(5,9),
-	combat = { dam=2 },
 }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
@@ -44,6 +41,4 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	level_range = {6, 10}, exp_worth = 1,
 	rarity = 4,
 	max_life = resolvers.rngavg(10,12),
-	combat_armor = 3,
-	combat = { dam=5 },
 }

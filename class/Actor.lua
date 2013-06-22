@@ -50,13 +50,15 @@ module(..., package.seeall, class.inherit(engine.Actor,
 function _M:init(t, no_default)
   -- Define some basic combat stats
   self.combat_armor = 0
+  self.combat_def = 10
+  self.combat_attack = 1
 
   -- Default regen
-  t.power_regen = t.power_regen or 1
-  t.life_regen = t.life_regen or 0.25 -- Life regen real slow
+  --t.power_regen = t.power_regen or 1
+  --t.life_regen = t.life_regen or 0.25 -- Life regen real slow
 
   -- Default melee barehanded damage
-  self.combat = { dam=1 }
+  self.combat = { dam = {1,4} }
 
   engine.Actor.init(self, t, no_default)
   engine.interface.ActorTemporaryEffects.init(self, t)
@@ -72,6 +74,11 @@ function _M:init(t, no_default)
   -- Short-ciruit the engine's initial forced level-up mechanism, which
   -- doesn't work quite the way we want.
   self.start_level = self.level
+
+-- Use weapon damage actually
+    if not self:getInven("MAINHAND") or not self:getInven("OFFHAND") then return end
+   if weapon then dam = weapon.combat.dam
+   end
 end
 
 function _M:getName(t)
