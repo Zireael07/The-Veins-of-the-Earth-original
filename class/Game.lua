@@ -56,12 +56,12 @@ function _M:init()
 end
 
 function _M:run()
-	 self.flash = LogFlasher.new(208, 0, self.w, 20, nil, nil, nil, {255,255,255}, {0,0,0}) 
+	self.flash = LogFlasher.new(0, 0, self.w, 20, nil, nil, nil, {255,255,255}, {0,0,0})
 	self.logdisplay = LogDisplay.new(290, self.h - 105, self.w - 695, 99, nil, nil, nil, {255,255,255}, {30,30,30})
 	self.hotkeys_display = HotkeysDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
 	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
 	self.tooltip = Tooltip.new(nil, nil, {255,255,255}, {30,30,30})
-	 self.player_display = PlayerDisplay.new() 
+	self.player_display = PlayerDisplay.new()
 	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
 
@@ -210,7 +210,7 @@ function _M:onTurn()
 end
 
 function _M:display(nb_keyframe)
-	self.player_display:toScreen(nb_keyframe) 
+	self.player_display:toScreen(nb_keyframe)
 	-- If switching resolution, blank everything but the dialog
 	if self.change_res_dialog then engine.GameTurnBased.display(self, nb_keyframe) return end
 
