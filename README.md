@@ -3,7 +3,7 @@ Underdark
 
 An Underdark roguelike for T-Engine
 
-Requires T-Engine 4.0.1
+Requires T-Engine 1.0.4
 
 Features:
 - inventory
@@ -18,7 +18,7 @@ Features:
 
 ***
 Thanks to:
-Grey and DarkGod for coding help
-Sebsebeleb for coding help and fixing PlayerDisplay
-Zonk for brainstorming
+- Grey and DarkGod for coding help
+- Sebsebeleb for coding help and fixing PlayerDisplay
+- Zonk for brainstorming
 
