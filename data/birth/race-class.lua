@@ -70,6 +70,10 @@ newBirthDescriptor {
   max_life = 4,
 --  sp = 10,
   },
+  talents = {
+    [ActorTalents.T_ACID_SPLASH]=1,
+    [ActorTalents.T_GREASE]=1,
+  },
 }
 
 newBirthDescriptor {

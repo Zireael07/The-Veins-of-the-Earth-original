@@ -51,3 +51,14 @@ newDamageType{
 newDamageType{
 	name = "acid", type = "ACID", text_color = "#GREEN#",
 }
+
+newDamageType{
+	name = "grease", type = "GREASE",
+	projector = function(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR)
+		if target then
+			--if reflex save fail then
+			target:setEffect(target.EFF_FELL, 1, {})
+		end
+	end,
+}
