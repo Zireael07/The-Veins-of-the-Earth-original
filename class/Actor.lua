@@ -51,11 +51,7 @@ function _M:init(t, no_default)
   -- Define some basic combat stats
   self.combat_armor = 0
   self.combat_def = 10
-  self.combat_attack = 1
-
-  -- Default regen
-  --t.power_regen = t.power_regen or 1
-  --t.life_regen = t.life_regen or 0.25 -- Life regen real slow
+  self.combat_attack = 0
 
   -- Default melee barehanded damage
   self.combat = { dam = {1,4} }

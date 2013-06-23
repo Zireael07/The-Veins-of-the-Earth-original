@@ -39,6 +39,6 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 newEntity{ base = "BASE_NPC_KOBOLD",
 	name = "armoured kobold warrior", color=colors.AQUAMARINE,
 	level_range = {6, 10}, exp_worth = 1,
-	rarity = 4,
+	rarity = 2,
 	max_life = resolvers.rngavg(10,12),
 }

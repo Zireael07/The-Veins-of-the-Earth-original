@@ -21,7 +21,7 @@ local Mouse = require "engine.Mouse"
 module(..., package.seeall, class.make)
 
 function _M:init()
-	self.font = core.display.newFont("/data/font/DroidSansMono.ttf", 20)
+	self.font = core.display.newFont("/data/font/DroidSansMono.ttf", 14)
 	self.font_h = self.font:lineSkip()
 
 	self.mouse = Mouse.new()
@@ -98,17 +98,17 @@ function _M:display()
 
     self:makeTexture(("%-20s"):format(player.name), w, 0, 210, 210, 210)
 
-    h = h + self.font_h +4
+    h = h + self.font_h +2
    
     self:makeTexture(("Level / Exp: #44dd44#%d / %2d%%"):format(player.level, 100 * cur_exp / max_exp), w, h, 255, 255, 255)
    
-    h = h + self.font_h +4
+    h = h + self.font_h +2
     
     self:makeTexture(("Hit Points: #CRIMSON#%d/%d   "):format(player.life, player.max_life), w, h, 255, 255, 255)
    
-    h = h + self.font_h +4
+    h = h + self.font_h +2
    
-	self:makeTexture(("%s %d"):format(game.zone.name, game.level.level), w, h, 240, 240, 170)
+	self:makeTexture(("Dungeon lvl: %d"):format(game.level.level), w, h, 240, 240, 170)
 
 	s:updateTexture(self.texture)
 end

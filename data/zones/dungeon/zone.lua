@@ -38,11 +38,11 @@ return {
 		},
 		actor = {
 			class = "engine.generator.actor.Random",
-			nb_npc = {20, 30},
+			nb_npc = {5, 10},
 		},
 		object = {
             class = "engine.generator.object.Random",
-            nb_object = {20, 30},
+            nb_object = {10, 20},
         },
 	},
 	levels =

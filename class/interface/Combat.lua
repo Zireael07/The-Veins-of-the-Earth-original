@@ -1,5 +1,5 @@
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Underdark
+-- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -14,8 +14,7 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 --
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
+
 
 require "engine.class"
 local DamageType = require "engine.DamageType"
@@ -45,13 +44,34 @@ function _M:bumpInto(target)
 end
 
 --- Makes the death happen!
-function _M:attackTarget(target, mult)
-	if self.combat then
-		local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + self:getStr() - target.combat_armor
---		dam = math.max(dam, 1)
-		DamageType:get(DamageType.PHYSICAL).projector(self, target.x, target.y, DamageType.PHYSICAL, math.max(1, dam))
-	end
+	
 
-	-- We use up our own energy
-	self:useEnergy(game.energy_to_act)
-end
+    function _M:attackTarget(target, mult)
+            if self.combat then
+                    local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + self:getStr() - target.combat_armor or 0
+    --              dam = math.max(dam, 1)
+                    DamageType:get(DamageType.PHYSICAL).projector(self, target.x, target.y, DamageType.PHYSICAL, math.max(1, dam))
+     
+                    --Random d20 for attack
+                    local attack = rng.dice(1,20) + self.combat_attack or 0 + self:getStr() or 0
+                    
+                    --AC
+                    local ac = target.combat_def + target:getDex() or 0
+
+            --Attack must beat AC to hit
+            local dice = rng.dice(1,20)
+            if attack or 0 > ac then
+            target:takeHit(dam, self)
+            game.log(("%s hits the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
+           --Misses!
+            else
+        game.log(("%s misses the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
+         target:takeHit(0, self)
+            end
+
+            end
+            -- We use up our own energy
+            self:useEnergy(game.energy_to_act)
+    end
+
+

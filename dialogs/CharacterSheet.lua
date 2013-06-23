@@ -49,7 +49,7 @@ function _M:drawDialog()
 
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "AC : "..(player.combat_def or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Attack : "..(player.combat_attack or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "BAB : "..(player.combat_attack or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 --    s:drawStringBlended(self.font, "SP : "..(player.mana or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
@@ -58,6 +58,7 @@ function _M:drawDialog()
     s:drawStringBlended(self.font, "Max Hit Points : "..(player.max_life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
+    s:drawStringBlended(self.font, "Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Darkvision : "..(player.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = 0

@@ -57,7 +57,7 @@ newBirthDescriptor {
   copy_add = {
   hit_die = 10,
   max_life = 10,
-  combat_attack = 1,
+ -- combat_attack = 1,
   },
 }
 
