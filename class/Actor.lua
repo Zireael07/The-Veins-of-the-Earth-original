@@ -381,6 +381,36 @@ function _M:canBe(what)
   return true
 end
 
+function _M:reflexSave(dc)
+  local roll = rng.dice(1,20)
+  local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + self:getStat("dex") 
+  if not roll == 1 and roll == 20 or roll + save > dc then
+    return true
+  else
+    return false
+  end
+end
+
+function _M:fortitudeSave(dc)
+  local roll = rng.dice(1,20)
+  local save = math.floor(self.level / 4) + self:attr("fortitude_save") or 0 + self:getStat("end")
+  if not roll == 1 and roll == 20 or roll + save > dc then
+    return true
+  else
+    return false
+  end
+end
+
+function _M:willSave(dc)
+  local roll = rng.dice(1,20)
+  local save = math.floor(self.level / 4) + self:attr("will_save") or 0 + self:getStat("wis")
+  if not roll == 1 and roll == 20 or roll + save > dc then
+    return true
+  else
+    return false
+  end
+end
+
 function _M:computeGlobalSpeed()
   if self.speed < 0 then
     self.global_speed = 1/(1 - self.speed/10)
