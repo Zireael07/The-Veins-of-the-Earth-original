@@ -31,3 +31,18 @@ newEffect{
 		DamageType:get(DamageType.ACID).projector(eff.src or self, self.x, self.y, DamageType.ACID, eff.power)
 	end,
 }
+
+newEffect{
+	name = "FELL",
+	desc = "Fell to the ground",
+	type = "physical",
+	status = "determinal",
+	on_gain = function(self, err) return "#Target# fell!", "+Fell" end,
+	on_lose = function(self, err) return "#Target# got up from the ground.", "-Fell" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("never_move", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("never_move", eff.tmpid)
+	end,
+}
