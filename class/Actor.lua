@@ -92,7 +92,13 @@ function _M:act()
   self.changed = true
 
   -- Cooldown talents
-  self:cooldownTalents()
+
+  -- Not everyone has in-combat cooldown?
+  -- Note, like this npcs can always cooldown talents (even in combat) but not player. Possible way for npcs to only cooldown out of combat might be to check if they have a target.
+  if not self == game.player then --or if I am sorcerer then
+    self:cooldownTalents()
+  end
+
   -- Regen resources
   self:regenLife()
   self:regenResources()

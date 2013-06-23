@@ -248,6 +248,8 @@ function _M:restCheck()
   ]]
   if self.life < self.max_life and self.life_regen > 0 then return true end
 
+  self:cooldownTalents()
+
   self.resting.wait_cooldowns = true
 
   if self.resting.wait_cooldowns then
