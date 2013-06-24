@@ -57,12 +57,31 @@ newDamageType{
 }
 
 newDamageType{
-	name = "grease", type = "GREASE",
+	name = "fire", type = "FIRE", text_color = "#LIGHT_RED#",
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR)
 		if target then
-			--if reflex save fail then
-			target:setEffect(target.EFF_FELL, 1, {})
+			local damage = dam.dam
+			if dam.save and target:reflexSave(dam.save_dc) then
+				damage = math.floor(damage / 2)
+			end
+			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
+			return realdam
+		end
+	end,
+}
+
+newDamageType{
+	name = "grease", type = "GREASE",
+	projector = function(src, x, y, type, dam)
+		--dam is the dc to beat
+		local target = game.level.map(x, y, Map.ACTOR)
+		if target then
+			if not target:reflexSave(dam.dc) then
+				target:setEffect(target.EFF_FELL, 1, {})
+			else
+				game.logSeen(target, "%s succeeds the saving throw!", target.name:capitalize())
+			end
 		end
 	end,
 }

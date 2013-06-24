@@ -248,6 +248,18 @@ function _M:restCheck()
   ]]
   if self.life < self.max_life and self.life_regen > 0 then return true end
 
+  self:cooldownTalents()
+
+  self.resting.wait_cooldowns = true
+
+  if self.resting.wait_cooldowns then
+    for tid, cd in pairs(self.talents_cd) do
+      if cd > 0 then return true end
+    end
+  end
+
+  self.resting.wait_cooldowns = nil
+
   return false, "all resources and life at maximum"
 end
 
