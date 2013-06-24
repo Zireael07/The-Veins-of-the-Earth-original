@@ -44,8 +44,9 @@ newTalent{
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = false,
+	radius = 1.5,
 	target = function(self, t)
-		local tg = {type="hit", range=self:getTalentRange(t), talent=t}
+		local tg = {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t), talent=t}
 		return tg
 	end,
 	action = function(self, t)
@@ -112,6 +113,39 @@ newTalent{
 			end
 		end
 
+		return true
+	end,
+	info = function(self, t)
+		--local dam = damDesc(self, DamageType.ICE, t.getDamage(self, t))
+		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+	end,
+}
+
+newTalent{	
+	name = "Burning Hands",
+	type = {"arcane/arcane", 1},
+	mode = 'activated',
+	--require = ,
+	points = 1,
+	cooldown = 8,
+	tactical = { BUFF = 2 },
+	range = 0,
+	requires_target = true,
+	radius = 3,
+	target = function(self, t)
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+		if not x or not y then return nil end
+
+		local level = math.min(self.level or 1, 5)
+		local damage = 0
+		for i=1, level do
+			damage = damage + rng.dice(1,4)
+		end
+		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})
 		return true
 	end,
 	info = function(self, t)
