@@ -48,27 +48,29 @@ end
 
     function _M:attackTarget(target, mult)
             if self.combat then
-                    local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + self:getStr() - target.combat_armor or 0
-    --              dam = math.max(dam, 1)
-                    DamageType:get(DamageType.PHYSICAL).projector(self, target.x, target.y, DamageType.PHYSICAL, math.max(1, dam))
-     
-                    --Random d20 for attack
-                    local attack = rng.dice(1,20) + self.combat_attack or 0 + self:getStr() or 0
-                    
-                    --AC
-                    local ac = target.combat_def + target:getDex() or 0
+            local dice = rng.dice(1,20)    
+            local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10/2) - target.combat_armor or 0
+            --Random d20 for attack
+            local attack = dice + self.combat_attack or 0 + (self:getStr()-10/2) or 0
+            --AC
+            local ac = target.combat_def + (target:getDex()-10/2) or 0
 
-            --Attack must beat AC to hit
+
+             --Attack must beat AC to hit
             local dice = rng.dice(1,20)
-            if attack or 0 > ac then
-            target:takeHit(dam, self)
-            game.log(("%s hits the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
-           --Misses!
-            else
-        game.log(("%s misses the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
-         target:takeHit(0, self)
-            end
+                if attack or 0 > ac then
+                target:takeHit(dam, self)
+                game.log(("%s hits the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
+                --Misses!
+                else
+                game.log(("%s misses the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
+                target:takeHit(0, self)
+                end
 
+            -- Damage
+                --              dam = math.max(dam, 1)
+             DamageType:get(DamageType.PHYSICAL).projector(self, target.x, target.y, DamageType.PHYSICAL, math.max(1, dam))
+     
             end
             -- We use up our own energy
             self:useEnergy(game.energy_to_act)

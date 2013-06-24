@@ -92,7 +92,13 @@ function _M:act()
   self.changed = true
 
   -- Cooldown talents
-  self:cooldownTalents()
+
+  -- Not everyone has in-combat cooldown?
+  -- Note, like this npcs can always cooldown talents (even in combat) but not player. Possible way for npcs to only cooldown out of combat might be to check if they have a target.
+  if not self == game.player then --or if I am sorcerer then
+    self:cooldownTalents()
+  end
+
   -- Regen resources
   self:regenLife()
   self:regenResources()
@@ -373,6 +379,36 @@ function _M:canBe(what)
   if what == "knockback" and rng.percent(100 * (self:attr("knockback_immune") or 0)) then return false end
   if what == "instakill" and rng.percent(100 * (self:attr("instakill_immune") or 0)) then return false end
   return true
+end
+
+function _M:reflexSave(dc)
+  local roll = rng.dice(1,20)
+  local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + self:getStat("dex") 
+  if not roll == 1 and roll == 20 or roll + save > dc then
+    return true
+  else
+    return false
+  end
+end
+
+function _M:fortitudeSave(dc)
+  local roll = rng.dice(1,20)
+  local save = math.floor(self.level / 4) + self:attr("fortitude_save") or 0 + self:getStat("end")
+  if not roll == 1 and roll == 20 or roll + save > dc then
+    return true
+  else
+    return false
+  end
+end
+
+function _M:willSave(dc)
+  local roll = rng.dice(1,20)
+  local save = math.floor(self.level / 4) + self:attr("will_save") or 0 + self:getStat("wis")
+  if not roll == 1 and roll == 20 or roll + save > dc then
+    return true
+  else
+    return false
+  end
 end
 
 function _M:computeGlobalSpeed()

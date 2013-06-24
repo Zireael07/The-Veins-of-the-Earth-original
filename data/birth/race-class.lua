@@ -25,7 +25,7 @@ newBirthDescriptor {
   type = 'race',
   name = 'Half-Elf',
   desc = [[A crossbreed of elf and human, they get the best of the two races.]],
-  stats = { cha = 1, },
+  stats = { cha = 2, },
   copy_add = {
   }
 }
@@ -33,8 +33,8 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'race',
   name = 'Elf',
-  desc = [[Elves are also called the Fair Folk. Dex +1 Con -1.]],
-  stats = { dex = 1, con = -1, },
+  desc = [[Elves are also called the Fair Folk. Dex +2 Con -2.]],
+  stats = { dex = 2, con = -2, },
 copy_add = {
   infravision = 1,
   }
@@ -43,8 +43,8 @@ copy_add = {
 newBirthDescriptor {
   type = 'race',
   name = 'Drow',
-  desc = [[The drow are kin to the Fair Folk, who descended underground long ago. Dex +1 Con -1 Int +1 Cha +1 Luc -1.]],
-  stats = { dex = 1, con = -1, int = 1, cha = 1, luc = -1, },
+  desc = [[The drow are kin to the Fair Folk, who descended underground long ago. Dex +2 Con -2 Int +2 Cha +2 Luc -2.]],
+  stats = { dex = 2, con = -2, int = 2, cha = 2, luc = -2, },
 copy_add = {
   infravision = 3,
   }
@@ -57,7 +57,7 @@ newBirthDescriptor {
   copy_add = {
   hit_die = 10,
   max_life = 10,
- -- combat_attack = 1,
+  combat_attack = 1,
   },
 }
 
@@ -69,6 +69,13 @@ newBirthDescriptor {
   hit_die = 4,
   max_life = 4,
 --  sp = 10,
+  },
+  talents = {
+    [ActorTalents.T_ACID_SPLASH]=1,
+    [ActorTalents.T_GREASE]=1,
+    [ActorTalents.T_MAGIC_MISSILE]=1,
+    [ActorTalents.T_BURNING_HANDS]=1,
+    [ActorTalents.T_SUMMON_CREATURE_I]=1,
   },
 }
 

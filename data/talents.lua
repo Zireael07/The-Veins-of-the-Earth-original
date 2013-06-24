@@ -47,3 +47,5 @@ newTalent{
  --       on_learn = function(self, t)
 --        end
 }
+
+load("data/talents/arcane.lua")

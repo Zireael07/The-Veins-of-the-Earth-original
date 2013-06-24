@@ -16,6 +16,10 @@
 --
 -- 
 
+local Roller = require "mod.dialogs.AttributesRoller"
+
+local generatedstats = Roller.generatedstats
+
 newBirthDescriptor{
 	type = "base",
 	name = "base",
@@ -25,6 +29,13 @@ newBirthDescriptor{
         body = { MAIN_HAND=1, OFF_HAND=1, BODY=1, CLOAK=1, LAUNCHER=1, QUIVER=1, GLOVES=1, BOOTS=1, HELM=1, RING=2, AMULET=1, LITE=1, TOOL=1, INVEN=23 },
 
 	copy = {
+		str = generatedstats[1],
+		dex = generatedstats[2],
+		con = generatedstats[3],
+		int = generatedstats[4],
+		wis = generatedstats[5],
+		cha = generatedstats[6],
+		luc = generatedstats[7],
 		lite = 4,
 		money = 10,
 		max_life = 10,
