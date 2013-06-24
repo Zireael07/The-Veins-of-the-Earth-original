@@ -46,7 +46,7 @@ newTalent{
 	requires_target = false,
 	radius = 1.5,
 	target = function(self, t)
-		local tg = {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t), talent=t}
+		local tg = {type="ball", range=self:getTalentRange(t), nolock = true, radius=self:getTalentRadius(t), talent=t}
 		return tg
 	end,
 	action = function(self, t)
@@ -139,7 +139,7 @@ newTalent{
 		return math.min(self.level or 1, 5)
 	end,
 	target = function(self, t)
-		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), selffire=false, talent=t}
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
@@ -174,7 +174,7 @@ newTalent{
 		t.creature = creature
 	end,
 	target = function(self, t)
-		return {type="hit", range=self:getTalentRange(t), talent=t}
+		return {type="hit", range=self:getTalentRange(t), nolock = true, talent=t}
 	end,
 	makeCreature = function(self, t)
 		local NPC = require "mod.class.NPC"
@@ -216,15 +216,10 @@ newTalent{
 		local d = require("mod.dialogs.SummonCreatureI").new(t)
 
 		game:registerDialog(d)
-		print("[TESTY]")
-		print(t.creature)
 		
 		local co = coroutine.running()
 		d.unload = function() coroutine.resume(co, t.creature) end --This is currently bugged, only works if the player has already summoned,
 		if not coroutine.yield() then return nil end
-
-		print("[TESTY AFTER]")
-		print(t.creature)
 
 		local tg = self:getTalentTarget(t)
 		local x, y =  self:getTarget(tg)
@@ -265,7 +260,7 @@ newTalent{
 	range = 0,
 	radius = 4,
 	target = function(self, t)
-		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), selffire=false, talent=t}
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
 	get_max_hd = function(self, t)
 		return 8
