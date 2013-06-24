@@ -52,6 +52,7 @@ function _M:init(t, no_default)
   self.combat_armor = 0
   self.combat_def = 10
   self.combat_attack = 0
+  self.hit_die = 4
 
   -- Default melee barehanded damage
   self.combat = { dam = {1,4} }
@@ -104,6 +105,8 @@ function _M:act()
   self:regenResources()
   -- Compute timed effects
   self:timedEffects()
+
+  if self:attr("sleep") then self.energy.value = 0 end
 
   -- Still enough energy to act ?
   if self.energy.value < game.energy_to_act then return false end
@@ -383,7 +386,7 @@ end
 
 function _M:reflexSave(dc)
   local roll = rng.dice(1,20)
-  local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + self:getStat("dex") 
+  local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + self:getStat("dex")
   if not roll == 1 and roll == 20 or roll + save > dc then
     return true
   else
@@ -393,7 +396,7 @@ end
 
 function _M:fortitudeSave(dc)
   local roll = rng.dice(1,20)
-  local save = math.floor(self.level / 4) + self:attr("fortitude_save") or 0 + self:getStat("end")
+  local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + self:getStat("end")
   if not roll == 1 and roll == 20 or roll + save > dc then
     return true
   else
@@ -403,7 +406,7 @@ end
 
 function _M:willSave(dc)
   local roll = rng.dice(1,20)
-  local save = math.floor(self.level / 4) + self:attr("will_save") or 0 + self:getStat("wis")
+  local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + self:getStat("wis")
   if not roll == 1 and roll == 20 or roll + save > dc then
     return true
   else

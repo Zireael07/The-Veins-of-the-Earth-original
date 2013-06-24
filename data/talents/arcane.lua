@@ -97,7 +97,7 @@ newTalent{
 	end,
 	action = function(self, t)
 		local targets = {}
-		for i=1, t:num_targets(self) do
+		for i=1, t.num_targets(self, t) do
 			local tg = self:getTalentTarget(t)
 			local x, y = self:getTarget(tg)
 			if x and y then
@@ -257,7 +257,7 @@ newTalent{
 }
 
 newTalent{
-	name = "Colour Spray",
+	name = "Sleep",
 	type = {"arcane/arcane",1},
 	mode = "activated",
 	points = 1,
@@ -267,18 +267,50 @@ newTalent{
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), selffire=false, talent=t}
 	end,
+	get_max_hd = function(self, t)
+		return 8
+	end,
 	action = function(self, t)
 	local tg = self:getTalentTarget(t)
 		local x, y = self:getTarget(tg)
 
 		if not x or not y then return nil end
 
-		local level = math.min(self.level or 1, 5)
-		local damage = 0
-		for i=1, level do
-			damage = damage + rng.dice(1,4)
+		-- Find potential targets in the area
+
+		local targets = {}
+		local grids = self:project(tg, x, y, function(px, py)
+			local actor = game.level.map(px, py, Map.ACTOR)
+			if actor then targets[#targets+1] = actor end
+		end)
+
+		-- Take the creatures with the weakest hd and discard the rest
+
+		table.sort(targets, function(a,b) return a.hit_die > b.hit_die end)
+		local final_targets = {}
+		local max_hd = t.get_max_hd(self, t)
+		local i = 1
+		local stop = false
+
+		while not stop do
+			local t = targets[i]
+			if t.hit_die < max_hd then --and target:canBe("sleep")
+				final_targets[#final_targets+1] = t
+				max_hd = max_hd - t.hit_die
+			else
+				stop = true
+			end
 		end
-		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})
+
+		local duration = 5
+		-- Apply sleep
+		for i, target in ipairs(final_targets) do
+			if not target:willSave(30) then -- @todo: do real dc  
+				target:setEffect(target.EFF_SLEEP, duration, {})
+			else
+				game.logSeen(target, "%s resist the sleep!", target.name)
+			end
+		end
 		return true
 	end,
 
@@ -286,6 +318,5 @@ newTalent{
 	info = function(self, t)
 		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
 	end,
-
 
 }

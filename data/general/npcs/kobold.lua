@@ -34,6 +34,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	level_range = {1, 4}, exp_worth = 1,
 	rarity = 4,
 	max_life = resolvers.rngavg(5,9),
+	hit_die = 4,
 }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
@@ -41,4 +42,5 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	level_range = {6, 10}, exp_worth = 1,
 	rarity = 2,
 	max_life = resolvers.rngavg(10,12),
+	hit_die = 6,
 }
