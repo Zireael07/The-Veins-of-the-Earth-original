@@ -75,6 +75,7 @@ newBirthDescriptor {
     [ActorTalents.T_GREASE]=1,
     [ActorTalents.T_MAGIC_MISSILE]=1,
     [ActorTalents.T_BURNING_HANDS]=1,
+    [ActorTalents.T_SUMMON_CREATURE_I]=1,
   },
 }
 
