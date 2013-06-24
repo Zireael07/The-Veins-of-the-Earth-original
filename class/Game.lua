@@ -40,6 +40,7 @@ local LogFlasher = require "engine.LogFlasher"
 local DebugConsole = require "engine.DebugConsole"
 local FlyingText = require "engine.FlyingText"
 local Tooltip = require "engine.Tooltip"
+local AttributesRoller = require "mod.dialogs.AttributesRoller"
 
 local QuitDialog = require "mod.dialogs.Quit"
 
@@ -96,17 +97,22 @@ function _M:newGame()
 	self:setupDisplayMode()
 
 	self.creating_player = true
-	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', }, function()
-		self:changeLevel(1, "dungeon")
-		print("[PLAYER BIRTH] resolve...")
-		self.player:resolve()
-		self.player:resolve(nil, true)
-		self.player.energy.value = self.energy_to_act
-		self.paused = true
-		self.creating_player = false
-		print("[PLAYER BIRTH] resolved!")
-	end)
-	self:registerDialog(birth)
+--	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', }, function()
+---		self:changeLevel(1, "dungeon")
+---		print("[PLAYER BIRTH] resolve...")
+--		self.player:resolve()
+--		self.player:resolve(nil, true)
+--		self.player.energy.value = self.energy_to_act
+--		self.paused = true
+--		self.creating_player = false
+--		print("[PLAYER BIRTH] resolved!")
+--	end)
+	
+        --Displays attributes roller before the birther
+        local roller = mod.dialogs.AttributesRoller.new(self.player)
+        self:registerDialog(roller)
+
+       --self:registerDialog(birth)
 end
 
 function _M:loaded()
