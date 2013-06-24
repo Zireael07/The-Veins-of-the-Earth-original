@@ -116,8 +116,11 @@ newTalent{
 		return true
 	end,
 	info = function(self, t)
+		local missiles = t.num_targets(self, t)
 		--local dam = damDesc(self, DamageType.ICE, t.getDamage(self, t))
-		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+		return ([[%d missiles of magical energy darts forth from your fingertip and strike their targets, dealing 1d4+1 points of force damage.
+
+			The number of missiles is one plus half your caster level]]):format(missiles)
 	end,
 }
 
@@ -132,6 +135,9 @@ newTalent{
 	range = 0,
 	requires_target = true,
 	radius = 3,
+	num_dice = function(self, t)
+		return math.min(self.level or 1, 5)
+	end,
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), selffire=false, talent=t}
 	end,
@@ -141,7 +147,7 @@ newTalent{
 
 		if not x or not y then return nil end
 
-		local level = math.min(self.level or 1, 5)
+		local level = t.num_dice(self,t)
 		local damage = 0
 		for i=1, level do
 			damage = damage + rng.dice(1,4)
@@ -150,7 +156,10 @@ newTalent{
 		return true
 	end,
 	info = function(self, t)
-		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+		local dice = t.num_dice(self, t) 
+		return ([[A cone of searing flame shoots from your fingertips. Any creature in the area of the flames takes %dd4 points of fire damage.
+
+		The damage is equal to 1d4 per caster level (maximum 5d4).]]):format(dice)
 	end,
 }
 
@@ -245,4 +254,38 @@ newTalent{
 	info = function(self, t)
 		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
 	end,
+}
+
+newTalent{
+	name = "Colour Spray",
+	type = {"arcane/arcane",1},
+	mode = "activated",
+	points = 1,
+	cooldown = 20,
+	range = 0,
+	radius = 4,
+	target = function(self, t)
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+	local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+		if not x or not y then return nil end
+
+		local level = math.min(self.level or 1, 5)
+		local damage = 0
+		for i=1, level do
+			damage = damage + rng.dice(1,4)
+		end
+		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})
+		return true
+	end,
+
+
+	info = function(self, t)
+		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+	end,
+
+
 }
