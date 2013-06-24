@@ -73,6 +73,7 @@ newBirthDescriptor {
   talents = {
     [ActorTalents.T_ACID_SPLASH]=1,
     [ActorTalents.T_GREASE]=1,
+    [ActorTalents.T_MAGIC_MISSILE]=1,
   },
 }
 

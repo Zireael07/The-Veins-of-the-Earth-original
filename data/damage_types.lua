@@ -53,6 +53,10 @@ newDamageType{
 }
 
 newDamageType{
+	name = "force", type = "FORCE", text_color = "#SLATE#",
+}
+
+newDamageType{
 	name = "grease", type = "GREASE",
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR)
