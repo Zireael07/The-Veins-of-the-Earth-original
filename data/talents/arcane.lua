@@ -46,7 +46,7 @@ newTalent{
 	requires_target = false,
 	radius = 1.5,
 	target = function(self, t)
-		local tg = {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t), talent=t}
+		local tg = {type="ball", range=self:getTalentRange(t), nolock = true, radius=self:getTalentRadius(t), talent=t}
 		return tg
 	end,
 	action = function(self, t)
@@ -97,7 +97,7 @@ newTalent{
 	end,
 	action = function(self, t)
 		local targets = {}
-		for i=1, t:num_targets(self) do
+		for i=1, t.num_targets(self, t) do
 			local tg = self:getTalentTarget(t)
 			local x, y = self:getTarget(tg)
 			if x and y then
@@ -116,8 +116,11 @@ newTalent{
 		return true
 	end,
 	info = function(self, t)
+		local missiles = t.num_targets(self, t)
 		--local dam = damDesc(self, DamageType.ICE, t.getDamage(self, t))
-		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+		return ([[%d missiles of magical energy darts forth from your fingertip and strike their targets, dealing 1d4+1 points of force damage.
+
+			The number of missiles is one plus half your caster level]]):format(missiles)
 	end,
 }
 
@@ -132,8 +135,11 @@ newTalent{
 	range = 0,
 	requires_target = true,
 	radius = 3,
+	num_dice = function(self, t)
+		return math.min(self.level or 1, 5)
+	end,
 	target = function(self, t)
-		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), selffire=false, talent=t}
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
@@ -141,7 +147,7 @@ newTalent{
 
 		if not x or not y then return nil end
 
-		local level = math.min(self.level or 1, 5)
+		local level = t.num_dice(self,t)
 		local damage = 0
 		for i=1, level do
 			damage = damage + rng.dice(1,4)
@@ -150,7 +156,10 @@ newTalent{
 		return true
 	end,
 	info = function(self, t)
-		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+		local dice = t.num_dice(self, t) 
+		return ([[A cone of searing flame shoots from your fingertips. Any creature in the area of the flames takes %dd4 points of fire damage.
+
+		The damage is equal to 1d4 per caster level (maximum 5d4).]]):format(dice)
 	end,
 }
 
@@ -165,7 +174,7 @@ newTalent{
 		t.creature = creature
 	end,
 	target = function(self, t)
-		return {type="hit", range=self:getTalentRange(t), talent=t}
+		return {type="hit", range=self:getTalentRange(t), nolock = true, talent=t}
 	end,
 	makeCreature = function(self, t)
 		local NPC = require "mod.class.NPC"
@@ -207,15 +216,10 @@ newTalent{
 		local d = require("mod.dialogs.SummonCreatureI").new(t)
 
 		game:registerDialog(d)
-		print("[TESTY]")
-		print(t.creature)
 		
 		local co = coroutine.running()
 		d.unload = function() coroutine.resume(co, t.creature) end --This is currently bugged, only works if the player has already summoned,
 		if not coroutine.yield() then return nil end
-
-		print("[TESTY AFTER]")
-		print(t.creature)
 
 		local tg = self:getTalentTarget(t)
 		local x, y =  self:getTarget(tg)
@@ -245,4 +249,70 @@ newTalent{
 	info = function(self, t)
 		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
 	end,
+}
+
+newTalent{
+	name = "Sleep",
+	type = {"arcane/arcane",1},
+	mode = "activated",
+	points = 1,
+	cooldown = 20,
+	range = 0,
+	radius = 4,
+	target = function(self, t)
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
+	end,
+	get_max_hd = function(self, t)
+		return 8
+	end,
+	action = function(self, t)
+	local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+		if not x or not y then return nil end
+
+		-- Find potential targets in the area
+
+		local targets = {}
+		local grids = self:project(tg, x, y, function(px, py)
+			local actor = game.level.map(px, py, Map.ACTOR)
+			if actor then targets[#targets+1] = actor end
+		end)
+
+		-- Take the creatures with the weakest hd and discard the rest
+
+		table.sort(targets, function(a,b) return a.hit_die > b.hit_die end)
+		local final_targets = {}
+		local max_hd = t.get_max_hd(self, t)
+		local i = 1
+		local stop = false
+
+		while not stop do
+			local t = targets[i]
+			if t and t.hit_die <= max_hd then --and target:canBe("sleep")
+				final_targets[#final_targets+1] = t
+				max_hd = max_hd - t.hit_die
+				i = i + 1
+			else
+				stop = true
+			end
+		end
+
+		local duration = 5
+		-- Apply sleep
+		for i, target in ipairs(final_targets) do
+			if not target:willSave(30) then -- @todo: do real dc  
+				target:setEffect(target.EFF_SLEEP, duration, {})
+			else
+				game.logSeen(target, "%s resist the sleep!", target.name)
+			end
+		end
+		return true
+	end,
+
+
+	info = function(self, t)
+		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+	end,
+
 }

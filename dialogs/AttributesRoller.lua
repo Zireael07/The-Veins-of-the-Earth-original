@@ -20,10 +20,30 @@ function _M:init(actor)
 
     self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
  --Reroll button
-    self.c_reroll = Button.new{text="Reroll",fct=function() self:drawDialog() end}
+    self.c_reroll = Button.new{text="Reroll",fct=function() self:onRoll() end}
 
 self.player = Player.new{name=self.player_name, game_ender=true}
 
+    --Birth button
+    self.c_save = Button.new{text="Birth", fct=function() self:onBirth() end}
+
+    self:loadUI{
+        {left=0, top=0, ui=self.c_desc},
+        {left=0, bottom=0, ui=self.c_reroll},
+        {left=self.c_reroll, bottom=0, ui=self.c_save},
+
+    }
+    
+    self:setupUI()
+
+    self:onRoll()
+    
+    self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
+end
+
+function _M:onBirth()
+
+    game:unregisterDialog(self)
     local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', }, function()
         game:changeLevel(1, "dungeon")
         print("[PLAYER BIRTH] resolve...")
@@ -35,22 +55,14 @@ self.player = Player.new{name=self.player_name, game_ender=true}
         print("[PLAYER BIRTH] resolved!")
         end)
 
-    --Birth button
-    self.c_save = Button.new{text="Birth", fct=function() 
-    game:unregisterDialog(self) game:registerDialog(birth) end}
+    game:registerDialog(birth)
+end
 
-    self:loadUI{
-        {left=0, top=0, ui=self.c_desc},
-        {left=0, bottom=0, ui=self.c_reroll},
-        {left=self.c_reroll, bottom=0, ui=self.c_save},
-
-    }
-    
-    self:setupUI()
-
+function _M:onRoll()
+    for i, s in ipairs(self.actor.stats_def) do
+        self.actor.stats[i] = rng.dice(3,6)
+    end
     self:drawDialog()
-    
-    self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
 end
 
 function _M:drawDialog()
@@ -66,16 +78,15 @@ function _M:drawDialog()
     w = 0
     
    --Display 7 stats
-    s:drawStringBlended(self.font, "STR : "..(rng.dice(3,6)), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "DEX : "..(rng.dice(3,6)), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "CON : "..(rng.dice(3,6)), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "INT : "..(rng.dice(3,6)), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "WIS : "..(rng.dice(3,6)), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "CHA : "..(rng.dice(3,6)), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "LUC : "..(rng.dice(3,6)), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "STR : "..(player:getStr()), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "DEX : "..(player:getDex()), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "CON : "..(player:getCon()), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "INT : "..(player:getInt()), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "WIS : "..(player:getWis()), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "CHA : "..(player:getCha()), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "LUC : "..(player:getLuc()), w, h, 255, 255, 255, true) h = h + self.font_h
 
 --Generates values used in-game
-self.generatedstats = { str = rng.dice(3,6), dex = rng.dice(3,6), con = rng.dice(3,6), int = rng.dice(3,6), wis = rng.dice(3,6), cha = rng.dice(3,6), luc = rng.dice(3,6) }
 
     self.c_desc:generate()
     self.changed = false
