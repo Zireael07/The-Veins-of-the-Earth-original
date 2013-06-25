@@ -289,9 +289,10 @@ newTalent{
 
 		while not stop do
 			local t = targets[i]
-			if t.hit_die < max_hd then --and target:canBe("sleep")
+			if t and t.hit_die <= max_hd then --and target:canBe("sleep")
 				final_targets[#final_targets+1] = t
 				max_hd = max_hd - t.hit_die
+				i = i + 1
 			else
 				stop = true
 			end
