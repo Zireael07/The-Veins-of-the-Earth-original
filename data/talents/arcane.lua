@@ -77,7 +77,7 @@ newTalent{
 }
 
 newTalent{	
-	name = "Magic Missile",
+	name = "Magic Missile", --image="talents/magic_missile.png",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
 	--require = ,
