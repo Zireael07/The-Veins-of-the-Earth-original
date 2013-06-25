@@ -161,7 +161,6 @@ end
 function _M:onTakeHit(value, src)
 
   --if a sleeping target is hit, it will wake up
-  game.log("Hello?")
   if self:hasEffect(self.EFF_SLEEP) then
     self:removeEffect(self.EFF_SLEEP)
     game.logSeen(self, "%s wakes up from being hit!", self.name)
@@ -260,7 +259,17 @@ function _M:adjGold(delta)
 end
 
 function _M:getArmor()
-  return self.ac
+  local ac = self.ac
+  local dex_bonus = (self.getDex()-10)/2
+  
+  if self:hasEffect(self.EFF_BLIND) then 
+    ac = ac - 2
+    dex_bonus = math.min(dex_bonus, 0) --negate dex bonus, if any
+  end
+
+  ac = self.ac + dex_bonus 
+  
+  return ac
 end
 
 --- Called before a talent is used
@@ -361,6 +370,9 @@ end
 function _M:canSee(actor, def, def_pct)
   if not actor then return false, 0 end
 
+  -- Newsflash: blind people can't see!
+  if self:hasEffect(self.EFF_BLIND) then return false,100 end --Like this, the actor actually knows where its target is. Its just bad at hitting
+
   -- Check for stealth. Checks against the target cunning and level
   if actor:attr("stealth") and actor ~= self then
     local def = self.level / 2 + self:getCun(25)
@@ -375,6 +387,13 @@ function _M:canSee(actor, def, def_pct)
   else
     return true, 100
   end
+end
+
+--- Is the target concealed for us?
+-- Returns false if it isn't, or a number (50%/20% concealment) if it is
+function _M:isConcealed(actor)
+  if self:hasEffect(self.EFF_BLIND) then return 50 end
+  return false
 end
 
 --- Can the target be applied some effects

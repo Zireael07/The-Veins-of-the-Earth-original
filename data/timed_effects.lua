@@ -19,18 +19,7 @@
 
 local Stats = require "engine.interface.ActorStats"
 
-newEffect{
-	name = "ACIDBURN",
-	desc = "Burning from acid",
-	type = "physical",
-	status = "detrimental",
-	parameters = { power=1 },
-	on_gain = function(self, err) return "#Target# is covered in acid!", "+Acid" end,
-	on_lose = function(self, err) return "#Target# is free from the acid.", "-Acid" end,
-	on_timeout = function(self, eff)
-		DamageType:get(DamageType.ACID).projector(eff.src or self, self.x, self.y, DamageType.ACID, eff.power)
-	end,
-}
+-- Basic Conditions
 
 newEffect{
 	name = "FELL",
@@ -61,3 +50,29 @@ newEffect{
 		self:removeTemporaryValue("sleep", eff.tmpid)
 	end,
 }
+
+newEffect{
+	name = "BLIND",
+	desc = "Blinded",
+	long_desc = [[The character cannot see. He takes a -2 penalty to Armor Class and loses his Dexterity bonus to AC (if any). 
+		All opponents are considered to have total concealment (50% miss chance) to the blinded character.]],
+	type = "physical",
+	status = "determinal",
+	on_gain = function(self, err) return "#Target# loses sight!", "+Blind" end,
+	on_lose = function(self, err) return "#Target# regains sight.", "-Blind" end,
+
+}
+
+newEffect{
+	name = "ACIDBURN",
+	desc = "Burning from acid",
+	type = "physical",
+	status = "detrimental",
+	parameters = { power=1 },
+	on_gain = function(self, err) return "#Target# is covered in acid!", "+Acid" end,
+	on_lose = function(self, err) return "#Target# is free from the acid.", "-Acid" end,
+	on_timeout = function(self, eff)
+		DamageType:get(DamageType.ACID).projector(eff.src or self, self.x, self.y, DamageType.ACID, eff.power)
+	end,
+}
+

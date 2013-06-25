@@ -77,6 +77,7 @@ newBirthDescriptor {
     [ActorTalents.T_BURNING_HANDS]=1,
     [ActorTalents.T_SUMMON_CREATURE_I]=1,
     [ActorTalents.T_SLEEP]=1,
+    [ActorTalents.T_BLINDNESS_DEAFNESS]=1,
   },
 }
 

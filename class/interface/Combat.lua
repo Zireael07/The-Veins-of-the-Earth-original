@@ -46,34 +46,32 @@ end
 --- Makes the death happen!
 	
 
-    function _M:attackTarget(target, mult)
-            if self.combat then
-            local dice = rng.dice(1,20)    
-            local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10/2) - target.combat_armor or 0
-            --Random d20 for attack
-            local attack = dice + self.combat_attack or 0 + (self:getStr()-10/2) or 0
-            --AC
-            local ac = target.combat_def + (target:getDex()-10/2) or 0
+function _M:attackTarget(target, mult)
+    if self.combat then
+        local miss = false --did we miss from misc statuses?
 
+        local dice = rng.dice(1,20)    
+        local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10/2) - target.combat_armor or 0
+        --Random d20 for attack
+        local attack = dice + self.combat_attack or 0 + (self:getStr()-10/2) or 0
+        --AC
+        local ac = target.combat_def + (target:getDex()-10/2) or 0
 
-             --Attack must beat AC to hit
-            local dice = rng.dice(1,20)
-                if attack or 0 > ac then
-                target:takeHit(dam, self)
-                game.log(("%s hits the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
-                --Misses!
-                else
-                game.log(("%s misses the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
-                target:takeHit(0, self)
-                end
+        --If the target is concealed, we might miss
+        local concealed = self:isConcealed(target)
+        if self:isConcealed(target) and rng.chance(self:isConcealed(target)) then miss = true end
 
-            -- Damage
-                --              dam = math.max(dam, 1)
-             DamageType:get(DamageType.PHYSICAL).projector(self, target.x, target.y, DamageType.PHYSICAL, math.max(1, dam))
-     
-            end
-            -- We use up our own energy
-            self:useEnergy(game.energy_to_act)
+        --Attack must beat AC to hit
+        if not miss and attack > ac then
+            target:takeHit(dam, self)
+            game.log(("%s hits the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
+        --Misses!
+        else
+            game.log(("%s misses the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
+        end    
     end
+    -- We use up our own energy
+    self:useEnergy(game.energy_to_act)
+end
 
 
