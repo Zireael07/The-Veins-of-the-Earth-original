@@ -159,6 +159,13 @@ function _M:tooltip()
 end
 
 function _M:onTakeHit(value, src)
+
+  --if a sleeping target is hit, it will wake up
+  game.log("Hello?")
+  if self:hasEffect(self.EFF_SLEEP) then
+    self:removeEffect(self.EFF_SLEEP)
+    game.logSeen(self, "%s wakes up from being hit!", self.name)
+  end
   return value
 end
 
