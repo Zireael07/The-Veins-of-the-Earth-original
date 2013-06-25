@@ -19,8 +19,7 @@
 
 newEntity{
     define_as = "BASE_BATTLEAXE",
-    slot = "MAIN_HAND",
-    slot_forbid = "OFF_HAND",
+    slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="battleaxe",
     display = "/", color=colors.SLATE,
     encumber = 12,
@@ -41,8 +40,7 @@ newEntity{ base = "BASE_BATTLEAXE",
 
 newEntity{
     define_as = "BASE_SWORD",
-    slot = "MAIN_HAND",
-    slot_forbid = "OFF_HAND",
+    slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="sword",
     display = "/", color=colors.SLATE,
     encumber = 10,
@@ -63,9 +61,8 @@ newEntity{ base = "BASE_SWORD",
 
 newEntity{
     define_as = "BASE_DAGGER",
-    slot = "MAIN_HAND",
-    slot_forbid = "OFF_HAND",
-    type = "weapon", subtype="battleaxe",
+    slot = "MAIN_HAND", offslot = "OFF_HAND",
+    type = "weapon", subtype="dagger",
     display = "/", color=colors.SLATE,
     encumber = 3,
     rarity = 8,

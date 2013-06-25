@@ -58,6 +58,11 @@ function _M:drawDialog()
     s:drawStringBlended(self.font, "Max Hit Points : "..(player.max_life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
+    s:drawStringBlended(self.font, "Fortitude bonus: "..(player.fortitude_save or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Reflex bonus : "..(player.reflex_save or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Will bonus : "..(player.will_save or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+
+    h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Darkvision : "..(player.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 

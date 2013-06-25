@@ -51,11 +51,11 @@ function _M:attackTarget(target, mult)
         local miss = false --did we miss from misc statuses?
 
         local dice = rng.dice(1,20)    
-        local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10/2) - target.combat_armor or 0
+        local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10)/2 - target.combat_armor or 0
         --Random d20 for attack
-        local attack = dice + self.combat_attack or 0 + (self:getStr()-10/2) or 0
+        local attack = dice + self.combat_attack or 0 + (self:getStr()-10)/2 or 0
         --AC
-        local ac = target.combat_def + (target:getDex()-10/2) or 0
+        local ac = target.combat_def + (target:getDex()-10)/2 or 0
 
         --If the target is concealed, we might miss
         local concealed = self:isConcealed(target)

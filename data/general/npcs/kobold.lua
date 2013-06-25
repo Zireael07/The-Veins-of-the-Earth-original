@@ -32,15 +32,35 @@ newEntity{
 newEntity{ base = "BASE_NPC_KOBOLD",
 	name = "kobold warrior", color=colors.GREEN,
 	level_range = {1, 4}, exp_worth = 1,
-	rarity = 4,
+	rarity = 6,
 	max_life = resolvers.rngavg(5,9),
 	hit_die = 4,
 }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
 	name = "armoured kobold warrior", color=colors.AQUAMARINE,
-	level_range = {6, 10}, exp_worth = 1,
-	rarity = 2,
+	level_range = {6, 10}, exp_worth = 2,
+	rarity = 20,
 	max_life = resolvers.rngavg(10,12),
 	hit_die = 6,
+}
+
+newEntity{
+	define_as = "BASE_NPC_RAT",
+	type = "animal",
+	display = 'S', color=colors.WHITE,
+	desc = [[A small rat.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=17, con=12, int=1, wis=12, cha=4, luc=2 },
+	combat = { dam= {1,4} },
+}
+
+newEntity{
+	base = "BASE_NPC_RAT",
+	name = "dire rat", color=colors.GRAY,
+	level_range = {1, 4}, exp_worth = 1,
+	rarity = 2,
+	max_life = resolvers.rngavg(3,7),
+	hit_die = 1,
 }
