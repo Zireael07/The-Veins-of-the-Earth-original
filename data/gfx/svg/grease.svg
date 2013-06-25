@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 512 512"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   width="100%"
+   height="100%"
+   sodipodi:docname="spill.svg">
+  <title
+     id="title3765">Grease</title>
+  <metadata
+     id="metadata20">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Grease</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs18" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview16"
+     showgrid="false"
+     inkscape:zoom="0.4609375"
+     inkscape:cx="-82.440678"
+     inkscape:cy="256"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     d="m0,0h512v512h-512z"
+     id="path4" />
+  <g
+     transform="matrix(18.68858,0,0,18.68858,-227.68695,-33368.53532)"
+     id="g6"
+     style="fill:#e6db23;fill-opacity:1">
+    <path
+       d="m31.3438,1793.8417c-2.3087,0-3.9842.5283-4.4375,1.4688-4.4707-.1338-8.1803,1.4292-7.2188,2.5 .1253.1395.0158.2978-.2812.3124-7.4353.3653-8.8151,3.7133-1.6562,4.75 .3029.044.3631.264.2188.4063-1.7387,1.7146 2.0549,2.9687 7.6875,2.9687 5.7536,0 8.8671-.989 7.875-2.5937-.2189-.3541-.1072-.6059.375-.6563 7.6115-.7916 5.6796-5.0868-.875-5.5-1.3356-.084-1.0182-.7188-.5312-.7812 5.4641-.6998 2.1379-2.875-1.1562-2.875z"
+       id="path8"
+       fill="#fff"
+       style="fill:#e6db23;fill-opacity:1" />
+    <path
+       d="m17.9291,1809.5168c-5.3061.0002-3.6584-2.6402 0-2.6403 5.3061-.0002 3.6584,2.6402 0,2.6403z"
+       id="path10"
+       fill="#fff"
+       style="fill:#e6db23;fill-opacity:1" />
+    <path
+       d="m23.6898,1794.547c-3.3701.0001-1.983-1.6391.3406-1.6391 3.3701-.0001 1.983,1.639-.3406,1.6391z"
+       id="path12"
+       fill="#fff"
+       style="fill:#e6db23;fill-opacity:1" />
+    <path
+       d="m36.4315,1806.2278c-3.1274-.2167-1.8401-1.6486.3161-1.4992 3.1274.2169 1.8401,1.6486-.3161,1.4992z"
+       id="path14"
+       fill="#fff"
+       style="fill:#e6db23;fill-opacity:1" />
+  </g>
+</svg>
