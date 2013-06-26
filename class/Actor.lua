@@ -314,6 +314,9 @@ end
 function _M:postUseTalent(ab, ret)
   if not ret then return end
 
+  --remove charge
+  if ab.charges then ab.charges = ab.charges -1 end
+
   self:useEnergy()
 
   if ab.mode == "sustained" then

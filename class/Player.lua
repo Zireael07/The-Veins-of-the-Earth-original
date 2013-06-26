@@ -257,6 +257,11 @@ function _M:restCheck()
 
   self.resting.wait_cooldowns = true  
 
+  -- Regenerate charges
+  for tid, _ in pairs(self.talents) do
+    local t = self:getTalentFromId(tid)
+    if t.charges and t.charges < t.max_charges then t.charges = t.charges + 1 end
+  end
   if self.resting.wait_cooldowns then
     for tid, cd in pairs(self.talents_cd) do
       if cd > 0 then return true end

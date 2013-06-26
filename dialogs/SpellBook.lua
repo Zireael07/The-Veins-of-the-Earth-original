@@ -63,7 +63,6 @@ function _M:generateList()
 	local player = game.player
     local list = {}
     for tid, _ in pairs(player.talents) do
-    	game.log(tid)
 		local t = player:getTalentFromId(tid)
         --if t.is_spell then
             list[#list+1] = t.image
