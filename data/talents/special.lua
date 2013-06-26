@@ -1,7 +1,7 @@
 newTalentType{ type="special/special", name = "special", description = "Special" }
 
 newTalent{
-	name = "Show Spellbook",
+	name = "Show Spellbook", image = "talents/spellbook.png",
 	type = {"special/special",1},
 	mode = "activated",
 	points = 1,

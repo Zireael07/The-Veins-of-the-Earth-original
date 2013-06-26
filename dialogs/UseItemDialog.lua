@@ -110,7 +110,7 @@ end
 function _M:generateList()
   local list = {}
 
-  if self.object.on_use then
+  if self.object.use_simple then
     list[#list+1] = { name='Use', action='use' }
   end
 --  if self.object.on_quaff then
