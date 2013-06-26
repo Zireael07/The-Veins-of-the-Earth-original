@@ -24,16 +24,8 @@ Talents.newTalent = function(self, t)
 		t.image = "talents/"..(t.short_name or t.name):lower():gsub("[^a-z0-9_]", "_")..".png"
 	end
 	if fs.exists("/data/gfx/"..t.image) then t.display_entity = Entity.new{image=t.image, is_talent=true}
-	else
-		t.image = "talents/default.png" 
-		t.display_entity = Entity.new{image="talents/default.png", is_talent=true}
+	else t.display_entity = Entity.new{image="talents/default.png", is_talent=true}
 	end
-
-	if t.is_spell then
-		t.charges = 0
-		t.max_charges = 0 --temporary, untill the spellbook works
-	end
-
 	return oldNewTalent(self, t)
 end
 
@@ -46,7 +38,8 @@ newTalent{
 	mode = "passive",
 	info = [[This feat increases your HP by 10% and your Fort save by +3.]],
         on_learn = function(self, t)
-        self.max_life = self.max_life + 10
+        self.max_life = self.max_life + self.maxlife/10
+        self.fortitude_save = self.fortitude_save + 3
         end
 }
 
@@ -57,7 +50,8 @@ newTalent{
 	mode = "passive",
 	info = [[This feat increases your AC by +3 and your Ref save by +3.]],
         on_learn = function(self, t)
-        self.combat_def = self.combat_def +3
+        self.combat_def = self.combat_def + 3
+        self.reflex_save = self.reflex_save + 3
         end
 }
 
@@ -66,10 +60,12 @@ newTalent{
 	type = {"class/general", 1},
 	points = 3,
 	mode = "passive",
-	info = [[This feat increases your sp by 10% and your Will save by +3.]],
- --       on_learn = function(self, t)
---        end
+	info = [[This feat increases your power by 10% and your Will save by +3.]],
+      	on_learn = function(self, t)
+		self.will_save = self.will_save + 3       
+end
 }
 
 load("data/talents/arcane.lua")
 load("data/talents/special.lua")
+--load("data/talents/divine.lua")

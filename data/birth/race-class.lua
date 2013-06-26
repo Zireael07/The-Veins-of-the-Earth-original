@@ -75,10 +75,18 @@ newBirthDescriptor {
   type = 'class',
   name = 'Fighter',
   desc = [[Simple fighters, they hack away with their trusty weapon. HD d10, BAB +1.]],
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="long sword" },
+      { name="chain mail" },
+    },
+},
   copy_add = {
   hit_die = 10,
   max_life = 10,
   combat_attack = 1,
+  fortitude_save = 2,
   },
 }
 
@@ -86,10 +94,16 @@ newBirthDescriptor {
   type = 'class',
   name = 'Wizard',
   desc = [[Masters of arcane magic. HD d4.]],
-    copy_add = {
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="iron dagger" },
+      },
+},
+  copy_add = {
   hit_die = 4,
   max_life = 4,
---  sp = 10,
+  will_save = 2,
   },
   talents = {
     [ActorTalents.T_ACID_SPLASH]=1,
@@ -99,7 +113,6 @@ newBirthDescriptor {
     [ActorTalents.T_SUMMON_CREATURE_I]=1,
     [ActorTalents.T_SLEEP]=1,
     [ActorTalents.T_BLINDNESS_DEAFNESS]=1,
-    [ActorTalents.T_SHOW_SPELLBOOK]=1,
   },
 }
 
@@ -107,9 +120,19 @@ newBirthDescriptor {
   type = 'class',
   name = 'Ranger',
   desc = [[Rangers are capable archers but are also trained in hand to hand combat and divine magic. HD d8.]],
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="long sword" },
+      { name="studded leather" },
+    },
+},
   copy_add = {
   hit_die = 8,
   max_life = 8,
+  combat_attack = 1,
+  fortitude_save = 2,
+  reflex_save = 2,
   },
 }
 
@@ -117,9 +140,17 @@ newBirthDescriptor {
   type = 'class',
   name = 'Rogue',
   desc = [[Rogues are masters of tricks. HD d6.]],
-    copy_add = {
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="iron dagger" },
+      { name="studded leather" },
+    },
+},
+  copy_add = {
   hit_die = 6,
   max_life = 6,
+  reflex_save = 2,
   },
   }
 
@@ -127,18 +158,35 @@ newBirthDescriptor {
   type = 'class',
   name = 'Cleric',
   desc = [[Clerics are masters of healing. HD d8.]],
-    copy_add = {
+  copy = {
+  resolvers.equip {
+      full_id=true,
+ --     { name="mace" },
+      { name="chain mail" },
+    },
+},
+  copy_add = {
   hit_die = 8,
   max_life = 8,
   fortitude_save = 2,
   will_save = 2,
   },
+  talents = {
+--  [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
+}
   }
 
 newBirthDescriptor {
   type = 'class',
   name = 'Barbarian',
   desc = [[Simple fighters, they hack away with their trusty weapon. HD d12, BAB +1.]],
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="iron battleaxe" },
+      { name="chain mail" },
+    },
+},
   copy_add = {
   hit_die = 12,
   max_life = 12,
