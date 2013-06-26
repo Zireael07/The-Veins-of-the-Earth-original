@@ -13,9 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
 
 newEntity{
     define_as = "BASE_BATTLEAXE",
@@ -145,4 +142,41 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
 		combat_def = 5
 	},
+}
+
+newEntity{
+    define_as = "BASE_POTION",
+    slot = "INVEN",
+    type = "potion",
+    display = "!", color=colors.RED,
+    encumber = 0,
+    rarity = 5,
+    name = "A potion",
+    desc = [[A potion.]],
+}
+
+newEntity{
+    base = "BASE_POTION",
+    name = "a potion",
+    level_range = {1,10},
+    cost = 50,
+    use_simple = { name = "heal light wounds",
+    use = function(self,who)
+    actor.life = actor.life + rng.dice(1,8) + 5
+    return {used = true, destroy = true}
+  end
+  }, 
+}
+
+newEntity{
+    base = "BASE_POTION",
+    name = "a potion",
+    level_range = {4,10},
+    cost = 300,
+    use_simple = { name = "heal moderate wounds",
+    use = function(self,who)
+    actor.life = actor.life + rng.dice(2,8) + 5
+    return {used = true, destroy = true}
+  end
+  }, 
 }

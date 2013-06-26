@@ -63,33 +63,36 @@ function _M:use(item)
   game:unregisterDialog(self)
   print('[USE ITEM] action='..item.action)
 
-  if item.action == 'quaff' then
+  if item.action == "use" then
+        self.actor:playerUseItem(self.object, self.item, self.inven, self.on_use)
+        self.on_use(self.inven, self.item, self.object, true)
+ --   elseif item.action == 'quaff' then
     -- TODO self.actor:playerQuaffPotion(self.object, self.item, self.inven, self.on_use)
-    self.on_use(self.inven, self.item, self.object, true)
-  elseif item.action == 'read' then
+ --   self.on_use(self.inven, self.item, self.object, true)
+ -- elseif item.action == 'read' then
     -- TODO self.actor:playerReadScroll(self.object, self.item, self.inven, self.on_use)
-    self.on_use(self.inven, self.item, self.object, true)
-  elseif item.action == 'aim_wand' then
+--    self.on_use(self.inven, self.item, self.object, true)
+--  elseif item.action == 'aim_wand' then
     -- TODO self.actor:playerAimWand(self.object, self.item, self.inven, self.on_use)
-    self.on_use(self.inven, self.item, self.object, true)
-  elseif item.action == 'use_staff' then
+--    self.on_use(self.inven, self.item, self.object, true)
+--  elseif item.action == 'use_staff' then
     -- TODO self.actor:playerUseStaff(self.object, self.item, self.inven, self.on_use)
-    self.on_use(self.inven, self.item, self.object, true)
-  elseif item.action == 'zap_rod' then
+--    self.on_use(self.inven, self.item, self.object, true)
+--  elseif item.action == 'zap_rod' then
     -- TODO self.actor:playerZapRod(self.object, self.item, self.inven, self.on_use)
-    self.on_use(self.inven, self.item, self.object, true)
-  elseif item.action == 'activate' then
+--    self.on_use(self.inven, self.item, self.object, true)
+--  elseif item.action == 'activate' then
     -- TODO self.actor:playerActivateItem(self.object, self.item, self.inven, self.on_use)
-    self.on_use(self.inven, self.item, self.object, true)
-  elseif item.action == 'eat' then
+--    self.on_use(self.inven, self.item, self.object, true)
+--  elseif item.action == 'eat' then
     -- TODO self.actor:playerEatFood(self.object, self.item, self.inven, self.on_use)
-    self.on_use(self.inven, self.item, self.object, true)
-  elseif item.action == 'fill' then
+--    self.on_use(self.inven, self.item, self.object, true)
+--  elseif item.action == 'fill' then
     -- TODO self.actor:playerFillLantern(self.object, self.item, self.inven, self.on_use)
-    self.on_use(self.inven, self.item, self.object, true)
-  elseif item.action == 'browse' then
+--    self.on_use(self.inven, self.item, self.object, true)
+--  elseif item.action == 'browse' then
     -- TODO self.actor:playerBrowseSpellbook(self.object, self.item, self.inven, self.on_use)
-    self.on_use(self.inven, self.item, self.object, true)
+--    self.on_use(self.inven, self.item, self.object, true)
   elseif item.action == 'wear' then
     self.actor:doWear(self.inven, self.item, self.object)
     self.on_use(self.inven, self.item, self.object, true)
@@ -107,40 +110,41 @@ end
 function _M:generateList()
   local list = {}
 
-  if self.object.on_quaff then
-    list[#list+1] = { name='Quaff', action='quaff' }
+  if self.object.on_use then
+    list[#list+1] = { name='Use', action='use' }
   end
-  if self.object.on_read then
-    list[#list+1] = { name='Read', action='read' }
-  end
+--  if self.object.on_quaff then
+--    list[#list+1] = { name='Quaff', action='quaff' }
+--  end
+--  if self.object.on_read then
+--    list[#list+1] = { name='Read', action='read' }
+--  end
   -- We'll assume on object will have more than one of the following three
   -- callbacks, so we can reuse the action name.
-  if self.object.on_aim then
-    list[#list+1] = { name='Use', action='aim_wand' }
-  end
-  if self.object.on_use then
-    list[#list+1] = { name='Use', action='use_staff' }
-  end
-  if self.object.on_zap then
-    list[#list+1] = { name='Use', action='zap_rod' }
-  end
-  if self.object.on_activate then
-    list[#list+1] = { name='Activate', action='activate' }
-  end
-  if self.object.foodval then
-    list[#list+1] = { name='Eat', action='eat' }
-  end
-  if self.object.oil then
-    list[#list+1] = { name='Fill lantern', action='fill' }
-  end
-  if self.object.spells then
-    list[#list+1] = { name='Browse spells', action='browse' }
-  end
+--  if self.object.on_aim then
+--    list[#list+1] = { name='Use', action='aim_wand' }
+--  end
+  
+---  if self.object.on_zap then
+--    list[#list+1] = { name='Use', action='zap_rod' }
+--  end
+--  if self.object.on_activate then
+--    list[#list+1] = { name='Activate', action='activate' }
+--  end
+--  if self.object.foodval then
+--    list[#list+1] = { name='Eat', action='eat' }
+--  end
+--  if self.object.oil then
+--    list[#list+1] = { name='Fill lantern', action='fill' }
+--  end
+--  if self.object.spells then
+--    list[#list+1] = { name='Browse spells', action='browse' }
+--  end
   if self.inven == self.actor.INVEN_INVEN and self.object.slot then
     list[#list+1] = { name='Wear/wield', action='wear' }
   end
-  if self.inven ~= self.actor.INVEN_INVEN then
-    list[#list+1] = { name='Take off', action='takeoff' }
+ if self.inven ~= self.actor.INVEN_INVEN then
+   list[#list+1] = { name='Take off', action='takeoff' }
   end
   -- TODO Maybe allow drop from equip
   if self.inven == self.actor.INVEN_INVEN then
