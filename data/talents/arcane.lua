@@ -4,6 +4,7 @@ newTalent{
 	name = "Acid Splash",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
+	is_spell = true,
 	--require = ,
 	points = 1,
 	cooldown = 8,
@@ -38,9 +39,10 @@ newTalent{
 	name = "Grease",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
+	is_spell = true,
 	--require = ,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = false,
@@ -80,9 +82,10 @@ newTalent{
 	name = "Magic Missile", --image="talents/magic_missile.png",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
+	is_spell = true,
 	--require = ,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = true,
@@ -128,9 +131,10 @@ newTalent{
 	name = "Burning Hands",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
+	is_spell = true,
 	--require = ,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	tactical = { BUFF = 2 },
 	range = 0,
 	requires_target = true,
@@ -167,8 +171,9 @@ newTalent{
 	name = "Summon Creature I",
 	type = {"arcane/arcane", 1},
 	mode = "activated",
+	is_spell = true,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	range = 3,
 	setCreature = function(t, creature)
 		t.creature = creature
@@ -255,8 +260,9 @@ newTalent{
 	name = "Sleep",
 	type = {"arcane/arcane",1},
 	mode = "activated",
+	is_spell = true,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	range = 0,
 	radius = 4,
 	target = function(self, t)
@@ -321,29 +327,40 @@ newTalent{
 	name = "Blindness/Deafness", short_name = "BLINDNESS_DEAFNESS",
 	type = {"arcane/arcane",1},
 	mode = "activated",
+	is_spell = true,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	range = 4,
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
 	end,
 	get_effect = function(self, t)
-		--local d = require("mod.dialogs.SummonCreatureI").new(t)
+		local d = require("mod.dialogs.BlindnessDeafness").new(t)
 
-		--game:registerDialog(d)
+		game:registerDialog(d)
 		
-		--local co = coroutine.running()
-		--d.unload = function() coroutine.resume(co, t.creature) end --This is currently bugged, only works if the player has already summoned,
-		--if not coroutine.yield() then return nil end
-		return "blind"
+		local co = coroutine.running()
+		d.unload = function() coroutine.resume(co, t.choice) end --This is currently bugged, only works if the player has already summoned,
+		if not coroutine.yield() then return nil end
+		return t.choice
 	end,
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
-		if target:canBe("blind") then
-			target:setEffect(target.EFF_BLIND, 5, {})
+		local choice = t.get_effect(self, t)
+
+		if choice == "Blindness" then
+			if target:canBe("blind") then
+				target:setEffect(target.EFF_BLIND, 5, {})
+			end
+		elseif choice == "Deafness" then
+			if target:canBe("deaf") then
+
+			end
+		else
+			return nil
 		end
 
 		return true
