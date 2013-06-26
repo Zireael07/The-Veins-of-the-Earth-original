@@ -58,7 +58,6 @@ newBirthDescriptor {
   hit_die = 10,
   max_life = 10,
   combat_attack = 1,
-  fortitude_save = 2,
   },
 }
 
@@ -69,7 +68,7 @@ newBirthDescriptor {
     copy_add = {
   hit_die = 4,
   max_life = 4,
-  will_save = 2,
+--  sp = 10,
   },
   talents = {
     [ActorTalents.T_ACID_SPLASH]=1,
@@ -79,6 +78,7 @@ newBirthDescriptor {
     [ActorTalents.T_SUMMON_CREATURE_I]=1,
     [ActorTalents.T_SLEEP]=1,
     [ActorTalents.T_BLINDNESS_DEAFNESS]=1,
+    [ActorTalents.T_SHOW_SPELLBOOK]=1,
   },
 }
 
@@ -89,9 +89,6 @@ newBirthDescriptor {
   copy_add = {
   hit_die = 8,
   max_life = 8,
-  combat_attack = 1,
-  fortitude_save = 2,
-  reflex_save = 2,
   },
 }
 
@@ -102,7 +99,6 @@ newBirthDescriptor {
     copy_add = {
   hit_die = 6,
   max_life = 6,
-  reflex_save = 2,
   },
   }
 

@@ -64,3 +64,4 @@ newTalent{
 }
 
 load("data/talents/arcane.lua")
+load("data/talents/special.lua")
