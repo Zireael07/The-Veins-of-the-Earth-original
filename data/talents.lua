@@ -24,8 +24,16 @@ Talents.newTalent = function(self, t)
 		t.image = "talents/"..(t.short_name or t.name):lower():gsub("[^a-z0-9_]", "_")..".png"
 	end
 	if fs.exists("/data/gfx/"..t.image) then t.display_entity = Entity.new{image=t.image, is_talent=true}
-	else t.display_entity = Entity.new{image="talents/default.png", is_talent=true}
+	else
+		t.image = "talents/default.png" 
+		t.display_entity = Entity.new{image="talents/default.png", is_talent=true}
 	end
+
+	if t.is_spell then
+		t.charges = 0
+		t.max_charges = 0 --temporary, untill the spellbook works
+	end
+
 	return oldNewTalent(self, t)
 end
 
@@ -64,3 +72,4 @@ newTalent{
 }
 
 load("data/talents/arcane.lua")
+load("data/talents/special.lua")
