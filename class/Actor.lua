@@ -72,6 +72,11 @@ function _M:init(t, no_default)
   -- doesn't work quite the way we want.
   self.start_level = self.level
 
+  -- Charges for spells
+  self.charges = {}
+  self.max_charges = {}
+  self.allocated_charges = {0}
+
 -- Use weapon damage actually
     if not self:getInven("MAINHAND") or not self:getInven("OFFHAND") then return end
    if weapon then dam = weapon.combat.dam
@@ -440,6 +445,47 @@ function _M:willSave(dc)
     return false
   end
 end
+
+
+--- The max charge worth you can have in a given spell level
+function _M:getMaxMaxCharges()
+  local t = {
+    math.min(8, 3 + self.level),
+    }
+    return t
+end
+
+function _M:getMaxCharges(tid)
+  return self.max_charges[tid] or 0
+end
+
+function _M:getCharges(tid)
+  return self.charges[tid] or 0
+end
+
+function _M:setMaxCharges(tid, v)
+  self.max_charges[tid] = v
+end
+
+function _M:incCharges(tid, v)
+  self.charges[tid] = (self.charges[tid] or 0) + 1 
+end
+
+--- Increases (regenerates) the charges of all spells with charges
+-- Unfinished
+function _M:incCharges(tid)
+  for _, tid in self.talents_def do
+    if self:getCharges(tid) < self:getMaxCharges(tid) then
+      local t = self.talents[tid]
+      t.charges = self:getMaxCharges(tid)
+    end
+  end
+end
+
+function _M:getAllocatedCharges()
+  return self.allocated_charges
+end
+
 
 function _M:computeGlobalSpeed()
   if self.speed < 0 then

@@ -58,8 +58,8 @@ function _M:drawDialog(s)
     c:erase(0,0,0,0)
     --local frame = UI:makeFrame("ui/icon-frame/frame", 48, 48)
 
-    x = self.c_spells.x
-    y = self.c_spells.y
+    local x = self.c_spells.x
+    local y = self.c_spells.y
     --s:drawFrame(300, 300, 1,1,1,1)
 
     if self.spell_frame and false then
@@ -69,16 +69,23 @@ function _M:drawDialog(s)
         s:drawFrame(i_frame, x, y, 1,1,1, 1)
     end
     
-    s:drawString(self.font, "Level-1 Spells", 0, 0, 255, 255, 255, true)
+    local charges_used = game.player:getAllocatedCharges()[1]
+    local max_charges = game.player:getMaxMaxCharges()[1]
+
+    local str = "Level-1 Spells "..(charges_used or 0).."/"..(max_charges or 0)
+    s:drawString(self.font, str, 0, 0, 255, 255, 255, true)
+
     local w = 0
     local h = 0
+    local font = core.display.newFont("/data/font/DroidSans-Bold.ttf", 12)
     for tid, _ in pairs(game.player.talents) do
         local t = game.player:getTalentFromId(tid)
         if t.is_spell then
-            local num = t.charges
-            local max = t.max_charges
-            local str = t.charges.."/"..t.max_charges
-            c:drawString(self.font, str, w, h, 255, 255, 255, true) 
+            local p = game.player
+            local num = p:getCharges(t)
+            local max = p:getMaxCharges(t)
+            local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
+            c:drawColorString(font, str, w, h, 255, 255, 255, true) 
             w = w + self.c_spells.tile_w + self.c_spells.padding
         end
     end
@@ -98,8 +105,9 @@ function _M:selectTab(item, how)
 end
 
 function _M:onSpell(item)
+    local p = game.player
     if item then 
-        item.data.max_charges = item.data.max_charges + 1 
+        p:setMaxCharges(item.data, p:getMaxCharges(item.data)+1) 
     else
 
     end

@@ -42,7 +42,7 @@ newTalent{
 	is_spell = true,
 	--require = ,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = false,
@@ -85,7 +85,7 @@ newTalent{
 	is_spell = true,
 	--require = ,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = true,
@@ -134,7 +134,7 @@ newTalent{
 	is_spell = true,
 	--require = ,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	tactical = { BUFF = 2 },
 	range = 0,
 	requires_target = true,
@@ -173,7 +173,7 @@ newTalent{
 	mode = "activated",
 	is_spell = true,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	range = 3,
 	setCreature = function(t, creature)
 		t.creature = creature
@@ -262,7 +262,7 @@ newTalent{
 	mode = "activated",
 	is_spell = true,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	range = 0,
 	radius = 4,
 	target = function(self, t)
@@ -329,7 +329,7 @@ newTalent{
 	mode = "activated",
 	is_spell = true,
 	points = 1,
-	cooldown = 20,
+	cooldown = 0,
 	range = 4,
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}

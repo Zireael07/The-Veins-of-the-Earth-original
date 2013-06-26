@@ -24,7 +24,9 @@ Talents.newTalent = function(self, t)
 		t.image = "talents/"..(t.short_name or t.name):lower():gsub("[^a-z0-9_]", "_")..".png"
 	end
 	if fs.exists("/data/gfx/"..t.image) then t.display_entity = Entity.new{image=t.image, is_talent=true}
-	else t.display_entity = Entity.new{image="talents/default.png", is_talent=true}
+	else
+		t.image = "talents/default.png" 
+		t.display_entity = Entity.new{image="talents/default.png", is_talent=true}
 	end
 
 	if t.is_spell then
