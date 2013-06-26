@@ -29,7 +29,7 @@ Talents.newTalent = function(self, t)
 
 	if t.is_spell then
 		t.charges = 0
-		t.max_charges = 2 --temporary, untill the spellbook works
+		t.max_charges = 0 --temporary, untill the spellbook works
 	end
 
 	return oldNewTalent(self, t)

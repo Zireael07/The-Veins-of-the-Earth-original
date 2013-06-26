@@ -82,6 +82,7 @@ newTalent{
 	name = "Magic Missile", --image="talents/magic_missile.png",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
+	is_spell = true,
 	--require = ,
 	points = 1,
 	cooldown = 20,
