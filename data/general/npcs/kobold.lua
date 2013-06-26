@@ -31,7 +31,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_KOBOLD",
 	name = "kobold warrior", color=colors.GREEN,
-	level_range = {1, 4}, exp_worth = 1,
+	level_range = {1, 4}, exp_worth = 75,
 	rarity = 6,
 	max_life = resolvers.rngavg(5,9),
 	hit_die = 4,
@@ -39,7 +39,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 
 newEntity{ base = "BASE_NPC_KOBOLD",
 	name = "armoured kobold warrior", color=colors.AQUAMARINE,
-	level_range = {6, 10}, exp_worth = 2,
+	level_range = {6, 10}, exp_worth = 100,
 	rarity = 20,
 	max_life = resolvers.rngavg(10,12),
 	hit_die = 6,
@@ -58,9 +58,30 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_RAT",
-	name = "dire rat", color=colors.GRAY,
-	level_range = {1, 4}, exp_worth = 1,
+	name = "dire rat", color=colors.WHITE,
+	level_range = {1, 4}, exp_worth = 100,
 	rarity = 2,
 	max_life = resolvers.rngavg(3,7),
+	hit_die = 1,
+}
+
+
+newEntity{
+	define_as = "BASE_NPC_SKEL",
+	type = "undead",
+	display = 's', color=colors.WHITE,
+	desc = [[A humanoid skeleton.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str = 13, dex=13, con=1, int=1, wis=10, cha=1, luc=10 },
+	combat = { dam= {1,6} },
+}
+
+newEntity{
+	base = "BASE_NPC_SKEL",
+	name = "skeleton", color=colors.WHITE,
+	exp_worth = 100,
+	rarity = 3,
+	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
 }

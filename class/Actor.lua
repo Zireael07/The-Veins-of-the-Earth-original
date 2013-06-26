@@ -1,6 +1,5 @@
--- $Id: Actor.lua 127 2012-12-01 21:35:17Z dsb $
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2012 Scott Bigham
+-- Underdark
+-- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -14,9 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Scott Bigham "Zizzo"
--- dsb-tome@killerbbunnies.org
 
 require "engine.class"
 require "engine.Actor"
@@ -140,13 +136,11 @@ end
 
 function _M:tooltip()
   return ([[%s%s
-  #00ffff#Level: %d
   #ff0000#HP: %d (%d%%)
-  Stats: %s /  %s / %s
-  %s]]):format(
+  STR %s DEX %s CON %s 
+  WIS %s INT %s CHA %s]]):format(
   self:getDisplayString(),
   self.name,
-  self.level,
   self.life, self.life * 100 / self.max_life,
   self:getStat('str'),
   self:getStat('dex'),
@@ -361,7 +355,7 @@ end
 -- @return the experience rewarded
 function _M:worthExp(target)
   -- TODO Don't get experience from killing friendlies.
-  return (self.exp_worth * self.level)/math.max(target.level, 1)
+  return (self.exp_worth)
 end
 
 --- Can the actor see the target actor
