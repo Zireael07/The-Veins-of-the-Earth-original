@@ -14,7 +14,7 @@
    inkscape:version="0.48.4 r9939"
    width="100%"
    height="100%"
-   sodipodi:docname="splurt.svg">
+   sodipodi:docname="acid_splash.svg">
   <title
      id="title3787">Acid Splash</title>
   <metadata
@@ -81,7 +81,10 @@
   <g
      transform="matrix(18.68858,0,0,18.68858,-227.25151,-34718.59273)"
      id="g6"
-     style="fill:url(#radialGradient3783);fill-opacity:1.0">
+     style="fill:url(#radialGradient3783);fill-opacity:1.0"
+     inkscape:export-filename="C:\Games\ToME\game\modules\Underdark\data\gfx\talents\acid_splash.png"
+     inkscape:export-xdpi="12.130984"
+     inkscape:export-ydpi="12.130984">
     <path
        d="m32.3782,1878.0093c.512,3.9879 5.4597,2.0168 4.1914-1.7105-1.5796-4.6423-3.9815-5.6-7.3613-6.3546 1.8323,2.5061 2.5818,3.4845 3.1699,8.0651z"
        id="path8"

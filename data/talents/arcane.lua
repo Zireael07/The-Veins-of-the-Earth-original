@@ -328,22 +328,32 @@ newTalent{
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
 	end,
 	get_effect = function(self, t)
-		--local d = require("mod.dialogs.SummonCreatureI").new(t)
+		local d = require("mod.dialogs.BlindnessDeafness").new(t)
 
-		--game:registerDialog(d)
+		game:registerDialog(d)
 		
-		--local co = coroutine.running()
-		--d.unload = function() coroutine.resume(co, t.creature) end --This is currently bugged, only works if the player has already summoned,
-		--if not coroutine.yield() then return nil end
-		return "blind"
+		local co = coroutine.running()
+		d.unload = function() coroutine.resume(co, t.choice) end --This is currently bugged, only works if the player has already summoned,
+		if not coroutine.yield() then return nil end
+		return t.choice
 	end,
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
-		if target:canBe("blind") then
-			target:setEffect(target.EFF_BLIND, 5, {})
+		local choice = t.get_effect(self, t)
+
+		if choice == "Blindness" then
+			if target:canBe("blind") then
+				target:setEffect(target.EFF_BLIND, 5, {})
+			end
+		elseif choice == "Deafness" then
+			if target:canBe("deaf") then
+
+			end
+		else
+			return nil
 		end
 
 		return true
