@@ -247,7 +247,6 @@ function _M:restCheck()
   if self:getPower() < self:getMaxPower() and self.power_regen > 0 then return true end
   ]]
 
-  self:cooldownTalents()
   -- Regen health at a rate of 1/50th of max_life after havign rested for 20 turns already 
   if self.resting.cnt > 20 then
     local regen = math.ceil(self.max_life / 50) or 1
@@ -256,7 +255,7 @@ function _M:restCheck()
 
   if self.life < self.max_life then return true end
 
-  self.resting.wait_cooldowns = true
+  self.resting.wait_cooldowns = true  
 
   if self.resting.wait_cooldowns then
     for tid, cd in pairs(self.talents_cd) do

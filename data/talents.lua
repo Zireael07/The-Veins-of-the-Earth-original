@@ -26,6 +26,11 @@ Talents.newTalent = function(self, t)
 	if fs.exists("/data/gfx/"..t.image) then t.display_entity = Entity.new{image=t.image, is_talent=true}
 	else t.display_entity = Entity.new{image="talents/default.png", is_talent=true}
 	end
+
+	if t.is_spell then
+		t.charges = 0
+	end
+
 	return oldNewTalent(self, t)
 end
 

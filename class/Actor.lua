@@ -94,11 +94,7 @@ function _M:act()
 
   -- Cooldown talents
 
-  -- Not everyone has in-combat cooldown?
-  -- Note, like this npcs can always cooldown talents (even in combat) but not player. Possible way for npcs to only cooldown out of combat might be to check if they have a target.
-  if not self == game.player then --or if I am sorcerer then
-    self:cooldownTalents()
-  end
+  self:cooldownTalents()
 
   -- Regen resources
   self:regenLife()
@@ -277,6 +273,8 @@ end
 -- @param ab the talent (not the id, the table)
 -- @return true to continue, false to stop
 function _M:preUseTalent(ab, silent)
+  if ab.is_spell and ab.charges <= 0 then return false end
+
   if not self:enoughEnergy() then print("fail energy") return false end
 
   if ab.mode == "sustained" then
