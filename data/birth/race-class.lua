@@ -50,6 +50,27 @@ copy_add = {
   }
 }
 
+
+newBirthDescriptor {
+  type = 'race',
+  name = 'Half-Orc',
+  desc = [[A crossbreed of orc and human. Str +2 Int -2 Cha -2]],
+  stats = { str = 2, int = -2, cha = -2, },
+  copy_add = {
+  infravision = 1,
+  }
+}
+
+newBirthDescriptor {
+  type = 'race',
+  name = 'Dwarf',
+  desc = [[A race of tough fighters and miners. Con +2, Cha -2.]],
+  stats = { con = 2, cha = -2, },
+  copy_add = {
+  infravision = 1,
+  }
+}
+
 newBirthDescriptor {
   type = 'class',
   name = 'Fighter',
@@ -64,7 +85,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
   type = 'class',
-  name = 'Mage',
+  name = 'Wizard',
   desc = [[Masters of arcane magic. HD d4.]],
     copy_add = {
   hit_die = 4,
@@ -106,3 +127,28 @@ newBirthDescriptor {
   },
   }
 
+newBirthDescriptor {
+  type = 'class',
+  name = 'Cleric',
+  desc = [[Clerics are masters of healing. HD d8.]],
+    copy_add = {
+  hit_die = 8,
+  max_life = 8,
+  fortitude_save = 2,
+  will_save = 2,
+  },
+  }
+
+newBirthDescriptor {
+  type = 'class',
+  name = 'Barbarian',
+  desc = [[Simple fighters, they hack away with their trusty weapon. HD d12, BAB +1.]],
+  copy_add = {
+  hit_die = 12,
+  max_life = 12,
+  combat_attack = 1,
+  fortitude_save = 2,
+  },
+} 
+
+ 
