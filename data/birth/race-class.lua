@@ -160,22 +160,22 @@ newBirthDescriptor {
   name = 'Cleric',
   desc = [[Clerics are masters of healing. HD d8.]],
   copy = {
-  resolvers.equip {
+    resolvers.equip {
       full_id=true,
       { name="heavy mace" },
       { name="chain mail" },
     },
-},
+  },
   copy_add = {
-  hit_die = 8,
-  max_life = 8,
-  fortitude_save = 2,
-  will_save = 2,
+    hit_die = 8,
+    max_life = 8,
+    fortitude_save = 2,
+    will_save = 2,
   },
   talents = {
---  [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
+    [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
+  },
 }
-  }
 
 newBirthDescriptor {
   type = 'class',
@@ -187,7 +187,7 @@ newBirthDescriptor {
       { name="iron battleaxe" },
       { name="chain mail" },
     },
-},
+  },
   copy_add = {
   hit_die = 12,
   max_life = 12,
@@ -206,7 +206,7 @@ newBirthDescriptor {
       { name="quarterstaff" },
       { name="padded armor" },
     },
-},
+  },
   copy_add = {
   hit_die = 8,
   max_life = 8,
@@ -225,7 +225,7 @@ newBirthDescriptor {
       { name="long sword" },
       { name="chain shirt" },
     },
-},
+  },
   copy_add = {
   hit_die = 6,
   max_life = 6,
