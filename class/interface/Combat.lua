@@ -45,6 +45,8 @@ end
 
 --- Makes the death happen!
 	
+function _M:attackRoll(target)
+    dice = rng.dice
 
 function _M:attackTarget(target, mult)
     if self.combat then
