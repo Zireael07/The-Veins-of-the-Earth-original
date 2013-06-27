@@ -104,7 +104,7 @@ end
 function _M:onSpell(item)
     local p = game.player
     if item then 
-        p:setMaxCharges(item.data, p:getMaxCharges(item.data)+1) 
+        p:setMaxCharges(item.data, 1) 
     else
 
     end
