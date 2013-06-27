@@ -43,11 +43,14 @@ function _M:bumpInto(target)
 	end
 end
 
---- Makes the death happen!
-	
+--- Did we hit? Did we crit?
+-- Returns (bool hit, bool crit)
 function _M:attackRoll(target)
-    dice = rng.dice
+    local d = rng.range(1,20)
+    if d == 0 then return false, false end
+end
 
+--- Makes the death happen!
 function _M:attackTarget(target, mult)
     if self.combat then
         local miss = false --did we miss from misc statuses?
