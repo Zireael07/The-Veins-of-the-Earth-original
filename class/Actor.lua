@@ -68,11 +68,6 @@ function _M:init(t, no_default)
   -- doesn't work quite the way we want.
   self.start_level = self.level
 
-  -- Charges for spells
-  self.charges = {}
-  self.max_charges = {}
-  self.allocated_charges = {0}
-
 -- Use weapon damage actually
     if not self:getInven("MAINHAND") or not self:getInven("OFFHAND") then return end
    if weapon then dam = weapon.combat.dam
@@ -95,7 +90,11 @@ function _M:act()
 
   -- Cooldown talents
 
-  self:cooldownTalents()
+  -- Not everyone has in-combat cooldown?
+  -- Note, like this npcs can always cooldown talents (even in combat) but not player. Possible way for npcs to only cooldown out of combat might be to check if they have a target.
+  if not self == game.player then --or if I am sorcerer then
+    self:cooldownTalents()
+  end
 
   -- Regen resources
   self:regenLife()
@@ -272,8 +271,6 @@ end
 -- @param ab the talent (not the id, the table)
 -- @return true to continue, false to stop
 function _M:preUseTalent(ab, silent)
-  if ab.is_spell and ab.charges <= 0 then return false end
-
   if not self:enoughEnergy() then print("fail energy") return false end
 
   if ab.mode == "sustained" then
@@ -312,9 +309,6 @@ end
 -- @return true to continue, false to stop
 function _M:postUseTalent(ab, ret)
   if not ret then return end
-
-  --remove charge
-  if ab.charges then ab.charges = ab.charges -1 end
 
   self:useEnergy()
 
@@ -410,6 +404,7 @@ function _M:canBe(what)
   return true
 end
 
+--Saving throws
 function _M:reflexSave(dc)
   local roll = rng.dice(1,20)
   local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + self:getStat("dex")
@@ -440,44 +435,76 @@ function _M:willSave(dc)
   end
 end
 
+--Leveling up
+function _M:levelup()
+  engine.interface.ActorLevel.levelup(self)
+  engine.interface.ActorTalents.resolveLevelTalents(self)
 
---- The max charge worth you can have in a given spell level
-function _M:getMaxMaxCharges()
-  local t = {
-    math.min(8, 3 + self.level),
-    }
-    return t
+--Gain hp, BAB, saves (generic)
+  self.max_life = self.max_life + self.hit_die
+  self.combat_attack = self.combat_attack or 0 + 1
+  self.fortitude_save = self.fortitude_save or 0 + 1
+  self.reflex_save = self.reflex_save or 0 + 1
+  self.will_save = self.will_save or 0 + 1
+
+-- Heal up on new level
+--  self:resetToFull()
+
+  -- Auto levelup ?
+  if self.autolevel then
+    engine.Autolevel:autoLevel(self)
+  end
+
+  if self == game.player then game:onTickEnd(function() game:playSound("actions/levelup") end, "levelupsound") end
+  end
+
+--Encumbrance
+function _M:getMaxEncumbrance()
+  local add = 0
+  return math.floor(40 + self:getStr() * 1.8 + (self.max_encumber or 0) + add)
 end
 
-function _M:getMaxCharges(tid)
-  return self.max_charges[tid] or 0
-end
+function _M:getEncumbrance()
+  local enc = 0
 
-function _M:getCharges(tid)
-  return self.charges[tid] or 0
-end
+  local fct = function(so) enc = enc + so.encumber end
 
-function _M:setMaxCharges(tid, v)
-  self.max_charges[tid] = v
-end
-
-function _M:incCharges(tid, v)
-  self.charges[tid] = (self.charges[tid] or 0) + 1 
-end
-
---- Increases (regenerates) the charges of all spells with charges
--- Unfinished
-function _M:incCharges(tid)
-  for _, tid in self.talents_def do
-    if self:getCharges(tid) < self:getMaxCharges(tid) then
-      local t = self.talents[tid]
-      t.charges = self:getMaxCharges(tid)
+  -- Compute encumbrance
+  for inven_id, inven in pairs(self.inven) do
+    for item, o in ipairs(inven) do
+      if not o.__transmo and not o.__transmo_pre then
+        o:forAllStack(fct)
+      end
     end
   end
+--  print("Total encumbrance", enc)
+  return math.floor(enc)
 end
 
-function _M:getAllocatedCharges()
-  return self.allocated_charges
+function _M:checkEncumbrance()
+  -- Compute encumbrance
+  local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()
+
+  -- We are pinned to the ground if we carry too much
+  if not self.encumbered and enc > max then
+    game.logPlayer(self, "#FF0000#You carry too much--you are encumbered!")
+    game.logPlayer(self, "#FF0000#Drop some of your items.")
+    self.encumbered = self:addTemporaryValue("never_move", 1)
+
+    if self.x and self.y then
+      local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
+      game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, rng.float(-2.5, -1.5), "+ENCUMBERED!", {255,0,0}, true)
+    end
+  elseif self.encumbered and enc <= max then
+    self:removeTemporaryValue("never_move", self.encumbered)
+    self.encumbered = nil
+    game.logPlayer(self, "#00FF00#You are no longer encumbered.")
+
+    if self.x and self.y then
+      local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
+      game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, rng.float(-2.5, -1.5), "-ENCUMBERED!", {255,0,0}, true)
+    end
+  end
 end
 
 
