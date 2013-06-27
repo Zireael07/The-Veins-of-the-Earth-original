@@ -68,6 +68,11 @@ function _M:init(t, no_default)
   -- doesn't work quite the way we want.
   self.start_level = self.level
 
+  -- Charges for spells
+  self.charges = {}
+  self.max_charges = {}
+  self.allocated_charges = {0}
+
 -- Use weapon damage actually
     if not self:getInven("MAINHAND") or not self:getInven("OFFHAND") then return end
    if weapon then dam = weapon.combat.dam
@@ -90,11 +95,7 @@ function _M:act()
 
   -- Cooldown talents
 
-  -- Not everyone has in-combat cooldown?
-  -- Note, like this npcs can always cooldown talents (even in combat) but not player. Possible way for npcs to only cooldown out of combat might be to check if they have a target.
-  if not self == game.player then --or if I am sorcerer then
-    self:cooldownTalents()
-  end
+  self:cooldownTalents()
 
   -- Regen resources
   self:regenLife()
@@ -271,6 +272,8 @@ end
 -- @param ab the talent (not the id, the table)
 -- @return true to continue, false to stop
 function _M:preUseTalent(ab, silent)
+  if ab.is_spell and ab.charges <= 0 then return false end
+
   if not self:enoughEnergy() then print("fail energy") return false end
 
   if ab.mode == "sustained" then
@@ -309,6 +312,9 @@ end
 -- @return true to continue, false to stop
 function _M:postUseTalent(ab, ret)
   if not ret then return end
+
+  --remove charge
+  if ab.charges then ab.charges = ab.charges -1 end
 
   self:useEnergy()
 
@@ -404,7 +410,6 @@ function _M:canBe(what)
   return true
 end
 
---Saving throws
 function _M:reflexSave(dc)
   local roll = rng.dice(1,20)
   local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + self:getStat("dex")
@@ -433,6 +438,46 @@ function _M:willSave(dc)
   else
     return false
   end
+end
+
+
+--- The max charge worth you can have in a given spell level
+function _M:getMaxMaxCharges()
+  local t = {
+    math.min(8, 3 + self.level),
+    }
+    return t
+end
+
+function _M:getMaxCharges(tid)
+  return self.max_charges[tid] or 0
+end
+
+function _M:getCharges(tid)
+  return self.charges[tid] or 0
+end
+
+function _M:setMaxCharges(tid, v)
+  self.max_charges[tid] = v
+end
+
+function _M:incCharges(tid, v)
+  self.charges[tid] = (self.charges[tid] or 0) + 1 
+end
+
+--- Increases (regenerates) the charges of all spells with charges
+-- Unfinished
+function _M:incCharges(tid)
+  for _, tid in self.talents_def do
+    if self:getCharges(tid) < self:getMaxCharges(tid) then
+      local t = self.talents[tid]
+      t.charges = self:getMaxCharges(tid)
+    end
+  end
+end
+
+function _M:getAllocatedCharges()
+  return self.allocated_charges
 end
 
 --Leveling up
