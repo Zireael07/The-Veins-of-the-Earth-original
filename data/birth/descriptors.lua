@@ -34,8 +34,8 @@ newBirthDescriptor{
 		wis = 0,
 		cha = 0,
 		luc = 0,
-		lite = 4,
-		money = 10,
+		lite = 3,
+		money = 100,
 		max_life = 10,
 		max_level = 100,
 

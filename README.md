@@ -11,7 +11,7 @@ Contributors:
 
 Features:
 - inventory
-- 6 classes [fighter, rogue, mage, ranger, cleric, barbarian]
+- 8 classes [fighter, rogue, mage, ranger, cleric, barbarian, druid, warlock]
 - 6 races [human, half-elf, elf, drow, dwarf, half-orc]
 - d20 character sheet
 - default dungeon generation
@@ -22,6 +22,8 @@ Features:
 - some 0 and 1st level spells
 - attributes roller before birther (character creation)
 - an iconed hotbar for spells
+- spellbook
+- some monsters up to CR 1
 
 ***
 Thanks to:
