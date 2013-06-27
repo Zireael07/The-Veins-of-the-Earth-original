@@ -78,16 +78,13 @@ function _M:drawDialog(s)
     local w = 0
     local h = 0
     local font = core.display.newFont("/data/font/DroidSans-Bold.ttf", 12)
-    for tid, _ in pairs(game.player.talents) do
-        local t = game.player:getTalentFromId(tid)
-        if t.is_spell then
-            local p = game.player
-            local num = p:getCharges(t)
-            local max = p:getMaxCharges(t)
-            local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
-            c:drawColorString(font, str, w, h, 255, 255, 255, true) 
-            w = w + self.c_spells.tile_w + self.c_spells.padding
-        end
+    for _, t in ipairs(self.list) do
+        local p = game.player
+        local num = p:getCharges(t)
+        local max = p:getMaxCharges(t)
+        local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
+        c:drawColorString(font, str, w, h, 255, 255, 255, true) 
+        w = w + self.c_spells.tile_w + self.c_spells.padding
     end
 
     self.c_desc:generate()
@@ -120,7 +117,7 @@ function _M:generateList()
     local list = {}
     for tid, _ in pairs(player.talents) do
 		local t = player:getTalentFromId(tid)
-        if t.is_spell and t.charges then
+        if t.is_spell then
             list[#list+1] = t
         end
     end

@@ -272,7 +272,7 @@ end
 -- @param ab the talent (not the id, the table)
 -- @return true to continue, false to stop
 function _M:preUseTalent(ab, silent)
-  if ab.is_spell and ab.charges or 0 <= 0 then return false end
+  if ab.is_spell and (ab.charges or 0 <= 0) then return false end
 
   if not self:enoughEnergy() then print("fail energy") return false end
 
