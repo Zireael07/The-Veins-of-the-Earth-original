@@ -28,19 +28,19 @@ module(..., package.seeall, class.make)
 --- Checks what to do with the target
 -- Talk ? attack ? displace ?
 function _M:bumpInto(target)
-	local reaction = self:reactionToward(target)
-	if reaction < 0 then
-		return self:attackTarget(target)
-	elseif reaction >= 0 then
-		if self.move_others then
-			-- Displace
-			game.level.map:remove(self.x, self.y, Map.ACTOR)
-			game.level.map:remove(target.x, target.y, Map.ACTOR)
-			game.level.map(self.x, self.y, Map.ACTOR, target)
-			game.level.map(target.x, target.y, Map.ACTOR, self)
-			self.x, self.y, target.x, target.y = target.x, target.y, self.x, self.y
-		end
-	end
+    local reaction = self:reactionToward(target)
+    if reaction < 0 then
+        return self:attackTarget(target)
+    elseif reaction >= 0 then
+        if self.move_others then
+            -- Displace
+            game.level.map:remove(self.x, self.y, Map.ACTOR)
+            game.level.map:remove(target.x, target.y, Map.ACTOR)
+            game.level.map(self.x, self.y, Map.ACTOR, target)
+            game.level.map(target.x, target.y, Map.ACTOR, self)
+            self.x, self.y, target.x, target.y = target.x, target.y, self.x, self.y
+        end
+    end
 end
 
 --- Did we hit? Did we crit?
