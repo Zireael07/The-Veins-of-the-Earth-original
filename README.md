@@ -22,6 +22,7 @@ Features:
 - some 0 and 1st level spells
 - attributes roller before birther (character creation)
 - an iconed hotbar for spells
+- spellbook
 
 ***
 Thanks to:
