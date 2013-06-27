@@ -270,7 +270,10 @@ end
 -- @param ab the talent (not the id, the table)
 -- @return true to continue, false to stop
 function _M:preUseTalent(ab, silent)
-    if ab.is_spell and (ab.charges or 0 <= 0) then return false end
+    if ab.is_spell and ((ab.charges or 0) <= 0) then
+        if not silent then game.logPlayer(self, "You have to prepare this spell") end
+        return false 
+    end
 
     if not self:enoughEnergy() then print("fail energy") return false end
 
@@ -312,7 +315,7 @@ function _M:postUseTalent(ab, ret)
     if not ret then return end
 
     --remove charge
-    if ab.charges then ab.charges = ab.charges -1 end
+    if ab.charges then self:incCharges(ab, -1) end
 
     self:useEnergy()
 
@@ -448,30 +451,38 @@ function _M:getMaxMaxCharges()
 end
 
 function _M:getMaxCharges(tid)
+    if type(tid) == "table" then tid = tid.id end
     return self.max_charges[tid] or 0
 end
 
 function _M:getCharges(tid)
+    if type(tid) == "table" then tid = tid.id end
     return self.charges[tid] or 0
 end
 
 function _M:setMaxCharges(tid, v)
+    if type(tid) == "table" then tid = tid.id end
     self.max_charges[tid] = v
 end
 
-function _M:incCharges(tid, v)
-    self.charges[tid] = (self.charges[tid] or 0) + 1 
+function _M:setCharges(tid, v)
+    local t
+    local id
+    if type(tid) == "table" then 
+        t = tid
+        id = t.id
+    else
+        t = self:getTalentFromId(tid)
+        id = tid
+    end
+    if t then t.charges = v end
+    self.charges[id] = v
 end
 
---- Increases (regenerates) the charges of all spells with charges
--- Unfinished
-function _M:incCharges(tid)
-    for _, tid in self.talents_def do
-        if self:getCharges(tid) < self:getMaxCharges(tid) then
-            local t = self.talents[tid]
-            t.charges = self:getMaxCharges(tid)
-        end
-    end
+function _M:incCharges(tid, v)
+    if type(tid) == "table" then tid = tid.id end
+    local new = (self:getCharges(tid) or 0) + v
+    self:setCharges(tid, new)  
 end
 
 function _M:getAllocatedCharges()
