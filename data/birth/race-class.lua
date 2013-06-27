@@ -161,7 +161,7 @@ newBirthDescriptor {
   copy = {
   resolvers.equip {
       full_id=true,
- --     { name="mace" },
+      { name="heavy mace" },
       { name="chain mail" },
     },
 },
@@ -195,4 +195,39 @@ newBirthDescriptor {
   },
 } 
 
- 
+newBirthDescriptor {
+  type = 'class',
+  name = 'Druid',
+  desc = [[Clerics of nature. HD d8.]],
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="quarterstaff" },
+      { name="padded armor" },
+    },
+},
+  copy_add = {
+  hit_die = 8,
+  max_life = 8,
+  fortitude_save = 2,
+  will_save = 2,
+  },
+}  
+
+newBirthDescriptor {
+  type = 'class',
+  name = 'Warlock',
+  desc = [[A spellcaster who needs no weapon. HD d6.]],
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="long sword" },
+      { name="chain shirt" },
+    },
+},
+  copy_add = {
+  hit_die = 6,
+  max_life = 6,
+  will_save = 2,
+  },
+} 
