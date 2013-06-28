@@ -40,6 +40,8 @@ local LogFlasher = require "engine.LogFlasher"
 local DebugConsole = require "engine.DebugConsole"
 local FlyingText = require "engine.FlyingText"
 local Tooltip = require "engine.Tooltip"
+local Calendar = require "engine.Calendar"
+
 local AttributesRoller = require "mod.dialogs.AttributesRoller"
 
 local QuitDialog = require "mod.dialogs.Quit"
@@ -69,6 +71,10 @@ function _M:run()
 	self.log = function(style, ...) if type(style) == "number" then self.logdisplay(...) self.flash(style, ...) else self.logdisplay(style, ...) self.flash(self.flash.NEUTRAL, style, ...) end end
 	self.logSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.log(style, ...) end end
 	self.logPlayer = function(e, style, ...) if e == self.player then self.log(style, ...) end end
+
+-- Start time
+	self.real_starttime = os.time()
+	self.calendar = Calendar.new("/data/calendar.lua", "Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
 	self.log(self.flash.GOOD, "Welcome to #00FF00#the Underdark!")
 
@@ -128,6 +134,9 @@ function _M:setupDisplayMode()
 	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, nil, 22, true)
 	Map:resetTiles()
 	Map.tiles.use_images = false
+
+	if self.level and self.player then self.calendar = Calendar.new("/data/calendar.lua", "Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
+ end
 
 	if self.level then
 		self.level.map:recreate()
@@ -213,6 +222,12 @@ function _M:onTurn()
 
 	-- Process overlay effects
 	self.level.map:processEffects()
+	--Calendar
+	if not self.day_of_year or self.day_of_year ~= self.calendar:getDayOfYear(self.turn) then
+		self.log(self.calendar:getTimeDate(self.turn))
+		self.day_of_year = self.calendar:getDayOfYear(self.turn)
+	end
+
 end
 
 function _M:display(nb_keyframe)
@@ -338,6 +353,11 @@ function _M:setupCommands()
 
 		USE_TALENTS = function()
 			self.player:useTalents()
+		end,
+
+		LEVELUP = function()
+			if self.player.no_levelup_access then return end
+			self.player:playerLevelup(nil, false)
 		end,
 
 		SAVE_GAME = function()

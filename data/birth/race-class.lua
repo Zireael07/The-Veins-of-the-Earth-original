@@ -152,6 +152,7 @@ newBirthDescriptor {
   hit_die = 6,
   max_life = 6,
   reflex_save = 2,
+  sneak_attack = 1,
   },
   }
 
@@ -230,5 +231,8 @@ newBirthDescriptor {
   hit_die = 6,
   max_life = 6,
   will_save = 2,
+  },
+  talents = {
+    [ActorTalents.T_ELDRITCH_BLAST]=1,
   },
 } 
