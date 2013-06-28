@@ -372,3 +372,20 @@ newTalent{
 	end,
 
 }
+
+newTalent{
+	name = "Ghoul Touch",
+	type = {"arcane/arcane",1},
+	mode = "activated",
+	is_spell = true,
+	points = 1,
+	cooldown = 0,
+	range = 4,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function (self, t)
+		return True
+	end,
+	info = "Hello", 
+}
