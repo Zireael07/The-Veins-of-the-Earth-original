@@ -18,12 +18,12 @@
 -- darkgod@te4.org
 
 return {
-	name = "Old ruins",
+	name = "Underdark",
 	level_range = {1, 1},
-	max_level = 10,
+	max_level = 1000,
 	decay = {300, 800},
 	width = 50, height = 50,
-	persistent = "zone",
+--	persistent = "zone",
 	generator =  {
 		map = {
 			class = "engine.generator.map.Roomer",
