@@ -340,6 +340,10 @@ function _M:setupCommands()
 			self.player:useTalents()
 		end,
 
+		LEVELUP = function()
+			self:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player))
+		end,
+
 		SAVE_GAME = function()
 			self:saveGame()
 		end,

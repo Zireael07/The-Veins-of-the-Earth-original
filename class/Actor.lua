@@ -523,8 +523,10 @@ function _M:levelup()
 		engine.Autolevel:autoLevel(self)
 	end
 
-	if self == game.player then game:onTickEnd(function() game:playSound("actions/levelup") end, "levelupsound") end
+	--if self == game.player then game:onTickEnd(function() game:playSound("actions/levelup") end, "levelupsound") end
 	end
+
+	if game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
 
 --Encumbrance
 function _M:getMaxEncumbrance()
