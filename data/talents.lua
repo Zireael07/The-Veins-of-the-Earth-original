@@ -72,3 +72,4 @@ end
 load("data/talents/arcane.lua")
 load("data/talents/special.lua")
 load("data/talents/divine.lua")
+--load("data/talents/monster.lua")
