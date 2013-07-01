@@ -106,6 +106,7 @@ newBirthDescriptor {
   will_save = 2,
   },
   talents = {
+    [ActorTalents.T_EMPOWER] = 1,
     [ActorTalents.T_SHOW_SPELLBOOK]=1,
     [ActorTalents.T_ACID_SPLASH]=1,
     [ActorTalents.T_GREASE]=1,

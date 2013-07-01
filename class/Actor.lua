@@ -441,6 +441,20 @@ function _M:willSave(dc)
 	end
 end
 
+function useMetamagic(self, t)
+	local metaMod = {}
+	for tid, _ in pairs(self.talents) do
+		local t = self:getTalentFromId(tid)
+		local tt = self:getTalentTypeFrom(t)
+		if tt == "arcane/metamagic" and self:isTalentActive(t.id) then
+			for i,v in ipairs(t.getMod(self, t)) do
+				metaMod[i] = (metaMod[i] and metaMod[i] + v) or v
+			end
+		end
+	end
+	return metaMod
+end 
+
 
 --- The max charge worth you can have in a given spell level
 function _M:getMaxMaxCharges()
