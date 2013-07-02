@@ -57,6 +57,7 @@ function _M:attackTarget(target, mult)
 
         local dice = rng.dice(1,20)    
         local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10)/2 - target.combat_armor or 0
+        dam = math.max(0, dam)
         --Random d20 for attack
         local attack = dice + self.combat_attack or 0 + (self:getStr()-10)/2 or 0
         --AC
