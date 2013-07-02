@@ -12,7 +12,7 @@ Contributors:
 Features:
 - inventory
 - 8 classes [fighter, rogue, mage, ranger, cleric, barbarian, druid, warlock]
-- 6 races [human, half-elf, elf, drow, dwarf, half-orc]
+- 10 races [human, half-elf, elf, dwarf, half-orc; drow, duergar, grimlock, kuo-toa, deep gnomes]
 - d20 character sheet
 - default dungeon generation
 - randomized unarmed and weapon damage
@@ -24,6 +24,10 @@ Features:
 - an iconed hotbar for spells
 - spellbook
 - some monsters up to CR 1
+- calendar
+- light sources
+- magic armors
+- faerzress
 
 ***
 Thanks to:

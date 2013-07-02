@@ -55,3 +55,83 @@ newEntity{
   }, 
 }
 
+--Light sources
+newEntity{
+    define_as = "BASE_LIGHT",
+    slot = "LITE",
+    type = "torch",
+    display = "t", color=colors.YELLOW,
+    encumber = 0,
+    rarity = 10,
+    name = "A torch",
+    desc = [[A torch.]],
+}
+
+
+newEntity{
+    base = "BASE_LIGHT",
+    name = "a torch",
+    level_range = {1,10},
+    cost = 0,
+    wielder = {
+    lite=2
+  }, 
+}
+
+newEntity{
+    base = "BASE_LIGHT",
+    name = "a lantern",
+    level_range = {1,10},
+    cost = 7,
+    wielder = {
+    lite=3
+  }, 
+}
+
+
+
+--Consumables
+newEntity{
+    define_as = "BASE_FOOD",
+    slot = "INVEN",
+    type = "food",
+    display = "%", color=colors.WHITE,
+    encumber = 0,
+    rarity = 8,
+    name = "Food",
+    desc = [[Some food.]],
+}
+
+
+newEntity{
+    base = "BASE_FOOD",
+    name = "food rations",
+    level_range = {1,10},
+    cost = 7,
+    --nutrition
+}
+
+newEntity{
+    base = "BASE_FOOD",
+    name = "flask of water",
+    level_range = {1,10},
+    cost = 7,
+    --nutrition
+}
+
+
+newEntity{
+    base = "BASE_FOOD",
+    name = "stale rations",
+    level_range = {1,10},
+    cost = 7,
+    --no nutrition
+}
+
+newEntity{
+    base = "BASE_FOOD",
+    name = "stale water",
+    level_range = {1,10},
+    cost = 7,
+    --no nutrition
+}

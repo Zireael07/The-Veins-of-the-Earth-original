@@ -15,6 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 --
 
+--Standard races
 newBirthDescriptor {
   type = 'race',
   name = 'Human',
@@ -37,19 +38,9 @@ newBirthDescriptor {
   stats = { dex = 2, con = -2, },
 copy_add = {
   infravision = 1,
+  keen_senses = 2,
   }
 }
-
-newBirthDescriptor {
-  type = 'race',
-  name = 'Drow',
-  desc = [[The drow are kin to the Fair Folk, who descended underground long ago. Dex +2 Con -2 Int +2 Cha +2 Luc -2.]],
-  stats = { dex = 2, con = -2, int = 2, cha = 2, luc = -2, },
-copy_add = {
-  infravision = 3,
-  }
-}
-
 
 newBirthDescriptor {
   type = 'race',
@@ -61,6 +52,7 @@ newBirthDescriptor {
   }
 }
 
+--Stone sense
 newBirthDescriptor {
   type = 'race',
   name = 'Dwarf',
@@ -70,6 +62,148 @@ newBirthDescriptor {
   infravision = 1,
   }
 }
+
+--Underdark races
+--Spell-like abilities, +2 vs. spells
+newBirthDescriptor {
+  type = 'race',
+  name = 'Drow',
+  desc = [[The drow are kin to the Fair Folk, who descended underground long ago. 10% exp penalty. Dex +2 Con -2 Int +2 Cha +2 Luc -2.]],
+  stats = { dex = 2, con = -2, int = 2, cha = 2, luc = -2, },
+copy_add = {
+  infravision = 3,
+  keen_senses = 2,
+  spell_resistance = 12,
+  experience = 1.10,
+  }
+}
+
+--Immune to poison, paralysis and phantasms. Stone sense. Invis, enlarge person as spell-likes
+newBirthDescriptor {
+  type = 'race',
+  name = 'Duergar',
+  desc = [[The gray dwarves are the Underdark offshoot of the dwarves, long ago imprisoned by the mind flayers. 10% exp penalty. Con +2 Cha -2 Luc -2.]],
+  stats = { con = 2, cha = -4, luc = -2, },
+copy_add = {
+  infravision = 3,
+  keen_senses = 1,
+  experience = 1.10,
+  }
+}
+
+--Blind, smell 30 ft.; +10 to Hide underground, immune to sight-based effects, illusions
+newBirthDescriptor {
+  type = 'race',
+  name = 'Grimlock',
+  desc = [[These blind humanoids are the descendants of barbarians. 30% exp penalty. Str +4 Dex +2 Con +2 Wis -2 Cha -4 Luc -2.]],
+  stats = { str = 4, dex = 2, con = 2, wis = -2, cha = -4, luc = -2, },
+copy_add = {
+--   hit_die = 2,
+   combat_attack = 2,
+   reflex_save = 3,
+   will_save = 3,
+   experience = 1.30,
+  }
+}
+
+--Electricity resistance 10, immune to poison and paralysis
+newBirthDescriptor {
+  type = 'race',
+  name = 'Kuo-toa',
+  desc = [[These fishfolk live in the depths of the Underdark. 30% exp penalty. Str +2 Con +2 Int +2 Wis +4 Cha -2 Luc -2.]],
+  stats = { str = 2, con = 2, int = 2, wis = 4, cha = -2, luc = -2, },
+copy_add = {
+  infravision = 3,
+  keen_senses = 2,
+ -- hit_die = 2,
+  combat_def = 6,
+  reflex_save = 3,
+  will_save = 3,
+  experience = 1.30,
+  }
+}
+
+--Stone sense. Spell-like abilities 1/day - disguise self, blur, blindness/deafness
+newBirthDescriptor {
+  type = 'race',
+  name = 'Deep gnomes',
+  desc = [[The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders. 30% exp penalty. Str -2 Dex +2 Wis +2 Cha -4 Luc -2.]],
+  stats = { str = -2, dex = 2, wis = 2, cha = -4, luc = -2, },
+copy_add = {
+  infravision = 3,
+  keen_senses = 1,
+  combat_def = 4,
+  spell_resistance = 12,
+  fortitude_save = 2,
+  reflex_save = 2,
+  will_save = 2,
+  experience = 1.30,
+  }
+}
+
+
+
+-- Classes
+newBirthDescriptor {
+  type = 'class',
+  name = 'Barbarian',
+  desc = [[Simple fighters, they hack away with their trusty weapon. HD d12, BAB +1.]],
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="iron battleaxe" },
+      { name="chain mail" },
+    },
+  },
+  copy_add = {
+  hit_die = 12,
+  max_life = 12,
+  combat_attack = 1,
+  fortitude_save = 2,
+  },
+} 
+
+newBirthDescriptor {
+  type = 'class',
+  name = 'Cleric',
+  desc = [[Clerics are masters of healing. HD d8.]],
+  copy = {
+    resolvers.equip {
+      full_id=true,
+      { name="heavy mace" },
+      { name="chain mail" },
+    },
+  },
+  copy_add = {
+    hit_die = 8,
+    max_life = 8,
+    fortitude_save = 2,
+    will_save = 2,
+  },
+  talents = {
+    [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
+  },
+}
+
+newBirthDescriptor {
+  type = 'class',
+  name = 'Druid',
+  desc = [[Clerics of nature. HD d8.]],
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="quarterstaff" },
+      { name="padded armor" },
+    },
+  },
+  copy_add = {
+  hit_die = 8,
+  max_life = 8,
+  fortitude_save = 2,
+  will_save = 2,
+  },
+}  
+
 
 newBirthDescriptor {
   type = 'class',
@@ -90,33 +224,6 @@ newBirthDescriptor {
   },
 }
 
-newBirthDescriptor {
-  type = 'class',
-  name = 'Wizard',
-  desc = [[Masters of arcane magic. HD d4.]],
-  copy = {
-  resolvers.equip {
-      full_id=true,
-      { name="iron dagger" },
-      },
-},
-  copy_add = {
-  hit_die = 4,
-  max_life = 4,
-  will_save = 2,
-  },
-  talents = {
-    [ActorTalents.T_EMPOWER] = 1,
-    [ActorTalents.T_SHOW_SPELLBOOK]=1,
-    [ActorTalents.T_ACID_SPLASH]=1,
-    [ActorTalents.T_GREASE]=1,
-    [ActorTalents.T_MAGIC_MISSILE]=1,
-    [ActorTalents.T_BURNING_HANDS]=1,
-    [ActorTalents.T_SUMMON_CREATURE_I]=1,
-    [ActorTalents.T_SLEEP]=1,
-    [ActorTalents.T_BLINDNESS_DEAFNESS]=1,
-  },
-}
 
 newBirthDescriptor {
   type = 'class',
@@ -153,69 +260,40 @@ newBirthDescriptor {
   hit_die = 6,
   max_life = 6,
   reflex_save = 2,
+  sneak_attack = 1,
   },
   }
 
 newBirthDescriptor {
   type = 'class',
-  name = 'Cleric',
-  desc = [[Clerics are masters of healing. HD d8.]],
+  name = 'Wizard',
+  desc = [[Masters of arcane magic. HD d4.]],
   copy = {
-    resolvers.equip {
+  resolvers.equip {
       full_id=true,
-      { name="heavy mace" },
-      { name="chain mail" },
-    },
-  },
+      { name="iron dagger" },
+      },
+},
   copy_add = {
-    hit_die = 8,
-    max_life = 8,
-    fortitude_save = 2,
-    will_save = 2,
+  hit_die = 4,
+  max_life = 4,
+  will_save = 2,
   },
   talents = {
-    [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
+    [ActorTalents.T_EMPOWER] = 1,
+    [ActorTalents.T_SHOW_SPELLBOOK]=1,
+    [ActorTalents.T_ACID_SPLASH]=1,
+    [ActorTalents.T_GREASE]=1,
+    [ActorTalents.T_MAGIC_MISSILE]=1,
+    [ActorTalents.T_BURNING_HANDS]=1,
+    [ActorTalents.T_SUMMON_CREATURE_I]=1,
+    [ActorTalents.T_SLEEP]=1,
+    [ActorTalents.T_BLINDNESS_DEAFNESS]=1,
   },
 }
 
-newBirthDescriptor {
-  type = 'class',
-  name = 'Barbarian',
-  desc = [[Simple fighters, they hack away with their trusty weapon. HD d12, BAB +1.]],
-  copy = {
-  resolvers.equip {
-      full_id=true,
-      { name="iron battleaxe" },
-      { name="chain mail" },
-    },
-  },
-  copy_add = {
-  hit_die = 12,
-  max_life = 12,
-  combat_attack = 1,
-  fortitude_save = 2,
-  },
-} 
 
-newBirthDescriptor {
-  type = 'class',
-  name = 'Druid',
-  desc = [[Clerics of nature. HD d8.]],
-  copy = {
-  resolvers.equip {
-      full_id=true,
-      { name="quarterstaff" },
-      { name="padded armor" },
-    },
-  },
-  copy_add = {
-  hit_die = 8,
-  max_life = 8,
-  fortitude_save = 2,
-  will_save = 2,
-  },
-}  
-
+--Non-standard classes
 newBirthDescriptor {
   type = 'class',
   name = 'Warlock',
@@ -231,5 +309,8 @@ newBirthDescriptor {
   hit_die = 6,
   max_life = 6,
   will_save = 2,
+  },
+  talents = {
+    [ActorTalents.T_ELDRITCH_BLAST]=1,
   },
 } 

@@ -26,7 +26,9 @@ local Zone = require "engine.Zone"
 local Map = require "engine.Map"
 local Level = require "engine.Level"
 local Birther = require "engine.Birther"
+local HighScores = require "engine.HighScores"
 
+local Party = require "mod.class.Party"
 local Grid = require "mod.class.Grid"
 local Actor = require "mod.class.Actor"
 local Player = require "mod.class.Player"
@@ -40,6 +42,8 @@ local LogFlasher = require "engine.LogFlasher"
 local DebugConsole = require "engine.DebugConsole"
 local FlyingText = require "engine.FlyingText"
 local Tooltip = require "engine.Tooltip"
+local Calendar = require "engine.Calendar"
+
 local AttributesRoller = require "mod.dialogs.AttributesRoller"
 
 local QuitDialog = require "mod.dialogs.Quit"
@@ -70,6 +74,10 @@ function _M:run()
 	self.logSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.log(style, ...) end end
 	self.logPlayer = function(e, style, ...) if e == self.player then self.log(style, ...) end end
 
+-- Start time
+	self.real_starttime = os.time()
+	self.calendar = Calendar.new("/data/calendar.lua", "Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
+
 	self.log(self.flash.GOOD, "Welcome to #00FF00#the Underdark!")
 
 	-- Setup inputs
@@ -92,7 +100,16 @@ function _M:run()
 end
 
 function _M:newGame()
+	self.party = Party.new{}
 	self.player = Player.new{name=self.player_name, game_ender=true}
+	self.party:addMember(self.player, {
+		control="full",
+		type="player",
+		title="Main character",
+		main=true,
+		orders = {target=true, anchor=true, behavior=true, leash=true, talents=true},
+	})
+	--self.party:setPlayer(player)
 	Map:setViewerActor(self.player)
 	self:setupDisplayMode()
 
@@ -128,6 +145,9 @@ function _M:setupDisplayMode()
 	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, nil, 22, true)
 	Map:resetTiles()
 	Map.tiles.use_images = false
+
+	if self.level and self.player then self.calendar = Calendar.new("/data/calendar.lua", "Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
+ end
 
 	if self.level then
 		self.level.map:recreate()
@@ -213,6 +233,12 @@ function _M:onTurn()
 
 	-- Process overlay effects
 	self.level.map:processEffects()
+	--Calendar
+	if not self.day_of_year or self.day_of_year ~= self.calendar:getDayOfYear(self.turn) then
+		self.log(self.calendar:getTimeDate(self.turn))
+		self.day_of_year = self.calendar:getDayOfYear(self.turn)
+	end
+
 end
 
 function _M:display(nb_keyframe)
@@ -363,6 +389,7 @@ function _M:setupCommands()
 			local menu menu = require("engine.dialogs.GameMenu").new{
 				"resume",
 				"keybinds",
+				"highscores",
 				"video",
 				"save",
 				"quit"
@@ -459,8 +486,32 @@ function _M:onQuit()
 	end
 end
 
+--Highscores
+--- Saves the highscore of the current char
+function _M:registerHighscore()
+	local player = self:getPlayer(true)
+	
+	local details = {
+		level = player.level,
+		name = player.name,
+		where = self.zone and self.zone.name or "???",
+		dlvl = self.level and self.level.level or 1
+	}
+		-- fallback score based on xp, this is a placeholder
+		details.score = math.floor(10 * (player.level + (player.exp / player:getExpChart(player.level)))) + math.floor(player.money / 100)
+	--end
+
+	if player.dead then
+		details.killedby = player.killedBy and player.killedBy.name or "???"
+		HighScores.registerScore(details)
+	else
+		HighScores.noteLivingScore(1, player.name, details)
+	end
+end
+
 --- Requests the game to save
 function _M:saveGame()
+	self:registerHighscore()
 	-- savefile_pipe is created as a global by the engine
 	savefile_pipe:push(self.save_name, "game", self)
 	self.log("Saving game...")

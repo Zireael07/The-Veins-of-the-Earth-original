@@ -1,5 +1,5 @@
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Underdark
+-- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,12 +13,25 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
 
-load("/data/general/npcs/humanoid.lua")
 
-load("/data/general/npcs/undead.lua")
+return {
+	{ 30, "Hammer", },
+	{ 1, "Midwinter"},
+	{ 30, "Alturiak" },
+	{ 30, "Ches" },
+	{ 30, "Tarsakh" },
+	{ 1, "Greengrass" },
+	{ 30, "Mirtul" },
+	{ 30, "Kythorn" },
+	{ 30, "Flamerule" },
+	{ 1, "Midsummer" },
+	{ 30, "Eleasias" },
+	{ 30, "Eleint" },
+	{ 1, "Highharvestide"},
+	{ 30, "Marpenoth" },
+	{ 30, "Uktar"},
+	{ 1, "Feast of the Moon"},
+	{ 30, "Nightal"}
 
-load("/data/general/npcs/animals.lua")
+}
