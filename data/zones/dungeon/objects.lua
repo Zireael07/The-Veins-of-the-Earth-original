@@ -14,6 +14,8 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+local Talents = require "engine.interface.ActorTalents"
+
 load("/data/general/objects/armor.lua")
 load("/data/general/objects/weapons.lua")
 
