@@ -25,11 +25,14 @@ function _M:init(actor)
 
     self.c_multiclass = Button.new{text="Multiclassing", fct=function() self:onMulticlass() end}
 
+    self.c_feats = Button.new{text="Feats", fct=function() self:onFeat() end}
+
     self:loadUI{
         {left=0, top=0, ui=self.c_desc},
         {left=0, bottom=0, ui=self.c_accept},
         {left=self.c_accept, bottom=0, ui=self.c_prc},
         {left=self.c_prc, bottom=0, ui=self.c_multiclass},
+        {left=self.c_multiclass, bottom=0, ui=self.c_feats}
 
     }
     
@@ -79,6 +82,10 @@ function _M:generateList()
         end
     end
     self.list = list
+end
+
+function _M:onFeat()
+	game:registerDialog(require("mod.dialogs.FeatDialog").new())
 end
 
 function _M:onEnd(result)

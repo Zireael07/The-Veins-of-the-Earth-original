@@ -37,6 +37,7 @@ newTalentType{ type="class/general", name = "general", description = "General fe
 newTalent{
 	name = "Toughness",
 	type = {"class/general", 1},
+	is_feat = true,
 	points = 3,
 	mode = "passive",
 	info = [[This feat increases your HP by 10% and your Fort save by +3.]],
@@ -49,6 +50,7 @@ newTalent{
 newTalent{
 	name = "Dodge",
 	type = {"class/general", 1},
+	is_feat = true,
 	points = 3,
 	mode = "passive",
 	info = [[This feat increases your AC by +3 and your Ref save by +3.]],
@@ -61,6 +63,7 @@ newTalent{
 newTalent{
 	name = "Iron Will",
 	type = {"class/general", 1},
+	is_feat = true,
 	points = 3,
 	mode = "passive",
 	info = [[This feat increases your power by 10% and your Will save by +3.]],
