@@ -1,3 +1,5 @@
+newTalentType{ type="monster/monster", name = "monster", description = "Monster feats" }
+
 newTalent{	
 	name = "Mind Blast",
 	type = {"monster/monster", 1},
