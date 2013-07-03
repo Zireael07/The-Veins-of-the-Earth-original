@@ -49,7 +49,8 @@ function _M:generateList()
         	if player:knowTalent(t) then colour = {255,0,255}
      		--else if player:canLearn(t)
      		else colour = {0, 255, 0} end
-            list[#list+1] = {name=t.name, color = color, desc=t.info(player,t)}
+     		local d = "#GOLD#"..t.name.."#LAST#\n\n"..t.info(player,t)
+            list[#list+1] = {name=t.name, color = color, desc=d}
         end
     end
     self.list = list
