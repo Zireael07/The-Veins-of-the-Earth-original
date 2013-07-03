@@ -28,6 +28,8 @@ Features:
 - light sources
 - magic armors
 - faerzress
+- critical hits
+- most melee weapons from SRD
 
 ***
 Thanks to:
