@@ -68,7 +68,7 @@ function _M:attackRoll(target)
 
     -- Crit check
     local threat = 0 + (self.weapon and self.weapon.combat.threat or 0)
-    if d >= 20 - threat then crit = true end
+    if d >= 20 - threat then if rng.range(1,20) + attack > ac then crit = true end -- if we qualify for a threat, check if its critical damage
     return hit, crit
 end
 
