@@ -28,4 +28,12 @@ description = [[
 An Underdark roguelike, vaguely d20-based.
 ]]
 starter = "mod.load"
+
 show_only_on_cheat = false -- Example modules are not shown to normal players
+
+score_formatters = {
+	["Underdark"] = {
+		alive="#BLUE#{name}#LAST#",
+		dead="#BLUE#{name}#LAST#"
+	},
+}

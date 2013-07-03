@@ -47,33 +47,45 @@ end
 -- Returns (bool hit, bool crit)
 function _M:attackRoll(target)
     local d = rng.range(1,20)
-    if d == 0 then return false, false end
+    local hit = true
+    local crit = false
+
+    local attack = self.combat_attack or 0 + (self:getStr()-10)/2 or 0
+    local ac = target.combat_def + (target:getDex()-10)/2 or 0
+
+    -- Hit check
+    if self:isConcealed(target) and rng.chance(self:isConcealed(target)) then hit = false
+    elseif d == 0 then hit = false
+    elseif d == 20 then hit = true
+    elseif d + attack < ac then hit = false
+    end
+
+    if hit then
+        game.log(("%s hits the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), d, attack, ac))
+    else
+        game.log(("%s misses the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), d, attack, ac))
+    end
+
+    -- Crit check
+    local threat = 0 + (self.weapon and self.weapon.combat.threat or 0)
+    if d >= 20 - threat then if rng.range(1,20) + attack > ac then crit = true end end -- if we qualify for a threat, check if its critical damage
+    return hit, crit
 end
 
 --- Makes the death happen!
 function _M:attackTarget(target, mult)
     if self.combat then
-        local miss = false --did we miss from misc statuses?
-
-        local dice = rng.dice(1,20)    
-        local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10)/2 - target.combat_armor or 0
-        --Random d20 for attack
-        local attack = dice + self.combat_attack or 0 + (self:getStr()-10)/2 or 0
-        --AC
-        local ac = target.combat_def + (target:getDex()-10)/2 or 0
-
-        --If the target is concealed, we might miss
-        local concealed = self:isConcealed(target)
-        if self:isConcealed(target) and rng.chance(self:isConcealed(target)) then miss = true end
-
-        --Attack must beat AC to hit
-        if not miss and attack > ac then
+        local hit, crit = self:attackRoll(target)
+        if hit then
+            local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10)/2 - target.combat_armor or 0
+            dam = math.max(0, dam)
+            if dam and crit then
+                game.log(("%s makes a critical attack!"):format(self.name:capitalize()))
+                dam = dam * (self.weapon and self.weapon.combat.critical or 2)
+            end
             target:takeHit(dam, self)
-            game.log(("%s hits the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
-        --Misses!
-        else
-            game.log(("%s misses the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), dice, attack, ac))
-        end    
+            game.log(("%s deals %d damage to %s!"):format(self.name:capitalize(), dam, target.name:capitalize()))
+        end
     end
     -- We use up our own energy
     self:useEnergy(game.energy_to_act)

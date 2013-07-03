@@ -24,7 +24,7 @@ local Savefile = require "engine.Savefile"
 module(..., package.seeall, class.inherit(engine.Dialog))
 
 function _M:init()
-	engine.Dialog.init(self, "Really exit Example Module?", 300, 100)
+	engine.Dialog.init(self, "Really exit Underdark?", 300, 100)
 	self:keyCommands({
 		__DEFAULT = function()
 			game:unregisterDialog(self)

@@ -21,6 +21,7 @@
 newBirthDescriptor{
 	type = "base",
 	name = "base",
+	world = "Underdark",
 	desc = {
 	},
 	experience = 1.0,
@@ -42,6 +43,9 @@ newBirthDescriptor{
       full_id=true,
       { name="a torch" },
       },
+    game_state = {
+		campaign_name = "Underdark",
+	},
 
 	},
 }

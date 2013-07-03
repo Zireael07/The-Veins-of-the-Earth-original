@@ -441,6 +441,20 @@ function _M:willSave(dc)
 	end
 end
 
+function useMetamagic(self, t)
+	local metaMod = {}
+	for tid, _ in pairs(self.talents) do
+		local t = self:getTalentFromId(tid)
+		local tt = self:getTalentTypeFrom(t)
+		if tt == "arcane/metamagic" and self:isTalentActive(t.id) then
+			for i,v in ipairs(t.getMod(self, t)) do
+				metaMod[i] = (metaMod[i] and metaMod[i] + v) or v
+			end
+		end
+	end
+	return metaMod
+end 
+
 
 --- The max charge worth you can have in a given spell level
 function _M:getMaxMaxCharges()
@@ -523,8 +537,10 @@ function _M:levelup()
 		engine.Autolevel:autoLevel(self)
 	end
 
-	if self == game.player then game:onTickEnd(function() game:playSound("actions/levelup") end, "levelupsound") end
+	--if self == game.player then game:onTickEnd(function() game:playSound("actions/levelup") end, "levelupsound") end
 	end
+
+	if game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
 
 --Encumbrance
 function _M:getMaxEncumbrance()

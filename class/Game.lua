@@ -28,6 +28,7 @@ local Level = require "engine.Level"
 local Birther = require "engine.Birther"
 local HighScores = require "engine.HighScores"
 
+local Party = require "mod.class.Party"
 local Grid = require "mod.class.Grid"
 local Actor = require "mod.class.Actor"
 local Player = require "mod.class.Player"
@@ -99,7 +100,16 @@ function _M:run()
 end
 
 function _M:newGame()
+	self.party = Party.new{}
 	self.player = Player.new{name=self.player_name, game_ender=true}
+	self.party:addMember(self.player, {
+		control="full",
+		type="player",
+		title="Main character",
+		main=true,
+		orders = {target=true, anchor=true, behavior=true, leash=true, talents=true},
+	})
+	--self.party:setPlayer(player)
 	Map:setViewerActor(self.player)
 	self:setupDisplayMode()
 
@@ -357,8 +367,7 @@ function _M:setupCommands()
 		end,
 
 		LEVELUP = function()
-			if self.player.no_levelup_access then return end
-			self.player:playerLevelup(nil, false)
+			self:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player))
 		end,
 
 		SAVE_GAME = function()
@@ -496,7 +505,7 @@ function _M:registerHighscore()
 		details.killedby = player.killedBy and player.killedBy.name or "???"
 		HighScores.registerScore(details)
 	else
-		HighScores.noteLivingScore(player.name, details)
+		HighScores.noteLivingScore(1, player.name, details)
 	end
 end
 
