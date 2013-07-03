@@ -94,7 +94,7 @@ copy_add = {
 --Blind, smell 30 ft.; +10 to Hide underground, immune to sight-based effects, illusions
 newBirthDescriptor {
   type = 'race',
-  name = 'Grimlock',
+  name = 'Grimlocks',
   desc = [[These blind humanoids are the descendants of barbarians. 30% exp penalty. Str +4 Dex +2 Con +2 Wis -2 Cha -4 Luc -2.]],
   stats = { str = 4, dex = 2, con = 2, wis = -2, cha = -4, luc = -2, },
 copy_add = {
@@ -161,6 +161,9 @@ newBirthDescriptor {
   combat_attack = 1,
   fortitude_save = 2,
   },
+  talents = {
+    [ActorTalents.T_ARMOR_PROFICIENCY]=3,
+  },
 } 
 
 newBirthDescriptor {
@@ -182,6 +185,7 @@ newBirthDescriptor {
   },
   talents = {
     [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
+    [ActorTalents.T_ARMOR_PROFICIENCY]=3,
   },
 }
 
@@ -202,6 +206,10 @@ newBirthDescriptor {
   fortitude_save = 2,
   will_save = 2,
   },
+  talents = {
+    [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
+    [ActorTalents.T_ARMOR_PROFICIENCY]=3,
+  },
 }  
 
 
@@ -221,6 +229,9 @@ newBirthDescriptor {
   max_life = 10,
   combat_attack = 1,
   fortitude_save = 2,
+  },
+  talents = {
+    [ActorTalents.T_ARMOR_PROFICIENCY]=3,
   },
 }
 
@@ -243,6 +254,9 @@ newBirthDescriptor {
   fortitude_save = 2,
   reflex_save = 2,
   },
+  talents = {
+    [ActorTalents.T_ARMOR_PROFICIENCY]=2,
+  },
 }
 
 newBirthDescriptor {
@@ -261,6 +275,9 @@ newBirthDescriptor {
   max_life = 6,
   reflex_save = 2,
   sneak_attack = 1,
+  },
+  talents = {
+    [ActorTalents.T_ARMOR_PROFICIENCY]=2,
   },
   }
 
@@ -312,5 +329,6 @@ newBirthDescriptor {
   },
   talents = {
     [ActorTalents.T_ELDRITCH_BLAST]=1,
-  },
+    [ActorTalents.T_ARMOR_PROFICIENCY]=2,
+    },
 } 

@@ -35,11 +35,23 @@ end
 newTalentType{ type="class/general", name = "general", description = "General feats" }
 
 newTalent{
+	name = "Armor Proficiency",
+	type = {"class/general", 1},
+	points = 3,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat makes you proficient in light armors.]],
+}
+
+
+
+newTalent{
 	name = "Toughness",
 	type = {"class/general", 1},
 	is_feat = true,
 	points = 3,
 	mode = "passive",
+	is_feat = true,
 	info = [[This feat increases your HP by 10% and your Fort save by +3.]],
         on_learn = function(self, t)
         self.max_life = self.max_life + self.maxlife/10
@@ -53,6 +65,7 @@ newTalent{
 	is_feat = true,
 	points = 3,
 	mode = "passive",
+	is_feat = true,
 	info = [[This feat increases your AC by +3 and your Ref save by +3.]],
         on_learn = function(self, t)
         self.combat_def = self.combat_def + 3
@@ -66,6 +79,7 @@ newTalent{
 	is_feat = true,
 	points = 3,
 	mode = "passive",
+	is_feat = true,
 	info = [[This feat increases your power by 10% and your Will save by +3.]],
       	on_learn = function(self, t)
 		self.will_save = self.will_save + 3       
@@ -76,4 +90,4 @@ load("data/talents/arcane.lua")
 load("data/talents/metamagic.lua")
 load("data/talents/special.lua")
 load("data/talents/divine.lua")
---load("data/talents/monster.lua")
+load("data/talents/monster.lua")
