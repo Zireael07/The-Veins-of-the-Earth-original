@@ -20,6 +20,9 @@ newBirthDescriptor {
   type = 'race',
   name = 'Human',
   desc = [[Humans are the basic race to which all others are compared.]],
+  copy_add = {
+    feat_point = 1,
+  }
 }
 
 newBirthDescriptor {
