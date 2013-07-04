@@ -80,27 +80,27 @@ newEntity{
 	combat = { dam= {1,6} }
 }
 
---newEntity{
---	base = "BASE_NPC_SPIDER",
---	name = "large spider", color=colors.WHITE,
---	level_range = {1, 4}, exp_worth = 3000,
---	rarity = 7,
---	max_life = resolvers.rngavg(20,25),
---	hit_die = 4,
---	stats = { str=15, dex=17, con=12, int=1, wis=10, cha=2, luc=10 },
---	combat = { dam= {1,8} }
---}
+newEntity{
+	base = "BASE_NPC_SPIDER",
+	name = "large spider", color=colors.WHITE,
+	level_range = {1, 4}, exp_worth = 3000,
+	rarity = 9,
+	max_life = resolvers.rngavg(20,25),
+	hit_die = 4,
+	stats = { str=15, dex=17, con=12, int=1, wis=10, cha=2, luc=10 },
+	combat = { dam= {1,8} }
+}
 
---newEntity{
---	base = "BASE_NPC_SPIDER",
---	name = "huge spider", color=colors.WHITE,
---	exp_worth = 3300,
---	rarity = 10,
---	max_life = resolvers.rngavg(50,55),
---	hit_die = 8,
---	stats = { str=19, dex=17, con=14, int=1, wis=10, cha=2, luc=10 },
---	combat = { dam= {2,6} }
---}
+newEntity{
+	base = "BASE_NPC_SPIDER",
+	name = "huge spider", color=colors.WHITE,
+	exp_worth = 3300,
+	rarity = 10,
+	max_life = resolvers.rngavg(50,55),
+	hit_die = 8,
+	stats = { str=19, dex=17, con=14, int=1, wis=10, cha=2, luc=10 },
+	combat = { dam= {2,6} }
+}
 
 newEntity{
 	define_as = "BASE_NPC_SNAKE",
