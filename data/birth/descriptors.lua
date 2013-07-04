@@ -39,6 +39,7 @@ newBirthDescriptor{
 		money = 100,
 		max_life = 10,
 		max_level = 100,
+		feat_point = 1,
 		resolvers.equip {
       full_id=true,
       { name="a torch" },
