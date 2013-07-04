@@ -274,7 +274,6 @@ function _M:restCheck()
     local c = self:getCharges(tid)
     local m = self:getMaxCharges(tid)
     if c < m then
-      game.log("Need to rest because"..c.."<"..m)
       return true
     end
   end
