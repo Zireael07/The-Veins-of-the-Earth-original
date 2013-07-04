@@ -117,7 +117,7 @@ function _M:loaded()
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", }
 	Map:setViewerActor(self.player)
 	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, nil, 22, true)
-	self.key = engine.KeyBind.new()
+	selfppp = engine.KeyBind.new()
 end
 
 function _M:setupDisplayMode()
@@ -408,27 +408,33 @@ function _M:setupCommands()
 		
 		--Inventory
 		PICKUP_FLOOR = function()
-    if self.player.no_inventory_access then return end
-    self.player:playerPickup()
-end,
-DROP_FLOOR = function()
-    if self.player.no_inventory_access then return end
-    self.player:playerDrop()
-end, 
+    		if self.player.no_inventory_access then return end
+    		self.player:playerPickup()
+		end,
+		DROP_FLOOR = function()
+    		if self.player.no_inventory_access then return end
+    		self.player:playerDrop()
+		end, 
 
-SHOW_INVENTORY = function()
-    if self.player.no_inventory_access then return end
-    local d
-    d = self.player:showEquipInven("Inventory", nil, function(o, inven, item, button, event)
-        if not o then return end
-        local ud = require("mod.dialogs.UseItemDialog").new(event == "button", self.player, o, item, inven, function(_, _, _, stop)
-            d:generate()
-            d:generateList()
-            if stop then self:unregisterDialog(d) end
-        end)
-        self:registerDialog(ud)
-    end)
-end, 
+		SHOW_INVENTORY = function()
+    		if self.player.no_inventory_access then return end
+    		local d
+    		d = self.player:showEquipInven("Inventory", nil, function(o, inven, item, button, event)
+        	if not o then return end
+    		local ud = require("mod.dialogs.UseItemDialog").new(event == "button", self.player, o, item, inven, function(_, _, _, stop)
+        	d:generate()
+        	d:generateList()
+        	if stop then self:unregisterDialog(d) end
+        	end)
+        	self:registerDialog(ud)
+    	end)
+
+    	OPEN_SPELLBOOK = function()
+    		if self.player.hasTalent and self.player:hasTalent(self.player.T_SPELLBOOK) then 
+    			self.player:useTalent(self.player.T_SPELLBOOK)
+    		end 
+		end
+	end, 
 
 
 	}

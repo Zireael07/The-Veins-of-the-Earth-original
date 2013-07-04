@@ -474,14 +474,24 @@ function _M:getCharges(tid)
 	return self.charges[tid] or 0
 end
 
+function _M:incMaxCharges(tid, v)
+	if type(tid) == "table" then tid = tid.id end
+
+	--Can the player have this many max charges for this type?
+	local a = self:getAllocatedCharges()[1]
+	if a + v > self:getMaxMaxCharges()[1] then return end
+	self.max_charges[tid] = (self.max_charges[tid] or 0) + v
+	self:incAllocatedCharges(1, v)
+end
+
 function _M:setMaxCharges(tid, v)
 	if type(tid) == "table" then tid = tid.id end
 
 	--Can the player have this many max charges for this type?
 	local a = self:getAllocatedCharges()[1]
 	if a + v > self:getMaxMaxCharges()[1] then return end
-	self.max_charges[tid] = (self.max_charges[tid] or 0) + 1
-	self:incAllocatedCharges(1, v)
+	self.max_charges[tid] = v
+	self:setAllocatedCharges(1, v)
 end
 
 function _M:setCharges(tid, v)

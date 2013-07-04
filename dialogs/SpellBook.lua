@@ -25,6 +25,7 @@ function _M:init(actor)
 
     self.c_accept = Button.new{text="Accept",fct=function() self:onEnd("accept") end}
     self.c_decline = Button.new{text="Decline",fct=function() self:onEnd("decline") end}
+    self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
 
     self.c_spells = ImageList.new{width=self.w, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list,
             fct=function(item) self:onSpell(item) end,
@@ -37,6 +38,7 @@ function _M:init(actor)
     self:loadUI{
         {left=0, bottom=0, ui=self.c_accept},
         {left=self.c_accept, bottom=0, ui=self.c_decline},
+        {right=0, bottom=0, ui=self.c_reset},
         {top=0, ui=self.c_desc},
         {top=self.c_desc,ui=self.c_spells},
         {top=self.c_desc,ui=self.c_charges},
@@ -104,12 +106,20 @@ end
 function _M:onSpell(item)
     local p = game.player
     if item then 
-        p:setMaxCharges(item.data, 1) 
+        p:incMaxCharges(item.data, 1) 
     else
 
     end
     self:drawDialog()
 
+end
+
+function _M:onReset()
+    local p = game.player
+    for tid, _ in pairs(p.talents) do
+        p:setMaxCharges(tid, 0)
+    end
+    self:drawDialog()
 end
 
 function _M:generateList()
