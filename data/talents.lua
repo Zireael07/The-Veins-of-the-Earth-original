@@ -20,6 +20,8 @@ local Entity = require "engine.Entity"
 local oldNewTalent = Talents.newTalent
 Talents.newTalent = function(self, t)
 
+	t.type_no_req = true -- Since we do not use talent types
+
 	if not t.image then
 		t.image = "talents/"..(t.short_name or t.name):lower():gsub("[^a-z0-9_]", "_")..".png"
 	end
@@ -92,7 +94,7 @@ newTalent{
 	require = {
 		special = {
 			fct = function(self, t, offset) return true end,
-			desc = "not enough base attack bonus",		 -- Should be base attack bonus of 1
+			desc = "Base attack bonus 1",		 -- Should be base attack bonus of 1
 		}
 	},
 	is_feat = true,
@@ -106,10 +108,7 @@ newTalent{
 	name = "Combat Expertise",
 	type = {"class/general", 1},
 	require = {
-		special = {
-			fct = function(self, t, offset) return true end,
-			desc = "not enough INT",		 -- Should be INT 13
-		}
+		stat = { int = 13 }
 	},
 	is_feat = true,
 	points = 1,
@@ -126,7 +125,7 @@ newTalent{
 	require = {
 		special = {
 			fct = function(self, t, offset) return true end,
-			desc = "not enough base attack bonus",		 -- Should be base attack bonus of 8
+			desc = "Base attack bonus 8",		 -- Should be base attack bonus of 8
 		}
 	},
 	is_feat = true,
@@ -140,10 +139,7 @@ newTalent{
 	name = "Light Sleeper",
 	type = {"class/general", 1},
 	require = {
-		special = {
-			fct = function(self, t, offset) return true end,
-			desc = "not enough WIS",		 -- Should be WIS 13
-		}
+		stat = { wis = 13 }
 	},
 	is_feat = true,
 	points = 1,
@@ -155,10 +151,7 @@ newTalent{
 	name = "Loadbearer",
 	type = {"class/general", 1},
 	require = {
-		special = {
-			fct = function(self, t, offset) return true end,
-			desc = "not enough STR",		 -- Should be STR 13
-		}
+		stat = { str = 13 } 
 	},
 	is_feat = true,
 	points = 1,
@@ -184,10 +177,7 @@ newTalent{
 	name = "Power Attack",
 	type = {"class/general", 1},
 	require = {
-		special = {
-			fct = function(self, t, offset) return true end,
-			desc = "not enough STR",		 -- Should be STR 13
-		}
+		stat = {str = 13}
 	},
 	is_feat = true,
 	points = 1,
