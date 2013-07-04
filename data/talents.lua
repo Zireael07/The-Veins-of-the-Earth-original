@@ -86,6 +86,21 @@ newTalent{
 end
 }
 
+newTalent{
+	name = "Finesse",
+	type = {"class/general", 1},
+	require = {
+		special = {
+			fct = function(self, t, offset) return true end,
+			desc = "not enough base attack bonus",		 -- Should be base attack bonus of 1
+		}
+	},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[With a light weapon, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.]],
+}
+
 load("data/talents/arcane.lua")
 load("data/talents/metamagic.lua")
 load("data/talents/special.lua")

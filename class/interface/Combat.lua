@@ -50,7 +50,13 @@ function _M:attackRoll(target)
     local hit = true
     local crit = false
 
-    local attack = self.combat_attack or 0 + (self:getStr()-10)/2 or 0
+    local attack = self.combat_attack or 0
+    if self:knowTalent(self.T_FINESSE) and self.weapon.size <= 1 then -- or weapon is rapier/etc.
+        attack = attack + (self:getDex()-10)/2 or 0
+    else
+        attack = attack + (self:getStr()-10)/2 or 0
+    end
+
     local ac = target.combat_def + (target:getDex()-10)/2 or 0
 
     -- Hit check

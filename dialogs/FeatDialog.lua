@@ -13,6 +13,7 @@ local List = require "engine.ui.List"
 module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init(actor)
+	self.player = actor
 	Dialog.init(self, "Feats", 500, 600)
 	self:generateList()
 	
@@ -30,7 +31,8 @@ function _M:init(actor)
 end
 
 function _M:use(item)
-	game.log("HI!")
+	game.log(item.talent.name)
+	self.player:learnTalent(item.talent) --returns false if not learned due to requirements
 end
 
 function _M:on_select(item,sel)
@@ -47,11 +49,12 @@ function _M:generateList()
         if t.is_feat then
         	local color
         	if player:knowTalent(t) then colour = {255,0,255}
-     		--else if player:canLearn(t)
-     		else colour = {0, 255, 0} end
-            list[#list+1] = {name=t.name, color = color, desc=t.info(player,t)}
+     		elseif player:canLearnTalent(t) then colour = {0,0,255}
+     		else colour = {0, 255, 0} 
+     		end
+     		local d = "#GOLD#"..t.name.."#LAST#\n\n"..t.info(player,t)
+            list[#list+1] = {name=t.name, color = color, desc=d, talent=t}
         end
     end
     self.list = list
-
 end

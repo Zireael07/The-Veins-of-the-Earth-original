@@ -100,36 +100,16 @@ function _M:run()
 end
 
 function _M:newGame()
-	self.party = Party.new{}
 	self.player = Player.new{name=self.player_name, game_ender=true}
-	self.party:addMember(self.player, {
-		control="full",
-		type="player",
-		title="Main character",
-		main=true,
-		orders = {target=true, anchor=true, behavior=true, leash=true, talents=true},
-	})
-	--self.party:setPlayer(player)
 	Map:setViewerActor(self.player)
 	self:setupDisplayMode()
 
 	self.creating_player = true
---	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', }, function()
----		self:changeLevel(1, "dungeon")
----		print("[PLAYER BIRTH] resolve...")
---		self.player:resolve()
---		self.player:resolve(nil, true)
---		self.player.energy.value = self.energy_to_act
---		self.paused = true
---		self.creating_player = false
---		print("[PLAYER BIRTH] resolved!")
---	end)
 	
-        --Displays attributes roller before the birther
-        local roller = mod.dialogs.AttributesRoller.new(self.player)
-        self:registerDialog(roller)
+    --Displays attributes roller before the birther
+    local roller = mod.dialogs.AttributesRoller.new(self.player)
+    self:registerDialog(roller)
 
-       --self:registerDialog(birth)
 end
 
 function _M:loaded()
