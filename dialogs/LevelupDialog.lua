@@ -85,7 +85,7 @@ function _M:generateList()
 end
 
 function _M:onFeat()
-	game:registerDialog(require("mod.dialogs.FeatDialog").new())
+	game:registerDialog(require("mod.dialogs.FeatDialog").new(game.player))
 end
 
 function _M:onEnd(result)
