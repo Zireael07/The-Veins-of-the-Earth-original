@@ -532,6 +532,22 @@ function _M:levelup()
 	engine.interface.ActorLevel.levelup(self)
 	engine.interface.ActorTalents.resolveLevelTalents(self)
 
+	--- Levelup class stuff
+	-- Goes through every talent and checks if it should be leveled passively by levels
+	print("TESTLEVELUP")
+	for tid, _ in pairs(self.talents_def) do
+		local t = self:getTalentFromId(tid)
+		local tt = self:getTalentTypeFrom(t.type[1])
+		if self:knowTalentType(t.type[1]) then
+			if tt.passive then
+				if self:canLearnTalent(t) then
+					self:learnTalent(tid)
+					game.log("You learned "..t.name)
+				end
+			end
+		end
+	end
+
 	--Gain hp, BAB, saves (generic)
 	self.max_life = self.max_life + self.hit_die
 	self.combat_attack = self.combat_attack or 0 + 1

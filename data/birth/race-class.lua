@@ -190,6 +190,10 @@ newBirthDescriptor {
     [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
     [ActorTalents.T_ARMOR_PROFICIENCY]=3,
   },
+  talents_types = {
+    ["cleric/cleric"] = {true, 0.0},
+  }
+
 }
 
 newBirthDescriptor {
