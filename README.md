@@ -29,7 +29,9 @@ Features:
 - magic armors
 - faerzress
 - critical hits
-- most melee weapons from SRD
+- working feat select
+- most melee feats from SRD
+- most weapons from SRD
 
 ***
 Thanks to:

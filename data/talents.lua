@@ -45,6 +45,21 @@ newTalent{
 	info = [[This feat makes you proficient in light armors.]],
 }
 
+newTalent{
+	name = "Exotic Weapon Proficiency",
+	type = {"class/general", 1},
+	require = {
+		special = {
+			fct = function(self, t, offset) return true end,
+			desc = "Base attack bonus 1",		 -- Should be base attack bonus of 1
+		}
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat makes you proficient in exotic weapons.]],
+}
+
 
 
 newTalent{

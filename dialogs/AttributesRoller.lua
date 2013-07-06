@@ -38,13 +38,13 @@ self.player = Player.new{name=self.player_name, game_ender=true}
 
     self:onRoll()
     
-    self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
+ --   self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
 end
 
 function _M:onBirth()
 
     game:unregisterDialog(self)
-    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', }, function()
+    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment'}, function()
         game:changeLevel(1, "dungeon")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()

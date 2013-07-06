@@ -63,4 +63,54 @@ newBirthDescriptor {
   desc = [[You are a male of the species.  There is no in-game difference between the two sexes.]],
 }
 
+--Alignment
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Lawful Good',
+  desc = [[You are Lawful Good. Lawful spells will not harm you. Good characters will not be hostile.]],
+}
+
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Neutral Good',
+  desc = [[You are Neutral Good. Good characters will not be hostile.]],
+}
+
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Chaotic Good',
+  desc = [[You are Neutral Good. Chaotic spells will not harm you. Good characters will not be hostile.]],
+}
+
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Lawful Neutral',
+  desc = [[You are Lawful Neutral. Lawful spells will not harm you.]],
+}
+
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Neutral',
+  desc = [[You are Neutral.]],
+}
+
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Chaotic Neutral',
+  desc = [[You are Chaotic Neutral. Chaotic spells will not harm you.]],
+}
+
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Lawful Evil',
+  desc = [[You are Lawful Evil. Lawful spells will not harm you. Evil characters will not be hostile.]],
+}
+
+
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Chaotic Evil',
+  desc = [[You are Chaotic Evil. Chaotic spells will not harm you. Evil characters will not be hostile.]],
+}
+
 load('/data/birth/race-class.lua')
