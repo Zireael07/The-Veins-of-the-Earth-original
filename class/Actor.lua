@@ -474,14 +474,24 @@ function _M:getCharges(tid)
 	return self.charges[tid] or 0
 end
 
+function _M:incMaxCharges(tid, v)
+	if type(tid) == "table" then tid = tid.id end
+
+	--Can the player have this many max charges for this type?
+	local a = self:getAllocatedCharges()[1]
+	if a + v > self:getMaxMaxCharges()[1] then return end
+	self.max_charges[tid] = (self.max_charges[tid] or 0) + v
+	self:incAllocatedCharges(1, v)
+end
+
 function _M:setMaxCharges(tid, v)
 	if type(tid) == "table" then tid = tid.id end
 
 	--Can the player have this many max charges for this type?
 	local a = self:getAllocatedCharges()[1]
 	if a + v > self:getMaxMaxCharges()[1] then return end
-	self.max_charges[tid] = (self.max_charges[tid] or 0) + 1
-	self:incAllocatedCharges(1, v)
+	self.max_charges[tid] = v
+	self:setAllocatedCharges(1, v)
 end
 
 function _M:setCharges(tid, v)
@@ -521,6 +531,22 @@ end
 function _M:levelup()
 	engine.interface.ActorLevel.levelup(self)
 	engine.interface.ActorTalents.resolveLevelTalents(self)
+
+	--- Levelup class stuff
+	-- Goes through every talent and checks if it should be leveled passively by levels
+	print("TESTLEVELUP")
+	for tid, _ in pairs(self.talents_def) do
+		local t = self:getTalentFromId(tid)
+		local tt = self:getTalentTypeFrom(t.type[1])
+		if self:knowTalentType(t.type[1]) then
+			if tt.passive then
+				if self:canLearnTalent(t) then
+					self:learnTalent(tid)
+					game.log("You learned "..t.name)
+				end
+			end
+		end
+	end
 
 	--Gain hp, BAB, saves (generic)
 	self.max_life = self.max_life + self.hit_die
