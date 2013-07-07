@@ -97,7 +97,7 @@ copy_add = {
 --Blind, smell 30 ft.; +10 to Hide underground, immune to sight-based effects, illusions
 newBirthDescriptor {
   type = 'race',
-  name = 'Grimlocks',
+  name = 'Grimlock',
   desc = [[These blind humanoids are the descendants of barbarians. 30% exp penalty. Str +4 Dex +2 Con +2 Wis -2 Cha -4 Luc -2.]],
   stats = { str = 4, dex = 2, con = 2, wis = -2, cha = -4, luc = -2, },
 copy_add = {
@@ -129,7 +129,7 @@ copy_add = {
 --Stone sense. Spell-like abilities 1/day - disguise self, blur, blindness/deafness
 newBirthDescriptor {
   type = 'race',
-  name = 'Deep gnomes',
+  name = 'Deep gnome',
   desc = [[The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders. 30% exp penalty. Str -2 Dex +2 Wis +2 Cha -4 Luc -2.]],
   stats = { str = -2, dex = 2, wis = 2, cha = -4, luc = -2, },
 copy_add = {
@@ -166,6 +166,7 @@ newBirthDescriptor {
   },
   talents = {
     [ActorTalents.T_ARMOR_PROFICIENCY]=3,
+    [ActorTalents.T_RAGE]=1,
   },
 } 
 
