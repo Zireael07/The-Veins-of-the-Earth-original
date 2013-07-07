@@ -1,4 +1,4 @@
-newTalentType{ type="barbarian/barbarian", name="barbarian", description="Barbarian Feats" }
+newTalentType{ passive = true, type="barbarian/barbarian", name="barbarian", description="Barbarian Feats" }
 
 newTalent{
 	name = "Rage",
@@ -11,11 +11,8 @@ newTalent{
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-	self.str = self.str + 4
-	self.dex = self.dex + 4
-	self.will_save = self.will_save or 0 + 2
-	self.combat_def = self.combat_def or 0 - 2
-	return true
+		self:setEffect(self.EFF_RAGE, 5, {})
+		return true
 	--end,
 	end,
 

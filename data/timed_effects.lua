@@ -89,3 +89,20 @@ newEffect{
 		DamageType:get(DamageType.FORCE).projector(eff.src or self, self.x, self.y, DamageType.FORCE, eff.power)
 	end,
 }
+
+
+newEffect{
+	name = "RAGE",
+	desc = "Raging!",
+	type = "mental",
+	on_gain = function(self, err) return "#Target# is in a furious rage!", "+Rage" end,
+	on_lose = function(self, err) return "#Target# has calmed down from the rage", "-Rage" end,
+	activate = function(self, eff)
+		local s = Stats.STAT_STR
+		local d = Stats.STAT_DEX
+		local inc = { s=4, d=4 }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+		self:effectTemporaryValue(eff, "will_save", 2)
+		self:effectTemporaryValue(eff, "combat_def", -2)
+	end,
+}
