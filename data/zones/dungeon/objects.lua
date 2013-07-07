@@ -26,7 +26,7 @@ load("/data/general/objects/exoticranged.lua")
 newEntity{
     define_as = "BASE_POTION",
     slot = "INVEN",
-    type = "potion",
+    type = "potion", subtype = "potion",
     display = "!", color=colors.RED,
     encumber = 0,
     rarity = 5,
