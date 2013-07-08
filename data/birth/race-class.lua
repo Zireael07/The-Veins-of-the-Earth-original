@@ -193,8 +193,12 @@ newBirthDescriptor {
   },
   talents_types = {
     ["cleric/cleric"] = {true, 0.0},
-  }
-
+  },
+  descriptor_choices = {
+    domains = {
+      __ALL__ = "allow",
+    }
+  },
 }
 
 newBirthDescriptor {

@@ -64,6 +64,20 @@ newEffect{
 }
 
 newEffect{
+	name = "FATIGUE",
+	desc = "Fatigued",
+	long_desc = [["A fatigued character can neither run nor charge and takes a -2 penalty to Strength and Dexterity. Doing anything that would normally cause fatigue causes the fatigued character to become exhausted. After 8 hours of complete rest, fatigued characters are no longer fatigued.]],
+	type = "physical",
+	status = "determinal",
+	on_gain = function(self, err) return "#Target# is fatigued!", "+Fatigue" end,
+	on_lose = function(self, err) return "#Target# is no longer fatigued", "-Fatigue" end,
+	activate = function(self, eff)
+		local stat = { [Stats.STAT_STR]=-2, [Stats.STAT_DEX]=-2 }
+		self:effectTemporaryValue(eff, "inc_stats", stat)
+	end
+}
+
+newEffect{
 	name = "ACIDBURN",
 	desc = "Burning from acid",
 	type = "physical",
@@ -88,4 +102,22 @@ newEffect{
 	on_timeout = function(self, eff)
 		DamageType:get(DamageType.FORCE).projector(eff.src or self, self.x, self.y, DamageType.FORCE, eff.power)
 	end,
+}
+
+
+newEffect{
+	name = "RAGE",
+	desc = "Raging!",
+	type = "mental",
+	on_gain = function(self, err) return "#Target# is in a furious rage!", "+Rage" end,
+	on_lose = function(self, err) return "#Target# has calmed down from the rage", "-Rage" end,
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_STR]=4, [Stats.STAT_DEX]=4 }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+		self:effectTemporaryValue(eff, "will_save", 2)
+		self:effectTemporaryValue(eff, "combat_def", -2)
+	end,
+	deactivate = function(self, eff)
+		self:setEffect(self.EFF_FATIGUE, 5, {})
+	end
 }

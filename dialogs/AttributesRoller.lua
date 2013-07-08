@@ -19,10 +19,10 @@ function _M:init(actor)
     Dialog.init(self, "Attributes Roller: "..self.actor.name, math.max(game.w * 0.7, 950), 500, nil, nil, font)
 
     self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
- --Reroll button
+    --Reroll button
     self.c_reroll = Button.new{text="Reroll",fct=function() self:onRoll() end}
 
-self.player = Player.new{name=self.player_name, game_ender=true}
+    self.player = Player.new{name=self.player_name, game_ender=true}
 
     --Birth button
     self.c_save = Button.new{text="Birth", fct=function() self:onBirth() end}
@@ -44,7 +44,7 @@ end
 function _M:onBirth()
 
     game:unregisterDialog(self)
-    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment'}, function()
+    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment', 'domains'}, function()
         game:changeLevel(1, "dungeon")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()

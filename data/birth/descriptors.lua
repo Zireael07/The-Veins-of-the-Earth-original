@@ -43,11 +43,17 @@ newBirthDescriptor{
 		resolvers.equip {
       full_id=true,
       { name="a torch" },
-      },
+    },
     game_state = {
-		campaign_name = "Underdark",
-	},
-
+		  campaign_name = "Underdark",
+    },
+  },
+  descriptor_choices =
+  {
+    domains =
+    {
+      __ALL__ = "disallow",
+    }
 	},
 }
 
@@ -114,3 +120,4 @@ newBirthDescriptor {
 }
 
 load('/data/birth/race-class.lua')
+load('/data/birth/domains.lua')
