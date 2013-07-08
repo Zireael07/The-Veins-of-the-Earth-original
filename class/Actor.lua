@@ -418,6 +418,16 @@ function _M:canBe(what)
 	return true
 end
 
+function _M:skillCheck(skill, dc)
+	local d = rng.dice(1,20)
+	if d == 20 then return true
+	elseif d == 1 then return false
+	end
+
+	if d + (self:attr(skill) or 0) > dc then return true end
+	return false
+end
+
 function _M:reflexSave(dc)
 	local roll = rng.dice(1,20)
 	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + self:getStat("dex")
