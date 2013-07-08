@@ -65,6 +65,7 @@ function _M:generateList()
 	     		local d = "#GOLD#"..t.name.."#LAST#\n"
 	     		s = player:getTalentReqDesc(t.id):toString()
 	     		d = d..s.."\n#WHITE#"
+	     		if t.acquired then d = d.."#PINK#"..t.acquired.."#LAST#\n\n" end
 	     		d = d..t.info(player,t)
 	            list[#list+1] = {name=t.name, color = color, desc=d, talent=t, i = i}
 	        end
