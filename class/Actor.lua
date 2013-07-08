@@ -527,14 +527,7 @@ function _M:incAllocatedCharges(type, value)
 	self:setAllocatedCharges(type, val)
 end
 
---Leveling up
-function _M:levelup()
-	engine.interface.ActorLevel.levelup(self)
-	engine.interface.ActorTalents.resolveLevelTalents(self)
-
-	--- Levelup class stuff
-	-- Goes through every talent and checks if it should be leveled passively by levels
-	print("TESTLEVELUP")
+function _M:levelPassives()
 	for tid, _ in pairs(self.talents_def) do
 		local t = self:getTalentFromId(tid)
 		local tt = self:getTalentTypeFrom(t.type[1])
@@ -547,6 +540,16 @@ function _M:levelup()
 			end
 		end
 	end
+end
+
+--Leveling up
+function _M:levelup()
+	engine.interface.ActorLevel.levelup(self)
+	engine.interface.ActorTalents.resolveLevelTalents(self)
+
+	--- Levelup class stuff
+	-- Goes through every talent and checks if it should be leveled passively by levels
+	self:levelPassives()
 
 	--Gain hp, BAB, saves (generic)
 	self.max_life = self.max_life + self.hit_die

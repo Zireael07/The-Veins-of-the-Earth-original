@@ -200,6 +200,8 @@ newTalent{
 	info = [[You can substract a number from your base attack bonus and add it to damage bonus.]],
 }
 
+load("data/talents/domains/domains.lua")
+
 load("data/talents/barbarian.lua")
 load("data/talents/arcane.lua")
 load("data/talents/metamagic.lua")

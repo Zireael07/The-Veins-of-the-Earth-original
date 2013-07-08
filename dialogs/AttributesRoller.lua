@@ -44,7 +44,7 @@ end
 function _M:onBirth()
 
     game:unregisterDialog(self)
-    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment', 'domains'}, function()
+    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment', 'domains', 'domains'}, function()
         game:changeLevel(1, "dungeon")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
@@ -52,6 +52,7 @@ function _M:onBirth()
         game.player.energy.value = game.energy_to_act
         game.paused = true
         game.creating_player = false
+        game.player:levelPassives()
         print("[PLAYER BIRTH] resolved!")
         end)
 
