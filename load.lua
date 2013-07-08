@@ -30,7 +30,7 @@ local Birther = require "engine.Birther"
 dofile('/mod/resolvers.lua')
 
 -- Useful keybinds
-KeyBind:load("move,hotkeys,inventory,actions,interface,debug")
+KeyBind:load("move,hotkeys,inventory,actions,interface,debug,underdark")
 
 -- Damage types
 DamageType:loadDefinition("/data/damage_types.lua")
