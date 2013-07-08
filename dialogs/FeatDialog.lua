@@ -53,16 +53,21 @@ function _M:generateList()
     for tid, _ in pairs(player.talents_def) do
 		local t = player:getTalentFromId(tid)
         if t.is_feat then
-        	local color
-        	if player:knowTalent(t) then color = {255,255,255} i = 1
-     		elseif player:canLearnTalent(t) then color = {0,187,187} i = 2
-     		else color = {100, 100, 100} i = 3
-     		end
-     		local d = "#GOLD#"..t.name.."#LAST#\n"
-     		s = player:getTalentReqDesc(t.id):toString()
-     		d = d..s.."\n#WHITE#"
-     		d = d..t.info(player,t)
-            list[#list+1] = {name=t.name, color = color, desc=d, talent=t, i = i}
+        	--if we haven't learned it, and it is a class feat, dont show it in feat list
+        	local tt = player:getTalentTypeFrom(t.type[1])
+        	if not tt.passive or player:knowTalent(t) then
+	        	local tid
+	        	local color
+	        	if player:knowTalent(t) then color = {255,255,255} i = 1
+	     		elseif player:canLearnTalent(t) then color = {0,187,187} i = 2
+	     		else color = {100, 100, 100} i = 3
+	     		end
+	     		local d = "#GOLD#"..t.name.."#LAST#\n"
+	     		s = player:getTalentReqDesc(t.id):toString()
+	     		d = d..s.."\n#WHITE#"
+	     		d = d..t.info(player,t)
+	            list[#list+1] = {name=t.name, color = color, desc=d, talent=t, i = i}
+	        end
         end
     end
     self.list = list
