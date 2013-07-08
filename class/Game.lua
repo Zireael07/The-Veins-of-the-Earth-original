@@ -429,14 +429,18 @@ function _M:setupCommands()
         	self:registerDialog(ud)
     	end)
 
+    	--New functions
     	OPEN_SPELLBOOK = function()
     		if self.player.hasTalent and self.player:hasTalent(self.player.T_SPELLBOOK) then 
     			self.player:useTalent(self.player.T_SPELLBOOK)
     		end 
 		end
-	end, 
+	end,
 
-
+		SHOW_HELP = function()
+			self:registerDialog(require("mod.dialogs.Help").new(self.player))
+		end,
+	 
 	}
 	self.key:setCurrent()
 end
