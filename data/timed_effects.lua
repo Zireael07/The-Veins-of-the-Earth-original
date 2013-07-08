@@ -121,3 +121,13 @@ newEffect{
 		self:setEffect(self.EFF_FATIGUE, 5, {})
 	end
 }
+
+newEffect{
+	name = "BLOOD_VENGANCE",
+	desc = "Angry!",
+	type = "mental",
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_STR]=2, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+	end,
+}

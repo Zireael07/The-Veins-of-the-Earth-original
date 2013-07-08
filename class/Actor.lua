@@ -103,6 +103,13 @@ function _M:act()
 	-- Compute timed effects
 	self:timedEffects()
 
+	-- check passive stuff. This should be in actbase I think but I cant get it to work
+	if self:knowTalent(self.T_BLOOD_VENGANCE) then
+		if self.life / self.max_life < 0.5 then
+			self:setEffect(self.EFF_BLOOD_VENGANCE, 1, {})
+		end
+	end
+
 	if self:attr("sleep") then self.energy.value = 0 end
 
 	-- Still enough energy to act ?
@@ -596,7 +603,7 @@ end
 
 function _M:checkEncumbrance()
 	-- Compute encumbrance
-	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()
+	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()	
 
 	-- We are pinned to the ground if we carry too much
 	if not self.encumbered and enc > max then
