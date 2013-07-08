@@ -37,14 +37,29 @@ end
 function _M:use(item)
 	if self.player.feat_point > 0 then
 		local learned = self.player:learnTalent(item.talent.id) --returns false if not learned due to requirements
-		if learned then self.player.feat_point = self.player.feat_point - 1 end
+		if learned then 
+			self.player.feat_point = self.player.feat_point - 1 
+			self:update()
+		end
 	end
 end
 
 function _M:on_select(item,sel)
 	--if item.info then self.c_desc.text = item.info end
 	--if item.name and self.c_desc then self.c_desc.text = item.name end
-	if self.c_desc then self.c_desc:switchItem(item, item.desc) end	
+	if self.c_desc then self.c_desc:switchItem(item, item.desc) end
+	self.selection = sel	
+end
+
+function _M:update()
+	local sel = self.selection
+	game.log(""..self.selection)
+	self:generateList() -- Slow! Should just update the one changed and sort again
+	self.c_points.text = "Available feat points: "..self.player.feat_point
+	self.c_points:generate()
+	self.c_list.list = self.list
+	self.c_list:generate()
+	if sel then self.c_list:select(sel) end
 end
 
 function _M:generateList()
