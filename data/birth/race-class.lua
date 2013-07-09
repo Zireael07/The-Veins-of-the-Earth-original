@@ -150,7 +150,7 @@ copy_add = {
 newBirthDescriptor {
   type = 'class',
   name = 'Barbarian',
-  desc = [[Simple fighters, they hack away with their trusty weapon. HD d12, BAB +1.]],
+  desc = [[Simple fighters, they hack away with their trusty weapon. HD d12, BAB +1, Fort +2 at first level.]],
   copy = {
   resolvers.equip {
       full_id=true,
@@ -163,6 +163,7 @@ newBirthDescriptor {
   max_life = 12,
   combat_attack = 1,
   fortitude_save = 2,
+  skill_point = 8,
   },
   talents = {
     [ActorTalents.T_ARMOR_PROFICIENCY]=3,
@@ -182,7 +183,7 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'class',
   name = 'Cleric',
-  desc = [[Clerics are masters of healing. HD d8.]],
+  desc = [[Clerics are masters of healing. HD d8. Fort +2, Will +2 at first level.]],
   copy = {
     resolvers.equip {
       full_id=true,
@@ -195,6 +196,7 @@ newBirthDescriptor {
     max_life = 8,
     fortitude_save = 2,
     will_save = 2,
+    skill_point = 2,
   },
   talents = {
     [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
@@ -213,7 +215,7 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'class',
   name = 'Druid',
-  desc = [[Clerics of nature. HD d8.]],
+  desc = [[Clerics of nature. HD d8. Fort +2 Will +2 at first level.]],
   copy = {
   resolvers.equip {
       full_id=true,
@@ -226,6 +228,7 @@ newBirthDescriptor {
   max_life = 8,
   fortitude_save = 2,
   will_save = 2,
+  skill_point = 4,
   },
   talents = {
     [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
@@ -247,7 +250,7 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'class',
   name = 'Fighter',
-  desc = [[Simple fighters, they hack away with their trusty weapon. HD d10, BAB +1.]],
+  desc = [[Simple fighters, they hack away with their trusty weapon. HD d10, BAB +1, Fort +2 at first level.]],
   copy = {
   resolvers.equip {
       full_id=true,
@@ -260,6 +263,7 @@ newBirthDescriptor {
   max_life = 10,
   combat_attack = 1,
   fortitude_save = 2,
+  skill_point = 2,
   },
   talents = {
     [ActorTalents.T_ARMOR_PROFICIENCY]=3,
@@ -270,7 +274,7 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'class',
   name = 'Ranger',
-  desc = [[Rangers are capable archers but are also trained in hand to hand combat and divine magic. HD d8.]],
+  desc = [[Rangers are capable archers but are also trained in hand to hand combat and divine magic. HD d8, BAB +1, Fort +2, Ref +2 at first level.]],
   copy = {
   resolvers.equip {
       full_id=true,
@@ -284,6 +288,7 @@ newBirthDescriptor {
   combat_attack = 1,
   fortitude_save = 2,
   reflex_save = 2,
+  skill_point = 6,
   },
   talents = {
     [ActorTalents.T_ARMOR_PROFICIENCY]=2,
@@ -293,7 +298,7 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'class',
   name = 'Rogue',
-  desc = [[Rogues are masters of tricks. HD d6.]],
+  desc = [[Rogues are masters of tricks. HD d6, Ref +2 at first level.]],
   copy = {
   resolvers.equip {
       full_id=true,
@@ -306,6 +311,7 @@ newBirthDescriptor {
   max_life = 6,
   reflex_save = 2,
   sneak_attack = 1,
+  skill_point = 8,
   },
   talents = {
     [ActorTalents.T_ARMOR_PROFICIENCY]=2,
@@ -315,7 +321,7 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'class',
   name = 'Wizard',
-  desc = [[Masters of arcane magic. HD d4.]],
+  desc = [[Masters of arcane magic. HD d4, Will +2 at first level.]],
   copy = {
   resolvers.equip {
       full_id=true,
@@ -326,6 +332,7 @@ newBirthDescriptor {
   hit_die = 4,
   max_life = 4,
   will_save = 2,
+  skill_point = 2,
   },
   talents = {
     [ActorTalents.T_EMPOWER] = 1,
@@ -345,7 +352,7 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'class',
   name = 'Warlock',
-  desc = [[A spellcaster who needs no weapon. HD d6.]],
+  desc = [[A spellcaster who needs no weapon. HD d6, Will +2 at first level.]],
   copy = {
   resolvers.equip {
       full_id=true,
@@ -357,6 +364,7 @@ newBirthDescriptor {
   hit_die = 6,
   max_life = 6,
   will_save = 2,
+  skill_point = 2,
   },
   talents = {
     [ActorTalents.T_ELDRITCH_BLAST]=1,

@@ -446,7 +446,7 @@ end
 function _M:getSkill(skill)
 	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", search = "int", sensemotive = "wis", pickpocket = "dex", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
- return self:attr("skill_"..skill) + (self:getStat(stat_for_skill[skill])-10)/2 end
+ return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) end
 
 function _M:skillCheck(skill, dc)
 	local d = rng.dice(1,20)
