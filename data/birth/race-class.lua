@@ -168,6 +168,15 @@ newBirthDescriptor {
     [ActorTalents.T_ARMOR_PROFICIENCY]=3,
     [ActorTalents.T_RAGE]=1,
   },
+  descriptor_choices =
+  {
+    alignment =
+    {
+      ['Lawful Good'] = "disallow",
+      ['Lawful Neutral'] = "disallow",
+      ['Lawful Evil'] = "disallow",
+    }
+  },
 } 
 
 newBirthDescriptor {
@@ -221,6 +230,16 @@ newBirthDescriptor {
   talents = {
     [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
     [ActorTalents.T_ARMOR_PROFICIENCY]=3,
+  },
+  descriptor_choices =
+  {
+    alignment =
+    {
+      ['Lawful Good'] = "disallow",
+      ['Lawful Evil'] = "disallow",
+      ['Chaotic Good'] = "disallow",
+      ['Chaotic Evil'] = "disallow",
+    }
   },
 }  
 

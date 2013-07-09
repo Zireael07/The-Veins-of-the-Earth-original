@@ -420,22 +420,24 @@ function _M:setupCommands()
     		if self.player.no_inventory_access then return end
     		local d
     		d = self.player:showEquipInven("Inventory", nil, function(o, inven, item, button, event)
-        	if not o then return end
-    		local ud = require("mod.dialogs.UseItemDialog").new(event == "button", self.player, o, item, inven, function(_, _, _, stop)
-        	d:generate()
-        	d:generateList()
-        	if stop then self:unregisterDialog(d) end
-        	end)
-        	self:registerDialog(ud)
-    	end)
+	        	if not o then return end
+	    		local ud = require("mod.dialogs.UseItemDialog").new(event == "button", self.player, o, item, inven, function(_, _, _, stop)
+		        	d:generate()
+		        	d:generateList()
+		        	if stop then self:unregisterDialog(d) end
+	        	end)
+	        	self:registerDialog(ud)
+	    	end)
+		end,
 
     	--New functions
     	OPEN_SPELLBOOK = function()
-    		if self.player.hasTalent and self.player:hasTalent(self.player.T_SPELLBOOK) then 
-    			self.player:useTalent(self.player.T_SPELLBOOK)
+    		if self.player.knowTalent and self.player:knowTalent(self.player.T_SHOW_SPELLBOOK) then 
+    			self.player:useTalent(self.player.T_SHOW_SPELLBOOK)
+    		else
+    			game.log("Sorry, you do not have a spellbook")
     		end 
-		end
-	end,
+		end,
 
 		SHOW_HELP = function()
 			self:registerDialog(require("mod.dialogs.Help").new(self.player))
@@ -443,6 +445,7 @@ function _M:setupCommands()
 	 
 	}
 	self.key:setCurrent()
+	engine.interface.PlayerHotkeys:bindAllHotkeys(self.key, function(i) self.player:activateHotkey(i) end)
 end
 
 function _M:setupMouse(reset)

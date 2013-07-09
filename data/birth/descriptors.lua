@@ -112,11 +112,16 @@ newBirthDescriptor {
   desc = [[You are Lawful Evil. Lawful spells will not harm you. Evil characters will not be hostile.]],
 }
 
-
 newBirthDescriptor {
   type = 'alignment',
   name = 'Chaotic Evil',
   desc = [[You are Chaotic Evil. Chaotic spells will not harm you. Evil characters will not be hostile.]],
+}
+
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Evil Neutral',
+  desc = [[You are Evil Neutral. Evil characters will not be hostile.]],
 }
 
 load('/data/birth/race-class.lua')
