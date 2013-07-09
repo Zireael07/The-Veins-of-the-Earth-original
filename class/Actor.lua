@@ -53,6 +53,31 @@ function _M:init(t, no_default)
 	-- Default melee barehanded damage
 	self.combat = { dam = {1,4} }
 
+	--Skillz!
+	self.skill_balance = 0
+	self.skill_bluff = 0
+	self.skill_climb = 0
+	self.skill_concentration = 0
+	self.skill_diplomacy = 0
+	self.skill_disabledevice = 0
+	self.skill_escapeartist = 0
+	self.skill_handleanimal = 0
+	self.skill_heal = 0
+	self.skill_hide = 0
+	self.skill_intimidate = 0
+	self.skill_jump = 0
+	self.skill_knowledge = 0
+	self.skill_listen = 0
+	self.skill_movesilently = 0
+	self.skill_openlock = 0
+	self.skill_search = 0
+	self.skill_sensemotive = 0
+	self.skill_pickpocket = 0 --what is called sleight of hand in 3.5
+	self.skill_spellcraft = 0
+	self.skill_survival = 0
+	self.skill_tumble = 0
+	self.skill_usemagic = 0
+
 	engine.Actor.init(self, t, no_default)
 	engine.interface.ActorTemporaryEffects.init(self, t)
 	engine.interface.ActorLife.init(self, t)
@@ -417,6 +442,11 @@ function _M:canBe(what)
 	if what == "instakill" and rng.percent(100 * (self:attr("instakill_immune") or 0)) then return false end
 	return true
 end
+
+function _M:getSkill(skill)
+	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", search = "int", sensemotive = "wis", pickpocket = "dex", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
+	if (not skill) then return 0 end
+ return self:attr("skill_"..skill) + (self:getStat(stat_for_skill[skill])-10)/2 end
 
 function _M:skillCheck(skill, dc)
 	local d = rng.dice(1,20)

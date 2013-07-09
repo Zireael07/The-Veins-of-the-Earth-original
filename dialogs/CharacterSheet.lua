@@ -70,13 +70,50 @@ function _M:drawDialog()
     w = self.w * 0.25 
     -- start on second column
         
-    s:drawStringBlended(self.font, "STR : "..(player:getStr()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "DEX : "..(player:getDex()), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "STR : "..(player:getStr()), w, h, 255, 255, 0, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "DEX : "..(player:getDex()), w, h, 255, 255, 0, true) h = h + self.font_h
     s:drawStringBlended(self.font, "CON : "..(player:getCon()), w, h, 255, 255, 0, true) h = h + self.font_h
     s:drawStringBlended(self.font, "INT : "..(player:getInt()), w, h, 255, 255, 0, true) h = h + self.font_h
     s:drawStringBlended(self.font, "WIS : "..(player:getWis()), w, h, 255, 255, 0, true) h = h + self.font_h
     s:drawStringBlended(self.font, "CHA : "..(player:getCha()), w, h, 255, 255, 0, true) h = h + self.font_h
     s:drawStringBlended(self.font, "LUC : "..(player:getLuc()), w, h, 255, 255, 0, true) h = h + self.font_h
+
+    h = 0
+    w = self.w * 0.50 
+    -- start on third column
+    --Ideally, class-restricted skills should show up only if you have that class
+    s:drawStringBlended(self.font, "Skills", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Balance : "..(player:getSkill(balance) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Bluff : "..(player:getSkill(bluff) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Climb : "..(player:getSkill(climb) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Concentration : "..(player:getSkill(concentration) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Diplomacy : "..(player:getSkill(diplomacy) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Disable Device : "..(player:getSkill(disabledevice) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Escape Artist : "..(player:getSkill(escapeartist) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Handle Animal : "..(player:getSkill(handleanimal) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Heal : "..(player:getSkill(heal) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Hide : "..(player:getSkill(hide) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Intimidate : "..(player:getSkill(intimidate) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Jump : "..(player:getSkill(jump) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Knowledge : "..(player:getSkill(knowledge) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Listen : "..(player:getSkill(listen) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Move Silently : "..(player:getSkill(movesilently) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Open Lock : "..(player:getSkill(openlock) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Search : "..(player:getSkill(search) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Sense Motive : "..(player:getSkill(sensemotive) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Pick Pocket : "..(player:getSkill(pickpocket) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Spellcraft : "..(player:getSkill(spellcraft) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Survival : "..(player:getSkill(survival) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Tumble : "..(player:getSkill(tumble) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Use Magic : "..(player:getSkill(usemagic) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+
+
+
+    h = 0
+    w = self.w * 0.75 
+    -- start on last column
+    s:drawStringBlended(self.font, "Feats", w, h, 255, 255, 255, true) h = h + self.font_h
+    --uh, a list of feats?
 
     self.c_desc:generate()
     self.changed = false
