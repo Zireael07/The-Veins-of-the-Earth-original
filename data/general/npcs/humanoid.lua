@@ -58,7 +58,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_ORC",
-	name = "orc warrior", color=colors.WHITE,
+	name = "orc warrior", color=colors.GREEN,
 	level_range = {1, 4}, exp_worth = 150,
 	rarity = 3,
 	max_life = resolvers.rngavg(4,7),
@@ -78,7 +78,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_TIEFLING",
-	name = "tiefling", color=colors.WHITE,
+	name = "tiefling", color=colors.RED,
 	level_range = {1, 4}, exp_worth = 150,
 	rarity = 3,
 	max_life = resolvers.rngavg(4,7),

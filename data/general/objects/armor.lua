@@ -5,7 +5,7 @@ newEntity{
     define_as = "BASE_LIGHT_ARMOR",
     slot = "BODY",
     type = "armor", subtype="light",
-    display = "[", color=colors.BROWN,
+    display = "(", color=colors.SLATE,
     encumber = 10,
     rarity = 5,
     name = "light armor",
@@ -87,18 +87,18 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 }
 
 newEntity{
-    define_as = "BASE_HEAVY_ARMOR",
+    define_as = "BASE_MEDIUM_ARMOR",
     slot = "BODY",
-    type = "armor", subtype="heavy",
-    display = "[", color=colors.SLATE,
+    type = "armor", subtype="medium",
+    display = "]", color=colors.SLATE,
     require = { talent = { Talents.T_ARMOR_PROFICIENCY }, },
     encumber = 40,
     rarity = 2,
-    name = "heavy armor",
+    name = "medium armor",
     desc = [[A suit of armour made of mail.]],
 }
 
-newEntity{ base = "BASE_HEAVY_ARMOR",
+newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "chain mail",
     level_range = {1, 10},
     cost = 150,
@@ -107,11 +107,41 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 	},
 }
 
-newEntity{ base = "BASE_HEAVY_ARMOR",
+newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "chain mail +1",
     level_range = {1, 10},
     cost = 2150,
     wielder = {
         combat_def = 6
+    },
+}
+
+newEntity{
+    define_as = "BASE_HEAVY_ARMOR",
+    slot = "BODY",
+    type = "armor", subtype="heavy",
+    display = "[", color=colors.SLATE,
+    require = { talent = { Talents.T_ARMOR_PROFICIENCY }, },
+    encumber = 50,
+    rarity = 8,
+    name = "heavy armor",
+    desc = [[A suit of armour made of plate.]],
+}
+
+newEntity{ base = "BASE_HEAVY_ARMOR",
+    name = "plate armor",
+    level_range = {1, 10},
+    cost = 600,
+    wielder = {
+        combat_def = 7
+    },
+}
+
+newEntity{ base = "BASE_HEAVY_ARMOR",
+    name = "plate armor +1",
+    level_range = {1, 10},
+    cost = 2600,
+    wielder = {
+        combat_def = 7
     },
 }

@@ -41,7 +41,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_SPIDER",
 	type = "animal",
-	display = 's', color=colors.WHITE,
+	display = 's', color=colors.BROWN,
 	desc = [[A small spider.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
@@ -51,7 +51,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SPIDER",
-	name = "tiny spider", color=colors.WHITE,
+	name = "tiny spider", color=colors.BROWN,
 	level_range = {1, 4}, exp_worth = 75,
 	rarity = 1,
 	max_life = resolvers.rngavg(1,3),
@@ -60,7 +60,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SPIDER",
-	name = "small spider", color=colors.WHITE,
+	name = "small spider", color=colors.BROWN,
 	level_range = {1, 4}, exp_worth = 100,
 	rarity = 3,
 	max_life = resolvers.rngavg(3,6),
@@ -71,7 +71,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SPIDER",
-	name = "medium spider", color=colors.WHITE,
+	name = "medium spider", color=colors.BROWN,
 	level_range = {1, 4}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(3,6),
@@ -82,7 +82,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SPIDER",
-	name = "large spider", color=colors.WHITE,
+	name = "large spider", color=colors.BROWN,
 	level_range = {1, 4}, exp_worth = 3000,
 	rarity = 9,
 	max_life = resolvers.rngavg(20,25),
@@ -93,7 +93,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SPIDER",
-	name = "huge spider", color=colors.WHITE,
+	name = "huge spider", color=colors.BROWN,
 	exp_worth = 3300,
 	rarity = 10,
 	max_life = resolvers.rngavg(50,55),
@@ -115,7 +115,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SNAKE",
-	name = "tiny snake", color=colors.WHITE,
+	name = "tiny snake", color=colors.GREEN,
 	level_range = {1, 4}, exp_worth = 75,
 	rarity = 1,
 	max_life = resolvers.rngavg(1,3),
@@ -124,7 +124,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SNAKE",
-	name = "small snake", color=colors.WHITE,
+	name = "small snake", color=colors.GREEN,
 	level_range = {1, 4}, exp_worth = 100,
 	rarity = 3,
 	max_life = resolvers.rngavg(2,5),
@@ -133,7 +133,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SNAKE",
-	name = "medium snake", color=colors.WHITE,
+	name = "medium snake", color=colors.GREEN,
 	level_range = {1, 4}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(7,10),

@@ -40,7 +40,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_ZOMBIE",
 	type = "undead",
-	display = 's', color=colors.WHITE,
+	display = 'Z', color=colors.WHITE,
 	desc = [[A humanoid zombie.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },

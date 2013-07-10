@@ -21,6 +21,7 @@ load("/data/general/objects/weapons.lua")
 load("/data/general/objects/ranged.lua")
 load("/data/general/objects/exotic.lua")
 load("/data/general/objects/exoticranged.lua")
+load("/data/general/objects/shields.lua")
 
 --Potions
 newEntity{
@@ -64,8 +65,8 @@ newEntity{
 newEntity{
     define_as = "BASE_LIGHT",
     slot = "LITE",
-    type = "torch",
-    display = "t", color=colors.YELLOW,
+    type = "torch", subtype = "lite",
+    display = "~", color=colors.YELLOW,
     encumber = 0,
     rarity = 10,
     name = "A torch",
@@ -119,6 +120,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "flask of water",
+    display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 7,
     --nutrition
@@ -136,6 +138,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "stale water",
+    display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 7,
     --no nutrition
