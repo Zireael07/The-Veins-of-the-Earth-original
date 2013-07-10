@@ -53,7 +53,7 @@ function _M:drawDialog()
 --    s:drawStringBlended(self.font, "SP : "..(player.mana or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    s:drawStringBlended(self.font, "Hit Dice : "..(player.hit_die or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Hit Points : "..(player.life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Max Hit Points : "..(player.max_life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 

@@ -598,8 +598,10 @@ function _M:levelup()
 	-- Goes through every talent and checks if it should be leveled passively by levels
 	self:levelPassives()
 
-	--Gain hp, BAB, saves (generic)
-	self.max_life = self.max_life + self.hit_die
+	--Gain hp (generic)
+	self.max_life = self.max_life + self.hd_size
+	
+	--Placeholders
 	self.combat_attack = self.combat_attack or 0 + 1
 	self.fortitude_save = self.fortitude_save or 0 + 1
 	self.reflex_save = self.reflex_save or 0 + 1

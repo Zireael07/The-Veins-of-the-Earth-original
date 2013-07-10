@@ -159,7 +159,7 @@ newBirthDescriptor {
     },
   },
   copy_add = {
-  hit_die = 12,
+  hd_size = 12,
   max_life = 12,
   combat_attack = 1,
   fortitude_save = 2,
@@ -192,7 +192,7 @@ newBirthDescriptor {
     },
   },
   copy_add = {
-    hit_die = 8,
+    hd_size = 8,
     max_life = 8,
     fortitude_save = 2,
     will_save = 2,
@@ -224,7 +224,7 @@ newBirthDescriptor {
     },
   },
   copy_add = {
-  hit_die = 8,
+  hd_size = 8,
   max_life = 8,
   fortitude_save = 2,
   will_save = 2,
@@ -259,7 +259,7 @@ newBirthDescriptor {
     },
 },
   copy_add = {
-  hit_die = 10,
+  hd_size = 10,
   max_life = 10,
   combat_attack = 1,
   fortitude_save = 2,
@@ -283,7 +283,7 @@ newBirthDescriptor {
     },
 },
   copy_add = {
-  hit_die = 8,
+  hd_size = 8,
   max_life = 8,
   combat_attack = 1,
   fortitude_save = 2,
@@ -307,7 +307,7 @@ newBirthDescriptor {
     },
 },
   copy_add = {
-  hit_die = 6,
+  hd_size = 6,
   max_life = 6,
   reflex_save = 2,
   sneak_attack = 1,
@@ -329,7 +329,7 @@ newBirthDescriptor {
       },
 },
   copy_add = {
-  hit_die = 4,
+  hd_size = 4,
   max_life = 4,
   will_save = 2,
   skill_point = 2,
