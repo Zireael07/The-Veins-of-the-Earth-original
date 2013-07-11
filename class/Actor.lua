@@ -99,7 +99,7 @@ function _M:init(t, no_default)
 	self.allocated_charges = {0}
 
 	-- Use weapon damage actually
-	if not self:getInven("MAINHAND") or not self:getInven("OFFHAND") then return end
+	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
 	if weapon then dam = weapon.combat.dam
 	end
 end
@@ -443,6 +443,7 @@ function _M:canBe(what)
 	return true
 end
 
+--Skill checks
 function _M:getSkill(skill)
 	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", search = "int", sensemotive = "wis", pickpocket = "dex", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
@@ -454,10 +455,19 @@ function _M:skillCheck(skill, dc)
 	elseif d == 1 then return false
 	end
 
-	if d + (self:attr(skill) or 0) > dc then return true end
+	if d + (getSkill(skill) or 0) > dc then return true end
 	return false
 end
 
+function _M:opposedCheck(skill1, target, skill2)
+	local my_skill = self:getSkill(skill1)
+	local enemy_skill = target:getSkill(skill2)
+
+	if d + (my_skill or 0) > d + (enemy_skill or 0) then return true end
+	return false
+end
+
+--Saving throws
 function _M:reflexSave(dc)
 	local roll = rng.dice(1,20)
 	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + self:getStat("dex")
