@@ -48,6 +48,9 @@ newBirthDescriptor{
 		  campaign_name = "Underdark",
     },
   },
+  talents = {
+    [ActorTalents.T_SHOOT]=1,
+  },
   descriptor_choices =
   {
     domains =
