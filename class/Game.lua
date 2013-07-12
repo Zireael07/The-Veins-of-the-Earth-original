@@ -35,7 +35,7 @@ local Player = require "mod.class.Player"
 local NPC = require "mod.class.NPC"
 
 local PlayerDisplay = require "mod.class.PlayerDisplay"
-local HotkeysIconsDisplay = require "engine.HotkeysIconsDisplay"
+local HotkeysIconsDisplay = require "mod.class.HotkeysIconsDisplay"
 local ActorsSeenDisplay = require "engine.ActorsSeenDisplay"
 local LogDisplay = require "engine.LogDisplay"
 local LogFlasher = require "engine.LogFlasher"
