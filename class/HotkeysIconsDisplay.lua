@@ -258,7 +258,7 @@ function _M:toScreen()
 
 --		frame[1]:toScreenFull(self.display_x + item.x, self.display_y + item.y, self.frames.w, self.frames.h, frame[2] * self.frames.rw, frame[3] * self.frames.rh, pagesel, pagesel, pagesel, 255)
 --		frame[1]:toScreenFull(self.display_x + item.x, self.display_y + item.y, self.frames.w, self.frames.h, frame[2] * self.frames.rw, frame[3] * self.frames.rh, pagesel, pagesel, pagesel, 255)
-		UI:drawFrame(self.frames.base, self.display_x + item.x, self.display_y + item.y, frame[1], frame[2], frame[3], 1)
+		--UI:drawFrame(self.frames.base, self.display_x + item.x, self.display_y + item.y, frame[1], frame[2], frame[3], 1)
 
 		if gtxt then
 			if self.shadow then gtxt._tex:toScreenFull(self.display_x + item.x + self.frames.fy + 2 + (self.icon_w - gtxt.fw) / 2, self.display_y + item.y + self.frames.fy + 2 + (self.icon_h - gtxt.fh) / 2, gtxt.w, gtxt.h, gtxt._tex_w, gtxt._tex_h, 0, 0, 0, self.shadow) end
