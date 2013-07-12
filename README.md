@@ -32,6 +32,9 @@ Features:
 - working feat select
 - most melee feats from SRD
 - most weapons from SRD
+- skill checks and opposed checks
+- skill points at lvl 1
+- working archery
 
 ***
 Thanks to:
