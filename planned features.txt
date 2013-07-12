@@ -1,0 +1,12 @@
+DIFFERENCES FROM d20
+
+Initiative will not be implemented.
+Certain racial features you might know from d20 materials were left out.
+Character size does not matter currently.
+
+PLANNED FEATURES
+Flat-footed is not implemented currently.
+Touch attacks and touch AC are not implemented currently.
+Prestige classes and multiclassing are not implemented currently.
+
+Sneak attack is not implemented currently.

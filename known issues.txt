@@ -1,0 +1,14 @@
+KNOWN ISSUES
+
+The lower left corner display is weird on the first turn of the game. Move and the values will be normal.
+Item descriptions do not show up.
+Encumbrance doesn't work.
+Potions cannot be used due to the 'being worn' requirement somewhere.
+
+Leveling up only grants hp until we figure out how to do class-based attack and save bonuses.
+The grimlock should be permanently blind.
+You can currently bash with your bow for the same damage it deals normally.
+There is no -4 penalty for using weapons you are not proficient in.
+
+Shooting currently uses your Strength to determine attack.
+
