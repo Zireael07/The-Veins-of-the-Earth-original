@@ -118,6 +118,7 @@ function _M:onReset()
     local p = game.player
     for tid, _ in pairs(p.talents) do
         p:setMaxCharges(tid, 0)
+        p:setCharges(tid, 0)
     end
     self:drawDialog()
 end
