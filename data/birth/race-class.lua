@@ -166,7 +166,8 @@ newBirthDescriptor {
   skill_point = 8,
   },
   talents = {
-    [ActorTalents.T_ARMOR_PROFICIENCY]=3,
+    [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
+    [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
     [ActorTalents.T_RAGE]=1,
   },
   descriptor_choices =
@@ -200,7 +201,9 @@ newBirthDescriptor {
   },
   talents = {
     [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
-    [ActorTalents.T_ARMOR_PROFICIENCY]=3,
+    [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
+    [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
+    [ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
   },
   talents_types = {
     ["cleric/cleric"] = {true, 0.0},
@@ -232,7 +235,8 @@ newBirthDescriptor {
   },
   talents = {
     [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
-    [ActorTalents.T_ARMOR_PROFICIENCY]=3,
+    [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
+    [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
   },
   descriptor_choices =
   {
@@ -266,7 +270,9 @@ newBirthDescriptor {
   skill_point = 2,
   },
   talents = {
-    [ActorTalents.T_ARMOR_PROFICIENCY]=3,
+    [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
+    [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
+    [ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
   },
 }
 
@@ -291,7 +297,8 @@ newBirthDescriptor {
   skill_point = 6,
   },
   talents = {
-    [ActorTalents.T_ARMOR_PROFICIENCY]=2,
+    [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
+    [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
   },
 }
 
@@ -314,7 +321,8 @@ newBirthDescriptor {
   skill_point = 8,
   },
   talents = {
-    [ActorTalents.T_ARMOR_PROFICIENCY]=2,
+    [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
+    [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
   },
   }
 
@@ -368,6 +376,7 @@ newBirthDescriptor {
   },
   talents = {
     [ActorTalents.T_ELDRITCH_BLAST]=1,
-    [ActorTalents.T_ARMOR_PROFICIENCY]=2,
+    [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
+    [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
     },
 } 

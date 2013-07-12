@@ -37,13 +37,32 @@ end
 newTalentType{ type="class/general", name = "general", description = "General feats" }
 
 newTalent{
-	name = "Armor Proficiency",
+	name = "Light Armor Proficiency",
 	type = {"class/general", 1},
-	points = 3,
+	points = 1,
 	mode = "passive",
 	is_feat = true,
 	info = [[This feat makes you proficient in light armors.]],
 }
+
+newTalent{
+	name = "Medium Armor Proficiency",
+	type = {"class/general", 1},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat makes you proficient in light armors.]],
+}
+
+newTalent{
+	name = "Heavy Armor Proficiency",
+	type = {"class/general", 1},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat makes you proficient in light armors.]],
+}
+
 
 newTalent{
 	name = "Exotic Weapon Proficiency",
