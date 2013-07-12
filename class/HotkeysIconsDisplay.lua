@@ -33,6 +33,7 @@ function _M:init(actor, x, y, w, h, bgcolor, fontname, fontsize, icon_w, icon_h)
 		self.bg_image = bgcolor
 	end
 	self.font = core.display.newFont(fontname or "/data/font/DroidSansMono.ttf", fontsize or 10)
+	self.fontmedium = core.display.newFont(fontname or "/data/font/DroidSansMono.ttf", (fontsize or 10) * 1.6)
 	self.fontbig = core.display.newFont(fontname or "/data/font/DroidSansMono.ttf", (fontsize or 10) * 2)
 	self.font_h = self.font:lineSkip()
 	self.dragclics = {}
@@ -145,6 +146,7 @@ function _M:display()
 			local color, angle, txt = nil, 0, nil
 			local display_entity = nil
 			local frame = "ok"
+			local charge_nb, charge_mx = nil, nil
 			if ts[3] == "talent" then
 				local tid = ts[1]
 				local t = a:getTalentFromId(tid)
@@ -166,6 +168,10 @@ function _M:display()
 					elseif not a:preUseTalent(t, true, true) then
 						color = {190,190,190}
 						frame = "disabled"
+					end
+					if a:getCharges(t) then
+						charge_nb = a:getCharges(t)
+						charge_mx = a:getMaxCharges(t)
 					end
 				end
 			elseif ts[3] == "inventory" then
@@ -218,7 +224,14 @@ function _M:display()
 				gtxt.fw, gtxt.fh = self.fontbig:size(txt)
 			end
 
-			self.items[#self.items+1] = {i=i, x=x, y=y, e=display_entity or self.default_entity, color=color, angle=angle, key=key, gtxt=gtxt, frame=frame, pagesel=lpage==spage}
+			local ctxt = nil
+			if charge_mx > 0 then
+				local charge_text = charge_nb.."/"..charge_mx
+				ctxt = self.fontmedium:draw(charge_text, w, 100, 220, 240, true)[1]
+				ctxt.fw, ctxt.fh = self.fontbig:size(charge_text)
+			end 
+
+			self.items[#self.items+1] = {i=i, x=x, y=y, e=display_entity or self.default_entity, color=color, angle=angle, key=key, gtxt=gtxt, ctxt=ctxt, frame=frame, pagesel=lpage==spage}
 			self.clics[i] = {x,y,w,h}
 		end
 
@@ -247,6 +260,7 @@ function _M:toScreen()
 		local item = self.items[i]
 		local key = item.key
 		local gtxt = item.gtxt
+		local ctxt = item.ctxt
 		local frame = frames_colors[item.frame]
 		local pagesel = item.pagesel and 1 or 0.5
 
@@ -263,6 +277,11 @@ function _M:toScreen()
 		if gtxt then
 			if self.shadow then gtxt._tex:toScreenFull(self.display_x + item.x + self.frames.fy + 2 + (self.icon_w - gtxt.fw) / 2, self.display_y + item.y + self.frames.fy + 2 + (self.icon_h - gtxt.fh) / 2, gtxt.w, gtxt.h, gtxt._tex_w, gtxt._tex_h, 0, 0, 0, self.shadow) end
 			gtxt._tex:toScreenFull(self.display_x + item.x + self.frames.fx + (self.icon_w - gtxt.fw) / 2, self.display_y + item.y + self.frames.fy + (self.icon_h - gtxt.fh) / 2, gtxt.w, gtxt.h, gtxt._tex_w, gtxt._tex_h)
+		end
+
+		if ctxt then
+			if self.shadow then ctxt._tex:toScreenFull(self.display_x + item.x + self.frames.fy + 2 + (self.icon_w - ctxt.fw) / 2, self.display_y + item.y + self.frames.fy + 2, ctxt.w, ctxt.h, ctxt._tex_w, ctxt._tex_h, 0, 0, 0, self.shadow) end
+			ctxt._tex:toScreenFull(self.display_x + item.x + self.frames.fx + (self.icon_w - ctxt.fw) / 2, self.display_y + item.y + self.frames.fy, ctxt.w, ctxt.h, ctxt._tex_w, ctxt._tex_h)
 		end
 
 --		core.display.drawQuad(self.display_x + item.x + 1 + self.frames.fx + self.icon_w - key.w, self.display_y + item.y + 1 + self.icon_h - key.h, key.w, key.h, 0, 128, 128, 200)
