@@ -35,58 +35,10 @@ module(..., package.seeall, class.inherit(mod.class.Actor,
 					  engine.interface.PlayerMouse,
 					  engine.interface.PlayerHotkeys))
 
-local exp_chart = {
-  [1]	= 0,
-  [2]	= 1000,
-  [3]	= 2500,
-  [4]	= 4500,
-  [5]	= 7000,
-  [6]	= 10000,
-  [7]	= 14000,
-  [8]	= 200000,
-  [9]	= 280000,
-  [10]	= 380000,
-  [11]	= 500000,
-  [12]	= 650000,
-  [13]	= 850000,
-  [14]	= 1100000,
-  [15]	= 1400000,
-  [16]	= 1800000,
-  [17]	= 2300000,
-  [18]	= 2900000,
-  [19]	= 3600000,
-  [20]	= 4400000,
-  [21]	= 5400000,
-  [22]	= 6800000,
-  [23]	= 8400000,
-  [24]	= 10200000,
-  [25]	= 12500000,
-  [26]	= 17500000,
-  [27]	= 25000000,
-  [28]	= 35000000,
-  [29]	= 50000000,
-  [30]	= 75000000,
-  [31]	= 10000000,
-  [32]	= 15000000,
-  [33]	= 20000000,
-  [34]	= 27500000,
-  [35]	= 35000000,
-  [36]	= 45000000,
-  [37]	= 55000000,
-  [38]	= 70000000,
-  [39]	= 85000000,
-  [40]	= 100000000,
-  [41]	= 125000000,
-  [42]	= 150000000,
-  [43]	= 180000000,
-  [44]	= 210000000,
-  [45]	= 240000000,
-  [46]	= 270000000,
-  [47]	= 300000000,
-  [48]	= 350000000,
-  [49]	= 400000000,
-  [50]	= 450000000,
-}
+local exp_chart = function(level) 
+if level==1 then return 1000 
+else return 1000*level*(level+1)/2 end
+end
 
 function _M:init(t, no_default)
   t.display=t.display or '@'
@@ -113,7 +65,7 @@ end
 
 function _M:getExpChart(level)
   if not level or level < 1 then return 0 end
-  return math.floor((exp_chart[level] * (self.xp_mult or 100))/100)
+  return math.floor((exp_chart(level) * (self.xp_mult or 1)))
 end
 
 function _M:move(x, y, force)
