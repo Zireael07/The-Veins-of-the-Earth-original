@@ -1,12 +1,32 @@
-DIFFERENCES FROM d20
+DIFFERENCES FROM SRD
 
 Initiative will not be implemented.
-Certain racial features you might know from d20 materials were left out.
 Character size does not matter currently.
+Favored classes will grant a small reduction in XP required to level up.
 
-PLANNED FEATURES
+PLANNED FEATURES     #1
 Flat-footed is not implemented currently.
 Touch attacks and touch AC are not implemented currently.
 Prestige classes and multiclassing are not implemented currently.
-
 Sneak attack is not implemented currently.
+Druid and rogue class features are not implemented currently.
+Armors do not limit the AC bonus from Dexterity.
+
+You can currently bash with your bow for the same damage it deals normally.
+There is no -4 penalty for using weapons you are not proficient in.
+
+PLANNED FEATURES     #2
+More class features for the fighter.
+Eat and drink required.
+Rest making 8 hours pass.
+Monsters regenerated on rest.
+
+Achievements.
+Stores.
+Faerzress granting mutations.
+Randomized names.
+Bones.
+Eating corpses.
+
+Stairs having a chance of not changing the dungeon level, i.e. being horizontal.
+Removing the stairs from which you arrived.

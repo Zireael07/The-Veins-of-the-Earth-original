@@ -77,7 +77,7 @@ copy_add = {
   infravision = 3,
   keen_senses = 2,
   spell_resistance = 12,
-  experience = 1.10,
+  xp_mult = 1.10,
   }
 }
 
@@ -90,39 +90,7 @@ newBirthDescriptor {
 copy_add = {
   infravision = 3,
   keen_senses = 1,
-  experience = 1.10,
-  }
-}
-
---Blind, smell 30 ft.; +10 to Hide underground, immune to sight-based effects, illusions
-newBirthDescriptor {
-  type = 'race',
-  name = 'Grimlock',
-  desc = [[These blind humanoids are the descendants of barbarians. 30% exp penalty. Str +4 Dex +2 Con +2 Wis -2 Cha -4 Luc -2.]],
-  stats = { str = 4, dex = 2, con = 2, wis = -2, cha = -4, luc = -2, },
-copy_add = {
---   hit_die = 2,
-   combat_attack = 2,
-   reflex_save = 3,
-   will_save = 3,
-   experience = 1.30,
-  }
-}
-
---Electricity resistance 10, immune to poison and paralysis
-newBirthDescriptor {
-  type = 'race',
-  name = 'Kuo-toa',
-  desc = [[These fishfolk live in the depths of the Underdark. 30% exp penalty. Str +2 Con +2 Int +2 Wis +4 Cha -2 Luc -2.]],
-  stats = { str = 2, con = 2, int = 2, wis = 4, cha = -2, luc = -2, },
-copy_add = {
-  infravision = 3,
-  keen_senses = 2,
- -- hit_die = 2,
-  combat_def = 6,
-  reflex_save = 3,
-  will_save = 3,
-  experience = 1.30,
+  xp_mult = 1.10,
   }
 }
 
@@ -140,7 +108,7 @@ copy_add = {
   fortitude_save = 2,
   reflex_save = 2,
   will_save = 2,
-  experience = 1.30,
+  xp_mult = 1.30,
   }
 }
 

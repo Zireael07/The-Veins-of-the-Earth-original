@@ -19,7 +19,7 @@ local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
 	define_as = "BASE_NPC_FLAYER",
-	type = "aberration", subtype = "mind flayer",
+	type = "aberration", subtype = "brain flayer",
 	display = "f", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
         desc = [[A horrid thing with tentacles!]],
@@ -30,7 +30,7 @@ newEntity{
         }
 
 newEntity{ base = "BASE_NPC_FLAYER",
-	name = "mind flayer", color=colors.WHITE,
+	name = "brain flayer", color=colors.WHITE,
 	level_range = {6, 14}, exp_worth = 200,
 	rarity = 8,
 	max_life = resolvers.rngavg(10,15),
