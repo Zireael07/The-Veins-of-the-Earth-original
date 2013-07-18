@@ -168,6 +168,7 @@ newBirthDescriptor {
     skill_point = 2,
   },
   talents = {
+    [ActorTalents.T_SHOW_SPELLBOOK]=1,
     [ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
     [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
     [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
@@ -175,6 +176,7 @@ newBirthDescriptor {
   },
   talents_types = {
     ["cleric/cleric"] = {true, 0.0},
+    ["divine/divine"] = {true, 0.0}
   },
   descriptor_choices = {
     domains = {
@@ -320,6 +322,9 @@ newBirthDescriptor {
     [ActorTalents.T_SUMMON_CREATURE_I]=1,
     [ActorTalents.T_SLEEP]=1,
     [ActorTalents.T_BLINDNESS_DEAFNESS]=1,
+  },
+  talents_types = {
+    ["arcane/arcane"] = {true, 0.0},
   },
 }
 

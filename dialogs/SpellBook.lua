@@ -9,7 +9,7 @@ local Button = require "engine.ui.Button"
 local ImageList = require "engine.ui.ImageList"
 local Player = require "mod.class.Player"
 local UI = require "engine.ui.Base"
-
+local Tabs = require "engine.ui.Tabs"
 
 module(..., package.seeall, class.inherit(Dialog))
 
@@ -17,11 +17,21 @@ function _M:init(actor)
 	print("[TESTY]")
 	print(actor)
     self.actor = actor
-
-    self:generateList()
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Spellbook: "..self.actor.name, math.max(game.w * 0.5, 70), 500, nil, nil, font)
+
+    local types = {}
+    if self.actor:knowTalentType("arcane/arcane") then
+        types[#types+1]= {title="Arcane", kind="arcane/arcane"}
+    end
+    if self.actor:knowTalentType("divine/divine") then
+        types[#types+1] = {title="Divine", kind="divine/divine"}
+    end
+
+    self:generateList(types[1].kind)
+
+    self.c_tabs = Tabs.new{width=self.iw - 5, tabs=types, on_change=function(kind) self:switchTo(kind) end}
 
     self.c_accept = Button.new{text="Accept",fct=function() self:onEnd("accept") end}
     self.c_decline = Button.new{text="Decline",fct=function() self:onEnd("decline") end}
@@ -29,28 +39,32 @@ function _M:init(actor)
 
     self.c_spells = ImageList.new{width=self.w, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list,
             fct=function(item) self:onSpell(item) end,
-            on_select=function(item, how) self:drawDialog() self:selectTab(item, how) end
         }
 
     self.c_desc = SurfaceZone.new{width=300, height=50,alpha=1.0}
     self.c_charges = SurfaceZone.new{width=300, height=50,alpha=1.0}
 
-    self:loadUI{
-        {left=0, bottom=0, ui=self.c_accept},
-        {left=self.c_accept, bottom=0, ui=self.c_decline},
-        {right=0, bottom=0, ui=self.c_reset},
-        {top=0, ui=self.c_desc},
-        {top=self.c_desc,ui=self.c_spells},
-        {top=self.c_desc,ui=self.c_charges},
-
-    }
-    
-    self:setupUI()
-    self:drawDialog()
+    self:redraw()
     
     self.key:addBinds{
         EXIT = function() self:onEnd("decline") end,
     }
+end
+
+function _M:redraw()
+    --Oh god, DarkGod will take my soul for this :'(
+    self:loadUI{
+        {left=0, top=0, ui=self.c_tabs},
+        {left=0, bottom=0, ui=self.c_accept},
+        {left=self.c_accept, bottom=0, ui=self.c_decline},
+        {right=0, bottom=0, ui=self.c_reset},
+        {top=self.c_tabs.h + 10, ui=self.c_desc},
+        {top=self.c_desc,ui=self.c_spells},
+        {top=self.c_desc,ui=self.c_charges},
+    }
+
+    self:setupUI()
+    self:drawDialog()
 end
 
 function _M:drawDialog(s)
@@ -95,12 +109,8 @@ function _M:drawDialog(s)
     self.changed = false
 end
 
-function _M:selectTab(item, how)
-    if item then
-        --self.spell_frame = {item.x, item.y}
-    else
-        --self.spell_frame = nil
-    end
+function _M:switchTo(kind)
+    self:generateList(kind)
 end
 
 function _M:onSpell(item)
@@ -123,16 +133,27 @@ function _M:onReset()
     self:drawDialog()
 end
 
-function _M:generateList()
+function _M:generateList(spellist)
+
 	local player = game.player
     local list = {}
+
     for tid, _ in pairs(player.talents) do
 		local t = player:getTalentFromId(tid)
-        if t.is_spell then
+        if t.type[1] == spellist then
             list[#list+1] = t
         end
     end
+
     self.list = list
+
+    if self.c_spells then
+        game.log("updating spell image list")
+        self.c_spells = ImageList.new{width=self.w, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list,
+                fct=function(item) self:onSpell(item) end,
+        }
+    self:redraw()
+    end
 end
 
 function _M:onEnd(result)
