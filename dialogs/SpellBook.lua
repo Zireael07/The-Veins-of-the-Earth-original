@@ -14,8 +14,6 @@ local Tabs = require "engine.ui.Tabs"
 module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init(actor)
-	print("[TESTY]")
-	print(actor)
     self.actor = actor
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
@@ -49,22 +47,6 @@ function _M:init(actor)
     self.key:addBinds{
         EXIT = function() self:onEnd("decline") end,
     }
-end
-
-function _M:redraw()
-    --Oh god, DarkGod will take my soul for this :'(
-    self:loadUI{
-        {left=0, top=0, ui=self.c_tabs},
-        {left=0, bottom=0, ui=self.c_accept},
-        {left=self.c_accept, bottom=0, ui=self.c_decline},
-        {right=0, bottom=0, ui=self.c_reset},
-        {top=self.c_tabs.h + 10, ui=self.c_desc},
-        {top=self.c_desc,ui=self.c_spells},
-        {top=self.c_desc,ui=self.c_charges},
-    }
-
-    self:setupUI()
-    self:drawDialog()
 end
 
 function _M:drawDialog(s)
@@ -105,6 +87,8 @@ function _M:drawDialog(s)
 
     self.c_desc:generate()
     self.c_charges:generate()
+    self.c_spells:generate()
+
 
     self.changed = false
 end
@@ -117,8 +101,6 @@ function _M:onSpell(item)
     local p = game.player
     if item then 
         p:incMaxCharges(item.data, 1) 
-    else
-
     end
     self:drawDialog()
 
@@ -148,11 +130,8 @@ function _M:generateList(spellist)
     self.list = list
 
     if self.c_spells then
-        game.log("updating spell image list")
-        self.c_spells = ImageList.new{width=self.w, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list,
-                fct=function(item) self:onSpell(item) end,
-        }
-    self:redraw()
+        self.c_spells.list = self.list
+        self:drawDialog()
     end
 end
 
