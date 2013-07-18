@@ -96,8 +96,8 @@ function _M:drawDialog(s)
     local font = core.display.newFont("/data/font/DroidSans-Bold.ttf", 12)
     for _, t in ipairs(self.list) do
         local p = game.player
-        local num = p:getCharges(t)
-        local max = p:getMaxCharges(t)
+        local num = p:getCharges(t) or 0
+        local max = p:getMaxCharges(t) or 0
         local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
         c:drawColorString(font, str, w, h, 255, 255, 255, true) 
         w = w + self.c_spells.tile_w + self.c_spells.padding
@@ -140,7 +140,7 @@ function _M:generateList(spellist)
 
     for tid, _ in pairs(player.talents) do
 		local t = player:getTalentFromId(tid)
-        if t.type[1] == spellist then
+        if t.type[1] == spellist and player:knowTalent(t) then
             list[#list+1] = t
         end
     end

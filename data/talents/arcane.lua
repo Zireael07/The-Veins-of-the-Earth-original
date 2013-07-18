@@ -1,11 +1,10 @@
 newTalentType{ type="arcane/arcane", name = "arcane", description = "Arcane Spells" }
 
-newTalent{	
+newTalent{
 	name = "Acid Splash",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
-	is_spell = true,
-	--require = ,
+	level = 1,
 	points = 1,
 	cooldown = 8,
 	tactical = { BUFF = 2 },
@@ -39,8 +38,7 @@ newTalent{
 	name = "Grease",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
-	is_spell = true,
-	--require = ,
+	level = 1,
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
@@ -82,8 +80,7 @@ newTalent{
 	name = "Magic Missile", --image="talents/magic_missile.png",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
-	is_spell = true,
-	--require = ,
+	level = 1,
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
@@ -131,8 +128,7 @@ newTalent{
 	name = "Burning Hands",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
-	is_spell = true,
-	--require = ,
+	level = 1,
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
@@ -171,7 +167,7 @@ newTalent{
 	name = "Summon Creature I",
 	type = {"arcane/arcane", 1},
 	mode = "activated",
-	is_spell = true,
+	level = 1,
 	points = 1,
 	cooldown = 0,
 	range = 3,
@@ -260,7 +256,7 @@ newTalent{
 	name = "Sleep",
 	type = {"arcane/arcane",1},
 	mode = "activated",
-	is_spell = true,
+	level = 1,
 	points = 1,
 	cooldown = 0,
 	range = 0,
@@ -327,7 +323,7 @@ newTalent{
 	name = "Blindness/Deafness", short_name = "BLINDNESS_DEAFNESS",
 	type = {"arcane/arcane",1},
 	mode = "activated",
-	is_spell = true,
+	level = 1,
 	points = 1,
 	cooldown = 0,
 	range = 4,
@@ -377,7 +373,7 @@ newTalent{
 	name = "Ghoul Touch",
 	type = {"arcane/arcane",1},
 	mode = "activated",
-	is_spell = true,
+	level = 1,
 	points = 1,
 	cooldown = 0,
 	range = 4,
@@ -390,48 +386,3 @@ newTalent{
 	info = "Hello", 
 }
 
---Warlock attack
-newTalent{	
-	name = "Eldritch Blast", --image="talents/magic_missile.png",
-	type = {"arcane/arcane", 1},
-	mode = 'activated',
-	is_spell = false,
-	--require = ,
-	points = 1,
-	cooldown = 3,
-	tactical = { BUFF = 2 },
-	range = 5,
-	requires_target = true,
-	proj_speed = 3,
-	num_targets = function(self, t)
-		local caster_level = self.level or 1
-		return 1 + math.min(math.floor(caster_level / 2, 5))
-	end,
-	target = function(self, t)
-		local tg = {type="bolt", range=self:getTalentRange(t), talent=t, display={display='*',color=colors.RED}}
-		return tg
-	end,
-	action = function(self, t)
-		local targets = {}
-		for i=1, t.num_targets(self, t) do
-			local tg = self:getTalentTarget(t)
-			local x, y = self:getTarget(tg)
-			if x and y then
-				targets[i] = {x,y,tg}
-			end
-		end
-
-		for i,v in ipairs(targets) do
-			x, y, tg = unpack(v)
-			local damage = rng.dice(1,4)+1
-			if x and y and tg then
-				self:projectile(tg, x, y, DamageType.FORCE, damage)
-			end
-		end
-
-		return true
-	end,
-	info = function(self, t)
-		return ([[A blast of eldritch power a warlock wields.]])
-	end,
-}

@@ -5,6 +5,7 @@ newTalent{
 	type = {"divine/divine", 1},
 	mode = 'activated',
 	--require = ,
+	level = 1,
 	points = 1,
 	cooldown = 20,
 	tactical = { BUFF = 2 },
