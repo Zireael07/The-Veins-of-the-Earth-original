@@ -49,7 +49,6 @@ end
 
 function _M:use(who, typ, inven, item)
     inven = who:getInven(inven)
-    game.log(self.slot or "No slot..?")
     if self:wornInven() and not self.lost == "INVEN" and not self.wielded and not self.use_no_wear then
         game.logPlayer(who, "You must wear this object to use it!")
         return
