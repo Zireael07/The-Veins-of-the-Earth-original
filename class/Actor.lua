@@ -638,6 +638,7 @@ function _M:levelup()
 
 	if game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
 
+
 function _M:onAddObject(o)
 	self:checkEncumbrance()
 end
@@ -645,7 +646,6 @@ end
 function _M:onRemoveObject(o)
 	self:checkEncumbrance()
 end	
--- Called when an actor drops something
 
 
 --Encumbrance
@@ -672,7 +672,6 @@ function _M:getEncumbrance()
 end
 
 function _M:checkEncumbrance()
-	game.log("Hell, checking")
 	-- Compute encumbrance
 	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()	
 
