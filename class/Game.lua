@@ -332,7 +332,14 @@ function _M:setupCommands()
 		CHANGE_LEVEL = function()
 			local e = self.level.map(self.player.x, self.player.y, Map.TERRAIN)
 			if self.player:enoughEnergy() and e.change_level then
-				self:changeLevel(e.change_zone and e.change_level or self.level.level + e.change_level, e.change_zone)
+				local level = self.level.level
+				if rng.percent(75) then
+					level = level + 1
+				else
+					level = level + 0.001
+					game.logPlayer(self.player, "You feel like you have not delved much further")
+				end
+				self:changeLevel(e.change_zone and e.change_level or level, e.change_zone)
 			else
 				self.log("There is no way out of this level here.")
 			end

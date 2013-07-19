@@ -32,7 +32,7 @@ return {
 			lite_room_chance = 100,
 			['.'] = "FLOOR",
 			['#'] = "WALL",
-			up = "UP",
+			up = "FLOOR",
 			down = "DOWN",
 			door = "DOOR",
 		},
