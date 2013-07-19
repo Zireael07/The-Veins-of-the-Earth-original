@@ -3,7 +3,7 @@ newTalentType{ passive=true, type="cleric/cleric", name="cleric", description="C
 newTalent{
 	name = "Spontanous Conversion",
 	type = {"cleric/cleric", 1},
-	mode = 'passive',
+	mode = 'sustained',
 	require = { level = 2 },
 	points = 1,
 	is_feat = true,

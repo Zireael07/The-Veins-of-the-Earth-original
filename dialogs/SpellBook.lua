@@ -42,8 +42,19 @@ function _M:init(actor)
     self.c_desc = SurfaceZone.new{width=300, height=50,alpha=1.0}
     self.c_charges = SurfaceZone.new{width=300, height=50,alpha=1.0}
 
-    self:redraw()
-    
+    self:loadUI{
+        {left=0, top=0, ui=self.c_tabs},
+        {left=0, bottom=0, ui=self.c_accept},
+        {left=self.c_accept, bottom=0, ui=self.c_decline},
+        {right=0, bottom=0, ui=self.c_reset},
+        {top=self.c_tabs.h + 10, ui=self.c_desc},
+        {top=self.c_desc,ui=self.c_spells},
+        {top=self.c_desc,ui=self.c_charges},
+    }
+
+    self:setupUI()
+    self:drawDialog()
+
     self.key:addBinds{
         EXIT = function() self:onEnd("decline") end,
     }
@@ -83,7 +94,7 @@ function _M:drawDialog(s)
         local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
         c:drawColorString(font, str, w, h, 255, 255, 255, true) 
         w = w + self.c_spells.tile_w + self.c_spells.padding
-    end
+        end
 
     self.c_desc:generate()
     self.c_charges:generate()

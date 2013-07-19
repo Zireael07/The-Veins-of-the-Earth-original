@@ -7,7 +7,6 @@ newTalent{
 	--require = ,
 	level = 1,
 	points = 1,
-	cooldown = 20,
 	tactical = { BUFF = 2 },
 	range = 0,
 	--caster.bonus = function(self)
