@@ -19,7 +19,7 @@ local Entity = require "engine.Entity"
 -- Taken from ToME data/talents.lua
 local oldNewTalent = Talents.newTalent
 Talents.newTalent = function(self, t)
-
+	
 	t.type_no_req = true -- Since we do not use talent types
 
 	if not t.image then
@@ -228,3 +228,4 @@ load("data/talents/special.lua")
 load("data/talents/divine.lua")
 load("data/talents/monster.lua")
 load("data/talents/cleric.lua")
+load("data/talents/eldritch.lua")

@@ -36,6 +36,14 @@ end
 
 function _M:use(item)
 	if self.player.feat_point > 0 then
+		local t = item.talent
+		local tid = item.talent.id
+		--Have we already learned it?
+		if self.actor:getTalentLevelRaw(tid) >= t.points then
+			return nil
+		end
+
+		-- Alright, lets learn it if we can
 		local learned = self.player:learnTalent(item.talent.id) --returns false if not learned due to requirements
 		if learned then 
 			self.player.feat_point = self.player.feat_point - 1 
