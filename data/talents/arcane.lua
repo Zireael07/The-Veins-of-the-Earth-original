@@ -220,10 +220,11 @@ newTalent{
 		-- Choose creature
 		local d = require("mod.dialogs.SummonCreatureI").new(t)
 
-		game:registerDialog(d)
-		
 		local co = coroutine.running()
 		d.unload = function() coroutine.resume(co, t.creature) end --This is currently bugged, only works if the player has already summoned,
+
+		game:registerDialog(d)
+		
 		if not coroutine.yield() then return nil end
 
 		local tg = self:getTalentTarget(t)
