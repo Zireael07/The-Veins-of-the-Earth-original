@@ -185,8 +185,12 @@ newTalent{
 			name = "summoned wolf", faction = self.faction,
 			desc = [[]],
 			autolevel = "none",
-			ai = "dumb_talented_simple", ai_state = { talent_in=1, ally_compassion=10},
+			never_anger = true,
+			
+			ai = "ally",
+			ai_state = { talent_in=1, ally_compassion=10},
 			ai_tactic = resolvers.tactic"default",
+			
 			stats = {str=0, dex=0, con=0, cun=0, wil=0, mag=0},
 			inc_stats = {
 				con = 1,
@@ -241,7 +245,7 @@ newTalent{
 			game.logPlayer(self,"Player doesnt summon a creature")
 		end
 
-		local creature = t:makeCreature(self)
+		local creature = t.makeCreature(self, t)
 		game.zone:addEntity(game.level, creature, "actor", x, y)
 		return true
 
