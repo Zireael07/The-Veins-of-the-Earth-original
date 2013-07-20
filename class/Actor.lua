@@ -143,8 +143,16 @@ function _M:act()
 	return true
 end
 
+--Are we able to move at all? Currently checks if we are able to move anywhere, aka not if we cant move certain directions
+function _M:canMove()
+	if self:attr("never_move") then return false end
+	return true
+end
+
 function _M:move(x, y, force)
 	local moved = false
+	if not self:canMove() then return moved end
+
 	local ox, oy = self.x, self.y
 
 	if force or self:enoughEnergy() then
@@ -629,6 +637,16 @@ function _M:levelup()
 	end
 
 	if game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
+
+
+function _M:onAddObject(o)
+	self:checkEncumbrance()
+end
+
+function _M:onRemoveObject(o)
+	self:checkEncumbrance()
+end	
+
 
 --Encumbrance
 function _M:getMaxEncumbrance()

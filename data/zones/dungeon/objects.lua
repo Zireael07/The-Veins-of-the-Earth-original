@@ -42,8 +42,8 @@ newEntity{
     cost = 50,
     use_simple = { name = "heal light wounds",
     use = function(self,who)
-    actor.heal (rng.dice(1,8) + 5)
-    return {used = true, destroy = true}
+        who:heal(rng.dice(1,8) + 5)
+        return {used = true, destroy = true}
   end
   }, 
 }
@@ -55,8 +55,8 @@ newEntity{
     cost = 300,
     use_simple = { name = "heal moderate wounds",
     use = function(self,who)
-    actor.heal = (rng.dice(2,8) + 5)
-    return {used = true, destroy = true}
+        who:heal(rng.dice(2,8) + 5)
+        return {used = true, destroy = true}
   end
   }, 
 }
