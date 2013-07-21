@@ -114,7 +114,7 @@ newEntity{
     name = "food rations",
     level_range = {1,10},
     cost = 7,
-    --nutrition
+    nutrition = 20,
 }
 
 newEntity{
@@ -123,7 +123,7 @@ newEntity{
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 7,
-    --nutrition
+    quench = 20,
 }
 
 
@@ -132,7 +132,7 @@ newEntity{
     name = "stale rations",
     level_range = {1,10},
     cost = 7,
-    --no nutrition
+    nutrition = 0,
 }
 
 newEntity{
@@ -141,5 +141,5 @@ newEntity{
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 7,
-    --no nutrition
+    quench = 0,
 }
