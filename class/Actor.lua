@@ -455,7 +455,7 @@ end
 function _M:getSkill(skill)
 	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", search = "int", sensemotive = "wis", pickpocket = "dex", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
- return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0 end
+ return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0) end
 
 function _M:skillCheck(skill, dc)
 	local d = rng.dice(1,20)
@@ -473,6 +473,15 @@ function _M:opposedCheck(skill1, target, skill2)
 
 	if d + (my_skill or 0) > d + (enemy_skill or 0) then return true end
 	return false
+end
+
+--AC
+function _M:getAC()
+	local dex_bonus = (self:getDex()-10)/2 or 0
+	local def = self.combat_def or 0
+	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end 
+	
+	return def + dex_bonus
 end
 
 --Saving throws

@@ -39,7 +39,7 @@ function _M:use(item)
 		local t = item.talent
 		local tid = item.talent.id
 		--Have we already learned it?
-		if self.actor:getTalentLevelRaw(tid) >= t.points then
+		if self.player:getTalentLevelRaw(tid) >= t.points then
 			return nil
 		end
 
