@@ -37,6 +37,8 @@ Features:
 - skill points at lvl 1
 - working archery
 - working experience points
+- encumbrance
+- stairs have a chance of not changing the dungeon level
 
 ***
 Thanks to:
