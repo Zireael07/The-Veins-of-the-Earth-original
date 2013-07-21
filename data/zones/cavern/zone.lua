@@ -28,9 +28,9 @@ return {
 		map = {
 			class = "mod.class.generator.map.Upperdark",
 			edge_entrances = {4,6},
-			zoom = 15,
+			zoom = 10,
 			hurst = 0.2,
-			min_floor = 1000,
+			min_floor = 200,
 			floor = "FLOOR",
 			wall = "WALL",
 			up = "FLOOR",

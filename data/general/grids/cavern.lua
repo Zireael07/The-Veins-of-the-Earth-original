@@ -39,7 +39,7 @@ newEntity{
 newEntity{
 	define_as = "DOWN",
 	name = "next level",
-	display = '>', color_r=255, color_g=255, color_b=0, back_color=colors.DARK_GREY,
+	display = '>', color_r=255, color_g=255, color_b=0, back_color={r=64, g=110, b=115},
 	notice = true,
 	always_remember = true,
 	change_level = 1,
@@ -54,7 +54,7 @@ newEntity{
 newEntity{
 	define_as = "WALL",
 	name = "wall", image = "terrain/granite_wall1.png",
-	display = '#', color_r=255, color_g=255, color_b=255, back_color={r=30, g=30, b=60},
+	display = '#', color_r=0, color_g=0, color_b=0, back_color={r=30, g=30, b=60},
 	always_remember = true,
 	does_block_move = true,
 	can_pass = {pass_wall=1},

@@ -262,12 +262,6 @@ function _M:makeStairsSides(lev, old_lev, sides, spots)
 		elseif sides[1] == 2 then ux, uy = rng.range(0, self.map.w - 1), self.map.h - 1
 		end
 
-		if not ux or not uy then
-			print("STAIRSSIDES MISSING DX OR DY")
-			ux = 1
-			uy = 1
-		end
-
 		if not self.map.room_map[ux][uy].special then
 			self.map(ux, uy, Map.TERRAIN, self:resolve("up"))
 			self.map.room_map[ux][uy].special = "exit"
