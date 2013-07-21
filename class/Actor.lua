@@ -53,6 +53,11 @@ function _M:init(t, no_default)
 	-- Default melee barehanded damage
 	self.combat = { dam = {1,4} }
 
+	--Saves
+	self.will_save = self.will_save or 0
+	self.reflex_save = self.reflex_save or 0
+	self.fortitude_save = self.fortitude_save or 0
+
 	--Skillz!
 	self.skill_balance = 0
 	self.skill_bluff = 0
@@ -103,6 +108,11 @@ function _M:init(t, no_default)
 	if weapon then dam = weapon.combat.dam
 	end
 end
+
+-- Called when our stats change
+function _M:onStatChange(stat, v)
+	if stat == "str" then self:checkEncumbrance() end
+end 
 
 function _M:getName(t)
 	t = t or {}
