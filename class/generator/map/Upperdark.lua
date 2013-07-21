@@ -195,9 +195,10 @@ function _M:makeStairsSides(lev, old_lev, sides, spots)
 
 				--Fill additionally stairs above and below/to the left and right
 				local nb = 1
+				local maxnb = 8
 				if sides[2] == 2 or sides[2] == 8 then
 					local ddx = dx
-					while nb < 4 do
+					while nb < maxnb do
 						ddx = ddx + 1
 						if ddx > self.map.w-1 then break end
 						if not self.map.room_map[ddx][dy].special and not self.map:checkEntity(ddx, dy, Map.TERRAIN, "block_move") then
@@ -209,7 +210,7 @@ function _M:makeStairsSides(lev, old_lev, sides, spots)
 						end
 					end
 					ddx = dx
-					while nb < 4 do
+					while nb < maxnb do
 						ddx = ddx - 1
 						if ddx < 0 then break end
 						if not self.map.room_map[ddx][dy].special and not self.map:checkEntity(ddx, dy, Map.TERRAIN, "block_move") then
@@ -224,7 +225,7 @@ function _M:makeStairsSides(lev, old_lev, sides, spots)
 				--up/down
 				elseif sides[2] == 4 or sides[2] == 6 then
 					local ddy = dy
-					while nb < 4 do
+					while nb < maxnb do
 						ddy = ddy + 1
 						if ddy > self.map.h-1 then break end
 						if not self.map.room_map[dx][ddy].special and not self.map:checkEntity(dx, ddy, Map.TERRAIN, "block_move") then
@@ -236,7 +237,7 @@ function _M:makeStairsSides(lev, old_lev, sides, spots)
 						end
 					end
 					ddy = dy
-					while nb < 4 do
+					while nb < maxnb do
 						ddy = ddy - 1
 						if ddy < 0 then break end
 						if not self.map.room_map[dx][ddy].special and not self.map:checkEntity(dx, ddy, Map.TERRAIN, "block_move") then
