@@ -27,12 +27,15 @@ function _M:init(actor)
 
     self.c_feats = Button.new{text="Feats", fct=function() self:onFeat() end}
 
+    self.c_skills = Button.new{text="Skill", fct=function() self:onSkill() end}
+
     self:loadUI{
         {left=0, top=0, ui=self.c_desc},
         {left=0, bottom=0, ui=self.c_accept},
         {left=self.c_accept, bottom=0, ui=self.c_prc},
         {left=self.c_prc, bottom=0, ui=self.c_multiclass},
-        {left=self.c_multiclass, bottom=0, ui=self.c_feats}
+        {left=self.c_multiclass, bottom=0, ui=self.c_feats},
+        {left=self.c_feats, bottom=0, ui=self.c_skills},
 
     }
     
@@ -86,6 +89,9 @@ end
 
 function _M:onFeat()
 	game:registerDialog(require("mod.dialogs.FeatDialog").new(game.player))
+end
+function _M:onSkill()
+    game:registerDialog(require("mod.dialogs.SkillDialog").new(game.player))
 end
 
 function _M:onEnd(result)
