@@ -51,7 +51,7 @@ function _M:init(t, no_default)
   t.subtype = t.subtype or "player"
   t.faction = t.faction or "players"
 
-  t.lite = t.lite or 0
+  t.lite = 10
 
   mod.class.Actor.init(self, t, no_default)
   engine.interface.PlayerHotkeys.init(self, t)
@@ -61,6 +61,7 @@ function _M:init(t, no_default)
   self.max_exp = self.exp
   self.level_hiwater = self.level
   self.speed = 0
+  self.move_others = true
 end
 
 function _M:getExpChart(level)
