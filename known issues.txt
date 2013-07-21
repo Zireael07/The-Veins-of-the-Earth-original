@@ -1,9 +1,8 @@
 KNOWN ISSUES
 
-The lower left corner display is weird on the first turn of the game. Move and the values will be normal.
+The lower left corner HP display is weird on the first turn of the game. Move and the values will be normal.
 Item descriptions do not show up.
-Encumbrance doesn't work.
-Potions cannot be used due to the 'being worn' requirement somewhere.
+
 Highscores do not work.
 
 Leveling up only grants hp until we figure out how to do class-based attack and save bonuses.
