@@ -53,6 +53,11 @@ function _M:init(t, no_default)
 	-- Default melee barehanded damage
 	self.combat = { dam = {1,4} }
 
+	--Saves
+	self.will_save = self.will_save or 0
+	self.reflex_save = self.reflex_save or 0
+	self.fortitude_save = self.fortitude_save or 0
+
 	--Skillz!
 	self.skill_balance = 0
 	self.skill_bluff = 0
@@ -96,13 +101,18 @@ function _M:init(t, no_default)
 		-- Charges for spells
 	self.charges = {}
 	self.max_charges = {}
-	self.allocated_charges = {0}
+	self.allocated_charges = {}
 
 	-- Use weapon damage actually
 	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
 	if weapon then dam = weapon.combat.dam
 	end
 end
+
+-- Called when our stats change
+function _M:onStatChange(stat, v)
+	if stat == "str" then self:checkEncumbrance() end
+end 
 
 function _M:getName(t)
 	t = t or {}
@@ -310,9 +320,12 @@ end
 -- @param ab the talent (not the id, the table)
 -- @return true to continue, false to stop
 function _M:preUseTalent(ab, silent)
-	if ab.is_spell and ((ab.charges or 0) <= 0) then
-		if not silent then game.logPlayer(self, "You have to prepare this spell") end
-		return false 
+	local tt_def = self:getTalentTypeFrom(ab.type[1])
+	if tt_def.all_limited then --all_limited talenttypes all have talents that are daily limited 
+		if  self:getCharges(ab) <= 0 then
+			if not silent then game.logPlayer(self, "You have to prepare this spell") end
+			return false 
+		end
 	end
 
 	if not self:enoughEnergy() then print("fail energy") return false end
@@ -354,8 +367,10 @@ end
 function _M:postUseTalent(ab, ret)
 	if not ret then return end
 
+	local tt_def = self:getTalentTypeFrom(ab.type[1])
+
 	--remove charge
-	if ab.charges then self:incCharges(ab, -1) end
+	if tt_def.all_limited then self:incCharges(ab, -1) end
 
 	self:useEnergy()
 
@@ -455,7 +470,7 @@ end
 function _M:getSkill(skill)
 	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", search = "int", sensemotive = "wis", pickpocket = "dex", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
- return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0 end
+ return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0) end
 
 function _M:skillCheck(skill, dc)
 	local d = rng.dice(1,20)
@@ -473,6 +488,15 @@ function _M:opposedCheck(skill1, target, skill2)
 
 	if d + (my_skill or 0) > d + (enemy_skill or 0) then return true end
 	return false
+end
+
+--AC
+function _M:getAC()
+	local dex_bonus = (self:getDex()-10)/2 or 0
+	local def = self.combat_def or 0
+	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end 
+	
+	return def + dex_bonus
 end
 
 --Saving throws
@@ -522,10 +546,13 @@ end
 
 
 --- The max charge worth you can have in a given spell level
-function _M:getMaxMaxCharges()
-	local t = {
-		math.min(8, 3 + self.level),
-	}
+function _M:getMaxMaxCharges(talent_type)
+	local t = {}
+	local l = self.level + 5
+	while l > 5 do
+		t[#t+1] = math.min(8, l)
+		l = l - 3
+	end
 	return t
 end
 
@@ -540,23 +567,43 @@ function _M:getCharges(tid)
 end
 
 function _M:incMaxCharges(tid, v)
-	if type(tid) == "table" then tid = tid.id end
+	-- TODO: Clean this nastiness up
+	local tt
+	local t
+	if type(tid) == "table" then
+		t = tid
+		tt = tid.type[1]
+		tid = tid.id 
+	else
+		t = self:getTalentFromId(tid)
+		tt = self:getTalentFromId(tid).type[1]
+	end
+
 
 	--Can the player have this many max charges for this type?
-	local a = self:getAllocatedCharges()[1]
+	local a = self:getAllocatedCharges(tt, tid.level)
 	if a + v > self:getMaxMaxCharges()[1] then return end
 	self.max_charges[tid] = (self.max_charges[tid] or 0) + v
-	self:incAllocatedCharges(1, v)
+	self:incAllocatedCharges(tt, t.level, v)
 end
 
 function _M:setMaxCharges(tid, v)
-	if type(tid) == "table" then tid = tid.id end
+	local tt
+	local t
+	if type(tid) == "table" then
+		t = tid
+		tt = tid.type[1]
+		tid = tid.id 
+	else
+		t = self:getTalentFromId(tid)
+		tt = self:getTalentFromId(tid).type[1]
+	end
 
 	--Can the player have this many max charges for this type?
-	local a = self:getAllocatedCharges()[1]
+	local a = self:getAllocatedCharges(tt, tid.level)
 	if a + v > self:getMaxMaxCharges()[1] then return end
 	self.max_charges[tid] = v
-	self:setAllocatedCharges(1, v)
+	self:setAllocatedCharges(tt, t.level, v)
 end
 
 function _M:setCharges(tid, v)
@@ -579,17 +626,23 @@ function _M:incCharges(tid, v)
 	self:setCharges(tid, new)  
 end
 
-function _M:getAllocatedCharges()
-	return self.allocated_charges
+function _M:getAllocatedCharges(type, level)
+	local tid = self:getTalentFromId(type)
+	local c = self.allocated_charges[type]
+	c = c and c[value]
+	return c or 0
 end
 
-function _M:setAllocatedCharges(type, value)
-	self.allocated_charges[type] = value
+function _M:setAllocatedCharges(type, level, value)
+	if not self.allocated_charges[type] then self.allocated_charges[type] = {} end
+	if not self.allocated_charges[type][level] then self.allocated_charges[type][level] = {} end
+	self.allocated_charges[type][level] = value
 end
 
-function _M:incAllocatedCharges(type, value)
-	local val = self:getAllocatedCharges()[type] + value
-	self:setAllocatedCharges(type, val)
+function _M:incAllocatedCharges(type, level, value)
+	local c = self:getAllocatedCharges(type, level)
+	local val = c and (c + value) or value
+	self:setAllocatedCharges(type, level, val)
 end
 
 function _M:levelPassives()

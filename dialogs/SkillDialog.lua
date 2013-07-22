@@ -15,10 +15,10 @@ module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init(actor)
 	self.player = actor
-	Dialog.init(self, "Feats", 500, 600)
+	Dialog.init(self, "Skills", 500, 600)
 	self:generateList()
 	
-	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available feat points: "..self.player.feat_point}	
+	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: "..self.player.feat_point}	
 	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
 	self.c_desc = TextzoneList.new{width=self.iw/2-20, height = 400, text="Hello from description"}
 
@@ -35,7 +35,11 @@ function _M:init(actor)
 end
 
 function _M:use(item)
-	if self.player.feat_point > 0 then
+	if (self.player.skill_point or 0) > 0 then
+		if true then
+			return nil --Todo
+		end
+
 		local t = item.talent
 		local tid = item.talent.id
 		--Have we already learned it?
@@ -72,36 +76,39 @@ end
 
 function _M:generateList()
 	local player = game.player
+	local skills = {
+		"balance",
+		"bluff",
+		"climb",
+		"concentration",
+		"diplomacy",
+		"disabledevice",
+		"escapeartist",
+		"handleanimal",
+		"heal",
+		"hide",
+		"intimidate",
+		"jump",
+		"knowledge",
+		"listen",
+		"movesilently",
+		"openlock",
+		"pickpocket",
+		"search",
+		"sensemotive",
+		"spellcraft",
+		"survival",
+		"tumble",
+		"usemagic",
+	}
     local list = {}
-    for tid, _ in pairs(player.talents_def) do
-		local t = player:getTalentFromId(tid)
-        if t.is_feat then
-        	--if we haven't learned it, and it is a class feat, dont show it in feat list
-        	local tt = player:getTalentTypeFrom(t.type[1])
-        	if not tt.passive or player:knowTalent(t) then
-	        	local tid
-	        	local color
-	        	if player:knowTalent(t) then color = {255,255,255} i = 1
-	     		elseif player:canLearnTalent(t) then color = {0,187,187} i = 2
-	     		else color = {100, 100, 100} i = 3
-	     		end
-	     		local d = "#GOLD#"..t.name.."#LAST#\n"
-	     		s = player:getTalentReqDesc(t.id):toString()
-	     		d = d..s.."\n#WHITE#"
-	     		if t.acquired then d = d.."#PINK#"..t.acquired.."#LAST#\n\n" end
-	     		d = d..t.info(player,t)
-	            list[#list+1] = {name=t.name, color = color, desc=d, talent=t, i = i}
-	        end
-        end
+    for _, skill in pairs(skills) do
+    	local value = player:attr("skill_"..skill)
+ 		local color = {100, 100, 100}
+ 		local d = "#GOLD#"..skill.."#LAST#\n"
+ 		s = "Description goes here"
+ 		d = d..s.."\n#WHITE#"
+        list[#list+1] = {name=skill, color = color, desc=d}
     end
     self.list = list
-    --Sort it by whetever we have/can/cannot learn it, then alphabetically
-    table.sort(self.list, function (a,b) 
-    	if a.i == b.i then 
-    		return a.name < b.name
-    	else 
-    		return a.i < b.i
-    	end
-    end)
-
 end

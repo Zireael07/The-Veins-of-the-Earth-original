@@ -1,4 +1,4 @@
-newTalentType{ type="arcane/arcane", name = "arcane", description = "Arcane Spells" }
+newTalentType{ all_limited=true, type="arcane/arcane", name = "arcane", description = "Arcane Spells" }
 
 newTalent{
 	name = "Acid Splash",
@@ -80,7 +80,7 @@ newTalent{
 	name = "Magic Missile", --image="talents/magic_missile.png",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
-	level = 1,
+	level = 2,
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
@@ -185,8 +185,12 @@ newTalent{
 			name = "summoned wolf", faction = self.faction,
 			desc = [[]],
 			autolevel = "none",
-			ai = "dumb_talented_simple", ai_state = { talent_in=1, ally_compassion=10},
+			never_anger = true,
+			
+			ai = "ally",
+			ai_state = { talent_in=1, ally_compassion=10},
 			ai_tactic = resolvers.tactic"default",
+			
 			stats = {str=0, dex=0, con=0, cun=0, wil=0, mag=0},
 			inc_stats = {
 				con = 1,
@@ -216,10 +220,11 @@ newTalent{
 		-- Choose creature
 		local d = require("mod.dialogs.SummonCreatureI").new(t)
 
-		game:registerDialog(d)
-		
 		local co = coroutine.running()
 		d.unload = function() coroutine.resume(co, t.creature) end --This is currently bugged, only works if the player has already summoned,
+
+		game:registerDialog(d)
+		
 		if not coroutine.yield() then return nil end
 
 		local tg = self:getTalentTarget(t)
@@ -241,7 +246,7 @@ newTalent{
 			game.logPlayer(self,"Player doesnt summon a creature")
 		end
 
-		local creature = t:makeCreature(self)
+		local creature = t.makeCreature(self, t)
 		game.zone:addEntity(game.level, creature, "actor", x, y)
 		return true
 

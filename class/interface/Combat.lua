@@ -49,15 +49,33 @@ function _M:attackRoll(target)
     local d = rng.range(1,20)
     local hit = true
     local crit = false
+    local weapon = self:getInven("MAIN_HAND") and self:getInven("MAIN_HAND")[1]
+
+    local stat_used = "str"
 
     local attack = self.combat_attack or 0
-    if self:knowTalent(self.T_FINESSE) and self.weapon.size <= 1 then -- or weapon is rapier/etc.
-        attack = attack + (self:getDex()-10)/2 or 0
-    else
-        attack = attack + (self:getStr()-10)/2 or 0
+    if self:knowTalent(self.T_FINESSE) and weapon then
+        --Is the weapon light, or usable for finesse?
+        local success = false
+        if not weapon.light then
+            local a = {"rapier", "whip", "spiked chain"}
+            for _, w in pairs(a) do
+                if weapon.subtype == w then
+                    success = true
+                    break
+                end
+            end
+        else
+            success = true
+        end
+        if success then
+            stat_used = "dex"
+        end
     end
+    attack = attack + (self:getStat(stat_used)-10)/2 or 0
 
-    local ac = target.combat_def + (target:getDex()-10)/2 or 0
+
+    local ac = target:getAC()
 
     -- Hit check
     if self:isConcealed(target) and rng.chance(self:isConcealed(target)) then hit = false
@@ -67,9 +85,9 @@ function _M:attackRoll(target)
     end
 
     if hit then
-        game.log(("%s hits the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), d, attack, ac))
+        game.log(("%s hits the enemy! %d + %d = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
     else
-        game.log(("%s misses the enemy! d20 is %d and the attack is %d vs. AC %d"):format(self.name:capitalize(), d, attack, ac))
+        game.log(("%s misses the enemy! %d + %d = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
     end
 
     -- Crit check

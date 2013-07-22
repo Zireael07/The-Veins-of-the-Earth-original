@@ -35,12 +35,12 @@ function _M:init(actor)
     self.c_decline = Button.new{text="Decline",fct=function() self:onEnd("decline") end}
     self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
 
-    self.c_spells = ImageList.new{width=self.w, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list,
+    self.c_spells = ImageList.new{width=self.w, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list[1],
             fct=function(item) self:onSpell(item) end,
         }
 
-    self.c_desc = SurfaceZone.new{width=300, height=50,alpha=1.0}
-    self.c_charges = SurfaceZone.new{width=300, height=50,alpha=1.0}
+    self.c_desc = SurfaceZone.new{width=300, height=500,alpha=1.0}
+    self.c_charges = SurfaceZone.new{width=300, height=500,alpha=1.0}
 
     self:loadUI{
         {left=0, top=0, ui=self.c_tabs},
@@ -78,23 +78,32 @@ function _M:drawDialog(s)
         s:drawFrame(i_frame, x, y, 1,1,1, 1)
     end
     
-    local charges_used = game.player:getAllocatedCharges()[1]
-    local max_charges = game.player:getMaxMaxCharges()[1]
 
-    local str = "Level-1 Spells "..(charges_used or 0).."/"..(max_charges or 0)
-    s:drawString(self.font, str, 0, 0, 255, 255, 255, true)
+    local max_charges = game.player:getMaxMaxCharges()
 
     local w = 0
     local h = 0
+
     local font = core.display.newFont("/data/font/DroidSans-Bold.ttf", 12)
-    for _, t in ipairs(self.list) do
-        local p = game.player
-        local num = p:getCharges(t) or 0
-        local max = p:getMaxCharges(t) or 0
-        local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
-        c:drawColorString(font, str, w, h, 255, 255, 255, true) 
-        w = w + self.c_spells.tile_w + self.c_spells.padding
+
+    for i, v in ipairs(self.list) do
+        game.log("Level: "..i)
+        local charges_used = game.player:getAllocatedCharges(self.spell_list, i) --TODO: Fix this function (getAllocatedCharges)
+        local str = "Level-"..i.." Spells "..(charges_used or 0).."/"..(max_charges[i] or 0)
+        s:drawString(self.font, str, w, h, 255, 255, 255, true)
+
+        local ww = w
+        local hh = h
+        for _, t in ipairs(self.list[i]) do
+            local p = game.player
+            local num = p:getCharges(t) or 0
+            local max = p:getMaxCharges(t) or 0
+            local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
+            c:drawColorString(font, str, ww, hh, 255, 255, 255, true) 
+            ww = ww + self.c_spells.tile_w + self.c_spells.padding
         end
+        h = h + 90
+    end
 
     self.c_desc:generate()
     self.c_charges:generate()
@@ -105,6 +114,7 @@ function _M:drawDialog(s)
 end
 
 function _M:switchTo(kind)
+    self.spell_list = kind
     self:generateList(kind)
 end
 
@@ -134,7 +144,9 @@ function _M:generateList(spellist)
     for tid, _ in pairs(player.talents) do
 		local t = player:getTalentFromId(tid)
         if t.type[1] == spellist and player:knowTalent(t) then
-            list[#list+1] = t
+            if not list[t.level] then list[t.level] = {} end
+            local slist = list[t.level]
+            list[t.level][#slist+1] = t
         end
     end
 

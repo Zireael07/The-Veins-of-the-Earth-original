@@ -70,6 +70,7 @@ ActorStats:defineStat("Luck",           "luc", 0, -5, 30, "Luck measures your ch
 
 -- Actor AIs
 ActorAI:loadDefinition("/engine/ai/")
+ActorAI:loadDefinition("/mod/ai/")
 
 -- Birther descriptor
 Birther:loadDefinition("/data/birth/descriptors.lua")

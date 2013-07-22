@@ -24,11 +24,9 @@ function _M:init(talent)
 end
 
 function _M:use(item)
-	print("[DIATEST]")
-	print(item)
-	print(item.name)
-	game:unregisterDialog(self)
 	if self.talent then self.talent.creature = item.name end
+	game:unregisterDialog(self)
+	
 end
 
 function _M:generateList()
