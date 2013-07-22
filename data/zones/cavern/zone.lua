@@ -35,10 +35,11 @@ return {
 			wall = "WALL",
 			up = "FLOOR",
 			down = "DOWN",
+			moss = "MOSS",
 		},
 		actor = {
 			class = "engine.generator.actor.Random",
-			nb_npc = {5, 10},
+			nb_npc = {15, 25},
 		},
 		object = {
             class = "engine.generator.object.Random",

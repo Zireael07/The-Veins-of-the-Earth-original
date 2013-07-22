@@ -81,3 +81,13 @@ newEntity{
 	always_remember = true,
 	door_closed = "DOOR",
 }
+
+-- Special stuff
+
+newEntity{
+	define_as = "MOSS",
+	type = "floor", subtype = "vegetation",
+	name = "luminicent moss", image = "terrain/marble_floor.png",
+	display = '¤', color_r=52, color_g=222, color_b=137, back_color={r=71, g=122, b=136},
+	
+}

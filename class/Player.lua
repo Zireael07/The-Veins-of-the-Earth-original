@@ -51,10 +51,11 @@ function _M:init(t, no_default)
   t.subtype = t.subtype or "player"
   t.faction = t.faction or "players"
 
-  t.lite = 10
 
   mod.class.Actor.init(self, t, no_default)
   engine.interface.PlayerHotkeys.init(self, t)
+
+  self.lite = 0 --stealth test
 
   self.descriptor = {}
   self.max_level = 50
@@ -131,6 +132,17 @@ function _M:playerFOV()
   self:computeFOV(self.sight or 20, "block_sight", function(x, y, dx, dy, sqdist)
     game.level.map:apply(x, y, fovdist[sqdist])
   end, true, false, true)
+
+  -- Apply lite from NPCs
+  local uid, e = next(game.level.entities)
+  while uid do
+    if e ~= self and e.lite and e.lite > 0 and e.computeFOV then
+      e:computeFOV(e.lite, "block_sight", function(x, y, dx, dy, sqdist) game.level.map:applyExtraLite(x, y, fovdist[sqdist]) end, true, true)
+    end
+    uid, e = next(game.level.entities, uid)
+  end
+
+  -- Calculate our own FOV
   self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist) game.level.map:applyLite(x, y) end, true, true, true)
 end
 

@@ -45,11 +45,22 @@ function _M:generate(lev, old_lev)
 		opens[i] = {}
 		for j = 0, self.map.h - 1 do
 			if noise[self.noise](noise, self.zoom * i / self.map.w, self.zoom * j / self.map.h, self.octave) > 0 then
-				self.map(i, j, Map.TERRAIN, self:resolve("floor"))
+				if rng.chance(30) then -- Spawn luminicent moss	
+					self.map(i, j, Map.TERRAIN, self:resolve("moss"))
+
+					-- Lite up around them in a 1 radius
+					local grids = core.fov.circle_grids(i, j, 2, true)
+					for x, yy in pairs(grids) do for y, _ in pairs(yy) do
+						self.map.lites(x, y, true)
+					end end
+					
+				else
+					self.map(i, j, Map.TERRAIN, self:resolve("floor"))
+				end
 				opens[i][j] = #list+1
 				list[#list+1] = {x=i, y=j}
 			else
-				self.map(i, j, Map.TERRAIN, self:resolve("wall"))
+				self.map(i, j, Map.TERRAIN, self:resolve("wall"))			
 			end
 		end
 	end
