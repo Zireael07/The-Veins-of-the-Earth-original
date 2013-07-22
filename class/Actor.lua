@@ -101,7 +101,7 @@ function _M:init(t, no_default)
 		-- Charges for spells
 	self.charges = {}
 	self.max_charges = {}
-	self.allocated_charges = {0}
+	self.allocated_charges = {}
 
 	-- Use weapon damage actually
 	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
@@ -320,9 +320,12 @@ end
 -- @param ab the talent (not the id, the table)
 -- @return true to continue, false to stop
 function _M:preUseTalent(ab, silent)
-	if ab.is_spell and ((ab.charges or 0) <= 0) then
-		if not silent then game.logPlayer(self, "You have to prepare this spell") end
-		return false 
+	local tt_def = self:getTalentTypeFrom(ab.type[1])
+	if tt_def.all_limited then --all_limited talenttypes all have talents that are daily limited 
+		if  self:getCharges(ab) <= 0 then
+			if not silent then game.logPlayer(self, "You have to prepare this spell") end
+			return false 
+		end
 	end
 
 	if not self:enoughEnergy() then print("fail energy") return false end
@@ -364,8 +367,10 @@ end
 function _M:postUseTalent(ab, ret)
 	if not ret then return end
 
+	local tt_def = self:getTalentTypeFrom(ab.type[1])
+
 	--remove charge
-	if ab.charges then self:incCharges(ab, -1) end
+	if tt_def.all_limited then self:incCharges(ab, -1) end
 
 	self:useEnergy()
 
@@ -541,10 +546,13 @@ end
 
 
 --- The max charge worth you can have in a given spell level
-function _M:getMaxMaxCharges()
-	local t = {
-		math.min(8, 3 + self.level),
-	}
+function _M:getMaxMaxCharges(talent_type)
+	local t = {}
+	local l = self.level + 5
+	while l > 5 do
+		t[#t+1] = math.min(8, l)
+		l = l - 3
+	end
 	return t
 end
 
@@ -559,23 +567,43 @@ function _M:getCharges(tid)
 end
 
 function _M:incMaxCharges(tid, v)
-	if type(tid) == "table" then tid = tid.id end
+	-- TODO: Clean this nastiness up
+	local tt
+	local t
+	if type(tid) == "table" then
+		t = tid
+		tt = tid.type[1]
+		tid = tid.id 
+	else
+		t = self:getTalentFromId(tid)
+		tt = self:getTalentFromId(tid).type[1]
+	end
+
 
 	--Can the player have this many max charges for this type?
-	local a = self:getAllocatedCharges()[1]
+	local a = self:getAllocatedCharges(tt, tid.level)
 	if a + v > self:getMaxMaxCharges()[1] then return end
 	self.max_charges[tid] = (self.max_charges[tid] or 0) + v
-	self:incAllocatedCharges(1, v)
+	self:incAllocatedCharges(tt, t.level, v)
 end
 
 function _M:setMaxCharges(tid, v)
-	if type(tid) == "table" then tid = tid.id end
+	local tt
+	local t
+	if type(tid) == "table" then
+		t = tid
+		tt = tid.type[1]
+		tid = tid.id 
+	else
+		t = self:getTalentFromId(tid)
+		tt = self:getTalentFromId(tid).type[1]
+	end
 
 	--Can the player have this many max charges for this type?
-	local a = self:getAllocatedCharges()[1]
+	local a = self:getAllocatedCharges(tt, tid.level)
 	if a + v > self:getMaxMaxCharges()[1] then return end
 	self.max_charges[tid] = v
-	self:setAllocatedCharges(1, v)
+	self:setAllocatedCharges(tt, t.level, v)
 end
 
 function _M:setCharges(tid, v)
@@ -598,17 +626,23 @@ function _M:incCharges(tid, v)
 	self:setCharges(tid, new)  
 end
 
-function _M:getAllocatedCharges()
-	return self.allocated_charges
+function _M:getAllocatedCharges(type, level)
+	local tid = self:getTalentFromId(type)
+	local c = self.allocated_charges[type]
+	c = c and c[value]
+	return c or 0
 end
 
-function _M:setAllocatedCharges(type, value)
-	self.allocated_charges[type] = value
+function _M:setAllocatedCharges(type, level, value)
+	if not self.allocated_charges[type] then self.allocated_charges[type] = {} end
+	if not self.allocated_charges[type][level] then self.allocated_charges[type][level] = {} end
+	self.allocated_charges[type][level] = value
 end
 
-function _M:incAllocatedCharges(type, value)
-	local val = self:getAllocatedCharges()[type] + value
-	self:setAllocatedCharges(type, val)
+function _M:incAllocatedCharges(type, level, value)
+	local c = self:getAllocatedCharges(type, level)
+	local val = c and (c + value) or value
+	self:setAllocatedCharges(type, level, val)
 end
 
 function _M:levelPassives()

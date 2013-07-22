@@ -1,4 +1,4 @@
-newTalentType{ type="divine/divine", name="divine", description="Divine Spells" }
+newTalentType{ all_limited=true, type="divine/divine", name="divine", description="Divine Spells" }
 
 newTalent{
 	name = "Heal Light Wounds",

@@ -1,4 +1,4 @@
-newTalentType{ type="arcane/arcane", name = "arcane", description = "Arcane Spells" }
+newTalentType{ all_limited=true, type="arcane/arcane", name = "arcane", description = "Arcane Spells" }
 
 newTalent{
 	name = "Acid Splash",
@@ -80,7 +80,7 @@ newTalent{
 	name = "Magic Missile", --image="talents/magic_missile.png",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
-	level = 1,
+	level = 2,
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
