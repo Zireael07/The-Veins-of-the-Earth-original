@@ -35,4 +35,5 @@ newEntity{ base = "BASE_NPC_FLAYER",
 	rarity = 8,
 	max_life = resolvers.rngavg(10,15),
 	hit_die = 4,
+	challenge = 7,
 }        

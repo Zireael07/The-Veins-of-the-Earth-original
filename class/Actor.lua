@@ -70,6 +70,7 @@ function _M:init(t, no_default)
 	self.skill_heal = 0
 	self.skill_hide = 0
 	self.skill_intimidate = 0
+	self.skill_intuition = 0
 	self.skill_jump = 0
 	self.skill_knowledge = 0
 	self.skill_listen = 0
@@ -189,7 +190,8 @@ function _M:tooltip()
 	return ([[%s%s
 		#ff0000#HP: %d (%d%%)
 		STR %s DEX %s CON %s 
-		WIS %s INT %s CHA %s]]):format(
+		WIS %s INT %s CHA %s
+		CR %s]]):format(
 		self:getDisplayString(),
 		self.name,
 		self.life, self.life * 100 / self.max_life,
@@ -199,6 +201,7 @@ function _M:tooltip()
 		self:getStat('int'),
 		self:getStat('wis'),
 		self:getStat('cha'),
+		self:attr('challenge'),
 		self.desc or ""
 	)
 end
@@ -468,7 +471,7 @@ end
 
 --Skill checks
 function _M:getSkill(skill)
-	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", search = "int", sensemotive = "wis", pickpocket = "dex", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
+	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", intuition = "int", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", search = "int", sensemotive = "wis", pickpocket = "dex", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
  return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0) end
 

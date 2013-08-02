@@ -35,6 +35,7 @@ newEntity{
 	rarity = 3,
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
+	challenge = 1,
 }
 
 newEntity{
@@ -55,6 +56,7 @@ newEntity{
 	rarity = 6,
 	max_life = resolvers.rngavg(14,18),
 	hit_die = 2,
+	challenge = 1,
 }
 
 newEntity{
@@ -64,4 +66,5 @@ newEntity{
 	rarity = 6,
 	max_life = resolvers.rngavg(14,18),
 	hit_die = 2,
+	challenge = 1,
 }

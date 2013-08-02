@@ -94,6 +94,7 @@ function _M:drawDialog()
     s:drawStringBlended(self.font, "Heal : "..(player:getSkill("heal") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Hide : "..(player:getSkill("hide") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Intimidate : "..(player:getSkill("intimidate") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Intuition : "..(player:getSkill("intuition") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Jump : "..(player:getSkill("jump") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Knowledge : "..(player:getSkill("knowledge") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Listen : "..(player:getSkill("listen") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h

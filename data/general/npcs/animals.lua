@@ -35,6 +35,7 @@ newEntity{
 	rarity = 4,
 	max_life = resolvers.rngavg(3,7),
 	hit_die = 1,
+	challenge = 1/3,
 }
 
 
@@ -56,6 +57,7 @@ newEntity{
 	rarity = 1,
 	max_life = resolvers.rngavg(1,3),
 	hit_die = 1,
+	challenge = 1/4,
 }
 
 newEntity{
@@ -65,6 +67,7 @@ newEntity{
 	rarity = 3,
 	max_life = resolvers.rngavg(3,6),
 	hit_die = 1,
+	challenge = 1/3,
 	stats = { str=7, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,4} }
 }
@@ -76,6 +79,7 @@ newEntity{
 	rarity = 5,
 	max_life = resolvers.rngavg(3,6),
 	hit_die = 2,
+	challenge = 1,
 	stats = { str=11, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,6} }
 }
@@ -87,6 +91,7 @@ newEntity{
 	rarity = 9,
 	max_life = resolvers.rngavg(20,25),
 	hit_die = 4,
+	challenge = 4,
 	stats = { str=15, dex=17, con=12, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,8} }
 }
@@ -98,6 +103,7 @@ newEntity{
 	rarity = 10,
 	max_life = resolvers.rngavg(50,55),
 	hit_die = 8,
+	challenge = 8,
 	stats = { str=19, dex=17, con=14, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {2,6} }
 }
@@ -120,6 +126,7 @@ newEntity{
 	rarity = 1,
 	max_life = resolvers.rngavg(1,3),
 	hit_die = 1,
+	challenge = 1/4,
 }
 
 newEntity{
@@ -129,6 +136,7 @@ newEntity{
 	rarity = 3,
 	max_life = resolvers.rngavg(2,5),
 	hit_die = 1,
+	challenge = 1/3,
 }
 
 newEntity{
@@ -138,4 +146,5 @@ newEntity{
 	rarity = 5,
 	max_life = resolvers.rngavg(7,10),
 	hit_die = 2,
+	challenge = 1,
 }
