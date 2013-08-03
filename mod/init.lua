@@ -22,10 +22,10 @@ long_name = "An Underdark roguelike"
 short_name = "underdark"
 author = { "Zireael", "x" }
 homepage = "x"
-version = {0,0,0}
+version = {0,0,6}
 engine = {1,0,4,"te4"}
 description = [[
-An Underdark roguelike, vaguely d20-based.
+In DarkGod's words, "a fantasy d20-themed dungeon crawler".
 ]]
 starter = "mod.load"
 
