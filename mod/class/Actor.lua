@@ -50,6 +50,13 @@ function _M:init(t, no_default)
 	self.combat_attack = 0
 	self.hit_die = 4
 
+	--Challenge Rating set to 0
+	self.challenge = 0
+
+	--Skill ranks
+	self.max_skill_ranks = 4
+	self.cross_class_ranks = math.floor(max_skill_ranks/2)
+
 	-- Default melee barehanded damage
 	self.combat = { dam = {1,4} }
 
@@ -188,10 +195,10 @@ end
 
 function _M:tooltip()
 	return ([[%s%s
-		#ff0000#HP: %d (%d%%)
-		STR %s DEX %s CON %s 
+		#RED#HP: %d (%d%%)
+		#WHITE#STR %s DEX %s CON %s 
 		WIS %s INT %s CHA %s
-		CR %s]]):format(
+		#GOLD#CR %s]]):format(
 		self:getDisplayString(),
 		self.name,
 		self.life, self.life * 100 / self.max_life,
@@ -262,6 +269,9 @@ function _M:die(src)
 		end
 	end
 	self.inven = {}
+	--Drop corpse
+	game.level.map:addObject(dropx, dropy, "fresh corpse")
+
 	if self ~= game.player and dropx == game.player.x and dropy == game.player.y then
 		game.log('You feel something roll beneath your feet.')
 	end
@@ -505,7 +515,7 @@ end
 --Saving throws
 function _M:reflexSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + self:getStat("dex")
+	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + (self:getStat("dex")-10)/2
 	if not roll == 1 and roll == 20 or roll + save > dc then
 		return true
 	else
@@ -515,7 +525,7 @@ end
 
 function _M:fortitudeSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + self:getStat("end")
+	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + (self:getStat("con")-10)/2
 	if not roll == 1 and roll == 20 or roll + save > dc then
 		return true
 	else
@@ -525,7 +535,7 @@ end
 
 function _M:willSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + self:getStat("wis")
+	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + (self:getStat("wis")-10)/2
 	if not roll == 1 and roll == 20 or roll + save > dc then
 		return true
 	else
@@ -672,14 +682,38 @@ function _M:levelup()
 	-- Goes through every talent and checks if it should be leveled passively by levels
 	self:levelPassives()
 
-	--Gain hp (generic)
+	--Gain hp and skill points (generic)
 	self.max_life = self.max_life + self.hd_size
+	self.skill_point = self.skill_point + self.skill_point
+	self.max_skill_ranks = self.max_skill_ranks + 1
 	
+	--Feat points and attribute points
+	if self.level % 3 == 0 then self.feat_point = self.feat_point + 1
+	end
+	if self.level % 4 == 0 then self.stat_point = self.stat_point + 1
+	end
+
+	--Class-dependent level up
+	if not self == game.player then nil
+	local class = player.descriptor.class
+
+	local highsave = { barbarian = "fortitude", cleric = "will", druid = "will", fighter = "fortitude", ranger = "fortitude", rogue = "reflex", wizard = "will", warlock = "will"}
+	local highsave2 = { cleric = "fortitude", druid = "fortitude", }
+
+	--Assuming higher save is 1 per level and lower save is 0.5 per level
+	if save == highsave[class] or save == highsave2[class] then
+		(self:attr("save_"..save) or 0) + 1
+	else math.ceil((self:attr("save_"..save) or 0) + 0.5)
+	end
+
+	local BAB = { barbarian = 1, cleric = 0.75, druid = 0.75, fighter = 1, ranger = 1, rogue = 0.75, wizard = 0.5, warlock = 0.5 }
+	self.combat_attack = self.combat_attack or 0 + math.floor(1*BAB[class])
+
 	--Placeholders
-	self.combat_attack = self.combat_attack or 0 + 1
-	self.fortitude_save = self.fortitude_save or 0 + 1
-	self.reflex_save = self.reflex_save or 0 + 1
-	self.will_save = self.will_save or 0 + 1
+	--self.combat_attack = self.combat_attack or 0 + 1
+	--self.fortitude_save = self.fortitude_save or 0 + 1
+	--self.reflex_save = self.reflex_save or 0 + 1
+	--self.will_save = self.will_save or 0 + 1
 
 	-- Heal up on new level
 	--  self:resetToFull()

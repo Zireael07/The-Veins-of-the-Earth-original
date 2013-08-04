@@ -39,7 +39,7 @@ function _M:drawDialog()
     h = 0
     w = 0
     s:drawStringBlended(self.font, "Name : "..(player.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Class : "..(player.descriptor.class or player.type:capitalize()), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Class : "..(player.descriptor.class or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Race : "..(player.descriptor.race or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
@@ -54,13 +54,13 @@ function _M:drawDialog()
 
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Hit Points : "..(player.life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Max Hit Points : "..(player.max_life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Hit Points : "..(player.life or "Unknown"), w, h, 255, 57, 57, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Max Hit Points : "..(player.max_life or "Unknown"), w, h, 255, 0, 0, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    s:drawStringBlended(self.font, "Fortitude bonus: "..(player.fortitude_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Reflex bonus : "..(player.reflex_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Will bonus : "..(player.will_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Fortitude bonus: "..(player.fortitude_save or "0"), w, h, 0, 239, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Reflex bonus : "..(player.reflex_save or "0"), w, h, 0, 239, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Will bonus : "..(player.will_save or "0"), w, h, 0, 239, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
