@@ -76,7 +76,7 @@ function _M:run()
 
 -- Start time
 	self.real_starttime = os.time()
-	self.calendar = Calendar.new("/data/calendar.lua", "Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
+	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
 	self.log(self.flash.GOOD, "Welcome to #00FF00#the Underdark!")
 
@@ -126,7 +126,7 @@ function _M:setupDisplayMode()
 	Map:resetTiles()
 	Map.tiles.use_images = false
 
-	if self.level and self.player then self.calendar = Calendar.new("/data/calendar.lua", "Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
+	if self.level and self.player then self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
  end
 
 	if self.level then
@@ -337,7 +337,7 @@ function _M:setupCommands()
 					level = level + 1
 				else
 					level = level + 0.001
-					game.logPlayer(self.player, "You feel like you have not delved much further")
+					game.logPlayer(self.player, "#SANDY_BROWN#You feel like you have not delved much further")
 				end
 				self:changeLevel(e.change_zone and e.change_level or level, e.change_zone)
 			else

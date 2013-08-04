@@ -55,7 +55,7 @@ function _M:init(t, no_default)
 
 	--Skill ranks
 	self.max_skill_ranks = 4
-	self.cross_class_ranks = math.floor(max_skill_ranks/2)
+	self.cross_class_ranks = math.floor(self.max_skill_ranks/2)
 
 	-- Default melee barehanded damage
 	self.combat = { dam = {1,4} }
@@ -269,8 +269,9 @@ function _M:die(src)
 		end
 	end
 	self.inven = {}
+
 	--Drop corpse
-	game.level.map:addObject(dropx, dropy, "fresh corpse")
+	--game.level.map:addObject(dropx, dropy, "fresh corpse")
 
 	if self ~= game.player and dropx == game.player.x and dropy == game.player.y then
 		game.log('You feel something roll beneath your feet.')
@@ -483,7 +484,9 @@ end
 function _M:getSkill(skill)
 	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", intuition = "int", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", search = "int", sensemotive = "wis", pickpocket = "dex", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
- return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0) end
+	local penalty_for_skill = { balance = "yes", bluff = "no", climb = "yes", concentration = "no", diplomacy = "no", disabledevice = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", search = "no", sensemotive = "no", pickpocket = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
+	if penalty_for_skill[skill] == "yes" then return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0) end
+	return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) end 
 
 function _M:skillCheck(skill, dc)
 	local d = rng.dice(1,20)
@@ -688,32 +691,31 @@ function _M:levelup()
 	self.max_skill_ranks = self.max_skill_ranks + 1
 	
 	--Feat points and attribute points
-	if self.level % 3 == 0 then self.feat_point = self.feat_point + 1
-	end
-	if self.level % 4 == 0 then self.stat_point = self.stat_point + 1
-	end
+	--if self.level % 3 == 0 then self.feat_point = self.feat_point + 1
+	--elseif self.level % 4 == 0 then self.stat_point = self.stat_point + 1
+	
 
 	--Class-dependent level up
-	if not self == game.player then nil
-	local class = player.descriptor.class
+	--if not self == game.player then end
+	--local class = player.descriptor.class
 
-	local highsave = { barbarian = "fortitude", cleric = "will", druid = "will", fighter = "fortitude", ranger = "fortitude", rogue = "reflex", wizard = "will", warlock = "will"}
-	local highsave2 = { cleric = "fortitude", druid = "fortitude", }
+	--local highsave = { barbarian = "fortitude", cleric = "will", druid = "will", fighter = "fortitude", ranger = "fortitude", rogue = "reflex", wizard = "will", warlock = "will"}
+	--local highsave2 = { cleric = "fortitude", druid = "fortitude", }
 
 	--Assuming higher save is 1 per level and lower save is 0.5 per level
-	if save == highsave[class] or save == highsave2[class] then
-		(self:attr("save_"..save) or 0) + 1
-	else math.ceil((self:attr("save_"..save) or 0) + 0.5)
-	end
+	--if save == highsave[class] or save == highsave2[class] then
+	--	(self:attr("save_"..save) or 0) + 1
+	--else math.ceil((self:attr("save_"..save) or 0) + 0.5)
+	--end
 
-	local BAB = { barbarian = 1, cleric = 0.75, druid = 0.75, fighter = 1, ranger = 1, rogue = 0.75, wizard = 0.5, warlock = 0.5 }
-	self.combat_attack = self.combat_attack or 0 + math.floor(1*BAB[class])
+	--local BAB = { barbarian = 1, cleric = 0.75, druid = 0.75, fighter = 1, ranger = 1, rogue = 0.75, wizard = 0.5, warlock = 0.5 }
+	--self.combat_attack = self.combat_attack or 0 + math.floor(1*BAB[class])
 
 	--Placeholders
-	--self.combat_attack = self.combat_attack or 0 + 1
-	--self.fortitude_save = self.fortitude_save or 0 + 1
-	--self.reflex_save = self.reflex_save or 0 + 1
-	--self.will_save = self.will_save or 0 + 1
+	self.combat_attack = self.combat_attack or 0 + 1
+	self.fortitude_save = self.fortitude_save or 0 + 1
+	self.reflex_save = self.reflex_save or 0 + 1
+	self.will_save = self.will_save or 0 + 1
 
 	-- Heal up on new level
 	--  self:resetToFull()
@@ -757,7 +759,7 @@ function _M:getEncumbrance()
 			end
 		end
 	end
-	--print("Total encumbrance", enc)
+	game.log(("#00FF00#Total encumbrance: %d"):format(enc))
 	return math.floor(enc)
 end
 
