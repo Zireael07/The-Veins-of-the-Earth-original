@@ -28,7 +28,7 @@ Features:
 - some monsters up to CR 1
 - calendar
 - light sources
-- magic armors
+- magic armors and shields
 - critical hits
 - working feat select
 - most melee feats from SRD
@@ -38,7 +38,13 @@ Features:
 - working archery
 - working experience points
 - encumbrance
+- working cure x wounds potions
 - stairs have a chance of not changing the dungeon level
+- skill checks now include armor penalty
+- CR displayed in tooltips
+- colored tooltips
+- skill select screen
+- colored log messages
 
 ***
 Thanks to:
