@@ -54,7 +54,7 @@ function _M:drawDialog()
 
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Hit Points : "..(player.life or "Unknown"), w, h, 255, 57, 57, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Hit Points : "..(math.floor(player.life) or "Unknown"), w, h, 255, 57, 57, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Max Hit Points : "..(player.max_life or "Unknown"), w, h, 255, 0, 0, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
@@ -77,6 +77,11 @@ function _M:drawDialog()
     s:drawStringBlended(self.font, "WIS : "..(player:getWis()), w, h, 255, 255, 0, true) h = h + self.font_h
     s:drawStringBlended(self.font, "CHA : "..(player:getCha()), w, h, 255, 255, 0, true) h = h + self.font_h
     s:drawStringBlended(self.font, "LUC : "..(player:getLuc()), w, h, 255, 255, 0, true) h = h + self.font_h
+
+    h = h + self.font_h -- Adds an empty row
+    h = h + self.font_h -- Adds an empty row
+    s:drawStringBlended(self.font, "Encumbrance : "..(player:getEncumbrance()).."/"..(player:getMaxEncumbrance()), w, h, 255, 255, 255, true) h = h + self.font_h
+
 
     h = 0
     w = self.w * 0.50 
