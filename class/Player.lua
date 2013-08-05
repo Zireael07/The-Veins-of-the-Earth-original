@@ -143,7 +143,11 @@ function _M:playerFOV()
   end
 
   -- Calculate our own FOV
-  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist) game.level.map:applyLite(x, y) end, true, true, true)
+  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist) 
+      game.level.map:applyLite(x, y)
+      game.level.map.remembers(x, y, true) -- Remember the tile 
+    end, 
+    true, true, true)
 end
 
 --- Called before taking a hit, overload mod.class.Actor:onTakeHit() to stop resting and running
