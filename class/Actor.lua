@@ -113,7 +113,6 @@ function _M:init(t, no_default)
 
 	self.lite = 3 --Temporary test
 
-
 	-- Use weapon damage actually
 	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
 	if weapon then dam = weapon.combat.dam
@@ -746,7 +745,8 @@ end
 --Encumbrance
 function _M:getMaxEncumbrance()
 	local add = 0
-	return math.floor(40 + self:getStr() * 1.8 + (self.max_encumber or 0) + add)
+	if self:getStr() <= 10 then return math.floor(10*self:getStr())
+	else return math.ceil((10*self:getStr()) + (5*(self:getStr()-10))) end
 end
 
 function _M:getEncumbrance()
