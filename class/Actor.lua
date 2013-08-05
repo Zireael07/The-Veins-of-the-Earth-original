@@ -111,6 +111,9 @@ function _M:init(t, no_default)
 	self.max_charges = {}
 	self.allocated_charges = {}
 
+	self.lite = 3 --Temporary test
+
+
 	-- Use weapon damage actually
 	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
 	if weapon then dam = weapon.combat.dam
