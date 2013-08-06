@@ -43,7 +43,7 @@ function _M:drawDialog()
     s:drawStringBlended(self.font, "AC means Armor Class. The base number is 10. It can be increased by various means, including your Dexterity bonus, armor, shield or magic.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "BAB is short for Base Attack Bonus. This number is added to a d20 roll and your Strength bonus when you make an attack.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "HD means Hit Die. It is the die that is rolled to determine the number of your hitpoints per level.", w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "In Underdark, characters get full hit points from a die.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "In the Veins of the Earth, characters get full hit points from a die.", w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "In combat, the opponent's AC is compared to the attacker's roll and all the modifiers (BAB and Strength bonus).", w, h, 255, 255, 255, true) h = h + self.font_h

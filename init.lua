@@ -17,12 +17,12 @@
 -- Nicolas Casalini "DarkGod"
 -- darkgod@te4.org
 
-name = "Underdark"
-long_name = "An Underdark roguelike"
-short_name = "underdark"
+name = "VotE"
+long_name = "The Veins of the Earth"
+short_name = "veins"
 author = { "Zireael", "x" }
-homepage = "x"
-version = {0,0,6}
+homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
+version = {0,0,7}
 engine = {1,0,4,"te4"}
 description = [[
 In DarkGod's words, "a fantasy d20-themed dungeon crawler".

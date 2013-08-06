@@ -78,7 +78,7 @@ function _M:run()
 	self.real_starttime = os.time()
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
-	self.log(self.flash.GOOD, "Welcome to #00FF00#the Underdark!")
+	self.log(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth!")
 
 	-- Setup inputs
 	self:setupCommands()
