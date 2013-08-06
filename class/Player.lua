@@ -143,7 +143,20 @@ function _M:playerFOV()
   end
 
   -- Calculate our own FOV
-  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist) game.level.map:applyLite(x, y) end, true, true, true)
+  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist) 
+      game.level.map:applyLite(x, y)
+      game.level.map.remembers(x, y, true) -- Remember the tile 
+    end, true, true, true)
+
+  --If our darkvision is better than our lite, check it.
+  if (self:attr("infravision") or 0) > self.lite then
+    self:computeFOV(self:attr("infravision"), "block_sight", function(x, y, dx, dy, sqdist)
+      if not game.level.map.seens(x, y) then 
+        game.level.map.seens(x, y, 0.75) -- If we only see due to darkvision, it looks dark
+      end
+      game.level.map.remembers(x, y, true)
+    end, true, true, true)
+  end
 end
 
 --- Called before taking a hit, overload mod.class.Actor:onTakeHit() to stop resting and running

@@ -113,6 +113,8 @@ function _M:init(t, no_default)
 
 	self.lite = 3 --Temporary test
 
+	self.life = t.max_life or self.life
+
 	-- Use weapon damage actually
 	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
 	if weapon then dam = weapon.combat.dam

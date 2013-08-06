@@ -222,7 +222,7 @@ function _M:onTurn()
 end
 
 function _M:display(nb_keyframe)
-	self.player_display:toScreen(nb_keyframe)
+	
 	-- If switching resolution, blank everything but the dialog
 	if self.change_res_dialog then engine.GameTurnBased.display(self, nb_keyframe) return end
 
@@ -240,6 +240,7 @@ function _M:display(nb_keyframe)
 
 		-- And the minimap
 		self.level.map:minimapDisplay(self.w - 200, 20, util.bound(self.player.x - 25, 0, self.level.map.w - 50), util.bound(self.player.y - 25, 0, self.level.map.h - 50), 50, 50, 0.6)
+		self.player_display:toScreen()
 	end
 
 	-- We display the player's interface

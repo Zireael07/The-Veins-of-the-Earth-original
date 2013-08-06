@@ -1,5 +1,12 @@
 --Ranged weapons
 newEntity{
+    define_as = "BASE_RANGED",
+    type = "weapon",
+    ranged = true,
+    ammo_type = "arrow",
+}
+
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_HXBOW",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -23,7 +30,7 @@ newEntity{ base = "BASE_HXBOW",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_LXBOW",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -47,7 +54,7 @@ newEntity{ base = "BASE_LXBOW",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_DART",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -70,7 +77,7 @@ newEntity{ base = "BASE_DART",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_JAVELIN",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -93,7 +100,7 @@ newEntity{ base = "BASE_JAVELIN",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_SLING",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -119,7 +126,7 @@ newEntity{ base = "BASE_SLING",
 }
 
 --Bows
-newEntity{
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_LBOW",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -157,7 +164,7 @@ newEntity{ base = "BASE_LBOW",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_SBOW",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -195,14 +202,14 @@ newEntity{ base = "BASE_SBOW",
 }
 
 --Ammo
-newEntity{
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_ARROW",
     slot = "QUIVER",
     type = "ammo", subtype="arrow",
     display = "{", color=colors.UMBER,
     encumber = 3,
     rarity = 7,
-    archery_ammo = "bow",
+    archery_ammo = "arrow",
     desc = [[Arrows are used with bows to pierce your foes to death.]],
 }
 
@@ -215,14 +222,14 @@ newEntity{ base = "BASE_ARROW",
     },
 }   
 
-newEntity{
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_BOLT",
     slot = "QUIVER",
     type = "ammo", subtype="bolt",
     display = "{", color=colors.UMBER,
     encumber = 1,
     rarity = 5,
-    archery_ammo = "crossbow",
+    archery_ammo = "bolt",
     desc = [[Bolts are used with crossbows to pierce your foes to death.]],
 } 
 
@@ -235,14 +242,14 @@ newEntity{ base = "BASE_BOLT",
     },
 }   
 
-newEntity{
+newEntity{ base = "BASE_RANGED",
     define_as = "BASE_BULLET",
     slot = "QUIVER",
     type = "ammo", subtype="bullet",
     display = "{", color=colors.UMBER,
     encumber = 1,
     rarity = 5,
-    archery_ammo = "sling",
+    archery_ammo = "bullet",
     desc = [[Bullets are used with slings to pierce your foes to death.]],
 } 
 
