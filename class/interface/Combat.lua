@@ -50,11 +50,15 @@ function _M:attackRoll(target)
     local hit = true
     local crit = false
     local weapon = self:getInven("MAIN_HAND") and self:getInven("MAIN_HAND")[1]
-
+    
     local stat_used = "str"
 
+    if weapon and weapon.ranged then
+        stat_used = "dex"
+    end
+
     local attack = self.combat_attack or 0
-    if self:knowTalent(self.T_FINESSE) and weapon then
+    if self:knowTalent(self.T_FINESSE) and weapon and not weapon.ranged then
         --Is the weapon light, or usable for finesse?
         local success = false
         if not weapon.light then

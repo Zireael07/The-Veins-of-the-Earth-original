@@ -80,7 +80,7 @@ newTalent{
 	name = "Magic Missile", --image="talents/magic_missile.png",
 	type = {"arcane/arcane", 1},
 	mode = 'activated',
-	level = 2,
+	level = 1,
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
