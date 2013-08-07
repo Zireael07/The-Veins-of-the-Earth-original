@@ -40,7 +40,7 @@ function _M:drawDialog()
     w = 0
     
     s:drawStringBlended(self.font, "HP, or hitpoints, are your life meter. When it falls to 0 or lower, you're dead.", w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "AC means Armor Class. The base number is 10. It can be increased by various means, including your Dexterity bonus, armor, shield or magic.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "AC means Armor Class. The base number is 10. It can be increased by various means, such as Dexterity bonus, armor, shield or magic.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "BAB is short for Base Attack Bonus. This number is added to a d20 roll and your Strength bonus when you make an attack.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "HD means Hit Die. It is the die that is rolled to determine the number of your hitpoints per level.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "In the Veins of the Earth, characters get full hit points from a die.", w, h, 255, 255, 255, true) h = h + self.font_h
@@ -59,6 +59,10 @@ function _M:drawDialog()
     s:drawStringBlended(self.font, "Gender does not affect anything. Alignment only affects clerical domains.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Class and race both affect your character's stats, including his or her abilities, feats and skills.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Abilities and special abilities are displayed in the character sheet (press c to access it).", w, h, 255, 255, 255, true) h = h + self.font_h
+
+    h = h + self.font_h -- Adds an empty row
+    s:drawStringBlended(self.font, "Upon creating a character, you should press p to open level up menu.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "From this menu, you can choose your feats and skills.", w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
 
