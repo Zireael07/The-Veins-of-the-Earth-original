@@ -27,6 +27,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "padded armor +1",
+    unided_name = "padded armor",
     level_range = {1, 10},
     cost = 5,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
@@ -39,6 +40,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "padded armor +2",
+    unided_name = "padded armor",
     level_range = {1, 10},
     cost = 5,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
@@ -51,6 +53,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "padded armor +3",
+    unided_name = "padded armor",
     level_range = {1, 10},
     cost = 5,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
@@ -63,6 +66,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "padded armor +4",
+    unided_name = "padded armor",
     level_range = {1, 10},
     cost = 5,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
@@ -75,6 +79,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "padded armor +5",
+    unided_name = "padded armor",
     level_range = {1, 10},
     cost = 5,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
@@ -98,6 +103,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "leather armor +1",
+    unided_name = "leather armor",
     level_range = {1, 10},
     cost = 1010,
     wielder = {
@@ -109,6 +115,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "leather armor +2",
+    unided_name = "leather armor",
     level_range = {1, 10},
     cost = 1010,
     wielder = {
@@ -120,6 +127,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "leather armor +3",
+    unided_name = "leather armor",
     level_range = {1, 10},
     cost = 1010,
     wielder = {
@@ -131,6 +139,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "leather armor +4",
+    unided_name = "leather armor",
     level_range = {1, 10},
     cost = 1010,
     wielder = {
@@ -142,6 +151,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "leather armor +5",
+    unided_name = "leather armor",
     level_range = {1, 10},
     cost = 1010,
     wielder = {
@@ -165,6 +175,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "studded leather +1",
+    unided_name = "studded leather",
     level_range = {1, 10},
     cost = 2025,
     wielder = {
@@ -177,6 +188,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "studded leather +2",
+    unided_name = "studded leather",
     level_range = {1, 10},
     cost = 8025,
     wielder = {
@@ -189,6 +201,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "studded leather +3",
+    unided_name = "studded leather",
     level_range = {1, 10},
     cost = 16025,
     wielder = {
@@ -201,6 +214,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "studded leather +4",
+    unided_name = "studded leather",
     level_range = {1, 10},
     cost = 32025,
     wielder = {
@@ -213,6 +227,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "studded leather +5",
+    unided_name = "studded leather",
     level_range = {1, 10},
     cost = 50025,
     wielder = {
@@ -237,6 +252,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "chain shirt +1",
+    unided_name = "chain shirt",
     level_range = {1, 10},
     cost = 2100,
     wielder = {
@@ -249,6 +265,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "chain shirt +2",
+    unided_name = "chain shirt",
     level_range = {1, 10},
     cost = 4100,
     wielder = {
@@ -261,6 +278,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "chain shirt +3",
+    unided_name = "chain shirt",
     level_range = {1, 10},
     cost = 8100,
     wielder = {
@@ -273,6 +291,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "chain shirt +4",
+      unided_name = "chain shirt",
     level_range = {1, 10},
     cost = 16100,
     wielder = {
@@ -285,6 +304,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "chain shirt +5",
+      unided_name = "chain shirt",
     level_range = {1, 10},
     cost = 32100,
     wielder = {
@@ -321,6 +341,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "chain mail +1",
+      unided_name = "chain mail",
     level_range = {1, 10},
     cost = 2150,
     wielder = {
@@ -333,6 +354,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "chain mail +2",
+    unided_name = "chain mail",
     level_range = {1, 10},
     cost = 4150,
     wielder = {
@@ -345,6 +367,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "chain mail +3",
+      unided_name = "chain mail",
     level_range = {1, 10},
     cost = 8150,
     wielder = {
@@ -357,6 +380,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "chain mail +4",
+      unided_name = "chain mail",
     level_range = {1, 10},
     cost = 16150,
     wielder = {
@@ -369,6 +393,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "chain mail +5",
+      unided_name = "chain mail",
     level_range = {1, 10},
     cost = 50150,
     wielder = {
@@ -393,6 +418,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "scale mail +1",
+      unided_name = "scale mail",
     level_range = {1, 10},
     cost = 2050,
     wielder = {
@@ -405,6 +431,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "scale mail +2",
+    unided_name = "scale mail",
     level_range = {1, 10},
     cost = 4050,
     wielder = {
@@ -417,6 +444,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "scale mail +3",
+    unided_name = "scale mail",
     level_range = {1, 10},
     cost = 8050,
     wielder = {
@@ -429,6 +457,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "scale mail +4",
+    unided_name = "scale mail",
     level_range = {1, 10},
     cost = 16050,
     wielder = {
@@ -441,6 +470,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "scale mail +5",
+    unided_name = "scale mail",
     level_range = {1, 10},
     cost = 50050,
     wielder = {
@@ -465,6 +495,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "breastplate +1",
+    unided_name = "breastplate",
     level_range = {1, 10},
     cost = 2200,
     wielder = {
@@ -477,6 +508,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "breastplate +2",
+    unided_name = "breastplate",
     level_range = {1, 10},
     cost = 4200,
     wielder = {
@@ -489,6 +521,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "breastplate +3",
+    unided_name = "breastplate",
     level_range = {1, 10},
     cost = 8200,
     wielder = {
@@ -501,6 +534,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "breastplate +4",
+    unided_name = "breastplate",
     level_range = {1, 10},
     cost = 16200,
     wielder = {
@@ -513,6 +547,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "breastplate +5",
+    unided_name = "breastplate",
     level_range = {1, 10},
     cost = 50200,
     wielder = {
@@ -549,6 +584,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "plate armor +1",
+    unided_name = "plate armor",
     level_range = {1, 10},
     cost = 2600,
     wielder = {
@@ -561,6 +597,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "plate armor +2",
+    unided_name = "plate armor",
     level_range = {1, 10},
     cost = 4600,
     wielder = {
@@ -573,6 +610,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "plate armor +3",
+    unided_name = "plate armor",
     level_range = {1, 10},
     cost = 8600,
     wielder = {
@@ -585,6 +623,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "plate armor +4",
+    unided_name = "plate armor",
     level_range = {1, 10},
     cost = 16600,
     wielder = {
@@ -597,6 +636,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "plate armor +5",
+    unided_name = "plate armor",
     level_range = {1, 10},
     cost = 50600,
     wielder = {
@@ -621,6 +661,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "full plate +1",
+    unided_name = "full plate",
     level_range = {1, 10},
     cost = 3500,
     wielder = {
@@ -633,6 +674,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "full plate +2",
+    unided_name = "full plate",
     level_range = {1, 10},
     cost = 5500,
     wielder = {
@@ -645,6 +687,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "full plate +3",
+    unided_name = "full plate",
     level_range = {1, 10},
     cost = 9500,
     wielder = {
@@ -657,6 +700,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "full plate +4",
+    unided_name = "full plate",
     level_range = {1, 10},
     cost = 17500,
     wielder = {
@@ -669,6 +713,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "full plate +5",
+    unided_name = "full plate",
     level_range = {1, 10},
     cost = 51500,
     wielder = {
@@ -681,6 +726,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "banded mail",
+    unided_name = "banded mail",
     level_range = {1, 10},
     cost = 250,
     wielder = {
@@ -693,6 +739,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "banded mail +1",
+    unided_name = "banded mail",
     level_range = {1, 10},
     cost = 2250,
     wielder = {
@@ -717,6 +764,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "banded mail +3",
+    unided_name = "banded mail",
     level_range = {1, 10},
     cost = 8250,
     wielder = {
@@ -729,6 +777,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "banded mail +4",
+    unided_name = "banded mail",
     level_range = {1, 10},
     cost = 16250,
     wielder = {
@@ -741,6 +790,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "banded mail +5",
+    unided_name = "banded mail",
     level_range = {1, 10},
     cost = 50250,
     wielder = {
