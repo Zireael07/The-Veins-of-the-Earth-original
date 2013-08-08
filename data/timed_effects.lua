@@ -90,15 +90,15 @@ newEffect{
 	end,
 }
 
---Faerzress
+--Magical radiation
 newEffect{
-	name = "FAERZRESS",
-	desc = "Faerzress radiation",
+	name = "MAG_RADIATION",
+	desc = "Magical radiation",
 	type = "physical",
 	status = "detrimental",
 	parameters = { power=2 },
-	on_gain = function(self, err) return "#Target# is covered in acid!", "+Acid" end,
-	on_lose = function(self, err) return "#Target# is free from the acid.", "-Acid" end,
+	on_gain = function(self, err) return "#Target# is enveloped by underground magical radiation!", "+Radiation" end,
+	on_lose = function(self, err) return "#Target# is free from the radiation.", "-Radiation" end,
 	on_timeout = function(self, eff)
 		DamageType:get(DamageType.FORCE).projector(eff.src or self, self.x, self.y, DamageType.FORCE, eff.power)
 	end,
