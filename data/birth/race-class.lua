@@ -41,7 +41,9 @@ newBirthDescriptor {
   stats = { dex = 2, con = -2, },
 copy_add = {
   infravision = 1,
-  keen_senses = 2,
+  skill_listen = 2,
+  skill_spot = 2,
+  skill_search = 2,
   }
 }
 
@@ -75,9 +77,11 @@ newBirthDescriptor {
   stats = { dex = 2, con = -2, int = 2, cha = 2, luc = -2, },
 copy_add = {
   infravision = 3,
-  keen_senses = 2,
+  skill_listen = 2,
+  skill_spot = 2,
+  skill_search = 2,
   spell_resistance = 12,
-  xp_mult = 1.10,
+  ecl = 2,
   }
 }
 
@@ -89,8 +93,9 @@ newBirthDescriptor {
   stats = { con = 2, cha = -4, luc = -2, },
 copy_add = {
   infravision = 3,
-  keen_senses = 1,
-  xp_mult = 1.10,
+  skill_listen = 1,
+  skill_spot = 1,
+  ecl = 1,
   }
 }
 
@@ -102,13 +107,13 @@ newBirthDescriptor {
   stats = { str = -2, dex = 2, wis = 2, cha = -4, luc = -2, },
 copy_add = {
   infravision = 3,
-  keen_senses = 1,
+  skill_listen = 2,
   combat_def = 4,
   spell_resistance = 12,
   fortitude_save = 2,
   reflex_save = 2,
   will_save = 2,
-  xp_mult = 1.30,
+  ecl = 3,
   }
 }
 
