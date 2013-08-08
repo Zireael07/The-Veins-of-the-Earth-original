@@ -22,44 +22,9 @@ load("/data/general/objects/ranged.lua")
 load("/data/general/objects/exotic.lua")
 load("/data/general/objects/exoticranged.lua")
 load("/data/general/objects/shields.lua")
+load("/data/general/objects/consumables.lua")
 
---Potions
-newEntity{
-    define_as = "BASE_POTION",
-    slot = "INVEN",
-    type = "potion", subtype = "potion",
-    display = "!", color=colors.RED,
-    encumber = 0,
-    rarity = 5,
-    name = "A potion",
-    desc = [[A potion.]],
-}
 
-newEntity{
-    base = "BASE_POTION",
-    name = "a potion",
-    level_range = {1,10},
-    cost = 50,
-    use_simple = { name = "heal light wounds",
-    use = function(self,who)
-        who:heal(rng.dice(1,8) + 5)
-        return {used = true, destroy = true}
-  end
-  }, 
-}
-
-newEntity{
-    base = "BASE_POTION",
-    name = "a potion",
-    level_range = {4,10},
-    cost = 300,
-    use_simple = { name = "heal moderate wounds",
-    use = function(self,who)
-        who:heal(rng.dice(2,8) + 5)
-        return {used = true, destroy = true}
-  end
-  }, 
-}
 
 --Light sources
 newEntity{
@@ -73,7 +38,7 @@ newEntity{
     desc = [[A torch.]],
 }
 
-
+--Should last 5000 turns
 newEntity{
     base = "BASE_LIGHT",
     name = "a torch",
@@ -83,7 +48,19 @@ newEntity{
     lite=2
   }, 
 }
+ 
+--Unlimited
+newEntity{
+    base = "BASE_LIGHT",
+    name = "everlasting torch",
+    level_range = {1,10},
+    cost = 5000,
+    wielder = {
+    lite=2
+  }, 
+}
 
+--Should last 7500 turns
 newEntity{
     base = "BASE_LIGHT",
     name = "a lantern",
@@ -94,52 +71,25 @@ newEntity{
   }, 
 }
 
-
-
---Consumables
 newEntity{
-    define_as = "BASE_FOOD",
-    slot = "INVEN",
-    type = "food",
-    display = "%", color=colors.WHITE,
+    define_as = "BASE_AMULET",
+    slot = "AMULET",
+    type = "amulet", subtype = "amulet",
+    display = "0", color=colors.RED,
     encumber = 0,
-    rarity = 8,
-    name = "Food",
-    desc = [[Some food.]],
-}
-
-
-newEntity{
-    base = "BASE_FOOD",
-    name = "food rations",
-    level_range = {1,10},
-    cost = 7,
-    --nutrition
+    rarity = 5,
+    name = "An amulet",
+    desc = [[An amulet.]],
 }
 
 newEntity{
-    base = "BASE_FOOD",
-    name = "flask of water",
-    display = "%", color=colors.AQUAMARINE,
-    level_range = {1,10},
-    cost = 7,
-    --nutrition
+    define_as = "BASE_RING",
+    slot = "RING",
+    type = "ring", subtype = "ring",
+    display = "=", color=colors.RED,
+    encumber = 0,
+    rarity = 5,
+    name = "A ring",
+    desc = [[A ring.]],
 }
 
-
-newEntity{
-    base = "BASE_FOOD",
-    name = "stale rations",
-    level_range = {1,10},
-    cost = 7,
-    --no nutrition
-}
-
-newEntity{
-    base = "BASE_FOOD",
-    name = "stale water",
-    display = "%", color=colors.AQUAMARINE,
-    level_range = {1,10},
-    cost = 7,
-    --no nutrition
-}
