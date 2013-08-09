@@ -95,36 +95,78 @@ newBirthDescriptor {
   type = 'alignment',
   name = 'Lawful Neutral',
   desc = [[You are Lawful Neutral. Lawful spells will not harm you.]],
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Good'] = "disallow", 
+    }
+  },
 }
 
 newBirthDescriptor {
   type = 'alignment',
   name = 'Neutral',
   desc = [[You are Neutral.]],
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Good'] = "disallow", 
+    }
+  },
 }
 
 newBirthDescriptor {
   type = 'alignment',
   name = 'Chaotic Neutral',
   desc = [[You are Chaotic Neutral. Chaotic spells will not harm you.]],
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Good'] = "disallow", 
+    }
+  },
 }
 
 newBirthDescriptor {
   type = 'alignment',
   name = 'Lawful Evil',
   desc = [[You are Lawful Evil. Lawful spells will not harm you. Evil characters will not be hostile.]],
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Good'] = "disallow", 
+    }
+  },
 }
 
 newBirthDescriptor {
   type = 'alignment',
   name = 'Chaotic Evil',
   desc = [[You are Chaotic Evil. Chaotic spells will not harm you. Evil characters will not be hostile.]],
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Good'] = "disallow", 
+    }
+  },
 }
 
 newBirthDescriptor {
   type = 'alignment',
   name = 'Evil Neutral',
   desc = [[You are Evil Neutral. Evil characters will not be hostile.]],
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Good'] = "disallow", 
+    }
+  },
 }
 
 load('/data/birth/race-class.lua')
