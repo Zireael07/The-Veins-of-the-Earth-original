@@ -22,6 +22,7 @@ newBirthDescriptor {
   desc = [[Humans are the basic race to which all others are compared.]],
   copy_add = {
     feat_point = 1,
+    skill_point = 4,
   }
 }
 
@@ -40,7 +41,7 @@ newBirthDescriptor {
   desc = [[Elves are also called the Fair Folk. Dex +2 Con -2.]],
   stats = { dex = 2, con = -2, },
 copy_add = {
-  infravision = 1,
+  infravision = 3,
   skill_listen = 2,
   skill_spot = 2,
   skill_search = 2,
@@ -53,7 +54,7 @@ newBirthDescriptor {
   desc = [[A crossbreed of orc and human. Str +2 Int -2 Cha -2]],
   stats = { str = 2, int = -2, cha = -2, },
   copy_add = {
-  infravision = 1,
+  infravision = 3,
   }
 }
 
@@ -64,7 +65,7 @@ newBirthDescriptor {
   desc = [[A race of tough fighters and miners. Con +2, Cha -2.]],
   stats = { con = 2, cha = -2, },
   copy_add = {
-  infravision = 1,
+  infravision = 3,
   }
 }
 
@@ -76,7 +77,7 @@ newBirthDescriptor {
   desc = [[The drow are kin to the Fair Folk, who descended underground long ago. 10% exp penalty. Dex +2 Con -2 Int +2 Cha +2 Luc -2.]],
   stats = { dex = 2, con = -2, int = 2, cha = 2, luc = -2, },
 copy_add = {
-  infravision = 3,
+  infravision = 6,
   skill_listen = 2,
   skill_spot = 2,
   skill_search = 2,
@@ -92,7 +93,7 @@ newBirthDescriptor {
   desc = [[The gray dwarves are the Underdark offshoot of the dwarves, long ago imprisoned by the mind flayers. 10% exp penalty. Con +2 Cha -2 Luc -2.]],
   stats = { con = 2, cha = -4, luc = -2, },
 copy_add = {
-  infravision = 3,
+  infravision = 6,
   skill_listen = 1,
   skill_spot = 1,
   ecl = 1,
@@ -106,7 +107,7 @@ newBirthDescriptor {
   desc = [[The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders. 30% exp penalty. Str -2 Dex +2 Wis +2 Cha -4 Luc -2.]],
   stats = { str = -2, dex = 2, wis = 2, cha = -4, luc = -2, },
 copy_add = {
-  infravision = 3,
+  infravision = 6,
   skill_listen = 2,
   combat_def = 4,
   spell_resistance = 12,
@@ -261,7 +262,13 @@ newBirthDescriptor {
       full_id=true,
       { name="long sword" },
       { name="studded leather" },
+     
     },
+  resolvers.inventory {
+  full_id=true,
+  { name="shortbow"},
+},
+    
 },
   copy_add = {
   hd_size = 8,
@@ -284,9 +291,13 @@ newBirthDescriptor {
   copy = {
   resolvers.equip {
       full_id=true,
-      { name="iron dagger" },
+      { name="light crossbow" },
       { name="studded leather" },
     },
+  resolvers.inventory {
+  full_id=true,
+  { name="iron dagger"},
+}
 },
   copy_add = {
   hd_size = 6,
@@ -299,6 +310,15 @@ newBirthDescriptor {
     [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
     [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
   },
+  descriptor_choices =
+  {
+    alignment =
+    {
+      ['Lawful Good'] = "disallow",
+      ['Lawful Neutral'] = "disallow",
+      ['Lawful Evil'] = "disallow",
+    }
+  },
   }
 
 newBirthDescriptor {
@@ -309,7 +329,13 @@ newBirthDescriptor {
   resolvers.equip {
       full_id=true,
       { name="iron dagger" },
+      
       },
+  resolvers.inventory {
+  full_id=true,
+  { name="light crossbow"},
+}
+      
 },
   copy_add = {
   hd_size = 4,

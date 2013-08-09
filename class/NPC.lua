@@ -34,13 +34,39 @@ function _M:act()
 	if not mod.class.Actor.act(self) then return end
 
 	-- Compute FOV, if needed
-	self:computeFOV(self.sight or 20)
+		self:doFOV()
 
 	-- Let the AI think .... beware of Shub !
 	-- If AI did nothing, use energy anyway
 	self:doAI()
 	if not self.energy.used then self:useEnergy() end
 end
+
+function _M:doFOV()
+-- Clean FOV before computing it
+  game.level.map:cleanFOV()
+  -- Compute both the normal and the lite FOV, using cache
+  self:computeFOV(self.sight or 3, "block_sight", function(x, y, dx, dy, sqdist)
+ --   game.level.map:apply(x, y, fovdist[sqdist])
+  end, true, false, true)
+  -- Calculate our own FOV
+  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist) 
+ --     game.level.map:applyLite(x, y)
+      game.level.map.remembers(x, y, true) -- Remember the tile 
+    end, true, true, true)
+
+  --If our darkvision is better than our lite, check it.
+  if (self:attr("infravision") or 0) > self.lite then
+    self:computeFOV(self:attr("infravision"), "block_sight", function(x, y, dx, dy, sqdist)
+      if not game.level.map.seens(x, y) then 
+        game.level.map.seens(x, y, 0.75) -- If we only see due to darkvision, it looks dark
+      end
+      game.level.map.remembers(x, y, true)
+    end, true, true, true)
+  end
+
+end	
+
 
 --- Called by ActorLife interface
 -- We use it to pass aggression values to the AIs
