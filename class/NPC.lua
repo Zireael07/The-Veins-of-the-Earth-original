@@ -44,7 +44,7 @@ end
 
 function _M:doFOV()
 -- Clean FOV before computing it
-  game.level.map:cleanFOV()
+  --game.level.map:cleanFOV()
   -- Compute both the normal and the lite FOV, using cache
   self:computeFOV(self.sight or 3, "block_sight", function(x, y, dx, dy, sqdist)
  --   game.level.map:apply(x, y, fovdist[sqdist])
@@ -52,7 +52,7 @@ function _M:doFOV()
   -- Calculate our own FOV
   self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist) 
  --     game.level.map:applyLite(x, y)
-      game.level.map.remembers(x, y, true) -- Remember the tile 
+ --     game.level.map.remembers(x, y, true) -- Remember the tile 
     end, true, true, true)
 
   --If our darkvision is better than our lite, check it.
@@ -61,7 +61,7 @@ function _M:doFOV()
       if not game.level.map.seens(x, y) then 
         game.level.map.seens(x, y, 0.75) -- If we only see due to darkvision, it looks dark
       end
-      game.level.map.remembers(x, y, true)
+ --     game.level.map.remembers(x, y, true)
     end, true, true, true)
   end
 
