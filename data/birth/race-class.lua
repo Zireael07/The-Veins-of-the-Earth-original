@@ -23,7 +23,13 @@ newBirthDescriptor {
   copy_add = {
     feat_point = 1,
     skill_point = 4,
-  }
+  },
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="a torch" },
+    },
+}
 }
 
 newBirthDescriptor {
@@ -32,7 +38,13 @@ newBirthDescriptor {
   desc = [[A crossbreed of elf and human, they get the best of the two races.]],
   stats = { cha = 2, },
   copy_add = {
-  }
+  },
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="a torch" },
+    },
+}
 }
 
 newBirthDescriptor {
@@ -45,7 +57,13 @@ copy_add = {
   skill_listen = 2,
   skill_spot = 2,
   skill_search = 2,
-  }
+  },
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="a torch" },
+    },
+}
 }
 
 newBirthDescriptor {
@@ -55,7 +73,13 @@ newBirthDescriptor {
   stats = { str = 2, int = -2, cha = -2, },
   copy_add = {
   infravision = 3,
-  }
+  },
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="a torch" },
+    },
+}
 }
 
 --Stone sense
@@ -66,7 +90,13 @@ newBirthDescriptor {
   stats = { con = 2, cha = -2, },
   copy_add = {
   infravision = 3,
-  }
+  },
+  copy = {
+  resolvers.equip {
+      full_id=true,
+      { name="a torch" },
+    },
+}
 }
 
 --Underdark races
