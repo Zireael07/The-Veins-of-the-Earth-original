@@ -17,6 +17,7 @@
  require "engine.class"
 require "engine.Object"
 require "engine.interface.ObjectActivable"
+require "engine.interface.ObjectIdentify"
 
 local Stats = require("engine.interface.ActorStats")
 local Talents = require("engine.interface.ActorTalents")
@@ -25,7 +26,9 @@ local DamageType = require("engine.DamageType")
 module(..., package.seeall, class.inherit(
     engine.Object,
     engine.interface.ObjectActivable,
+    engine.interface.ObjectIdentify,
     engine.interface.ActorTalents
+    
 ))
 
 function _M:init(t, no_default)
@@ -33,6 +36,7 @@ function _M:init(t, no_default)
 
     engine.Object.init(self, t, no_default)
     engine.interface.ObjectActivable.init(self, t)
+    engine.interface.ObjectIdentify.init(self, t)
     engine.interface.ActorTalents.init(self, t)
 end
 
@@ -68,3 +72,32 @@ function _M:use(who, typ, inven, item)
         return unpack(ret)
     end
 end 
+
+--- Gets the full name of the object
+function _M:getName(t)
+    t = t or {}
+    local qty = self:getNumber()
+    local name = self.name
+
+    if self.identified == false and not t.force_id and self:getUnidentifiedName() then name = self:getUnidentifiedName() end
+    
+    if qty == 1 or t.no_count then return name
+    else return qty.." "..name
+    end
+
+end
+
+--- Gets the full desc of the object
+function _M:getDesc()
+    return self.name.." "..self.desc
+end
+
+function _M:tooltip(x, y)
+    local str = self:getDesc(game.player:getInven(self:wornInven()))
+    if config.settings.cheat then str:add(true, "UID: "..self.uid, true, self.image) end
+    local nb = game.level.map:getObjectTotal(x, y)
+    if nb == 2 then str:add(true, "---", true, "You see one more object.")
+    elseif nb > 2 then str:add(true, "---", true, "You see "..(nb-1).." more objects.")
+    end
+    return str
+end

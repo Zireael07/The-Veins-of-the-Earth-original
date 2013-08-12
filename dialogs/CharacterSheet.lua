@@ -45,12 +45,13 @@ function _M:drawDialog()
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "Level : "..(player.level or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "EXP : "..(player.exp or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "EXP to level up: "..(player:getExpChart(player.level+1) or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Gold : "..(player.money or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "AC : "..(player.combat_def or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "BAB : "..(player.combat_attack or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
---    s:drawStringBlended(self.font, "SP : "..(player.mana or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+
 
     h = h + self.font_h -- Adds an empty row
     s:drawStringBlended(self.font, "Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h

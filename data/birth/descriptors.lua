@@ -40,11 +40,7 @@ newBirthDescriptor{
 		max_life = 10,
 		max_level = 100,
 		feat_point = 1,
-		resolvers.equip {
-      full_id=true,
-      { name="a torch" },
-    },
-    game_state = {
+		game_state = {
 		  campaign_name = "Underdark",
     },
   },
