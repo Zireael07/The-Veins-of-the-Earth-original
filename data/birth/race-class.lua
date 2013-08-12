@@ -126,18 +126,18 @@ newBirthDescriptor {
   name = 'Barbarian',
   desc = [[Simple fighters, they hack away with their trusty weapon. HD d12, BAB +1, Fort +2 at first level.]],
   copy = {
-  resolvers.equip {
+    resolvers.equip {
       full_id=true,
       { name="iron battleaxe" },
       { name="chain mail" },
     },
   },
   copy_add = {
-  hd_size = 12,
-  max_life = 12,
-  combat_attack = 1,
-  fortitude_save = 2,
-  skill_point = 8,
+    hd_size = 12,
+    max_life = 12,
+    combat_attack = 1,
+    fortitude_save = 2,
+    skill_point = 8,
   },
   talents = {
     [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
@@ -153,6 +153,8 @@ newBirthDescriptor {
       ['Lawful Evil'] = "disallow",
     }
   },
+  on_level = function(actor, level)
+  end,
 } 
 
 newBirthDescriptor {
@@ -189,6 +191,8 @@ newBirthDescriptor {
       __ALL__ = "allow",
     }
   },
+  on_level = function(actor, level)
+  end,
 }
 
 newBirthDescriptor {
@@ -224,7 +228,9 @@ newBirthDescriptor {
       ['Chaotic Evil'] = "disallow",
     }
   },
-}  
+  on_level = function(actor, level)
+  end,
+}   
 
 
 newBirthDescriptor {
@@ -250,6 +256,8 @@ newBirthDescriptor {
     [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
     [ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
   },
+  on_level = function(actor, level)
+  end,
 }
 
 
@@ -282,6 +290,8 @@ newBirthDescriptor {
     [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
     [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
   },
+  on_level = function(actor, level)
+  end,
 }
 
 newBirthDescriptor {
@@ -319,7 +329,9 @@ newBirthDescriptor {
       ['Lawful Evil'] = "disallow",
     }
   },
-  }
+  on_level = function(actor, level)
+  end,
+}
 
 newBirthDescriptor {
   type = 'class',
@@ -357,6 +369,8 @@ newBirthDescriptor {
   talents_types = {
     ["arcane/arcane"] = {true, 0.0},
   },
+  on_level = function(actor, level)
+  end,
 }
 
 
@@ -382,5 +396,7 @@ newBirthDescriptor {
     [ActorTalents.T_ELDRITCH_BLAST]=1,
     [ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
     [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
-    },
+  },
+  on_level = function(actor, level)
+  end,  
 } 

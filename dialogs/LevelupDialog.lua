@@ -21,9 +21,7 @@ function _M:init(actor)
 
     self.c_accept = Button.new{text="Accept",fct=function() self:onEnd("accept") end}
 
-    self.c_prc = Button.new{text="Prestige Class",fct=function() self:onPrestige() end}
-
-    self.c_multiclass = Button.new{text="Multiclassing", fct=function() self:onMulticlass() end}
+    self.c_classes = Button.new{text="Classes",fct=function() self:onClass() end}
 
     self.c_feats = Button.new{text="Feats", fct=function() self:onFeat() end}
 
@@ -32,9 +30,8 @@ function _M:init(actor)
     self:loadUI{
         {left=0, top=0, ui=self.c_desc},
         {left=0, bottom=0, ui=self.c_accept},
-        {left=self.c_accept, bottom=0, ui=self.c_prc},
-        {left=self.c_prc, bottom=0, ui=self.c_multiclass},
-        {left=self.c_multiclass, bottom=0, ui=self.c_feats},
+        {left=self.c_accept, bottom=0, ui=self.c_classes},
+        {left=self.c_classes, bottom=0, ui=self.c_feats},
         {left=self.c_feats, bottom=0, ui=self.c_skills},
 
     }
@@ -88,10 +85,14 @@ function _M:generateList()
 end
 
 function _M:onFeat()
-	game:registerDialog(require("mod.dialogs.FeatDialog").new(game.player))
+    game:registerDialog(require("mod.dialogs.FeatDialog").new(game.player))
 end
 function _M:onSkill()
     game:registerDialog(require("mod.dialogs.SkillDialog").new(game.player))
+end
+
+function _M:onClass()
+    game:registerDialog(require("mod.dialogs.ClassLevelupDialog").new(game.player))
 end
 
 function _M:onEnd(result)

@@ -25,7 +25,6 @@ local DamageType = require "engine.DamageType"
 local Zone = require "engine.Zone"
 local Map = require "engine.Map"
 local Level = require "engine.Level"
-local Birther = require "engine.Birther"
 local HighScores = require "engine.HighScores"
 
 local Party = require "mod.class.Party"
@@ -44,7 +43,7 @@ local FlyingText = require "engine.FlyingText"
 local Tooltip = require "engine.Tooltip"
 local Calendar = require "engine.Calendar"
 
-local AttributesRoller = require "mod.dialogs.AttributesRoller"
+local Birther = require "mod.dialogs.Birther"
 
 local QuitDialog = require "mod.dialogs.Quit"
 
@@ -107,8 +106,8 @@ function _M:newGame()
 	self.creating_player = true
 	
     --Displays attributes roller before the birther
-    local roller = mod.dialogs.AttributesRoller.new(self.player)
-    self:registerDialog(roller)
+    local birther = mod.dialogs.Birther.new(self.player)
+    self:registerDialog(birther)
 
 end
 
