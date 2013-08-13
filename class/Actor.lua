@@ -721,6 +721,8 @@ function _M:levelup()
 	self.reflex_save = self.reflex_save or 0 + 1
 	self.will_save = self.will_save or 0 + 1
 
+	self.class_points = self.class_points + 1 
+
 	-- Heal up on new level
 	--  self:resetToFull()
 
@@ -730,9 +732,31 @@ function _M:levelup()
 	end
 
 	--if self == game.player then game:onTickEnd(function() game:playSound("actions/levelup") end, "levelupsound") end
-	end
 
 	if game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
+
+end
+
+function _M:levelClass(name, short_name)
+	local birther = require("engine.Birther")
+	local d = birther:getBirthDescriptor("class", name)
+	for k,v in pairs(d) do
+		--game.log(k)
+	end
+
+	local level = self.classes[name] or 0
+	self.classes[name] = level + 1
+	if self.class_points then
+		game.log("I HAVE CLASS POINTS")
+		self.class_points = self.class_points - 1
+	end
+
+	if level == 1 then --Apply the descriptor
+
+	end
+
+	d.on_level(self, level)
+end
 
 
 function _M:onAddObject(o)
