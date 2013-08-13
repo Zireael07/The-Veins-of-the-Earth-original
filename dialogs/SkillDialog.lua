@@ -18,7 +18,7 @@ function _M:init(actor)
 	Dialog.init(self, "Skills", 500, 600)
 	self:generateList()
 	
-	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: "..self.player.feat_point}	
+	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: "..self.player.skill_point}	
 	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
 	self.c_desc = TextzoneList.new{width=self.iw/2-20, height = 400, text="Hello from description"}
 
@@ -36,23 +36,12 @@ end
 
 function _M:use(item)
 	if (self.player.skill_point or 0) > 0 then
-		if true then
-			return nil --Todo
-		end
 
-		local t = item.talent
-		local tid = item.talent.id
-		--Have we already learned it?
-		if self.player:getTalentLevelRaw(tid) >= t.points then
-			return nil
-		end
+		--increase the skill by one
+		self.player:attr("skill_"..item.name, 1)
 
-		-- Alright, lets learn it if we can
-		local learned = self.player:learnTalent(item.talent.id) --returns false if not learned due to requirements
-		if learned then 
-			self.player.feat_point = self.player.feat_point - 1 
-			self:update()
-		end
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
 	end
 end
 
@@ -65,9 +54,8 @@ end
 
 function _M:update()
 	local sel = self.selection
-	game.log(""..self.selection)
 	self:generateList() -- Slow! Should just update the one changed and sort again
-	self.c_points.text = "Available feat points: "..self.player.feat_point
+	self.c_points.text = "Available skill points: "..self.player.skill_point
 	self.c_points:generate()
 	self.c_list.list = self.list
 	self.c_list:generate()
@@ -88,14 +76,15 @@ function _M:generateList()
 		"heal",
 		"hide",
 		"intimidate",
+		"intuition",
 		"jump",
 		"knowledge",
 		"listen",
 		"movesilently",
 		"openlock",
-		"pickpocket",
 		"search",
 		"sensemotive",
+		"pickpocket",
 		"spellcraft",
 		"survival",
 		"tumble",
@@ -103,12 +92,12 @@ function _M:generateList()
 	}
     local list = {}
     for _, skill in pairs(skills) do
-    	local value = player:attr("skill_"..skill)
- 		local color = {100, 100, 100}
- 		local d = "#GOLD#"..skill.."#LAST#\n"
+    	local value = player:getSkill(skill)
+ 		local color = {255, 255, 255}
+ 		local d = "#GOLD#"..skill:capitalize().."#LAST#\n\n"
  		s = "Description goes here"
  		d = d..s.."\n#WHITE#"
-        list[#list+1] = {name=skill, color = color, desc=d}
+        list[#list+1] = {name="#SLATE#(#LAST##AQUAMARINE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize(), color = color, desc=d}
     end
     self.list = list
 end

@@ -44,6 +44,7 @@ end
 function _M:onBirth()
 
     game:unregisterDialog(self)
+    self.creating_player = true
     local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment', 'domains', 'domains'}, function()
         game:changeLevel(1, "cavern")
         print("[PLAYER BIRTH] resolve...")
@@ -53,6 +54,8 @@ function _M:onBirth()
         game.paused = true
         game.creating_player = false
         game.player:levelPassives()
+        game.player.changed = true
+        game.player:resetToFull()
         print("[PLAYER BIRTH] resolved!")
         end)
 
