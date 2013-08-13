@@ -184,6 +184,14 @@ newBirthDescriptor {
     }
   },
   on_level = function(actor, level)
+    if level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
+    --if level % 4 == 0 then actor.stat_point = (stat_point or 0) + 1
+    else 
+    actor.combat_attack = (actor.combat_attack or 0) + 1
+    actor.fortitude_save = (actor.fortitude_save or 0) + 1
+    actor.reflex_save = (actor.reflex_save or 0) + 0.5
+    actor.will_save = (actor.will_save or 0) + 0.5
+  end
   end,
 } 
 
@@ -222,7 +230,15 @@ newBirthDescriptor {
     }
   },
   on_level = function(actor, level)
-  end,
+    if level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
+    --if level % 4 == 0 then stat_point = (stat_point or 0) + 1
+    else
+    actor.will_save = (actor.will_save or 0) + 1
+    actor.fortitude_save = (actor.fortitude_save or 0) + 1
+    actor.reflex_save = (actor.reflex_save or 0) + 0.5
+    actor.combat_attack = (actor.combat_attack or 0) + 0.75
+    end
+ end,
 }
 
 newBirthDescriptor {
@@ -259,6 +275,14 @@ newBirthDescriptor {
     }
   },
   on_level = function(actor, level)
+   if level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
+    --if level % 4 == 0 then stat_point = (stat_point or 0) + 1
+    else
+    actor.will_save = (actor.will_save or 0) + 1
+    actor.fortitude_save = (actor.fortitude_save or 0) + 1
+    actor.reflex_save = (actor.reflex_save or 0) + 0.5
+    actor.combat_attack = (actor.combat_attack or 0) + 0.75
+    end
   end,
 }   
 
@@ -287,7 +311,15 @@ newBirthDescriptor {
     [ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
   },
   on_level = function(actor, level)
-  end,
+    if level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
+    --if level % 4 == 0 then actor.stat_point = (actor.stat_point or 0) + 1 
+    else
+    actor.combat_attack = (actor.combat_attack or 0) + 1
+    actor.fortitude_save = (actor.fortitude_save or 0) + 1
+    actor.reflex_save = (actor.reflex_save or 0) + 0.5
+    actor.will_save = (actor.will_save or 0) + 0.5
+    end
+end,
 }
 
 
@@ -321,6 +353,14 @@ newBirthDescriptor {
     [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
   },
   on_level = function(actor, level)
+    if level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
+    --if level % 4 == 0 then actor.stat_point = (actor.stat_point or 0) + 1
+    else 
+    actor.combat_attack = (actor.combat_attack or 0) + 1
+    actor.fortitude_save = (actor.fortitude_save or 0) + 1
+    actor.reflex_save = (actor.reflex_save or 0) + 0.5
+    actor.will_save = (actor.will_save or 0) + 0.5
+    end
   end,
 }
 
@@ -360,6 +400,14 @@ newBirthDescriptor {
     }
   },
   on_level = function(actor, level)
+    if level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
+    --if level % 4 == 0 then stat_point = (stat_point or 0) + 1
+    else
+    actor.reflex_save = actor.reflex_save + 1
+    actor.combat_attack = actor.combat_attack + 0.75
+    actor.will_save = (actor.will_save or 0) + 0.5
+    actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+    end
   end,
 }
 
@@ -400,6 +448,14 @@ newBirthDescriptor {
     ["arcane/arcane"] = {true, 0.0},
   },
   on_level = function(actor, level)
+    if level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
+    --if level % 4 == 0 then actor.stat_point = (actor.stat_point or 0) + 1
+    else
+    actor.will_save = will_save + 1
+    actor.combat_attack = (actor.combat_attack or 0) + 0.5
+    actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+    actor.reflex_save = (actor.reflex_save or 0) + 0.5
+    end
   end,
 }
 
@@ -428,5 +484,13 @@ newBirthDescriptor {
     [ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
   },
   on_level = function(actor, level)
+    if level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
+    --if level % 4 == 0 then actor.stat_point = (actor.stat_point or 0) + 1
+    else
+    actor.will_save = actor.will_save + 1
+    actor.combat_attack = (actor.combat_attack or 0) + 0.5
+    actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+    actor.reflex_save = (actor.reflex_save or 0) + 0.5
+    end
   end,  
 } 
