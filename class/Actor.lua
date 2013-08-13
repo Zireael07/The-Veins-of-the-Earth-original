@@ -91,6 +91,8 @@ function _M:init(t, no_default)
 	self.skill_tumble = 0
 	self.skill_usemagic = 0
 
+	t.max_life = self.max_life
+
 	engine.Actor.init(self, t, no_default)
 	engine.interface.ActorTemporaryEffects.init(self, t)
 	engine.interface.ActorLife.init(self, t)
@@ -282,6 +284,11 @@ function _M:die(src)
 	end
 
 	return true
+end
+
+function _M:resetToFull()
+	if self.dead then return end
+	self.life = self.max_life
 end
 
 function _M:levelupMsg()
