@@ -70,7 +70,8 @@ function _M:generateList()
 
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
         local level = self.player.classes[d.name] or 0
-        table.insert(list, {name = d.name, desc = d.desc, level = levelClass, short_name = d.short_name})
+        local name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #LAST#"..d.name
+        table.insert(list, {name = name, desc = d.desc, level = levelClass, short_name = d.short_name})
     end
 
     --list[#list+1] = {name="Hello", desc="There"}
