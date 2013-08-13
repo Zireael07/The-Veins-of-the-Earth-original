@@ -22,16 +22,18 @@ newEntity{
     display = "0", color=colors.RED,
     encumber = 0,
     rarity = 5,
-    name = "An amulet",
-    desc = [[An amulet.]],
+    name = "an amulet",
+    desc = [[A beautiful amulet.]],
 }
 
 newEntity{
     base = "BASE_AMULET",
     name = "amulet of natural armor +1",
     unided_name = "an amulet",
+    identified = false,
     level_range = {1,10},
     cost = 2000,
+--    desc = [[This bone amulet grants you +1 AC.]]
     wielder = {
     combat_def=1
   }, 
@@ -41,8 +43,10 @@ newEntity{
     base = "BASE_AMULET",
     name = "amulet of natural armor +2",
     unided_name = "an amulet",
+    identified = false,
     level_range = {1,10},
     cost = 8000,
+--    desc = [[This bone amulet grants you +2 AC.]]
     wielder = {
     combat_def=2
   }, 
@@ -52,8 +56,10 @@ newEntity{
     base = "BASE_AMULET",
     name = "amulet of natural armor +3",
     unided_name = "an amulet",
+    identified = false,
     level_range = {1,10},
     cost = 18000,
+--    desc = [[This scaly amulet grants you +3 AC.]]
     wielder = {
     combat_def=3
   }, 
@@ -63,8 +69,10 @@ newEntity{
     base = "BASE_AMULET",
     name = "amulet of natural armor +4",
     unided_name = "an amulet",
+    identified = false,
     level_range = {1,10},
     cost = 32000,
+ --   desc = [[This scaly amulet grants you +4 AC.]]
     wielder = {
     combat_def=4
   }, 
@@ -74,6 +82,7 @@ newEntity{
     base = "BASE_AMULET",
     name = "amulet of natural armor +5",
     unided_name = "an amulet",
+    identified = false,
     level_range = {10,30},
     cost = 50000,
     wielder = {
@@ -89,14 +98,15 @@ newEntity{
     display = "=", color=colors.RED,
     encumber = 0,
     rarity = 5,
-    name = "A ring",
-    desc = [[A ring.]],
+    name = "a ring",
+    desc = [[A pretty ring.]],
 }
 
 newEntity{
     base = "BASE_RING",
     name = "ring of protection +1",
     unided_name = "a ring",
+    identified = false,
     level_range = {1,10},
     cost = 2000,
     wielder = {
@@ -108,6 +118,7 @@ newEntity{
     base = "BASE_RING",
     name = "ring of protection +2",
     unided_name = "a ring",
+    identified = false,
     level_range = {1,10},
     cost = 8000,
     wielder = {
@@ -119,6 +130,7 @@ newEntity{
     base = "BASE_RING",
     name = "ring of protection +3",
     unided_name = "a ring",
+    identified = false,
     level_range = {1,10},
     cost = 18000,
     wielder = {
@@ -130,6 +142,7 @@ newEntity{
     base = "BASE_RING",
     name = "ring of protection +4",
     unided_name = "a ring",
+    identified = false,
     level_range = {1,10},
     cost = 32000,
     wielder = {
@@ -141,6 +154,7 @@ newEntity{
     base = "BASE_RING",
     name = "ring of protection +5",
     unided_name = "a ring",
+    identified = false,
     level_range = {1,10},
     cost = 50000,
     wielder = {

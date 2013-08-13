@@ -57,11 +57,13 @@ function _M:init(t, no_default)
   self.lite = 0 --stealth test
 
   self.descriptor = {}
+  self.classes = self.classes or {}
   self.max_level = 50
   self.max_exp = self.exp
   self.level_hiwater = self.level
   self.speed = 0
   self.move_others = true
+  self.class_points = 0 -- Spent on leveling classes
 end
 
 function _M:getExpChart(level)

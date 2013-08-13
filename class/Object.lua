@@ -89,7 +89,7 @@ end
 
 --- Gets the full desc of the object
 function _M:getDesc()
-    return self.name.." "..self.desc
+    return self:getName().."; "..self.desc
 end
 
 function _M:tooltip(x, y)
