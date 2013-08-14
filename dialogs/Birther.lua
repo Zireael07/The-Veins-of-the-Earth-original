@@ -55,7 +55,7 @@ function _M:onBirth()
         game.creating_player = false
         game.player:levelPassives()
         game.player.changed = true
-        game.player:resetToFull()
+        game.player:onBirth()
         print("[PLAYER BIRTH] resolved!")
         end)
 

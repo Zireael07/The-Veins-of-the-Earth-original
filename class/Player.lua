@@ -63,7 +63,12 @@ function _M:init(t, no_default)
   self.level_hiwater = self.level
   self.speed = 0
   self.move_others = true
-  self.class_points = 0 -- Spent on leveling classes
+  self.class_points = 1 -- Spent on leveling classes, its 1 because it "spends" one when you birth
+end
+
+function _M:onBirth()
+  self:levelClass(self.descriptor.class)
+  self:resetToFull()
 end
 
 function _M:getExpChart(level)

@@ -40,7 +40,7 @@ end
 function _M:use(item)
     if self.player.class_points <= 0 then game.log("you need a class point") return end
 
-    self.player:levelClass(item.name, item.short_name)
+    self.player:levelClass(item.real_name)
 
     self:update()
 end
@@ -54,7 +54,6 @@ end
 
 function _M:update()
     local sel = self.selection
-    game.log(""..self.selection)
     self:generateList() -- Slow! Should just update the one changed and sort again
     self.c_points.text = "Available class points: "..self.player.class_points
     self.c_points:generate()
@@ -71,7 +70,7 @@ function _M:generateList()
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
         local level = self.player.classes[d.name] or 0
         local name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #LAST#"..d.name
-        table.insert(list, {name = name, desc = d.desc, level = levelClass, short_name = d.short_name})
+        table.insert(list, {name = name, desc = d.desc, level = level, real_name = d.name})
     end
 
     --list[#list+1] = {name="Hello", desc="There"}
@@ -89,7 +88,7 @@ function _M:generateList()
         if a.level == b.level then 
             return a.name < b.name
         else 
-            return a.level < b.level
+            return a.level > b.level
         end
     end)
 
