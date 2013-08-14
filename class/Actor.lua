@@ -212,7 +212,7 @@ function _M:tooltip()
 		self:getStat('int'),
 		self:getStat('wis'),
 		self:getStat('cha'),
-		3,
+		self:attr('challenge'),
 		self.desc or ""
 	)
 end
@@ -497,14 +497,26 @@ function _M:getSkill(skill)
 	if penalty_for_skill[skill] == "yes" then return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0) end
 	return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) end 
 
-function _M:skillCheck(skill, dc)
+function _M:skillCheck(skill, dc, silent)
+	local success = false
+
 	local d = rng.dice(1,20)
 	if d == 20 then return true
 	elseif d == 1 then return false
 	end
 
-	if d + (getSkill(skill) or 0) > dc then return true end
-	return false
+	local result = d + (getSkill(skill) or 0) 
+
+	if result > dc then success = true end
+
+	if not silent then
+		local who = self:getName()
+		local s = ("%s check for %s: %d vs %d dc -> %s"):format(
+			skill:capitalize(), who, d, dc, success and "success" or "failure")
+		game.log(s)
+	end
+
+	return success
 end
 
 function _M:opposedCheck(skill1, target, skill2)
