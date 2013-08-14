@@ -55,6 +55,7 @@ function _M:on_move(x, y, who, forced)
 	end
 end
 function _M:tooltip()
+	game.log("Trying to show tooltip")
 	if self.show_tooltip then
 		local name = ((self.show_tooltip == true) and self.name or self.show_tooltip)
 		if self.desc then

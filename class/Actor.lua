@@ -212,7 +212,7 @@ function _M:tooltip()
 		self:getStat('int'),
 		self:getStat('wis'),
 		self:getStat('cha'),
-		self:attr('challenge'),
+		3,
 		self.desc or ""
 	)
 end

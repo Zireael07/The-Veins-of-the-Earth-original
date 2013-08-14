@@ -85,6 +85,24 @@ function _M:move(x, y, force)
   return moved
 end
 
+function _M:tooltip()
+  return ([[%s%s
+    #RED#HP: %d (%d%%)
+    #WHITE#STR %s DEX %s CON %s 
+    WIS %s INT %s CHA %s]]):format(
+    self:getDisplayString(),
+    self.name,
+    self.life, self.life * 100 / self.max_life,
+    self:getStat('str'),
+    self:getStat('dex'),
+    self:getStat('con'),
+    self:getStat('int'),
+    self:getStat('wis'),
+    self:getStat('cha'),
+    self.desc or ""
+  )
+end
+
 function _M:describeFloor(x, y)
   if self.old_x == self.x and self.old_y == self.y then return end
 
