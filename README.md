@@ -46,6 +46,13 @@ Features:
 - skill select screen [Seb]
 - colored log messages
 - new map generator [Seb]
+-  now guarantees higher stats in roller
+- racial skill bonuses
+- ranged weapons as starting equipment; deep-dwelling races no longer get a torch
+- amulet of natural armor
+- colored help screen
+- item tooltips
+- working Intuition skill and item identification
 
 ***
 Thanks to:
