@@ -91,8 +91,6 @@ function _M:init(t, no_default)
 	self.skill_tumble = 0
 	self.skill_usemagic = 0
 
-	t.max_life = self.max_life
-
 	engine.Actor.init(self, t, no_default)
 	engine.interface.ActorTemporaryEffects.init(self, t)
 	engine.interface.ActorLife.init(self, t)
