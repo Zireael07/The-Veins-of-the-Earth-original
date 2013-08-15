@@ -38,7 +38,7 @@ function _M:use(item)
 	if (self.player.skill_point or 0) > 0 then
 
 		--increase the skill by one
-		self.player:attr("skill_"..item.name, 1)
+		self.player:attr("skill_"..item.skill, 1)
 
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()
@@ -97,7 +97,7 @@ function _M:generateList()
  		local d = "#GOLD#"..skill:capitalize().."#LAST#\n\n"
  		s = "Description goes here"
  		d = d..s.."\n#WHITE#"
-        list[#list+1] = {name="#SLATE#(#LAST##AQUAMARINE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize(), color = color, desc=d}
+        list[#list+1] = {name="#SLATE#(#LAST##AQUAMARINE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize(), skill = skill, color = color, desc=d}
     end
     self.list = list
-end
+end	
