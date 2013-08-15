@@ -90,6 +90,13 @@ BETA RELEASES
 * usable Intuition skill
 * item tooltips
 * multiclassing
+* first standalone version
+
+0.0.8 - 15/08/2013
+* skill tests printed to log
+* bugfixes
+* working level-up bonuses
+* halved the amount of XP needed to advance
 
 
 
