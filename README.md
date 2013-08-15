@@ -53,6 +53,8 @@ Features:
 - colored help screen
 - item tooltips
 - working Intuition skill and item identification
+- multiclassing
+- skill tests printed to log
 
 ***
 Thanks to:

@@ -711,35 +711,9 @@ function _M:levelup()
 	self.skill_point = self.skill_point + self.skill_point
 	self.max_skill_ranks = self.max_skill_ranks + 1
 	
-	--Feat points and attribute points
-	--if self.level % 3 == 0 then self.feat_point = self.feat_point + 1
-	--elseif self.level % 4 == 0 then self.stat_point = self.stat_point + 1
-	
-
-	--Class-dependent level up
-	--if not self == game.player then end
-	--local class = player.descriptor.class
-
-	--local highsave = { barbarian = "fortitude", cleric = "will", druid = "will", fighter = "fortitude", ranger = "fortitude", rogue = "reflex", wizard = "will", warlock = "will"}
-	--local highsave2 = { cleric = "fortitude", druid = "fortitude", }
-
-	--Assuming higher save is 1 per level and lower save is 0.5 per level
-	--if save == highsave[class] or save == highsave2[class] then
-	--	(self:attr("save_"..save) or 0) + 1
-	--else math.ceil((self:attr("save_"..save) or 0) + 0.5)
-	--end
-
-	--local BAB = { barbarian = 1, cleric = 0.75, druid = 0.75, fighter = 1, ranger = 1, rogue = 0.75, wizard = 0.5, warlock = 0.5 }
-	--self.combat_attack = self.combat_attack or 0 + math.floor(1*BAB[class])
-
-	--Placeholders
-	self.combat_attack = self.combat_attack or 0 + 1
-	self.fortitude_save = self.fortitude_save or 0 + 1
-	self.reflex_save = self.reflex_save or 0 + 1
-	self.will_save = self.will_save or 0 + 1
 
 	self.class_points = self.class_points + 1
-	if self.level % 2 == 0 then --feat points given every character level. Classes may give additional feat points.
+	if self.level % 3 == 0 then --feat points given every character level. Classes may give additional feat points.
 		self.feat_point = self.feat_point + 1
 	end
 
