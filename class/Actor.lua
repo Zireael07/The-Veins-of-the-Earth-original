@@ -497,14 +497,26 @@ function _M:getSkill(skill)
 	if penalty_for_skill[skill] == "yes" then return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0) end
 	return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) end 
 
-function _M:skillCheck(skill, dc)
+function _M:skillCheck(skill, dc, silent)
+	local success = false
+
 	local d = rng.dice(1,20)
 	if d == 20 then return true
 	elseif d == 1 then return false
 	end
 
-	if d + (getSkill(skill) or 0) > dc then return true end
-	return false
+	local result = d + (getSkill(skill) or 0) 
+
+	if result > dc then success = true end
+
+	if not silent then
+		local who = self:getName()
+		local s = ("%s check for %s: %d vs %d dc -> %s"):format(
+			skill:capitalize(), who, d, dc, success and "success" or "failure")
+		game.log(s)
+	end
+
+	return success
 end
 
 function _M:opposedCheck(skill1, target, skill2)
@@ -726,7 +738,10 @@ function _M:levelup()
 	self.reflex_save = self.reflex_save or 0 + 1
 	self.will_save = self.will_save or 0 + 1
 
-	self.class_points = self.class_points + 1 
+	self.class_points = self.class_points + 1
+	if self.level % 2 == 0 then --feat points given every character level. Classes may give additional feat points.
+		self.feat_point = self.feat_point + 1
+	end
 
 	-- Heal up on new level
 	--  self:resetToFull()
@@ -742,21 +757,17 @@ function _M:levelup()
 
 end
 
-function _M:levelClass(name, short_name)
-	local birther = require("engine.Birther")
+function _M:levelClass(name)
+	local birther = require "engine.Birther"
 	local d = birther:getBirthDescriptor("class", name)
-	for k,v in pairs(d) do
-		--game.log(k)
-	end
 
 	local level = self.classes[name] or 0
 	self.classes[name] = level + 1
 	if self.class_points then
-		game.log("I HAVE CLASS POINTS")
 		self.class_points = self.class_points - 1
 	end
 
-	if level == 1 then --Apply the descriptor
+	if level == 1 then --Apply the descriptor... or not?
 
 	end
 

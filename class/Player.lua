@@ -63,7 +63,12 @@ function _M:init(t, no_default)
   self.level_hiwater = self.level
   self.speed = 0
   self.move_others = true
-  self.class_points = 0 -- Spent on leveling classes
+  self.class_points = 1 -- Spent on leveling classes, its 1 because it "spends" one when you birth
+end
+
+function _M:onBirth()
+  self:levelClass(self.descriptor.class)
+  self:resetToFull()
 end
 
 function _M:getExpChart(level)
@@ -83,6 +88,24 @@ function _M:move(x, y, force)
   self.old_x, self.old_y = self.x, self.y
 
   return moved
+end
+
+function _M:tooltip()
+  return ([[%s%s
+    #RED#HP: %d (%d%%)
+    #WHITE#STR %s DEX %s CON %s 
+    WIS %s INT %s CHA %s]]):format(
+    self:getDisplayString(),
+    self.name,
+    self.life, self.life * 100 / self.max_life,
+    self:getStat('str'),
+    self:getStat('dex'),
+    self:getStat('con'),
+    self:getStat('int'),
+    self:getStat('wis'),
+    self:getStat('cha'),
+    self.desc or ""
+  )
 end
 
 function _M:describeFloor(x, y)

@@ -9,8 +9,8 @@ local Button = require "engine.ui.Button"
 
 module(..., package.seeall, class.inherit(Dialog))
 
-function _M:init(actor)
-    self.actor = actor
+function _M:init()
+    self.actor = game.player
 
     self:generateList()
     
