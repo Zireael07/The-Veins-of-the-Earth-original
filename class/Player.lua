@@ -37,7 +37,7 @@ module(..., package.seeall, class.inherit(mod.class.Actor,
 
 local exp_chart = function(level) 
 if level==1 then return 1000 
-else return 1000*level*(level+1)/2 end
+else return 500*level*(level+1)/2 end
 end
 
 function _M:init(t, no_default)
