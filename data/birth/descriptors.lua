@@ -43,6 +43,11 @@ newBirthDescriptor{
 		game_state = {
 		  campaign_name = "Underdark",
     },
+    resolvers.inventory {
+      full_id=true,
+      { name="food rations" },
+      { name="flask of water" },
+    },
   },
   talents = {
     [ActorTalents.T_SHOOT]=1,

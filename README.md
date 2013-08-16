@@ -55,9 +55,11 @@ Features:
 - working Intuition skill and item identification
 - multiclassing
 - skill tests printed to log
+- monsters drop equipment and corpses
 
 ***
 Thanks to:
 - Grey, DarkGod, HousePet for coding help
-- Zonk, Leissi for brainstorming
+- Zonk for brainstorming
+- Leissi for brainstorming and testing
 

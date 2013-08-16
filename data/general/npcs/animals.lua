@@ -21,6 +21,7 @@ newEntity{
 	define_as = "BASE_NPC_RAT",
 	type = "animal",
 	display = 'S', color=colors.WHITE,
+	body = { INVEN = 10 },
 	desc = [[A small rat.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
@@ -36,6 +37,11 @@ newEntity{
 	max_life = resolvers.rngavg(3,7),
 	hit_die = 1,
 	challenge = 1/3,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 
@@ -43,11 +49,17 @@ newEntity{
 	define_as = "BASE_NPC_SPIDER",
 	type = "animal",
 	display = 's', color=colors.BROWN,
+	body = { INVEN = 10 },
 	desc = [[A small spider.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=3, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,3} },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
@@ -87,7 +99,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SPIDER",
 	name = "large spider", color=colors.BROWN,
-	level_range = {1, 4}, exp_worth = 3000,
+	level_range = {5, 20}, exp_worth = 3000,
 	rarity = 9,
 	max_life = resolvers.rngavg(20,25),
 	hit_die = 4,
@@ -99,24 +111,30 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SPIDER",
 	name = "huge spider", color=colors.BROWN,
-	exp_worth = 3300,
+	level_range = {7, 20}, exp_worth = 3300,
 	rarity = 10,
 	max_life = resolvers.rngavg(50,55),
 	hit_die = 8,
 	challenge = 8,
 	stats = { str=19, dex=17, con=14, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {2,6} }
+	combat = { dam= {2,6} },
 }
 
 newEntity{
 	define_as = "BASE_NPC_SNAKE",
 	type = "animal",
 	display = 's', color=colors.GREEN,
+	body = { INVEN = 10 },
 	desc = [[A small snake.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=4, dex=17, con=11, int=1, wis=12, cha=2, luc=10 },
 	combat = { dam= {1,2} },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
@@ -147,4 +165,5 @@ newEntity{
 	max_life = resolvers.rngavg(7,10),
 	hit_die = 2,
 	challenge = 1,
+	
 }

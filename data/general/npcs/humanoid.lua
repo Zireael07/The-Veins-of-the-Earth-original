@@ -36,6 +36,14 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	max_life = resolvers.rngavg(5,9),
 	hit_die = 4,
 	challenge = 1/2,
+	resolvers.equip{
+		full_id=true,
+		{ name = "short spear" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
@@ -45,12 +53,21 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	max_life = resolvers.rngavg(10,12),
 	hit_die = 6,
 	challenge = 1,
+	resolvers.equip{
+		full_id=true,
+		{ name = "short spear" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
 	define_as = "BASE_NPC_ORC",
 	type = "humanoid",
 	display = 'o', color=colors.GREEN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[An ugly orc.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
@@ -66,12 +83,22 @@ newEntity{
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
 	challenge = 1,
+	resolvers.equip{
+		full_id=true,
+		{ name = "studded leather armor" },
+		{ name = "falchion" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
 	define_as = "BASE_NPC_TIEFLING",
 	type = "humanoid",
 	display = 'h', color=colors.RED,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[A horned tiefling.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
@@ -87,4 +114,13 @@ newEntity{
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
 	challenge = 1,
+	resolvers.equip{
+		full_id=true,
+		{ name = "studded leather armor" },
+		{ name = "rapier" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }

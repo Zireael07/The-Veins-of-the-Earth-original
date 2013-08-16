@@ -6,13 +6,15 @@ newEntity{
     display = "!", color=colors.RED,
     encumber = 0,
     rarity = 5,
-    name = "A potion",
+    name = "a potion",
     desc = [[A potion.]],
 }
 
 newEntity{
     base = "BASE_POTION",
-    name = "a potion",
+    name = "a potion of heal light wounds",
+    unided_name = "a potion",
+    identified = false,
     level_range = {1,10},
     cost = 50,
     use_simple = { name = "heal light wounds",
@@ -25,7 +27,9 @@ newEntity{
 
 newEntity{
     base = "BASE_POTION",
-    name = "a potion",
+    name = "a potion of heal moderate wounds",
+    unided_name = "a potion",
+    identified = false,
     level_range = {4,10},
     cost = 300,
     use_simple = { name = "heal moderate wounds",
