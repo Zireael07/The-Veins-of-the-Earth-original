@@ -29,7 +29,7 @@ function _M:init()
     Class and race both affect your character's stats, including his or her abilities, feats and skills.
     Abilities and special abilities are displayed in the character sheet (press #YELLOW#c#LAST# to access it).
 
-    Upon creating a character, you should press #YELLOW#p#LAST# to open level up menu. Here, you can choose your feats and skills.
+    Upon creating a character, the level up menu automatically opens. Here, you can choose your feats and skills.
 
     The character's abilities are #GOLD#STR, DEX, CON, INT, WIS, CHA#LAST# and #GOLD#LUC#LAST#.
     #GOLD#STR#LAST# is short for #ORANGE#Strength#LAST#. It affects the damage your character deals in combat, as well as his melee attacks.
