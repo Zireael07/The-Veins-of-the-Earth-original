@@ -36,4 +36,8 @@ newEntity{ base = "BASE_NPC_FLAYER",
 	max_life = resolvers.rngavg(10,15),
 	hit_die = 4,
 	challenge = 7,
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }        
