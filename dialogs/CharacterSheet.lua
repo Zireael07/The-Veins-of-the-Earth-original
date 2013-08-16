@@ -38,46 +38,46 @@ function _M:drawDialog()
 
     h = 0
     w = 0
-    s:drawStringBlended(self.font, "Name : "..(player.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Class : "..(player.descriptor.class or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Race : "..(player.descriptor.race or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#Name : "..(player.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#Class : "..(player.descriptor.class or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#Race : "..(player.descriptor.race or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    s:drawStringBlended(self.font, "Level : "..(player.level or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "EXP : "..(player.exp or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "EXP to level up: "..(player:getExpChart(player.level+1) or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Gold : "..(player.money or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Character level: "..(player.level or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "EXP : "..(player.exp or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "EXP to level up: "..(player:getExpChart(player.level+1) or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#GOLD#Gold : "..(player.money or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    s:drawStringBlended(self.font, "AC : "..(player.combat_def or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "BAB : "..(player.combat_attack or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "AC : "..(player.combat_def or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "BAB : "..(player.combat_attack or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
 
     h = h + self.font_h -- Adds an empty row
-    s:drawStringBlended(self.font, "Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Hit Points : "..(math.floor(player.life) or "Unknown"), w, h, 255, 57, 57, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Max Hit Points : "..(player.max_life or "Unknown"), w, h, 255, 0, 0, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life) or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Max Hit Points : #LIGHT_RED#"..(player.max_life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    s:drawStringBlended(self.font, "Fortitude bonus: "..(player.fortitude_save or "0"), w, h, 0, 239, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Reflex bonus : "..(player.reflex_save or "0"), w, h, 0, 239, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Will bonus : "..(player.will_save or "0"), w, h, 0, 239, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Fortitude bonus: #LIGHT_BLUE#"..(player.fortitude_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Reflex bonus : #LIGHT_BLUE#"..(player.reflex_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Will bonus : #LIGHT_BLUE#"..(player.will_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    s:drawStringBlended(self.font, "Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#CHOCOLATE#Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Darkvision : "..(player.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = 0
     w = self.w * 0.25 
     -- start on second column
         
-    s:drawStringBlended(self.font, "STR : "..(player:getStr()), w, h, 255, 255, 0, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "DEX : "..(player:getDex()), w, h, 255, 255, 0, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "CON : "..(player:getCon()), w, h, 255, 255, 0, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "INT : "..(player:getInt()), w, h, 255, 255, 0, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "WIS : "..(player:getWis()), w, h, 255, 255, 0, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "CHA : "..(player:getCha()), w, h, 255, 255, 0, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "LUC : "..(player:getLuc()), w, h, 255, 255, 0, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(player:getStr().." #SANDY_BROWN#"..(math.floor((player:getStr()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(player:getDex().." #SANDY_BROWN#"..(math.floor((player:getDex()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#CON : #YELLOW#"..(player:getCon().." #SANDY_BROWN#"..(math.floor((player:getCon()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(player:getInt().." #SANDY_BROWN#"..(math.floor((player:getInt()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(player:getWis().." #SANDY_BROWN#"..(math.floor((player:getWis()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(player:getCha().." #SANDY_BROWN#"..(math.floor((player:getCha()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(player:getLuc().." #SANDY_BROWN#"..(math.floor((player:getLuc()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     h = h + self.font_h -- Adds an empty row
@@ -88,38 +88,38 @@ function _M:drawDialog()
     w = self.w * 0.50 
     -- start on third column
     --Ideally, class-restricted skills should show up only if you have that class
-    s:drawStringBlended(self.font, "Skills", w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Balance : "..(player:getSkill("balance") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Bluff : "..(player:getSkill("bluff") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Climb : "..(player:getSkill("climb") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Concentration : "..(player:getSkill("concentration") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Diplomacy : "..(player:getSkill("diplomacy") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Disable Device : "..(player:getSkill("disabledevice") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Escape Artist : "..(player:getSkill("escapeartist") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Handle Animal : "..(player:getSkill("handleanimal") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Heal : "..(player:getSkill("heal") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Hide : "..(player:getSkill("hide") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Intimidate : "..(player:getSkill("intimidate") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Intuition : "..(player:getSkill("intuition") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Jump : "..(player:getSkill("jump") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Knowledge : "..(player:getSkill("knowledge") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Listen : "..(player:getSkill("listen") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Move Silently : "..(player:getSkill("movesilently") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Open Lock : "..(player:getSkill("openlock") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Search : "..(player:getSkill("search") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Sense Motive : "..(player:getSkill("sensemotive") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Pick Pocket : "..(player:getSkill("pickpocket") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Spellcraft : "..(player:getSkill("spellcraft") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Survival : "..(player:getSkill("survival") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Tumble : "..(player:getSkill("tumble") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Use Magic : "..(player:getSkill("usemagic") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#CHOCOLATE#Skills", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Balance : #SANDY_BROWN#"..(player:getSkill("balance") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Bluff : #SANDY_BROWN#"..(player:getSkill("bluff") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Climb : #SANDY_BROWN#"..(player:getSkill("climb") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Concentration : #SANDY_BROWN#"..(player:getSkill("concentration") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Diplomacy : #SANDY_BROWN#"..(player:getSkill("diplomacy") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Disable Device : #SANDY_BROWN#"..(player:getSkill("disabledevice") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Escape Artist : #SANDY_BROWN#"..(player:getSkill("escapeartist") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Handle Animal : #SANDY_BROWN#"..(player:getSkill("handleanimal") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Heal : #SANDY_BROWN#"..(player:getSkill("heal") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Hide : #SANDY_BROWN#"..(player:getSkill("hide") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Intimidate : #SANDY_BROWN#"..(player:getSkill("intimidate") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Intuition : #SANDY_BROWN#"..(player:getSkill("intuition") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Jump : #SANDY_BROWN#"..(player:getSkill("jump") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Knowledge : #SANDY_BROWN#"..(player:getSkill("knowledge") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Listen : #SANDY_BROWN#"..(player:getSkill("listen") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Move Silently : #SANDY_BROWN#"..(player:getSkill("movesilently") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Open Lock : #SANDY_BROWN#"..(player:getSkill("openlock") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Search : #SANDY_BROWN#"..(player:getSkill("search") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Sense Motive : #SANDY_BROWN#"..(player:getSkill("sensemotive") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Pick Pocket : #SANDY_BROWN#"..(player:getSkill("pickpocket") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Spellcraft : #SANDY_BROWN#"..(player:getSkill("spellcraft") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Survival : #SANDY_BROWN#"..(player:getSkill("survival") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Tumble : #SANDY_BROWN#"..(player:getSkill("tumble") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Use Magic : #SANDY_BROWN#"..(player:getSkill("usemagic") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
 
 
     h = 0
     w = self.w * 0.75 
     -- start on last column
-    s:drawStringBlended(self.font, "Feats", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#CHOCOLATE#Feats", w, h, 255, 255, 255, true) h = h + self.font_h
     --uh, a list of feats?
 
     self.c_desc:generate()
