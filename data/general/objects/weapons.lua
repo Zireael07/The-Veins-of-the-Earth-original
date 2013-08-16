@@ -37,7 +37,7 @@ newEntity{
 }
 
 newEntity{ base = "BASE_LSPEAR",
-    name = "spear",
+    name = "long spear",
     level_range = {1, 10},
     cost = 5,
     combat = {
@@ -59,7 +59,7 @@ newEntity{
 }
 
 newEntity{ base = "BASE_SSPEAR",
-    name = "spear",
+    name = "short spear",
     level_range = {1, 10},
     cost = 1,
     combat = {
