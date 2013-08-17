@@ -18,6 +18,7 @@
 -- This file loads the game module, and loads data
 local ActorInventory = require "engine.interface.ActorInventory"
 local KeyBind = require "engine.KeyBind"
+local Faction = require "engine.Faction"
 local DamageType = require "engine.DamageType"
 local ActorStats = require "engine.interface.ActorStats"
 local ActorResource = require "engine.interface.ActorResource"
@@ -25,9 +26,14 @@ local ActorTalents = require "engine.interface.ActorTalents"
 local ActorAI = require "engine.interface.ActorAI"
 local ActorLevel = require "engine.interface.ActorLevel"
 local ActorTemporaryEffects = require "engine.interface.ActorTemporaryEffects"
+local Store = require "mod.class.Store"
+local WorldAchievements = require "mod.class.interface.WorldAchievements"
 local Birther = require "engine.Birther"
 
 dofile('/mod/resolvers.lua')
+
+-- Achievements
+WorldAchievements:loadDefinition("/data/achievements/")
 
 -- Useful keybinds
 KeyBind:load("move,hotkeys,inventory,actions,interface,debug,underdark")
@@ -40,9 +46,6 @@ ActorTalents:loadDefinition("/data/talents.lua")
 
 -- Timed Effects
 ActorTemporaryEffects:loadDefinition("/data/timed_effects.lua")
-
--- Actor resources
-ActorResource:defineResource("SP", "SP", nil, "sp_regen", "SP represent your ability to cast spells.")
 
 -- Actor inventory
 ActorInventory:defineInventory('MAIN_HAND', 'Main hand', true, 'Weapon')
@@ -68,11 +71,17 @@ ActorStats:defineStat("Wisdom",         "wis", 0, -5, 30, "Wisdom describes a ch
 ActorStats:defineStat("Charisma",       "cha", 0, -5, 30, "Charisma measures a character’s force of personality, persuasiveness, personal magnetism, ability to lead, and physical attractiveness. This ability represents actual strength of personality, not merely how one is perceived by others in a social setting.")
 ActorStats:defineStat("Luck",           "luc", 0, -5, 30, "Luck measures your character's good fortune and favor of the gods.")
 
+-- Factions
+--dofile("/data/factions.lua")
+
 -- Actor AIs
 ActorAI:loadDefinition("/engine/ai/")
 ActorAI:loadDefinition("/mod/ai/")
 
 -- Birther descriptor
 Birther:loadDefinition("/data/birth/descriptors.lua")
+
+-- Stores
+--Store:loadStores("/data/general/stores/basic.lua")
 
 return {require "mod.class.Game" }
