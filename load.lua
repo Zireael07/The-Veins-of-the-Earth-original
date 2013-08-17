@@ -71,8 +71,8 @@ ActorStats:defineStat("Wisdom",         "wis", 0, -5, 30, "Wisdom describes a ch
 ActorStats:defineStat("Charisma",       "cha", 0, -5, 30, "Charisma measures a character’s force of personality, persuasiveness, personal magnetism, ability to lead, and physical attractiveness. This ability represents actual strength of personality, not merely how one is perceived by others in a social setting.")
 ActorStats:defineStat("Luck",           "luc", 0, -5, 30, "Luck measures your character's good fortune and favor of the gods.")
 
--- Factions
---dofile("/data/factions.lua")
+--Factions
+dofile("/data/factions.lua")
 
 -- Actor AIs
 ActorAI:loadDefinition("/engine/ai/")
@@ -81,7 +81,7 @@ ActorAI:loadDefinition("/mod/ai/")
 -- Birther descriptor
 Birther:loadDefinition("/data/birth/descriptors.lua")
 
--- Stores
---Store:loadStores("/data/general/stores/basic.lua")
+--Stores
+Store:loadStores("/data/general/stores/basic.lua")
 
 return {require "mod.class.Game" }
