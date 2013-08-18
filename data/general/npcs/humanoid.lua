@@ -27,6 +27,11 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=9, dex=13, con=10, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
+	skill_hide = 4,
+	skill_listen = 1,
+	skill_spot = 1,
+	skill_search = 1,
+	skill_movesilently = 1,
         }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
@@ -73,13 +78,16 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=11, con=12, int=8, wis=7, cha=6, luc=10 },
 	combat = { dam= {1,4} },
+	infravision = 2,
+	skill_listen = 2,
+	skill_spot = 2,
 }
 
 newEntity{
 	base = "BASE_NPC_ORC",
 	name = "orc warrior", color=colors.GREEN,
 	level_range = {1, 4}, exp_worth = 150,
-	rarity = 3,
+	rarity = 8,
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
 	challenge = 1,
@@ -104,19 +112,98 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=12, int=12, wis=9, cha=6, luc=14 },
 	combat = { dam= {1,6} },
+	darkvision = 3,
+	skill_bluff = 6,
+	skill_hide = 4,
+
 }
 
 newEntity{
 	base = "BASE_NPC_TIEFLING",
 	name = "tiefling", color=colors.RED,
 	level_range = {1, 4}, exp_worth = 150,
-	rarity = 3,
+	rarity = 10,
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
 	challenge = 1,
 	resolvers.equip{
 		full_id=true,
 		{ name = "studded leather armor" },
+		{ name = "rapier" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	define_as = "BASE_NPC_GOBLIN",
+	type = "humanoid",
+	display = 'g', color=colors.GREEN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+	desc = [[A dirty goblin.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=6, luc=8 },
+	combat = { dam= {1,6} },
+	darkvision = 3,
+	skill_hide = 4,
+	skill_movesilently = 4,
+	skill_listen = 2,
+	skill_spot = 1,
+}
+
+newEntity{
+	base = "BASE_NPC_GOBLIN",
+	name = "goblin", color=colors.OLIVE_DRAB,
+	level_range = {1, 4}, exp_worth = 50,
+	rarity = 3,
+	max_life = resolvers.rngavg(4,7),
+	hit_die = 1,
+	challenge = 1/3,
+	resolvers.equip{
+		full_id=true,
+		{ name = "leather armor" },
+		{ name = "light wooden shield" },
+		{ name = "morningstar" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	define_as = "BASE_NPC_DROW",
+	type = "humanoid",
+	display = 'h', color=colors.BLACK,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+	desc = [[A dark silhouette.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
+	combat = { dam= {1,6} },
+	darkvision = 6,
+	skill_hide = 1,
+	skill_movesilently = 1,
+	skill_listen = 2,
+	skill_search = 3,
+	skill_spot = 2,
+}
+
+newEntity{
+	base = "BASE_NPC_DROW",
+	name = "drow", color=colors.BLACK,
+	level_range = {1, nil}, exp_worth = 150,
+	rarity = 3,
+	max_life = resolvers.rngavg(3,5),
+	hit_die = 1,
+	challenge = 1,
+	resolvers.equip{
+		full_id=true,
+		{ name = "chain shirt" },
+		{ name = "light metal shield" },
 		{ name = "rapier" },
 	},
 	resolvers.inventory {

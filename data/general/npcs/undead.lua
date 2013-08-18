@@ -26,6 +26,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str = 13, dex=13, con=1, int=1, wis=10, cha=1, luc=10 },
 	combat = { dam= {1,6} },
+	darkvision = 3,
 }
 
 newEntity{

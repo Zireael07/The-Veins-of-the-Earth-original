@@ -32,7 +32,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_FLAYER",
 	name = "brain flayer", color=colors.WHITE,
 	level_range = {6, 14}, exp_worth = 200,
-	rarity = 8,
+	rarity = 20,
 	max_life = resolvers.rngavg(10,15),
 	hit_die = 4,
 	challenge = 7,
