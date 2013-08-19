@@ -534,10 +534,10 @@ function _M:getAC()
 	return def + dex_bonus
 end
 
---Saving throws, Sebsebeleb
+--Saving throws, Sebsebeleb & Zireael
 function _M:reflexSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + (self:getStat("dex")-10)/2
+	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + math.max((self:getStat("dex")-10)/2, (self:getStat("int")-10)/2)
 	if not roll == 1 and roll == 20 or roll + save > dc then
 		return true
 	else
@@ -547,7 +547,7 @@ end
 
 function _M:fortitudeSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + (self:getStat("con")-10)/2
+	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + math.max((self:getStat("con")-10)/2, (self:getStat("str")-10)/2)
 	if not roll == 1 and roll == 20 or roll + save > dc then
 		return true
 	else
@@ -557,7 +557,7 @@ end
 
 function _M:willSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + (self:getStat("wis")-10)/2
+	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + math.max((self:getStat("wis")-10)/2, (self:getStat("cha")-10)/2)
 	if not roll == 1 and roll == 20 or roll + save > dc then
 		return true
 	else
