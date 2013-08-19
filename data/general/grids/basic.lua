@@ -86,7 +86,23 @@ newEntity{
 	define_as = "WATER",
 	type = "floor", subtype = "water",
 	name = "water", image = "terrain/marble_floor.png",
-	display = '~', color=colors.BLUE, back_color=colors.DARK_GREY,
+	display = '~', color=colors.BLUE, back_color=colors.LIGHT_BLUE,
+	always_remember = true,
+--	on_stand = function(self, x, y, who)
+--	who:skillCheck(swim, 10)
+--		if true then end
+--		else
+--		local DT = engine.DamageType
+--		local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.range(10, 30))
+--	 	if dam > 0 then game.logPlayer(who, "You start drowning!") end end
+--	end
+}
+
+newEntity{
+	define_as = "DEEP_WATER",
+	type = "floor", subtype = "water",
+	name = "deep water", image = "terrain/marble_floor.png",
+	display = '~', color=colors.BLUE, back_color=colors.DARK_BLUE,
 	always_remember = true,
 --	on_stand = function(self, x, y, who)
 --	who:skillCheck(swim, 10)
