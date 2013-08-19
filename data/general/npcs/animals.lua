@@ -55,6 +55,10 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=3, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,3} },
+	infravision = 4,
+	skill_climb = 8,
+	skill_hide = 4,
+	skill_spot = 4,
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -112,7 +116,7 @@ newEntity{
 	base = "BASE_NPC_SPIDER",
 	name = "huge spider", color=colors.BROWN,
 	level_range = {7, 20}, exp_worth = 3300,
-	rarity = 10,
+	rarity = 40,
 	max_life = resolvers.rngavg(50,55),
 	hit_die = 8,
 	challenge = 8,
@@ -130,6 +134,11 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=4, dex=17, con=11, int=1, wis=12, cha=2, luc=10 },
 	combat = { dam= {1,2} },
+	skill_balance = 8,
+	skill_climb = 8,
+	skill_hide = 8,
+	skill_listen = 5,
+	skill_spot = 5,
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,

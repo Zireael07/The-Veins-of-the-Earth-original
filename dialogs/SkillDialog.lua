@@ -35,10 +35,14 @@ function _M:init(actor)
 end
 
 function _M:use(item)
-	if (self.player.skill_point or 0) > 0 then
+	if (self.player.skill_point or 0) > 0 and (self.player:attr("skill_"..item.skill) or 0) <= self.player.max_skill_ranks then
 
 		--increase the skill by one
+<<<<<<< HEAD
 		self.player:attr("skill_"..item.skill, 1)
+=======
+		self.player:attr("skill_"..item.skill, 1) 
+>>>>>>> cde0dfaa84aa969683f503c41d22a77b81184a6e
 
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()

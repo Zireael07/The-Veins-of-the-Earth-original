@@ -249,9 +249,9 @@ function _M:restCheck()
   if self:getPower() < self:getMaxPower() and self.power_regen > 0 then return true end
   ]]
 
-  -- Regen health at a rate of 1/50th of max_life after havign rested for 20 turns already 
-  if self.resting.cnt > 20 then
-    local regen = math.ceil(self.max_life / 50) or 1
+  -- Regen health at a rate of 1/100th of max_life after havign rested for 160 turns already 
+  if self.resting.cnt > 160 then
+    local regen = math.ceil(self.max_life / 100) or 1
     self.life = math.min(self.max_life, self.life + regen)
     
     --Refresh charges
@@ -288,6 +288,9 @@ end
 function _M:onRestStop()
   -- Remove any repeating action.
   self.repeat_action = nil
+
+  --Calendar
+  game.log(game.calendar:getTimeDate(game.turn))
 end
 
 --- Can we continue running?

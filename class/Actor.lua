@@ -274,9 +274,6 @@ function _M:die(src)
 	end
 	self.inven = {}
 
-	--Drop corpse
-	--game.level.map:addObject(dropx, dropy, "fresh corpse")
-
 	if self ~= game.player and dropx == game.player.x and dropy == game.player.y then
 		game.log('You feel something roll beneath your feet.')
 	end
@@ -440,7 +437,8 @@ end
 -- @return the experience rewarded
 function _M:worthExp(target)
 	-- TODO Don't get experience from killing friendlies.
-	return (self.exp_worth)
+	if self.challenge < (game.player.level - 4) then return 0
+	else return (self.exp_worth) end
 end
 
 --- Can the actor see the target actor
@@ -489,7 +487,7 @@ function _M:canBe(what)
 	return true
 end
 
---Skill checks
+--Skill checks, Zireael
 function _M:getSkill(skill)
 	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", intuition = "int", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", search = "int", sensemotive = "wis", pickpocket = "dex", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
@@ -527,7 +525,7 @@ function _M:opposedCheck(skill1, target, skill2)
 	return false
 end
 
---AC
+--AC, Sebsebeleb
 function _M:getAC()
 	local dex_bonus = (self:getDex()-10)/2 or 0
 	local def = self.combat_def or 0
@@ -536,7 +534,7 @@ function _M:getAC()
 	return def + dex_bonus
 end
 
---Saving throws
+--Saving throws, Sebsebeleb
 function _M:reflexSave(dc)
 	local roll = rng.dice(1,20)
 	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + (self:getStat("dex")-10)/2
@@ -567,6 +565,7 @@ function _M:willSave(dc)
 	end
 end
 
+--Metamagic & spellbook stuff, Sebsebeleb
 function useMetamagic(self, t)
 	local metaMod = {}
 	for tid, _ in pairs(self.talents) do
@@ -748,7 +747,7 @@ function _M:levelClass(name)
 	d.on_level(self, level)
 end
 
-
+--Encumbrance stuff, Zireael
 function _M:onAddObject(o)
 	self:checkEncumbrance()
 end
@@ -758,7 +757,6 @@ function _M:onRemoveObject(o)
 end	
 
 
---Encumbrance
 function _M:getMaxEncumbrance()
 	local add = 0
 	if self:getStr() <= 10 then return math.floor(10*self:getStr())
@@ -778,7 +776,9 @@ function _M:getEncumbrance()
 			end
 		end
 	end
-	game.log(("#00FF00#Total encumbrance: %d"):format(enc))
+	
+	--Limit logging to the player
+	if self == game.player then game.log(("#00FF00#Total encumbrance: %d"):format(enc)) end
 	return math.floor(enc)
 end
 

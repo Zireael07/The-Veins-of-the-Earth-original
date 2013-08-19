@@ -184,6 +184,9 @@ newBirthDescriptor {
 			['Lawful Evil'] = "disallow",
 		}
 	},
+	can_level = function(actor)
+		return true
+	end,
 	on_level = function(actor, level)
 		if level == 1 then 
 			actor.fortitude_save = (actor.fortitude_save or 0) +2
@@ -238,6 +241,9 @@ newBirthDescriptor {
 			__ALL__ = "allow",
 		}
 	},
+	can_level = function(actor)
+		return true
+	end,
 	on_level = function(actor, level)
 		if level == 1 then
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
@@ -297,6 +303,9 @@ newBirthDescriptor {
 			['Chaotic Evil'] = "disallow",
 		}
 	},
+	can_level = function(actor)
+		return true
+	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.will_save = (actor.will_save or 0) + 2
@@ -345,6 +354,9 @@ newBirthDescriptor {
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
 	},
+	can_level = function(actor)
+		return true
+	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.combat_attack = (actor.combat_attack or 0) + 1
@@ -396,6 +408,9 @@ newBirthDescriptor {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 	},
+	can_level = function(actor)
+		return true
+	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.combat_attack = (actor.combat_attack or 0) + 1
@@ -454,6 +469,9 @@ newBirthDescriptor {
 			['Lawful Evil'] = "disallow",
 		}
 	},
+	can_level = function(actor)
+		return true
+	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.reflex_save = (actor.reflex_save or 0) + 2
 			actor.sneak_attack = (actor.sneak_attack or 0) + 1
@@ -512,6 +530,9 @@ newBirthDescriptor {
 	talents_types = {
 		["arcane/arcane"] = {true, 0.0},
 	},
+	can_level = function(actor)
+		return true
+	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
 			actor.max_life = actor.max_life + 4
@@ -556,6 +577,9 @@ newBirthDescriptor {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 	},
+	can_level = function(actor)
+		return true
+	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
 			actor.max_life = actor.max_life + 4
@@ -573,5 +597,31 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 6
 		actor.skill_point = (actor.skill_point or 0) + 2
 
-	end,  
+	end,
+} 
+
+newBirthDescriptor {
+	type = 'class',
+	name = 'Blood Disciple',
+	desc = [[Prestige Class
+
+	Requiers one level of cleric
+
+	Mmmm blood!]],
+	can_level = function(actor)
+
+		if actor.classes and actor.classes["Cleric"] then return true end
+
+		return false
+	end,
+	on_level = function(actor, level)
+		actor.will_save = (actor.will_save or 0) + 1
+		actor.combat_attack = (actor.combat_attack or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 6
+		actor.skill_point = (actor.skill_point or 0) + 2
+
+	end,
 } 

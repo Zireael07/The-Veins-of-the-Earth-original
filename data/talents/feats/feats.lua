@@ -15,7 +15,7 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	is_feat = true,
-	info = [[This feat makes you proficient in light armors.]],
+	info = [[This feat makes you proficient in medium armors.]],
 }
 
 newTalent{
@@ -24,7 +24,7 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	is_feat = true,
-	info = [[This feat makes you proficient in light armors.]],
+	info = [[This feat makes you proficient in heavy armors.]],
 }
 
 
@@ -79,7 +79,7 @@ newTalent{
 	points = 3,
 	mode = "passive",
 	is_feat = true,
-	info = [[This feat increases your power by 10% and your Will save by +3.]],
+	info = [[This feat increases your Will save by +3.]],
   	on_learn = function(self, t)
 		self.will_save = self.will_save + 3       
 	end
@@ -126,7 +126,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
-	info = [[This feat increases your power by 10% and your Will save by +3.]],
+	info = [[This feat increases a chosen weapon's critical range by 2.]],
       	on_learn = function(self, t)
 		combat.weapon.threat = combat.weapon.threat + 2       
 end
@@ -161,7 +161,7 @@ newTalent{
 	type = {"class/general", 1},
 	is_feat = true,
 	points = 1,
---	require = { T.DODGE },
+--	require = { 		talent = { T.DODGE } },
 	mode = "passive",
 	is_feat = true,
 	info = [[This feat increases your AC by +4.]],
@@ -181,3 +181,95 @@ newTalent{
 	mode = "passive",
 	info = [[You can substract a number from your base attack bonus and add it to damage bonus.]],
 }
+
+-- Skill enhancer feats
+newTalent{
+	name = "Acrobatic",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Jump and Tumble skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_jump = (self.skill_jump or 0) + 2
+        self.skill_tumble = (self.skill_tumble or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Agile",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Balance and Escape Artist skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_balance  = (self.skill_balance or 0) + 2
+        self.skill_escapeartist = (self.skill_escapeartist or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Alertness",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Listen and Spot skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_listen = (self.skill_listen or 0) + 2
+        self.skill_spot = (self.skill_spot or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Animal Affinity",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Handle Animal skill by +2.]],
+	on_learn = function(self, t)
+        self.skill_handleanimal = (self.skill_handleanimal or 0) + 2
+--        self.skill_tumble = self.skill_tumble + 2
+    end
+}
+
+newTalent{
+	name = "Athletic",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Climb skill by +2.]],
+	on_learn = function(self, t)
+        self.skill_climb  = (self.skill_climb or 0) + 2
+--        self.skill_swim = self.skill_swim + 2
+    end
+}
+
+newTalent{
+	name = "Deft Hands",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Pickpocket skill by +2.]],
+	on_learn = function(self, t)
+        self.skill_pickpocket = (self.skill_pickpocket or 0) + 2
+--        self.skill_userope = self.skill_userope + 2
+    end
+}
+
+newTalent{
+	name = "Combat Casting",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Concentration skill by +2.]],
+	on_learn = function(self, t)
+        self.skill_concentration = (self.skill_concentration or 0) + 2
+    end
+}
+

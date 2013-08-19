@@ -48,5 +48,12 @@ return {
 	},
 	levels =
 	{
-	},
+	},	
+
+	post_process = function(level)
+		if level.level == 5 then world:gainAchievement("A dark start", game.player)
+		elseif level.level == 10 then world:gainAchievement("Deeper and deeper", game.player)
+		elseif level.level == 20 then world:gainAchievement("It's scary down there", game.player)
+		end
+	end
 }
