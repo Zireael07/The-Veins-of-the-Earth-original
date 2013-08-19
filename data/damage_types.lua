@@ -72,6 +72,10 @@ newDamageType{
 }
 
 newDamageType{
+	name = "water", type = "WATER", text_color = "#BLUE#"
+}
+
+newDamageType{
 	name = "grease", type = "GREASE",
 	projector = function(src, x, y, type, dam)
 		--dam is the dc to beat

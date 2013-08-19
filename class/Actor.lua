@@ -159,6 +159,10 @@ function _M:act()
 
 	if self:attr("sleep") then self.energy.value = 0 end
 
+	-- Check terrain special effects
+	game.level.map:checkEntity(self.x, self.y, Map.TERRAIN, "on_stand", self)
+
+
 	-- Still enough energy to act ?
 	if self.energy.value < game.energy_to_act then return false end
 

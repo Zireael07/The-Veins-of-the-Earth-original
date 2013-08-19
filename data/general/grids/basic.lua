@@ -88,14 +88,14 @@ newEntity{
 	name = "water", image = "terrain/marble_floor.png",
 	display = '~', color=colors.BLUE, back_color=colors.LIGHT_BLUE,
 	always_remember = true,
---	on_stand = function(self, x, y, who)
---	who:skillCheck(swim, 10)
---		if true then end
---		else
---		local DT = engine.DamageType
---		local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.range(10, 30))
---	 	if dam > 0 then game.logPlayer(who, "You start drowning!") end end
---	end
+	on_stand = function(self, x, y, who)
+		local save = who:skillCheck("swim", 10)
+		if not save then
+			local DT = engine.DamageType
+			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.range(10, 30))
+		 	if dam > 0 then game.logPlayer(who, "You start drowning!") end
+		end
+	end,
 }
 
 newEntity{
@@ -104,14 +104,13 @@ newEntity{
 	name = "deep water", image = "terrain/marble_floor.png",
 	display = '~', color=colors.BLUE, back_color=colors.DARK_BLUE,
 	always_remember = true,
---	on_stand = function(self, x, y, who)
---	who:skillCheck(swim, 10)
---		if true then end
---		else
---		local DT = engine.DamageType
---		local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.range(10, 30))
---	 	if dam > 0 then game.logPlayer(who, "You start drowning!") end end
---	end
+	on_stand = function(self, x, y, who)
+		local save = who:skillCheck(swim, 10)
+		if not save then
+			local DT = engine.DamageType
+			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.range(10, 30))
+		 	if dam > 0 then game.logPlayer(who, "You start drowning!") end end
+	end
 }
 
 
@@ -123,10 +122,11 @@ newEntity{
 	always_remember = true,
 	mindam = 2,
 	maxdam = 6,
---	on_stand = function(self, x, y, who)
---	local DT = engine.DamageType
---	local dam = DT:get(DT.FIRE).projector(self, x, y, DT.FIRE, rng.dice(self.mindam, self.maxdam))
---	if dam > 0 then game.logPlayer(who, "The lava burns you!") end,
+	on_stand = function(self, x, y, who)
+		local DT = engine.DamageType
+		local dam = DT:get(DT.FIRE).projector(self, x, y, DT.FIRE, rng.dice(self.mindam, self.maxdam))
+		if dam > 0 then game.logPlayer(who, "The lava burns you!") end
+	end
 }
 
 newEntity{
