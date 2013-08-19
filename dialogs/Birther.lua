@@ -46,7 +46,7 @@ function _M:onBirth()
     game:unregisterDialog(self)
     self.creating_player = true
     local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment', 'domains', 'domains'}, function()
-        game:changeLevel(1, "cavern")
+        game:changeLevel(1, "dungeon")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
         game.player:resolve(nil, true)

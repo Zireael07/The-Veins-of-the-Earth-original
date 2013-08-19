@@ -23,6 +23,7 @@ load("/data/general/objects/exotic.lua")
 load("/data/general/objects/exoticranged.lua")
 load("/data/general/objects/shields.lua")
 load("/data/general/objects/consumables.lua")
+load("/data/general/objects/magicitems.lua")
 
 
 
@@ -71,16 +72,7 @@ newEntity{
   }, 
 }
 
-newEntity{
-    define_as = "BASE_AMULET",
-    slot = "AMULET",
-    type = "amulet", subtype = "amulet",
-    display = "0", color=colors.RED,
-    encumber = 0,
-    rarity = 5,
-    name = "An amulet",
-    desc = [[An amulet.]],
-}
+
 
 newEntity{
     define_as = "BASE_RING",
@@ -91,5 +83,38 @@ newEntity{
     rarity = 5,
     name = "A ring",
     desc = [[A ring.]],
+}
+
+newEntity{
+    define_as = "BASE_WAND",
+    slot = "INVEN", 
+    type = "wand", subtype = "wand",
+    display = "-", color=colors.RED,
+    encumber = 0,
+    rarity = 50,
+    name = "A wand",
+    desc = [[A wand.]],
+}
+
+newEntity{
+    define_as = "BASE_SCROLL",
+    slot = "INVEN", 
+    type = "scroll", subtype = "scroll",
+    display = "?", color=colors.WHITE,
+    encumber = 0,
+    rarity = 50,
+    name = "A scroll",
+    desc = [[A scroll.]],
+}
+
+newEntity{
+    define_as = "BASE_TATTOO",
+    slot = "INVEN", 
+    type = "scroll", subtype = "tattoo",
+    display = "?", color=colors.RED,
+    encumber = 0,
+    rarity = 50,
+    name = "A tattoo",
+    desc = [[A tattoo.]],
 }
 
