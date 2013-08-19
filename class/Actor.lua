@@ -274,9 +274,6 @@ function _M:die(src)
 	end
 	self.inven = {}
 
-	--Drop corpse
-	--game.level.map:addObject(dropx, dropy, "fresh corpse")
-
 	if self ~= game.player and dropx == game.player.x and dropy == game.player.y then
 		game.log('You feel something roll beneath your feet.')
 	end
@@ -440,7 +437,8 @@ end
 -- @return the experience rewarded
 function _M:worthExp(target)
 	-- TODO Don't get experience from killing friendlies.
-	return (self.exp_worth)
+	if self.challenge < (game.player.level - 4) then return 0
+	else return (self.exp_worth) end
 end
 
 --- Can the actor see the target actor
@@ -778,7 +776,9 @@ function _M:getEncumbrance()
 			end
 		end
 	end
-	game.log(("#00FF00#Total encumbrance: %d"):format(enc))
+	
+	--Limit logging to the player
+	if self == game.player then game.log(("#00FF00#Total encumbrance: %d"):format(enc)) end
 	return math.floor(enc)
 end
 
