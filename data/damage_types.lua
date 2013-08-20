@@ -59,7 +59,7 @@ newDamageType{
 newDamageType{
 	name = "fire", type = "FIRE", text_color = "#LIGHT_RED#",
 	projector = function(src, x, y, type, dam)
-		local target = game.level.map(x, y, Map.ACTOR)
+		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
 			local damage = dam.dam
 			if dam.save and target:reflexSave(dam.save_dc) then
