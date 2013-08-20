@@ -155,7 +155,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Barbarian',
-	desc = [[Raging warriors of the wilds. HD d12, BAB +1, Fort +2 at first class level. 16 skill points at first character level. BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.]],
+	desc = [[Raging warriors of the wilds. +33% movement speed. HD d12, BAB +1, Fort +2 at first class level. 16 skill points at first character level. BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.]],
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -169,6 +169,7 @@ newBirthDescriptor {
 		combat_attack = 1,
 		fortitude_save = 2,
 		skill_point = 16, --4x skill points at 1st level
+		movement_speed_bonus = 0.33
 	},
 	talents = {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
@@ -594,8 +595,10 @@ newBirthDescriptor {
 	on_level = function(actor, level)
 		if level == 1 then actor.reflex_save = (actor.reflex_save or 0) + 2
 			--grant hide in plain sight
-		elseif level == 2 then actor.combat_attack = (actor.combat_attack or 0) + 1
+		elseif level == 2 then 
+			actor.combat_attack = (actor.combat_attack or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 1
+		
 		-- only if he doesn't have better infravision already
 			if actor.infravision and actor.infravision > 3 then
 				actor.infravision = actor.infravision + 1
