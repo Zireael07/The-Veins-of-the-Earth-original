@@ -603,7 +603,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Blood Disciple',
-	desc = [[Prestige Class
+	desc = [[#MOCCASIN#Prestige Class#LAST#
 
 	Requiers one level of cleric
 
