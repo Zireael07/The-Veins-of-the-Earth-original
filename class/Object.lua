@@ -89,14 +89,14 @@ end
 
 --- Gets the full desc of the object
 function _M:getDesc()
-    return self:getName().."; "..self.desc
+    return self:getName()
 end
 
 function _M:tooltip(x, y)
-    local str = self:getDesc(game.player:getInven(self:wornInven()))
-    if config.settings.cheat then str:add(true, "UID: "..self.uid, true, self.image) end
+    local str = self:getDesc()
+    if config.settings.cheat then str = str .."\nUID: "..self.uid end
     local nb = game.level.map:getObjectTotal(x, y)
-    if nb == 2 then str:add(true, "---", true, "You see one more object.")
+    if nb == 2 then str:add(true, "---" , true, "You see one more object.")
     elseif nb > 2 then str:add(true, "---", true, "You see "..(nb-1).." more objects.")
     end
     return str
