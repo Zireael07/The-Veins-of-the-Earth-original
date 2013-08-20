@@ -44,7 +44,7 @@ newEntity{
 newEntity{
 	define_as = "WALL",
 	name = "wall", image = "terrain/granite_wall1.png",
-	display = '#', color_r=255, color_g=255, color_b=255, back_color={r=30, g=30, b=60},
+	display = '#', color=colors.BLACK, back_color={r=30, g=30, b=60},
 	always_remember = true,
 	does_block_move = true,
 	can_pass = {pass_wall=1},
@@ -79,6 +79,11 @@ newEntity{
 	type = "floor", subtype = "vegetation",
 	name = "luminicent moss", image = "terrain/marble_floor.png",
 	display = '¤', color_r=52, color_g=222, color_b=137, back_color=colors.GREY,
+	-- Lite up around them in a 1 radius
+--					local grids = core.fov.circle_grids(i, j, 2, true)
+--					for x, yy in pairs(grids) do for y, _ in pairs(yy) do
+--						self.map.lites(x, y, true)
+--					end end
 	
 }
 

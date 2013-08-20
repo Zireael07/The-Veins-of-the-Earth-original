@@ -25,7 +25,7 @@ return {
 		map = {
 			class = "engine.generator.map.Roomer",
 			nb_rooms = 10,
-			rooms = { {"simple", 5}, "pilar", {"big_moss1", 30}, {"big_moss2", 30}, {"moss_patch1", 60}, {"waterfilled", 2}, {"waterfilled_half", 10}, {"waterfilled_half2", 10} },
+			rooms = { {"simple", 5}, {"pilar", 20}, {"chasm1", 2}, {"chasm2", 2}, {"chasm3", 2}, {"big_moss1", 20}, {"big_moss2", 20}, {"moss_patch1", 30}, {"moss_patch2", 30}, {"moss_pilar1", 40}, {"moss_pilar2", 40}, {"moss_pilar3", 40}, {"lavafilled_pilar", 2}, {"waterfilled_pilar", 7}, {"waterfilled", 2}, {"waterfilled_half", 5}, {"waterfilled_half2", 5} },
 			lite_room_chance = 0,
 			door_chance = 5,
 			tunnel_change = 80,
@@ -37,8 +37,9 @@ return {
 			down = "DOWN",
 			door = "DOOR",
 			['m'] = "MOSS",
-	--		['x'] = "CHASM",
-			['~'] = "WATER",
+			['x'] = "CHASM",
+			['~'] = { "WATER", "WATER_DEEP" },
+			['l'] = "LAVA",
 		},
 		actor = {
 			class = "engine.generator.actor.Random",

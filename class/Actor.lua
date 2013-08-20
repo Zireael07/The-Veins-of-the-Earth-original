@@ -111,7 +111,7 @@ function _M:init(t, no_default)
 	self.max_charges = {}
 	self.allocated_charges = {}
 
-	self.lite = 3 --Temporary test
+	self.lite = 0 --Temporary test
 
 	self.life = t.max_life or self.life
 
