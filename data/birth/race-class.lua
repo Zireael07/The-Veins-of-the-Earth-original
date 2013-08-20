@@ -586,8 +586,8 @@ newBirthDescriptor {
 
 	Skilled rogues who can summon shades and hide in plain sight.]],
 	can_level = function(actor)
-		if actor.classes and actor.classes["Shadowdancer"] and level == 10 then return false end
-		if actor.skill_movesilently == 8 and actor.skill_hide == 10 then return true end
+		if actor.classes and actor.classes["Shadowdancer"] and actor.classes["Shadowdancer"] >= 10 then return false end
+		if actor.skill_movesilently >= 8 and actor.skill_hide >= 10 then return true end
 
 		return false
 	end,
@@ -620,9 +620,9 @@ newBirthDescriptor {
 
 	Evil backstabbers who want to kill just for the fun of it.]],
 	can_level = function(actor)
-		if actor.classes and actor.classes["Assasin"] and level == 10 then return false end
+		if actor.classes and actor.classes["Assasin"] and actor.classes["Assasin"] >= 10 then return false end
 	--	if player.descriptor.alignment ~= "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
-		if actor.skill_movesilently == 8 and actor.skill_hide == 8 then return true end
+		if actor.skill_movesilently >= 8 and actor.skill_hide >= 8 then return true end
 
 		return false
 	

@@ -50,10 +50,32 @@ newDamageType{
 -- Acid destroys potions
 newDamageType{
 	name = "acid", type = "ACID", text_color = "#GREEN#",
+	projector = function(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR)
+		if target then
+			local damage = dam.dam
+			if dam.save and target:reflexSave(dam.save_dc) then
+				damage = math.floor(damage / 2)
+			end
+			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
+			return realdam
+		end
+	end,
 }
 
 newDamageType{
-	name = "force", type = "FORCE", text_color = "#SLATE#",
+	name = "force", type = "FORCE", text_color = "#DARK_KHAKI#",
+	projector = function(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR)
+		if target then
+			local damage = dam.dam
+			if dam.save and target:fortitudeSave(dam.save_dc) then
+				damage = math.floor(damage / 2)
+			end
+			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
+			return realdam
+		end
+	end,
 }
 
 newDamageType{
@@ -72,8 +94,20 @@ newDamageType{
 }
 
 newDamageType{
-	name = "water", type = "WATER", text_color = "#BLUE#"
+	name = "drowning", type = "WATER", text_color = "#DARK_BLUE#",
+	projector = function(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR)
+		if target then
+			local damage = dam.dam
+			if dam.save and target:fortitudeSave(dam.save_dc) then
+				damage = math.floor(damage / 2)
+			end
+			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
+			return realdam
+		end
+	end,
 }
+
 
 newDamageType{
 	name = "grease", type = "GREASE",
