@@ -27,6 +27,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=9, dex=13, con=10, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
+	infravision = 3,
 	skill_hide = 4,
 	skill_listen = 1,
 	skill_spot = 1,
@@ -205,6 +206,39 @@ newEntity{
 		{ name = "chain shirt" },
 		{ name = "light metal shield" },
 		{ name = "rapier" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	define_as = "BASE_NPC_HUMAN",
+	type = "humanoid",
+	display = 'h', color=colors.WHITE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+	desc = [[A lost human.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=11, dex=11, con=12, int=11, wis=9, cha=9, luc=10 },
+	combat = { dam= {1,6} },
+	lite = 3,
+}
+
+newEntity{
+	base = "BASE_NPC_HUMAN",
+	name = "human", color=colors.WHITE,
+	level_range = {1, 5}, exp_worth = 150,
+	rarity = 5,
+	max_life = resolvers.rngavg(5,8),
+	hit_die = 1,
+	challenge = 1,
+	resolvers.equip{
+		full_id=true,
+		{ name = "chainmail" },
+		{ name = "light metal shield" },
+		{ name = "longsword" },
 	},
 	resolvers.inventory {
 	full_id=true,
