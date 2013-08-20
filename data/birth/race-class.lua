@@ -597,7 +597,11 @@ newBirthDescriptor {
 		elseif level == 2 then actor.combat_attack = (actor.combat_attack or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 1
 		-- only if he doesn't have better infravision already
-		--	actor.infravision = 3
+			if actor.infravision and actor.infravision > 3 then
+				actor.infravision = actor.infravision + 1
+			else
+				actor.infravision = 3
+			end
 		end
 				
 		actor.reflex_save = (actor.reflex_save or 0) + 1

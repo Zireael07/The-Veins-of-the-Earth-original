@@ -738,8 +738,8 @@ function _M:levelClass(name)
 	local birther = require "engine.Birther"
 	local d = birther:getBirthDescriptor("class", name)
 
-	local level = self.classes[name] or 0
-	self.classes[name] = level + 1
+	local level = (self.classes[name] or 0) + 1
+	self.classes[name] = level
 	if self.class_points then
 		self.class_points = self.class_points - 1
 	end
