@@ -193,8 +193,6 @@ newBirthDescriptor {
 			actor.combat_attack = (actor.combat_attack or 0) + 1
 			actor.max_life = actor.max_life + 12
 			actor.skill_point = (actor.skill_point or 0) + 4
-		elseif level % 3 == 0 then
-			actor.feat_point = (actor.feat_point or 0) + 1
 		end
 
 		actor.combat_attack = (actor.combat_attack or 0) + 1
@@ -252,13 +250,9 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 8
 			actor.skill_point = (actor.skill_point or 0) + 2
 
-			self:levelPassives()
+		--	self:levelPassives()
+		end	
 
-
-		elseif level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
-			--if level % 4 == 0 then stat_point = (stat_point or 0) + 1
-		end
-		
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
@@ -313,11 +307,9 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 8
 			actor.skill_point = (actor.skill_point or 0) + 2
 
-			self:levelPassives()
-
-		elseif level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
-			--if level % 4 == 0 then stat_point = (stat_point or 0) + 1
+	--		self:levelPassives()
 		end
+
 
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -363,9 +355,6 @@ newBirthDescriptor {
 
 			actor.max_life = actor.max_life + 10
 			actor.skill_point = (actor.skill_point or 0) + 2
-
-		elseif level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
-			--if level % 4 == 0 then actor.stat_point = (actor.stat_point or 0) + 1 
 		end
 
 		actor.combat_attack = (actor.combat_attack or 0) + 1
@@ -418,9 +407,6 @@ newBirthDescriptor {
 
 			actor.max_life = actor.max_life + 8
 			actor.skill_point = (actor.skill_point or 0) + 6
-
-		elseif level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
-			--if level % 4 == 0 then actor.stat_point = (actor.stat_point or 0) + 1
 		end
 
 		actor.combat_attack = (actor.combat_attack or 0) + 1
@@ -475,12 +461,8 @@ newBirthDescriptor {
 	on_level = function(actor, level)
 		if level == 1 then actor.reflex_save = (actor.reflex_save or 0) + 2
 			actor.sneak_attack = (actor.sneak_attack or 0) + 1
-
 			actor.max_life = actor.max_life + 6
 			actor.skill_point = (actor.skill_point or 0) + 8
-
-		elseif level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
-			--if level % 4 == 0 then stat_point = (stat_point or 0) + 1
 		end
 
 		actor.reflex_save = (actor.reflex_save or 0) + 1
@@ -537,9 +519,6 @@ newBirthDescriptor {
 		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
 			actor.max_life = actor.max_life + 4
 			actor.skill_point = (actor.skill_point or 0) + 2
-
-		elseif level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
-			--if level % 4 == 0 then actor.stat_point = (actor.stat_point or 0) + 1
 		end
 
 		actor.will_save = (actor.will_save or 0) + 1
@@ -584,9 +563,6 @@ newBirthDescriptor {
 		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
 			actor.max_life = actor.max_life + 4
 			actor.skill_point = (actor.skill_point or 0) + 2
-
-		elseif level % 3 == 0 then actor.feat_point = (actor.feat_point or 0) + 1
-			--if level % 4 == 0 then actor.stat_point = (actor.stat_point or 0) + 1
 		end
 
 		actor.will_save = (actor.will_save or 0) + 1
@@ -600,28 +576,73 @@ newBirthDescriptor {
 	end,
 } 
 
+--Prestige classes!
 newBirthDescriptor {
 	type = 'class',
-	name = 'Blood Disciple',
-	desc = [[Prestige Class
+	name = 'Shadowdancer',
+	desc = [[#ORCHID#Prestige class#LAST#
 
-	Requiers one level of cleric
+	Requires Move Silently 8 ranks and Hide 10 ranks.
 
-	Mmmm blood!]],
+	Skilled rogues who can summon shades and hide in plain sight.]],
 	can_level = function(actor)
-
-		if actor.classes and actor.classes["Cleric"] then return true end
+		if actor.classes and actor.classes["Shadowdancer"] and level == 10 then return false end
+		if actor.skill_movesilently == 8 and actor.skill_hide == 10 then return true end
 
 		return false
 	end,
 	on_level = function(actor, level)
-		actor.will_save = (actor.will_save or 0) + 1
+		if level == 1 then actor.reflex_save = (actor.reflex_save or 0) + 2
+			--grant hide in plain sight
+		elseif level == 2 then actor.combat_attack = (actor.combat_attack or 0) + 1
+			actor.reflex_save = (actor.reflex_save or 0) + 1
+		-- only if he doesn't have better infravision already
+		--	actor.infravision = 3
+		end
+				
+		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_attack = (actor.combat_attack or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 6
-		actor.skill_point = (actor.skill_point or 0) + 2
+		actor.max_life = actor.max_life + 8
+		actor.skill_point = (actor.skill_point or 0) + 6
+
+	end,
+} 
+
+newBirthDescriptor {
+	type = 'class',
+	name = 'Assasin',
+	desc = [[#ORCHID#Prestige class#LAST#
+
+	Requires Move Silently 8 ranks and Hide 8 ranks.
+
+	Evil backstabbers who want to kill just for the fun of it.]],
+	can_level = function(actor)
+		if actor.classes and actor.classes["Assasin"] and level == 10 then return false end
+	--	if player.descriptor.alignment ~= "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
+		if actor.skill_movesilently == 8 and actor.skill_hide == 8 then return true end
+
+		return false
+	
+	end,
+	on_level = function(actor, level)
+		if level == 1 then actor.reflex_save = (actor.reflex_save or 0) + 2
+			actor.sneak_attack = (actor.sneak_attack or 0) + 1
+		elseif level == 3 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
+		elseif level == 5 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
+		elseif level == 7 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
+		elseif level == 9 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
+		end
+
+		actor.reflex_save = (actor.reflex_save or 0) + 1
+		actor.combat_attack = (actor.combat_attack or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8
+		actor.skill_point = (actor.skill_point or 0) + 6
 
 	end,
 } 

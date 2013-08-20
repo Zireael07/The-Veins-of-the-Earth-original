@@ -58,6 +58,12 @@ newBirthDescriptor{
     domains =
     {
       __ALL__ = "disallow",
+    },
+    --Disallows prestige classes at birth
+    class = 
+    {
+     ['Shadowdancer'] = "disallow",
+     ['Assasin'] = "disallow",
     }
 	},
 }
