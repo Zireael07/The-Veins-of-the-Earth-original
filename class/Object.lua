@@ -96,8 +96,8 @@ function _M:tooltip(x, y)
     local str = self:getDesc()
     if config.settings.cheat then str = str .."\nUID: "..self.uid end
     local nb = game.level.map:getObjectTotal(x, y)
-    if nb == 2 then str:add(true, "---" , true, "You see one more object.")
-    elseif nb > 2 then str:add(true, "---", true, "You see "..(nb-1).." more objects.")
+    if nb == 2 then str = str.."\n---\nYou see one more object."
+    elseif nb > 2 then str = str.."\n---\nYou see "..(nb-1).." more objects."
     end
     return str
 end
