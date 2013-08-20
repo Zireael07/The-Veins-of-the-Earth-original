@@ -331,6 +331,7 @@ end
         self:pickupFloor(1, true)
         self:sortInven()
         self:useEnergy()
+
     self.changed = true
     end
 end

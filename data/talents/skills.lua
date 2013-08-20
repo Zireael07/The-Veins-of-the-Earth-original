@@ -16,12 +16,11 @@ newTalent{
 	for inven_id, inven in pairs(self.inven) do
 		for item, o in ipairs(inven) do
 			if o.identified == false then
-				self:skillCheck("intuition", 10)
+				local check = self:skillCheck("intuition", 10)
 --				local skill = self:getSkill("intuition")
 --				game.log("%d + %d = %d vs DC %d"):format(d, skill, d+skill, dc))
-				if true then
+				if check then
 					o.identified = true
-				else
 				end	
 			end
 		end
