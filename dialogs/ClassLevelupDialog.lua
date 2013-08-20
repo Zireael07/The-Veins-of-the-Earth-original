@@ -39,6 +39,7 @@ end
 
 function _M:use(item)
     if self.player.class_points <= 0 then game.log("you need a class point") return end
+    if not item.can_level then game.log("You dont fill all the criteria for this class") return end
 
     self.player:levelClass(item.real_name)
 
@@ -69,8 +70,14 @@ function _M:generateList()
 
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
         local level = self.player.classes[d.name] or 0
-        local name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #LAST#"..d.name
-        table.insert(list, {name = name, desc = d.desc, level = level, real_name = d.name})
+        local can_level = d.can_level(self.player)
+        local name = ""
+        if can_level then
+            name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #LAST#"..d.name
+        else
+            name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #DARK_GREY#"..d.name
+        end
+        table.insert(list, {name = name, desc = d.desc, level = level, real_name = d.name, can_level = can_level})
     end
 
     --list[#list+1] = {name="Hello", desc="There"}
@@ -84,7 +91,10 @@ function _M:generateList()
     --end
     self.list = list
 
-    table.sort(self.list, function (a,b) 
+    table.sort(self.list, function (a,b)
+        if not a.can_level == b.can_level then
+            return a.can_level
+        end  
         if a.level == b.level then 
             return a.name < b.name
         else 
