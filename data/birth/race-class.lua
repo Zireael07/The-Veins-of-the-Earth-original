@@ -580,10 +580,9 @@ newBirthDescriptor {
 --Prestige classes!
 newBirthDescriptor {
 	type = 'class',
+	prestige = true,
 	name = 'Shadowdancer',
-	desc = [[#ORCHID#Prestige class#LAST#
-
-	Requires Move Silently 8 ranks and Hide 10 ranks.
+	desc = [[Requires Move Silently 8 ranks and Hide 10 ranks.
 
 	Skilled rogues who can summon shades and hide in plain sight.]],
 	can_level = function(actor)
@@ -620,10 +619,9 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'class',
+	prestige = true,
 	name = 'Assasin',
-	desc = [[#ORCHID#Prestige class#LAST#
-
-	Requires Move Silently 8 ranks and Hide 8 ranks.
+	desc = [[Requires Move Silently 8 ranks and Hide 8 ranks.
 
 	Evil backstabbers who want to kill just for the fun of it.]],
 	can_level = function(actor)

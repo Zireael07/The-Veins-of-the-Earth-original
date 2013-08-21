@@ -13,6 +13,33 @@ local List = require "engine.ui.List"
 
 module(..., package.seeall, class.inherit(Dialog))
 
+local skills = {
+	balance = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
+	bluff = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#',
+	climb = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Strength#LAST#',
+	concentration = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Constitution#LAST#',
+	diplomacy = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#',
+	disabledevice = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#',
+	escapeartist = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
+	handleanimal = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
+	heal = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
+	hide = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
+	intimidate = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#',
+	intuition = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#\n\nUsed for identifying items',
+	jump = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Strength#LAST#',
+	knowledge = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
+	listen = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
+	movesilently = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
+	openlock = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
+	pickpocket = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
+	search = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#',
+	sensemotive = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
+	spellcraft = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#',
+	survival = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
+	tumble = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
+	usemagic = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#',
+}
+
 function _M:init(actor)
 	self.player = actor
 	Dialog.init(self, "Skills", 500, 600)
@@ -64,39 +91,12 @@ end
 
 function _M:generateList()
 	local player = game.player
-	local skills = {
-		"balance",
-		"bluff",
-		"climb",
-		"concentration",
-		"diplomacy",
-		"disabledevice",
-		"escapeartist",
-		"handleanimal",
-		"heal",
-		"hide",
-		"intimidate",
-		"intuition",
-		"jump",
-		"knowledge",
-		"listen",
-		"movesilently",
-		"openlock",
-		"search",
-		"sensemotive",
-		"pickpocket",
-		"spellcraft",
-		"survival",
-		"tumble",
-		"usemagic",
-	}
     local list = {}
-    for _, skill in pairs(skills) do
+    for skill, description in pairs(skills) do
     	local value = player:getSkill(skill)
  		local color = {255, 255, 255}
  		local d = "#GOLD#"..skill:capitalize().."#LAST#\n\n"
- 		s = "Description goes here"
- 		d = d..s.."\n#WHITE#"
+ 		d = d..description.."\n#WHITE#"
         list[#list+1] = {name="#SLATE#(#LAST##AQUAMARINE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize(), skill = skill,	 color = color, desc=d}
     end
     self.list = list
