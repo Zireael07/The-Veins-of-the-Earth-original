@@ -192,7 +192,8 @@ function _M:move(x, y, force)
 		moved = engine.Actor.move(self, x, y, force)
 
 		if not force and moved and (self.x ~= ox or self.y ~= oy) and not self.did_energy then
-			self:useEnergy()
+			local speed = 1.0 - (1.0 * (self.movement_speed_bonus or 0))
+			self:useEnergy(game.energy_to_act * speed)
 		end
 	end
 	self.did_energy = nil
@@ -738,8 +739,8 @@ function _M:levelClass(name)
 	local birther = require "engine.Birther"
 	local d = birther:getBirthDescriptor("class", name)
 
-	local level = self.classes[name] or 0
-	self.classes[name] = level + 1
+	local level = (self.classes[name] or 0) + 1
+	self.classes[name] = level
 	if self.class_points then
 		self.class_points = self.class_points - 1
 	end

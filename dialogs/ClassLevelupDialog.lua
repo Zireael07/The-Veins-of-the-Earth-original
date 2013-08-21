@@ -72,12 +72,19 @@ function _M:generateList()
         local level = self.player.classes[d.name] or 0
         local can_level = d.can_level(self.player)
         local name = ""
+
+        --generate description
+        local desc = "#KHAKI#"..d.name.."#LAST#"
+        if d.prestige then
+            desc = desc.."\n#ORCHID#Prestige class#LAST#"
+        end
+        desc = desc.."\n\n"..d.desc
         if can_level then
             name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #LAST#"..d.name
         else
             name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #DARK_GREY#"..d.name
         end
-        table.insert(list, {name = name, desc = d.desc, level = level, real_name = d.name, can_level = can_level})
+        table.insert(list, {name = name, desc = desc, level = level, real_name = d.name, can_level = can_level})
     end
 
     --list[#list+1] = {name="Hello", desc="There"}
