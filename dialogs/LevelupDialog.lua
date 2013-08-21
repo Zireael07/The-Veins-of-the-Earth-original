@@ -55,14 +55,14 @@ function _M:drawDialog()
     h = 0
     w = 0
     
-   --Display 7 stats
-    s:drawStringBlended(self.font, "STR : "..(player:getStr()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "DEX : "..(player:getDex()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "CON : "..(player:getCon()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "INT : "..(player:getInt()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "WIS : "..(player:getWis()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "CHA : "..(player:getCha()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "LUC : "..(player:getLuc()), w, h, 255, 255, 255, true) h = h + self.font_h
+ --Display 7 stats
+    s:drawColorStringBlended(self.font, "STR : #YELLOW#"..(player:getStr().." #SANDY_BROWN#"..(math.floor((player:getStr()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "DEX : #YELLOW#"..(player:getDex().." #SANDY_BROWN#"..(math.floor((player:getDex()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "CON : #YELLOW#"..(player:getCon().." #SANDY_BROWN#"..(math.floor((player:getCon()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "INT : #YELLOW#"..(player:getInt().." #SANDY_BROWN#"..(math.floor((player:getInt()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "WIS : #YELLOW#"..(player:getWis().." #SANDY_BROWN#"..(math.floor((player:getWis()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "CHA : #YELLOW#"..(player:getCha().." #SANDY_BROWN#"..(math.floor((player:getCha()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "LUC : #YELLOW#"..(player:getLuc().." #SANDY_BROWN#"..(math.floor((player:getLuc()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = 0
     w = self.w * 0.25 

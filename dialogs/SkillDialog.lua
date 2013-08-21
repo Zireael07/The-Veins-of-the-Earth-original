@@ -14,30 +14,31 @@ local List = require "engine.ui.List"
 module(..., package.seeall, class.inherit(Dialog))
 
 local skills = {
-	balance = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
-	bluff = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#',
-	climb = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Strength#LAST#',
-	concentration = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Constitution#LAST#',
-	diplomacy = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#',
-	disabledevice = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#',
-	escapeartist = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
-	handleanimal = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
-	heal = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
-	hide = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
-	intimidate = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#',
+	balance = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed for walking on dangerous terrain.',
+	bluff = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#\n\nUsed when lying to NPCs.',
+	climb = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Strength#LAST#\n\nUsed for climbing over chasms.',
+	concentration = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Constitution#LAST#\n\nUsed when spellcasting under duress or while threatened.',
+	diplomacy = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#\n\nUsed when negotiating or persuading NPCs.',
+	disabledevice = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#\n\n#STEEL_BLUE#Rogues only!#LAST# Used to disable traps.',
+	escapeartist = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed to avoid being entangled.',
+	handleanimal = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#\n\nUsed when dealing with animals.',
+	heal = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#\n\nUsed to heal yourself using a healer kit.',
+	hide = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed to hide from enemies.',
+	intimidate = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#\n\nUsed to frighten enemies or to intimidate others.',
 	intuition = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#\n\nUsed for identifying items',
-	jump = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Strength#LAST#',
-	knowledge = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
-	listen = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
-	movesilently = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
-	openlock = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
-	pickpocket = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
-	search = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#',
-	sensemotive = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
-	spellcraft = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#',
-	survival = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#',
-	tumble = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#',
-	usemagic = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#',
+	jump = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Strength#LAST#\n\nUsed for clearing obstacles.',
+	knowledge = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#\n\nUsed for various bits of lore.',
+	listen = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#\n\nUsed to detect enemies from a distance.',
+	movesilently = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed to hide from enemies.',
+	openlock = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed to open locks.',
+	pickpocket = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\n#STEEL_BLUE#Rogues only!#LAST# Used to steal from NPCs.',
+	search = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#\n\nUsed to find traps. #STEEL_BLUE#Only rogues can find traps with a DC over 20.#LAST#',
+	sensemotive = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#\n\nUsed to detect if someone is lying.',
+	swim = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE#Strength#LAST#\n\nUsed to avoid drowning in water.',
+	spellcraft = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#\n\nUsed to identify magical effects or spells being cast by others.',
+	survival = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#\n\nUsed to track, forage and to survive in the wild.',
+	tumble = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed to avoid blows.',
+	usemagic = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#\n\n#STEEL_BLUE#Rogues only!#LAST# Used to manipulate magic items.',
 }
 
 function _M:init(actor)
@@ -45,7 +46,8 @@ function _M:init(actor)
 	Dialog.init(self, "Skills", 500, 600)
 	self:generateList()
 	
-	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: "..self.player.skill_point}	
+	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: "..self.player.skill_point}
+	--	self.c_ranks = Textzone.new{width=self.iw, height = 50, text = "Max skill ranks: "..self.player.max_skill_ranks}	
 	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
 	self.c_desc = TextzoneList.new{width=self.iw/2-20, height = 400, text="Hello from description"}
 
@@ -62,7 +64,7 @@ function _M:init(actor)
 end
 
 function _M:use(item)
-	if (self.player.skill_point or 0) > 0 then
+	if (self.player.skill_point or 0) > 0 and (self.player:attr("skill_"..item.skill) or 0) <= self.player.max_skill_ranks then
 
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)

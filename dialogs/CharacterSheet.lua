@@ -106,9 +106,10 @@ function _M:drawDialog()
     s:drawColorStringBlended(self.font, "Listen : #SANDY_BROWN#"..(player:getSkill("listen") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Move Silently : #SANDY_BROWN#"..(player:getSkill("movesilently") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Open Lock : #SANDY_BROWN#"..(player:getSkill("openlock") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Pick Pocket : #SANDY_BROWN#"..(player:getSkill("pickpocket") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Search : #SANDY_BROWN#"..(player:getSkill("search") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Sense Motive : #SANDY_BROWN#"..(player:getSkill("sensemotive") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Pick Pocket : #SANDY_BROWN#"..(player:getSkill("pickpocket") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Swim : #SANDY_BROWN#"..(player:getSkill("swim") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Spellcraft : #SANDY_BROWN#"..(player:getSkill("spellcraft") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Survival : #SANDY_BROWN#"..(player:getSkill("survival") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Tumble : #SANDY_BROWN#"..(player:getSkill("tumble") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h

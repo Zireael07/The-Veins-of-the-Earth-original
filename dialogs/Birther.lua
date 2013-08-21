@@ -88,13 +88,28 @@ function _M:drawDialog()
     w = 0
     
    --Display 7 stats
-    s:drawStringBlended(self.font, "STR : "..(player:getStr()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "DEX : "..(player:getDex()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "CON : "..(player:getCon()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "INT : "..(player:getInt()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "WIS : "..(player:getWis()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "CHA : "..(player:getCha()), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "LUC : "..(player:getLuc()), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "STR : #YELLOW#"..(player:getStr().." #SANDY_BROWN#"..(math.floor((player:getStr()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "DEX : #YELLOW#"..(player:getDex().." #SANDY_BROWN#"..(math.floor((player:getDex()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "CON : #YELLOW#"..(player:getCon().." #SANDY_BROWN#"..(math.floor((player:getCon()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "INT : #YELLOW#"..(player:getInt().." #SANDY_BROWN#"..(math.floor((player:getInt()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "WIS : #YELLOW#"..(player:getWis().." #SANDY_BROWN#"..(math.floor((player:getWis()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "CHA : #YELLOW#"..(player:getCha().." #SANDY_BROWN#"..(math.floor((player:getCha()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "LUC : #YELLOW#"..(player:getLuc().." #SANDY_BROWN#"..(math.floor((player:getLuc()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+
+    h = 0
+    w = self.w * 0.25
+    -- start on second column
+    s:drawColorStringBlended(self.font, "#GOLD#Strength (STR)#LAST# is important for melee fighting.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "You'll want to increase #GOLD#Dexterity (Dex)#LAST# if you want to play a ranger or a rogue.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "It's less important for fighters, who wear heavy armor.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#GOLD#Constitution (CON)#LAST# is vital for all characters, since it affects your hitpoints.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Most interactions with NPCs depend on #GOLD#Charisma (CHA)#LAST#-related skills.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+
 
 --Generates values used in-game
 
