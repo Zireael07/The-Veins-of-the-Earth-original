@@ -12,50 +12,34 @@ Contributors:
 - Zireael
 
 Features:
-- inventory
 - 8 classes: fighter, rogue, mage, ranger, cleric, barbarian, druid, warlock
+- 2 prestige classes: shadowdancer, assasin
 - 10 races: human, half-elf, elf, dwarf, half-orc; drow, duergar, deep gnomes
-- character sheet
-- randomized unarmed and weapon damage
-- attack roll
-- AC implemented
-- working hp, exp, dungeon level display
-- some 0 and 1st level spells [Seb]
-- attributes roller before birther (character creation)
-- an iconed hotbar for spells [Seb]
-- spellbook [Seb]
-- some monsters up to CR 1
-- calendar
-- light sources
-- magic armors and shields
-- critical hits
-- working feat select [Seb]
-- most melee feats from SRD
-- most weapons from SRD
-- skill checks and opposed checks
-- skill points at lvl 1
-- working archery
-- working experience points
-- encumbrance
-- in-game help screen
-- working cure x wounds potions [Seb]
-- stairs have a chance of not changing the dungeon level [Seb]
-- skill checks now include armor penalty
-- CR displayed in tooltips
-- colored tooltips
-- skill select screen [Seb]
-- colored log messages
-- new map generator [Seb]
--  now guarantees higher stats in roller
-- racial skill bonuses
+- multiclassing & prestige classes
+- colored character sheet
+- randomized unarmed and weapon damage; archery and weapon finesse
+- attack roll & AC & critical hits
+- saving throws [Seb]; now take the best of two stats (Dex-Int; Con-Str; Wis-Cha)
+- hp, exp, dungeon level on-screen display
+- inventory & encumbrance
+- spellbook, an iconed hotbar for spells, some 0 and 1st level spells [Seb]
+- armor spell failure chance; key stat must be 9 to cast spells
+- attributes roller before character creation; now guarantees higher stats
+- some monsters up to CR 1; CR displayed in tooltips; monsters drop equipment and corpses
+- feat and skill select [Seb]
+- skill checks and opposed checks, including armor check penalty and racial bonuses; more skill points at first character level
+- skill tests printed to log; max skill ranks implemented
+- most weapons from SRD; magic armors and shields; light sources; amulet of natural armor; cure x wounds potions [Seb]
 - ranged weapons as starting equipment; deep-dwelling races no longer get a torch
-- amulet of natural armor
-- colored help screen
-- item tooltips
+- most melee & skill enhancing feats from SRD
 - working Intuition skill and item identification
-- multiclassing
-- skill tests printed to log
-- monsters drop equipment and corpses
+- colored in-game help screen; colored tooltips; colored log messages
+- stairs have a chance of not changing the dungeon level [Seb]
+- calendar
+- item tooltips
+- terrain effects
+- speed bonuses
+
 
 ***
 Thanks to:
