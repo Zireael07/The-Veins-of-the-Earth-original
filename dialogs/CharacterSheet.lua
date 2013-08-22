@@ -54,14 +54,14 @@ function _M:drawDialog()
 
 
     h = h + self.font_h -- Adds an empty row
-    s:drawColorStringBlended(self.font, "#SLATE#Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    --s:drawColorStringBlended(self.font, "#SLATE#Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life) or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Max Hit Points : #LIGHT_RED#"..(player.max_life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    s:drawColorStringBlended(self.font, "Fortitude bonus: #LIGHT_BLUE#"..(player.fortitude_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Reflex bonus : #LIGHT_BLUE#"..(player.reflex_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Will bonus : #LIGHT_BLUE#"..(player.will_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Fortitude bonus: #SANDY_BROWN#"..(player.fortitude_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Reflex bonus : #SANDY_BROWN#"..(player.reflex_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Will bonus : #SANDY_BROWN#"..(player.will_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
@@ -122,6 +122,24 @@ function _M:drawDialog()
     -- start on last column
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Feats", w, h, 255, 255, 255, true) h = h + self.font_h
     --uh, a list of feats?
+    --limit it to true feats - for some reason, and is_feat == true doesn't work
+    local list = {}
+        for j, t in pairs(player.talents_def) do
+            if player:knowTalent(t.id) then
+                list[#list+1] = {
+                    name = ("%s"):format(t.name),
+                    desc = player:getTalentFullDescription(t):toString(),
+                }
+            end
+        end
+
+        table.sort(list, function(a,b) return a.name < b.name end)
+
+        for i, t in ipairs(list) do
+            s:drawColorStringBlended(self.font, ("%s"):format(t.name), w, h, 255, 255, 255, true) h = h + self.font_h
+
+            if h + self.font_h >= self.c_desc.h then h = 0 w = w + self.c_desc.w / 6 end
+        end
 
     self.c_desc:generate()
     self.changed = false
