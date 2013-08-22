@@ -21,7 +21,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
 		combat_def = 1,
 		max_dex_bonus = 8,
---		spell_fail = 5
+		spell_fail = 5
 	},
 }
 
@@ -34,8 +34,8 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     wielder = {
         combat_def = 2,
-        max_dex_bonus = 8
---        spell_fail = 5
+        max_dex_bonus = 8,
+        spell_fail = 5
     },
 }
 
@@ -48,8 +48,8 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     wielder = {
         combat_def = 3,
-        max_dex_bonus = 8
---        spell_fail = 5
+        max_dex_bonus = 8,
+        spell_fail = 5
     },
 }
 
@@ -62,8 +62,8 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     wielder = {
         combat_def = 4,
-        max_dex_bonus = 8
---        spell_fail = 5
+        max_dex_bonus = 8,
+        spell_fail = 5
     },
 }
 
@@ -76,8 +76,8 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     wielder = {
         combat_def = 5,
-        max_dex_bonus = 8
---        spell_fail = 5
+        max_dex_bonus = 8,
+       spell_fail = 5
     },
 }
 
@@ -90,8 +90,8 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     wielder = {
         combat_def = 6,
-        max_dex_bonus = 8
---        spell_fail = 5
+        max_dex_bonus = 8,
+        spell_fail = 5
     },
 }
 
@@ -102,7 +102,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
 		combat_def = 2,
 		max_dex_bonus = 6,
---		spell_fail = 10
+		spell_fail = 10
 	},
 }
 
@@ -115,7 +115,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 3,
         max_dex_bonus = 6,
---		spell_fail = 10
+		spell_fail = 10
     },
 }
 
@@ -128,7 +128,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 4,
         max_dex_bonus = 6,
---      spell_fail = 10
+        spell_fail = 10
     },
 }
 
@@ -141,7 +141,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 5,
         max_dex_bonus = 6,
---      spell_fail = 10
+        spell_fail = 10
     },
 }
 
@@ -154,7 +154,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 6,
         max_dex_bonus = 6,
---      spell_fail = 10
+        spell_fail = 10
     },
 }
 
@@ -167,7 +167,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 6,
---      spell_fail = 10
+        spell_fail = 10
     },
 }
 
@@ -178,7 +178,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
 		combat_def = 3,
 		max_dex_bonus = 5,
---		spell_fail = 15,
+		spell_fail = 15,
 		armor_penalty = 1
 	},
 }
@@ -192,7 +192,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 4,
         max_dex_bonus = 5,
---		spell_fail = 15,
+		spell_fail = 15,
 		armor_penalty = 1
     },
 }
@@ -206,7 +206,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 5,
         max_dex_bonus = 5,
---      spell_fail = 15,
+        spell_fail = 15,
         armor_penalty = 1
     },
 }
@@ -220,7 +220,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 6,
         max_dex_bonus = 5,
---      spell_fail = 15,
+        spell_fail = 15,
         armor_penalty = 1
     },
 }
@@ -234,7 +234,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 5,
---      spell_fail = 15,
+        spell_fail = 15,
         armor_penalty = 1
     },
 }
@@ -248,7 +248,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 8,
         max_dex_bonus = 5,
---      spell_fail = 15,
+        spell_fail = 15,
         armor_penalty = 1
     },
 }
@@ -260,7 +260,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
 		combat_def = 4,
 		max_dex_bonus = 4,
---		spell_fail = 20,
+		spell_fail = 20,
 		armor_penalty = 2
 	},
 }
@@ -274,7 +274,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 5,
         max_dex_bonus = 4,
---		spell_fail = 20,
+		spell_fail = 20,
 		armor_penalty = 2
     },
 }
@@ -288,7 +288,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 6,
         max_dex_bonus = 4,
---      spell_fail = 20,
+        spell_fail = 20,
         armor_penalty = 2
     },
 }
@@ -302,7 +302,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 4,
---      spell_fail = 20,
+        spell_fail = 20,
         armor_penalty = 2
     },
 }
@@ -316,7 +316,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 8,
         max_dex_bonus = 4,
---      spell_fail = 20,
+        spell_fail = 20,
         armor_penalty = 2
     },
 }
@@ -330,7 +330,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     wielder = {
         combat_def = 9,
         max_dex_bonus = 4,
---      spell_fail = 20,
+      spell_fail = 20,
         armor_penalty = 2
     },
 }
@@ -354,7 +354,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
 		combat_def = 5,
 		max_dex_bonus = 2,
---		spell_fail = 30
+		spell_fail = 30,
 		armor_penalty = 5
 	},
 }
@@ -368,7 +368,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 6,
         max_dex_bonus = 2,
---		spell_fail = 30,
+		spell_fail = 30,
 		armor_penalty = 5
     },
 }
@@ -382,7 +382,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 2,
---      spell_fail = 30,
+        spell_fail = 30,
         armor_penalty = 5
     },
 }
@@ -396,7 +396,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 8,
         max_dex_bonus = 2,
---      spell_fail = 30,
+        spell_fail = 30,
         armor_penalty = 5
     },
 }
@@ -410,7 +410,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 9,
         max_dex_bonus = 2,
---      spell_fail = 30,
+        spell_fail = 30,
         armor_penalty = 5
     },
 }
@@ -424,7 +424,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 10,
         max_dex_bonus = 2,
---      spell_fail = 30,
+        spell_fail = 30,
         armor_penalty = 5
     },
 }
@@ -436,7 +436,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
 		combat_def = 4,
 		max_dex_bonus = 3,
---		spell_fail = 25
+		spell_fail = 25,
 		armor_penalty = 4
 	},
 }
@@ -450,7 +450,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 5,
         max_dex_bonus = 3,
---		spell_fail = 25,
+		spell_fail = 25,
 		armor_penalty = 4
     },
 }
@@ -464,7 +464,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 6,
         max_dex_bonus = 3,
---      spell_fail = 25,
+        spell_fail = 25,
         armor_penalty = 4
     },
 }
@@ -478,7 +478,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 3,
---      spell_fail = 25,
+        spell_fail = 25,
         armor_penalty = 4
     },
 }
@@ -492,7 +492,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 8,
         max_dex_bonus = 3,
---      spell_fail = 25,
+        spell_fail = 25,
         armor_penalty = 4
     },
 }
@@ -506,7 +506,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 9,
         max_dex_bonus = 3,
---      spell_fail = 25,
+        spell_fail = 25,
         armor_penalty = 4
     },
 }
@@ -518,7 +518,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
 		combat_def = 5,
 		max_dex_bonus = 3,
---		spell_fail = 25
+		spell_fail = 25,
 		armor_penalty = 4 
 	},
 }
@@ -532,7 +532,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 6,
         max_dex_bonus = 3,
---		spell_fail = 25,
+		spell_fail = 25,
 		armor_penalty = 4
     },
 }
@@ -546,7 +546,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 3,
---      spell_fail = 25,
+        spell_fail = 25,
         armor_penalty = 4
     },
 }
@@ -560,7 +560,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 8,
         max_dex_bonus = 3,
---      spell_fail = 25,
+        spell_fail = 25,
         armor_penalty = 4
     },
 }
@@ -574,7 +574,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 9,
         max_dex_bonus = 3,
---      spell_fail = 25,
+        spell_fail = 25,
         armor_penalty = 4
     },
 }
@@ -588,7 +588,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     wielder = {
         combat_def = 10,
         max_dex_bonus = 3,
---      spell_fail = 25,
+        spell_fail = 25,
         armor_penalty = 4
     },
 }
@@ -612,7 +612,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 0,
---		spell_fail = 40
+		spell_fail = 40,
 		armor_penalty = 7
     },
 }
@@ -626,7 +626,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 0,
---		spell_fail = 40,
+		spell_fail = 40,
 		armor_penalty = 7
     },
 }
@@ -640,7 +640,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 8,
         max_dex_bonus = 0,
---      spell_fail = 40,
+        spell_fail = 40,
         armor_penalty = 7
     },
 }
@@ -654,7 +654,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 9,
         max_dex_bonus = 0,
---      spell_fail = 40,
+        spell_fail = 40,
         armor_penalty = 7
     },
 }
@@ -668,7 +668,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 10,
         max_dex_bonus = 0,
---      spell_fail = 40,
+        spell_fail = 40,
         armor_penalty = 7
     },
 }
@@ -682,7 +682,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 11,
         max_dex_bonus = 0,
---      spell_fail = 40,
+        spell_fail = 40,
         armor_penalty = 7
     },
 }
@@ -694,7 +694,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 8,
         max_dex_bonus = 1,
---		spell_fail = 35
+		spell_fail = 35,
 		armor_penalty = 6
     },
 }
@@ -708,7 +708,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 9,
         max_dex_bonus = 1,
---		spell_fail = 35,
+		spell_fail = 35,
 		armor_penalty = 6
     },
 }
@@ -722,7 +722,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 10,
         max_dex_bonus = 1,
---      spell_fail = 35,
+        spell_fail = 35,
         armor_penalty = 6
     },
 }
@@ -736,7 +736,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 11,
         max_dex_bonus = 1,
---      spell_fail = 35,
+        spell_fail = 35,
         armor_penalty = 6
     },
 }
@@ -750,7 +750,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 12,
         max_dex_bonus = 1,
---      spell_fail = 35,
+        spell_fail = 35,
         armor_penalty = 6
     },
 }
@@ -764,7 +764,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 13,
         max_dex_bonus = 1,
---      spell_fail = 35,
+        spell_fail = 35,
         armor_penalty = 6
     },
 }
@@ -777,7 +777,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 0,
---		spell_fail = 35
+		spell_fail = 35,
 		armor_penalty = 6
     },
 }
@@ -791,7 +791,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 7,
         max_dex_bonus = 1,
---		spell_fail = 35,
+		spell_fail = 35,
 		armor_penalty = 6
     },
 }
@@ -804,7 +804,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 8,
         max_dex_bonus = 1,
---      spell_fail = 35,
+        spell_fail = 35,
         armor_penalty = 6
     },
 }
@@ -817,7 +817,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 9,
         max_dex_bonus = 1,
---      spell_fail = 35,
+        spell_fail = 35,
         armor_penalty = 6
     },
 }
@@ -831,7 +831,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 10,
         max_dex_bonus = 1,
---      spell_fail = 35,
+        spell_fail = 35,
         armor_penalty = 6
     },
 }
@@ -845,7 +845,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     wielder = {
         combat_def = 11,
         max_dex_bonus = 1,
---      spell_fail = 35,
+        spell_fail = 35,
         armor_penalty = 6
     },
 }

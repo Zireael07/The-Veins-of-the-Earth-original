@@ -15,7 +15,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 15,
     wielder = {
-		combat_def = 1
+		combat_def = 1,
+        spell_fail = 5
 	},
 }
 
@@ -26,7 +27,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 2015,
     wielder = {
-        combat_def = 2
+        combat_def = 2,
+        spell_fail = 5
     },
 }
 
@@ -37,7 +39,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 4015,
     wielder = {
-        combat_def = 3
+        combat_def = 3,
+        spell_fail = 5
     },
 }
 
@@ -48,7 +51,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 8015,
     wielder = {
-        combat_def = 4
+        combat_def = 4,
+        spell_fail = 5
     },
 }
 
@@ -59,7 +63,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 16015,
     wielder = {
-        combat_def = 5
+        combat_def = 5,
+        spell_fail = 5
     },
 }
 
@@ -70,7 +75,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 50015,
     wielder = {
-        combat_def = 6
+        combat_def = 6,
+        spell_fail = 5
     },
 }
 
@@ -79,7 +85,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 3,
     wielder = {
-		combat_def = 1
+		combat_def = 1,
+        spell_fail = 5
 	},
 }
 
@@ -90,7 +97,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 2003,
     wielder = {
-        combat_def = 2
+        combat_def = 2,
+        spell_fail = 5
     },
 }
 
@@ -101,7 +109,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 4003,
     wielder = {
-        combat_def = 3
+        combat_def = 3,
+        spell_fail = 5
     },
 }
 
@@ -112,7 +121,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 8003,
     wielder = {
-        combat_def = 4
+        combat_def = 4,
+        spell_fail = 5
     },
 }
 
@@ -123,7 +133,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 16003,
     wielder = {
-        combat_def = 5
+        combat_def = 5,
+        spell_fail = 5
     },
 }
 
@@ -134,7 +145,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 50003,
     wielder = {
-        combat_def = 6
+        combat_def = 6,
+        spell_fail = 5
     },
 }
 
@@ -143,7 +155,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 9,
     wielder = {
-		combat_def = 1
+		combat_def = 1,
+        spell_fail = 5
 	},
 }
 
@@ -154,7 +167,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 2009,
     wielder = {
-        combat_def = 2
+        combat_def = 2,
+        spell_fail = 5
     },
 }
 
@@ -165,7 +179,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 4009,
     wielder = {
-        combat_def = 3
+        combat_def = 3,
+        spell_fail = 5
     },
 }
 
@@ -176,7 +191,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 8009,
     wielder = {
-        combat_def = 4
+        combat_def = 4,
+        spell_fail = 5
     },
 }
 
@@ -187,7 +203,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 16009,
     wielder = {
-        combat_def = 5
+        combat_def = 5,
+        spell_fail = 5
     },
 }
 
@@ -198,7 +215,8 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 50009,
     wielder = {
-        combat_def = 6
+        combat_def = 6,
+        spell_fail = 5
     },
 }
 
@@ -208,7 +226,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 7,
     encumber = 10,
     wielder = {
-		combat_def = 2
+		combat_def = 2,
+        spell_fail = 15
 	},
 }
 
@@ -220,7 +239,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 2007,
     encumber = 10,
     wielder = {
-        combat_def = 3
+        combat_def = 3,
+        spell_fail = 15
     },
 }
 
@@ -232,7 +252,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 4007,
     encumber = 10,
     wielder = {
-        combat_def = 4
+        combat_def = 4,
+        spell_fail = 15
     },
 }
 
@@ -244,7 +265,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 8007,
     encumber = 10,
     wielder = {
-        combat_def = 5
+        combat_def = 5,
+        spell_fail = 15
     },
 }
 
@@ -256,7 +278,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 16007,
     encumber = 10,
     wielder = {
-        combat_def = 6
+        combat_def = 6,
+        spell_fail = 15
     },
 }
 
@@ -268,7 +291,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 50007,
     encumber = 10,
     wielder = {
-        combat_def = 7
+        combat_def = 7,
+        spell_fail = 15
     },
 }
 
@@ -278,7 +302,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 20,
     encumber = 15,
     wielder = {
-		combat_def = 2
+		combat_def = 2,
+        spell_fail = 15
 	},
 }
 
@@ -290,7 +315,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 4020,
     encumber = 15,
     wielder = {
-        combat_def = 3
+        combat_def = 3,
+        spell_fail = 15
     },
 }
 
@@ -302,7 +328,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 8020,
     encumber = 15,
     wielder = {
-        combat_def = 4
+        combat_def = 4,
+        spell_fail = 15
     },
 }
 
@@ -314,7 +341,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 16020,
     encumber = 15,
     wielder = {
-        combat_def = 5
+        combat_def = 5,
+        spell_fail = 15
     },
 }
 
@@ -326,7 +354,8 @@ newEntity{ base = "BASE_SHIELD",
     cost = 32020,
     encumber = 15,
     wielder = {
-        combat_def = 6
+        combat_def = 6,
+        spell_fail = 15
     },
 }
 
@@ -338,17 +367,18 @@ newEntity{ base = "BASE_SHIELD",
     cost = 50020,
     encumber = 15,
     wielder = {
-        combat_def = 7
+        combat_def = 7,
+        spell_fail = 15
     },
 }
 
---Cannot cast spells
 newEntity{ base = "BASE_SHIELD",
     name = "tower shield",
     level_range = {1, 10},
     cost = 30,
     encumber = 45,
     wielder = {
-		combat_def = 4
+		combat_def = 4,
+        spell_fail = 30
 	},
 }
