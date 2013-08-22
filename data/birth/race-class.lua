@@ -105,7 +105,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Drow',
-	desc = [[The drow are kin to the Fair Folk, who descended underground long ago. ECL +2. Dex +2 Con -2 Int +2 Cha +2 Luc -2.]],
+	desc = 'The drow are kin to the Fair Folk, who descended underground long ago.\n\n ECL +2. Dex +2 Con -2 Int +2 Cha +2 Luc -2.',
 	stats = { dex = 2, con = -2, int = 2, cha = 2, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -121,7 +121,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Duergar',
-	desc = [[The gray dwarves are the underground offshoot of the dwarves, long ago imprisoned by the mind flayers. ECL +1. Con +2 Cha -2 Luc -2.]],
+	desc = 'The gray dwarves are the underground offshoot of the dwarves, long ago imprisoned by the mind flayers.\n\n ECL +1. Con +2 Cha -2 Luc -2.',
 	stats = { con = 2, cha = -4, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -135,7 +135,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Deep gnome',
-	desc = [[The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders. ECL +3. Str -2 Dex +2 Wis +2 Cha -4 Luc -2.]],
+	desc = 'The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders.\n\n ECL +3. Str -2 Dex +2 Wis +2 Cha -4 Luc -2.',
 	stats = { str = -2, dex = 2, wis = 2, cha = -4, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -155,7 +155,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Barbarian',
-	desc = [[Raging warriors of the wilds. +33% movement speed. HD d12, BAB +1, Fort +2 at first class level. 16 skill points at first character level. BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.]],
+	desc = 'Raging warriors of the wilds.\n\n +33% movement speed. HD d12, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -165,10 +165,7 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		hd_size = 12,
-		max_life = 12,
-		combat_attack = 1,
-		fortitude_save = 2,
-		skill_point = 16, --4x skill points at 1st level
+		skill_point = 12, --4x skill points at 1st level
 		movement_speed_bonus = 0.33
 	},
 	talents = {
@@ -209,7 +206,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Cleric',
-	desc = [[Clerics are masters of healing. HD d8. Fort +2, Will +2 at first class level. 8 skill points at 1st character level. BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.]],
+	desc = 'Clerics are masters of healing.\n\n HD d8. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -219,10 +216,7 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		hd_size = 8,
-		max_life = 8,
-		fortitude_save = 2,
-		will_save = 2,
-		skill_point = 8, --4x skill points at 1st level
+		skill_point = 6, --4x skill points at 1st level
 	},
 	talents = {
 		[ActorTalents.T_SHOW_SPELLBOOK]=1,
@@ -268,7 +262,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Druid',
-	desc = [[Clerics of nature. HD d8. Fort +2 Will +2 at first class level. 8 skill points at 1st character level. BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.]],
+	desc = 'Clerics of nature.\n\n HD d8. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -278,10 +272,7 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		hd_size = 8,
-		max_life = 8,
-		fortitude_save = 2,
-		will_save = 2,
-		skill_point = 16, --4x skill points at 1st level
+		skill_point = 12, --4x skill points at 1st level
 	},
 	talents = {
 		[ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
@@ -327,7 +318,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Fighter',
-	desc = [[Simple fighters, they hack away with their trusty weapon. HD d10, BAB +1, Fort +2 at first class level. 8 skill points at 1st character level. BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.]],
+	desc = 'Simple fighters, they hack away with their trusty weapon.\n\n HD d10, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -337,10 +328,7 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		hd_size = 10,
-		max_life = 10,
-		combat_attack = 1,
-		fortitude_save = 2,
-		skill_point = 8, --4x skill points at 1st level
+		skill_point = 6, --4x skill points at 1st level
 	},
 	talents = {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
@@ -372,7 +360,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Ranger',
-	desc = [[Rangers are capable archers but are also trained in hand to hand combat and divine magic. HD d8, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.]],
+	desc = 'Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n HD d8, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -388,11 +376,7 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		hd_size = 8,
-		max_life = 8,
-		combat_attack = 1,
-		fortitude_save = 2,
-		reflex_save = 2,
-		skill_point = 24, --4x skill points at 1st level
+		skill_point = 18, --4x skill points at 1st level
 	},
 	talents = {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
@@ -424,7 +408,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Rogue',
-	desc = [[Rogues are masters of tricks. HD d6, Ref +2 at first class level. 32 skill points at 1st character level. BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.]],
+	desc = 'Rogues are masters of tricks.\n\n HD d6, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -438,10 +422,8 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		hd_size = 6,
-		max_life = 6,
-		reflex_save = 2,
 		sneak_attack = 1,
-		skill_point = 32, --4x skill points at 1st level
+		skill_point = 24, --4x skill points at 1st level
 	},
 	talents = {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
@@ -480,7 +462,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Wizard',
-	desc = [[Masters of arcane magic. HD d4, Will +2 at first character level. 8 skill points at 1st class level. BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.]],
+	desc = 'Masters of arcane magic.\n\n HD d4, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -495,9 +477,7 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		hd_size = 4,
-		max_life = 4,
-		will_save = 2,
-		skill_point = 8, --4x skill points at 1st level
+		skill_point = 6, --4x skill points at 1st level
 	},
 	talents = {
 		[ActorTalents.T_EMPOWER] = 1,
@@ -538,7 +518,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Warlock',
-	desc = [[A spellcaster who needs no weapon. HD d6, Will +2 at first character level. 8 skill points at 1st class level. BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level..]],
+	desc = 'A spellcaster who needs no weapon.\n\n HD d6, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -548,9 +528,7 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		hd_size = 6,
-		max_life = 6,
-		will_save = 2,
-		skill_point = 8, --4x skill points at start
+		skill_point = 6, --4x skill points at start
 	},
 	talents = {
 		[ActorTalents.T_ELDRITCH_BLAST]=1,

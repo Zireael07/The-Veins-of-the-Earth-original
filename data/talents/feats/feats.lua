@@ -161,7 +161,7 @@ newTalent{
 	type = {"class/general", 1},
 	is_feat = true,
 	points = 1,
---	require = { 		talent = { T.DODGE } },
+	require = { talent = { Talents.T_DODGE }, },
 	mode = "passive",
 	is_feat = true,
 	info = [[This feat increases your AC by +4.]],
