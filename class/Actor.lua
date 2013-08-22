@@ -341,6 +341,15 @@ function _M:getArmor()
 	return ac
 end
 
+--No casting spells if your key stat is <= 9
+function _M:canCast()
+	if self.classes and self.classes["Wizard"] and self:getInt() <= 9 then game.logPlayer(self, "Your Intelligence is too low!") return false 
+	elseif self.classes and self.classes["Ranger"] and self:getWis() <= 9 then game.logPlayer(self, "Your Wisdom is too low!") return false 
+	elseif self.classes and self.classes["Cleric"] and self:getWis() <= 9 then game.logPlayer(self, "Your Wisdom is too low!") return false
+	else return true
+	end
+end
+
 --- Called before a talent is used
 -- Check the actor can cast it
 -- @param ab the talent (not the id, the table)
@@ -348,11 +357,16 @@ end
 function _M:preUseTalent(ab, silent)
 	local tt_def = self:getTalentTypeFrom(ab.type[1])
 	if tt_def.all_limited then --all_limited talenttypes all have talents that are daily limited 
+		--Can I cast the spell?
+		--TODO: Fix the loop
+--		if not self:canCast() then return false end
+			
 		if  self:getCharges(ab) <= 0 then
 			if not silent then game.logPlayer(self, "You have to prepare this spell") end
 			return false 
 		end
 	end
+	
 
 	if not self:enoughEnergy() then print("fail energy") return false end
 
@@ -397,6 +411,9 @@ function _M:postUseTalent(ab, ret)
 
 	--remove charge
 	if tt_def.all_limited then self:incCharges(ab, -1) end
+
+	--Spell failure!
+	if self.classes and self.classes["Wizard"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!") return false end
 
 	self:useEnergy()
 
