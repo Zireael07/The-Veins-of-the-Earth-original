@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@ load("/data/general/objects/exoticranged.lua")
 load("/data/general/objects/shields.lua")
 load("/data/general/objects/consumables.lua")
 load("/data/general/objects/magicitems.lua")
+load("/data/general/objects/money.lua")
 
 
 
