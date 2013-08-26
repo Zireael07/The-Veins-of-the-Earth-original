@@ -35,7 +35,7 @@ module(..., package.seeall, class.inherit(mod.class.Actor,
 					  engine.interface.PlayerMouse,
 					  engine.interface.PlayerHotkeys))
 
-local exp_chart = function(level) 
+local exp_chart = function(level)
 if level==1 then return 1000 
 else return 500*level*(level+1)/2 end
 end
@@ -73,7 +73,7 @@ end
 
 function _M:getExpChart(level)
   if not level or level < 1 then return 0 end
-  return math.floor((exp_chart(level) * (self.xp_mult or 1)))
+  return exp_chart(level)
 end
 
 function _M:move(x, y, force)
@@ -291,6 +291,12 @@ function _M:onRestStop()
 
   --Calendar
   game.log(game.calendar:getTimeDate(game.turn))
+
+ -- on_very_end = function()
+  --Spawn monsters
+ -- local Random = require "engine.generator.actor.Random"
+--  Random.generate()
+--  end,
 end
 
 --- Can we continue running?
@@ -331,7 +337,13 @@ end
         self:pickupFloor(1, true)
         self:sortInven()
         self:useEnergy()
-
+        --auto-ID
+        --if o.identified == false then
+        --local check = self:skillCheck("intuition", 10)
+        --  if check then
+        --    o.identified = true
+        --  end
+        --end  
     self.changed = true
     end
 end
