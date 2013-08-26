@@ -98,6 +98,28 @@ BETA RELEASES
 * working level-up bonuses
 * halved the amount of XP needed to advance
 
+0.0.8a - 17/08/2013
+* bugfixes
+* monsters drop equipment and corpses
+* working skill select screen
+* added skill enhancing feats
+
+0.0.9 - 22/08/2013
+* bugfixes
+* new monsters: drow, goblin, human
+* adjusted monster spawn rate
+* no XP for monsters with CR < character level - 4
+* resting takes longer
+* saving throws take the better of two stats (Dex-Int for Ref; Con-Str for Fort; Wis-Cha for Will)
+* changed map generator back due to performance issues
+* new prestige classes: assasin, shadowdancer
+* barbarian speed bonus implemented
+* terrain effects implemented
+* added tips to stat generator screen
+* implemented Swim skill
+* armor spell failure chance implemented
+* cannot cast spells if key stat is equal or lower than 9
+
 
 
 
