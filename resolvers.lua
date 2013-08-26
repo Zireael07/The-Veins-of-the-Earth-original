@@ -268,34 +268,6 @@ function resolvers.calc.store(t, e)
 	return nil
 end
 
---- Resolves chat creation for an actor
-function resolvers.chatfeature(def, faction)
-	return {__resolver="chatfeature", def, faction}
-end
---- Actually resolve the drops creation
-function resolvers.calc.chatfeature(t, e)
-	e.chat_faction = t[2]
-	t = t[1]
-
-	if e.chat_faction then
-		e.chat_display_entity = engine.Entity.new{image="faction/"..e.chat_faction..".png"}
-	end
-
-	e.block_move = function(self, x, y, who, act, couldpass)
-		if who and who.player and act then
-			if self.chat_faction and who:reactionToward({faction=self.chat_faction}) < 0 then return true end
-			local Chat = require("engine.Chat")
-			local chat = Chat.new(self.chat, self, who, {npc=self, player=who})
-			chat:invoke()
-		end
-		return true
-	end
-	e.chat = t
-
-	-- Delete the origin field
-	return nil
-end
-
 --- Random bonus based on level (sets the mbonus max level, we use 60 instead of 50 to get some forced randomness at high level)
 resolvers.mbonus_max_level = 90
 
@@ -421,71 +393,6 @@ function resolvers.calc.charmt(tt, e)
 	return
 end
 
---- Image based on material level
-function resolvers.image_material(image, values)
-	return {__resolver="image_material", image, values}
-end
-function resolvers.calc.image_material(t, e)
-	if not t[2] or (type(t[2]) == "string" and t[2] == "metal") then t[2] = {"iron", "steel", "dsteel", "stralite", "voratun"} end
-	if type(t[2]) == "string" and t[2] == "sea-metal" then t[2] = {"coral", "bluesteel", "deepsteel", "orite", "orichalcum"} end
-	if type(t[2]) == "string" and t[2] == "leather" then t[2] = {"rough", "cured", "hardened", "reinforced", "drakeskin"} end
-	if type(t[2]) == "string" and t[2] == "wood" then t[2] = {"elm","ash","yew","elvenwood","dragonbone"} end
-	if type(t[2]) == "string" and t[2] == "nature" then t[2] = {"mossy","vined","thorned","pulsing","living"} end
-	if type(t[2]) == "string" and t[2] == "cloth" then t[2] = {"linen","woollen","cashmere","silk","elvensilk"} end
-	local ml = e.material_level or 1
-	return "object/"..t[1].."_"..t[2][ml]..".png"
-end
-
---- Moddable Image based on material level
-function resolvers.moddable_tile(image, values)
-	return {__resolver="moddable_tile", image}
-end
-function resolvers.calc.moddable_tile(t, e)
-	local slot = t[1]
-	local r, r2
-	if slot == "cloak" then r = {"cloak_%s_01","cloak_%s_02","cloak_%s_03","cloak_%s_04","cloak_%s_05"}
-	elseif slot == "massive" then
-		r = {"upper_body_20","upper_body_21","upper_body_22","upper_body_24","upper_body_23",}
-		r2 = {"lower_body_09","lower_body_10","lower_body_11","lower_body_13","lower_body_12",}
-	elseif slot == "heavy" then
-		r = {"upper_body_25","upper_body_11","upper_body_26","upper_body_28","upper_body_27",}
-		r2 = {"lower_body_08","lower_body_08","lower_body_08","lower_body_08","lower_body_08",}
-	elseif slot == "light" then
-		r = {"upper_body_05","upper_body_06","upper_body_07","upper_body_08","upper_body_19",}
-		r2 = {"lower_body_03","lower_body_04","lower_body_05","lower_body_06","lower_body_06",}
-	elseif slot == "robe" then r = {"upper_body_18","upper_body_16","upper_body_13","upper_body_15","upper_body_17",}
-	elseif slot == "shield" then r = {"%s_hand_10","%s_hand_11","%s_hand_11","%s_hand_12","%s_hand_12",}
-	elseif slot == "staff" then r = {{"%s_hand_08",true}}
-	elseif slot == "leather_boots" then r = {"feet_03","feet_04","feet_04","feet_05","feet_05",}
-	elseif slot == "heavy_boots" then r = {"feet_06","feet_06","feet_07","feet_09","feet_08",}
-	elseif slot == "gauntlets" then r = {"hands_03","hands_04","hands_05","hands_07","hands_06",}
-	elseif slot == "gloves" then r = {"hands_02",}
-	elseif slot == "sword" then r = {"%s_hand_04",}
-	elseif slot == "2hsword" then r = {"%s_2hsword",}
-	elseif slot == "wizard_hat" then r = {{"head_11",true},{"head_13",true},{"head_17",true},{"head_12",true},{"head_15",true},}
-	elseif slot == "trident" then r = {{"%s_hand_13",true}}
-	elseif slot == "whip" then r = {"%s_hand_09"}
-	elseif slot == "mace" then r = {"%s_hand_05"}
-	elseif slot == "2hmace" then r = {"%s_2hmace"}
-	elseif slot == "axe" then r = {"%s_hand_06"}
-	elseif slot == "2haxe" then r = {"%s_2haxe"}
-	elseif slot == "bow" then r = {"%s_hand_01"}
-	elseif slot == "sling" then r = {"%s_hand_02"}
-	elseif slot == "dagger" then r = {"%s_hand_03"}
-	elseif slot == "mindstar" then r = {{"mindstar_mossy_%s_01",true},{"mindstar_vines_%s_01",true},{"mindstar_thorn_%s_01",true},{"mindstar_pulsing_%s_01",true},{"mindstar_living_%s_01",true},}
-	elseif slot == "helm" then r = {"head_05","head_06","head_08","head_10","head_09",}
-	elseif slot == "leather_cap" then r = {"head_03"}
-	elseif slot == "mummy_wrapping" then r = {{"special/mummy_wrappings",true}}
-	end
-	local ml = e.material_level or 1
-	r = r[util.bound(ml, 1, #r)]
-	if r2 then
-		r2 = r2[util.bound(ml, 1, #r2)]
-		e.moddable_tile2 = r2
-	end
-	if type(r) == "string" then return r else e.moddable_tile_big = true return r[1] end
-end
-
 --- Activates all sustains at birth
 function resolvers.sustains_at_birth()
 	return {__resolver="sustains_at_birth", __resolve_last=true}
@@ -590,78 +497,6 @@ function resolvers.calc.tactic(t, e)
 	end
 	return {}
 end
-
---- Racial Talents resolver
-
-local racials = {
-	halfling = {
-		T_HALFLING_LUCK = {last=10, base=0, every=4, max=5},
-		T_DUCK_AND_DODGE = {base=0, every=4, max=5},
-		T_INDOMITABLE = {last=20, base=0, every=4, max=5},
-	},
-	human = {
-		T_HIGHER_HEAL = {last=20, base=0, every=4, max=5},
-		T_BORN_INTO_MAGIC = {base=0, every=4, max=5},
-		T_HIGHBORN_S_BLOOM = {last=10, base=0, every=4, max=5},
-	},
-	shalore = {
-		T_SHALOREN_SPEED = {last=30, base=0, every=4, max=5},
-		T_MAGIC_OF_THE_ETERNALS = {base=0, every=4, max=5},
-		T_SECRETS_OF_THE_ETERNALS = {last=20, base=0, every=4, max=5},
-		T_TIMELESS = {last=10, base=0, every=4, max=5},
-	},
-	thalore = {
-		T_THALOREN_WRATH = {last=10, base=0, every=4, max=5},
-		T_UNSHACKLED = {base=0, every=4, max=5},
-		T_GUARDIAN_OF_THE_WOOD = {last=20, base=0, every=4, max=5},
-		T_NATURE_S_PRIDE = {last=30, base=0, every=4, max=5},
-	},
-	yeek = {
-		T_UNITY = {base=0, every=4, max=5},
-		T_QUICKENED = {last=10, base=0, every=4, max=5},
-		T_WAYIST = {last=20, base=0, every=4, max=5},
-	},
-	dwarf = {
-		T_POWER_IS_MONEY = {last=20, base=0, every=4, max=5},
-		T_STONESKIN = {base=0, every=4, max=5},
-		T_DWARF_RESILIENCE = {last=10, base=0, every=4, max=5},
-	},
-	orc = {
-		T_ORC_FURY = {last=20, base=0, every=4, max=5},
-		T_HOLD_THE_GROUND = {base=0, every=4, max=5},
-		T_SKIRMISHER = {last=10, base=0, every=4, max=5},
-		T_PRIDE_OF_THE_ORCS = {last=30, base=0, every=4, max=5},
-	},
-	skeleton = {
-		T_BONE_ARMOUR = {last=30, base=0, every=4, max=5},
-		T_SKELETON_REASSEMBLE = {last=40, base=0, every=4, max=5},
-		T_RESILIENT_BONES = {last=20, base=0, every=4, max=5},
-		T_SKELETON = {last=10, base=0, every=4, max=5},
-	},
-	ghoul = {
-		T_GHOUL = {last=10, base=0, every=4, max=5},
-		T_GHOULISH_LEAP = {last=20, base=0, every=4, max=5},
-		T_GNAW = {last=40, base=0, every=4, max=5},
-		T_RETCH = {last=30, base=0, every=4, max=5},
-	},
-}
-
-function resolvers.racial(race)
-	return {__resolver="racial", race}
-end
-function resolvers.calc.racial(t, e)
-	if e.type ~= "humanoid" and e.type ~= "undead" then return end
-	local race = t[1] or e.subtype
-	if not racials[race] then return end
-
-	local levelup_talents = e._levelup_talents or {}
-	for tid, level in pairs(racials[race]) do
-		levelup_talents[tid] = table.clone(level)
-	end
-	e._levelup_talents = levelup_talents
-	return nil
-end
-
 
 function resolvers.emote_random(def)
 	return {__resolver="emote_random", def}
