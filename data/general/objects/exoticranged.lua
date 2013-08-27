@@ -1,3 +1,6 @@
+--Veins of the Earth
+--Zireael
+
 --Exotic ranged weapons
 
 newEntity{
@@ -10,7 +13,7 @@ newEntity{
     rarity = 10,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic hand crossbow",
-    desc = [[A normal trusty hand crossbow.]],
+    desc = [[A normal trusty hand crossbow. Damage 1d4. Threat range 19-20.]],
 }
 --Range 30 ft.
 newEntity{ base = "BASE_HANDXBOW",
@@ -34,7 +37,7 @@ newEntity{
     rarity = 8,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic bolas",
-    desc = [[A normal bolas.]],
+    desc = [[A normal bolas. Damage 1d4.]],
 }
 --Range 10 ft.
 newEntity{ base = "BASE_BOLAS",
@@ -57,7 +60,7 @@ newEntity{
     rarity = 12,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic shuriken",
-    desc = [[A normal shuriken.]],
+    desc = [[A normal shuriken. Damage 1d2.]],
 }
 --Range 10 ft.
 newEntity{ base = "BASE_SHURIKEN",
@@ -80,7 +83,7 @@ newEntity{
     rarity = 8,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic net",
-    desc = [[A normal net.]],
+    desc = [[A normal net. Damage 1d4.]],
 }
 --Range 10 ft.
 newEntity{ base = "BASE_NET",
