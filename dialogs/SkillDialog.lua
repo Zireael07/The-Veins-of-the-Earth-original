@@ -46,8 +46,7 @@ function _M:init(actor)
 	Dialog.init(self, "Skills", 500, 600)
 	self:generateList()
 	
-	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: "..self.player.skill_point}
-	--	self.c_ranks = Textzone.new{width=self.iw, height = 50, text = "Max skill ranks: "..self.player.max_skill_ranks}	
+	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: #GOLD#"..self.player.skill_point.. " #LAST#Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Skill ranks + all modifiers (stats, armor penalty)\n are displayed."}
 	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
 	self.c_desc = TextzoneList.new{width=self.iw/2-20, height = 400, text="Hello from description"}
 
@@ -84,7 +83,7 @@ end
 function _M:update()
 	local sel = self.selection
 	self:generateList() -- Slow! Should just update the one changed and sort again
-	self.c_points.text = "Available skill points: "..self.player.skill_point
+	self.c_points.text = "Available skill points: #GOLD#"..self.player.skill_point.." #LAST#Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Skill ranks + all modifiers (stats, armor penalty)\n are displayed."
 	self.c_points:generate()
 	self.c_list.list = self.list
 	self.c_list:generate()
@@ -97,7 +96,7 @@ function _M:generateList()
     for skill, description in pairs(skills) do
     	local value = player:getSkill(skill)
  		local color = {255, 255, 255}
- 		local d = "#GOLD#"..skill:capitalize().."#LAST#\n\n"
+ 		local d = "#CHOCOLATE#"..skill:capitalize().."#LAST#\n\n"
  		d = d..description.."\n#WHITE#"
         list[#list+1] = {name="#SLATE#(#LAST##AQUAMARINE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize(), skill = skill,	 color = color, desc=d}
     end
