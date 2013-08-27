@@ -36,7 +36,7 @@ dofile('/mod/resolvers.lua')
 WorldAchievements:loadDefinition("/data/achievements/")
 
 -- Useful keybinds
-KeyBind:load("move,hotkeys,inventory,actions,interface,debug,underdark")
+KeyBind:load("move,hotkeys,inventory,actions,interface,debug,veins")
 
 -- Damage types
 DamageType:loadDefinition("/data/damage_types.lua")
@@ -82,6 +82,6 @@ ActorAI:loadDefinition("/mod/ai/")
 Birther:loadDefinition("/data/birth/descriptors.lua")
 
 --Stores
-Store:loadStores("/data/general/stores/basic.lua")
+Store:loadStores("/data/general/stores/general.lua")
 
 return {require "mod.class.Game" }
