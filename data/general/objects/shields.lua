@@ -8,6 +8,7 @@ newEntity{
     rarity = 5,
     name = "shield",
     desc = [[A simple shield. Protects you from attacks. AC +1. Spell failure chance 5%.]],
+    properties = "/data/general/objects/properties/shields.lua",
     }
 
 newEntity{ base = "BASE_SHIELD",
