@@ -11,7 +11,7 @@ newEntity{
     rarity = 5,
     name = "light armor",
     desc = [[A simple padded armor. Doesn't offer much protection. Light armor. AC +1. Max Dex bonus to AC 8. Spell failure chance 5%.]],
-    properties = "/data/general/objects/properties/armor.lua",
+    ego = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
     }
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
@@ -363,7 +363,7 @@ newEntity{
     rarity = 2,
     name = "medium armor",
     desc = [[A suit of armour made of mail. AC +5. Max Dex bonus to AC 2. Spell failure chance 30%. Armor check penalty -5.]],
-    properties = "/data/general/objects/properties/armor.lua",
+    ego = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
@@ -634,7 +634,7 @@ newEntity{
     rarity = 8,
     name = "heavy armor",
     desc = [[A suit of armour made of plate. AC +7. Max Dex bonus to AC 0. Spell failure chance 40%. Armor check penalty -7.]],
-    properties = "/data/general/objects/properties/armor.lua",
+    ego = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
