@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,13 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=17, con=12, int=1, wis=12, cha=4, luc=2 },
 	combat = { dam= {1,4} },
+	skill_climb = 10,
+	skill_movesilently = 8,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
@@ -37,92 +44,23 @@ newEntity{
 	max_life = resolvers.rngavg(3,7),
 	hit_die = 1,
 	challenge = 1/3,
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-
-newEntity{
-	define_as = "BASE_NPC_SPIDER",
-	type = "animal",
-	display = 's', color=colors.BROWN,
-	body = { INVEN = 10 },
-	desc = [[A small spider.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	stats = { str=3, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {1,3} },
-	infravision = 4,
-	skill_climb = 8,
-	skill_hide = 4,
-	skill_spot = 4,
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
-	base = "BASE_NPC_SPIDER",
-	name = "tiny spider", color=colors.BROWN,
-	level_range = {1, 4}, exp_worth = 75,
-	rarity = 1,
-	max_life = resolvers.rngavg(1,3),
+	base = "BASE_NPC_RAT",
+	name = "rat", color=colors.WHITE,
+	level_range = {1, 4}, exp_worth = 50,
+	rarity = 2,
+	max_life = resolvers.rngavg(1,2),
 	hit_die = 1,
-	challenge = 1/4,
+	challenge = 1/8,
+	skill_hide = 14,
+	skill_swim = 14,
+	stats = { str=2, dex=15, con=10, int=2, wis=12, cha=2, luc=2 },
+	
 }
 
-newEntity{
-	base = "BASE_NPC_SPIDER",
-	name = "small spider", color=colors.BROWN,
-	level_range = {1, 4}, exp_worth = 100,
-	rarity = 3,
-	max_life = resolvers.rngavg(3,6),
-	hit_die = 1,
-	challenge = 1/3,
-	stats = { str=7, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {1,4} }
-}
 
-newEntity{
-	base = "BASE_NPC_SPIDER",
-	name = "medium spider", color=colors.BROWN,
-	level_range = {1, 4}, exp_worth = 150,
-	rarity = 5,
-	max_life = resolvers.rngavg(3,6),
-	hit_die = 2,
-	challenge = 1,
-	stats = { str=11, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {1,6} }
-}
-
-newEntity{
-	base = "BASE_NPC_SPIDER",
-	name = "large spider", color=colors.BROWN,
-	level_range = {5, 20}, exp_worth = 3000,
-	rarity = 9,
-	max_life = resolvers.rngavg(20,25),
-	hit_die = 4,
-	challenge = 4,
-	stats = { str=15, dex=17, con=12, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {1,8} }
-}
-
-newEntity{
-	base = "BASE_NPC_SPIDER",
-	name = "huge spider", color=colors.BROWN,
-	level_range = {7, 20}, exp_worth = 3300,
-	rarity = 40,
-	max_life = resolvers.rngavg(50,55),
-	hit_die = 8,
-	challenge = 8,
-	stats = { str=19, dex=17, con=14, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {2,6} },
-}
 
 newEntity{
 	define_as = "BASE_NPC_SNAKE",
@@ -174,5 +112,160 @@ newEntity{
 	max_life = resolvers.rngavg(7,10),
 	hit_die = 2,
 	challenge = 1,
-	
+}
+
+newEntity{
+	define_as = "BASE_NPC_LIZARD",
+	type = "animal",
+	display = 'l', color=colors.GREEN,
+	body = { INVEN = 10 },
+	desc = [[A small lizard.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=3, dex=15, con=10, int=1, wis=12, cha=2, luc=2 },
+	combat = { dam= {1,4} },
+	skill_climb = 10,
+	skill_balance = 8,
+	skill_hide = 10,
+	skill_spot = 2,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_LIZARD",
+	name = "medium snake", color=colors.GREEN,
+	level_range = {1, 20}, exp_worth = 50,
+	rarity = 5,
+	max_life = resolvers.rngavg(1,3),
+	hit_die = 1,
+	challenge = 1/6,
+}
+
+newEntity{
+	define_as = "BASE_NPC_MONLIZARD",
+	type = "animal",
+	display = 'l', color=colors.DARK_GREEN,
+	body = { INVEN = 10 },
+	desc = [[A large lizard.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=17, dex=15, con=17, int=1, wis=12, cha=2, luc=2 },
+	combat = { dam= {1,8} },
+	skill_climb = 4,
+	skill_balance = 8,
+	skill_hide = 4,
+	skill_spot = 2,
+	skill_swim = 8,
+	skill_listen = 2,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_LIZARD",
+	name = "monitor lizard", color=colors.GREEN,
+	level_range = {1, 20}, exp_worth = 600,
+	rarity = 5,
+	max_life = resolvers.rngavg(1,3),
+	hit_die = 1,
+	challenge = 2,
+}
+
+newEntity{
+	define_as = "BASE_NPC_BAT",
+	type = "animal",
+	display = 'b', color=colors.BLACK,
+	body = { INVEN = 10 },
+	desc = [[A large bat.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=1, dex=15, con=10, int=2, wis=14, cha=4, luc=10 },
+	combat = { dam= {1,2} },
+	skill_movesilently = 4,
+	skill_hide = 12,
+	skill_spot = 6,
+	skill_listen = 6,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_BAT",
+	name = "a bat", color=colors.BLACK,
+	level_range = {1, 20}, exp_worth = 30,
+	rarity = 2,
+	max_life = resolvers.rngavg(1,2),
+	hit_die = 1,
+	challenge = 1/10,
+}
+
+newEntity{
+	define_as = "BASE_NPC_RAVEN",
+	type = "animal",
+	display = 'r', color=colors.BLACK,
+	body = { INVEN = 10 },
+	desc = [[A large raven.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=1, dex=15, con=10, int=2, wis=14, cha=6, luc=10 },
+	combat = { dam= {1,2} },
+	skill_spot = 4,
+	skill_listen = 3,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_RAVEN",
+	name = "a raven", color=colors.BLACK,
+	level_range = {1, 20}, exp_worth = 50,
+	rarity = 2,
+	max_life = resolvers.rngavg(1,2),
+	hit_die = 1,
+	challenge = 1/6,
+}
+
+newEntity{
+	define_as = "BASE_NPC_WOLF",
+	type = "animal",
+	display = 'w', color=colors.BLACK,
+	body = { INVEN = 10 },
+	desc = [[A large wolf.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=13, dex=15, con=15, int=2, wis=12, cha=6, luc=12 },
+	combat = { dam= {1,6} },
+	skill_spot = 2,
+	skill_listen = 2,
+	skill_movesilently = 1,
+	skill_survival = 5,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_WOLF",
+	name = "a wolf", color=colors.BLACK,
+	level_range = {1, 20}, exp_worth = 300,
+	rarity = 8,
+	max_life = resolvers.rngavg(12,14),
+	hit_die = 1,
+	challenge = 1,
+	movement_speed_bonus = 0.66,
 }

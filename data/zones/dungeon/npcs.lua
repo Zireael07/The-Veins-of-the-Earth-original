@@ -1,5 +1,5 @@
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,9 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
 
 load("/data/general/npcs/humanoid.lua")
 
@@ -24,3 +21,7 @@ load("/data/general/npcs/undead.lua")
 load("/data/general/npcs/animals.lua")
 
 load("/data/general/npcs/aberration.lua")
+
+load("/data/general/npcs/magicalbeasts.lua")
+
+load("/data/general/npcs/vermin.lua")
