@@ -50,6 +50,9 @@ function _M:init(t, no_default)
 	self.combat_attack = 0
 	self.hit_die = 4
 
+	--Some more combat stuff
+	self.more_attacks = 0
+
 	--Challenge Rating set to 0
 	self.challenge = 0
 
@@ -737,11 +740,18 @@ function _M:levelup()
 	self.skill_point = self.skill_point + self.skill_point
 	self.max_skill_ranks = self.max_skill_ranks + 1
 	
-
+	--May level up class
 	self.class_points = self.class_points + 1
-	if self.level % 3 == 0 then --feat points given every character level. Classes may give additional feat points.
+
+	if self.level % 3 == 0 then --feat points given every 3 levels. Classes may give additional feat points.
 		self.feat_point = self.feat_point + 1
 	end
+	--Additional (iterative) attacks
+	if self.level % 5 == 0 then 
+		self.more_attacks = (self.more_attacks or 0) + 1 
+	end
+
+
 
 	-- Heal up on new level
 	--  self:resetToFull()
@@ -777,8 +787,8 @@ end
 --Encumbrance & auto-ID stuff, Zireael
 function _M:onAddObject(o)
 	self:checkEncumbrance()
-	if o.identified == false then
-	local check = self:skillCheck("intuition", 10)
+	if self == game.player and o.identified == false then
+		local check = self:skillCheck("intuition", 10)
 		if check then
 			o.identified = true
 		end	
@@ -804,9 +814,7 @@ function _M:getEncumbrance()
 	-- Compute encumbrance
 	for inven_id, inven in pairs(self.inven) do
 		for item, o in ipairs(inven) do
-			if not o.__transmo and not o.__transmo_pre then
 				o:forAllStack(fct)
-			end
 		end
 	end
 	

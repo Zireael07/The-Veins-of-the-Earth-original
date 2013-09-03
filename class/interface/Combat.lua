@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ function _M:attackRoll(target)
     local hit = true
     local crit = false
     local weapon = self:getInven("MAIN_HAND") and self:getInven("MAIN_HAND")[1]
-    
+
     local stat_used = "str"
 
     if weapon and weapon.ranged then
@@ -103,7 +103,10 @@ end
 --- Makes the death happen!
 function _M:attackTarget(target, mult)
     if self.combat then
+        
+
         local hit, crit = self:attackRoll(target)
+      
         if hit then
             local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10)/2 - target.combat_armor or 0
             dam = math.max(0, dam)
@@ -114,9 +117,26 @@ function _M:attackTarget(target, mult)
             target:takeHit(dam, self)
             game.log(("%s deals %d damage to %s!"):format(self.name:capitalize(), dam, target.name:capitalize()))
         end
+        
+        local iterate = 0
+        --Iterative attacks
+        if self.more_attacks and self.more_attacks > 0 and iterate == 0 then 
+            self:attackRoll(target)
+            iterate = iterate + 1
+        end
+        --Offhand attacks
+        local offhand_attacks = 0
+        if offhand_attacks == 0 then
+        
+            --Should also take double weapons into account
+            local offweapon = self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1]
+            if offweapon then
+                self:attackRoll(target) 
+                offhand_attacks = offhand_attacks + 1
+            end
+        end
     end
     -- We use up our own energy
     self:useEnergy(game.energy_to_act)
+--    offhand_attacks = 0
 end
-
-
