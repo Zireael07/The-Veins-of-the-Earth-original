@@ -337,13 +337,6 @@ end
         self:pickupFloor(1, true)
         self:sortInven()
         self:useEnergy()
-        --auto-ID
-        --if o.identified == false then
-        --local check = self:skillCheck("intuition", 10)
-        --  if check then
-        --    o.identified = true
-        --  end
-        --end  
     self.changed = true
     end
 end

@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -774,9 +774,15 @@ function _M:levelClass(name)
 	d.on_level(self, level)
 end
 
---Encumbrance stuff, Zireael
+--Encumbrance & auto-ID stuff, Zireael
 function _M:onAddObject(o)
 	self:checkEncumbrance()
+	if o.identified == false then
+	local check = self:skillCheck("intuition", 10)
+		if check then
+			o.identified = true
+		end	
+	end	
 end
 
 function _M:onRemoveObject(o)
