@@ -18,7 +18,7 @@ Features:
 - multiclassing & prestige classes
 - colored character sheet
 - randomized unarmed and weapon damage; archery and weapon finesse
-- attack roll & AC & critical hits
+- attack roll & AC & critical hits & offhand attack & iterative attacks
 - saving throws [Seb]; now take the best of two stats (Dex-Int; Con-Str; Wis-Cha)
 - hp, exp, dungeon level on-screen display
 - inventory & encumbrance

@@ -120,6 +120,26 @@ BETA RELEASES
 * armor spell failure chance implemented
 * cannot cast spells if key stat is equal or lower than 9
 
+0.0.9a - 28/08/2013
+* bugfixes
+* money
+* more room types
+* code cleanup
+* improved skill select screen
+* expanded item tooltips
+* magic item properties
+* humanoid templates coded in
+
+0.0.10 - 3/08/2013
+* new magic items: boots of elvenkind, cloak of elvenkind, bracers of armor
+* new monsters: giant eagle, shocker lizard, monitor lizard; wolf, raven, rat; monstrous centipede, monstrous scorpion, giant ant, fire beetle, stag beetle
+* improved food descriptions
+* rogue & wizard & ranger start with ammo now; ranger starts with offhand weapon
+* removed highscores since they don't work
+* working auto-ID on pickup
+* offhand attack and iterative attacks
+
+
 
 
 
