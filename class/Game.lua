@@ -1,5 +1,5 @@
--- Underdark
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,8 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Zireael
 
 require "engine.class"
 require "engine.GameTurnBased"
@@ -376,7 +374,7 @@ function _M:setupCommands()
 			local menu menu = require("engine.dialogs.GameMenu").new{
 				"resume",
 				"keybinds",
-				"highscores",
+--				"highscores",
 				"video",
 				"save",
 				"quit"
@@ -486,32 +484,11 @@ function _M:onQuit()
 	end
 end
 
---Highscores
---- Saves the highscore of the current char
-function _M:registerHighscore()
-	local player = self:getPlayer(true)
-	
-	local details = {
-		level = player.level,
-		name = player.name,
-		where = self.zone and self.zone.name or "???",
-		dlvl = self.level and self.level.level or 1
-	}
-		-- fallback score based on xp, this is a placeholder
-		details.score = math.floor(10 * (player.level + (player.exp / player:getExpChart(player.level)))) + math.floor(player.money / 100)
-	--end
 
-	if player.dead then
-		details.killedby = player.killedBy and player.killedBy.name or "???"
-		HighScores.registerScore(details)
-	else
-		HighScores.noteLivingScore(1, player.name, details)
-	end
-end
 
 --- Requests the game to save
 function _M:saveGame()
-	self:registerHighscore()
+--	self:registerHighscore()
 	-- savefile_pipe is created as a global by the engine
 	savefile_pipe:push(self.save_name, "game", self)
 	self.log("Saving game...")
