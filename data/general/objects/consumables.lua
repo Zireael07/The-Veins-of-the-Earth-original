@@ -59,6 +59,7 @@ newEntity{
     level_range = {1,10},
     cost = 7,
     nutrition = 20,
+    desc = [[Food rations, enough for a day or two.]],
 }
 
 newEntity{
@@ -67,6 +68,7 @@ newEntity{
     level_range = {1,10},
     cost = 15,
     nutrition = 15,
+    desc == [[Spider bread, a favorite of the dark elves.]],
 }
 
 newEntity{
@@ -75,6 +77,7 @@ newEntity{
     level_range = {1,10},
     cost = 10,
     nutrition = 15,
+    desc = [[Beef jerky. Spoils slowly.]],
 }
 --Remains fresh for 10 turns
 newEntity{
@@ -83,6 +86,7 @@ newEntity{
     level_range = {1,10},
     cost = 0,
     nutrition = 10,
+    desc = [[A fresh corpse of some creature.]],
 }
 
 newEntity{
@@ -91,6 +95,7 @@ newEntity{
     level_range = {1,10},
     cost = 0,
     nutrition = 6,
+    desc == [[A corpse of some creature.]],
 }
 
 --Drinks
@@ -101,6 +106,7 @@ newEntity{
     level_range = {1,10},
     cost = 7,
     quench = 20,
+    desc = [[A flask of water. Good to quench your thirst.]],
 }
 
 --Stale foodstuffs
@@ -110,6 +116,7 @@ newEntity{
     level_range = {1,10},
     cost = 7,
     nutrition = 0,
+    desc = [[Food rations gone stale.]],
 }
 
 newEntity{
@@ -119,6 +126,7 @@ newEntity{
     level_range = {1,10},
     cost = 7,
     quench = 0,
+    desc = [[You'd be better off not drinking this water.]],
 }
 
 newEntity{
@@ -127,4 +135,5 @@ newEntity{
     level_range = {1,10},
     cost = 0,
     nutrition = 0,
+    desc = [[This corpse looks pretty stale.]],
 }

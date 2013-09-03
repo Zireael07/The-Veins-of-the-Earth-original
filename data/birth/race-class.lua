@@ -365,12 +365,14 @@ newBirthDescriptor {
 		resolvers.equip {
 			full_id=true,
 			{ name="long sword" },
+			{ name="iron dagger" },
 			{ name="studded leather" },
 
 		},
 		resolvers.inventory {
 			full_id=true,
 			{ name="shortbow"},
+			{ name="arrows (20)" },
 		},
 
 	},
@@ -413,6 +415,7 @@ newBirthDescriptor {
 		resolvers.equip {
 			full_id=true,
 			{ name="light crossbow" },
+			{ name="bolts (10)" },
 			{ name="studded leather" },
 		},
 		resolvers.inventory {
@@ -472,6 +475,7 @@ newBirthDescriptor {
 		resolvers.inventory {
 			full_id=true,
 			{ name="light crossbow"},
+			{ name="bolts (10)"},
 		}
 
 	},
