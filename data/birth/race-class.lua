@@ -1,5 +1,5 @@
 
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -202,6 +202,61 @@ newBirthDescriptor {
 		actor.skill_point = (actor.skill_point or 0) + 4
 	end,
 } 
+
+newBirthDescriptor {
+	type = 'class',
+	name = 'Bard',
+	desc = 'Raging warriors of the wilds.\n\n HD d6, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.',
+	copy = {
+		resolvers.equip {
+			full_id=true,
+			{ name="rapier" },
+			{ name="chain shirt" },
+		},
+	},
+	copy_add = {
+		hd_size = 6,
+		skill_point = 18, --4x skill points at 1st level
+	},
+	talents = {
+		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_SHOW_SPELLBOOK]=1,
+	--	[ActorTalents.T_BARDIC_HEAL_LIGHT_WOUNDS]=1,
+		[ActorTalents.T_SUMMON_CREATURE_I]=1,
+		[ActorTalents.T_SLEEP]=1,
+		[ActorTalents.T_GREASE]=1,
+	},
+	descriptor_choices =
+	{
+		alignment =
+		{
+			['Lawful Good'] = "disallow",
+			['Lawful Neutral'] = "disallow",
+			['Lawful Evil'] = "disallow",
+		}
+	},
+	can_level = function(actor)
+		return true
+	end,
+	on_level = function(actor, level)
+		if level == 1 then 
+			actor.fortitude_save = (actor.fortitude_save or 0) + 2
+			actor.reflex_save = (actor.reflex_save or 0) + 2
+			actor.max_life = actor.max_life + 6
+			actor.skill_point = (actor.skill_point or 0) + 6
+		end
+
+		actor.combat_attack = (actor.combat_attack or 0) + 0.75
+		actor.fortitude_save = (actor.fortitude_save or 0) + 1
+		actor.reflex_save = (actor.reflex_save or 0) + 1
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 6
+		actor.skill_point = (actor.skill_point or 0) + 4
+	end,
+} 
+
 
 newBirthDescriptor {
 	type = 'class',
