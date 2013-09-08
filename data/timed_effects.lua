@@ -1,5 +1,5 @@
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Copyright (C) 2013 Zireael, Sebsebeleb
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,9 +13,7 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
+
 
 local Stats = require "engine.interface.ActorStats"
 
@@ -161,7 +159,7 @@ newEffect{
 	end,
 }
 
---Sassone secondary effect; black adder primary & secondary; deathblade primary
+--Sassone secondary effect; black adder primary & secondary; deathblade primary; demon fever
 newEffect{
 	name = "POISON_1d6CON",
 	desc = "Poison",
@@ -281,8 +279,9 @@ newEffect{
 	end,
 }
 
+--Poison moss primary; mindfire
 newEffect{
-	name = "POISON_MOSS_PRI",
+	name = "POISON_1d4INT",
 	desc = "Poison",
 	type = "mental",
 	status = "detrimental",
@@ -316,7 +315,7 @@ newEffect{
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 	end,
 }
---Lich dust secondary; large scorpion primary & secondary; purple worm primary
+--Lich dust secondary; large scorpion primary & secondary; purple worm primary; red ache
 newEffect{
 	name = "POISON_1d6STR",
 	desc = "Poison",
@@ -438,9 +437,9 @@ newEffect{
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 	end,
 }
---Primary & secondary the same
+--Primary & secondary medium spider; blinding sickness, devil chills
 newEffect{
-	name = "POISON_MEDIUM_SPIDER",
+	name = "POISON_1d4STR",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
@@ -458,6 +457,56 @@ newEffect{
 	status = "detrimental",
 	activate = function(self, eff)
 		local stat = { [Stats.STAT_STR]=-1}
+		self:effectTemporaryValue(eff, "inc_stats", stat)
+	end,
+}
+
+--Diseases, Zireael
+newEffect{
+	name = "DISEASE_CACKLE_FEVER",
+	desc = "Poison",
+	type = "mental",
+	status = "detrimental",
+	activate = function(self, eff)
+		local change = rng.dice(1,6)
+		local stat = { [Stats.STAT_WIS]=-change}
+		self:effectTemporaryValue(eff, "inc_stats", stat)
+	end,
+}
+
+newEffect{
+	name = "DISEASE_FILTH_FEVER",
+	desc = "Poison",
+	type = "physical",
+	status = "detrimental",
+	activate = function(self, eff)
+		local change1 = rng.dice(1,3)
+		local change2 = rng.dice(1,3)
+		local stat = { [Stats.STAT_DEX]=-change1, [Stats.STAT_CON]=-change2 }
+		self:effectTemporaryValue(eff, "inc_stats", stat)
+	end,
+}
+
+newEffect{
+	name = "DISEASE_SHAKES",
+	desc = "Poison",
+	type = "physical",
+	status = "detrimental",
+	activate = function(self, eff)
+		local change = rng.dice(1,8)
+		local stat = { [Stats.STAT_DEX]=-change}
+		self:effectTemporaryValue(eff, "inc_stats", stat)
+	end,
+}
+--Slimy doom
+newEffect{
+	name = "POISON_1d4CON",
+	desc = "Poison",
+	type = "mental",
+	status = "detrimental",
+	activate = function(self, eff)
+		local change = rng.dice(1,4)
+		local stat = { [Stats.STAT_CON]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 	end,
 }
