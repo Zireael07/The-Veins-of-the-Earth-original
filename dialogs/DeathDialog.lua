@@ -107,9 +107,11 @@ function _M:use(item)
 
 	if act == "exit" then
 		local save = Savefile.new(game.save_name)
-		save:delete()
+	--	save:delete()
 		save:close()
 		util.showMainMenu()
+	elseif act == "dump" then
+		game:registerDialog(require("mod.dialogs.CharacterSheet").new(self.actor))
 	elseif act == "cheat" then
 		game.logPlayer(self.actor, "#LIGHT_BLUE#You resurrect! CHEATER !")
 
@@ -122,8 +124,7 @@ end
 function _M:generateList()
 	local list = {}
 
-	if config.settings.cheat then list[#list+1] = {name="Resurrect by cheating", action="cheat"} end
-
+	list[#list+1] = {name="Resurrect by cheating", action="cheat"}
 	list[#list+1] = {name="Character dump", action="dump"}
 	list[#list+1] = {name="Exit to main menu", action="exit"}
 

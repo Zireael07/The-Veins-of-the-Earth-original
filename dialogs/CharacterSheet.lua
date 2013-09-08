@@ -121,11 +121,10 @@ function _M:drawDialog()
     w = self.w * 0.75 
     -- start on last column
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Feats", w, h, 255, 255, 255, true) h = h + self.font_h
-    --uh, a list of feats?
-    --limit it to true feats - for some reason, and is_feat == true doesn't work
     local list = {}
         for j, t in pairs(player.talents_def) do
-            if player:knowTalent(t.id) then
+            if player:knowTalent(t.id) and t.is_feat then
+
                 list[#list+1] = {
                     name = ("%s"):format(t.name),
                     desc = player:getTalentFullDescription(t):toString(),
