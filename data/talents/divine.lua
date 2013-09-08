@@ -16,7 +16,9 @@ newTalent{
 	if not self then return nil end
 	---local level = caster.bonus(self)	
 	--for i=1, level do
-	self:heal(rng.dice(1,8)) --+ caster.bonus)
+	d = rng.dice(1,8)
+	self:heal(d) --+ caster.bonus)
+	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	--end,
 	end,

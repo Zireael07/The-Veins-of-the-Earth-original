@@ -67,6 +67,9 @@ function _M:drawDialog()
     h = 0
     w = self.w * 0.25 
     -- start on second column
+    s:drawColorStringBlended(self.font, "You can use the buttons below to pick your #ORANGE#skills#LAST# or #ORANGE#feats#LAST#.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "You can also use the #ORANGE#class#LAST# button to choose the class you advance.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Note that you are not limited to advancing a single class.", w, h, 255, 255, 255, true) h = h + self.font_h
 
     self.c_desc:generate()
     self.changed = false
