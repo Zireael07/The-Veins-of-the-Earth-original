@@ -139,6 +139,13 @@ BETA RELEASES
 * working auto-ID on pickup
 * offhand attack and iterative attacks
 
+0.0.11 - 10/08/2013
+* new class: bard
+* level-up screen now contains tips
+* healing now prints out a message in the log
+* character sheet shows feats only
+* tooltips added to inventory screen
+
 
 
 
