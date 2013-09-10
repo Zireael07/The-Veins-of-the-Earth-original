@@ -211,7 +211,8 @@ function _M:tooltip()
 		#RED#HP: %d (%d%%)
 		#WHITE#STR %s DEX %s CON %s 
 		WIS %s INT %s CHA %s
-		#GOLD#CR %s]]):format(
+		#GOLD#CR %s
+		%s]]):format(
 		self:getDisplayString(),
 		self.name,
 		self.life, self.life * 100 / self.max_life,
@@ -367,7 +368,12 @@ function _M:preUseTalent(ab, silent)
 			if not silent then game.logPlayer(self, "Your Wisdom is too low!") end
 		return false
 		end
-			
+		
+		if self.classes and self.classes["Bard"] and self:getCha() <= 9 then 
+			if not silent then game.logPlayer(self, "Your Charisma is too low!") end
+		return false
+		end	
+
 		if  self:getCharges(ab) <= 0 then
 			if not silent then game.logPlayer(self, "You have to prepare this spell") end
 			return false 

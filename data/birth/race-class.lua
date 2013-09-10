@@ -206,7 +206,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
-	desc = 'Raging warriors of the wilds.\n\n HD d6, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.',
+	desc = 'Musicians and gentlefolk.\n\n HD d6, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -226,6 +226,9 @@ newBirthDescriptor {
 		[ActorTalents.T_SUMMON_CREATURE_I]=1,
 		[ActorTalents.T_SLEEP]=1,
 		[ActorTalents.T_GREASE]=1,
+	},
+	talents_types = {
+		["arcane/arcane"] = {true, 0.0},
 	},
 	descriptor_choices =
 	{
