@@ -250,10 +250,23 @@ function _M:display(nb_keyframe)
 	end
 	if self.player then self.player.changed = false end
 
+	engine.GameTurnBased.display(self, nb_keyframe)
+	
 	-- Tooltip is displayed over all else
 	self:targetDisplayTooltip()
+end
 
-	engine.GameTurnBased.display(self, nb_keyframe)
+function _M:onRegisterDialog(d)
+	-- Clean up tooltip
+	self.tooltip_x, self.tooltip_y = nil, nil
+	self.tooltip2_x, self.tooltip2_y = nil, nil
+--	if self.player then self.player:updateMainShader() end
+end
+function _M:onUnregisterDialog(d)
+	-- Clean up tooltip
+	self.tooltip_x, self.tooltip_y = nil, nil
+	self.tooltip2_x, self.tooltip2_y = nil, nil
+--	if self.player then self.player:updateMainShader() self.player.changed = true end
 end
 
 --- Setup the keybinds
