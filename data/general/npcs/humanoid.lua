@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -18,13 +18,23 @@
 local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
+	define_as = "BASE_NPC_HUMANOID",
+	type = "humanoid",
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ego = "/data/general/npcs/templates/humanoid.lua", egos_chance = { prefix=10, suffix=70},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_KOBOLD",
 	type = "humanoid", subtype = "kobold",
 	display = "k", color=colors.WHITE,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-        desc = [[Ugly and green!]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+    desc = [[Ugly and green!]],
 	stats = { str=9, dex=13, con=10, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
 	infravision = 3,
@@ -36,7 +46,7 @@ newEntity{
         }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
-	name = "kobold warrior", color=colors.GREEN,
+	name = "kobold", color=colors.GREEN,
 	level_range = {1, 4}, exp_worth = 75,
 	rarity = 6,
 	max_life = resolvers.rngavg(5,9),
@@ -46,37 +56,13 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 		full_id=true,
 		{ name = "short spear" },
 	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
-newEntity{ base = "BASE_NPC_KOBOLD",
-	name = "armoured kobold warrior", color=colors.AQUAMARINE,
-	level_range = {6, 10}, exp_worth = 100,
-	rarity = 20,
-	max_life = resolvers.rngavg(10,12),
-	hit_die = 6,
-	challenge = 1,
-	resolvers.equip{
-		full_id=true,
-		{ name = "short spear" },
-	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_ORC",
-	type = "humanoid",
+	type = "humanoid", subtype = "orc",
 	display = 'o', color=colors.GREEN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[An ugly orc.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=11, con=12, int=8, wis=7, cha=6, luc=10 },
 	combat = { dam= {1,4} },
 	infravision = 2,
@@ -97,20 +83,13 @@ newEntity{
 		{ name = "studded leather armor" },
 		{ name = "falchion" },
 	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
-newEntity{
-	define_as = "BASE_NPC_TIEFLING",
-	type = "humanoid",
+newEntity{ base = "BASE_NPC_HUMANOID",
+	define_as = "BASE_NPC_TIEFLING", 
+	type = "humanoid", subtype = "planetouched",
 	display = 'h', color=colors.RED,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[A horned tiefling.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=12, int=12, wis=9, cha=6, luc=14 },
 	combat = { dam= {1,6} },
 	darkvision = 3,
@@ -132,20 +111,13 @@ newEntity{
 		{ name = "studded leather armor" },
 		{ name = "rapier" },
 	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_GOBLIN",
-	type = "humanoid",
+	type = "humanoid", subtype = "goblin",
 	display = 'g', color=colors.GREEN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[A dirty goblin.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=6, luc=8 },
 	combat = { dam= {1,6} },
 	darkvision = 3,
@@ -169,20 +141,13 @@ newEntity{
 		{ name = "light wooden shield" },
 		{ name = "morningstar" },
 	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_DROW",
-	type = "humanoid",
+	type = "humanoid", subtype = "drow",
 	display = 'h', color=colors.BLACK,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[A dark silhouette.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	darkvision = 6,
@@ -207,20 +172,13 @@ newEntity{
 		{ name = "light metal shield" },
 		{ name = "rapier" },
 	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_HUMAN",
-	type = "humanoid",
+	type = "humanoid", subtype = "human",
 	display = 'h', color=colors.WHITE,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[A lost human.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=11, con=12, int=11, wis=9, cha=9, luc=10 },
 	combat = { dam= {1,6} },
 	lite = 3,
@@ -239,9 +197,5 @@ newEntity{
 		{ name = "chainmail" },
 		{ name = "light metal shield" },
 		{ name = "longsword" },
-	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
 	},
 }

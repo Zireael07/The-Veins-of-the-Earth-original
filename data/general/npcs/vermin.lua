@@ -1,20 +1,11 @@
 --Veins of the Earth
 --Zireael
-
 newEntity{
-	define_as = "BASE_NPC_SPIDER",
+	define_as = "BASE_NPC_VERMIN",
 	type = "vermin",
-	display = 's', color=colors.BROWN,
 	body = { INVEN = 10 },
-	desc = [[A small spider.]],
-
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	stats = { str=3, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {1,3} },
 	infravision = 4,
-	skill_climb = 8,
-	skill_hide = 4,
-	skill_spot = 4,
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -22,8 +13,19 @@ newEntity{
 	},
 }
 
-newEntity{
-	base = "BASE_NPC_SPIDER",
+
+newEntity{ base = "BASE_NPC_VERMIN",
+	define_as = "BASE_NPC_SPIDER",
+	display = 's', color=colors.BROWN,
+	desc = [[A small spider.]],
+	stats = { str=3, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
+	combat = { dam= {1,3} },
+	skill_climb = 8,
+	skill_hide = 4,
+	skill_spot = 4,
+}
+
+newEntity{ base = "BASE_NPC_SPIDER",
 	name = "tiny spider", color=colors.BROWN,
 	level_range = {1, 4}, exp_worth = 75,
 	rarity = 1,
@@ -32,8 +34,7 @@ newEntity{
 	challenge = 1/4,
 }
 
-newEntity{
-	base = "BASE_NPC_SPIDER",
+newEntity{ base = "BASE_NPC_SPIDER",
 	name = "small spider", color=colors.BROWN,
 	level_range = {1, 4}, exp_worth = 100,
 	rarity = 3,
@@ -44,8 +45,7 @@ newEntity{
 	combat = { dam= {1,4} }
 }
 
-newEntity{
-	base = "BASE_NPC_SPIDER",
+newEntity{ base = "BASE_NPC_SPIDER",
 	name = "medium spider", color=colors.BROWN,
 	level_range = {1, 4}, exp_worth = 150,
 	rarity = 5,
@@ -56,8 +56,7 @@ newEntity{
 	combat = { dam= {1,6} }
 }
 
-newEntity{
-	base = "BASE_NPC_SPIDER",
+newEntity{ base = "BASE_NPC_SPIDER",
 	name = "large spider", color=colors.BROWN,
 	level_range = {5, 20}, exp_worth = 3000,
 	rarity = 9,
@@ -80,24 +79,14 @@ newEntity{
 	combat = { dam= {2,6} },
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_ANT",
-	type = "vermin",
 	display = 'a', color=colors.BROWN,
-	body = { INVEN = 10 },
 	desc = [[A giant ant.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=10, con=10, int=1, wis=11, cha=9, luc=10 },
 	combat = { dam= {1,6} },
-	infravision = 4,
 	skill_climb = 8,
 	combat_def = 17,
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -135,24 +124,14 @@ newEntity{
 	combat = { dam= {2,6} },
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_CENTIPEDE",
-	type = "vermin",
 	display = 'c', color=colors.BROWN,
-	body = { INVEN = 10 },
 	desc = [[A giant centipede.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=1, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,3} },
-	infravision = 4,
 	skill_climb = 10,
 	skill_spot = 4,
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -241,23 +220,13 @@ newEntity{
 	combat = { dam= {2,6} },
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_SCORPION",
-	type = "vermin",
 	display = 's', color=colors.BROWN,
-	body = { INVEN = 10 },
 	desc = [[A giant scorpion.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=3, dex=10, con=14, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,2} },
-	infravision = 4,
 	skill_spot = 4,
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -325,22 +294,12 @@ newEntity{
 	combat = { dam= {1,8} },
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_FBEETLE",
-	type = "vermin",
 	display = 'b', color=colors.FIRE_RED,
-	body = { INVEN = 10 },
 	desc = [[A giant fire beetle.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=10, con=11, int=1, wis=10, cha=7, luc=12 },
 	combat = { dam= {2,4} },
-	infravision = 4,
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -354,22 +313,12 @@ newEntity{
 	combat_def = 15,
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_SBEETLE",
-	type = "vermin",
 	display = 'b', color=colors.DARK_GREEN,
-	body = { INVEN = 10 },
 	desc = [[A giant stag beetle.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=23, dex=10, con=17, int=1, wis=10, cha=9, luc=12 },
 	combat = { dam= {4,6} },
-	infravision = 4,
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{

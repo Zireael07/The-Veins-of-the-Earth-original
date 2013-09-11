@@ -75,3 +75,25 @@ newEntity {
 	[DamageType.ELECTRIC] = 10,
 	 }
 }
+
+newEntity{
+	name = " zombie", suffix = true, instant_resolve=true,
+	display = 'Z', color=colors.WHITE,
+	keywords = {undead=true},
+	level_range = {5, nil},
+	rarity = 5,
+	infravision = 3,
+	challenge = 1,
+	combat = { dam= {1,6} },
+}
+
+newEntity{
+	name = " skeleton", suffix = true, instant_resolve=true,
+	display = 's', color=colors.WHITE,
+	keywords = {undead=true},
+	level_range = {5, nil},
+	rarity = 5,
+	infravision = 3,
+	challenge = 1,
+	combat = { dam= {1,6} },
+}
