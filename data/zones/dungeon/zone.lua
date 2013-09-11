@@ -47,7 +47,7 @@ return {
 		},
 		object = {
             class = "engine.generator.object.Random",
-            nb_object = {10, 20},
+            nb_object = {20, 30},
         },
 	},
 	levels =
