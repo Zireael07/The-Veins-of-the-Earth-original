@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@ newEntity{
     define_as = "BASE_AMULET",
     slot = "AMULET",
     type = "amulet", subtype = "amulet",
-    display = "0", color=colors.RED,
+    display = "♂", color=colors.RED,
     encumber = 0,
     rarity = 5,
     name = "an amulet",
@@ -95,7 +95,7 @@ newEntity{
     define_as = "BASE_RING",
     slot = "RING",
     type = "ring", subtype = "ring",
-    display = "=", color=colors.RED,
+    display = "σ", color=colors.RED,
     encumber = 0,
     rarity = 5,
     name = "a ring",
@@ -167,7 +167,7 @@ newEntity{
     define_as = "BASE_BRACERS",
     slot = "GLOVES",
     type = "bracer", subtype = "bracer",
-    display = "0", color=colors.RED,
+    display = "Ξ", color=colors.RED,
     encumber = 1,
     rarity = 8,
     name = "bracers",
@@ -239,7 +239,7 @@ newEntity{
     define_as = "BASE_CLOAK",
     slot = "CLOAK",
     type = "cloak", subtype = "cloak",
-    display = "0", color=colors.RED,
+    display = "♠", color=colors.RED,
     encumber = 0,
     rarity = 5,
     name = "a cloak",
@@ -250,6 +250,7 @@ newEntity{
     base = "BASE_CLOAK",
     name = "cloak of elvenkind",
     unided_name = "a cloak",
+    display = "♠", color=colors.GREEN,
     identified = false,
     level_range = {1,10},
     cost = 2500,
@@ -263,7 +264,7 @@ newEntity{
     define_as = "BASE_BOOTS",
     slot = "BOOTS",
     type = "boots", subtype = "boots",
-    display = "0", color=colors.RED,
+    display = "ω", color=colors.RED,
     encumber = 1,
     rarity = 5,
     name = "boots",
@@ -300,7 +301,7 @@ newEntity{
     define_as = "BASE_BELT",
     slot = "BELT",
     type = "belt", subtype = "belt",
-    display = "0", color=colors.RED,
+    display = "=", color=colors.RED,
     encumber = 1,
     rarity = 5,
     name = "a belt",

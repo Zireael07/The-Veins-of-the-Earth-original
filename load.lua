@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 -- This file loads the game module, and loads data
 local ActorInventory = require "engine.interface.ActorInventory"
-local KeyBind = require "engine.KeyBind"
+local Keybind = require "engine.KeyBind"
 local Faction = require "engine.Faction"
 local DamageType = require "engine.DamageType"
 local ActorStats = require "engine.interface.ActorStats"
@@ -30,13 +30,20 @@ local Store = require "mod.class.Store"
 local WorldAchievements = require "mod.class.interface.WorldAchievements"
 local Birther = require "engine.Birther"
 
+
+local UIBase = require "engine.ui.Base"
+
+local size = 12
+UIBase.font = core.display.newFont("/data/font/DroidSansFallBack.ttf", size)
+
+
 dofile('/mod/resolvers.lua')
 
 -- Achievements
 WorldAchievements:loadDefinition("/data/achievements/")
 
 -- Useful keybinds
-KeyBind:load("move,hotkeys,inventory,actions,interface,debug,veins")
+Keybind:load("move,hotkeys,inventory,actions,interface,debug,veins")
 
 -- Damage types
 DamageType:loadDefinition("/data/damage_types.lua")

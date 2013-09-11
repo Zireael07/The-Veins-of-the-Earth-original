@@ -3,6 +3,7 @@ local Dialog = require "engine.ui.Dialog"
 local Textzone = require "engine.ui.Textzone"
 local TextzoneList = require "engine.ui.TextzoneList"
 local Separator = require "engine.ui.Separator"
+local Button = require "engine.ui.Button"
 
 
 module(..., package.seeall, class.inherit(Dialog))
@@ -49,9 +50,11 @@ function _M:init()
 ]]
         
     self.c_desc = Textzone.new{width=self.iw, height=self.ih, scrollbar=true, text = self.text}
-    --self.c_desc = TextzoneList.new{width=math.floor(self.iw / 2 - 10), scrollbar=true, height=self.ih, text = self.text}
+    self.c_legend = Button.new{text="Legend", fct=function() self:onLegend() end}
+    
 
     self:loadUI{
+        {left=0, bottom=0, ui=self.c_legend},
         {left=0, top=0, ui=self.c_desc},
     }
     self:setupUI(false, true)
@@ -60,4 +63,9 @@ function _M:init()
     self.key:addBinds{
         EXIT = function() game:unregisterDialog(self) end,
     }
+end
+
+function _M:onLegend()
+game:unregisterDialog(self)
+game:registerDialog(require("mod.dialogs.Legend").new(game.player))
 end
