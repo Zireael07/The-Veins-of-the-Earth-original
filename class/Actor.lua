@@ -326,8 +326,10 @@ function _M:attack(target)
 	self:bumpInto(target)
 end
 
-function _M:adjGold(delta)
-	self.gold = math.max(0, self.gold + delta)
+function _M:incMoney(v)
+	if self.summoner then self = self.summoner end
+	self.money = self.money + v
+	if self.money < 0 then self.money = 0 end
 	self.changed = true
 end
 
