@@ -1,9 +1,15 @@
 local Talents = require "engine.interface.ActorTalents"
 
+newEntity{
+    define_as = "BASE_ARMOR",
+    slot = "BODY",
+    type = "armor",
+    ego = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
+}
+
 --Armors
 newEntity{
     define_as = "BASE_LIGHT_ARMOR",
-    slot = "BODY",
     type = "armor", subtype="light",
     display = "(", color=colors.SLATE,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
@@ -11,14 +17,26 @@ newEntity{
     rarity = 5,
     name = "light armor",
     desc = [[A simple padded armor. Doesn't offer much protection. Light armor. AC +1. Max Dex bonus to AC 8. Spell failure chance 5%.]],
-    ego = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
+    
     }
+
+newEntity{ base = "BASE_LIGHT_ARMOR",
+    name = "cord armor",
+    level_range = {1, 10},
+    cost = 5,
+    desc = [[Simple cord twined around your body. Offers little protection. Light armor. AC +1. Max Dex bonus to AC 7. Spell failure chance 5%.]],
+    wielder = {
+        combat_def = 1,
+        max_dex_bonus = 7,
+        spell_fail = 5
+    },
+}
+
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "padded armor",
     level_range = {1, 10},
     cost = 5,
-    require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     wielder = {
 		combat_def = 1,
 		max_dex_bonus = 8,
@@ -31,8 +49,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     unided_name = "padded armor",
     identified = false,
     level_range = {1, 10},
-    cost = 5,
-    require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
+    cost = 1005,
     wielder = {
         combat_def = 2,
         max_dex_bonus = 8,
@@ -45,7 +62,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     unided_name = "padded armor",
     identified = false,
     level_range = {1, 10},
-    cost = 5,
+    cost = 8005,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     wielder = {
         combat_def = 3,
@@ -59,7 +76,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     unided_name = "padded armor",
     identified = false,
     level_range = {1, 10},
-    cost = 5,
+    cost = 16005,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     wielder = {
         combat_def = 4,
@@ -73,8 +90,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     unided_name = "padded armor",
     identified = false,
     level_range = {1, 10},
-    cost = 5,
-    require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
+    cost = 32005,
     wielder = {
         combat_def = 5,
         max_dex_bonus = 8,
@@ -88,7 +104,6 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     identified = false,
     level_range = {1, 10},
     cost = 5,
-    require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     wielder = {
         combat_def = 6,
         max_dex_bonus = 8,
