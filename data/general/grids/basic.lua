@@ -77,7 +77,7 @@ newEntity{
 newEntity{
 	define_as = "MOSS",
 	type = "floor", subtype = "vegetation",
-	name = "luminicent moss", image = "terrain/marble_floor.png",
+	name = "luminescent moss",
 	display = '¤', color_r=52, color_g=222, color_b=137, back_color=colors.GREY,
 	-- Lite up around them in a 1 radius
 --					local grids = core.fov.circle_grids(i, j, 2, true)
@@ -93,11 +93,13 @@ newEntity{
 	name = "water", image = "terrain/marble_floor.png",
 	display = '~', color=colors.BLUE, back_color=colors.LIGHT_BLUE,
 	always_remember = true,
+	mindam = 1,
+	maxdam = 4,
 	on_stand = function(self, x, y, who)
 		local save = who:skillCheck("swim", 10)
 		if not save then
 			local DT = engine.DamageType
-			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.range(10, 30))
+			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.dice(self.mindam, self.maxdam))
 		 	if dam > 0 then game.logPlayer(who, "You start drowning!") end
 		end
 	end,
@@ -106,14 +108,16 @@ newEntity{
 newEntity{
 	define_as = "DEEP_WATER",
 	type = "floor", subtype = "water",
-	name = "deep water", image = "terrain/marble_floor.png",
+	name = "deep water", 
 	display = '~', color=colors.BLUE, back_color=colors.DARK_BLUE,
 	always_remember = true,
+	mindam = 2,
+	maxdam = 6,
 	on_stand = function(self, x, y, who)
-		local save = who:skillCheck(swim, 10)
+		local save = who:skillCheck("swim", 15)
 		if not save then
 			local DT = engine.DamageType
-			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.range(10, 30))
+			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.dice(self.mindam, self.maxdam))
 		 	if dam > 0 then game.logPlayer(who, "You start drowning!") end end
 	end
 }
@@ -122,7 +126,7 @@ newEntity{
 newEntity{
 	define_as = "LAVA",
 	type = "floor", subtype = "lava",
-	name = "lava", image = "terrain/marble_floor.png",
+	name = "lava",
 	display = '~', color=colors.RED, back_color=DARK_GREY,
 	always_remember = true,
 	mindam = 2,
@@ -137,9 +141,45 @@ newEntity{
 newEntity{
 	define_as = "CHASM",
 	type = "floor", subtype = "chasm",
-	name = "floor", image = "terrain/marble_floor.png",
+	name = "floor", 
 	display = '~', color_r=43, color_g=43, color_b=43, back_color=DARK_GREY,
 --	on_stand = function(self, x, y, who)
 	change_level = 2,
 
+}
+
+newEntity{
+	define_as = "WEB",
+	type = "floor", subtype = "web",
+	name = "webbing", 
+	display = '#', color=colors.DARK_GREY, back_color=colors.GREY,
+	always_remember = true,
+}
+
+newEntity{
+	define_as = "ICE",
+	type = "floor", subtype = "ice",
+	name = "ice floor", 
+	display = ' ', color=colors.STEEL_BLUE, back_color=colors.TEAL,
+	always_remember = true,
+	on_stand = function(self, x, y, who)
+		local save = who:skillCheck("balance", 15)
+		if not save then end --falls over 
+	end
+}
+
+newEntity{
+	define_as = "FUNGI",
+	type = "floor", subtype = "fungi",
+	name = "underground fungi", 
+	display = '#', color=colors.CHOCOLATE, back_color=colors.DARK_GREY,
+	always_remember = true,
+}
+
+newEntity{
+	define_as = "SAND",
+	type = "floor", subtype = "sand",
+	name = "sand", 
+	display = ' ', color=colors.YELLOW, back_color=colors.GREY,
+	always_remember = true,
 }
