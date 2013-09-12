@@ -53,8 +53,9 @@ function _M:init(t, no_default)
 	--Some more combat stuff
 	self.more_attacks = 0
 
-	--Challenge Rating set to 0
+	--Challenge Rating & ECL set to 0 & 1
 	self.challenge = 0
+	self.ecl = 1
 
 	--Skill ranks
 	self.max_skill_ranks = 4
@@ -115,7 +116,9 @@ function _M:init(t, no_default)
 	self.max_charges = {}
 	self.allocated_charges = {}
 
+	--Light-related
 	self.lite = 0 --Temporary test
+	self.infravision = 0
 
 	self.life = t.max_life or self.life
 

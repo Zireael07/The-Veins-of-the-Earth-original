@@ -55,6 +55,7 @@ function _M:init(t, no_default)
   engine.interface.PlayerHotkeys.init(self, t)
 
   self.lite = 0 --stealth test
+  self.ecl = 1
 
   self.descriptor = {}
   self.classes = self.classes or {}
@@ -73,6 +74,8 @@ end
 
 function _M:getExpChart(level)
   if not level or level < 1 then return 0 end
+  local ecl = self:attr("ecl")
+  if self:attr("ecl") > 1 then return exp_chart(level) + 500*ecl*(ecl+1)/2 end
   return exp_chart(level)
 end
 
@@ -292,11 +295,10 @@ function _M:onRestStop()
   --Calendar
   game.log(game.calendar:getTimeDate(game.turn))
 
- -- on_very_end = function()
-  --Spawn monsters
- -- local Random = require "engine.generator.actor.Random"
---  Random.generate()
---  end,
+  on_very_end = function()
+ -- Spawn monsters
+  local Random = require "engine.generator.actor.Random"
+  Random:generate() end
 end
 
 --- Can we continue running?
