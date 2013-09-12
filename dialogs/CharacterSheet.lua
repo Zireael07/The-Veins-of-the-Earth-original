@@ -6,7 +6,7 @@ local SurfaceZone = require "engine.ui.SurfaceZone"
 local Stats = require "engine.interface.ActorStats"
 local Textzone = require "engine.ui.Textzone"
 
-module(..., package.seeall, class.inherit(Dialog))
+module(..., package.seeall, class.inherit(Dialog, mod.class.interface.TooltipsData))
 
 function _M:init(actor)
     self.actor = actor
@@ -38,6 +38,15 @@ function _M:drawDialog()
 
     h = 0
     w = 0
+
+    local Strbonus = math.floor((player:getStr()-10)/2)
+    local Dexbonus = math.floor((player:getDex()-10)/2)
+    local Conbonus = math.floor((player:getCon()-10)/2)
+    local Intbonus = math.floor((player:getInt()-10)/2)
+    local Wisbonus = math.floor((player:getWis()-10)/2)
+    local Chabonus = math.floor((player:getCha()-10)/2)
+    local Lucbonus = math.floor((player:getLuc()-10)/2)
+
     s:drawColorStringBlended(self.font, "#SLATE#Name : "..(player.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "#SLATE#Class : "..(player.descriptor.class or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "#SLATE#Race : "..(player.descriptor.race or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
@@ -59,9 +68,9 @@ function _M:drawDialog()
     s:drawColorStringBlended(self.font, "Max Hit Points : #LIGHT_RED#"..(player.max_life or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    s:drawColorStringBlended(self.font, "Fortitude bonus: #SANDY_BROWN#"..(player.fortitude_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Reflex bonus : #SANDY_BROWN#"..(player.reflex_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Will bonus : #SANDY_BROWN#"..(player.will_save or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Fortitude save: #SANDY_BROWN#"..(player.fortitude_save.."#LAST# + stat bonus: #SANDY_BROWN#"..math.max(Strbonus, Conbonus) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Reflex bonus : #SANDY_BROWN#"..(player.reflex_save.."#LAST# + stat bonus: #SANDY_BROWN#"..math.max(Dexbonus, Intbonus) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Will bonus : #SANDY_BROWN#"..(player.will_save.."#LAST# + stat bonus: #SANDY_BROWN#"..math.max(Wisbonus, Chabonus) or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
@@ -71,13 +80,13 @@ function _M:drawDialog()
     w = self.w * 0.25 
     -- start on second column
         
-    s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(player:getStr().." #SANDY_BROWN#"..(math.floor((player:getStr()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(player:getDex().." #SANDY_BROWN#"..(math.floor((player:getDex()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "#SLATE#CON : #YELLOW#"..(player:getCon().." #SANDY_BROWN#"..(math.floor((player:getCon()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(player:getInt().." #SANDY_BROWN#"..(math.floor((player:getInt()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(player:getWis().." #SANDY_BROWN#"..(math.floor((player:getWis()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(player:getCha().." #SANDY_BROWN#"..(math.floor((player:getCha()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(player:getLuc().." #SANDY_BROWN#"..(math.floor((player:getLuc()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(player:getStr().." #SANDY_BROWN#"..Strbonus), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(player:getDex().." #SANDY_BROWN#"..Dexbonus), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#CON : #YELLOW#"..(player:getCon().." #SANDY_BROWN#"..Conbonus), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(player:getInt().." #SANDY_BROWN#"..Intbonus), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(player:getWis().." #SANDY_BROWN#"..Wisbonus), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(player:getCha().." #SANDY_BROWN#"..Chabonus), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(player:getLuc().." #SANDY_BROWN#"..Lucbonus), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     h = h + self.font_h -- Adds an empty row
