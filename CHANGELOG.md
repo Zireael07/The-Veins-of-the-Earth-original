@@ -130,7 +130,7 @@ BETA RELEASES
 * magic item properties
 * humanoid templates coded in
 
-0.0.10 - 3/08/2013
+0.0.10 - 3/09/2013
 * new magic items: boots of elvenkind, cloak of elvenkind, bracers of armor
 * new monsters: giant eagle, shocker lizard, monitor lizard; wolf, raven, rat; monstrous centipede, monstrous scorpion, giant ant, fire beetle, stag beetle
 * improved food descriptions
@@ -139,14 +139,21 @@ BETA RELEASES
 * working auto-ID on pickup
 * offhand attack and iterative attacks
 
-0.0.11 - 10/08/2013
+0.0.11 - 10/09/2013
 * new class: bard
 * level-up screen now contains tips
 * healing now prints out a message in the log
 * character sheet shows feats only
 * tooltips added to inventory screen
 
-
+0.0.12 - 12/09/2013
+* fix for money bug
+* code cleanup; undead moved to templates
+* increased the number of items and monsters spawned
+* new item: cord armor
+* expanded saves listing in character screen
+* working ECL
+* [standalone version only] brand-new start-up screen and menu
 
 
 

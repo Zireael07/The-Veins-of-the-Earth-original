@@ -12,9 +12,11 @@ Contributors:
 - Zireael
 
 Features:
+- brand-new start-up screen and menu [standalone version only]
 - 9 classes: barbarian, bard, cleric, druid, fighter, ranger, rogue, wizard, warlock
 - 2 prestige classes: shadowdancer, assasin
 - 10 races: human, half-elf, elf, dwarf, half-orc; drow, duergar, deep gnomes
+- Effective Character Level
 - multiclassing & prestige classes
 - colored character sheet which displays feats properly
 - randomized unarmed and weapon damage; archery and weapon finesse
@@ -33,9 +35,10 @@ Features:
 - ranged weapons as starting equipment; deep-dwelling races no longer get a torch
 - most melee & skill enhancing feats from SRD
 - working Intuition skill and item identification
-- colored in-game help screen; colored tooltips; colored log messages
+- colored in-game help screen; legend screen
 - stairs have a chance of not changing the dungeon level [Seb]
 - calendar
+- colored tooltips; colored log messages
 - item tooltips both on ground and in inventory
 - terrain effects
 - speed bonuses
