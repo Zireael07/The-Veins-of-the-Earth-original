@@ -43,7 +43,7 @@ dofile('/mod/resolvers.lua')
 WorldAchievements:loadDefinition("/data/achievements/")
 
 -- Useful keybinds
-Keybind:load("move,hotkeys,inventory,actions,interface,debug,veins")
+Keybind:load("veins")
 
 -- Damage types
 DamageType:loadDefinition("/data/damage_types.lua")
