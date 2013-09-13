@@ -9,44 +9,23 @@ local Button = require "engine.ui.Button"
 module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init()
-    Dialog.init(self, "Help", game.w * 0.8, game.h * 0.8)
+    Dialog.init(self, "Controls", game.w * 0.6, game.h * 0.6)
     
-    self.text=[[
-    #GOLD#HP#LIGHT_SLATE#, or hitpoints, are your life meter. When it falls to #LIGHT_RED#0 #LAST#or lower, you're dead.
-    #GOLD#AC#LAST# means #ORANGE#Armor Class#LAST#. The base number is #GOLD#10#LAST#. It can be increased by various means, such as Dexterity bonus, armor, shield or magic.
-    #GOLD#BAB#LAST# is short for #ORANGE#Base Attack Bonus#LAST#. This number is added to a #GOLD#d20 roll#LAST# and your Strength bonus when you make an attack.
-    #GOLD#HD#LAST# means #ORANGE#Hit Die#LAST#. It is the die that is rolled to determine the number of your hitpoints per level.
-    In the #SANDY_BROWN#Veins of the Earth#LAST#, player characters get full hit points from a die. Monster hitpoints are still rolled, however.
+    self.text=[[    
+    CONTROLS
+    Use arrow keys or mouse to move. Press shift + direction to run. The mouse wheel scrolls the log.
+    Click on a spell or skill in the hotbar to use it. Alternately, you can use the hotkeys (displayed on the bar). Use the mouse to target skills or ranged attacks.
+    Attack by bumping the enemies.
+    Press #YELLOW#ESC#LAST# to access the game menu.
+    Press #YELLOW#'c'#LAST# to display character sheet.
+    Press #YELLOW#'p'#LAST# to display level-up screen.
+    Press #YELLOW#'i'#LAST# to display inventory screen.
+    Press #YELLOW#'g'#LAST# to pick up items.
+    Press #YELLOW#'d'#LAST# to drop items.
 
-    In combat, the opponent's AC is compared to the attacker's roll and all the modifiers (BAB and Strength bonus).
-    When making a saving throw, a #GOLD#d20 #LAST#is rolled, the bonus is added and the result is compared with the spell or trap's #GOLD#Difficulty Class#LAST#.
-    In the #SANDY_BROWN#Veins of the Earth#LAST#, saving throws use the best one of two stats.
-    #LAST#There are three types of saving throws, each one representing avoiding a different danger.
-    #GOLD#Reflex #LAST#represents avoiding dangers by moving. For example, it protects you from a grease spell. It uses either Dexterity or Intelligence bonus.
-    #GOLD#Fortitude #LAST#is all about resistance. For example, it allows you resist poison or sickness. It uses either  Constitution or Strength bonus.
-    #GOLD#Will #LAST#saving throw is about your willpower. It helps you resist charm spells or a vampire's gaze, among others. It uses either Wisdom or Charisma bonus.
+    Press #YELLOW#'h'#LAST# to display this screen again.
+    Press #YELLOW#'b'#LAST# to diplay your spellbook, if you have it.
 
-    When using a skill, a #GOLD#d20 roll#LAST# is made and the stat modifier is added along with your ranks.
-    The max number of ranks you can have in a skill is limited to #GOLD#4 + 1 per level#LAST#.
-
-    You choose gender, class, race and alignment for your character at game start.
-    Gender does not affect anything. Alignment only affects clerical domains.
-    Class and race both affect your character's stats, including his or her abilities, feats and skills.
-    Abilities and special abilities are displayed in the character sheet (press #YELLOW#c#LAST# to access it).
-
-    Upon creating a character, the level up menu automatically opens. Here, you can choose your feats and skills using the buttons.
-    The character sheet and level up menu both display your ranks with the stat modifier counted in.
-    You gain a feat point every three character levels.
-
-    The character's abilities are #GOLD#STR, DEX, CON, INT, WIS, CHA#LAST# and #GOLD#LUC#LAST#.
-    #GOLD#STR#LAST# is short for #ORANGE#Strength#LAST#. It affects the damage your character deals in combat, as well as his melee attacks.
-    #GOLD#DEX#LAST# is short for #ORANGE#Dexterity#LAST#. It represents how well your character can dodge blows in combat, as well as his ranged attacks.
-    #GOLD#CON#LAST# is short for #ORANGE#Constitution#LAST#. It affects your character's hitpoints.
-    #GOLD#INT#LAST# is short for #ORANGE#Intelligence#LAST#. If you are a mage, it determines how hard it is to withstand your spells.
-    #GOLD#WIS#LAST# is short for #ORANGE#Wisdom#LAST#. It affects your character's willpower and clerical powers.
-    #GOLD#CHA#LAST# is short for #ORANGE#Charisma#LAST#. It affects your character's interactions with others.
-    #GOLD#LUC#LAST# is short for #ORANGE#Luck#LAST#. It has no effects presently.
-    In the future, it will influence most statistics, as well as loot drops and enemies appearing.
 ]]
         
     self.c_desc = Textzone.new{width=self.iw, height=self.ih, scrollbar=true, text = self.text}
