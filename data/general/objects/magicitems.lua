@@ -14,6 +14,9 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+local Stats = require "engine.interface.ActorStats"
+local Talents = require "engine.interface.ActorTalents"
+
 --Amulets
 newEntity{
     define_as = "BASE_AMULET",
@@ -296,6 +299,21 @@ newEntity{
   }, 
 }
 
+newEntity{
+    base = "BASE_BOOTS",
+    name = "boots of dodging",
+    unided_name = "boots",
+    identified = false,
+    level_range = {1,10},
+    cost = 5500,
+    wielder = {
+    learn_talent = { 
+    [Talents.T_DODGE] = 1,
+    [Talents.T_MOBILITY] = 1,
+    },
+  }, 
+}
+
 --Belts
 newEntity{
     define_as = "BASE_BELT",
@@ -316,7 +334,7 @@ newEntity{
     level_range = {1,10},
     cost = 16000,
     wielder = {
---    str=4
+    inc_stats = { [Stats.STAT_STR] = 4, },
   }, 
 }
 
@@ -328,7 +346,7 @@ newEntity{
     level_range = {1,10},
     cost = 36000,
     wielder = {
---    str=6
+    inc_stats = { [Stats.STAT_STR] = 6, },
   }, 
 }
 
