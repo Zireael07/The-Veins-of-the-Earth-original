@@ -155,6 +155,12 @@ BETA RELEASES
 * working ECL
 * [standalone version only] brand-new start-up screen and menu
 
+0.0.13 - 16/09/2013
+* tooltips for character sheet, containing the info that used to be in the Help screen
+* Help screen now shows controls 
+* luminescent moss is luminescent again; typo fix; some tweaks to level generation
+* new magic items: belts of Strength, boots of dodging
+* random name generator, taking into account your class and race
 
 
 

@@ -16,6 +16,7 @@ Features:
 - 9 classes: barbarian, bard, cleric, druid, fighter, ranger, rogue, wizard, warlock
 - 2 prestige classes: shadowdancer, assasin
 - 10 races: human, half-elf, elf, dwarf, half-orc; drow, duergar, deep gnomes
+- random name generator taking into account your character's race and sex
 - Effective Character Level
 - multiclassing & prestige classes
 - colored character sheet which displays feats properly
