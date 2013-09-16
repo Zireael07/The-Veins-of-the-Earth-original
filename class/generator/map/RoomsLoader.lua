@@ -287,7 +287,7 @@ function _M:tunnel(x1, y1, x2, y2, id, virtual)
 	if x1 == x2 and y1 == y2 then return end
 
 	-- Disable the many prints of tunnelling
-	--local print = function()end
+	local print = function()end
 
 	local xdir, ydir = self:tunnelDir(x1, y1, x2, y2)
 	print("tunneling from",x1, y1, "to", x2, y2, "initial dir", xdir, ydir)
@@ -315,11 +315,15 @@ function _M:tunnel(x1, y1, x2, y2, id, virtual)
 		end
 		print(feat, "try pos", nx, ny, "dir", util.coordToDir(xdir, ydir, nx, ny))
 
-		--Don't tunnel around map edges (Zireael)
-		if (x1 == self.map.w - 1 and y1 == 0) or (x2 == self.map.w - 1 and y2 == 0) then
+		--Don't tunnel along map edges (Zireael)
+		if (x1 == self.map.w -1 and y1 == 0) or (x2 == self.map.w -1 and y2 == 0) then
 			print(feat, "refuse map edge")
 		elseif (x1 == 0 and y1 == self.map.h - 1) or (x2 == 0 and y2 == self.map.h -1) then
 			print(feat, "refuse map edge") 
+		elseif (x1 == 0 and y1 == 0) or (x2 == 0 and y2 == 0) then
+			print(feat, "refuse map edge")
+		elseif (x1 == self.map.w-1 and y1 == self.map.h -1) or (x2 == self.map.w -1 and y2 == self.map.h -1) then
+			print(feat, "refuse map edge")
 
 		elseif self.map.room_map[nx][ny].special then
 			print(feat, "refuse special")
