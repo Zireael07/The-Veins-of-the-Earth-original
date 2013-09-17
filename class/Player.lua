@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -71,9 +71,10 @@ function _M:init(t, no_default)
 end
 
 function _M:onBirth()
+  self:randomName()
   self:levelClass(self.descriptor.class)
   self:resetToFull()
-  self:randomName()
+  game:registerDialog(require"mod.dialogs.Help".new(self.player))
 end
 
 function _M:randomName()
@@ -182,7 +183,6 @@ local random_name = {
   }
 } 
 
---if self.descriptor.race then
     if self.descriptor.race == "Human" then
       if self.descriptor.sex == "Female" then 
       local ng = NameGenerator.new(random_name.human_female) 
@@ -255,8 +255,6 @@ local random_name = {
       self:setName(ng:generate())
       print("GENERATING A RANDOM NAME") end
     end
---end
-
 end
 
 
