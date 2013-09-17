@@ -15,7 +15,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_EAGLE",
-	display = 'e', color=colors.YELLOW,
+	display = 'b', color=colors.YELLOW,
 	desc = [[A proud eagle.]],
 	stats = { str=18, dex=17, con=12, int=10, wis=14, cha=10, luc=12 },
 	combat = { dam= {1,6} },
@@ -36,7 +36,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_SHOCKLIZARD",
-	display = 'l', color=colors.LIGHT_BLUE,
+	display = 'q', color=colors.LIGHT_BLUE,
 	desc = [[A lizard with light blue markings on its back.]],
 	stats = { str=10, dex=15, con=13, int=2, wis=12, cha=6, luc=12 },
 	combat = { dam= {1,4} },

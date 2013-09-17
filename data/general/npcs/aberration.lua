@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_FLAYER",
 	type = "aberration", subtype = "brain flayer",
-	display = "f", color=colors.WHITE,
+	display = "X", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
         desc = [[A horrid thing with tentacles!]],
 

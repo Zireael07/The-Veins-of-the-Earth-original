@@ -31,7 +31,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_RAT",
-	display = 'S', color=colors.WHITE,
+	display = 'r', color=colors.WHITE,
 	desc = [[A small rat.]],
 	stats = { str=10, dex=17, con=12, int=1, wis=12, cha=4, luc=2 },
 	combat = { dam= {1,4} },
@@ -66,7 +66,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_SNAKE",
-	display = 's', color=colors.GREEN,
+	display = 'z', color=colors.GREEN,
 	desc = [[A small snake.]],
 	stats = { str=4, dex=17, con=11, int=1, wis=12, cha=2, luc=10 },
 	combat = { dam= {1,2} },
@@ -109,7 +109,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_LIZARD",
-	display = 'l', color=colors.GREEN,
+	display = 'q', color=colors.GREEN,
 	desc = [[A small lizard.]],
 	stats = { str=3, dex=15, con=10, int=1, wis=12, cha=2, luc=2 },
 	combat = { dam= {1,4} },
@@ -131,7 +131,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_MONLIZARD",
-	display = 'l', color=colors.DARK_GREEN,
+	display = 'q', color=colors.DARK_GREEN,
 	desc = [[A large lizard.]],
 	stats = { str=17, dex=15, con=17, int=1, wis=12, cha=2, luc=2 },
 	combat = { dam= {1,8} },
@@ -177,7 +177,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_RAVEN",
-	display = 'r', color=colors.BLACK,
+	display = 'b', color=colors.BLACK,
 	desc = [[A large raven.]],
 	stats = { str=1, dex=15, con=10, int=2, wis=14, cha=6, luc=10 },
 	combat = { dam= {1,2} },
@@ -187,7 +187,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 
 newEntity{
 	base = "BASE_NPC_RAVEN",
-	name = "a raven", color=colors.BLACK,
+	name = "raven", color=colors.SLATE,
 	level_range = {1, 20}, exp_worth = 50,
 	rarity = 2,
 	max_life = resolvers.rngavg(1,2),
@@ -197,7 +197,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_WOLF",
-	display = 'w', color=colors.BLACK,
+	display = 'q', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large wolf.]],
 
@@ -212,7 +212,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 
 newEntity{
 	base = "BASE_NPC_WOLF",
-	name = "a wolf", color=colors.BLACK,
+	name = "wolf", color=colors.BLACK,
 	level_range = {1, 20}, exp_worth = 300,
 	rarity = 8,
 	max_life = resolvers.rngavg(12,14),

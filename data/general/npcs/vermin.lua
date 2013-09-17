@@ -16,7 +16,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_SPIDER",
-	display = 's', color=colors.BROWN,
+	display = 's', color=colors.BLACK,
 	desc = [[A small spider.]],
 	stats = { str=3, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,3} },
@@ -26,7 +26,7 @@ newEntity{ base = "BASE_NPC_VERMIN",
 }
 
 newEntity{ base = "BASE_NPC_SPIDER",
-	name = "tiny spider", color=colors.BROWN,
+	name = "tiny spider",
 	level_range = {1, 4}, exp_worth = 75,
 	rarity = 1,
 	max_life = resolvers.rngavg(1,3),
@@ -35,7 +35,7 @@ newEntity{ base = "BASE_NPC_SPIDER",
 }
 
 newEntity{ base = "BASE_NPC_SPIDER",
-	name = "small spider", color=colors.BROWN,
+	name = "small spider",
 	level_range = {1, 4}, exp_worth = 100,
 	rarity = 3,
 	max_life = resolvers.rngavg(3,6),
@@ -46,7 +46,7 @@ newEntity{ base = "BASE_NPC_SPIDER",
 }
 
 newEntity{ base = "BASE_NPC_SPIDER",
-	name = "medium spider", color=colors.BROWN,
+	name = "medium spider",
 	level_range = {1, 4}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(3,6),
@@ -57,7 +57,7 @@ newEntity{ base = "BASE_NPC_SPIDER",
 }
 
 newEntity{ base = "BASE_NPC_SPIDER",
-	name = "large spider", color=colors.BROWN,
+	name = "large spider",
 	level_range = {5, 20}, exp_worth = 3000,
 	rarity = 9,
 	max_life = resolvers.rngavg(20,25),
@@ -69,7 +69,7 @@ newEntity{ base = "BASE_NPC_SPIDER",
 
 newEntity{
 	base = "BASE_NPC_SPIDER",
-	name = "huge spider", color=colors.BROWN,
+	name = "huge spider",
 	level_range = {7, 20}, exp_worth = 3300,
 	rarity = 40,
 	max_life = resolvers.rngavg(50,55),
@@ -126,7 +126,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_CENTIPEDE",
-	display = 'c', color=colors.BROWN,
+	display = 'w', color=colors.BROWN,
 	desc = [[A giant centipede.]],
 	stats = { str=1, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,3} },
@@ -222,7 +222,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_SCORPION",
-	display = 's', color=colors.BROWN,
+	display = 'w', color=colors.TAN,
 	desc = [[A giant scorpion.]],
 	stats = { str=3, dex=10, con=14, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,2} },
@@ -231,7 +231,7 @@ newEntity{ base = "BASE_NPC_VERMIN",
 
 newEntity{
 	base = "BASE_NPC_SCORPION",
-	name = "tiny scorpion", color=colors.BROWN,
+	name = "tiny scorpion",
 	level_range = {1, 20}, exp_worth = 75,
 	rarity = 4,
 	max_life = resolvers.rngavg(3,5),
@@ -242,7 +242,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SCORPION",
-	name = "small scorpion", color=colors.BROWN,
+	name = "small scorpion",
 	level_range = {1, 20}, exp_worth = 150,
 	rarity = 6,
 	max_life = resolvers.rngavg(5,7),
@@ -256,7 +256,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SCORPION",
-	name = "medium scorpion", color=colors.BROWN,
+	name = "medium scorpion",
 	level_range = {1, 20}, exp_worth = 300,
 	rarity = 6,
 	max_life = resolvers.rngavg(12,14),
@@ -270,7 +270,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SCORPION",
-	name = "large scorpion", color=colors.BROWN,
+	name = "large scorpion",
 	level_range = {5, 20}, exp_worth = 900,
 	rarity = 8,
 	max_life = resolvers.rngavg(31,34),
@@ -283,7 +283,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_SCORPION",
-	name = "huge scorpion", color=colors.BROWN,
+	name = "huge scorpion",
 	level_range = {8, 20}, exp_worth = 2100,
 	rarity = 10,
 	max_life = resolvers.rngavg(72,77),

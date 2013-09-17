@@ -13,7 +13,67 @@ module(..., package.seeall, class.inherit(Dialog))
 function _M:init()
     Dialog.init(self, "Legend", game.w * 0.5, game.h * 0.5)
     
-    self.text=[[ Items
+    self.text=[[     @ player
+    Monsters
+    a  animal
+    b bat / bird
+    c 
+    d dog
+    e eye creature
+    f faerie creature
+    g goblinkin
+    h humanoid
+    i imp
+    j jelly/ooze
+    k kobold
+    l lycanthrope
+    m mimic
+    n naga
+    o orc
+    q quadruped
+    r rodent
+    s spider
+    t trapper
+    u hag
+    v vermin
+    w worm
+    x
+    y snake-men
+    z snake
+    
+
+    A celestial
+    B beast
+    C construct
+    D dragon
+    E elemental
+    F fungus
+    G golem
+    H giant
+    I
+    J djinn/genie
+    K elementalkin /weirds
+    L lich
+    M 
+    N spectral undead
+    O outsider
+    P plant
+    Q swarm
+    R reptile
+    S skeleton
+    T troll
+    U corporeal undead
+    V vampire
+    W wraith/shadow
+    X aberration
+    Y hominid /monkey
+    Z zombie
+    ü - lesser demon
+    ū  - greater demon
+    ǒ - lesser devil
+    ō - greater devil
+
+    Items
     = a belt
     σ a ring
     ♂ an amulet
@@ -38,6 +98,11 @@ function _M:init()
     \ hafted weapon
     } launcher
     { ammo
+
+
+
+
+
 
 ]]
         
