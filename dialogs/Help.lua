@@ -19,6 +19,7 @@ function _M:init()
     Press #YELLOW#ESC#LAST# to access the game menu.
     Press #YELLOW#'c'#LAST# to display character sheet.
     Press #YELLOW#'p'#LAST# to display level-up screen.
+    Press #YELLOW#'r'#LAST# to rest.
     Press #YELLOW#'i'#LAST# to display inventory screen.
     Press #YELLOW#'g'#LAST# to pick up items.
     Press #YELLOW#'d'#LAST# to drop items.
