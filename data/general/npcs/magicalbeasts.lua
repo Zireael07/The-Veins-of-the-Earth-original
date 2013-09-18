@@ -2,23 +2,20 @@
 --Zireael
 
 newEntity{
-	define_as = "BASE_NPC_MAGBEAST",
+	define_as = "BASE_NPC_EAGLE",
 	type = "magical beast",
+	display = 'e', color=colors.YELLOW,
 	body = { INVEN = 10 },
+	desc = [[A proud eagle.]],
+
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=18, dex=17, con=12, int=10, wis=14, cha=10, luc=12 },
+	combat = { dam= {1,6} },
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
-}
-
-newEntity{ base = "BASE_NPC_MAGBEAST",
-	define_as = "BASE_NPC_EAGLE",
-	display = 'b', color=colors.YELLOW,
-	desc = [[A proud eagle.]],
-	stats = { str=18, dex=17, con=12, int=10, wis=14, cha=10, luc=12 },
-	combat = { dam= {1,6} },
 }
 
 newEntity{
@@ -34,12 +31,22 @@ newEntity{
 	skill_survival = 1,
 }
 
-newEntity{ base = "BASE_NPC_MAGBEAST",
+newEntity{
 	define_as = "BASE_NPC_SHOCKLIZARD",
+	type = "magical beast",
 	display = 'q', color=colors.LIGHT_BLUE,
+
+	body = { INVEN = 10 },
 	desc = [[A lizard with light blue markings on its back.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=15, con=13, int=2, wis=12, cha=6, luc=12 },
 	combat = { dam= {1,4} },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{

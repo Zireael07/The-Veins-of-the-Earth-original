@@ -18,26 +18,22 @@
 local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
-	define_as = "BASE_NPC_ANIMAL",
+	define_as = "BASE_NPC_RAT",
 	type = "animal",
+	display = 'S', color=colors.WHITE,
 	body = { INVEN = 10 },
+	desc = [[A small rat.]],
+
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=17, con=12, int=1, wis=12, cha=4, luc=2 },
+	combat = { dam= {1,4} },
+	skill_climb = 10,
+	skill_movesilently = 8,
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
-}
-
-newEntity{ base = "BASE_NPC_ANIMAL",
-	define_as = "BASE_NPC_RAT",
-	display = 'r', color=colors.WHITE,
-	desc = [[A small rat.]],
-	stats = { str=10, dex=17, con=12, int=1, wis=12, cha=4, luc=2 },
-	combat = { dam= {1,4} },
-	skill_climb = 10,
-	skill_movesilently = 8,
-	
 }
 
 newEntity{
@@ -64,10 +60,16 @@ newEntity{
 	
 }
 
-newEntity{ base = "BASE_NPC_ANIMAL",
+
+
+newEntity{
 	define_as = "BASE_NPC_SNAKE",
+	type = "animal",
 	display = 'z', color=colors.GREEN,
+	body = { INVEN = 10 },
 	desc = [[A small snake.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=4, dex=17, con=11, int=1, wis=12, cha=2, luc=10 },
 	combat = { dam= {1,2} },
 	skill_balance = 8,
@@ -75,6 +77,11 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_hide = 8,
 	skill_listen = 5,
 	skill_spot = 5,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
@@ -107,21 +114,31 @@ newEntity{
 	challenge = 1,
 }
 
-newEntity{ base = "BASE_NPC_ANIMAL",
+newEntity{
 	define_as = "BASE_NPC_LIZARD",
+	type = "animal",
 	display = 'q', color=colors.GREEN,
+
+	body = { INVEN = 10 },
 	desc = [[A small lizard.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=3, dex=15, con=10, int=1, wis=12, cha=2, luc=2 },
 	combat = { dam= {1,4} },
 	skill_climb = 10,
 	skill_balance = 8,
 	skill_hide = 10,
 	skill_spot = 2,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
 	base = "BASE_NPC_LIZARD",
-	name = "medium lizard", color=colors.GREEN,
+	name = "medium snake", color=colors.GREEN,
 	level_range = {1, 20}, exp_worth = 50,
 	rarity = 5,
 	max_life = resolvers.rngavg(1,3),
@@ -129,10 +146,14 @@ newEntity{
 	challenge = 1/6,
 }
 
-newEntity{ base = "BASE_NPC_ANIMAL",
+newEntity{
 	define_as = "BASE_NPC_MONLIZARD",
+	type = "animal",
 	display = 'q', color=colors.DARK_GREEN,
+	body = { INVEN = 10 },
 	desc = [[A large lizard.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=15, con=17, int=1, wis=12, cha=2, luc=2 },
 	combat = { dam= {1,8} },
 	skill_climb = 4,
@@ -141,6 +162,11 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_spot = 2,
 	skill_swim = 8,
 	skill_listen = 2,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
@@ -153,16 +179,25 @@ newEntity{
 	challenge = 2,
 }
 
-newEntity{ base = "BASE_NPC_ANIMAL",
+newEntity{
 	define_as = "BASE_NPC_BAT",
+	type = "animal",
 	display = 'b', color=colors.BLACK,
+	body = { INVEN = 10 },
 	desc = [[A large bat.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=1, dex=15, con=10, int=2, wis=14, cha=4, luc=10 },
 	combat = { dam= {1,2} },
 	skill_movesilently = 4,
 	skill_hide = 12,
 	skill_spot = 6,
 	skill_listen = 6,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
@@ -175,14 +210,23 @@ newEntity{
 	challenge = 1/10,
 }
 
-newEntity{ base = "BASE_NPC_ANIMAL",
+newEntity{
 	define_as = "BASE_NPC_RAVEN",
+	type = "animal",
 	display = 'b', color=colors.BLACK,
+	body = { INVEN = 10 },
 	desc = [[A large raven.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=1, dex=15, con=10, int=2, wis=14, cha=6, luc=10 },
 	combat = { dam= {1,2} },
 	skill_spot = 4,
 	skill_listen = 3,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
@@ -195,8 +239,9 @@ newEntity{
 	challenge = 1/6,
 }
 
-newEntity{ base = "BASE_NPC_ANIMAL",
+newEntity{
 	define_as = "BASE_NPC_WOLF",
+	type = "animal",
 	display = 'q', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large wolf.]],
@@ -208,6 +253,11 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_listen = 2,
 	skill_movesilently = 1,
 	skill_survival = 5,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
