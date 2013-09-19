@@ -16,7 +16,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 15,
     wielder = {
-		combat_def = 1,
+		combat_shield = 1,
         spell_fail = 5
 	},
 }
@@ -28,7 +28,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 2015,
     wielder = {
-        combat_def = 2,
+        combat_shield = 2,
         spell_fail = 5
     },
 }
@@ -40,7 +40,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 4015,
     wielder = {
-        combat_def = 3,
+        combat_shield = 3,
         spell_fail = 5
     },
 }
@@ -52,7 +52,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 8015,
     wielder = {
-        combat_def = 4,
+        combat_shield = 4,
         spell_fail = 5
     },
 }
@@ -64,7 +64,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 16015,
     wielder = {
-        combat_def = 5,
+        combat_shield = 5,
         spell_fail = 5
     },
 }
@@ -76,7 +76,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 50015,
     wielder = {
-        combat_def = 6,
+        combat_shield = 6,
         spell_fail = 5
     },
 }
@@ -86,7 +86,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 3,
     wielder = {
-		combat_def = 1,
+		combat_shield = 1,
         spell_fail = 5
 	},
 }
@@ -98,7 +98,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 2003,
     wielder = {
-        combat_def = 2,
+        combat_shield = 2,
         spell_fail = 5
     },
 }
@@ -110,7 +110,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 4003,
     wielder = {
-        combat_def = 3,
+        combat_shield = 3,
         spell_fail = 5
     },
 }
@@ -122,7 +122,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 8003,
     wielder = {
-        combat_def = 4,
+        combat_shield = 4,
         spell_fail = 5
     },
 }
@@ -134,7 +134,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 16003,
     wielder = {
-        combat_def = 5,
+        combat_shield = 5,
         spell_fail = 5
     },
 }
@@ -146,7 +146,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 50003,
     wielder = {
-        combat_def = 6,
+        combat_shield = 6,
         spell_fail = 5
     },
 }
@@ -156,7 +156,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 9,
     wielder = {
-		combat_def = 1,
+		combat_shield = 1,
         spell_fail = 5
 	},
 }
@@ -168,7 +168,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 2009,
     wielder = {
-        combat_def = 2,
+        combat_shield = 2,
         spell_fail = 5
     },
 }
@@ -180,7 +180,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 4009,
     wielder = {
-        combat_def = 3,
+        combat_shield = 3,
         spell_fail = 5
     },
 }
@@ -192,7 +192,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 8009,
     wielder = {
-        combat_def = 4,
+        combat_shield = 4,
         spell_fail = 5
     },
 }
@@ -204,7 +204,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 16009,
     wielder = {
-        combat_def = 5,
+        combat_shield = 5,
         spell_fail = 5
     },
 }
@@ -216,7 +216,7 @@ newEntity{ base = "BASE_SHIELD",
     level_range = {1, 10},
     cost = 50009,
     wielder = {
-        combat_def = 6,
+        combat_shield = 6,
         spell_fail = 5
     },
 }
@@ -228,7 +228,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 10,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-		combat_def = 2,
+		combat_shield = 2,
         spell_fail = 15
 	},
 }
@@ -242,7 +242,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 10,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 3,
+        combat_shield = 3,
         spell_fail = 15
     },
 }
@@ -256,7 +256,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 10,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 4,
+        combat_shield = 4,
         spell_fail = 15
     },
 }
@@ -270,7 +270,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 10,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 5,
+        combat_shield = 5,
         spell_fail = 15
     },
 }
@@ -284,7 +284,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 10,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 6,
+        combat_shield = 6,
         spell_fail = 15
     },
 }
@@ -298,7 +298,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 10,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 7,
+        combat_shield = 7,
         spell_fail = 15
     },
 }
@@ -310,7 +310,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 15,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-		combat_def = 2,
+		combat_shield = 2,
         spell_fail = 15
 	},
 }
@@ -324,7 +324,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 15,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 3,
+        combat_shield = 3,
         spell_fail = 15
     },
 }
@@ -338,7 +338,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 15,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 4,
+        combat_shield = 4,
         spell_fail = 15
     },
 }
@@ -352,7 +352,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 15,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 5,
+        combat_shield = 5,
         spell_fail = 15
     },
 }
@@ -366,7 +366,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 15,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 6,
+        combat_shield = 6,
         spell_fail = 15
     },
 }
@@ -380,7 +380,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 15,
     desc = [[A simple shield. Protects you from attacks. AC +2. Spell failure chance 15%.]],
     wielder = {
-        combat_def = 7,
+        combat_shield = 7,
         spell_fail = 15
     },
 }
@@ -392,7 +392,7 @@ newEntity{ base = "BASE_SHIELD",
     encumber = 45,
     desc = [[A simple shield. Protects you from attacks. AC +4. Spell failure chance 30%.]],
     wielder = {
-		combat_def = 4,
+		combat_shield = 4,
         spell_fail = 30
 	},
 }

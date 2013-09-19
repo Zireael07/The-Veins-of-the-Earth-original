@@ -12,6 +12,7 @@ newTalent{
 newTalent{
 	name = "Medium Armor Proficiency",
 	type = {"class/general", 1},
+	require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
 	points = 1,
 	mode = "passive",
 	is_feat = true,
@@ -21,12 +22,12 @@ newTalent{
 newTalent{
 	name = "Heavy Armor Proficiency",
 	type = {"class/general", 1},
+	require = { talent = { Talents.T_MEDIUM_ARMOR_PROFICIENCY }, },
 	points = 1,
 	mode = "passive",
 	is_feat = true,
 	info = [[This feat makes you proficient in heavy armors.]],
 }
-
 
 newTalent{
 	name = "Exotic Weapon Proficiency",
@@ -67,7 +68,7 @@ newTalent{
 	is_feat = true,
 	info = [[This feat increases your AC by +3 and your Ref save by +3.]],
     on_learn = function(self, t)
-        self.combat_def = self.combat_def + 3
+        self.combat_dodge = (self.combat_dodge or 0) + 3
         self.reflex_save = self.reflex_save + 3
     end
 }
@@ -122,7 +123,7 @@ newTalent{
 	require = {
 		special = {
 			fct = function(self, t, offset) return true end,
-			desc = "Base attack bonus 8",		 -- Should be base attack bonus of 8
+			desc = "Base attack bonus 8",		 --Base attack bonus 8
 		}
 	},
 	is_feat = true,
@@ -166,7 +167,7 @@ newTalent{
 	is_feat = true,
 	info = [[This feat increases your AC by +4.]],
     on_learn = function(self, t)
-        self.combat_def = self.combat_def + 4
+        self.combat_dodge = (self.combat_dodge or 0) + 4
     end
 }
 
@@ -244,7 +245,7 @@ newTalent{
 	info = [[This feat increases your Climb skill by +2.]],
 	on_learn = function(self, t)
         self.skill_climb  = (self.skill_climb or 0) + 2
---        self.skill_swim = self.skill_swim + 2
+        self.skill_swim = self.skill_swim + 2
     end
 }
 

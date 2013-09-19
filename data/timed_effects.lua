@@ -113,7 +113,7 @@ newEffect{
 		local inc = { [Stats.STAT_STR]=4, [Stats.STAT_DEX]=4 }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
 		self:effectTemporaryValue(eff, "will_save", 2)
-		self:effectTemporaryValue(eff, "combat_def", -2)
+		self:effectTemporaryValue(eff, "combat_untyped", -2)
 	end,
 	deactivate = function(self, eff)
 		self:setEffect(self.EFF_FATIGUE, 5, {})

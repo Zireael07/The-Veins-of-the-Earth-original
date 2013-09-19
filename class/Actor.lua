@@ -45,10 +45,18 @@ module(..., package.seeall, class.inherit(engine.Actor,
 
 function _M:init(t, no_default)
 	-- Define some basic combat stats
-	self.combat_armor = 0
-	self.combat_def = 10
-	self.combat_attack = 0
+	self.combat_dr = 0
+--	self.combat_base_ac = 10
+	self.combat_bab = 0
 	self.hit_die = 4
+
+	--Define AC types
+	self.combat_armor_ac = 0
+	self.combat_shield = 0
+	self.combat_natural = 0
+	self.combat_magic = 0
+	self.combat_dodge = 0
+	self.combat_untyped = 0
 
 	--Some more combat stuff
 	self.more_attacks = 0
@@ -566,13 +574,23 @@ function _M:opposedCheck(skill1, target, skill2)
 	return false
 end
 
---AC, Sebsebeleb
+--AC, Sebsebeleb & Zireael
 function _M:getAC()
-	local dex_bonus = (self:getDex()-10)/2 or 0
-	local def = self.combat_def or 0
+	local dex_bonus = (self:getDex()-10)/2
+	--Splitting it up to avoid stuff like stacking rings of protection or bracers of armor + armor
+--	local base = self.combat_base_ac or 10
+	local armor = self.combat_armor or 0
+	local shield = self.combat_shield or 0
+	local natural = self.combat_natural or 0
+	local magic = self.combat_magic or 0
+	local dodge = self.combat_dodge or 0
+	local untyped = self.combat_untyped or 0
+
 	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end 
+
+	if self.combat_magic then magic = math.max(magic, 5) end
 	
-	return def + dex_bonus
+	return (10 + armor + shield + natural + magic + dodge) + (dex_bonus or 0)
 end
 
 --Saving throws, Sebsebeleb & Zireael
@@ -744,7 +762,7 @@ function _M:levelup()
 
 	--- Levelup class stuff
 	-- Goes through every talent and checks if it should be leveled passively by levels
-	self:levelPassives()
+	--self:levelPassives()
 
 	--Gain hp and skill points (generic)
 	self.max_life = self.max_life + self.hd_size

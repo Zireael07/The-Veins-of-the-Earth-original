@@ -1,4 +1,3 @@
-
 -- Veins of the Earth
 -- Zireael
 --
@@ -14,7 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
 
 --Standard races
 newBirthDescriptor {
@@ -51,7 +49,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Elf',
-	desc = [[Elves are also called the Fair Folk. Dex +2 Con -2.]],
+	desc = [[Elves are also called the Fair Folk. Dex +2 Con -2. Darkvision 3. Listen, Spot, Search +1.]],
 	stats = { dex = 2, con = -2, },
 	copy_add = {
 		infravision = 3,
@@ -70,7 +68,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Half-Orc',
-	desc = [[A crossbreed of orc and human. Str +2 Int -2 Cha -2]],
+	desc = [[A crossbreed of orc and human. Str +2 Int -2 Cha -2. Darkvision 3.]],
 	stats = { str = 2, int = -2, cha = -2, },
 	copy_add = {
 		infravision = 3,
@@ -87,7 +85,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Dwarf',
-	desc = [[A race of tough fighters and miners. Con +2, Cha -2.]],
+	desc = [[A race of tough fighters and miners. Con +2, Cha -2. Darkvision 3.]],
 	stats = { con = 2, cha = -2, },
 	copy_add = {
 		infravision = 3,
@@ -105,7 +103,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Drow',
-	desc = 'The drow are kin to the Fair Folk, who descended underground long ago.\n\n ECL +2. Dex +2 Con -2 Int +2 Cha +2 Luc -2.',
+	desc = 'The drow are kin to the Fair Folk, who descended underground long ago.\n\n ECL +2. Dex +2 Con -2 Int +2 Cha +2 Luc -2. Darkvision 6. Listen, Spot, Search +2.',
 	stats = { dex = 2, con = -2, int = 2, cha = 2, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -121,7 +119,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Duergar',
-	desc = 'The gray dwarves are the underground offshoot of the dwarves, long ago imprisoned by the mind flayers.\n\n ECL +1. Con +2 Cha -2 Luc -2.',
+	desc = 'The gray dwarves are the underground offshoot of the dwarves, long ago imprisoned by the mind flayers.\n\n ECL +1. Con +2 Cha -2 Luc -2. Darkvision 6. Listen, Spot +1.',
 	stats = { con = 2, cha = -4, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -135,12 +133,12 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Deep gnome',
-	desc = 'The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders.\n\n ECL +3. Str -2 Dex +2 Wis +2 Cha -4 Luc -2.',
+	desc = 'The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders.\n\n ECL +3. Str -2 Dex +2 Wis +2 Cha -4 Luc -2. Darkvision 6. Listen +2. Fort, Ref, Will +2. AC +4.',
 	stats = { str = -2, dex = 2, wis = 2, cha = -4, luc = -2, },
 	copy_add = {
 		infravision = 6,
 		skill_listen = 2,
-		combat_def = 4,
+		combat_dodge = 4,
 		spell_resistance = 12,
 		fortitude_save = 2,
 		reflex_save = 2,

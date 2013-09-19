@@ -92,7 +92,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	infravision = 4,
 	skill_climb = 8,
-	combat_def = 17,
+	combat_natural = 7,
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -351,7 +351,7 @@ newEntity{
 	max_life = resolvers.rngavg(3,5),
 	hit_die = 1,
 	challenge = 1/3,
-	combat_def = 15,
+	combat_natural = 15,
 }
 
 newEntity{
@@ -380,5 +380,5 @@ newEntity{
 	max_life = resolvers.rngavg(50,54),
 	hit_die = 7,
 	challenge = 4,
-	combat_def = 20,
+	combat_natural = 10,
 }

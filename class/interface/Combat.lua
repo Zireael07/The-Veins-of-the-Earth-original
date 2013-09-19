@@ -108,7 +108,7 @@ function _M:attackTarget(target, mult)
         local hit, crit = self:attackRoll(target)
       
         if hit then
-            local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10)/2 - target.combat_armor or 0
+            local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10)/2 - target.combat_dr or 0
             dam = math.max(0, dam)
             if dam and crit then
                 game.log(("%s makes a critical attack!"):format(self.name:capitalize()))

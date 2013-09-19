@@ -31,7 +31,7 @@ newTalent{
 
 	info = [[The damage you receive is reduced by 1.]],
 	on_learn = function(self, t)
-        self.combat_armor = self.combat_armor or 0 + 1
+        self.combat_dr = self.combat_dr or 0 + 1
         end
 }
 
@@ -49,7 +49,7 @@ newTalent{
 	self.str = self.str + 6
 	self.dex = self.dex + 6
 	self.will_save = self.will_save or 0 + 3
-	self.combat_def = self.combat_def or 0 - 2
+	self.combat_base_ac = self.combat_base_ac or 0 - 2
 	return true
 	--end,
 	end,

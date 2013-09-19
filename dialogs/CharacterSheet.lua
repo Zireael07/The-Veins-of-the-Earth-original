@@ -83,7 +83,7 @@ function _M:drawDialog()
     s:drawColorStringBlended(self.font, "#GOLD#Gold : "..(player.money or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(player.combat_def or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(player:getAC() or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_BAB, s:drawColorStringBlended(self.font, "BAB : "..(player.combat_attack or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
 
 

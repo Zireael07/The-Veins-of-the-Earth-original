@@ -201,7 +201,7 @@ newTalent{
 
 			max_life = 20,
 
-			combat_armor = 10, combat_def = 0,
+			combat_base_ac = 10, combat_dr = 0,
 			combat = { dam={1,4}, atk=1, },
 
 

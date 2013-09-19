@@ -38,7 +38,7 @@ newEntity{
     cost = 2000,
 --    desc = [[This bone amulet grants you +1 AC.]]
     wielder = {
-    combat_def=1
+    combat_natural=1
   }, 
 }
 
@@ -51,7 +51,7 @@ newEntity{
     cost = 8000,
 --    desc = [[This bone amulet grants you +2 AC.]]
     wielder = {
-    combat_def=2
+    combat_natural=2
   }, 
 }
 
@@ -64,7 +64,7 @@ newEntity{
     cost = 18000,
 --    desc = [[This scaly amulet grants you +3 AC.]]
     wielder = {
-    combat_def=3
+    combat_natural=3
   }, 
 }
 
@@ -77,7 +77,7 @@ newEntity{
     cost = 32000,
  --   desc = [[This scaly amulet grants you +4 AC.]]
     wielder = {
-    combat_def=4
+    combat_natural=4
   }, 
 }
 
@@ -89,7 +89,7 @@ newEntity{
     level_range = {10,30},
     cost = 50000,
     wielder = {
-    combat_def=5
+    combat_natural=5
   }, 
 }
 
@@ -113,7 +113,7 @@ newEntity{
     level_range = {1,10},
     cost = 2000,
     wielder = {
-    combat_def=1
+    combat_magic=1
   }, 
 }
 
@@ -125,7 +125,7 @@ newEntity{
     level_range = {1,10},
     cost = 8000,
     wielder = {
-    combat_def=2
+    combat_magic=2
   }, 
 }
 
@@ -137,7 +137,7 @@ newEntity{
     level_range = {1,10},
     cost = 18000,
     wielder = {
-    combat_def=3
+    combat_magic=3
   }, 
 }
 
@@ -149,7 +149,7 @@ newEntity{
     level_range = {1,10},
     cost = 32000,
     wielder = {
-    combat_def=4
+    combat_magic=4
   }, 
 }
 
@@ -161,7 +161,7 @@ newEntity{
     level_range = {1,10},
     cost = 50000,
     wielder = {
-    combat_def=5
+    combat_magic=5
   }, 
 }
 
@@ -185,7 +185,7 @@ newEntity{
     level_range = {1,10},
     cost = 2000,
     wielder = {
-    combat_def=1
+    combat_armor=1
   }, 
 }
 
@@ -197,7 +197,7 @@ newEntity{
     level_range = {1,10},
     cost = 8000,
     wielder = {
-    combat_def=2
+    combat_armor=2
   }, 
 }
 
@@ -209,7 +209,7 @@ newEntity{
     level_range = {1,10},
     cost = 18000,
     wielder = {
-    combat_def=3
+    combat_armor=3
   }, 
 }
 
@@ -221,7 +221,7 @@ newEntity{
     level_range = {1,10},
     cost = 32000,
     wielder = {
-    combat_def=4
+    combat_armor=4
   }, 
 }
 
@@ -233,7 +233,7 @@ newEntity{
     level_range = {1,10},
     cost = 50000,
     wielder = {
-    combat_def=5
+    combat_armor=5
   }, 
 }
 
