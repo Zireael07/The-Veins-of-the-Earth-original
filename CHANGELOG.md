@@ -162,5 +162,9 @@ BETA RELEASES
 * new magic items: belts of Strength, boots of dodging
 * random name generator, taking into account your class and race
 
+0.0.13a - 19/09/2013
+* fixed the monster stats being 0
+* monster symbols overhauled & added to legend screen
+* controls screen shown automatically after char creation, now includes 'r' for rest
 
 
