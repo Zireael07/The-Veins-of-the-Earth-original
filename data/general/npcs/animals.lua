@@ -271,10 +271,14 @@ newEntity{
 	movement_speed_bonus = 0.66,
 }
 
-newEntity{ base = "BASE_NPC_ANIMAL",
+newEntity{
 	define_as = "BASE_NPC_TORTOISE",
 	display = 'B', color=colors.DARK_GREEN,
+	body = { INVEN = 10 },
 	desc = [[A large tortoise.]],
+
+	
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=10, con=21, int=2, wis=15, cha=7, luc=2 },
 	combat = { dam= {1,10} },
 	skill_spot = 2,
