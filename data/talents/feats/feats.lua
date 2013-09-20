@@ -34,8 +34,12 @@ newTalent{
 	type = {"class/general", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) return true end,
-			desc = "Base attack bonus 1",		 -- Should be base attack bonus of 1
+			fct = function(self, t, offset) 
+			--Base attack bonus 1
+			if self:attr("combat_bab") >= 1 then return true
+			else return false end 
+			end,
+			desc = "Base attack bonus 1",
 		}
 	},
 	points = 1,
@@ -53,7 +57,7 @@ newTalent{
 	points = 3,
 	mode = "passive",
 	is_feat = true,
-	info = [[This feat increases your HP by 10% and your Fort save by +3.]],
+	info = [[This feat increases your Fort save by +3.]],
     on_learn = function(self, t)
 	    self.fortitude_save = self.fortitude_save + 3
     end
@@ -91,8 +95,12 @@ newTalent{
 	type = {"class/general", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) return true end,
-			desc = "Base attack bonus 1",		 -- Should be base attack bonus of 1
+			fct = function(self, t, offset) 
+			--Base attack bonus 1
+			if self:attr("combat_bab") >= 1 then return true
+			else return false end
+			end,
+			desc = "Base attack bonus 1",
 		}
 	},
 	is_feat = true,
@@ -122,8 +130,12 @@ newTalent{
 	mode = "passive",
 	require = {
 		special = {
-			fct = function(self, t, offset) return true end,
-			desc = "Base attack bonus 8",		 --Base attack bonus 8
+			fct = function(self, t, offset) 
+			--Base attack bonus 8
+			if self:attr("combat_bab") >= 8 then return true
+			else return false end
+			end,
+			desc = "Base attack bonus 8",		 
 		}
 	},
 	is_feat = true,

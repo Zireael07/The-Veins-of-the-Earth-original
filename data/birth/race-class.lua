@@ -186,12 +186,12 @@ newBirthDescriptor {
 	on_level = function(actor, level)
 		if level == 1 then 
 			actor.fortitude_save = (actor.fortitude_save or 0) +2
-			actor.combat_attack = (actor.combat_attack or 0) + 1
+			actor.combat_bab = (actor.combat_bab or 0) + 1
 			actor.max_life = actor.max_life + 12
 			actor.skill_point = (actor.skill_point or 0) + 4
 		end
 
-		actor.combat_attack = (actor.combat_attack or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
@@ -248,7 +248,7 @@ newBirthDescriptor {
 			actor.skill_point = (actor.skill_point or 0) + 6
 		end
 
-		actor.combat_attack = (actor.combat_attack or 0) + 0.75
+		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.will_save = (actor.will_save or 0) + 0.5
@@ -307,7 +307,7 @@ newBirthDescriptor {
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
-		actor.combat_attack = (actor.combat_attack or 0) + 0.75
+		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 
 		actor.max_life = actor.max_life + 8
 		actor.skill_point = (actor.skill_point or 0) + 2
@@ -362,7 +362,7 @@ newBirthDescriptor {
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
-		actor.combat_attack = (actor.combat_attack or 0) + 0.75
+		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 
 		actor.max_life = actor.max_life + 8
 		actor.skill_point = (actor.skill_point or 0) + 4
@@ -396,13 +396,13 @@ newBirthDescriptor {
 	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
-			actor.combat_attack = (actor.combat_attack or 0) + 1
+			actor.combat_bab = (actor.combat_bab or 0) + 1
 
 			actor.max_life = actor.max_life + 10
 			actor.skill_point = (actor.skill_point or 0) + 2
 		end
 
-		actor.combat_attack = (actor.combat_attack or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
@@ -445,14 +445,14 @@ newBirthDescriptor {
 	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
-			actor.combat_attack = (actor.combat_attack or 0) + 1
+			actor.combat_bab = (actor.combat_bab or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 2
 
 			actor.max_life = actor.max_life + 8
 			actor.skill_point = (actor.skill_point or 0) + 6
 		end
 
-		actor.combat_attack = (actor.combat_attack or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.will_save = (actor.will_save or 0) + 0.5
@@ -508,7 +508,7 @@ newBirthDescriptor {
 		end
 
 		actor.reflex_save = (actor.reflex_save or 0) + 1
-		actor.combat_attack = (actor.combat_attack or 0) + 0.75
+		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 		actor.will_save = (actor.will_save or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 
@@ -563,7 +563,7 @@ newBirthDescriptor {
 		end
 
 		actor.will_save = (actor.will_save or 0) + 1
-		actor.combat_attack = (actor.combat_attack or 0) + 0.5
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 
@@ -605,7 +605,7 @@ newBirthDescriptor {
 		end
 
 		actor.will_save = (actor.will_save or 0) + 1
-		actor.combat_attack = (actor.combat_attack or 0) + 0.5
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 
@@ -633,7 +633,7 @@ newBirthDescriptor {
 		if level == 1 then actor.reflex_save = (actor.reflex_save or 0) + 2
 			--grant hide in plain sight
 		elseif level == 2 then 
-			actor.combat_attack = (actor.combat_attack or 0) + 1
+			actor.combat_bab = (actor.combat_bab or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 1
 		
 		-- only if he doesn't have better infravision already
@@ -645,7 +645,7 @@ newBirthDescriptor {
 		end
 				
 		actor.reflex_save = (actor.reflex_save or 0) + 1
-		actor.combat_attack = (actor.combat_attack or 0) + 0.5
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
@@ -680,7 +680,7 @@ newBirthDescriptor {
 		end
 
 		actor.reflex_save = (actor.reflex_save or 0) + 1
-		actor.combat_attack = (actor.combat_attack or 0) + 0.5
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
