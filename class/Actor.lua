@@ -590,7 +590,7 @@ function _M:getAC()
 
 	if self.combat_magic then magic = math.max(magic, 5) end
 	
-	return (10 + armor + shield + natural + magic + dodge) + (dex_bonus or 0)
+	return math.floor((10 + armor + shield + natural + magic + dodge) + (dex_bonus or 0))
 end
 
 --Saving throws, Sebsebeleb & Zireael
