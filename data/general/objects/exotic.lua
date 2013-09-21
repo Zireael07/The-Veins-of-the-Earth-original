@@ -2,9 +2,16 @@
 --Zireael
 
 --Exotic melee weapons
-newEntity{
-    define_as = "BASE_BASTARDSWORD",
+newEntity {
+    define_as = "BASE_EXOTIC", 
     slot = "MAIN_HAND", offslot = "OFF_HAND",
+    type = "weapon",
+    ego = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+}
+
+
+newEntity{ base = "BASE_EXOTIC",
+    define_as = "BASE_BASTARDSWORD",
     type = "weapon", subtype="sword",
     display = "/", color=colors.SLATE,
     encumber = 6,
@@ -24,7 +31,7 @@ newEntity{ base = "BASE_BASTARDSWORD",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_EXOTIC",
     define_as = "BASE_WARAXE",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="axe",
@@ -46,7 +53,7 @@ newEntity{ base = "BASE_WARAXE",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_EXOTIC",
     define_as = "BASE_SPIKEDCHAIN",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -70,7 +77,7 @@ newEntity{ base = "BASE_SPIKEDCHAIN",
 
 
 --Double weapons
-newEntity{
+newEntity{ base = "BASE_EXOTIC",
     define_as = "BASE_DAXE",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -93,7 +100,7 @@ newEntity{ base = "BASE_DAXE",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_EXOTIC",
     define_as = "BASE_DSWORD",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -117,7 +124,7 @@ newEntity{ base = "BASE_DSWORD",
 }
 
 --1d8 one head, 1d6 the other
-newEntity{
+newEntity{ base = "BASE_EXOTIC",
     define_as = "BASE_URGROSH",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",

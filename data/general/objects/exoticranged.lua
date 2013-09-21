@@ -4,6 +4,14 @@
 --Exotic ranged weapons
 
 newEntity{
+    define_as = "BASE_EXOTIC_RANGED",
+    slot = "MAIN_HAND",
+    slot_forbid = "OFF_HAND",
+    type = "weapon",
+    ego = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+}
+
+newEntity{ base = "BASE_EXOTIC_RANGED",
     define_as = "BASE_HANDXBOW",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -27,7 +35,7 @@ newEntity{ base = "BASE_HANDXBOW",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_EXOTIC_RANGED",
     define_as = "BASE_BOLAS",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -50,7 +58,7 @@ newEntity{ base = "BASE_BOLAS",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_EXOTIC_RANGED",
     define_as = "BASE_SHURIKEN",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -73,7 +81,7 @@ newEntity{ base = "BASE_SHURIKEN",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_EXOTIC_RANGED",
     define_as = "BASE_NET",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",

@@ -1,8 +1,14 @@
 --Simple weapons
 
 newEntity{
-    define_as = "BASE_DAGGER",
+    define_as = "BASE_WEAPON",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
+    type = "weapon",
+    ego = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+}
+
+newEntity{ base = "BASE_WEAPON",
+    define_as = "BASE_DAGGER",
     type = "weapon", subtype="dagger",
     display = "|", color=colors.SLATE,
     encumber = 3,
@@ -23,7 +29,7 @@ newEntity{ base = "BASE_DAGGER",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_LSPEAR",
     slot = "MAIN_HAND", 
     slot_forbid = "OFF_HAND",
@@ -46,7 +52,7 @@ newEntity{ base = "BASE_LSPEAR",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SSPEAR",
     slot = "MAIN_HAND", 
     type = "weapon", subtype="spear",
@@ -67,7 +73,7 @@ newEntity{ base = "BASE_SSPEAR",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_HMACE",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="mace",
@@ -88,7 +94,7 @@ newEntity{ base = "BASE_HMACE",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_LMACE",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="mace",
@@ -110,7 +116,7 @@ newEntity{ base = "BASE_LMACE",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_CLUB",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="club",
@@ -131,7 +137,7 @@ newEntity{ base = "BASE_CLUB",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_MSTAR",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="morningstar",
@@ -152,7 +158,7 @@ newEntity{ base = "BASE_MSTAR",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_STAFF",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="staff",
@@ -175,7 +181,7 @@ newEntity{ base = "BASE_STAFF",
 
 --Martial weapons
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_LHAMMER",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="hammer",
@@ -197,7 +203,7 @@ newEntity{ base = "BASE_LHAMMER",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_HANDAXE",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="handaxe",
@@ -220,7 +226,7 @@ newEntity{ base = "BASE_HANDAXE",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_KUKRI",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="kukri",
@@ -243,7 +249,7 @@ newEntity{ base = "BASE_KUKRI",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SHORTSWORD",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="shortsword",
@@ -266,7 +272,7 @@ newEntity{ base = "BASE_SHORTSWORD",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_BATTLEAXE",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="battleaxe",
@@ -287,7 +293,7 @@ newEntity{ base = "BASE_BATTLEAXE",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SWORD",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="sword",
@@ -309,7 +315,7 @@ newEntity{ base = "BASE_SWORD",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_FLAIL",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="flail",
@@ -330,7 +336,7 @@ newEntity{ base = "BASE_FLAIL",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_RAPIER",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="rapier",
@@ -352,7 +358,7 @@ newEntity{ base = "BASE_RAPIER",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SCIMITAR",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="scimitar",
@@ -375,7 +381,7 @@ newEntity{ base = "BASE_SCIMITAR",
 }
 
 --Range 10 ft.
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_TRIDENT",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="trident",
@@ -396,7 +402,7 @@ newEntity{ base = "BASE_TRIDENT",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_WARHAMMER",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="hammer",
@@ -419,7 +425,7 @@ newEntity{ base = "BASE_WARHAMMER",
 }
 
 --Two-handed weapons
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_FALCHION",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -442,7 +448,7 @@ newEntity{ base = "BASE_FALCHION",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_GREATAXE",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -465,7 +471,7 @@ newEntity{ base = "BASE_GREATAXE",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_GREATCLUB",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -487,7 +493,7 @@ newEntity{ base = "BASE_GREATCLUB",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_HEAVYFLAIL",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -510,7 +516,7 @@ newEntity{ base = "BASE_HEAVYFLAIL",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_GREATSWORD",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -533,7 +539,7 @@ newEntity{ base = "BASE_GREATSWORD",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_HALBERD",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -556,7 +562,7 @@ newEntity{ base = "BASE_HALBERD",
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SCYTHE",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",

@@ -57,7 +57,8 @@ function _M:attackRoll(target)
         stat_used = "dex"
     end
 
-    local attack = self.combat_attack or 0
+    local attack = (self.combat_bab or 0)
+
     if self:knowTalent(self.T_FINESSE) and weapon and not weapon.ranged then
         --Is the weapon light, or usable for finesse?
         local success = false
@@ -76,7 +77,7 @@ function _M:attackRoll(target)
             stat_used = "dex"
         end
     end
-    attack = attack + (self:getStat(stat_used)-10)/2 or 0
+    attack = attack + (self.weapon and self.weapon.combat.magic_bonus or 0) + (self:getStat(stat_used)-10)/2 or 0
 
 
     local ac = target:getAC()
@@ -108,7 +109,7 @@ function _M:attackTarget(target, mult)
         local hit, crit = self:attackRoll(target)
       
         if hit then
-            local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self:getStr()-10)/2 - target.combat_dr or 0
+            local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self.weapon and self.weapon.combat.magic_bonus or 0) + (self:getStr()-10)/2 - target.combat_dr or 0
             dam = math.max(0, dam)
             if dam and crit then
                 game.log(("%s makes a critical attack!"):format(self.name:capitalize()))

@@ -7,6 +7,7 @@ newEntity{
     type = "weapon",
     ranged = true,
     ammo_type = "arrow",
+    ego = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_RANGED",
