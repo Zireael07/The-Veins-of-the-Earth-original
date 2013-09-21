@@ -217,23 +217,41 @@ function _M:move(x, y, force)
 	return moved
 end
 
+function _M:colorStats(stat)
+	local player = game.player
+	
+
+	if (self:getStat(stat)-10)/2 > (player:getStat(stat)-10)/2 then return "#RED#"..self:getStat(stat).."#LAST#"
+	elseif (self:getStat(stat)-10)/2 < (player:getStat(stat)-10)/2 then return "#GREEN#"..self:getStat(stat).."#LAST#"
+	else return "#WHITE#"..self:getStat(stat).."#LAST#" end
+end
+
+function _M:colorCR()
+	local player = game.player
+
+	if self.challenge > player.level then return "#FIREBRICK#"..self:attr('challenge').."#LAST#"
+	elseif self.challenge < (player.level - 4) then return "#LIGHT_GREEN#"..self:attr('challenge').."#LAST#"
+	elseif self.challenge < player.level then return "#DARK_GREEN#"..self:attr('challenge').."#LAST#"
+	else return "#GOLD#"..self:attr('challenge').."#LAST#" end
+end	
+
 function _M:tooltip()
 	return ([[%s%s
-		#RED#HP: %d (%d%%)
-		#WHITE#STR %s DEX %s CON %s 
-		WIS %s INT %s CHA %s
-		#GOLD#CR %s
-		%s]]):format(
+		#RED#HP: %d (%d%%)#LAST#
+		STR %s DEX %s CON %s 
+		INT %s WIS %s CHA %s
+		#GOLD#CR %s#LAST#
+		#WHITE#%s]]):format(
 		self:getDisplayString(),
 		self.name,
 		self.life, self.life * 100 / self.max_life,
-		self:getStat('str'),
-		self:getStat('dex'),
-		self:getStat('con'),
-		self:getStat('int'),
-		self:getStat('wis'),
-		self:getStat('cha'),
-		self:attr('challenge'),
+		self:colorStats('str'),
+		self:colorStats('dex'),
+		self:colorStats('con'),
+		self:colorStats('int'),
+		self:colorStats('wis'),
+		self:colorStats('cha'),
+		self:colorCR(),
 		self.desc or ""
 	)
 end
