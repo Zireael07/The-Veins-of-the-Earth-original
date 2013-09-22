@@ -4,7 +4,7 @@
 newEntity{
 	define_as = "BASE_NPC_SPIDER",
 	type = "vermin",
-	display = 's', color=colors.BROWN,
+	display = 'r', color=colors.BROWN,
 	body = { INVEN = 10 },
 	desc = [[A small spider.]],
 
@@ -328,7 +328,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_FBEETLE",
 	type = "vermin",
-	display = 'b', color=colors.FIRE_RED,
+	display = 'r', color=colors.FIRE_RED,
 	body = { INVEN = 10 },
 	desc = [[A giant fire beetle.]],
 
@@ -357,7 +357,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_SBEETLE",
 	type = "vermin",
-	display = 'b', color=colors.DARK_GREEN,
+	display = 'r', color=colors.DARK_GREEN,
 	body = { INVEN = 10 },
 	desc = [[A giant stag beetle.]],
 
