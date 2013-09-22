@@ -34,7 +34,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Half-Elf',
-	desc = [[A crossbreed of elf and human, they get the best of the two races.]],
+	desc = [[A crossbreed of elf and human, they get the best of the two races. Cha +2. Favored class: Bard.]],
 	stats = { cha = 2, },
 	copy_add = {
 	},
@@ -49,7 +49,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Elf',
-	desc = [[Elves are also called the Fair Folk. Dex +2 Con -2. Darkvision 3. Listen, Spot, Search +1.]],
+	desc = [[Elves are also called the Fair Folk. Dex +2 Con -2. Darkvision 3. Listen, Spot, Search +1. Favored class: Ranger.]],
 	stats = { dex = 2, con = -2, },
 	copy_add = {
 		infravision = 3,
@@ -68,7 +68,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Half-Orc',
-	desc = [[A crossbreed of orc and human. Str +2 Int -2 Cha -2. Darkvision 3.]],
+	desc = [[A crossbreed of orc and human. Str +2 Int -2 Cha -2. Darkvision 3. Favored class: Barbarian.]],
 	stats = { str = 2, int = -2, cha = -2, },
 	copy_add = {
 		infravision = 3,
@@ -85,7 +85,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Dwarf',
-	desc = [[A race of tough fighters and miners. Con +2, Cha -2. Darkvision 3.]],
+	desc = [[A race of tough fighters and miners. Con +2, Cha -2. Darkvision 3. Favored class: Fighter.]],
 	stats = { con = 2, cha = -2, },
 	copy_add = {
 		infravision = 3,
@@ -103,7 +103,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Drow',
-	desc = 'The drow are kin to the Fair Folk, who descended underground long ago.\n\n ECL +2. Dex +2 Con -2 Int +2 Cha +2 Luc -2. Darkvision 6. Listen, Spot, Search +2.',
+	desc = 'The drow are kin to the Fair Folk, who descended underground long ago.\n\n ECL +2. Dex +2 Con -2 Int +2 Cha +2 Luc -2. Darkvision 6. Listen, Spot, Search +2. Favored class: Cleric (female), Wizard (male).',
 	stats = { dex = 2, con = -2, int = 2, cha = 2, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -119,7 +119,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Duergar',
-	desc = 'The gray dwarves are the underground offshoot of the dwarves, long ago imprisoned by the mind flayers.\n\n ECL +1. Con +2 Cha -2 Luc -2. Darkvision 6. Listen, Spot +1.',
+	desc = 'The gray dwarves are the underground offshoot of the dwarves, long ago imprisoned by the mind flayers.\n\n ECL +1. Con +2 Cha -2 Luc -2. Darkvision 6. Listen, Spot +1. Favored class: Fighter.',
 	stats = { con = 2, cha = -4, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -129,11 +129,11 @@ newBirthDescriptor {
 	}
 }
 
---Stone sense. Spell-like abilities 1/day - disguise self, blur, blindness/deafness
+--Stone sense. Spell-like abilities 1/day - disguise actor, blur, blindness/deafness
 newBirthDescriptor {
 	type = 'race',
 	name = 'Deep gnome',
-	desc = 'The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders.\n\n ECL +3. Str -2 Dex +2 Wis +2 Cha -4 Luc -2. Darkvision 6. Listen +2. Fort, Ref, Will +2. AC +4.',
+	desc = 'The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders.\n\n ECL +3. Str -2 Dex +2 Wis +2 Cha -4 Luc -2. Darkvision 6. Listen +2. Fort, Ref, Will +2. AC +4. Favored class: Rogue.',
 	stats = { str = -2, dex = 2, wis = 2, cha = -4, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -187,17 +187,28 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor.fortitude_save = (actor.fortitude_save or 0) +2
 			actor.combat_bab = (actor.combat_bab or 0) + 1
-			actor.max_life = actor.max_life + 12
 			actor.skill_point = (actor.skill_point or 0) + 4
+
+			if actor.descriptor.race == "Half-Orc" then
+			actor.max_life = actor.max_life + 14
+			else
+			actor.max_life = actor.max_life + 12 end
 		end
+
+
+		
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 12
 		actor.skill_point = (actor.skill_point or 0) + 4
+			if actor.descriptor.race == "Half-Orc" then
+			--Favored class bonuses
+			actor.combat_attack = (actor.combat_attack or 0) + 1
+			actor.max_life = actor.max_life + 14
+			else
+			actor.max_life = actor.max_life + 12 end
 	end,
 } 
 
@@ -244,17 +255,24 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.reflex_save = (actor.reflex_save or 0) + 2
-			actor.max_life = actor.max_life + 6
 			actor.skill_point = (actor.skill_point or 0) + 6
+			if actor.descriptor.race == "Half-Elf" then
+			actor.max_life = actor.max_life + 8
+			else
+			actor.max_life = actor.max_life + 6 end
 		end
 
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.will_save = (actor.will_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 6
 		actor.skill_point = (actor.skill_point or 0) + 4
+		if actor.descriptor.race == "Half-Elf" then
+		--Favored class bonuses
+		actor.combat_attack = (actor.combat_attack or 0) + 1
+		actor.max_life = actor.max_life + 8
+		else
+		actor.max_life = actor.max_life + 6 end
 	end,
 } 
 
@@ -297,21 +315,25 @@ newBirthDescriptor {
 		if level == 1 then
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.will_save = (actor.will_save or 0) + 2
-
-			actor.max_life = actor.max_life + 8
 			actor.skill_point = (actor.skill_point or 0) + 2
-
-		--	self:levelPassives()
-		end	
+			if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female" then
+			actor.max_life = actor.max_life + 10
+			else
+			actor.max_life = actor.max_life + 8 end
+			
+		end
 
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
-
-		actor.max_life = actor.max_life + 8
 		actor.skill_point = (actor.skill_point or 0) + 2
 
+		if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female" then
+		actor.combat_attack = (actor.combat_attack or 0) + 1
+		actor.max_life = actor.max_life + 1
+		else
+		actor.max_life = actor.max_life + 8 end
 	end,
 }
 
@@ -354,8 +376,6 @@ newBirthDescriptor {
 
 			actor.max_life = actor.max_life + 8
 			actor.skill_point = (actor.skill_point or 0) + 2
-
-	--		self:levelPassives()
 		end
 
 
@@ -395,11 +415,14 @@ newBirthDescriptor {
 		return true
 	end,
 	on_level = function(actor, level)
-		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
+		if level == 1 then 
+			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.combat_bab = (actor.combat_bab or 0) + 1
-
-			actor.max_life = actor.max_life + 10
 			actor.skill_point = (actor.skill_point or 0) + 2
+			if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
+			actor.max_life = actor.max_life + 12
+			else
+			actor.max_life = actor.max_life + 10 end
 		end
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
@@ -407,6 +430,11 @@ newBirthDescriptor {
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
+		if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
+		--Favored class bonuses
+		actor.combat_attack = (actor.combat_attack or 0) + 1
+		actor.max_life = actor.max_life + 12
+		end
 		actor.max_life = actor.max_life + 10
 		actor.skill_point = (actor.skill_point or 0) + 2
 	end,
@@ -444,21 +472,29 @@ newBirthDescriptor {
 		return true
 	end,
 	on_level = function(actor, level)
-		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
+		if level == 1 then 
+			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.combat_bab = (actor.combat_bab or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 2
-
-			actor.max_life = actor.max_life + 8
 			actor.skill_point = (actor.skill_point or 0) + 6
+			if actor.descriptor.race == "Elf" then
+			--Favored class bonuses
+			actor.max_life = actor.max_life + 10	
+			else
+			actor.max_life = actor.max_life + 8 end
 		end
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.will_save = (actor.will_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 8
 		actor.skill_point = (actor.skill_point or 0) + 6
+		if actor.descriptor.race == "Elf" then
+		--Favored class bonuses
+		actor.combat_attack = (actor.combat_attack or 0) + 1
+		actor.max_life = actor.max_life + 10
+		else
+		actor.max_life = actor.max_life + 8 end
 
 	end,
 }
@@ -501,20 +537,28 @@ newBirthDescriptor {
 		return true
 	end,
 	on_level = function(actor, level)
-		if level == 1 then actor.reflex_save = (actor.reflex_save or 0) + 2
+		if level == 1 then 
+			actor.reflex_save = (actor.reflex_save or 0) + 2
 			actor.sneak_attack = (actor.sneak_attack or 0) + 1
-			actor.max_life = actor.max_life + 6
 			actor.skill_point = (actor.skill_point or 0) + 8
+			if  actor.descriptor.race == "Deep gnome" then
+			--Favored class bonuses
+			actor.max_life = actor.max_life + 8
+			else
+			actor.max_life = actor.max_life + 6 end
 		end
 
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 		actor.will_save = (actor.will_save or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 6
 		actor.skill_point = (actor.skill_point or 0) + 8
-
+		if actor.descriptor.race == "Deep gnome" then
+		--Favored class bonuses
+		actor.combat_attack = (actor.combat_attack or 0) + 1
+		actor.max_life = actor.max_life + 8
+		else
+		actor.max_life = actor.max_life + 6 end
 	end,
 }
 
@@ -557,19 +601,26 @@ newBirthDescriptor {
 		return true
 	end,
 	on_level = function(actor, level)
-		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
-			actor.max_life = actor.max_life + 4
+		if level == 1 then 
+			actor.will_save = (actor.will_save or 0) + 2
 			actor.skill_point = (actor.skill_point or 0) + 2
+			if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Male" then
+			--Favored class bonuses
+			actor.max_life = actor.max_life + 6
+			else
+			actor.max_life = actor.max_life + 4 end
 		end
 
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 4
 		actor.skill_point = (actor.skill_point or 0) + 2
-
+		if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Male" then
+		--Favored class bonuses
+		actor.max_life = actor.max_life + 6
+		else
+		actor.max_life = actor.max_life + 4 end
 	end,
 }
 

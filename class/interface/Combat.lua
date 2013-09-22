@@ -57,7 +57,7 @@ function _M:attackRoll(target)
         stat_used = "dex"
     end
 
-    local attack = (self.combat_bab or 0)
+    local attack = (self.combat_bab or 0) + (self.combat_attack or 0)
 
     if self:knowTalent(self.T_FINESSE) and weapon and not weapon.ranged then
         --Is the weapon light, or usable for finesse?

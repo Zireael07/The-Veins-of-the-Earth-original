@@ -48,6 +48,7 @@ function _M:init(t, no_default)
 	self.combat_dr = 0
 --	self.combat_base_ac = 10
 	self.combat_bab = 0
+	self.combat_attack = 0
 	self.hit_die = 4
 
 	--Define AC types
