@@ -24,8 +24,11 @@ function _M:init()
     Press #YELLOW#'g'#LAST# to pick up items.
     Press #YELLOW#'d'#LAST# to drop items.
 
+
     Press #YELLOW#'h'#LAST# to display this screen again.
     Press #YELLOW#'b'#LAST# to diplay your spellbook, if you have it.
+
+    *You may need to enter keybinding screen before the latter two keybinds work*
 
 ]]
         
