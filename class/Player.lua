@@ -191,7 +191,7 @@ local random_name = {
       else local ng = NameGenerator.new(random_name.human_male)
         self:setName(ng:generate()) 
         print("GENERATING A RANDOM NAME") end
-    elseif self.descriptor.race == "Half-Elf" then 
+    elseif self.descriptor.race == "Half-Elf" or self.descriptor.race == "Half-Drow" then 
       if self.descriptor.sex == "Female" then
         local ng = NameGenerator.new(random_name.halfelf_female)
         self:setName(ng:generate()) 
@@ -245,7 +245,7 @@ local random_name = {
       local ng = NameGenerator.new(random_name.duergar_male) 
       self:setName(ng:generate())
       print("GENERATING A RANDOM NAME") end
-    elseif self.descriptor.race == "Deep gnome" then 
+    elseif self.descriptor.race == "Deep gnome" or self.descriptor.race == "Gnome" or self.descriptor.race == "Halfling" then 
       if self.descriptor.sex == "Female" then
         local ng = NameGenerator.new(random_name.gnome_female)
         self:setName(ng:generate()) 

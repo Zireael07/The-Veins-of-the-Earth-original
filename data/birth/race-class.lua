@@ -34,9 +34,32 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Half-Elf',
-	desc = [[A crossbreed of elf and human, they get the best of the two races. Cha +2. Favored class: Bard.]],
+	desc = [[A crossbreed of elf and human, they get the best of the two races. Cha +2. Diplomacy, Listen, Search, Spot +1. Favored class: Bard.]],
 	stats = { cha = 2, },
 	copy_add = {
+		skill_diplomacy = 1,
+		skill_listen = 1,
+		skill_spot = 1,
+		skill_search = 1,
+	},
+	copy = {
+		resolvers.equip {
+			full_id=true,
+			{ name="a torch" },
+		},
+	}
+}
+
+newBirthDescriptor {
+	type = 'race',
+	name = 'Half-Drow',
+	desc = [[A crossbreed of drow and human, they get the best of the two races. Cha +2. Listen, Spot, Search +1. Darkvision 2. Favored class: Cleric.]],
+	stats = { cha = 2, },
+	copy_add = {
+		infravision = 2,
+		skill_listen = 1,
+		skill_spot = 1,
+		skill_search = 1,
 	},
 	copy = {
 		resolvers.equip {
@@ -49,7 +72,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Elf',
-	desc = [[Elves are also called the Fair Folk. Dex +2 Con -2. Darkvision 3. Listen, Spot, Search +1. Favored class: Ranger.]],
+	desc = [[Elves are also called the Fair Folk. Dex +2 Con -2. Listen, Spot, Search +1. Darkvision 3. Favored class: Ranger.]],
 	stats = { dex = 2, con = -2, },
 	copy_add = {
 		infravision = 3,
@@ -72,6 +95,51 @@ newBirthDescriptor {
 	stats = { str = 2, int = -2, cha = -2, },
 	copy_add = {
 		infravision = 3,
+	},
+	copy = {
+		resolvers.equip {
+			full_id=true,
+			{ name="a torch" },
+		},
+	}
+}
+
+--Dancing lights, ghost sound, prestigidation
+newBirthDescriptor {
+	type = 'race',
+	name = 'Gnome',
+	desc = [[A race of inventors. Str -2 Con +2. AC +1, attack +1. Listen +2. Darkvision 3. Favored class: Bard.]],
+	stats = { str = -2, con = 2 },
+	copy_add = {
+		infravision = 3,
+		combat_untyped = 1,
+		combat_attack = 1,
+		skill_listen = 2,
+	},
+	copy = {
+		resolvers.equip {
+			full_id=true,
+			{ name="a torch" },
+		},
+	}
+}
+
+newBirthDescriptor {
+	type = 'race',
+	name = 'Halfling',
+	desc = [[A race of lucky rogues. Str -2 Dex +2 Luc +2. AC +1, attack +1. Climb, Jump, Hide, Move Silently +2. +1 to all saving throws. Darkvision 3. Favored class: Rogue.]],
+	stats = { str = -2, dex = 2, luc = 2 },
+	copy_add = {
+		infravision = 3,
+		combat_untyped = 1,
+		combat_attack = 1,
+		skill_hide = 2,
+		skill_movesilently = 2,
+		skill_jump = 2,
+		skill_climb = 2,
+		fortitude_save = 1,
+		reflex_save = 1,
+		will_save = 1,
 	},
 	copy = {
 		resolvers.equip {
@@ -256,7 +324,7 @@ newBirthDescriptor {
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.reflex_save = (actor.reflex_save or 0) + 2
 			actor.skill_point = (actor.skill_point or 0) + 6
-			if actor.descriptor.race == "Half-Elf" then
+			if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
 			actor.max_life = actor.max_life + 8
 			else
 			actor.max_life = actor.max_life + 6 end
@@ -267,7 +335,7 @@ newBirthDescriptor {
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.will_save = (actor.will_save or 0) + 0.5
 		actor.skill_point = (actor.skill_point or 0) + 4
-		if actor.descriptor.race == "Half-Elf" then
+		if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
 		--Favored class bonuses
 		actor.combat_attack = (actor.combat_attack or 0) + 1
 		actor.max_life = actor.max_life + 8
@@ -316,7 +384,7 @@ newBirthDescriptor {
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.will_save = (actor.will_save or 0) + 2
 			actor.skill_point = (actor.skill_point or 0) + 2
-			if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female" then
+			if (actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female") or actor.descriptor.race == "Half-Drow" then
 			actor.max_life = actor.max_life + 10
 			else
 			actor.max_life = actor.max_life + 8 end
@@ -329,7 +397,7 @@ newBirthDescriptor {
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 		actor.skill_point = (actor.skill_point or 0) + 2
 
-		if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female" then
+		if (actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female") or actor.descriptor.race == "Half-Drow" then
 		actor.combat_attack = (actor.combat_attack or 0) + 1
 		actor.max_life = actor.max_life + 1
 		else
