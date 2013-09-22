@@ -18,7 +18,7 @@ Features:
 - controls displayed automatically at game start
 - 9 classes: barbarian, bard, cleric, druid, fighter, ranger, rogue, wizard, warlock
 - 2 prestige classes: shadowdancer, assasin
-- 10 races: human, half-elf, elf, dwarf, half-orc; drow, duergar, deep gnomes
+- 13 races: human, half-elf, half-drow, gnome, halfling, elf, dwarf, half-orc; drow, duergar, deep gnomes
 - random name generator taking into account your character's race and sex
 - Effective Character Level
 - multiclassing & prestige classes & favored classes

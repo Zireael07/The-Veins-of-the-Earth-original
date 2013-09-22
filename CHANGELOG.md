@@ -167,4 +167,14 @@ BETA RELEASES
 * monster symbols overhauled & added to legend screen
 * controls screen shown automatically after char creation, now includes 'r' for rest
 
+0.0.14 - 22/09/2013
+* new races: half-drow, gnome, halfling
+* revised AC (cannot exceed +5 from rings)
+* revised BAB (BAB requirements for feats work now)
+* magic weapons
+* color-coded stats and CR in tooltips, relative to your stats and level
+* favored classes
+* fix vermin symbols
+* update README & license & controls screen
+
 
