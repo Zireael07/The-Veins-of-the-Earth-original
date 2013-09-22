@@ -5,6 +5,8 @@ The Veins of the Earth
 
 Requires T-Engine 1.0.4.
 
+Click t-engine.exe to run.
+
 Based on the OGL license (included).
 
 Contributors:
@@ -19,7 +21,7 @@ Features:
 - 10 races: human, half-elf, elf, dwarf, half-orc; drow, duergar, deep gnomes
 - random name generator taking into account your character's race and sex
 - Effective Character Level
-- multiclassing & prestige classes
+- multiclassing & prestige classes & favored classes
 - colored character sheet with tooltips displaying rules info
 - randomized unarmed and weapon damage; archery and weapon finesse
 - attack roll & AC & critical hits & offhand attack & iterative attacks
@@ -33,7 +35,7 @@ Features:
 - feat and skill select [Seb]
 - skill checks and opposed checks, including armor check penalty and racial bonuses; more skill points at first character level
 - skill tests printed to log; max skill ranks implemented
-- most weapons from SRD; magic armors and shields; light sources; amulet of natural armor; cure x wounds potions [Seb]
+- most weapons from SRD; magic armors and shields; magic weapons; light sources; amulet of natural armor; cure x wounds potions [Seb]
 - ranged weapons as starting equipment; deep-dwelling races no longer get a torch
 - most melee & skill enhancing feats from SRD
 - working Intuition skill and item identification

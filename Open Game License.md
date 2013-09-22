@@ -33,5 +33,8 @@ The following text is the property of Wizards of the Coast, Inc. and is Copyrigh
 15. COPYRIGHT NOTICE
   Open Game License v 1.0 Copyright 2000, Wizards of the Coast, Inc.
   System Reference Document Copyright 2000, Wizards of the Coast, Inc.; Authors Jonathan Tweet, Monte Cook, Skip Williams, based on original material by E. Gary Gygax and Dave Arneson.
+  d20pfsrd.com. Copyright 2010, John Reyst
+  Incursion. Copyright 1999-2007, Julian Mensch
+  Veins of the Earth. Copyright 2013, Zireael
 -----------
   All of the game mechanics used in this module, along with the names of monsters, items and spells, are designated as open game content. The setting, plot and flavor text, as well as the computer code used to intrepret and apply the game mechanics, are considered to be Product Identity. All Product Indentity of the module may be freely distributed.
