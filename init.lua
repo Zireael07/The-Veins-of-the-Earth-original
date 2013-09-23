@@ -19,7 +19,7 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
-version = {0,0,12}
+version = {0,0,14}
 engine = {1,0,4,"te4"}
 description = [[
 In DarkGod's words, "a fantasy d20-themed dungeon crawler".
@@ -31,7 +31,7 @@ no_get_name = true
 show_only_on_cheat = false -- Example modules are not shown to normal players
 
 score_formatters = {
-	["Underdark"] = {
+	["Veins"] = {
 		alive="#BLUE#{name}#LAST#",
 		dead="#BLUE#{name}#LAST#"
 	},

@@ -34,7 +34,7 @@ local Birther = require "engine.Birther"
 local UIBase = require "engine.ui.Base"
 
 local size = 12
-UIBase.font = core.display.newFont("/data/font/DroidSansFallBack.ttf", size)
+UIBase.font = core.display.newFont("/data/font/DroidSansFallback.ttf", size)
 
 
 dofile('/mod/resolvers.lua')

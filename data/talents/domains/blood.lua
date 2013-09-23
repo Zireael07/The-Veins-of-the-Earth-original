@@ -7,10 +7,10 @@ newTalent{
 	require = {
 		special = {
 			fct = function(self, t, offset) return true end,
-			desc = "Blood Domain",		 -- Should be base attack bonus of 1
+			desc = "Blood Domain",		
 		},
 	},
-	acquired = "You recieved this feat because you have the Blood domain", 
+	acquired = "You received this feat because you have the Blood domain", 
 	points = 1,
 	is_feat = true,
 
