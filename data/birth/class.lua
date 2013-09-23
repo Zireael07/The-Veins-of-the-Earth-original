@@ -83,7 +83,7 @@ newBirthDescriptor {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_SHOW_SPELLBOOK]=1,
-	--	[ActorTalents.T_BARDIC_HEAL_LIGHT_WOUNDS]=1,
+		[ActorTalents.T_BARDIC_CLW]=1,
 		[ActorTalents.T_SUMMON_CREATURE_I]=1,
 		[ActorTalents.T_SLEEP]=1,
 		[ActorTalents.T_GREASE]=1,
@@ -146,7 +146,7 @@ newBirthDescriptor {
 	},
 	talents = {
 		[ActorTalents.T_SHOW_SPELLBOOK]=1,
-		[ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
+		[ActorTalents.T_CURE_LIGHT_WOUNDS]=1,
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
@@ -205,7 +205,7 @@ newBirthDescriptor {
 		skill_point = 12, --4x skill points at 1st level
 	},
 	talents = {
-		[ActorTalents.T_HEAL_LIGHT_WOUNDS]=1,
+		[ActorTalents.T_CURE_LIGHT_WOUNDS]=1,
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 	},
@@ -436,7 +436,6 @@ newBirthDescriptor {
 		skill_point = 6, --4x skill points at 1st level
 	},
 	talents = {
-		[ActorTalents.T_EMPOWER] = 1,
 		[ActorTalents.T_SHOW_SPELLBOOK]=1,
 		[ActorTalents.T_ACID_SPLASH]=1,
 		[ActorTalents.T_GREASE]=1,
