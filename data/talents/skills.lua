@@ -3,7 +3,7 @@ newTalentType{ type="skill/skill", name = "skill", description = "Skills" }
 
 
 newTalent{
-	name = "Intuition",
+	name = "Intuition", image = "talents/intuition.png",
 	type = {"skill/skill",1},
 	mode = "activated",
 	points = 1,

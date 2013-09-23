@@ -1,7 +1,7 @@
 newTalentType{ passive=true, type="cleric/cleric", name="cleric", description="Cleric Feats" }
 
 newTalent{
-	name = "Lay on Hands",
+	name = "Lay on Hands", image = "talents/lay_on_hands.png",
 	type = {"cleric/cleric", 1},
 	mode = 'activated',
 	--require = ,
@@ -25,7 +25,7 @@ newTalent{
 
 
 newTalent{
-	name = "Spontaneous Conversion",
+	name = "Spontanous Conversion",
 	type = {"cleric/cleric", 1},
 	mode = 'sustained',
 	require = { level = 2 },

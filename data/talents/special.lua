@@ -23,7 +23,7 @@ newTalent{
 	
 
 newTalent{     
-    name = "Shoot",
+    name = "Shoot", image = "talents/shoot.png",
     type = {"special/special", 1},
     mode = 'activated',
     --require = ,
@@ -35,7 +35,6 @@ newTalent{
 --      range = function(self, t) local weapon = self:getInven("MAIN_HAND")[1] return weapon.combat.range end,
     target = function(self, t) return  {type="bolt", range=self:getInven("MAIN_HAND")[1].combat.range, talent=t} end,
     archery_hit = function(tx, ty, tg, self, tmp) --This is called when the projectile hits
-        game.log("Hello?")
         local DamageType = require "engine.DamageType"
         local damtype = DamageType.PHYSICAL
         game.log("Damtype is: "..damtype)
@@ -57,7 +56,6 @@ newTalent{
         end
     end,
     action = function(self, t)
-            game.log("HELLO I WANT TO SHOOT")
             local weapon = self:getInven("MAIN_HAND")[1]
             local ammo = self:getInven("QUIVER")[1]
 
@@ -74,7 +72,6 @@ newTalent{
             local x, y = self:getTarget(tg)
             local _ _, _, _, x, y = self:canProject(tg, x, y)
             if not x or not y then return nil end
-            game.log("ALRIGHT, LETS SHOOOOOOT!")
             self:projectile(tg, x, y, t.archery_hit)
 
             --self:getInven("QUIVER")[1].combat.capacity = self:getInven("QUIVER")[1].combat.capacity - 1

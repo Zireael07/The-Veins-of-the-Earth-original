@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="heal_light_wounds.svg"
-   inkscape:export-filename="C:\Games\ToME\game\modules\Underdark\data\gfx\talents\heal_light_wounds.png"
+   inkscape:export-filename="C:\Games\ToME\game\modules\Underdark\data\gfx\talents\cure_light_wounds.png"
    inkscape:export-xdpi="68.867393"
    inkscape:export-ydpi="68.867393">
   <title
@@ -26,7 +26,7 @@
     <linearGradient
        id="linearGradient4629">
       <stop
-         style="stop-color:#1B35E0;stop-opacity:1;"
+         style="stop-color:#403f25;stop-opacity:1;"
          offset="0"
          id="stop4631" />
       <stop
@@ -37,22 +37,22 @@
     <linearGradient
        id="linearGradient4292">
       <stop
-         style="stop-color:#403f25;stop-opacity:1;"
+         style="stop-color:#f6f26c;stop-opacity:1;"
          offset="0"
          id="stop4294" />
       <stop
-         style="stop-color:#1B35E0;stop-opacity:1;"
+         style="stop-color:#d66622;stop-opacity:1;"
          offset="1"
          id="stop4296" />
     </linearGradient>
     <linearGradient
        id="linearGradient3396">
       <stop
-         style="stop-color:#1B35E0;stop-opacity:1;"
+         style="stop-color:#e1c449;stop-opacity:1;"
          offset="0"
          id="stop3398" />
       <stop
-         style="stop-color:#1B35E0;stop-opacity:1;"
+         style="stop-color:#eccc7f;stop-opacity:1;"
          offset="1"
          id="stop3400" />
     </linearGradient>
