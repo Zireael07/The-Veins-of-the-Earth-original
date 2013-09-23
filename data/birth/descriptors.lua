@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -13,15 +13,11 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- 
-
-
 
 newBirthDescriptor{
 	type = "base",
 	name = "base",
-	world = "Underdark",
+	world = "Veins",
 	desc = {
 	},
 	experience = 1.0,
@@ -41,7 +37,7 @@ newBirthDescriptor{
 		max_level = 100,
 		feat_point = 1,
 		game_state = {
-		  campaign_name = "Underdark",
+		  campaign_name = "Veins",
     },
     resolvers.inventory {
       full_id=true,
@@ -177,5 +173,6 @@ newBirthDescriptor {
   },
 }
 
-load('/data/birth/race-class.lua')
+load('/data/birth/races.lua')
+load('/data/birth/class.lua')
 load('/data/birth/domains.lua')
