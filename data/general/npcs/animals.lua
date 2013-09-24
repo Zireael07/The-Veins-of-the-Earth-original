@@ -20,7 +20,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_RAT",
 	type = "animal",
-	display = 'S', color=colors.WHITE,
+	display = 'r', color=colors.WHITE,
 	body = { INVEN = 10 },
 	desc = [[A small rat.]],
 
@@ -213,7 +213,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_RAVEN",
 	type = "animal",
-	display = 'b', color=colors.BLACK,
+	display = 'b', color=colors.GREY,
 	body = { INVEN = 10 },
 	desc = [[A large raven.]],
 
