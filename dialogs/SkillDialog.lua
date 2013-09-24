@@ -101,4 +101,5 @@ function _M:generateList()
         list[#list+1] = {name="#SLATE#(#LAST##AQUAMARINE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize(), skill = skill,	 color = color, desc=d}
     end
     self.list = list
+    table.sort(list, function(a,b) return a.skill < b.skill end)
 end	
