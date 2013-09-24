@@ -425,22 +425,14 @@ end
 --- Can we continue resting ?
 -- We can rest if no hostiles are in sight, and if we need life/mana/stamina (and their regen rates allows them to fully regen)
 function _M:restCheck()
-  if spotHostiles(self) then return false, "hostile spotted" end
+  --Implemented Light Sleeper feat; EVIL!
+  if self:knowTalent(self.T_LIGHT_SLEEPER) and spotHostiles(self) then return false, "hostile spotted" 
+    elseif rng.percent(50) and spotHostiles(self) then return false, "hostile spotted" end
 
-  if self.resting.rest_turns and self.repeat_action then
-    -- Slight Hack(TM):  We re-use the resting infrastructure to repeat
-    -- certain actions like attempting to open locked doors.
-    return self:repeat_action()
-  end
 
-  -- Check resources, make sure they CAN go up, otherwise we will never stop
-  --[[
-  if self:getPower() < self:getMaxPower() and self.power_regen > 0 then return true end
-  ]]
-
-  -- Regen health at a rate of 1/100th of max_life after havign rested for 160 turns already 
-  if self.resting.cnt > 160 then
-    local regen = math.ceil(self.max_life / 100) or 1
+  -- Regen health at a rate of 1 hp per turn after having rested for 20 turns already 
+  if self.resting.cnt > 20 then
+    local regen = 1
     self.life = math.min(self.max_life, self.life + regen)
     
     --Refresh charges
@@ -478,13 +470,18 @@ function _M:onRestStop()
   -- Remove any repeating action.
   self.repeat_action = nil
 
+  if self.resting.cnt > 20 then 
+    --Passage of time 
+    game.turn = game.turn + game.calendar.HOUR * 8
+    --Spawn monsters
+    local m = game.zone:makeEntity(game.level, "actor", {max_ood=2}, nil, true)
+    if m then game.zone:addEntity(game.level, m, "actor", x, y) end
+    --Passage of time 
+  elseif self.resting.cnt == 0 then game.turn = game.turn
+  else game.turn = game.turn + game.calendar.HOUR * 4 end
+
   --Calendar
   game.log(game.calendar:getTimeDate(game.turn))
-
-  on_very_end = function()
- -- Spawn monsters
-  local Random = require "engine.generator.actor.Random"
-  Random:generate() end
 end
 
 --- Can we continue running?
