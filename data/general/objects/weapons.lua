@@ -4,7 +4,7 @@ newEntity{
     define_as = "BASE_WEAPON",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon",
-    ego = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_WEAPON",

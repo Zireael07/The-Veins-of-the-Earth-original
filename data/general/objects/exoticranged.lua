@@ -8,7 +8,7 @@ newEntity{
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
     type = "weapon",
-    ego = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_EXOTIC_RANGED",

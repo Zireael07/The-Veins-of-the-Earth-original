@@ -108,6 +108,51 @@ newDamageType{
 	end,
 }
 
+newDamageType{
+	name = "cold", type = "COLD", text_color = "#LIGHT_BLUE#",
+	projector = function(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR) or src
+		if target then
+			local damage = dam
+			if target:fortitudeSave(10) then
+				damage = math.floor(damage / 2)
+			end
+			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
+			return realdam
+		end
+	end,
+}
+
+newDamageType{
+	name = "electricity", type = "ELECTRIC", text_color = "#GOLD#",
+	projector = function(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR) or src
+		if target then
+			local damage = dam
+			if target:reflexSave(10) then
+				damage = math.floor(damage / 2)
+			end
+			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
+			return realdam
+		end
+	end,
+}
+
+newDamageType{
+	name = "sonic", type = "SONIC", text_color = "#TEAL#",
+	projector = function(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR) or src
+		if target then
+			local damage = dam
+			if target:fortitudeSave(10) then
+				damage = math.floor(damage / 2)
+			end
+			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
+			return realdam
+		end
+	end,
+}
+
 
 newDamageType{
 	name = "grease", type = "GREASE",

@@ -2,7 +2,7 @@
 --Zireael
 
 newEntity {
-	name " +1", suffix = true,
+	name = " +1", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 8,
@@ -13,7 +13,7 @@ newEntity {
 }
 
 newEntity {
-	name " +2", suffix = true,
+	name = " +2", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 8,
@@ -24,7 +24,7 @@ newEntity {
 }
 
 newEntity {
-	name " +3", suffix = true,
+	name = " +3", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 8,
@@ -35,7 +35,7 @@ newEntity {
 }
 
 newEntity {
-	name " +4", suffix = true,
+	name = " +4", suffix = true,
 	keywords = {bonus=true},
 	level_range = {10, 20},
 	rarity = 10,
@@ -46,7 +46,7 @@ newEntity {
 }
 
 newEntity {
-	name " +5", suffix = true,
+	name = " +5", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 15,

@@ -4,7 +4,7 @@ newEntity{
     define_as = "BASE_ARMOR",
     slot = "BODY",
     type = "armor",
-    ego = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 --Armors
@@ -378,7 +378,7 @@ newEntity{
     rarity = 2,
     name = "medium armor",
     desc = [[A suit of armour made of mail. AC +5. Max Dex bonus to AC 2. Spell failure chance 30%. Armor check penalty -5.]],
-    ego = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
@@ -649,7 +649,7 @@ newEntity{
     rarity = 8,
     name = "heavy armor",
     desc = [[A suit of armour made of plate. AC +7. Max Dex bonus to AC 0. Spell failure chance 40%. Armor check penalty -7.]],
-    ego = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
