@@ -19,7 +19,7 @@ local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
 	define_as = "BASE_NPC_KOBOLD",
-	type = "humanoid", subtype = "kobold",
+	type = "humanoid", subtype = "humanoid_kobold",
 	display = "k", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
         desc = [[Ugly and green!]],
@@ -71,7 +71,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 
 newEntity{
 	define_as = "BASE_NPC_ORC",
-	type = "humanoid",
+	type = "humanoid", subtype = "humanoid_orc",
 	display = 'o', color=colors.GREEN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[An ugly orc.]],
@@ -105,7 +105,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_TIEFLING",
-	type = "humanoid",
+	type = "planetouched",
 	display = 'h', color=colors.RED,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[A horned tiefling.]],
@@ -140,7 +140,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_GOBLIN",
-	type = "humanoid",
+	type = "humanoid", subtype = "humanoid_goblin",
 	display = 'g', color=colors.GREEN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[A dirty goblin.]],
@@ -177,7 +177,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_DROW",
-	type = "humanoid",
+	type = "humanoid", subtype = "humanoid_drow",
 	display = 'h', color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[A dark silhouette.]],
@@ -215,7 +215,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_HUMAN",
-	type = "humanoid",
+	type = "humanoid", subtype = "humanoid_human",
 	display = 'h', color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	desc = [[A lost human.]],

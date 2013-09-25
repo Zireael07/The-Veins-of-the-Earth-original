@@ -59,6 +59,8 @@ function _M:attackRoll(target)
 
     local attack = (self.combat_bab or 0) + (self.combat_attack or 0)
 
+    if self:knowTalent(self.T_WEAPON_FOCUS) and weapon.subtype == self.weapon_type then attack = attack + 1 end
+
     if self:knowTalent(self.T_FINESSE) and weapon and not weapon.ranged then
         --Is the weapon light, or usable for finesse?
         local success = false
@@ -110,6 +112,15 @@ function _M:attackTarget(target, mult)
       
         if hit then
             local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self.weapon and self.weapon.combat.magic_bonus or 0) + (self:getStr()-10)/2 - target.combat_dr or 0
+
+            if self:knowTalent(self.T_FAVORED_ENEMY) then
+                if target.type ~= "humanoid" then 
+                    if target.type == self.favored_enemy then dam = dam + 2 end
+                else 
+                    if target.subtype == self.favored_enemy then dam = dam + 2 end
+                end
+            end        
+
             dam = math.max(0, dam)
             if dam and crit then
                 game.log(("%s makes a critical attack!"):format(self.name:capitalize()))

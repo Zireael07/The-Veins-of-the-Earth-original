@@ -319,6 +319,7 @@ newBirthDescriptor {
 	talents = {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_FAVORED_ENEMY]=1,
 	},
 	can_level = function(actor)
 		return true

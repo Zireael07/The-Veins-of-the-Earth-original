@@ -1,5 +1,6 @@
 newTalentType{ type="class/general", name = "general", description = "General feats" }
 
+--Proficiency feats
 newTalent{
 	name = "Light Armor Proficiency",
 	type = {"class/general", 1},
@@ -49,7 +50,7 @@ newTalent{
 }
 
 
-
+--Save bonuses feats
 newTalent{
 	name = "Toughness",
 	type = {"class/general", 1},
@@ -90,6 +91,31 @@ newTalent{
 	end
 }
 
+--Combat feats
+newTalent{
+	name = "Power Attack",
+	type = {"class/general", 1},
+	require = {
+		stat = {str = 13}
+	},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[You can substract a number from your base attack bonus and add it to damage bonus.]],
+}
+
+newTalent{
+	name = "Combat Expertise",
+	type = {"class/general", 1},
+	require = {
+		stat = { int = 13 }
+	},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[You can substract a number up to -5 from your attack and add it to your AC as a dodge bonus.]],
+}
+
 newTalent{
 	name = "Finesse",
 	type = {"class/general", 1},
@@ -109,18 +135,31 @@ newTalent{
 	info = [[With a light weapon, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.]],
 }
 
-
 newTalent{
-	name = "Combat Expertise",
+	name = "Weapon Focus",
 	type = {"class/general", 1},
 	require = {
-		stat = { int = 13 }
+		special = {
+			fct = function(self, t, offset) 
+			--Base attack bonus 1
+			if self:attr("combat_bab") >= 1 then return true
+			else return false end
+			end,
+			desc = "Base attack bonus 1",
+		}
 	},
 	is_feat = true,
 	points = 1,
 	mode = "passive",
-	info = [[You can substract a number up to -5 from your attack and add it to your AC as a dodge bonus.]],
+	info = [[You gain a +1 bonus to attacks made with the chosen weapon.]],
+		on_learn = function(self, t)
+		local d = require("mod.dialogs.WeaponTypes").new(t)
+
+		game:registerDialog(d)    
+end
 }
+
+
 
 newTalent{
 	name = "Improved Critical",
@@ -140,11 +179,17 @@ newTalent{
 	},
 	is_feat = true,
 	info = [[This feat increases a chosen weapon's critical range by 2.]],
-      	on_learn = function(self, t)
-		combat.weapon.threat = combat.weapon.threat + 2       
+		on_learn = function(self, t)
+		local d = require("mod.dialogs.WeaponTypes").new(t)
+
+		game:registerDialog(d)
+      	
+      	if weapon.subtype == choice then
+		combat.weapon.threat = combat.weapon.threat + 2 end     
 end
 }
 
+--Various feats
 newTalent{
 	name = "Light Sleeper",
 	type = {"class/general", 1},
@@ -181,18 +226,6 @@ newTalent{
     on_learn = function(self, t)
         self.combat_dodge = (self.combat_dodge or 0) + 4
     end
-}
-
-newTalent{
-	name = "Power Attack",
-	type = {"class/general", 1},
-	require = {
-		stat = {str = 13}
-	},
-	is_feat = true,
-	points = 1,
-	mode = "passive",
-	info = [[You can substract a number from your base attack bonus and add it to damage bonus.]],
 }
 
 -- Skill enhancer feats

@@ -36,15 +36,18 @@ end
 
 
 load("data/talents/feats/feats.lua")
+load("data/talents/metamagic.lua")
 
 load("data/talents/domains/domains.lua")
 
-load("data/talents/barbarian.lua")
-load("data/talents/arcane.lua")
-load("data/talents/metamagic.lua")
-load("data/talents/special.lua")
 load("data/talents/divine.lua")
+load("data/talents/arcane.lua")
+
 load("data/talents/monster.lua")
+load("data/talents/skills.lua")
+load("data/talents/special.lua")
+
+load("data/talents/barbarian.lua")
 load("data/talents/cleric.lua")
 load("data/talents/eldritch.lua")
-load("data/talents/skills.lua")
+load("data/talents/ranger.lua")
