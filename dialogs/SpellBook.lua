@@ -87,7 +87,6 @@ function _M:drawDialog(s)
     local font = core.display.newFont("/data/font/DroidSans-Bold.ttf", 12)
 
     for i, v in ipairs(self.list) do
-        game.log("Level: "..i)
         local charges_used = game.player:getAllocatedCharges(self.spell_list, i) --TODO: Fix this function (getAllocatedCharges)
         local str = "Level-"..i.." Spells "..(charges_used or 0).."/"..(max_charges[i] or 0)
         s:drawString(self.font, str, w, h, 255, 255, 255, true)
