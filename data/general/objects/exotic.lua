@@ -1,11 +1,14 @@
 --Veins of the Earth
 --Zireael
 
+local Talents = require "engine.interface.ActorTalents"
+
 --Exotic melee weapons
 newEntity {
     define_as = "BASE_EXOTIC", 
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon",
+    require = { talent = { Talents.T_EXOTIC_WEAPON_PROFICIENCY }, },
     egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 
@@ -61,6 +64,7 @@ newEntity{ base = "BASE_EXOTIC",
     display = "/", color=colors.SLATE,
     encumber = 10,
     rarity = 10,
+    polearm = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic spiked chain",
     desc = [[A normal spiked chain. Damage 2d4.]],
@@ -85,6 +89,7 @@ newEntity{ base = "BASE_EXOTIC",
     display = "/", color=colors.SLATE,
     encumber = 15,
     rarity = 10,
+    double = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic orc double axe",
     desc = [[A normal orc double axe. Damage 1d8. Critical x3.]],
@@ -108,6 +113,7 @@ newEntity{ base = "BASE_EXOTIC",
     display = "/", color=colors.SLATE,
     encumber = 10,
     rarity = 10,
+    double = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic double sword",
     desc = [[A normal double sword. Damage 1d8. Threat range 19-20.]],
@@ -132,6 +138,7 @@ newEntity{ base = "BASE_EXOTIC",
     display = "/", color=colors.SLATE,
     encumber = 12,
     rarity = 12,
+    double = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic dwarven urgrosh",
     desc = [[A normal dwarven urgrosh. Damage 1d8. Critical x3.]],

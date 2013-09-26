@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael
 
+local Talents = require "engine.interface.ActorTalents"
+
 --Exotic ranged weapons
 
 newEntity{
@@ -8,6 +10,7 @@ newEntity{
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
     type = "weapon",
+    require = { talent = { Talents.T_EXOTIC_WEAPON_PROFICIENCY }, },
     egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 
