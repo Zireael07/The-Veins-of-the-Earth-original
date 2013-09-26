@@ -24,7 +24,7 @@ Features:
 - multiclassing & prestige classes & favored classes
 - colored character sheet with tooltips displaying rules info
 - randomized unarmed and weapon damage; archery and weapon finesse
-- attack roll & AC & critical hits & offhand attack & iterative attacks
+- attack roll & AC & critical hits & offhand attack (including double weapons) & iterative attacks
 - saving throws [Seb]; now take the best of two stats (Dex-Int; Con-Str; Wis-Cha)
 - hp, exp, dungeon level on-screen display
 - inventory & encumbrance
@@ -35,7 +35,7 @@ Features:
 - feat and skill select [Seb]
 - skill checks and opposed checks, including armor check penalty and racial bonuses; more skill points at first character level
 - skill tests printed to log; max skill ranks implemented
-- most weapons from SRD; magic armors and shields; magic weapons; light sources; amulet of natural armor; cure x wounds potions [Seb]
+- most weapons from SRD; magic armors and shields; magic weapons; light sources; magic items
 - ranged weapons as starting equipment; deep-dwelling races no longer get a torch
 - most melee & skill enhancing feats from SRD
 - working Intuition skill and item identification
@@ -46,6 +46,8 @@ Features:
 - item tooltips both on ground and in inventory
 - terrain effects
 - speed bonuses
+- resting takes 8 hours, monsters respawn on rest
+- cure x wounds spells work in a traditional way; heal x wounds spells heal a percentage of total hp
 
 
 ***

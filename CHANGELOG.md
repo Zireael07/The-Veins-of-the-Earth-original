@@ -177,4 +177,16 @@ BETA RELEASES
 * fix vermin symbols
 * update README & license & controls screen
 
-
+0.0.15 - 26/09/2013
+* typo fixes
+* bugfix for magic items not showing up
+* new spells: bardic cure light wounds; heal x wounds (heals a percentage of total hp); cure moderate/serious/critical wounds
+* new icons for hotbar
+* resting takes 8 hours if complete, less if interrupted; monsters respawn upon rest
+* Light Sleeper feat implemented
+* skills screen sorted alphabetically
+* weapon focus, improved critical, favored enemy implemented
+* no more magic items at game start
+* Exotic Weapon Proficiency needed to wield exotic weapons
+* weapon proficiencies implemented
+* double weapons working as intended
