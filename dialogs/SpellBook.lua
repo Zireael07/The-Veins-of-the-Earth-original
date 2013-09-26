@@ -129,10 +129,7 @@ end
 
 function _M:onReset()
     local p = game.player
-    for tid, _ in pairs(p.talents) do
-        p:setMaxCharges(tid, 0)
-        p:setCharges(tid, 0)
-    end
+    p:allocatedChargesReset()
     self:drawDialog()
 end
 
@@ -153,7 +150,7 @@ function _M:generateList(spellist)
     self.list = list
 
     if self.c_spells then
-        self.c_spells.list = self.list
+        self.c_spells.list = self.list[1]
         self:drawDialog()
     end
 end

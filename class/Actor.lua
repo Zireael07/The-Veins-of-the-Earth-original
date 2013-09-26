@@ -701,7 +701,10 @@ function _M:incMaxCharges(tid, v)
 	self:incAllocatedCharges(tt, t.level, v)
 end
 
+
+--- Set the number of prepared instances of a certain spell
 function _M:setMaxCharges(tid, v)
+
 	local tt
 	local t
 	if type(tid) == "table" then
@@ -720,6 +723,7 @@ function _M:setMaxCharges(tid, v)
 	self:setAllocatedCharges(tt, t.level, v)
 end
 
+--- Set the number of available instances of a certain spell
 function _M:setCharges(tid, v)
 	local t
 	local id
@@ -734,6 +738,7 @@ function _M:setCharges(tid, v)
 	self.charges[id] = v
 end
 
+--- Increase the number of available instances of a certain spell
 function _M:incCharges(tid, v)
 	if type(tid) == "table" then tid = tid.id end
 	local new = (self:getCharges(tid) or 0) + v
@@ -748,6 +753,7 @@ function _M:getAllocatedCharges(type, level)
 end
 
 function _M:setAllocatedCharges(type, level, value)
+	game.log("type: "..type.." |level: "..(level or "nil").. " |value: "..value)
 	if not self.allocated_charges[type] then self.allocated_charges[type] = {} end
 	if not self.allocated_charges[type][level] then self.allocated_charges[type][level] = {} end
 	self.allocated_charges[type][level] = value
@@ -757,6 +763,13 @@ function _M:incAllocatedCharges(type, level, value)
 	local c = self:getAllocatedCharges(type, level)
 	local val = c and (c + value) or value
 	self:setAllocatedCharges(type, level, val)
+end
+
+function _M:allocatedChargesReset()
+	for k, v in pairs(self.max_charges) do
+		self:setMaxCharges(k, 0)
+		self:setCharges(k, 0)
+	end
 end
 
 function _M:levelPassives()
