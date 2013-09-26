@@ -9,8 +9,8 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="iron battleaxe" },
-			{ name="chain mail" },
+			{ name="iron battleaxe", ego_chance=-1000 },
+			{ name="chain mail", ego_chance=-1000 },
 		},
 	},
 	copy_add = {
@@ -71,8 +71,8 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="rapier" },
-			{ name="chain shirt" },
+			{ name="rapier", ego_chance=-1000 },
+			{ name="chain shirt", ego_chance=-1000 },
 		},
 	},
 	copy_add = {
@@ -136,8 +136,8 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="heavy mace" },
-			{ name="chain mail" },
+			{ name="heavy mace", ego_chance=-1000 },
+			{ name="chain mail", ego_chance=-1000 },
 		},
 	},
 	copy_add = {
@@ -196,8 +196,8 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="quarterstaff" },
-			{ name="padded armor" },
+			{ name="quarterstaff", ego_chance=-1000 },
+			{ name="padded armor", ego_chance=-1000 },
 		},
 	},
 	copy_add = {
@@ -250,8 +250,8 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="long sword" },
-			{ name="chain mail" },
+			{ name="long sword", ego_chance=-1000 },
+			{ name="chain mail", ego_chance=-1000 },
 		},
 	},
 	copy_add = {
@@ -300,15 +300,15 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="long sword" },
-			{ name="iron dagger" },
-			{ name="studded leather" },
+			{ name="long sword", ego_chance=-1000 },
+			{ name="iron dagger", ego_chance=-1000 },
+			{ name="studded leather", ego_chance=-1000 },
 
 		},
 		resolvers.inventory {
 			full_id=true,
-			{ name="shortbow"},
-			{ name="arrows (20)" },
+			{ name="shortbow", ego_chance=-1000},
+			{ name="arrows (20)", ego_chance=-1000 },
 		},
 
 	},
@@ -359,13 +359,13 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="light crossbow" },
-			{ name="bolts (10)" },
-			{ name="studded leather" },
+			{ name="light crossbow", ego_chance=-1000 },
+			{ name="bolts (10)", ego_chance=-1000 },
+			{ name="studded leather", ego_chance=-1000 },
 		},
 		resolvers.inventory {
 			full_id=true,
-			{ name="iron dagger"},
+			{ name="iron dagger", ego_chance=-1000},
 		}
 	},
 	copy_add = {
@@ -427,8 +427,8 @@ newBirthDescriptor {
 		},
 		resolvers.inventory {
 			full_id=true,
-			{ name="light crossbow"},
-			{ name="bolts (10)"},
+			{ name="light crossbow", ego_chance=-1000},
+			{ name="bolts (10)", ego_chance=-1000},
 		}
 
 	},
@@ -485,8 +485,8 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="long sword" },
-			{ name="chain shirt" },
+			{ name="long sword", ego_chance=-1000 },
+			{ name="chain shirt", ego_chance=-1000 },
 		},
 	},
 	copy_add = {
