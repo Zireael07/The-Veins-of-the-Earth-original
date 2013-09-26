@@ -59,7 +59,12 @@ function _M:attackRoll(target)
 
     local attack = (self.combat_bab or 0) + (self.combat_attack or 0)
 
-    if self:knowTalent(self.T_WEAPON_FOCUS) and weapon.subtype == self.weapon_type then attack = attack + 1 end
+    if weapon and weapon.simple and not self:knowTalent(self.T_SIMPLE_WEAPON_PROFICIENCY) then attack = (attack -4) 
+        else attack = attack end
+    if weapon and weapon.martial and not self:knowTalent(self.T_MARTIAL_WEAPON_PROFICIENCY) then attack = (attack -4) 
+        else attack = attack end
+
+    if self:knowTalent(self.T_WEAPON_FOCUS) and weapon and weapon.subtype == self.weapon_type then attack = (attack + 1) end
 
     if self:knowTalent(self.T_FINESSE) and weapon and not weapon.ranged then
         --Is the weapon light, or usable for finesse?
@@ -140,9 +145,12 @@ function _M:attackTarget(target, mult)
         local offhand_attacks = 0
         if offhand_attacks == 0 then
         
-            --Should also take double weapons into account
+            
             local offweapon = self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1]
             if offweapon then
+                self:attackRoll(target) 
+                offhand_attacks = offhand_attacks + 1
+            elseif weapon and weapon.double then
                 self:attackRoll(target) 
                 offhand_attacks = offhand_attacks + 1
             end

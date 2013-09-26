@@ -21,6 +21,8 @@ newBirthDescriptor {
 	talents = {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
+		[ActorTalents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
 		[ActorTalents.T_RAGE]=1,
 	},
 	descriptor_choices =
@@ -46,9 +48,6 @@ newBirthDescriptor {
 			else
 			actor.max_life = actor.max_life + 12 end
 		end
-
-
-		
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -82,6 +81,7 @@ newBirthDescriptor {
 	talents = {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 		[ActorTalents.T_SHOW_SPELLBOOK]=1,
 		[ActorTalents.T_BARDIC_CLW]=1,
 		[ActorTalents.T_SUMMON_CREATURE_I]=1,
@@ -150,6 +150,7 @@ newBirthDescriptor {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 	},
 	talents_types = {
 		["cleric/cleric"] = {true, 0.0},
@@ -262,6 +263,8 @@ newBirthDescriptor {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
+		[ActorTalents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
 	},
 	can_level = function(actor)
 		return true
@@ -319,6 +322,8 @@ newBirthDescriptor {
 	talents = {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
+		[ActorTalents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
 		[ActorTalents.T_FAVORED_ENEMY]=1,
 	},
 	can_level = function(actor)
@@ -376,6 +381,7 @@ newBirthDescriptor {
 	talents = {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 	},
 	descriptor_choices =
 	{
@@ -422,7 +428,7 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="iron dagger" },
+			{ name="iron dagger", ego_chance=-1000 },
 
 		},
 		resolvers.inventory {
@@ -497,6 +503,7 @@ newBirthDescriptor {
 		[ActorTalents.T_ELDRITCH_BLAST]=1,
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
+		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 	},
 	can_level = function(actor)
 		return true

@@ -31,6 +31,37 @@ newTalent{
 }
 
 newTalent{
+	name = "Shield Proficiency",
+	type = {"class/general", 1},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat makes you proficient in shields.]],
+}
+
+
+newTalent{
+	name = "Simple Weapon Proficiency",
+	type = {"class/general", 1},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat makes you proficient in simple weapons.]],
+}
+
+newTalent{
+	name = "Martial Weapon Proficiency",
+	type = {"class/general", 1},
+	require = { talent = { Talents.T_SIMPLE_WEAPON_PROFICIENCY }, },
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat makes you proficient in martial weapons.]],
+}
+
+
+
+newTalent{
 	name = "Exotic Weapon Proficiency",
 	type = {"class/general", 1},
 	require = {
