@@ -1,5 +1,5 @@
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Copyright (C) 2013 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,9 +13,7 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
+
 
 require "engine.class"
 require "engine.Dialog"
@@ -24,7 +22,7 @@ local Savefile = require "engine.Savefile"
 module(..., package.seeall, class.inherit(engine.Dialog))
 
 function _M:init()
-	engine.Dialog.init(self, "Really exit Underdark?", 300, 100)
+	engine.Dialog.init(self, "Really exit Veins of the Earth?", 300, 100)
 	self:keyCommands({
 		__DEFAULT = function()
 			game:unregisterDialog(self)

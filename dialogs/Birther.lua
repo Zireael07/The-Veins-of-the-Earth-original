@@ -16,7 +16,7 @@ function _M:init(actor)
     self.actor = actor
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
-    Dialog.init(self, "Attributes Roller: "..self.actor.name, math.max(game.w * 0.7, 950), 500, nil, nil, font)
+    Dialog.init(self, "Attributes Roller", math.max(game.w * 0.7, 950), 500, nil, nil, font)
 
     self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
     --Reroll button
