@@ -1,5 +1,5 @@
--- TE4 - T-Engine 4
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Copyright (C) 2013 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,9 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
 
 require "engine.class"
 local Dialog = require "engine.ui.Dialog"
@@ -42,15 +39,6 @@ function _M:init(title, inven, filter, action, actor)
 	}
 
 	self.c_inven.c_inven.on_focus_change = function(ui_self, status) if status == true then game.tooltip:erase() end end
-
-	self.key.any_key = function(sym)
-		-- Control resets the tooltip
-		if sym == self.key._LCTRL or sym == self.key._RCTRL then
-			local ctrl = core.key.modState("ctrl")
-			if self.prev_ctrl ~= ctrl then self:select(self.cur_item, true) end
-			self.prev_ctrl = ctrl
-		end
-	end
 
 	self:loadUI{
 		{left=0, top=0, ui=self.c_inven},
@@ -96,22 +84,6 @@ function _M:use(item)
 	self.c_inven:generateList()
 	self:select(self.c_inven.c_inven.list[self.c_inven.c_inven.sel])
 	if not dont_end then game:unregisterDialog(self) end
-end
-
-function _M:updateTitle(title)
-	Dialog.updateTitle(self, title)
-
-	local green = colors.LIGHT_GREEN
-	local red = colors.LIGHT_RED
-
-	local enc, max = self.actor:getEncumbrance(), self.actor:getMaxEncumbrance()
-	local v = math.min(enc, max) / max
-	self.title_fill = self.iw * v
-	self.title_fill_color = {
-		r = util.lerp(green.r, red.r, v),
-		g = util.lerp(green.g, red.g, v),
-		b = util.lerp(green.b, red.b, v),
-	}
 end
 
 function _M:drawFrame(x, y, r, g, b, a)

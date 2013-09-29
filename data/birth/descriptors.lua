@@ -35,7 +35,6 @@ newBirthDescriptor{
 		money = 100,
 		max_life = 10,
 		max_level = 100,
-		feat_point = 1,
 		game_state = {
 		  campaign_name = "Veins",
     },
@@ -175,4 +174,5 @@ newBirthDescriptor {
 
 load('/data/birth/races.lua')
 load('/data/birth/class.lua')
+load('/data/birth/background.lua')
 load('/data/birth/domains.lua')

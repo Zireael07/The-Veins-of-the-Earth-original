@@ -89,9 +89,10 @@ newTalent{
 	points = 3,
 	mode = "passive",
 	is_feat = true,
-	info = [[This feat increases your Fort save by +3.]],
+	info = [[This feat increases your Fort save by +3 and HP by 10%.]],
     on_learn = function(self, t)
 	    self.fortitude_save = self.fortitude_save + 3
+--	    self.max_life = self
     end
 }
 
@@ -308,7 +309,7 @@ newTalent{
 	info = [[This feat increases your Handle Animal skill by +2.]],
 	on_learn = function(self, t)
         self.skill_handleanimal = (self.skill_handleanimal or 0) + 2
---        self.skill_tumble = self.skill_tumble + 2
+--        self.skill_ride = (self.skill_ride or 0) + 2
     end
 }
 
@@ -318,25 +319,14 @@ newTalent{
 	is_feat = true,
 	points = 1,
 	mode = "passive",
-	info = [[This feat increases your Climb skill by +2.]],
+	info = [[This feat increases your Climb and Swim skills by +2.]],
 	on_learn = function(self, t)
         self.skill_climb  = (self.skill_climb or 0) + 2
-        self.skill_swim = self.skill_swim + 2
+        self.skill_swim = (self.skill_swim or 0) + 2
     end
 }
 
-newTalent{
-	name = "Deft Hands",
-	type = {"class/general", 1},
-	is_feat = true,
-	points = 1,
-	mode = "passive",
-	info = [[This feat increases your Pickpocket skill by +2.]],
-	on_learn = function(self, t)
-        self.skill_pickpocket = (self.skill_pickpocket or 0) + 2
---        self.skill_userope = self.skill_userope + 2
-    end
-}
+
 
 newTalent{
 	name = "Combat Casting",
@@ -350,3 +340,106 @@ newTalent{
     end
 }
 
+newTalent{
+	name = "Deft Hands",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Pickpocket skill by +2.]],
+	on_learn = function(self, t)
+        self.skill_pickpocket = (self.skill_pickpocket or 0) + 2
+--        self.skill_userope = (self.skill_userope or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Investigator",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Search skill by +2.]],
+	on_learn = function(self, t)
+        self.skill_search = (self.skill_search or 0) + 2
+--        self.skill_gatherinfo = (self.skill_gatherinfo or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Magical Aptitude",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Spellcraft and Use Magic Device skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_spellcraft = (self.skill_spellcraft or 0) + 2
+        self.skill_usemagic = (self.skill_usemagic or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Negotiator",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Diplomacy and Sense Motive skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_diplomacy = (self.skill_diplomacy or 0) + 2
+        self.skill_sensemotive = (self.skill_sensemotive or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Nimble Fingers",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Disable Device and Open Lock skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_disabledevice = (self.skill_disabledevice or 0) + 2
+        self.skill_openlock = (self.skill_openlock or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Persuasive",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Bluff and Intimidate skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_bluff = (self.skill_bluff or 0) + 2
+        self.skill_intimidate = (self.skill_intimidate or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Self-sufficient",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Heal and Survival skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_heal = (self.skill_heal or 0) + 2
+        self.skill_survival = (self.skill_survival or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Stealthy",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Hide and Move Silently skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_hide = (self.skill_hide or 0) + 2
+        self.skill_movesilently = (self.skill_movesilently or 0) + 2
+    end
+}
