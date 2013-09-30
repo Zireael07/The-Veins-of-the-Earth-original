@@ -95,13 +95,13 @@ local random_name = {
   halfelf_male = {
   syllablesStart ="Aeron, Courynn, Daelric, Dorn, Evendur, Helm, Lynneth, Rowan, Sealmyd, Khalid, Zasheir",
   syllablesEnd ="Dulsaer, Jacerryl, Telstaer, Uthelienn, Pashar, Aporos, Nathos, Zora, Amblecrown, Duskman, Dundragon, Evenwood, Greycastle, Tallstag, Moonblade, Moonflower, Eveningstar",
-  rules = "$s$e",
+  rules = "$s $e",
   },
 
   halfelf_female = {
   syllablesStart ="Ariadne, Courynna, Lynneth, Rowan, Sealmyd, Shandri, Smylla, Wydda, Fyevarra, Immith, Shevarra, Tammith, Katernin, Mara, Natali, Zofia, Jaheira",
   syllablesEnd ="Dulsaer, Jacerryl, Telstaer, Uthelienn, Pashar, Aporos, Nathos, Zora, Amblecrown, Duskman, Dundragon, Evenwood, Greycastle, Tallstag, Moonblade, Moonflower, Eveningstar",
-  rules = "$s$e",
+  rules = "$s $e",
   },
 
   elf_male = {
