@@ -14,8 +14,7 @@ newBirthDescriptor {
 		},
 	},
 	copy_add = {
-		hd_size = 12,
-		skill_point = 12, --4x skill points at 1st level
+		skill_point = 12, --4x skill points at 1st character level
 		movement_speed_bonus = 0.33
 	},
 	talents = {
@@ -53,7 +52,8 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 14
 			else
 			actor.max_life = actor.max_life + 12 end
-		end
+		
+		else
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -66,6 +66,7 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 14
 			else
 			actor.max_life = actor.max_life + 12 end
+		end
 	end,
 } 
 
@@ -81,7 +82,6 @@ newBirthDescriptor {
 		},
 	},
 	copy_add = {
-		hd_size = 6,
 		skill_point = 18, --4x skill points at 1st level
 	},
 	talents = {
@@ -125,7 +125,8 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 8
 			else
 			actor.max_life = actor.max_life + 6 end
-		end
+		
+		else
 
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -138,6 +139,7 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 8
 		else
 		actor.max_life = actor.max_life + 6 end
+		end
 	end,
 } 
 
@@ -154,7 +156,6 @@ newBirthDescriptor {
 		},
 	},
 	copy_add = {
-		hd_size = 8,
 		skill_point = 6, --4x skill points at 1st level
 	},
 	talents = {
@@ -196,7 +197,7 @@ newBirthDescriptor {
 			else
 			actor.max_life = actor.max_life + 8 end
 			
-		end
+		else
 
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -209,6 +210,7 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 1
 		else
 		actor.max_life = actor.max_life + 8 end
+		end
 	end,
 }
 
@@ -224,7 +226,6 @@ newBirthDescriptor {
 		},
 	},
 	copy_add = {
-		hd_size = 8,
 		skill_point = 12, --4x skill points at 1st level
 	},
 	talents = {
@@ -260,9 +261,8 @@ newBirthDescriptor {
 
 			actor.max_life = actor.max_life + 8
 			actor.skill_point = (actor.skill_point or 0) + 2
-		end
-
-
+		
+		else
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
@@ -270,7 +270,7 @@ newBirthDescriptor {
 
 		actor.max_life = actor.max_life + 8
 		actor.skill_point = (actor.skill_point or 0) + 4
-
+		end
 	end,
 }   
 
@@ -287,7 +287,6 @@ newBirthDescriptor {
 		},
 	},
 	copy_add = {
-		hd_size = 10,
 		skill_point = 6, --4x skill points at 1st level
 	},
 	talents = {
@@ -318,7 +317,8 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 12
 			else
 			actor.max_life = actor.max_life + 10 end
-		end
+		
+		else
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -332,6 +332,7 @@ newBirthDescriptor {
 		end
 		actor.max_life = actor.max_life + 10
 		actor.skill_point = (actor.skill_point or 0) + 2
+		end
 	end,
 }
 
@@ -356,7 +357,6 @@ newBirthDescriptor {
 
 	},
 	copy_add = {
-		hd_size = 8,
 		skill_point = 18, --4x skill points at 1st level
 	},
 	talents = {
@@ -388,8 +388,8 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 10	
 			else
 			actor.max_life = actor.max_life + 8 end
-		end
-
+		
+		else
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
@@ -401,7 +401,7 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 10
 		else
 		actor.max_life = actor.max_life + 8 end
-
+		end
 	end,
 }
 
@@ -422,7 +422,6 @@ newBirthDescriptor {
 		}
 	},
 	copy_add = {
-		hd_size = 6,
 		sneak_attack = 1,
 		skill_point = 24, --4x skill points at 1st level
 	},
@@ -460,7 +459,8 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 8
 			else
 			actor.max_life = actor.max_life + 6 end
-		end
+		
+		else
 
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
@@ -473,6 +473,7 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 8
 		else
 		actor.max_life = actor.max_life + 6 end
+		end
 	end,
 }
 
@@ -494,7 +495,6 @@ newBirthDescriptor {
 
 	},
 	copy_add = {
-		hd_size = 4,
 		skill_point = 6, --4x skill points at 1st level
 	},
 	talents = {
@@ -534,7 +534,8 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 6
 			else
 			actor.max_life = actor.max_life + 4 end
-		end
+		
+		else
 
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
@@ -546,6 +547,8 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 6
 		else
 		actor.max_life = actor.max_life + 4 end
+
+		end
 	end,
 }
 
@@ -563,7 +566,6 @@ newBirthDescriptor {
 		},
 	},
 	copy_add = {
-		hd_size = 6,
 		skill_point = 6, --4x skill points at start
 	},
 	talents = {
@@ -591,7 +593,8 @@ newBirthDescriptor {
 		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
 			actor.max_life = actor.max_life + 4
 			actor.skill_point = (actor.skill_point or 0) + 2
-		end
+		
+		else
 
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
@@ -600,7 +603,7 @@ newBirthDescriptor {
 
 		actor.max_life = actor.max_life + 6
 		actor.skill_point = (actor.skill_point or 0) + 2
-
+		end
 	end,
 } 
 
@@ -631,8 +634,8 @@ newBirthDescriptor {
 			else
 				actor.infravision = 3
 			end
-		end
-				
+		
+		else
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
@@ -640,7 +643,7 @@ newBirthDescriptor {
 
 		actor.max_life = actor.max_life + 8
 		actor.skill_point = (actor.skill_point or 0) + 6
-
+		end
 	end,
 } 
 
@@ -666,8 +669,8 @@ newBirthDescriptor {
 		elseif level == 5 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
 		elseif level == 7 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
 		elseif level == 9 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
-		end
-
+		
+		else
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
@@ -675,6 +678,6 @@ newBirthDescriptor {
 
 		actor.max_life = actor.max_life + 8
 		actor.skill_point = (actor.skill_point or 0) + 6
-
+		end
 	end,
 } 
