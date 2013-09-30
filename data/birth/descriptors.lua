@@ -31,6 +31,7 @@ newBirthDescriptor{
 		wis = 0,
 		cha = 0,
 		luc = 0,
+    feat_point = 1,
 	--	lite = 3,
 		money = 100,
 		max_life = 10,

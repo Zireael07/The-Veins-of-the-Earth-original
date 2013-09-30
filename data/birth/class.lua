@@ -32,6 +32,12 @@ newBirthDescriptor {
 			['Lawful Good'] = "disallow",
 			['Lawful Neutral'] = "disallow",
 			['Lawful Evil'] = "disallow",
+		},
+		--Prevent another game-breaking combo; why would anyone want a fighter/spellcaster is beyond me
+		background =
+		{
+			['Magical thief'] = "disallow",
+			['Spellcaster'] = "disallow",
 		}
 	},
 	can_level = function(actor)
@@ -98,6 +104,13 @@ newBirthDescriptor {
 			['Lawful Good'] = "disallow",
 			['Lawful Neutral'] = "disallow",
 			['Lawful Evil'] = "disallow",
+		},
+		--Prevent game-breaking combos due to 1 BAB requirement of some feats
+		background =
+		{
+			['Master of one'] = "disallow",
+			['Fencing duelist'] = "disallow",
+			['Exotic fighter'] = "disallow",
 		}
 	},
 	can_level = function(actor)
@@ -159,6 +172,15 @@ newBirthDescriptor {
 	descriptor_choices = {
 		domains = {
 			__ALL__ = "allow",
+		},
+		--Prevent game-breaking combos due to 1 BAB requirement of some feats
+		background =
+		{
+			['Master of one'] = "disallow",
+			['Fencing duelist'] = "disallow",
+			['Exotic fighter'] = "disallow",
+			--Prevent another game-breaking combo
+			['Magical thief'] = "disallow",
 		}
 	},
 	can_level = function(actor)
@@ -218,6 +240,15 @@ newBirthDescriptor {
 			['Lawful Evil'] = "disallow",
 			['Chaotic Good'] = "disallow",
 			['Chaotic Evil'] = "disallow",
+		},
+		--Prevent game-breaking combos due to 1 BAB requirement of some feats
+		background =
+		{
+			['Master of one'] = "disallow",
+			['Fencing duelist'] = "disallow",
+			['Exotic fighter'] = "disallow",
+			--Prevent another game-breaking combo
+			['Magical thief'] = "disallow",
 		}
 	},
 	can_level = function(actor)
@@ -265,6 +296,15 @@ newBirthDescriptor {
 		[ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 		[ActorTalents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
+	},
+	descriptor_choices =
+	{
+		--Prevent another game-breaking combo; why would anyone want a fighter/spellcaster is beyond me
+		background =
+		{
+			['Spellcaster'] = "disallow",
+			['Magical thief'] = "disallow",
+		}
 	},
 	can_level = function(actor)
 		return true
@@ -325,6 +365,14 @@ newBirthDescriptor {
 		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 		[ActorTalents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
 		[ActorTalents.T_FAVORED_ENEMY]=1,
+	},
+	descriptor_choices =
+	{
+		--Prevent another game-breaking combo
+		background =
+		{
+			['Magical thief'] = "disallow",
+		}
 	},
 	can_level = function(actor)
 		return true
@@ -390,6 +438,13 @@ newBirthDescriptor {
 			['Lawful Good'] = "disallow",
 			['Lawful Neutral'] = "disallow",
 			['Lawful Evil'] = "disallow",
+		},
+		--Prevent game-breaking combos due to 1 BAB requirement of some feats
+		background =
+		{
+			['Master of one'] = "disallow",
+			['Fencing duelist'] = "disallow",
+			['Exotic fighter'] = "disallow",
 		}
 	},
 	can_level = function(actor)
@@ -455,6 +510,18 @@ newBirthDescriptor {
 	talents_types = {
 		["arcane/arcane"] = {true, 0.0},
 	},
+	descriptor_choices =
+	{
+		--Prevent game-breaking combos due to 1 BAB requirement of some feats
+		background =
+		{
+			['Master of one'] = "disallow",
+			['Fencing duelist'] = "disallow",
+			['Exotic fighter'] = "disallow",
+			--Prevent another game-breaking combo
+			['Magical thief'] = "disallow",
+		}
+	},
 	can_level = function(actor)
 		return true
 	end,
@@ -504,6 +571,18 @@ newBirthDescriptor {
 		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
+	},
+	descriptor_choices =
+	{
+		--Prevent game-breaking combos due to 1 BAB requirement of some feats
+		background =
+		{
+			['Master of one'] = "disallow",
+			['Fencing duelist'] = "disallow",
+			['Exotic fighter'] = "disallow",
+			--Prevent another game-breaking combo
+			['Magical thief'] = "disallow",
+		}
 	},
 	can_level = function(actor)
 		return true
