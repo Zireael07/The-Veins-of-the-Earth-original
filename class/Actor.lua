@@ -53,9 +53,12 @@ function _M:init(t, no_default)
 
 	--Define AC types
 	self.combat_armor_ac = 0
+	self.combat_magic_armor = 0
 	self.combat_shield = 0
+	self.combat_magic_shield = 0
 	self.combat_natural = 0
-	self.combat_magic = 0
+	
+	self.combat_protection = 0
 	self.combat_dodge = 0
 	self.combat_untyped = 0
 
@@ -601,15 +604,17 @@ function _M:getAC()
 	local armor = self.combat_armor or 0
 	local shield = self.combat_shield or 0
 	local natural = self.combat_natural or 0
-	local magic = self.combat_magic or 0
+	local magic_armor = self.combat_magic_armor or 0
+	local magic_shield = self.combat_magic_shield or 0
 	local dodge = self.combat_dodge or 0
+	local protection = self.combat_protection or 0
 	local untyped = self.combat_untyped or 0
 
 	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end 
 
-	if self.combat_magic then magic = math.max(magic, 5) end
+	if self.combat_protection then protection = math.max(protection, 5) end
 	
-	return math.floor((10 + armor + shield + natural + magic + dodge) + (dex_bonus or 0))
+	return math.floor((10 + armor + magic_armor + shield + magic_shield + natural + protection + dodge) + (dex_bonus or 0))
 end
 
 --Saving throws, Sebsebeleb & Zireael

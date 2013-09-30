@@ -4,6 +4,61 @@
 local DamageType = require "engine.DamageType"
 
 newEntity {
+	name = " +1", suffix = true,
+	keywords = {bonus=true},
+	level_range = {1, 10},
+	rarity = 5,
+	cost = 2000,
+	wielder = {
+		combat_magic_armor = 1,
+	},
+}
+
+newEntity {
+	name = " +2", suffix = true,
+	keywords = {bonus=true},
+	level_range = {1, 10},
+	rarity = 8,
+	cost = 4000,
+	wielder = {
+		combat_magic_armor = 2,
+	},
+}
+
+newEntity {
+	name = " +3", suffix = true,
+	keywords = {bonus=true},
+	level_range = {1, 10},
+	rarity = 8,
+	cost = 16000,
+	wielder = {
+		combat_magic_armor = 3,
+	},
+}
+
+newEntity {
+	name = " +4", suffix = true,
+	keywords = {bonus=true},
+	level_range = {10, 20},
+	rarity = 10,
+	cost = 32000,
+	wielder = {
+		combat_magic_armor = 4,
+	},
+}
+
+newEntity {
+	name = " +5", suffix = true,
+	keywords = {bonus=true},
+	level_range = {1, 10},
+	rarity = 15,
+	cost = 50000,
+	wielder = {
+	combat_magic_armor = 5,
+	},
+}
+
+newEntity {
 	name = "mithril ", prefix = true,
 	keywords = {mithril=true},
 	level_range = {5, nil},

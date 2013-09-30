@@ -113,7 +113,7 @@ newEntity{
     level_range = {1,10},
     cost = 2000,
     wielder = {
-    combat_magic=1
+    combat_protection=1
   }, 
 }
 
@@ -125,7 +125,7 @@ newEntity{
     level_range = {1,10},
     cost = 8000,
     wielder = {
-    combat_magic=2
+    combat_protection=2
   }, 
 }
 
@@ -137,7 +137,7 @@ newEntity{
     level_range = {1,10},
     cost = 18000,
     wielder = {
-    combat_magic=3
+    combat_protection=3
   }, 
 }
 
@@ -149,7 +149,7 @@ newEntity{
     level_range = {1,10},
     cost = 32000,
     wielder = {
-    combat_magic=4
+    combat_protection=4
   }, 
 }
 
@@ -161,7 +161,7 @@ newEntity{
     level_range = {1,10},
     cost = 50000,
     wielder = {
-    combat_magic=5
+    combat_protection=5
   }, 
 }
 
