@@ -33,6 +33,9 @@ local Birther = require "engine.Birther"
 
 local UIBase = require "engine.ui.Base"
 
+
+require("engine.ui.Base").ui_conf.metal.frame_shadow = nil
+
 local size = 12
 UIBase.font = core.display.newFont("/data/font/DroidSansFallback.ttf", size)
 
