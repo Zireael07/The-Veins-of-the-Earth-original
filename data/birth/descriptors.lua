@@ -162,8 +162,8 @@ newBirthDescriptor {
 
 newBirthDescriptor {
   type = 'alignment',
-  name = 'Evil Neutral',
-  desc = [[You are Evil Neutral. Evil characters will not be hostile.]],
+  name = 'Neutral Evil',
+  desc = [[You are Neutral Evil. Evil characters will not be hostile.]],
   descriptor_choices =
   {
     domains =
