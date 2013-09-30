@@ -34,7 +34,18 @@ local Birther = require "engine.Birther"
 local UIBase = require "engine.ui.Base"
 
 
-require("engine.ui.Base").ui_conf.metal.frame_shadow = nil
+require("engine.ui.Base").ui_conf = {
+	tweaked_simple = {
+		frame_shadow = nil,
+		frame_alpha = 0.7,
+		frame_ox1 = -42,
+		frame_ox2 =  42,
+		frame_oy1 = -42,
+		frame_oy2 =  42,
+		title_bar = {x=0, y=-21, w=4, h=25},
+	},
+}
+UIBase.ui = "tweaked_simple"
 
 local size = 12
 UIBase.font = core.display.newFont("/data/font/DroidSansFallback.ttf", size)
