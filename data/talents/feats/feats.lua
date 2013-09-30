@@ -92,7 +92,7 @@ newTalent{
 	info = [[This feat increases your Fort save by +3 and HP by 10%.]],
     on_learn = function(self, t)
 	    self.fortitude_save = self.fortitude_save + 3
---	    self.max_life = self
+	    self.max_life = self.max_life * 1.1
     end
 }
 
@@ -314,6 +314,20 @@ newTalent{
 }
 
 newTalent{
+	name = "Artist",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Diplomacy skill by +2.]],
+	on_learn = function(self, t)
+        self.skill_diplomacy = (self.skill_diplomacy or 0) + 2
+--        self.skill_perform = (self.skill_perform or 0) + 2
+    end
+}
+
+
+newTalent{
 	name = "Athletic",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -325,8 +339,6 @@ newTalent{
         self.skill_swim = (self.skill_swim or 0) + 2
     end
 }
-
-
 
 newTalent{
 	name = "Combat Casting",
@@ -376,6 +388,19 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_spellcraft = (self.skill_spellcraft or 0) + 2
         self.skill_usemagic = (self.skill_usemagic or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Magical Talent",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Spellcraft and Knowledge skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_spellcraft = (self.skill_spellcraft or 0) + 2
+        self.skill_knowledge = (self.skill_knowledge or 0) + 2
     end
 }
 
@@ -432,6 +457,19 @@ newTalent{
 }
 
 newTalent{
+	name = "Silver Palm",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Bluff skill by +2.]],
+	on_learn = function(self, t)
+        self.skill_bluff = (self.skill_bluff or 0) + 2
+--        self.skill_appraise = (self.skill_appraise or 0) + 2
+    end
+}
+
+newTalent{
 	name = "Stealthy",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -441,5 +479,34 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_hide = (self.skill_hide or 0) + 2
         self.skill_movesilently = (self.skill_movesilently or 0) + 2
+    end
+}
+
+newTalent{
+	name = "Thug",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Spot and Intimidate skills by +2.]],
+	on_learn = function(self, t)
+        self.skill_spot = (self.skill_spot or 0) + 2
+        self.skill_intimidate = (self.skill_intimidate or 0) + 2
+    end
+}
+
+
+newTalent{
+	name = "Born Hero",
+	type = {"class/general", 1},
+--	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases all your saves and AC by 1.]],
+	on_learn = function(self, t)
+        self.combat_untyped = (self.combat_untyped or 0) + 1
+        self.fortitude_save = (self.fortitude_save or 0) + 2
+        self.reflex_save = (self.reflex_save or 0) + 2
+        self.will_save = (self.will_save or 0) + 2
     end
 }

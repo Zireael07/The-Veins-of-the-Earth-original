@@ -1,13 +1,15 @@
 --Veins of the Earth
 --Zireael
 
+--Fighter backgrounds (8 pts max)
 newBirthDescriptor {
 	type = 'background',
 	name = "Brawler",
-	desc = 'Brawlers use their strength to full extent.\n\n Spend 4 skill points on Jump. Pick Power Attack as your first feat.',
+	desc = 'Brawlers use their strength to full extent.\n\n Spend 4 skill points on Intimidate and Jump each. Pick Power Attack as your first feat.',
 	copy_add = {
 	skill_point = -4,
 	skill_intimidate = 4,
+	skill_jump = 4,
 	feat_point = -1,
 	},
 	talents = {
@@ -30,6 +32,7 @@ newBirthDescriptor {
 	},
 }
 
+--Require BAB 1 at 1st level
 newBirthDescriptor {
 	type = 'background',
 	name = "Master of one",
@@ -45,6 +48,7 @@ newBirthDescriptor {
 	},
 }
 
+--Require BAB 1 at 1st level
 newBirthDescriptor {
 	type = 'background',
 	name = "Exotic fighter",
@@ -60,6 +64,7 @@ newBirthDescriptor {
 	},
 }
 
+--Require BAB 1 at 1st level
 newBirthDescriptor {
 	type = 'background',
 	name = "Fencing duelist",
@@ -78,10 +83,11 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'background',
 	name = "Nimble fighter",
-	desc = 'Instead of charging blindly into battle, you dance around your opponent.\n\n Spend 4 skill points on Tumble. Pick Dodge as your first feat.',
+	desc = 'Instead of charging blindly into battle, you dance around your opponent.\n\n Spend 4 skill points on Tumble and Swim each. Pick Dodge as your first feat.',
 	copy_add = {
-	skill_point = -4,
+	skill_point = -8,
 	skill_tumble = 4,
+	skill_swim = 4,
 	feat_point = -1,
 	},
 	talents = {
@@ -119,28 +125,23 @@ newBirthDescriptor {
 	},
 }
 
-newBirthDescriptor {
-	type = 'background',
-	name = "Smart brainiac",
-	desc = 'You utilize your brain to its fullest.\n\n Spend 4 skill points on Intuition. Pick Iron Will as your first feat.',
-	copy_add = {
-	skill_point = -4,
-	skill_intuition = 4,
-	feat_point = -1,
-	},
-	talents = {
-		[ActorTalents.T_IRON_WILL]=1,
-	},
-}
+--TO DO: Archer background and twf fighter background (24 pts max)
 
+--Rogue backgrounds (32 pts max)
 newBirthDescriptor {
 	type = 'background',
 	name = "Sneaky thief",
 	desc = 'You prefer sneaking around the opponents to face-to-face combat.\n\n Spend 4 skill points on Hide and Move Silently each. Pick Stealthy as the first feat.',
 	copy_add = {
-	skill_point = -8,
+	skill_point = -16,
 	skill_hide = 4,
 	skill_movesilently = 4,
+	skill_intuition = 4,
+	skill_tumble = 4,
+	skill_listen = 4,
+	skill_search = 4,
+	skill_spot = 4,
+	skill_disabledevice = 4,
 	feat_point = -1,
 	},
 	talents = {
@@ -153,9 +154,15 @@ newBirthDescriptor {
 	name = "Magical thief",
 	desc = 'You love playing with all those magic trinkets.\n\n Spend 4 skill points on Use Magic Device and Intuition each. Pick Magical Aptitude as the first feat.',
 	copy_add = {
-	skill_point = -8,
+	skill_point = -16,
 	skill_usemagic = 4,
 	skill_intuition = 4,
+	skill_knowledge = 4,
+	skill_tumble = 4,
+	skill_disabledevice = 4,
+	skill_spot = 4,
+	skill_search = 4,
+	skill_pickpocket = 4,
 	feat_point = -1,
 	},
 	talents = {
@@ -163,19 +170,54 @@ newBirthDescriptor {
 	},
 }
 
+--Spellcaster stuff (8 pts max)
 newBirthDescriptor {
 	type = 'background',
 	name = "Spellcaster",
-	desc = 'Spells are your strength.\n\n Spend 4 skill points on Concentration. Pick Combat Casting as your first feat.',
+	desc = 'Spells are your strength.\n\n Spend 4 skill points on Concentration and Knowledge each. Pick Combat Casting as your first feat.',
 	copy_add = {
-	skill_point = -4,
+	skill_point = -8,
 	skill_concentration = 4,
+	skill_spellcraft = 4,
 	feat_point = -1,
 	},
 	talents = {
 		[ActorTalents.T_COMBAT_CASTING]=1,
 	},
 }
+
+--All-rounders (8 pts max)
+newBirthDescriptor {
+	type = 'background',
+	name = "Smart brainiac",
+	desc = 'You utilize your brain to its fullest.\n\n Spend 4 skill points on Intuition and Knowledge. Pick Iron Will as your first feat.',
+	copy_add = {
+	skill_point = -8,
+	skill_intuition = 4,
+	skill_knowledge = 4,
+	feat_point = -1,
+	},
+	talents = {
+		[ActorTalents.T_IRON_WILL]=1,
+	},
+}
+
+--Special background (8 pts max)
+newBirthDescriptor {
+	type = 'background',
+	name = "Born hero",
+	desc = 'You were born to be a hero.\n\n Spend 4 skill points on Intuition and Swim. Pick #GOLD#Born Hero (special)#LAST# as your first feat.',
+	copy_add = {
+	skill_point = -8,
+	skill_intuition = 4,
+	skill_knowledge = 4,
+	feat_point = -1,
+	},
+	talents = {
+		[ActorTalents.T_BORN_HERO]=1,
+	},
+}
+
 
 --Filler (or for those who want to customize the character completely)
 newBirthDescriptor {
