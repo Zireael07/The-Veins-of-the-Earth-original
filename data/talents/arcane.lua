@@ -378,7 +378,7 @@ newTalent{
 	name = "Ghoul Touch",
 	type = {"arcane/arcane",1},
 	mode = "activated",
-	level = 1,
+	level = 2,
 	points = 1,
 	cooldown = 0,
 	range = 4,

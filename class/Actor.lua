@@ -753,7 +753,6 @@ function _M:getAllocatedCharges(type, level)
 end
 
 function _M:setAllocatedCharges(type, level, value)
-	game.log("type: "..type.." |level: "..(level or "nil").. " |value: "..value)
 	if not self.allocated_charges[type] then self.allocated_charges[type] = {} end
 	if not self.allocated_charges[type][level] then self.allocated_charges[type][level] = {} end
 	self.allocated_charges[type][level] = value
