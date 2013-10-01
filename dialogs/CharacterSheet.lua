@@ -89,7 +89,7 @@ function _M:drawDialog()
 
     h = h + self.font_h -- Adds an empty row
     --s:drawColorStringBlended(self.font, "#SLATE#Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life).."/"..player.max_life), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life).."/"..math.floor(player.max_life)), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_FORTITUDE, s:drawColorStringBlended(self.font, "Fortitude save: #SANDY_BROWN#"..((player.fortitude_save+math.max(Strbonus, Conbonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h

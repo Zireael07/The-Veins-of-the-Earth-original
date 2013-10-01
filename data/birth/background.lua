@@ -20,7 +20,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'background',
 	name = "Tough guy",
-	desc = 'You are really hard to kill.\n\n Spend 4 skill points on Tumble and Swim each. Pick Power Attack as your first feat.',
+	desc = 'You are really hard to kill.\n\n Spend 4 skill points on Tumble and Swim each. Pick Toughness as your first feat.',
 	copy_add = {
 	skill_point = -8,
 	skill_intimidate = 4,
