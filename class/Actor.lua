@@ -801,7 +801,7 @@ function _M:levelup()
 	--self:levelPassives()
 
 	--Gain hp and skill points (generic)
-	self.max_life = self.max_life + self.hd_size
+--	self.max_life = self.max_life + self.hd_size
 	self.skill_point = self.skill_point + self.skill_point
 	self.max_skill_ranks = self.max_skill_ranks + 1
 	
