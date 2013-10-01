@@ -10,6 +10,7 @@ newEntity{
 --Armors
 newEntity{
     define_as = "BASE_LIGHT_ARMOR",
+    slot = "BODY",
     type = "armor", subtype="light",
     display = "(", color=colors.SLATE,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
@@ -17,7 +18,7 @@ newEntity{
     rarity = 5,
     name = "light armor",
     desc = [[A simple padded armor. Doesn't offer much protection. Light armor. AC +1. Max Dex bonus to AC 8. Spell failure chance 5%.]],
-    
+    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
     }
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
