@@ -68,7 +68,7 @@ newTalent{
 		special = {
 			fct = function(self, t, offset) 
 			--Base attack bonus 1
-			if self:attr("combat_bab") >= 1 then return true
+			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end 
 			end,
 			desc = "Base attack bonus 1",
@@ -155,7 +155,7 @@ newTalent{
 		special = {
 			fct = function(self, t, offset) 
 			--Base attack bonus 1
-			if self:attr("combat_bab") >= 1 then return true
+			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
 			end,
 			desc = "Base attack bonus 1",
@@ -174,7 +174,7 @@ newTalent{
 		special = {
 			fct = function(self, t, offset) 
 			--Base attack bonus 1
-			if self:attr("combat_bab") >= 1 then return true
+			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
 			end,
 			desc = "Base attack bonus 1",
@@ -203,7 +203,7 @@ newTalent{
 		special = {
 			fct = function(self, t, offset) 
 			--Base attack bonus 8
-			if self:attr("combat_bab") >= 8 then return true
+			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
 			desc = "Base attack bonus 8",		 
