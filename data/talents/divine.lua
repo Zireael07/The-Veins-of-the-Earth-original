@@ -196,7 +196,7 @@ newTalent{
 newTalent{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE",
 	type = {"divine/divine", 1},
-	display = { image = "heal_light_wounds.png"},
+	display = { image = "bear_endurance.png"},
 	mode = 'activated',
 	level = 2,
 	points = 1,
@@ -216,7 +216,7 @@ newTalent{
 newTalent{
 	name = "Bull's Strength", short_name = "BULL_STRENGTH",
 	type = {"divine/divine", 1},
-	display = { image = "heal_light_wounds.png"},
+	display = { image = "bull_strength.png"},
 	mode = 'activated',
 	level = 2,
 	points = 1,
@@ -236,7 +236,7 @@ newTalent{
 newTalent{
 	name = "Eagle's Splendor", short_name = "EAGLE_SPLENDOR",
 	type = {"divine/divine", 1},
-	display = { image = "heal_light_wounds.png"},
+	display = { image = "eagle_splendor.png"},
 	mode = 'activated',
 	level = 2,
 	points = 1,
@@ -256,7 +256,7 @@ newTalent{
 newTalent{
 	name = "Owl's Wisdom", short_name = "OWL_WISDOM",
 	type = {"divine/divine", 1},
-	display = { image = "heal_light_wounds.png"},
+	display = { image = "owl_wisdom.png"},
 	mode = 'activated',
 	level = 2,
 	points = 1,
