@@ -130,6 +130,70 @@ newEffect{
 	end,
 }
 
+
+--Buff spells, Zireael
+newEffect{
+	name = "BEAR_ENDURANCE",
+	desc = "Boost Con!",
+	type = "mental",
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_CON]=4, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+	end,
+}
+
+newEffect{
+	name = "BULL_STRENGTH",
+	desc = "Boost Str!",
+	type = "mental",
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_STR]=4, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+	end,
+}
+
+newEffect{
+	name = "EAGLE_SPLENDOR",
+	desc = "Boost Cha!",
+	type = "mental",
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_CHA]=4, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+	end,
+}
+
+newEffect{
+	name = "OWL_WISDOM",
+	desc = "Boost Wis!",
+	type = "mental",
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_WIS]=4, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+	end,
+}
+
+newEffect{
+	name = "CAT_GRACE",
+	desc = "Boost Dex!",
+	type = "mental",
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_DEX]=4, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+	end,
+}
+
+newEffect{
+	name = "FOX_CUNNING",
+	desc = "Boost Int!",
+	type = "mental",
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_INT]=4, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+	end,
+}
+
+
+
 --Poisons, Zireael
 --Oil of taggit and drow poison are missing because I have no idea for unconsciousness now
 
