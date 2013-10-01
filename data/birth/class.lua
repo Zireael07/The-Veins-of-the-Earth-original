@@ -423,6 +423,17 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 8 end
 		
 		else
+		--Learn a new spell tier every 3rd level starting from lvl 5
+		if level >= 5 and 3 % level == 0 then
+			local spell_level = ((level-5) / 3) + 1
+			for tid, _ in pairs(actor.talents_def) do
+				t = actor:getTalentFromId(tid)
+		        if t.type[1] == "divine/divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+		        	actor:learnTalent(t.id)
+		        end
+		    end
+		end
+
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
