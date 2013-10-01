@@ -129,7 +129,7 @@ newBirthDescriptor {
 		else
 
 		--Learn a new spell tier every 3rd level
-		if 3 % level == 0 then
+		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
@@ -210,7 +210,7 @@ newBirthDescriptor {
 			
 		else
 		--Learn a new spell tier every 3rd level
-		if 3 % level == 0 then
+		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
@@ -286,7 +286,7 @@ newBirthDescriptor {
 		
 		else
 		--Learn a new spell tier every 3rd level
-		if 3 % level == 0 then
+		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
@@ -424,7 +424,7 @@ newBirthDescriptor {
 		
 		else
 		--Learn a new spell tier every 3rd level starting from lvl 5
-		if level >= 5 and 3 % level == 0 then
+		if level >= 5 and level % 3 == 0 then
 			local spell_level = ((level-5) / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
@@ -582,7 +582,7 @@ newBirthDescriptor {
 		else
 
 		--Learn a new spell tier every 3rd level
-		if 3 % level == 0 then
+		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
