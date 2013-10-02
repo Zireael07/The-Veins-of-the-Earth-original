@@ -601,7 +601,7 @@ function _M:getAC()
 	local dex_bonus = (self:getDex()-10)/2
 	--Splitting it up to avoid stuff like stacking rings of protection or bracers of armor + armor
 --	local base = self.combat_base_ac or 10
-	local armor = self.combat_armor or 0
+	local armor = self.combat_armor_ac or 0
 	local shield = self.combat_shield or 0
 	local natural = self.combat_natural or 0
 	local magic_armor = self.combat_magic_armor or 0
