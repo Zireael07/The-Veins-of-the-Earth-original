@@ -376,7 +376,7 @@ newEntity{
 	base = "BASE_NPC_SBEETLE",
 	name = "giant stag beetle", color=colors.DARK_GREEN,
 	level_range = {5, 20}, exp_worth = 1200,
-	rarity = 6,
+	rarity = 12,
 	max_life = resolvers.rngavg(50,54),
 	hit_die = 7,
 	challenge = 4,
