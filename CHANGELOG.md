@@ -190,3 +190,15 @@ BETA RELEASES
 * Exotic Weapon Proficiency needed to wield exotic weapons
 * weapon proficiencies implemented
 * double weapons working as intended
+
+0.0.16 - 2/10/2013
+* typo fixes
+* bug fix: unintended bonuses at 1st character level
+* backgrounds - for those who want quicker character creation
+* new skill-enhancing feats: Artist, Investigator, Magical Aptitude, Magical Talent, Negotiator, Nimble Fingers, Persuasive, Self-sufficient, Silver Palm, Stealthy, Thug
+* new feat (only as part of a background): Born Hero
+* new spells: Bear's Endurance, Bull's Strength, Cat's Grace, Eagle's Splendor, Fox's Cunning, Owl's Wisdom,
+* UI improvements: increased tooltip font size, moved tooltips
+* new UI skin: old gold and black semi-transparent without shadows
+* Toughness feat works as intended
+* casters gain a new spell level every 3rd level; rangers become eligible for this rule from lvl 5 onwards

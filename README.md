@@ -15,6 +15,7 @@ Contributors:
 
 Features:
 - brand-new start-up screen and menu [standalone version only]
+- new old gold and black UI skin
 - controls displayed automatically at game start
 - 9 classes: barbarian, bard, cleric, druid, fighter, ranger, rogue, wizard, warlock
 - 2 prestige classes: shadowdancer, assasin
@@ -30,6 +31,7 @@ Features:
 - inventory & encumbrance
 - spellbook, an iconed hotbar for spells, some 0 and 1st level spells [Seb]
 - armor spell failure chance; key stat must be 9 to cast spells
+- casters gain access to next spell level every 3rd level
 - attributes roller before character creation; now guarantees higher stats
 - some monsters up to CR 1; CR displayed in tooltips; monsters drop equipment and corpses
 - feat and skill select [Seb]
