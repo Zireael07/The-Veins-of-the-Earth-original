@@ -21,7 +21,7 @@ newEntity{ base = "BASE_EXOTIC",
     rarity = 10,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic bastard sword",
-    desc = [[A normal bastard sword, which can be wielded in one or two hands. Damage 1d10. Threat range 19-20.]],
+    desc = "A normal bastard sword, which can be wielded in one or two hands.\n\n Damage 1d10. Threat range 19-20.",
 }
 
 newEntity{ base = "BASE_BASTARDSWORD",
@@ -43,7 +43,7 @@ newEntity{ base = "BASE_EXOTIC",
     rarity = 10,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic dwarven waraxe",
-    desc = [[A normal dwarven waraxe. Damage 1d10. Critical x3.]],
+    desc = "A normal dwarven waraxe.\n\n Damage 1d10. Critical x3.",
 }
 
 newEntity{ base = "BASE_WARAXE",
@@ -67,7 +67,7 @@ newEntity{ base = "BASE_EXOTIC",
     polearm = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic spiked chain",
-    desc = [[A normal spiked chain. Damage 2d4.]],
+    desc = "A normal spiked chain.\n\n Damage 2d4.",
 }
 --Range weapon
 newEntity{ base = "BASE_SPIKEDCHAIN",
@@ -92,7 +92,7 @@ newEntity{ base = "BASE_EXOTIC",
     double = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic orc double axe",
-    desc = [[A normal orc double axe. Damage 1d8. Critical x3.]],
+    desc = "An exotic orc double axe.\n\n Damage 1d8. Critical x3.",
 }
 
 newEntity{ base = "BASE_DAXE",
@@ -116,7 +116,7 @@ newEntity{ base = "BASE_EXOTIC",
     double = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic double sword",
-    desc = [[A normal double sword. Damage 1d8. Threat range 19-20.]],
+    desc = "An exotic double sword.\n\n Damage 1d8. Threat range 19-20.",
 }
 
 newEntity{ base = "BASE_DSWORD",
@@ -141,7 +141,7 @@ newEntity{ base = "BASE_EXOTIC",
     double = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic dwarven urgrosh",
-    desc = [[A normal dwarven urgrosh. Damage 1d8. Critical x3.]],
+    desc = "An exotic dwarven urgrosh.\n\n Damage 1d8. Critical x3.",
 }
 
 newEntity{ base = "BASE_URGROSH",

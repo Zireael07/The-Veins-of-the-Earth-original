@@ -15,7 +15,7 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 8,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic dagger",
-    desc = [[A normal trusty dagger. Damage 1d4, threat range 19-20.]],
+    desc = "A normal trusty dagger.\n\n Damage 1d4, threat range 19-20.",
 }
 
 newEntity{ base = "BASE_DAGGER",
@@ -39,7 +39,7 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 5,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic long spear",
-    desc = [[A wooden long spear. Damage 1d10, critical x3.]],
+    desc = "A wooden long spear.\n\n Damage 1d10, critical x3.",
 }
 
 newEntity{ base = "BASE_LSPEAR",
@@ -62,7 +62,7 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 5,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic short spear",
-    desc = [[A wooden short spear. Damage 1d6.]],
+    desc = "A wooden short spear.\n\n Damage 1d6.",
 }
 
 newEntity{ base = "BASE_SSPEAR",
@@ -84,7 +84,7 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 5,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic mace",
-    desc = [[A heavy metal mace. Damage 1d8.]],
+    desc = "A heavy metal mace.\n\n Damage 1d8.",
 }
 
 newEntity{ base = "BASE_HMACE",
@@ -107,7 +107,7 @@ newEntity{ base = "BASE_WEAPON",
     light = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic mace",
-    desc = [[A light metal mace. Damage 1d6.]],
+    desc = "A light metal mace.\n\n Damage 1d6.",
 }
 
 newEntity{ base = "BASE_LMACE",
@@ -129,7 +129,7 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 3,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic club",
-    desc = [[A wooden club. Damage 1d6.]],
+    desc = "A wooden club.\n\n Damage 1d6.",
 }
 
 newEntity{ base = "BASE_CLUB",
@@ -150,7 +150,7 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 5,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic morningstar",
-    desc = [[A metal morningstar. Damage 1d8.]],
+    desc = "A metal morningstar.\n\n Damage 1d8.",
 }
 
 newEntity{ base = "BASE_MSTAR",
@@ -172,7 +172,7 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 2,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic staff",
-    desc = [[A wooden staff. Damage 1d6.]],
+    desc = "A wooden staff.\n\n Damage 1d6.",
 }
 
 newEntity{ base = "BASE_STAFF",
@@ -196,7 +196,7 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 1,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic light hammer",
-    desc = [[A light metal hammer. Damage 1d4.]],
+    desc = "A light metal hammer.\n\n Damage 1d4.",
 }
 
 newEntity{ base = "BASE_LHAMMER",
@@ -221,7 +221,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic handaxe",
-    desc = [[A normal handaxe. Damage 1d6. Critical x3.]],
+    desc = "A normal handaxe.\n\n Damage 1d6. Critical x3.",
 }
 
 newEntity{ base = "BASE_HANDAXE",
@@ -245,7 +245,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic kukri",
-    desc = [[A curved blade. Damage 1d4. Threat range 18-20.]],
+    desc = "A curved blade.\n\n Damage 1d4. Threat range 18-20.",
 }
 
 newEntity{ base = "BASE_KUKRI",
@@ -269,7 +269,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic short sword",
-    desc = [[A curved short sword. Damage 1d6. Threat range 19-20.]],
+    desc = "A curved short sword.\n\n Damage 1d6. Threat range 19-20.",
 }
 
 newEntity{ base = "BASE_SHORTSWORD",
@@ -292,7 +292,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic battleaxe",
-    desc = [[A normal battleaxe. Damage 1d6.]],
+    desc = "A normal battleaxe.\n\n Damage 1d6.",
 }
 
 newEntity{ base = "BASE_BATTLEAXE",
@@ -314,7 +314,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic sword",
-    desc = [[A trusty sword. Damage 1d8. Threat range 18-20.]],
+    desc = "A trusty sword.\n\n Damage 1d8. Threat range 18-20.",
 }
 
 newEntity{ base = "BASE_SWORD",
@@ -337,7 +337,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a metal flail",
-    desc = [[A metal flail. Damage 1d8.]],
+    desc = "A metal flail. Damage 1d8.",
 }
 
 newEntity{ base = "BASE_FLAIL",
@@ -359,7 +359,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a metal rapier",
-    desc = [[A metal rapier. Damage 1d6. Threat range 18-20.]],
+    desc = "A metal rapier.\n\n Damage 1d6. Threat range 18-20.",
 }
 
 newEntity{ base = "BASE_RAPIER",
@@ -382,7 +382,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a metal scimitar",
-    desc = [[A metal scimitar. Damage 1d6. Threat range 18-20.]],
+    desc = "A metal scimitar.\n\n Damage 1d6. Threat range 18-20.",
 }
 
 newEntity{ base = "BASE_SCIMITAR",
@@ -407,7 +407,7 @@ newEntity{ base = "BASE_WEAPON",
     polearm = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a metal trident",
-    desc = [[A metal trident. Damage 1d8.]],
+    desc = "A metal trident.\n\n Damage 1d8.",
 }
 
 newEntity{ base = "BASE_TRIDENT",
@@ -429,7 +429,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a metal warhammer",
-    desc = [[A metal warhammer. Damage 1d8. Critical x3.]],
+    desc = "A metal warhammer.\n\n Damage 1d8. Critical x3.",
 }
 
 newEntity{ base = "BASE_WARHAMMER",
@@ -454,7 +454,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a metal falchion",
-    desc = [[A metal falchion. Damage 2d4. Threat range 18-20.]],
+    desc = "A metal falchion.\n\n Damage 2d4. Threat range 18-20.",
 }
 
 newEntity{ base = "BASE_FALCHION",
@@ -478,7 +478,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a great axe",
-    desc = [[A great metal axe. Damage 1d12. Critical x3.]],
+    desc = "A great metal axe.\n\n Damage 1d12. Critical x3.",
 }
 
 newEntity{ base = "BASE_GREATAXE",
@@ -502,7 +502,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a greatclub",
-    desc = [[A huge wooden club. Damage 1d10.]],
+    desc = "A huge wooden club.\n\n Damage 1d10.",
 }
 
 newEntity{ base = "BASE_GREATCLUB",
@@ -525,7 +525,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a heavy flail",
-    desc = [[A heavy flail. Damage 1d10. Threat range 19-20.]],
+    desc = "A heavy flail.\n\n Damage 1d10. Threat range 19-20.",
 }
 
 newEntity{ base = "BASE_HEAVYFLAIL",
@@ -549,7 +549,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a greatsword",
-    desc = [[A metal great two-handed sword. Damage 2d6. Threat range 19-20.]],
+    desc = "A metal great two-handed sword.\n\n Damage 2d6. Threat range 19-20.",
 }
 
 newEntity{ base = "BASE_GREATSWORD",
@@ -573,7 +573,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a halberd",
-    desc = [[A metal halberd. Damage 1d10. Critical x3.]],
+    desc = "A metal halberd.\n\n Damage 1d10. Critical x3.",
 }
 
 newEntity{ base = "BASE_HALBERD",
@@ -597,7 +597,7 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a scythe",
-    desc = [[A frightening-looking metal scythe. Damage 2d4. Critical x4.]],
+    desc = "A frightening-looking metal scythe.\n\n Damage 2d4. Critical x4.",
 }
 
 newEntity{ base = "BASE_SCYTHE",
