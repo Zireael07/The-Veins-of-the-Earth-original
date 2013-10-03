@@ -89,12 +89,38 @@ end
 
 --- Gets the full desc of the object
 function _M:getDesc()
-    return self.desc
+    local str = self.desc
+
+    --Expand tooltips!
+    if self.slot_forbid == "OFFHAND" then str = str.."\nYou must wield this weapon with both hands" end
+    
+    --Describing magic items
+    if self.type == "weapon" and self.identified == true then 
+        local magic_bonus = self.combat.magic_bonus
+        if magic_bonus and magic_bonus > 0 then str = str.."\n#GOLD#This weapon grants a +"..(magic_bonus).." magic bonus to attack and damage" end
+    elseif self.type == "armor" and self.identified == true then 
+        local magic_armor = self.wielder.combat_magic_armor
+        if magic_armor and magic_armor > 0 then str = str.."\n#GOLD#This armor grants a +"..(magic_armor).." magic bonus to AC" end
+    elseif self.type == "shield" and self.identified == true then
+    local magic_shield = self.wielder.combat_magic_shield
+        if magic_shield and magic_shield > 0 then str = str.."\n#GOLD#This shield grants a +"..(magic_shield).." magic bonus to AC" end 
+    elseif self.type == "amulet" and self.identified == true then
+        local natural = self.wielder.combat_natural
+        if natural and natural > 0 then str = str.."\n#GOLD#This amulet grants a +"..(natural).."natural armor bonus to AC" end
+    elseif self.type == "ring" and self.identified == true then
+          local protection = self.wielder.combat_protection
+          if protection and protection > 0 then str = str.."\n#GOLD#This ring grants a +"..(protection).."protection bonus to AC" end
+    else end
+
+    return str
+
 end
 
 function _M:tooltip(x, y)
     local str = self:getDesc()
-    if config.settings.cheat then str = str .."\nUID: "..self.uid end
+--    if config.settings.cheat then str = str .."\nUID: "..self.uid end
+    
+    --Tooltip cue for multiple objects
     local nb = game.level.map:getObjectTotal(x, y)
     if nb == 2 then str = str.."\n---\nYou see one more object."
     elseif nb > 2 then str = str.."\n---\nYou see "..(nb-1).." more objects."
