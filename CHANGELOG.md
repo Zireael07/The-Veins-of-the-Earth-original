@@ -46,7 +46,7 @@ ALPHA
 
 BETA RELEASES
 
-0.0.5 beta 1 - 15/07/2013
+0.1.0 beta 1 - 15/07/2013
 * cleric and barbarian class qualities
 * in-game help screen
 * clerical domains [Sebsebeleb]
@@ -57,7 +57,7 @@ BETA RELEASES
 * ranged combat
 * Open Game License
 
-0.0.6 beta 1.5 - 3/08/2013
+0.1.5 beta 1.5 - 3/08/2013
 * bugfixes
 * stairs have a chance of not changing dungeon level [Sebsebeleb]
 * armors limit Dex bonus to AC
@@ -67,19 +67,19 @@ BETA RELEASES
 * new items: magic armors and shields
 * monster CR displayed in tooltips
 
-0.0.7 beta 1.75 - 5/08/2013
+0.2.0 beta 1.75 - 5/08/2013
 * bugfixes
 * colored character sheet, tooltips and log messages
 * encumbrance displayed in character sheet
 * encumbrance displayed in log
 * cavern map generator [Sebsebeleb]
 
-0.0.7a - 8/08/2013
+0.2.1 - 8/08/2013
 * implemented darkvision
 * ranged attacks now use Dex instead of Str to determine bonus
 * racial skill bonuses implemented
 
-0.0.7b - 13/08/2013
+0.2.2 - 13/08/2013
 * bugfixes
 * ranger, rogue and wizard now get ranged weapons as starting equipment
 * FOV fixes
@@ -92,19 +92,19 @@ BETA RELEASES
 * multiclassing
 * first standalone version
 
-0.0.8 - 15/08/2013
+0.2.5 - 15/08/2013
 * skill tests printed to log
 * bugfixes
 * working level-up bonuses
 * halved the amount of XP needed to advance
 
-0.0.8a - 17/08/2013
+0.2.6 - 17/08/2013
 * bugfixes
 * monsters drop equipment and corpses
 * working skill select screen
 * added skill enhancing feats
 
-0.0.9 - 22/08/2013
+0.3.0 - 22/08/2013
 * bugfixes
 * new monsters: drow, goblin, human
 * adjusted monster spawn rate
@@ -120,7 +120,7 @@ BETA RELEASES
 * armor spell failure chance implemented
 * cannot cast spells if key stat is equal or lower than 9
 
-0.0.9a - 28/08/2013
+0.3.1 - 28/08/2013
 * bugfixes
 * money
 * more room types
@@ -130,7 +130,7 @@ BETA RELEASES
 * magic item properties
 * humanoid templates coded in
 
-0.0.10 - 3/09/2013
+0.3.5 - 3/09/2013
 * new magic items: boots of elvenkind, cloak of elvenkind, bracers of armor
 * new monsters: giant eagle, shocker lizard, monitor lizard; wolf, raven, rat; monstrous centipede, monstrous scorpion, giant ant, fire beetle, stag beetle
 * improved food descriptions
@@ -139,14 +139,14 @@ BETA RELEASES
 * working auto-ID on pickup
 * offhand attack and iterative attacks
 
-0.0.11 - 10/09/2013
+0.3.6 - 10/09/2013
 * new class: bard
 * level-up screen now contains tips
 * healing now prints out a message in the log
 * character sheet shows feats only
 * tooltips added to inventory screen
 
-0.0.12 - 12/09/2013
+0.4.0 - 12/09/2013
 * fix for money bug
 * code cleanup; undead moved to templates
 * increased the number of items and monsters spawned
@@ -155,19 +155,19 @@ BETA RELEASES
 * working ECL
 * [standalone version only] brand-new start-up screen and menu
 
-0.0.13 - 16/09/2013
+0.5.0 - 16/09/2013
 * tooltips for character sheet, containing the info that used to be in the Help screen
 * Help screen now shows controls 
 * luminescent moss is luminescent again; typo fix; some tweaks to level generation
 * new magic items: belts of Strength, boots of dodging
 * random name generator, taking into account your class and race
 
-0.0.13a - 19/09/2013
+0.5.1 - 19/09/2013
 * fixed the monster stats being 0
 * monster symbols overhauled & added to legend screen
 * controls screen shown automatically after char creation, now includes 'r' for rest
 
-0.0.14 - 22/09/2013
+0.5.5 - 22/09/2013
 * new races: half-drow, gnome, halfling
 * revised AC (cannot exceed +5 from rings)
 * revised BAB (BAB requirements for feats work now)
@@ -177,7 +177,7 @@ BETA RELEASES
 * fix vermin symbols
 * update README & license & controls screen
 
-0.0.15 - 26/09/2013
+0.6.0 - 26/09/2013
 * typo fixes
 * bugfix for magic items not showing up
 * new spells: bardic cure light wounds; heal x wounds (heals a percentage of total hp); cure moderate/serious/critical wounds
@@ -191,7 +191,7 @@ BETA RELEASES
 * weapon proficiencies implemented
 * double weapons working as intended
 
-0.0.16 - 2/10/2013
+0.7.0 - 2/10/2013
 * typo fixes
 * bug fix: unintended bonuses at 1st character level
 * backgrounds - for those who want quicker character creation
