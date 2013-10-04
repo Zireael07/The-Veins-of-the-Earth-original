@@ -506,6 +506,13 @@ function _M:runCheck()
   return engine.interface.PlayerRun.runCheck(self)
 end
 
+--Castler's fix for still lit tiles
+function _M:runStopped()
+    game.level.map.clean_fov = true
+    self:playerFOV()
+end
+
+
 --- Move with the mouse
 -- We just feed our spotHostile to the interface mouseMove
 function _M:mouseMove(tmx, tmy)
