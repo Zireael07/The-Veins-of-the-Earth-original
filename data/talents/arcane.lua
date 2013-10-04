@@ -181,9 +181,9 @@ newTalent{
 		local NPC = require "mod.class.NPC"
 		local m = NPC.new{
 			type = "animal", subtype = "wolf",
-			display = "w", color=colors.GREEN,
+			display = "q", color=colors.LIGHT_GREEN,
 			name = "summoned wolf", faction = self.faction,
-			desc = [[]],
+			desc = [[A large peaceful wolf.]],
 			autolevel = "none",
 			never_anger = true,
 			
@@ -191,11 +191,15 @@ newTalent{
 			ai_state = { talent_in=1, ally_compassion=10},
 			ai_tactic = resolvers.tactic"default",
 			
-			stats = {str=0, dex=0, con=0, cun=0, wil=0, mag=0},
+			stats = {str=0, dex=0, con=0, int=0, wis=0, cha=0, luc=0},
 			inc_stats = {
-				con = 1,
-				str = 1,
-				dex = 2,
+				str = 13,
+				dex = 15,
+				con = 15,
+				int = 2, 
+				wis = 12,
+				cha = 6,
+				luc = 10,
 			},
 			level_range = {self.level, self.level}, exp_worth = 0,
 
@@ -203,12 +207,6 @@ newTalent{
 
 			combat_base_ac = 10, combat_dr = 0,
 			combat = { dam={1,4}, atk=1, },
-
-
-			--resolvers.talents{
-				--[self.T_TAUNT]=self:getTalentLevelRaw(t),
-				--[self.T_SHELL_SHIELD]=self:getTalentLevelRaw(t),
-			--},
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 10,
