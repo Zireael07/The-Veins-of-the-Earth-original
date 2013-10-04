@@ -70,7 +70,7 @@ function _M:init(t, no_default)
 	self.ecl = 1
 
 	--Skill ranks
-	self.max_skill_ranks = 4
+	self.max_skill_ranks = 3
 	self.cross_class_ranks = math.floor(self.max_skill_ranks/2)
 
 	-- Default melee barehanded damage
@@ -612,7 +612,7 @@ function _M:getAC()
 
 	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end 
 
-	if self.combat_protection then protection = math.max(protection, 5) end
+	if self.combat_protection then protection = math.min(protection, 5) end
 	
 	return math.floor((10 + armor + magic_armor + shield + magic_shield + natural + protection + dodge) + (dex_bonus or 0))
 end
