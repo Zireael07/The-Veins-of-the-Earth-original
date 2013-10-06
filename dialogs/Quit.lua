@@ -14,29 +14,79 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+require 'engine.class'
+local Dialog = require 'engine.ui.Dialog'
+local List = require 'engine.ui.List'
+local Savefile = require 'engine.Savefile'
 
-require "engine.class"
-require "engine.Dialog"
-local Savefile = require "engine.Savefile"
-
-module(..., package.seeall, class.inherit(engine.Dialog))
+module(..., package.seeall, class.inherit(engine.ui.Dialog))
 
 function _M:init()
-	engine.Dialog.init(self, "Really exit Veins of the Earth?", 300, 100)
-	self:keyCommands({
-		__DEFAULT = function()
-			game:unregisterDialog(self)
-			game.quit_dialog = false
-		end,
-	}, {
-		ACCEPT = function()
-			-- savefile_pipe is created as a global by the engine
-			savefile_pipe:push(game.save_name, "game", game)
-			util.showMainMenu()
-		end,
-	})
+  local w, h = 300, 100
+  Dialog.init(self, 'Save Character', 300, 100)
+  self.c_list = List.new {
+    width = w,
+    height = h,
+
+list = {
+      {
+	name = 'Continue playing',
+	fct = function(_)
+	  game:unregisterDialog(self)
+--	  game.quit_dialog = false
+	end
+      },
+      {
+	name = 'Save and continue playing',
+	fct = function(_)
+	  game:unregisterDialog(self)
+--	  game.quit_dialog = false
+	  savefile_pipe:push(game.save_name, "game", game)
+	end
+      },
+      {
+	name = 'Save and quit',
+	fct = function(_)
+	  game:unregisterDialog(self)
+	  savefile_pipe:push(game.save_name, "game", game)
+	  util.showMainMenu()
+	end
+      },
+      {
+	name = 'Quit and abandon character',
+	fct = function(_)
+	  game:unregisterDialog(self)
+--	  game.quit_dialog = false
+	  self:confirmQuit()
+	end
+      }
+    },
+   fct = function() self.key:triggerVirtual('ACCEPT') end,
+  }
+  self:loadUI {
+    { left = 3, top = 3, ui = self.c_list }
+  }
+  self.key:addBind('EXIT', function()
+    game:unregisterDialog(self)
+--    game.quit_dialog = false
+  end)
+  self.key:addBind('ACCEPT', function()
+    local item = self.c_list.list[self.c_list.sel]
+    if item and item.fct then item.fct(item) end
+  end)
+  self:setFocus(self.c_list)
+  self:setupUI(true, true)
 end
 
-function _M:drawDialog(s, w, h)
-	s:drawColorStringCentered(self.font, "Press enter to quit, any other keys to stay", 2, 2, self.iw - 2, self.ih - 2)
+function _M:confirmQuit()
+  local text = "#{bold}#WARNING:#{normal}#  This will remove the savefile for this character, and you will be unable to play it further.\n\nProceed anyway?"
+  local callback = function(ret)
+    if not ret then
+      local save = Savefile.new(game.save_name)
+      save:delete()
+      save:close()
+      util.showMainMenu()
+    end
+  end
+  Dialog:yesnoLongPopup('Quit Permanently?', text, 400, callback, "Don't quit", 'Quit')
 end
