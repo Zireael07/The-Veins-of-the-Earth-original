@@ -462,8 +462,10 @@ function _M:setupCommands()
 		end,
 	 
 	}
-	self.key:setCurrent()
 	engine.interface.PlayerHotkeys:bindAllHotkeys(self.key, function(i) self.player:activateHotkey(i) end)
+
+    self.key:setCurrent()
+    self.key:bindKeys()
 end
 
 function _M:setupMouse(reset)
