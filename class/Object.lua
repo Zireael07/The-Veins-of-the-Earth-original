@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -85,6 +85,10 @@ function _M:getName(t)
     else return qty.." "..name
     end
 
+    local colors = rng.table{"red","blue","pink","green","black","white","violet","yellow","teal","gold"}
+
+    if self.type == "potion" then return colors.." "..name end
+
 end
 
 --- Gets the full desc of the object
@@ -106,10 +110,10 @@ function _M:getDesc()
         if magic_shield and magic_shield > 0 then str = str.."\n#GOLD#This shield grants a +"..(magic_shield).." magic bonus to AC" end 
     elseif self.type == "amulet" and self.identified == true then
         local natural = self.wielder.combat_natural
-        if natural and natural > 0 then str = str.."\n#GOLD#This amulet grants a +"..(natural).."natural armor bonus to AC" end
+        if natural and natural > 0 then str = str.."\n#GOLD#This amulet grants a +"..(natural).." natural armor bonus to AC" end
     elseif self.type == "ring" and self.identified == true then
           local protection = self.wielder.combat_protection
-          if protection and protection > 0 then str = str.."\n#GOLD#This ring grants a +"..(protection).."protection bonus to AC" end
+          if protection and protection > 0 then str = str.."\n#GOLD#This ring grants a +"..(protection).." protection bonus to AC" end
     else end
 
     return str
