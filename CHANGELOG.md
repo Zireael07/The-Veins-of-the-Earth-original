@@ -202,3 +202,12 @@ BETA RELEASES
 * new UI skin: old gold and black semi-transparent without shadows
 * Toughness feat works as intended
 * casters gain a new spell level every 3rd level; rangers become eligible for this rule from lvl 5 onwards
+
+0.7.1 - 12/10/2013
+* bug fix for player leaving lit tiles behind himself (kudos to Castler)
+* bug fix for new keybinds (spellbook and help) not being recognized at game start [Sebsebeleb]
+* bug fixes
+* new items: amulet of health, periapt of wisdom, gauntlets of ogre strength, gloves of dexterity, cloak of charisma; wands & scrolls (unusable for now)
+* item tooltips now inform you of (some) magic properties if the item is identified
+* expanded Quit dialog to allow discarding characters
+* traps are coded in but do not spawn yet
