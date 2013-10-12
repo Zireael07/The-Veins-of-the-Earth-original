@@ -70,7 +70,7 @@ function _M:init(t, no_default)
 	self.ecl = 1
 
 	--Skill ranks
-	self.max_skill_ranks = 3
+	self.max_skill_ranks = 4
 	self.cross_class_ranks = math.floor(self.max_skill_ranks/2)
 
 	-- Default melee barehanded damage
