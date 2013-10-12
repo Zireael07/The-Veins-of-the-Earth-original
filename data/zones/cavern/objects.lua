@@ -25,7 +25,8 @@ load("/data/general/objects/shields.lua")
 load("/data/general/objects/consumables.lua")
 load("/data/general/objects/magicitems.lua")
 load("/data/general/objects/money.lua")
-
+load("/data/general/objects/potions.lua")
+load("/data/general/objects/charged.lua")
 
 
 --Light sources
@@ -72,50 +73,3 @@ newEntity{
     lite=3
   }, 
 }
-
-
-
-newEntity{
-    define_as = "BASE_RING",
-    slot = "RING",
-    type = "ring", subtype = "ring",
-    display = "=", color=colors.RED,
-    encumber = 0,
-    rarity = 5,
-    name = "A ring",
-    desc = [[A ring.]],
-}
-
-newEntity{
-    define_as = "BASE_WAND",
-    slot = "INVEN", 
-    type = "wand", subtype = "wand",
-    display = "-", color=colors.RED,
-    encumber = 0,
-    rarity = 50,
-    name = "A wand",
-    desc = [[A wand.]],
-}
-
-newEntity{
-    define_as = "BASE_SCROLL",
-    slot = "INVEN", 
-    type = "scroll", subtype = "scroll",
-    display = "?", color=colors.WHITE,
-    encumber = 0,
-    rarity = 50,
-    name = "A scroll",
-    desc = [[A scroll.]],
-}
-
-newEntity{
-    define_as = "BASE_TATTOO",
-    slot = "INVEN", 
-    type = "scroll", subtype = "tattoo",
-    display = "?", color=colors.RED,
-    encumber = 0,
-    rarity = 50,
-    name = "A tattoo",
-    desc = [[A tattoo.]],
-}
-

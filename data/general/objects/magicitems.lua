@@ -93,6 +93,78 @@ newEntity{
   }, 
 }
 
+newEntity{
+    base = "BASE_AMULET",
+    name = "amulet of health +2",
+    unided_name = "an amulet",
+    identified = false,
+    level_range = {10,30},
+    cost = 4000,
+    wielder = {
+    inc_stats = { [Stats.STAT_CON] = 2, },
+  }, 
+}
+
+newEntity{
+    base = "BASE_AMULET",
+    name = "amulet of health +4",
+    unided_name = "an amulet",
+    identified = false,
+    level_range = {10,30},
+    cost = 16000,
+    wielder = {
+    inc_stats = { [Stats.STAT_CON] = 4, },
+  }, 
+}
+
+newEntity{
+    base = "BASE_AMULET",
+    name = "amulet of health +6",
+    unided_name = "an amulet",
+    identified = false,
+    level_range = {10,30},
+    cost = 32000,
+    wielder = {
+    inc_stats = { [Stats.STAT_CON] = 6, },
+  }, 
+}
+
+newEntity{
+    base = "BASE_AMULET",
+    name = "periapt of wisdom +2",
+    unided_name = "an amulet",
+    identified = false,
+    level_range = {10,30},
+    cost = 4000,
+    wielder = {
+    inc_stats = { [Stats.STAT_WIS] = 2, },
+  }, 
+}
+
+newEntity{
+    base = "BASE_AMULET",
+    name = "periapt of wisdom +4",
+    unided_name = "an amulet",
+    identified = false,
+    level_range = {10,30},
+    cost = 16000,
+    wielder = {
+    inc_stats = { [Stats.STAT_WIS] = 4, },
+  }, 
+}
+
+newEntity{
+    base = "BASE_AMULET",
+    name = "periapt of wisdom +6",
+    unided_name = "an amulet",
+    identified = false,
+    level_range = {10,30},
+    cost = 36000,
+    wielder = {
+    inc_stats = { [Stats.STAT_WIS] = 6, },
+  }, 
+}
+
 --Rings
 newEntity{
     define_as = "BASE_RING",
@@ -237,6 +309,54 @@ newEntity{
   }, 
 }
 
+newEntity{
+    base = "BASE_BRACERS",
+    name = "gloves of dexterity +2",
+    unided_name = "gloves",
+    identified = false,
+    level_range = {1,10},
+    cost = 4000,
+    wielder = {
+    inc_stats = { [Stats.STAT_DEX] = 2, },
+  }, 
+}
+
+newEntity{
+    base = "BASE_BRACERS",
+    name = "gloves of dexterity +4",
+    unided_name = "gloves",
+    identified = false,
+    level_range = {1,10},
+    cost = 16000,
+    wielder = {
+    inc_stats = { [Stats.STAT_DEX] = 4, },
+  }, 
+}
+
+newEntity{
+    base = "BASE_BRACERS",
+    name = "gloves of dexterity +6",
+    unided_name = "gloves",
+    identified = false,
+    level_range = {1,10},
+    cost = 36000,
+    wielder = {
+    inc_stats = { [Stats.STAT_DEX] = 6, },
+  }, 
+}
+
+newEntity{
+    base = "BASE_BRACERS",
+    name = "gauntlets of ogre power",
+    unided_name = "gloves",
+    identified = false,
+    level_range = {1,10},
+    cost = 4000,
+    wielder = {
+    inc_stats = { [Stats.STAT_STR] = 2, },
+  }, 
+}
+
 --Cloaks
 newEntity{
     define_as = "BASE_CLOAK",
@@ -261,6 +381,20 @@ newEntity{
     skill_hide=5
   }, 
 }
+
+newEntity{
+    base = "BASE_CLOAK",
+    name = "cloak of Charisma +2",
+    unided_name = "a cloak",
+    display = "♠", color=colors.RED,
+    identified = false,
+    level_range = {1,10},
+    cost = 4000,
+    wielder = {
+    inc_stats = { [Stats.STAT_CHA] = 2, },
+  }, 
+}
+
 
 --Boots
 newEntity{
@@ -351,29 +485,7 @@ newEntity{
 }
 
 
---Wands
-newEntity{
-    define_as = "BASE_WAND",
-    slot = "INVEN", 
-    type = "wand", subtype = "wand",
-    display = "-", color=colors.RED,
-    encumber = 0,
-    rarity = 50,
-    name = "A wand",
-    desc = [[A wand.]],
-}
 
---Scrolls
-newEntity{
-    define_as = "BASE_SCROLL",
-    slot = "INVEN", 
-    type = "scroll", subtype = "scroll",
-    display = "?", color=colors.WHITE,
-    encumber = 0,
-    rarity = 50,
-    name = "A scroll",
-    desc = [[A scroll.]],
-}
 
 --Tattoos
 newEntity{
