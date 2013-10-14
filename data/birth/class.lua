@@ -15,14 +15,7 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		skill_point = 12, --4x skill points at 1st character level
-		movement_speed_bonus = 0.33
-	},
-	talents = {
-		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
-		[ActorTalents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
-		[ActorTalents.T_RAGE]=1,
+--		movement_speed_bonus = 0.33
 	},
 	descriptor_choices =
 	{
@@ -47,6 +40,14 @@ newBirthDescriptor {
 			actor.fortitude_save = (actor.fortitude_save or 0) +2
 			actor.combat_bab = (actor.combat_bab or 0) + 1
 			actor.skill_point = (actor.skill_point or 0) + 4
+
+			actor.movement_speed_bonus = 0.33
+
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
+			actor:learnTalent(actor.T_RAGE, true)
 
 			if actor.descriptor.race == "Half-Orc" then
 			actor.max_life = actor.max_life + 14
@@ -84,19 +85,9 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 18, --4x skill points at 1st level
 	},
-	talents = {
-		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
-		[ActorTalents.T_SHOW_SPELLBOOK]=1,
-		[ActorTalents.T_BARDIC_CLW]=1,
-		[ActorTalents.T_SUMMON_CREATURE_I]=1,
-		[ActorTalents.T_SLEEP]=1,
-		[ActorTalents.T_GREASE]=1,
-	},
-	talents_types = {
-		["arcane/arcane"] = {true, 0.0},
-	},
+--	talents_types = {
+--		["arcane/arcane"] = {true, 0.0},
+--	},
 	descriptor_choices =
 	{
 		alignment =
@@ -121,6 +112,19 @@ newBirthDescriptor {
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.reflex_save = (actor.reflex_save or 0) + 2
 			actor.skill_point = (actor.skill_point or 0) + 6
+
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+
+			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+			actor:learnTalent(actor.T_BARDIC_CLW, true)
+			actor:learnTalent(actor.T_SUMMON_CREATURE_I, true)
+			actor:learnTalent(actor.T_SLEEP, true)
+			actor:learnTalent(actor.T_GREASE, true)
+
+			actor:learnTalentType("arcane/arcane", true)
+
 			if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
 			actor.max_life = actor.max_life + 8
 			else
@@ -169,18 +173,10 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
 	},
-	talents = {
-		[ActorTalents.T_SHOW_SPELLBOOK]=1,
-		[ActorTalents.T_CURE_LIGHT_WOUNDS]=1,
-		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
-	},
-	talents_types = {
-		["cleric/cleric"] = {true, 0.0},
-		["divine/divine"] = {true, 0.0}
-	},
+--	talents_types = {
+--		["cleric/cleric"] = {true, 0.0},
+--		["divine/divine"] = {true, 0.0}
+--	},
 	descriptor_choices = {
 		domains = {
 			__ALL__ = "allow",
@@ -203,6 +199,20 @@ newBirthDescriptor {
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.will_save = (actor.will_save or 0) + 2
 			actor.skill_point = (actor.skill_point or 0) + 2
+
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_HEAVY_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+
+			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+			actor:learnTalent(actor.T_CURE_LIGHT_WOUNDS, true)
+			--actor:learnTalent(actor.T_INFLICT_LIGHT_WOUNDS, true)
+
+			actor:learnTalentType("divine/divine", true)
+			actor:learnTalentType("cleric/cleric", true)
+
+
 			if (actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female") or actor.descriptor.race == "Half-Drow" then
 			actor.max_life = actor.max_life + 10
 			else
@@ -250,11 +260,6 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 12, --4x skill points at 1st level
 	},
-	talents = {
-		[ActorTalents.T_CURE_LIGHT_WOUNDS]=1,
-		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
-	},
 	descriptor_choices =
 	{
 		alignment =
@@ -283,6 +288,14 @@ newBirthDescriptor {
 
 			actor.max_life = actor.max_life + 8
 			actor.skill_point = (actor.skill_point or 0) + 2
+
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+
+			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+			actor:learnTalent(actor.T_CURE_LIGHT_WOUNDS, true)
+
+			actor:learnTalentType("divine/divine", true)
 		
 		else
 		--Learn a new spell tier every 3rd level
@@ -322,13 +335,6 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
 	},
-	talents = {
-		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_HEAVY_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
-		[ActorTalents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
-	},
 	descriptor_choices =
 	{
 		--Prevent another game-breaking combo; why would anyone want a fighter/spellcaster is beyond me
@@ -346,6 +352,13 @@ newBirthDescriptor {
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.combat_bab = (actor.combat_bab or 0) + 1
 			actor.skill_point = (actor.skill_point or 0) + 2
+
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_HEAVY_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
+
 			if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
 			actor.max_life = actor.max_life + 12
 			else
@@ -392,13 +405,6 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 18, --4x skill points at 1st level
 	},
-	talents = {
-		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
-		[ActorTalents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
-		[ActorTalents.T_FAVORED_ENEMY]=1,
-	},
 	descriptor_choices =
 	{
 		--Prevent another game-breaking combo
@@ -416,6 +422,14 @@ newBirthDescriptor {
 			actor.combat_bab = (actor.combat_bab or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 2
 			actor.skill_point = (actor.skill_point or 0) + 6
+
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
+
+			actor:learnTalent(actor.T_FAVORED_ENEMY, true)
+
 			if actor.descriptor.race == "Elf" then
 			--Favored class bonuses
 			actor.max_life = actor.max_life + 10	
@@ -423,6 +437,23 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 8 end
 		
 		else
+
+		if level == 5 then
+			actor:learnTalentType("divine/divine", true)
+
+		actor.combat_bab = (actor.combat_bab or 0) + 1
+		actor.fortitude_save = (actor.fortitude_save or 0) + 1
+		actor.reflex_save = (actor.reflex_save or 0) + 1
+		actor.will_save = (actor.will_save or 0) + 0.5
+		actor.skill_point = (actor.skill_point or 0) + 6
+		if actor.descriptor.race == "Elf" then
+		--Favored class bonuses
+		actor.combat_attack = (actor.combat_attack or 0) + 1
+		actor.max_life = actor.max_life + 10
+		else
+		actor.max_life = actor.max_life + 8 end
+		end
+
 		--Learn a new spell tier every 3rd level starting from lvl 5
 		if level >= 5 and level % 3 == 0 then
 			local spell_level = ((level-5) / 3) + 1
@@ -466,13 +497,7 @@ newBirthDescriptor {
 		}
 	},
 	copy_add = {
-		sneak_attack = 1,
 		skill_point = 24, --4x skill points at 1st level
-	},
-	talents = {
-		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 	},
 	descriptor_choices =
 	{
@@ -498,6 +523,11 @@ newBirthDescriptor {
 			actor.reflex_save = (actor.reflex_save or 0) + 2
 			actor.sneak_attack = (actor.sneak_attack or 0) + 1
 			actor.skill_point = (actor.skill_point or 0) + 8
+
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+
 			if  actor.descriptor.race == "Deep gnome" then
 			--Favored class bonuses
 			actor.max_life = actor.max_life + 8
@@ -541,16 +571,6 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
 	},
-	talents = {
-		[ActorTalents.T_SHOW_SPELLBOOK]=1,
-		[ActorTalents.T_ACID_SPLASH]=1,
-		[ActorTalents.T_GREASE]=1,
-		[ActorTalents.T_MAGIC_MISSILE]=1,
-		[ActorTalents.T_BURNING_HANDS]=1,
-		[ActorTalents.T_SUMMON_CREATURE_I]=1,
-		[ActorTalents.T_SLEEP]=1,
-		[ActorTalents.T_BLINDNESS_DEAFNESS]=1,
-	},
 	talents_types = {
 		["arcane/arcane"] = {true, 0.0},
 	},
@@ -573,6 +593,18 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor.will_save = (actor.will_save or 0) + 2
 			actor.skill_point = (actor.skill_point or 0) + 2
+
+			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+			actor:learnTalent(actor.T_ACID_SPLASH, true)
+			actor:learnTalent(actor.T_GREASE, true)
+			actor:learnTalent(actor.T_MAGIC_MISSILE, true)
+			actor:learnTalent(actor.T_BURNING_HANDS, true)
+			actor:learnTalent(actor.T_SUMMON_CREATURE_I, true)
+			actor:learnTalent(actor.T_SLEEP, true)
+			actor:learnTalent(actor.T_BLINDNESS_DEAFNESS, true)
+
+			actor:learnTalentType("divine/divine", true)			
+
 			if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Male" then
 			--Favored class bonuses
 			actor.max_life = actor.max_life + 6
@@ -623,12 +655,6 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 6, --4x skill points at start
 	},
-	talents = {
-		[ActorTalents.T_ELDRITCH_BLAST]=1,
-		[ActorTalents.T_LIGHT_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
-		[ActorTalents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
-	},
 	descriptor_choices =
 	{
 		--Prevent game-breaking combos due to 1 BAB requirement of some feats
@@ -649,6 +675,12 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 4
 			actor.skill_point = (actor.skill_point or 0) + 2
 		
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+
+			actor:learnTalent(actor.T_ELDRITCH_BLAST, true)
+
 		else
 
 		actor.will_save = (actor.will_save or 0) + 1
