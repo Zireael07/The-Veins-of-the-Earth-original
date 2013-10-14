@@ -171,6 +171,7 @@ function _M:act()
 
 	-- check passive stuff. This should be in actbase I think but I cant get it to work
 	if self:knowTalent(self.T_BLOOD_VENGANCE) then
+		--Bloodied!
 		if self.life / self.max_life < 0.5 then
 			self:setEffect(self.EFF_BLOOD_VENGANCE, 1, {})
 		end
@@ -578,7 +579,8 @@ function _M:skillCheck(skill, dc, silent)
 
 	if result > dc then success = true end
 
-	if not silent then
+	--Limit logging to the player
+	if not silent and self == game.player then
 		local who = self:getName()
 		local s = ("%s check for %s: %d vs %d dc -> %s"):format(
 			skill:capitalize(), who, d, dc, success and "success" or "failure")
