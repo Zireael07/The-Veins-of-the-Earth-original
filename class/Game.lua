@@ -346,9 +346,11 @@ function _M:setupCommands()
 				local level = self.level.level
 				if rng.percent(75) then
 					level = level + 1
+					self.player:gainExp(level*50)
 				else
 					level = level + 0.001
 					game.logPlayer(self.player, "#SANDY_BROWN#You feel like you have not delved much further")
+
 				end
 				self:changeLevel(e.change_zone and e.change_level or level, e.change_zone)
 			else

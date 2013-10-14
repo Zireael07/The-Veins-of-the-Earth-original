@@ -75,6 +75,7 @@ end
 --- Called when disarmed
 function _M:onDisarm(x, y, who)
 	self:check("disarmed", x, y, who)
+	who:gainExp(100)
 end
 
 --- Called when triggered
