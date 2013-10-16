@@ -193,6 +193,129 @@ newTalent{
 	end,	
 }
 
+--Inflict spells
+newTalent{
+	name = "Inflict Light Wounds",
+	type = {"divine/divine",1},
+	display = { image = "inflict_light_wounds.png"},
+	mode = "activated",
+	level = 1,
+	points = 1,
+	cooldown = 0,
+	range = 4,
+	target = function(self, t)
+		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+		return tg
+	end,
+	action = function (self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+		local _ _, _, _, x, y = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local damage = rng.dice(1,8)
+
+		self:projectile(tg, x, y, DamageType.FORCE, damage)
+		return true
+	end,
+	info = function(self, t)
+		return ([[You deal 1d8 damage to a single target within range.]])
+	end,	 
+}
+
+newTalent{
+	name = "Inflict Moderate Wounds",
+	type = {"divine/divine",1},
+	display = { image = "inflict_light_wounds.png"},
+	mode = "activated",
+	level = 2,
+	points = 1,
+	cooldown = 0,
+	range = 4,
+	target = function(self, t)
+		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+		return tg
+	end,
+	action = function (self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+		local _ _, _, _, x, y = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local damage = rng.dice(2,8)
+
+		self:projectile(tg, x, y, DamageType.FORCE, damage)
+		return true
+	end,
+	info = function(self, t)
+		return ([[You deal 2d8 damage to a single target within range.]])
+	end,	 
+}
+
+newTalent{
+	name = "Inflict Serious Wounds",
+	type = {"divine/divine",1},
+	display = { image = "inflict_light_wounds.png"},
+	mode = "activated",
+	level = 3,
+	points = 1,
+	cooldown = 0,
+	range = 4,
+	target = function(self, t)
+		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+		return tg
+	end,
+	action = function (self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+		local _ _, _, _, x, y = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local damage = rng.dice(3,8)
+
+		self:projectile(tg, x, y, DamageType.FORCE, damage)
+		return true
+	end,
+	info = function(self, t)
+		return ([[You deal 3d8 damage to a single target within range.]])
+	end,	 
+}
+
+newTalent{
+	name = "Inflict Critical Wounds",
+	type = {"divine/divine",1},
+	display = { image = "inflict_light_wounds.png"},
+	mode = "activated",
+	level = 4,
+	points = 1,
+	cooldown = 0,
+	range = 4,
+	target = function(self, t)
+		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+		return tg
+	end,
+	action = function (self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+		local _ _, _, _, x, y = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local damage = rng.dice(4,8)
+
+		self:projectile(tg, x, y, DamageType.FORCE, damage)
+		return true
+	end,
+	info = function(self, t)
+		return ([[You deal 4d8 damage to a single target within range.]])
+	end,	 
+}
+
+
+--"Animal buff" spells
 newTalent{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE",
 	type = {"divine/divine", 1},
