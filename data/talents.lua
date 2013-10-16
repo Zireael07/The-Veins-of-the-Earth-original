@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -36,18 +36,18 @@ end
 
 
 load("data/talents/feats/feats.lua")
-load("data/talents/metamagic.lua")
+load("data/talents/feats/metamagic.lua")
 
 load("data/talents/domains/domains.lua")
 
-load("data/talents/divine.lua")
-load("data/talents/arcane.lua")
+load("data/talents/spells/divine.lua")
+load("data/talents/spells/arcane.lua")
+load("data/talents/spells/monster.lua")
 
-load("data/talents/monster.lua")
 load("data/talents/skills.lua")
 load("data/talents/special.lua")
 
-load("data/talents/barbarian.lua")
-load("data/talents/cleric.lua")
-load("data/talents/eldritch.lua")
-load("data/talents/ranger.lua")
+load("data/talents/class features/barbarian.lua")
+load("data/talents/class features/cleric.lua")
+load("data/talents/class features/eldritch.lua")
+load("data/talents/class features/ranger.lua")

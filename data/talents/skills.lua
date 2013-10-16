@@ -7,7 +7,7 @@ newTalent{
 	type = {"skill/skill",1},
 	mode = "activated",
 	points = 1,
-	cooldown = 0,
+	cooldown = 20,
 	range = 0,
 	action = function(self, t)
 	
@@ -17,8 +17,6 @@ newTalent{
 		for item, o in ipairs(inven) do
 			if o.identified == false then
 				local check = self:skillCheck("intuition", 10)
---				local skill = self:getSkill("intuition")
---				game.log("%d + %d = %d vs DC %d"):format(d, skill, d+skill, dc))
 				if check then
 					o.identified = true
 				end	

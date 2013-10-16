@@ -28,11 +28,9 @@ newTalent{
     mode = 'activated',
     --require = ,
     points = 1,
-    cooldown = 8,
+    cooldown = 0,
     tactical = { ATTACK = 1 },
     requires_target = true,
---      on_pre_use = function(self, t, silent) if not self:hasArcheryWeapon() then if not silent then game.logPlayer(self, "You require a rangede weapon to shoot") end return false end return true end,
---      range = function(self, t) local weapon = self:getInven("MAIN_HAND")[1] return weapon.combat.range end,
     target = function(self, t) return  {type="bolt", range=self:getInven("MAIN_HAND")[1].combat.range, talent=t} end,
     archery_hit = function(tx, ty, tg, self, tmp) --This is called when the projectile hits
         local DamageType = require "engine.DamageType"
@@ -78,7 +76,6 @@ newTalent{
             return true
     end,
     info = function(self, t)
-            --local dam = damDesc(self, DamageType.ICE, t.getDamage(self, t))
             return ([[You shoot at the target.]])
     end,
 }
