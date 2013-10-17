@@ -30,6 +30,7 @@ newBirthDescriptor {
 		{
 			['Magical thief'] = "disallow",
 			['Spellcaster'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
 		}
 	},
 	can_level = function(actor)
@@ -102,6 +103,7 @@ newBirthDescriptor {
 			['Master of one'] = "disallow",
 			['Fencing duelist'] = "disallow",
 			['Exotic fighter'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
 		}
 	},
 	can_level = function(actor)
@@ -189,6 +191,7 @@ newBirthDescriptor {
 			['Exotic fighter'] = "disallow",
 			--Prevent another game-breaking combo
 			['Magical thief'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
 		}
 	},
 	can_level = function(actor)
@@ -277,6 +280,7 @@ newBirthDescriptor {
 			['Exotic fighter'] = "disallow",
 			--Prevent another game-breaking combo
 			['Magical thief'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
 		}
 	},
 	can_level = function(actor)
@@ -342,6 +346,7 @@ newBirthDescriptor {
 		{
 			['Spellcaster'] = "disallow",
 			['Magical thief'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
 		}
 	},
 	can_level = function(actor)
@@ -429,6 +434,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
 
 			actor:learnTalent(actor.T_FAVORED_ENEMY, true)
+--			actor:learnTalent(actor.T_TWO_WEAPON_FIGHTING, true)
 
 			if actor.descriptor.race == "Elf" then
 			--Favored class bonuses
@@ -513,6 +519,7 @@ newBirthDescriptor {
 			['Master of one'] = "disallow",
 			['Fencing duelist'] = "disallow",
 			['Exotic fighter'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
 		}
 	},
 	can_level = function(actor)
@@ -584,6 +591,7 @@ newBirthDescriptor {
 			['Exotic fighter'] = "disallow",
 			--Prevent another game-breaking combo
 			['Magical thief'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
 		}
 	},
 	can_level = function(actor)
@@ -665,6 +673,7 @@ newBirthDescriptor {
 			['Exotic fighter'] = "disallow",
 			--Prevent another game-breaking combo
 			['Magical thief'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
 		}
 	},
 	can_level = function(actor)

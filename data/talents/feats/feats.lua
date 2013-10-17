@@ -59,8 +59,6 @@ newTalent{
 	info = [[This feat makes you proficient in martial weapons.]],
 }
 
-
-
 newTalent{
 	name = "Exotic Weapon Proficiency",
 	type = {"class/general", 1},
@@ -78,49 +76,6 @@ newTalent{
 	mode = "passive",
 	is_feat = true,
 	info = [[This feat makes you proficient in exotic weapons.]],
-}
-
-
---Save bonuses feats
-newTalent{
-	name = "Toughness",
-	type = {"class/general", 1},
-	is_feat = true,
-	points = 3,
-	mode = "passive",
-	is_feat = true,
-	info = [[This feat increases your Fort save by +3 and HP by 10%.]],
-    on_learn = function(self, t)
-	    self.fortitude_save = self.fortitude_save + 3
-	    self.max_life = self.max_life * 1.1
-    end
-}
-
-newTalent{
-	name = "Dodge",
-	type = {"class/general", 1},
-	is_feat = true,
-	points = 1,
-	mode = "passive",
-	is_feat = true,
-	info = [[This feat increases your AC by +3 and your Ref save by +3.]],
-    on_learn = function(self, t)
-        self.combat_dodge = (self.combat_dodge or 0) + 3
-        self.reflex_save = self.reflex_save + 3
-    end
-}
-
-newTalent{
-	name = "Iron Will",
-	type = {"class/general", 1},
-	is_feat = true,
-	points = 3,
-	mode = "passive",
-	is_feat = true,
-	info = [[This feat increases your Will save by +3.]],
-  	on_learn = function(self, t)
-		self.will_save = self.will_save + 3       
-	end
 }
 
 --Combat feats
@@ -219,6 +174,117 @@ newTalent{
       	if weapon.subtype == choice then
 		combat.weapon.threat = combat.weapon.threat + 2 end     
 end
+}
+
+--TWF feats
+newTalent{
+	name = "Two Weapon Fighting",
+	type = {"class/general", 1},
+	require = {
+		stat = {dex = 15}
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat makes you proficient in fighting with two weapons, reducing the penalties.]],
+}
+
+newTalent{
+	name = "Two Weapon Defense",
+	type = {"class/general", 1},
+	require = {
+		stat = {dex = 15},
+		talent = { Talents.T_TWO_WEAPON_FIGHTING },
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat gives you a +1 shield bonus to AC when fighting with two weapons.]],
+}
+
+newTalent{
+	name = "Improved Two Weapon Fighting",
+	type = {"class/general", 1},
+	require = {
+		stat = {dex = 17},
+		talent = { Talents.T_TWO_WEAPON_FIGHTING },
+		special = {
+			fct = function(self, t, offset) 
+			--Base attack bonus 6
+			if self:attr("combat_bab") and self:attr("combat_bab") >= 6 then return true
+			else return false end
+			end,
+			desc = "Base attack bonus 6",		 
+		}
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat gives you an additional offhand attack when fighting with two weapons.]],
+}
+
+newTalent{
+	name = "Greater Two Weapon Fighting",
+	type = {"class/general", 1},
+	require = {
+		stat = {dex = 19},
+		talent = { Talents.T_TWO_WEAPON_FIGHTING, Talents.T_IMPROVED_TWO_WEAPON_FIGHTING },
+		special = {
+			fct = function(self, t, offset) 
+			--Base attack bonus 11
+			if self:attr("combat_bab") and self:attr("combat_bab") >= 11 then return true
+			else return false end
+			end,
+			desc = "Base attack bonus 11",		 
+		}
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat gives you a third offhand attack when fighting with two weapons.]],
+}
+
+
+--Save bonuses feats
+newTalent{
+	name = "Toughness",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 3,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat increases your Fort save by +3 and HP by 10%.]],
+    on_learn = function(self, t)
+	    self.fortitude_save = self.fortitude_save + 3
+	    self.max_life = self.max_life * 1.1
+    end
+}
+
+newTalent{
+	name = "Dodge",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat increases your AC by +3 and your Ref save by +3.]],
+    on_learn = function(self, t)
+        self.combat_dodge = (self.combat_dodge or 0) + 3
+        self.reflex_save = self.reflex_save + 3
+    end
+}
+
+newTalent{
+	name = "Iron Will",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 3,
+	mode = "passive",
+	is_feat = true,
+	info = [[This feat increases your Will save by +3.]],
+  	on_learn = function(self, t)
+		self.will_save = self.will_save + 3       
+	end
 }
 
 --Various feats

@@ -126,7 +126,24 @@ newBirthDescriptor {
 }
 
 --TO DO: Archer background and twf fighter background (24 pts max)
-
+newBirthDescriptor { 
+	type = 'background',
+	name = "Two weapon fighter",
+	desc = 'You were trained to fight with two weapons.\n\n Spend 4 skill points on Survival and Swim. Pick Two Weapon Fighting as your first feat.',
+	copy_add = { 
+	skill_point = -24,
+	skill_swim = 4,
+	skill_survival = 4,
+	skill_tumble = 4,
+	skill_intuition = 4,
+	skill_spot = 4,
+	skill_listen = 4,
+	feat_point = -1,
+	},
+	talents = {
+		[ActorTalents.T_TWO_WEAPON_FIGHTING]=1,
+	},
+}
 --Rogue backgrounds (32 pts max)
 newBirthDescriptor {
 	type = 'background',

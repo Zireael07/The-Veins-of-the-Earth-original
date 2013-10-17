@@ -59,11 +59,22 @@ function _M:attackRoll(target)
 
     local attack = (self.combat_bab or 0) + (self.combat_attack or 0)
 
+    local offweapon = self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1]
+
+    --I don't know how to differentiate between main hand and offhand at this point, so I made the penalties identical for both
+    if weapon and offweapon and offweapon.light and not self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attack = (attack -6)
+        elseif weapon and offweapon and not self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attack = (attack -8) 
+        elseif weapon and offweapon and offweapon.light then attack = (attack - 2)
+        elseif weapon and offweapon then attack = (attack -4)
+        else attack = attack end
+
+    --Proficiencies
     if weapon and weapon.simple and not self:knowTalent(self.T_SIMPLE_WEAPON_PROFICIENCY) then attack = (attack -4) 
         else attack = attack end
     if weapon and weapon.martial and not self:knowTalent(self.T_MARTIAL_WEAPON_PROFICIENCY) then attack = (attack -4) 
         else attack = attack end
 
+    --Feat bonuses
     if self:knowTalent(self.T_WEAPON_FOCUS) and weapon and weapon.subtype == self.weapon_type then attack = (attack + 1) end
 
     if self:knowTalent(self.T_FINESSE) and weapon and not weapon.ranged then
