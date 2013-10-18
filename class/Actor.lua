@@ -801,6 +801,48 @@ function _M:levelPassives()
 	end
 end
 
+--Random perks
+function _M:randomFeat()
+		local tids = {}
+		for tid, _ in pairs(self.talents_def) do
+			local t = self:getTalentFromId(tid)
+			local tt = self:getTalentTypeFrom(t.type[1])
+			if t and not self:knowTalent(tid) then tids[#tids+1] = t end
+		end 
+		for i = 1, 1 do
+			local t = rng.tableRemove(tids)
+			if not t then break end
+			--Learn talent
+				if self:canLearnTalent(t) then
+					self:learnTalent(tid)
+					game.log("You learned "..t.name)
+				end
+		end	
+end
+
+function _M:randomSpell()
+		local tids = {}
+		for tid, _ in pairs(self.talents_def) do
+			local t = self:getTalentFromId(tid)
+			local tt = self:getTalentTypeFrom(t.type[1])
+			if t and not self:knowTalent(tid) and self:canLearnTalent(t) then 
+				if tt.arcane or tt.divine then tids[#tids+1] = t end
+			end
+		end 
+		for i = 1, 1 do
+			local t = rng.tableRemove(tids)
+			if not t then break end
+			--Learn talent
+				if self:canLearnTalent(t) then
+					self:learnTalent(tid)
+					game.log("You learned "..t.name)
+					--Prevent game breaking
+					if tt.arcane then self:learnTalentType("arcane/arcane", true)
+					else self:learnTalentType("divine/divine", true) end
+				end
+		end	
+end
+
 --Leveling up
 function _M:levelup()
 	engine.interface.ActorLevel.levelup(self)
