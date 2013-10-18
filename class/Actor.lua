@@ -143,6 +143,7 @@ end
 -- Called when our stats change
 function _M:onStatChange(stat, v)
 	if stat == "str" then self:checkEncumbrance() end
+	if stat == self.STAT_CON then self.max_life = self.max_life + 2 end
 end 
 
 function _M:getName(t)
@@ -347,13 +348,6 @@ function _M:levelupMsg()
 
 	-- Return true if this is the first time we've hit this level.
 	return not stale
-end
-
---- Notifies a change of stat value
-function _M:onStatChange(stat, v)
-	if stat == self.STAT_CON then
-		self.max_life = self.max_life + 2
-	end
 end
 
 function _M:attack(target)
@@ -798,13 +792,8 @@ function _M:levelup()
 	engine.interface.ActorLevel.levelup(self)
 	engine.interface.ActorTalents.resolveLevelTalents(self)
 
-	--- Levelup class stuff
-	-- Goes through every talent and checks if it should be leveled passively by levels
-	--self:levelPassives()
-
-	--Gain hp and skill points (generic)
---	self.max_life = self.max_life + self.hd_size
-	self.skill_point = self.skill_point + self.skill_point
+	--Gain max skill ranks (generic)
+--	self.skill_point = self.skill_point + self.skill_point
 	self.max_skill_ranks = self.max_skill_ranks + 1
 	
 	--May level up class
@@ -817,8 +806,6 @@ function _M:levelup()
 	if self.level % 5 == 0 then 
 		self.more_attacks = (self.more_attacks or 0) + 1 
 	end
-
-
 
 	-- Heal up on new level
 	--  self:resetToFull()
