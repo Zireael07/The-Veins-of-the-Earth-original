@@ -46,7 +46,7 @@ TOOLTIP_WIS = [[ WIS is short for #ORANGE#Wisdom#LAST#. It affects your characte
 TOOLTIP_CHA = [[ CHA is short for #ORANGE#Charisma#LAST#. It affects your character's interactions with others. ]]
 TOOLTIP_LUC = [[ LUC is short for #ORANGE#Luck#LAST#. It has no effects presently. In the future, it will influence most statistics, as well as loot drops and enemies appearing. ]]
 
-TOOLTIP_SKILL = [[ #GOLD#Skill ranks + stat modifier - armor check penalty (for some skills)#LAST#
+TOOLTIP_SKILL = [[ #GOLD#Skill ranks + stat modifier + any bonuses - armor check penalty (for some skills)#LAST#
 	When using a skill, a #SANDY_BROWN#d20 roll#LAST# is made and the stat modifier is added along with your ranks.
     The max number of ranks you can have in a skill is limited to #SANDY_BROWN#4 + 1 per level#LAST#. ]]
 TOOLTIP_FEAT = [[ You gain a feat point upon birth and one point every three character levels. ]]

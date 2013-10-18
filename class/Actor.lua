@@ -108,6 +108,34 @@ function _M:init(t, no_default)
 	self.skill_tumble = 0
 	self.skill_usemagic = 0
 
+	--Skill bonuses (feat, kit etc.) to be applied on top of ranks
+	self.skill_bonus_balance = 0
+	self.skill_bonus_bluff = 0
+	self.skill_bonus_climb = 0
+	self.skill_bonus_concentration = 0
+	self.skill_bonus_diplomacy = 0
+	self.skill_bonus_disabledevice = 0
+	self.skill_bonus_escapeartist = 0
+	self.skill_bonus_handleanimal = 0
+	self.skill_bonus_heal = 0
+	self.skill_bonus_hide = 0
+	self.skill_bonus_intimidate = 0
+	self.skill_bonus_intuition = 0
+	self.skill_bonus_jump = 0
+	self.skill_bonus_knowledge = 0
+	self.skill_bonus_listen = 0
+	self.skill_bonus_movesilently = 0
+	self.skill_bonus_openlock = 0
+	self.skill_bonus_search = 0
+	self.skill_bonus_sensemotive = 0
+	self.skill_bonus_swim = 0
+	self.skill_bonus_pickpocket = 0 --what is called sleight of hand in 3.5
+	self.skill_bonus_spellcraft = 0
+	self.skill_bonus_survival = 0
+	self.skill_bonus_tumble = 0
+	self.skill_bonus_usemagic = 0
+
+	--Actually initiate some basic engine stuff
 	engine.Actor.init(self, t, no_default)
 	engine.interface.ActorTemporaryEffects.init(self, t)
 	engine.interface.ActorLife.init(self, t)
@@ -572,8 +600,11 @@ function _M:getSkill(skill)
 	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "con", diplomacy = "cha", disabledevice = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", intuition = "int", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", pickpocket = "dex", search = "int", sensemotive = "wis", swim = "str", spellcraft = "int", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
 	local penalty_for_skill = { balance = "yes", bluff = "no", climb = "yes", concentration = "no", diplomacy = "no", disabledevice = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", search = "no", sensemotive = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
-	if penalty_for_skill[skill] == "yes" then return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("armor_penalty") or 0) end
-	return (self:attr("skill_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) end 
+
+	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2)
+
+	if penalty_for_skill[skill] == "yes" then return check - (self:attr("armor_penalty") or 0) end
+	return check end 
 
 function _M:skillCheck(skill, dc, silent)
 	local success = false
