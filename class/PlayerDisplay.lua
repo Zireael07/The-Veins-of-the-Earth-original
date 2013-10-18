@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ function _M:init()
 	self.mouse = Mouse.new()
 
 	local gw, gh = core.display.size()
-	self:resize(1, gh - 99, 234, 85)
+	self:resize(1, gh - 150, 234, 150)
 end
 
 --- Resize the display area
@@ -100,12 +100,19 @@ function _M:display()
 
     h = h + self.font_h +2
    
-    self:makeTexture(("Level / Exp: #44dd44#%d / %2d%%"):format(player.level, 100 * cur_exp / max_exp), w, h, 255, 255, 255)
+
+--    self:makeTextureBar("Exp:", "%d%%", cur_exp, 100, w, h, 255, 255, 255, { r=0, g=100, b=0 }, { r=0, g=50, b=0 }) h = h + self.font_h
+
+   self:makeTexture(("Level / Exp: #44dd44#%d / %2d%%"):format(player.level, 100 * cur_exp / max_exp), w, h, 255, 255, 255)
    
     h = h + self.font_h +2
     
-    self:makeTexture(("Hit Points: #CRIMSON#%d/%d   "):format(player.life, player.max_life), w, h, 255, 255, 255)
+--    self:makeTextureBar("Life:", nil, player.life, player.max_life, w, 5, 255, 255, 255, colors.DARK_RED, colors.VERY_DARK_RED)
+
+    self:makeTexture(("Hit Points: #CRIMSON#%d/%d / %2d%%"):format(math.floor(player.life), math.floor(player.max_life), 100 * math.floor(player.life) / math.floor(player.max_life)), w, h, 255, 255, 255)
    
+    if player.life < player.max_life*0.5 then self:makeTexture(("Hit Points: #CRIMSON#%d/%d / %2d%% †"):format(math.floor(player.life), math.floor(player.max_life), 100 * math.floor(player.life) / math.floor(player.max_life)), w, h, 255, 255, 255) end
+
     h = h + self.font_h +2
    
 	self:makeTexture(("Dungeon lvl: %d"):format(game.level.level), w, h, 240, 240, 170)
