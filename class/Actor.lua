@@ -517,19 +517,33 @@ function _M:canSee(actor, def, def_pct)
 	if self:hasEffect(self.EFF_BLIND) then return false,100 end --Like this, the actor actually knows where its target is. Its just bad at hitting
 
 	-- Check for stealth. Checks against the target cunning and level
-	if actor:attr("stealth") and actor ~= self then
-		local def = self.level / 2 + self:getCun(25)
-		local hit, chance = self:checkHit(def, actor:attr("stealth") + (actor:attr("inc_stealth") or 0), 0, 100)
-		if not hit then
-			return false, chance
-		end
-	end
+--[[if actor:attr("stealth") and actor ~= self then
+--		local def = self.level / 2 + self:getCun(25)
+--		local hit, chance = self:checkHit(def, actor:attr("stealth") + (actor:attr("inc_stealth") or 0), 0, 100)
+--		if not hit then
+--			return false, chance
+--		end
+--	end]]
 
-	if def ~= nil then
-		return def, def_pct
-	else
-		return true, 100
+--	if def ~= nil then
+--		return def, def_pct
+
+	if actor:attr("stealth") and actor ~= self then
+		local check = self:opposedCheck("spot", "actor", "hide")
+		if not check then return false, 0 end
 	end
+	
+
+	return true, 100
+end
+
+--Taken from Qi Daozei
+--- Checks if the actor can see the target actor, *including* checking for
+--- LOS, lighting, etc.
+function _M:canReallySee(actor)
+    -- Non-players currently have no light limitations, so just use FOV.
+    if not self.fov then self:doFOV() end
+    return self:canSee(actor) and self.fov.actors[actor]
 end
 
 --- Is the target concealed for us?
