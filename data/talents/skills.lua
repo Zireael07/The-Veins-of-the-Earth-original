@@ -13,16 +13,15 @@ newTalent{
 	
 --local function auto_id(npc, player)
 	local list = {}
-	for inven_id, inven in pairs(self.inven) do
-		for item, o in ipairs(inven) do
+	local inven = game.player:getInven("INVEN")
+		i = rng.range(1, #inven)
+		local o = inven[i]
 			if o.identified == false then
 				local check = self:skillCheck("intuition", 10)
 				if check then
 					o.identified = true
 				end	
 			end
-		end
-	end	
 
 	end,
 	info = function(self, t )
