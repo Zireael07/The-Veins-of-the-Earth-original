@@ -18,7 +18,8 @@ require "engine.class"
 require "engine.Actor"
 require "engine.Autolevel"
 require "engine.interface.ActorTemporaryEffects"
-require "engine.interface.ActorLife"
+--require "engine.interface.ActorLife"
+require "mod.class.interface.ActorLife"
 require "engine.interface.ActorProject"
 require "engine.interface.ActorLevel"
 require "engine.interface.ActorStats"
@@ -32,7 +33,7 @@ local Map = require "engine.Map"
 
 module(..., package.seeall, class.inherit(engine.Actor,
 	engine.interface.ActorTemporaryEffects,
-	engine.interface.ActorLife,
+	mod.class.interface.ActorLife,
 	engine.interface.ActorProject,
 	engine.interface.ActorLevel,
 	engine.interface.ActorStats,
@@ -138,7 +139,7 @@ function _M:init(t, no_default)
 	--Actually initiate some basic engine stuff
 	engine.Actor.init(self, t, no_default)
 	engine.interface.ActorTemporaryEffects.init(self, t)
-	engine.interface.ActorLife.init(self, t)
+	mod.class.interface.ActorLife.init(self, t)
 	engine.interface.ActorProject.init(self, t)
 	engine.interface.ActorTalents.init(self, t)
 	engine.interface.ActorResource.init(self, t)
@@ -189,7 +190,6 @@ function _M:act()
 	self.changed = true
 
 	-- Cooldown talents
-
 	self:cooldownTalents()
 
 	-- Regen resources
@@ -197,6 +197,19 @@ function _M:act()
 	self:regenResources()
 	-- Compute timed effects
 	self:timedEffects()
+
+	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
+
+	if self.life == 0 then 
+		self:setEffect(self.EFF_DISABLED, 1, {})
+		self:removeEffect(self.EFF_DYING)
+		end
+	if self.life < 0 then 
+		self:removeEffect(self.EFF_DISABLED)
+		self:setEffect(self.EFF_DYING, 1, {})
+		if rng.percent(10) then self.life = 0
+		else self.life = self.life - 1 end
+	end	
 
 	-- check passive stuff. This should be in actbase I think but I cant get it to work
 	if self:knowTalent(self.T_BLOOD_VENGANCE) then
@@ -270,6 +283,7 @@ function _M:colorCR()
 end	
 
 function _M:tooltip()
+	if self.life >= 0 then
 	return ([[%s%s
 		#RED#HP: %d (%d%%)#LAST#
 		STR %s DEX %s CON %s 
@@ -278,7 +292,7 @@ function _M:tooltip()
 		#WHITE#%s]]):format(
 		self:getDisplayString(),
 		self.name,
-		self.life, self.life * 100 / self.max_life,
+		self.life, self.life / self.max_life *100,
 		self:colorStats('str'),
 		self:colorStats('dex'),
 		self:colorStats('con'),
@@ -288,6 +302,27 @@ function _M:tooltip()
 		self:colorCR(),
 		self.desc or ""
 	)
+		--To stop % getting out of whack when HP are negative, we remove them from the tooltips altogether
+	else
+	return ([[%s%s
+		#CRIMSON#HP: %d#LAST#
+		STR %s DEX %s CON %s 
+		INT %s WIS %s CHA %s
+		#GOLD#CR %s#LAST#
+		#WHITE#%s]]):format(
+		self:getDisplayString(),
+		self.name,
+		self.life,
+		self:colorStats('str'),
+		self:colorStats('dex'),
+		self:colorStats('con'),
+		self:colorStats('int'),
+		self:colorStats('wis'),
+		self:colorStats('cha'),
+		self:colorCR(),
+		self.desc or ""
+	)	
+	end	
 end
 
 function _M:onTakeHit(value, src)
@@ -297,6 +332,7 @@ function _M:onTakeHit(value, src)
 		self:removeEffect(self.EFF_SLEEP)
 		game.logSeen(self, "%s wakes up from being hit!", self.name)
 	end
+	
 	return value
 end
 
@@ -350,6 +386,16 @@ function _M:die(src)
 	if self ~= game.player and dropx == game.player.x and dropy == game.player.y then
 		game.log('You feel something roll beneath your feet.')
 	end
+
+	-- Record kills
+	local player = game.player
+	
+	if src and src.player then 
+		player.all_kills = player.all_kills or {}
+		player.all_kills[self.name] = player.all_kills[self.name] or 0
+		player.all_kills[self.name] = player.all_kills[self.name] + 1
+	end	
+
 
 	return true
 end
@@ -883,8 +929,8 @@ function _M:levelup()
 --	self.skill_point = self.skill_point + self.skill_point
 	self.max_skill_ranks = self.max_skill_ranks + 1
 	
-	--May level up class
-	self.class_points = self.class_points + 1
+	--May level up class (player only)
+	if self == game.player then self.class_points = self.class_points + 1 end
 
 	if self.level % 3 == 0 then --feat points given every 3 levels. Classes may give additional feat points.
 		self.feat_point = self.feat_point + 1
