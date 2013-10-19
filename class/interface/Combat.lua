@@ -127,7 +127,7 @@ function _M:attackTarget(target, mult)
         local hit, crit = self:attackRoll(target)
       
         if hit then
-            local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self.weapon and self.weapon.combat.magic_bonus or 0) + (self:getStr()-10)/2 - target.combat_dr or 0
+            local dam = rng.dice(self.combat.dam[1],self.combat.dam[2]) + (self.weapon and self.weapon.combat.magic_bonus or 0) + (self:getStr()-10)/2
 
             if self:knowTalent(self.T_FAVORED_ENEMY) then
                 if target.type ~= "humanoid" then 
@@ -136,8 +136,11 @@ function _M:attackTarget(target, mult)
                     if target.subtype == self.favored_enemy then dam = dam + 2 end
                 end
             end        
+            
+            --Minimum 1 point of damage unless Damage Reduction works
+            dam = math.max(1, dam)
+            dam = dam - target.combat_dr or 0
 
-            dam = math.max(0, dam)
             if dam and crit then
                 game.log(("%s makes a critical attack!"):format(self.name:capitalize()))
                 dam = dam * (self.weapon and self.weapon.combat.critical or 2)
