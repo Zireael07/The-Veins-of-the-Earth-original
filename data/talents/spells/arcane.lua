@@ -389,6 +389,43 @@ newTalent{
 	info = "Hello", 
 }
 
+newTalent{
+	name = "Fireball",
+	type = {"arcane/arcane", 1},
+	display = { image = "fireball.png"},
+	mode = 'activated',
+	--require = ,
+	level = 3,
+	points = 1,
+	cooldown = 20,
+--	tactical = { BUFF = 2 },
+	range = 0,
+	radius = function(self, t)
+		return 4
+	end,
+	target = function(self, t)
+		return {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t)}
+	end,
+	action = function(self, t)
+	local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+		local _ _, _, _, x, y = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local damage = rng.dice(3,6)
+
+		who:project(tg, x, y, DamageType.FIRE, damage, {type=explosion})
+
+	return true
+	end,
+
+	info = function(self, t)
+		return ([[You cause a fireball to erupt around the target - the amount of damage is 3d6.]])
+	end,	
+}
+
+
+
 --Bardic heal spells
 newTalent{
 	name = "Cure Light Wounds", short_name = "BARDIC_CLW",
