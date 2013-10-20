@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -19,13 +19,13 @@ local x, y = game.state:findEventGrid(level)
 if not x then return false end
 
 local g = game.level.map(x, y, engine.Map.TERRAIN):cloneFull()
-g.name = "faerzess"
+g.name = "radiation"
 g.display='&' g.color_r=200 g.color_g=200 g.color_b=0 g.notice = true
 g:removeAllMOs()
 
 game.zone:addEntity(game.level, g, "terrain", x, y)
 
-local on_stand = function(self, x, y, who) who:setEffect(who.EFF_FAERZRESS, 1, {}) end
+local on_stand = function(self, x, y, who) who:setEffect(who.EFF_MAG_RADIATION, 1, {}) end
 
 local grids = core.fov.circle_grids(x, y, 2, "do not block")
 for x, yy in pairs(grids) do for y, _ in pairs(yy) do
