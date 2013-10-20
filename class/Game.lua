@@ -502,6 +502,37 @@ function _M:onQuit()
 	end
 end
 
+--Highscore stuff, unused until 1.0.5
+function _M:getPlayer(main)
+	return self.player
+end
+
+-- added for engine.dialogs.viewhighscores
+function _M:getCampaign()
+	return "Veins"
+end
+
+function _M:registerHighscore()
+	local player = self.player
+	local campaign = "Veins"
+
+	local details = {
+		level = player.level,
+		name = player.name,
+		where = self.zone and self.zone.name or "???",
+		dlvl = self.level and self.level.level or 1,
+	}
+
+	--Placeholder score
+		details.score = math.floor(10 * (player.level + (player.exp / player:getExpChart(player.level)))) + math.floor(player.money / 100)
+
+	if player.dead then
+		HighScores.registerScore(campaign, details)
+	else
+		HighScores.noteLivingScore(campaign, player.name, details)
+	end
+end
+
 
 
 --- Requests the game to save
