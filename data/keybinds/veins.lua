@@ -67,7 +67,7 @@ defineAction{
 }
 
 defineAction{
-	default = { "sym:_KP_5:false:false:false:false" },
+	default = { "sym:=.:false:false:false:false" },
 	type = "MOVE_STAY",
 	group = "movement",
 	name = "Stay for a turn",
@@ -75,7 +75,7 @@ defineAction{
 
 -- Running
 defineAction{
-	default = { "sym:=.:false:false:false:false" },
+	default = { "sym:=SHIFT:false:false:false:false" },
 	type = "RUN",
 	group = "movement",
 	name = "Run",

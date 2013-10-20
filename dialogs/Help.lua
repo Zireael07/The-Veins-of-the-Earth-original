@@ -13,9 +13,12 @@ function _M:init()
     
     self.text=[[    
     CONTROLS
-    Use arrow keys or mouse to move. Press shift + direction to run. The mouse wheel scrolls the log.
+    Use #YELLOW#arrow keys#LAST# or mouse to move. Press #YELLOW#Shift + direction#LAST# to run. The mouse wheel scrolls the log.
     Click on a spell or skill in the hotbar to use it. Alternately, you can use the hotkeys (displayed on the bar). Use the mouse to target skills or ranged attacks.
     Attack by bumping the enemies.
+
+    Press #YELLOW#'.'#LAST# (dot) to wait for a turn. It might be useful if you cannot move otherwise.
+
     Press #YELLOW#ESC#LAST# to access the game menu.
     Press #YELLOW#'c'#LAST# to display character sheet.
     Press #YELLOW#'p'#LAST# to display level-up screen.
