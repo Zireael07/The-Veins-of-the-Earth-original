@@ -10,8 +10,6 @@ newTalent{
 	cooldown = 20,
 	range = 0,
 	action = function(self, t)
-	
---local function auto_id(npc, player)
 	local list = {}
 	local inven = game.player:getInven("INVEN")
 		i = rng.range(1, #inven)
@@ -21,8 +19,9 @@ newTalent{
 				if check then
 					o.identified = true
 				end	
-			end
-
+			else 
+				game.log("You pick an item which has already been identified") end
+			 return true
 	end,
 	info = function(self, t )
 		return "Attempt to identify items in your inventory"
