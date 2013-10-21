@@ -211,3 +211,17 @@ BETA RELEASES
 * item tooltips now inform you of (some) magic properties if the item is identified
 * expanded Quit dialog to allow discarding characters
 * traps are coded in but do not spawn yet
+
+0.8.0 - 21/10/2013
+* bug fix: gain spellcasting properly if you multiclassed from a non-casting class
+* bug fix: apply (uncapped) feat bonuses on top of skill ranks
+* bug fix: Intuition now applies to a single item
+* bug fix: ensure 1 damage unless Damage Reduction is applied
+* new spells: inflict X wounds, fireball
+* improved HUD - now with bars, changing color depending on the amount of HP left
+* XP for descending & disarming traps added
+* two weapon fighting penalties, feats & background
+* death and dying closer to d20: death at -10 and detrimental effects both at 0 and in the -1 to -9 range
+* level feelings (based on monster CR for now)
+* changed wait a turn keybinding and added it to controls screen
+* random naming for potions & scrolls
