@@ -785,9 +785,8 @@ function _M:incMaxCharges(tid, v)
 		tt = self:getTalentFromId(tid).type[1]
 	end
 
-
 	--Can the player have this many max charges for this type?
-	local a = self:getAllocatedCharges(tt, tid.level)
+	local a = self:getAllocatedCharges(tt, t.level)
 	if a + v > self:getMaxMaxCharges()[1] then return end
 	self.max_charges[tid] = (self.max_charges[tid] or 0) + v
 	self:incAllocatedCharges(tt, t.level, v)
@@ -834,13 +833,13 @@ end
 function _M:incCharges(tid, v)
 	if type(tid) == "table" then tid = tid.id end
 	local new = (self:getCharges(tid) or 0) + v
-	self:setCharges(tid, new)  
+	self:setCharges(tid, new)
 end
 
 function _M:getAllocatedCharges(type, level)
 	local tid = self:getTalentFromId(type)
 	local c = self.allocated_charges[type]
-	c = c and c[value]
+	c = c and c[level]
 	return c or 0
 end
 
