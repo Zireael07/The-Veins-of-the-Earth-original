@@ -51,7 +51,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" },
-	( name = "shortbow" },
+    { name = "shortbow" },
 	},
 }
 
@@ -66,7 +66,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	resolvers.equip{
 		full_id=true,
 		{ name = "arrows (20)" },
-		( name = "shortbow" },
+        { name = "shortbow" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -108,7 +108,7 @@ newEntity{
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" },
-	( name = "shortbow" },
+    { name = "shortbow" },
 	},
 }
 
@@ -142,12 +142,11 @@ newEntity{
 		{ name = "studded leather armor" },
 		{ name = "rapier" },
 		{ name = "arrows (20)" },
-		
 	},
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" },
-	( name = "shortbow" },
+    { name = "shortbow" },
 	},
 }
 
@@ -258,11 +257,10 @@ newEntity{
 		{ name = "light metal shield" },
 		{ name = "longsword" },
 		{ name = "arrows (20)" },
-		
 	},
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" },
-	( name = "shortbow" },
+    { name = "shortbow" },
 	},
 }
