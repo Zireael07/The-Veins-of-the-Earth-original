@@ -73,3 +73,45 @@ newEntity{
     lite=3
   }, 
 }
+
+--Tools or kits
+newEntity{
+    define_as = "BASE_TOOL",
+    slot = "TOOL",
+    type = "tool", subtype = "skill",
+    display = "^", color=colors.YELLOW,
+    encumber = 1,
+    rarity = 10,
+    name = "A tool kit",
+    desc = [[A tool kit.]],
+}
+
+newEntity{
+    base = "BASE_TOOL",
+    name = "a healing kit",
+    level_range = {1,10},
+    cost = 100,
+    wielder = {
+    skill_bonus_heal = 2
+  }, 
+}
+
+newEntity{
+    base = "BASE_TOOL",
+    name = "a lockpicking kit",
+    level_range = {1,10},
+    cost = 100,
+    wielder = {
+    skill_bonus_openlock = 2
+  }, 
+}
+
+newEntity{
+    base = "BASE_TOOL",
+    name = "a survival kit",
+    level_range = {1,10},
+    cost = 100,
+    wielder = {
+    skill_bonus_survival = 2
+  }, 
+}
