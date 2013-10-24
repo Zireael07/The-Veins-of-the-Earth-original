@@ -38,7 +38,7 @@ function _M:init(actor)
     self.spells = {}
     for i=1, 9 do
         self.spells[i] =  ImageList.new{width=self.w, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list[i],
-            fct=function(item) self:onSpell(item) end,
+            fct=function(item, button) self:onSpell(item, button) end,
         }
     end
 
@@ -130,10 +130,14 @@ function _M:switchTo(kind)
     self:generateList(kind)
 end
 
-function _M:onSpell(item)
+function _M:onSpell(item, button)
+    local v = 1
+    if button == "right" then
+        v = -1
+    end
     local p = game.player
     if item then 
-        p:incMaxCharges(item.data, 1) 
+        p:incMaxCharges(item.data, v) 
     end
     self:drawDialog()
 
