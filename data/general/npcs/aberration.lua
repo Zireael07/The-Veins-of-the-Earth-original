@@ -236,7 +236,7 @@ newEntity{
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=17, con=13, int=6, wis=15, cha=8, luc=8 },
-	combat = { dam= {1,8},
+	combat = { dam= {1,8}, },
 }
 
 newEntity{ base = "BASE_NPC_ETTERCAP",
@@ -268,7 +268,7 @@ newEntity{
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=10, con=13, int=5, wis=12, cha=6, luc=8 },
-	combat = { dam= {1,6},
+	combat = { dam= {1,6}, },
 }
 
 newEntity{ base = "BASE_NPC_ETTERCAP",
