@@ -877,47 +877,41 @@ function _M:levelPassives()
 	end
 end
 
+
+
 --Random perks
+
+
 function _M:randomFeat()
-		local tids = {}
-		for tid, _ in pairs(self.talents_def) do
-			local t = self:getTalentFromId(tid)
-			local tt = self:getTalentTypeFrom(t.type[1])
-			if t and not self:knowTalent(tid) then tids[#tids+1] = t end
-		end 
-		for i = 1, 1 do
-			local t = rng.tableRemove(tids)
-			if not t then break end
-			--Learn talent
-				if self:canLearnTalent(t) then
-					self:learnTalent(tid)
-					game.log("You learned "..t.name)
-				end
-		end	
+	local chance = rng.dice(1,5)
+	if chance == 1 then self:learnTalent(self.T_POWER_ATTACK, true)
+	elseif chance == 2 then self:learnTalent(self.T_DODGE, true)
+	elseif chance == 3 then self:learnTalent(self.T_FINESSE, true)
+	elseif chance == 4 then self:learnTalent(self.T_TOUGHNESS, true)
+	--TO DO: Figure out how to do the choice part of these three
+--[[	elseif chance == 5 then self:learnTalent(self.T_FAVORED_ENEMY, true)
+	elseif chance == 6 then self:learnTalent(self.T_WEAPON_FOCUS, true)
+	elseif chance == 7 then self:learnTalent(self.T_TWO_WEAPON_FIGHTING, true)]]
+	else self:learnTalent(self.T_IRON_WILL, true) end
+
 end
 
 function _M:randomSpell()
-		local tids = {}
-		for tid, _ in pairs(self.talents_def) do
-			local t = self:getTalentFromId(tid)
-			local tt = self:getTalentTypeFrom(t.type[1])
-			if t and not self:knowTalent(tid) and self:canLearnTalent(t) then 
-				if tt.arcane or tt.divine then tids[#tids+1] = t end
-			end
-		end 
-		for i = 1, 1 do
-			local t = rng.tableRemove(tids)
-			if not t then break end
-			--Learn talent
-				if self:canLearnTalent(t) then
-					self:learnTalent(tid)
-					game.log("You learned "..t.name)
-					--Prevent game breaking
-					if tt.arcane then self:learnTalentType("arcane/arcane", true)
-					else self:learnTalentType("divine/divine", true) end
-				end
-		end	
+	local chance = rng.dice(1,4)
+	if chance == 1 then self:learnTalent(self.T_ACID_SPLASH_INNATE, true)
+	elseif chance == 2 then self:learnTalent(self.T_GREASE_INNATE, true)
+	elseif chance == 3 then self:learnTalent(self.T_HLW_INNATE, true)
+	else self:learnTalent(self.T_CLW_INNATE, true) end
+end	
+
+function _M:randomItem()
+	--Add a random ego-ed item
+			--[[
+			local o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=1000}, nil, true)
+			local inven = game.player:getInven("MAINHAND")
+			actor:addObject(inven, o)]]
 end
+
 
 --Leveling up
 function _M:levelup()
@@ -925,7 +919,6 @@ function _M:levelup()
 	engine.interface.ActorTalents.resolveLevelTalents(self)
 
 	--Gain max skill ranks (generic)
---	self.skill_point = self.skill_point + self.skill_point
 	self.max_skill_ranks = self.max_skill_ranks + 1
 	
 	--May level up class (player only)
@@ -939,15 +932,10 @@ function _M:levelup()
 		self.more_attacks = (self.more_attacks or 0) + 1 
 	end
 
-	-- Heal up on new level
-	--  self:resetToFull()
-
 	-- Auto levelup ?
 	if self.autolevel then
 		engine.Autolevel:autoLevel(self)
 	end
-
-	--if self == game.player then game:onTickEnd(function() game:playSound("actions/levelup") end, "levelupsound") end
 
 	if game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
 

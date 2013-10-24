@@ -75,17 +75,17 @@ end
 
 function _M:onBirth()
   self:randomName()
---  self:randomPerk()
   self:levelClass(self.descriptor.class)
   self:resetToFull()
   game:registerDialog(require"mod.dialogs.Help".new(self.player))
 end
 
 function _M:randomPerk()
-  local d = rng.dice(1,2)
+  self:randomFeat()
+--[[local d = rng.dice(1,2)
   if d == 1 then self:randomFeat()
-  elseif d == 2 then self:randomSpell()
-  else end 
+  elseif d == 2 then self:randomSpell() end
+  else self:randomItem() end ]]
 end
 
 function _M:randomName()
