@@ -186,7 +186,7 @@ newTalent{
 			display = "q", color=colors.LIGHT_GREEN,
 			name = "summoned wolf", faction = self.faction,
 			desc = [[A large peaceful wolf.]],
-			autolevel = "none",
+			--autolevel = "none",
 			never_anger = true,
 			
 			ai = "ally",
