@@ -17,7 +17,7 @@ newTalent{
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
 		local x, y = self:getTarget(tg)
-		local _ _, _, _, x, y = self:canProject(tg, x, y)
+		local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
 		local damage = rng.dice(1,3)
@@ -52,7 +52,7 @@ newTalent{
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
 		local x, y = self:getTarget(tg)
-		local _ _, _, _, x, y = self:canProject(tg, x, y)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
 		local duration = 5
@@ -102,6 +102,8 @@ newTalent{
 			local x, y = self:getTarget(tg)
 			if x and y then
 				targets[i] = {x,y,tg}
+            else
+                return nil
 			end
 		end
 
