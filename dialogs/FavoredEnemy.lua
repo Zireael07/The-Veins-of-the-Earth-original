@@ -12,7 +12,7 @@ function _M:init(talent)
 	self.player = game.player
 	self:generateList()
 
-	Dialog.init(self, "Favored Enemy", 300, 20)
+	Dialog.init(self, "Favored Enemy", game.w*0.2, game.h*0.5)
 
 	self.c_list = List.new{width=self.iw, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end}
 

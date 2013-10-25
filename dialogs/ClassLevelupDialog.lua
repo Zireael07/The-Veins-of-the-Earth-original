@@ -19,7 +19,7 @@ function _M:init(actor)
     self.player = actor
     self:generateList()
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
-    Dialog.init(self, "Class select", 500, 600)
+    Dialog.init(self, "Class select", game.h*0.6, game.w*0.4)
 
     self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available class points: "..self.player.class_points}  
     self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}

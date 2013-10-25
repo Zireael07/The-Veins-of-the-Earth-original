@@ -43,7 +43,7 @@ local skills = {
 
 function _M:init(actor)
 	self.player = actor
-	Dialog.init(self, "Skills", 500, 600)
+	Dialog.init(self, "Skills", game.w*0.5, game.h*0.6)
 	self:generateList()
 	
 	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: #GOLD#"..self.player.skill_point.. " #LAST#Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Skill ranks + all modifiers (stats, armor penalty)\n are displayed."}

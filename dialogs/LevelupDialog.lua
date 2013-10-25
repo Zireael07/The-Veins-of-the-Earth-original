@@ -15,7 +15,7 @@ function _M:init()
     self:generateList()
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
-    Dialog.init(self, "Level Up: "..self.actor.name, math.max(game.w * 0.7, 950), 500, nil, nil, font)
+    Dialog.init(self, "Level Up: "..self.actor.name, math.max(game.w * 0.7, 950), game.h*0.5, nil, nil, font)
     
     self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
 

@@ -17,7 +17,7 @@ function _M:init(actor)
     self.actor = actor
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
-    Dialog.init(self, "Spellbook: "..self.actor.name, math.max(game.w * 0.5, 70), 500, nil, nil, font)
+    Dialog.init(self, "Spellbook: "..self.actor.name, math.max(game.w * 0.5, 70), math.max(game.h*0.6, 500), nil, nil, font)
 
     local types = {}
     if self.actor:knowTalentType("arcane/arcane") then
