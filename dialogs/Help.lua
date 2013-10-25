@@ -17,11 +17,14 @@ function _M:init()
     Click on a spell or skill in the hotbar to use it. Alternately, you can use the hotkeys (displayed on the bar). Use the mouse to target skills or ranged attacks.
     Attack by bumping the enemies.
 
+    Press #YELLOW#PageUp#LAST# or #YELLOW#PageDown#LAST# to scroll the hotbar pages, should you get so many spells that they don't fit on a single page.
+
     Press #YELLOW#'.'#LAST# (dot) to wait for a turn. It might be useful if you cannot move otherwise.
 
     Press #YELLOW#ESC#LAST# to access the game menu.
     Press #YELLOW#'c'#LAST# to display character sheet.
     Press #YELLOW#'p'#LAST# to display level-up screen.
+    Press #YELLOW#'m'#LAST# to display a list of your activable abilities (shoot, intuition & any spells you might have)
     Press #YELLOW#'r'#LAST# to rest.
     Press #YELLOW#'i'#LAST# to display inventory screen.
     Press #YELLOW#'g'#LAST# to pick up items.
