@@ -64,12 +64,19 @@ function _M:drawDialog()
     s:drawColorStringBlended(self.font, "CHA : #YELLOW#"..(player:getCha().." #SANDY_BROWN#"..(math.floor((player:getCha()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "LUC : #YELLOW#"..(player:getLuc().." #SANDY_BROWN#"..(math.floor((player:getLuc()-10)/2))), w, h, 255, 255, 255, true) h = h + self.font_h
 
+    h = h + self.font_h -- Adds an empty row
+    --Display any unused level-up stuff
+    s:drawColorStringBlended(self.font, "Available skill points: #GOLD#"..(player.skill_point.. " #LAST#Max skill ranks: #GOLD#"..player.max_skill_ranks), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Available class points: #GOLD#"..(player.class_points or 0), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Available feat points: #GOLD#"..(player.feat_point or 0), w, h, 255, 255, 255, true) h = h + self.font_h
+
     h = 0
     w = self.w * 0.25 
     -- start on second column
     s:drawColorStringBlended(self.font, "You can use the buttons below to pick your #ORANGE#skills#LAST# or #ORANGE#feats#LAST#.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "You can also use the #ORANGE#class#LAST# button to choose the class you advance.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Note that you are not limited to advancing a single class.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "You need to advance a class in order to receive any bonuses from gaining a level.", w, h, 255, 255, 255, true) h = h + self.font_h
 
     self.c_desc:generate()
     self.changed = false
