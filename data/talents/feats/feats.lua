@@ -257,6 +257,10 @@ newTalent{
     on_learn = function(self, t)
 	    self.fortitude_save = self.fortitude_save + 3
 	    self.max_life = self.max_life * 1.1
+    end,
+    on_unlearn = function(self, t)
+    	self.fortitude_save = self.fortitude_save - 3
+    	self.max_life = self.max_life * 0.9
     end
 }
 
@@ -271,6 +275,10 @@ newTalent{
     on_learn = function(self, t)
         self.combat_dodge = (self.combat_dodge or 0) + 3
         self.reflex_save = self.reflex_save + 3
+    end,
+    on_unlearn = function(self, t)
+    	self.combat_dodge = (self.combat_dodge or 0) - 3
+    	self.reflex_save = self.reflex_save - 3
     end
 }
 
@@ -284,6 +292,9 @@ newTalent{
 	info = [[This feat increases your Will save by +3.]],
   	on_learn = function(self, t)
 		self.will_save = self.will_save + 3       
+	end,
+	on_unlearn = function(self, t)
+		self.will_save = self.will_save - 3
 	end
 }
 
@@ -323,6 +334,9 @@ newTalent{
 	info = [[This feat increases your AC by +4.]],
     on_learn = function(self, t)
         self.combat_dodge = (self.combat_dodge or 0) + 4
+    end,
+    on_unlearn = function(self, t)
+    	self.combat_dodge = self.combat_dodge - 4
     end
 }
 
@@ -337,6 +351,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_jump = (self.skill_bonus_jump or 0) + 2
         self.skill_bonus_tumble = (self.skill_bonus_tumble or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+    	self.skill_bonus_jump = self.skill_bonus_jump - 2
+    	self.skill_bonus_tumble = self.skill_bonus_tumble - 2
     end
 }
 
@@ -350,6 +368,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_balance  = (self.skill_bonus_balance or 0) + 2
         self.skill_bonus_escapeartist = (self.skill_bonus_escapeartist or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_balance  = (self.skill_bonus_balance or 0) - 2
+        self.skill_bonus_escapeartist = (self.skill_bonus_escapeartist or 0) - 2
     end
 }
 
@@ -363,6 +385,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_listen = (self.skill_bonus_listen or 0) + 2
         self.skill_bonus_spot = (self.skill_bonus_spot or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_listen = (self.skill_bonus_listen or 0) - 2
+        self.skill_bonus_spot = (self.skill_bonus_spot or 0) - 2
     end
 }
 
@@ -376,6 +402,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_handleanimal = (self.skill_bonus_handleanimal or 0) + 2
 --        self.skill_bonus_ride = (self.skill_bonus_ride or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_handleanimal = (self.skill_bonus_handleanimal or 0) - 2
+--        self.skill_bonus_ride = (self.skill_bonus_ride or 0) - 2
     end
 }
 
@@ -389,6 +419,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_diplomacy = (self.skill_bonus_diplomacy or 0) + 2
 --        self.skill_bonus_perform = (self.skill_bonus_perform or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_diplomacy = (self.skill_bonus_diplomacy or 0) - 2
+--        self.skill_bonus_perform = (self.skill_bonus_perform or 0) - 2
     end
 }
 
@@ -403,6 +437,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_climb  = (self.skill_bonus_climb or 0) + 2
         self.skill_bonus_swim = (self.skill_bonus_swim or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_climb  = (self.skill_bonus_climb or 0) - 2
+        self.skill_bonus_swim = (self.skill_bonus_swim or 0) - 2
     end
 }
 
@@ -415,6 +453,9 @@ newTalent{
 	info = [[This feat increases your Concentration skill by +2.]],
 	on_learn = function(self, t)
         self.skill_bonus_concentration = (self.skill_bonus_concentration or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_concentration = (self.skill_bonus_concentration or 0) - 2
     end
 }
 
@@ -427,6 +468,10 @@ newTalent{
 	info = [[This feat increases your Pickpocket skill by +2.]],
 	on_learn = function(self, t)
         self.skill_bonus_pickpocket = (self.skill_bonus_pickpocket or 0) + 2
+--        self.skill_bonus_userope = (self.skill_bonus_userope or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_pickpocket = (self.skill_bonus_pickpocket or 0) - 2
 --        self.skill_bonus_userope = (self.skill_bonus_userope or 0) + 2
     end
 }
@@ -441,6 +486,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_search = (self.skill_bonus_search or 0) + 2
 --        self.skill_bonus_gatherinfo = (self.skill_bonus_gatherinfo or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_search = (self.skill_bonus_search or 0) - 2
+--        self.skill_bonus_gatherinfo = (self.skill_bonus_gatherinfo or 0) - 2
     end
 }
 
@@ -454,6 +503,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_spellcraft = (self.skill_bonus_spellcraft or 0) + 2
         self.skill_bonus_usemagic = (self.skill_bonus_usemagic or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_spellcraft = (self.skill_bonus_spellcraft or 0) - 2
+        self.skill_bonus_usemagic = (self.skill_bonus_usemagic or 0) - 2
     end
 }
 
@@ -467,6 +520,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_spellcraft = (self.skill_bonus_spellcraft or 0) + 2
         self.skill_bonus_knowledge = (self.skill_bonus_knowledge or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_spellcraft = (self.skill_bonus_spellcraft or 0) - 2
+        self.skill_bonus_knowledge = (self.skill_bonus_knowledge or 0) - 2
     end
 }
 
@@ -480,6 +537,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_diplomacy = (self.skill_bonus_diplomacy or 0) + 2
         self.skill_bonus_sensemotive = (self.skill_bonus_sensemotive or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_diplomacy = (self.skill_bonus_diplomacy or 0) - 2
+        self.skill_bonus_sensemotive = (self.skill_bonus_sensemotive or 0) - 2
     end
 }
 
@@ -493,6 +554,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_disabledevice = (self.skill_bonus_disabledevice or 0) + 2
         self.skill_bonus_openlock = (self.skill_bonus_openlock or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_disabledevice = (self.skill_bonus_disabledevice or 0) - 2
+        self.skill_bonus_openlock = (self.skill_bonus_openlock or 0) - 2
     end
 }
 
@@ -506,6 +571,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_bluff = (self.skill_bonus_bluff or 0) + 2
         self.skill_bonus_intimidate = (self.skill_bonus_intimidate or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_bluff = (self.skill_bonus_bluff or 0) - 2
+        self.skill_bonus_intimidate = (self.skill_bonus_intimidate or 0) - 2
     end
 }
 
@@ -519,6 +588,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_heal = (self.skill_bonus_heal or 0) + 2
         self.skill_bonus_survival = (self.skill_bonus_survival or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_heal = (self.skill_bonus_heal or 0) - 2
+        self.skill_bonus_survival = (self.skill_bonus_survival or 0) - 2
     end
 }
 
@@ -532,6 +605,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_bluff = (self.skill_bonus_bluff or 0) + 2
 --        self.skill_bonus_appraise = (self.skill_bonus_appraise or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_bluff = (self.skill_bonus_bluff or 0) - 2
+--        self.skill_bonus_appraise = (self.skill_bonus_appraise or 0) - 2
     end
 }
 
@@ -545,6 +622,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_hide = (self.skill_bonus_hide or 0) + 2
         self.skill_bonus_movesilently = (self.skill_bonus_movesilently or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_hide = (self.skill_bonus_hide or 0) - 2
+        self.skill_bonus_movesilently = (self.skill_bonus_movesilently or 0) - 2
     end
 }
 
@@ -558,6 +639,10 @@ newTalent{
 	on_learn = function(self, t)
         self.skill_bonus_spot = (self.skill_bonus_spot or 0) + 2
         self.skill_bonus_intimidate = (self.skill_bonus_intimidate or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+        self.skill_bonus_spot = (self.skill_bonus_spot or 0) - 2
+        self.skill_bonus_intimidate = (self.skill_bonus_intimidate or 0) - 2
     end
 }
 
