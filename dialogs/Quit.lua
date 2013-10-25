@@ -66,10 +66,10 @@ list = {
   self:loadUI {
     { left = 3, top = 3, ui = self.c_list }
   }
-  self.key:addBind('EXIT', function()
+--[[  self.key:addBind('EXIT', function()
     game:unregisterDialog(self)
 --    game.quit_dialog = false
-  end)
+  end)]]
   self.key:addBind('ACCEPT', function()
     local item = self.c_list.list[self.c_list.sel]
     if item and item.fct then item.fct(item) end
