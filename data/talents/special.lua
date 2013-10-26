@@ -57,7 +57,7 @@ newTalent{
             local weapon = self:getInven("MAIN_HAND")[1]
             local ammo = self:getInven("QUIVER")[1]
 
-            if not self:getInven("MAIN_HAND")[1].combat.range then game.log(("You need a ranged weapon to shoot")) return nil end
+            if not (self:getInven("MAIN_HAND")[1] and self:getInven("MAIN_HAND")[1].combat and self:getInven("MAIN_HAND")[1].combat.range) then game.log(("You need a ranged weapon to shoot")) return nil end
             if not weapon or not weapon.ranged then game.log("You need a ranged weapon to shoot with!") return nil end
             if weapon.ammo_type and not ammo then game.log("Your weapon requires ammo!") return nil end
             if not weapon.ammo_type == ammo.archery_ammo then game.log("You have the wrong ammo type equipped!") return nil end
