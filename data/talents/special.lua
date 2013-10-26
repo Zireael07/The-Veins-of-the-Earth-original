@@ -52,14 +52,18 @@ newTalent{
             local weapon = self:getInven("MAIN_HAND")[1]
             local ammo = self:getInven("QUIVER")[1]
 
-            if not (self:getInven("MAIN_HAND")[1] and self:getInven("MAIN_HAND")[1].combat and self:getInven("MAIN_HAND")[1].combat.range) then game.log(("You need a ranged weapon to shoot")) return nil end
-            if not weapon or not weapon.ranged then game.log("You need a ranged weapon to shoot with!") return nil end
-            if weapon.ammo_type and not ammo then game.log("Your weapon requires ammo!") return nil end
-            if not weapon.ammo_type == ammo.archery_ammo then game.log("You have the wrong ammo type equipped!") return nil end
-            if ammo.combat.capacity <= 0 then game.log("You're out of ammo!") return nil end
+            if not (self:getInven("MAIN_HAND")[1] and self:getInven("MAIN_HAND")[1].combat and self:getInven("MAIN_HAND")[1].combat.range) then 
+                if self == game.player then game.log(("You need a ranged weapon to shoot")) end return nil end
+            if not weapon or not weapon.ranged then 
+                if self == game.player then game.log("You need a ranged weapon to shoot with!") end return nil end
+            if weapon.ammo_type and not ammo then 
+                if self == game.player then game.log("Your weapon requires ammo!") end return nil end
+            if not weapon.ammo_type == ammo.archery_ammo then 
+                if self == game.player then game.log("You have the wrong ammo type equipped!") end return nil end
+            if ammo.combat.capacity <= 0 then 
+                if self == game.player then game.log("You're out of ammo!") end return nil end
 
             --We can shoot!
-
             local tg = self:getTalentTarget(t)
            
             local x, y = self:getTarget(tg)
@@ -67,7 +71,6 @@ newTalent{
             if not x or not y then return nil end
             self:projectile(tg, x, y, t.archery_hit)
 
-            --self:getInven("QUIVER")[1].combat.capacity = self:getInven("QUIVER")[1].combat.capacity - 1
             return true
     end,
     info = function(self, t)
@@ -98,8 +101,10 @@ newTalent{
         local _ _, _, _, x, y = self:canProject(tg, x, y)
         if not x or not y then return nil end
 
-        if (self:getInven("MAIN_HAND")[1] and self:getInven("MAIN_HAND")[1].combat) then game.log("You need a weapon to attack") return nil end
-        if not weapon or not weapon.reach then game.log("You need a reach weapon, such as a polearm") return nil end
+        if not self:getInven("MAIN_HAND")[1] then 
+            if self == game.player then game.log("You need a weapon to attack") end return nil end
+        if not weapon or not weapon.reach then
+            if self == game.player then game.log("You need a reach weapon, such as a polearm") end return nil end
 
         if target then
             --do we hit?
