@@ -22,14 +22,11 @@ newTalent{
 
 		local damage = rng.dice(1,3)
 
-		self:projectile(tg, x, y, DamageType.ACID, damage)
-
-
+		self:projectile(tg, x, y, DamageType.ACID, {dam=damage})
 
 		return true
 	end,
 	info = function(self, t)
-		--local dam = damDesc(self, DamageType.ICE, t.getDamage(self, t))
 		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
 	end,
 }
@@ -66,13 +63,11 @@ newTalent{
 			nil, true
 		)
 
-
-
 		return true
 	end,
 	info = function(self, t)
-		--local dam = damDesc(self, DamageType.ICE, t.getDamage(self, t))
-		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+
+		return ([[You cover the floor in grease, causing monsters to fall.]])
 	end,
 }
 
@@ -109,7 +104,7 @@ newTalent{
 			x, y, tg = unpack(v)
 			local damage = rng.dice(1,4)+1
 			if x and y and tg then
-				self:projectile(tg, x, y, DamageType.FORCE, damage)
+				self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 			end
 		end
 
@@ -251,7 +246,7 @@ newTalent{
 		
 	end,
 	info = function(self, t)
-		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+		return ([[You summon a single creature to do your bidding.]])
 	end,
 }
 
@@ -317,7 +312,7 @@ newTalent{
 
 
 	info = function(self, t)
-		return ([[You fire a small orb of acid at the target, dealing 1d3 damage]])
+		return ([[You put weak creatures to sleep.]])
 	end,
 
 }
@@ -386,7 +381,7 @@ newTalent{
 	action = function (self, t)
 		return True
 	end,
-	info = "Hello", 
+	info = "The target you touch is afflicted with a terrible ailment.", 
 }
 
 newTalent{

@@ -53,8 +53,8 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
-			local damage = dam
-			if target:reflexSave(10) then
+			local damage = dam.dam or dam
+			if target:reflexSave(dam.save_dc or 10) then
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -68,8 +68,8 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
-			local damage = dam
-			if target:fortitudeSave(10) then
+			local damage = dam.dam or dam
+			if target:fortitudeSave(dam.save_dc or 10) then
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -83,8 +83,8 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
-			local damage = dam
-			if target:reflexSave(10) then
+			local damage = dam.dam or dam
+			if target:reflexSave(dam.save_dc or 10) then
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -98,7 +98,7 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
-			local damage = dam
+			local damage = dam.dam or dam
 			if target:fortitudeSave(10) then
 				damage = math.floor(damage / 2)
 			end
@@ -113,8 +113,8 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
-			local damage = dam
-			if target:fortitudeSave(10) then
+			local damage = dam.dam or dam
+			if target:fortitudeSave(dam.save_dc or 10) then
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -128,8 +128,8 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
-			local damage = dam
-			if target:reflexSave(10) then
+			local damage = dam.dam or dam
+			if target:reflexSave(dam.save_dc or 10) then
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -143,8 +143,8 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
-			local damage = dam
-			if target:fortitudeSave(10) then
+			local damage = dam.dam or dam
+			if target:fortitudeSave(dam.save_dc or 10) then
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
