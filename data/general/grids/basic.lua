@@ -79,12 +79,6 @@ newEntity{
 	type = "floor", subtype = "vegetation",
 	name = "luminescent moss",
 	display = '¤', color_r=52, color_g=222, color_b=137, back_color=colors.GREY,
-	-- Lite up around them in a 1 radius
---					local grids = core.fov.circle_grids(i, j, 2, true)
---					for x, yy in pairs(grids) do for y, _ in pairs(yy) do
---						self.map.lites(x, y, true)
---					end end
-	
 }
 
 newEntity{
@@ -143,9 +137,10 @@ newEntity{
 	type = "floor", subtype = "chasm",
 	name = "floor", 
 	display = '~', color_r=43, color_g=43, color_b=43, back_color=DARK_GREY,
---	on_stand = function(self, x, y, who)
-	change_level = 2,
-
+	on_stand = function(self, x, y, who)
+		if who == game.player then
+	game:changeLevel(game.level.level + rng.dice(1,6)) end
+	end
 }
 
 newEntity{
@@ -164,7 +159,7 @@ newEntity{
 	always_remember = true,
 	on_stand = function(self, x, y, who)
 		local save = who:skillCheck("balance", 15)
-		if not save then end --falls over 
+		if not save then who:setEffect(who.EFF_FELL, 2, {}) end 
 	end
 }
 
