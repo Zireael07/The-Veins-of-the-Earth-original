@@ -328,7 +328,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_FBEETLE",
 	type = "vermin",
-	display = 'r', color=colors.FIRE_RED,
+	display = 'r', color=colors.FIREBRICK,
 	body = { INVEN = 10 },
 	desc = [[A giant fire beetle.]],
 
@@ -345,13 +345,13 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_FBEETLE",
-	name = "giant fire beetle", color=colors.FIRE_RED,
+	name = "giant fire beetle", color=colors.FIREBRICK,
 	level_range = {1, 20}, exp_worth = 100,
 	rarity = 4,
 	max_life = resolvers.rngavg(3,5),
 	hit_die = 1,
 	challenge = 1/3,
-	combat_natural = 15,
+	combat_natural = 6,
 }
 
 newEntity{
