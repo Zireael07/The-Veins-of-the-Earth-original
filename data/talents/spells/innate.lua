@@ -69,7 +69,7 @@ newTalent{
 		return true
 	end,
 	info = function(self, t)
-		return ([[You cover the floor in grease, causing monsters to fall.]]])
+		return ([[You cover the floor in grease, causing monsters to fall.]])
 	end,
 }
 
