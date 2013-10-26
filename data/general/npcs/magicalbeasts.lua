@@ -65,3 +65,68 @@ newEntity{
 	skill_spot = 3,
 	skill_swim = 10,
 }
+
+newEntity{
+	define_as = "BASE_NPC_ANKHEG",
+	type = "magical beast",
+	display = 'B', color=colors.DARK_UMBER,
+	body = { INVEN = 10 },
+	desc = [[A large chitin-covered insect.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=21, dex=10, con=17, int=1, wis=13, cha=6, luc=6 },
+	combat = { dam= {2,6} },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_ANKHEG",
+	name = "ankheg", color=colors.DARK_UMBER,
+	level_range = {5, 15}, exp_worth = 900,
+	rarity = 8,
+	max_life = resolvers.rngavg(25,30),
+	hit_die = 3,
+	challenge = 3,
+	combat_natural = 8,
+	skill_climb = 3,
+	skill_listen = 5,
+	skill_spot = 2,
+}
+
+--Poison, spells, web, shapechange
+newEntity{
+	define_as = "BASE_NPC_ARANEA",
+	type = "magical beast",
+	display = 's', color=colors.DARK_RED,
+	body = { INVEN = 10 },
+	desc = [[A large chitin-covered insect.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=11, dex=15, con=14, int=14, wis=13, cha=14, luc=12 },
+	combat = { dam= {1,6} },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_ARANEA",
+	name = "aranea", color=colors.DARK_RED,
+	level_range = {5, 15}, exp_worth = 900,
+	rarity = 8,
+	max_life = resolvers.rngavg(20,25),
+	hit_die = 3,
+	challenge = 4,
+	infravision = 4,
+	combat_natural = 1,
+	skill_climb = 10,
+	skill_listen = 5,
+	skill_spot = 5,
+	skill_concentration = 6,
+}

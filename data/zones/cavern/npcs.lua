@@ -23,3 +23,8 @@ load("/data/general/npcs/aberration.lua")
 load("/data/general/npcs/magicalbeasts.lua")
 
 load("/data/general/npcs/vermin.lua")
+
+load("/data/general/npcs/plants.lua")
+
+load("/data/general/npcs/outsider_evil")
+load("/data/general/npcs/outsider_air")
