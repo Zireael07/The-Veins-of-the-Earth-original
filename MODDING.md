@@ -28,7 +28,7 @@ threat -> by how much do we increase the threat range (when do we crit for those
 No threat? We crit on a 20. threat 1 - crit on 19-20. threat 2 - crit on 18-20. threat 3 - crit on 17-20.
 critical -> by how much do we multiply the damage on a critical hit. If not present, it's x2
 
-Flags, like martial = true, simple = true or polearm = true, define whether some feat effects apply to this weapon.
+Flags, like martial = true, simple = true or reach = true, define whether some feat/talent effects apply to this weapon.
 
 Armor
 slot = BODY -> armor
@@ -76,3 +76,18 @@ Darkvision 6 - 60 ft.
 
 skill_... -> any bonuses the monster receives (not counting the bonuses from stats and/or feats)
 combat_natural -> the natural armor bonus minus the size bonus (the latter doesn't exist in VotE)
+
+Spells
+It is imperative that the self.project line look like:
+a) self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15}) -> save DC defined
+b) self:projectile(tg, x, y, DamageType.ACID, {dam=damage}) -> default save DC
+
+DamageType -> what it says on the tin. Special conditions, such as grease, are also coded as DamageType.
+
+target {type="bolt"} -> passes through the target and can hit another one
+target {type="hit"} -> hit one target
+target {type="cone"} -> a cone
+target {type="ball"} -> a circle around the target. Requires radius.
+
+range 3 - close range
+range 5 - medium range
