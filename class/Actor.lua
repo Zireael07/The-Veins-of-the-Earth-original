@@ -223,6 +223,8 @@ function _M:act()
 	end	
 
 	--Ensure they can actually die due to bleeding out
+	--Give the player XP for monsters bleeding out
+	if not self == game.player and self.life <= -10 and not self.dead then self:die(game.player) end
 	if self.life <= -10 and not self.dead then self:die() end
 
 	-- check passive stuff. This should be in actbase I think but I cant get it to work

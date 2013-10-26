@@ -118,11 +118,12 @@ function _M:getDesc()
     local str = self.desc
 
     --Expand tooltips!
-    if self.slot_forbid == "OFFHAND" then str = str.."\nYou must wield this weapon with both hands" end
+    if self.slot_forbid == "OFFHAND" then str = str.."\nYou must wield this weapon with both hands." end
 
-    if self.type == "weapon" and self.light then str = str.."\n This is a light weapon" end
+    if self.type == "weapon" and self.light then str = str.."\nThis is a light weapon." end
     if self.type == "weapon" and self.martial then str = str.."\nThis is a martial weapon." end
     if self.type == "weapon" and self.simple then str = str.."\nThis is a a simple weapon." end
+    if self.type == "weapon" and self.reach then str = str.."\nThis is a reach weapon." end
     
     --Describing magic items
     if self.type == "weapon" and self.identified == true then 
