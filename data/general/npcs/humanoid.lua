@@ -42,7 +42,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	max_life = resolvers.rngavg(5,9),
 	hit_die = 4,
 	challenge = 1/2,
---	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "short spear" },
@@ -62,7 +62,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	max_life = resolvers.rngavg(10,12),
 	hit_die = 6,
 	challenge = 1,
---	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "arrows (20)" },
@@ -98,7 +98,7 @@ newEntity{
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
 	challenge = 1,
---	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "studded leather armor" },
@@ -136,7 +136,7 @@ newEntity{
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
 	challenge = 1,
---	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "studded leather armor" },
@@ -175,7 +175,7 @@ newEntity{
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
 	challenge = 1/3,
---	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "leather armor" },
@@ -214,7 +214,7 @@ newEntity{
 	max_life = resolvers.rngavg(3,5),
 	hit_die = 1,
 	challenge = 1,
---	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "chain shirt" },
@@ -250,7 +250,7 @@ newEntity{
 	max_life = resolvers.rngavg(5,8),
 	hit_die = 1,
 	challenge = 1,
---	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "chainmail" },
