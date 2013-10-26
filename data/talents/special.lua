@@ -17,10 +17,7 @@ newTalent{
 	end,
 }
 
-
-
-	
-	
+--Combat-related stuff	
 
 newTalent{     
     name = "Shoot", image = "talents/shoot.png",
@@ -35,12 +32,10 @@ newTalent{
     archery_hit = function(tx, ty, tg, self, tmp) --This is called when the projectile hits
         local DamageType = require "engine.DamageType"
         local damtype = DamageType.PHYSICAL
-        game.log("Damtype is: "..damtype)
-        
+     
         local target = game.level.map(tx, ty, Map.ACTOR)
         local weapon = self:getInven("MAIN_HAND")[1]
         local ammo = self:getInven("QUIVER")[1]
-
 
         if target then
             --do we hit?
@@ -77,5 +72,48 @@ newTalent{
     end,
     info = function(self, t)
             return ([[You shoot at the target.]])
+    end,
+}
+
+newTalent{
+    name = "Polearm", image = "talents/trident.png",
+    type = {"special/special", 1},
+    mode = 'activated',
+    --require = ,
+    points = 1,
+    cooldown = 0,
+    tactical = { ATTACK = 1 },
+    range = 3,
+    requires_target = true,
+    target = function(self, t)
+    local tg = {type="hit", range=self:getTalentRange(t), talent=t}
+        return tg
+    end,
+    action = function(self, t)
+        local target = game.level.map(tx, ty, Map.ACTOR)
+        local weapon = self:getInven("MAIN_HAND")[1]
+
+        local tg = self:getTalentTarget(t)
+        local x, y = self:getTarget(tg)
+        local _ _, _, _, x, y = self:canProject(tg, x, y)
+        if not x or not y then return nil end
+
+        if (self:getInven("MAIN_HAND")[1] and self:getInven("MAIN_HAND")[1].combat) then game.log("You need a weapon to attack") return nil end
+        if not weapon or not weapon.reach then game.log("You need a reach weapon, such as a polearm") return nil end
+
+        if target then
+            --do we hit?
+            local hit, crit = self:attackRoll(target)
+            if hit then
+                local damage = rng.dice(weapon.combat.dam[1],  weapon.combat.dam[2])
+                if crit then damage = damage * 1.5 end --TODO: make it use crit damage
+
+                self:projectile(tg, x, y, DamageType.PHYSICAL, damage)
+                end
+        end
+        return true
+    end,
+    info = function(self, t)
+        return ([[You attack the target with a reach weapon.]])
     end,
 }

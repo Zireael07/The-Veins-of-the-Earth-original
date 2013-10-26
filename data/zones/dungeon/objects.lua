@@ -17,11 +17,14 @@
 local Talents = require "engine.interface.ActorTalents"
 
 load("/data/general/objects/armor.lua")
+load("/data/general/objects/shields.lua")
+
 load("/data/general/objects/weapons.lua")
 load("/data/general/objects/ranged.lua")
 load("/data/general/objects/exotic.lua")
 load("/data/general/objects/exoticranged.lua")
-load("/data/general/objects/shields.lua")
+load("/data/general/objects/reach.lua")
+
 load("/data/general/objects/consumables.lua")
 load("/data/general/objects/magicitems.lua")
 load("/data/general/objects/money.lua")

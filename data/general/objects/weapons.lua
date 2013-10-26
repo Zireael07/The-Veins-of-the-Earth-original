@@ -1,5 +1,7 @@
---Simple weapons
+--Veins of the Earth
+--Zireael
 
+--Simple weapons
 newEntity{
     define_as = "BASE_WEAPON",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
@@ -26,30 +28,6 @@ newEntity{ base = "BASE_DAGGER",
     combat = {
         dam = {1,4},
         threat = 1,
-    },
-}
-
-newEntity{ base = "BASE_WEAPON",
-    define_as = "BASE_LSPEAR",
-    slot = "MAIN_HAND", 
-    slot_forbid = "OFF_HAND",
-    type = "weapon", subtype="spear",
-    display = "/", color=colors.BROWN,
-    encumber = 10,
-    rarity = 5,
-    combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic long spear",
-    desc = "A wooden long spear.\n\n Damage 1d10, critical x3.",
-}
-
-newEntity{ base = "BASE_LSPEAR",
-    name = "long spear",
-    level_range = {1, 10},
-    cost = 5,
-    simple = true,
-    combat = {
-        dam = {1,8},
-        critical = 3,
     },
 }
 
@@ -392,30 +370,6 @@ newEntity{ base = "BASE_SCIMITAR",
     combat = {
         dam = {1,6},
         threat = 2,
-    },
-}
-
---Range 10 ft.
-newEntity{ base = "BASE_WEAPON",
-    define_as = "BASE_TRIDENT",
-    slot = "MAIN_HAND", offslot = "OFF_HAND",
-    type = "weapon", subtype="trident",
-    display = "/", color=colors.SLATE,
-    encumber = 4,
-    rarity = 10,
-    martial = true,
-    polearm = true,
-    combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a metal trident",
-    desc = "A metal trident.\n\n Damage 1d8.",
-}
-
-newEntity{ base = "BASE_TRIDENT",
-    name = "trident",
-    level_range = {1, 10},
-    cost = 15,
-    combat = {
-        dam = {1,8},
     },
 }
 

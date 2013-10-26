@@ -26,7 +26,7 @@ Features:
 - XP for killing monsters, descending deeper, disarming traps
 - multiclassing & prestige classes & favored classes
 - colored character sheet with tooltips displaying rules info
-- randomized unarmed and weapon damage; archery and weapon finesse; two weapon fighting penalties & feats
+- randomized unarmed and weapon damage; archery and reach weapons; two weapon fighting penalties & feats
 - attack roll & AC & critical hits & offhand attack (including double weapons) & iterative attacks
 - death at -10 and detrimental effects both at 0 and in the -1 to -9 range
 - saving throws [Seb]; now take the best of two stats (Dex-Int; Con-Str; Wis-Cha)
@@ -40,11 +40,10 @@ Features:
 - feat and skill select [Seb]
 - skill checks and opposed checks, including armor check penalty and racial bonuses; more skill points at first character level
 - skill tests printed to log; max skill ranks implemented; feat bonuses applied on top of skill ranks
-- most weapons from SRD; magic armors and shields; magic weapons; light sources; magic items
-- ranged weapons as starting equipment; deep-dwelling races no longer get a torch
+- all weapons from SRD; magic armors and shields; magic weapons; light sources; magic items
 - most melee & skill enhancing feats from SRD
 - working Intuition skill (now for one item only) and item identification
-- colored in-game help screen; legend screen
+- colored in-game help screen; legend screen; basic rules info
 - stairs have a chance of not changing the dungeon level [Seb]
 - calendar
 - colored tooltips (color-coded relative monster stats and CR); colored log messages
@@ -63,4 +62,5 @@ Thanks to:
 - Leissi for brainstorming and testing
 - Castler for testing
 - AuraOfTheDawn for testing & coming up with a nice meme
+- grazz for two small fixes
 

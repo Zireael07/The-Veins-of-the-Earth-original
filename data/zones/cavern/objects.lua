@@ -17,11 +17,14 @@
 local Talents = require "engine.interface.ActorTalents"
 
 load("/data/general/objects/armor.lua")
+load("/data/general/objects/shields.lua")
+
 load("/data/general/objects/weapons.lua")
 load("/data/general/objects/ranged.lua")
 load("/data/general/objects/exotic.lua")
 load("/data/general/objects/exoticranged.lua")
-load("/data/general/objects/shields.lua")
+load("/data/general/objects/reach.lua")
+
 load("/data/general/objects/consumables.lua")
 load("/data/general/objects/magicitems.lua")
 load("/data/general/objects/money.lua")
@@ -71,5 +74,47 @@ newEntity{
     cost = 7,
     wielder = {
     lite=3
+  }, 
+}
+
+--Tools or kits
+newEntity{
+    define_as = "BASE_TOOL",
+    slot = "TOOL",
+    type = "tool", subtype = "skill",
+    display = "^", color=colors.YELLOW,
+    encumber = 1,
+    rarity = 10,
+    name = "A tool kit",
+    desc = [[A tool kit.]],
+}
+
+newEntity{
+    base = "BASE_TOOL",
+    name = "a healing kit",
+    level_range = {1,10},
+    cost = 100,
+    wielder = {
+    skill_bonus_heal = 2
+  }, 
+}
+
+newEntity{
+    base = "BASE_TOOL",
+    name = "a lockpicking kit",
+    level_range = {1,10},
+    cost = 100,
+    wielder = {
+    skill_bonus_openlock = 2
+  }, 
+}
+
+newEntity{
+    base = "BASE_TOOL",
+    name = "a survival kit",
+    level_range = {1,10},
+    cost = 100,
+    wielder = {
+    skill_bonus_survival = 2
   }, 
 }
