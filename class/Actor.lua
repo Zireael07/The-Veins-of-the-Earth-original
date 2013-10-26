@@ -198,18 +198,32 @@ function _M:act()
 	-- Compute timed effects
 	self:timedEffects()
 
+	--Death & dying related stuff
 	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
 
 	if self.life == 0 then 
 		self:setEffect(self.EFF_DISABLED, 1, {})
 		self:removeEffect(self.EFF_DYING)
 		end
+
+
 	if self.life < 0 then 
 		self:removeEffect(self.EFF_DISABLED)
 		self:setEffect(self.EFF_DYING, 1, {})
-		if rng.percent(10) then self.life = 0
-		else self.life = self.life - 1 end
+		--Monsters bleed out quicker than players and have a smaller chance to stabilize
+		if self == game.player then
+			--Raging characters are considered stable as long as they are raging
+			if self:hasEffect(self.EFF_RAGE) then self.life = 0 end
+			if rng.percent(10) then self.life = 0
+			else self.life = self.life - 1 end	
+		else
+			if rng.percent(2) then self.life = 0
+			else self.life = self.life - 3 end
+		end		
 	end	
+
+	--Ensure they can actually die due to bleeding out
+	if self.life <= -10 and not self.dead then self:die() end
 
 	-- check passive stuff. This should be in actbase I think but I cant get it to work
 	if self:knowTalent(self.T_BLOOD_VENGANCE) then
