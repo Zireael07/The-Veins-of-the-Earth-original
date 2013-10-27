@@ -33,14 +33,14 @@ list = {
 	name = 'Continue playing',
 	fct = function(_)
 	  game:unregisterDialog(self)
---	  game.quit_dialog = false
+	  game.quit_dialog = false
 	end
       },
       {
 	name = 'Save and continue playing',
 	fct = function(_)
 	  game:unregisterDialog(self)
---	  game.quit_dialog = false
+	  game.quit_dialog = false
 	  savefile_pipe:push(game.save_name, "game", game)
 	end
       },
@@ -56,7 +56,7 @@ list = {
 	name = 'Quit and abandon character',
 	fct = function(_)
 	  game:unregisterDialog(self)
---	  game.quit_dialog = false
+	  game.quit_dialog = false
 	  self:confirmQuit()
 	end
       }
@@ -66,10 +66,10 @@ list = {
   self:loadUI {
     { left = 3, top = 3, ui = self.c_list }
   }
---[[  self.key:addBind('EXIT', function()
+  self.key:addBind('EXIT', function()
     game:unregisterDialog(self)
---    game.quit_dialog = false
-  end)]]
+    game.quit_dialog = false
+  end)
   self.key:addBind('ACCEPT', function()
     local item = self.c_list.list[self.c_list.sel]
     if item and item.fct then item.fct(item) end
