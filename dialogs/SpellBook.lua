@@ -52,14 +52,14 @@ function _M:init(actor)
         {right=0, bottom=0, ui=self.c_reset},
         {top=self.c_tabs.h + 10, ui=self.c_desc},
         {top=self.c_desc,ui=self.spells[1]},
-        {top=self.spells[1],ui=self.spells[2]},
-        {top=self.spells[2],ui=self.spells[3]},
-        {top=self.spells[3],ui=self.spells[4]},
-        {top=self.spells[4],ui=self.spells[5]},
-        {top=self.spells[5],ui=self.spells[6]},
-        {top=self.spells[6],ui=self.spells[7]},
-        {top=self.spells[7],ui=self.spells[8]},
-        {top=self.spells[8],ui=self.spells[9]},
+        {top=self.spells[1].h+90,ui=self.spells[2]},
+        {top=self.spells[2].h+90,ui=self.spells[3]},
+        {top=self.spells[3].h+90,ui=self.spells[4]},
+        {top=self.spells[4].h+90,ui=self.spells[5]},
+        {top=self.spells[5].h+90,ui=self.spells[6]},
+        {top=self.spells[6].h+90,ui=self.spells[7]},
+        {top=self.spells[7].h+90,ui=self.spells[8]},
+        {top=self.spells[8].h+90,ui=self.spells[9]},
         {top=self.c_desc,ui=self.c_charges},
     }
 
@@ -98,6 +98,9 @@ function _M:drawDialog(s)
     local font = core.display.newFont("/data/font/DroidSans-Bold.ttf", 12)
 
     for i, v in ipairs(self.list) do
+        if not max_charges[i] then
+            break
+        end
         local charges_used = game.player:getAllocatedCharges(self.spell_list, i) --TODO: Fix this function (getAllocatedCharges)
         local str = "Level-"..i.." Spells "..(charges_used or 0).."/"..(max_charges[i] or 0)
         s:drawString(self.font, str, w, h, 255, 255, 255, true)
@@ -168,7 +171,9 @@ function _M:generateList(spellist)
     self.list = list
 
     if self.spells then
-        self.spells[1].list = self.list[1]
+        for i=1,9 do
+            self.spells[i].list = self.list[i]
+        end
         self:drawDialog()
     end
 end

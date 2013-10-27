@@ -803,7 +803,7 @@ function _M:incMaxCharges(tid, v)
 
 	--Can the player have this many max charges for this type?
 	local a = self:getAllocatedCharges(tt, t.level)
-	if a + v > self:getMaxMaxCharges()[1] then return end
+	if a + v > self:getMaxMaxCharges()[t.level] then return end
 	self.max_charges[tid] = (self.max_charges[tid] or 0) + v
 	self:incAllocatedCharges(tt, t.level, v)
 end
