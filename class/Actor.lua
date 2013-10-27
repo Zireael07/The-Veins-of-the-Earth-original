@@ -294,6 +294,10 @@ end
 function _M:colorCR()
 	local player = game.player
 
+    if not self:attr("challenge") then
+        return "#WHITE#-#LAST#"
+    end
+
 	if self.challenge > player.level then return "#FIREBRICK#"..self:attr('challenge').."#LAST#"
 	elseif self.challenge < (player.level - 4) then return "#LIGHT_GREEN#"..self:attr('challenge').."#LAST#"
 	elseif self.challenge < player.level then return "#DARK_GREEN#"..self:attr('challenge').."#LAST#"
