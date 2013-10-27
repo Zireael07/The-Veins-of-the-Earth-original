@@ -23,7 +23,7 @@ newEntity{ base = "BASE_RANGED",
     name = "a generic crossbow",
     desc = "A normal trusty heavy crossbow.\n\n Damage 1d10. Threat range 19-20.",
 }
---Range 120 ft.
+
 newEntity{ base = "BASE_HXBOW",
     name = "heavy crossbow",
     level_range = {1, 10},
@@ -73,7 +73,7 @@ newEntity{ base = "BASE_RANGED",
     name = "a generic dart",
     desc = "An unremarkable dart.\n\n Damage 1d4.",
 }
---Range 20 ft.
+
 newEntity{ base = "BASE_DART",
     name = "darts",
     level_range = {1, 10},
@@ -97,7 +97,7 @@ newEntity{ base = "BASE_RANGED",
     name = "a generic javelin",
     desc = "A normal unremarkable javelin.\n\n Damage 1d6.",
 }
---Range 30 ft.
+
 newEntity{ base = "BASE_JAVELIN",
     name = "javelin",
     level_range = {1, 10},
@@ -120,14 +120,14 @@ newEntity{ base = "BASE_RANGED",
     name = "a generic sling",
     desc = "A normal unremarkable sling.\n\n Damage 1d4.",
 }
---Range 50 ft.
+
 newEntity{ base = "BASE_SLING",
     name = "sling",
     level_range = {1, 10},
     cost = 0,
     combat = {
         dam = {1,4},
-        range = 5,
+        range = 4,
     },
 }
 
@@ -183,7 +183,6 @@ newEntity{ base = "BASE_RANGED",
     desc = "A normal trusty short bow.\n\n Damage 1d6. Critical x3.",
 }
 
---Range 60 ft.
 newEntity{ base = "BASE_SBOW",
     name = "shortbow",
     level_range = {1, 10},
@@ -195,7 +194,6 @@ newEntity{ base = "BASE_SBOW",
     },
 }
 
---Range 70 ft.
 newEntity{ base = "BASE_SBOW",
     name = "composite shortbow",
     level_range = {1, 10},

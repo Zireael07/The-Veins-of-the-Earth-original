@@ -27,6 +27,7 @@ For example, dam = {1,6} means 1d6
 threat -> by how much do we increase the threat range (when do we crit for those unfamilliar with d20)
 No threat? We crit on a 20. threat 1 - crit on 19-20. threat 2 - crit on 18-20. threat 3 - crit on 17-20.
 critical -> by how much do we multiply the damage on a critical hit. If not present, it's x2
+range -> for bows, crossbows etc. how far can we shoot. Works the same way as spell range or darkvision range.
 
 Flags, like martial = true, simple = true or reach = true, define whether some feat/talent effects apply to this weapon.
 
@@ -63,7 +64,7 @@ CR 1/4 - 75 XP
 CR 1/3 - 100 XP
 CR 1 - 300 XP
 CR 2 - 600 XP
-CR 3 -
+CR 3 - 900 XP
 CR 6 - 450 XP ?
 CR 7 - 550 XP ? 
 

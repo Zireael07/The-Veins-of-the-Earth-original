@@ -26,7 +26,7 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     name = "a generic hand crossbow",
     desc = "A normal trusty hand crossbow.\n\n Damage 1d4. Threat range 19-20.",
 }
---Range 30 ft.
+
 newEntity{ base = "BASE_HANDXBOW",
     name = "hand crossbow",
     level_range = {1, 10},
@@ -34,7 +34,7 @@ newEntity{ base = "BASE_HANDXBOW",
     combat = {
         dam = {1,4},
         threat = 1,
-        range = 9,
+        range = 3,
     },
 }
 
@@ -50,14 +50,14 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     name = "a generic bolas",
     desc = "A normal bolas.\n\n Damage 1d4.",
 }
---Range 10 ft.
+
 newEntity{ base = "BASE_BOLAS",
     name = "bolas",
     level_range = {1, 10},
     cost = 5,
     combat = {
         dam = {1,4},
-        range = 3,
+        range = 2,
     },
 }
 
@@ -73,14 +73,14 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     name = "a generic shuriken",
     desc = "An exotic shuriken.\n\n Damage 1d2.",
 }
---Range 10 ft.
+
 newEntity{ base = "BASE_SHURIKEN",
     name = "shuriken",
     level_range = {1, 10},
     cost = 1,
     combat = {
         dam = {1,2},
-        range = 3,
+        range = 2,
     },
 }
 
@@ -96,13 +96,13 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     name = "a generic net",
     desc = "A normal net.\n\n Damage 1d4.",
 }
---Range 10 ft.
+
 newEntity{ base = "BASE_NET",
     name = "net",
     level_range = {1, 10},
     cost = 20,
     combat = {
         dam = {1,4}, --should be entangled
-        range = 3,
+        range = 2,
     },
 }
