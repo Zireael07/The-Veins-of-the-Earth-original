@@ -163,6 +163,8 @@ function _M:init(t, no_default)
 
 	self.life = t.max_life or self.life
 
+	self.last_attacker = nil
+
 	-- Use weapon damage actually
 	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
 	if weapon then dam = weapon.combat.dam
@@ -356,8 +358,11 @@ function _M:die(src)
 	engine.interface.ActorLife.die(self, src)
 
 	-- Gives the killer some exp for the kill
-	if src and src.gainExp then
-		src:gainExp(self:worthExp(src))
+	local killer
+	killer = src or self.last_attacker
+
+	if killer and killer.gainExp then
+		killer:gainExp(self:worthExp(killer))
 	end
 
 	-- Drop stuff

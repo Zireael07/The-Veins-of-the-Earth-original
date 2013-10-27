@@ -71,6 +71,7 @@ end
 --- Called by ActorLife interface
 -- We use it to pass aggression values to the AIs
 function _M:onTakeHit(value, src)
+	self.last_attacker = src
 	if not self.ai_target.actor and src.targetable then
 		self.ai_target.actor = src
 	end
