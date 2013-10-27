@@ -8,6 +8,7 @@ newEntity {
     define_as = "BASE_EXOTIC", 
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon",
+    exotic = true,
     require = { talent = { Talents.T_EXOTIC_WEAPON_PROFICIENCY }, },
     egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
@@ -56,6 +57,7 @@ newEntity{ base = "BASE_WARAXE",
     },
 }
 
+--A reach weapon
 newEntity{ base = "BASE_EXOTIC",
     define_as = "BASE_SPIKEDCHAIN",
     slot = "MAIN_HAND",
@@ -64,12 +66,12 @@ newEntity{ base = "BASE_EXOTIC",
     display = "/", color=colors.SLATE,
     encumber = 10,
     rarity = 10,
-    polearm = true,
+    reach = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "a generic spiked chain",
     desc = "A normal spiked chain.\n\n Damage 2d4.",
 }
---Range weapon
+
 newEntity{ base = "BASE_SPIKEDCHAIN",
     name = "spiked chain",
     level_range = {1, 10},

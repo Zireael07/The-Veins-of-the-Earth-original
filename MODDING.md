@@ -29,7 +29,7 @@ No threat? We crit on a 20. threat 1 - crit on 19-20. threat 2 - crit on 18-20. 
 critical -> by how much do we multiply the damage on a critical hit. If not present, it's x2
 range -> for bows, crossbows etc. how far can we shoot. Works the same way as spell range or darkvision range.
 
-Flags, like martial = true, simple = true or reach = true, define whether some feat/talent effects apply to this weapon.
+Flags, like martial = true, simple = true or reach = true, define whether some feat/talent effects apply to this weapon. The exotic = true flag, while redundant, makes it possible for tooltips to work correctly.
 
 Armor
 slot = BODY -> armor

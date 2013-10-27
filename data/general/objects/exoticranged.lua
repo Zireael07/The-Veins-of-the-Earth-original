@@ -10,6 +10,7 @@ newEntity{
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
     type = "weapon",
+    exotic = true,
     require = { talent = { Talents.T_EXOTIC_WEAPON_PROFICIENCY }, },
     egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }

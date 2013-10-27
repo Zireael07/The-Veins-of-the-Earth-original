@@ -21,7 +21,7 @@ newEntity{ base = "BASE_RANGED",
     simple = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic crossbow",
-    desc = "A normal trusty heavy crossbow.\n\n Damage 1d10. Threat range 19-20.",
+    desc = "A normal trusty heavy crossbow.\n\n Damage 1d10. Threat range 19-20. Range 12.",
 }
 
 newEntity{ base = "BASE_HXBOW",
@@ -46,7 +46,7 @@ newEntity{ base = "BASE_RANGED",
     simple = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic crossbow",
-    desc = "A normal trusty light crossbow.\n\n Damage 1d8. Threat range 19-20.",
+    desc = "A normal trusty light crossbow.\n\n Damage 1d8. Threat range 19-20. Range 8.",
 }
 --Range 80 ft.
 newEntity{ base = "BASE_LXBOW",
@@ -71,7 +71,7 @@ newEntity{ base = "BASE_RANGED",
     simple = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic dart",
-    desc = "An unremarkable dart.\n\n Damage 1d4.",
+    desc = "An unremarkable dart.\n\n Damage 1d4. Range 2",
 }
 
 newEntity{ base = "BASE_DART",
@@ -95,7 +95,7 @@ newEntity{ base = "BASE_RANGED",
     simple = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic javelin",
-    desc = "A normal unremarkable javelin.\n\n Damage 1d6.",
+    desc = "A normal unremarkable javelin.\n\n Damage 1d6. Range 3",
 }
 
 newEntity{ base = "BASE_JAVELIN",
@@ -118,7 +118,7 @@ newEntity{ base = "BASE_RANGED",
     rarity = 6,
     combat = { sound = "actions/sling", sound_miss = "actions/sling", },
     name = "a generic sling",
-    desc = "A normal unremarkable sling.\n\n Damage 1d4.",
+    desc = "A normal unremarkable sling.\n\n Damage 1d4. Range 4",
 }
 
 newEntity{ base = "BASE_SLING",
@@ -143,9 +143,9 @@ newEntity{ base = "BASE_RANGED",
     martial = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic bow",
-    desc = "A normal trusty bow.\n\n Damage 1d10. Critical x3.",
+    desc = "A normal trusty bow.\n\n Damage 1d10. Critical x3. Range 10",
 }
---Range 100 ft.
+
 newEntity{ base = "BASE_LBOW",
     name = "longbow",
     level_range = {1, 10},
@@ -157,9 +157,10 @@ newEntity{ base = "BASE_LBOW",
     },
 }
 
---Range 110 ft.
+
 newEntity{ base = "BASE_LBOW",
     name = "composite longbow",
+    desc = "A curved longbow with an increased range.\n\n Damage 1d10. Critical x3. Range 11",
     level_range = {1, 10},
     cost = 100,
     combat = {
@@ -180,7 +181,7 @@ newEntity{ base = "BASE_RANGED",
     martial = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic bow",
-    desc = "A normal trusty short bow.\n\n Damage 1d6. Critical x3.",
+    desc = "A normal trusty short bow.\n\n Damage 1d6. Critical x3. Range 6",
 }
 
 newEntity{ base = "BASE_SBOW",
@@ -198,7 +199,7 @@ newEntity{ base = "BASE_SBOW",
     name = "composite shortbow",
     level_range = {1, 10},
     cost = 75,
-    desc = "A curved short bow with an increased range.\n\n Damage 1d6. Critical x3.",
+    desc = "A curved short bow with an increased range.\n\n Damage 1d6. Critical x3. Range 7",
     combat = {
         dam = {1,6},
         critical = 3,

@@ -124,6 +124,7 @@ function _M:getDesc()
     if self.type == "weapon" and self.martial then str = str.."\nThis is a martial weapon." end
     if self.type == "weapon" and self.simple then str = str.."\nThis is a a simple weapon." end
     if self.type == "weapon" and self.reach then str = str.."\nThis is a reach weapon." end
+    if self.type == "weapon" and self.exotic then str = str.."\nThis is an exotic weapon." end
     
     --Describing magic items
     if self.type == "weapon" and self.identified == true then 
