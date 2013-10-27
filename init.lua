@@ -30,6 +30,30 @@ no_get_name = true
 
 show_only_on_cheat = false -- Example modules are not shown to normal players
 
+profile_stats_fields = {"scores"}
+
+profile_defs = {
+	scores = {
+		nosync=true,
+		receive=function(data,save)
+			save.sc = save.sc or {}
+			save.sc[data.world] = save.sc[data.world] or {}
+			save.sc[data.world].alive = save.sc[data.world].alive or {}
+			save.sc[data.world].dead = save.sc[data.world].dead or {}
+			if data.type == "alive" then
+				save.sc[data.world].alive = save.sc[data.world].alive or {}
+				save.sc[data.world].alive[data.name] = data
+			else
+				-- clear any 'alive' entry with this name
+				save.sc[data.world].alive[data.name] = nil
+				save.sc[data.world].dead = save.sc[data.world].dead or {}
+				save.sc[data.world].dead[#save.sc[data.world].dead+1] = data
+			end
+		end
+	},
+}
+
+
 score_formatters = {
 	["Veins"] = {
 		alive="#BLUE#{name}#LAST#",

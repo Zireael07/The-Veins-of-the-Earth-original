@@ -23,7 +23,6 @@ local DamageType = require "engine.DamageType"
 local Zone = require "mod.class.Zone"
 local Map = require "engine.Map"
 local Level = require "engine.Level"
-local HighScores = require "engine.HighScores"
 
 local Party = require "mod.class.Party"
 local Grid = require "mod.class.Grid"
@@ -44,6 +43,8 @@ local Calendar = require "engine.Calendar"
 local Birther = require "mod.dialogs.Birther"
 
 local QuitDialog = require "mod.dialogs.Quit"
+
+local HighScores = require "engine.HighScores"
 
 module(..., package.seeall, class.inherit(engine.GameTurnBased, engine.interface.GameTargeting))
 
@@ -134,6 +135,46 @@ function _M:setupDisplayMode()
 	end
 end
 
+--Highscore stuff, unused until 1.0.5
+function _M:getPlayer(main)
+	return self.player
+end
+
+-- added for engine.dialogs.viewhighscores
+function _M:getCampaign()
+	return "Veins"
+end
+
+function _M:registerHighscore()
+	local player = self:getPlayer(true)
+	local campaign = "Veins"
+	local score = 0
+	local temp = 0
+
+	--Placeholder score
+	temp = math.floor(player.level + (player.exp / player:getExpChart(player.level))) + math.floor(player.money / 100)
+
+	score = score + temp
+
+	local details = {
+		level = player.level,
+		role = player.descriptor.class,
+		name = player.name,
+		world = "Veins",
+		where = self.zone and self.zone.name or "???",
+		dlvl = self.level and self.level.level or 1,
+		score = score
+	}
+
+
+	if player.dead then
+		HighScores.registerScore(campaign, details)
+	else
+		HighScores.noteLivingScore(campaign, player.name, details)
+	end
+end
+
+
 function _M:save()
 	return class.save(self, self:defaultSavedFields{}, true)
 end
@@ -199,7 +240,7 @@ function _M:changeLevel(lev, zone)
 	local max_magic = 0
 
 	--Detect powerful magic items
---[[	for _, o in pairs(game.level.objects) do --list[#list+1] = o
+--[[	for o in pairs(game.level.entities) do --list[#list+1] = o
 		local magic_bonus = o.combat.magic_bonus
 		local magic_armor = o.wielder.combat_magic_armor
 		local magic_shield = o.wielder.combat_magic_shield
@@ -243,9 +284,6 @@ function _M:tick()
 		self:targetOnTick()
 
 		engine.GameTurnBased.tick(self)
-		-- Fun stuff: this can make the game realtime, although calling it in display() will make it work better
-		-- (since display is on a set FPS while tick() ticks as much as possible
-		-- engine.GameEnergyBased.tick(self)
 	end
 	-- When paused (waiting for player input) we return true: this means we wont be called again until an event wakes us
 	if self.paused and not savefile_pipe.saving then return true end
@@ -274,12 +312,34 @@ function _M:display(nb_keyframe)
 
 	-- Now the map, if any
 	if self.level and self.level.map and self.level.map.finished then
+		local map = self.level.map
 		-- Display the map and compute FOV for the player if needed
 		if self.level.map.changed then
 			self.player:playerFOV()
 		end
 
-		self.level.map:display(nil, nil, nb_keyframe)
+		-- Display using Framebuffer, so that we can use shaders and all
+		if self.fbo then
+			self.fbo:use(true)
+				if self.level.data.background then self.level.data.background(self.level, 0, 0, nb_keyframes) end
+				--map:display(0, 0, nb_keyframe)
+				map:display(0, 0, nb_keyframe, true)
+				map._map:drawSeensTexture(0, 0, nb_keyframe)
+			self.fbo:use(false, self.full_fbo)
+
+			self.fbo:toScreen(0, 0, self.w, self.h, self.fbo_shader.shad)
+
+
+		-- Basic display; no FBOs
+		else
+			if self.level.data.background then self.level.data.background(self.level, map.display_x, map.display_y, nb_keyframes) end
+			--self.level.map:display(nil, nil, nb_keyframe)
+			map:display(nil, nil, nb_keyframe, true)
+			map._map:drawSeensTexture(map.display_x, map.display_y, nb_keyframe)
+		end
+
+
+	--	self.level.map:display(nil, nil, nb_keyframe)
 
 		-- Display the targetting system if active
 		self.target:display()
@@ -549,38 +609,6 @@ function _M:onQuit()
 		self:registerDialog(self.quit_dialog)
 	end
 end
-
---Highscore stuff, unused until 1.0.5
-function _M:getPlayer(main)
-	return self.player
-end
-
--- added for engine.dialogs.viewhighscores
-function _M:getCampaign()
-	return "Veins"
-end
-
-function _M:registerHighscore()
-	local player = self.player
-	local campaign = "Veins"
-
-	local details = {
-		level = player.level,
-		name = player.name,
-		where = self.zone and self.zone.name or "???",
-		dlvl = self.level and self.level.level or 1,
-	}
-
-	--Placeholder score
-		details.score = math.floor(10 * (player.level + (player.exp / player:getExpChart(player.level)))) + math.floor(player.money / 100)
-
-	if player.dead then
-		HighScores.registerScore(campaign, details)
-	else
-		HighScores.noteLivingScore(campaign, player.name, details)
-	end
-end
-
 
 
 --- Requests the game to save
