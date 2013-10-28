@@ -98,7 +98,7 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
-			local damage = dam.dam or dam
+			local damage = dam
 			if target:fortitudeSave(10) then
 				damage = math.floor(damage / 2)
 			end
