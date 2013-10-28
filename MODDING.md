@@ -16,7 +16,7 @@ Items
 unided_name -> the name that is displayed before the item is identified
 
 Egos
-Keywords are necessary for tooltips to work.
+Keywords are necessary for the tooltips to work.
 
 Weapons
 slot = MAIN_HAND, offslot = OFF_HAND -> one-handed weapon
@@ -82,6 +82,8 @@ skill_... -> any bonuses the monster receives (not counting the bonuses from sta
 combat_natural -> the natural armor bonus minus the size bonus (the latter doesn't exist in VotE)
 
 Spells
+Icon names for spells must match the spell's name exactly, otherwise they won't be displayed.
+
 It is imperative that the self.project line look like:
 a) self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15}) -> save DC defined
 b) self:projectile(tg, x, y, DamageType.ACID, {dam=damage}) -> default save DC
