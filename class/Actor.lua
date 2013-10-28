@@ -508,6 +508,11 @@ function _M:preUseTalent(ab, silent)
 			return false 
 		end
 	end
+
+	-- Check for special prequisites
+	if ab.on_pre_use and not ab.on_pre_use(self, ab, silent) then 
+		return nil
+	end
 	
 
 	if not self:enoughEnergy() then print("fail energy") return false end
