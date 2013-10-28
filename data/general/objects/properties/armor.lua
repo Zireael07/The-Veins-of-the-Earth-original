@@ -116,7 +116,7 @@ newEntity {
 	rarity = 13,
 	cost = 15000,
 	wielder = {
-		skill_hide = 10,
+		skill_bonus_hide = 10,
 	}
 }
 
@@ -127,7 +127,7 @@ newEntity {
 	rarity = 18,
 	cost = 33750,
 	wielder = {
-		skill_hide = 15,
+		skill_bonus_hide = 15,
 	}
 }
 
@@ -138,7 +138,7 @@ newEntity {
 	rarity = 8,
 	cost = 3750,
 	wielder = {
-		skill_movesilently = 5,
+		skill_bonus_movesilently = 5,
 	}
 }
 
@@ -149,7 +149,7 @@ newEntity {
 	rarity = 13,
 	cost = 15000,
 	wielder = {
-		skill_movesilently = 10,
+		skill_bonus_movesilently = 10,
 	}
 }
 
@@ -160,7 +160,7 @@ newEntity {
 	rarity = 18,
 	cost = 33750,
 	wielder = {
-		skill_movesilently = 15,
+		skill_bonus_movesilently = 15,
 	}
 }
 
@@ -171,7 +171,7 @@ newEntity {
 	rarity = 8,
 	cost = 3750,
 	wielder = {
-		skill_escapeartist = 5,
+		skill_bonus_escapeartist = 5,
 	}
 }
 
@@ -182,7 +182,7 @@ newEntity {
 	rarity = 13,
 	cost = 15000,
 	wielder = {
-		skill_escapeartist = 10,
+		skill_bonus_escapeartist = 10,
 	}
 }
 
@@ -193,7 +193,7 @@ newEntity {
 	rarity = 18,
 	cost = 33750,
 	wielder = {
-		skill_escapeartist = 15,
+		skill_bonus_escapeartist = 15,
 	}
 }
 

@@ -15,6 +15,9 @@ egos_chance -> what it says on the tin. Be careful not to misspell it.
 Items
 unided_name -> the name that is displayed before the item is identified
 
+Egos
+Keywords are necessary for tooltips to work.
+
 Weapons
 slot = MAIN_HAND, offslot = OFF_HAND -> one-handed weapon
 slot = MAIN_HAND, slot_forbid = OFF_HAND -> two-handed weapon
