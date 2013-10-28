@@ -163,6 +163,8 @@ function _M:init(t, no_default)
 
 	self.life = t.max_life or self.life
 
+	self.last_attacker = nil
+
 	-- Use weapon damage actually
 	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
 	if weapon then dam = weapon.combat.dam
@@ -292,6 +294,10 @@ end
 function _M:colorCR()
 	local player = game.player
 
+    if not self:attr("challenge") then
+        return "#WHITE#-#LAST#"
+    end
+
 	if self.challenge > player.level then return "#FIREBRICK#"..self:attr('challenge').."#LAST#"
 	elseif self.challenge < (player.level - 4) then return "#LIGHT_GREEN#"..self:attr('challenge').."#LAST#"
 	elseif self.challenge < player.level then return "#DARK_GREEN#"..self:attr('challenge').."#LAST#"
@@ -356,8 +362,11 @@ function _M:die(src)
 	engine.interface.ActorLife.die(self, src)
 
 	-- Gives the killer some exp for the kill
-	if src and src.gainExp then
-		src:gainExp(self:worthExp(src))
+	local killer
+	killer = src or self.last_attacker
+
+	if killer and killer.gainExp then
+		killer:gainExp(self:worthExp(killer))
 	end
 
 	-- Drop stuff
@@ -498,6 +507,11 @@ function _M:preUseTalent(ab, silent)
 			if not silent then game.logPlayer(self, "You have to prepare this spell") end
 			return false 
 		end
+	end
+
+	-- Check for special prequisites
+	if ab.on_pre_use and not ab.on_pre_use(self, ab, silent) then 
+		return nil
 	end
 	
 
@@ -803,7 +817,7 @@ function _M:incMaxCharges(tid, v)
 
 	--Can the player have this many max charges for this type?
 	local a = self:getAllocatedCharges(tt, t.level)
-	if a + v > self:getMaxMaxCharges()[1] then return end
+	if a + v > self:getMaxMaxCharges()[t.level] then return end
 	self.max_charges[tid] = (self.max_charges[tid] or 0) + v
 	self:incAllocatedCharges(tt, t.level, v)
 end

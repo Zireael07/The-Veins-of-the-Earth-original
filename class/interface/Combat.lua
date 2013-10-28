@@ -120,7 +120,7 @@ function _M:attackRoll(target)
 end
 
 --- Makes the death happen!
-function _M:attackTarget(target, mult)
+function _M:attackTarget(target, noenergy)
     if self.combat then
         
 
@@ -171,6 +171,8 @@ function _M:attackTarget(target, mult)
         end
     end
     -- We use up our own energy
-    self:useEnergy(game.energy_to_act)
+    if not noenergy then
+        self:useEnergy(game.energy_to_act)
+    end
 --    offhand_attacks = 0
 end

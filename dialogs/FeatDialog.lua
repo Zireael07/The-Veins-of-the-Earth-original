@@ -15,11 +15,11 @@ module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init(actor)
 	self.player = actor
-	Dialog.init(self, "Feats", 500, 600)
+	Dialog.init(self, "Feats", math.min(game.w*0.8,500), game.h*0.6)
 	self:generateList()
 	
 	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available feat points: "..self.player.feat_point}	
-	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
+	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, height = game.h*0.7, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 	self.c_desc = TextzoneList.new{width=self.iw/2-20, height = 400, text="Hello from description"}
 
 	self:loadUI{

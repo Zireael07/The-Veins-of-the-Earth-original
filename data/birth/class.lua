@@ -611,7 +611,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SLEEP, true)
 			actor:learnTalent(actor.T_BLINDNESS_DEAFNESS, true)
 
-			actor:learnTalentType("divine/divine", true)			
+			actor:learnTalentType("arcane/arcane", true)			
 
 			if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Male" then
 			--Favored class bonuses
