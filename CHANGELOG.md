@@ -225,3 +225,27 @@ BETA RELEASES
 * level feelings (based on monster CR for now)
 * changed wait a turn keybinding and added it to controls screen
 * random naming for potions & scrolls
+
+0.9.0 - 28/10/2013
+* bug fix: all dialogs now obey screen size
+* bug fix: fire beetle AC is no longer through the roof
+* bug fix: spells are now properly restricted [Seb]
+* bug fix: no more freezes when trying to exit to Menu in some cases
+* bug fix: no more lua errors with some spells
+* bug fix: bard skill points
+* bug fix: assasin and shadowdancer not giving level-up bonuses
+* new monsters: aboleth, athach, choker, chuul, cloaker, drider, ettercap, otyugh; ankheg, aranea, arrowhawk, assasin vine, barghest
+* survival kit, healing kit, lockpicking kit added - grant a +2 bonus to skill
+* all characters now receive a single feat when rolling stats as a perk
+* level-up screen now displays class points, feat points, skill points
+* humanoids can now try to shoot the player
+* increased inventory size slightly (from a to z instead of w)
+* monsters bleed out quicker than the player
+* implemented chasm & ice effects
+* tooltips now describe whether a weapon is simple/martial, light/reach
+* re-added a crash course to d20
+* MODDING.md now contains information useful for prospective contributors
+* reach weapons & talent added
+* scrollbar added to feat select screen [Seb]
+* spellbook now displays higher-level spells properly [Seb]
+* tooltips now describe magic properties (except elemental resistances) for identified items

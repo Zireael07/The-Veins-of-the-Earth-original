@@ -19,7 +19,7 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
-version = {0,8,1}
+version = {0,9,0}
 engine = {1,0,4,"te4"}
 description = [[
 In DarkGod's words, "a fantasy d20-themed dungeon crawler".
