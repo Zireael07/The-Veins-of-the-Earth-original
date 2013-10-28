@@ -5,7 +5,7 @@
 newBirthDescriptor {
 	type = 'class',
 	name = 'Barbarian',
-	desc = 'Raging warriors of the wilds.\n\n +33% movement speed. HD d12, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.',
+	desc = 'Raging warriors of the wilds.\n\n +33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -15,7 +15,6 @@ newBirthDescriptor {
 	},
 	copy_add = {
 		skill_point = 12, --4x skill points at 1st character level
---		movement_speed_bonus = 0.33
 	},
 	descriptor_choices =
 	{
@@ -75,7 +74,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
-	desc = 'Musicians and gentlefolk.\n\n HD d6, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.',
+	desc = 'Musicians and gentlefolk.\n\n 6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -86,9 +85,6 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 18, --4x skill points at 1st level
 	},
---	talents_types = {
---		["arcane/arcane"] = {true, 0.0},
---	},
 	descriptor_choices =
 	{
 		alignment =
@@ -149,7 +145,7 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.will_save = (actor.will_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 4
+		actor.skill_point = (actor.skill_point or 0) + 6
 		if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
 		--Favored class bonuses
 		actor.combat_attack = (actor.combat_attack or 0) + 1
@@ -164,7 +160,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Cleric',
-	desc = 'Clerics are masters of healing.\n\n HD d8. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
+	desc = 'Clerics are masters of healing.\n\n 8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -175,10 +171,6 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
 	},
---	talents_types = {
---		["cleric/cleric"] = {true, 0.0},
---		["divine/divine"] = {true, 0.0}
---	},
 	descriptor_choices = {
 		domains = {
 			__ALL__ = "allow",
@@ -252,7 +244,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Druid',
-	desc = 'Clerics of nature.\n\n HD d8. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
+	desc = 'Clerics of nature.\n\n 8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -328,7 +320,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Fighter',
-	desc = 'Simple fighters, they hack away with their trusty weapon.\n\n HD d10, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.',
+	desc = 'Simple fighters, they hack away with their trusty weapon.\n\n 10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -391,7 +383,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Ranger',
-	desc = 'Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n HD d8, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.',
+	desc = 'Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n 8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -489,7 +481,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Rogue',
-	desc = 'Rogues are masters of tricks.\n\n HD d6, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.',
+	desc = 'Rogues are masters of tricks.\n\n 6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -561,7 +553,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Wizard',
-	desc = 'Masters of arcane magic.\n\n HD d4, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
+	desc = 'Masters of arcane magic.\n\n 4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -652,7 +644,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Warlock',
-	desc = 'A spellcaster who needs no weapon.\n\n HD d6, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
+	desc = 'A spellcaster who needs no weapon.\n\n 6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -719,10 +711,22 @@ newBirthDescriptor {
 	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.reflex_save = (actor.reflex_save or 0) + 2
+			actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8
+		actor.skill_point = (actor.skill_point or 0) + 6
 			--grant hide in plain sight
 		elseif level == 2 then 
 			actor.combat_bab = (actor.combat_bab or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 1
+
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8
+		actor.skill_point = (actor.skill_point or 0) + 6
 		
 		-- only if he doesn't have better infravision already
 			if actor.infravision and actor.infravision > 3 then
@@ -761,11 +765,45 @@ newBirthDescriptor {
 	on_level = function(actor, level)
 		if level == 1 then actor.reflex_save = (actor.reflex_save or 0) + 2
 			actor.sneak_attack = (actor.sneak_attack or 0) + 1
+
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8
+		actor.skill_point = (actor.skill_point or 0) + 6
 		elseif level == 3 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
+			actor.reflex_save = (actor.reflex_save or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8
+		actor.skill_point = (actor.skill_point or 0) + 6
 		elseif level == 5 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
+			actor.reflex_save = (actor.reflex_save or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8
+		actor.skill_point = (actor.skill_point or 0) + 6
 		elseif level == 7 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
+			actor.reflex_save = (actor.reflex_save or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8
+		actor.skill_point = (actor.skill_point or 0) + 6
 		elseif level == 9 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
-		
+		actor.reflex_save = (actor.reflex_save or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8
+		actor.skill_point = (actor.skill_point or 0) + 6
 		else
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
