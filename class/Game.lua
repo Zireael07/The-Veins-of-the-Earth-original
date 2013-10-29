@@ -486,6 +486,10 @@ function _M:setupCommands()
 		SHOW_CHARACTER_SHEET = function()
 			self:registerDialog(require("mod.dialogs.CharacterSheet").new(self.player))
 		end,
+		
+		SHOW_MESSAGE_LOG = function()
+			self:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, self.uiset.logdisplay, profile.chat))
+		end,
 
 		-- Exit the game
 		QUIT_GAME = function()
