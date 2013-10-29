@@ -30,6 +30,8 @@ no_get_name = true
 
 show_only_on_cheat = false -- Example modules are not shown to normal players
 
+allow_userchat = true -- We can talk to the online community
+
 profile_stats_fields = {"scores"}
 
 profile_defs = {
