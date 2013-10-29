@@ -58,7 +58,10 @@ profile_defs = {
 
 score_formatters = {
 	["Veins"] = {
-		alive="#BLUE#{name}#LAST#",
-		dead="#BLUE#{name}#LAST#"
+		alive="#LIGHT_GREEN#{score} : #LIGHT_BLUE#{name}#LAST# the #LIGHT_RED#{role} (level {level})#LAST# is still alive and well in the #GREEN#{where}#LAST##WHITE#",
+		dead="{score} : #LIGHT_BLUE#{name}#LAST# the #LIGHT_RED#{role} (level {level})#LAST# died in the #GREEN#{where}#LAST#"
+
+--		alive="#BLUE#{name}#LAST#",
+--		dead="#BLUE#{name}#LAST#"
 	},
 }
