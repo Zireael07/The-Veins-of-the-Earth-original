@@ -488,7 +488,7 @@ function _M:setupCommands()
 		end,
 		
 		SHOW_MESSAGE_LOG = function()
-			self:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, self.uiset.logdisplay, profile.chat))
+			self:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, profile.chat))
 		end,
 
 		-- Exit the game
@@ -502,7 +502,7 @@ function _M:setupCommands()
 			local menu menu = require("engine.dialogs.GameMenu").new{
 				"resume",
 				"keybinds",
---				"highscores",
+				"highscores",
 				"video",
 				"save",
 				"quit"
@@ -617,7 +617,7 @@ end
 
 --- Requests the game to save
 function _M:saveGame()
---	self:registerHighscore()
+	self:registerHighscore()
 	-- savefile_pipe is created as a global by the engine
 	savefile_pipe:push(self.save_name, "game", self)
 	self.log("Saving game...")
