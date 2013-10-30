@@ -108,9 +108,9 @@ function _M:attackRoll(target)
     end
 
     if hit then
-        game.log(("%s hits the enemy! %d + %d = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
+        game.log(("%s hits the enemy! Dice roll %d + bonus %d = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
     else
-        game.log(("%s misses the enemy! %d + %d = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
+        game.log(("%s misses the enemy! Dice roll %d + bonus %d = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
     end
 
     -- Crit check
