@@ -25,7 +25,14 @@ return {
 		map = {
 			class = "mod.class.generator.map.Roomer",
 			nb_rooms = 10,
-			rooms = { {"simple", 5}, {"circle", 5}, {"circle2", 5}, {"circle3", 5}, {"pilar", 10}, {"pilar2", 10}, {"pilar3", 10}, {"pilar4", 10}, {"rhomboid", 3}, {"rhomboid2", 3}, {"chasm1", 2}, {"chasm2", 2}, {"chasm3", 2}, {"big_moss1", 20}, {"big_moss2", 20}, {"moss_patch1", 30}, {"moss_patch2", 30}, {"moss_pilar1", 40}, {"moss_pilar2", 40}, {"moss_pilar3", 40}, {"lavafilled_pilar", 2}, {"waterfilled_pilar", 7}, {"waterfilled", 1}, {"waterfilled2", 1}, {"waterfilled3", 1}, {"waterfilled4", 1}, {"waterfilled_half", 5}, {"waterfilled_half2", 5} },
+			rooms = { 
+			--Nothing special
+			{"simple", 5}, {"circle", 5}, {"circle2", 5}, {"circle3", 5}, {"pilar", 10}, {"pilar2", 10}, {"pilar3", 10}, {"pilar4", 10}, {"rhomboid", 3}, {"rhomboid2", 3}, 
+			--Special rooms
+			{"chasm1", 2}, {"chasm2", 2}, {"chasm3", 2}, {"big_moss1", 20}, {"big_moss2", 20}, {"ice_patch", 10}, {"icefilled", 4}, {"moss_patch1", 30}, {"moss_patch2", 30}, {"moss_pilar1", 40}, {"moss_pilar2", 40}, {"moss_pilar3", 40}, {"lavafilled_pilar", 2}, {"waterfilled_pilar", 7}, {"waterfilled", 1}, {"waterfilled2", 1}, {"waterfilled3", 1}, {"waterfilled4", 1}, {"waterfilled_half", 5}, {"waterfilled_half2", 5},
+			--Additional stairs
+			{"pilar_stairs", 6}, {"pilar_stairs2", 5}, {"pilar_stairs3", 2}
+			},
 			lite_room_chance = 0,
 			door_chance = 1,
 			tunnel_change = 90,
@@ -33,13 +40,17 @@ return {
 			['.'] = "FLOOR",
 	--		['.'] = { "FLOOR", "MOSS", "CHASM", "WATER", }
 			['#'] = "WALL",
-			up = "UP",
-			down = "DOWN",
+	--		up = "UP",
+			up = {"UP", "SHAFT_UP"},
+	--		down = "DOWN",
+			down = { "DOWN", "SHAFT_DOWN" },
 			door = "DOOR",
 			['m'] = "MOSS",
 			['x'] = "CHASM",
 			['~'] = { "WATER", "WATER_DEEP" },
 			['l'] = "LAVA",
+			['i'] = "ICE",
+			['>'] = { "DOWN", "SHAFT_DOWN" },
 		},
 		actor = {
 			class = "engine.generator.actor.Random",
@@ -52,10 +63,18 @@ return {
 	},
 	levels =
 	{
+	--No stairs up on level 1
 		[1] = { 
 		generator = { map = { 
 		up = "FLOOR",
 		},},
 	},
+	--No shaft up on level 2
+		[2] = { 
+		generator = { map = { 
+		up = "UP",
+		},},
+	},
+
 	},
 }

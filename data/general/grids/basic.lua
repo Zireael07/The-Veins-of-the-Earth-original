@@ -36,6 +36,25 @@ newEntity{
 }
 
 newEntity{
+	define_as = "SHAFT_UP",
+	name = "previous level",
+	display = '<', color_r=210, color_g=105, color_b=30, back_color=colors.DARK_GREY,
+	notice = true,
+	always_remember = true,
+	change_level = -2,
+}
+
+newEntity{
+	define_as = "SHAFT_DOWN",
+	name = "next level",
+	display = '>', color_r=210, color_g=105, color_b=30, back_color=colors.DARK_GREY,
+	notice = true,
+	always_remember = true,
+	change_level = 2,
+}
+
+
+newEntity{
 	define_as = "FLOOR",
 	name = "floor", image = "terrain/marble_floor.png",
 	display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
@@ -155,11 +174,11 @@ newEntity{
 	define_as = "ICE",
 	type = "floor", subtype = "ice",
 	name = "ice floor", 
-	display = ' ', color=colors.STEEL_BLUE, back_color=colors.TEAL,
+	display = ' ', color=colors.STEEL_BLUE, back_color=colors.STEEL_BLUE,
 	always_remember = true,
 	on_stand = function(self, x, y, who)
 		local save = who:skillCheck("balance", 15)
-		if not save then who:setEffect(who.EFF_FELL, 2, {}) end 
+		if not save then who:setEffect(who.EFF_FELL, 1, {}) end 
 	end
 }
 
@@ -176,5 +195,13 @@ newEntity{
 	type = "floor", subtype = "sand",
 	name = "sand", 
 	display = ' ', color=colors.YELLOW, back_color=colors.GREY,
+	always_remember = true,
+}
+
+newEntity{
+	define_as = "SWAMP",
+	type = "floor", subtype = "swamp",
+	name = "sand", 
+	display = ' ', color=colors.UMBER, back_color=colors.DARK_GREEN,
 	always_remember = true,
 }
