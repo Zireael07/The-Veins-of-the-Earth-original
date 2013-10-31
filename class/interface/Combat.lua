@@ -32,7 +32,14 @@ function _M:bumpInto(target)
     if reaction < 0 then
         return self:attackTarget(target)
     elseif reaction >= 0 then
-        if self.move_others then
+        -- Talk ?
+        if self.player and target.can_talk then
+            local chat = Chat.new(target.can_talk, target, self)
+            chat:invoke()
+        elseif target.player and self.can_talk then
+            local chat = Chat.new(self.can_talk, self, target)
+            chat:invoke()
+        elseif self.move_others then
             -- Displace
             game.level.map:remove(self.x, self.y, Map.ACTOR)
             game.level.map:remove(target.x, target.y, Map.ACTOR)
@@ -108,9 +115,9 @@ function _M:attackRoll(target)
     end
 
     if hit then
-        game.log(("%s hits the enemy! Dice roll %d + bonus %d = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
+        game.log(("%s hits the enemy! Dice roll %d + %d bonus = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
     else
-        game.log(("%s misses the enemy! Dice roll %d + bonus %d = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
+        game.log(("%s misses the enemy! Dice roll %d + %d bonus = %d vs AC %d"):format(self.name:capitalize(), d, attack, d+attack, ac))
     end
 
     -- Crit check

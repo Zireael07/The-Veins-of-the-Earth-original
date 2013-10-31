@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -16,12 +16,18 @@
 
 engine.Faction:add{ name="Neutral", reaction={}, }
 engine.Faction:setInitialReaction("neutral", "enemies", -100, true)
+engine.Faction:setInitialReaction("neutral", "players", 50, true)
 
 engine.Faction:add{ name="Allies", reaction={}, }
 engine.Faction:setInitialReaction("allies", "enemies", -100, true)
+engine.Faction:setInitialReaction("allies", "players", 100, true)
 
 engine.Faction:add{ name="Good", reaction={}, }
-engine.Faction:setInitialReaction("evil", "enemies", -100, true)
+engine.Faction:setInitialReaction("good", "enemies", -100, true)
+--Should depend on player alignment
+engine.Faction:setInitialReaction("good", "players", 100, true)
 
 engine.Faction:add{ name="Evil", reaction={}, }
 engine.Faction:setInitialReaction("evil", "enemies", 0, true)
+--Should depend on player alignment
+engine.Faction:setInitialReaction("evil", "players", -100, true)
