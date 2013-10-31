@@ -14,11 +14,16 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+local help = [[#GOLD#Feat points#SANDY_BROWN# are used to pick feats, which improve the character in various ways. #GOLD#Skill points#LAST#are used to improve the character's skills, as their name suggests.
+ If you pick the #GOLD#favored class#LAST# later, you will gain +2 hit points per level and a +1 to attack. The latter bonus does not apply if you are a mage, however.
+ #GOLD#ECL#LAST# means that your character will need more XP to level up (as though his or her level was equal to level + ECL).
+ #WHITE#]]
+
 --Standard races
 newBirthDescriptor {
 	type = 'race',
 	name = 'Human',
-	desc = [[Humans are the basic race to which all others are compared. +1 feat and +4 skill points at 1st level.]],
+	desc = help..'Humans are the basic race to which all others are compared.\n\n +1 feat point and +4 skill points at 1st level.',
 	copy_add = {
 		feat_point = 1,
 		skill_point = 4,
@@ -34,7 +39,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Half-Elf',
-	desc = [[A crossbreed of elf and human, they get the best of the two races. Cha +2. Diplomacy, Listen, Search, Spot +1. Favored class: Bard.]],
+	desc = help..'A crossbreed of elf and human, they get the best of the two races.\n\n Cha +2. Diplomacy, Listen, Search, Spot +1. Favored class: Bard.',
 	stats = { cha = 2, },
 	copy_add = {
 		skill_diplomacy = 1,
@@ -53,7 +58,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Half-Drow',
-	desc = [[A crossbreed of drow and human, they get the best of the two races. Cha +2. Listen, Spot, Search +1. Darkvision 2. Favored class: Cleric.]],
+	desc = help..'A crossbreed of drow and human, they get the best of the two races.\n\n Cha +2. Listen, Spot, Search +1. Darkvision 2. Favored class: Cleric.',
 	stats = { cha = 2, },
 	copy_add = {
 		infravision = 2,
@@ -72,7 +77,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Elf',
-	desc = [[Elves are also called the Fair Folk. Dex +2 Con -2. Listen, Spot, Search +1. Darkvision 3. Favored class: Ranger.]],
+	desc = help..'Elves are also called the Fair Folk.\n\n Dex +2 Con -2. Listen, Spot, Search +1. Darkvision 3. Favored class: Ranger.',
 	stats = { dex = 2, con = -2, },
 	copy_add = {
 		infravision = 3,
@@ -91,7 +96,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Half-Orc',
-	desc = [[A crossbreed of orc and human. Str +2 Int -2 Cha -2. Darkvision 3. Favored class: Barbarian.]],
+	desc = help..'A crossbreed of orc and human.\n\n Str +2 Int -2 Cha -2. Darkvision 3. Favored class: Barbarian.',
 	stats = { str = 2, int = -2, cha = -2, },
 	copy_add = {
 		infravision = 3,
@@ -108,7 +113,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Gnome',
-	desc = [[A race of inventors. Str -2 Con +2. AC +1, attack +1. Listen +2. Darkvision 3. Favored class: Bard.]],
+	desc = help..'A race of inventors.\n\n Str -2 Con +2. AC +1, attack +1. Listen +2. Darkvision 3. Favored class: Bard.',
 	stats = { str = -2, con = 2 },
 	copy_add = {
 		infravision = 3,
@@ -127,7 +132,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Halfling',
-	desc = [[A race of lucky rogues. Str -2 Dex +2 Luc +2. AC +1, attack +1. Climb, Jump, Hide, Move Silently +2. +1 to all saving throws. Darkvision 3. Favored class: Rogue.]],
+	desc = help..'A race of lucky rogues.\n\n Str -2 Dex +2 Luc +2. AC +1, attack +1. Climb, Jump, Hide, Move Silently +2. +1 to all saving throws. Darkvision 3. Favored class: Rogue.',
 	stats = { str = -2, dex = 2, luc = 2 },
 	copy_add = {
 		infravision = 3,
@@ -153,7 +158,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Dwarf',
-	desc = [[A race of tough fighters and miners. Con +2, Cha -2. Darkvision 3. Favored class: Fighter.]],
+	desc = help..'A race of tough fighters and miners.\n\n Con +2, Cha -2. Darkvision 3. Favored class: Fighter.',
 	stats = { con = 2, cha = -2, },
 	copy_add = {
 		infravision = 3,
@@ -171,7 +176,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Drow',
-	desc = 'The drow are kin to the Fair Folk, who descended underground long ago.\n\n ECL +2. Dex +2 Con -2 Int +2 Cha +2 Luc -2. Darkvision 6. Listen, Spot, Search +2. Favored class: Cleric (female), Wizard (male).',
+	desc = help..'The drow are kin to the Fair Folk, who descended underground long ago.\n\n ECL +2. Dex +2 Con -2 Int +2 Cha +2 Luc -2. Darkvision 6. Listen, Spot, Search +2. Favored class: Cleric (female), Wizard (male).',
 	stats = { dex = 2, con = -2, int = 2, cha = 2, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -187,7 +192,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Duergar',
-	desc = 'The gray dwarves are the underground offshoot of the dwarves, long ago imprisoned by the mind flayers.\n\n ECL +1. Con +2 Cha -2 Luc -2. Darkvision 6. Listen, Spot +1. Favored class: Fighter.',
+	desc = help..'The gray dwarves are the underground offshoot of the dwarves, long ago imprisoned by the mind flayers.\n\n ECL +1. Con +2 Cha -2 Luc -2. Darkvision 6. Listen, Spot +1. Favored class: Fighter.',
 	stats = { con = 2, cha = -4, luc = -2, },
 	copy_add = {
 		infravision = 6,
@@ -201,7 +206,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Deep gnome',
-	desc = 'The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders.\n\n ECL +3. Str -2 Dex +2 Wis +2 Cha -4 Luc -2. Darkvision 6. Listen +2. Fort, Ref, Will +2. AC +4. Favored class: Rogue.',
+	desc = help..'The deep gnomes are the Underdark offshoot of the gnomes, distrustful of all outsiders.\n\n ECL +3. Str -2 Dex +2 Wis +2 Cha -4 Luc -2. Darkvision 6. Listen +2. Fort, Ref, Will +2. AC +4. Favored class: Rogue.',
 	stats = { str = -2, dex = 2, wis = 2, cha = -4, luc = -2, },
 	copy_add = {
 		infravision = 6,

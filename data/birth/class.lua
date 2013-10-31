@@ -1,11 +1,13 @@
 --Veins of the Earth
 --Zireael
 
+local help = '#GOLD#BAB#SANDY_BROWN# = Base Attack Bonus, required by some feats\n #GOLD#Fort#LAST#, #GOLD#Ref#LAST# and #GOLD#Will#LAST# are saving throws, used to protect you from danger (spells, terrain effects). The type of the saving throw used depends on the spell or effect involved.\n\n'
+
 -- Classes
 newBirthDescriptor {
 	type = 'class',
 	name = 'Barbarian',
-	desc = 'Raging warriors of the wilds.\n\n +33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.',
+	desc = help..'#ORANGE#Raging warriors of the wilds.\n\n #WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -74,7 +76,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
-	desc = 'Musicians and gentlefolk.\n\n 6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.',
+	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -160,7 +162,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Cleric',
-	desc = 'Clerics are masters of healing.\n\n 8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
+	desc = help..'#ORANGE#Clerics are masters of healing.\n\n #WHITE#8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -244,7 +246,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Druid',
-	desc = 'Clerics of nature.\n\n 8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
+	desc = help..'#ORANGE#Clerics of nature.\n\n #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -320,7 +322,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Fighter',
-	desc = 'Simple fighters, they hack away with their trusty weapon.\n\n 10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.',
+	desc = help..'#ORANGE#Simple fighters, they hack away with their trusty weapon.\n\n #WHITE#10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -383,7 +385,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Ranger',
-	desc = 'Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n 8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.',
+	desc = help..'#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n #WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -481,7 +483,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Rogue',
-	desc = 'Rogues are masters of tricks.\n\n 6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.',
+	desc = help..'#ORANGE#Rogues are masters of tricks.\n\n #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -553,7 +555,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Wizard',
-	desc = 'Masters of arcane magic.\n\n 4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
+	desc = help..'#ORANGE#Masters of arcane magic.\n\n #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -644,7 +646,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Warlock',
-	desc = 'A spellcaster who needs no weapon.\n\n 6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
+	desc = help..'#ORANGE#A spellcaster who needs no weapon.\n\n #WHITE#6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
