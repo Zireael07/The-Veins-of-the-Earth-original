@@ -915,15 +915,33 @@ end
 
 
 function _M:randomFeat()
-	local chance = rng.dice(1,5)
+	local chance = rng.dice(1,23)
 	if chance == 1 then self:learnTalent(self.T_POWER_ATTACK, true)
 	elseif chance == 2 then self:learnTalent(self.T_DODGE, true)
 	elseif chance == 3 then self:learnTalent(self.T_FINESSE, true)
 	elseif chance == 4 then self:learnTalent(self.T_TOUGHNESS, true)
-	--TO DO: Figure out how to do the choice part of these three
+	elseif chance == 5 then self:learnTalent(self.T_ACROBATIC, true)
+	elseif chance == 6 then self:learnTalent(self.T_AGILE, true)
+	elseif chance == 7 then self:learnTalent(self.T_ALERTNESS, true)
+	elseif chance == 8 then self:learnTalent(self.T_ANIMAL_AFFINITY, true)
+	elseif chance == 9 then self:learnTalent(self.T_ARTIST, true)
+	elseif chance == 10 then self:learnTalent(self.T_ATHLETIC, true)
+	elseif chance == 11 then self:learnTalent(self.T_COMBAT_CASTING, true)
+	elseif chance == 12 then self:learnTalent(self.T_DEFT_HANDS, true)
+	elseif chance == 13 then self:learnTalent(self.T_INVESTIGATOR, true)
+	elseif chance == 14 then self:learnTalent(self.T_MAGICAL_APTITUDE, true)
+	elseif chance == 15 then self:learnTalent(self.T_MAGICAL_TALENT, true)
+	elseif chance == 16 then self:learnTalent(self.T_NEGOTIATOR, true)
+	elseif chance == 17 then self:learnTalent(self.T_NIMBLE_FINGERS, true)
+	elseif chance == 18 then self:learnTalent(self.T_PERSUASIVE, true)
+	elseif chance == 19 then self:learnTalent(self.T_SILVER_PALM, true)
+	elseif chance == 20 then self:learnTalent(self.T_STEALTHY, true)
+	elseif chance == 21 then self:learnTalent(self.T_THUG, true)
+	elseif chance == 22 then self:learnTalent(self.T_TWO_WEAPON_FIGHTING, true)
+	--TO DO: Figure out how to do the choice part of these ones
 --[[	elseif chance == 5 then self:learnTalent(self.T_FAVORED_ENEMY, true)
-	elseif chance == 6 then self:learnTalent(self.T_WEAPON_FOCUS, true)
-	elseif chance == 7 then self:learnTalent(self.T_TWO_WEAPON_FIGHTING, true)]]
+	elseif chance == 6 then self:learnTalent(self.T_WEAPON_FOCUS, true)]]
+	
 	else self:learnTalent(self.T_IRON_WILL, true) end
 
 end
