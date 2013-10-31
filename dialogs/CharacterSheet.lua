@@ -74,8 +74,37 @@ function _M:drawDialog()
     local Lucbonus = math.floor((player:getLuc()-10)/2)
 
     s:drawColorStringBlended(self.font, "#SLATE#Name : "..(player.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "#SLATE#Class : "..(player.descriptor.class or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "#SLATE#Race : "..(player.descriptor.race or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+
+    --Automatically print out classes
+    local Birther = require "engine.Birther"
+
+    local list = {}
+    local player = game.player
+    for i, d in ipairs(Birther.birth_descriptor_def.class) do
+    
+    local level = player.classes[d.name] or 0
+        if not d.prestige and level > 0 then
+        local name = ""
+       name = "#WHITE#"..d.name.." #SANDY_BROWN#"..level.."#LAST#"
+
+        table.insert(list, {name = name, desc = desc, level = level, real_name = d.name})
+        end
+    end
+   
+    self.list = list
+
+    table.sort(self.list, function (a,b)
+        if a.level == b.level then 
+            return a.name < b.name
+        else 
+            return a.level > b.level
+        end
+    end)
+
+    for i, d in ipairs(list) do
+     s:drawColorStringBlended(self.font, ("%s"):format(d.name), w, h, 255, 255, 255, true) h = h + self.font_h
+end
 
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_LEVEL, s:drawColorStringBlended(self.font, "Character level: "..(player.level or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
@@ -88,7 +117,6 @@ function _M:drawDialog()
 
 
     h = h + self.font_h -- Adds an empty row
-    --s:drawColorStringBlended(self.font, "#SLATE#Hit Dice : d"..(player.hd_size or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life).."/"..math.floor(player.max_life)), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
