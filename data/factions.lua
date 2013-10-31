@@ -15,7 +15,8 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 engine.Faction:add{ name="Neutral", reaction={}, }
-engine.Faction:setInitialReaction("neutral", "enemies", -100, true)
+--Shopkeepers shouldn't fight random monsters
+engine.Faction:setInitialReaction("neutral", "enemies", 50, true)
 engine.Faction:setInitialReaction("neutral", "players", 50, true)
 
 engine.Faction:add{ name="Allies", reaction={}, }
