@@ -19,8 +19,6 @@ local Entity = require "engine.Entity"
 -- Taken from ToME data/talents.lua
 local oldNewTalent = Talents.newTalent
 Talents.newTalent = function(self, t)
-	
-	t.type_no_req = true -- Since we do not use talent types
 
 	if not t.image then
 		t.image = "talents/"..(t.short_name or t.name):lower():gsub("[^a-z0-9_]", "_")..".png"
