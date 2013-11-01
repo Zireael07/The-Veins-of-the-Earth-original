@@ -120,6 +120,76 @@ newEffect{
 	end,
 }
 
+--Modified ToME 4 code
+newEffect{
+	name = "FEAR",
+	desc = "Panicked",
+	type = "mental",
+	subtype = { fear=true },
+	status = "detrimental",
+	parameters = {},
+	on_gain = function(self, err) return "#Target# becomes panicked!", "+Panicked" end,
+	on_lose = function(self, err) return "#Target# is no longer panicked", "-Panicked" end,
+	activate = function(self, eff)
+	end,
+	deactivate = function(self, eff)
+	end,
+	do_act = function(self, eff)
+		if not self:enoughEnergy() then return nil end
+		if eff.source.dead then return true end
+
+		-- apply periodic timer instead of random chance
+		if not eff.timer then
+			eff.timer = rng.float(0, 100)
+		end
+		if self:willSave(15) then
+			eff.timer = eff.timer 
+			game.logSeen(self, "%s struggles against the panic.", self.name:capitalize())
+		else
+			eff.timer = eff.timer + rng.float(0, 100)
+		end
+		if eff.timer > 100 then
+			eff.timer = eff.timer - 100
+
+			local distance = core.fov.distance(self.x, self.y, eff.source.x, eff.source.y)
+			if distance <= eff.range then
+				-- in range
+				if not self:attr("never_move") then
+					local sourceX, sourceY = eff.source.x, eff.source.y
+
+					local bestX, bestY
+					local bestDistance = 0
+					local start = rng.range(0, 8)
+					for i = start, start + 8 do
+						local x = self.x + (i % 3) - 1
+						local y = self.y + math.floor((i % 9) / 3) - 1
+
+						if x ~= self.x or y ~= self.y then
+							local distance = core.fov.distance(x, y, sourceX, sourceY)
+							if distance > bestDistance
+									and game.level.map:isBound(x, y)
+									and not game.level.map:checkAllEntities(x, y, "block_move", self)
+									and not game.level.map(x, y, Map.ACTOR) then
+								bestDistance = distance
+								bestX = x
+								bestY = y
+							end
+						end
+					end
+
+					if bestX then
+						self:move(bestX, bestY, false)
+						game.logPlayer(self, "#F53CBE#You panic and flee from %s.", eff.source.name)
+					else
+						game.logSeen(self, "#F53CBE#%s panics and tries to flee from %s.", self.name:capitalize(), eff.source.name)
+						self:useEnergy(game.energy_to_act * self:combatMovementSpeed(bestX, bestY))
+					end
+				end
+			end
+		end
+	end,
+}
+
 --Magical radiation, Zireael
 newEffect{
 	name = "MAG_RADIATION",

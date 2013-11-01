@@ -206,6 +206,9 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_CURE_LIGHT_WOUNDS, true)
 			actor:learnTalent(actor.T_INFLICT_LIGHT_WOUNDS, true)
 
+			actor:learnTalent(actor.T_LAY_ON_HANDS, true)
+			actor:learnTalent(actor.T_TURN_UNDEAD, true)
+
 			actor:learnTalentType("divine/divine", true)
 			actor:learnTalentType("cleric/cleric", true)
 
