@@ -240,12 +240,12 @@ function _M:changeLevel(lev, zone)
 	local max_magic = 0
 
 	--Detect powerful magic items
---[[	for o in pairs(game.level.entities) do --list[#list+1] = o
+--[[	for uid, o in pairs(game.level.entities) do --list[#list+1] = o
 		local magic_bonus = o.combat.magic_bonus
 		local magic_armor = o.wielder.combat_magic_armor
 		local magic_shield = o.wielder.combat_magic_shield
 		local natural = o.wielder.combat_natural
-		local protection = self.wielder.combat_protection
+		local protection = o.wielder.combat_protection
 
 		if o.type == "weapon" and magic_bonus and magic_bonus > 0 then magic = o.magic_bonus
 		elseif o.type == "armor" and magic_armor and magic_armor > 0 then magic = o.magic_armor
@@ -259,9 +259,9 @@ function _M:changeLevel(lev, zone)
 	end
 
 		if max_magic > 2 then feeling = "You get goosebumps on your skin. A magic item is radiating power."
-		elseif max_magic > 4 then feeling = "The feeling of power threatens to overwhelm you. A powerful magic item must be nearby."]]
+		elseif max_magic > 4 then feeling = "The feeling of power threatens to overwhelm you. A powerful magic item must be nearby."
 
-		if max_cr > player.level + 4 then feeling = "You get the feeling that there is a powerful enemy here."
+		else]]if max_cr > player.level + 4 then feeling = "You get the feeling that there is a powerful enemy here."
 		elseif max_cr < player.level -4 then feeling = "You feel very confident in your power."
 		else feeling = "You walk cautiously, feeling slightly anxious."	
 		end
@@ -454,7 +454,7 @@ function _M:setupCommands()
 			if self.player:enoughEnergy() and e.change_level then
 				local level = self.level.level
 				if rng.percent(75) then
-					level = level + 1
+					level = level + e.change_level
 					self.player:gainExp(math.floor(level*50))
 				else
 					level = level + 0.001

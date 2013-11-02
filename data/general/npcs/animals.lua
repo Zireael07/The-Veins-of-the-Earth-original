@@ -138,7 +138,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_LIZARD",
-	name = "medium snake", color=colors.GREEN,
+	name = "medium lizard", color=colors.GREEN,
 	level_range = {1, 20}, exp_worth = 50,
 	rarity = 5,
 	max_life = resolvers.rngavg(1,3),
@@ -242,7 +242,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_WOLF",
 	type = "animal",
-	display = 'q', color=colors.BLACK,
+	display = 'd', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large wolf.]],
 
