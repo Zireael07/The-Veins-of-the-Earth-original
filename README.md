@@ -63,4 +63,5 @@ Thanks to:
 - Castler for testing
 - AuraOfTheDawn for testing & coming up with a nice meme
 - grazz for two small fixes
+- lukep for Combat.lua patch
 
