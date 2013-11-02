@@ -239,7 +239,7 @@ newBirthDescriptor {
 
 		if (actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female") or actor.descriptor.race == "Half-Drow" then
 		actor.combat_attack = (actor.combat_attack or 0) + 1
-		actor.max_life = actor.max_life + 1
+		actor.max_life = actor.max_life + 10
 		else
 		actor.max_life = actor.max_life + 8 end
 		end
@@ -258,7 +258,7 @@ newBirthDescriptor {
 		},
 	},
 	copy_add = {
-		skill_point = 12, --4x skill points at 1st level
+		skill_point = 6, --4x skill points at 1st level
 	},
 	descriptor_choices =
 	{
@@ -316,7 +316,7 @@ newBirthDescriptor {
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 
 		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 4
+		actor.skill_point = (actor.skill_point or 0) + 2
 		end
 	end,
 }   
@@ -377,9 +377,10 @@ newBirthDescriptor {
 		--Favored class bonuses
 		actor.combat_attack = (actor.combat_attack or 0) + 1
 		actor.max_life = actor.max_life + 12
-		end
+		else
 		actor.max_life = actor.max_life + 10
 		actor.skill_point = (actor.skill_point or 0) + 2
+		end
 		end
 	end,
 }
