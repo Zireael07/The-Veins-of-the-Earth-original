@@ -201,7 +201,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
    end
    
    if hit then
-      local dam = rng.dice(self.combat.dam[1],self.combat.dam[2])
+      local dam = rng.dice(weapon.combat.dam[1],weapon.combat.dam[2])
 
       -- magic damage bonus
       dam = dam + (weapon and weapon.combat.magic_bonus or 0)

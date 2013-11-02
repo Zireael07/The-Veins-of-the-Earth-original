@@ -372,6 +372,7 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
+		actor.skill_point = (actor.skill_point or 0) + 2
 
 		if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
 		--Favored class bonuses
@@ -379,7 +380,6 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 12
 		else
 		actor.max_life = actor.max_life + 10
-		actor.skill_point = (actor.skill_point or 0) + 2
 		end
 		end
 	end,
