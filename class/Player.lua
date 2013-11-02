@@ -81,11 +81,10 @@ function _M:onBirth()
 end
 
 function _M:randomPerk()
-  self:randomFeat()
---[[local d = rng.dice(1,2)
+local d = rng.dice(1,2)
   if d == 1 then self:randomFeat()
   elseif d == 2 then self:randomSpell() end
-  else self:randomItem() end ]]
+--  else self:randomItem() end 
 end
 
 function _M:randomName()
