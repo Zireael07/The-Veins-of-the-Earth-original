@@ -690,17 +690,15 @@ function _M:skillCheck(skill, dc, silent)
 	elseif d == 1 then return false
 	end
 
---	local skill = (self:getSkill(skill) or 0)
-
-	local result = d + (getSkill(skill) or 0)
+	local result = d + (self:getSkill(skill) or 0)
 
 	if result > dc then success = true end
 
 	--Limit logging to the player
 	if not silent and self == game.player then
 		local who = self:getName()
-		local s = ("%s check for %s: dice roll %d + bonus = %d vs DC %d -> %s"):format(
-			skill:capitalize(), who, d, result, dc, success and "success" or "failure")
+		local s = ("%s check for %s: dice roll %d + bonus %d = %d vs DC %d -> %s"):format(
+			skill:capitalize(), who, d, self:getSkill(skill) or 0, result, dc, success and "success" or "failure")
 		game.log(s)
 	end
 
