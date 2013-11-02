@@ -9,6 +9,13 @@ newEntity{
     egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 
+newEntity{
+    define_as = "BASE_WEAPON_TWOHANDED",
+    slot = "MAIN_HAND", slot_forbid = "OFF_HAND",
+    type = "weapon",
+    egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+}
+
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_DAGGER",
     type = "weapon", subtype="dagger",
@@ -397,7 +404,7 @@ newEntity{ base = "BASE_WARHAMMER",
 }
 
 --Two-handed weapons
-newEntity{ base = "BASE_WEAPON",
+newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_FALCHION",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -421,7 +428,7 @@ newEntity{ base = "BASE_FALCHION",
     },
 }
 
-newEntity{ base = "BASE_WEAPON",
+newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_GREATAXE",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -445,7 +452,7 @@ newEntity{ base = "BASE_GREATAXE",
     },
 }
 
-newEntity{ base = "BASE_WEAPON",
+newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_GREATCLUB",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -468,7 +475,7 @@ newEntity{ base = "BASE_GREATCLUB",
     },
 }
 
-newEntity{ base = "BASE_WEAPON",
+newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_HEAVYFLAIL",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -492,7 +499,7 @@ newEntity{ base = "BASE_HEAVYFLAIL",
     },
 }
 
-newEntity{ base = "BASE_WEAPON",
+newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_GREATSWORD",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -516,7 +523,7 @@ newEntity{ base = "BASE_GREATSWORD",
     },
 }
 
-newEntity{ base = "BASE_WEAPON",
+newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_HALBERD",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -540,7 +547,7 @@ newEntity{ base = "BASE_HALBERD",
     },
 }
 
-newEntity{ base = "BASE_WEAPON",
+newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_SCYTHE",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",

@@ -13,6 +13,15 @@ newEntity {
     egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 
+newEntity{
+    define_as = "BASE_EXOTIC_TWOHANDED", 
+    slot = "MAIN_HAND", slot_forbid = "OFF_HAND",
+    type = "weapon",
+    exotic = true,
+    require = { talent = { Talents.T_EXOTIC_WEAPON_PROFICIENCY }, },
+    egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+}
+
 
 newEntity{ base = "BASE_EXOTIC",
     define_as = "BASE_BASTARDSWORD",
@@ -58,7 +67,7 @@ newEntity{ base = "BASE_WARAXE",
 }
 
 --A reach weapon
-newEntity{ base = "BASE_EXOTIC",
+newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     define_as = "BASE_SPIKEDCHAIN",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -83,7 +92,7 @@ newEntity{ base = "BASE_SPIKEDCHAIN",
 
 
 --Double weapons
-newEntity{ base = "BASE_EXOTIC",
+newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     define_as = "BASE_DAXE",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -107,7 +116,7 @@ newEntity{ base = "BASE_DAXE",
     },
 }
 
-newEntity{ base = "BASE_EXOTIC",
+newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     define_as = "BASE_DSWORD",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
@@ -132,7 +141,7 @@ newEntity{ base = "BASE_DSWORD",
 }
 
 --1d8 one head, 1d6 the other
-newEntity{ base = "BASE_EXOTIC",
+newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     define_as = "BASE_URGROSH",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
