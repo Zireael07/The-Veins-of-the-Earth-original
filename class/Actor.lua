@@ -777,7 +777,7 @@ end
 
 
 --- The max charge worth you can have in a given spell level
-function _M:getMaxMaxCharges(talent_type)
+function _M:getMaxMaxCharges(spell_list)
 	local t = {}
 	local l = self.level + 5
 	while l > 5 do
@@ -797,8 +797,7 @@ function _M:getCharges(tid)
 	return self.charges[tid] or 0
 end
 
-function _M:incMaxCharges(tid, v)
-	-- TODO: Clean this nastiness up
+function _M:incMaxCharges(tid, v, spell_list)
 	local tt
 	local t
 	if type(tid) == "table" then
@@ -811,32 +810,29 @@ function _M:incMaxCharges(tid, v)
 	end
 
 	--Can the player have this many max charges for this type?
-	local a = self:getAllocatedCharges(tt, t.level)
+	local a = self:getAllocatedCharges(spell_list, t.level)
 	if a + v > self:getMaxMaxCharges()[t.level] then return end
 	self.max_charges[tid] = (self.max_charges[tid] or 0) + v
-	self:incAllocatedCharges(tt, t.level, v)
+	self:incAllocatedCharges(spell_list, t.level, v)
 end
 
 
 --- Set the number of prepared instances of a certain spell
-function _M:setMaxCharges(tid, v)
+function _M:setMaxCharges(tid, spell_list, v)
 
-	local tt
 	local t
 	if type(tid) == "table" then
 		t = tid
-		tt = tid.type[1]
 		tid = tid.id 
 	else
 		t = self:getTalentFromId(tid)
-		tt = self:getTalentFromId(tid).type[1]
 	end
 
 	--Can the player have this many max charges for this type?
-	local a = self:getAllocatedCharges(tt, tid.level)
-	if a + v > self:getMaxMaxCharges()[1] then return end
+	local a = self:getAllocatedCharges(spell_list, tid.level)
+	if a + v > self:getMaxMaxCharges()[tid.level] then return end
 	self.max_charges[tid] = v
-	self:setAllocatedCharges(tt, t.level, v)
+	self:setAllocatedCharges(spell_list, t.level, v)
 end
 
 --- Set the number of available instances of a certain spell
@@ -861,29 +857,35 @@ function _M:incCharges(tid, v)
 	self:setCharges(tid, new)
 end
 
-function _M:getAllocatedCharges(type, level)
-	local tid = self:getTalentFromId(type)
-	local c = self.allocated_charges[type]
+function _M:getAllocatedCharges(spell_list, level)
+	local c = self.allocated_charges[spell_list]
 	c = c and c[level]
 	return c or 0
 end
 
-function _M:setAllocatedCharges(type, level, value)
-	if not self.allocated_charges[type] then self.allocated_charges[type] = {} end
-	if not self.allocated_charges[type][level] then self.allocated_charges[type][level] = {} end
-	self.allocated_charges[type][level] = value
+function _M:setAllocatedCharges(spell_list, level, value)
+	if not self.allocated_charges[spell_list] then self.allocated_charges[spell_list] = {} end
+	if not self.allocated_charges[spell_list][level] then self.allocated_charges[spell_list][level] = {} end
+	self.allocated_charges[spell_list][level] = value
 end
 
-function _M:incAllocatedCharges(type, level, value)
-	local c = self:getAllocatedCharges(type, level)
+function _M:incAllocatedCharges(spell_list, level, value)
+	local c = self:getAllocatedCharges(spell_list, level)
 	local val = c and (c + value) or value
-	self:setAllocatedCharges(type, level, val)
+	self:setAllocatedCharges(spell_list, level, val)
 end
 
 function _M:allocatedChargesReset()
 	for k, v in pairs(self.max_charges) do
-		self:setMaxCharges(k, 0)
-		self:setCharges(k, 0)
+		self.max_charges[k] = 0
+	end
+	for k, v in pairs(self.charges) do
+		self.charges[k] = 0
+	end
+	for k,v in pairs(self.allocated_charges) do
+		for level, value in pairs(self.allocated_charges[k]) do
+			self.allocated_charges[k][level] = 0
+		end
 	end
 end
 

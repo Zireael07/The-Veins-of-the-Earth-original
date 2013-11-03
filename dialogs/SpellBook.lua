@@ -21,13 +21,11 @@ function _M:init(actor)
 
     local types = {}
     if self.actor:knowTalentType("arcane/arcane") then
-        types[#types+1]= {title="Arcane", kind="arcane/arcane"}
+        types[#types+1]= {title="Arcane", kind="arcane"}
     end
-    if self.actor:knowTalentType("divine/divine") then
-        types[#types+1] = {title="Divine", kind="divine/divine"}
+    if self.actor:knowTalentType("divine") then
+        types[#types+1] = {title="Divine", kind="divine"} --TODO: Fix for divine spells
     end
-
-    self:generateList(types[1].kind)
 
     self.c_tabs = Tabs.new{width=self.iw - 5, tabs=types, on_change=function(kind) self:switchTo(kind) end}
 
@@ -42,8 +40,10 @@ function _M:init(actor)
         }
     end
 
-    self.c_desc = SurfaceZone.new{width=300, height=500,alpha=1.0}
-    self.c_charges = SurfaceZone.new{width=300, height=500,alpha=1.0}
+    self.c_desc = SurfaceZone.new{width=500, height=500,alpha=1.0}
+    self.c_charges = SurfaceZone.new{width = 500, height=500,alpha=1.0}
+
+    self:generateList(types[1].kind)
 
     self:loadUI{
         {left=0, top=0, ui=self.c_tabs},
@@ -107,15 +107,15 @@ function _M:drawDialog(s)
 
         local ww = w
         local hh = h
-        for _, t in ipairs(self.list[i]) do
+        for _, t in pairs(v) do
             local p = game.player
             local num = p:getCharges(t) or 0
             local max = p:getMaxCharges(t) or 0
             local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
-            c:drawColorString(font, str, ww, hh, 255, 255, 255, true) 
-            ww = ww + self.spells[1].tile_w + self.spells[1].padding
-        end
-        h = h + 90
+            c:drawColorString(font, str, ww, hh, 255, 255, 255, true)
+            ww = ww + self.spells[i].tile_w + self.spells[i].padding 
+            end  
+        h = h + 90 
     end
 
     self.c_desc:generate()
@@ -140,7 +140,7 @@ function _M:onSpell(item, button)
     end
     local p = game.player
     if item then 
-        p:incMaxCharges(item.data, v) 
+        p:incMaxCharges(item.data, v, self.spell_list) 
     end
     self:drawDialog()
 
@@ -160,22 +160,36 @@ function _M:generateList(spellist)
         list[i] = {}
     end
 
-    for tid, _ in pairs(player.talents) do
-		local t = player:getTalentFromId(tid)
-        if t.type[1] == spellist and player:knowTalent(t) then
-            local slist = list[t.level]
-            list[t.level][#slist+1] = t
+    for _, tt in pairs(player.talents_types_def) do
+        if tt.spell_list == spellist then
+            for _, t in pairs(tt.talents) do
+                -- check if the talent has already been added so we dont get duplicats
+                if player:knowTalent(t) then
+                    local add = true
+                    for _, a in pairs(list[t.level]) do
+                        if t.id == a.id then
+                            add = false
+                            break
+                        end
+                    end
+                    if add then 
+                        local slist = list[t.level]
+                        table.insert(list[t.level], t)
+                    end
+                end
+            end
         end
     end
 
-    self.list = list
 
     if self.spells then
         for i=1,9 do
-            self.spells[i].list = self.list[i]
+            self.spells[i].list = list[i]
         end
         self:drawDialog()
     end
+
+    self.list = list
 end
 
 function _M:onEnd(result)

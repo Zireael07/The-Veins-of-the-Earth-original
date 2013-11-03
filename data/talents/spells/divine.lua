@@ -1,8 +1,8 @@
-newTalentType{ all_limited=true, type="divine/divine", name="divine", description="Divine Spells" }
+newTalentType{ all_limited=true, spell_list = "divine", type="divine", name="divine", description="Divine Spells" }
 
 newTalent{
 	name = "Cure Light Wounds",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
 	--require = ,
@@ -29,7 +29,7 @@ newTalent{
 
 newTalent{
 	name = "Cure Moderate Wounds",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	mode = 'activated',
 	--require = ,
 	level = 2,
@@ -55,7 +55,7 @@ newTalent{
 
 newTalent{
 	name = "Cure Serious Wounds",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	mode = 'activated',
 	--require = ,
 	level = 3,
@@ -81,7 +81,7 @@ newTalent{
 
 newTalent{
 	name = "Cure Critical Wounds",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	mode = 'activated',
 	--require = ,
 	level = 4,
@@ -107,7 +107,7 @@ newTalent{
 
 newTalent{
 	name = "Heal Light Wounds",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	display = { image = "heal_light_wounds.png"},
 	mode = 'activated',
 	level = 4,
@@ -129,7 +129,7 @@ newTalent{
 
 newTalent{
 	name = "Heal Moderate Wounds",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	display = { image = "heal_light_wounds.png"},
 	mode = 'activated',
 	level = 5,
@@ -151,7 +151,7 @@ newTalent{
 
 newTalent{
 	name = "Heal Serious Wounds",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	display = { image = "heal_light_wounds.png"},
 	mode = 'activated',
 	level = 6,
@@ -173,7 +173,7 @@ newTalent{
 
 newTalent{
 	name = "Heal Critical Wounds",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	display = { image = "heal_light_wounds.png"},
 	mode = 'activated',
 	level = 7,
@@ -196,7 +196,7 @@ newTalent{
 --Inflict spells
 newTalent{
 	name = "Inflict Light Wounds",
-	type = {"divine/divine",1},
+	type = {"divine",1},
 	display = { image = "inflict_light_wounds.png"},
 	mode = "activated",
 	level = 1,
@@ -226,7 +226,7 @@ newTalent{
 
 newTalent{
 	name = "Inflict Moderate Wounds",
-	type = {"divine/divine",1},
+	type = {"divine",1},
 	display = { image = "inflict_light_wounds.png"},
 	mode = "activated",
 	level = 2,
@@ -256,7 +256,7 @@ newTalent{
 
 newTalent{
 	name = "Inflict Serious Wounds",
-	type = {"divine/divine",1},
+	type = {"divine",1},
 	display = { image = "inflict_light_wounds.png"},
 	mode = "activated",
 	level = 3,
@@ -286,7 +286,7 @@ newTalent{
 
 newTalent{
 	name = "Inflict Critical Wounds",
-	type = {"divine/divine",1},
+	type = {"divine",1},
 	display = { image = "inflict_light_wounds.png"},
 	mode = "activated",
 	level = 4,
@@ -318,7 +318,7 @@ newTalent{
 --"Animal buff" spells
 newTalent{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	display = { image = "bear_endurance.png"},
 	mode = 'activated',
 	level = 2,
@@ -338,7 +338,7 @@ newTalent{
 
 newTalent{
 	name = "Bull's Strength", short_name = "BULL_STRENGTH",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	display = { image = "bull_strength.png"},
 	mode = 'activated',
 	level = 2,
@@ -358,7 +358,7 @@ newTalent{
 
 newTalent{
 	name = "Eagle's Splendor", short_name = "EAGLE_SPLENDOR",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	display = { image = "eagle_splendor.png"},
 	mode = 'activated',
 	level = 2,
@@ -378,7 +378,7 @@ newTalent{
 
 newTalent{
 	name = "Owl's Wisdom", short_name = "OWL_WISDOM",
-	type = {"divine/divine", 1},
+	type = {"divine", 1},
 	display = { image = "owl_wisdom.png"},
 	mode = 'activated',
 	level = 2,
