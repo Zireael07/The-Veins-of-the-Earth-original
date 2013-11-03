@@ -4,6 +4,7 @@ newTalentType{ type="innate/innate", name = "innate", description = "Spell-like 
 newTalent{
 	name = "Acid Splash", short_name = "ACID_SPLASH_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/acid_splash.png",
 	display = { image = "talents/acid_splash.png"},
 	mode = 'activated',
 	level = 1,
@@ -36,6 +37,7 @@ newTalent{
 newTalent{	
 	name = "Grease", short_name = "GREASE_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/grease.png",
 	display = { image = "talents/grease.png"},
 	mode = 'activated',
 	level = 1,
@@ -76,6 +78,7 @@ newTalent{
 newTalent{	
 	name = "Magic Missile", short_name = "MM_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/magic_missile.png",
 	display = { image = "talents/magic_missile.png"},
 	mode = 'activated',
 	level = 1,
@@ -124,6 +127,7 @@ newTalent{
 newTalent{	
 	name = "Burning Hands", short_name = "BURNING_HANDS_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/burning_hands.png",
 	display = { image = "talents/burning_hands.png"},
 	mode = 'activated',
 	level = 1,
@@ -164,6 +168,7 @@ newTalent{
 newTalent{
 	name = "Sleep", short_name = "SLEEP_INNATE",
 	type = {"innate/innate",1},
+	image = "talents/sleep.png",
 	display = { image = "talents/sleep.png"},
 	mode = "activated",
 	level = 1,
@@ -233,6 +238,7 @@ newTalent{
 newTalent{
 	name = "Fireball", short_name = "FIREBALL_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/fireball.png",
 	display = { image = "talents/fireball.png"},
 	mode = 'activated',
 	--require = ,
@@ -269,6 +275,7 @@ newTalent{
 newTalent{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/bear_endurance.png",
 	display = { image = "talents/bear_endurance.png"},
 	mode = 'activated',
 	level = 2,
@@ -289,6 +296,7 @@ newTalent{
 newTalent{
 	name = "Bull's Strength", short_name = "BULL_STRENGTH_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/bull_strength.png",
 	display = { image = "talents/bull_strength.png"},
 	mode = 'activated',
 	level = 2,
@@ -309,6 +317,7 @@ newTalent{
 newTalent{
 	name = "Eagle's Splendor", short_name = "EAGLE_SPLENDOR_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/eagle_splendor.png",
 	display = { image = "talents/eagle_splendor.png"},
 	mode = 'activated',
 	level = 2,
@@ -329,6 +338,7 @@ newTalent{
 newTalent{
 	name = "Owl's Wisdom", short_name = "OWL_WISDOM_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/owl_wisdom.png",
 	display = { image = "talents/owl_wisdom.png"},
 	mode = 'activated',
 	level = 2,
@@ -349,6 +359,7 @@ newTalent{
 newTalent{
 	name = "Cat's Grace", short_name = "CAT_GRACE_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/cat_grace.png",
 	display = { image = "talents/cat_grace.png"},
 	mode = 'activated',
 	level = 2,
@@ -369,6 +380,7 @@ newTalent{
 newTalent{
 	name = "Fox's Cunning", short_name = "FOX_CUNNING_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/fox_cunning.png",
 	display = { image = "talents/fox_cunning.png"},
 	mode = 'activated',
 	level = 2,
@@ -390,6 +402,7 @@ newTalent{
 newTalent{
 	name = "Cure Light Wounds", short_name = "CLW_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/cure_light_wounds.png",
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
 	--require = ,
@@ -417,6 +430,7 @@ newTalent{
 newTalent{
 	name = "Cure Moderate Wounds", short_name = "CMW_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/cure_light_wounds.png",
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
 	--require = ,
@@ -444,6 +458,7 @@ newTalent{
 newTalent{
 	name = "Cure Serious Wounds", short_name = "CSW_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/cure_light_wounds.png",
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
 	--require = ,
@@ -471,6 +486,7 @@ newTalent{
 newTalent{
 	name = "Cure Critical Wounds", short_name = "CCW_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/cure_light_wounds.png",
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
 	--require = ,
@@ -498,6 +514,7 @@ newTalent{
 newTalent{
 	name = "Heal Light Wounds", short_name = "HLW_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/heal_light_wounds.png",
 	display = { image = "talents/heal_light_wounds.png"},
 	mode = 'activated',
 	level = 4,
@@ -520,6 +537,7 @@ newTalent{
 newTalent{
 	name = "Heal Moderate Wounds", short_name = "HEAL_MODERATE_WOUNDS_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/heal_light_wounds.png",
 	display = { image = "talents/heal_light_wounds.png"},
 	mode = 'activated',
 	level = 5,
@@ -542,6 +560,7 @@ newTalent{
 newTalent{
 	name = "Heal Serious Wounds", short_name = "HSW_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/heal_light_wounds.png",
 	display = { image = "talents/heal_light_wounds.png"},
 	mode = 'activated',
 	level = 6,
@@ -564,6 +583,7 @@ newTalent{
 newTalent{
 	name = "Heal Critical Wounds", short_name = "HCW_INNATE",
 	type = {"innate/innate", 1},
+	image = "talents/heal_light_wounds.png",
 	display = { image = "talents/heal_light_wounds.png"},
 	mode = 'activated',
 	level = 7,
@@ -587,6 +607,7 @@ newTalent{
 newTalent{
 	name = "Inflict Light Wounds", short_name = "INFLICT_LIGHT_WOUNDS_INNATE",
 	type = {"innate/innate",1},
+	image = "talents/inflict_light_wounds.png",
 	display = { image = "talents/inflict_light_wounds.png"},
 	mode = "activated",
 	level = 1,
@@ -617,6 +638,7 @@ newTalent{
 newTalent{
 	name = "Inflict Moderate Wounds", short_name = "INFLICT_MODERATE_WOUNDS_INNATE",
 	type = {"innate/innate",1},
+	image = "talents/inflict_light_wounds.png",
 	display = { image = "talents/inflict_light_wounds.png"},
 	mode = "activated",
 	level = 2,
@@ -647,6 +669,7 @@ newTalent{
 newTalent{
 	name = "Inflict Serious Wounds", short_name = "INFLICT_SERIOUS_WOUNDS_INNATE",
 	type = {"innate/innate",1},
+	image = "talents/inflict_light_wounds.png",
 	display = { image = "talents/inflict_light_wounds.png"},
 	mode = "activated",
 	level = 3,
@@ -677,6 +700,7 @@ newTalent{
 newTalent{
 	name = "Inflict Critical Wounds", short_name = "INFLICT_CRITICAL_WOUNDS_INNATE",
 	type = {"innate/innate",1},
+	image = "talents/inflict_light_wounds.png",
 	display = { image = "talents/inflict_light_wounds.png"},
 	mode = "activated",
 	level = 4,
