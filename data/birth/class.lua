@@ -206,10 +206,13 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_CURE_LIGHT_WOUNDS, true)
 			actor:learnTalent(actor.T_INFLICT_LIGHT_WOUNDS, true)
 
+
+			actor:learnTalentType("divine", true)
+
 			actor:learnTalent(actor.T_LAY_ON_HANDS, true)
 			actor:learnTalent(actor.T_TURN_UNDEAD, true)
 
-			actor:learnTalentType("divine/divine", true)
+
 			actor:learnTalentType("cleric/cleric", true)
 
 
@@ -224,7 +227,7 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "divine/divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+		        if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
 		        	actor:learnTalent(t.id)
 		        end
 		    end
@@ -296,7 +299,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
 			actor:learnTalent(actor.T_CURE_LIGHT_WOUNDS, true)
 
-			actor:learnTalentType("divine/divine", true)
+			actor:learnTalentType("devine", true)
 		
 		else
 		--Learn a new spell tier every 3rd level
@@ -304,7 +307,7 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "divine/divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+		        if t.type[1] == "devine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
 		        	actor:learnTalent(t.id)
 		        end
 		    end
@@ -443,7 +446,7 @@ newBirthDescriptor {
 		else
 
 		if level == 5 then
-			actor:learnTalentType("divine/divine", true)
+			actor:learnTalentType("devine", true)
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -463,7 +466,7 @@ newBirthDescriptor {
 			local spell_level = ((level-5) / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "divine/divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+		        if t.type[1] == "devine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
 		        	actor:learnTalent(t.id)
 		        end
 		    end
@@ -655,9 +658,6 @@ newBirthDescriptor {
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
 	},
-	talents_types = {
-		["arcane/arcane"] = {true, 0.0},
-	},
 	descriptor_choices =
 	{
 		--Prevent game-breaking combos due to 1 BAB requirement of some feats
@@ -679,14 +679,49 @@ newBirthDescriptor {
 			actor.will_save = (actor.will_save or 0) + 2
 			actor.skill_point = (actor.skill_point or 0) + 2
 
-			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
-			actor:learnTalent(actor.T_ACID_SPLASH, true)
-			actor:learnTalent(actor.T_GREASE, true)
-			actor:learnTalent(actor.T_MAGIC_MISSILE, true)
-			actor:learnTalent(actor.T_BURNING_HANDS, true)
-			actor:learnTalent(actor.T_SUMMON_CREATURE_I, true)
-			actor:learnTalent(actor.T_SLEEP, true)
-			actor:learnTalent(actor.T_BLINDNESS_DEAFNESS, true)
+            game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a specialization",{
+                {name="Generalist", desc="You are the master of everything but nothing. You will be equally good with all spells"},
+                {name="Abjuration", desc="Restricts Conjuration"},
+                {name="Conjuration", desc="Restricts Transmutation"},
+                {name="Divination", desc="Restrics Illusion"},
+                {name="Enchantment", desc="Restricts Illusion"},
+                {name="Evocation", desc="Restrics Conjuration"},
+                {name="Illusion", desc="Restrics Enchantment"},
+                {name="Necromancy", desc="Restricts Divination"},
+                {name="Transmutation", desc="Restrics Conjuration"}
+                },
+
+            function(result)
+            	game.log("Result: "..result)
+            	--Learn talent types based on the choice
+            	actor:learnTalentType("abjuration")
+            	if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then
+	            	actor:learnTalentType("conjuration")
+	            end
+	            if result ~= "Necromancy" then
+	            	actor:learnTalentType("divination")
+	            end
+	            if result ~= "Illusion" then
+	            	actor:learnTalentType("enchantment")
+	            end
+            	actor:learnTalentType("evocation")
+            	if result ~= "Divination" and result ~= "Enchantment" then
+	            	actor:learnTalentType("illusion")
+	            end
+            	actor:learnTalentType("necromancy")
+            	if result ~= "Conjuration" then
+	            	actor:learnTalentType("transmutation")
+	            end
+
+				actor:learnTalent(actor.T_SHOW_SPELLBOOK)
+				game.log(""..(actor:learnTalent(actor.T_ACID_SPLASH) and "true" or "false"))
+				game.log(""..(actor:learnTalent(actor.T_GREASE) and "true" or "false"))
+				game.log(""..(actor:learnTalent(actor.T_MAGIC_MISSILE) and "true" or "false"))
+				game.log(""..(actor:learnTalent(actor.T_BURNING_HANDS) and "true" or "false"))
+				game.log(""..(actor:learnTalent(actor.T_SUMMON_CREATURE_I) and "true" or "false"))
+				game.log(""..(actor:learnTalent(actor.T_SLEEP) and "true" or "false"))
+				game.log(""..(actor:learnTalent(actor.T_BLINDNESS_DEAFNESS) and "true" or "false"))
+			end))
 
 			actor:learnTalentType("arcane/arcane", true)			
 

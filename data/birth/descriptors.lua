@@ -50,6 +50,9 @@ newBirthDescriptor{
     [ActorTalents.T_INTUITION]=1,
     [ActorTalents.T_POLEARM]=1,
   },
+  talents_types = {
+    ["special/special"] = {true, 0.0}
+  },
   descriptor_choices =
   {
     domains =
