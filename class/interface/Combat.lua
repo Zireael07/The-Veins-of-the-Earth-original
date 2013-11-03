@@ -148,7 +148,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
       local success = false
 
         -- hack to get the armour check penalty of the shield.  Returns 4 instead of 10 for tower shields, and does not account for mithril bonuses.
-        local shield = self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1] and self:getInven("OFF_HAND")[1].subtype == shield and self:getInven("OFF_HAND")[1].wielder.combat_shield
+        local shield = self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1] and self:getInven("OFF_HAND")[1].subtype == "shield" and self:getInven("OFF_HAND")[1].wielder.combat_shield
 
       if not weapon.light then
             local a = {"rapier", "whip", "spiked chain"}
@@ -163,7 +163,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
         end
 
         -- final check if Finesse improves attack
-        if self:getStat("dex") > self:getStat("str") + shield * 2 then
+        if self:getStat("str") > self:getStat("dex") then
             success = false
         end
 
