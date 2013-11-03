@@ -45,6 +45,7 @@ local Birther = require "mod.dialogs.Birther"
 local QuitDialog = require "mod.dialogs.Quit"
 
 local HighScores = require "engine.HighScores"
+local MapMenu = require "mod.dialogs.MapMenu"
 
 module(..., package.seeall, class.inherit(engine.GameTurnBased, engine.interface.GameTargeting))
 
@@ -152,7 +153,9 @@ function _M:registerHighscore()
 	local temp = 0
 
 	--Placeholder score
-	temp = math.floor(player.level + (player.exp / player:getExpChart(player.level))) + math.floor(player.money / 100)
+--	temp = math.floor(player.level + (player.exp / player:getExpChart(player.level))) + math.floor(player.money / 100)
+
+	temp = player.kills or 0
 
 	score = score + temp
 
@@ -585,13 +588,19 @@ end
 
 function _M:setupMouse(reset)
 	if reset then self.mouse:reset() end
-	self.mouse:registerZone(Map.display_x, Map.display_y, Map.viewport.width, Map.viewport.height, function(button, mx, my, xrel, yrel, bx, by, event)
+	self.mouse:registerZone(Map.display_x, Map.display_y, Map.viewport.width, Map.viewport.height, function(button, mx, my, xrel, yrel, bx, by, event, extra)
 		-- Handle targeting
 		if self:targetMouse(button, mx, my, xrel, yrel, event) then return end
+
+		-- Handle right click menu
+        if button == "right" and event == "button" and not xrel and not yrel then
+            self:mouseRightClick(mx, my)
+        end
 
 		-- Handle the mouse movement/scrolling
 		self.player:mouseHandleDefault(self.key, self.key == self.normal_key, button, mx, my, xrel, yrel, event)
 	end)
+
 	-- Scroll message log
 	self.mouse:registerZone(self.logdisplay.display_x, self.logdisplay.display_y, self.w, self.h, function(button)
 		if button == "wheelup" then self.logdisplay:scrollUp(1) end
@@ -602,6 +611,13 @@ function _M:setupMouse(reset)
 		self.hotkeys_display:onMouse(button, mx, my, event == "button", function(text) self.tooltip:displayAtMap(nil, nil, self.w, self.h, tostring(text)) end)
 	end)
 	self.mouse:setCurrent()
+end
+
+--- Right mouse click on the map
+function _M:mouseRightClick(mx, my, extra)
+	if not self.level then return end
+	local tmx, tmy = self.level.map:getMouseTile(mx, my)
+	self:registerDialog(MapMenu.new(mx, my, tmx, tmy))
 end
 
 --- Ask if we really want to close, if so, save the game first

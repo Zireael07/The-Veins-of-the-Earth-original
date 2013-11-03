@@ -157,6 +157,9 @@ function _M:init(t, no_default)
 	self.max_charges = {}
 	self.allocated_charges = {}
 
+	--Scoring
+	self.kills = 0
+
 	--Light-related
 	self.lite = 0 --Temporary test
 	self.infravision = 0
@@ -412,7 +415,11 @@ function _M:die(src)
 		game.log('You feel something roll beneath your feet.')
 	end
 
-	-- Record kills
+	-- Register death for scores
+	killer.kills = killer.kills + 1
+	self.dead = true -- mark as dead, for scores?
+
+	-- Record kills for kill count
 	local player = game.player
 	
 	if src and src.player then 
