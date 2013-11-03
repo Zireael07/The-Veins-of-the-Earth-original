@@ -526,6 +526,31 @@ function _M:mouseMove(tmx, tmy)
   return engine.interface.PlayerMouse.mouseMove(self, tmx, tmy, spotHostiles)
 end
 
+--Get the fancy inventory title thing working
+function _M:getEncumberTitleUpdater(title)
+    return function()
+        local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()
+        local color = "#00ff00#"
+        if enc > max then color = "#ff0000#"
+        --Color-code medium and heavy load
+        elseif enc > max * 0.66 then color = "#ff8a00#"
+        elseif enc > max * 0.33 then color = "#fcff00#"
+        end
+        return ("%s - %sEncumbrance %d/%d"):format(title, color, enc, max)
+    end
+end
+
+function _M:showEquipInven(title, filter, action, on_select, inven)
+    return engine.interface.ActorInventory.showEquipInven(self,
+        self:getEncumberTitleUpdater(title)(), filter, action, on_select, inven)
+end
+
+function _M:showInventory(title, inven, filter, action)
+    return engine.interface.ActorInventory.showInventory(self,
+        self:getEncumberTitleUpdater(title)(), inven, filter, action)
+end
+
+
   --Inventory
   function _M:playerPickup()
     -- If 2 or more objects, display a pickup dialog, otherwise just picks up

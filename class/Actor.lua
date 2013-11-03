@@ -679,7 +679,7 @@ function _M:getSkill(skill)
 	if (not skill) then return 0 end
 	local penalty_for_skill = { balance = "yes", bluff = "no", climb = "yes", concentration = "no", diplomacy = "no", disabledevice = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
 
-	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2)
+	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("load_penalty") or 0)
 
 	if penalty_for_skill[skill] == "yes" then return check - (self:attr("armor_penalty") or 0) end
 	return check end 
@@ -979,10 +979,6 @@ function _M:levelup()
 	if self.level % 3 == 0 then --feat points given every 3 levels. Classes may give additional feat points.
 		self.feat_point = self.feat_point + 1
 	end
-	--Additional (iterative) attacks
-	if self.level % 5 == 0 then 
-		self.more_attacks = (self.more_attacks or 0) + 1 
-	end
 
 	-- Auto levelup ?
 	if self.autolevel then
@@ -1028,6 +1024,7 @@ end
 
 function _M:getMaxEncumbrance()
 	local add = 0
+	--Streamlined d20's encumbrance
 	if self:getStr() <= 10 then return math.floor(10*self:getStr())
 	else return math.ceil((10*self:getStr()) + (5*(self:getStr()-10))) end
 end
@@ -1052,6 +1049,25 @@ end
 function _M:checkEncumbrance()
 	-- Compute encumbrance
 	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()	
+
+	--Medium & heavy load
+	if enc > max * 0.33 and not self:knowTalent(self.T_LOADBEARER) then
+		self:addTemporaryValue("movement_speed_bonus", -0.25)
+		self:addTemporaryValue("load_penalty", 3)
+		self:addTemporaryValue("max_dex_bonus", 3)
+	end
+	if enc > max * 0.66 then
+		if self:knowTalent(self.T_LOADBEARER) then
+		self:addTemporaryValue("load_penalty", 3)	
+		self:addTemporaryValue("max_dex_bonus", 3)
+		else	
+		self:removeTemporaryValue("load_penalty", 3)
+		self:removeTemporaryValue("max_dex_bonus", 3)	
+		self:addTemporaryValue("load_penalty", 6)
+		self:addTemporaryValue("max_dex_bonus", 1)
+		end
+	end
+
 
 	-- We are pinned to the ground if we carry too much
 	if not self.encumbered and enc > max then
