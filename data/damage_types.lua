@@ -168,3 +168,27 @@ newDamageType{
 		end
 	end,
 }
+
+--Enable digging
+
+newDamageType{
+	name = "dig", type = "DIG",
+	projector = function(src, x, y, typ, dam)
+		local feat = game.level.map(x, y, Map.TERRAIN)
+		if feat then
+			if feat.dig then
+				local newfeat_name, newfeat, silence = feat.dig, nil, false
+				if type(feat.dig) == "function" then newfeat_name, newfeat, silence = feat.dig(src, x, y, feat) end
+				newfeat = newfeat or game.zone.grid_list[newfeat_name]
+				if newfeat then
+					game.level.map(x, y, Map.TERRAIN, newfeat)
+					src.dug_times = (src.dug_times or 0) + 1
+					game.nicer_tiles:updateAround(game.level, x, y)
+					if not silence then
+						game.logSeen({x=x,y=y}, "%s turns into %s.", feat.name:capitalize(), newfeat.name)
+					end
+				end
+			end
+		end
+	end,
+}
