@@ -234,7 +234,7 @@ newTalent{
 }
 
 newTalent{
-	name = "Summon Creature I", short_name = "SUMMON_I_SORC",
+	name = "Summon Creature I", short_name = "SUMMON_CREATURE_I_SORC",
 	image = "talents/summon_creature_i.png",
 	type = {"sorcerer/sorcerer", 1},
 	display = { image = "talents/summon_creature_i.png"},
