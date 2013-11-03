@@ -31,6 +31,8 @@ load("/data/general/objects/money.lua")
 load("/data/general/objects/potions.lua")
 load("/data/general/objects/charged.lua")
 
+load("/data/general/objects/pickaxes.lua")
+
 
 --Light sources
 newEntity{

@@ -264,3 +264,55 @@ newEntity{
     { name = "shortbow" },
 	},
 }
+
+
+--Shopkeepers
+newEntity{
+	base = "BASE_NPC_DROW",
+	name = "drow", color=colors.BLACK,
+	level_range = {1, nil}, exp_worth = 150,
+	rarity = 3,
+	max_life = resolvers.rngavg(3,5),
+	hit_die = 1,
+	challenge = 1,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "chain shirt" },
+		{ name = "light metal shield" },
+		{ name = "rapier" },
+		{ name = "bolts (10)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+	{ name = "hand crossbow" },
+	},
+	can_talk = "shop",
+	faction = "neutral",
+}
+
+newEntity{
+	base = "BASE_NPC_HUMAN",
+	name = "human", color=colors.WHITE,
+	level_range = {1, 5}, exp_worth = 150,
+	rarity = 5,
+	max_life = resolvers.rngavg(5,8),
+	hit_die = 1,
+	challenge = 1,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "chainmail" },
+		{ name = "light metal shield" },
+		{ name = "longsword" },
+		{ name = "arrows (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "shortbow" },
+	},
+	can_talk = "shop",
+	faction = "neutral",
+}

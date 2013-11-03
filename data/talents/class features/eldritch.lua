@@ -34,7 +34,7 @@ newTalent{
 			x, y, tg = unpack(v)
 			local damage = rng.dice(1,4)+1
 			if x and y and tg then
-				self:projectile(tg, x, y, DamageType.FORCE, damage)
+				self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 			end
 		end
 

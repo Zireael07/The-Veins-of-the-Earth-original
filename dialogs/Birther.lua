@@ -1,12 +1,15 @@
 require "engine.class"
 
 local Dialog = require "engine.ui.Dialog"
-local Talents = require "engine.interface.ActorTalents"
+local Birther = require "engine.Birther"
+
 local SurfaceZone = require "engine.ui.SurfaceZone"
-local Stats = require "engine.interface.ActorStats"
 local Textzone = require "engine.ui.Textzone"
 local Button = require "engine.ui.Button"
-local Birther = require "engine.Birther"
+local Tab = require 'engine.ui.Tab'
+
+local Stats = require "engine.interface.ActorStats"
+local Talents = require "engine.interface.ActorTalents"
 local Player = require "mod.class.Player"
 
 
@@ -19,33 +22,81 @@ function _M:init(actor)
     Dialog.init(self, "Attributes Roller", math.max(game.w * 0.7, 950), game.h*0.5, nil, nil, font)
 
     self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
+
     --Reroll button
     self.c_reroll = Button.new{text="Reroll",fct=function() self:onRoll() end}
+
+     --Pointbuy button
+    self.c_pointbuy = Button.new{text="Point buy",fct=function() self:onPointBuy() end}
+
+    self.t_roll = Tab.new {
+    title = 'Roller',
+    default = true,
+    fct = function() end,
+    on_change = function(s) if s then self:switchTo('roll') end end,
+  }
+    self.t_pointbuy = Tab.new {
+    title = 'Point buy',
+    default = false,
+    fct = function() end,
+    on_change = function(s) if s then self:switchTo('pointbuy') end end,
+  }
 
     self.player = Player.new{name=self.player_name, game_ender=true}
 
     --Birth button
     self.c_save = Button.new{text="Birth", fct=function() self:onBirth() end}
 
-    self:loadUI{
-        {left=0, top=0, ui=self.c_desc},
+    self.t_roll:select()
+
+    self:onRoll()
+end
+
+function _M:switchTo(tab)
+    self.t_roll.selected = tab == 'roll'
+    self.t_pointbuy.selected = tab == 'pointbuy'
+
+    self:drawDialog(tab)
+end
+
+function _M:drawDialog(tab)
+
+    if tab == 'roll' then
+        self:loadUI {
+        {left=0, top=0, ui=self.t_roll},
+        {left=self.t_roll, top=0, ui=self.t_pointbuy},
+        {left=0, top=10, ui=self.c_desc},
         {left=0, bottom=0, ui=self.c_reroll},
         {left=self.c_reroll, bottom=0, ui=self.c_save},
-
     }
     
     self:setupUI()
-
     self:onRoll()
-    
- --   self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
+    self:drawTab()
 end
+
+    if tab == 'pointbuy' then
+        self:loadUI {
+        {left=0, top=0, ui=self.t_roll},
+        {left=self.t_roll, top=0, ui=self.t_pointbuy},
+        {left=0, top=10, ui=self.c_desc},
+        {left=0, bottom=0, ui=self.c_pointbuy},
+     --   {left=self.c_pointbuy, bottom=0, ui=self.c_save},
+    }
+
+    self:setupUI()
+    self:onSetupPB()
+    self:drawTab()
+end    
+
+end
+
 
 function _M:onBirth()
 
     game:unregisterDialog(self)
     self.creating_player = true
-    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'background', 'alignment', 'domains', 'domains'}, function()
+    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment', 'domains', 'domains'}, function()
         game:changeLevel(1, "dungeon")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
@@ -62,6 +113,11 @@ function _M:onBirth()
     game:registerDialog(birth)
 end
 
+function _M:onPointBuy()
+    game:unregisterDialog(self)
+    game:registerDialog(require("mod.dialogs.PointBuy").new(game.player))
+end
+
 function _M:onRoll()
     local player = self.actor
     --Unlearn any talent you might know to ensure you get only 1 perk ever
@@ -69,8 +125,7 @@ function _M:onRoll()
             if player:knowTalent(t.id) then
             player:unlearnTalent(t.id) end
     end
-    
-    
+
     player:randomPerk()
 
     --Generate stats
@@ -79,14 +134,20 @@ function _M:onRoll()
     end
     
     --Make sure that the highest stat is not =< than 13 and that the sum of all modifiers isn't =< 0
-   
+    local player = self.actor
     local mod_sum = (player:getStr()-10)/2 + (player:getDex()-10)/2 + (player:getCon()-10)/2 + (player:getInt()-10)/2 + (player:getWis()-10)/2 + (player:getCha()-10)/2 
     if mod_sum <= 0 or (math.max(player:getStr(), math.max(player:getDex(), math.max(player:getCon(), math.max(player:getInt(), math.max(player:getWis(), player:getCha()))))) <= 13) then self:onRoll()
     else 
     self:drawDialog() end
 end
 
-function _M:drawDialog()
+function _M:onSetupPB()
+    for i, s in ipairs(self.actor.stats_def) do
+        self.actor.stats[i] = 10
+    end
+end
+
+function _M:drawTab()
     local player = self.actor
     local s = self.c_desc.s
 
@@ -95,7 +156,7 @@ function _M:drawDialog()
     local h = 0
     local w = 0
 
-    h = 0
+    h = 20
     w = 0
     
    --Display 7 stats
@@ -127,7 +188,6 @@ function _M:drawDialog()
            if h + self.font_h >= self.c_desc.h then h = 0 w = w + self.c_desc.w / 6 end
         end
 
-
     h = 0
     w = self.w * 0.25
     -- start on second column
@@ -141,12 +201,6 @@ function _M:drawDialog()
     s:drawColorStringBlended(self.font, "If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Most interactions with NPCs depend on #GOLD#Charisma (CHA)#LAST#-related skills.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
-
-
-
-
- 
-
 
 
 --Generates values used in-game

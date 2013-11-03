@@ -176,6 +176,65 @@ newTalent{
 end
 }
 
+--Archery feats
+--[[newTalent{
+	name = "Point Blank Shot",
+	type = {"class/general", 1},
+	require = {
+		stat = {dex = 13}
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,]]
+--	info = [[This feat makes you better at shooting at close range, adding a +1 bonus.]],
+--[[}
+
+newTalent{
+	name = "Far Shot",
+	type = {"class/general", 1},
+	require = {
+		talent = { Talents.T_POINT_BLANK_SHOT },
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,]]
+--	info = [[This feat increases the range of your bow or crossbow by 1,5.]],
+--[[}
+
+newTalent{
+	name = "Rapid Shot",
+	type = {"class/general", 1},
+	require = {
+		stat = {dex = 13},
+		talent = { Talents.T_POINT_BLANK_SHOT },
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,]]
+--	info = [[This feat lets you make a second shot, but both shots have a -2 penalty.]],
+--[[}
+
+newTalent{
+	name = "Manyshot",
+	type = {"class/general", 1},
+	require = {
+		stat = {dex = 17},
+		talent = { Talents.T_POINT_BLANK_SHOT, Talents.T_RAPID_SHOT },
+		special = {
+			fct = function(self, t, offset) 
+			--Base attack bonus 6
+			if self:attr("combat_bab") and self:attr("combat_bab") >= 6 then return true
+			else return false end
+			end,
+			desc = "Base attack bonus 6",		 
+		}
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,]]
+--	info = [[This feat lets you make a second shot, but both shots have a -2 penalty.]],
+--}
+
 --TWF feats
 newTalent{
 	name = "Two Weapon Fighting",

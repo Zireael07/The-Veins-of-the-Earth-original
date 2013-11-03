@@ -80,7 +80,7 @@ newEntity {
 	rarity = 5,
 	cost = 1000,
 	wielder = {
-		dam = -1,
+		combat_dr = 1,
 		armor_penalty = -1,
 	}
 }

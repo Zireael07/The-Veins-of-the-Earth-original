@@ -143,6 +143,44 @@ function _M:getDesc()
           local protection = self.wielder.combat_protection
           if protection and protection > 0 then str = str.."\n#GOLD#This ring grants a +"..(protection).." protection bonus to AC" end
     else end
+    --Describing special materials    
+    if self.keywords then
+    if self.keywords.mithril and self.identified == true then str = str.."\n#GOLD#This armor is made of mithril, reducing the armor check penalty by 3 and spell failure chance by 10% and increasing max Dex bonus to AC by 2." end
+    if self.keywords.adamantine and self.identified == true then str = str.."\n#GOLD#This armor is made of adamantine, reducing damage taken by 1 and armor check penalty by 1." end
+    if self.keywords.dragonhide and self.identified == true then str = str.."\n#GOLD#This armor is made of dragonhide, giving the wearer fire resistance 20 and reducing the armor check penalty by 1." end
+    if self.keywords.darkwood and self.identified == true then str = str.."\n#GOLD#This shield is made of darkwood, reducing armor check penalty by 2" end
+    --Describing magic properties
+    if self.keywords.shadow and self.identified == true then 
+        local shadow = self.wielder.skill_bonus_hide
+        str = str.."\n#GOLD#This armor grants a +"..shadow.." bonus to Hide skill." end
+    if self.keywords.silent and self.identified == true then 
+        local silent = self.wielder.skill_bonus_movesilently
+        str = str.."\n#GOLD#This armor grants a +"..silent.." bonus to Move Silently skill." end
+    if self.keywords.slick and self.identified == true then 
+        local slick = self.wielder.skill_bonus_escapeartist
+        str = str.."\n#GOLD#This armor grants a +"..slick.." bonus to Escape Artist skill." end 
+    if self.keywords.spellres and self.identified == true then 
+        local spellres = self.wielder.spell_resistance
+        str = str.."\n#GOLD#This armor grants SR "..spellres end  
+    end 
+    --Elemental resistances
+    --[[if self.keywords.fireres and self.identified == true then
+        local fireres = self.wielder.resists.[DamageType.FIRE]
+        str = str.."\n#GOLD#This armor grants you fire resistance"..fireres end
+    if self.keywords.acidres and self.identified == true then
+        local acidres = self.wielder.resists.[DamageType.ACID]
+        str = str.."\n#GOLD#This armor grants you acid resistance"..acidres end
+    if self.keywords.coldres and self.identified == true then
+        local coldres = self.wielder.resists.[DamageType.COLD]
+        str = str.."\n#GOLD#This armor grants you cold resistance"..coldres end
+    if self.keywords.electres and self.identified == true then
+        local electres = self.wielder.resists.[DamageType.ELECTRIC]
+        str = str.."\n#GOLD#This armor grants you electricity resistance"..electres end    
+    if self.keywords.sonicres and self.identified == true then
+        local sonicres = self.wielder.resists.[DamageType.SONIC]
+        str = str.."\n#GOLD#This armor grants you sonic resistance"..sonicres end
+    end]]    
+    
 
     return str
 

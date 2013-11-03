@@ -19,8 +19,8 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
-version = {0,8,1}
-engine = {1,0,4,"te4"}
+version = {0,9,0}
+engine = {1,0,5,"te4"}
 description = [[
 In DarkGod's words, "a fantasy d20-themed dungeon crawler".
 ]]
@@ -29,6 +29,8 @@ starter = "mod.load"
 no_get_name = true
 
 show_only_on_cheat = false -- Example modules are not shown to normal players
+
+allow_userchat = true -- We can talk to the online community
 
 profile_stats_fields = {"scores"}
 
@@ -56,7 +58,10 @@ profile_defs = {
 
 score_formatters = {
 	["Veins"] = {
-		alive="#BLUE#{name}#LAST#",
-		dead="#BLUE#{name}#LAST#"
+		alive="#LIGHT_GREEN#{score} : #LIGHT_BLUE#{name}#LAST# the #LIGHT_RED#{role} (level {level})#LAST# is still alive and well in the #GREEN#{where}#LAST##WHITE#",
+		dead="{score} : #LIGHT_BLUE#{name}#LAST# the #LIGHT_RED#{role} (level {level})#LAST# died in the #GREEN#{where}#LAST#"
+
+--		alive="#BLUE#{name}#LAST#",
+--		dead="#BLUE#{name}#LAST#"
 	},
 }

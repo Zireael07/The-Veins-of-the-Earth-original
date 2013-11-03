@@ -30,6 +30,7 @@ newTalent{
 newTalent{
 	name = "Cure Moderate Wounds",
 	type = {"divine", 1},
+	image = "talents/cure_light_wounds.png",
 	mode = 'activated',
 	--require = ,
 	level = 2,
@@ -57,6 +58,7 @@ newTalent{
 	name = "Cure Serious Wounds",
 	type = {"divine", 1},
 	mode = 'activated',
+	image = "talents/cure_light_wounds.png",
 	--require = ,
 	level = 3,
 	points = 1,
@@ -82,6 +84,7 @@ newTalent{
 newTalent{
 	name = "Cure Critical Wounds",
 	type = {"divine", 1},
+	image = "talents/cure_light_wounds.png",
 	mode = 'activated',
 	--require = ,
 	level = 4,
@@ -130,6 +133,7 @@ newTalent{
 newTalent{
 	name = "Heal Moderate Wounds",
 	type = {"divine", 1},
+	image = "heal_light_wounds.png",
 	display = { image = "heal_light_wounds.png"},
 	mode = 'activated',
 	level = 5,
@@ -152,6 +156,7 @@ newTalent{
 newTalent{
 	name = "Heal Serious Wounds",
 	type = {"divine", 1},
+	image = "heal_light_wounds.png",
 	display = { image = "heal_light_wounds.png"},
 	mode = 'activated',
 	level = 6,
@@ -174,6 +179,7 @@ newTalent{
 newTalent{
 	name = "Heal Critical Wounds",
 	type = {"divine", 1},
+	image = "heal_light_wounds.png",
 	display = { image = "heal_light_wounds.png"},
 	mode = 'activated',
 	level = 7,
@@ -227,6 +233,7 @@ newTalent{
 newTalent{
 	name = "Inflict Moderate Wounds",
 	type = {"divine",1},
+	image = "inflict_light_wounds.png",
 	display = { image = "inflict_light_wounds.png"},
 	mode = "activated",
 	level = 2,
@@ -257,6 +264,7 @@ newTalent{
 newTalent{
 	name = "Inflict Serious Wounds",
 	type = {"divine",1},
+	image = "inflict_light_wounds.png",
 	display = { image = "inflict_light_wounds.png"},
 	mode = "activated",
 	level = 3,
@@ -287,6 +295,7 @@ newTalent{
 newTalent{
 	name = "Inflict Critical Wounds",
 	type = {"divine",1},
+	image = "inflict_light_wounds.png",
 	display = { image = "inflict_light_wounds.png"},
 	mode = "activated",
 	level = 4,
