@@ -558,6 +558,85 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'class',
+	name = 'Sorcerer',
+	desc = help..'#ORANGE#Masters of arcane magic.\n\n #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
+	copy = {
+		resolvers.equip {
+			full_id=true,
+			{ name="iron dagger", ego_chance=-1000 },
+
+		},
+		resolvers.inventory {
+			full_id=true,
+			{ name="light crossbow", ego_chance=-1000},
+			{ name="bolts (10)", ego_chance=-1000},
+		}
+
+	},
+	copy_add = {
+		skill_point = 6, --4x skill points at 1st level
+	},
+	talents_types = {
+		["arcane/arcane"] = {true, 0.0},
+	},
+	descriptor_choices =
+	{
+		--Prevent game-breaking combos due to 1 BAB requirement of some feats
+		background =
+		{
+			['Master of one'] = "disallow",
+			['Fencing duelist'] = "disallow",
+			['Exotic fighter'] = "disallow",
+			--Prevent another game-breaking combo
+			['Magical thief'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
+		}
+	},
+	can_level = function(actor)
+		return true
+	end,
+	on_level = function(actor, level)
+		if level == 1 then 
+			actor.will_save = (actor.will_save or 0) + 2
+			actor.skill_point = (actor.skill_point or 0) + 2
+
+		--	actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+			actor:learnTalent(actor.T_ACID_SPLASH_SORC, true)
+			actor:learnTalent(actor.T_GREASE_SORC, true)
+			actor:learnTalent(actor.T_MM_SORC, true)
+			actor:learnTalent(actor.T_BURNING_HANDS_SORC, true)
+			actor:learnTalent(actor.T_SUMMON_CREATURE_I_SORC, true)
+			actor:learnTalent(actor.T_SLEEP_SORC, true)
+
+			actor:learnTalentType("sorcerer/sorcerer", true)			
+
+			actor.max_life = actor.max_life + 4
+		
+		else
+
+		--Learn a new spell tier every 3rd level
+		if level % 3 == 0 then
+			local spell_level = (level / 3) + 1
+			for tid, _ in pairs(actor.talents_def) do
+				t = actor:getTalentFromId(tid)
+		        if t.type[1] == "arcane/arcane" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+		        	actor:learnTalent(t.id)
+		        end
+		    end
+		end
+
+		actor.will_save = (actor.will_save or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
+		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+		actor.skill_point = (actor.skill_point or 0) + 2
+		actor.max_life = actor.max_life + 4 
+		end
+	end,
+}
+
+newBirthDescriptor {
+	type = 'class',
 	name = 'Wizard',
 	desc = help..'#ORANGE#Masters of arcane magic.\n\n #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
 	copy = {
