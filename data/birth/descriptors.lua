@@ -52,7 +52,7 @@ newBirthDescriptor{
   },
   talents_types = {
     ["special/special"] = {true, 0.0},
-    ["general/general"] = {true, 0.0},
+    ["class/general"] = {true, 0.0},
     ["combat/general"] = {true, 0.0}
   },
   descriptor_choices =
