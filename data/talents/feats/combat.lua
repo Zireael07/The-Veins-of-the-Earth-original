@@ -9,7 +9,7 @@ newTalent{
 	},
 	is_feat = true,
 	points = 1,
-	mode = "activated",
+	mode = "sustained",
 	cooldown = 0,
     tactical = { ATTACK = 1 },
     on_pre_use = function(self, t, silent)
@@ -24,13 +24,10 @@ newTalent{
             return false
         end
     end,
-    action = function(self, t)        
+    activate = function(self, t)        
         local weapon = self:getInven("MAIN_HAND")[1]
-
-        local d = rng.dice(1,5)
-
-        self:attackRoll(target, weapon, -d, d)
-
+    end,
+    deactivate = function(self, t)
         return true
     end,
 	info = [[You can substract a number from your base attack bonus and add it to damage bonus.]],
@@ -44,7 +41,7 @@ newTalent{
 	},
 	is_feat = true,
 	points = 1,
-	mode = "activated",
+	mode = "sustained",
 	cooldown = 0,
     tactical = { ATTACK = 1 },
     on_pre_use = function(self, t, silent)
@@ -59,14 +56,15 @@ newTalent{
             return false
         end
     end,
-    action = function(self, t)        
+    activate = function(self, t)        
         local weapon = self:getInven("MAIN_HAND")[1]
 
         local d = rng.dice(1,5)
 
-        self:attackRoll(target, weapon, d, strmod)
-
-        self:addTemporaryValue("combat_untyped", -d)
+        self:addTemporaryValue("combat_untyped", d)
+    end,
+    deactivate = function(self, t)
+        self:removeTemporaryValue("combat_untyped", d)
 
         return true
     end,
