@@ -35,6 +35,7 @@ end
 
 load("data/talents/feats/feats.lua")
 load("data/talents/feats/metamagic.lua")
+load("data/talents/feats/combat.lua")
 
 load("data/talents/domains/domains.lua")
 

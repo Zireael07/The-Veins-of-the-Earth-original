@@ -80,30 +80,6 @@ newTalent{
 
 --Combat feats
 newTalent{
-	name = "Power Attack",
-	type = {"class/general", 1},
-	require = {
-		stat = {str = 13}
-	},
-	is_feat = true,
-	points = 1,
-	mode = "passive",
-	info = [[You can substract a number from your base attack bonus and add it to damage bonus.]],
-}
-
-newTalent{
-	name = "Combat Expertise",
-	type = {"class/general", 1},
-	require = {
-		stat = { int = 13 }
-	},
-	is_feat = true,
-	points = 1,
-	mode = "passive",
-	info = [[You can substract a number up to -5 from your attack and add it to your AC as a dodge bonus.]],
-}
-
-newTalent{
 	name = "Finesse",
 	type = {"class/general", 1},
 	require = {
@@ -145,8 +121,6 @@ newTalent{
 		game:registerDialog(d)    
 end
 }
-
-
 
 newTalent{
 	name = "Improved Critical",
