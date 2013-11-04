@@ -51,7 +51,9 @@ newBirthDescriptor{
     [ActorTalents.T_POLEARM]=1,
   },
   talents_types = {
-    ["special/special"] = {true, 0.0}
+    ["special/special"] = {true, 0.0},
+    ["class/general"] = {true, 0.0},
+    ["combat/general"] = {true, 0.0}
   },
   descriptor_choices =
   {

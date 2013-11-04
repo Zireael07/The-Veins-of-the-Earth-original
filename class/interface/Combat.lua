@@ -26,6 +26,8 @@ local Chat = require "engine.Chat"
 --- Interface to add ToME combat system
 module(..., package.seeall, class.make)
 
+local powerattack = rng.dice(1,5)
+
 --- Checks what to do with the target
 -- Talk ? attack ? displace ?
 function _M:bumpInto(target)
@@ -65,13 +67,23 @@ function _M:attackTarget(target, noenergy)
          twohanded = true
       end
 
-
-      -- add in modifiers for dualwielding, etc.
+      -- add in modifiers
       local attackmod = 0
       local strmod = 1
 
       if twohanded then strmod = 1.5 end
 
+      --Combat Expertise & Power Attack penalties (Zi)
+      if self:isTalentActive(self.T_COMBAT_EXPERTISE) then 
+        local d = rng.dice(1,5)
+        attackmod = attackmod -d
+      end
+
+      if self:isTalentActive(self.T_POWER_ATTACK) then
+        attackmod = attackmod -powerattack
+      end 
+      
+      --Dual-wielding
       if offweapon then
          attackmod = -6
          if offweapon.light or weapon.double then attackmod = attackmod + 2 end
@@ -214,6 +226,11 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
       end
 
       dam = dam + strmod * (self:getStr()-10)/2
+
+      --Power Attack damage bonus (Zireael)
+      if self:isTalentActive(self.T_POWER_ATTACK) then dam = dam + powerattack end
+
+
 
       if crit then
             game.log(("%s makes a critical attack!"):format(self.name:capitalize()))

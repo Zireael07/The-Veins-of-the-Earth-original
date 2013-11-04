@@ -249,3 +249,30 @@ BETA RELEASES
 * scrollbar added to feat select screen [Seb]
 * spellbook now displays higher-level spells properly [Seb]
 * tooltips now describe magic properties (except elemental resistances) for identified items
+
+0.10.0 - 04/11/2013
+* bug fix: eldritch blast lua error fixed
+* bug fix: shield no longer counts as offhand weapon for TWF
+* bug fix: druid skill points are now set to 2
+* bug fix: dwarf fighters & drow clerics receive the proper amount of hp
+* bug fix: apply skill bonuses properly in the checks
+* bug fix: no more wielding two-handed weapons with one hand
+* bug fix: all spells (including sorcerer and spell-like abilities) now display their proper icon
+* bug fix: drowning and lava lua errors fixed
+* new class: sorcerer
+* chat code added
+* highscores working & enabled (based on the number of total kills)
+* made combat & skill logs clearer
+* you can now talk to some NPCs
+* new terrain and rooms: ice floor, shafts, swamp
+* helpful information added to character creation
+* character screen now displays ALL the classes you have
+* expanded random feats list
+* clerics can now turn undead
+* point buy added for attributes generation
+* archery feats coded in
+* random perks part 2: you can now get a random spell as a perk, too
+* wizards can now choose school specialization [Seb]
+* right-clicking on map now brings up a context menu
+* light & heavy load now works per SRD; implemented Loadbearer feat
+* activable Power Attack and Combat Expertise feats

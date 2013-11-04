@@ -96,7 +96,7 @@ newDamageType{
 newDamageType{
 	name = "drowning", type = "WATER", text_color = "#DARK_BLUE#",
 	projector = function(src, x, y, type, dam)
-		local target = game.level.map(x, y, Map.ACTOR) or src
+		local target = game.level.map(x, y, Map.ACTOR)
 		if target then
 			local damage = dam
 			if target:fortitudeSave(10) then
@@ -107,6 +107,23 @@ newDamageType{
 		end
 	end,
 }
+
+newDamageType{
+	name = "lava", type = "LAVA", text_color = "#DARK_RED#",
+	projector = function(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR)
+		if target then
+			local damage = dam
+			if target:reflexSave(20) then
+				damage = math.floor(damage / 2)
+			end
+			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
+			return realdam
+		end
+	end,
+}
+
+
 
 newDamageType{
 	name = "cold", type = "COLD", text_color = "#LIGHT_BLUE#",
