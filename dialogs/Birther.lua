@@ -96,7 +96,7 @@ function _M:onBirth()
 
     game:unregisterDialog(self)
     self.creating_player = true
-    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment', 'domains', 'domains'}, function()
+    local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'background', 'alignment', 'domains', 'domains'}, function()
         game:changeLevel(1, "dungeon")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
@@ -138,7 +138,7 @@ function _M:onRoll()
     local mod_sum = (player:getStr()-10)/2 + (player:getDex()-10)/2 + (player:getCon()-10)/2 + (player:getInt()-10)/2 + (player:getWis()-10)/2 + (player:getCha()-10)/2 
     if mod_sum <= 0 or (math.max(player:getStr(), math.max(player:getDex(), math.max(player:getCon(), math.max(player:getInt(), math.max(player:getWis(), player:getCha()))))) <= 13) then self:onRoll()
     else 
-    self:drawDialog() end
+    self:drawTab() end
 end
 
 function _M:onSetupPB()
