@@ -1,4 +1,4 @@
-newTalentType{ type="class/general", name = "general", description = "General feats" }
+newTalentType{ type="class/general", no_tt_req = true, name = "general", description = "General feats" }
 
 --Proficiency feats
 newTalent{

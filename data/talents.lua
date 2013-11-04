@@ -20,6 +20,11 @@ local Entity = require "engine.Entity"
 local oldNewTalent = Talents.newTalent
 Talents.newTalent = function(self, t)
 
+	local tt = self:getTalentTypeFrom(t.type[1])
+	if tt and tt.no_tt_req then
+		t.type_no_req = true
+	end
+
 	if not t.image then
 		t.image = "talents/"..(t.short_name or t.name):lower():gsub("[^a-z0-9_]", "_")..".png"
 	end
