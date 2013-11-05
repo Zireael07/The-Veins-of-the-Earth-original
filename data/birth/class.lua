@@ -675,7 +675,10 @@ newBirthDescriptor {
 		return true
 	end,
 	on_level = function(actor, level)
-		if level == 1 then 
+		if level == 1 then
+			
+			actor:learnTalent(actor.T_SHOW_SPELLBOOK)
+
 			actor.will_save = (actor.will_save or 0) + 2
 			actor.skill_point = (actor.skill_point or 0) + 2
 
@@ -713,17 +716,16 @@ newBirthDescriptor {
 	            	actor:learnTalentType("transmutation")
 	            end
 
-				actor:learnTalent(actor.T_SHOW_SPELLBOOK)
-				actor:learnTalent(actor.T_ACID_SPLASH)
-				actor:learnTalent(actor.T_GREASE)
-				actor:learnTalent(actor.T_MAGIC_MISSILE)
-				actor:learnTalent(actor.T_BURNING_HANDS)
-				actor:learnTalent(actor.T_SUMMON_CREATURE_I)
-				actor:learnTalent(actor.T_SLEEP)
-				actor:learnTalent(actor.T_BLINDNESS_DEAFNESS)
+	            for tid, _ in pairs(actor.talents_def) do
+					t = actor:getTalentFromId(tid)
+					tt = actor:getTalentTypeFrom(t.type[1])
+			        if tt.spell_list == "arcane" and t.level == 1 and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+			        	actor:learnTalent(t.id)
+			        end
+		    	end
 			end))
 
-			actor:learnTalentType("arcane/arcane", true)			
+			actor:learnTalentType("arcane/arcane", true)
 
 			if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Male" then
 			--Favored class bonuses
