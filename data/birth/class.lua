@@ -622,7 +622,8 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "arcane/arcane" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+				tt = actor:getTalentTypeFrom(t.type[1])
+		        if tt.spell_list == "arcane" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
 		        	actor:learnTalent(t.id)
 		        end
 		    end
