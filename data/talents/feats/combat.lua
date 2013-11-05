@@ -1,4 +1,4 @@
-newTalentType{ type="combat/general", name = "combat gen", description = "General combat feats" }
+newTalentType{ type="combat/general", no_tt_req = true, name = "combat gen", description = "General combat feats" }
 
 -- Active combat feats
 newTalent{
@@ -24,8 +24,8 @@ newTalent{
             return false
         end
     end,
-    activate = function(self, t)        
-        local weapon = self:getInven("MAIN_HAND")[1]
+    activate = function(self, t)
+        return true
     end,
     deactivate = function(self, t)
         return true
@@ -56,12 +56,11 @@ newTalent{
             return false
         end
     end,
-    activate = function(self, t)        
-        local weapon = self:getInven("MAIN_HAND")[1]
-
+    activate = function(self, t)
         local d = rng.dice(1,5)
 
         self:addTemporaryValue("combat_untyped", d)
+        return true
     end,
     deactivate = function(self, t)
         self:removeTemporaryValue("combat_untyped", d)
