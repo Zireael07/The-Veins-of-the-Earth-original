@@ -36,7 +36,6 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 2000,
---    desc = [[This bone amulet grants you +1 AC.]]
     wielder = {
     combat_natural=1
   }, 
@@ -49,7 +48,6 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 8000,
---    desc = [[This bone amulet grants you +2 AC.]]
     wielder = {
     combat_natural=2
   }, 
@@ -62,7 +60,6 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 18000,
---    desc = [[This scaly amulet grants you +3 AC.]]
     wielder = {
     combat_natural=3
   }, 
@@ -75,7 +72,6 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 32000,
- --   desc = [[This scaly amulet grants you +4 AC.]]
     wielder = {
     combat_natural=4
   }, 
@@ -237,6 +233,21 @@ newEntity{
   }, 
 }
 
+--Cursed
+newEntity{
+    base = "BASE_RING",
+    name = "ring of clumsiness",
+    unided_name = "a ring",
+    identified = false,
+    keywords = {cursed=true},
+    level_range = {1,10},
+    cost = 50000,
+    wielder = {
+     inc_stats = { [Stats.STAT_DEX] = -4, },
+     spell_fail = 20,
+  }, 
+}
+
 --Bracers
 newEntity{
     define_as = "BASE_BRACERS",
@@ -354,6 +365,85 @@ newEntity{
     cost = 4000,
     wielder = {
     inc_stats = { [Stats.STAT_STR] = 2, },
+  }, 
+}
+
+--Cursed
+newEntity{
+    base = "BASE_BRACERS",
+    name = "gauntlets of fumbling -2",
+    unided_name = "gloves",
+    identified = false,
+    keywords = {cursed=true},
+    level_range = {1,10},
+    cost = 0,
+    wielder = {
+    inc_stats = { [Stats.STAT_DEX] = -2, },
+  }, 
+}
+
+newEntity{
+    base = "BASE_BRACERS",
+    name = "bracers of defenselessness -1",
+    unided_name = "bracers",
+    identified = false,
+    keywords = {cursed=true},
+    level_range = {1,10},
+    cost = 0,
+    wielder = {
+    combat_armor=-1
+  }, 
+}
+
+newEntity{
+    base = "BASE_BRACERS",
+    name = "bracers of defenselessness -2",
+    unided_name = "bracers",
+    identified = false,
+    keywords = {cursed=true},
+    level_range = {1,10},
+    cost = 0,
+    wielder = {
+    combat_armor=-2
+  }, 
+}
+
+newEntity{
+    base = "BASE_BRACERS",
+    name = "bracers of defenselessness -3",
+    unided_name = "bracers",
+    identified = false,
+    keywords = {cursed=true},
+    level_range = {1,10},
+    cost = 0,
+    wielder = {
+    combat_armor=-3
+  }, 
+}
+
+newEntity{
+    base = "BASE_BRACERS",
+    name = "bracers of defenselessness -4",
+    unided_name = "bracers",
+    identified = false,
+    keywords = {cursed=true},
+    level_range = {1,10},
+    cost = 0,
+    wielder = {
+    combat_armor=-4
+  }, 
+}
+
+newEntity{
+    base = "BASE_BRACERS",
+    name = "bracers of defenselessness -5",
+    unided_name = "bracers",
+    identified = false,
+    keywords = {cursed=true},
+    level_range = {1,10},
+    cost = 0,
+    wielder = {
+    combat_armor=-5
   }, 
 }
 
