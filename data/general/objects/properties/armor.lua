@@ -105,7 +105,7 @@ newEntity {
 	rarity = 8,
 	cost = 3750,
 	wielder = {
-		skill_hide = 5,
+		skill_bonus_hide = 5,
 	}
 }
 
