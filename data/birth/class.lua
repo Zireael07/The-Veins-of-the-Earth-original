@@ -714,13 +714,13 @@ newBirthDescriptor {
 	            end
 
 				actor:learnTalent(actor.T_SHOW_SPELLBOOK)
-				game.log(""..(actor:learnTalent(actor.T_ACID_SPLASH) and "true" or "false"))
-				game.log(""..(actor:learnTalent(actor.T_GREASE) and "true" or "false"))
-				game.log(""..(actor:learnTalent(actor.T_MAGIC_MISSILE) and "true" or "false"))
-				game.log(""..(actor:learnTalent(actor.T_BURNING_HANDS) and "true" or "false"))
-				game.log(""..(actor:learnTalent(actor.T_SUMMON_CREATURE_I) and "true" or "false"))
-				game.log(""..(actor:learnTalent(actor.T_SLEEP) and "true" or "false"))
-				game.log(""..(actor:learnTalent(actor.T_BLINDNESS_DEAFNESS) and "true" or "false"))
+				actor:learnTalent(actor.T_ACID_SPLASH)
+				actor:learnTalent(actor.T_GREASE)
+				actor:learnTalent(actor.T_MAGIC_MISSILE)
+				actor:learnTalent(actor.T_BURNING_HANDS)
+				actor:learnTalent(actor.T_SUMMON_CREATURE_I)
+				actor:learnTalent(actor.T_SLEEP)
+				actor:learnTalent(actor.T_BLINDNESS_DEAFNESS)
 			end))
 
 			actor:learnTalentType("arcane/arcane", true)			
@@ -738,7 +738,8 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "arcane/arcane" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+				tt = actor:getTalentTypeFrom(t.type[1])
+		        if tt.spell_list == "arcane" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
 		        	actor:learnTalent(t.id)
 		        end
 		    end

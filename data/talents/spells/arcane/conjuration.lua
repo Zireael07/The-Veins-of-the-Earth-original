@@ -168,3 +168,29 @@ newTalent{
 		return ([[You summon a single creature to do your bidding.]])
 	end,
 }
+
+newTalent{	
+	name = "Mage Armor",
+	type = {"conjuration", 1},
+	mode = 'activated',
+	level = 2,
+	points = 1,
+	cooldown = 0,
+	tactical = { BUFF = 2 },
+	range = 1,
+	requires_target = true,
+	action = function(self, t)
+		local tg = {type="hit", range=self:getTalentRange(t)}
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+		if core.fov.distance(self.x, self.y, x, y) > 1 then return nil end
+
+		target:setEffect(self.EFF_MAGE_ARMOR, 10, {})
+		
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[An invisible but tangible field of force surrounds the target, providing a +4 armor bonus to AC.]])
+	end,
+}

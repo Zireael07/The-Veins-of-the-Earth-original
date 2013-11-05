@@ -676,3 +676,14 @@ newEffect{
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 	end,
 }
+
+newEffect{
+	name = "MAGE_ARMOR",
+	desc = "Mage Armor",
+	type = "magical",
+	on_gain = function(self, err) return "A field seems to surround #Target#", "+Mage Armor" end,
+	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
+	activate = function(self, eff)
+		self:effectTemporaryValue(eff, "combat_armor_ac", 4)
+	end,
+}

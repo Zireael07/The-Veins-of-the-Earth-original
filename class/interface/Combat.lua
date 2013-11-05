@@ -26,8 +26,6 @@ local Chat = require "engine.Chat"
 --- Interface to add ToME combat system
 module(..., package.seeall, class.make)
 
-local powerattack = rng.dice(1,5)
-
 --- Checks what to do with the target
 -- Talk ? attack ? displace ?
 function _M:bumpInto(target)
@@ -80,12 +78,12 @@ function _M:attackTarget(target, noenergy)
       end
 
       if self:isTalentActive(self.T_POWER_ATTACK) then
-        attackmod = attackmod -powerattack
+        attackmod = attackmod - 5
       end 
       
       --Dual-wielding
       if offweapon then
-         attackmod = -6
+         attackmod = attackmod -6
          if offweapon.light or weapon.double then attackmod = attackmod + 2 end
          if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 2 end
       end
@@ -228,9 +226,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
       dam = dam + strmod * (self:getStr()-10)/2
 
       --Power Attack damage bonus (Zireael)
-      if self:isTalentActive(self.T_POWER_ATTACK) then dam = dam + powerattack end
-
-
+      if self:isTalentActive(self.T_POWER_ATTACK) then dam = dam + 5 end
 
       if crit then
             game.log(("%s makes a critical attack!"):format(self.name:capitalize()))
@@ -244,7 +240,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
             else
                 if target.subtype == self.favored_enemy then dam = dam + 2 end
             end
-        end   
+        end  
 
       --Minimum 1 point of damage unless Damage Reduction works
         dam = math.max(1, dam)
