@@ -294,7 +294,17 @@ newEffect{
 	end,
 }
 
-
+--Buff spell, Seb
+newEffect{
+	name = "MAGE_ARMOR",
+	desc = "Mage Armor",
+	type = "magical",
+	on_gain = function(self, err) return "A field seems to surround #Target#", "+Mage Armor" end,
+	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
+	activate = function(self, eff)
+		self:effectTemporaryValue(eff, "combat_armor_ac", 4)
+	end,
+}
 
 --Poisons, Zireael
 --Oil of taggit and drow poison are missing because I have no idea for unconsciousness now
@@ -678,12 +688,13 @@ newEffect{
 }
 
 newEffect{
-	name = "MAGE_ARMOR",
-	desc = "Mage Armor",
-	type = "magical",
-	on_gain = function(self, err) return "A field seems to surround #Target#", "+Mage Armor" end,
-	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
+	name = "POISON_1d10CON",
+	desc = "Poison",
+	type = "mental",
+	status = "detrimental",
 	activate = function(self, eff)
-		self:effectTemporaryValue(eff, "combat_armor_ac", 4)
+		local change = rng.dice(1,10)
+		local stat = { [Stats.STAT_CON]=-change}
+		self:effectTemporaryValue(eff, "inc_stats", stat)
 	end,
 }
