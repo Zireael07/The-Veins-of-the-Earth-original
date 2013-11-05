@@ -55,3 +55,48 @@ newEntity {
 	magic_bonus = 5,
 	},
 }
+
+--Curses
+newEntity {
+	name = " -1", suffix = true,
+	keywords = {cursed=true},
+	level_range = {1, 10},
+	rarity = 8,
+	cost = 0,
+	combat = {
+	magic_bonus = -1,
+	},
+}
+
+newEntity {
+	name = " -2", suffix = true,
+	keywords = {cursed=true},
+	level_range = {1, 10},
+	rarity = 8,
+	cost = 0,
+	combat = {
+	magic_bonus = -2,
+	},
+}
+
+newEntity {
+	name = " -3", suffix = true,
+	keywords = {cursed=true},
+	level_range = {1, 10},
+	rarity = 8,
+	cost = 0,
+	combat = {
+	magic_bonus = -3,
+	},
+}
+
+newEntity {
+	name = " -4", suffix = true,
+	keywords = {cursed=true},
+	level_range = {10, 20},
+	rarity = 8,
+	cost = 0,
+	combat = {
+	magic_bonus = -4,
+	},
+}
