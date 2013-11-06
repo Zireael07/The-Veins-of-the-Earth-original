@@ -59,18 +59,26 @@ function _M:attackTarget(target, noenergy)
       -- returns your offhand weapon (not shield) or your weapon again if it is double
       local offweapon = (self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1] and self:getInven("OFF_HAND")[1].combat and self:getInven("OFF_HAND")[1]) or (weapon and weapon.double and weapon)
 
+      --If not wielding anything in offhand and wielding a one-handed martial weapon then wield it two-handed
       local twohanded = false
 
       if not (self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1]) and not weapon.double and not weapon.light then
          twohanded = true
       end
-
+      
       -- add in modifiers
       local attackmod = 0
       local strmod = 1
 
+      --if wielding two-handed, apply 1.5*Str mod
       if twohanded then strmod = 1.5 end
-
+      
+      if weapon and weapon.slot_forbid == "OFF_HAND" and not self:knowTalent(self.T_MONKEY_GRIP) then strmod = 1.5 end
+      
+      --Monkey grip feat
+    --  if self:knowTalent(self.T_MONKEY_GRIP) and weapon and weapon.slot_forbid == "OFF_HAND" then
+          
+      
       --Combat Expertise & Power Attack penalties (Zi)
       if self:isTalentActive(self.T_COMBAT_EXPERTISE) then 
         local d = rng.dice(1,5)
@@ -201,8 +209,12 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
     end
 
 
-    -- Crit check TODO Improved Critical
+    -- Crit check
     local threat = 0 + (weapon and weapon.combat.threat or 0)
+    
+    --Improved Critical
+  --  if self:knowTalent(self.T_IMPROVED_CRITICAL) and weapon and weapon.subtype == choice then combat.weapon.threat = combat.weapon.threat + 2 end
+    
     if hit and d >= 20 - threat then
       -- threatened critical hit confirmation roll
       if not (rng.range(1,20) + attack < ac) then
