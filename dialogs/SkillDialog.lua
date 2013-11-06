@@ -63,13 +63,107 @@ function _M:init(actor)
 end
 
 function _M:use(item)
-	if (self.player.skill_point or 0) > 0 and (self.player:attr("skill_"..item.skill) or 0) <= self.player.max_skill_ranks then
+	if (self.player.skill_point or 0) > 0 then
+		
+	local skill = self.player:attr("skill_"..item.skill)
+		
+	--List class skills for every class 
+	local c_barbarian = { balance = "no", bluff = "no", climb = "yes", concentration = "no", diplomacy = "no", disabledevice = "no", escapeartist = "no", handleanimal = "yes", heal = "no", hide = "no", intimidate = "yes", intuition = "no", jump = "yes", knowledge = "no", listen = "yes", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "yes", tumble = "no", usemagic = "no" }
+	local c_bard = { balance = "yes", bluff = "yes", climb = "yes", concentration = "yes", diplomacy = "yes", disabledevice = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "no", pickpocket = "yes", search = "no", sensemotive = "yes", spot = "no", swim = "yes", spellcraft = "yes", survival = "yes", tumble = "yes", usemagic = "yes" }
+	local c_cleric = { balance = "no", bluff = "no", climb = "no", concentration = "yes", diplomacy = "yes", disabledevice = "no", escapeartist = "no", handleanimal = "no", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "no", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
+	local c_druid = { balance = "no", bluff = "no", climb = "no", concentration = "yes", diplomacy = "yes", disabledevice = "no", escapeartist = "no", handleanimal = "yes", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "yes", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "no", spot = "yes", swim = "yes", spellcraft = "yes", survival = "yes", tumble = "no", usemagic = "no" }
+	local c_fighter = { balance = "no", bluff = "no", climb = "yes", concentration = "no", diplomacy = "no", disabledevice = "no", escapeartist = "no", handleanimal = "yes", heal = "no", hide = "no", intimidate = "yes", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "no", usemagic = "no" }
+	local c_ranger = { balance = "no", bluff = "no", climb = "yes", concentration = "yes", diplomacy = "no", disabledevice = "no", escapeartist = "no", handleanimal = "yes", heal = "yes", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "no", pickpocket = "no", search = "yes", sensemotive = "no", spot = "yes", swim = "yes", spellcraft = "no", survival = "yes", tumble = "no", usemagic = "no" }
+	local c_rogue = { balance = "yes", bluff = "yes", climb = "yes", concentration = "no", diplomacy = "yes", disabledevice = "yes", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "yes", pickpocket = "yes", search = "yes", sensemotive = "yes", spot = "yes", swim = "no", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "yes" }
+	local c_sorcerer = { balance = "no", bluff = "yes", climb = "no", concentration = "yes", diplomacy = "yes", disabledevice = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
+	local c_wizard = { balance = "no", bluff = "no", climb = "no", concentration = "yes", diplomacy = "no", disabledevice = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
+	local c_warlock = { balance = "no", bluff = "no", climb = "no", concentration = "yes", diplomacy = "no", disabledevice = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
+	
+	--Cross class skills
+	if self.classes and self.classes["Barbarian"] then if c_barbarian[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+	
+	elseif self.classes and self.classes["Bard"] then if c_bard[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+		
+	
+	
+	elseif self.classes and self.classes["Cleric"] then if c_cleric[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+		
+	elseif self.classes and self.classes["Druid"] then if c_druid[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+	
+	elseif self.classes and self.classes["Fighter"] then if c_fighter[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+	
+	elseif self.classes and self.classes["Rogue"] then if c_rogue[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+		
+	elseif self.classes and self.classes["Sorcerer"] then if c_sorcerer[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+		
+	elseif self.classes and self.classes["Wizard"] then if c_wizard[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+		
+	elseif self.classes and self.classes["Warlock"] then if c_warlock[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+		
+		
+	--Class skills	
+	else (self.player:attr("skill_"..item.skill) or 0) <= self.player.max_skill_ranks then
 
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
 
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()
+	end
 	end
 end
 
