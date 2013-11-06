@@ -1,9 +1,12 @@
+local Talents = require "engine.interface.ActorTalents"
+
 --Shields
 newEntity{
     define_as = "BASE_SHIELD",
     slot = "OFF_HAND",
     type = "armor", subtype="shield",
     display = ")", color=colors.SLATE,
+    require = { talent = { Talents.T_SHIELD_PROFICIENCY }, },
     encumber = 5,
     rarity = 5,
     name = "shield",
