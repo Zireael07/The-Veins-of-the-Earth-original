@@ -150,6 +150,25 @@ newTalent{
 end
 }
 
+newTalent{
+	name = "Monkey Grip",
+	type = {"class/general", 1},
+	points = 1,
+	mode = "passive",
+	require = {
+		special = {
+			fct = function(self, t, offset) 
+			--Base attack bonus 1
+			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
+			else return false end
+			end,
+			desc = "Base attack bonus 1",		 
+		}
+	},
+	is_feat = true,
+	info = [[This feat allows you to wield a two-handed weapon in one hand, albeit at a -2 penalty.]],
+}
+
 --Archery feats
 --[[newTalent{
 	name = "Point Blank Shot",
