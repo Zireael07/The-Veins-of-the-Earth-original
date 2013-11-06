@@ -95,13 +95,16 @@ function _M:generateList()
 end
 
 function _M:onFeat()
+    game:unregisterDialog(self)
     game:registerDialog(require("mod.dialogs.FeatDialog").new(game.player))
 end
 function _M:onSkill()
+    game:unregisterDialog(self)
     game:registerDialog(require("mod.dialogs.SkillDialog").new(game.player))
 end
 
 function _M:onClass()
+    game:unregisterDialog(self)
     game:registerDialog(require("mod.dialogs.ClassLevelupDialog").new(game.player))
 end
 
