@@ -158,7 +158,10 @@ newEntity{
 	display = '~', color_r=43, color_g=43, color_b=43, back_color=DARK_GREY,
 	on_stand = function(self, x, y, who)
 		if who == game.player then
-	game:changeLevel(game.level.level + rng.dice(1,6)) end
+			local save1 = who:skillCheck("jump", 30)
+			local save2 = who:skillCheck("balance", 15)
+			if not save1 or save2 then game:changeLevel(game.level.level + rng.dice(1,6)) end
+		end
 	end
 }
 

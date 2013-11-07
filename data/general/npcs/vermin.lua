@@ -349,6 +349,7 @@ newEntity{
 	level_range = {1, 20}, exp_worth = 100,
 	rarity = 4,
 	max_life = resolvers.rngavg(3,5),
+	resist = { [DamageType.FIRE] = 5, },
 	hit_die = 1,
 	challenge = 1/3,
 	combat_natural = 6,
