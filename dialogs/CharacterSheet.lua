@@ -6,6 +6,7 @@ local Talents = require "engine.interface.ActorTalents"
 local SurfaceZone = require "engine.ui.SurfaceZone"
 local Stats = require "engine.interface.ActorStats"
 local Textzone = require "engine.ui.Textzone"
+local Tab = require 'engine.ui.Tab'
 
 
 module(..., package.seeall, class.inherit(Dialog, mod.class.interface.TooltipsData))
@@ -18,17 +19,66 @@ function _M:init(actor)
     
     self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
 
-   -- self.hoffset = 20
+    self.t_general = Tab.new {
+    title = 'General',
+    default = true,
+    fct = function() end,
+    on_change = function(s) if s then self:switchTo('general') end end,
+  }
+    self.t_numbers = Tab.new {
+    title = 'Attack and Skills',
+    default = false,
+    fct = function() end,
+    on_change = function(s) if s then self:switchTo('numbers') end end,
+  }
+
+--[[    self.t_feats = Tab.new {
+    title = 'Feats',
+    default = false,
+    fct = function() end,
+    on_change = function(s) if s then self:switchTo('feats') end end,
+  }]]
+
+    self.t_general:select()
+
+    self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
+end
+
+function _M:switchTo(tab)
+    self.t_general.selected = tab == 'general'
+    self.t_numbers.selected = tab == 'numbers'
+--    self.t_feats.selected = tab == 'feats'
+
+    self:drawDialog(tab)
+end
+
+function _M:drawDialog(tab)
+
+    if tab == "general" then
 
     self:loadUI{
-        {left=0, top=0, ui=self.c_desc},
+        {left=0, top=0, ui=self.t_general},
+        {left=self.t_general, top=0, ui=self.t_numbers},
+        {left=0, top=t_general, ui=self.c_desc},
     }
     
     self:setupUI()
+    self:drawGeneral()
+    end
 
-    self:drawDialog()
+    if tab == "numbers" then
+
+    self:loadUI{
+        {left=0, top=0, ui=self.t_general},
+        {left=self.t_general, top=0, ui=self.t_numbers},
+        {left=0, top=t_general, ui=self.c_desc},
+    }
     
-    self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
+    self:setupUI()
+    self:drawNumbers()
+    end
+    
+--   self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
 end
 
 function _M:mouseZones(t, no_new)
@@ -53,7 +103,7 @@ function _M:mouseTooltip(text, _, _, _, w, h, x, y)
     }, true)
 end
 
-function _M:drawDialog()
+function _M:drawGeneral()
     local player = self.actor
     local s = self.c_desc.s
 
@@ -62,7 +112,7 @@ function _M:drawDialog()
     local h = 0
     local w = 0
 
-    h = 0
+    h = 40
     w = 0
 
     local Strbonus = math.floor((player:getStr()-10)/2)
@@ -107,31 +157,25 @@ function _M:drawDialog()
 end
 
     h = h + self.font_h -- Adds an empty row
+    h = h + self.font_h -- Adds an empty row
+    h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_LEVEL, s:drawColorStringBlended(self.font, "Character level: "..(player.level or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_EXP, s:drawColorStringBlended(self.font, "EXP : "..(player.exp.."/"..player:getExpChart(player.level+1)), w, h, 255, 255, 255, true)) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "ECL : "..(player.ecl or "N/A") , w, h, 255, 255, 255, true) h = h + self.font_h
+
+
+    h = h + self.font_h -- Adds an empty row
     s:drawColorStringBlended(self.font, "#GOLD#Gold : "..(player.money or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(player:getAC() or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_BAB, s:drawColorStringBlended(self.font, "BAB : "..(player.combat_bab or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
-
-
+    
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life).."/"..math.floor(player.max_life)), w, h, 255, 255, 255, true)) h = h + self.font_h
 
-    h = h + self.font_h -- Adds an empty row
-    self:mouseTooltip(self.TOOLTIP_FORTITUDE, s:drawColorStringBlended(self.font, "Fortitude save: #SANDY_BROWN#"..((player.fortitude_save+math.max(Strbonus, Conbonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_REFLEX, s:drawColorStringBlended(self.font, "Reflex bonus : #SANDY_BROWN#"..((player.reflex_save+math.max(Dexbonus, Intbonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_WILL, s:drawColorStringBlended(self.font, "Will bonus : #SANDY_BROWN#"..((player.will_save+math.max(Wisbonus, Chabonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
-
-    h = h + self.font_h -- Adds an empty row
-    s:drawColorStringBlended(self.font, "#CHOCOLATE#Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Darkvision : "..(player.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
-
     h = 0
     w = self.w * 0.25 
-    -- start on second column
-    
+    -- start on second column 
     self:mouseTooltip(self.TOOLTIP_STATS, s:drawColorStringBlended(self.font, "#CHOCOLATE#Stats", w, h, 255, 255, 255, true)) h = h + self.font_h    
     self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(player:getStr().." #SANDY_BROWN#"..Strbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(player:getDex().." #SANDY_BROWN#"..Dexbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
@@ -143,42 +187,24 @@ end
 
     h = h + self.font_h -- Adds an empty row
     h = h + self.font_h -- Adds an empty row
-    s:drawStringBlended(self.font, "Encumbrance : "..(player:getEncumbrance()).."/"..(player:getMaxEncumbrance()), w, h, 255, 255, 255, true) h = h + self.font_h
+    local enc, max_enc = player:getEncumbrance(), player:getMaxEncumbrance()
+    if enc > max_enc * 0.33 then self:mouseTooltip(self.TOOLTIP_ENC, s:drawColorStringBlended(self.font, "Encumbrance : #YELLOW#"..(player:getEncumbrance()).."#LAST#/"..(player:getMaxEncumbrance()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    elseif enc > max_enc * 0.66 then self:mouseTooltip(self.TOOLTIP_ENC, s:drawColorStringBlended(self.font, "Encumbrance : #RED#"..(player:getEncumbrance()).."#LAST#/"..(player:getMaxEncumbrance()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    else self:mouseTooltip(self.TOOLTIP_ENC, s:drawColorStringBlended(self.font, "Encumbrance : "..(player:getEncumbrance()).."/"..(player:getMaxEncumbrance()), w, h, 255, 255, 255, true)) h = h + self.font_h end
 
+    s:drawColorStringBlended(self.font, "Load penalty: "..(player.load_penalty or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = 0
-    w = self.w * 0.50 
-    -- start on third column
-    --Ideally, class-restricted skills should show up only if you have that class
-    self:mouseTooltip(self.TOOLTIP_SKILL, s:drawColorStringBlended(self.font, "#CHOCOLATE#Skills", w, h, 255, 255, 255, true)) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Balance : #SANDY_BROWN#"..(player:getSkill("balance") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Bluff : #SANDY_BROWN#"..(player:getSkill("bluff") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Climb : #SANDY_BROWN#"..(player:getSkill("climb") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Concentration : #SANDY_BROWN#"..(player:getSkill("concentration") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Diplomacy : #SANDY_BROWN#"..(player:getSkill("diplomacy") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Disable Device : #SANDY_BROWN#"..(player:getSkill("disabledevice") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Escape Artist : #SANDY_BROWN#"..(player:getSkill("escapeartist") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Handle Animal : #SANDY_BROWN#"..(player:getSkill("handleanimal") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Heal : #SANDY_BROWN#"..(player:getSkill("heal") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Hide : #SANDY_BROWN#"..(player:getSkill("hide") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Intimidate : #SANDY_BROWN#"..(player:getSkill("intimidate") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Intuition : #SANDY_BROWN#"..(player:getSkill("intuition") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Jump : #SANDY_BROWN#"..(player:getSkill("jump") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Knowledge : #SANDY_BROWN#"..(player:getSkill("knowledge") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Listen : #SANDY_BROWN#"..(player:getSkill("listen") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Move Silently : #SANDY_BROWN#"..(player:getSkill("movesilently") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Open Lock : #SANDY_BROWN#"..(player:getSkill("openlock") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Pick Pocket : #SANDY_BROWN#"..(player:getSkill("pickpocket") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Search : #SANDY_BROWN#"..(player:getSkill("search") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Sense Motive : #SANDY_BROWN#"..(player:getSkill("sensemotive") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Spot : #SANDY_BROWN#"..(player:getSkill("spot") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Swim : #SANDY_BROWN#"..(player:getSkill("swim") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Spellcraft : #SANDY_BROWN#"..(player:getSkill("spellcraft") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Survival : #SANDY_BROWN#"..(player:getSkill("survival") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Tumble : #SANDY_BROWN#"..(player:getSkill("tumble") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Use Magic : #SANDY_BROWN#"..(player:getSkill("usemagic") or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    w = self.w*0.5
+    --start on third column
+    h = h + self.font_h -- Adds an empty row
+    self:mouseTooltip(self.TOOLTIP_FORTITUDE, s:drawColorStringBlended(self.font, "Fortitude save: #SANDY_BROWN#"..((player.fortitude_save.." + "..math.max(Strbonus, Conbonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_REFLEX, s:drawColorStringBlended(self.font, "Reflex bonus : #SANDY_BROWN#"..((player.reflex_save.." + "..math.max(Dexbonus, Intbonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_WILL, s:drawColorStringBlended(self.font, "Will bonus : #SANDY_BROWN#"..((player.will_save.." + "..math.max(Wisbonus, Chabonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
 
-
+    h = h + self.font_h -- Adds an empty row
+    s:drawColorStringBlended(self.font, "#CHOCOLATE#Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Darkvision : "..(player.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = 0
     w = self.w * 0.75 
@@ -204,5 +230,142 @@ end
         end
 
     self.c_desc:generate()
+    self.changed = false
+end
+
+
+function _M:drawNumbers()
+
+    local player = self.actor
+    local s = self.c_desc.s
+
+    local Strbonus = math.floor((player:getStr()-10)/2)
+    local Dexbonus = math.floor((player:getDex()-10)/2)
+    local Conbonus = math.floor((player:getCon()-10)/2)
+    local Intbonus = math.floor((player:getInt()-10)/2)
+    local Wisbonus = math.floor((player:getWis()-10)/2)
+    local Chabonus = math.floor((player:getCha()-10)/2)
+    local Lucbonus = math.floor((player:getLuc()-10)/2)
+
+    s:erase(0,0,0,0)
+
+    h = 40
+    w = 0
+
+    self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(player.combat_bab or "0").." + Str bonus: "..Strbonus, w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(player.combat_bab or "0").." + Dex bonus: "..Dexbonus, w, h, 255, 255, 255, true)) h = h + self.font_h
+
+    h = h + self.font_h -- Adds an empty row
+    h = h + self.font_h -- Adds an empty row
+ 
+    --Ideally, class-restricted skills should show up only if you have that class
+    self:mouseTooltip(self.TOOLTIP_SKILL, s:drawColorStringBlended(self.font, "#CHOCOLATE#Skills", w, h, 255, 255, 255, true)) h = h + self.font_h
+    
+    --Display the penalties only if they DO apply
+    if player.armor_penalty and player.load_penalty then
+    s:drawColorStringBlended(self.font, "Balance : #SANDY_BROWN#"..(player:getSkill("balance") or "0").."#LAST# = "..(player.skill_balance or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_balance or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty - "..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.armor_penalty then
+    s:drawColorStringBlended(self.font, "Balance : #SANDY_BROWN#"..(player:getSkill("balance") or "0").."#LAST# = "..(player.skill_balance or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_balance or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.load_penalty then
+    s:drawColorStringBlended(self.font, "Balance : #SANDY_BROWN#"..(player:getSkill("balance") or "0").."#LAST# = "..(player.skill_balance or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_balance or "0").." feat/kit bonus - #YELLOW#"..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, "Balance : #SANDY_BROWN#"..(player:getSkill("balance") or "0").."#LAST# = "..(player.skill_balance or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_balance or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+    s:drawColorStringBlended(self.font, "Bluff : #SANDY_BROWN#"..(player:getSkill("bluff") or "0").."#LAST# = "..(player.skill_bluff or "0").." + "..Chabonus.." stat + "..(player.skill_bonus_bluff or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    --Display the penalties only if they DO apply
+    if player.armor_penalty and player.load_penalty then
+    s:drawColorStringBlended(self.font, "Climb : #SANDY_BROWN#"..(player:getSkill("climb") or "0").."#LAST# = "..(player.skill_climb or "0").." + "..Strbonus.." stat + "..(player.skill_bonus_climb or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty - "..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.armor_penalty then
+    s:drawColorStringBlended(self.font, "Climb : #SANDY_BROWN#"..(player:getSkill("climb") or "0").."#LAST# = "..(player.skill_climb or "0").." + "..Strbonus.." stat + "..(player.skill_bonus_climb or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.load_penalty then
+    s:drawColorStringBlended(self.font, "Climb : #SANDY_BROWN#"..(player:getSkill("climb") or "0").."#LAST# = "..(player.skill_climb or "0").." + "..Strbonus.." stat + "..(player.skill_bonus_climb or "0").." feat/kit bonus - #YELLOW#"..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, "Climb : #SANDY_BROWN#"..(player:getSkill("climb") or "0").."#LAST# = "..(player.skill_climb or "0").." + "..Strbonus.." stat + "..(player.skill_bonus_climb or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+    s:drawColorStringBlended(self.font, "Concentration : #SANDY_BROWN#"..(player:getSkill("concentration") or "0").."#LAST# = "..(player.skill_concentration or "0").." ranks + "..Conbonus.." + "..(player_skill_bonus_concentration or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Diplomacy : #SANDY_BROWN#"..(player:getSkill("diplomacy") or "0").."#LAST# = "..(player.skill_diplomacy or "0").." ranks + "..Chabonus.." stat + "..(player.skill_bonus_diplomacy or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    --Rogue-only skill
+    s:drawColorStringBlended(self.font, "Disable Device : #SANDY_BROWN#"..(player:getSkill("disabledevice") or "0").."#LAST# = "..(player.skill_disabledevice or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_disabledevice or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    --Display the penalties only if they DO apply
+    if player.armor_penalty and player.load_penalty then
+    s:drawColorStringBlended(self.font, "Escape Artist : #SANDY_BROWN#"..(player:getSkill("escapeartist") or "0").."#LAST# = "..(player.skill_escapeartist or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_escapeartist or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty - "..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.armor_penalty then
+    s:drawColorStringBlended(self.font, "Escape Artist : #SANDY_BROWN#"..(player:getSkill("escapeartist") or "0").."#LAST# = "..(player.skill_escapeartist or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_escapeartist or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.load_penalty then
+    s:drawColorStringBlended(self.font, "Escape Artist : #SANDY_BROWN#"..(player:getSkill("escapeartist") or "0").."#LAST# = "..(player.skill_escapeartist or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_escapeartist or "0").." feat/kit bonus - #YELLOW#"..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, "Escape Artist : #SANDY_BROWN#"..(player:getSkill("escapeartist") or "0").."#LAST# = "..(player.skill_escapeartist or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_escapeartist or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+    s:drawColorStringBlended(self.font, "Handle Animal : #SANDY_BROWN#"..(player:getSkill("handleanimal") or "0").."#LAST# = "..(player.skill_handleanimal or "0").." ranks + "..Chabonus.." stat + "..(player.skill_bonus_handleanimal or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Heal : #SANDY_BROWN#"..(player:getSkill("heal") or "0").."#LAST# = "..(player.skill_heal or "0").." ranks + "..Wisbonus.." stat + "..(player.skill_bonus_heal or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    --Display the penalties only if they DO apply
+    if player.armor_penalty and player.load_penalty then
+    s:drawColorStringBlended(self.font, "Hide : #SANDY_BROWN#"..(player:getSkill("hide") or "0").."#LAST# = "..(player.skill_hide or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_hide or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty - "..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.armor_penalty then
+    s:drawColorStringBlended(self.font, "Hide : #SANDY_BROWN#"..(player:getSkill("hide") or "0").."#LAST# = "..(player.skill_hide or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_hide or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.load_penalty then
+    s:drawColorStringBlended(self.font, "Hide : #SANDY_BROWN#"..(player:getSkill("hide") or "0").."#LAST# = "..(player.skill_hide or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_hide or "0").." feat/kit bonus - #YELLOW#"..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, "Hide : #SANDY_BROWN#"..(player:getSkill("hide") or "0").."#LAST# = "..(player.skill_hide or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_hide or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+
+    s:drawColorStringBlended(self.font, "Intimidate : #SANDY_BROWN#"..(player:getSkill("intimidate") or "0").."#LAST# = "..(player.skill_intimidate or "0").." ranks + "..Chabonus.." stat + "..(player.skill_bonus_intimidate or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Intuition : #SANDY_BROWN#"..(player:getSkill("intuition") or "0").."#LAST# = "..(player.skill_intuition or "0").." ranks + "..Intbonus.." stat + "..(player.skill_bonus_intuition or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    --Display the penalties only if they DO apply
+    if player.armor_penalty and player.load_penalty then
+    s:drawColorStringBlended(self.font, "Jump : #SANDY_BROWN#"..(player:getSkill("jump") or "0").."#LAST# = "..(player.skill_jump or "0").." ranks + "..Strbonus.." stat + "..(player.skill_bonus_jump or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty - "..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.armor_penalty then
+    s:drawColorStringBlended(self.font, "Jump : #SANDY_BROWN#"..(player:getSkill("jump") or "0").."#LAST# = "..(player.skill_jump or "0").." ranks + "..Strbonus.." stat + "..(player.skill_bonus_jump or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.load_penalty then
+    s:drawColorStringBlended(self.font, "Jump : #SANDY_BROWN#"..(player:getSkill("jump") or "0").."#LAST# = "..(player.skill_jump or "0").." ranks + "..Strbonus.." stat + "..(player.skill_bonus_jump or "0").." feat/kit bonus - #YELLOW#"..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, "Jump : #SANDY_BROWN#"..(player:getSkill("jump") or "0").."#LAST# = "..(player.skill_jump or "0").." ranks + "..Strbonus.." stat + "..(player.skill_bonus_jump or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+
+    s:drawColorStringBlended(self.font, "Knowledge : #SANDY_BROWN#"..(player:getSkill("knowledge") or "0").."#LAST# = "..(player.skill_knowledge or "0").." ranks + "..Intbonus.." stat + "..(player.skill_bonus_knowledge or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Listen : #SANDY_BROWN#"..(player:getSkill("listen") or "0").."#LAST# = "..(player.skill_listen or "0").." ranks + "..Wisbonus.." stat + "..(player.skill_bonus_listen or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    --Display the penalties only if they DO apply
+    if player.armor_penalty and player.load_penalty then
+    s:drawColorStringBlended(self.font, "Move Silently : #SANDY_BROWN#"..(player:getSkill("movesilently") or "0").."#LAST# = "..(player.skill_movesilently or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_movesilently or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty - "..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.armor_penalty then
+    s:drawColorStringBlended(self.font, "Move Silently : #SANDY_BROWN#"..(player:getSkill("movesilently") or "0").."#LAST# = "..(player.skill_movesilently or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_movesilently or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.load_penalty then
+    s:drawColorStringBlended(self.font, "Move Silently : #SANDY_BROWN#"..(player:getSkill("movesilently") or "0").."#LAST# = "..(player.skill_movesilently or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_movesilently or "0").." feat/kit bonus - #YELLOW#"..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, "Move Silently : #SANDY_BROWN#"..(player:getSkill("movesilently") or "0").."#LAST# = "..(player.skill_movesilently or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_movesilently or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+    s:drawColorStringBlended(self.font, "Open Lock : #SANDY_BROWN#"..(player:getSkill("openlock") or "0").."#LAST# = "..(player.skill_openlock or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_openlock or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    --Display the penalties only if they DO apply
+    if player.armor_penalty and player.load_penalty then
+    s:drawColorStringBlended(self.font, "Pick Pocket : #SANDY_BROWN#"..(player:getSkill("pickpocket") or "0").."#LAST# = "..(player.skill_pickpocket or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_pickpocket or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty - "..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.armor_penalty then
+    s:drawColorStringBlended(self.font, "Pick Pocket : #SANDY_BROWN#"..(player:getSkill("pickpocket") or "0").."#LAST# = "..(player.skill_pickpocket or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_pickpocket or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.load_penalty then
+    s:drawColorStringBlended(self.font, "Pick Pocket : #SANDY_BROWN#"..(player:getSkill("pickpocket") or "0").."#LAST# = "..(player.skill_pickpocket or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_pickpocket or "0").." feat/kit bonus - #YELLOW#"..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, "Pick Pocket : #SANDY_BROWN#"..(player:getSkill("pickpocket") or "0").."#LAST# = "..(player.skill_pickpocket or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_pickpocket or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+
+    s:drawColorStringBlended(self.font, "Search : #SANDY_BROWN#"..(player:getSkill("search") or "0").."#LAST# = "..(player.skill_search or "0").." ranks + "..Intbonus.." stat + "..(player.skill_bonus_search or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Sense Motive : #SANDY_BROWN#"..(player:getSkill("sensemotive") or "0").."#LAST# = "..(player.skill_sensemotive or "0").." ranks + "..Wisbonus.." stat + "..(player.skill_bonus_sensemotive or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Spot : #SANDY_BROWN#"..(player:getSkill("spot") or "0").."#LAST# = "..(player.skill_spot or "0").." ranks + "..Wisbonus.." stat + "..(player.skill_bonus_spot or "0").." feat/kit bonus" , w, h, 255, 255, 255, true) h = h + self.font_h
+    --Display the penalties only if they DO apply
+    if player.armor_penalty and player.load_penalty then
+    s:drawColorStringBlended(self.font, "Swim : #SANDY_BROWN#"..(player:getSkill("swim") or "0").."#LAST# = "..(player.skill_swim or "0").." ranks + "..Strbonus.." stat + "..(player.skill_bonus_swim or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty - "..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.armor_penalty then
+    s:drawColorStringBlended(self.font, "Swim : #SANDY_BROWN#"..(player:getSkill("swim") or "0").."#LAST# = "..(player.skill_swim or "0").." ranks + "..Strbonus.." stat + "..(player.skill_bonus_swim or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.load_penalty then
+    s:drawColorStringBlended(self.font, "Swim : #SANDY_BROWN#"..(player:getSkill("swim") or "0").."#LAST# = "..(player.skill_swim or "0").." ranks + "..Strbonus.." stat + "..(player.skill_bonus_swim or "0").." feat/kit bonus - #YELLOW#"..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, "Swim : #SANDY_BROWN#"..(player:getSkill("swim") or "0").."#LAST# = "..(player.skill_swim or "0").." ranks + "..Strbonus.." stat + "..(player.skill_bonus_swim or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+
+    s:drawColorStringBlended(self.font, "Spellcraft : #SANDY_BROWN#"..(player:getSkill("spellcraft") or "0").."#LAST# = "..(player.skill_spellcraft or "0").." ranks + "..Intbonus.." stat + "..(player.skill_bonus_spellcraft or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Survival : #SANDY_BROWN#"..(player:getSkill("survival") or "0").."#LAST# = "..(player.skill_survival or "0").." ranks + "..Wisbonus.." stat + "..(player.skill_bonus_survival or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    --Display the penalties only if they DO apply
+    if player.armor_penalty and player.load_penalty then
+    s:drawColorStringBlended(self.font, "Tumble : #SANDY_BROWN#"..(player:getSkill("tumble") or "0").."#LAST# = "..(player.skill_tumble or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_tumble or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty - "..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.armor_penalty then
+    s:drawColorStringBlended(self.font, "Tumble : #SANDY_BROWN#"..(player:getSkill("tumble") or "0").."#LAST# = "..(player.skill_tumble or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_tumble or "0").." feat/kit bonus - #YELLOW#"..(player.armor_penalty or "0").." armor penalty", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif player.load_penalty then
+    s:drawColorStringBlended(self.font, "Tumble : #SANDY_BROWN#"..(player:getSkill("tumble") or "0").."#LAST# = "..(player.skill_tumble or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_tumble or "0").." feat/kit bonus - #YELLOW#"..(player.load_penalty or "0").." load penalty#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, "Tumble : #SANDY_BROWN#"..(player:getSkill("tumble") or "0").."#LAST# = "..(player.skill_tumble or "0").." ranks + "..Dexbonus.." stat + "..(player.skill_bonus_tumble or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+    --Rogue-only skill
+    s:drawColorStringBlended(self.font, "Use Magic : #SANDY_BROWN#"..(player:getSkill("usemagic") or "0").."#LAST# = "..(player.skill_usemagic or "0").." ranks + "..Intbonus.." stat + "..(player.skill_bonus_usemagic or "0").." feat/kit bonus", w, h, 255, 255, 255, true) h = h + self.font_h
+
+self.c_desc:generate()
     self.changed = false
 end

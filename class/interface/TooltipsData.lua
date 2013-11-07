@@ -27,7 +27,11 @@ TOOLTIP_LIFE = [[ This is your life meter. If it falls to #LIGHT_RED#0#LAST# or 
 TOOLTIP_EXP = [[ This is the number of current #ORANGE#Experience Points#LAST# and the number required for the next level. ]]
 TOOLTIP_AC = [[ AC is short for #ORANGE#Armor Class#LAST#. It determines how hard you are to hit.
 	#GOLD#10 + armor bonus + shield bonus + magic bonus + natural bonus + Dex modifier (may be limited by armor)#LAST# ]]
-TOOLTIP_BAB = [[ BAB is short for #ORANGE#Base Attack Bonus#LAST#. This number is added to a #SANDY_BROWN#d20 roll#LAST# and your Strength bonus when you make an attack. The total is compared to the opponent's AC to determine whether you hit.]]
+
+TOOLTIP_FEAT = [[ You gain a feat point upon birth and one point every three character levels. ]]
+TOOLTIP_ENC = [[ If your #ORANGE#encumbrance#LAST# exceeds #GOLD#33%#LAST# of your #ORANGE#max encumbrance#LAST#, you suffer penalties from #SANDY_BROWN#light load#LAST#. 
+	If it exceeds #GOLD#66%#LAST#, you suffer penalties from #SANDY_BROWN#heavy load#LAST#, instead.]]
+
 
 TOOLTIP_SAVES = [[ When making a saving throw, a #SANDY_BROWN#d20 #LAST#is rolled, the bonus is added and the result is compared with the spell or trap's #ORANGE#Difficulty Class#LAST#. ]]
 TOOLTIP_FORTITUDE = [[ Fortitude allows you to resist poisons or diseases.
@@ -49,4 +53,7 @@ TOOLTIP_LUC = [[ LUC is short for #ORANGE#Luck#LAST#. It has no effects presentl
 TOOLTIP_SKILL = [[ #GOLD#Skill ranks + stat modifier + any bonuses - armor check penalty (for some skills)#LAST#
 	When using a skill, a #SANDY_BROWN#d20 roll#LAST# is made and the stat modifier is added along with your ranks.
     The max number of ranks you can have in a skill is limited to #SANDY_BROWN#4 + 1 per level#LAST#. ]]
-TOOLTIP_FEAT = [[ You gain a feat point upon birth and one point every three character levels. ]]
+
+TOOLTIP_ATTACK_MELEE = [[ BAB is short for #ORANGE#Base Attack Bonus#LAST#. This number is added to your #GOLD#Strength bonus#LAST# and a #SANDY_BROWN#d20 roll#LAST# when you make an attack. The total is compared to the opponent's AC to determine whether you hit.]]
+TOOLTIP_ATTACK_RANGE = [[ BAB is short for #ORANGE#Base Attack Bonus#LAST#. This number is added to your #GOLD#Dexterity bonus#LAST# and a #SANDY_BROWN#d20 roll#LAST# when you make an attack. The total is compared to the opponent's AC to determine whether you hit.]]
+
