@@ -233,6 +233,18 @@ newEntity{
   }, 
 }
 
+newEntity{
+    base = "BASE_RING",
+    name = "ring of darkvision +2",
+    unided_name = "a ring",
+    identified = false,
+    level_range = {10,20},
+    cost = 8000,
+    wielder = {
+    infravision=2
+  }, 
+}
+
 --Cursed
 newEntity{
     base = "BASE_RING",
