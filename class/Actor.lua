@@ -422,7 +422,7 @@ function _M:die(src)
 	-- Record kills for kill count
 	local player = game.player
 	
-	if src and src.player then 
+	if killer and killer == player then 
 		player.all_kills = player.all_kills or {}
 		player.all_kills[self.name] = player.all_kills[self.name] or 0
 		player.all_kills[self.name] = player.all_kills[self.name] + 1
@@ -629,15 +629,6 @@ function _M:canSee(actor, def, def_pct)
 	-- Newsflash: blind people can't see!
 	if self:hasEffect(self.EFF_BLIND) then return false,100 end --Like this, the actor actually knows where its target is. Its just bad at hitting
 
-	-- Check for stealth. Checks against the target cunning and level
---[[if actor:attr("stealth") and actor ~= self then
---		local def = self.level / 2 + self:getCun(25)
---		local hit, chance = self:checkHit(def, actor:attr("stealth") + (actor:attr("inc_stealth") or 0), 0, 100)
---		if not hit then
---			return false, chance
---		end
---	end]]
-
 --	if def ~= nil then
 --		return def, def_pct
 
@@ -686,9 +677,9 @@ function _M:getSkill(skill)
 	if (not skill) then return 0 end
 	local penalty_for_skill = { balance = "yes", bluff = "no", climb = "yes", concentration = "no", diplomacy = "no", disabledevice = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
 
-	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) - (self:attr("load_penalty") or 0)
+	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) 
 
-	if penalty_for_skill[skill] == "yes" then return check - (self:attr("armor_penalty") or 0) end
+	if penalty_for_skill[skill] == "yes" then return check - (self:attr("armor_penalty") or 0) - (self:attr("load_penalty") or 0) end
 	return check end 
 
 function _M:skillCheck(skill, dc, silent)
@@ -1064,8 +1055,7 @@ function _M:checkEncumbrance()
 		self:addTemporaryValue("movement_speed_bonus", -0.25)
 		self:addTemporaryValue("load_penalty", 3)
 		self:addTemporaryValue("max_dex_bonus", 3)
-	end
-	if enc > max * 0.66 then
+	elseif enc > max * 0.66 then
 		if self:knowTalent(self.T_LOADBEARER) then
 		self:addTemporaryValue("load_penalty", 3)	
 		self:addTemporaryValue("max_dex_bonus", 3)
