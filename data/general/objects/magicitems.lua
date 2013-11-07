@@ -24,7 +24,7 @@ newEntity{
     type = "amulet", subtype = "amulet",
     display = "♂", color=colors.RED,
     encumber = 0,
-    rarity = 5,
+    rarity = 10,
     name = "an amulet",
     desc = [[A beautiful amulet.]],
 }
@@ -58,7 +58,7 @@ newEntity{
     name = "amulet of natural armor +3",
     unided_name = "an amulet",
     identified = false,
-    level_range = {1,10},
+    level_range = {5,15},
     cost = 18000,
     wielder = {
     combat_natural=3
@@ -70,7 +70,7 @@ newEntity{
     name = "amulet of natural armor +4",
     unided_name = "an amulet",
     identified = false,
-    level_range = {1,10},
+    level_range = {10,20},
     cost = 32000,
     wielder = {
     combat_natural=4
@@ -168,7 +168,7 @@ newEntity{
     type = "ring", subtype = "ring",
     display = "σ", color=colors.RED,
     encumber = 0,
-    rarity = 5,
+    rarity = 10,
     name = "a ring",
     desc = [[A pretty ring.]],
 }
@@ -202,7 +202,7 @@ newEntity{
     name = "ring of protection +3",
     unided_name = "a ring",
     identified = false,
-    level_range = {1,10},
+    level_range = {5,15},
     cost = 18000,
     wielder = {
     combat_protection=3
@@ -214,7 +214,7 @@ newEntity{
     name = "ring of protection +4",
     unided_name = "a ring",
     identified = false,
-    level_range = {1,10},
+    level_range = {10,20},
     cost = 32000,
     wielder = {
     combat_protection=4
@@ -226,7 +226,7 @@ newEntity{
     name = "ring of protection +5",
     unided_name = "a ring",
     identified = false,
-    level_range = {1,10},
+    level_range = {10,20},
     cost = 50000,
     wielder = {
     combat_protection=5
@@ -289,7 +289,7 @@ newEntity{
     name = "bracers of armor +3",
     unided_name = "bracers",
     identified = false,
-    level_range = {1,10},
+    level_range = {5,15},
     cost = 18000,
     wielder = {
     combat_armor=3
@@ -301,7 +301,7 @@ newEntity{
     name = "bracers of armor +4",
     unided_name = "bracers",
     identified = false,
-    level_range = {1,10},
+    level_range = {10,20},
     cost = 32000,
     wielder = {
     combat_armor=4
@@ -313,7 +313,7 @@ newEntity{
     name = "bracers of armor +5",
     unided_name = "bracers",
     identified = false,
-    level_range = {1,10},
+    level_range = {10,20},
     cost = 50000,
     wielder = {
     combat_armor=5
@@ -337,7 +337,7 @@ newEntity{
     name = "gloves of dexterity +4",
     unided_name = "gloves",
     identified = false,
-    level_range = {1,10},
+    level_range = {5,15},
     cost = 16000,
     wielder = {
     inc_stats = { [Stats.STAT_DEX] = 4, },
@@ -349,7 +349,7 @@ newEntity{
     name = "gloves of dexterity +6",
     unided_name = "gloves",
     identified = false,
-    level_range = {1,10},
+    level_range = {10,20},
     cost = 36000,
     wielder = {
     inc_stats = { [Stats.STAT_DEX] = 6, },
@@ -454,7 +454,7 @@ newEntity{
     type = "cloak", subtype = "cloak",
     display = "♠", color=colors.RED,
     encumber = 0,
-    rarity = 5,
+    rarity = 10,
     name = "a cloak",
     desc = [[A beautiful cloak.]],
 }
@@ -503,7 +503,7 @@ newEntity{
     name = "boots of striding and springing",
     unided_name = "boots",
     identified = false,
-    level_range = {1,10},
+    level_range = {5,15},
     cost = 5500,
     wielder = {
     skill_jump=5,
@@ -528,7 +528,7 @@ newEntity{
     name = "boots of dodging",
     unided_name = "boots",
     identified = false,
-    level_range = {1,10},
+    level_range = {10,20},
     cost = 5500,
     wielder = {
     learn_talent = { 
@@ -545,7 +545,7 @@ newEntity{
     type = "belt", subtype = "belt",
     display = "=", color=colors.RED,
     encumber = 1,
-    rarity = 5,
+    rarity = 15,
     name = "a belt",
     desc = [[A sturdy belt.]],
 }
