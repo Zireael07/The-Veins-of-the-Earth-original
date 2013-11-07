@@ -154,7 +154,7 @@ newEntity{
 newEntity{
 	define_as = "CHASM",
 	type = "floor", subtype = "chasm",
-	name = "floor", 
+	name = "chasm", 
 	display = '~', color_r=43, color_g=43, color_b=43, back_color=DARK_GREY,
 	on_stand = function(self, x, y, who)
 		if who == game.player then
