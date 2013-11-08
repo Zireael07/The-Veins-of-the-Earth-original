@@ -67,11 +67,11 @@ function _M:init(actor)
     fct = function() end,
     on_change = function(s) if s then self:switchTo('general') end end,
   }
-    self.t_numbers = Tab.new {
-    title = 'Attack and Skills',
+    self.t_skill = Tab.new {
+    title = 'Skills',
     default = false,
     fct = function() end,
-    on_change = function(s) if s then self:switchTo('numbers') end end,
+    on_change = function(s) if s then self:switchTo('skill') end end,
   }
 
 --[[    self.t_feats = Tab.new {
@@ -88,7 +88,7 @@ end
 
 function _M:switchTo(tab)
     self.t_general.selected = tab == 'general'
-    self.t_numbers.selected = tab == 'numbers'
+    self.t_skill.selected = tab == 'skill'
 --    self.t_feats.selected = tab == 'feats'
 
     self:drawDialog(tab)
@@ -100,7 +100,7 @@ function _M:drawDialog(tab)
 
     self:loadUI{
         {left=0, top=0, ui=self.t_general},
-        {left=self.t_general, top=0, ui=self.t_numbers},
+        {left=self.t_general, top=0, ui=self.t_skill},
         {left=0, top=t_general, ui=self.c_desc},
     }
     
@@ -108,15 +108,16 @@ function _M:drawDialog(tab)
     self:drawGeneral()
     end
 
-    if tab == "numbers" then
+    if tab == "skill" then
 
     self:loadUI{
         {left=0, top=0, ui=self.t_general},
-        {left=self.t_general, top=0, ui=self.t_numbers},
+        {left=self.t_general, top=0, ui=self.t_skill},
         {left=0, top=50, ui=self.c_list},
     }
     
     self:setupUI()
+    game.tooltip:erase()
     end
     
 end
