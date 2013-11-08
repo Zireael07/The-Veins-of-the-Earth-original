@@ -71,6 +71,7 @@ function _M:init(t, no_default)
   
   self.weapon_type = {}
   self.favored_enemy = {}
+  self.all_kills = {}
 end
 
 function _M:onBirth()
@@ -655,3 +656,44 @@ function _M:playerUseItem(object, item, inven)
         use_fct
     )
 end 
+
+--Container stuff, adapted from Gatecrashers
+function _M:putIn(bag)
+  local inven = self:getInven(self.INVEN_INVEN)
+  local d d = self:showInventory("Put in", inven, nil, function(o, item)
+    if not o.iscontainer then
+      if bag:addObject(self.INVEN_INVEN, o) then
+        self:removeObject(inven, item, true)
+        self:sortInven(inven)
+        pot:sortInven(inven)
+        self:useEnergy()
+        --print("PUT IN:"..tostring(item))
+        --"Item" = # of inventory slot
+        self.changed = true
+      else
+        game.logSeen(self, "No more room in container.")
+        --return true
+      end
+    else
+      game.logSeen(self, "You can't put a container in another container.")
+      --also a good place for a sound cue!
+      return true
+      --you can switch these around to dump them out of the "insert objects in pot" screen.
+    end
+    --return true
+  end)
+end 
+
+function _M:takeOut(bag)
+  local inven = bag:getInven(pot.INVEN_INVEN)
+  local d d = bag:showInventory("Take out", inven, nil, function(o, item)
+    if self:addObject(self.INVEN_INVEN, o) then 
+      bag:removeObject(inven, item, true)
+      self:sortInven(inven)
+      pot:sortInven(inven)
+      self:useEnergy()
+      self.changed = true
+    end
+    return true
+  end)
+end

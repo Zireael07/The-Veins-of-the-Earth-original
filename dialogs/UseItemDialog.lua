@@ -66,39 +66,19 @@ function _M:use(item)
   if item.action == "use" then
         self.actor:playerUseItem(self.object, self.item, self.inven, self.on_use)
         self.on_use(self.inven, self.item, self.object, true)
- --   elseif item.action == 'quaff' then
-    -- TODO self.actor:playerQuaffPotion(self.object, self.item, self.inven, self.on_use)
- --   self.on_use(self.inven, self.item, self.object, true)
- -- elseif item.action == 'read' then
-    -- TODO self.actor:playerReadScroll(self.object, self.item, self.inven, self.on_use)
---    self.on_use(self.inven, self.item, self.object, true)
---  elseif item.action == 'aim_wand' then
-    -- TODO self.actor:playerAimWand(self.object, self.item, self.inven, self.on_use)
---    self.on_use(self.inven, self.item, self.object, true)
---  elseif item.action == 'use_staff' then
-    -- TODO self.actor:playerUseStaff(self.object, self.item, self.inven, self.on_use)
---    self.on_use(self.inven, self.item, self.object, true)
---  elseif item.action == 'zap_rod' then
-    -- TODO self.actor:playerZapRod(self.object, self.item, self.inven, self.on_use)
---    self.on_use(self.inven, self.item, self.object, true)
---  elseif item.action == 'activate' then
-    -- TODO self.actor:playerActivateItem(self.object, self.item, self.inven, self.on_use)
---    self.on_use(self.inven, self.item, self.object, true)
---  elseif item.action == 'eat' then
-    -- TODO self.actor:playerEatFood(self.object, self.item, self.inven, self.on_use)
---    self.on_use(self.inven, self.item, self.object, true)
---  elseif item.action == 'fill' then
-    -- TODO self.actor:playerFillLantern(self.object, self.item, self.inven, self.on_use)
---    self.on_use(self.inven, self.item, self.object, true)
---  elseif item.action == 'browse' then
-    -- TODO self.actor:playerBrowseSpellbook(self.object, self.item, self.inven, self.on_use)
---    self.on_use(self.inven, self.item, self.object, true)
   elseif item.action == 'wear' then
     self.actor:doWear(self.inven, self.item, self.object)
     self.on_use(self.inven, self.item, self.object, true)
   elseif item.action == 'takeoff' then
     self.actor:doTakeoff(self.inven, self.item, self.object)
     self.on_use(self.inven, self.item, self.object, true)
+  --Container stuff
+  elseif item.action == "putin" then
+        self.actor:putIn(self.object)
+        self.onuse(self.inven, self.item, self.object, false)
+  elseif item.action == "takeout" then
+        self.actor:takeOut(self.object)
+        self.onuse(self.inven, self.item, self.object, false)  
   elseif item.action == 'drop' then
     local on_use_cb = function()
       self.on_use(self.inven, self.item, self.object, false)
@@ -109,37 +89,14 @@ end
 
 function _M:generateList()
   local list = {}
-
+--Container stuff
+  if self.object.iscontainer then list[#list+1] = {name="Put In", action="use"} end
+  if self.object.iscontainer then list[#list+1] = {name="Take Out", action="takeout"} end
+  
   if self.object.use_simple then
     list[#list+1] = { name='Use', action='use' }
   end
---  if self.object.on_quaff then
---    list[#list+1] = { name='Quaff', action='quaff' }
---  end
---  if self.object.on_read then
---    list[#list+1] = { name='Read', action='read' }
---  end
-  -- We'll assume on object will have more than one of the following three
-  -- callbacks, so we can reuse the action name.
---  if self.object.on_aim then
---    list[#list+1] = { name='Use', action='aim_wand' }
---  end
   
----  if self.object.on_zap then
---    list[#list+1] = { name='Use', action='zap_rod' }
---  end
---  if self.object.on_activate then
---    list[#list+1] = { name='Activate', action='activate' }
---  end
---  if self.object.foodval then
---    list[#list+1] = { name='Eat', action='eat' }
---  end
---  if self.object.oil then
---    list[#list+1] = { name='Fill lantern', action='fill' }
---  end
---  if self.object.spells then
---    list[#list+1] = { name='Browse spells', action='browse' }
---  end
   if self.inven == self.actor.INVEN_INVEN and self.object.slot then
     list[#list+1] = { name='Wear/wield', action='wear' }
   end

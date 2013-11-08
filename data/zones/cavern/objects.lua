@@ -27,11 +27,13 @@ load("/data/general/objects/reach.lua")
 
 load("/data/general/objects/consumables.lua")
 load("/data/general/objects/magicitems.lua")
-load("/data/general/objects/money.lua")
+load("/data/general/objects/containers.lua")
 load("/data/general/objects/potions.lua")
 load("/data/general/objects/charged.lua")
 
 load("/data/general/objects/pickaxes.lua")
+load("/data/general/objects/money.lua")
+
 
 
 --Light sources

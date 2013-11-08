@@ -27,8 +27,8 @@ module(..., package.seeall, class.inherit(
     engine.Object,
     engine.interface.ObjectActivable,
     engine.interface.ObjectIdentify,
-    engine.interface.ActorTalents
-    
+    engine.interface.ActorTalents,
+    engine.interface.ActorInventory
 ))
 
 function _M:init(t, no_default)
@@ -38,6 +38,8 @@ function _M:init(t, no_default)
     engine.interface.ObjectActivable.init(self, t)
     engine.interface.ObjectIdentify.init(self, t)
     engine.interface.ActorTalents.init(self, t)
+    --Inventory!
+    engine.interface.ActorInventory.init(self, t)
 end
 
 function _M:canAct()
@@ -196,4 +198,8 @@ function _M:tooltip(x, y)
     elseif nb > 2 then str = str.."\n---\nYou see "..(nb-1).." more objects."
     end
     return str
+end
+
+function _M:on_identify()
+    game.logSeen(game.player, "Identified: %s", self.name)
 end
