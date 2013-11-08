@@ -10,11 +10,20 @@ defineAction{
 }
 
 defineAction{
-	default = { "sym:_h:false:false:false:false" },
+	default = { "sym:_F1:false:false:false:false" },
 	type = "SHOW_HELP",
 	group = "actions",
 	name = "Open help screen",
 }
+
+--Message log
+defineAction{
+	default = { "sym:_F2:false:false:false:false" },
+	type = "SHOW_MESSAGE_LOG",
+	group = "actions",
+	name = "Show message log",
+}
+
 
 -- Character movements
 defineAction{

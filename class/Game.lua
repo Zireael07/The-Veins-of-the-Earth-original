@@ -491,7 +491,7 @@ function _M:setupCommands()
 		end,
 		
 		SHOW_MESSAGE_LOG = function()
-			self:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, profile.chat))
+			self:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, self.logdisplay, profile.chat))
 		end,
 
 		-- Exit the game
