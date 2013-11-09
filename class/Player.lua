@@ -42,6 +42,7 @@ else return 500*level*(level+1)/2 end
 end
 
 function _M:init(t, no_default)
+  image = "tiles/player.png"
   t.display=t.display or '@'
   t.color_r=t.color_r or 230
   t.color_g=t.color_g or 230
@@ -71,7 +72,6 @@ function _M:init(t, no_default)
   
   self.weapon_type = {}
   self.favored_enemy = {}
-  self.all_kills = {}
 end
 
 function _M:onBirth()
@@ -610,9 +610,11 @@ function _M:doWear(inven, item, o)
 end
 
 function _M:doTakeoff(inven, item, o)
-    if self:takeoffObject(inven, item) then
-        self:addObject(self.INVEN_INVEN, o)
-    end
+    if self:addObject(self.INVEN_INVEN, o) then
+    self:takeoffObject(inven, item)
+  else
+    game.logSeen(self, "Not enough room in inventory.")
+  end
     self:sortInven()
     self:useEnergy()
     self.changed = true
@@ -665,7 +667,7 @@ function _M:putIn(bag)
       if bag:addObject(self.INVEN_INVEN, o) then
         self:removeObject(inven, item, true)
         self:sortInven(inven)
-        pot:sortInven(inven)
+        bag:sortInven(inven)
         self:useEnergy()
         --print("PUT IN:"..tostring(item))
         --"Item" = # of inventory slot
@@ -676,7 +678,6 @@ function _M:putIn(bag)
       end
     else
       game.logSeen(self, "You can't put a container in another container.")
-      --also a good place for a sound cue!
       return true
       --you can switch these around to dump them out of the "insert objects in pot" screen.
     end
@@ -685,12 +686,12 @@ function _M:putIn(bag)
 end 
 
 function _M:takeOut(bag)
-  local inven = bag:getInven(pot.INVEN_INVEN)
+  local inven = bag:getInven(bag.INVEN_INVEN)
   local d d = bag:showInventory("Take out", inven, nil, function(o, item)
     if self:addObject(self.INVEN_INVEN, o) then 
       bag:removeObject(inven, item, true)
       self:sortInven(inven)
-      pot:sortInven(inven)
+      bag:sortInven(inven)
       self:useEnergy()
       self.changed = true
     end

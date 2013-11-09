@@ -41,6 +41,7 @@ newEntity{
     define_as = "BASE_LIGHT",
     slot = "LITE",
     type = "torch", subtype = "lite",
+    image = "tiles/torch.png",
     display = "~", color=colors.YELLOW,
     encumber = 0,
     rarity = 10,
@@ -63,7 +64,7 @@ newEntity{
 newEntity{
     base = "BASE_LIGHT",
     name = "everlasting torch",
-    level_range = {1,10},
+    level_range = {10, nil},
     cost = 5000,
     wielder = {
     lite=2
@@ -74,7 +75,8 @@ newEntity{
 newEntity{
     base = "BASE_LIGHT",
     name = "a lantern",
-    level_range = {1,10},
+    image = "tiles/torch.png",
+    level_range = {5,nil},
     cost = 7,
     wielder = {
     lite=3

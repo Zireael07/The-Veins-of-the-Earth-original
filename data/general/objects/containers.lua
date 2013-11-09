@@ -3,8 +3,9 @@
 
 newEntity{
 	define_as = "BASE_CONTAINER",
-	type = "container",
+	type = "container", subtype = "container",
 	level_range = {1, nil},
+	image = "tiles/bag.png",
 	display = "Δ", color=colors.SLATE,
 	rarity = 2,
 	encumber = 15,

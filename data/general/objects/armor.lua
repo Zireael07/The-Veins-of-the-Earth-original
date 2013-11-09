@@ -23,6 +23,7 @@ newEntity{
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "cord armor",
+    image = "tiles/leather_armor.png",
     level_range = {1, 10},
     cost = 5,
     desc = "Simple cord twined around your body. Offers little protection.\n\n Light armor. AC +1. Max Dex bonus to AC 7. Spell failure chance 5%.",
@@ -36,6 +37,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "padded armor",
+    image = "tiles/leather_armor.png",
     level_range = {1, 10},
     cost = 5,
     wielder = {
@@ -48,6 +50,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "leather armor",
+    image = "tiles/leather_armor.png",
     level_range = {1, 10},
     cost = 10,
     desc = "A set of leather armor.\n\n Light armor. AC +2. Max Dex bonus to AC 6. Spell failure chance 10%.",
@@ -60,6 +63,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "studded leather",
+    image = "tiles/studded_armor.png",
     level_range = {1, 10},
     cost = 25,
     wielder = {
@@ -73,6 +77,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "chain shirt",
+    image = "tiles/chain_shirt.png",
     level_range = {1, 10},
     cost = 100,
     desc = "A set of chain links which covers the torso only.\n\n Light armor. AC +5. Max Dex bonus to AC 4. Spell failure chance 20%. Armor check penalty -2.",
@@ -99,6 +104,7 @@ newEntity{
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "chain mail",
+    image = "tiles/chain_armor.png",
     level_range = {1, 10},
     cost = 150,
     wielder = {
@@ -111,6 +117,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "scale mail",
+    image = "tiles/scale_armor.png",
     level_range = {1, 10},
     cost = 50,
     desc = "A suit of armour made of scale.\n\n Medium armor. AC +4. Max Dex bonus to AC 3. Spell failure chance 25%. Armor check penalty -4.",
@@ -124,6 +131,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "breastplate",
+    image = "tiles/breastplate.png",
     level_range = {1, 10},
     cost = 200,
     desc = "This armor only covers the torso.\n\n Medium armor. AC +5. Max Dex bonus to AC 3. Spell failure chance 25%. Armor check penalty -4.",
@@ -150,6 +158,7 @@ newEntity{
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "plate armor",
+    image = "tiles/plate_armor.png",
     level_range = {1, 10},
     cost = 600,
     wielder = {
@@ -162,6 +171,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "full plate",
+    image = "tiles/full_plate.png",
     level_range = {1, 10},
     cost = 1500,
     desc = "A suit of full plate armour.\n\n Heavy armor. AC +8. Max Dex bonus to AC 1. Spell failure chance 35%. Armor check penalty -6.",
@@ -176,6 +186,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "banded mail",
     unided_name = "banded mail",
+    image = "tiles/banded_armor.png",
     level_range = {1, 10},
     cost = 250,
     desc = "A suit of banded mail.\n\n Heavy armor. AC +7. Max Dex bonus to AC 0. Spell failure chance 35%. Armor check penalty -6.",

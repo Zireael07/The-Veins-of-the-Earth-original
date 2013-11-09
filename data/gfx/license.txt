@@ -1,0 +1,1 @@
+Tiles in the /tiles folder (except the /newtiles subfolder) are made by Daniel E. Gervais and released under Creative Commons BY-3.0 license.

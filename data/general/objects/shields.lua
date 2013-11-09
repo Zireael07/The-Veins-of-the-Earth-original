@@ -16,6 +16,7 @@ newEntity{
 
 newEntity{ base = "BASE_SHIELD",
     name = "buckler",
+    image = "tiles/buckler.png",
     level_range = {1, 10},
     cost = 15,
     wielder = {
@@ -26,6 +27,7 @@ newEntity{ base = "BASE_SHIELD",
 
 newEntity{ base = "BASE_SHIELD",
     name = "light wooden shield",
+    image = "tiles/shield_medium.png",
     level_range = {1, 10},
     cost = 3,
     wielder = {
@@ -37,6 +39,7 @@ newEntity{ base = "BASE_SHIELD",
 
 newEntity{ base = "BASE_SHIELD",
     name = "light steel shield",
+    image = "tiles/shield_medium.png",
     level_range = {1, 10},
     cost = 9,
     wielder = {
@@ -47,6 +50,7 @@ newEntity{ base = "BASE_SHIELD",
 
 newEntity{ base = "BASE_SHIELD",
     name = "heavy wooden shield",
+    image = "tiles/shield_medium.png",
     level_range = {1, 10},
     cost = 7,
     encumber = 10,
@@ -59,6 +63,7 @@ newEntity{ base = "BASE_SHIELD",
 
 newEntity{ base = "BASE_SHIELD",
     name = "heavy steel shield",
+    image = "tiles/shield_medium.png",
     level_range = {1, 10},
     cost = 20,
     encumber = 15,
@@ -72,6 +77,7 @@ newEntity{ base = "BASE_SHIELD",
 
 newEntity{ base = "BASE_SHIELD",
     name = "tower shield",
+    image = "tiles/shield_tower.png",
     level_range = {1, 10},
     cost = 30,
     encumber = 45,

@@ -47,7 +47,13 @@ local QuitDialog = require "mod.dialogs.Quit"
 local HighScores = require "engine.HighScores"
 local MapMenu = require "mod.dialogs.MapMenu"
 
+local Tiles = require "engine.Tiles" --required for tiles
+local Shader = require "engine.Shader" --required for fbo + prettiness
+
 module(..., package.seeall, class.inherit(engine.GameTurnBased, engine.interface.GameTargeting))
+
+-- Tell the engine that we have a fullscreen shader that supports gamma correction
+support_shader_gamma = true
 
 function _M:init()
 	engine.GameTurnBased.init(self, engine.KeyBind.new(), 1000, 100)
@@ -121,10 +127,24 @@ function _M:loaded()
 end
 
 function _M:setupDisplayMode()
-	print("[DISPLAY MODE] 32x32 ASCII/background")
+	if not mode or mode == "init" then
+		Map:resetTiles()
+	end
+	
+	if not mode or mode == "postinit" then
+		Tiles.prefix = "/data/gfx/"
+	
+		local th, tw = 32, 32
+		
+		--switched from "fsize" to 32.
+		Map:setViewPort(0, 0, self.w, self.h, tw, th, nil, 32, true)
+		--Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, nil, fsize, do_bg)
+		Map.tiles.use_images = true
+	
+--[[	print("[DISPLAY MODE] 32x32 ASCII/background")
 	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
 	Map:resetTiles()
-	Map.tiles.use_images = false
+	Map.tiles.use_images = false]]
 
 	if self.level and self.player then self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
  end
@@ -133,6 +153,8 @@ function _M:setupDisplayMode()
 		self.level.map:recreate()
 		engine.interface.GameTargeting.init(self)
 		self.level.map:moveViewSurround(self.player.x, self.player.y, 8, 8)
+	end
+
 	end
 end
 

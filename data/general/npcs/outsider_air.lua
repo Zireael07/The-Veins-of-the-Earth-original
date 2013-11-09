@@ -17,6 +17,7 @@
 newEntity{
 	define_as = "BASE_NPC_ARROWHAWK",
 	type = "magical beast",
+	image = "tiles/eagle.png",
 	display = 'e', color=colors.LIGHT_BLUE,
 	body = { INVEN = 10 },
 	desc = [[A bird with shimmering feathers.]],

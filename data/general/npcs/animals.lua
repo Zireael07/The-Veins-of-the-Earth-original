@@ -20,6 +20,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_RAT",
 	type = "animal",
+	image = "tiles/rat.png",
 	display = 'r', color=colors.WHITE,
 	body = { INVEN = 10 },
 	desc = [[A small rat.]],
@@ -39,6 +40,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_RAT",
 	name = "dire rat", color=colors.WHITE,
+	image = "tiles/dire_rat.png",
 	level_range = {1, 4}, exp_worth = 100,
 	rarity = 4,
 	max_life = resolvers.rngavg(3,7),
@@ -65,6 +67,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_SNAKE",
 	type = "animal",
+	image = "tiles/snake.png",
 	display = 'z', color=colors.GREEN,
 	body = { INVEN = 10 },
 	desc = [[A small snake.]],
@@ -182,6 +185,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_BAT",
 	type = "animal",
+	image = "tiles/bat.png",
 	display = 'b', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large bat.]],
@@ -242,6 +246,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_WOLF",
 	type = "animal",
+	image = "tiles/wolf.png",
 	display = 'd', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large wolf.]],
@@ -273,6 +278,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_TORTOISE",
+	image = "tiles/tortoise.png",
 	display = 'B', color=colors.DARK_GREEN,
 	body = { INVEN = 10 },
 	desc = [[A large tortoise.]],

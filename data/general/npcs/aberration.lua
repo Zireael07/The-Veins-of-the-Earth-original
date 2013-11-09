@@ -20,6 +20,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_ABOLETH",
 	type = "aberration", subtype = "aboleth",
+	image = "tiles/aboleth2.png",
 	display = "X", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
         desc = [[A horrid thing with tentacles!]],
@@ -32,6 +33,7 @@ newEntity{
 -- TO DO: Knowledge bonuses, mind blast, swimming bonus
 newEntity{ base = "BASE_NPC_ABOLETH",
 	name = "weak aboleth", color=colors.WHITE,
+	image = "tiles/aboleth.png",
 	level_range = {6, 14}, exp_worth = 450,
 	rarity = 20,
 	max_life = resolvers.rngavg(10,15),
@@ -68,6 +70,7 @@ newEntity{ base = "BASE_NPC_ABOLETH",
 newEntity{
 	define_as = "BASE_NPC_ATHACH",
 	type = "aberration", subtype = "athach",
+	image = "tiles/athach.png",
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
         desc = [[A hulking deformed creature.]],
@@ -230,6 +233,7 @@ newEntity{ base = "BASE_NPC_DRIDER",
 newEntity{
 	define_as = "BASE_NPC_ETTERCAP",
 	type = "aberration", subtype = "ettercap",
+	image = "tiles/ettercap.png",
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
         desc = [[A small twisted creature.]],
@@ -262,6 +266,7 @@ newEntity{ base = "BASE_NPC_ETTERCAP",
 newEntity{
 	define_as = "BASE_NPC_OTYUGH",
 	type = "aberration", subtype = "otyugh",
+	image = "tiles/otyugh.png",
 	display = "X", color=colors.UMBER,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
         desc = [[A small dirty twisted creature.]],
@@ -271,7 +276,7 @@ newEntity{
 	combat = { dam= {1,6}, },
 }
 
-newEntity{ base = "BASE_NPC_ETTERCAP",
+newEntity{ base = "BASE_NPC_OTYUGH",
 	name = "otyugh", color=colors.UMBER,
 	level_range = {5, 14}, exp_worth = 300,
 	rarity = 15,

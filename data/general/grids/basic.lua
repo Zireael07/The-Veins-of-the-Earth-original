@@ -20,6 +20,7 @@
 newEntity{
 	define_as = "UP",
 	name = "previous level",
+	image = "tiles/stairs_up.png",
 	display = '<', color_r=255, color_g=255, color_b=0, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
@@ -29,6 +30,7 @@ newEntity{
 newEntity{
 	define_as = "DOWN",
 	name = "next level",
+	image = "tiles/stairs_down.png",
 	display = '>', color_r=255, color_g=255, color_b=0, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
@@ -38,6 +40,7 @@ newEntity{
 newEntity{
 	define_as = "SHAFT_UP",
 	name = "previous level",
+	image = "tiles/shaft_up.png",
 	display = '<', color_r=210, color_g=105, color_b=30, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
@@ -47,6 +50,7 @@ newEntity{
 newEntity{
 	define_as = "SHAFT_DOWN",
 	name = "next level",
+	image = "tiles/shaft_down.png",
 	display = '>', color_r=210, color_g=105, color_b=30, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
@@ -56,13 +60,13 @@ newEntity{
 
 newEntity{
 	define_as = "FLOOR",
-	name = "floor", image = "terrain/marble_floor.png",
+	name = "floor", image = "tiles/floor.png",
 	display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
 }
 
 newEntity{
 	define_as = "WALL",
-	name = "wall", image = "terrain/granite_wall1.png",
+	name = "wall", image = "tiles/wall.png",
 	display = '#', color=colors.BLACK, back_color={r=30, g=30, b=60},
 	always_remember = true,
 	does_block_move = true,
@@ -74,7 +78,7 @@ newEntity{
 
 newEntity{
 	define_as = "DOOR",
-	name = "door", image = "terrain/granite_door1.png",
+	name = "door", image = "tiles/door.png",
 	display = '+', color_r=238, color_g=154, color_b=77, back_color=colors.DARK_UMBER,
 	notice = true,
 	always_remember = true,
@@ -85,7 +89,7 @@ newEntity{
 
 newEntity{
 	define_as = "DOOR_OPEN",
-	name = "open door", image = "terrain/granite_door1_open.png",
+	name = "open door", image = "tiles/door_opened.png",
 	display = "'", color_r=238, color_g=154, color_b=77, back_color=colors.DARK_GREY,
 	always_remember = true,
 	door_closed = "DOOR",
@@ -97,13 +101,14 @@ newEntity{
 	define_as = "MOSS",
 	type = "floor", subtype = "vegetation",
 	name = "luminescent moss",
+	image = "tiles/newtiles/moss.png",
 	display = '¤', color_r=52, color_g=222, color_b=137, back_color=colors.GREY,
 }
 
 newEntity{
 	define_as = "WATER",
 	type = "floor", subtype = "water",
-	name = "water", image = "terrain/marble_floor.png",
+	name = "water", image = "tiles/water.png",
 	display = '~', color=colors.BLUE, back_color=colors.LIGHT_BLUE,
 	always_remember = true,
 	mindam = 1,
@@ -122,6 +127,7 @@ newEntity{
 	define_as = "DEEP_WATER",
 	type = "floor", subtype = "water",
 	name = "deep water", 
+	image = "tiles/deep_water.png",
 	display = '~', color=colors.BLUE, back_color=colors.DARK_BLUE,
 	always_remember = true,
 	mindam = 2,
@@ -140,6 +146,7 @@ newEntity{
 	define_as = "LAVA",
 	type = "floor", subtype = "lava",
 	name = "lava",
+	image = "tiles/lava.png",
 	display = '~', color=colors.RED, back_color=DARK_GREY,
 	always_remember = true,
 	mindam = 2,
@@ -155,6 +162,7 @@ newEntity{
 	define_as = "CHASM",
 	type = "floor", subtype = "chasm",
 	name = "chasm", 
+	image = "tiles/chasm.png",
 	display = '~', color_r=43, color_g=43, color_b=43, back_color=DARK_GREY,
 	on_stand = function(self, x, y, who)
 		if who == game.player then
@@ -177,6 +185,7 @@ newEntity{
 	define_as = "ICE",
 	type = "floor", subtype = "ice",
 	name = "ice floor", 
+	image = "tiles/newtiles/ice_floor.png",
 	display = ' ', color=colors.STEEL_BLUE, back_color=colors.STEEL_BLUE,
 	always_remember = true,
 	on_stand = function(self, x, y, who)

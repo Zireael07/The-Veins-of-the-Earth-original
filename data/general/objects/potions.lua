@@ -6,6 +6,7 @@ newEntity{
     define_as = "BASE_POTION",
     slot = "INVEN",
     type = "potion", subtype = "potion",
+    image = "tiles/potion.png",
     display = "!", color=colors.RED,
     encumber = 0,
     rarity = 5,

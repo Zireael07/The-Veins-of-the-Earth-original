@@ -8,6 +8,7 @@ newEntity{
     define_as = "BASE_WAND",
     slot = "INVEN", 
     type = "wand", subtype = "wand",
+    image = "tiles/wand.png",
     display = "-", color=colors.RED,
     encumber = 0,
     rarity = 20,
@@ -23,9 +24,9 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 4500,
-    max_power = 0,
+    max_power = 50,
     power_regen = 0,
-    use_talent = {id = Talents.T_MAGIC_MISSILE, level = 1, power = 0 },
+    use_talent = {id = Talents.T_MAGIC_MISSILE, level = 1, power = 1 },
 --    use_simple = { name = "magic missile",
  --   use = function(self,t)
 --    local tg = self:getTalentTarget(t)
@@ -46,9 +47,9 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 4500,
-    max_power = 0,
+    max_power = 50,
     power_regen = 0,
-    use_talent = { id= Talents.T_BEAR_ENDURANCE, level = 2, power = 0 },
+    use_talent = { id= Talents.T_BEAR_ENDURANCE, level = 2, power = 1 },
 --    use_simple = { name = "bear endurance",
 --    use = function(self, who)
 --    who:setEffect(self.EFF_BEAR_ENDURANCE, 5, {})
@@ -62,6 +63,7 @@ newEntity{
     define_as = "BASE_SCROLL",
     slot = "INVEN", 
     type = "scroll", subtype = "scroll",
+    image = "tiles/scroll.png",
     display = "?", color=colors.WHITE,
     encumber = 0,
     rarity = 20,
@@ -77,9 +79,9 @@ newEntity{
     identified = false,
     level_range = {1, 10},
     cost = 4500,
-    max_power = 0,
+    max_power = 50,
     power_regen = 0,
-    use_talent = { id = Talents.T_MAGIC_MISSILE, level = 1, power = 0},
+    use_talent = { id = Talents.T_MAGIC_MISSILE, level = 1, power = 1},
 }
 
 newEntity{
@@ -89,9 +91,9 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 4500,
-    max_power = 0,
+    max_power = 50,
     power_regen = 0,
-    use_talent = { id = Talents. T_BEAR_ENDURANCE, level = 2, power = 0}
+    use_talent = { id = Talents. T_BEAR_ENDURANCE, level = 2, power = 1}
 --    use_simple = { name = "bear endurance",
 --    use = function(self, who)
 --    who:setEffect(self.EFF_BEAR_ENDURANCE, 5, {})

@@ -21,6 +21,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_EAGLE",
 	name = "giant eagle", color=colors.YELLOW,
+	image = "tiles/eagle.png",
 	level_range = {1, 5}, exp_worth = 900,
 	rarity = 8,
 	max_life = resolvers.rngavg(2,5),
@@ -101,6 +102,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_ARANEA",
 	type = "magical beast",
+	image = "tiles/aranea.png",
 	display = 's', color=colors.DARK_RED,
 	body = { INVEN = 10 },
 	desc = [[A large chitin-covered insect.]],

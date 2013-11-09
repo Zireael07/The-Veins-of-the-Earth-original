@@ -7,6 +7,7 @@ newEntity{
 	define_as = "BASE_DIGGER",
 	slot = "TOOL",
 	type = "tool", subtype="digger",
+	image = "tiles/pickaxe.png",
 	display = "\\", color=colors.STEEL_BLUE,
 	encumber = 3,
 	rarity = 20,

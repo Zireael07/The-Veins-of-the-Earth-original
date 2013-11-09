@@ -1,50 +1,12 @@
---Potions
-newEntity{
-    define_as = "BASE_POTION",
-    slot = "INVEN",
-    type = "potion", subtype = "potion",
-    display = "!", color=colors.RED,
-    encumber = 0,
-    rarity = 5,
-    name = "a potion",
-    desc = [[A potion.]],
-}
-
-newEntity{
-    base = "BASE_POTION",
-    name = "a potion of heal light wounds",
-    unided_name = "a potion",
-    identified = false,
-    level_range = {1,10},
-    cost = 50,
-    use_simple = { name = "heal light wounds",
-    use = function(self,who)
-        who:heal(rng.dice(1,8) + 5)
-        return {used = true, destroy = true}
-  end
-  }, 
-}
-
-newEntity{
-    base = "BASE_POTION",
-    name = "a potion of heal moderate wounds",
-    unided_name = "a potion",
-    identified = false,
-    level_range = {4,10},
-    cost = 300,
-    use_simple = { name = "heal moderate wounds",
-    use = function(self,who)
-        who:heal(rng.dice(2,8) + 5)
-        return {used = true, destroy = true}
-  end
-  }, 
-}
+--Veins of the Earth
+--Zireael
 
 --Consumables
 newEntity{
     define_as = "BASE_FOOD",
     slot = "INVEN",
     type = "food",
+    image = "tiles/food.png",
     display = "%", color=colors.WHITE,
     encumber = 0,
     rarity = 8,
@@ -56,6 +18,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "food rations",
+    image = "tiles/food.png",
     level_range = {1,10},
     cost = 7,
     nutrition = 20,
@@ -65,6 +28,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "spider bread", color=colors.BROWN,
+    image = "tiles/food.png",
     level_range = {1,10},
     cost = 15,
     nutrition = 15,
@@ -74,6 +38,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "beef jerky", color=colors.RED,
+    image = "tiles/meat.png",
     level_range = {1,10},
     cost = 10,
     nutrition = 15,
@@ -83,6 +48,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "fresh corpse", color=colors.GREEN,
+    image = "tiles/corpse.png",
     level_range = {1,10},
     cost = 0,
     nutrition = 10,
@@ -92,6 +58,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "corpse", color=colors.RED,
+    image = "tiles/corpse.png",
     level_range = {1,10},
     cost = 0,
     nutrition = 6,
@@ -102,6 +69,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "flask of water",
+    image = "tiles/flask.png",
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 7,
@@ -113,6 +81,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "stale rations",
+    image = "tiles/food.png",
     level_range = {1,10},
     cost = 7,
     nutrition = 0,
@@ -122,6 +91,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "stale water",
+    image = "tiles/flask.png",
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 7,
@@ -132,6 +102,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "stale corpse",
+    image = "tiles/corpse.png",
     level_range = {1,10},
     cost = 0,
     nutrition = 0,

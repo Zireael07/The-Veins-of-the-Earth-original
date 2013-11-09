@@ -4,6 +4,7 @@
 newEntity{
 	define_as = "BASE_NPC_SPIDER",
 	type = "vermin",
+	image = "tiles/spider.png",
 	display = 'r', color=colors.BROWN,
 	body = { INVEN = 10 },
 	desc = [[A small spider.]],
@@ -83,6 +84,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_ANT",
 	type = "vermin",
+	image = "tiles/ant.png",
 	display = 'a', color=colors.BROWN,
 	body = { INVEN = 10 },
 	desc = [[A giant ant.]],
@@ -125,6 +127,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_ANT",
+	image = "tiles/ant_queen.png",
 	name = "giant ant queen", color=colors.BROWN,
 	level_range = {5, 20}, exp_worth = 300,
 	rarity = 4,
@@ -138,6 +141,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_CENTIPEDE",
 	type = "vermin",
+	image = "tiles/centipede.png",
 	display = 'w', color=colors.BROWN,
 	body = { INVEN = 10 },
 	desc = [[A giant centipede.]],
@@ -244,6 +248,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_SCORPION",
 	type = "vermin",
+	image = "tiles/scorpion.png",
 	display = 'w', color=colors.TAN,
 	body = { INVEN = 10 },
 	desc = [[A giant scorpion.]],
@@ -328,6 +333,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_FBEETLE",
 	type = "vermin",
+	image = "tiles/beetle.png",
 	display = 'r', color=colors.FIREBRICK,
 	body = { INVEN = 10 },
 	desc = [[A giant fire beetle.]],
@@ -358,6 +364,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_SBEETLE",
 	type = "vermin",
+	image = "tiles/beetle.png",
 	display = 'r', color=colors.DARK_GREEN,
 	body = { INVEN = 10 },
 	desc = [[A giant stag beetle.]],

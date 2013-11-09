@@ -35,6 +35,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "copper coins",
+    image = "tiles/copper_coins.png",
  	color = colors.SANDY_BROWN,
     level_range = {1,20},
     desc = [[A pile of copper coins.]],
@@ -44,6 +45,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "silver coins",
+    image = "tiles/silver_coins.png",
  	color = colors.SILVER,
     level_range = {7,nil},
     desc = [[A pile of silver coins.]],
@@ -53,6 +55,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "gold coins",
+    image = "tiles/gold_coins.png",
  	color = colors.GOLD,
     level_range = {10,nil},
     desc = [[A pile of gold coins.]],

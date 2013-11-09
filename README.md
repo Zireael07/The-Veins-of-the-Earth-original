@@ -3,7 +3,7 @@ The Veins of the Earth
 
 "A fantasy d20-themed dungeon crawler", to quote DarkGod's comment.
 
-Requires T-Engine 1.0.5g (beta).
+Requires T-Engine 1.0.5h (beta).
 
 Click t-engine.exe to run.
 
@@ -16,6 +16,7 @@ Contributors:
 Features:
 - brand-new start-up screen and menu [standalone version only]
 - new old gold and black UI skin
+- 32x32 tiles by Daniel E.Gervais
 - controls displayed automatically at game start
 - 10 classes: barbarian, bard, cleric, druid, fighter, ranger, rogue, sorcerer, wizard (with specialist schools [Seb]), warlock
 - 2 prestige classes: shadowdancer, assasin
@@ -58,4 +59,5 @@ Thanks to:
 - AuraOfTheDawn for testing & coming up with a nice meme
 - grazz for two small fixes
 - lukep for Combat.lua patch and testing
+- Daniel E.Gervais for releasing his tiles under Creative Commons
 
