@@ -276,6 +276,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_DROW",
 	name = "drow", color=colors.BLACK,
+	image = "tiles/newtiles/drow_shop.png",
 	level_range = {1, nil}, exp_worth = 150,
 	rarity = 3,
 	max_life = resolvers.rngavg(3,5),
@@ -301,6 +302,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_HUMAN",
 	name = "human", color=colors.WHITE,
+	image = "tiles/newtiles/human_shop.png",
 	level_range = {1, 5}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,8),

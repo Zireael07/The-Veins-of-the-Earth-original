@@ -16,7 +16,7 @@ newEntity{
 
 newEntity{ base = "BASE_SHIELD",
     name = "buckler",
-    image = "tiles/buckler.png",
+    image = "tiles/shield_buckler.png",
     level_range = {1, 10},
     cost = 15,
     wielder = {
