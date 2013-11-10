@@ -21,8 +21,13 @@ newEntity{
     image = "tiles/food.png",
     level_range = {1,10},
     cost = 7,
-    nutrition = 20,
     desc = [[Food rations, enough for a day or two.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 20
+        return {used = true, destroy = true}
+  end
+  }, 
 }
 
 newEntity{
@@ -31,8 +36,13 @@ newEntity{
     image = "tiles/food.png",
     level_range = {1,10},
     cost = 15,
-    nutrition = 15,
     desc == [[Spider bread, a favorite of the dark elves.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 15
+        return {used = true, destroy = true}
+  end
+  }, 
 }
 
 newEntity{
@@ -41,8 +51,13 @@ newEntity{
     image = "tiles/meat.png",
     level_range = {1,10},
     cost = 10,
-    nutrition = 15,
     desc = [[Beef jerky. Spoils slowly.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 15
+        return {used = true, destroy = true}
+  end
+  }, 
 }
 --Remains fresh for 10 turns
 newEntity{
@@ -51,8 +66,13 @@ newEntity{
     image = "tiles/corpse.png",
     level_range = {1,10},
     cost = 0,
-    nutrition = 10,
     desc = [[A fresh corpse of some creature.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 10
+        return {used = true, destroy = true}
+  end
+  }, 
 }
 
 newEntity{
@@ -63,6 +83,12 @@ newEntity{
     cost = 0,
     nutrition = 6,
     desc == [[A corpse of some creature.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 6
+        return {used = true, destroy = true}
+  end
+  }, 
 }
 
 --Drinks

@@ -70,8 +70,14 @@ function _M:init(t, no_default)
   self.move_others = true
   self.class_points = 1 -- Spent on leveling classes, its 1 because it "spends" one when you birth
   
+  --Timers :D
+  self.nutrition = 100
+  self.lite_counter = 5000
+  self.id_counter = 2000
+
   self.weapon_type = {}
   self.favored_enemy = {}
+  self.all_kills = self.all_kills or {}
 end
 
 function _M:onBirth()
@@ -335,6 +341,25 @@ end
 function _M:act()
   if not mod.class.Actor.act(self) then return end
 
+--Count down lite turns
+  local lite = (self:getInven("LITE") and self:getInven("LITE")[1])
+
+  if lite and not lite.name == "everlasting torch" and self.lite_counter > 0 then --and not lite.name == "a lantern" then
+    self.lite_counter = self.lite_counter - 1
+  end
+
+  if lite and self.lite_counter == 0 then
+    self:removeObject(self:getInven("LITE")[1])
+    --[[Add burnt out torch
+    self:addObject]]
+  end
+
+  --Count down nutrition
+  local nutrition = self.nutrition
+
+ self.nutrition = self.nutrition - 1
+
+
   -- Clean log flasher
   game.flash:empty()
 
@@ -342,6 +367,9 @@ function _M:act()
   if not self:restStep() and not self:runStep() and self.player then
     game.paused = true
   end
+
+  
+
 end
 
 -- Precompute FOV form, for speed

@@ -110,6 +110,13 @@ function _M:display()
 
     h = h + self.font_h
 
+    --Display hunger
+    if player.nutrition < 50 then self:makeTexture("#LIGHT_GREEN#Hungry", x, h, 255, 255, 255)
+    elseif player.nutrition < 25 then self:makeTexture("#DARK_GREEN#Starving!", x, h, 255, 255, 255)
+    else end
+
+    h = h + self.font_h
+
     self:makeTexture(("Dungeon lvl: %d"):format(game.level.level), x, h, 240, 240, 170)
 
     h = h + self.font_h
