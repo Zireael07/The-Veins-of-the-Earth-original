@@ -67,7 +67,7 @@ end
 
 function _M:run()
 	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
-	self.logdisplay = LogDisplay.new(290, self.h - 200, self.w*0.45, self.h*0.2, nil, nil, 14, {255,255,255}, {30,30,30})
+	self.logdisplay = LogDisplay.new(290, self.h - 150, self.w*0.45, self.h*0.15, nil, nil, 14, {255,255,255}, {30,30,30})
 	self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.75, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
 	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
 	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
@@ -174,9 +174,7 @@ function _M:registerHighscore()
 	local score = 0
 	local temp = 0
 
-	--Placeholder score
---	temp = math.floor(player.level + (player.exp / player:getExpChart(player.level))) + math.floor(player.money / 100)
-
+	--Hiscores are based on your total kills
 	temp = player.kills or 0
 
 	score = score + temp
@@ -512,10 +510,6 @@ function _M:setupCommands()
 			self:registerDialog(require("mod.dialogs.CharacterSheet").new(self.player))
 		end,
 		
-		SHOW_MESSAGE_LOG = function()
-			self:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, self.logdisplay, profile.chat))
-		end,
-
 		-- Exit the game
 		QUIT_GAME = function()
 			self:onQuit()
@@ -597,8 +591,24 @@ function _M:setupCommands()
     		end 
 		end,
 
+		--Helpful stuff
 		SHOW_HELP = function()
 			self:registerDialog(require("mod.dialogs.Help").new(self.player))
+		end,
+
+		SHOW_MESSAGE_LOG = function()
+			self:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, self.logdisplay, profile.chat))
+		end,
+
+		SHOW_CHAT_CHANNELS = function()
+		self:registerDialog(require("engine.dialogs.ChatChannels").new(profile.chat))
+		--[[
+		Chat:showLogDialog("Chat log")]]
+		end,
+
+		USERCHAT_TALK = function()
+		local Chat = require("engine.UserChat")
+			Chat:talkBox()
 		end,
 	 
 	}
