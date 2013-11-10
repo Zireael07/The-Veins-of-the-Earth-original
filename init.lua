@@ -19,10 +19,14 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
-version = {0,9,0}
+version = {0,10,0}
 engine = {1,0,5,"te4"}
 description = [[
 In DarkGod's words, "a fantasy d20-themed dungeon crawler".
+
+***
+Please use either the built-in report error function (remember to fill in "what I was doing" field) or report any bugs on ToME 4 forums 
+
 ]]
 starter = "mod.load"
 
@@ -61,7 +65,5 @@ score_formatters = {
 		alive="#LIGHT_GREEN#{score} : #LIGHT_BLUE#{name}#LAST# the #LIGHT_RED#{role} (level {level})#LAST# is still alive and well in the #GREEN#{where}#LAST##WHITE#",
 		dead="{score} : #LIGHT_BLUE#{name}#LAST# the #LIGHT_RED#{role} (level {level})#LAST# died in the #GREEN#{where}#LAST#"
 
---		alive="#BLUE#{name}#LAST#",
---		dead="#BLUE#{name}#LAST#"
 	},
 }
