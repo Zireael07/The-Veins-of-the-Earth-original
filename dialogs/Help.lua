@@ -36,13 +36,13 @@ function _M:init()
 ]]
         
     self.c_desc = Textzone.new{width=self.iw, height=self.ih, scrollbar=true, text = self.text}
-    self.c_legend = Button.new{text="Legend", fct=function() self:onLegend() end}
+    self.c_legend = Button.new{text="ASCII legend", fct=function() self:onLegend() end}
     self.c_rules = Button.new{text="Rules", fct=function() self:onRules() end}
 
     self:loadUI{
              {left=0, top=0, ui=self.c_desc},
              {left=0, bottom=0, ui=self.c_legend},
-            {left=70, bottom=0, ui=self.c_rules},
+             {left=100, bottom=0, ui=self.c_rules},
     }
     self:setupUI(false, true)
     

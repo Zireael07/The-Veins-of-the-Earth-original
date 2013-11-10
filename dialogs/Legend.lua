@@ -13,7 +13,11 @@ module(..., package.seeall, class.inherit(Dialog))
 function _M:init()
     Dialog.init(self, "Legend", game.w * 0.5, game.h * 0.5)
     
-    self.text=[[     @ player
+    self.text=[[    
+    The legend applies only to ASCII mode.
+
+
+     @ player
     Monsters
     a  animal
     b bat / bird
