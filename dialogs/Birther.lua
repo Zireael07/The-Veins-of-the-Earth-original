@@ -108,7 +108,7 @@ function _M:onBirth()
         game.player.changed = true
         game.player:onBirth()
         print("[PLAYER BIRTH] resolved!")
-        end)
+        end, quickbirth, game.w*0.6, game.h*0.6)
 
     game:registerDialog(birth)
 end

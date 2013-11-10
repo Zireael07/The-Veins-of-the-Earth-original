@@ -17,6 +17,7 @@
 local help = [[#GOLD#Feat points#SANDY_BROWN# are used to pick feats, which improve the character in various ways. #GOLD#Skill points#LAST#are used to improve the character's skills, as their name suggests.
  If you pick the #GOLD#favored class#LAST# later, you will gain +2 hit points per level and a +1 to attack. The latter bonus does not apply if you are a mage, however.
  #GOLD#ECL#LAST# means that your character will need more XP to level up (as though his or her level was equal to level + ECL).
+ 
  #WHITE#]]
 
 --Standard races

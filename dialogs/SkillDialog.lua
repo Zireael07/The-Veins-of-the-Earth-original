@@ -80,7 +80,7 @@ function _M:use(item)
 	local c_warlock = { balance = "no", bluff = "no", climb = "no", concentration = "yes", diplomacy = "no", disabledevice = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
 	
 	--Cross class skills
-	if self.classes and self.classes["Barbarian"] and c_barbarian[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+	if self.classes and self.classes["Barbarian"] and c_barbarian[item.skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
 		
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
@@ -88,7 +88,7 @@ function _M:use(item)
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()
 	
-	elseif self.classes and self.classes["Bard"] and c_bard[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+	elseif self.classes and self.classes["Bard"] and c_bard[item.skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
 		
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
@@ -96,7 +96,7 @@ function _M:use(item)
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()
 
-	elseif self.classes and self.classes["Cleric"] and c_cleric[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+	elseif self.classes and self.classes["Cleric"] and c_cleric[item.skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
 		
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
@@ -104,15 +104,7 @@ function _M:use(item)
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()
 		
-	elseif self.classes and self.classes["Druid"] and c_druid[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
-		
-		--increase the skill by one
-		self.player:attr("skill_"..item.skill, 1)
-
-		self.player.skill_point = self.player.skill_point - 1
-		self:update()
-	
-	elseif self.classes and self.classes["Fighter"] and c_fighter[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+	elseif self.classes and self.classes["Druid"] and c_druid[item.skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
 		
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
@@ -120,7 +112,15 @@ function _M:use(item)
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()
 	
-	elseif self.classes and self.classes["Rogue"] and c_rogue[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+	elseif self.classes and self.classes["Fighter"] and c_fighter[item.skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+		
+		--increase the skill by one
+		self.player:attr("skill_"..item.skill, 1)
+
+		self.player.skill_point = self.player.skill_point - 1
+		self:update()
+	
+	elseif self.classes and self.classes["Rogue"] and c_rogue[item.skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
 		
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
@@ -128,7 +128,7 @@ function _M:use(item)
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()
 		
-	elseif self.classes and self.classes["Sorcerer"] and c_sorcerer[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+	elseif self.classes and self.classes["Sorcerer"] and c_sorcerer[item.skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
 		
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
@@ -136,7 +136,7 @@ function _M:use(item)
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()
 		
-	elseif self.classes and self.classes["Wizard"] and c_wizard[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+	elseif self.classes and self.classes["Wizard"] and c_wizard[item.skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
 		
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
@@ -144,7 +144,7 @@ function _M:use(item)
 		self.player.skill_point = self.player.skill_point - 1
 		self:update()
 		
-	elseif self.classes and self.classes["Warlock"] and c_warlock[skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
+	elseif self.classes and self.classes["Warlock"] and c_warlock[item.skill] == "no" and (self.player:attr("skill_"..item.skill) or 0)  <= self.player.cross_class_ranks then
 		
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
