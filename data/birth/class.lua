@@ -7,7 +7,7 @@ local help = '#GOLD#BAB#SANDY_BROWN# = Base Attack Bonus, required by some feats
 newBirthDescriptor {
 	type = 'class',
 	name = 'Barbarian',
-	desc = help..'#ORANGE#Raging warriors of the wilds.\n\n #LIGHT_BLUE#Class skills: Climb, Handle Animal, Intimidate, Jump, Listen, Swim, Survival.\n\n #WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.',
+	desc = help..'#ORANGE#Raging warriors of the wilds.\n\n #LIGHT_BLUE#Class skills: Climb, Handle Animal, Intimidate, Jump, Listen, Swim, Survival.\n\n #WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -35,7 +35,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+		if actor.classes and actor.classes["Barbarian"] and actor.descriptor.class == "Barbarian" then return true end
+		
+		if actor:getStr() >= 13 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then 
@@ -76,7 +79,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
-	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Balance, Bluff, Climb, Concentration, Diplomacy, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.',
+	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Balance, Bluff, Climb, Concentration, Diplomacy, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -105,7 +108,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+		if actor.classes and actor.classes["Bard"] and actor.descriptor.class == "Bard" then return true end
+		
+		if actor:getCha() >= 13 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then 
@@ -162,7 +168,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Cleric',
-	desc = help..'#ORANGE#Clerics are masters of healing.\n\n #LIGHT_BLUE# Class skills: Concentration, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n  #WHITE#8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
+	desc = help..'#ORANGE#Clerics are masters of healing.\n\n #LIGHT_BLUE# Class skills: Concentration, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n  #WHITE#8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -189,7 +195,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+		if actor.classes and actor.classes["Cleric"] and actor.descriptor.class == "Cleric" then return true end
+		
+		if actor:getWis() >= 13 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then
@@ -252,7 +261,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Druid',
-	desc = help..'#ORANGE#Clerics of nature.\n\n #LIGHT_BLUE# Class skills: Concentration, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Spot, Swim, Spellcraft, Survival.\n\n  #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.',
+	desc = help..'#ORANGE#Clerics of nature.\n\n #LIGHT_BLUE# Class skills: Concentration, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Spot, Swim, Spellcraft, Survival.\n\n  #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -284,7 +293,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+		if actor.classes and actor.classes["Druid"] and actor.descriptor.class == "Druid" then return true end
+		
+		if actor:getWis() >= 13 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
@@ -328,7 +340,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Fighter',
-	desc = help..'#ORANGE#Simple fighters, they hack away with their trusty weapon.\n\n #LIGHT_BLUE# Class skills: Climb, Handle Animal, Intimidate, Jump, Swim.\n\n  #WHITE#10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.',
+	desc = help..'#ORANGE#Simple fighters, they hack away with their trusty weapon.\n\n #LIGHT_BLUE# Class skills: Climb, Handle Animal, Intimidate, Jump, Swim.\n\n  #WHITE#10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -350,7 +362,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+		if actor.classes and actor.classes["Fighter"] and actor.descriptor.class == "Fighter" then return true end
+		
+		if actor:getStr() >= 13 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then 
@@ -392,7 +407,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Ranger',
-	desc = help..'#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n #LIGHT_BLUE# Class skills: Climb, Concentration, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Search, Spot, Swim, Survival.\n\n  #WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.',
+	desc = help..'#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n #LIGHT_BLUE# Class skills: Climb, Concentration, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Search, Spot, Swim, Survival.\n\n  #WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -420,7 +435,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+		if actor.classes and actor.classes["Ranger"] and actor.descriptor.class == "Ranger" then return true end
+		
+		if actor:getStr() >= 13 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then 
@@ -490,7 +508,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Rogue',
-	desc = help..'#ORANGE#Rogues are masters of tricks.\n\n #LIGHT_BLUE# Class skills: Balance, Bluff, Climb, Diplomacy, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic.\n\n  #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.',
+	desc = help..'#ORANGE#Rogues are masters of tricks.\n\n #LIGHT_BLUE# Class skills: Balance, Bluff, Climb, Diplomacy, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic.\n\n  #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.\n\n #GOLD#DEX 13#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -524,7 +542,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+		if actor.classes and actor.classes["Rogue"] and actor.descriptor.class == "Rogue" then return true end
+		
+		if actor:getDex() >= 13 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then 
@@ -562,7 +583,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Sorcerer',
-	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Bluff, Concentration, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
+	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Bluff, Concentration, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 16#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -596,7 +617,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+		if actor.classes and actor.classes["Sorcerer"] and actor.descriptor.class == "Sorcerer" then return true end
+		
+		if actor:getCha() >= 16 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then 
@@ -641,7 +665,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Wizard',
-	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Concentration, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
+	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Concentration, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.\n\n #GOLD#INT 16#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -672,7 +696,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+		if actor.classes and actor.classes["Wizard"] and actor.descriptor.class == "Wizard" then return true end
+		
+		if actor:getInt() >= 16 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then
@@ -767,7 +794,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Warlock',
-	desc = help..'#ORANGE#A spellcaster who needs no weapon.\n\n #LIGHT_BLUE# Class skills: Concentration, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n #WHITE#6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.',
+	desc = help..'#ORANGE#A spellcaster who needs no weapon.\n\n #LIGHT_BLUE# Class skills: Concentration, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n #WHITE#6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	copy = {
 		resolvers.equip {
 			full_id=true,
@@ -792,7 +819,10 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		return true
+	if actor.classes and actor.classes["Warlock"] and actor.descriptor.class == "Warlock" then return true end
+		
+		if actor:getCha() >= 13 then return true end
+		return false
 	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.will_save = (actor.will_save or 0) + 2

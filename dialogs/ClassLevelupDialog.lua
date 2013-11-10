@@ -19,11 +19,11 @@ function _M:init(actor)
     self.player = actor
     self:generateList()
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
-    Dialog.init(self, "Class select", game.h*0.6, game.w*0.4)
+    Dialog.init(self, "Class select", game.w*0.4, game.h*0.6)
 
     self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available class points: "..self.player.class_points}  
     self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
-    self.c_desc = TextzoneList.new{width=self.iw/2-20, height = 400, text="Hello from description"}
+    self.c_desc = TextzoneList.new{width=self.iw/2-20, height = self.ih, text="Hello from description"}
 
     self:loadUI{
         {left=0, top=0, ui = self.c_points},
@@ -38,8 +38,8 @@ function _M:init(actor)
 end
 
 function _M:use(item)
-    if self.player.class_points <= 0 then game.log("you need a class point") return end
-    if not item.can_level then game.log("You dont fill all the criteria for this class") return end
+    if self.player.class_points <= 0 then game.log("You need a class point") return end
+    if not item.can_level then game.log("You don't fulfill all the requirements for this class") return end
 
     self.player:levelClass(item.real_name)
 
