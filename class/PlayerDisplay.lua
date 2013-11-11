@@ -111,8 +111,8 @@ function _M:display()
     h = h + self.font_h
 
     --Display hunger
-    if player.nutrition < 50 then self:makeTexture("#LIGHT_GREEN#Hungry", x, h, 255, 255, 255)
-    elseif player.nutrition < 25 then self:makeTexture("#DARK_GREEN#Starving!", x, h, 255, 255, 255)
+    if player.nutrition < 25 then self:makeTexture("#DARK_GREEN#Starving!", x, h, 255, 255, 255)
+    elseif player.nutrition < 50 then self:makeTexture("#LIGHT_GREEN#Hungry", x, h, 255, 255, 255)
     else end
 
     h = h + self.font_h
