@@ -58,6 +58,8 @@ newEntity{
 --},
 }
 
+game.scroll_materials = {"abbil", "abban","alae","alartae","akh","belbau","belbol","bol","dro","dalharil","dalharuk","dalninil","dalninuk","dhaerow","dobluth","darthiir","faer","faern","hargluk","harl","harluth","Har'oloth","ilhar","ilharn","ilythiiri","jal","malla","maglust","natha","obsul","orbb","phor","pholor","phuul","plynn","qu'ellar","rivvil", "rivvin","ssin'urn","ssussun","xun","xundus","tagnik", "tagnik'zur","tluth","ulartae","valsharess","veldruk", "veldriss", "veldrin","z'ress" }
+
 --Scrolls
 newEntity{
     define_as = "BASE_SCROLL",
@@ -68,8 +70,17 @@ newEntity{
     encumber = 0,
     rarity = 20,
     multicharge = 50,
-    name = "A scroll",
+    name = "a scroll", instant_resolve = true,
     desc = [[A scroll.]],
+    resolvers.genericlast(function(e)
+        game.object_material_types = game.object_material_types or {}
+        game.object_material_types["scroll"] = game.object_material_types["scroll"] or {}
+        game.object_material_types["scroll"]["scroll"] = game.object_material_types["scroll"]["scroll"] or {}
+        if not game.object_material_types["scroll"]["scroll"][e.name] then
+            game.object_material_types["scroll"]["scroll"][e.name] = rng.tableRemove(game.scroll_materials)
+        end
+        e.unided_name = e.unided_name.." labeled "..game.object_material_types["scroll"]["scroll"][e.name]
+    end),
 }
 
 newEntity{

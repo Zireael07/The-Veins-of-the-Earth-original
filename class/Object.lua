@@ -81,33 +81,6 @@ function _M:getName(t)
     local qty = self:getNumber()
     local name = self.name
 
-    --Special naming for potions & scrolls
-    local set_name = 0
-    local pattern = rng.table{"cloudy","hazy","metallic","milky", "misty","scincillating","shimmering","smoky","speckled","spotted","swirling","oily","opaque","pungent", "viscous"}
-    local colors = rng.table{"red","blue","pink","green","black","white","violet","yellow","teal","gold"}
-
-    local label = rng.table{"abbil", "abban","alae","alartae","akh","belbau","belbol","bol","dro","dalharil","dalharuk","dalninil","dalninuk","dhaerow","dobluth","darthiir","faer","faern","hargluk","harl","harluth","Har'oloth","ilhar","ilharn","ilythiiri","jal","malla","maglust","natha","obsul","orbb","phor","pholor","phuul","plynn","qu'ellar","rivvil", "rivvin","ssin'urn","ssussun","xun","xundus","tagnik", "tagnik'zur","tluth","ulartae","valsharess","veldruk", "veldriss", "veldrin","z'ress", }
-
-    if set_name == 0 then
-        if self.type == "potion" and self.identified == false then 
-            if rng.chance(50) then set_name = set_name + 1
-                return "a "..colors.." potion"    
-            else set_name = set_name + 1 
-                return "a "..pattern.." "..colors.." potion" end
-        set_name = 1
-        end   
-        if self.type == "scroll" and self.identified == false then
-            if rng.chance(30) then  set_name = set_name + 1
-              return "a scroll labeled "..label
-            elseif rng.chance(70) then set_name = set_name + 1
-                return "a scroll labeled "..label.." "..label 
-                
-            else set_name = set_name + 1
-            return "a scroll labeled "..label.." "..label.." "..label     
-            end
-        end
-    else end
-
     if self.identified == false and not t.force_id and self:getUnidentifiedName() then name = self:getUnidentifiedName() end
     
     if qty == 1 or t.no_count then return name
@@ -198,6 +171,11 @@ function _M:tooltip(x, y)
     elseif nb > 2 then str = str.."\n---\nYou see "..(nb-1).." more objects."
     end
     return str
+end
+
+--- Can it stacks with others of its kind ?
+function _M:canStack(o)
+    return engine.Object.canStack(self, o)
 end
 
 function _M:on_identify()
