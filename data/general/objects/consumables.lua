@@ -63,7 +63,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "fresh corpse", color=colors.GREEN,
-    image = "tiles/corpse.png",
+    image = "tiles/newtiles/corpse.png",
     level_range = {1,10},
     cost = 0,
     desc = [[A fresh corpse of some creature.]],
@@ -78,7 +78,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "corpse", color=colors.RED,
-    image = "tiles/corpse.png",
+    image = "tiles/newtiles/corpse.png",
     level_range = {1,10},
     cost = 0,
     nutrition = 6,
@@ -128,7 +128,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "stale corpse",
-    image = "tiles/corpse.png",
+    image = "tiles/newtiles/corpse.png",
     level_range = {1,10},
     cost = 0,
     nutrition = 0,
