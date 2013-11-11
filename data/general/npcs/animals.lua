@@ -120,6 +120,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_LIZARD",
 	type = "animal",
+	image = "tiles/lizard.png",
 	display = 'q', color=colors.GREEN,
 
 	body = { INVEN = 10 },
@@ -152,6 +153,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_MONLIZARD",
 	type = "animal",
+	image = "tiles/lizard.png",
 	display = 'q', color=colors.DARK_GREEN,
 	body = { INVEN = 10 },
 	desc = [[A large lizard.]],
@@ -217,6 +219,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_RAVEN",
 	type = "animal",
+	image = "tiles/newtiles/raven.png",
 	display = 'b', color=colors.GREY,
 	body = { INVEN = 10 },
 	desc = [[A large raven.]],

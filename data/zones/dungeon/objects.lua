@@ -83,11 +83,30 @@ newEntity{
   }, 
 }
 
+--Burnt out torch
+newEntity{
+    base = "BASE_LIGHT",
+    name = "a burnt out torch",
+    level_range = {1,10},
+    cost = 0,
+}
+
+--Burnt out lantern
+newEntity{
+    base = "BASE_LIGHT",
+    name = "a burnt out lantern",
+    image = "tiles/lantern.png",
+    level_range = {5,nil},
+    cost = 0,
+}
+
+
 --Tools or kits
 newEntity{
     define_as = "BASE_TOOL",
     slot = "TOOL",
     type = "tool", subtype = "skill",
+    image = "tiles/newtiles/kit.png",
     display = "^", color=colors.YELLOW,
     encumber = 1,
     rarity = 10,
