@@ -24,7 +24,7 @@ newEntity{
     desc = [[Food rations, enough for a day or two.]],
     use_simple = { name = "eat",
     use = function(self,who)
-        who.nutrition = who.nutrition + 20
+        who.nutrition = who.nutrition + 200
         return {used = true, destroy = true}
   end
   }, 
@@ -39,7 +39,7 @@ newEntity{
     desc == [[Spider bread, a favorite of the dark elves.]],
     use_simple = { name = "eat",
     use = function(self,who)
-        who.nutrition = who.nutrition + 15
+        who.nutrition = who.nutrition + 150
         return {used = true, destroy = true}
   end
   }, 
@@ -54,7 +54,7 @@ newEntity{
     desc = [[Beef jerky. Spoils slowly.]],
     use_simple = { name = "eat",
     use = function(self,who)
-        who.nutrition = who.nutrition + 15
+        who.nutrition = who.nutrition + 150
         return {used = true, destroy = true}
   end
   }, 
@@ -69,7 +69,7 @@ newEntity{
     desc = [[A fresh corpse of some creature.]],
     use_simple = { name = "eat",
     use = function(self,who)
-        who.nutrition = who.nutrition + 10
+        who.nutrition = who.nutrition + 100
         return {used = true, destroy = true}
   end
   }, 
@@ -85,7 +85,7 @@ newEntity{
     desc == [[A corpse of some creature.]],
     use_simple = { name = "eat",
     use = function(self,who)
-        who.nutrition = who.nutrition + 6
+        who.nutrition = who.nutrition + 60
         return {used = true, destroy = true}
   end
   }, 
