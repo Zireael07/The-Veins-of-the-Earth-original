@@ -46,7 +46,7 @@ function _M:init(actor)
 	Dialog.init(self, "Skills", game.w*0.5, game.h*0.6)
 	self:generateList()
 	
-	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: #GOLD#"..self.player.skill_point.. " #LAST#Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Only skill ranks are displayed."}
+	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: #GOLD#"..self.player.skill_point.. " #LAST#Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."}
 	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
 	self.c_desc = TextzoneList.new{width=self.iw/2-20, height = 400, text="Hello from description"}
 
@@ -67,7 +67,7 @@ function _M:use(item)
 		
 	--Cross class skills
 	if self.player:crossClass(item.skill) then
-		if (self.player:attr("skill_"..item.skill) or 0) <= self.player.cross_class_ranks then
+		if (self.player:attr("skill_"..item.skill) or 0) < self.player.cross_class_ranks then
 		
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
@@ -78,7 +78,7 @@ function _M:use(item)
 	else
 
 	--Class skills	
-	if (self.player:attr("skill_"..item.skill) or 0) <= self.player.max_skill_ranks then
+	if (self.player:attr("skill_"..item.skill) or 0) < self.player.max_skill_ranks then
 
 		--increase the skill by one
 		self.player:attr("skill_"..item.skill, 1)
@@ -111,9 +111,13 @@ function _M:generateList()
     for skill, description in pairs(skills) do
     	local value = self.player:attr("skill_"..skill)
  		local color = {255, 255, 255}
+
  		local d = "#CHOCOLATE#"..skill:capitalize().."#LAST#\n\n"
  		d = d..description.."\n#WHITE#"
-        list[#list+1] = {name="#SLATE#(#LAST##AQUAMARINE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize(), skill = skill,	 color = color, desc=d}
+        if self.player:crossClass(skill) then name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..skill:capitalize()	
+        else name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize()	
+        end
+        	list[#list+1] = {name=name, skill = skill,	 color = color, desc=d}
     end
     self.list = list
     table.sort(list, function(a,b) return a.skill < b.skill end)
