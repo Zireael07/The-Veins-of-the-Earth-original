@@ -3,7 +3,7 @@ The Veins of the Earth
 
 "A fantasy d20-themed dungeon crawler", to quote DarkGod's comment.
 
-Requires T-Engine 1.0.5h (beta).
+Requires T-Engine 1.0.5.
 
 Click t-engine.exe to run.
 
@@ -16,7 +16,7 @@ Contributors:
 Features:
 - brand-new start-up screen and menu [standalone version only]
 - new old gold and black UI skin
-- 32x32 tiles by Daniel E.Gervais
+- 32x32 tiles by Daniel E. Gervais & my edits
 - controls displayed automatically at game start
 - 10 classes: barbarian, bard, cleric, druid, fighter, ranger, rogue, sorcerer, wizard (with specialist schools [Seb]), warlock
 - 2 prestige classes: shadowdancer, assasin
@@ -26,7 +26,7 @@ Features:
 - random name generator taking into account your character's race and sex
 - Effective Character Level
 - XP for killing monsters, descending deeper, disarming traps
-- multiclassing & prestige classes & favored classes
+- multiclassing (with ability score requirements) & prestige classes & favored classes
 - complete, colored character sheet with tooltips displaying rules info
 - randomized unarmed and weapon damage; archery and reach weapons; two weapon fighting penalties & feats
 - attack roll & AC & critical hits & offhand attack (including double weapons) & iterative attacks
@@ -48,6 +48,7 @@ Features:
 - cure x wounds spells work in a traditional way; heal x wounds spells heal a percentage of total hp
 - stairs have a chance of not changing the dungeon level [Seb]
 - calendar
+- hunger counter and display
 
 ***
 Thanks to:

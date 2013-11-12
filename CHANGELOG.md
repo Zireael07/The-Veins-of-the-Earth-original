@@ -276,3 +276,24 @@ BETA RELEASES
 * right-clicking on map now brings up a context menu
 * light & heavy load now works per SRD; implemented Loadbearer feat
 * activable Power Attack and Combat Expertise feats
+
+0.11.0 - 12/11/2013
+* bug fix: shadow armor lua error fixed [Seb]
+* bug fix: apply increased Str bonus to two-handed weapons
+* bug fix: chasm displays its proper name in tooltip
+* bug fix: hotbar no longer covers the log on some screens
+* bug fix: random naming for potions and scrolls now works properly
+* bug fix: you can no longer spend one more skill point per level than intended
+* TILES - using David Gervais 32x32 tiles with some new tiles made by me
+* new spells: identify; improved identify, mage armor [Seb]
+* new items: cursed items (bracers of clumsiness, potion of poison, potion of inflict light wounds and others); ring of darkvision
+* split feat dialog into 3 columns
+* add proficiency requirement to shields
+* adjusted magic item drops
+* Balance DC 15 or Jump DC 30 to cross a chasm
+* character sheet split into two tabs; skill breakdown as a table
+* containers
+* show message log screen finally works
+* hunger counter & food rations now work
+* multiclassing now requires 13 in core ability except for sorcerers and wizards, who require 16 in CHA or INT, respectively
+* cross-class skills are now coded and working
