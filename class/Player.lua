@@ -83,6 +83,9 @@ end
 function _M:onBirth()
   self:randomName()
   self:levelClass(self.descriptor.class)
+  self:setTile()
+  Map:resetTiles()
+--  self:equipAllItems()
   self:resetToFull()
   game:registerDialog(require"mod.dialogs.Help".new(self.player))
 end
@@ -92,6 +95,18 @@ local d = rng.dice(1,2)
   if d == 1 then self:randomFeat()
   elseif d == 2 then self:randomSpell() end
 --  else self:randomItem() end 
+end
+
+function _M:equipAllItems()
+  local inven = game.player:getInven("INVEN")
+    for i = #inven, 1, -1 do
+      local o = inven[i]
+      if o.slot ~= "INVEN" then
+      self:removeObject(inven, o)
+      self:wearObject(o, false, false)  
+      end
+    end
+    self:sortInven()  
 end
 
 function _M:randomName()
@@ -367,9 +382,6 @@ function _M:act()
   if not self:restStep() and not self:runStep() and self.player then
     game.paused = true
   end
-
-  
-
 end
 
 -- Precompute FOV form, for speed
@@ -725,4 +737,91 @@ function _M:takeOut(bag)
     end
     return true
   end)
+end
+
+function _M:setTile()
+  if self.descriptor.race == "Human" then 
+    if self.descriptor.class == "Barbarian" then end
+    if self.descriptor.class == "Bard" then image = "tiles/newtiles/player/player_human_rogue.png" end
+    if self.descriptor.class == "Cleric" then image = "tiles/player.png" end
+    if self.descriptor.class == "Druid" then image = "tiles/newtiles/player/player_human_priest.png" end
+    if self.descriptor.class == "Fighter" then image = "tiles/player.png" end
+    if self.descriptor.class == "Ranger" then image = "tiles/newtiles/player/player_human_ranger.png" end
+    if self.descriptor.class == "Rogue" then image = "tiles/newtiles/player/player_human_rogue.png" end
+    if self.descriptor.class == "Sorcerer" then image = "tiles/newtiles/player/player_human_sorcerer.png" end
+    if self.descriptor.class == "Wizard" then image = "tiles/newtiles/player/player_human_mage.png" end
+    if self.descriptor.class == "Warlock" then image = "tiles/newtiles/player/player_human_sorcerer.png" end
+    
+  elseif self.descriptor.race == "Half-Elf" then
+    if self.descriptor.class == "Barbarian" then image = "tiles/newtiles/player/player_halfelf_fighter.png" end
+    if self.descriptor.class == "Bard" then image = "tiles/newtiles/player/player_halfelf_rogue.png" end
+    if self.descriptor.class == "Cleric" then image = "tiles/player.png" end
+    if self.descriptor.class == "Druid" then image = "tiles/newtiles/player/player_halfelf_priest.png" end
+    if self.descriptor.class == "Fighter" then image = "tiles/newtiles/player/player_halfelf_fighter.png" end
+    if self.descriptor.class == "Ranger" then image = "tiles/newtiles/player/player_halfelf_ranger.png" end
+    if self.descriptor.class == "Rogue" then image = "tiles/newtiles/player/player_halfelf_rogue.png" end
+    if self.descriptor.class == "Sorcerer" then image = "tiles/newtiles/player/player_halfelf_sorcerer.png" end
+    if self.descriptor.class == "Wizard" then image = "tiles/newtiles/player/player_halfelf_mage.png" end
+    if self.descriptor.class == "Warlock" then image = "tiles/newtiles/player_halfelf_sorcerer.png" end
+
+  elseif self.descriptor.race == "Elf" then
+    if self.descriptor.class == "Barbarian" then image = "tiles/newtiles/player/player_elf_fighter.png" end
+    if self.descriptor.class == "Bard" then image = "tiles/newtiles/player/player_elf_rogue.png" end
+    if self.descriptor.class == "Cleric" then image = "tiles/player.png" end
+    if self.descriptor.class == "Druid" then image = "tiles/newtiles/player/player_elf_priest.png" end
+    if self.descriptor.class == "Fighter" then image = "tiles/newtiles/player/player_elf_fighter.png" end
+    if self.descriptor.class == "Ranger" then image = "tiles/newtiles/player/player_elf_ranger.png" end
+    if self.descriptor.class == "Rogue" then image = "tiles/newtiles/player/player_elf_rogue.png" end
+    if self.descriptor.class == "Sorcerer" then image = "tiles/newtiles/player/player_elf_sorcerer.png" end
+    if self.descriptor.class == "Wizard" then image = "tiles/newtiles/player/player_elf_mage.png" end
+    if self.descriptor.class == "Warlock" then image = "tiles/newtiles/player/player_elf_sorcerer.png" end
+
+  elseif self.descriptor.race == "Drow" then
+    if self.descriptor.class == "Barbarian" then image = "tiles/newtiles/player/player_drow_fighter.png" end
+    if self.descriptor.class == "Bard" then image = "tiles/newtiles/player/player_drow_rogue.png" end
+    if self.descriptor.class == "Cleric" then image = "tiles/player.png" end
+    if self.descriptor.class == "Druid" then image = "tiles/newtiles/player/player_drow_priest.png" end
+    if self.descriptor.class == "Fighter" then image = "tiles/newtiles/player/player_drow_fighter.png" end
+    if self.descriptor.class == "Ranger" then image = "tiles/newtiles/player/player_drow_ranger.png" end
+    if self.descriptor.class == "Rogue" then image = "tiles/newtiles/player/player_drow_rogue.png" end
+    if self.descriptor.class == "Sorcerer" then image = "tiles/newtiles/player/player_drow_sorcerer.png" end
+    if self.descriptor.class == "Wizard" then image = "tiles/newtiles/player/player_drow_mage.png" end
+    if self.descriptor.class == "Warlock" then image = "tiles/newtiles/player/player_drow_sorcerer.png" end
+
+  elseif self.descriptor.race == "Dwarf" then
+    if self.descriptor.class == "Barbarian" then image = "tiles/newtiles/player/player_dwarf_fighter.png" end
+    if self.descriptor.class == "Bard" then image = "tiles/newtiles/player/player_dwarf_rogue.png" end
+    if self.descriptor.class == "Cleric" then image = "tiles/player.png" end
+    if self.descriptor.class == "Druid" then image = "tiles/newtiles/player/player_dwarf_priest.png" end
+    if self.descriptor.class == "Fighter" then image = "tiles/newtiles/player/player_dwarf_fighter.png" end
+    if self.descriptor.class == "Ranger" then image = "tiles/newtiles/player/player_dwarf_ranger.png" end
+    if self.descriptor.class == "Rogue" then image = "tiles/newtiles/player/player_dwarf_rogue.png" end
+    if self.descriptor.class == "Sorcerer" then image = "tiles/newtiles/player/player_dwarf_sorcerer.png" end
+    if self.descriptor.class == "Wizard" then image = "tiles/newtiles/player/player_dwarf_mage.png" end
+    if self.descriptor.class == "Warlock" then image = "tiles/newtiles/player/player_dwarf_sorcerer.png" end
+
+  elseif self.descriptor.race == "Halfling" then
+    if self.descriptor.class == "Barbarian" then image = "tiles/newtiles/player/player_halfling_fighter.png" end
+    if self.descriptor.class == "Bard" then image = "tiles/player_halfling_rogue.png" end
+    if self.descriptor.class == "Cleric" then image = "tiles/player.png" end
+    if self.descriptor.class == "Druid" then image = "tiles/player.png" end
+    if self.descriptor.class == "Fighter" then image = "tiles/newtiles/player/player_halfling_fighter.png" end
+    if self.descriptor.class == "Ranger" then image = "tiles/newtiles/player/player_halfling_ranger.png" end
+    if self.descriptor.class == "Rogue" then image = "tiles/player_halfling_rogue.png" end
+    if self.descriptor.class == "Sorcerer" then image = "tiles/newtiles/player/player_halfling_sorcerer.png" end
+    if self.descriptor.class == "Wizard" then image = "tiles/newtiles/player/player_halfling_mage.png" end
+    if self.descriptor.class == "Warlock" then image = "tiles/newtiles/player/player_halfling_sorcerer.png" end
+
+  elseif self.descriptor.race == "Gnome" then
+    if self.descriptor.class == "Barbarian" then image = "tiles/newtiles/player/player_gnome_fighter.png" end
+    if self.descriptor.class == "Bard" then image = "tiles/newtiles/player/player_gnome_rogue.png" end
+    if self.descriptor.class == "Cleric" then image = "tiles/player.png" end
+    if self.descriptor.class == "Druid" then image = "tiles/newtiles/player/player_gnome_priest.png" end
+    if self.descriptor.class == "Fighter" then image = "tiles/newtiles/player/player_gnome_fighter.png" end
+    if self.descriptor.class == "Ranger" then image = "tiles/newtiles/player/player_gnome_ranger.png" end
+    if self.descriptor.class == "Rogue" then image = "tiles/newtiles/player/player_gnome_rogue.png" end
+    if self.descriptor.class == "Sorcerer" then image = "tiles/newtiles/player/player_gnome_sorcerer.png" end
+    if self.descriptor.class == "Wizard" then image = "tiles/player_gnome_mage.png" end
+    if self.descriptor.class == "Warlock" then image = "tiles/newtiles/player/player_gnome_sorcerer.png" end  
+  else end
 end
