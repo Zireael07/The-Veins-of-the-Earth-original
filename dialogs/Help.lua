@@ -32,7 +32,7 @@ function _M:init()
     Press #YELLOW#'b'#LAST# to diplay your spellbook, if you have it.
 
     Press #YELLOW#'F1'#LAST# to display this screen again.
-    Press #YELLOW#'F2'#LAST# to display the message log/chat.
+    Press #YELLOW#'F2'#LAST# to display the message log.
 ]]
         
     self.c_desc = Textzone.new{width=self.iw, height=self.ih, scrollbar=true, text = self.text}

@@ -186,7 +186,7 @@ function _M:generateList()
 	local player = game.player
     local list = {}
     for skill, description in pairs(skills) do
-    	local value = player:getSkill(skill)
+    	local value = self.player:attr("skill_"..skill)
  		local color = {255, 255, 255}
  		local d = "#CHOCOLATE#"..skill:capitalize().."#LAST#\n\n"
  		d = d..description.."\n#WHITE#"
