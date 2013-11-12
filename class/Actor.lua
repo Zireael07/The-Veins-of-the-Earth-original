@@ -136,6 +136,12 @@ function _M:init(t, no_default)
 	self.skill_bonus_tumble = 0
 	self.skill_bonus_usemagic = 0
 
+	--Make resists and projectiles work
+	t.resists = t.resists or {}
+    t.melee_project = t.melee_project or {}
+    t.ranged_project = t.ranged_project or {}
+	t.can_pass = t.can_pass or {}
+
 	--Actually initiate some basic engine stuff
 	engine.Actor.init(self, t, no_default)
 	engine.interface.ActorTemporaryEffects.init(self, t)
