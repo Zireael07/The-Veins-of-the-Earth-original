@@ -234,7 +234,6 @@ function _M:act()
 	end	
 
 	--Ensure they can actually die due to bleeding out
-	--Give the player XP for monsters bleeding out
 	if not self == game.player and self.life <= -10 and not self.dead then self:die(game.player) end
 	if self.life <= -10 and not self.dead then self:die() end
 
@@ -421,8 +420,11 @@ function _M:die(src)
 		game.log('You feel something roll beneath your feet.')
 	end
 
-	-- Register death for scores
-	killer.kills = killer.kills + 1
+	-- Register kills for hiscores
+	if self.challenge < (game.player.level - 4) then 
+		killer.kills = killer.kills
+	else 
+	killer.kills = killer.kills + 1 end
 	self.dead = true -- mark as dead, for scores?
 
 	-- Record kills for kill count
@@ -964,10 +966,13 @@ end
 
 function _M:randomItem()
 	--Add a random ego-ed item
-			--[[
+			
 			local o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=1000}, nil, true)
 			local inven = game.player:getInven("MAINHAND")
-			actor:addObject(inven, o)]]
+			actor:wearObject(inven, o)
+			if actor:wearObject(o, true, false) == false then
+				actor:addObject(e.INVEN_INVEN, o)
+			end
 end
 
 
