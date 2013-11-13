@@ -14,8 +14,49 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 newEntity{
+	define_as = "BASE_NPC_ACHAIERAI",
+	type = "outsider",
+	display = 'ǒ', color=colors.BLACK,
+	body = { INVEN = 10 },
+	desc = [[A large bluish-reddish wolf.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=19, dex=13, con=14, int=11, wis=14, cha=16, luc=12 },
+	combat = { dam= {2,6} },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--SR 19, black cloud (1 square ball, 2d6)
+newEntity{
+	base = "BASE_NPC_ACHAIERAI",
+	name = "achaierai", color=colors.BLACK,
+	level_range = {5, 15}, exp_worth = 900,
+	rarity = 10,
+	max_life = resolvers.rngavg(35,40),
+	hit_die = 6,
+	challenge = 5,
+	infravision = 4,
+	combat_natural = 6,
+	skill_balance = 9,
+	skill_climb = 4,
+	skill_diplomacy = 2,
+	skill_hide = 5,
+	skill_intimidate = 11,
+	skill_jump = 17,
+	skill_listen = 9,
+	skill_movesilently = 8,
+	skill_sensemotive = 9,
+	skill_spot = 9,
+}
+
+
+newEntity{
 	define_as = "BASE_NPC_BARGHEST",
-	type = "magical beast",
+	type = "outsider",
 	display = 'd', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large bluish-reddish wolf.]],
