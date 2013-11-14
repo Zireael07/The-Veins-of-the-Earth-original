@@ -199,3 +199,51 @@ newEntity{
                 [DamageType.SONIC] = 10,
         },
 }
+
+newEntity{
+        define_as = "BASE_NPC_BRALANI",
+        type = "outsider",
+        display = 'A', color=colors.UMBER,
+        body = { INVEN = 10 },
+        desc = [[A winged humanoid.]],
+
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=18, dex=18, con=17, int=13, wis=14, cha=14, luc=12 },
+        combat = { dam= {1,6} },
+        --Hack! Monsters drop corpses now
+        resolvers.inventory {
+        full_id=true,
+        { name = "fresh corpse" }
+        },
+}
+
+--fly 100 ft. (whirlwind form) land 40 ft.; wields holy scimitar + holy composite longbow; 
+--Spell-likes: At will— blur, charm person (DC 13), gust of wind (DC 14), mirror image, wind wall; 2/day—lightning bolt (DC 15), cure serious wounds (DC 15). Caster level 6th. 
+newEntity{
+        base = "BASE_NPC_BRALANI",
+        name = "bralani",
+        level_range = {10, nil}, exp_worth = 1800,
+        rarity = 15,
+        max_life = resolvers.rngavg(40,45),
+        hit_die = 6,
+        challenge = 6,
+        infravision = 4,
+        combat_natural = 6,
+        combat_dr = 10,
+        spell_resistance = 17,
+        skill_concentration = 9,
+        skill_diplomacy = 2,
+        skill_escapeartist = 9,
+        skill_handleanimal = 9,
+        skill_hide = 9,
+        skill_jump = 6,
+        skill_listen = 9,
+        skill_movesilently = 9,
+        skill_sensemotive = 9,
+        skill_spot = 9,
+        skill_tumble = 9,
+        resists = {
+                [DamageType.FIRE] = 10,
+                [DamageType.COLD] = 10,
+        },
+}

@@ -271,6 +271,47 @@ newEntity{
 	},
 }
 
+--Scent
+newEntity{
+	define_as = "BASE_NPC_BUGBEAR",
+	type = "humanoid", subtype = "humanoid_goblin",
+	image = "tiles/goblin.png",
+	display = 'g', color=colors.BROWN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A dirty hairy bugbear.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=15, dex=12, con=13, int=10, wis=10, cha=9, luc=8 },
+	combat = { dam= {1,6} },
+	darkvision = 3,
+	skill_climb = 1,
+	skill_hide = 3,
+	skill_movesilently = 5,
+	skill_listen = 4,
+	skill_spot = 4,
+}
+
+newEntity{
+	base = "BASE_NPC_BUGBEAR",
+	name = "bugbear",
+	level_range = {1, 10}, exp_worth = 600,
+	rarity = 5,
+	max_life = resolvers.rngavg(15,20),
+	hit_die = 3,
+	challenge = 2,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "leather armor" },
+		{ name = "light wooden shield" },
+		{ name = "morningstar" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
 
 --Shopkeepers
 newEntity{

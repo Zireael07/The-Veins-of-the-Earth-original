@@ -13,7 +13,7 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
---Electricity ray, speed bonuses; immunity to acid, electricity and poison; resistance to cold & fire 10
+--Electricity ray, speed bonuses; immunity to acid, electricity and poison;
 newEntity{
 	define_as = "BASE_NPC_ARROWHAWK",
 	type = "magical beast",
@@ -30,6 +30,10 @@ newEntity{
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
+	resists = {
+                [DamageType.FIRE] = 10,
+                [DamageType.COLD] = 10,
+        },
 }
 
 newEntity{
@@ -88,4 +92,38 @@ newEntity{
 	skill_sensemotive = 18,
 	skill_spot = 18,
 	skill_survival = 18,
+}
+
+--Fly 50 ft., smoke form
+newEntity{
+	define_as = "BASE_NPC_BELKER",
+	type = "outsider",
+--	image = "tiles/eagle.png",
+	display = 'E', color=colors.LIGHT_BLUE,
+	body = { INVEN = 10 },
+	desc = [[A demonic humanoid composed of smoke.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=14, dex=21, con=13, int=6, wis=11, cha=11, luc=12 },
+	combat = { dam= {1,6} },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_BELKER",
+	name = "belker", color=colors.LIGHT_BLUE,
+	level_range = {5, 15}, exp_worth = 1800,
+	rarity = 10,
+	max_life = resolvers.rngavg(35,40),
+	hit_die = 7,
+	challenge = 6,
+	infravision = 4,
+	combat_natural = 8,
+	skill_listen = 7,
+	skill_movesilently = 3,
+	skill_spot = 7,
 }
