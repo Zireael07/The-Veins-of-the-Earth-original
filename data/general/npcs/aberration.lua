@@ -325,6 +325,7 @@ newEntity{
 
 --Blindsight 6 squares; immune to gaze attacks, visual effects, illusions, +4 to saves against sonic effects
 --Disruptive harmonics: 4d6 Reflex DC 15
+--neutral evil alignment
 newEntity{
 	define_as = "BASE_NPC_DESTRACHAN",
 	type = "aberration",
@@ -350,6 +351,66 @@ newEntity{
 	skill_survival = 5,
 	resolvers.talents{ [Talents.T_DODGE]=1, 	
 	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Detect magic, ethereal jaunt
+--Neutral alignment
+newEntity{
+	define_as = "BASE_NPC_ETHEREAL_FILCHER",
+	type = "aberration",
+	display = "X", color=colors.LIGHT_BLUE,
+	body = { INVEN = 10 },
+    desc = [[A bizarre looking creature with long fingers.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=18, con=11, int=7, wis=12, cha=10, luc=12 },
+	combat = { dam= {1,4}, },
+	name = "ethereal filcher",
+	level_range = {5, nil}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(20,25),
+	hit_die = 5,
+	challenge = 3,
+	infravision = 4,
+	skill_listen = 8,
+	skill_pickpocket = 8,
+	skill_spot = 8,
+	movement_speed_bonus = 0.33,
+	resolvers.talents{ [Talents.T_DODGE]=1, 	
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}    
+
+--Ethereal jaunt; neutral alignment
+newEntity{
+	define_as = "BASE_NPC_ETHEREAL_MARAUDER",
+	type = "aberration",
+	display = "X", color=colors.DARK_BLUE,
+	body = { INVEN = 10 },
+    desc = [[A small bizarre looking creature with a bluish tint.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=14, dex=12, con=11, int=7, wis=12, cha=10, luc=12 },
+	combat = { dam= {1,6}, },
+	name = "ethereal marauder",
+	level_range = {5, nil}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(20,25),
+	hit_die = 2,
+	challenge = 3,
+	infravision = 4,
+	combat_natural = 3,
+	skill_listen = 4,
+	skill_movesilently = 4,
+	skill_spot = 4,
+	movement_speed_bonus = 0.33, 	
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
