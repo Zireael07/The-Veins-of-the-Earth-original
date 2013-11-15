@@ -30,7 +30,7 @@ newEntity{
 	combat = { dam= {1,6} },
 }
 
--- TO DO: Knowledge bonuses, mind blast, swimming bonus
+-- Mind blast
 newEntity{ base = "BASE_NPC_ABOLETH",
 	name = "weak aboleth", color=colors.WHITE,
 	image = "tiles/aboleth.png",
@@ -284,6 +284,72 @@ newEntity{
 	infravision = 4,
 	skill_listen = 5,
 	skill_spot = 5,
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}    
+
+--Burrow 10 ft.; Immunity to acid, tremorsense 4 squares, stone shape
+newEntity{
+	define_as = "BASE_NPC_DELVER",
+	type = "aberration",
+	display = "X", color=colors.GRAY,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+    desc = [[A huge slimy burrowing creature.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=27, dex=13, con=21, int=14, wis=14, cha=12, luc=8 },
+	combat = { dam= {1,6}, },
+	name = "delver",
+	level_range = {5, 14}, exp_worth = 2700,
+	rarity = 15,
+	max_life = resolvers.rngavg(140,145),
+	hit_die = 15,
+	challenge = 9,
+	combat_natural = 13,
+	infravision = 4,
+	skill_knowledge = 12,
+	skill_listen = 18,
+	skill_movesilently = 16,
+	skill_spot = 18,
+	skill_survival = 12,
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, 
+--		[Talents.T_TOUGHNESS] = 1,	
+		},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}    
+
+--Blindsight 6 squares; immune to gaze attacks, visual effects, illusions, +4 to saves against sonic effects
+--Disruptive harmonics: 4d6 Reflex DC 15
+newEntity{
+	define_as = "BASE_NPC_DESTRACHAN",
+	type = "aberration",
+	display = "X", color=colors.ORANGE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+    desc = [[A huge slimy burrowing creature.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=18, dex=12, con=16, int=12, wis=18, cha=12, luc=8 },
+	combat = { dam= {1,6}, },
+	name = "destrachan",
+	level_range = {10, nil}, exp_worth = 2400,
+	rarity = 15,
+	max_life = resolvers.rngavg(60,63),
+	hit_die = 8,
+	challenge = 8,
+	combat_natural = 7,
+	infravision = 4,
+	skill_hide = 6,
+	skill_listen = 21,
+	skill_movesilently = 6,
+	skill_spot = 18,
+	skill_survival = 5,
+	resolvers.talents{ [Talents.T_DODGE]=1, 	
+	},
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }

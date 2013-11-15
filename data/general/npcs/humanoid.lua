@@ -271,6 +271,70 @@ newEntity{
 	},
 }
 
+newEntity{
+	define_as = "BASE_NPC_DWARF",
+	type = "humanoid", subtype = "humanoid_dwarf",
+	image = "tiles/dwarf_fighter.png",
+	display = 'h', color=colors.BROWN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A lost dwarf.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
+	combat = { dam= {1,6} },
+}
+
+newEntity{
+	base = "BASE_NPC_DWARF",
+	name = "dwarf",
+	level_range = {1, 15}, exp_worth = 150,
+	rarity = 5,
+	max_life = resolvers.rngavg(5,10),
+	hit_die = 1,
+	challenge = 1,
+	darkvision = 3,
+	resolvers.talents{ [Talents.T_SHOOT]=1, 
+	[Talents.T_EXOTIC_WEAPON_PROFICIENCY]=1, --stopgap measure for now
+	},
+	resolvers.equip{
+		full_id=true,
+		{ name = "scale mail" },
+		{ name = "heavy metal shield" },
+		{ name = "dwarven waraxe" },
+		{ name = "arrows (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "shortbow" },
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_DWARF",
+	name = "duergar", color=colors.DARK_GRAY,
+	level_range = {1, 15}, exp_worth = 150,
+	rarity = 5,
+	max_life = resolvers.rngavg(5,10),
+	hit_die = 1,
+	challenge = 1,
+	darkvision = 5,
+	resolvers.talents{ [Talents.T_SHOOT]=1, 
+	},
+	resolvers.equip{
+		full_id=true,
+		{ name = "chain mail" },
+		{ name = "heavy metal shield" },
+		{ name = "warhammer" },
+		{ name = "bolts (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "light crossbow" },
+	},
+}
+
 --Scent
 newEntity{
 	define_as = "BASE_NPC_BUGBEAR",

@@ -286,7 +286,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=6, dex=17, con=11, int=2, wis=13, cha=9, luc=12 },
 	combat = { dam= {2,8} },
-	name = "bulette",
+	name = "cockatrice",
 	level_range = {10, nil}, exp_worth = 900,
 	rarity = 15,
 	max_life = resolvers.rngavg(25,30),
@@ -304,3 +304,94 @@ newEntity{
 	},
 }
 
+--Fly 30 ft.; darkness, improved grab, constrict 1d4, blindsight 6 squares
+newEntity{
+	define_as = "BASE_NPC_DARKMANTLE",
+	type = "magical beast",
+	image = "tiles/bat.png",
+	display = 'B', color=colors.BLACK,
+	body = { INVEN = 10 },
+	desc = [[A monster which resembles a stalactite.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=16, dex=10, con=11, int=2, wis=13, cha=9, luc=12 },
+	combat = { dam= {1,4} },
+	name = "darkmantle",
+	level_range = {1, nil}, exp_worth = 300,
+	rarity = 10,
+	max_life = resolvers.rngavg(5,10),
+	hit_die = 1,
+	challenge = 1,
+	infravision = 4,
+	skill_listen = 5,
+	skill_hide = 10,
+	skill_spot = 5,
+	movement_speed_bonus = -0.33,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Acid spray (4d8 2 squares cone or 8d8 4 squares line Ref DC 17, immunity to acid, scent
+newEntity{
+	define_as = "BASE_NPC_DIGESTER",
+	type = "magical beast",
+	image = "tiles/lizard.png",
+	display = 'B', color=colors.LIGHT_BROWN,
+	body = { INVEN = 10 },
+	desc = [[An eternally hungry monster.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=17, dex=15, con=17, int=2, wis=12, cha=10, luc=8 },
+	combat = { dam= {1,8} },
+	name = "digester",
+	level_range = {10, nil}, exp_worth = 1800,
+	rarity = 10,
+	max_life = resolvers.rngavg(65,70),
+	hit_die = 8,
+	challenge = 6,
+	infravision = 4,
+	combat_natural = 5,
+	skill_jump = 18,
+	skill_listen = 5,
+	skill_hide = 7,
+	skill_spot = 5,
+	movement_speed_bonus = 0.66,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Fly 30 ft.; roar 10 squares fatigue Will DC 15; scent
+newEntity{
+	define_as = "BASE_NPC_DRAGONNE",
+	type = "magical beast",
+	image = "tiles/lizard.png",
+	display = 'D', color=colors.LIGHT_BROWN,
+	body = { INVEN = 10 },
+	desc = [[An eternally hungry monster.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=19, dex=15, con=17, int=6, wis=12, cha=12, luc=10 },
+	combat = { dam= {2,6} },
+	name = "dragonne",
+	level_range = {10, nil}, exp_worth = 2000,
+	rarity = 10,
+	max_life = resolvers.rngavg(75,80),
+	hit_die = 9,
+	challenge = 7,
+	infravision = 4,
+	combat_natural = 6,
+	skill_listen = 10,
+	skill_spot = 10,
+	movement_speed_bonus = 0.33,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
