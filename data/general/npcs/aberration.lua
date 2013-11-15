@@ -23,7 +23,7 @@ newEntity{
 	image = "tiles/aboleth2.png",
 	display = "X", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-        desc = [[A horrid thing with tentacles!]],
+    desc = [[A horrid thing with tentacles!]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=8, dex=10, con=7, int=14, wis=12, cha=12, luc=12 },
@@ -39,6 +39,8 @@ newEntity{ base = "BASE_NPC_ABOLETH",
 	max_life = resolvers.rngavg(10,15),
 	hit_die = 4,
 	challenge = 6,
+	skill_swim = 8,
+	skill_knowledge = 8,
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
@@ -73,7 +75,7 @@ newEntity{
 	image = "tiles/athach.png",
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-        desc = [[A hulking deformed creature.]],
+    desc = [[A hulking deformed creature.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=26, dex=13, con=21, int=7, wis=12, cha=6, luc=8 },
@@ -82,7 +84,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ATHACH",
 	name = "athach", color=colors.BLACK,
-	level_range = {10, 20}, exp_worth = 600,
+	level_range = {10, 20}, exp_worth = 2400,
 	rarity = 20,
 	max_life = resolvers.rngavg(130,135),
 	hit_die = 14,
@@ -106,7 +108,7 @@ newEntity{
 	type = "aberration", subtype = "choker",
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-        desc = [[A small creature.]],
+    desc = [[A small creature.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=16, dex=14, con=13, int=4, wis=13, cha=7, luc=8 },
@@ -135,7 +137,7 @@ newEntity{
 	type = "aberration", subtype = "chuul",
 	display = "X", color=colors.BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-        desc = [[A large serpent-like squid.]],
+    desc = [[A large serpent-like squid.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=20, dex=16, con=18, int=10, wis=14, cha=5, luc=8 },
@@ -167,7 +169,7 @@ newEntity{
 	image = "tiles/newtiles/cloaker.png",
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-        desc = [[It looks like a cloak.]],
+    desc = [[It looks like a cloak.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=17, con=17, int=14, wis=15, cha=15, luc=8 },
@@ -199,7 +201,7 @@ newEntity{
 	type = "aberration", subtype = "drider",
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-        desc = [[A mix between a drow and a spider.]],
+    desc = [[A mix between a drow and a spider.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=15, con=16, int=15, wis=16, cha=16, luc=8 },
@@ -242,10 +244,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=17, con=13, int=6, wis=15, cha=8, luc=8 },
 	combat = { dam= {1,8}, },
-}
-
-newEntity{ base = "BASE_NPC_ETTERCAP",
-	name = "ettercap", color=colors.BLACK,
+	name = "ettercap",
 	level_range = {2, 14}, exp_worth = 225,
 	rarity = 15,
 	max_life = resolvers.rngavg(25,30),
@@ -261,8 +260,8 @@ newEntity{ base = "BASE_NPC_ETTERCAP",
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
-}       
-
+}
+ 
 --Disease, improved grab, scent
 newEntity{
 	define_as = "BASE_NPC_OTYUGH",
@@ -270,15 +269,12 @@ newEntity{
 	image = "tiles/newtiles/otyugh.png",
 	display = "X", color=colors.UMBER,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-        desc = [[A small dirty twisted creature.]],
+    desc = [[A small dirty twisted creature.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=10, con=13, int=5, wis=12, cha=6, luc=8 },
 	combat = { dam= {1,6}, },
-}
-
-newEntity{ base = "BASE_NPC_OTYUGH",
-	name = "otyugh", color=colors.UMBER,
+	name = "otyugh",
 	level_range = {5, 14}, exp_worth = 300,
 	rarity = 15,
 	max_life = resolvers.rngavg(35,40),
@@ -292,4 +288,4 @@ newEntity{ base = "BASE_NPC_OTYUGH",
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
-}       
+}    

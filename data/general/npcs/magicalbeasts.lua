@@ -3,7 +3,7 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
-
+--Fly 80 ft.
 newEntity{
 	define_as = "BASE_NPC_EAGLE",
 	type = "magical beast",
@@ -14,25 +14,23 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=18, dex=17, con=12, int=10, wis=14, cha=10, luc=12 },
 	combat = { dam= {1,6} },
+	name = "giant eagle", color=colors.YELLOW,
+	image = "tiles/eagle.png",
+	level_range = {5, 15}, exp_worth = 900,
+	rarity = 8,
+	max_life = resolvers.rngavg(25,30),
+	hit_die = 4,
+	challenge = 3,
+	combat_natural = 2,
+	skill_listen = 2,
+	skill_spot = 13,
+	skill_survival = 1,
+	movement_speed_bonus = -0.66,
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
-}
-
-newEntity{
-	base = "BASE_NPC_EAGLE",
-	name = "giant eagle", color=colors.YELLOW,
-	image = "tiles/eagle.png",
-	level_range = {1, 5}, exp_worth = 900,
-	rarity = 8,
-	max_life = resolvers.rngavg(2,5),
-	hit_die = 4,
-	challenge = 3,
-	skill_listen = 2,
-	skill_spot = 13,
-	skill_survival = 1,
 }
 
 newEntity{
@@ -46,16 +44,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=15, con=13, int=2, wis=12, cha=6, luc=12 },
 	combat = { dam= {1,4} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-newEntity{
-	base = "BASE_NPC_SHOCKLIZARD",
-	name = "shocker lizard", color=colors.YELLOW,
+	name = "shocker lizard",
 	level_range = {1, 20}, exp_worth = 300,
 	rarity = 8,
 	max_life = resolvers.rngavg(12,15),
@@ -68,6 +57,11 @@ newEntity{
 	skill_listen = 3,
 	skill_spot = 3,
 	skill_swim = 10,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 newEntity{
@@ -80,16 +74,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=10, con=17, int=1, wis=13, cha=6, luc=6 },
 	combat = { dam= {2,6} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-newEntity{
-	base = "BASE_NPC_ANKHEG",
-	name = "ankheg", color=colors.DARK_UMBER,
+	name = "ankheg",
 	level_range = {5, 15}, exp_worth = 900,
 	rarity = 8,
 	max_life = resolvers.rngavg(25,30),
@@ -99,6 +84,11 @@ newEntity{
 	skill_climb = 3,
 	skill_listen = 5,
 	skill_spot = 2,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 --Poison, spells, web, shapechange
@@ -113,17 +103,8 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=15, con=14, int=14, wis=13, cha=14, luc=12 },
 	combat = { dam= {1,6} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-newEntity{
-	base = "BASE_NPC_ARANEA",
-	name = "aranea", color=colors.DARK_RED,
-	level_range = {5, 15}, exp_worth = 900,
+	name = "aranea",
+	level_range = {10, nil}, exp_worth = 900,
 	rarity = 8,
 	max_life = resolvers.rngavg(20,25),
 	hit_die = 3,
@@ -134,6 +115,11 @@ newEntity{
 	skill_listen = 5,
 	skill_spot = 5,
 	skill_concentration = 6,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 --Petrifying gaze 3 squares Fort DC 13, Blind-Fight
@@ -148,15 +134,6 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=8, con=15, int=2, wis=12, cha=11, luc=8 },
 	combat = { dam= {1,6} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-newEntity{
-	base = "BASE_NPC_BASILISK",
 	name = "basilisk",
 	level_range = {5, 15}, exp_worth = 1200,
 	rarity = 10,
@@ -168,6 +145,11 @@ newEntity{
 	skill_hide = 4,
 	skill_listen = 6,
 	skill_spot = 6,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 --Speed 40 ft. breath weapon 2 squares cooldown 10 7d6 electric Ref DC 19; constrict 2d8, rake 1d4, immunity to electricity, scent
@@ -182,15 +164,6 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=26, dex=13, con=21, int=7, wis=14, cha=12, luc=12 },
 	combat = { dam= {2,4} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-newEntity{
-	base = "BASE_NPC_BEHIR",
 	name = "behir",
 	level_range = {10, nil}, exp_worth = 2400,
 	rarity = 10,
@@ -204,6 +177,11 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 2,
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 --Blink, dimension door; speed 40 ft.
@@ -218,15 +196,6 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=17, con=10, int=10, wis=13, cha=11, luc=12 },
 	combat = { dam= {1,6} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-newEntity{
-	base = "BASE_NPC_BLINKDOG",
 	name = "blink dog",
 	level_range = {1, 20}, exp_worth = 600,
 	rarity = 10,
@@ -239,6 +208,11 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 2,
 	skill_survival = 3,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
 
 --Scent, tremorsense 4 squares
@@ -253,15 +227,6 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=27, dex=15, con=20, int=2, wis=13, cha=6, luc=12 },
 	combat = { dam= {2,8} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-newEntity{
-	base = "BASE_NPC_BULETTE",
 	name = "bulette",
 	level_range = {10, nil}, exp_worth = 600,
 	rarity = 15,
@@ -273,4 +238,69 @@ newEntity{
 	skill_jump = 10,
 	skill_listen = 8,
 	skill_spot = 2,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
 }
+
+--Fly 50 ft., scent; breath weapon 3d8 Ref DC 17 in a random color
+newEntity{
+	define_as = "BASE_NPC_CHIMERA",
+	type = "magical beast",
+	image = "tiles/lizard.png",
+	display = 'B', color=colors.BLACK,
+	body = { INVEN = 10 },
+	desc = [[A terrifying beast with multiple heads.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=19, dex=13, con=17, int=4, wis=13, cha=10, luc=8 },
+	combat = { dam= {2,6} },
+	name = "chimera",
+	level_range = {10, nil}, exp_worth = 2000,
+	rarity = 15,
+	max_life = resolvers.rngavg(70,75),
+	hit_die = 9,
+	challenge = 7,
+	infravision = 4,
+	combat_natural = 8,
+	skill_listen = 8,
+	skill_spot = 8,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Fly 60 ft.; petrification DC 12 on hit
+newEntity{
+	define_as = "BASE_NPC_COCKATRICE",
+	type = "magical beast",
+	image = "tiles/lizard.png",
+	display = 'B', color=colors.BROWN,
+	body = { INVEN = 10 },
+	desc = [[A terrifying beast with a shark's head.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=6, dex=17, con=11, int=2, wis=13, cha=9, luc=12 },
+	combat = { dam= {2,8} },
+	name = "bulette",
+	level_range = {10, nil}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(25,30),
+	hit_die = 5,
+	challenge = 3,
+	infravision = 4,
+	skill_listen = 6,
+	skill_spot = 6,
+	resolvers.talents{ [Talents.T_DODGE]=1, },
+	movement_speed_bonus = -0.33,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
