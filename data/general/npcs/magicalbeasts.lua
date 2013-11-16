@@ -395,3 +395,38 @@ newEntity{
 	{ name = "fresh corpse" }
 	},
 }
+
+--Burrow 10 ft.; immunity to cold, vulnerability to cold; 
+--Weapon Focus, Improved Natural Attack; 1d8 cold on hit; 3 sq cone 15d6 cold Ref DC 22 half once per hour
+--An explosion upon death: 12d6 cold & 8d6 physical in 10 sq ball Ref DC 22
+newEntity{
+	define_as = "BASE_NPC_FROST_WORM",
+	type = "magical beast",
+	image = "tiles/lizard.png",
+	display = 'w', color=colors.LIGHT_BLUE,
+	body = { INVEN = 10 },
+	desc = [[A huge bluish worm.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=26, dex=10, con=20, int=2, wis=11, cha=11, luc=10 },
+	combat = { dam= {2,8} },
+	name = "frost worm",
+	level_range = {10, nil}, exp_worth = 3600,
+	rarity = 10,
+	max_life = resolvers.rngavg(145,150),
+	hit_die = 14,
+	challenge = 12,
+	infravision = 4,
+	combat_natural = 10,
+	skill_hide = 3,
+	skill_listen = 5,
+	skill_spot = 5,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_IRON_WILL]=1
+	},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
