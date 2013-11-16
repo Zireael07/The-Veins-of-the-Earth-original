@@ -628,6 +628,83 @@ newEntity{
 	},
 }
 
+--Wisdom drain 1d4; Spring Attack
+--Spell-likes: At will—disguise self, ventriloquism; 3/day—charm monster (DC 15), major image (DC 14), mirror image, suggestion (DC 14); 1/day—deep slumber (DC 14). 
+newEntity{
+	define_as = "BASE_NPC_LAMIA",
+	type = "magical beast",
+--	image = "tiles/cat.png",
+	display = 'c', color=colors.DARK_YELLOW,
+	body = { INVEN = 10 },
+	desc = [[A feline creature.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=18, dex=15, con=12, int=13, wis=15, cha=12, luc=12 },
+	combat = { dam= {1,4} },
+	name = "lamia",
+	level_range = {5, 25}, exp_worth = 1800,
+	rarity = 15,
+	max_life = resolvers.rngavg(55,60),
+	hit_die = 9,
+	challenge = 6,
+	infravision = 4,
+	combat_natural = 6,
+	skill_bluff = 13,
+	skill_concentration = 9,
+	skill_diplomacy = 2,
+	skill_hide = 8,
+	skill_intimidate = 2,
+	skill_spot = 9,
+	alignment = "chaotic evil",
+	movement_speed_bonus = 0.88,
+	resolvers.talents{ [Talents.T_DODGE]=1,
+	[Talents.T_MOBILITY]=1,
+	[Talents.T_IRON_WILL]=1,
+	},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Fly 60 ft.; magic circle against evil; pounce, rake 1d6, spells as Clr7; Blind-Fight
+--Spell-likes: 2/day—greater invisibility (self only); 1/day—dimension door. 
+newEntity{
+	define_as = "BASE_NPC_LAMMASU",
+	type = "magical beast",
+--	image = "tiles/cat.png",
+	display = 'c', color=colors.GOLD,
+	body = { INVEN = 10 },
+	desc = [[A feline creature.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=23, dex=12, con=17, int=16, wis=17, cha=14, luc=12 },
+	combat = { dam= {1,6} },
+	name = "lammasu",
+	level_range = {10, 25}, exp_worth = 2400,
+	rarity = 15,
+	max_life = resolvers.rngavg(55,60),
+	hit_die = 7,
+	challenge = 8,
+	infravision = 4,
+	combat_natural = 9,
+	skill_concentration = 10,
+	skill_diplomacy = 2,
+	skill_knowledge = 10,
+	skill_listen = 10,
+	skill_sensemotive = 10,
+	skill_spot = 12,
+	alignment = "lawful good",
+	resolvers.talents{ [Talents.T_IRON_WILL]=1 },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+
 
 --Swim 20 ft., fast healing 11 + number of heads; scent
 newEntity{

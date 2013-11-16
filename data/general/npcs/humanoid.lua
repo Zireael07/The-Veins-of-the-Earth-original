@@ -565,6 +565,86 @@ newEntity{
 	},
 }
 
+newEntity{
+	define_as = "BASE_NPC_LIZARDFOLK",
+	type = "humanoid", subtype = "humanoid_reptilian",
+	image = "tiles/goblin.png",
+	display = 'h', color=colors.DARK_GREEN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A scaly reptilian humanoid.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=13, dex=10, con=13, int=9, wis=10, cha=10, luc=10 },
+	combat = { dam= {1,6} },
+	infravision = 3,
+	combat_natural = 5,
+}
+
+newEntity{
+	base = "BASE_NPC_LIZARDFOLK",
+	name = "lizardfolk",
+	level_range = {1, nil}, exp_worth = 300,
+	rarity = 15,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 2,
+	challenge = 1,
+	skill_balance = 4,
+	skill_jump = 4,
+	skill_swim = 1,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "studded leather" },
+		{ name = "heavy metal shield" },
+		{ name = "club" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "javelin" },
+	},
+}
+
+--Swim 60 ft.
+newEntity{
+	define_as = "BASE_NPC_LOCATHAH",
+	type = "humanoid", subtype = "humanoid_aquatic",
+--	image = "tiles/goblin.png",
+	display = 'h', color=colors.DARK_BLUE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A scaly fish-like humanoid.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=12, con=10, int=13, wis=13, cha=11, luc=10 },
+	combat = { dam= {1,6} },
+	infravision = 3,
+	combat_natural = 3,
+}
+
+newEntity{
+	base = "BASE_NPC_LOCATHAH",
+	name = "locathah",
+	level_range = {1, 15}, exp_worth = 150,
+	rarity = 15,
+	max_life = resolvers.rngavg(5,10),
+	hit_die = 2,
+	challenge = 1/2,
+	skill_listen = 5,
+	skill_spot = 5,
+	skill_swim = 8,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "light crossbow" },
+		{ name = "bolts (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "longspear" },
+	},
+}
+
 --Shopkeepers
 newEntity{
 	base = "BASE_NPC_DROW",
