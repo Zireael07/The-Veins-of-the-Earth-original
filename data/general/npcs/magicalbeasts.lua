@@ -595,6 +595,40 @@ newEntity{
 	},
 }
 
+--Scent, scare Will DC 13
+newEntity{
+	define_as = "BASE_NPC_KRENSHAR",
+	type = "magical beast",
+--	image = "tiles/cat.png",
+	display = 'c', color=colors.WHITE,
+	body = { INVEN = 10 },
+	desc = [[A feline carnivore.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=11, dex=14, con=11, int=6, wis=13, cha=8, luc=12 },
+	combat = { dam= {1,6} },
+	name = "krenshar",
+	level_range = {1, 25}, exp_worth = 300,
+	rarity = 15,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 2,
+	challenge = 1,
+	infravision = 4,
+	combat_natural = 3,
+	skill_hide = 2,
+	skill_jump = 9,
+	skill_listen = 2,
+	skill_movesilently = 4,
+	alignment = "neutral",
+	movement_speed_bonus = 0.33,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+
 --Swim 20 ft., fast healing 11 + number of heads; scent
 newEntity{
 	define_as = "BASE_NPC_HYDRA",

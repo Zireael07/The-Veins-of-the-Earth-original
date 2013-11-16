@@ -120,3 +120,98 @@ newEntity{
 	alignment = "neutral",
 	movement_speed_bonus = -0.33,
 }
+
+--Fast healing 5, vampiric touch, Alertness, Combat Casting
+newEntity{
+	define_as = "BASE_NPC_INEVITABLE",
+	type = "construct",
+--	image = "tiles/golem.png",
+	display = 'C', color=colors.GOLD,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A metal humanoid.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=14, dex=13, con=1, int=10, wis=17, cha=16, luc=10 },
+	combat = { dam= {1,6} },
+	alignment = "lawful neutral",
+	rarity = 20,
+	infravision = 4,
+	combat_dr = 10,
+	spell_resistance = 22,
+}
+
+--Spell-likes: At will—discern lies (DC 17), disguise self, fear (DC 17), hold person (DC 16), invisibility, locate creature, suggestion (DC 16); 1/day—hold monster (DC 17), mark of justice; 1/week— geas/quest. 
+newEntity{
+	base = "BASE_NPC_INEVITABLE",
+	name = "kolyarut",
+	level_range = {15, nil}, exp_worth = 3600,
+	max_life = resolvers.rngavg(90,95),
+	hit_die = 13,
+	challenge = 12,
+	combat_natural = 10,
+	skill_diplomacy = 2,
+	skill_listen = 8,
+	skill_search = 5,
+	skill_sensemotive = 9,
+	skill_spot = 8,
+	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "banded mail" },
+		{ name = "longsword" },
+	},
+}
+
+--3d6 sonic OR electricity on hit; Awesome Blow, Imp Bull Rush
+--Spell-likes: At will—air walk, dimension door, fear (DC 18), greater command (DC 19), greater dispel magic, mass inflict light wounds (DC 19), locate creature, true seeing; 1/day—chain lightning (DC 20), circle of death (DC 20), mark of justice, wall of force;
+newEntity{
+	base = "BASE_NPC_INEVITABLE",
+	name = "marut",
+	level_range = {15, nil}, exp_worth = 4500,
+	max_life = resolvers.rngavg(110,115),
+	hit_die = 15,
+	challenge = 15,
+	combat = { dam= {2,6} },
+	stats = { str=35, dex=13, con=1, int=10, wis=17, cha=18, luc=10 },
+	combat_natural = 15,
+	skill_concentration = 12,
+	skill_diplomacy = 2,
+	skill_knowledge = 9,
+	skill_listen = 13,
+	skill_search = 9,
+	skill_sensemotive = 9,
+	skill_spot = 13,
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
+	[Talents.T_COMBAT_CASTING]=1
+	},
+	resolvers.equip{
+		full_id=true,
+		{ name = "full plate" },
+	},
+}
+
+--Spell-likes: At will—clairaudience/clairvoyance, dimensional anchor, dispel magic, fear (DC 16), hold person (DC 15), locate creature, true seeing; 3/day—hold monster (DC 17), mark of justice;
+newEntity{
+	base = "BASE_NPC_INEVITABLE",
+	name = "zelekhut",
+	desc = [[A metal centaur.]],
+	level_range = {10, nil}, exp_worth = 2700,
+	max_life = resolvers.rngavg(70,75),
+	hit_die = 8,
+	challenge = 9,
+	combat = { dam= {2,6} },
+	stats = { str=21, dex=11, con=1, int=10, wis=17, cha=15, luc=10 },
+	combat_natural = 9,
+	spell_resistance = 20,
+	skill_diplomacy = 2,
+	skill_knowledge = 9,
+	skill_listen = 6,
+	skill_search = 9,
+	skill_sensemotive = 9,
+	skill_spot = 6,
+	resolvers.equip{
+		full_id=true,
+		{ name = "plate armor" },
+		{ name = "spiked chain" },
+	},
+}

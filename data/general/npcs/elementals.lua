@@ -494,3 +494,29 @@ newEntity{
 	[Talents.T_IRON_WILL]=1,
 	},
 }
+
+--Commented out due to no invis yet
+--Fly 30 ft.; constant innate invisibility; Weapon Focus
+--[[newEntity{
+	define_as = "BASE_NPC_INVISIBLE_STALKER",
+	type = "elemental", subtype = "air",
+--	image = "tiles/wraith.png",
+	display = "X", color=colors.DARK_GRAY,
+	body = { INVEN = 10 },]]
+--desc = [[An invisible creature.]],
+
+--[[	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=18, dex=19, con=14, int=14, wis=15, cha=11, luc=10 },
+	combat = { dam= {2,6}, },
+	name = "invisible stalker",
+	level_range = {10, nil}, exp_worth = 2000,
+	rarity = 15,
+	max_life = resolvers.rngavg(50,55),
+	hit_die = 8,
+	challenge = 7,
+	combat_natural = 3,
+	infravision = 4,
+	skill_listen = 11,
+	skill_search = 11,
+	skill_spot = 11,
+}]]
