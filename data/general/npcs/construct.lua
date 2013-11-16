@@ -3,6 +3,8 @@
 
 --Constructs do NOT leave corpses
 
+local Talents = require("engine.interface.ActorTalents")
+
 --Immunity to magic
 newEntity{
 	define_as = "BASE_NPC_GOLEM",
@@ -90,4 +92,31 @@ newEntity{
 	combat_natural = 21,
 	stats = { str=37, dex=7, con=1, int=1, wis=11, cha=1, luc=10 },
 	combat = { dam= {4,8} },
+}
+
+--Fly 50 ft; poison pri sleep 10 rounds, sec sleep 5d6x10 rounds
+newEntity{
+	define_as = "BASE_NPC_HOMUNCULUS",
+	type = "construct",
+--	image = "tiles/griffon.png",
+	display = 'C', color=colors.BROWN,
+	body = { INVEN = 10 },
+	desc = [[A wizard's miniature servant.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=8, dex=15, con=1, int=10, wis=12, cha=6, luc=12 },
+	combat = { dam= {1,4} },
+	name = "homunculus",
+	level_range = {1, 25}, exp_worth = 300,
+	rarity = 15,
+	max_life = resolvers.rngavg(9,13),
+	hit_die = 2,
+	challenge = 1,
+	infravision = 4,
+	combat_natural = 2,
+	skill_hide = 12,
+	skill_listen = 3,
+	skill_spot = 3,
+	alignment = "neutral",
+	movement_speed_bonus = -0.33,
 }

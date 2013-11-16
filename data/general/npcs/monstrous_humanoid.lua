@@ -60,6 +60,7 @@ newEntity{
 	skill_listen = 4,
 	skill_movesilently = 4,
 	movement_speed_bonus = -0.33,
+	alignment = "chaotic evil",
 	resolvers.equip{
 	full_id=true,
 		{ name = "studded leather" },
@@ -99,6 +100,7 @@ newEntity{
 	skill_listen = 4,
 	skill_sensemotive = 4,
 	skill_spot = 4,
+	alignment = "neutral",
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -106,7 +108,7 @@ newEntity{
 	},
 }
 
---Fly 60 ft.; AL CE
+--Fly 60 ft.;
 newEntity{
 	define_as = "BASE_NPC_GARGOYLE",
 	type = "monstrous humanoid",
@@ -130,6 +132,7 @@ newEntity{
 	skill_spot = 4,
 	combat_dr = 10,
 	movement_speed_bonus = 0.33,
+	alignment = "chaotic evil",
 	resolvers.talents{ [Talents.T_TOUGHNESS]=1, },
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
@@ -173,6 +176,136 @@ newEntity{
 	full_id=true,
 		{ name = "studded leather" },
 		{ name = "battleaxe" },
+	},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+	},
+}
+
+newEntity{
+	define_as = "BASE_NPC_HAG",
+	type = "monstrous humanoid",
+--	image = "tiles/hag.png",
+	display = 'Y', color=colors.BLUE,
+	body = { INVEN = 10 },
+	desc = [[A twisted crone bent in two.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=25, dex=12, con=14, int=13, wis=13, cha=10, luc=8 },
+	combat = { dam= {1,6} },
+	infravision = 3,
+	alignment = "chaotic evil",
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Improved grab, rake 1d6, rend 2d6, DR 2/bludgeon; Blind-Fight
+--Spell-likes: disguise self, fog cloud
+newEntity{
+	base = "BASE_NPC_HAG",
+	name = "annis hag", color=colors.BLUE,
+	level_range = {5, 20}, exp_worth = 1800,
+	rarity = 15,
+	max_life = resolvers.rngavg(45,50),
+	hit_die = 7,
+	challenge = 6,
+	spell_resistance = 19,
+	combat_natural = 9,
+	skill_bluff = 8,
+	skill_diplomacy = 2,
+	skill_hide = 4,
+	skill_intimidate = 2,
+	skill_listen = 9,
+	skill_spot = 9,
+	movement_speed_bonus = 0.33,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+}
+
+--Swim 30 ft.; 2d4 STR damage Fort DC 16
+--Spell-likes: At will—dancing lights, disguise self, ghost sound (DC 12), invisibility, pass without trace, tongues, water breathing.
+newEntity{
+	base = "BASE_NPC_HAG",
+	name = "green hag", color=colors.DARK_GREEN,
+	level_range = {5, 20}, exp_worth = 1500,
+	rarity = 15,
+	max_life = resolvers.rngavg(50,55),
+	hit_die = 9,
+	challenge = 5,
+	infravision = 6,
+	spell_resistance = 18,
+	combat_natural = 11,
+	skill_concentration = 6,
+	skill_hide = 8,
+	skill_knowledge = 6,
+	skill_swim = 8,
+	skill_listen = 10,
+	skill_spot = 10,
+	stats = { str=19, dex=12, con=12, int=13, wis=13, cha=14, luc=8 },
+	combat = { dam= {1,4} },
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_COMBAT_CASTING]=1
+	},
+}
+
+--2d6 STR damage in FOV
+newEntity{
+	base = "BASE_NPC_HAG",
+	name = "sea hag", color=colors.LIGHT_BLUE,
+	level_range = {5, 20}, exp_worth = 1200,
+	rarity = 15,
+	max_life = resolvers.rngavg(50,55),
+	hit_die = 3,
+	challenge = 4,
+	spell_resistance = 14,
+	combat_natural = 3,
+	skill_hide = 3,
+	skill_knowledge = 3,
+	skill_swim = 8,
+	skill_listen = 5,
+	skill_spot = 5,
+	stats = { str=19, dex=12, con=12, int=10, wis=13, cha=14, luc=8 },
+	combat = { dam= {1,4} },
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_TOUGHNESS]=1
+	},
+}
+
+--Fly 80 ft., captivating song
+newEntity{
+	define_as = "BASE_NPC_HARPY",
+	type = "monstrous humanoid",
+	name = "harpy",
+	display = 'B', color=colors.DARK_GRAY,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A winged creature with an ugly face.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=15, con=10, int=7, wis=12, cha=17, luc=10 },
+	combat = { dam= {1,3} },
+
+	level_range = {5, nil}, exp_worth = 1200,
+	rarity = 15,
+	max_life = resolvers.rngavg(30,35),
+	infravision = 3,
+	hit_die = 7,
+	challenge = 4,
+	combat_natural = 1,
+	skill_bluff = 8,
+	skill_intimidate = 4,
+	skill_listen = 6,
+	skill_spot = 2,
+	alignment = "chaotic evil",
+	resolvers.talents{ [Talents.T_DODGE]=1,
+	[Talents.T_PERSUASIVE]=1
+	},
+	resolvers.equip{
+	full_id=true,
+		{ name = "club" },
 	},
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {

@@ -125,7 +125,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=12, int=12, wis=9, cha=6, luc=14 },
 	combat = { dam= {1,6} },
-	darkvision = 3,
+	infravision = 3,
 	skill_bluff = 6,
 	skill_hide = 4,
 
@@ -164,7 +164,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=6, luc=8 },
 	combat = { dam= {1,6} },
-	darkvision = 3,
+	infravision = 3,
 	skill_hide = 4,
 	skill_movesilently = 4,
 	skill_listen = 2,
@@ -203,7 +203,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
 	combat = { dam= {1,6} },
-	darkvision = 6,
+	infravision = 6,
 	skill_hide = 1,
 	skill_movesilently = 1,
 	skill_listen = 2,
@@ -292,7 +292,7 @@ newEntity{
 	max_life = resolvers.rngavg(5,10),
 	hit_die = 1,
 	challenge = 1,
-	darkvision = 3,
+	infravision = 3,
 	resolvers.talents{ [Talents.T_SHOOT]=1, 
 	[Talents.T_EXOTIC_WEAPON_PROFICIENCY]=1, --stopgap measure for now
 	},
@@ -318,7 +318,7 @@ newEntity{
 	max_life = resolvers.rngavg(5,10),
 	hit_die = 1,
 	challenge = 1,
-	darkvision = 5,
+	infravision = 5,
 	resolvers.talents{ [Talents.T_SHOOT]=1, 
 	},
 	resolvers.equip{
@@ -347,7 +347,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=12, con=13, int=10, wis=10, cha=9, luc=8 },
 	combat = { dam= {1,6} },
-	darkvision = 3,
+	infravision = 3,
 	skill_climb = 1,
 	skill_hide = 3,
 	skill_movesilently = 5,
@@ -363,6 +363,7 @@ newEntity{
 	max_life = resolvers.rngavg(15,20),
 	hit_die = 3,
 	challenge = 2,
+	infravision = 3,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
@@ -387,7 +388,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=10, con=13, int=8, wis=11, cha=8, luc=8 },
 	combat = { dam= {1,6} },
-	darkvision = 3,
+	infravision = 3,
 	skill_listen = 3,
 	skill_spot = 2,
 }
@@ -400,6 +401,7 @@ newEntity{
 	max_life = resolvers.rngavg(10,15),
 	hit_die = 2,
 	challenge = 2,
+	infravision = 3,
 	alignment = "chaotic evil",
 	resolvers.talents{ [Talents.T_SHOOT]=1, 
 	[Talents.T_POWER_ATTACK]= 1
@@ -466,7 +468,7 @@ newEntity{
 	max_life = resolvers.rngavg(5,10),
 	hit_die = 1,
 	challenge = 1,
-	darkvision = 6,
+	infravision = 6,
 	combat_untyped = 4,
 	spell_resistance = 12,
 	skill_hide = 3,
@@ -474,7 +476,7 @@ newEntity{
 	skill_spot = 1,
 	stats = { str=11, dex=13, con=12, int=10, wis=11, cha=4, luc=10 },
 	resolvers.talents{ [Talents.T_SHOOT]=1,
-	[Talents.T_TOUGHNESS]=1
+--	[Talents.T_TOUGHNESS]=1
 	},
 	resolvers.equip{
 		full_id=true,
@@ -487,6 +489,79 @@ newEntity{
 	full_id=true,
 	{ name = "fresh corpse" },
     { name = "light crossbow" },
+	},
+}
+
+newEntity{
+	define_as = "BASE_NPC_HALFLING",
+	type = "humanoid", subtype = "humanoid_halfling",
+	image = "tiles/halfling_fighter.png",
+	display = 'h', color=colors.LIGHT_BROWN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A lost halfling.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=8, luc=12 },
+	combat = { dam= {1,6} },
+}
+
+newEntity{
+	base = "BASE_NPC_HALFLING",
+	name = "halfling",
+	level_range = {1, 5}, exp_worth = 150,
+	rarity = 5,
+	max_life = resolvers.rngavg(5,8),
+	hit_die = 1,
+	challenge = 1/2,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "studded leather" },
+		{ name = "light metal shield" },
+		{ name = "longsword" },
+		{ name = "bolts (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "light crossbow" },
+	},
+}
+
+newEntity{
+	define_as = "BASE_NPC_HOBGOBLIN",
+	type = "humanoid", subtype = "humanoid_goblin",
+	image = "tiles/goblin.png",
+	display = 'g', color=colors.RED,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A brutish goblinoid garbed in red, with reddish skin and dark hair.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=8, luc=10 },
+	combat = { dam= {1,6} },
+	infravision = 3,
+}
+
+newEntity{
+	base = "BASE_NPC_HOBGOBLIN",
+	name = "hobgoblin",
+	level_range = {1, 5}, exp_worth = 150,
+	rarity = 5,
+	max_life = resolvers.rngavg(5,8),
+	hit_die = 1,
+	challenge = 1/2,
+	skill_movesilently = 4,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "studded leather" },
+		{ name = "light metal shield" },
+		{ name = "longsword" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "javelin" },
 	},
 }
 
