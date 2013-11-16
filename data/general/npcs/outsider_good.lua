@@ -247,3 +247,51 @@ newEntity{
                 [DamageType.COLD] = 10,
         },
 }
+
+--Eladrin
+--wields holy greatsword +4 ; immunity to electricity & petrification; protective aura (+4 to AC and +4 to saves vs evil creatures in 2 sq radius)
+-- Improved Disarm, Improved Trip; cast as Clr14; AL CG
+--Spell-likes: At will—aid, charm monster (DC 17), color spray (DC 14), comprehend languages, continual flame, cure light wounds (DC 14), dancing lights, detect evil, detect thoughts (DC 15), disguise self, dispel magic, hold monster (DC 18), greater invisibility (self only), major image (DC 16), see invisibility, greater teleport (self plus 50 pounds of objects only); 1/day—chain lightning (DC 19), prismatic spray (DC 20), wall of force.
+newEntity{
+        define_as = "BASE_NPC_GHAELE",
+        type = "outsider",
+        display = 'A', color=colors.LIGHT_RED,
+        body = { INVEN = 10 },
+        desc = [[An impressive winged humanoid.]],
+
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=25, dex=12, con=15, int=16, wis=17, cha=16, luc=12 },
+        combat = { dam= {2,6} },
+        --Hack! Monsters drop corpses now
+        resolvers.inventory {
+        full_id=true,
+        { name = "fresh corpse" }
+        },
+}
+newEntity{
+        base = "BASE_NPC_GHAELE",
+        name = "ghaele",
+        level_range = {15, nil}, exp_worth = 4000,
+        rarity = 15,
+        max_life = resolvers.rngavg(60,70),
+        hit_die = 10,
+        challenge = 13,
+        infravision = 4,
+        combat_natural = 14,
+        combat_dr = 10,
+        spell_resistance = 28,
+        skill_concentration = 12,
+        skill_diplomacy = 3,
+        skill_escapeartist = 13,
+        skill_handleanimal = 13,
+        skill_hide = 13,
+        skill_knowledge = 13,
+        skill_listen = 13,
+        skill_movesilently = 13,
+        skill_sensemotive = 13,
+        skill_spot = 13,
+        resists = {
+                [DamageType.COLD] = 10,
+                [DamageType.FIRE] = 10,
+        },
+}

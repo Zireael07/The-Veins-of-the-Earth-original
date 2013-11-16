@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael
 
+local Talents = require("engine.interface.ActorTalents")
+
 --incorporeal, 1d4 Wisdom drain, hypnotism DC 16 in 4 tiles
 newEntity{
         define_as = "BASE_NPC_ALLIP",
@@ -37,7 +39,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_BODAK",
         type = "undead",
-        display = 'N', color=colors.DARK_GRAY,
+        display = 'U', color=colors.DARK_GRAY,
         body = { INVEN = 10 },
         desc = [[A thin, emaciated creature.]],
 
@@ -71,7 +73,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_DEVOURER",
         type = "undead",
-        display = 'N', color=colors.LIGHT_BLUE,
+        display = 'U', color=colors.LIGHT_BLUE,
         body = { INVEN = 10 },
         desc = [[A terrible bony creature.]],
 
@@ -100,4 +102,64 @@ newEntity{
         full_id=true,
         { name = "fresh corpse" }
         },
+}
+
+--Paralysis on hit DC 15 1d4 rounds; ghoul fever; AL CE
+newEntity{
+        define_as = "BASE_NPC_GHOUL",
+        type = "undead",
+--        image = "tiles/ghoul.png",
+        display = 'U', color=colors.GRAY,
+        body = { INVEN = 10 },
+        desc = [[A shuffling bloated creature.]],
+
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=13, dex=15, con=1, int=13, wis=14, cha=12, luc=8 },
+        combat = { dam= {1,6} },
+        skill_balance = 4,
+        skill_climb = 4,
+        skill_hide = 4,
+        skill_jump = 4,
+        skill_movesilently = 4,
+        skill_spot = 5,
+        --Hack! Monsters drop corpses now
+        resolvers.inventory {
+        full_id=true,
+        { name = "fresh corpse" }
+        },
+}
+
+newEntity{
+        base = "BASE_NPC_GHOUL",
+        name = "ghoul", color=colors.WHITE,
+        level_range = {1, 4}, exp_worth = 300,
+        rarity = 10,
+        max_life = resolvers.rngavg(10,15),
+        hit_die = 2,
+        challenge = 1,
+}
+
+--Swim 30 ft.
+newEntity{
+        base = "BASE_NPC_GHOUL",
+        name = "lacedon", color=colors.BLUE,
+        level_range = {1, 4}, exp_worth = 300,
+        rarity = 15,
+        max_life = resolvers.rngavg(10,15),
+        hit_die = 2,
+        challenge = 1,
+}
+
+--Stench 2 squares DC 15 Fort
+newEntity{
+        base = "BASE_NPC_GHAST",
+        name = "ghast", color=colors.DARK_BROWN,
+        level_range = {1, 25}, exp_worth = 900,
+        rarity = 10,
+        max_life = resolvers.rngavg(25,30),
+        hit_die = 4,
+        challenge = 3,
+        stats = { str=17, dex=17, con=1, int=13, wis=14, cha=16, luc=8 },
+        combat = { dam= {1,8} },
+        resolvers.talents{ [Talents.T_TOUGHNESS]=1, },
 }

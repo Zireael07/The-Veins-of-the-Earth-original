@@ -46,3 +46,47 @@ newEntity{
 	},
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }
+
+--1d6 fire damage on hit; immunity to fire, vulnerability to cold, plane shift, change shape
+--Spell-likes: At will—detect magic, produce flame, pyrotechnics (DC 14), scorching ray (1 ray only); 3/day—invisibility, wall of fire (DC 16); 1/day—grant up to three wishes (to nongenies only), gaseous form, permanent image (DC 18). 
+newEntity{
+	define_as = "BASE_NPC_EFREET",
+	type = "outsider",
+--	image = "tiles/npc/dwarf_fighter.png",
+	display = 'O', color=colors.LIGHT_RED,
+	body = { INVEN = 10 },
+	desc = [[A large humanoid clothed in red and seemingly hovering in air.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=23, dex=17, con=13, int=12, wis=12, cha=9, luc=10 },
+	combat = { dam= {1,6} },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},	
+}
+
+newEntity{
+	base = "BASE_NPC_EFREET",
+	name = "efreet",
+	level_range = {10, 25}, exp_worth = 600,
+	rarity = 20,
+	max_life = resolvers.rngavg(60,65),
+	hit_die = 10,
+	challenge = 8,
+	infravision = 4,
+	combat_natural = 5,
+	skill_bluff = 13,
+	skill_concentration = 13,
+	skill_diplomacy = 4,
+	skill_intimidate = 15,
+	skill_listen = 13,
+	skill_movesilently = 13,
+	skill_sensemotive = 13,
+	skill_spellcraft = 13,
+	skill_spot = 13,
+	resolvers.talents{ [Talents.T_DODGE]=1,
+	[Talents.T_COMBAT_CASTING]=1,
+	},
+}

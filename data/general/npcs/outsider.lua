@@ -189,3 +189,53 @@ newEntity{
 	[Talents.T_TOUGHNESS]=1,
 	 },
 }
+
+--Fly 15 ft.; plane shift
+--Spell-likes: 3/day—invisibility (self only), speak with animals. Caster level 12th. 1/day - create food and water (caster level 7th), ethereal jaunt (caster level 12th) for 1 hour. 
+newEntity{
+	define_as = "BASE_NPC_JANNI",
+	type = "outsider",
+--	image = "tiles/npc/djinn.png",
+	display = 'O', color=colors.WHITE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A large humanoid clothed in gray and seemingly hovering in air.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=16, dex=15, con=12, int=14, wis=15, cha=13, luc=12 },
+	combat = { dam= {1,6} },
+}
+
+newEntity{
+	base = "BASE_NPC_JANNI",
+	name = "janni",
+	level_range = {5, 25}, exp_worth = 600,
+	rarity = 15,
+	max_life = resolvers.rngavg(30,35),
+	hit_die = 6,
+	challenge = 4,
+	infravision = 4,
+	combat_natural = 1,
+	skill_bluff = 13,
+	skill_concentration = 9,
+	skill_diplomacy = 2,
+	skill_escapeartist = 3,
+	skill_listen = 9,
+	skill_movesilently = 3,
+	skill_sensemotive = 9,
+	skill_spot = 9,
+	resists = { [DamageType.FIRE] = 10 },
+	resolvers.talents{ [Talents.T_DODGE]=1,
+	[Talents.T_MOBILITY]=1,
+	},
+	resolvers.equip{
+	full_id=true,
+		{ name = "chain mail" },
+		{ name = "scimitar" },
+		{ name = "arrows (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "longbow" },
+	},
+}

@@ -106,7 +106,7 @@ newEntity{ base = "BASE_NPC_ATHACH",
 newEntity{
 	define_as = "BASE_NPC_CHOKER",
 	type = "aberration", subtype = "choker",
-	display = "X", color=colors.BLACK,
+	display = "X", color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A small creature.]],
 
@@ -116,7 +116,7 @@ newEntity{
 }
 
 newEntity{ base = "BASE_NPC_CHOKER",
-	name = "choker", color=colors.BLACK,
+	name = "choker", color=colors.BROWN,
 	level_range = {2, 14}, exp_worth = 225,
 	rarity = 15,
 	max_life = resolvers.rngavg(10,15),
@@ -237,7 +237,7 @@ newEntity{
 	define_as = "BASE_NPC_ETTERCAP",
 	type = "aberration", subtype = "ettercap",
 	image = "tiles/ettercap.png",
-	display = "X", color=colors.BLACK,
+	display = "X", color=colors.DARK_GRAY,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
         desc = [[A small twisted creature.]],
 
@@ -315,7 +315,7 @@ newEntity{
 	skill_spot = 18,
 	skill_survival = 12,
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, 
---		[Talents.T_TOUGHNESS] = 1,	
+		[Talents.T_TOUGHNESS] = 1,	
 		},
 	resolvers.inventory {
 	full_id=true,
@@ -380,8 +380,7 @@ newEntity{
 	skill_pickpocket = 8,
 	skill_spot = 8,
 	movement_speed_bonus = 0.33,
-	resolvers.talents{ [Talents.T_DODGE]=1, 	
-	},
+	resolvers.talents{ [Talents.T_DODGE]=1 },
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
@@ -411,6 +410,68 @@ newEntity{
 	skill_movesilently = 4,
 	skill_spot = 4,
 	movement_speed_bonus = 0.33, 	
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}    
+
+--Swim 20 ft.; gibbering 4 squares spread DC 13 Will or confusion for 1d2 rounds; improved grab, swallow whole; AL N
+--Immune to critical hits & flanking
+newEntity{
+	define_as = "BASE_NPC_GIBBERING_MOUTHER",
+	type = "aberration",
+	display = "X", color=colors.DARK_RED,
+	body = { INVEN = 10 },
+    desc = [[A small bizarre looking creature with multiple mouths.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=13, con=22, int=4, wis=13, cha=13, luc=10 },
+	combat = { dam= {1,1}, },
+	name = "gibbering mouther",
+	level_range = {5, nil}, exp_worth = 1500,
+	rarity = 15,
+	max_life = resolvers.rngavg(40,45),
+	hit_die = 2,
+	challenge = 5,
+	infravision = 4,
+	combat_natural = 8,
+	skill_listen = 3,
+	skill_swim = 15,
+	skill_spot = 4,
+	combat_dr = 5,
+	movement_speed_bonus = -0.66, 	
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}    
+
+--Climb 20 ft., scent
+newEntity{
+	define_as = "BASE_NPC_GRICK",
+	type = "aberration",
+	display = "X", color=colors.BLUE,
+	body = { INVEN = 10 },
+    desc = [[A small tentacled creature.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=14, dex=14, con=11, int=3, wis=14, cha=5, luc=10 },
+	combat = { dam= {1,4}, },
+	name = "grick",
+	level_range = {5, nil}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 2,
+	challenge = 3,
+	infravision = 4,
+	combat_natural = 4,
+	skill_climb = 8,
+	skill_hide = 9,
+	skill_listen = 4,
+	skill_spot = 4,
+	combat_dr = 10,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }

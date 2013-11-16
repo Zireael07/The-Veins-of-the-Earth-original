@@ -430,3 +430,135 @@ newEntity{
 	{ name = "fresh corpse" }
 	},
 }
+
+--Climb 40 ft.; scent, rend 2d4
+newEntity{
+	define_as = "BASE_NPC_GIRALLON",
+	type = "magical beast",
+--	image = "tiles/gorilla.png",
+	display = 'Y', color=colors.WHITE,
+	body = { INVEN = 10 },
+	desc = [[A large gorilla covered in white fur.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=22, dex=17, con=14, int=2, wis=12, cha=7, luc=10 },
+	combat = { dam= {1,4} },
+	name = "girallon",
+	level_range = {10, nil}, exp_worth = 1800,
+	rarity = 10,
+	max_life = resolvers.rngavg(55,60),
+	hit_die = 14,
+	challenge = 6,
+	infravision = 4,
+	combat_natural = 3,
+	skill_climb = 8,
+	skill_listen = 5,
+	skill_spot = 5,
+	alignment = "neutral",
+	movement_speed_bonus = 0.33,
+	resolvers.talents{ [Talents.T_TOUGHNESS]=1,
+	[Talents.T_IRON_WILL]=1
+	},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Scent, trample 1d8 Ref DC 19 half; breath weapon cone 5 squares turn to stone
+newEntity{
+	define_as = "BASE_NPC_GORGON",
+	type = "magical beast",
+--	image = "tiles/gorilla.png",
+	display = 'q', color=colors.DARK_GRAY,
+	body = { INVEN = 10 },
+	desc = [[A large aggressive quadruped.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=21, dex=10, con=21, int=2, wis=12, cha=9, luc=10 },
+	combat = { dam= {1,8} },
+	name = "gorgon",
+	level_range = {10, nil}, exp_worth = 2400,
+	rarity = 10,
+	max_life = resolvers.rngavg(80,85),
+	hit_die = 8,
+	challenge = 8,
+	infravision = 4,
+	combat_natural = 10,
+	skill_listen = 8,
+	skill_spot = 13,
+	alignment = "neutral",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_IRON_WILL]=1
+	},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--scent; improved grab, rend 2d6; Cleave, Imp Bull Rush; 
+newEntity{
+	define_as = "BASE_NPC_GRAY_RENDER",
+	type = "magical beast",
+--	image = "tiles/gorilla.png",
+	display = 'h', color=colors.DARK_GRAY,
+	body = { INVEN = 10 },
+	desc = [[A large aggressive humanoid with long claws.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=23, dex=10, con=24, int=3, wis=12, cha=8, luc=10 },
+	combat = { dam= {2,6} },
+	name = "gray render",
+	level_range = {10, nil}, exp_worth = 2400,
+	rarity = 10,
+	max_life = resolvers.rngavg(120,125),
+	hit_die = 10,
+	challenge = 8,
+	infravision = 4,
+	combat_natural = 9,
+	skill_hide = 2,
+	skill_spot = 9,
+	skill_survival = 2,
+	alignment = "neutral",
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Fly 80 ft.; pounce, rake 1d6
+newEntity{
+	define_as = "BASE_NPC_GRIFFON",
+	type = "magical beast",
+--	image = "tiles/griffon.png",
+	display = 'B', color=colors.GOLD,
+	body = { INVEN = 10 },
+	desc = [[A cross between a lion and an eagle.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=18, dex=15, con=16, int=5, wis=13, cha=8, luc=12 },
+	combat = { dam= {2,6} },
+	name = "griffon",
+	level_range = {10, 25}, exp_worth = 1200,
+	rarity = 15,
+	max_life = resolvers.rngavg(60,65),
+	hit_die = 7,
+	challenge = 4,
+	infravision = 4,
+	combat_natural = 5,
+	skill_jump = 4,
+	skill_listen = 5,
+	skill_spot = 9,
+	alignment = "neutral",
+	resolvers.talents{ [Talents.T_IRON_WILL]=1 },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}

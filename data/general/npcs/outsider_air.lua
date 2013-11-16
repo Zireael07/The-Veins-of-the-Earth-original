@@ -13,6 +13,8 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+local Talents = require("engine.interface.ActorTalents")
+
 --Electricity ray, speed bonuses; immunity to acid, electricity and poison;
 newEntity{
 	define_as = "BASE_NPC_ARROWHAWK",
@@ -33,7 +35,7 @@ newEntity{
 	resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.COLD] = 10,
-        },
+    },
 }
 
 newEntity{
@@ -106,16 +108,8 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=21, con=13, int=6, wis=11, cha=11, luc=12 },
 	combat = { dam= {1,6} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
-}
-
-newEntity{
-	base = "BASE_NPC_BELKER",
-	name = "belker", color=colors.LIGHT_BLUE,
+	
+	name = "belker",
 	level_range = {5, 15}, exp_worth = 1800,
 	rarity = 10,
 	max_life = resolvers.rngavg(35,40),
@@ -126,4 +120,58 @@ newEntity{
 	skill_listen = 7,
 	skill_movesilently = 3,
 	skill_spot = 7,
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Fly 60 ft.; whirlwind; immunity to acid, plane shift
+--Spell-likes: invisibility (self only); 1/day— create food and water, create wine (as create water, but wine instead), major creation (created vegetable matter is permanent), persistent image (DC 17), wind walk.
+newEntity{
+	define_as = "BASE_NPC_DJINN",
+	type = "outsider",
+--	image = "tiles/djinn.png",
+	display = 'O', color=colors.LIGHT_BLUE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 }, 
+	desc = [[A large humanoid clothed in blue and seemingly hovering in air.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=18, dex=19, con=14, int=14, wis=15, cha=15, luc=12 },
+	combat = { dam= {1,8} },
+	
+	name = "djinn",
+	level_range = {5, 20}, exp_worth = 1500,
+	rarity = 20,
+	max_life = resolvers.rngavg(40,45),
+	hit_die = 7,
+	challenge = 5,
+	infravision = 4,
+	combat_natural = 2,
+	skill_concentration = 10,
+	skill_diplomacy = 2,
+	skill_escapeartist = 10,
+	skill_knowledge = 10,
+	skill_listen = 10,
+	skill_movesilently = 10,
+	skill_sensemotive = 10,
+	skill_spellcraft = 10,
+	skill_spot = 10,
+	movement_speed_bonus = 0.33,
+	resolvers.talents{ [Talents.T_DODGE]=1,
+	[Talents.T_COMBAT_CASTING]=1,
+	},
+}
+
+--Can grant three wishes per day if not hostile
+newEntity {
+	base = "BASE_NPC_DJINN",
+	name = "noble djinn", 
+	exp_worth = 2400,
+	rarity = 25,
+	hit_die = 10,
+	max_life = resolvers.rngavg(60,65),
+	challenge = 8,
+	stats = { str=23, dex=19, con=14, int=14, wis=15, cha=15, luc=12 },
 }

@@ -259,7 +259,7 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "chainmail" },
+		{ name = "chain mail" },
 		{ name = "light metal shield" },
 		{ name = "longsword" },
 		{ name = "arrows (20)" },
@@ -286,7 +286,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_DWARF",
-	name = "dwarf",
+	name = "dwarf", color=colors.WHITE,
 	level_range = {1, 15}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,10),
@@ -376,6 +376,119 @@ newEntity{
 	},
 }
 
+newEntity{
+	define_as = "BASE_NPC_GNOLL",
+	type = "humanoid", subtype = "humanoid_gnoll",
+--	image = "tiles/goblin.png",
+	display = 'h', color=colors.BROWN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A dog-headed humanoid.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=15, dex=10, con=13, int=8, wis=11, cha=8, luc=8 },
+	combat = { dam= {1,6} },
+	darkvision = 3,
+	skill_listen = 3,
+	skill_spot = 2,
+}
+
+newEntity{
+	base = "BASE_NPC_GNOLL",
+	name = "gnoll",
+	level_range = {1, 10}, exp_worth = 600,
+	rarity = 5,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 2,
+	challenge = 2,
+	alignment = "chaotic evil",
+	resolvers.talents{ [Talents.T_SHOOT]=1, 
+	[Talents.T_POWER_ATTACK]= 1
+	},
+	resolvers.equip{
+		full_id=true,
+		{ name = "leather armor" },
+		{ name = "heavy steel shield" },
+		{ name = "battleaxe" },
+		{ name = "arrows (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "shortbow" },
+	{ name = "fresh corpse" }
+	},
+}
+
+newEntity{
+	define_as = "BASE_NPC_GNOME",
+	type = "humanoid", subtype = "humanoid_gnome",
+	image = "tiles/gnome_fighter.png",
+	display = 'h', color=colors.BROWN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A lost gnome.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=11, dex=11, con=14, int=10, wis=9, cha=8, luc=10 },
+	combat = { dam= {1,6} },
+}
+
+newEntity{
+	base = "BASE_NPC_GNOME",
+	name = "gnome", color=colors.WHITE,
+	level_range = {1, 15}, exp_worth = 150,
+	rarity = 5,
+	max_life = resolvers.rngavg(5,10),
+	hit_die = 1,
+	challenge = 1/2,
+	darkvision = 3,
+	skill_hide = 3,
+	skill_listen = 1,
+	skill_spot = 1,
+	resolvers.talents{ [Talents.T_SHOOT]=1 },
+	resolvers.equip{
+		full_id=true,
+		{ name = "chain shirt" },
+		{ name = "heavy metal shield" },
+		{ name = "longsword" },
+		{ name = "bolts (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "light crossbow" },
+	},
+}
+
+newEntity{
+	base = "BASE_NPC_GNOME",
+	name = "deep gnome", color=colors.WHITE,
+	level_range = {1, 15}, exp_worth = 300,
+	rarity = 8,
+	max_life = resolvers.rngavg(5,10),
+	hit_die = 1,
+	challenge = 1,
+	darkvision = 6,
+	combat_untyped = 4,
+	spell_resistance = 12,
+	skill_hide = 3,
+	skill_listen = 1,
+	skill_spot = 1,
+	stats = { str=11, dex=13, con=12, int=10, wis=11, cha=4, luc=10 },
+	resolvers.talents{ [Talents.T_SHOOT]=1,
+	[Talents.T_TOUGHNESS]=1
+	},
+	resolvers.equip{
+		full_id=true,
+		{ name = "banded mail" },
+		{ name = "buckler" },
+		{ name = "longsword" },
+		{ name = "bolts (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "light crossbow" },
+	},
+}
 
 --Shopkeepers
 newEntity{

@@ -27,7 +27,6 @@ newEntity{
 	skill_spot = 2,
 	skill_survival = 1,
 	movement_speed_bonus = 0.66,
-
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -105,5 +104,79 @@ newEntity{
 	full_id=true,
 	{ name = "fresh corpse" },
 	},
+}
 
+--Fly 60 ft.; AL CE
+newEntity{
+	define_as = "BASE_NPC_GARGOYLE",
+	type = "monstrous humanoid",
+	name = "gargoyle",
+	display = 'Y', color=colors.GRAY,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A winged stone statue with a hideous snout.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=15, dex=14, con=18, int=6, wis=11, cha=7, luc=12 },
+	combat = { dam= {1,4} },
+
+	level_range = {5, nil}, exp_worth = 1200,
+	rarity = 10,
+	max_life = resolvers.rngavg(35,40),
+	hit_die = 4,
+	challenge = 4,
+	combat_natural = 4,
+	skill_hide = 12, --including stone bonus
+	skill_listen = 4,
+	skill_spot = 4,
+	combat_dr = 10,
+	movement_speed_bonus = 0.33,
+	resolvers.talents{ [Talents.T_TOUGHNESS]=1, },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+	},
+}
+
+--Swim 60 ft. instead of fly
+newEntity{
+	base = "BASE_NPC_GARGOYLE",
+	name = "kapoacinth",
+	color=colors.BLUE,
+}
+
+--Blind (immune to gaze attacks, visual effects, illusions); blindsight 4 squares; scent
+newEntity{
+	define_as = "BASE_NPC_GRIMLOCK",
+	type = "monstrous humanoid",
+	name = "grimlock",
+	display = 'h', color=colors.DARK_GRAY,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A dull gray humanoid with a flat skin on its face.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=15, dex=13, con=13, int=10, wis=8, cha=6, luc=8 },
+	combat = { dam= {1,4} },
+
+	level_range = {5, nil}, exp_worth = 300,
+	rarity = 8,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 1,
+	challenge = 1,
+	combat_natural = 4,
+	skill_climb = 2,
+	skill_hide = 12, --including stone bonus
+	skill_listen = 6,
+	skill_spot = 4,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
+	resolvers.equip{
+	full_id=true,
+		{ name = "studded leather" },
+		{ name = "battleaxe" },
+	},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+	},
 }
