@@ -75,6 +75,19 @@ function _M:use(who, typ, inven, item)
     end
 end 
 
+function _M:descAttribute(attr)
+    if attr == "STATBONUS" then
+        local stat, i = next(self.wielder.inc_stats)
+        return i > 0 and "+"..i or tostring(i)
+    elseif attr == "RESIST" then
+        local stat, i = next(self.wielder.resists)
+        return (i and i > 0 and "+"..i or tostring(i))
+    elseif attr == "COMBAT_AMMO" then
+        local c = self.combat
+        return c.shots_left.."/"..math.floor(c.capacity)
+    end
+end
+
 --- Gets the full name of the object
 function _M:getName(t)
     t = t or {}
@@ -83,87 +96,89 @@ function _M:getName(t)
 
     if self.identified == false and not t.force_id and self:getUnidentifiedName() then name = self:getUnidentifiedName() end
     
+    name = name:gsub("~", ""):gsub("&", "a"):gsub("#([^#]+)#", function(attr)
+        return self:descAttribute(attr)
+    end)
+
+    if not t.no_add_name and self.add_name and self:isIdentified() then
+    name = name .. self.add_name:gsub("#([^#]+)#", function(attr)
+            return self:descAttribute(attr)
+        end)
+    end
+
+
     if qty == 1 or t.no_count then return name
     else return qty.." "..name
     end
 end
 
---- Gets the full desc of the object
-function _M:getDesc()
-    local str = self.desc
-
-    --Expand tooltips!
-    if self.slot_forbid == "OFFHAND" then str = str.."\nYou must wield this weapon with both hands." end
-
-    if self.type == "weapon" and self.light then str = str.."\nThis is a light weapon." end
-    if self.type == "weapon" and self.martial then str = str.."\nThis is a martial weapon." end
-    if self.type == "weapon" and self.simple then str = str.."\nThis is a a simple weapon." end
-    if self.type == "weapon" and self.reach then str = str.."\nThis is a reach weapon." end
-    if self.type == "weapon" and self.exotic then str = str.."\nThis is an exotic weapon." end
-    
-    --Describing magic items
-    if self.type == "weapon" and self.identified == true then 
-        local magic_bonus = self.combat.magic_bonus
-        if magic_bonus and magic_bonus > 0 then str = str.."\n#GOLD#This weapon grants a +"..(magic_bonus).." magic bonus to attack and damage" end
-    elseif self.type == "armor" and self.identified == true then 
-        local magic_armor = self.wielder.combat_magic_armor
-        if magic_armor and magic_armor > 0 then str = str.."\n#GOLD#This armor grants a +"..(magic_armor).." magic bonus to AC" end
-    elseif self.type == "shield" and self.identified == true then
-    local magic_shield = self.wielder.combat_magic_shield
-        if magic_shield and magic_shield > 0 then str = str.."\n#GOLD#This shield grants a +"..(magic_shield).." magic bonus to AC" end 
-    elseif self.type == "amulet" and self.identified == true then
-        local natural = self.wielder.combat_natural
-        if natural and natural > 0 then str = str.."\n#GOLD#This amulet grants a +"..(natural).." natural armor bonus to AC" end
-    elseif self.type == "ring" and self.identified == true then
-          local protection = self.wielder.combat_protection
-          if protection and protection > 0 then str = str.."\n#GOLD#This ring grants a +"..(protection).." protection bonus to AC" end
-    else end
+--[[ 
     --Describing special materials    
     if self.keywords then
     if self.keywords.mithril and self.identified == true then str = str.."\n#GOLD#This armor is made of mithril, reducing the armor check penalty by 3 and spell failure chance by 10% and increasing max Dex bonus to AC by 2." end
     if self.keywords.adamantine and self.identified == true then str = str.."\n#GOLD#This armor is made of adamantine, reducing damage taken by 1 and armor check penalty by 1." end
     if self.keywords.dragonhide and self.identified == true then str = str.."\n#GOLD#This armor is made of dragonhide, giving the wearer fire resistance 20 and reducing the armor check penalty by 1." end
     if self.keywords.darkwood and self.identified == true then str = str.."\n#GOLD#This shield is made of darkwood, reducing armor check penalty by 2" end
-    --Describing magic properties
-    if self.keywords.shadow and self.identified == true then 
-        local shadow = self.wielder.skill_bonus_hide
-        str = str.."\n#GOLD#This armor grants a +"..shadow.." bonus to Hide skill." end
-    if self.keywords.silent and self.identified == true then 
-        local silent = self.wielder.skill_bonus_movesilently
-        str = str.."\n#GOLD#This armor grants a +"..silent.." bonus to Move Silently skill." end
-    if self.keywords.slick and self.identified == true then 
-        local slick = self.wielder.skill_bonus_escapeartist
-        str = str.."\n#GOLD#This armor grants a +"..slick.." bonus to Escape Artist skill." end 
-    if self.keywords.spellres and self.identified == true then 
-        local spellres = self.wielder.spell_resistance
-        str = str.."\n#GOLD#This armor grants SR "..spellres end  
-    end 
-    --Elemental resistances
-    --[[if self.keywords.fireres and self.identified == true then
-        local fireres = self.wielder.resists.[DamageType.FIRE]
-        str = str.."\n#GOLD#This armor grants you fire resistance"..fireres end
-    if self.keywords.acidres and self.identified == true then
-        local acidres = self.wielder.resists.[DamageType.ACID]
-        str = str.."\n#GOLD#This armor grants you acid resistance"..acidres end
-    if self.keywords.coldres and self.identified == true then
-        local coldres = self.wielder.resists.[DamageType.COLD]
-        str = str.."\n#GOLD#This armor grants you cold resistance"..coldres end
-    if self.keywords.electres and self.identified == true then
-        local electres = self.wielder.resists.[DamageType.ELECTRIC]
-        str = str.."\n#GOLD#This armor grants you electricity resistance"..electres end    
-    if self.keywords.sonicres and self.identified == true then
-        local sonicres = self.wielder.resists.[DamageType.SONIC]
-        str = str.."\n#GOLD#This armor grants you sonic resistance"..sonicres end
-    end]]    
+  ]]
+
+
+--- Gets the full textual desc of the object without the name and requirements
+function _M:getTextualDesc()
+    local desc = tstring{}
+
+    desc:add(true)
+   
+    if self.multicharge and self:isIdentified() then desc:add(("%d charges remaining."):format(self.multicharge or 0), true) end
+
+    if self:isIdentified() then
+
+        if self.slot_forbid == "OFFHAND" then desc:add("You must wield this weapon with two hands.", true) end
+        if self.light then desc:add("This is a light weapon", true) end
+        if self.martial then desc:add("This is a martial weapon", true) end
+        if self.simple then desc:add("This is a simple weapon", true) end
+        if self.reach then desc:add("This is a reach weapon", true) end
+        if self.exotic then desc:add("This is an exotic weapon", true) end
+
+           local desc_wielder = function(w)
+            if w.skill_bonus_hide then desc:add(("#GOLD#This armor grants a +%d bonus to Hide skill."):format(w.skill_bonus_hide or 0), true) end
+            if w.skill_bonus_movesilently then desc:add(("#GOLD#This armor grants a +%d bonus to Move Silently skill."):format(w.skill_bonus_movesilently or 0), true) end
+            if w.skill_bonus_escapeartist then desc:add(("#GOLD#This armor grants a +%d bonus to Escape Artist skill."):format(w.skill_bonus_escapeartist or 0), true) end
+            if w.spell_resistance then desc:add(("#GOLD#Spell resistance +%d"):format(w.spell_resistance or 0), true) end
+            if w.combat_magic_armor then desc:add(("#GOLD#This armor grants a +%d magic bonus to AC."):format(w.combat_magic_armor or 0), true) end
+            if w.combat_magic_shield then desc:add(("#GOLD#This shield grants a +%d magic bonus to AC."):format(w.combat_magic_shield or 0), true) end
+            if w.combat_natural then desc:add(("#GOLD#This item grants a +%d natural armor bonus to AC."):format(w.combat_natural or 0), true) end
+            if w.combat_protection then desc:add(("#GOLD#This item grants a +%d protection bonus to AC."):format(w.combat_protection or 0), true) end
+        end
+        
+        if self.desc then desc:add(self.desc) end
+
+        if self.wielder then
+            desc:add({"color","SANDY_BROWN"}, "When equipped:", {"color", "LAST"}, true)
+            desc_wielder(self.wielder)
+        end
+    else
+       
+        desc:add("Unidentified.")
+    end
     
+    return desc
+end
 
-    return str
+--- Gets the full desc of the object
+function _M:getDesc(name_param)
+    local desc = tstring{}
+    name_param = name_param or {}
+    name_param.do_color = true
 
+    desc:merge(self:getName(name_param):toTString())
+
+    desc:merge(self:getTextualDesc())
+
+    return desc
 end
 
 function _M:tooltip(x, y)
     local str = self:getDesc()
---    if config.settings.cheat then str = str .."\nUID: "..self.uid end
     
     --Tooltip cue for multiple objects
     local nb = game.level.map:getObjectTotal(x, y)
