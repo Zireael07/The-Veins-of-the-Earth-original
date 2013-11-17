@@ -207,3 +207,112 @@ newEntity{
 --        [Talents.T_TOUGHNESS]=1 
         },
 }
+
+--immunity to cold
+--Summon undead  The undead arrive in 1d10 rounds and serve for 1 hour
+--Spell-likes: At will—contagion (DC 18), deeper darkness, detect magic, greater dispel magic, haste, see invisibility, and unholy blight (DC 18); 
+newEntity{
+        define_as = "BASE_NPC_NIGHTSHADE",
+        type = "undead",
+        display = 'U',
+        body = { INVEN = 10 },
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=48, dex=10, con=1, int=20, wis=20, cha=18, luc=6 },
+        combat = { dam= {4,6} },
+        rarity = 35,
+        level_range = {20, nil},
+        infravision = 4,
+        combat_dr = 15,
+        skill_diplomacy = 2,
+        alignment = "chaotic evil",
+}
+
+--Burrow 60 ft; tremorsense 6 squares; 
+--Poison pri & sec 2d6 STR Fort DC 22; improved grab; swallow whole, energy drain; Blind-Fight, Imp Crit x2
+-- 9-16 shadows, 3-6 greater shadows, or 2-4 dread wraiths.
+--Spell-likes: 3/day—confusion (DC 18), hold monster (DC 19), invisibility; 1/day—cone of cold (DC 19), finger of death (DC 21), plane shift (DC 21). 
+newEntity{
+        define_as = "BASE_NPC_NIGHTSHADE",
+        color=colors.DARK_BLUE,
+        desc = [[An undead horror the color of night with a stinging tail.]],
+        name = "nightcrawler",
+        exp_worth = 5500,        
+        max_life = resolvers.rngavg(210,215),
+        hit_die = 25,
+        challenge = 18,
+        combat = { dam= {2,6} },
+        combat_natural = 25,
+        spell_resistance = 31,
+        skill_concentration = 25,
+        skill_hide = 16,
+        skill_knowledge = 25,
+        skill_movesilently = 28,
+        skill_search = 27,
+        skill_sensemotive = 17,
+        skill_spellcraft = 30,
+        skill_spot = 27,
+        resolvers.talents{ [Talents.T_IRON_WILL]=1,
+        [Talents.T_POWER_ATTACK]=1,
+        [Talents.T_COMBAT_CASTING]=1,
+        },
+}
+
+--Fly 20 ft; immunity to cold; fear 4 squares Will DC 24
+--Cleave, Imp Disarm, Quicken Spell-like (unholy blight)
+--Summon undead -  7-12 shadows, 2-5 greater shadows, or 1-2 dread wraiths.
+--Spell-likes: 3/day—confusion (DC 18), hold monster (DC 19), invisibility; 1/day—cone of cold (DC 19), finger of death (DC 21), plane shift (DC 21). 
+newEntity{
+        define_as = "BASE_NPC_NIGHTSHADE",
+        display = 'U', color=colors.BLUE,
+        desc = [[An undead human-shaped horror the color of night.]],
+        stats = { str=38, dex=14, con=1, int=20, wis=20, cha=18, luc=6 },
+        name = "nightwalker",
+        exp_worth = 4800,
+        max_life = resolvers.rngavg(175,180),
+        hit_die = 21,
+        challenge = 16,
+        combat_natural = 20,
+        spell_resistance = 29,
+        skill_concentration = 23,
+        skill_diplomacy = 2,
+        skill_hide = 16,
+        skill_knowledge = 24,
+        skill_listen = 24,
+        skill_movesilently = 24,
+        skill_search = 24,
+        skill_sensemotive = 24,
+        skill_spellcraft = 27,
+        skill_spot = 25,
+        resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
+        [Talents.T_COMBAT_EXPERTISE]=1
+        },
+}
+
+--Fly 60 ft; immunity to cold; magic drain [item] Fort DC 22
+--Imp Crit, Combat Reflexes
+--Summon undead -  5-12 shadows, 2-4 greater shadows, or 1 dread wraith. 
+--Spell-likes: at will- invisibility; 3/day—cone of cold (DC 19), confusion (DC 18), hold monster (DC 19); 1/day—finger of death (DC 21), mass hold monster (DC 23), plane shift (DC 21).
+newEntity{
+        define_as = "BASE_NPC_NIGHTSHADE",
+        color=colors.BLACK,
+        desc = [[An undead bat-shaped horror the color of night.]],
+        stats = { str=31, dex=18, con=1, int=18, wis=20, cha=18, luc=6 },
+        combat = { dam= {2,6} },
+        name = "nightwing",
+        exp_worth = 4200,
+        max_life = resolvers.rngavg(140,145),
+        hit_die = 17,
+        challenge = 14,
+        combat_natural = 16,
+        spell_resistance = 29,
+        skill_concentration = 20,
+        skill_diplomacy = 2,
+        skill_hide = 12,
+        skill_listen = 20,
+        skill_movesilently = 20,
+        skill_search = 20,
+        skill_sensemotive = 24,
+        skill_spellcraft = 27,
+        skill_spot = 25,
+        resolvers.talents{ [Talents.T_DODGE]=1 },
+}

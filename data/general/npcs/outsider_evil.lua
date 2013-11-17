@@ -186,3 +186,114 @@ newEntity{
 	skill_spot = 11,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
+
+--Immunity to fire, cold, charm, sleep and fear
+--Demon fever bite Fort DC 18, 1d6 Con; change shape
+--Spell-likes: At will—detect chaos, detect evil, detect good, detect law, detect magic, ray of enfeeblement.
+newEntity{
+	define_as = "BASE_NPC_NIGHT_HAG",
+	type = "outsider",
+	display = 'O', color=colors.BLACK,
+	body = { INVEN = 10 },
+	desc = [[A female creature dressed in dark colors.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=19, dex=12, con=18, int=11, wis=15, cha=12, luc=12 },
+	combat = { dam= {2,6} },
+	movement_speed_bonus = -0.66,
+	alignment = "neutral evil",
+}
+
+newEntity{
+	base = "BASE_NPC_NIGHT_HAG",
+	name = "night hag",
+	level_range = {10, nil}, exp_worth = 2700,
+	rarity = 20,
+	max_life = resolvers.rngavg(65,70),
+	hit_die = 8,
+	challenge = 9,
+	infravision = 4,
+	combat_natural = 11,
+	combat_dr = 10,
+	spell_resistance = 25,
+	skill_bluff = 11,
+	skill_concentration = 12,
+	skill_diplomacy = 4,
+	skill_intimidate = 13,
+	skill_listen = 13,
+	skill_sensemotive = 11,
+	skill_spellcraft = 11,
+	skill_spot = 12,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_COMBAT_CASTING]=1,
+	[Talents.T_MM_INNATE]=1,
+	[Talents.T_SLEEP_INNATE]=1,
+	},
+}
+
+--Fly 90 ft.; 1d4 fire on hit
+--Astral projection, etherealness; Run feat
+newEntity{
+	define_as = "BASE_NPC_NIGHTMARE",
+	type = "outsider",
+	display = 'O', color=colors.FIREBRICK,
+	body = { INVEN = 10 },
+	desc = [[A horse made of smoke, with flaming hooves.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=18, dex=15, con=16, int=13, wis=13, cha=12, luc=12 },
+	combat = { dam= {1,8} },
+	infravision = 4,
+	movement_speed_bonus = 0.33,
+	alignment = "neutral evil",
+}
+
+newEntity{
+	base = "BASE_NPC_NIGHTMARE",
+	name = "nightmare",
+	level_range = {5, nil}, exp_worth = 1500,
+	rarity = 15,
+	max_life = resolvers.rngavg(45,50),
+	hit_die = 6,
+	challenge = 5,
+	combat_natural = 12,
+	skill_concentration = 9,
+	skill_diplomacy = 2,
+	skill_intimidate = 9,
+	skill_knowledge = 9,
+	skill_listen = 11,
+	skill_movesilently = 9,
+	skill_search = 9,
+	skill_sensemotive = 9,
+	skill_survival = 9,
+	skill_spot = 11,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+}
+
+--Cleave, Run, Track
+newEntity{
+	base = "BASE_NPC_NIGHTMARE",
+	name = "cauchemar",
+	level_range = {15, nil}, exp_worth = 3300,
+	rarity = 15,
+	max_life = resolvers.rngavg(45,50),
+	hit_die = 6,
+	challenge = 11,
+	stats = { str=31, dex=14, con=24, int=16, wis=12, cha=12, luc=12 },
+	combat = { dam= {2,6} },
+	combat_natural = 14,
+	skill_bluff = 18,
+	skill_concentration = 18,
+	skill_diplomacy = 3,
+	skill_intimidate = 20,
+	skill_knowledge = 18,
+	skill_listen = 18,
+	skill_movesilently = 18,
+	skill_search = 18,
+	skill_sensemotive = 18,
+	skill_survival = 18,
+	skill_spot = 18,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_POWER_ATTACK]=1
+	},
+}

@@ -507,3 +507,111 @@ newEntity{
 	{ name = "fresh corpse" }
 	},
 }    
+
+newEntity{
+	define_as = "BASE_NPC_NAGA",
+	type = "aberration", subtype = "naga",
+--	image = "tiles/naga.png",
+	display = "n", color=colors.WHITE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+    desc = [[A monster with a snakelike body and a human head.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=14, dex=15, con=14, int=16, wis=15, cha=17, luc=12 },
+	combat = { dam= {2,6} },
+	infravision = 4,
+	movement_speed_bonus = 0.33,
+	rarity = 20,
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Poison, 2d4 min sleep Fort DC 16; cast spells as Sor7
+--Immunity to poison, resistance to charm +2
+newEntity{ base = "BASE_NPC_NAGA",
+	name = "dark naga", color=colors.BLACK,
+	level_range = {10, nil}, exp_worth = 2400,
+	max_life = resolvers.rngavg(55,60),
+	hit_die = 9,
+	challenge = 8,
+	combat = { dam= {2,4} },
+	combat_natural = 2,
+	skill_bluff = 6,
+	skill_concentration = 10,
+	skill_diplomacy = 4,
+	skill_intimidate = 2,
+	skill_listen = 8,
+	skill_sensemotive = 6,
+	skill_spellcraft = 9,
+	skill_spot = 8,
+	alignment = "lawful evil",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_DODGE]=1,
+	[Talents.T_COMBAT_CASTING]=1
+	},
+}      
+
+--Poison pri & sec 1d10 Con; Fort DC 19; spells as Sor9 + Good & Law domains
+newEntity{ base = "BASE_NPC_NAGA",
+	name = "guardian naga",
+	level_range = {10, nil}, exp_worth = 3000,
+	max_life = resolvers.rngavg(90,95),
+	hit_die = 9,
+	stats = { str=21, dex=14, con=19, int=16, wis=19, cha=18, luc=12 },
+	challenge = 10,
+	combat_natural = 6,
+	skill_bluff = 14,
+	skill_concentration = 16,
+	skill_diplomacy = 4,
+	skill_intimidate = 2,
+	skill_sensemotive = 14,
+	skill_spellcraft = 14,
+	skill_spot = 9,
+	alignment = "lawful good",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_DODGE]=1,
+	[Talents.T_COMBAT_CASTING]=1
+	},
+}  
+
+--Charming gaze 3 squares hit charm person Will DC 19; poison pri & sec 1d8 CON Fort DC 18; cast as Sor7
+newEntity{ base = "BASE_NPC_NAGA",
+	name = "spirit naga", color=colors.GRAY,
+	level_range = {10, nil}, exp_worth = 2700,
+	max_life = resolvers.rngavg(75,80),
+	hit_die = 9,
+	stats = { str=18, dex=13, con=18, int=12, wis=17, cha=17, luc=12 },
+	challenge = 9,
+	combat_natural = 6,
+	skill_bluff = 14,
+	skill_concentration = 9,
+	skill_listen = 11,
+	skill_spellcraft = 9,
+	skill_spot = 11,
+	alignment = "chaotic evil",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_COMBAT_CASTING]=1
+	},
+}      
+
+--Swim 50 ft.; poison pri & sec 1d8 CON Fort DC 17
+newEntity{ base = "BASE_NPC_NAGA",
+	name = "water naga", color=colors.BLUE,
+	level_range = {10, nil}, exp_worth = 2000,
+	max_life = resolvers.rngavg(60,65),
+	hit_die = 7,
+	stats = { str=16, dex=13, con=18, int=10, wis=17, cha=15, luc=12 },
+	challenge = 7,
+	combat_natural = 4,
+	skill_concentration = 11,
+	skill_listen = 4,
+	skill_spellcraft = 8,
+	skill_spot = 4,
+	skill_swim = 8,
+	alignment = "neutral",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_COMBAT_CASTING]=1
+	},
+}      
