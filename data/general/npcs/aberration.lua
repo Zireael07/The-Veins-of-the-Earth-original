@@ -477,3 +477,33 @@ newEntity{
 	{ name = "fresh corpse" }
 	},
 }    
+
+--Immunity to acid
+newEntity{
+	define_as = "BASE_NPC_MIMIC",
+	type = "aberration",
+	display = "m", color=colors.BROWN,
+	body = { INVEN = 10 },
+    desc = [[A stash of items.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=19, dex=12, con=17, int=10, wis=13, cha=10, luc=10 },
+	combat = { dam= {1,8}, },
+	name = "mimic",
+	level_range = {5, nil}, exp_worth = 1200,
+	rarity = 15,
+	max_life = resolvers.rngavg(50,55),
+	hit_die = 2,
+	challenge = 4,
+	infravision = 4,
+	combat_natural = 5,
+	skill_climb = 5,
+	skill_listen = 7,
+	skill_spot = 7,
+	movement_speed_bonus = -0.90, 	
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}    

@@ -501,7 +501,7 @@ newEntity{
 	define_as = "BASE_NPC_INVISIBLE_STALKER",
 	type = "elemental", subtype = "air",
 --	image = "tiles/wraith.png",
-	display = "X", color=colors.DARK_GRAY,
+	display = "E", color=colors.DARK_GRAY,
 	body = { INVEN = 10 },]]
 --desc = [[An invisible creature.]],
 
@@ -520,3 +520,29 @@ newEntity{
 	skill_search = 11,
 	skill_spot = 11,
 }]]
+
+--Immunity to fire, vulnerability to cold, melt weapons, combustion 1d8 fire for 1d4+2 rounds
+newEntity{
+	define_as = "BASE_NPC_MAGMIN",
+	type = "elemental", subtype = "fire",
+--	image = "tiles/wraith.png",
+	display = "E", color=colors.DARK_RED,
+	body = { INVEN = 10 },]]
+	desc = [[A small fiery being.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=15, dex=11, con=13, int=8, wis=10, cha=10, luc=10 },
+	combat = { dam= {1,3}, },
+	name = "magmin",
+	level_range = {5, nil}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 2,
+	challenge = 3,
+	combat_dr = 5,
+	combat_natural = 6,
+	infravision = 4,
+	skill_climb = 1,
+	skill_spot = 3,
+	alignment = "chaotic neutral",
+}

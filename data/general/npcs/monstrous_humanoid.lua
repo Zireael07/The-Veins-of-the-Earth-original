@@ -3,7 +3,6 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
-
 newEntity{
 	define_as = "BASE_NPC_CENTAUR",
 	type = "monstrous humanoid",
@@ -311,5 +310,80 @@ newEntity{
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" },
+	},
+}
+
+--Petrifying gaze 3 sq Fort DC 15; poison 1d6 STR pri & 2d6 STR sec Fort DC 14
+--Point Blank Shot, Precise Shot feats
+newEntity{
+	define_as = "BASE_NPC_MEDUSA",
+	type = "monstrous humanoid",
+	name = "medusa",
+	display = 'h', color=colors.LIGHT_BROWN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A female humanoid hiding her face behind a veil.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=15, con=12, int=12, wis=13, cha=15, luc=12 },
+	combat = { dam= {1,4} },
+
+	level_range = {10, 25}, exp_worth = 2000,
+	rarity = 18,
+	max_life = resolvers.rngavg(30,35),
+	hit_die = 6,
+	challenge = 7,
+	combat_natural = 3,
+	skill_bluff = 6,
+	skill_diplomacy = 2,
+	skill_intimidate = 2,
+	skill_movesilently = 5,
+	skill_spot = 7,
+	resolvers.talents{ [Talents.T_SHOOT]=1,
+	[Talents.T_FINESSE]=1,
+	},
+	resolvers.equip{
+	full_id=true,
+		{ name = "shortbow" },
+		{ name = "arrows (20)" },
+	},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Powerful charge 4d6
+newEntity{
+	define_as = "BASE_NPC_MINOTAUR",
+	type = "monstrous humanoid",
+	name = "minotaur",
+	display = 'h', color=colors.BROWN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A giant horned minotaur.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=19, dex=10, con=15, int=7, wis=10, cha=8, luc=12 },
+	combat = { dam= {1,8} },
+
+	level_range = {5, nil}, exp_worth = 1200,
+	rarity = 10,
+	max_life = resolvers.rngavg(35,40),
+	hit_die = 6,
+	challenge = 4,
+	combat_natural = 5,
+	skill_intimidate = 3,
+	skill_listen = 7,
+	skill_search = 4,
+	skill_spot = 7,
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+	resolvers.equip{
+	full_id=true,
+		{ name = "greataxe" },
+	},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
 	},
 }

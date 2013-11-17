@@ -239,3 +239,136 @@ newEntity{
     { name = "longbow" },
 	},
 }
+--Fast healing 2 (in certain conditions), summon mephit, breath weapon 3 sq cone cooldown 3
+newEntity{
+	define_as = "BASE_NPC_MEPHIT",
+	type = "outsider",
+--	image = "tiles/npc/djinn.png",
+	display = 'M', color=colors.WHITE,
+	body = { INVEN = 10 },
+	desc = [[A small winged creature.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=17, con=10, int=6, wis=11, cha=15, luc=12 },
+	combat = { dam= {1,3} },
+	level_range = {5, 25}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 3,
+	challenge = 3,
+	infravision = 4,
+	combat_dr = 5,
+	skill_bluff = 6,
+	skill_escapeartist = 6,
+	skill_hide = 10,
+	skill_diplomacy = 2,
+	skill_intimidate = 2,
+	skill_listen = 6,
+	skill_movesilently = 6,
+	skill_spot = 6,
+	alignment = "neutral",
+}
+
+--Fly 60 ft.; breath weapon 1d8 Ref DC 12 half
+--Spell-likes: 1/hour - blur; 1/day gust of wind DC 14
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "air mephit",
+	combat_natural = 4,
+	resolvers.talents{ [Talents.T_DODGE]=1 },
+}
+
+--Fly 50 ft; breath weapon 1d4 & -4 AC & -2 attack for 3 rounds
+--Spell-likes: 1/hour - blur; 1/day wind wall DC 15
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "dust mephit",
+	combat_natural = 4,
+	resolvers.talents{ [Talents.T_DODGE]=1 },
+}
+
+--Fly 40 ft.; breath weapon 1d8 Ref DC 13
+--Spell-like: 1/day soften earth and stone; 1/hour enlarge person (self)
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "earth mephit",
+	combat_natural = 7,
+	max_life = resolvers.rngavg(17,21),
+	stats = { str=17, dex=8, con=13, int=6, wis=11, cha=15, luc=12 },
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+}
+
+--Fly 50 ft; immunity to fire, vulnerability to cold; breath weapon 1d8 fire Ref DC 12
+--Spell-likes: 1/hour scorching ray DC 14; 1/day heat metal DC 14
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "fire mephit",
+	combat_natural = 5,
+	stats = { str=10, dex=13, con=10, int=6, wis=11, cha=15, luc=12 },
+	resolvers.talents{ [Talents.T_DODGE]=1 },
+}
+
+--Fly 50 ft; immunity to cold, vulnerability to fire; 1d4 cold on hit
+--Breath weapon 1d4 cold Ref DC 12 & -4 AC & -2 attack for 3 rounds
+--Spell-likes: 1/hour magic missile; 1/day - chill metal DC 14
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "ice mephit",
+	combat_natural = 5,
+	resolvers.talents{ [Talents.T_DODGE]=1 },
+}
+
+--Fly 50 ft; immunity to fire, vulnerability to cold; change shape (lava dr 20 speed -0.80)
+--Breath weapon: 1d4 fire Ref DC 12 & -4 AC & -2 attack for 3 rounds
+--Spell-likes: 1/day pyrotechnics
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "magma mephit",
+	combat_natural = 5,
+	stats = { str=10, dex=13, con=10, int=6, wis=11, cha=15, luc=12 },
+	resolvers.talents{ [Talents.T_DODGE]=1 },
+}
+
+--Fly 40 ft. swim 30 ft; breath weapon 1d4 acid Ref DC 12 half & -4 AC & -2 attack for 3 rounds
+--Spell-likes: 1/hour acid arrow, 1/day stinking cloud
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "ooze mephit",
+	combat_natural = 6,
+	max_life = resolvers.rngavg(17,21),
+	skill_swim = 8,
+	stats = { str=14, dex=10, con=13, int=6, wis=11, cha=15, luc=12 },
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+}
+
+--Fly 40 ft; breath weapon 1d4 Ref DC 13 half & -4 AC & -2 attack for 3 rounds if failed
+--Spell-likes: 1/hour - glitterdust; 1/day 2d8 rad 2 ball Fort DC 14 half
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "salt mephit",
+	combat_natural = 7,
+	max_life = resolvers.rngavg(17,21),
+	stats = { str=17, dex=8, con=13, int=6, wis=11, cha=15, luc=12 },
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+}
+
+--Fly 50 ft; immunity to fire, vulnerability to cold; breath weapon 1d4 fire Ref DC 12 half & -4 AC & -2 attack for 3 rounds
+--Spell-likes: 1/hour - blur; 1/day 2d6 fire Ref DC 14 half in 3 sq radius
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "steam mephit",
+	combat_natural = 5,
+	resolvers.talents{ [Talents.T_DODGE]=1 },
+}
+
+--Fly 40 ft. swim 30 ft.; breath weapon 1d8 acid Ref DC 13 half
+--Spell-likes: 1/hour - acid arrow; 1/day stinking cloud
+newEntity{
+	base = "BASE_NPC_MEPHIT",
+	name = "water mephit",
+	combat_natural = 6,
+	max_life = resolvers.rngavg(17,21),
+	skill_swim = 8,
+	stats = { str=14, dex=10, con=13, int=6, wis=11, cha=15, luc=12 },
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+}

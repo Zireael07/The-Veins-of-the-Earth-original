@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael
 
+--Undead don't drop corpses
+
 local Talents = require("engine.interface.ActorTalents")
 
 --incorporeal, 1d4 Wisdom drain, hypnotism DC 16 in 4 tiles
@@ -28,11 +30,6 @@ newEntity{
         skill_listen = 6,
         skill_search = 3,
         skill_spot = 6,
-        --Hack! Monsters drop corpses now
-        resolvers.inventory {
-        full_id=true,
-        { name = "fresh corpse" }
-        },
 }
 
 --death gaze 3 squares Fort DC 15; immunity to electricity
@@ -60,11 +57,6 @@ newEntity{
         resists = {
                 [DamageType.ACID] = 10,
                 [DamageType.COLD] = 10,
-        },
-        --Hack! Monsters drop corpses now
-        resolvers.inventory {
-        full_id=true,
-        { name = "fresh corpse" }
         },
 }
 
@@ -97,11 +89,6 @@ newEntity{
         skill_movesilently = 15,
         skill_search = 7,
         skill_spot = 15,
-        --Hack! Monsters drop corpses now
-        resolvers.inventory {
-        full_id=true,
-        { name = "fresh corpse" }
-        },
 }
 
 --Paralysis on hit DC 15 1d4 rounds; ghoul fever; AL CE
@@ -122,11 +109,6 @@ newEntity{
         skill_jump = 4,
         skill_movesilently = 4,
         skill_spot = 5,
-        --Hack! Monsters drop corpses now
-        resolvers.inventory {
-        full_id=true,
-        { name = "fresh corpse" }
-        },
 }
 
 newEntity{
@@ -162,4 +144,66 @@ newEntity{
         stats = { str=17, dex=17, con=1, int=13, wis=14, cha=16, luc=8 },
         combat = { dam= {1,8} },
         resolvers.talents{ [Talents.T_TOUGHNESS]=1, },
+}
+
+--Improved grab, paralysing touch Fort DC 17 1d4x10 rounds
+newEntity{
+        define_as = "BASE_NPC_MOHRG",
+        type = "undead",
+        display = 'U', color=colors.BLACK,
+        body = { INVEN = 10 },
+        desc = [[A terrible undead creature.]],
+
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=21, dex=19, con=1, int=11, wis=10, cha=10, luc=6 },
+        combat = { dam= {1,6} },
+        name = "mohrg",
+        level_range = {10, nil}, exp_worth = 2400,
+        rarity = 20,
+        max_life = resolvers.rngavg(90,95),
+        hit_die = 14,
+        challenge = 8,
+        infravision = 4,
+        combat_natural = 9,
+        skill_climb = 9,
+        skill_hide = 17,
+        skill_listen = 11,
+        skill_movesilently = 17,
+        skill_swim = 3,
+        skill_spot = 15,
+        alignment = "chaotic evil",
+        resolvers.talents{ [Talents.T_DODGE]=1,
+        [Talents.T_MOBILITY]=1,
+        [Talents.T_ALERTNESS]=1 },
+}
+
+--Mummy rot Fort DC 16 1d6 CON & 1d6 CHA; fear for 1d4 rounds in LOS Will DC 16
+newEntity{
+        define_as = "BASE_NPC_MUMMY",
+        type = "undead",
+        display = 'U', color=colors.GOLD,
+        body = { INVEN = 10 },
+        desc = [[An undead mummy swathed in bandages.]],
+
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=24, dex=10, con=1, int=6, wis=14, cha=15, luc=6 },
+        combat = { dam= {1,6} },
+        name = "mummy",
+        level_range = {5, nil}, exp_worth = 1500,
+        rarity = 15,
+        max_life = resolvers.rngavg(50,55),
+        hit_die = 8,
+        challenge = 5,
+        infravision = 4,
+        combat_natural = 10,
+        combat_dr = 5,
+        skill_hide = 5,
+        skill_listen = 6,
+        skill_movesilently = 7,
+        skill_spot = 6,
+        movement_speed_bonus = -0.33,
+        alignment = "lawful evil",
+        resolvers.talents{ [Talents.T_ALERTNESS]=1,
+--        [Talents.T_TOUGHNESS]=1 
+        },
 }

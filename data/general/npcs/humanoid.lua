@@ -645,6 +645,51 @@ newEntity{
 	},
 }
 
+--Swim 50 ft.
+newEntity{
+	define_as = "BASE_NPC_MERFOLK",
+	type = "humanoid", subtype = "humanoid_aquatic",
+--	image = "tiles/goblin.png",
+	display = 'h', color=colors.DARK_BLUE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A scaly fish-like humanoid.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=10, luc=10 },
+	combat = { dam= {1,6} },
+	infravision = 1,
+	movement_speed_bonus = 0.90,
+}
+
+newEntity{
+	base = "BASE_NPC_MERFOLK",
+	name = "merfolk",
+	level_range = {1, 15}, exp_worth = 150,
+	rarity = 15,
+	max_life = resolvers.rngavg(5,10),
+	hit_die = 2,
+	challenge = 1/2,
+	skill_listen = 5,
+	skill_spot = 5,
+	skill_swim = 8,
+
+	resolvers.talents{ [Talents.T_SHOOT]=1,
+	[Talents.T_POLEARM]=1,
+	[Talents.T_ALERTNESS]=1,
+	},
+	resolvers.equip{
+		full_id=true,
+		{ name = "leather armor" },
+		{ name = "heavy crossbow" },
+		{ name = "bolts (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "trident" },
+	},
+}
+
 --Shopkeepers
 newEntity{
 	base = "BASE_NPC_DROW",

@@ -704,7 +704,35 @@ newEntity{
 	},
 }
 
+--Fly 50 ft; scent; spikes 1d4 range 30 ft.; Weapon Focus
+newEntity{
+	define_as = "BASE_NPC_MANTICORE",
+	type = "magical beast",
+--	image = "tiles/cat.png",
+	display = 'B', color=colors.BLACK,
+	body = { INVEN = 10 },
+	desc = [[A manticore.]],
 
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=20, dex=15, con=19, int=7, wis=12, cha=9, luc=8 },
+	combat = { dam= {2,4} },
+	name = "manticore",
+	level_range = {5, 25}, exp_worth = 1500,
+	rarity = 15,
+	max_life = resolvers.rngavg(55,60),
+	hit_die = 6,
+	challenge = 5,
+	infravision = 4,
+	combat_natural = 5,
+	skill_listen = 4,
+	skill_spot = 8,
+	alignment = "lawful evil",
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
 
 --Swim 20 ft., fast healing 11 + number of heads; scent
 newEntity{
