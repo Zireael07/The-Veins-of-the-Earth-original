@@ -799,6 +799,106 @@ newEntity{
 	},
 }
 
+--Scent
+--Spell-likes: At will—detect good and detect evil within a 60-foot radius.
+newEntity{
+	define_as = "BASE_NPC_PEGASUS",
+	type = "magical beast",
+--	image = "tiles/pegasus.png",
+	display = 'q', color=colors.WHITE,
+	body = { INVEN = 10 },
+	desc = [[A beautiful winged horse.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=18, dex=15, con=16, int=10, wis=13, cha=13, luc=12 },
+	combat = { dam= {1,6} },
+	name = "pegasus",
+	level_range = {5, 25}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(30,35),
+	hit_die = 4,
+	challenge = 3,
+	infravision = 4,
+	combat_natural = 2,
+	skill_diplomacy = 2,
+	skill_listen = 7,
+	skill_sensemotive = 7,
+	skill_spot = 7,
+	alignment = "chaotic good",
+	resolvers.talents{ [Talents.T_IRON_WILL]=1 },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Climb 20 ft; Poison pri & sec 1d8 CON Fort DC 17, ethereal jaunt
+newEntity{
+	define_as = "BASE_NPC_PHASE_SPIDER",
+	type = "magical beast",
+--	image = "tiles/pegasus.png",
+	display = 's', color=colors.GREEN,
+	body = { INVEN = 10 },
+	desc = [[A spider with green markings.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=17, dex=17, con=16, int=7, wis=13, cha=10, luc=12 },
+	combat = { dam= {1,6} },
+	name = "phase spider",
+	level_range = {5, 25}, exp_worth = 1500,
+	rarity = 15,
+	max_life = resolvers.rngavg(40,45),
+	hit_die = 5,
+	challenge = 5,
+	infravision = 4,
+	combat_natural = 2,
+	skill_climb = 8,
+	skill_movesilently = 8,
+	skill_spot = 3,
+	movement_speed_bonus = 0.33,
+	alignment = "neutral",
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Burrow 20 ft. swim 10 ft.; improved grab, swallow whole, tremorsense 4 squares
+--Poison pri 1d6 STR sec 2d6 STR Fort DC 25
+--Cleave, Imp Bull Rush, Awesome Blow, Weapon Focus
+newEntity{
+	define_as = "BASE_NPC_PURPLE_WORM",
+	type = "magical beast",
+--	image = "tiles/purple_worm.png",
+	display = 'w', color=colors.RED,
+	body = { INVEN = 10 },
+	desc = [[A giant purple worm.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=17, dex=17, con=16, int=7, wis=13, cha=10, luc=12 },
+	combat = { dam= {2,8} },
+	name = "purple worm",
+	level_range = {15, nil}, exp_worth = 1500,
+	rarity = 25,
+	max_life = resolvers.rngavg(200,205),
+	hit_die = 16,
+	challenge = 12,
+	infravision = 4,
+	combat_natural = 11,
+	skill_listen = 19,
+	skill_swim = 8,
+	movement_speed_bonus = -0.33,
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+	alignment = "neutral",
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
 
 --Swim 20 ft., fast healing 11 + number of heads; scent
 newEntity{

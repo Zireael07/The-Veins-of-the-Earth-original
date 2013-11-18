@@ -115,45 +115,6 @@ newEntity{
 }
 
 newEntity{
-	define_as = "BASE_NPC_TIEFLING",
-	type = "planetouched",
-	image = "tiles/human.png",
-	display = 'h', color=colors.RED,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
-	desc = [[A horned tiefling.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	stats = { str=13, dex=13, con=12, int=12, wis=9, cha=6, luc=14 },
-	combat = { dam= {1,6} },
-	infravision = 3,
-	skill_bluff = 6,
-	skill_hide = 4,
-
-}
-
-newEntity{
-	base = "BASE_NPC_TIEFLING",
-	name = "tiefling", color=colors.RED,
-	level_range = {1, 4}, exp_worth = 150,
-	rarity = 10,
-	max_life = resolvers.rngavg(4,7),
-	hit_die = 1,
-	challenge = 1,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
-		full_id=true,
-		{ name = "studded leather armor" },
-		{ name = "rapier" },
-		{ name = "arrows (20)" },
-	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" },
-    { name = "shortbow" },
-	},
-}
-
-newEntity{
 	define_as = "BASE_NPC_GOBLIN",
 	type = "humanoid", subtype = "humanoid_goblin",
 	image = "tiles/goblin.png",
@@ -689,6 +650,98 @@ newEntity{
     { name = "trident" },
 	},
 }
+
+--Planetouched
+--Darkness
+newEntity{
+	define_as = "BASE_NPC_TIEFLING",
+	type = "planetouched",
+	image = "tiles/human.png",
+	display = 'h', color=colors.RED,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A horned tiefling.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=13, dex=13, con=12, int=12, wis=9, cha=6, luc=14 },
+	combat = { dam= {1,6} },
+	infravision = 3,
+	skill_bluff = 6,
+	skill_hide = 4,
+
+}
+
+newEntity{
+	base = "BASE_NPC_TIEFLING",
+	name = "tiefling", color=colors.RED,
+	level_range = {1, nil}, exp_worth = 150,
+	rarity = 10,
+	max_life = resolvers.rngavg(4,7),
+	hit_die = 1,
+	challenge = 1/2,
+	resist = { [DamageType.FIRE] = 5,
+	[DamageType.ELECTRIC] = 5,
+	[DamageType.COLD] = 5,
+	},
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "studded leather armor" },
+		{ name = "rapier" },
+		{ name = "bolts (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "light crossbow" },
+	},
+}
+
+--Daylight
+newEntity{
+	define_as = "BASE_NPC_AASIMAR",
+	type = "planetouched",
+	image = "tiles/human.png",
+	display = 'h', color=colors.GOLD,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A beautiful humanoid.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=13, dex=11, con=12, int=10, wis=11, cha=10, luc=14 },
+	combat = { dam= {1,6} },
+	infravision = 3,
+	skill_knowledge = 1,
+	skill_heal = 4,
+	skill_listen = 2,
+	skill_spot = 2,
+}
+
+newEntity{
+	base = "BASE_NPC_AASIMAR",
+	name = "aasimar",
+	level_range = {1, 10}, exp_worth = 150,
+	rarity = 10,
+	max_life = resolvers.rngavg(4,7),
+	hit_die = 1,
+	challenge = 1/2,
+	resist = { [DamageType.ACID] = 5,
+	[DamageType.ELECTRIC] = 5,
+	[DamageType.COLD] = 5,
+	},
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "scale mail" },
+		{ name = "longsword" },
+		{ name = "heavy metal shield" },
+		{ name = "bolts (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "light crossbow" },
+	},
+}
+
 
 --Shopkeepers
 newEntity{

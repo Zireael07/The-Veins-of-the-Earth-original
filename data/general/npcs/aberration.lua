@@ -508,6 +508,47 @@ newEntity{
 	},
 }    
 
+--Alternate form, scent, tremorsense 60 ft.; +4 Fort and Ref
+--Immune to poison, sleep, paralysis, polymorph, stunning
+newEntity{
+	define_as = "BASE_NPC_PHASM",
+	type = "aberration",
+	display = "X", color=colors.DARK_GREEN,
+	body = { INVEN = 10 },
+    desc = [[An amorphous creature.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=12, dex=15, con=15, int=16, wis=13, cha=14, luc=12 },
+	combat = { dam= {1,3}, },
+	name = "phasm",
+	level_range = {10, nil}, exp_worth = 2000,
+	rarity = 15,
+	max_life = resolvers.rngavg(95,100),
+	hit_die = 15,
+	challenge = 7,
+	infravision = 4,
+	combat_natural = 5,
+	skill_bluff = 18,
+	skill_climb = 6,
+	skill_diplomacy = 10,
+	skill_intimidate = 2,
+	skill_knowledge = 15,
+	skill_listen = 10,
+	skill_spot = 10,
+	skill_survival = 6,	
+	alignment = "chaotic neutral",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_DODGE]=1,
+	[Talents.T_MOBILITY]=1
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+} 
+
+
+
 newEntity{
 	define_as = "BASE_NPC_NAGA",
 	type = "aberration", subtype = "naga",
