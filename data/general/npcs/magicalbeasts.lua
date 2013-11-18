@@ -734,6 +734,72 @@ newEntity{
 	},
 }
 
+--Fly 70 ft; 
+newEntity{
+	define_as = "BASE_NPC_OWL_GIANT",
+	type = "magical beast",
+--	image = "tiles/owl.png",
+	display = 'b', color=colors.BROWN,
+	body = { INVEN = 10 },
+	desc = [[A giant owl.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=18, dex=17, con=12, int=10, wis=14, cha=10, luc=12 },
+	combat = { dam= {1,6} },
+	name = "giant owl",
+	level_range = {5, 25}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(25,30),
+	hit_die = 4,
+	challenge = 3,
+	infravision = 2,
+	combat_natural = 2,
+	skill_knowledge = 2,
+	skill_listen = 15,
+	skill_movesilently = 5,
+	skill_spot = 8,
+	movement_speed_bonus = -0.88,
+	alignment = "neutral good",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Scent, improved grab
+newEntity{
+	define_as = "BASE_NPC_OWLBEAR",
+	type = "magical beast",
+--	image = "tiles/owlbear.png",
+	display = 'B', color=colors.LIGHT_BROWN,
+	body = { INVEN = 10 },
+	desc = [[A giant owlbear.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=21, dex=12, con=21, int=2, wis=12, cha=10, luc=10 },
+	combat = { dam= {1,6} },
+	name = "owlbear",
+	level_range = {5, 25}, exp_worth = 1200,
+	rarity = 15,
+	max_life = resolvers.rngavg(50,55),
+	hit_die = 5,
+	challenge = 4,
+	infravision = 2,
+	combat_natural = 4,
+	skill_listen = 7,
+	skill_spot = 7,
+	alignment = "neutral",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+
 --Swim 20 ft., fast healing 11 + number of heads; scent
 newEntity{
 	define_as = "BASE_NPC_HYDRA",
@@ -753,7 +819,7 @@ newEntity{
 	skill_swim = 8,
 	movement_speed_bonus = -0.66,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1,
-	[Talents.T_TOUGHNESS]=1
+--	[Talents.T_TOUGHNESS]=1
 	},
 	alignment = "neutral",
 	--Hack! Monsters drop corpses now
