@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael
 
+--Outsiders do not drop corpses
+
 --Immunity to fire, vulnerability to cold
 newEntity{
 	define_as = "BASE_NPC_AZER",
@@ -13,11 +15,6 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=13, int=12, wis=12, cha=9, luc=10 },
 	combat = { dam= {1,6} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -60,17 +57,12 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=23, dex=17, con=13, int=12, wis=12, cha=9, luc=10 },
 	combat = { dam= {1,6} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},	
 }
 
 newEntity{
 	base = "BASE_NPC_EFREET",
 	name = "efreet",
-	level_range = {10, 25}, exp_worth = 600,
+	level_range = {10, 25}, exp_worth = 2200,
 	rarity = 20,
 	max_life = resolvers.rngavg(60,65),
 	hit_die = 10,
@@ -89,4 +81,36 @@ newEntity{
 	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_COMBAT_CASTING]=1,
 	},
+}
+
+--Fly 60 ft.; paralysis 3 sq 1d6 rounds Fort DC 13; improved grab, blood drain
+--Immunity to fire, vulnerability to cold
+newEntity{
+	define_as = "BASE_NPC_RAST",
+	type = "outsider",
+--	image = "tiles/npc/dwarf_fighter.png",
+	display = 'O', color=colors.RED,
+	body = { INVEN = 10 },
+	desc = [[A large creature of fire.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=14, dex=12, con=13, int=3, wis=13, cha=12, luc=10 },
+	combat = { dam= {1,8} },
+}
+
+newEntity{
+	base = "BASE_NPC_RAST",
+	name = "rast",
+	level_range = {5, 25}, exp_worth = 1500,
+	rarity = 20,
+	max_life = resolvers.rngavg(23,27),
+	hit_die = 4,
+	challenge = 5
+	infravision = 4,
+	combat_natural = 4,
+	skill_hide = 7,
+	skill_listen = 7,
+	skill_movesilently = 7,
+	skill_spot = 7,
+	movement_speed_bonus = -0.88,
 }
