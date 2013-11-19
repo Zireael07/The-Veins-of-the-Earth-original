@@ -837,7 +837,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_PHASE_SPIDER",
 	type = "magical beast",
---	image = "tiles/pegasus.png",
+	image = "tiles/spider.png",
 	display = 's', color=colors.GREEN,
 	body = { INVEN = 10 },
 	desc = [[A spider with green markings.]],
@@ -891,6 +891,44 @@ newEntity{
 	skill_swim = 8,
 	movement_speed_bonus = -0.33,
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+	alignment = "neutral",
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Trample 2d6, vorpal tusks; fast healing 10, scent
+--Awesome Blow, Diehard, Endurance, Imp Bull Rush
+newEntity{ Rush
+	define_as = "BASE_NPC_RAZOR_BOAR",
+	type = "magical beast",
+	image = "tiles/boar.png",
+	display = 'B', color=colors.BROWN,
+	body = { INVEN = 10 },
+	desc = [[A boar with razor sharp tusks.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=27, dex=13, con=17, int=2, wis=14, cha=9, luc=12 },
+	combat = { dam= {1,6} },
+	name = "razor boar",
+	level_range = {5, 25}, exp_worth = 3000,
+	rarity = 15,
+	max_life = resolvers.rngavg(125,130),
+	hit_die = 10,
+	challenge = 5,
+	infravision = 4,
+	combat_natural = 16,
+	combat_dr = 5,
+	spell_resistance = 21,
+	skill_listen = 6,
+	skill_survival = 6,
+	skill_spot = 6,
+	movement_speed_bonus = 0.66,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_POWER_ATTACK]=1 
+	},
 	alignment = "neutral",
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
