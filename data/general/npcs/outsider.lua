@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael
 
+--Outsiders (except janni) do not drop corpses
+
 local Talents = require("engine.interface.ActorTalents")
 
 --Corporeal instability DC 15 Fort
@@ -32,12 +34,6 @@ newEntity{
 	skill_spot = 11,
 	skill_tumble = 11,
 	movement_speed_bonus = -0.33,
-
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 --Immunity to poison, petrification & cold
@@ -60,11 +56,6 @@ newEntity{
                 [DamageType.ELECTRIC] = 10,
                 [DamageType.SONIC] = 10,
     },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -271,12 +262,38 @@ newEntity{
 	skill_spot = 10,
 	movement_speed_bonus = 0.33,
 	alignment = "lawful evil",
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
+
+--Fly 60 ft.; immunity to fire; 2d10 damage to undead on hit
+newEntity{
+	define_as = "BASE_NPC_RAVID",
+	type = "outsider",
+	name = "ravid",
+	display = 'O', color=colors.YELLOW,
+	body = { INVEN = 10 },
+	desc = [[A bizarre creature of light energy.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=13, dex=10, con=13, int=7, wis=12, cha=14, luc=12 },
+	combat = { dam= {1,6} },
+
+	level_range = {5, nil}, exp_worth = 1500,
+	rarity = 10,
+	max_life = resolvers.rngavg(13,17),
+	hit_die = 3,
+	challenge = 5,
+	infravision = 4,
+	combat_natural = 15,
+	skill_escapeartist = 6,
+	skill_hide = 6,
+	skill_listen = 6,
+	skill_movesilently = 6,
+	skill_survival = 6,
+	skill_spot = 6,
+	movement_speed_bonus = -0.33,
+	alignment = "neutral",
+}
+
 
 --Fast healing 2 (in certain conditions), summon mephit, breath weapon 3 sq cone cooldown 3
 newEntity{
