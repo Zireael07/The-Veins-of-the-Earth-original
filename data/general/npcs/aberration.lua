@@ -90,8 +90,9 @@ newEntity{ base = "BASE_NPC_ATHACH",
 	hit_die = 14,
 	challenge = 8,
 	combat_natural = 6,
---	resolvers.talents{ [Talents.T_ALERTNESS]=1, 
---		[Talents.T_POWER_ATTACK] = 1,			},
+	resolvers.talents{ [Talents.T_ALERTNESS]=1, 
+	[Talents.T_POWER_ATTACK] = 1
+	},
 	resolvers.equip{
                 full_id=true,
                 { name = "leather armor" },
@@ -547,7 +548,35 @@ newEntity{
 	},
 } 
 
+--Rust [item Ref DC 17]
+newEntity{
+	define_as = "BASE_NPC_RUST_MONSTER",
+	type = "aberration",
+	display = "X", color=colors.DARK_UMBER,
+	body = { INVEN = 10 },
+    desc = [[A small tan brownish creature.]],
 
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=17, con=13, int=2, wis=13, cha=8, luc=12 },
+	combat = { dam= {1,3}, },
+	name = "rust monster",
+	level_range = {5, nil}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(25,30),
+	hit_die = 5,
+	challenge = 3,
+	infravision = 2,
+	combat_natural = 5,
+	skill_listen = 6,
+	skill_spot = 6,
+	movement_speed_bonus = 0.33,
+	alignment = "neutral",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+} 
 
 newEntity{
 	define_as = "BASE_NPC_NAGA",
