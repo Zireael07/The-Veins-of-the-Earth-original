@@ -239,6 +239,45 @@ newEntity{
     { name = "longbow" },
 	},
 }
+
+--Change shape, cast spells as Sor7
+newEntity{
+	define_as = "BASE_NPC_RAKSHASA",
+	type = "outsider",
+	name = "rakshasa",
+	display = 'O', color=colors.LIGHT_RED,
+	body = { INVEN = 10 },
+	desc = [[A humanoid with inverted hands.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=12, dex=14, con=16, int=13, wis=13, cha=17, luc=12 },
+	combat = { dam= {1,4} },
+
+	level_range = {10, nil}, exp_worth = 3000,
+	rarity = 10,
+	max_life = resolvers.rngavg(50,55),
+	hit_die = 7,
+	challenge = 10,
+	infravision = 4,
+	combat_natural = 9,
+	spell_resistance = 27,
+	combat_dr = 15,
+	skill_bluff = 13,
+	skill_concentration = 10,
+	skill_diplomacy = 3,
+	skill_listen = 12,
+	skill_sensemotive = 10,
+	skill_spellcraft = 10,
+	skill_spot = 10,
+	movement_speed_bonus = 0.33,
+	alignment = "lawful evil",
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
 --Fast healing 2 (in certain conditions), summon mephit, breath weapon 3 sq cone cooldown 3
 newEntity{
 	define_as = "BASE_NPC_MEPHIT",
