@@ -294,6 +294,35 @@ newEntity{
 	alignment = "neutral",
 }
 
+--Bay (Will DC 13 or panicked for 2d4 rounds, once per creature), trip, shadow blend
+newEntity{
+	define_as = "BASE_NPC_SHADOW_MASTIFF",
+	type = "outsider",
+	name = "shadow mastiff",
+	display = 'd', color=colors.DARK_GRAY,
+	body = { INVEN = 10 },
+	desc = [[A big dog made of shadow.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=17, dex=13, con=17, int=4, wis=12, cha=13, luc=10 },
+	combat = { dam= {1,6} },
+
+	level_range = {5, nil}, exp_worth = 1500,
+	rarity = 15,
+	max_life = resolvers.rngavg(28,32),
+	hit_die = 4,
+	challenge = 5,
+	infravision = 4,
+	combat_natural = 3,
+	skill_hide = 7,
+	skill_listen = 7,
+	skill_movesilently = 7,
+	skill_survival = 7,
+	skill_spot = 7,
+	resolvers.talents{ [Talents.T_DODGE]=1 },
+	movement_speed_bonus = 0.66,
+	alignment = "neutral evil",
+}
 
 --Fast healing 2 (in certain conditions), summon mephit, breath weapon 3 sq cone cooldown 3
 newEntity{

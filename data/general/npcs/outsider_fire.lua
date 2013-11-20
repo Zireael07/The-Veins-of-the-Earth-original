@@ -9,7 +9,7 @@ newEntity{
 	type = "outsider",
 	image = "tiles/npc/dwarf_fighter.png",
 	display = 'h', color=colors.FIREBRICK,
-	body = { INVEN = 10 },
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A flamehaired dwarf wearing a metal kilt.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
@@ -50,7 +50,7 @@ newEntity{
 	define_as = "BASE_NPC_EFREET",
 	type = "outsider",
 --	image = "tiles/npc/dwarf_fighter.png",
-	display = 'O', color=colors.LIGHT_RED,
+	display = 'O', color=colors.ORANGE,
 	body = { INVEN = 10 },
 	desc = [[A large humanoid clothed in red and seemingly hovering in air.]],
 
@@ -105,7 +105,7 @@ newEntity{
 	rarity = 20,
 	max_life = resolvers.rngavg(23,27),
 	hit_die = 4,
-	challenge = 5
+	challenge = 5,
 	infravision = 4,
 	combat_natural = 4,
 	skill_hide = 7,
@@ -113,4 +113,89 @@ newEntity{
 	skill_movesilently = 7,
 	skill_spot = 7,
 	movement_speed_bonus = -0.88,
+}
+
+--Immunity to fire, vulnerability to cold
+--Constrict 1d4 + 1d6 fire, improved grab
+newEntity{
+	define_as = "BASE_NPC_SALAMANDER",
+	type = "outsider",
+--	image = "tiles/npc/dwarf_fighter.png",
+	display = 'O', color=colors.LIGHT_RED,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A large creature of fire.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=12, dex=13, con=14, int=14, wis=15, cha=13, luc=10 },
+	combat = { dam= {1,4} },
+	infravision = 4,
+	combat_natural = 7,
+	movement_speed_bonus = -0.33,
+	resolvers.equip{
+		full_id=true,
+		{ name = "spear" },
+	},
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+}
+
+newEntity{
+	base = "BASE_NPC_SALAMANDER",
+	name = "flamebrother salamander",
+	level_range = {1, nil}, exp_worth = 900,
+	rarity = 20,
+	max_life = resolvers.rngavg(23,27),
+	hit_die = 4,
+	challenge = 3,
+	combat_natural = 8,
+	skill_hide = 11,
+	skill_listen = 9,
+	skill_movesilently = 5,
+	skill_spot = 9,
+}
+
+--Constrict 2d6
+newEntity{
+	base = "BASE_NPC_SALAMANDER",
+	name = "salamander",
+	level_range = {5, nil}, exp_worth = 1800,
+	rarity = 20,
+	max_life = resolvers.rngavg(55,60),
+	hit_die = 9,
+	challenge = 6,
+	stats = { str=14, dex=13, con=14, int=14, wis=15, cha=13, luc=10 },
+	combat_dr = 10,
+	skill_bluff = 10,
+	skill_diplomacy = 2,
+	skill_hide = 10,
+	skill_intimidate = 2,
+	skill_listen = 7,
+	skill_movesilently = 10,
+	skill_spot = 7,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_POWER_ATTACK]=1
+	},
+}
+
+--Constrict 2d8; Cleave, Great Cleave
+--Spell-likes: 3/day—burning hands (DC 13), fireball (DC 15), flaming sphere (DC 14), wall of fire (DC 16); 1/day—dispel magic, summon monster VII (Huge fire elemental)
+newEntity{
+	base = "BASE_NPC_SALAMANDER",
+	name = "noble salamander",
+	level_range = {10, nil}, exp_worth = 3000,
+	rarity = 20,
+	max_life = resolvers.rngavg(110,115),
+	hit_die = 15,
+	challenge = 10,
+	stats = { str=22, dex=13, con=16, int=16, wis=15, cha=15, luc=10 },
+	combat_dr = 15,
+	skill_bluff = 17,
+	skill_diplomacy = 2,
+	skill_hide = 14,
+	skill_intimidate = 2,
+	skill_listen = 11,
+	skill_movesilently = 16,
+	skill_spot = 11,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_POWER_ATTACK]=1
+	},
 }

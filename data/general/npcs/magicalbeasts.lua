@@ -772,6 +772,30 @@ newEntity{
 	alignment = "neutral",
 }
 
+--Fly 60 ft; scent; freedom of movement; implant, poison pri none sec paralysis 1d8+5 weeks
+newEntity{ base = "BASE_NPC_MAGBEAST",
+	define_as = "BASE_NPC_SPIDER_EATER",
+	image = "tiles/eagle.png",
+	display = 'b', color=colors.LIGHT_RED,
+	desc = [[A boar with razor sharp tusks.]],
+	stats = { str=21, dex=13, con=21, int=2, wis=12, cha=10, luc=10 },
+	combat = { dam= {1,8} },
+	name = "spider eater",
+	level_range = {5, nil}, exp_worth = 1500,
+	rarity = 15,
+	max_life = resolvers.rngavg(40,45),
+	hit_die = 4,
+	challenge = 5,
+	infravision = 4,
+	combat_natural = 3,
+	skill_listen = 9,
+	skill_spot = 10,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_DODGE]=1 
+	},
+}
+
+
 --Pounce
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_SPHINX",
@@ -790,8 +814,8 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --Fly 80 ft.; rake 2d4; roar (40 sq fear Will DC 19); spells as Clr7 + Good, Healing, Protection
 --Cleave, Great Cleave, Track feats
 newEntity{
-	base = "BASE_NPC_SPHINX"
-	name = "androsphinx"
+	base = "BASE_NPC_SPHINX",
+	name = "androsphinx",
 	level_range = {10, nil}, exp_worth = 2700,
 	max_life = resolvers.rngavg(115, 120),
 	combat = { dam= {2,4} },
@@ -810,8 +834,8 @@ newEntity{
 
 --Fly 60 ft., rake 1d6; Cleave feat
 newEntity{
-	base = "BASE_NPC_SPHINX"
-	name = "criosphinx"
+	base = "BASE_NPC_SPHINX",
+	name = "criosphinx",
 	level_range = {10, nil}, exp_worth = 2100,
 	max_life = resolvers.rngavg(80, 85),
 	stats = { str=23, dex=10, con=17, int=10, wis=11, cha=11, luc=12 },
@@ -829,8 +853,8 @@ newEntity{
 --Fly 60 ft., rake 1d6
 --Spell-likes: 3/day—clairaudience/clairvoyance, detect magic, read magic, see invisibility; 1/day—comprehend languages, locate object, dispel magic, remove curse (DC 18), legend lore. 
 newEntity{
-	base = "BASE_NPC_SPHINX"
-	name = "gynosphinx"
+	base = "BASE_NPC_SPHINX",
+	name = "gynosphinx",
 	level_range = {10, nil}, exp_worth = 2500,
 	max_life = resolvers.rngavg(50, 55),
 	stats = { str=19, dex=12, con=13, int=18, wis=19, cha=19, luc=12 },
@@ -851,8 +875,8 @@ newEntity{
 
 --Fly 90 ft; rake 1d6; Cleave feat 
 newEntity{
-	base = "BASE_NPC_SPHINX"
-	name = "hieracosphinx"
+	base = "BASE_NPC_SPHINX",
+	name = "hieracosphinx",
 	level_range = {10, nil}, exp_worth = 1500,
 	max_life = resolvers.rngavg(65, 70),
 	stats = { str=21, dex=14, con=15, int=6, wis=15, cha=10, luc=12 },
