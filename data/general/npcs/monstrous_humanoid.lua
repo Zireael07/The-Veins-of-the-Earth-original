@@ -183,6 +183,46 @@ newEntity{
 	},
 }
 
+--Swim 60 ft., rake 1d4, blindsense 30 ft, light sensitivity
+newEntity{
+	define_as = "BASE_NPC_SAHUAGIN",
+	type = "monstrous humanoid",
+	name = "sahuagin",
+	display = 'h', color=colors.DARK_BLUE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A blue-green scaly creature with a humanoid build and a shark's head.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=14, dex=13, con=12, int=14, wis=13, cha=9, luc=10 },
+	combat = { dam= {1,4} },
+
+	level_range = {5, nil}, exp_worth = 600,
+	rarity = 15,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 2,
+	challenge = 2,
+	combat_natural = 5,
+	skill_handleanimal = 3,
+	skill_hide = 5, 
+	skill_listen = 5,
+	skill_spot = 5,
+	resolvers.talents{ [Talents.T_SHOOT]=1, 
+	[Talents.T_RAGE]=1
+	},
+	alignment = "lawful evil",
+	resolvers.equip{
+	full_id=true,
+		{ name = "trident" },
+		{ name = "bolts (20)" },
+	},
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "heavy crossbow" },
+	{ name = "fresh corpse" },
+	},
+}
+
 newEntity{
 	define_as = "BASE_NPC_HAG",
 	type = "monstrous humanoid",
