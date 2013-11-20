@@ -98,8 +98,8 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_HOMUNCULUS",
 	type = "construct",
---	image = "tiles/griffon.png",
-	display = 'C', color=colors.BROWN,
+--	image = "tiles/golem.png",
+	display = 'C', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10 },
 	desc = [[A wizard's miniature servant.]],
 
@@ -214,4 +214,27 @@ newEntity{
 		{ name = "plate armor" },
 		{ name = "spiked chain" },
 	},
+}
+
+--Fast healing 5, shield other, spell storing
+newEntity{
+	define_as = "BASE_NPC_SHIELD_GUARDIAN",
+	type = "construct",
+--	image = "tiles/golem.png",
+	display = 'C', color=colors.GOLD,
+	body = { INVEN = 10 },
+	desc = [[A wizard's miniature servant.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=22, dex=10, con=1, int=1, wis=10, cha=1, luc=10 },
+	combat = { dam= {1,8} },
+	name = "shield guardian",
+	level_range = {1, 25}, exp_worth = 2500,
+	rarity = 15,
+	max_life = resolvers.rngavg(110,115),
+	hit_die = 15,
+	challenge = 8,
+	infravision = 4,
+	combat_natural = 14,
+	alignment = "neutral",
 }
