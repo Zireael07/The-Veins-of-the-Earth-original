@@ -578,6 +578,39 @@ newEntity{
 	},
 } 
 
+--Swim 40 ft.; rake 1d6
+newEntity{
+	define_as = "BASE_NPC_SKUM",
+	type = "aberration",
+	display = "X", color=colors.AQUA,
+	body = { INVEN = 10 },
+    	desc = [[A humanoid with joined fingers and fins.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=19, dex=13, con=13, int=10, wis=10, cha=6, luc=10 },
+	combat = { dam= {2,6}, },
+	name = "skum",
+	level_range = {5, nil}, exp_worth = 600,
+	rarity = 15,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 2,
+	challenge = 2,
+	infravision = 4,
+	combat_natural = 2,
+	skill_hide = 5,
+	skill_listen = 7,
+	skill_movesilently = 5,
+	skill_spot = 7,
+	skill_swim = 8,
+	movement_speed_bonus = -0.33,
+	alignment = "lawful evil",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+} 
+
 newEntity{
 	define_as = "BASE_NPC_NAGA",
 	type = "aberration", subtype = "naga",
