@@ -79,3 +79,29 @@ newEntity{ base = "BASE_NPC_FUNGI",
 	skill_movesilently = 6,
 	skill_spot = 4,
 }
+
+--Swim 20 ft.; improved grab, constrict 2d6, immunity to electricity, fire res 10
+--Power Attack, Iron Will feats; Weapon Focus
+newEntity{
+	define_as = "BASE_NPC_SHAMBLING_MOUND",
+	type = "plant",
+	display = 'P', color=colors.UMBER,
+	body = { INVEN = 10 },
+	desc = [[A shambling mass of rotting vegetation.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=21, dex=10, con=17, int=7, wis=10, cha=9, luc=10 },
+	combat = { dam= {2,6} },
+	name = "shambling mound",
+	level_range = {5, 15}, exp_worth = 1800,
+	rarity = 15,
+	max_life = resolvers.rngavg(58,62),
+	hit_die = 8,
+	challenge = 6,
+	infravision = 4,
+	combat_natural = 10,
+	skill_hide = 3,
+	skill_listen = 8,
+	skill_movesilently = 8,
+	alignment = "neutral",
+}
