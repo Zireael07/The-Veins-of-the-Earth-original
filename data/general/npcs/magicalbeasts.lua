@@ -901,7 +901,7 @@ newEntity{
 
 --Trample 2d6, vorpal tusks; fast healing 10, scent
 --Awesome Blow, Diehard, Endurance, Imp Bull Rush
-newEntity{ Rush
+newEntity{ 
 	define_as = "BASE_NPC_RAZOR_BOAR",
 	type = "magical beast",
 	image = "tiles/boar.png",
@@ -928,6 +928,75 @@ newEntity{ Rush
 	movement_speed_bonus = 0.66,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_POWER_ATTACK]=1 
+	},
+	alignment = "neutral",
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Burrow 20 ft; swallow whole; tremorsense 5 squares; heat - 8d6 fire dam 1 sq radius
+--Awesome Blow, Imp Bull Rush
+newEntity{ 
+	define_as = "BASE_NPC_REMORHAZ",
+	type = "magical beast",
+	image = "tiles/remorhaz.png",
+	display = 'B', color=colors.LIGHT_BLUE,
+	body = { INVEN = 10 },
+	desc = [[A frost worm with a glowing tail end.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=26, dex=13, con=21, int=5, wis=12, cha=10, luc=12 },
+	combat = { dam= {2,8} },
+	name = "remorhaz",
+	level_range = {10, nil}, exp_worth = 3000,
+	rarity = 25,
+	max_life = resolvers.rngavg(70,75),
+	hit_die = 7,
+	challenge = 7,
+	infravision = 4,
+	combat_natural = 9,
+	skill_listen = 7,
+	skill_spot = 7,
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+	alignment = "neutral",
+	--Hack! Monsters drop corpses now
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" }
+	},
+}
+
+--Strand range 5 squares - drag 1 sq closer each round; 2d8 STR damage Fort DC 18; Weapon Focus
+--Immunity to electricity, vulnerability to fire
+newEntity{ 
+	define_as = "BASE_NPC_ROPER",
+	type = "magical beast",
+	image = "tiles/worm.png",
+	display = 'B', color=colors.GRAY,
+	body = { INVEN = 10 },
+	desc = [[A gray stone with strands.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=19, dex=13, con=17, int=12, wis=16, cha=12, luc=12 },
+	combat = { dam= {2,6} },
+	name = "roper",
+	level_range = {15, nil}, exp_worth = 3600,
+	rarity = 25,
+	max_life = resolvers.rngavg(80,85),
+	hit_die = 10,
+	challenge = 12,
+	spell_resistance = 30,
+	infravision = 4,
+	combat_natural = 13,
+	skill_climb = 8,
+	skill_hide = 9,
+	skill_listen = 12,
+	skill_spot = 12,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_IRON_WILL]=1
 	},
 	alignment = "neutral",
 	--Hack! Monsters drop corpses now
