@@ -208,6 +208,56 @@ newEntity{
         },
 }
 
+--Incorporeal; 1d6 STR damage; +2 turn resistance
+newEntity{
+        define_as = "BASE_NPC_SHADOW",
+        type = "undead", subtype = "shadow",
+        display = 'N', color=colors.WHITE,
+        body = { INVEN = 10 },
+        desc = [[An incorporeal shadow.]],
+
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=1, dex=14, con=1, int=6, wis=12, cha=13, luc=6 },
+        combat = { dam= {1,1} },
+        name = "shadow",
+        level_range = {5, 15}, exp_worth = 900,
+        rarity = 10,
+        max_life = resolvers.rngavg(15,20),
+        hit_die = 3,
+        challenge = 3,
+        infravision = 4,
+        combat_protection = 1,
+        skill_hide = 6,
+        skill_listen = 6,
+        skill_search = 3,
+        skill_spot = 6,
+        alignment = "chaotic evil",
+        resolvers.talents{ [Talents.T_ALERTNESS]=1,
+        [Talents.T_DODGE]=1 
+        },
+}
+
+--1d8 STR damage
+newEntity{
+        base = "BASE_NPC_SHADOW",
+        stats = { str=1, dex=15, con=1, int=6, wis=12, cha=14, luc=6 },
+        name = "greater shadow",
+        level_range = {10, nil}, exp_worth = 2500,
+        rarity = 20,
+        max_life = resolvers.rngavg(55,60),
+        hit_die = 9,
+        challenge = 8,
+        combat_protection = 2,
+        skill_hide = 11,
+        skill_listen = 8,
+        skill_search = 5,
+        skill_spot = 8,
+        resolvers.talents{ [Talents.T_ALERTNESS]=1,
+        [Talents.T_DODGE]=1,
+        [Talents.T_MOBILITY]=1
+        },
+}
+
 --immunity to cold
 --Summon undead  The undead arrive in 1d10 rounds and serve for 1 hour
 --Spell-likes: At will—contagion (DC 18), deeper darkness, detect magic, greater dispel magic, haste, see invisibility, and unholy blight (DC 18); 
