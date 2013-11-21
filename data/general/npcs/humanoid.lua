@@ -651,6 +651,46 @@ newEntity{
 	},
 }
 
+--stench 3 sq Fort DC 13 or sickened; Multiattack, Weapon Focus
+newEntity{
+	define_as = "BASE_NPC_TROG",
+	type = "humanoid", subtype = "humanoid_reptilian",
+	image = "tiles/goblin.png",
+	display = 'h', color=colors.DARK_UMBER,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A scaly reptilian humanoid.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=9, con=14, int=8, wis=10, cha=10, luc=6 },
+	combat = { dam= {1,4} },
+	infravision = 5,
+	combat_natural = 6,
+	alignment = "chaotic evil",
+}
+
+newEntity{
+	base = "BASE_NPC_TROG",
+	name = "troglodyte",
+	level_range = {1, nil}, exp_worth = 300,
+	rarity = 10,
+	max_life = resolvers.rngavg(10,15),
+	hit_die = 2,
+	challenge = 1,
+	skill_hide = 6,
+	skill_listen = 3,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "club" },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+    { name = "javelin" },
+	},
+}
+
+
 --Planetouched
 --Darkness
 newEntity{

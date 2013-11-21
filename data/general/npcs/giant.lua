@@ -118,3 +118,34 @@ newEntity{
     { name = "longbow" },
 	},
 }    
+
+--Regeneration 5, scent; rend 2d6
+newEntity{
+	define_as = "BASE_NPC_TROLL",
+	type = "giant",
+	display = "T", color=colors.GREEN,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+    desc = [[A regenerating ugly brute.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=23, dex=14, con=23, int=6, wis=9, cha=6, luc=8 },
+	combat = { dam= {1,6}, },
+	name = "troll",
+	level_range = {5, nil}, exp_worth = 1500,
+	rarity = 15,
+	max_life = resolvers.rngavg(60,65),
+	hit_die = 6,
+	challenge = 5,
+	combat_natural = 4,
+	infravision = 4,
+	skill_listen = 5,
+	skill_spot = 6,
+	alignment = "chaotic evil",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_IRON_WILL]=1,
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "fresh corpse" },
+	},
+}    

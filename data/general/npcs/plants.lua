@@ -1,7 +1,9 @@
 --Veins of the Earth
 --Zireael
 
---Constrict, entangle; camouflage, immunity to electricity, resistance to cold & fire 10
+local Talents = require("engine.interface.ActorTalents")
+
+--Constrict, entangle; camouflage, immunity to electricity
 newEntity{
 	define_as = "BASE_NPC_ASSAVINE",
 	type = "plant",
@@ -19,6 +21,10 @@ newEntity{
 	hit_die = 4,
 	challenge = 3,
 	combat_natural = 6,
+	resists = {
+                [DamageType.FIRE] = 10,
+                [DamageType.COLD] = 10,
+    },
 }
 
 newEntity{
@@ -36,7 +42,7 @@ newEntity{
 	alignment = "neutral",
 }
 
---Shriek 1d3 rounds; AL N
+--Shriek 1d3 rounds;
 newEntity{ base = "BASE_NPC_FUNGI",
 	define_as = "BASE_NPC_SHRIEKER",
 	color=colors.DARK_BLUE,
@@ -48,6 +54,7 @@ newEntity{ base = "BASE_NPC_FUNGI",
 	challenge = 1,
 	combat_natural = 3,
 	movement_speed_bonus = -0.50,
+	alignment = "neutral",
 }
 
 --Poison 1d4 STR & 1d4 CON pri & sec
@@ -80,8 +87,7 @@ newEntity{ base = "BASE_NPC_FUNGI",
 	skill_spot = 4,
 }
 
---Swim 20 ft.; improved grab, constrict 2d6, immunity to electricity, fire res 10
---Power Attack, Iron Will feats; Weapon Focus
+--Swim 20 ft.; improved grab, constrict 2d6, immunity to electricity; Weapon Focus
 newEntity{
 	define_as = "BASE_NPC_SHAMBLING_MOUND",
 	type = "plant",
@@ -104,4 +110,39 @@ newEntity{
 	skill_listen = 8,
 	skill_movesilently = 8,
 	alignment = "neutral",
+	resists = { [DamageType.FIRE] = 10 },
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
+	[Talents.T_IRON_WILL]=1,
+	},
+}
+
+--Regeneration 10; improved grab, swallow whole
+newEntity{
+	define_as = "BASE_NPC_TENDRICULOS",
+	type = "plant",
+	display = 'P', color=colors.VIOLET,
+	body = { INVEN = 10 },
+	desc = [[A shambling mass of rotting vegetation.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=28, dex=9, con=22, int=3, wis=8, cha=3, luc=10 },
+	combat = { dam= {2,8} },
+	name = "tendriculos",
+	level_range = {5, nil}, exp_worth = 1800,
+	rarity = 15,
+	max_life = resolvers.rngavg(90,95),
+	hit_die = 9,
+	challenge = 6,
+	infravision = 1,
+	combat_natural = 7,
+	skill_hide = 10,
+	skill_listen = 2,
+	skill_movesilently = 2,
+	skill_spot = 2,
+	alignment = "neutral",
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
+	[Talents.T_IRON_WILL]=1,
+	[Talents.T_ALERTNESS]=1,
+	[Talents.T_STEALTHY]=1
+	},
 }

@@ -227,7 +227,7 @@ newEntity{
 	define_as = "BASE_NPC_HAG",
 	type = "monstrous humanoid",
 --	image = "tiles/hag.png",
-	display = 'Y', color=colors.BLUE,
+	display = 'u', color=colors.BLUE,
 	body = { INVEN = 10 },
 	desc = [[A twisted crone bent in two.]],
 

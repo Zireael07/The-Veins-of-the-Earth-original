@@ -795,6 +795,38 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	},
 }
 
+--Augmented critical, frightful presence DC 36 Will, improved grab, rush, swallow whole
+--30% chance to deflect all lines and cones and magic missiles
+--immunity to fire, poison, disease, energy drain, and ability damage, regeneration 40, scent,
+--Awesome Blow, Blind-Fight, Cleave, Great Cleave, Imp Bull Rush
+newEntity{ base = "BASE_NPC_MAGBEAST",
+	define_as = "BASE_NPC_TARRASQUE",
+	image = "tiles/eagle.png",
+	display = 'B', color=colors.WHITE,
+	desc = [[A boar with razor sharp tusks.]],
+	stats = { str=45, dex=16, con=35, int=3, wis=14, cha=14, luc=14 },
+	combat = { dam= {4,8} },
+	name = "tarrasque",
+	level_range = {20, nil}, exp_worth = 6000,
+	rarity = 55,
+	max_life = resolvers.rngavg(860,865),
+	hit_die = 48,
+	challenge = 20,
+	infravision = 4,
+	combat_dr = 15,
+	spell_resistance = 32,
+	combat_natural = 22,
+	skill_listen = 15,
+	skill_search = 14,
+	skill_spot = 15,
+	skill_survival = 12,
+	movement_speed_bonus = -0.33,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_DODGE]=1,
+	[Talents.T_IRON_WILL]=1,
+	[Talents.T_POWER_ATTACK]=1
+	},
+}
 
 --Pounce
 newEntity{ base = "BASE_NPC_MAGBEAST",

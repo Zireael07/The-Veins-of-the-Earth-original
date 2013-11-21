@@ -187,7 +187,7 @@ newEntity{
 	define_as = "BASE_NPC_JANNI",
 	type = "outsider",
 --	image = "tiles/npc/djinn.png",
-	display = 'O', color=colors.WHITE,
+	display = 'J', color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A large humanoid clothed in gray and seemingly hovering in air.]],
 
@@ -323,6 +323,76 @@ newEntity{
 	movement_speed_bonus = 0.66,
 	alignment = "neutral evil",
 }
+
+--Burrow 20 ft; +2d6 fire on hit; tremorsense 4 squares; immunity to fire, vulnerability to cold
+newEntity{
+	define_as = "BASE_NPC_THOQQUA",
+	type = "outsider",
+	name = "thoqqua",
+	display = 'O', color=colors.DARK_BROWN,
+	body = { INVEN = 10 },
+	desc = [[A big dog made of shadow.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=15, dex=13, con=13, int=6, wis=12, cha=10, luc=10 },
+	combat = { dam= {1,6} },
+
+	level_range = {1, nil}, exp_worth = 600,
+	rarity = 10,
+	max_life = resolvers.rngavg(15,20),
+	hit_die = 3,
+	challenge = 2,
+	infravision = 4,
+	combat_natural = 7,
+	skill_listen = 4,
+	skill_movesilently = 2,
+	skill_survival = 2,
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	alignment = "neutral",
+}
+
+--wields +3 adamantine warhammer; Change shape
+--Awesome Blow, Blind-Fight, Cleave, Improved Bull Rush, Improved Sunder,
+--Spell-likes: At will—chain lightning (DC 23), charm monster (DC 21), cure critical wounds (DC 21), fire storm (DC 24), greater dispel magic, hold monster (DC 22), invisibility, invisibility purge, levitate, persistent image (DC 22); 3/day—etherealness, word of chaos (DC 22), summon nature’s ally IX; 1/day—gate, maze, meteor swarm (DC 26).
+newEntity{
+	define_as = "BASE_NPC_TITAN",
+	type = "outsider",
+	name = "titan",
+	display = 'H', color=colors.GOLD,
+	body = { INVEN = 10 },
+	desc = [[An immense humanoid-shaped creature.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=43, dex=12, con=39, int=21, wis=28, cha=24, luc=10 },
+	combat = { dam= {1,6} },
+
+	level_range = {25, nil}, exp_worth = 6300,
+	rarity = 50,
+	max_life = resolvers.rngavg(365,370),
+	hit_die = 20,
+	challenge = 21,
+	infravision = 4,
+	combat_natural = 17,
+	combat_dr = 15,
+	spell_resistance = 32,
+	skill_balance = 6,
+	skill_bluff = 12,
+	skill_climb = 8,
+	skill_concentration = 13,
+	skill_diplomacy = 4,
+	skill_heal = 11,
+	skill_intimidate = 25,
+	skill_jump = 11,
+	skill_knowledge = 22,
+	skill_listen = 23,
+	skill_sensemotive = 23,
+	skill_search = 22,
+	skill_spellcraft = 11,
+	skill_spot = 23,
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+	alignment = "neutral",
+}
+
 
 --Fast healing 2 (in certain conditions), summon mephit, breath weapon 3 sq cone cooldown 3
 newEntity{
