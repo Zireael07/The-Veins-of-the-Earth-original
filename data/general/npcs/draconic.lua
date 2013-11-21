@@ -74,3 +74,37 @@ newEntity{
         { name = "fresh corpse" }
         },
 }
+
+--Fly 60 ft; immunity to sleep & paralysis, scent, improved grab
+--Poison (wyvern poison 2d6 CON) Fort DC 17
+newEntity{
+        define_as = "BASE_NPC_WYVERN",
+        type = "dragon",
+        display = 'D', color=colors.GRAY,
+        body = { INVEN = 10 },
+        desc = [[A huge flying lizard with a stinging tail.]],
+
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=19, dex=12, con=15, int=6, wis=12, cha=9, luc=10 },
+        combat = { dam= {1,6} },
+        name = "wyvern",
+        level_range = {10, nil}, exp_worth = 2100,
+        rarity = 15,
+        max_life = resolvers.rngavg(55,60),
+        hit_die = 7,
+        challenge = 6,
+        infravision = 4,
+        combat_natural = 7,
+        skill_hide = 6,
+        skill_listen = 12,
+        skill_movesilently = 10,
+        skill_spot = 15,
+        movement_speed_bonus = -0.33,
+        resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+        alignment = "neutral",
+        --Hack! Monsters drop corpses now
+        resolvers.inventory {
+        full_id=true,
+        { name = "fresh corpse" }
+        },
+}

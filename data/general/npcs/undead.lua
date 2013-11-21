@@ -258,6 +258,87 @@ newEntity{
         },
 }
 
+--Blind-Fight; energy drain Fort DC 14
+newEntity{
+        define_as = "BASE_NPC_WIGHT",
+        type = "undead", subtype = "wight",
+        display = 'U', color=colors.BLUE,
+        body = { INVEN = 10 },
+        desc = [[A twisted shadow of a once-living creature.]],
+
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=12, dex=12, con=1, int=11, wis=13, cha=15, luc=6 },
+        combat = { dam= {1,4} },
+        name = "wight",
+        level_range = {5, nil}, exp_worth = 900,
+        rarity = 10,
+        max_life = resolvers.rngavg(25,30),
+        hit_die = 4,
+        challenge = 3,
+        infravision = 4,
+        combat_natural = 4,
+        skill_hide = 7,
+        skill_listen = 9,
+        skill_movesilently = 15,
+        skill_spot = 9,
+        alignment = "lawful evil",
+        resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+}
+
+--Fly 60 ft.; CON drain ; +2 turn res; unnatural aura; Blind-Fight feat
+newEntity{
+        define_as = "BASE_NPC_WRAITH",
+        type = "undead", subtype = "wraith",
+        display = 'N', color=colors.BLUE,
+        body = { INVEN = 10 },
+        desc = [[An incorporeal wraith.]],
+
+        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        stats = { str=1, dex=16, con=1, int=14, wis=14, cha=15, luc=6 },
+        combat = { dam= {1,4} },
+        name = "wraith",
+        level_range = {5, nil}, exp_worth = 1500,
+        rarity = 15,
+        max_life = resolvers.rngavg(30,35),
+        hit_die = 5,
+        challenge = 5,
+        infravision = 4,
+        combat_protection = 2,
+        skill_diplomacy = 2,
+        skill_hide = 8,
+        skill_intimidate = 8,
+        skill_listen = 10,
+        skill_search = 8,
+        skill_sensemotive = 6,
+        skill_spot = 10,
+        alignment = "lawful evil",
+        resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+}
+
+--Blind-Fight, Spring Attack
+newEntity {
+        base = "BASE_NPC_WRAITH",
+        stats = { str=1, dex=28, con=1, int=17, wis=18, cha=24, luc=6 },
+        combat = { dam= {2,6} },
+        name = "dread wraith",
+        level_range = {10, nil}, exp_worth = 3300,
+        max_life = resolvers.rngavg(100,105),
+        hit_die = 16,
+        challenge = 11,
+        combat_protection = 6,
+        skill_hide = 15,
+        skill_intimidate = 20,
+        skill_knowledge = 19,
+        skill_listen = 21,
+        skill_search = 19,
+        skill_sensemotive = 19,
+        skill_spot = 21,
+        resolvers.talents{ [Talents.T_DODGE]=1,
+        [Talents.T_MOBILITY]=1
+        },
+}
+
+
 --immunity to cold
 --Summon undead  The undead arrive in 1d10 rounds and serve for 1 hour
 --Spell-likes: At will—contagion (DC 18), deeper darkness, detect magic, greater dispel magic, haste, see invisibility, and unholy blight (DC 18); 

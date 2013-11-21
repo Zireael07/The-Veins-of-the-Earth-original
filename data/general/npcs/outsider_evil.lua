@@ -297,3 +297,37 @@ newEntity{
 	[Talents.T_POWER_ATTACK]=1
 	},
 }
+
+--Fly 30 ft.; shriek 5 sq Fort DC 12 or paralyzed for 2d4 rounds
+newEntity{
+	define_as = "BASE_NPC_VARGOUILLE",
+	type = "outsider",
+	display = 'O', color=colors.UMBER,
+	body = { INVEN = 10 },
+	desc = [[A creature roughly the size of a human head.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=10, dex=13, con=12, int=5, wis=12, cha=8, luc=8 },
+	combat = { dam= {1,4} },
+	movement_speed_bonus = -0.66,
+	alignment = "neutral evil",
+}
+
+newEntity{
+	base = "BASE_NPC_VARGOUILLE",
+	name = "vargouille",
+	level_range = {1, nil}, exp_worth = 2700,
+	rarity = 20,
+	max_life = resolvers.rngavg(3,7),
+	hit_die = 1,
+	challenge = 2,
+	infravision = 4,
+	skill_hide = 10,
+	skill_intimidate = 4,
+	skill_listen = 4,
+	skill_movesilently = 6,
+	skill_spot = 4,
+	resolvers.talents{ [Talents.T_FINESSE]=1,
+	[Talents.T_STEALTHY]=1,
+	},
+}

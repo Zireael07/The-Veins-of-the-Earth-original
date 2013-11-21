@@ -584,7 +584,7 @@ newEntity{
 	type = "aberration",
 	display = "X", color=colors.AQUA,
 	body = { INVEN = 10 },
-    	desc = [[A humanoid with joined fingers and fins.]],
+    desc = [[A humanoid with joined fingers and fins.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=19, dex=13, con=13, int=10, wis=10, cha=6, luc=10 },
@@ -609,6 +609,37 @@ newEntity{
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
+} 
+
+--Too small to drop corpse; fly 50 ft.; electricity damage; immunity to magic, natural invis
+newEntity{
+	define_as = "BASE_NPC_WISP",
+	type = "aberration",
+	display = "X", color=colors.LIGHT_YELLOW,
+	body = { INVEN = 10 },
+    desc = [[A colorful group of lights, similar to a lantern.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=1, dex=29, con=10, int=15, wis=16, cha=12, luc=12 },
+	combat = { dam= {2,6}, },
+	name = "will'o'wisp",
+	level_range = {5, nil}, exp_worth = 1800,
+	rarity = 15,
+	max_life = resolvers.rngavg(40,45),
+	hit_die = 9,
+	challenge = 6,
+	infravision = 4,
+	combat_protection = 10,
+	skill_bluff = 12,
+	skill_diplomacy = 2,
+	skill_intimidate = 2,
+	skill_listen = 14,
+	skill_search = 12,
+	skill_spot = 14,
+	movement_speed_bonus = 0.66,
+	alignment = "chaotic evil",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_DODGE]=1 },
 } 
 
 newEntity{
