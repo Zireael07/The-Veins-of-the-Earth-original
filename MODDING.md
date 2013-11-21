@@ -68,8 +68,21 @@ CR 1/3 - 100 XP
 CR 1 - 300 XP
 CR 2 - 600 XP
 CR 3 - 900 XP
-CR 6 - 450 XP ?
-CR 7 - 550 XP ? 
+CR 4 - 1200 XP
+CR 5 - 1500 XP
+CR 6 - 1800 XP
+CR 7 - 2100 XP
+CR 8 - 2500 XP
+CR 9 - 2700 XP
+CR 10 - 3000 XP
+CR 11 - 3300 XP
+CR 12 - 3600 XP
+CR 13 - 4000 XP
+CR 14 - 4200 XP
+CR 15 - 4500 XP
+CR 16 - 4800 XP
+CR 17 - 5000 XP
+CR 20 - 6000 XP
 
 The inventory resolver is there to make sure the monsters drop corpses.
 The equipment resolver does what it says - gives the NPC equipment. Make sure the NPC has the correct slots defined in body.

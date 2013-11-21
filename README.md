@@ -23,7 +23,7 @@ Features:
 - 13 races: human, half-elf, half-drow, gnome, halfling, elf, dwarf, half-orc; drow, duergar, deep gnomes
 - backgrounds for quicker character creation; basic rules info while creating a character
 - attributes can be generated either via rolling or via point buy
-- random name generator taking into account your character's race and sex
+- random name generator taking into account your character's race and sex, now with an option to type the name yourself
 - Effective Character Level
 - XP for killing monsters, descending deeper, disarming traps
 - multiclassing (with ability score requirements) & prestige classes & favored classes
@@ -38,8 +38,9 @@ Features:
 - skill checks (printed to log) including armor check penalty & racial or feat bonuses; opposed checks
 - all weapons from SRD; magic armors and shields; magic weapons; light sources; magic items
 - all feats from SRD except archery feats and unarmed combat feats
+- most monsters from the SRD (missing: demons, devils, dragons, lycanthropes, swarms, most animals which don't fit the dungeon theme)
 - item identification
-- some monsters up to CR 8; CR displayed in tooltips; monsters drop equipment and corpses
+- CR displayed in tooltips; monsters drop equipment and corpses
 - hp, exp, dungeon level on-screen display now with bars and color changing depending on the amount of HP left
 - colored in-game help screen; legend screen; basic rules info
 - colored tooltips (color-coded relative monster stats and CR); colored log messages; item tooltips both on ground and in inventory

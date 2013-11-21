@@ -58,7 +58,7 @@ function _M:init()
     J djinn/genie
     K elementalkin /weirds
     L lich
-    M 
+    M mephit
     N spectral undead
     O outsider
     P plant
