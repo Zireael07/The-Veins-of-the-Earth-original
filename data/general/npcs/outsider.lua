@@ -393,6 +393,51 @@ newEntity{
 	alignment = "neutral",
 }
 
+--Improved grab, paralysis Fort DC 14; Multiattack, Multiweapon Fighting
+newEntity{
+	define_as = "BASE_NPC_XILL",
+	type = "outsider",
+	name = "xill",
+	display = 'O', color=colors.BLUE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	desc = [[A four-armed ethereal beast.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=15, dex=16, con=15, int=12, wis=12, cha=11, luc=10 },
+	combat = { dam= {1,4} },
+
+	level_range = {5, nil}, exp_worth = 1800,
+	rarity = 18,
+	max_life = resolvers.rngavg(30,35),
+	hit_die = 4,
+	challenge = 6,
+	combat_natural = 7,
+	spell_resistance = 21,
+	skill_balance = 10,
+	skill_climb = 8,
+	skill_diplomacy = 2,
+	skill_escapeartist = 7,
+	skill_intimidate = 8,
+	skill_listen = 8,
+	skill_movesilently = 8,
+	skill_sensemotive = 8,
+	skill_spot = 8,
+	skill_tumble = 8,
+	movement_speed_bonus = 0.33,
+	alignment = "lawful evil",
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "short sword" },
+		{ name = "short sword" },
+		{ name = "arrows (20)" },
+	},
+	resolvers.inventory {
+	full_id=true,
+    { name = "longbow" },
+	},
+}
+
 
 --Fast healing 2 (in certain conditions), summon mephit, breath weapon 3 sq cone cooldown 3
 newEntity{

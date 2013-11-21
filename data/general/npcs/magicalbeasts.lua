@@ -872,6 +872,29 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
+--Fly 60 ft;  Multiattack, Snatch; Blind (blindsight 10 sq)
+--Sonic lance 6d6 hit sonic 5 sq range; explosion 2d6 physical rad 1 sq
+--vulnerability to sonic, immune to gaze attacks, visual effects, illusions
+newEntity{ base = "BASE_NPC_MAGBEAST",
+	define_as = "BASE_NPC_YRTHAK",
+	image = "tiles/gargoyle.png",
+	display = 'Y', color=colors.LIGHT_BROWN,
+	desc = [[A large blind gargoyle with a long tongue.]],
+	stats = { str=20, dex=14, con=17, int=7, wis=13, cha=11, luc=10 },
+	combat = { dam= {2,8} },
+	name = "yrthak",
+	level_range = {10, nil}, exp_worth = 2700,
+	rarity = 25,
+	max_life = resolvers.rngavg(100,105),
+	hit_die = 12,
+	challenge = 9,
+	combat_natural = 6,
+	skill_listen = 11,
+	skill_movesilently = 8,
+	movement_speed_bonus = -0.33,
+	alignment = "neutral",
+}
+
 --Augmented critical, frightful presence DC 36 Will, improved grab, rush, swallow whole
 --30% chance to deflect all lines and cones and magic missiles
 --immunity to fire, poison, disease, energy drain, and ability damage, regeneration 40, scent,

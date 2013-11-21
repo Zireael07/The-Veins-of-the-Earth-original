@@ -331,3 +331,35 @@ newEntity{
 	[Talents.T_STEALTHY]=1,
 	},
 }
+
+--Fly 60 ft.; scent; bay 20 sq except evil outsiders (Will DC 13 or panicked for 2d4 rounds), trip
+newEntity{
+	define_as = "BASE_NPC_YETH_HOUND",
+	type = "outsider",
+	display = 'd', color=colors.DARK_GRAY,
+	body = { INVEN = 10 },
+	desc = [[A large black shadowy canine.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=17, dex=15, con=15, int=6, wis=14, cha=10, luc=10 },
+	combat = { dam= {1,6} },
+	movement_speed_bonus = 0.33,
+	alignment = "neutral evil",
+}
+
+newEntity{
+	base = "BASE_NPC_YETH_HOUND",
+	name = "yeth hound",
+	level_range = {5, nil}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(15,20),
+	hit_die = 3,
+	challenge = 3,
+	infravision = 4,
+	combat_natural = 8,
+	combat_dr = 10,
+	skill_listen = 9,
+	skill_survival = 9,
+	skill_spot = 9,
+	skill_search = 9,
+}
