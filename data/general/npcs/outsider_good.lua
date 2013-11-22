@@ -3,6 +3,8 @@
 
 --Celestials do not drop corpses
 
+local Talents = require("engine.interface.ActorTalents")
+
 --Angels
 
 --fly 100 ft. land 50 ft.; wields heavy mace of disruption +3; stun (DC 22) on two hits in a round; change shape; immunity to acid, cold, petrification; 

@@ -15,16 +15,28 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 load("/data/general/npcs/humanoid.lua")
+load("/data/general/npcs/monstrous_humanoid.lua")
+load("/data/general/npcs/giant.lua")
 
 load("/data/general/npcs/animals.lua")
-
-load("/data/general/npcs/aberration.lua")
-
-load("/data/general/npcs/magicalbeasts.lua")
-
 load("/data/general/npcs/vermin.lua")
 
+load("/data/general/npcs/aberration.lua")
+load("/data/general/npcs/construct.lua")
+
+load("/data/general/npcs/magicalbeasts.lua")
+load("/data/general/npcs/fey.lua")
+load("/data/general/npcs/draconic.lua")
+
+load("/data/general/npcs/elementals.lua")
+
+load("/data/general/npcs/ooze.lua")
 load("/data/general/npcs/plants.lua")
 
-load("/data/general/npcs/outsider_evil")
-load("/data/general/npcs/outsider_air")
+load("/data/general/npcs/outsider_evil.lua")
+load("/data/general/npcs/outsider_good.lua")
+
+load("/data/general/npcs/outsider_air.lua")
+load("/data/general/npcs/outsider_fire.lua")
+load("/data/general/npcs/outsider_earth.lua")
+load("/data/general/npcs/outsider_water.lua")

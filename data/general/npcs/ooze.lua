@@ -5,7 +5,7 @@
 
 --Blindsight 60 ft
 newEntity{
-	base = "BASE_NPC_OOZE",
+	define_as = "BASE_NPC_OOZE",
 	type = "ooze",
 	image = "tiles/ooze.png",
 	display = 'j', color=colors.WHITE,

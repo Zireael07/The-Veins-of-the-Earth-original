@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael
 
+local Talents = require("engine.interface.ActorTalents")
+
 --Outsiders do not drop corpses
 
 --Immunity to fire, vulnerability to cold

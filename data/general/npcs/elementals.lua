@@ -525,9 +525,9 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_MAGMIN",
 	type = "elemental", subtype = "fire",
---	image = "tiles/wraith.png",
+--	image = "tiles/elemental_fire.png",
 	display = "E", color=colors.DARK_RED,
-	body = { INVEN = 10 },]]
+	body = { INVEN = 10 },
 	desc = [[A small fiery being.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
