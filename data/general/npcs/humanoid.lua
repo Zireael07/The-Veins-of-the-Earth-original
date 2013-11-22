@@ -235,7 +235,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_DWARF",
 	type = "humanoid", subtype = "humanoid_dwarf",
-	image = "tiles/dwarf_fighter.png",
+	image = "tiles/npc/dwarf_fighter.png",
 	display = 'h', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost dwarf.]],
@@ -384,7 +384,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_GNOME",
 	type = "humanoid", subtype = "humanoid_gnome",
-	image = "tiles/gnome_fighter.png",
+	image = "tiles/npc/gnome_fighter.png",
 	display = 'h', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost gnome.]],
@@ -456,7 +456,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_HALFLING",
 	type = "humanoid", subtype = "humanoid_halfling",
-	image = "tiles/halfling_fighter.png",
+	image = "tiles/npc/halfling_fighter.png",
 	display = 'h', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost halfling.]],

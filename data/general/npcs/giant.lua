@@ -6,6 +6,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_ETTIN",
 	type = "giant",
+	image = "tiles/ettin.png",
 	display = "H", color=colors.LIGHT_GRAY,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A two-headed giant.]],
@@ -45,6 +46,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_OGRE",
 	type = "giant",
+	image = "tiles/ogre.png",
 	display = "H", color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A dumb brute.]],
@@ -81,10 +83,11 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_OGRE_MAGE",
 	type = "giant",
+	image = "tiles/ogre_mage.png",
 	display = "H", color=colors.BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A blue-skinned ogre.]],
-
+    
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=10, con=17, int=14, wis=14, cha=17, luc=8 },
 	combat = { dam= {1,6}, },

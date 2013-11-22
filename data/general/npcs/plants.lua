@@ -45,6 +45,7 @@ newEntity{
 --Shriek 1d3 rounds;
 newEntity{ base = "BASE_NPC_FUNGI",
 	define_as = "BASE_NPC_SHRIEKER",
+	image = "tiles/shrieker.png",
 	color=colors.DARK_BLUE,
 	desc = [[A purple fungus.]],
 	name = "shrieker",
@@ -60,6 +61,7 @@ newEntity{ base = "BASE_NPC_FUNGI",
 --Poison 1d4 STR & 1d4 CON pri & sec
 newEntity{ base = "BASE_NPC_FUNGI",
 	define_as = "BASE_NPC_VIOLET_FUNGI",
+	image = "tiles/violet_fungi.png",
 	display = 'F', color=colors.VIOLET,
 	desc = [[A violet fungus.]],
 	stats = { str=14, dex=8, con=16, int=1, wis=11, cha=9, luc=10 },
@@ -73,6 +75,7 @@ newEntity{ base = "BASE_NPC_FUNGI",
 --Constant greater invisibility
 newEntity{ base = "BASE_NPC_FUNGI",
 	define_as = "BASE_NPC_PHANTOM_FUNGI",
+	image = "tiles/phantom_fungi.png",
 	color=colors.VIOLET,
 	desc = [[A greenish silhouette of a fungus.]],
 	stats = { str=14, dex=10, con=16, int=2, wis=11, cha=9, luc=10 },

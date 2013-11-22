@@ -9,7 +9,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_ELEMENTAL_AIR",
 	type = "elemental",
---	image = "tiles/elemental_air.png",
+	image = "tiles/elemental_air.png",
 	display = 'E', color=colors.WHITE,
 	body = { INVEN = 10 },
 	desc = [[An air elemental.]],
@@ -133,7 +133,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_ELEMENTAL_EARTH",
 	type = "elemental",
---	image = "tiles/elemental_earth.png",
+	image = "tiles/elemental_earth.png",
 	display = 'E', color=colors.BROWN,
 	body = { INVEN = 10 },
 	desc = [[An earth elemental.]],
@@ -252,7 +252,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_ELEMENTAL_FIRE",
 	type = "elemental",
---	image = "tiles/elemental_fire.png",
+	image = "tiles/elemental_fire.png",
 	display = 'E', color=colors.RED,
 	body = { INVEN = 10 },
 	desc = [[A fire elemental.]],
@@ -379,7 +379,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_ELEMENTAL_WATER",
 	type = "elemental",
---	image = "tiles/elemental_water.png",
+	image = "tiles/elemental_water.png",
 	display = 'E', color=colors.BLUE,
 	body = { INVEN = 10 },
 	desc = [[An earth elemental.]],

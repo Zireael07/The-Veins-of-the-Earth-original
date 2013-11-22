@@ -9,6 +9,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
         define_as = "BASE_NPC_ALLIP",
         type = "undead", subtype = "allip",
+        image = "tiles/allip.png",
         display = 'N', color=colors.BLACK,
         body = { INVEN = 10 },
         desc = [[An incorporeal undead.]],
@@ -36,6 +37,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_BODAK",
         type = "undead",
+        image = "tiles/bodak.png",
         display = 'U', color=colors.DARK_GRAY,
         body = { INVEN = 10 },
         desc = [[A thin, emaciated creature.]],
@@ -65,6 +67,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_DEVOURER",
         type = "undead",
+        image = "tiles/devourer.png",
         display = 'U', color=colors.LIGHT_BLUE,
         body = { INVEN = 10 },
         desc = [[A terrible bony creature.]],
@@ -95,7 +98,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_GHOUL",
         type = "undead",
---        image = "tiles/ghoul.png",
+        image = "tiles/ghoul.png",
         display = 'U', color=colors.GRAY,
         body = { INVEN = 10 },
         desc = [[A shuffling bloated creature.]],
@@ -124,6 +127,7 @@ newEntity{
 --Swim 30 ft.
 newEntity{
         base = "BASE_NPC_GHOUL",
+        image = "tiles/lacedon.png",
         name = "lacedon", color=colors.BLUE,
         level_range = {1, 4}, exp_worth = 300,
         rarity = 15,
@@ -135,6 +139,7 @@ newEntity{
 --Stench 2 squares DC 15 Fort
 newEntity{
         base = "BASE_NPC_GHAST",
+        image = "tiles/ghast.png",
         name = "ghast", color=colors.DARK_BROWN,
         level_range = {1, 25}, exp_worth = 900,
         rarity = 10,
@@ -150,6 +155,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_MOHRG",
         type = "undead",
+        image = "tiles/mummy.png",
         display = 'U', color=colors.BLACK,
         body = { INVEN = 10 },
         desc = [[A terrible undead creature.]],
@@ -181,6 +187,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_MUMMY",
         type = "undead",
+        image = "tiles/mummy.png",
         display = 'U', color=colors.GOLD,
         body = { INVEN = 10 },
         desc = [[An undead mummy swathed in bandages.]],
@@ -212,6 +219,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_SHADOW",
         type = "undead", subtype = "shadow",
+        image = "tiles/shadow.png",
         display = 'N', color=colors.WHITE,
         body = { INVEN = 10 },
         desc = [[An incorporeal shadow.]],
@@ -262,6 +270,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_WIGHT",
         type = "undead", subtype = "wight",
+        image = "tiles/wight.png",
         display = 'U', color=colors.BLUE,
         body = { INVEN = 10 },
         desc = [[A twisted shadow of a once-living creature.]],
@@ -289,7 +298,8 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_WRAITH",
         type = "undead", subtype = "wraith",
-        display = 'N', color=colors.BLUE,
+        image = "tiles/wraith.png",
+        display = 'N', color=colors.YELLOW,
         body = { INVEN = 10 },
         desc = [[An incorporeal wraith.]],
 
@@ -345,7 +355,8 @@ newEntity {
 newEntity{
         define_as = "BASE_NPC_NIGHTSHADE",
         type = "undead",
-        display = 'U',
+        image = "tiles/nightshade.png",
+        display = 'U', color=colors.DARK_BLUE,
         body = { INVEN = 10 },
         ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=48, dex=10, con=1, int=20, wis=20, cha=18, luc=6 },
