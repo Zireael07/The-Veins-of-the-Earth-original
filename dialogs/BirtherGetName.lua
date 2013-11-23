@@ -76,36 +76,36 @@ function _M:randomName()
   self.actor = actor
 local random_name = {
   human_male = {
-  syllablesStart ="Aeron, Courynn, Daelric, Dorn, Helm, Lynneth, Rowan, Sealmyd, Borivik, Fyodor, Vladislak, Khalid, Rasheed, Zasheir, Zasheira",
-  syllablesEnd ="Dulsaer, Jacerryl, Telstaer, Uthelienn, Pashar, Aporos, Nathos, Zora, Amblecrown, Duskman, Dundragon, Evenwood, Greycastle, Tallstag",
+  syllablesStart ="Aethelmed, Aeron, Courynn, Blath, Bran, Lander, Luth, Daelric, Darvin, Dorn, Evendur, Grim, Jon, Helm, Morn, Randal, Lynneth, Rowan, Sealmyd, Borivik, Fyodor, Grigor, Ivor, Pavel, Vladislak, Anton, Marcon, Pieron, Rimardo, Romero, Salazar, Khalid, Rasheed, Zasheir, Pradir, Rajaput, Sikhir, Aoth, Ehput-Ki, Kethoth, Ramas, So-Kehur,",
+  syllablesEnd ="Dulsaer, Jacerryl, Telstaer, Uthelienn, Wyndael, Pashar, Aporos, Nathos, Zora, Amblecrown, Duskman, Dundragon, Evenwood, Greycastle, Tallstag",
   rules = "$s $e",
   },
   human_female = {
-  syllablesStart ="Ariadne, Courynna, Daelra, Lynneth, Sealmyd, Smylla, Wydda, Fyevarra, Immith, Shevarra, Tammith, Katernin, Mara, Natali, Zofia, Jaheira, Zasheira",
-  syllablesEnd ="Dulsaer, Jacerryl, Telstaer, Uthelienn, Pashar, Aporos, Nathos, Zora, Amblecrown, Duskman, Dundragon, Evenwood, Greycastle, Tallstag",
+  syllablesStart ="Ariadne, Courynna, Daelra, Lynneth, Betha, Kethra, Miri, Rowan, Shandri, Shandril, Sealmyd, Smylla, Wydda, Fyevarra, Immith, Shevarra, Tammith, Katernin, Dona, Luisa, Marta, Selise, Mara, Natali, Olga, Zofia, Jaheira, Zasheira, Nismet, Ril, Tiket, Chathi, Nephis, Sefris, Thola",
+  syllablesEnd ="Dulsaer, Jacerryl, Telstaer, Uthelienn, Wyndael, Pashar, Aporos, Nathos, Zora, Amblecrown, Duskman, Dundragon, Evenwood, Greycastle, Tallstag",
   rules = "$s $e",
   },
   halfelf_male = {
-  syllablesStart ="Aeron, Courynn, Daelric, Dorn, Evendur, Helm, Lynneth, Rowan, Sealmyd, Khalid, Zasheir",
-  syllablesEnd ="Dulsaer, Jacerryl, Telstaer, Uthelienn, Pashar, Aporos, Nathos, Zora, Amblecrown, Duskman, Dundragon, Evenwood, Greycastle, Tallstag, Moonblade, Moonflower, Eveningstar",
+  syllablesStart ="Aethelmed, Aeron, Courynn, Lander, Luth, Daelric, Darvin, Dorn, Evendur, Jon, Joneleth, Helm, Morn, Randal, Lynneth, Rowan, Sealmyd, Romero, Salazar, Khalid, Zasheir, Pradir, Rajaput, Sikhir, Aoth, Kethoth, Ramas, So-Kehur",
+  syllablesEnd ="Dulsaer, Jacerryl, Telstaer, Uthelienn, Wyndael, Pashar, Aporos, Nathos, Zora, Amblecrown, Duskman, Dundragon, Evenwood, Greycastle, Tallstag, Moonblade, Moonflower, Eveningstar",
   rules = "$s $e",
   },
 
   halfelf_female = {
-  syllablesStart ="Ariadne, Courynna, Lynneth, Rowan, Sealmyd, Shandri, Smylla, Wydda, Fyevarra, Immith, Shevarra, Tammith, Katernin, Mara, Natali, Zofia, Jaheira",
+  syllablesStart ="Ariadne, Courynna, Lynneth, Miri, Rowan, Sealmyd, Shandri, Shandril, Smylla, Wydda, Fyevarra, Immith, Shevarra, Tammith, Katernin, Dona, Luisa, Selise, Mara, Natali, Zofia, Jaheira, Zasheira, Nismet, Ril, Nephis, Sefris",
   syllablesEnd ="Dulsaer, Jacerryl, Telstaer, Uthelienn, Pashar, Aporos, Nathos, Zora, Amblecrown, Duskman, Dundragon, Evenwood, Greycastle, Tallstag, Moonblade, Moonflower, Eveningstar",
   rules = "$s $e",
   },
 
   elf_male = {
-  syllablesStart ="Aravilar, Faelar, Saevel, Rhistel",
+  syllablesStart ="Aravilar, Faelar, Saevel, Rhistel, Taeghen",
   syllablesMiddle = "Moon, Evening",
   syllablesEnd ="flower, blade, star, fall",
   rules = "$s $m$e",
   },
 
   elf_female = {
-  syllablesStart ="Hacathra, Imizael, Talindra, Vestele",
+  syllablesStart ="Hacathra, Imizael, Jhaumrithe, Quamara, Talindra, Vestele",
   syllablesMiddle = "Moon, Evening",
   syllablesEnd ="flower, blade, star, fall",
   rules = "$s $m$e",
@@ -113,53 +113,53 @@ local random_name = {
 
   halforc_male = {
   syllablesStart ="Durth, Fang, Gothog, Harl, Orrusk, Orik, Thog",
-  syllablesEnd ="Horthor, Lammar, Turnskull, Ulkrunnar, Zorgar",
+  syllablesEnd ="Dummik, Horthor, Lammar, Turnskull, Ulkrunnar, Zorgar",
   rules = "$s $e",
   },
 
   halforc_female = {
-  syllablesStart ="Orvaega, Duvaega, Varra",
+  syllablesStart ="Creske, Duvaega, Neske, Orvaega, Varra, Yeskarra",
   syllablesEnd ="Horthor, Lammar, Turnskull, Ulkrunnar, Zorgar",
   rules = "$s $e",
   },
 
   dwarf_male = {
-  syllablesStart ="Dorn, Khondar, Thorik",
-  syllablesMiddle = "Blade, Crown, Skull, Stone, Battle, Gold",
-  syllablesEnd ="bite, shield, dark",
+  syllablesStart ="Barundar, Dorn, Jovin, Khondar, Roryn, Storn, Thorik",
+  syllablesMiddle = "Blade, Crown, Skull, Stone, Battle, Gold, Gord",
+  syllablesEnd ="bite, shield, dark, rivver, hammer",
   rules = "$s $m$e",
   },
 
   dwarf_female = {
-  syllablesStart ="Belmara, Dorna",
-  syllablesMiddle = "Blade, Crown, Skull, Stone, Battle, Gold",
-  syllablesEnd ="bite, shield, dark",
+  syllablesStart ="Belmara, Dorna, Sambril",
+  syllablesMiddle = "Blade, Crown, Skull, Stone, Battle, Gold, Gord",
+  syllablesEnd ="bite, shield, dark, rivver, hammer",
   rules = "$s $m$e",
   },
 
   drow_male = { 
-  syllablesStart ="Alak, Drizzt, Ilmryn, Khalazza, Merinid, Mourn, Nym, Pharaun, Rizzen, Solaufein, Tebryn, Zaknafein",
+  syllablesStart ="Alak, Drizzt, Ilmryn, Khalazza, Merinid, Mourn, Nym, Pharaun, Rizzen, Solaufein, Sorn, Veldrin, Tebryn, Zaknafein, Dhauntel, Gomur'ss, Sornrak, Sszerin",
   syllablesMiddle = "",
-  syllablesEnd ="Abaeir, Baenre, Coloara, Glannath, Hune, Illistyn, Khalazza, Pharn, Seerear, Vrinn, Xiltyn",
+  syllablesEnd ="Abaeir, Aleanrahel, Arabani, Arkhenneld, Auvryndar, Baenre, Coloara, Despana, Freth, Glannath, Helviiryn, Hune, Illistyn, Jaelre, Kilsek, Khalazza, Noquar, Pharn, Seerear, Vrinn, Xiltyn, Zauvirr, Zuavirr, Drannor, Alerae, Aleanana, Barriund, Eilsarn, Eilsath, Freana, Hlath, Hunath, Hlarae, Maeund, Melrae, Maearn, Maeani, Melath, Melund, Melth, Oussani, Oussvirr, Orlyth, Torana, Zauneld",
   rules = "$s $m$e",
   },
 
   drow_female = { 
-  syllablesStart ="Akordia, Chalithra, Chalinthra, Eclavdra, Nedylene, Qilue, SiNafay",
+  syllablesStart ="Akordia, Chalithra, Chalinthra, Eclavdra, Faere, Nedylene, Phaere, Qilue, SiNafay, Waerva, Umrae, Yasraena, Viconia, Veldrin, Vlondril, Akorae, Ilmiira, Ilphyrr, Inala, Luavrae, Nullynrae, Talthrae, Yasril",
   syllablesMiddle = "",
-  syllablesEnd ="Abaeir, Baenre, Coloara, Glannath, Hune, Illistyn, Khalazza, Pharn, Seerear, Vrinn, Xiltyn",
+  syllablesEnd ="Abaeir, Aleanrahel, Arabani, Arkhenneld, Auvryndar, Baenre, Coloara, Despana, Freth, Glannath, Helviiryn, Hune, Illistyn, Jaelre, Kilsek, Khalazza, Noquar, Pharn, Seerear, Vrinn, Xiltyn, Zauvirr, Zuavirr, Drannor, Alerae, Aleanana, Barriund, Eilsarn, Eilsath, Freana, Hlath, Hlarae, Hunath, Maeund, Melrae, Maeani, Maearn, Melath, Melund, Melth, Oussani, Oussvirr, Orlyth, Torana, Zauneld",
   rules = "$s $m$e",
   },
 
   duergar_male = {
-  syllablesStart = "Thorik, Dorn",
+  syllablesStart ="Barundar, Dorn, Jovin, Khondar, Roryn, Storn, Thorik",
   syllablesMiddle = "Blade, Crown, Skull, Stone, Battle, Dark",
-  syllablesEnd = "bite, shield, dark",
+  syllablesEnd = "bite, shield, dark, rivver, hammer",
   rules = "$s $m$e",
   },
 
   duergar_female = {
-  syllablesStart = "Belmara, Dorna",
+  syllablesStart = "Belmara, Dorna, Sambril",
   syllablesMiddle = "Blade, Crown, Skull, Stone, Battle, Dark",
   syllablesEnd = "bite, shield, dark",
   rules = "$s $m$e",
@@ -175,6 +175,19 @@ local random_name = {
   syllablesStart = "Eliss, Lissa, Meree, Nathee",
   syllablesMiddle = "Black, Great, Riven, White",
   syllablesEnd = "orm, rock, stone, horn",
+  rules = "$s $m$e",
+  },
+
+  halfling_male = {
+  syllablesStart = "Dalabrac, Halandar, Omberc, Roberc, Thiraury, Willimac",
+  syllablesMiddle = "Bramble, Dar, Harding, Merry, Starn",
+  syllablesEnd = "foot, dragon, dale, mar, hap",
+  rules = "$s $m$e",
+  },
+  halfling_female = {
+  syllablesStart = "Deldira, Melinden, Olpara, Rosinden, Tara",
+  yllablesMiddle = "Bramble, Dar, Harding, Merry, Starn",
+  syllablesEnd = "foot, dragon, dale, mar, hap",
   rules = "$s $m$e",
   }
 } 
@@ -229,12 +242,19 @@ local random_name = {
       else
       local ng = NameGenerator.new(random_name.duergar_male) 
       self.c_box:setText(ng:generate()) end
-    elseif player.descriptor.race == "Deep gnome" or player.descriptor.race == "Gnome" or player.descriptor.race == "Halfling" then 
+    elseif player.descriptor.race == "Deep gnome" or player.descriptor.race == "Gnome" then 
       if player.descriptor.sex == "Female" then
         local ng = NameGenerator.new(random_name.gnome_female)
         self.c_box:setText(ng:generate()) 
       else
       local ng = NameGenerator.new(random_name.gnome_male) 
+      self.c_box:setText(ng:generate()) end
+    elseif player.descriptor.race == "Halfling" then
+      if player.descriptor.sex == "Female" then
+        local ng = NameGenerator.new(random_name.halfling_female)
+        self.c_box:setText(ng:generate()) 
+      else
+      local ng = NameGenerator.new(random_name.halfling_male) 
       self.c_box:setText(ng:generate()) end
     end
 
