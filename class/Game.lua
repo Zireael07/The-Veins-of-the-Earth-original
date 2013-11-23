@@ -84,7 +84,7 @@ function _M:run()
 	self.real_starttime = os.time()
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
-	self.log(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press h to open the help screen.")
+	self.log(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 to open the help screen.")
 
 	-- Setup inputs
 	self:setupCommands()
@@ -122,7 +122,9 @@ function _M:loaded()
 	engine.GameTurnBased.loaded(self)
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", }
 	Map:setViewerActor(self.player)
-	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+	local th, tw = 32, 32
+	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
+--	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
 	selfppp = engine.KeyBind.new()
 end
 
@@ -137,7 +139,7 @@ function _M:setupDisplayMode()
 		local th, tw = 32, 32
 		
 		--switched from "fsize" to 32.
-		Map:setViewPort(0, 0, self.w, self.h, tw, th, nil, 32, true)
+		Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
 		--Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, nil, fsize, do_bg)
 		Map.tiles.use_images = true
 	
@@ -535,7 +537,7 @@ function _M:setupCommands()
 		end,
 
 		-- Toggle monster list
-		TOGGLE_NPC_LIST = function()
+		--[[TOGGLE_NPC_LIST = function()
 			self.show_npc_list = not self.show_npc_list
 			self.player.changed = true
 		end,
@@ -548,7 +550,7 @@ function _M:setupCommands()
 				self.always_target = true
 				Map:setViewerFaction("players")
 			end
-		end,
+		end,]]
 
 		LOOK_AROUND = function()
 			self.flash:empty(true)
