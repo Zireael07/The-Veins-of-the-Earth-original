@@ -1066,7 +1066,7 @@ end
 
 --Encumbrance & auto-ID stuff, Zireael
 function _M:on_pickup_object(o)
-	self:checkEncumbrance()
+--	self:checkEncumbrance()
 	if self == game.player and o.identified == false then
 		local check = self:skillCheck("intuition", 10)
 		if check then
@@ -1114,23 +1114,23 @@ function _M:checkEncumbrance()
 
 	--Light load
 	if enc < max * 0.33 and self:hasEffect(self.EFF_MEDIUM_LOAD) then 
-		self:removeEffect(self.EFF_MEDIUM_LOAD)
+		self:removeEffect(self.EFF_MEDIUM_LOAD, true)
 	end
 
 	--Heavy load
 	if enc > max * 0.66 and self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
-	self:setEffect(self.EFF_MEDIUM_LOAD, 1, {}) 
+	self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true) 
 	end
 	
 	if enc > max * 0.66 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_HEAVY_LOAD) then
-		self:removeEffect(self.EFF_MEDIUM_LOAD)
-		self:setEffect(self.EFF_HEAVY_LOAD, 1, {})
+		self:removeEffect(self.EFF_MEDIUM_LOAD, true)
+		self:setEffect(self.EFF_HEAVY_LOAD, 2, {}, true)
 	end
 	
 	--Medium load
 	if enc > max * 0.33 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
-		self:setEffect(self.EFF_MEDIUM_LOAD, 1, {})
-		if self:hasEffect(self.EFF_HEAVY_LOAD) then self:removeEffect(self.EFF_HEAVY_LOAD) end
+		self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true)
+		if self:hasEffect(self.EFF_HEAVY_LOAD) then self:removeEffect(self.EFF_HEAVY_LOAD, true) end
 	end
 	
 	-- We are pinned to the ground if we carry too much
