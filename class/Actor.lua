@@ -209,6 +209,9 @@ function _M:act()
 	-- Compute timed effects
 	self:timedEffects()
 
+	--Make sure encumbrance is checked every turn
+	if self == game.player and self.life > 0 then self:checkEncumbrance() end
+
 	--Death & dying related stuff
 	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
 
@@ -958,11 +961,7 @@ function _M:levelPassives()
 	end
 end
 
-
-
 --Random perks
-
-
 function _M:randomFeat()
 	local chance = rng.dice(1,22)
 	
@@ -1060,21 +1059,25 @@ function _M:levelClass(name)
 
 	end
 
-	self.last_class == name
+	self.last_class = name
 
 	d.on_level(self, level)
 end
 
 --Encumbrance & auto-ID stuff, Zireael
-function _M:onAddObject(o)
+function _M:on_pickup_object(o)
 	self:checkEncumbrance()
 	if self == game.player and o.identified == false then
 		local check = self:skillCheck("intuition", 10)
 		if check then
 			o.identified = true
 		end	
-	end	
+	end
 end
+
+--[[function _M:onAddObject(o)
+	
+end]]
 
 function _M:onRemoveObject(o)
 	self:checkEncumbrance()
@@ -1101,7 +1104,7 @@ function _M:getEncumbrance()
 	end
 	
 	--Limit logging to the player
-	if self == game.player then game.log(("#00FF00#Total encumbrance: %d"):format(enc)) end
+	--[[if self == game.player then game.log(("#00FF00#Total encumbrance: %d"):format(enc)) end]]
 	return math.floor(enc)
 end
 
@@ -1109,37 +1112,27 @@ function _M:checkEncumbrance()
 	-- Compute encumbrance
 	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()	
 
-	--Heavy load
-	if not (self.heavy_load1 and self.heavy_load2) and enc > max * 0.66 then
-		if self:knowTalent(self.T_LOADBEARER) then
-		self.heavy_load1 = self:addTemporaryValue("load_penalty", 3)	
-		self.heavy_load2 = self:addTemporaryValue("max_dex_bonus", 3)
-		else	
-		self:removeTemporaryValue("load_penalty", self.light_load1)
-		self:removeTemporaryValue("max_dex_bonus", self.light_load2)	
-		self.heavyload1 = self:addTemporaryValue("load_penalty", 6)
-		self.heavyload2 = self:addTemporaryValue("max_dex_bonus", 1)
-		end
-	
-	--Medium load
-	elseif enc > max * 0.33 and not (self.light_load1 and self.light_load2) and not self:knowTalent(self.T_LOADBEARER) then
---		self:addTemporaryValue("movement_speed_bonus", -0.25)
-		self.light_load1 = self:addTemporaryValue("load_penalty", 3)
-		self.light_load2 = self:addTemporaryValue("max_dex_bonus", 3)
-		if self.heavyload1 and self.heavy_load2 then
-		self:removeTemporaryValue("load_penalty", self.heavy_load1)
-		self:removeTemporaryValue("max_dex_bonus", self.heavy_load2)
-		self.heavy_load1 = nil
-		self.heavy_load2 = nil
-		end
-	elseif enc < max * 0.33 and self.light_load1 and self.light_load2 then
-		self:removeTemporaryValue("load_penalty", self.light_load1)
-		self:removeTemporaryValue("max_dex_bonus", self.light_load2)
-		self.light_load1 = nil
-		self.light_load2 = nil
+	--Light load
+	if enc < max * 0.33 and self:hasEffect(self.EFF_MEDIUM_LOAD) then 
+		self:removeEffect(self.EFF_MEDIUM_LOAD)
 	end
 
-
+	--Heavy load
+	if enc > max * 0.66 and self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
+	self:setEffect(self.EFF_MEDIUM_LOAD, 1, {}) 
+	end
+	
+	if enc > max * 0.66 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_HEAVY_LOAD) then
+		self:removeEffect(self.EFF_MEDIUM_LOAD)
+		self:setEffect(self.EFF_HEAVY_LOAD, 1, {})
+	end
+	
+	--Medium load
+	if enc > max * 0.33 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
+		self:setEffect(self.EFF_MEDIUM_LOAD, 1, {})
+		if self:hasEffect(self.EFF_HEAVY_LOAD) then self:removeEffect(self.EFF_HEAVY_LOAD) end
+	end
+	
 	-- We are pinned to the ground if we carry too much
 	if not self.encumbered and enc > max then
 		game.logPlayer(self, "#FF0000#You carry too much--you are encumbered!")

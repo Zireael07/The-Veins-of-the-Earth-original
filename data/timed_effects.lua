@@ -16,6 +16,7 @@
 
 
 local Stats = require "engine.interface.ActorStats"
+local Particles = require "engine.Particles"
 
 --Conditions for below 0 hp
 newEffect{
@@ -48,6 +49,40 @@ newEffect{
 	end,
 }
 
+--Load penalties
+newEffect{
+	name = "HEAVY_LOAD",
+	desc = "Encumbered",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is encumbered!", "+Load" end,
+	on_lose = function(self, err) return "#Target# is no longer encumbered.", "-Load" end,
+	activate = function(self, eff)
+		eff.loadpenaltyId = self:addTemporaryValue("load_penalty", 6)
+		eff.maxdexId = self:addTemporaryValue("max_dex_bonus", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("load_penalty", eff.loadpenaltyId)
+		self:removeTemporaryValue("max_dex_bonus", eff.maxdexId)
+	end,
+}
+
+newEffect{
+	name = "MEDIUM_LOAD",
+	desc = "Encumbered",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is encumbered!", "+Load" end,
+	on_lose = function(self, err) return "#Target# is no longer encumbered.", "-Load" end,
+	activate = function(self, eff)
+		eff.loadpenaltyId = self:addTemporaryValue("load_penalty", 3)
+		eff.maxdexId = self:addTemporaryValue("max_dex_bonus", 3)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("load_penalty", eff.loadpenaltyId)
+		self:removeTemporaryValue("max_dex_bonus", eff.maxdexId)
+	end,
+}
 
 -- Basic Conditions
 
