@@ -737,7 +737,18 @@ function _M:crossClass(skill)
 	
 	if (not skill) then return false end
 
-	if self.classes and self.classes["Barbarian"] and c_barbarian[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Barbarian" and c_barbarian[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Bard" and c_bard[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Cleric" and c_cleric[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Druid" and c_druid[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Fighter" and c_fighter[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Rogue" and c_rogue[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Sorcerer" and c_sorcerer[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Wizard" and c_wizard[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Shadowdancer" and c_rogue[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Assasin" and c_rogue[skill] == "no" then return true end
+
+--[[	if self.classes and self.classes["Barbarian"] and c_barbarian[skill] == "no" then return true end
 	if self.classes and self.classes["Bard"] and c_bard[skill] == "no" then return true end
 	if self.classes and self.classes["Cleric"] and c_cleric[skill] == "no" then return true end
 	if self.classes and self.classes["Druid"] and c_druid[skill] == "no" then return true end
@@ -747,7 +758,7 @@ function _M:crossClass(skill)
 	if self.classes and self.classes["Wizard"] and c_wizard[skill] == "no" then return true end
 	if self.classes and self.classes["Shadowdancer"] and c_rogue[skill] == "no" then return true end
 	if self.classes and self.classes["Assasin"] and c_rogue[skill] == "no" then return true end
-
+]]
 	return false
 end
 
@@ -1049,6 +1060,8 @@ function _M:levelClass(name)
 
 	end
 
+	self.last_class == name
+
 	d.on_level(self, level)
 end
 
@@ -1096,21 +1109,34 @@ function _M:checkEncumbrance()
 	-- Compute encumbrance
 	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()	
 
-	--Medium & heavy load
-	if enc > max * 0.33 and not self:knowTalent(self.T_LOADBEARER) then
-		self:addTemporaryValue("movement_speed_bonus", -0.25)
-		self:addTemporaryValue("load_penalty", 3)
-		self:addTemporaryValue("max_dex_bonus", 3)
-	elseif enc > max * 0.66 then
+	--Heavy load
+	if not (self.heavy_load1 and self.heavy_load2) and enc > max * 0.66 then
 		if self:knowTalent(self.T_LOADBEARER) then
-		self:addTemporaryValue("load_penalty", 3)	
-		self:addTemporaryValue("max_dex_bonus", 3)
+		self.heavy_load1 = self:addTemporaryValue("load_penalty", 3)	
+		self.heavy_load2 = self:addTemporaryValue("max_dex_bonus", 3)
 		else	
-		self:removeTemporaryValue("load_penalty", 3)
-		self:removeTemporaryValue("max_dex_bonus", 3)	
-		self:addTemporaryValue("load_penalty", 6)
-		self:addTemporaryValue("max_dex_bonus", 1)
+		self:removeTemporaryValue("load_penalty", self.light_load1)
+		self:removeTemporaryValue("max_dex_bonus", self.light_load2)	
+		self.heavyload1 = self:addTemporaryValue("load_penalty", 6)
+		self.heavyload2 = self:addTemporaryValue("max_dex_bonus", 1)
 		end
+	
+	--Medium load
+	elseif enc > max * 0.33 and not (self.light_load1 and self.light_load2) and not self:knowTalent(self.T_LOADBEARER) then
+--		self:addTemporaryValue("movement_speed_bonus", -0.25)
+		self.light_load1 = self:addTemporaryValue("load_penalty", 3)
+		self.light_load2 = self:addTemporaryValue("max_dex_bonus", 3)
+		if self.heavyload1 and self.heavy_load2 then
+		self:removeTemporaryValue("load_penalty", self.heavy_load1)
+		self:removeTemporaryValue("max_dex_bonus", self.heavy_load2)
+		self.heavy_load1 = nil
+		self.heavy_load2 = nil
+		end
+	elseif enc < max * 0.33 and self.light_load1 and self.light_load2 then
+		self:removeTemporaryValue("load_penalty", self.light_load1)
+		self:removeTemporaryValue("max_dex_bonus", self.light_load2)
+		self.light_load1 = nil
+		self.light_load2 = nil
 	end
 
 

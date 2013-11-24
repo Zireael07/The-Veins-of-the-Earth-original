@@ -77,6 +77,7 @@ function _M:init(t, no_default)
 
   self.weapon_type = {}
   self.favored_enemy = {}
+  self.last_class = {}
   self.all_kills = self.all_kills or {}
 end
 
