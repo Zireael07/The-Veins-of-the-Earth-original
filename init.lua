@@ -67,3 +67,11 @@ score_formatters = {
 
 	},
 }
+
+--"Wait finished, counted NNN, MMM ticks." This is NNN
+loading_wait_ticks = 39
+
+load_tips = {
+  { text = [[If you are a spellcaster, you should pick your spells and rest ASAP to gain them.]] },
+  { text = [[If a monster has negative hp, you can simply wait until it bleeds out.]] },
+}
