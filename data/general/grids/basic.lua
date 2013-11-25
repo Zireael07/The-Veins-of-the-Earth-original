@@ -13,9 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
 
 newEntity{
 	define_as = "UP",
@@ -189,7 +186,7 @@ newEntity{
 	display = ' ', color=colors.STEEL_BLUE, back_color=colors.STEEL_BLUE,
 	always_remember = true,
 	on_stand = function(self, x, y, who)
-		local save = who:skillCheck("balance", 15)
+		local save = who:skillCheck("balance", 10)
 		if not save then who:setEffect(who.EFF_FELL, 1, {}) end 
 	end
 }
