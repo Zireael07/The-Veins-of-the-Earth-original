@@ -8,7 +8,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_TOJANIDA",
 	type = "outsider", subtype = "water",
-	image = "tiles/merfolk.png",
+	image = "tiles/triton.png",
 	display = 'O', color=colors.LIGHT_BLUE,
 	body = { INVEN = 10 },
 	desc = [[A creature with seven stalks extending from the shell.]],
@@ -60,7 +60,7 @@ newEntity{
 	skill_search = 14,
 	skill_sensemotive = 10,
 	skill_spot = 14,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+--	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
 
 --Cleave, Imp Sunder
@@ -81,8 +81,8 @@ newEntity{
 	skill_search = 21,
 	skill_sensemotive = 16,
 	skill_spot = 24,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
-	[Talents.T_ALERTNESS]=1
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+--	[Talents.T_POWER_ATTACK]=1
 	},
 }
 
@@ -92,6 +92,7 @@ newEntity{
 	define_as = "BASE_NPC_TRITON",
 	type = "outsider", subtype = "water",
 	name = "triton",
+	image = "tiles/triton.png",
 	display = 'O', color=colors.DARK_BLUE,
 	body = { INVEN = 10 },
 	desc = [[A humanoid with a fish tail instead of legs and covered in silvery scales.]],
