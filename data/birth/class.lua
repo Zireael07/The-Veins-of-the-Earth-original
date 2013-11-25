@@ -44,7 +44,7 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor.fortitude_save = (actor.fortitude_save or 0) +2
 			actor.combat_bab = (actor.combat_bab or 0) + 1
-			actor.skill_point = (actor.skill_point or 0) + 4
+			actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
 
 			actor.movement_speed_bonus = 0.33
 
@@ -55,9 +55,9 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_RAGE, true)
 
 			if actor.descriptor.race == "Half-Orc" then
-			actor.max_life = actor.max_life + 14
+			actor.max_life = actor.max_life + 14 + (actor:getCon()-10)/2
 			else
-			actor.max_life = actor.max_life + 12 end
+			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2 end
 		
 		else
 
@@ -65,13 +65,13 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 4
+		actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
 			if actor.descriptor.race == "Half-Orc" then
 			--Favored class bonuses
 			actor.combat_attack = (actor.combat_attack or 0) + 1
-			actor.max_life = actor.max_life + 14
+			actor.max_life = actor.max_life + 14 + (actor:getCon()-10)/2
 			else
-			actor.max_life = actor.max_life + 12 end
+			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2 end
 		end
 	end,
 } 
@@ -117,7 +117,7 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.reflex_save = (actor.reflex_save or 0) + 2
-			actor.skill_point = (actor.skill_point or 0) + 6
+			actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -132,9 +132,9 @@ newBirthDescriptor {
 			actor:learnTalentType("arcane/arcane", true)
 
 			if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
-			actor.max_life = actor.max_life + 8
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 			else
-			actor.max_life = actor.max_life + 6 end
+			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 		
 		else
 
@@ -153,13 +153,13 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.will_save = (actor.will_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 		if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
 		--Favored class bonuses
 		actor.combat_attack = (actor.combat_attack or 0) + 1
-		actor.max_life = actor.max_life + 8
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 		else
-		actor.max_life = actor.max_life + 6 end
+		actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 		end
 	end,
 } 
@@ -204,7 +204,7 @@ newBirthDescriptor {
 		if level == 1 then
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.will_save = (actor.will_save or 0) + 2
-			actor.skill_point = (actor.skill_point or 0) + 2
+			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -226,9 +226,9 @@ newBirthDescriptor {
 
 
 			if (actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female") or actor.descriptor.race == "Half-Drow" then
-			actor.max_life = actor.max_life + 10
+			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 			else
-			actor.max_life = actor.max_life + 8 end
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 			
 		else
 		--Learn a new spell tier every 3rd level
@@ -247,13 +247,13 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
-		actor.skill_point = (actor.skill_point or 0) + 2
+		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 
 		if (actor.descriptor.race == "Drow" and actor.descriptor.sex == "Female") or actor.descriptor.race == "Half-Drow" then
 		actor.combat_attack = (actor.combat_attack or 0) + 1
-		actor.max_life = actor.max_life + 10
+		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 		else
-		actor.max_life = actor.max_life + 8 end
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 		end
 	end,
 }
@@ -302,8 +302,8 @@ newBirthDescriptor {
 		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.will_save = (actor.will_save or 0) + 2
 
-			actor.max_life = actor.max_life + 8
-			actor.skill_point = (actor.skill_point or 0) + 2
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -330,8 +330,8 @@ newBirthDescriptor {
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 
-		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 2
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 		end
 	end,
 }   
@@ -371,7 +371,7 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.combat_bab = (actor.combat_bab or 0) + 1
-			actor.skill_point = (actor.skill_point or 0) + 2
+			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -380,9 +380,9 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
 
 			if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
-			actor.max_life = actor.max_life + 12
+			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2
 			else
-			actor.max_life = actor.max_life + 10 end
+			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
 		
 		else
 
@@ -390,14 +390,14 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 2
+		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 
 		if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
 		--Favored class bonuses
 		actor.combat_attack = (actor.combat_attack or 0) + 1
-		actor.max_life = actor.max_life + 12
+		actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2
 		else
-		actor.max_life = actor.max_life + 10
+		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 		end
 		end
 	end,
@@ -445,7 +445,7 @@ newBirthDescriptor {
 			actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.combat_bab = (actor.combat_bab or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 2
-			actor.skill_point = (actor.skill_point or 0) + 6
+			actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -457,9 +457,9 @@ newBirthDescriptor {
 
 			if actor.descriptor.race == "Elf" then
 			--Favored class bonuses
-			actor.max_life = actor.max_life + 10	
+			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2	
 			else
-			actor.max_life = actor.max_life + 8 end
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 		
 		else
 
@@ -470,13 +470,13 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.will_save = (actor.will_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 		if actor.descriptor.race == "Elf" then
 		--Favored class bonuses
 		actor.combat_attack = (actor.combat_attack or 0) + 1
-		actor.max_life = actor.max_life + 10
+		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 		else
-		actor.max_life = actor.max_life + 8 end
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 		end
 
 		--Learn a new spell tier every 3rd level starting from lvl 5
@@ -494,13 +494,13 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.will_save = (actor.will_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 		if actor.descriptor.race == "Elf" then
 		--Favored class bonuses
 		actor.combat_attack = (actor.combat_attack or 0) + 1
-		actor.max_life = actor.max_life + 10
+		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 		else
-		actor.max_life = actor.max_life + 8 end
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 		end
 	end,
 }
@@ -551,7 +551,7 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor.reflex_save = (actor.reflex_save or 0) + 2
 			actor.sneak_attack = (actor.sneak_attack or 0) + 1
-			actor.skill_point = (actor.skill_point or 0) + 8
+			actor.skill_point = (actor.skill_point or 0) + 8 + (actor:getInt()-10)/2
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -559,9 +559,9 @@ newBirthDescriptor {
 
 			if  actor.descriptor.race == "Deep gnome" then
 			--Favored class bonuses
-			actor.max_life = actor.max_life + 8
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 			else
-			actor.max_life = actor.max_life + 6 end
+			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 		
 		else
 
@@ -569,13 +569,13 @@ newBirthDescriptor {
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 		actor.will_save = (actor.will_save or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 8
+		actor.skill_point = (actor.skill_point or 0) + 8 + (actor:getInt()-10)/2
 		if actor.descriptor.race == "Deep gnome" then
 		--Favored class bonuses
 		actor.combat_attack = (actor.combat_attack or 0) + 1
-		actor.max_life = actor.max_life + 8
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 		else
-		actor.max_life = actor.max_life + 6 end
+		actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 		end
 	end,
 }
@@ -637,7 +637,7 @@ newBirthDescriptor {
 
 			actor:learnTalentType("sorcerer/sorcerer", true)			
 
-			actor.max_life = actor.max_life + 4
+			actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
 		
 		else
 
@@ -656,8 +656,8 @@ newBirthDescriptor {
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 2
-		actor.max_life = actor.max_life + 4 
+		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
+		actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
 		end
 	end,
 }
@@ -707,7 +707,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK)
 
 			actor.will_save = (actor.will_save or 0) + 2
-			actor.skill_point = (actor.skill_point or 0) + 2
+			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 
             game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a specialization",{
                 {name="Generalist", desc="You are the master of everything but nothing. You will be equally good with all spells"},
@@ -756,9 +756,9 @@ newBirthDescriptor {
 
 			if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Male" then
 			--Favored class bonuses
-			actor.max_life = actor.max_life + 6
+			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2
 			else
-			actor.max_life = actor.max_life + 4 end
+			actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2 end
 		
 		else
 
@@ -778,12 +778,12 @@ newBirthDescriptor {
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 2
+		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 		if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Male" then
 		--Favored class bonuses
-		actor.max_life = actor.max_life + 6
+		actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2
 		else
-		actor.max_life = actor.max_life + 4 end
+		actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2 end
 
 		end
 	end,
@@ -826,8 +826,8 @@ newBirthDescriptor {
 	end,
 	on_level = function(actor, level)
 		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
-			actor.max_life = actor.max_life + 4
-			actor.skill_point = (actor.skill_point or 0) + 2
+			actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
+			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 		
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -842,8 +842,8 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 6
-		actor.skill_point = (actor.skill_point or 0) + 2
+		actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 		end
 	end,
 } 
@@ -868,8 +868,8 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 			--grant hide in plain sight
 		elseif level == 2 then 
 			actor.combat_bab = (actor.combat_bab or 0) + 1
@@ -878,8 +878,8 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 		
 		-- only if he doesn't have better infravision already
 			if actor.infravision and actor.infravision > 3 then
@@ -894,8 +894,8 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 		end
 	end,
 } 
@@ -923,39 +923,43 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
+
 		elseif level == 3 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
+
 		elseif level == 5 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
+
 		elseif level == 7 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
 			actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
+
 		elseif level == 9 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 8
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 		actor.skill_point = (actor.skill_point or 0) + 6
 		else
 		actor.reflex_save = (actor.reflex_save or 0) + 1
@@ -963,8 +967,8 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.will_save = (actor.will_save or 0) + 0.5
 
-		actor.max_life = actor.max_life + 8
-		actor.skill_point = (actor.skill_point or 0) + 6
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 		end
 	end,
 } 
