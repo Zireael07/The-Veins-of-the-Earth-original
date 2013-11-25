@@ -99,8 +99,13 @@ newEntity{
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 7,
-    quench = 20,
     desc = [[A flask of water. Good to quench your thirst.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 100
+        return {used = true, destroy = true}
+  end
+  },
 }
 
 --Stale foodstuffs
@@ -110,8 +115,13 @@ newEntity{
     image = "tiles/food.png",
     level_range = {1,10},
     cost = 7,
-    nutrition = 0,
     desc = [[Food rations gone stale.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 0
+        return {used = true, destroy = true}
+  end
+  },
 }
 
 newEntity{
@@ -121,8 +131,13 @@ newEntity{
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 7,
-    quench = 0,
     desc = [[You'd be better off not drinking this water.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 0
+        return {used = true, destroy = true}
+  end
+  },
 }
 
 newEntity{
@@ -131,6 +146,11 @@ newEntity{
     image = "tiles/newtiles/corpse.png",
     level_range = {1,10},
     cost = 0,
-    nutrition = 0,
     desc = [[This corpse looks pretty stale.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 0
+        return {used = true, destroy = true}
+  end
+  },
 }
