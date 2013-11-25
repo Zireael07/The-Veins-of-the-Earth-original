@@ -17,160 +17,31 @@
 local Stats = require "engine.interface.ActorStats"
 local Talents = require "engine.interface.ActorTalents"
 
---Amulets
 newEntity{
+    define_as = "BASE_MAGITEM",
+    level_range = {1,nil},
+    identified = false,
+    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=80},
+}
+
+
+--Amulets
+newEntity{ 
     define_as = "BASE_AMULET",
     slot = "AMULET",
     type = "amulet", subtype = "amulet",
+    image = "tiles/amulet_natural.png",
     display = "♂", color=colors.RED,
     encumber = 0,
     rarity = 10,
+    level_range = {1,nil},
+    identified = false,
+    unided_name = "an amulet",
     name = "an amulet",
     desc = [[A beautiful amulet.]],
+    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
-newEntity{
-    base = "BASE_AMULET",
-    name = "amulet of natural armor +1",
-    unided_name = "an amulet",
-    image = "tiles/amulet_natural.png",
-    identified = false,
-    level_range = {1,10},
-    cost = 2000,
-    wielder = {
-    combat_natural=1
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "amulet of natural armor +2",
-    unided_name = "an amulet",
-    image = "tiles/amulet_natural.png",
-    identified = false,
-    level_range = {1,10},
-    cost = 8000,
-    wielder = {
-    combat_natural=2
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "amulet of natural armor +3",
-    unided_name = "an amulet",
-    image = "tiles/amulet_natural.png",
-    identified = false,
-    level_range = {5,15},
-    cost = 18000,
-    wielder = {
-    combat_natural=3
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "amulet of natural armor +4",
-    unided_name = "an amulet",
-    image = "tiles/amulet_natural.png",
-    identified = false,
-    level_range = {10,20},
-    cost = 32000,
-    wielder = {
-    combat_natural=4
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "amulet of natural armor +5",
-    unided_name = "an amulet",
-    image = "tiles/amulet_natural.png",
-    identified = false,
-    level_range = {10,30},
-    cost = 50000,
-    wielder = {
-    combat_natural=5
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "amulet of health +2",
-    unided_name = "an amulet",
-    image = "tiles/amulet_health.png",
-    identified = false,
-    level_range = {10,30},
-    cost = 4000,
-    wielder = {
-    inc_stats = { [Stats.STAT_CON] = 2, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "amulet of health +4",
-    unided_name = "an amulet",
-    image = "tiles/amulet_health.png",
-    identified = false,
-    level_range = {10,30},
-    cost = 16000,
-    wielder = {
-    inc_stats = { [Stats.STAT_CON] = 4, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "amulet of health +6",
-    unided_name = "an amulet",
-    image = "tiles/amulet_health.png",
-    identified = false,
-    level_range = {10,30},
-    cost = 32000,
-    wielder = {
-    inc_stats = { [Stats.STAT_CON] = 6, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "periapt of wisdom +2",
-    unided_name = "an amulet",
-    image = "tiles/amulet_health.png",
-    identified = false,
-    level_range = {10,30},
-    cost = 4000,
-    wielder = {
-    inc_stats = { [Stats.STAT_WIS] = 2, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "periapt of wisdom +4",
-    unided_name = "an amulet",
-    image = "tiles/amulet_health.png",
-    identified = false,
-    level_range = {10,30},
-    cost = 16000,
-    wielder = {
-    inc_stats = { [Stats.STAT_WIS] = 4, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_AMULET",
-    name = "periapt of wisdom +6",
-    unided_name = "an amulet",
-    image = "tiles/amulet_health.png",
-    identified = false,
-    level_range = {10,30},
-    cost = 36000,
-    wielder = {
-    inc_stats = { [Stats.STAT_WIS] = 6, },
-  }, 
-}
 
 --Rings
 newEntity{
@@ -181,71 +52,15 @@ newEntity{
     image = "tiles/ring.png",
     encumber = 0,
     rarity = 10,
+    level_range = {1,nil},
+    identified = false,
     name = "a ring",
     desc = [[A pretty ring.]],
+    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
-newEntity{
-    base = "BASE_RING",
-    name = "ring of protection +1",
-    unided_name = "a ring",
-    identified = false,
-    level_range = {1,10},
-    cost = 2000,
-    wielder = {
-    combat_protection=1
-  }, 
-}
 
-newEntity{
-    base = "BASE_RING",
-    name = "ring of protection +2",
-    unided_name = "a ring",
-    identified = false,
-    level_range = {1,10},
-    cost = 8000,
-    wielder = {
-    combat_protection=2
-  }, 
-}
-
-newEntity{
-    base = "BASE_RING",
-    name = "ring of protection +3",
-    unided_name = "a ring",
-    identified = false,
-    level_range = {5,15},
-    cost = 18000,
-    wielder = {
-    combat_protection=3
-  }, 
-}
-
-newEntity{
-    base = "BASE_RING",
-    name = "ring of protection +4",
-    unided_name = "a ring",
-    identified = false,
-    level_range = {10,20},
-    cost = 32000,
-    wielder = {
-    combat_protection=4
-  }, 
-}
-
-newEntity{
-    base = "BASE_RING",
-    name = "ring of protection +5",
-    unided_name = "a ring",
-    identified = false,
-    level_range = {10,20},
-    cost = 50000,
-    wielder = {
-    combat_protection=5
-  }, 
-}
-
-newEntity{
+--[[newEntity{
     base = "BASE_RING",
     name = "ring of darkvision +2",
     unided_name = "a ring",
@@ -255,22 +70,7 @@ newEntity{
     wielder = {
     infravision=2
   }, 
-}
-
---Cursed
-newEntity{
-    base = "BASE_RING",
-    name = "ring of clumsiness",
-    unided_name = "a ring",
-    identified = false,
-    keywords = {cursed=true},
-    level_range = {1,10},
-    cost = 50000,
-    wielder = {
-     inc_stats = { [Stats.STAT_DEX] = -4, },
-     spell_fail = 20,
-  }, 
-}
+}]]
 
 --Bracers
 newEntity{
@@ -281,205 +81,12 @@ newEntity{
     display = "Ξ", color=colors.RED,
     encumber = 1,
     rarity = 8,
+    level_range = {1,nil},
+    identified = false,
     name = "bracers",
+    unided_name = "bracers",
     desc = [[A set of bracers.]],
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of armor +1",
-    unided_name = "bracers",
-    identified = false,
-    level_range = {1,10},
-    cost = 2000,
-    wielder = {
-    combat_armor=1
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of armor +2",
-    unided_name = "bracers",
-    identified = false,
-    level_range = {1,10},
-    cost = 8000,
-    wielder = {
-    combat_armor=2
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of armor +3",
-    unided_name = "bracers",
-    identified = false,
-    level_range = {5,15},
-    cost = 18000,
-    wielder = {
-    combat_armor=3
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of armor +4",
-    unided_name = "bracers",
-    identified = false,
-    level_range = {10,20},
-    cost = 32000,
-    wielder = {
-    combat_armor=4
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of armor +5",
-    unided_name = "bracers",
-    identified = false,
-    level_range = {10,20},
-    cost = 50000,
-    wielder = {
-    combat_armor=5
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "gloves of dexterity +2",
-    unided_name = "gloves",
-    image = "tiles/gloves.png",
-    identified = false,
-    level_range = {1,10},
-    cost = 4000,
-    wielder = {
-    inc_stats = { [Stats.STAT_DEX] = 2, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "gloves of dexterity +4",
-    unided_name = "gloves",
-    image = "tiles/gloves.png",
-    identified = false,
-    level_range = {5,15},
-    cost = 16000,
-    wielder = {
-    inc_stats = { [Stats.STAT_DEX] = 4, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "gloves of dexterity +6",
-    unided_name = "gloves",
-    image = "tiles/gloves.png",
-    identified = false,
-    level_range = {10,20},
-    cost = 36000,
-    wielder = {
-    inc_stats = { [Stats.STAT_DEX] = 6, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "gauntlets of ogre power",
-    unided_name = "gauntlets",
-    image = "tiles/gauntlets.png",
-    identified = false,
-    level_range = {1,10},
-    cost = 4000,
-    wielder = {
-    inc_stats = { [Stats.STAT_STR] = 2, },
-  }, 
-}
-
---Cursed
-newEntity{
-    base = "BASE_BRACERS",
-    name = "gauntlets of fumbling -2",
-    unided_name = "gauntlets",
-    image = "tiles/gauntlets.png",
-    identified = false,
-    keywords = {cursed=true},
-    level_range = {1,10},
-    cost = 0,
-    wielder = {
-    inc_stats = { [Stats.STAT_DEX] = -2, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of defenselessness -1",
-    unided_name = "bracers",
-    image = "tiles/newtiles/bracers.png",
-    identified = false,
-    keywords = {cursed=true},
-    level_range = {1,10},
-    cost = 0,
-    wielder = {
-    combat_armor=-1
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of defenselessness -2",
-    unided_name = "bracers",
-    image = "tiles/newtiles/bracers.png",
-    identified = false,
-    keywords = {cursed=true},
-    level_range = {1,10},
-    cost = 0,
-    wielder = {
-    combat_armor=-2
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of defenselessness -3",
-    unided_name = "bracers",
-    image = "tiles/newtiles/bracers.png",
-    identified = false,
-    keywords = {cursed=true},
-    level_range = {1,10},
-    cost = 0,
-    wielder = {
-    combat_armor=-3
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of defenselessness -4",
-    unided_name = "bracers",
-    image = "tiles/newtiles/bracers.png",
-    identified = false,
-    keywords = {cursed=true},
-    level_range = {1,10},
-    cost = 0,
-    wielder = {
-    combat_armor=-4
-  }, 
-}
-
-newEntity{
-    base = "BASE_BRACERS",
-    name = "bracers of defenselessness -5",
-    unided_name = "bracers",
-    image = "tiles/newtiles/bracers.png",
-    identified = false,
-    keywords = {cursed=true},
-    level_range = {1,10},
-    cost = 0,
-    wielder = {
-    combat_armor=-5
-  }, 
+    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
 --Cloaks
@@ -497,6 +104,14 @@ newEntity{
 
 newEntity{
     base = "BASE_CLOAK",
+    unided_name = "a cloak",
+    identified = false,
+    level_range = {1,nil},
+    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
+}
+
+newEntity{
+    base = "BASE_CLOAK",
     name = "cloak of elvenkind",
     unided_name = "a cloak",
     image = "tiles/elven_cloak.png",
@@ -509,22 +124,8 @@ newEntity{
   }, 
 }
 
-newEntity{
-    base = "BASE_CLOAK",
-    name = "cloak of Charisma +2",
-    unided_name = "a cloak",
-    display = "♠", color=colors.RED,
-    identified = false,
-    level_range = {1,10},
-    cost = 4000,
-    wielder = {
-    inc_stats = { [Stats.STAT_CHA] = 2, },
-  }, 
-}
-
-
 --Boots
-newEntity{
+newEntity{ 
     define_as = "BASE_BOOTS",
     slot = "BOOTS",
     type = "boots", subtype = "boots",
@@ -585,34 +186,13 @@ newEntity{
     display = "=", color=colors.RED,
     encumber = 1,
     rarity = 15,
+    identified = false,
+    level_range = {1,nil},
     name = "a belt",
+    unided_name = "a belt",
     desc = [[A sturdy belt.]],
+    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
 }
-
-newEntity{
-    base = "BASE_BELT",
-    name = "belt of giant strength +4",
-    unided_name = "a belt",
-    identified = false,
-    level_range = {1,10},
-    cost = 16000,
-    wielder = {
-    inc_stats = { [Stats.STAT_STR] = 4, },
-  }, 
-}
-
-newEntity{
-    base = "BASE_BELT",
-    name = "belt of giant strength +6",
-    unided_name = "a belt",
-    identified = false,
-    level_range = {1,10},
-    cost = 36000,
-    wielder = {
-    inc_stats = { [Stats.STAT_STR] = 6, },
-  }, 
-}
-
 
 
 
