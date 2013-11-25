@@ -9,7 +9,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_GOLEM",
 	type = "construct",
---	image = "tiles/golem.png",
+	image = "tiles/golem.png",
 	display = 'C', color=colors.WHITE,
 	body = { INVEN = 10 },
 	desc = [[A hand-crafted servile creature.]],
@@ -98,7 +98,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_HOMUNCULUS",
 	type = "construct",
---	image = "tiles/golem.png",
+	image = "tiles/golem.png",
 	display = 'C', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10 },
 	desc = [[A wizard's miniature servant.]],
@@ -125,7 +125,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_INEVITABLE",
 	type = "construct",
---	image = "tiles/golem.png",
+	image = "tiles/golem.png",
 	display = 'C', color=colors.GOLD,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A metal humanoid.]],
@@ -220,7 +220,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_SHIELD_GUARDIAN",
 	type = "construct",
---	image = "tiles/golem.png",
+	image = "tiles/golem.png",
 	display = 'C', color=colors.GOLD,
 	body = { INVEN = 10 },
 	desc = [[A wizard's miniature servant.]],

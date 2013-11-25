@@ -186,7 +186,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_JANNI",
 	type = "outsider",
---	image = "tiles/npc/djinn.png",
+	image = "tiles/djinn.png",
 	display = 'J', color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A large humanoid clothed in gray and seemingly hovering in air.]],
@@ -299,6 +299,7 @@ newEntity{
 	define_as = "BASE_NPC_SHADOW_MASTIFF",
 	type = "outsider",
 	name = "shadow mastiff",
+	image = "tiles/wolf.png",
 	display = 'd', color=colors.DARK_GRAY,
 	body = { INVEN = 10 },
 	desc = [[A big dog made of shadow.]],
@@ -443,7 +444,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_MEPHIT",
 	type = "outsider",
---	image = "tiles/npc/djinn.png",
+	image = "tiles/mephit.png",
 	display = 'M', color=colors.WHITE,
 	body = { INVEN = 10 },
 	desc = [[A small winged creature.]],

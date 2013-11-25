@@ -8,6 +8,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
         define_as = "BASE_NPC_DRAG_TURTLE",
         type = "dragon",
+        image = "tiles/dragon_turtle.png",
         display = 'D', color=colors.DARK_GREEN,
         body = { INVEN = 10 },
         desc = [[An immense turtle.]],
@@ -44,6 +45,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_PSEUDODRAGON",
         type = "dragon",
+        image = "tiles/pseudodragon.png",
         display = 'D', color=colors.LIGHT_GREEN,
         body = { INVEN = 10 },
         desc = [[A tiny draconic creature in shades of green.]],

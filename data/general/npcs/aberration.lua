@@ -107,6 +107,7 @@ newEntity{ base = "BASE_NPC_ATHACH",
 newEntity{
 	define_as = "BASE_NPC_CHOKER",
 	type = "aberration", subtype = "choker",
+	image = "tiles/ettercap.png",
 	display = "X", color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A small creature.]],
@@ -196,10 +197,11 @@ newEntity{ base = "BASE_NPC_CLOAKER",
 	},
 }       
 
---Drow spell-likes, spell resistance, poison
+--Drow spell-likes, poison
 newEntity{
 	define_as = "BASE_NPC_DRIDER",
 	type = "aberration", subtype = "drider",
+	image = "tiles/newtiles/drider.png",
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A mix between a drow and a spider.]],
@@ -218,6 +220,7 @@ newEntity{ base = "BASE_NPC_DRIDER",
 	challenge = 7,
 	combat_natural = 5,
 	infravision = 5,
+	spell_resistance = 12,
 	skill_climb = 8,
 	skill_hide = 8,
 	skill_movesilently = 10,
@@ -295,7 +298,8 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_DELVER",
 	type = "aberration",
-	display = "X", color=colors.GRAY,
+	image = "tiles/newtiles/otyugh.png",
+	display = "X", color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A huge slimy burrowing creature.]],
 
@@ -330,9 +334,10 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_DESTRACHAN",
 	type = "aberration",
+	image = "tiles/destrachan.png",
 	display = "X", color=colors.ORANGE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-    desc = [[A huge slimy burrowing creature.]],
+    desc = [[A blind aberrant creature.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=18, dex=12, con=16, int=12, wis=18, cha=12, luc=8 },
@@ -645,7 +650,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_NAGA",
 	type = "aberration", subtype = "naga",
---	image = "tiles/naga.png",
+	image = "tiles/naga.png",
 	display = "n", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A monster with a snakelike body and a human head.]],
