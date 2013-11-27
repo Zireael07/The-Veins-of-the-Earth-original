@@ -83,7 +83,7 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
                 [DamageType.FIRE] = 10,
                 [DamageType.ELECTRIC] = 10,
         },
-        resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
+--        resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }
 
 
@@ -118,8 +118,8 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
                 [DamageType.FIRE] = 10,
                 [DamageType.ELECTRIC] = 10,
         },
-        resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
-          [Talents.T_DODGE]=1,
+        resolvers.talents{ [Talents.T_DODGE]=1,
+--         [Talents.T_POWER_ATTACK]=1,
         },
 }
 

@@ -294,7 +294,7 @@ newEntity{
 	skill_survival = 18,
 	skill_spot = 18,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_POWER_ATTACK]=1
+--	[Talents.T_POWER_ATTACK]=1
 	},
 }
 

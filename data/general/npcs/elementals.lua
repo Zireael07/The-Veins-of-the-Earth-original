@@ -102,7 +102,7 @@ newEntity{
 	combat_dr = 10,
 	resolvers.talents{ [Talents.T_DODGE]=1, 
 	[Talents.T_MOBILITY]=1,
-	[Talents.T_POWER_ATTACK]=1,
+--	[Talents.T_POWER_ATTACK]=1,
 	[Talents.T_IRON_WILL]=1,
 	},
 }
@@ -124,7 +124,7 @@ newEntity{
 	combat_dr = 10,
 	resolvers.talents{ [Talents.T_DODGE]=1, 
 	[Talents.T_MOBILITY]=1,
-	[Talents.T_POWER_ATTACK]=1,
+--	[Talents.T_POWER_ATTACK]=1,
 	[Talents.T_IRON_WILL]=1,
 	},
 }
@@ -145,7 +145,7 @@ newEntity{
 	skill_spot = 8,
 	combat_natural = 8,
 	infravision = 4,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
+--	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }
 
 newEntity{
@@ -392,7 +392,7 @@ newEntity{
 	combat_natural = 8,
 	infravision = 4,
 	movement_speed_bonus = -0.33,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
+--	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }
 
 newEntity{

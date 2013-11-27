@@ -58,7 +58,7 @@ newEntity{
 	skill_search = 10,
 	skill_survival = 10,
 	skill_spot = 10,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
+--	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }
 
 --Awesome Blow, Cleave, Great Cleave, Imp Bull Rush
@@ -80,5 +80,5 @@ newEntity{
 	skill_search = 22,
 	skill_survival = 18,
 	skill_spot = 22,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
+--	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }

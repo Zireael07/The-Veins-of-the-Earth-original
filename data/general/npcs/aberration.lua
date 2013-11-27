@@ -319,9 +319,9 @@ newEntity{
 	skill_movesilently = 16,
 	skill_spot = 18,
 	skill_survival = 12,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, 
---		[Talents.T_TOUGHNESS] = 1,	
-		},
+--[[	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, 
+		[Talents.T_TOUGHNESS] = 1,	
+		},]]
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }

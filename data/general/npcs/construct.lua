@@ -181,8 +181,8 @@ newEntity{
 	skill_search = 9,
 	skill_sensemotive = 9,
 	skill_spot = 13,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
-	[Talents.T_COMBAT_CASTING]=1
+	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
+--	[Talents.T_POWER_ATTACK]=1
 	},
 	resolvers.equip{
 		full_id=true,

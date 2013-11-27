@@ -114,8 +114,8 @@ newEntity{
 	skill_movesilently = 8,
 	alignment = "neutral",
 	resists = { [DamageType.FIRE] = 10 },
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
-	[Talents.T_IRON_WILL]=1,
+	resolvers.talents{ [Talents.T_IRON_WILL]=1,
+--	[Talents.T_POWER_ATTACK]=1,
 	},
 }
 
@@ -143,8 +143,8 @@ newEntity{
 	skill_movesilently = 2,
 	skill_spot = 2,
 	alignment = "neutral",
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
-	[Talents.T_IRON_WILL]=1,
+	resolvers.talents{ [Talents.T_IRON_WILL]=1,
+--	[Talents.T_POWER_ATTACK]=1,
 	[Talents.T_ALERTNESS]=1,
 	[Talents.T_STEALTHY]=1
 	},

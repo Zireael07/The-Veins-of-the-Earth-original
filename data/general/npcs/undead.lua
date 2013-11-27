@@ -394,7 +394,7 @@ newEntity{
         skill_spellcraft = 30,
         skill_spot = 27,
         resolvers.talents{ [Talents.T_IRON_WILL]=1,
-        [Talents.T_POWER_ATTACK]=1,
+--        [Talents.T_POWER_ATTACK]=1,
         [Talents.T_COMBAT_CASTING]=1,
         },
 }
@@ -425,9 +425,9 @@ newEntity{
         skill_sensemotive = 24,
         skill_spellcraft = 27,
         skill_spot = 25,
-        resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
+--[[       resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
         [Talents.T_COMBAT_EXPERTISE]=1
-        },
+        },]] 
 }
 
 --Fly 60 ft; immunity to cold; magic drain [item] Fort DC 22

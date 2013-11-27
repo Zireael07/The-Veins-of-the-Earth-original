@@ -40,7 +40,6 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_SHOCKLIZARD",
-	image = "tiles/lizard.png",
 	display = 'q', color=colors.LIGHT_BLUE,
 	desc = [[A lizard with light blue markings on its back.]],
 	stats = { str=10, dex=15, con=13, int=2, wis=12, cha=6, luc=12 },
@@ -140,7 +139,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_hide = 4,
 	skill_listen = 2,
 	skill_spot = 2,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
+--	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }
 
 --Blink, dimension door; speed 40 ft.
@@ -384,7 +383,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_hide = 2,
 	skill_spot = 9,
 	skill_survival = 2,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+--	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
 
 --Fly 80 ft.; pounce, rake 1d6
@@ -641,7 +640,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 19,
 	skill_swim = 8,
 	movement_speed_bonus = -0.33,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+--	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
 
 --Trample 2d6, vorpal tusks; fast healing 10, scent
@@ -667,7 +666,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 6,
 	movement_speed_bonus = 0.66,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_POWER_ATTACK]=1 
+--	[Talents.T_POWER_ATTACK]=1 
 	},
 }
 
@@ -690,7 +689,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	combat_natural = 9,
 	skill_listen = 7,
 	skill_spot = 7,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+--	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
 
 --Strand range 5 squares - drag 1 sq closer each round; 2d8 STR damage Fort DC 18; Weapon Focus
@@ -926,7 +925,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_DODGE]=1,
 	[Talents.T_IRON_WILL]=1,
-	[Talents.T_POWER_ATTACK]=1
+--	[Talents.T_POWER_ATTACK]=1
 	},
 }
 
@@ -962,7 +961,7 @@ newEntity{
 	movement_speed_bonus = 0.88,
 	alignment = "chaotic good",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_POWER_ATTACK]=1 
+--	[Talents.T_POWER_ATTACK]=1 
 	},
 }
 
@@ -980,7 +979,7 @@ newEntity{
 	skill_intimidate = 8,
 	skill_listen = 10,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_POWER_ATTACK]=1 
+--	[Talents.T_POWER_ATTACK]=1 
 	},
 }
 
@@ -1022,7 +1021,7 @@ newEntity{
 	skill_spot = 11,
 	alignment = "chaotic evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_POWER_ATTACK]=1 
+--	[Talents.T_POWER_ATTACK]=1 
 	},
 }
 
