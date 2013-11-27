@@ -732,6 +732,8 @@ function _M:crossClass(skill)
 	local c_cleric = { balance = "no", bluff = "no", climb = "no", concentration = "yes", diplomacy = "yes", disabledevice = "no", escapeartist = "no", handleanimal = "no", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "no", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
 	local c_druid = { balance = "no", bluff = "no", climb = "no", concentration = "yes", diplomacy = "yes", disabledevice = "no", escapeartist = "no", handleanimal = "yes", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "yes", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "no", spot = "yes", swim = "yes", spellcraft = "yes", survival = "yes", tumble = "no", usemagic = "no" }
 	local c_fighter = { balance = "no", bluff = "no", climb = "yes", concentration = "no", diplomacy = "no", disabledevice = "no", escapeartist = "no", handleanimal = "yes", heal = "no", hide = "no", intimidate = "yes", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "no", usemagic = "no" }
+	local c_monk = { balance = "yes", bluff = "no", climb = "yes", concentration = "no", diplomacy = "yes", disabledevice = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "no", pickpocket = "no", search = "no", sensemotive = "yes", spot = "yes", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
+	local c_paladin = { balance = "no", bluff = "no", climb = "no", concentration = "yes", diplomacy = "yes", disabledevice = "no", escapeartist = "no", handleanimal = "yes", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "no", survival = "no", tumble = "no", usemagic = "no" }
 	local c_ranger = { balance = "no", bluff = "no", climb = "yes", concentration = "yes", diplomacy = "no", disabledevice = "no", escapeartist = "no", handleanimal = "yes", heal = "yes", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "no", pickpocket = "no", search = "yes", sensemotive = "no", spot = "yes", swim = "yes", spellcraft = "no", survival = "yes", tumble = "no", usemagic = "no" }
 	local c_rogue = { balance = "yes", bluff = "yes", climb = "yes", concentration = "no", diplomacy = "yes", disabledevice = "yes", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "yes", pickpocket = "yes", search = "yes", sensemotive = "yes", spot = "yes", swim = "no", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "yes" }
 	local c_sorcerer = { balance = "no", bluff = "yes", climb = "no", concentration = "yes", diplomacy = "yes", disabledevice = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
@@ -745,23 +747,14 @@ function _M:crossClass(skill)
 	if self.last_class and self.last_class == "Cleric" and c_cleric[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Druid" and c_druid[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Fighter" and c_fighter[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Monk" and c_monk[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Paladin" and c_paladin[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Rogue" and c_rogue[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Sorcerer" and c_sorcerer[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Wizard" and c_wizard[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Shadowdancer" and c_rogue[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Assasin" and c_rogue[skill] == "no" then return true end
 
---[[	if self.classes and self.classes["Barbarian"] and c_barbarian[skill] == "no" then return true end
-	if self.classes and self.classes["Bard"] and c_bard[skill] == "no" then return true end
-	if self.classes and self.classes["Cleric"] and c_cleric[skill] == "no" then return true end
-	if self.classes and self.classes["Druid"] and c_druid[skill] == "no" then return true end
-	if self.classes and self.classes["Fighter"] and c_fighter[skill] == "no" then return true end
-	if self.classes and self.classes["Rogue"] and c_rogue[skill] == "no" then return true end
-	if self.classes and self.classes["Sorcerer"] and c_sorcerer[skill] == "no" then return true end
-	if self.classes and self.classes["Wizard"] and c_wizard[skill] == "no" then return true end
-	if self.classes and self.classes["Shadowdancer"] and c_rogue[skill] == "no" then return true end
-	if self.classes and self.classes["Assasin"] and c_rogue[skill] == "no" then return true end
-]]
 	return false
 end
 
