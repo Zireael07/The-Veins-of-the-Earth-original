@@ -110,6 +110,8 @@ newBirthDescriptor {
     domains =
     {
       ['Good'] = "disallow", 
+      ['Evil'] = "disallow",
+      ['Chaos'] = "disallow",
     }
   },
 }
@@ -123,6 +125,9 @@ newBirthDescriptor {
     domains =
     {
       ['Good'] = "disallow", 
+      ['Evil'] = "disallow",
+      ['Chaos'] = "disallow",
+      ['Law'] = "disallow",
     }
   },
 }
@@ -136,6 +141,8 @@ newBirthDescriptor {
     domains =
     {
       ['Good'] = "disallow", 
+      ['Evil'] = "disallow",
+      ['Law'] = "disallow",
     }
   },
 }
@@ -149,6 +156,7 @@ newBirthDescriptor {
     domains =
     {
       ['Good'] = "disallow", 
+      ['Chaos'] = "disallow",
     }
   },
 }
@@ -162,6 +170,7 @@ newBirthDescriptor {
     domains =
     {
       ['Good'] = "disallow", 
+      ['Law'] = "disallow",
     }
   },
 }
@@ -175,6 +184,8 @@ newBirthDescriptor {
     domains =
     {
       ['Good'] = "disallow", 
+      ['Law'] = "disallow",
+      ['Chaos'] = "disallow",
     }
   },
 }
