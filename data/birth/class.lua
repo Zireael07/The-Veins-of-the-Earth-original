@@ -407,8 +407,8 @@ newBirthDescriptor {
         type = 'class',
         name = 'Monk',
         desc = help..'#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors.\n\n #LIGHT_BLUE#Class skills: Balance, Climb, Concentration, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble.\n\n #WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +1, Ref +1, 4 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
-        copy = {
- --[[               resolvers.equip {
+--[[        copy = {
+                resolvers.equip {
                         full_id=true,
                         { name="long sword", ego_chance=-1000 },
                         { name="chain mail", ego_chance=-1000 },
@@ -437,32 +437,31 @@ newBirthDescriptor {
                 }
         },
         can_level = function(actor)
-                if actor.classes and actor.classes["Monk"] and actor.descriptor.class == "Monk" then return true end
+            if actor.classes and actor.classes["Monk"] and actor.descriptor.class == "Monk" then return true end
                 
-                if actor:getWis() >= 13 then return true end
-                return false
+            if actor:getWis() >= 13 then return true end
+            return false
         end,
         on_level = function(actor, level)
-                if level == 1 then
-                        actor.fortitude_save = (actor.fortitude_save or 0) + 2
-                        actor.reflex_save = (actor.reflex_save or 0) + 2
-                        actor.will_save = (actor.will_save or 0) + 2
-                        actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
+            if level == 1 then
+            actor.fortitude_save = (actor.fortitude_save or 0) + 2
+            actor.reflex_save = (actor.reflex_save or 0) + 2
+            actor.will_save = (actor.will_save or 0) + 2
+            actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+            actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
-                        actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+            else
 
-                        actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
-                     
-                else
-
-                actor.combat_bab = (actor.combat_bab or 0) + 1
-                actor.fortitude_save = (actor.fortitude_save or 0) + 1
-                actor.reflex_save = (actor.reflex_save or 0) + 1
-                actor.will_save = (actor.will_save or 0) + 1
-                actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
-		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
-                end
+            actor.combat_bab = (actor.combat_bab or 0) + 1
+            actor.fortitude_save = (actor.fortitude_save or 0) + 1
+            actor.reflex_save = (actor.reflex_save or 0) + 1
+            actor.will_save = (actor.will_save or 0) + 1
+            actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+            end
         end,
+}
 
 newBirthDescriptor {
         type = 'class',
@@ -500,44 +499,45 @@ newBirthDescriptor {
                 }
         },
         can_level = function(actor)
-                if actor.classes and actor.classes["Paladin"] and actor.descriptor.class == "Paladin" then return true end
+            if actor.classes and actor.classes["Paladin"] and actor.descriptor.class == "Paladin" then return true end
                 
-                if actor:getWis() >= 13 then return true end
-                return false
+            if actor:getWis() >= 13 then return true end
+            return false
         end,
         on_level = function(actor, level)
-                if level == 1 then
-                        actor.fortitude_save = (actor.fortitude_save or 0) +2
-                        actor.combat_bab = (actor.combat_bab or 0) + 1
-                        actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
+            if level == 1 then
+                actor.fortitude_save = (actor.fortitude_save or 0) +2
+                actor.combat_bab = (actor.combat_bab or 0) + 1
+                actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 
-                        actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
-                        actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
-                        actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
-                        actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
-                        actor:learnTalent(actor.T_LAY_ON_HANDS, true)
+                actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+                actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+                actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+                actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
+                actor:learnTalent(actor.T_LAY_ON_HANDS, true)
 
-                        actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
+                actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
                      
-                  if level == 4 then   
-                  	actor:learnTalent(actor.T_TURN_UNDEAD, true)
+            elseif level == 4 then   
+                actor:learnTalent(actor.T_TURN_UNDEAD, true)
+                    
+                actor.combat_bab = (actor.combat_bab or 0) + 1
+				actor.fortitude_save = (actor.fortitude_save or 0) + 1
+				actor.reflex_save = (actor.reflex_save or 0) + 0.5
+				actor.will_save = (actor.will_save or 0) + 0.5
+				actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
                      
-                  actor.combat_bab = (actor.combat_bab or 0) + 1
-		actor.fortitude_save = (actor.fortitude_save or 0) + 1
-		actor.reflex_save = (actor.reflex_save or 0) + 0.5
-		actor.will_save = (actor.will_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
-                     
-                  if level == 5 then
-			actor:learnTalentType("divine", true)
+            elseif level == 5 then
+				actor:learnTalentType("divine", true)
 
-		actor.combat_bab = (actor.combat_bab or 0) + 1
-		actor.fortitude_save = (actor.fortitude_save or 0) + 1
-		actor.reflex_save = (actor.reflex_save or 0) + 0.5
-		actor.will_save = (actor.will_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
-                
-                --Learn a new spell tier every 3rd level starting from lvl 5
+				actor.combat_bab = (actor.combat_bab or 0) + 1
+				actor.fortitude_save = (actor.fortitude_save or 0) + 1
+				actor.reflex_save = (actor.reflex_save or 0) + 0.5
+				actor.will_save = (actor.will_save or 0) + 0.5
+				actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
+                  
+         	
+        --Learn a new spell tier every 3rd level starting from lvl 5
 		if level >= 5 and level % 3 == 0 then
 			local spell_level = ((level-5) / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
@@ -546,20 +546,18 @@ newBirthDescriptor {
 		        	actor:learnTalent(t.id)
 		        end
 		    end
-		end
-                
-                
-                else
+		end 
 
-                actor.combat_bab = (actor.combat_bab or 0) + 1
-                actor.fortitude_save = (actor.fortitude_save or 0) + 1
-                actor.reflex_save = (actor.reflex_save or 0) + 0.5
-                actor.will_save = (actor.will_save or 0) + 0.5
-                actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
-		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
-                end
+			else
+				actor.combat_bab = (actor.combat_bab or 0) + 1
+        		actor.fortitude_save = (actor.fortitude_save or 0) + 1
+        		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+        		actor.will_save = (actor.will_save or 0) + 0.5
+        		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
+				actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
+        	end
         end,
-
+}
 
 newBirthDescriptor {
 	type = 'class',
@@ -618,9 +616,7 @@ newBirthDescriptor {
 			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 		
-		else
-
-		if level == 5 then
+		elseif level == 5 then
 			actor:learnTalentType("divine", true)
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
@@ -634,8 +630,8 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 		else
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
-		end
-
+		--end
+		
 		--Learn a new spell tier every 3rd level starting from lvl 5
 		if level >= 5 and level % 3 == 0 then
 			local spell_level = ((level-5) / 3) + 1
@@ -647,6 +643,7 @@ newBirthDescriptor {
 		    end
 		end
 
+		else
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
