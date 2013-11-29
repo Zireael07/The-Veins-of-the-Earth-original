@@ -106,7 +106,7 @@ newEntity{
     define_as = "BASE_TOOL",
     slot = "TOOL",
     type = "tool", subtype = "skill",
-    image = "tiles/newtiles/kit.png",
+    image = "tiles/kit.png",
     display = "^", color=colors.YELLOW,
     encumber = 1,
     rarity = 10,
