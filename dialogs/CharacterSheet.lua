@@ -261,7 +261,8 @@ end
 
                 list[#list+1] = {
                     name = ("%s"):format(t.name),
-                    desc = player:getTalentFullDescription(t):toString(),
+                --    desc = player:getTalentFullDescription(t):toString(),
+                    desc = ("%s"):format(t.info(player,t)),
                 }
             end
         end
@@ -269,9 +270,9 @@ end
         table.sort(list, function(a,b) return a.name < b.name end)
 
         for i, t in ipairs(list) do
-            s:drawColorStringBlended(self.font, ("%s"):format(t.name), w, h, 255, 255, 255, true) h = h + self.font_h
+            self:mouseTooltip(t.desc, s:drawColorStringBlended(self.font, ("%s"):format(t.name), w, h, 255, 255, 255, true)) h = h + self.font_h
 
-            if h + self.font_h >= self.c_desc.h then h = 0 w = w + self.c_desc.w / 6 end
+    --        if h + self.font_h >= self.c_desc.h then h = 0 w = w + self.c_desc.w / 6 end
         end
 
     self.c_desc:generate()
