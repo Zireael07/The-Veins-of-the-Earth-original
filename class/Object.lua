@@ -127,11 +127,14 @@ function _M:getTextualDesc()
     local desc = tstring{}
 
     desc:add(true)
+
+    
    
     if self.multicharge and self:isIdentified() then desc:add(("%d charges remaining."):format(self.multicharge or 0), true) end
-
-    if self:isIdentified() then
-
+        
+        --General stuff to be shown always
+        if self.desc then desc:add(self.desc) end
+        
         if self.slot_forbid == "OFFHAND" then desc:add("You must wield this weapon with two hands.", true) end
         if self.light then desc:add("This is a light weapon", true) end
         if self.martial then desc:add("This is a martial weapon", true) end
@@ -139,6 +142,7 @@ function _M:getTextualDesc()
         if self.reach then desc:add("This is a reach weapon", true) end
         if self.exotic then desc:add("This is an exotic weapon", true) end
 
+    if self:isIdentified() then
            local desc_wielder = function(w)
             if w.skill_bonus_hide then desc:add(("#GOLD#This armor grants a +%d bonus to Hide skill."):format(w.skill_bonus_hide or 0), true) end
             if w.skill_bonus_movesilently then desc:add(("#GOLD#This armor grants a +%d bonus to Move Silently skill."):format(w.skill_bonus_movesilently or 0), true) end
@@ -149,16 +153,14 @@ function _M:getTextualDesc()
             if w.combat_natural then desc:add(("#GOLD#This item grants a +%d natural armor bonus to AC."):format(w.combat_natural or 0), true) end
             if w.combat_protection then desc:add(("#GOLD#This item grants a +%d protection bonus to AC."):format(w.combat_protection or 0), true) end
         end
-        
-        if self.desc then desc:add(self.desc) end
 
         if self.wielder then
             desc:add({"color","SANDY_BROWN"}, "When equipped:", {"color", "LAST"}, true)
             desc_wielder(self.wielder)
         end
     else
-       
-        desc:add("Unidentified.")
+
+        desc:add("\nUnidentified.")
     end
     
     return desc
@@ -179,12 +181,12 @@ end
 
 function _M:tooltip(x, y)
     local str = self:getDesc()
-    
     --Tooltip cue for multiple objects
     local nb = game.level.map:getObjectTotal(x, y)
-    if nb == 2 then str = str.."\n---\nYou see one more object."
-    elseif nb > 2 then str = str.."\n---\nYou see "..(nb-1).." more objects."
+    if nb == 2 then str:add(true, "---", true, "You see one more object.")
+    elseif nb > 2 then str:add(true, "---", true, "You see "..(nb-1).." more objects.")
     end
+    
     return str
 end
 
