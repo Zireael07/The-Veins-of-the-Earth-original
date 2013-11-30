@@ -156,7 +156,7 @@ newEntity{
 	define_as = "BASE_NPC_GRIMLOCK",
 	type = "monstrous humanoid",
 	name = "grimlock",
-	image = "tiles/human.png"
+	image = "tiles/human.png",
 	display = 'h', color=colors.DARK_GRAY,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A dull gray humanoid with a flat skin on its face.]],
@@ -193,7 +193,7 @@ newEntity{
 	define_as = "BASE_NPC_SAHUAGIN",
 	type = "monstrous humanoid",
 	name = "sahuagin",
-	image = "tiles/merfolk.png"
+	image = "tiles/merfolk.png",
 	display = 'h', color=colors.DARK_BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A blue-green scaly creature with a humanoid build and a shark's head.]],
@@ -404,7 +404,7 @@ newEntity{
 	define_as = "BASE_NPC_MINOTAUR",
 	type = "monstrous humanoid",
 	name = "minotaur",
-	image = "tiles/minotaur.png"
+	image = "tiles/minotaur.png",
 	display = 'h', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A giant horned minotaur.]],
