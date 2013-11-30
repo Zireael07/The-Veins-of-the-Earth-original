@@ -9,7 +9,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 8,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = true,
@@ -42,7 +42,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 0,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = false,
@@ -83,7 +83,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 0,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = true,
@@ -132,7 +132,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 0,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	requires_target = true,
@@ -173,7 +173,7 @@ newTalent{
 	mode = "activated",
 	level = 1,
 	points = 1,
-	cooldown = 0,
+	cooldown = 5,
 	range = 0,
 	radius = 4,
 	target = function(self, t)
@@ -244,7 +244,7 @@ newTalent{
 	--require = ,
 	level = 3,
 	points = 1,
-	cooldown = 20,
+	cooldown = 5,
 --	tactical = { BUFF = 2 },
 	range = 0,
 	radius = function(self, t)
@@ -280,6 +280,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -301,6 +302,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -322,6 +324,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -343,6 +346,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -364,6 +368,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -385,6 +390,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -405,9 +411,9 @@ newTalent{
 	image = "talents/cure_light_wounds.png",
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
-	--require = ,
 	level = 1,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	--caster_bonus = function(self)
@@ -419,7 +425,6 @@ newTalent{
 	self:heal(d) --+ caster_bonus)
 	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
-	--end,
 	end,
 
 	info = function(self, t)
@@ -433,9 +438,9 @@ newTalent{
 	image = "talents/cure_light_wounds.png",
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
-	--require = ,
 	level = 2,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	--caster_bonus = function(self)
@@ -461,9 +466,9 @@ newTalent{
 	image = "talents/cure_light_wounds.png",
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
-	--require = ,
 	level = 3,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	--caster_bonus = function(self)
@@ -475,7 +480,6 @@ newTalent{
 	self:heal(d) --+ caster_bonus)
 	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
-	--end,
 	end,
 
 	info = function(self, t)
@@ -489,9 +493,9 @@ newTalent{
 	image = "talents/cure_light_wounds.png",
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
-	--require = ,
 	level = 4,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	--caster_bonus = function(self)
@@ -503,7 +507,6 @@ newTalent{
 	self:heal(d) --+ caster_bonus)
 	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
-	--end,
 	end,
 
 	info = function(self, t)
@@ -519,6 +522,7 @@ newTalent{
 	mode = 'activated',
 	level = 4,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -542,6 +546,7 @@ newTalent{
 	mode = 'activated',
 	level = 5,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -565,6 +570,7 @@ newTalent{
 	mode = 'activated',
 	level = 6,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -588,6 +594,7 @@ newTalent{
 	mode = 'activated',
 	level = 7,
 	points = 1,
+	cooldown = 5,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -612,7 +619,7 @@ newTalent{
 	mode = "activated",
 	level = 1,
 	points = 1,
-	cooldown = 0,
+	cooldown = 5,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -643,7 +650,7 @@ newTalent{
 	mode = "activated",
 	level = 2,
 	points = 1,
-	cooldown = 0,
+	cooldown = 5,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -674,7 +681,7 @@ newTalent{
 	mode = "activated",
 	level = 3,
 	points = 1,
-	cooldown = 0,
+	cooldown = 5,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -705,7 +712,7 @@ newTalent{
 	mode = "activated",
 	level = 4,
 	points = 1,
-	cooldown = 0,
+	cooldown = 5,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
