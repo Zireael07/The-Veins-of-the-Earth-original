@@ -55,8 +55,8 @@ newEffect{
 	desc = "Encumbered",
 	type = "physical",
 	status = "detrimental",
-	on_gain = function(self, err) return "#Target# is encumbered!", "+Load" end,
-	on_lose = function(self, err) return "#Target# is no longer encumbered.", "-Load" end,
+	on_gain = function(self, err) return end, --"#Target# is encumbered!", "+Load" end,
+	on_lose = function(self, err) return end, --"#Target# is no longer encumbered.", "-Load" end,
 	activate = function(self, eff)
 		eff.loadpenaltyId = self:addTemporaryValue("load_penalty", 6)
 		eff.maxdexId = self:addTemporaryValue("max_dex_bonus", 1)
@@ -72,8 +72,8 @@ newEffect{
 	desc = "Encumbered",
 	type = "physical",
 	status = "detrimental",
-	on_gain = function(self, err) return "#Target# is encumbered!", "+Load" end,
-	on_lose = function(self, err) return "#Target# is no longer encumbered.", "-Load" end,
+	on_gain = function(self, err) return end, --"#Target# is encumbered!", "+Load" end,
+	on_lose = function(self, err) return end, --"#Target# is no longer encumbered.", "-Load" end,
 	activate = function(self, eff)
 		eff.loadpenaltyId = self:addTemporaryValue("load_penalty", 3)
 		eff.maxdexId = self:addTemporaryValue("max_dex_bonus", 3)
