@@ -18,7 +18,7 @@ Features:
 - new old gold and black UI skin
 - 32x32 tiles by Daniel E. Gervais & my edits
 - controls displayed automatically at game start
-- 10 classes: barbarian, bard, cleric, druid, fighter, ranger, rogue, sorcerer, wizard (with specialist schools [Seb]), warlock
+- 12 classes: barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, wizard (with specialist schools [Seb]), warlock
 - 2 prestige classes: shadowdancer, assasin
 - 13 races: human, half-elf, half-drow, gnome, halfling, elf, dwarf, half-orc; drow, duergar, deep gnomes
 - backgrounds for quicker character creation; basic rules info while creating a character

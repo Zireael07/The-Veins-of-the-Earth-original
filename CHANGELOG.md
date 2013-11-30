@@ -297,3 +297,25 @@ BETA RELEASES
 * hunger counter & food rations now work
 * multiclassing now requires 13 in core ability except for sorcerers and wizards, who require 16 in CHA or INT, respectively
 * cross-class skills are now coded and working
+
+0.12.0 - 30/11/2013
+* bug fix: not being able to use the mouse in some parts of the map
+* bug fix: map being covered by the log/HUD
+* bug fix: cross-class code now checks for the last leveled class
+* bug fix: encumbrance penalties no longer stack ad infinitum for some weird reason
+* bug fix: no more freezes due to running out of potion flavor names
+* bug fix: no more lua error on stack tooltip
+* bug fix: all innate spells now have a cooldown of 5
+
+* player tile changes depending on his/her race and class (from 2nd turn onwards)
+* new monsters: all monsters from SRD except demons, devils, dragons, lycanthropes, swarms & most animals which don't fit the dungeon theme
+* new classes: monk & paladin
+* you can now name your character yourself and/or reroll the random name multiple times
+* loading tips added
+* lowered ice DC as a temporary solution to the "fall-lock"
+* water and stale foodstuffs are now edible
+* more randomized magic items
+* added feat description tooltips to character sheet
+* added loading screen to module file
+* added intro depending on player race
+
