@@ -32,8 +32,10 @@ function _M:init(actor)
 	self:generateList()
 
 	self.c_desc = Textzone.new{width=self.iw, auto_height=true, text=[[You have #LIGHT_RED#died#LAST#!
-Death in #SANDY_BROWN#the Veins of the Earth#LAST# is usually permanent, but if you have a means of resurrection it will be proposed in the menu below.
-You can dump your character data to a file to remember her/him forever, or you can exit and try once again to survive in the wilds!
+Death in #SANDY_BROWN#the Veins of the Earth#LAST# is usually permanent. 
+Luckily, you can review your character sheet and try once again to survive in the wilds!
+
+Do not forget to vote for VotE!
 ]]}
 	self.c_list = List.new{width=self.iw, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end}
 
