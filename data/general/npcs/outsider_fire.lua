@@ -51,7 +51,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_EFREET",
 	type = "outsider",
---	image = "tiles/npc/dwarf_fighter.png",
+	image = "tiles/djinn.png",
 	display = 'O', color=colors.ORANGE,
 	body = { INVEN = 10 },
 	desc = [[A large humanoid clothed in red and seemingly hovering in air.]],
@@ -90,7 +90,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_RAST",
 	type = "outsider",
---	image = "tiles/npc/dwarf_fighter.png",
+	image = "tiles/elemental_fire.png",
 	display = 'O', color=colors.RED,
 	body = { INVEN = 10 },
 	desc = [[A large creature of fire.]],
@@ -122,7 +122,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_SALAMANDER",
 	type = "outsider",
---	image = "tiles/npc/dwarf_fighter.png",
+	image = "tiles/salamander.png",
 	display = 'O', color=colors.LIGHT_RED,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A large creature of fire.]],

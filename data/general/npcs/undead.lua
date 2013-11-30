@@ -155,7 +155,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_MOHRG",
         type = "undead",
-        image = "tiles/mummy.png",
+        image = "tiles/UT/mohrg.png",
         display = 'U', color=colors.BLACK,
         body = { INVEN = 10 },
         desc = [[A terrible undead creature.]],

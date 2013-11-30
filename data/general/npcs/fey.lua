@@ -9,13 +9,13 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_NYMPH",
 	type = "fey",
---	image = "tiles/nymph.png",
+	image = "tiles/newtiles/nymph.png",
 	display = 'f', color=colors.DARK_GREEN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A beautiful nymph.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	stats = { str=34, dex=10, con=29, int=21, wis=20, cha=20, luc=10 },
+	stats = { str=10, dex=17, con=12, int=16, wis=17, cha=19, luc=10 },
 	combat = { dam= {2,8} },
 	name = "nymph",
 	level_range = {15, nil}, exp_worth = 2000,
@@ -55,7 +55,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_SATYR",
 	type = "fey",
---	image = "tiles/satyr.png",
+	image = "tiles/satyr.png",
 	display = 'f', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A humanoid with hooves for feet.]],
@@ -63,7 +63,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=13, con=12, int=12, wis=13, cha=13, luc=12 },
 	combat = { dam= {1,6} },
-	name = "nymph",
+	name = "satyr",
 	level_range = {1, nil}, exp_worth = 600,
 	rarity = 15,
 	max_life = resolvers.rngavg(20,25),

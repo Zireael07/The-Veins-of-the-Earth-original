@@ -8,7 +8,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_TOJANIDA",
 	type = "outsider", subtype = "water",
-	image = "tiles/triton.png",
+	image = "tiles/UT/tojanida.png",
 	display = 'O', color=colors.LIGHT_BLUE,
 	body = { INVEN = 10 },
 	desc = [[A creature with seven stalks extending from the shell.]],

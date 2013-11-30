@@ -341,7 +341,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_GNOLL",
 	type = "humanoid", subtype = "humanoid_gnoll",
---	image = "tiles/goblin.png",
+	image = "tiles/gnoll.png",
 	display = 'h', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A dog-headed humanoid.]],
@@ -529,7 +529,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_LIZARDFOLK",
 	type = "humanoid", subtype = "humanoid_reptilian",
-	image = "tiles/goblin.png",
+	image = "tiles/lizardfolk.png",
 	display = 'h', color=colors.DARK_GREEN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly reptilian humanoid.]],
@@ -570,7 +570,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_LOCATHAH",
 	type = "humanoid", subtype = "humanoid_aquatic",
---	image = "tiles/goblin.png",
+	image = "tiles/triton.png",
 	display = 'h', color=colors.DARK_BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly fish-like humanoid.]],
@@ -610,7 +610,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_MERFOLK",
 	type = "humanoid", subtype = "humanoid_aquatic",
---	image = "tiles/goblin.png",
+	image = "tiles/UT/merfolk.png",
 	display = 'h', color=colors.DARK_BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly fish-like humanoid.]],

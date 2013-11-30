@@ -7,7 +7,7 @@ newEntity{
 	define_as = "BASE_NPC_CENTAUR",
 	type = "monstrous humanoid",
 	name = "centaur",
-	image = "tiles/centaur.png",
+	image = "tiles/newtiles/centaur.png",
 	display = 'q', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A proud centaur.]],
@@ -115,7 +115,7 @@ newEntity{
 	define_as = "BASE_NPC_GARGOYLE",
 	type = "monstrous humanoid",
 	name = "gargoyle",
-	image = "tiles/gargoyle.png",
+	image = "tiles/UT/gargoyle.png",
 	display = 'Y', color=colors.GRAY,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A winged stone statue with a hideous snout.]],
@@ -156,6 +156,7 @@ newEntity{
 	define_as = "BASE_NPC_GRIMLOCK",
 	type = "monstrous humanoid",
 	name = "grimlock",
+	image = "tiles/human.png"
 	display = 'h', color=colors.DARK_GRAY,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A dull gray humanoid with a flat skin on its face.]],
@@ -192,6 +193,7 @@ newEntity{
 	define_as = "BASE_NPC_SAHUAGIN",
 	type = "monstrous humanoid",
 	name = "sahuagin",
+	image = "tiles/merfolk.png"
 	display = 'h', color=colors.DARK_BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A blue-green scaly creature with a humanoid build and a shark's head.]],
@@ -230,7 +232,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_HAG",
 	type = "monstrous humanoid",
---	image = "tiles/hag.png",
+	image = "tiles/hag.png",
 	display = 'u', color=colors.BLUE,
 	body = { INVEN = 10 },
 	desc = [[A twisted crone bent in two.]],
@@ -402,6 +404,7 @@ newEntity{
 	define_as = "BASE_NPC_MINOTAUR",
 	type = "monstrous humanoid",
 	name = "minotaur",
+	image = "tiles/minotaur.png"
 	display = 'h', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A giant horned minotaur.]],
