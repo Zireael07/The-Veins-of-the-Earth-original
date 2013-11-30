@@ -44,6 +44,7 @@ newBirthDescriptor{
       { name="food rations" },
       { name="flask of water" },
     },
+    starting_intro = "main",
   },
   talents = {
     [ActorTalents.T_SHOOT]=1,
@@ -87,18 +88,27 @@ newBirthDescriptor {
   type = 'alignment',
   name = 'Lawful Good',
   desc = [[You are Lawful Good. Lawful spells will not harm you. Good characters will not be hostile.]],
+--[[  copy = {
+  starting_intro = "outcast",
+  }]]
 }
 
 newBirthDescriptor {
   type = 'alignment',
   name = 'Neutral Good',
   desc = [[You are Neutral Good. Good characters will not be hostile.]],
+  --[[  copy = {
+    starting_intro = "outcast",
+  }]]
 }
 
 newBirthDescriptor {
   type = 'alignment',
   name = 'Chaotic Good',
   desc = [[You are Neutral Good. Chaotic spells will not harm you. Good characters will not be hostile.]],
+  --[[  copy = {
+    starting_intro = "outcast",
+  }]]
 }
 
 newBirthDescriptor {

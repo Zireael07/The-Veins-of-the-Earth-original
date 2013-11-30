@@ -106,7 +106,12 @@ function _M:onBirth()
         game.creating_player = false
         game.player:levelPassives()
         game.player.changed = true
+--        game.player:onBirth()
+        local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
+--            self.player:playerLevelup()
         game.player:onBirth()
+        end, true)
+        game:registerDialog(d)
         print("[PLAYER BIRTH] resolved!")
         end, quickbirth, game.w*0.6, game.h*0.6)
 

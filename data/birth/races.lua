@@ -30,6 +30,7 @@ newBirthDescriptor {
 		skill_point = 4,
 	},
 	copy = {
+		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
 			{ name="a torch" },
@@ -49,6 +50,7 @@ newBirthDescriptor {
 		skill_search = 1,
 	},
 	copy = {
+		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
 			{ name="a torch" },
@@ -68,6 +70,7 @@ newBirthDescriptor {
 		skill_search = 1,
 	},
 	copy = {
+		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
 			{ name="a torch" },
@@ -87,6 +90,7 @@ newBirthDescriptor {
 		skill_search = 2,
 	},
 	copy = {
+		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
 			{ name="a torch" },
@@ -103,6 +107,7 @@ newBirthDescriptor {
 		infravision = 3,
 	},
 	copy = {
+		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
 			{ name="a torch" },
@@ -123,6 +128,7 @@ newBirthDescriptor {
 		skill_listen = 2,
 	},
 	copy = {
+		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
 			{ name="a torch" },
@@ -148,6 +154,7 @@ newBirthDescriptor {
 		will_save = 1,
 	},
 	copy = {
+		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
 			{ name="a torch" },
@@ -165,6 +172,7 @@ newBirthDescriptor {
 		infravision = 3,
 	},
 	copy = {
+		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
 			{ name="a torch" },
@@ -186,6 +194,9 @@ newBirthDescriptor {
 		skill_search = 2,
 		spell_resistance = 12,
 		ecl = 2,
+	},
+	copy = {
+	starting_intro = "dark",
 	}
 }
 
@@ -200,6 +211,9 @@ newBirthDescriptor {
 		skill_listen = 1,
 		skill_spot = 1,
 		ecl = 1,
+	},
+	copy = {
+	starting_intro = "dark",
 	}
 }
 
@@ -218,5 +232,8 @@ newBirthDescriptor {
 		reflex_save = 2,
 		will_save = 2,
 		ecl = 3,
+	},
+	copy = {
+	starting_intro = "dark",
 	}
 }
