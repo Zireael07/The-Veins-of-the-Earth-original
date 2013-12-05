@@ -4,11 +4,10 @@
 newEntity{
 	define_as = "BASE_CONTAINER",
 	type = "container", subtype = "container",
-	level_range = {1, nil},
 	image = "tiles/newtiles/bag.png",
 	display = "Δ", color=colors.SLATE,
 	unided_name = "a bag",
-	rarity = 2,
+	name = "bag",
 	encumber = 15,
 	identified = false,
 	desc = [[A container.]],
@@ -19,6 +18,8 @@ newEntity{
 	base = "BASE_CONTAINER",
 	name = "bag of holding",
 	unided_name = "a bag",
+	level_range = {1, nil},
+	rarity = 2,
 	cost = 2500,
 	--Based on Baldur's Gate bag of holding
 	body = { INVEN = 20 },
@@ -32,6 +33,8 @@ newEntity{
 	base = "BASE_CONTAINER",
 	name = "ammo belt",
 	unided_name = "a bag",
+	level_range = {1, nil},
+	rarity = 2,
 	cost = 1500,
 	--Based on Baldur's Gate bag of holding
 	body = { INVEN = 20 },
@@ -45,6 +48,8 @@ newEntity{
 	base = "BASE_CONTAINER",
 	name = "gem pouch",
 	unided_name = "a pouch",
+	level_range = {1, nil},
+	rarity = 2,
 	cost = 1500,
 	--Based on Baldur's Gate bag of holding
 	body = { INVEN = 20 },
@@ -58,6 +63,8 @@ newEntity{
 	base = "BASE_CONTAINER",
 	name = "potion case",
 	unided_name = "a bag",
+	level_range = {1, nil},
+	rarity = 2,
 	cost = 1500,
 	--Based on Baldur's Gate bag of holding
 	body = { INVEN = 20 },
@@ -71,6 +78,8 @@ newEntity{
 	base = "BASE_CONTAINER",
 	name = "scroll case",
 	unided_name = "a bag",
+	level_range = {1, nil},
+	rarity = 2,
 	cost = 1500,
 	--Based on Baldur's Gate bag of holding
 	body = { INVEN = 20 },

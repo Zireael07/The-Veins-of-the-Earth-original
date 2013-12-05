@@ -1,6 +1,5 @@
--- $Id: UseItemDialog.lua 2 2012-07-08 02:40:16Z dsb $
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2012 Scott Bigham
+-- Veins of the Earth
+-- Copyright (C) 2013 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -14,9 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Scott Bigham "Zizzo"
--- dsb-tome@killerbbunnies.org
 
 require "engine.class"
 local Dialog = require "engine.ui.Dialog"
@@ -75,10 +71,10 @@ function _M:use(item)
   --Container stuff
   elseif item.action == "putin" then
         self.actor:putIn(self.object)
-        self.onuse(self.inven, self.item, self.object, false)
+        self.on_use(self.inven, self.item, self.object, false)
   elseif item.action == "takeout" then
         self.actor:takeOut(self.object)
-        self.onuse(self.inven, self.item, self.object, false)  
+        self.on_use(self.inven, self.item, self.object, false)  
   elseif item.action == 'drop' then
     local on_use_cb = function()
       self.on_use(self.inven, self.item, self.object, false)
