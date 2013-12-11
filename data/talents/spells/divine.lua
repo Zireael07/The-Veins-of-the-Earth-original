@@ -222,7 +222,7 @@ newTalent{
 
 		local damage = rng.dice(1,8)
 
-		self:projectile(tg, x, y, DamageType.FORCE, damage)
+		self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 		return true
 	end,
 	info = function(self, t)
@@ -253,7 +253,7 @@ newTalent{
 
 		local damage = rng.dice(2,8)
 
-		self:projectile(tg, x, y, DamageType.FORCE, damage)
+		self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 		return true
 	end,
 	info = function(self, t)
@@ -284,7 +284,7 @@ newTalent{
 
 		local damage = rng.dice(3,8)
 
-		self:projectile(tg, x, y, DamageType.FORCE, damage)
+		self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 		return true
 	end,
 	info = function(self, t)
@@ -315,7 +315,7 @@ newTalent{
 
 		local damage = rng.dice(4,8)
 
-		self:projectile(tg, x, y, DamageType.FORCE, damage)
+		self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 		return true
 	end,
 	info = function(self, t)
