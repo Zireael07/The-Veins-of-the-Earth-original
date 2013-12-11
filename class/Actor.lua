@@ -211,6 +211,8 @@ function _M:act()
 
 	--Make sure encumbrance is checked every turn
 	if self == game.player and self.life > 0 then self:checkEncumbrance() end
+	
+	if self == game.player and self.life > 0 then self:autoID() end
 
 	--Death & dying related stuff
 	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
@@ -424,10 +426,13 @@ function _M:die(src)
 	end
 
 	-- Register kills for hiscores
-	if self.challenge < (game.player.level - 4) then 
-		killer.kills = killer.kills
-	else 
-	killer.kills = killer.kills + 1 end
+	if killer and killer == game.player then
+		if self.challenge < (game.player.level - 4) then 
+			killer.kills = killer.kills
+		else 
+		killer.kills = killer.kills + 1 end
+	else end
+
 	self.dead = true -- mark as dead, for scores?
 
 	-- Record kills for kill count
@@ -1075,6 +1080,19 @@ end]]
 function _M:onRemoveObject(o)
 	self:checkEncumbrance()
 end	
+
+function _M:autoID()
+
+	local list = {}
+        local inven = game.player:getInven("INVEN")
+        i = rng.range(1, #inven)
+        local o = inven[i]
+        	if o.identified == false then
+        		local check = self:skillCheck("intuition", 10)
+                        if check then o.identified = true end        
+                        else end
+		end
+end
 
 
 function _M:getMaxEncumbrance()
