@@ -73,7 +73,7 @@ function _M:init(t, no_default)
   --Timers :D
   self.nutrition = 500
   self.lite_counter = 5000
-  self.id_counter = 2000
+  self.id_counter = 10
 
   self.weapon_type = {}
   self.favored_enemy = {}
@@ -87,6 +87,7 @@ function _M:onBirth()
   self:setTile()
 --  self:equipAllItems()
   self:resetToFull()
+  self:setCountID()
 --  game:registerDialog(require"mod.dialogs.Help".new(self.player))
 end
 
@@ -185,6 +186,8 @@ end
 function _M:act()
   if not mod.class.Actor.act(self) then return end
 
+  self:checkEncumbrance()
+
 --Count down lite turns
   local lite = (self:getInven("LITE") and self:getInven("LITE")[1])
 
@@ -203,6 +206,14 @@ function _M:act()
 
  self.nutrition = self.nutrition - 1
 
+ --ID counter
+ local inven = game.player:getInven("INVEN")
+ self.id_counter = self.id_counter - 1
+
+  if self.id_counter == 0 then --and inven > 0 then
+    self:autoID()
+    self:setCountID()
+  end
 
   -- Clean log flasher
   game.flash:empty()
@@ -395,6 +406,28 @@ end
 function _M:mouseMove(tmx, tmy)
   return engine.interface.PlayerMouse.mouseMove(self, tmx, tmy, spotHostiles)
 end
+
+--Auto ID stuff
+
+function _M:setCountID()
+  if self.descriptor.class == "Rogue" then self.id_counter = 8
+  elseif self.descriptor.class == "Fighter" or self.descriptor.class == "Barbarian" then self.id_counter = 10
+  elseif self.descriptor.class == "Ranger" or self.descriptor.class == "Paladin" or self.descriptor.class == "Monk" or self.descriptor.class == "Warlock" or self.descriptor.class == "Cleric" then self.id_counter = 15
+  elseif self.descriptor.class == "Wizard" or self.descriptor.class == "Sorcerer" then self.id_counter = 20
+  end
+end
+
+function _M:autoID()
+  local list = {}
+        local inven = game.player:getInven("INVEN")
+        i = rng.range(1, #inven)
+        local o = inven[i]
+          if o.identified == false then
+            local check = self:skillCheck("intuition", 10)
+                        if check then o.identified = true end        
+            else end
+end
+
 
 --Get the fancy inventory title thing working
 function _M:getEncumberTitleUpdater(title)

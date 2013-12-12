@@ -209,11 +209,6 @@ function _M:act()
 	-- Compute timed effects
 	self:timedEffects()
 
-	--Make sure encumbrance is checked every turn
-	if self == game.player and self.life > 0 then self:checkEncumbrance() end
-	
-	if self == game.player and self.life > 0 then self:autoID() end
-
 	--Death & dying related stuff
 	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
 
@@ -1080,20 +1075,6 @@ end]]
 function _M:onRemoveObject(o)
 	self:checkEncumbrance()
 end	
-
-function _M:autoID()
-
-	local list = {}
-        local inven = game.player:getInven("INVEN")
-        i = rng.range(1, #inven)
-        local o = inven[i]
-        	if o.identified == false then
-        		local check = self:skillCheck("intuition", 10)
-                        if check then o.identified = true end        
-                        else end
-		end
-end
-
 
 function _M:getMaxEncumbrance()
 	local add = 0

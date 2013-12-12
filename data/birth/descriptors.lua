@@ -48,7 +48,7 @@ newBirthDescriptor{
   },
   talents = {
     [ActorTalents.T_SHOOT]=1,
-    [ActorTalents.T_INTUITION]=1,
+--    [ActorTalents.T_INTUITION]=1,
     [ActorTalents.T_POLEARM]=1,
   },
   talents_types = {
