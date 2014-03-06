@@ -183,7 +183,7 @@ end
 -- Called when our stats change
 function _M:onStatChange(stat, v)
 	if stat == "str" then self:checkEncumbrance() end
-	if stat == self.STAT_CON then self.max_life = self.max_life + 2 end
+	if stat == self.STAT_CON then self.max_life = self.max_life + v*2 end
 end 
 
 function _M:getName(t)
@@ -249,6 +249,18 @@ function _M:act()
 
 	-- Check terrain special effects
 	game.level.map:checkEntity(self.x, self.y, Map.TERRAIN, "on_stand", self)
+
+	--From Startide
+	-- Shrug off effects
+	for eff_id, params in pairs(self.tmp) do
+		local DC = params.DC_ongoing or 10
+		local eff = self.tempeffect_def[eff_id]
+		if eff.decrease == 0 then 
+			if self:saveRoll(DC, eff.type) then
+				params.dur = 0 
+			end
+		end
+	end
 
 
 	-- Still enough energy to act ?
@@ -809,6 +821,12 @@ function _M:willSave(dc)
 		return false
 	end
 end
+
+function _M:saveRoll(DC, type)
+	if type == "physical" then self:fortitudeSave(DC) end
+	if type == "mental" then self:willSave(DC) end
+end
+
 
 --Metamagic & spellbook stuff, Sebsebeleb
 function useMetamagic(self, t)
