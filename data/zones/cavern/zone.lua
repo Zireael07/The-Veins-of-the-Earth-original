@@ -38,7 +38,7 @@ return {
 			moss = "MOSS",
 		},
 		actor = {
-			class = "engine.generator.actor.Random",
+			class = "mod.class.generator.actor.Random",
 			nb_npc = {15, 25},
 		},
 		object = {

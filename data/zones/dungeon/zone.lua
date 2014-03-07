@@ -53,7 +53,7 @@ return {
 			['>'] = { "DOWN", "SHAFT_DOWN" },
 		},
 		actor = {
-			class = "engine.generator.actor.Random",
+			class = "mod.class.generator.actor.Random",
 			nb_npc = {10, 20},
 		},
 		object = {
