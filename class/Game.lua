@@ -65,6 +65,15 @@ function _M:init()
 	self:loaded()
 end
 
+--Thanks DG!
+function _M:load()
+	Zone.alter_filter = function(zone, e, filter, type)
+	if filter.max_cr then
+			if e.challenge >= zone.base_level + game.level.level + filter.max_cr then return false end
+ 	end
+end
+end
+
 function _M:run()
 	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
 	self.logdisplay = LogDisplay.new(290, self.h - 150, self.w*0.45, self.h*0.15, nil, nil, 14, {255,255,255}, {30,30,30})
