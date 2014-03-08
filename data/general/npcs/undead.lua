@@ -136,7 +136,7 @@ newEntity{
         challenge = 1,
 }
 
---Stench 2 squares DC 15 Fort
+--Stench 2 squares DC 15 Fort; Toughness
 newEntity{
         base = "BASE_NPC_GHAST",
         image = "tiles/ghast.png",
@@ -148,7 +148,6 @@ newEntity{
         challenge = 3,
         stats = { str=17, dex=17, con=1, int=13, wis=14, cha=16, luc=8 },
         combat = { dam= {1,8} },
-        resolvers.talents{ [Talents.T_TOUGHNESS]=1, },
 }
 
 --Improved grab, paralysing touch Fort DC 17 1d4x10 rounds
@@ -184,6 +183,7 @@ newEntity{
 }
 
 --Mummy rot Fort DC 16 1d6 CON & 1d6 CHA; fear for 1d4 rounds in LOS Will DC 16
+--Toughness
 newEntity{
         define_as = "BASE_NPC_MUMMY",
         type = "undead",
@@ -210,9 +210,7 @@ newEntity{
         skill_spot = 6,
         movement_speed_bonus = -0.33,
         alignment = "lawful evil",
-        resolvers.talents{ [Talents.T_ALERTNESS]=1,
---        [Talents.T_TOUGHNESS]=1 
-        },
+        resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
 --Incorporeal; 1d6 STR damage; +2 turn resistance

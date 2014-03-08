@@ -66,7 +66,7 @@ newEntity{
 	full_id=true,
 		{ name = "studded leather" },
 		{ name = "buckler" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -110,7 +110,7 @@ newEntity{
 	},
 }
 
---Fly 60 ft.;
+--Fly 60 ft.; Toughness
 newEntity{
 	define_as = "BASE_NPC_GARGOYLE",
 	type = "monstrous humanoid",
@@ -136,7 +136,6 @@ newEntity{
 	combat_dr = 10,
 	movement_speed_bonus = 0.33,
 	alignment = "chaotic evil",
-	resolvers.talents{ [Talents.T_TOUGHNESS]=1, },
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -297,7 +296,7 @@ newEntity{
 	},
 }
 
---2d6 STR damage in FOV
+--2d6 STR damage in FOV; Toughness
 newEntity{
 	base = "BASE_NPC_HAG",
 	name = "sea hag", color=colors.LIGHT_BLUE,
@@ -316,7 +315,6 @@ newEntity{
 	stats = { str=19, dex=12, con=12, int=10, wis=13, cha=14, luc=8 },
 	combat = { dam= {1,4} },
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_TOUGHNESS]=1
 	},
 }
 

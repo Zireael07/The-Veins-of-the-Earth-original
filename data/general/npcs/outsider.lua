@@ -150,7 +150,7 @@ newEntity{
 	 },
 }
 
---Fast healing 2
+--Fast healing 2, Toughness
 --Cast spells as Sor17
 --Spell-likes: At will—calm emotions (DC 17), charm monster (DC 19), clairaudience/clairvoyance, detect chaos, detect thoughts, dictum (DC 22), divination, hold monster (DC 20), magic circle against chaos, order’s wrath (DC 19), shield of law (DC 23), true seeing.
 newEntity{
@@ -178,8 +178,7 @@ newEntity{
 	movement_speed_bonus = -0.50,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1,
-	[Talents.T_TOUGHNESS]=1,
-	 },
+	},
 }
 
 --Fly 15 ft.; plane shift

@@ -316,7 +316,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	},
 }
 
---Climb 40 ft.; scent, rend 2d4
+--Climb 40 ft.; scent, rend 2d4, Toughness
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_GIRALLON",
 	image = "tiles/gorilla.png",
@@ -336,8 +336,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 5,
 	skill_spot = 5,
 	movement_speed_bonus = 0.33,
-	resolvers.talents{ [Talents.T_TOUGHNESS]=1,
-	[Talents.T_IRON_WILL]=1
+	resolvers.talents{ [Talents.T_IRON_WILL]=1
 	},
 }
 
@@ -1026,6 +1025,7 @@ newEntity{
 }
 
 --Swim 20 ft., fast healing 11 + number of heads; scent
+--Toughness
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_HYDRA",
 	image = "tiles/hydra.png",
@@ -1040,7 +1040,6 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_swim = 8,
 	movement_speed_bonus = -0.66,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1,
---	[Talents.T_TOUGHNESS]=1
 	},
 }
 
