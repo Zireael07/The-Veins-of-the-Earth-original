@@ -55,10 +55,13 @@ newTalent{
         local ammo = self:getInven("QUIVER")[1]
 
         if target then
+            --Use the ammo up!
+            ammo.combat.capacity = ammo.combat.capacity - 1
+
             --do we hit?
-            local hit, crit = self:attackRoll(target)
+            local hit, crit = self:attackRoll(target, weapon)
             if hit then
-                local damage = rng.dice(weapon.combat.dam[1],  weapon.combat.dam[2])
+                local damage = rng.dice(weapon.combat.dam[1], weapon.combat.dam[2])
                 if crit then damage = damage * 1.5 end --TODO: make it use crit damage
                 
                 DamageType:get(damtype).projector(self, target.x, target.y, damtype, math.max(0, damage), tmp)

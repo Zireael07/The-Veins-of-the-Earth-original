@@ -232,7 +232,7 @@ newEntity{ base = "BASE_RANGED",
 }
 
 newEntity{ base = "BASE_ARROW",
-    name = "arrows (20)",
+    name = "arrows",
     level_range = {1, 10},
     cost = 1,
     combat = {
@@ -253,7 +253,7 @@ newEntity{ base = "BASE_RANGED",
 } 
 
 newEntity{ base = "BASE_BOLT",
-    name = "bolts (10)",
+    name = "bolts",
     level_range = {1, 10},
     cost = 1,
     combat = {
@@ -274,7 +274,7 @@ newEntity{ base = "BASE_RANGED",
 } 
 
 newEntity{ base = "BASE_BULLET",
-    name = "bullets (10)",
+    name = "bullets",
     level_range = {1, 10},
     cost = 0.1,
     combat = {

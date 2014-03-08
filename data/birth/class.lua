@@ -574,7 +574,7 @@ newBirthDescriptor {
 		resolvers.inventory {
 			full_id=true,
 			{ name="shortbow", ego_chance=-1000},
-			{ name="arrows (20)", ego_chance=-1000 },
+			{ name="arrows", ego_chance=-1000 },
 		},
 
 	},
@@ -667,7 +667,7 @@ newBirthDescriptor {
 		resolvers.equip {
 			full_id=true,
 			{ name="light crossbow", ego_chance=-1000 },
-			{ name="bolts (10)", ego_chance=-1000 },
+			{ name="bolts", ego_chance=-1000 },
 			{ name="studded leather", ego_chance=-1000 },
 		},
 		resolvers.inventory {
@@ -747,7 +747,7 @@ newBirthDescriptor {
 		resolvers.inventory {
 			full_id=true,
 			{ name="light crossbow", ego_chance=-1000},
-			{ name="bolts (10)", ego_chance=-1000},
+			{ name="bolts", ego_chance=-1000},
 		}
 
 	},
@@ -829,7 +829,7 @@ newBirthDescriptor {
 		resolvers.inventory {
 			full_id=true,
 			{ name="light crossbow", ego_chance=-1000},
-			{ name="bolts (10)", ego_chance=-1000},
+			{ name="bolts", ego_chance=-1000},
 		}
 
 	},

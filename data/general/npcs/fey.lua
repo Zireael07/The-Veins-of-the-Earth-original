@@ -44,7 +44,7 @@ newEntity{
 	resolvers.equip{
 		full_id=true,
 		{ name = "iron dagger" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -90,7 +90,7 @@ newEntity{
 	resolvers.equip{
 		full_id=true,
 		{ name = "iron dagger" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,

@@ -84,7 +84,7 @@ function _M:descAttribute(attr)
         return (i and i > 0 and "+"..i or tostring(i))
     elseif attr == "COMBAT_AMMO" then
         local c = self.combat
-        return c.shots_left.."/"..math.floor(c.capacity)
+        return c.capacity
     end
 end
 
@@ -96,6 +96,13 @@ function _M:getName(t)
 
     if self.identified == false and not t.force_id and self:getUnidentifiedName() then name = self:getUnidentifiedName() end
     
+    --Display ammo capacity correctly
+    if self.combat and self.combat.capacity then
+        name = name.." ("..self.combat.capacity..")"
+    end
+
+
+    --Does this even work?
     name = name:gsub("~", ""):gsub("&", "a"):gsub("#([^#]+)#", function(attr)
         return self:descAttribute(attr)
     end)
@@ -143,7 +150,10 @@ function _M:getTextualDesc()
         if self.exotic then desc:add("This is an exotic weapon", true) end
 
     if self:isIdentified() then
-           local desc_wielder = function(w)
+           if self.wielder then
+            desc:add({"color","SANDY_BROWN"}, "\nWhen equipped:", {"color", "LAST"}, true)
+
+        local desc_wielder = function(w)
             if w.skill_bonus_hide then desc:add(("#GOLD#This armor grants a +%d bonus to Hide skill."):format(w.skill_bonus_hide or 0), true) end
             if w.skill_bonus_movesilently then desc:add(("#GOLD#This armor grants a +%d bonus to Move Silently skill."):format(w.skill_bonus_movesilently or 0), true) end
             if w.skill_bonus_escapeartist then desc:add(("#GOLD#This armor grants a +%d bonus to Escape Artist skill."):format(w.skill_bonus_escapeartist or 0), true) end
@@ -153,10 +163,8 @@ function _M:getTextualDesc()
             if w.combat_natural then desc:add(("#GOLD#This item grants a +%d natural armor bonus to AC."):format(w.combat_natural or 0), true) end
             if w.combat_protection then desc:add(("#GOLD#This item grants a +%d protection bonus to AC."):format(w.combat_protection or 0), true) end
         end
-
-        if self.wielder then
-            desc:add({"color","SANDY_BROWN"}, "When equipped:", {"color", "LAST"}, true)
-            desc_wielder(self.wielder)
+        
+        desc_wielder(self.wielder)
         end
     else
 
