@@ -1,5 +1,7 @@
 newTalentType{ type="class/general", no_tt_req = true, name = "general", description = "General feats" }
 
+load("data/talents/feats/focus.lua")
+
 --Proficiency feats
 newTalent{
 	name = "Light Armor Proficiency",
@@ -96,58 +98,6 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	info = [[With a light weapon, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.]],
-}
-
-newTalent{
-	name = "Weapon Focus",
-	type = {"class/general", 1},
-	require = {
-		special = {
-			fct = function(self, t, offset) 
-			--Base attack bonus 1
-			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
-			else return false end
-			end,
-			desc = "Base attack bonus 1",
-		}
-	},
-	is_feat = true,
-	points = 1,
-	mode = "passive",
-	info = [[You gain a +1 bonus to attacks made with the chosen weapon.]],
-		on_learn = function(self, t)
-		local d = require("mod.dialogs.WeaponTypes").new(t)
-
-		game:registerDialog(d)    
-end
-}
-
-newTalent{
-	name = "Improved Critical",
-	type = {"class/general", 1},
-	is_feat = true,
-	points = 3,
-	mode = "passive",
-	require = {
-		special = {
-			fct = function(self, t, offset) 
-			--Base attack bonus 8
-			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
-			else return false end
-			end,
-			desc = "Base attack bonus 8",		 
-		}
-	},
-	is_feat = true,
-	info = [[This feat increases a chosen weapon's critical range by 2.]],
-		on_learn = function(self, t)
-		local d = require("mod.dialogs.WeaponTypes").new(t)
-
-		game:registerDialog(d)
-      	
-      	if weapon.subtype == choice then
-		combat.weapon.threat = combat.weapon.threat + 2 end     
-end
 }
 
 newTalent{

@@ -33,7 +33,7 @@ newBirthDescriptor {
 }
 
 --Require BAB 1 at 1st level
-newBirthDescriptor {
+--[[newBirthDescriptor {
 	type = 'background',
 	name = "Master of one",
 	desc = 'You have focused on your weapon of choice.\n\n Spend 4 skill points on Jump and Swim each. Pick Weapon Focus as your first feat.',
@@ -46,7 +46,7 @@ newBirthDescriptor {
 	talents = {
 		[ActorTalents.T_WEAPON_FOCUS]=1,
 	},
-}
+}]]
 
 --Require BAB 1 at 1st level
 newBirthDescriptor {

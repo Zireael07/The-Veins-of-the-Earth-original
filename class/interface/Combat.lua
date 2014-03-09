@@ -149,9 +149,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
    end
 
    -- Feat bonuses
-   if self:knowTalent(self.T_WEAPON_FOCUS) and weapon and weapon.subtype == self.weapon_type then
-      attack = (attack + 1)
-   end
+   if weapon and weapon.subtype and self:hasFocus(weapon.subtype) then attack = (attack + 1) end
 
    -- Stat bonuses
    local stat_used = "str"
@@ -213,8 +211,8 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
     local threat = 0 + (weapon and weapon.combat.threat or 0)
     
     --Improved Critical
-  --  if self:knowTalent(self.T_IMPROVED_CRITICAL) and weapon and weapon.subtype == choice then combat.weapon.threat = combat.weapon.threat + 2 end
-    
+    if weapon and weapon.subtype and self:hasCritical(weapon.subtype) then combat.weapon.threat = combat.weapon.threat + 2 end
+
     if hit and d >= 20 - threat then
       -- threatened critical hit confirmation roll
       if not (rng.range(1,20) + attack < ac) then
@@ -223,7 +221,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
    end
    
    if hit then
-      local dam = rng.dice(weapon.combat.dam[1],weapon.combat.dam[2])
+      local dam = rng.dice(weapon.combat.dam[1], weapon.combat.dam[2])
 
       -- magic damage bonus
       dam = dam + (weapon and weapon.combat.magic_bonus or 0)
@@ -261,4 +259,71 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
         target:takeHit(dam, self)
         game.log(("%s deals %d damage to %s!"):format(self.name:capitalize(), dam, target.name:capitalize()))
    end
+end
+
+_M.focuses = {
+  axe = Talents.T_WEAPON_FOCUS_AXE,
+  battleaxe = Talents.T_WEAPON_FOCUS_BATTLEAXE,
+  bow = Talents.T_WEAPON_FOCUS_BOW,
+  club = Talents.T_WEAPON_FOCUS_CLUB,
+  crossbow = Talents.T_WEAPON_FOCUS_CROSSBOW,
+  dagger = Talents.T_WEAPON_FOCUS_DAGGER,
+  falchion = Talents.T_WEAPON_FOCUS_FALCHION,
+  flail = Talents.T_WEAPON_FOCUS_FLAIL,
+  halberd = Talents.T_WEAPON_FOCUS_HALBERD,
+  hammer = Talents.T_WEAPON_FOCUS_HAMMER,
+  handaxe = Talents.T_WEAPON_FOCUS_HANDAXE,
+  javelin = Talents.T_WEAPON_FOCUS_JAVELIN,
+  kukri = Talents.T_WEAPON_FOCUS_KUKRI,
+  mace = Talents.T_WEAPON_FOCUS_MACE,
+  morningstar = Talents.T_WEAPON_FOCUS_MORNINGSTAR,
+  rapier = Talents.T_WEAPON_FOCUS_RAPIER,
+  scimitar = Talents.T_WEAPON_FOCUS_SCIMITAR,
+  scythe = Talents.T_WEAPON_FOCUS_SCYTHE,
+  shortsword = Talents.T_WEAPON_FOCUS_SHORTSWORD,
+  spear = Talents.T_WEAPON_FOCUS_SPEAR,
+  sling = Talents.T_WEAPON_FOCUS_SLING,
+  staff = Talents.T_WEAPON_FOCUS_STAFF,
+  sword = Talents.T_WEAPON_FOCUS_SWORD,
+  trident = Talents.T_WEAPON_FOCUS_TRIDENT,
+}
+
+
+function _M:hasFocus(type)
+  if self:knowTalent(focuses[type]) then return true
+  else return false end
+end
+
+
+_M.ImpCrit = {
+  axe = Talents.T_IMPROVED_CRIT_AXE,
+  battleaxe = Talents.T_IMPROVED_CRIT_BATTLEAXE,
+  bow = Talents.T_IMPROVED_CRIT_BOW,
+  club = Talents.T_IMPROVED_CRIT_CLUB,
+  crossbow = Talents.T_IMPROVED_CRIT_CROSSBOW,
+  dagger = Talents.T_IMPROVED_CRIT_DAGGER,
+  falchion = Talents.T_IMPROVED_CRIT_FALCHION,
+  flail = Talents.T_IMPROVED_CRIT_FLAIL,
+  halberd = Talents.T_IMPROVED_CRIT_HALBERD,
+  hammer = Talents.T_IMPROVED_CRIT_HAMMER,
+  handaxe = Talents.T_IMPROVED_CRIT_HANDAXE,
+  javelin = Talents.T_IMPROVED_CRIT_JAVELIN,
+  kukri = Talents.T_IMPROVED_CRIT_KUKRI,
+  mace = Talents.T_IMPROVED_CRIT_MACE,
+  morningstar = Talents.T_IMPROVED_CRIT_MORNINGSTAR,
+  rapier = Talents.T_IMPROVED_CRIT_RAPIER,
+  scimitar = Talents.T_IMPROVED_CRIT_SCIMITAR,
+  scythe = Talents.T_IMPROVED_CRIT_SCYTHE,
+  shortsword = Talents.T_IMPROVED_CRIT_SHORTSWORD,
+  spear = Talents.T_IMPROVED_CRIT_SPEAR,
+  sling = Talents.T_IMPROVED_CRIT_SLING,
+  staff = Talents.T_IMPROVED_CRIT_STAFF,
+  sword = Talents.T_IMPROVED_CRIT_SWORD,
+  trident = Talents.T_IMPROVED_CRIT_TRIDENT,
+}
+
+
+function _M:hasCritical(type)
+  if self:knowTalent(ImpCrit[type]) then return true
+  else return false end
 end
