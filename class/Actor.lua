@@ -974,7 +974,7 @@ end
 
 --Random perks
 function _M:randomFeat()
-	local chance = rng.dice(1,22)
+	local chance = rng.dice(1,24)
 	
 	if chance == 1 then self:learnTalent(self.T_DODGE, true)
 	elseif chance == 2 then self:learnTalent(self.T_FINESSE, true)
@@ -997,13 +997,45 @@ function _M:randomFeat()
 	elseif chance == 19 then self:learnTalent(self.T_STEALTHY, true)
 	elseif chance == 20 then self:learnTalent(self.T_THUG, true)
 	elseif chance == 21 then self:learnTalent(self.T_TWO_WEAPON_FIGHTING, true)
-	--TO DO: Figure out how to do the choice part of these ones
+	elseif chance == 22 then self:randomFocus()
+	elseif chance == 23 then self:randomFocus()
+	--TO DO: Figure out how to do the choice part of it
 --[[	elseif chance == 5 then self:learnTalent(self.T_FAVORED_ENEMY, true)
-	elseif chance == 6 then self:learnTalent(self.T_WEAPON_FOCUS, true)
 		--Commented out due to the problems with on_pre_use
 		if chance == 1 then self:learnTalent(self.T_POWER_ATTACK, true)]]
 	
 	else self:learnTalent(self.T_IRON_WILL, true) end
+
+end
+
+function _M:randomFocus()
+	local chance = rng.dice(1,24)
+
+	if chance == 1 then self:learnTalent(self.T_WEAPON_FOCUS_AXE, true)
+	elseif chance == 2 then self:learnTalent(self.T_WEAPON_FOCUS_BATTLEAXE, true)
+	elseif chance == 3 then self:learnTalent(self.T_WEAPON_FOCUS_BOW, true)
+	elseif chance == 4 then self:learnTalent(self.T_WEAPON_FOCUS_CLUB, true)
+	elseif chance == 5 then self:learnTalent(self.T_WEAPON_FOCUS_CROSSBOW, true)
+	elseif chance == 6 then self:learnTalent(self.T_WEAPON_FOCUS_DAGGER, true)
+	elseif chance == 7 then self:learnTalent(self.T_WEAPON_FOCUS_FALCHION, true)
+	elseif chance == 8 then self:learnTalent(self.T_WEAPON_FOCUS_FLAIL, true)
+	elseif chance == 9 then self:learnTalent(self.T_WEAPON_FOCUS_HALBERD, true)
+	elseif chance == 10 then self:learnTalent(self.T_WEAPON_FOCUS_HAMMER, true)
+	elseif chance == 11 then self:learnTalent(self.T_WEAPON_FOCUS_HANDAXE, true)
+	elseif chance == 12 then self:learnTalent(self.T_WEAPON_FOCUS_JAVELIN, true)
+	elseif chance == 13 then self:learnTalent(self.T_WEAPON_FOCUS_KUKRI, true)
+	elseif chance == 14 then self:learnTalent(self.T_WEAPON_FOCUS_MACE, true)
+	elseif chance == 15 then self:learnTalent(self.T_WEAPON_FOCUS_MORNINGSTAR, true)
+	elseif chance == 16 then self:learnTalent(self.T_WEAPON_FOCUS_RAPIER, true)
+	elseif chance == 17 then self:learnTalent(self.T_WEAPON_FOCUS_SCIMITAR, true)
+	elseif chance == 18 then self:learnTalent(self.T_WEAPON_FOCUS_SCYTHE, true)
+	elseif chance == 19 then self:learnTalent(self.T_WEAPON_FOCUS_SHORTSWORD, true)
+	elseif chance == 20 then self:learnTalent(self.T_WEAPON_FOCUS_SPEAR, true)
+	elseif chance == 21 then self:learnTalent(self.T_WEAPON_FOCUS_SLING, true)
+	elseif chance == 22 then self:learnTalent(self.T_WEAPON_FOCUS_STAFF, true)
+	elseif chance == 23 then self:learnTalent(self.T_WEAPON_FOCUS_SWORD, true)
+
+	else self:learnTalent(self.T_WEAPON_FOCUS_TRIDENT, true) end
 
 end
 

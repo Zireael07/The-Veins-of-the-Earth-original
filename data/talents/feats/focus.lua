@@ -1,5 +1,5 @@
 newTalent{
-	short_name = "T_WEAPON_FOCUS_AXE",
+	short_name = "WEAPON_FOCUS_AXE",
 	name = "Weapon Focus (axe)",
 	type = {"class/general", 1},
 	require = {
@@ -19,7 +19,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_BATTLEAXE",
+	short_name = "WEAPON_FOCUS_BATTLEAXE",
 	name = "Weapon Focus (battleaxe)",
 	type = {"class/general", 1},
 	require = {
@@ -39,7 +39,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_BOW",
+	short_name = "WEAPON_FOCUS_BOW",
 	name = "Weapon Focus (bow)",
 	type = {"class/general", 1},
 	require = {
@@ -59,7 +59,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_CLUB",
+	short_name = "WEAPON_FOCUS_CLUB",
 	name = "Weapon Focus (club)",
 	type = {"class/general", 1},
 	require = {
@@ -79,7 +79,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_CROSSBOW",
+	short_name = "WEAPON_FOCUS_CROSSBOW",
 	name = "Weapon Focus (crossbow)",
 	type = {"class/general", 1},
 	require = {
@@ -99,7 +99,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_DAGGER",
+	short_name = "WEAPON_FOCUS_DAGGER",
 	name = "Weapon Focus (dagger)",
 	type = {"class/general", 1},
 	require = {
@@ -119,7 +119,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_FALCHION",
+	short_name = "WEAPON_FOCUS_FALCHION",
 	name = "Weapon Focus (falchion)",
 	type = {"class/general", 1},
 	require = {
@@ -139,7 +139,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_FLAIL",
+	short_name = "WEAPON_FOCUS_FLAIL",
 	name = "Weapon Focus (flail)",
 	type = {"class/general", 1},
 	require = {
@@ -159,7 +159,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_HALBERD",
+	short_name = "WEAPON_FOCUS_HALBERD",
 	name = "Weapon Focus (halberd)",
 	type = {"class/general", 1},
 	require = {
@@ -179,7 +179,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_HAMMER",
+	short_name = "WEAPON_FOCUS_HAMMER",
 	name = "Weapon Focus (hammer)",
 	type = {"class/general", 1},
 	require = {
@@ -199,7 +199,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_HANDAXE",
+	short_name = "WEAPON_FOCUS_HANDAXE",
 	name = "Weapon Focus (handaxe)",
 	type = {"class/general", 1},
 	require = {
@@ -219,7 +219,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_JAVELIN",
+	short_name = "WEAPON_FOCUS_JAVELIN",
 	name = "Weapon Focus (javelin)",
 	type = {"class/general", 1},
 	require = {
@@ -239,7 +239,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_KUKRI",
+	short_name = "WEAPON_FOCUS_KUKRI",
 	name = "Weapon Focus (kukri)",
 	type = {"class/general", 1},
 	require = {
@@ -259,7 +259,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_MACE",
+	short_name = "WEAPON_FOCUS_MACE",
 	name = "Weapon Focus (mace)",
 	type = {"class/general", 1},
 	require = {
@@ -279,7 +279,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_MORNINGSTAR",
+	short_name = "WEAPON_FOCUS_MORNINGSTAR",
 	name = "Weapon Focus (morningstar)",
 	type = {"class/general", 1},
 	require = {
@@ -299,7 +299,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_RAPIER",
+	short_name = "WEAPON_FOCUS_RAPIER",
 	name = "Weapon Focus (rapier)",
 	type = {"class/general", 1},
 	require = {
@@ -319,7 +319,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_SCIMITAR",
+	short_name = "WEAPON_FOCUS_SCIMITAR",
 	name = "Weapon Focus (scimitar)",
 	type = {"class/general", 1},
 	require = {
@@ -339,7 +339,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_SCYTHE",
+	short_name = "WEAPON_FOCUS_SCYTHE",
 	name = "Weapon Focus (scythe)",
 	type = {"class/general", 1},
 	require = {
@@ -359,7 +359,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_SHORTSWORD",
+	short_name = "WEAPON_FOCUS_SHORTSWORD",
 	name = "Weapon Focus (short sword)",
 	type = {"class/general", 1},
 	require = {
@@ -379,7 +379,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_SLING",
+	short_name = "WEAPON_FOCUS_SLING",
 	name = "Weapon Focus (sling)",
 	type = {"class/general", 1},
 	require = {
@@ -399,7 +399,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_SPEAR",
+	short_name = "WEAPON_FOCUS_SPEAR",
 	name = "Weapon Focus (spear)",
 	type = {"class/general", 1},
 	require = {
@@ -419,7 +419,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_STAFF",
+	short_name = "WEAPON_FOCUS_STAFF",
 	name = "Weapon Focus (staff)",
 	type = {"class/general", 1},
 	require = {
@@ -439,7 +439,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_SWORD",
+	short_name = "WEAPON_FOCUS_SWORD",
 	name = "Weapon Focus (sword)",
 	type = {"class/general", 1},
 	require = {
@@ -459,7 +459,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_WEAPON_FOCUS_TRIDENT",
+	short_name = "WEAPON_FOCUS_TRIDENT",
 	name = "Weapon Focus (trident)",
 	type = {"class/general", 1},
 	require = {
@@ -481,7 +481,7 @@ newTalent{
 
 --Improved Criticals
 newTalent{
-	short_name = "T_IMPROVED_CRIT_AXE",
+	short_name = "IMPROVED_CRIT_AXE",
 	name = "Improved Critical (axe)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -503,7 +503,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_BATTLEAXE",
+	short_name = "IMPROVED_CRIT_BATTLEAXE",
 	name = "Improved Critical (battleaxe)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -525,7 +525,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_BOW",
+	short_name = "IMPROVED_CRIT_BOW",
 	name = "Improved Critical (bow)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -547,7 +547,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_CLUB",
+	short_name = "IMPROVED_CRIT_CLUB",
 	name = "Improved Critical (club)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -569,7 +569,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_CROSSBOW",
+	short_name = "IMPROVED_CRIT_CROSSBOW",
 	name = "Improved Critical (crossbow)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -591,7 +591,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_DAGGER",
+	short_name = "IMPROVED_CRIT_DAGGER",
 	name = "Improved Critical (dagger)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -613,7 +613,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_FALCHION",
+	short_name = "IMPROVED_CRIT_FALCHION",
 	name = "Improved Critical (falchion)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -635,7 +635,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_FLAIL",
+	short_name = "IMPROVED_CRIT_FLAIL",
 	name = "Improved Critical (flail)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -657,7 +657,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_HALBERD",
+	short_name = "IMPROVED_CRIT_HALBERD",
 	name = "Improved Critical (halberd)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -679,7 +679,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_HAMMER",
+	short_name = "IMPROVED_CRIT_HAMMER",
 	name = "Improved Critical (hammer)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -701,7 +701,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_HANDAXE",
+	short_name = "IMPROVED_CRIT_HANDAXE",
 	name = "Improved Critical (handaxe)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -723,7 +723,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_JAVELIN",
+	short_name = "IMPROVED_CRIT_JAVELIN",
 	name = "Improved Critical (javelin)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -745,7 +745,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_KUKRI",
+	short_name = "IMPROVED_CRIT_KUKRI",
 	name = "Improved Critical (kukri)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -767,7 +767,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_MACE",
+	short_name = "IMPROVED_CRIT_MACE",
 	name = "Improved Critical (mace)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -789,7 +789,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_MORNINGSTAR",
+	short_name = "IMPROVED_CRIT_MORNINGSTAR",
 	name = "Improved Critical (morningstar)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -811,7 +811,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_RAPIER",
+	short_name = "IMPROVED_CRIT_RAPIER",
 	name = "Improved Critical (rapier)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -833,7 +833,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_SCIMITAR",
+	short_name = "IMPROVED_CRIT_SCIMITAR",
 	name = "Improved Critical (scimitar)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -855,7 +855,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_SCYTHE",
+	short_name = "IMPROVED_CRIT_SCYTHE",
 	name = "Improved Critical (scythe)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -877,7 +877,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_SHORTSWORD",
+	short_name = "IMPROVED_CRIT_SHORTSWORD",
 	name = "Improved Critical (short sword)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -899,7 +899,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_SLING",
+	short_name = "IMPROVED_CRIT_SLING",
 	name = "Improved Critical (sling)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -921,7 +921,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_SPEAR",
+	short_name = "IMPROVED_CRIT_SPEAR",
 	name = "Improved Critical (spear)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -943,7 +943,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_STAFF",
+	short_name = "IMPROVED_CRIT_STAFF",
 	name = "Improved Critical (staff)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -965,7 +965,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_SWORD",
+	short_name = "IMPROVED_CRIT_SWORD",
 	name = "Improved Critical (sword)",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -987,7 +987,7 @@ newTalent{
 }
 
 newTalent{
-	short_name = "T_IMPROVED_CRIT_TRIDENT",
+	short_name = "IMPROVED_CRIT_TRIDENT",
 	name = "Improved Critical (trident)",
 	type = {"class/general", 1},
 	is_feat = true,
