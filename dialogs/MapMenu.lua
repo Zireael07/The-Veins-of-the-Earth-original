@@ -66,7 +66,7 @@ function _M:use(item)
     elseif act == "target-player" then item.actor:setTarget(game.player)
     elseif act == "change_level" then game.key:triggerVirtual("CHANGE_LEVEL")
     elseif act == "pickup" then game.key:triggerVirtual("PICKUP_FLOOR")
---    elseif act == "character_sheet" then game:registerDialog(require("mod.dialogs.CharacterSheet").new(item.actor))
+    elseif act == "monster_info" then game:registerDialog(require("mod.dialogs.MonsterInfo").new(item.actor))
     elseif act == "inventory" then game.key:triggerVirtual("SHOW_INVENTORY")
     elseif act == "rest" then game.key:triggerVirtual("REST")
     end
@@ -97,10 +97,10 @@ function _M:generateList()
     if o and self.on_player then list[#list+1] = {name="Pick up item", action="pickup", color=colors.simple(colors.ANTIQUE_WHITE)} end
     if g and not self.on_player then list[#list+1] = {name="Move to", action="move_to", color=colors.simple(colors.ANTIQUE_WHITE)} end
     if a and not self.on_player and config.settings.cheat then list[#list+1] = {name="Target player", action="target-player", color=colors.simple(colors.RED), actor=a} end
-    if a and config.settings.cheat then list[#list+1] = {name="Lua inspect", action="debug-inspect", color=colors.simple(colors.LIGHT_BLUE), actor=a} end
+--    if a and config.settings.cheat then list[#list+1] = {name="Lua inspect", action="debug-inspect", color=colors.simple(colors.LIGHT_BLUE), actor=a} end
     if self.on_player then list[#list+1] = {name="Rest a while", action="rest", color=colors.simple(colors.ANTIQUE_WHITE)} end
     if self.on_player then list[#list+1] = {name="Inventory", action="inventory", color=colors.simple(colors.ANTIQUE_WHITE)} end
---    if a and player:canReallySee(a) then list[#list+1] = {name="Inspect Creature", action="character_sheet", color=colors.simple(colors.ANTIQUE_WHITE), actor=a} end
+    if a and player:canReallySee(a) then list[#list+1] = {name="Monster Info", action="monster_info", color=colors.simple(colors.ANTIQUE_WHITE), actor=a} end
 
     self.max = 0
     self.maxh = 0

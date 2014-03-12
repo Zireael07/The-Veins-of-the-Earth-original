@@ -81,7 +81,7 @@ function _M:run()
 	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
 	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
 	self.player_display = PlayerDisplay.new(0, self.h*0.75, 200, 150, {0,0,0}, "/data/font/DroidSansMono.ttf", 14)
---	self.player_display = PlayerDisplay.new()
+	
 	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
 
@@ -564,7 +564,12 @@ function _M:setupCommands()
 		LOOK_AROUND = function()
 			self.flash:empty(true)
 			self.flash(self.flash.GOOD, "Looking around... (direction keys to select interesting things, shift+direction keys to move freely)")
-			local co = coroutine.create(function() self.player:getTarget{type="hit", no_restrict=true, range=2000} end)
+			local co = coroutine.create(function() self.player:getTarget{type="hit", no_restrict=true, range=2000} 
+				if x and y then
+                    local tmx, tmy = self.level.map:getTileToScreen(x, y)
+                    self:registerDialog(MapMenu.new(tmx, tmy, x, y))
+                end
+			end)
 			local ok, err = coroutine.resume(co)
 			if not ok and err then print(debug.traceback(co)) error(err) end
 		end,
