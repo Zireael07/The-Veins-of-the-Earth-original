@@ -218,7 +218,7 @@ newEntity{
 	resolvers.equip{
 	full_id=true,
 		{ name = "trident" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
@@ -388,7 +388,7 @@ newEntity{
 	resolvers.equip{
 	full_id=true,
 		{ name = "shortbow" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {

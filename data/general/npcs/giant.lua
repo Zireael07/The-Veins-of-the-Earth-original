@@ -113,7 +113,7 @@ newEntity{
 		full_id=true,
 		{ name = "chain shirt" },
 		{ name = "greatsword" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,

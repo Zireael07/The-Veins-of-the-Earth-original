@@ -47,7 +47,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	resolvers.equip{
 		full_id=true,
 		{ name = "short spear" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -66,7 +66,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
         { name = "shortbow" },
 	},
 	resolvers.inventory {
@@ -105,7 +105,7 @@ newEntity{
 		full_id=true,
 		{ name = "studded leather armor" },
 		{ name = "falchion" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -186,7 +186,7 @@ newEntity{
 		{ name = "chain shirt" },
 		{ name = "light metal shield" },
 		{ name = "rapier" },
-		{ name = "bolts (10)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -223,7 +223,7 @@ newEntity{
 		{ name = "chain mail" },
 		{ name = "light metal shield" },
 		{ name = "longsword" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -262,7 +262,7 @@ newEntity{
 		{ name = "scale mail" },
 		{ name = "heavy metal shield" },
 		{ name = "dwarven waraxe" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -287,7 +287,7 @@ newEntity{
 		{ name = "chain mail" },
 		{ name = "heavy metal shield" },
 		{ name = "warhammer" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -372,7 +372,7 @@ newEntity{
 		{ name = "leather armor" },
 		{ name = "heavy steel shield" },
 		{ name = "battleaxe" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -412,7 +412,7 @@ newEntity{
 		{ name = "chain shirt" },
 		{ name = "heavy metal shield" },
 		{ name = "longsword" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -444,7 +444,7 @@ newEntity{
 		{ name = "banded mail" },
 		{ name = "buckler" },
 		{ name = "longsword" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -480,7 +480,7 @@ newEntity{
 		{ name = "studded leather" },
 		{ name = "light metal shield" },
 		{ name = "longsword" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -597,7 +597,7 @@ newEntity{
 	resolvers.equip{
 		full_id=true,
 		{ name = "light crossbow" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -642,7 +642,7 @@ newEntity{
 		full_id=true,
 		{ name = "leather armor" },
 		{ name = "heavy crossbow" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -727,7 +727,7 @@ newEntity{
 		full_id=true,
 		{ name = "studded leather armor" },
 		{ name = "rapier" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -773,7 +773,7 @@ newEntity{
 		{ name = "scale mail" },
 		{ name = "longsword" },
 		{ name = "heavy metal shield" },
-		{ name = "bolts (20)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -799,7 +799,7 @@ newEntity{
 		{ name = "chain shirt" },
 		{ name = "light metal shield" },
 		{ name = "rapier" },
-		{ name = "bolts (10)" },
+		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -825,7 +825,7 @@ newEntity{
 		{ name = "chainmail" },
 		{ name = "light metal shield" },
 		{ name = "longsword" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,

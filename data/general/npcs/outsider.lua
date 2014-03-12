@@ -222,7 +222,7 @@ newEntity{
 	full_id=true,
 		{ name = "chain mail" },
 		{ name = "scimitar" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -436,7 +436,7 @@ newEntity{
 		full_id=true,
 		{ name = "short sword" },
 		{ name = "short sword" },
-		{ name = "arrows (20)" },
+		{ name = "arrows" },
 	},
 	resolvers.inventory {
 	full_id=true,
