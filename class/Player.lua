@@ -79,6 +79,7 @@ function _M:init(t, no_default)
   self.favored_enemy = {}
   self.last_class = {}
   self.all_kills = self.all_kills or {}
+  self.all_seen = self.all_seen or {}
 end
 
 function _M:onBirth()
@@ -86,6 +87,8 @@ function _M:onBirth()
   self:levelClass(self.descriptor.class)
   self:setTile()
 --  self:equipAllItems()
+  -- HACK: This forces PlayerDisplay and HotkeysDisplay to update after birth descriptors are finished.
+  game.player.changed = true
   self:resetToFull()
   self:setCountID()
 --  game:registerDialog(require"mod.dialogs.Help".new(self.player))
@@ -105,6 +108,7 @@ function _M:equipAllItems()
       if o.slot ~= "INVEN" then
       self:removeObject(inven, o)
       self:wearObject(o, false, false)  
+      self:removeObject(inven, o)
       end
     end
     self:sortInven()  
@@ -185,6 +189,8 @@ end
 
 function _M:act()
   if not mod.class.Actor.act(self) then return end
+
+  self:spottedMonsterXP()
 
   self:checkEncumbrance()
 
@@ -406,6 +412,32 @@ end
 function _M:mouseMove(tmx, tmy)
   return engine.interface.PlayerMouse.mouseMove(self, tmx, tmy, spotHostiles)
 end
+
+--- Adds map lighting (see playerFov) to Actor.canReallySee
+function _M:canReallySee(actor)
+    return self:canSee(actor) and game.level.map.seens(actor.x, actor.y)
+end
+
+function _M:spottedMonsterXP()
+   local act
+
+    for i = 1, #self.fov.actors_dist do
+      act = self.fov.actors_dist[i]
+      if act and self:reactionToward(act) < 0 and self:canReallySee(act) and not act.seen
+        then self.all_seen = self.all_seen or {}
+        self.all_seen[act.name] = self.all_seen[act.name] or 0
+        self.all_seen[act.name] = self.all_seen[act.name] + 1 
+        act.seen = true 
+
+        --Formula found on the net because I suck at Maths
+        local x = self.all_seen[act.name]
+        local y = 100-(x*25)
+        if y > 0 then self:gainExp(y) end
+      end
+    end
+
+end
+
 
 --Auto ID stuff
 

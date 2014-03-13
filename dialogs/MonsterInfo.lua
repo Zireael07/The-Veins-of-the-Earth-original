@@ -12,7 +12,7 @@ function _M:init(actor)
     self.actor = actor
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
-    Dialog.init(self, "Monster Info", math.max(game.w * 0.7, 950), game.h*0.5, nil, nil, font)
+    Dialog.init(self, "Monster Info", game.w * 0.3, game.h*0.3, nil, nil, font)
 
     self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
 
@@ -40,9 +40,9 @@ function _M:drawDialog()
     h = 0
     w = 0
     
- --Display kills
- s:drawColorStringBlended(self.font, "Number killed: #GOLD# : "..(player.all_kills[actor.name] or 0), w, h, 255, 255, 255, true) h = h + self.font_h
-
+ --Display kills and seens
+ s:drawColorStringBlended(self.font, "Number killed: #ORANGE# : "..(player.all_kills[actor.name] or 0), w, h, 255, 255, 255, true) h = h + self.font_h
+ s:drawColorStringBlended(self.font, "Number seen: #GOLD# : "..(player.all_seen[actor.name] or 0), w, h, 255, 255, 255, true) h = h + self.font_h
 
 
  h = h + self.font_h -- Adds an empty row

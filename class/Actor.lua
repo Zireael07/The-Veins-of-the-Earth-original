@@ -165,6 +165,7 @@ function _M:init(t, no_default)
 
 	--Scoring
 	self.kills = 0
+	self.seen = false
 
 	--Light-related
 	self.lite = 0 --Temporary test
