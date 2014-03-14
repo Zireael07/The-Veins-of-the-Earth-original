@@ -137,21 +137,32 @@ function _M:loaded()
 	selfppp = engine.KeyBind.new()
 end
 
-function _M:setupDisplayMode()
+function _M:setupDisplayMode(reboot, mode)
 	if not mode or mode == "init" then
+		local gfx = self.gfx
+
+		if reboot then
+			self.change_res_dialog = true
+			self:saveGame()
+			util.showMainMenu(false, nil, nil, self.__mod_info.short_name, self.save_name, false)
+		end
+
 		Map:resetTiles()
 	end
 	
 	if not mode or mode == "postinit" then
+		local gfx = self.gfx
 		Tiles.prefix = "/data/gfx/"
 	
 		local th, tw = 32, 32
 		
 		--switched from "fsize" to 32.
 		Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
-		--Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, nil, fsize, do_bg)
 		Map.tiles.use_images = true
-	
+		
+		if gfx == "ascii" then Map.tiles.use_images = false
+		elseif gfx == "tiles" then Map.tiles.use_images = true end
+
 --[[	print("[DISPLAY MODE] 32x32 ASCII/background")
 	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
 	Map:resetTiles()
@@ -533,6 +544,7 @@ function _M:setupCommands()
 				"resume",
 				"keybinds",
 				"highscores",
+				{"Graphic Mode", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GraphicMode").new()) end},
 				"video",
 				"save",
 				"quit"
