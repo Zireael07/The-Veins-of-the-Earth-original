@@ -22,7 +22,10 @@ newEntity{
 	type = "outsider",
 	display = 'ǒ', color=colors.BLACK,
 	body = { INVEN = 10 },
-	desc = [[A large bluish-reddish wolf.]],
+	desc = [[A large bird-like creature.]],
+	uncommon_desc = [[Achaierais can release a choking, toxic cloud that damages all those it touches and can cause short term insanity.]],
+	common_desc = [[An achaierai's strength lies in its formidable natural attacks of claws and beak, coupled with its speed and mobility in combat. Achaierais speak Infernal.]],
+	base_desc = [[This creature is an achaierai, a vicious predator from the Infernal Battlefield of Acheron. It can see in the dark and cannot be brought back to life by normal means.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=19, dex=13, con=14, int=11, wis=14, cha=16, luc=12 },
@@ -58,6 +61,10 @@ newEntity{
 	display = 'd', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large bluish-reddish wolf.]],
+	specialist_desc = [[When a barghest slays a humanoid opponent, it feasts on both the body and soul, making it extremely difficult to bring the creature back to life even with powerful spells such as true resurrection, miracle, or wish. Those that consume enough corpses grow into powerful versions called greater barghests.]],
+	uncommon_desc = [[Barghests can use the following as spell-like abilities: blink, charm monster, crushing despair, dimension door, levitate, misdirection, and rage.]],
+	common_desc = [[A barghest can change its shape, turning into either a goblin or a wolf. It has damage reduction, but it is vulnerable to magic weapons.]],
+	base_desc = [[This lupine fiend is a barghest, a hybrid between goblin and wolf. It can see in the dark and needs to eat, sleep and breathe.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=15, con=13, int=14, wis=14, cha=14, luc=12 },
@@ -100,6 +107,9 @@ newEntity{
 	display = 'd', color=colors.RED,
 	body = { INVEN = 10, BODY = 1 },
 	desc = [[A large flame-colored canine.]],
+	uncommon_desc = [[Larger, more powerful versions of the hell hound exist, including the Nessian warhound. They are used as mounts and hunters for the devil princes of the Nine Hells.]],
+	common_desc = [[Hell hounds are consummate trackers and often employ pack tactics. The bite of a hell hound deals additional fire damage and they can breathe fire every few rounds.]],
+	base_desc = [[This infernal-looking canine is a hell hound. It can see in the dark and cannot be brought back to life by normal means.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=13, int=6, wis=10, cha=6, luc=10 },
@@ -196,6 +206,11 @@ newEntity{
 	display = 'O', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A female creature dressed in dark colors.]],
+	specialist_desc = [[Night hags can haunt the dreams of chaotic or evil mortals, draining their health. A night hag has numerous spell-like abilities she can use at will, including etherealness, magic missile, ray of enfeeblement, sleep, and the ability to polymorph herself and detect magic and alignments.]],
+	uncommon_desc = [[Night hags resist spells and their iron-hard skin deflects most weapon blows, though magic weapions forged of cold iron can still pierce their defenses. A night hag’s bite carries a dangerous disease called demon fever.]],
+	common_desc = [[The connection between night hags and mortal hags is mere speculation. Night hags are native to the Gray Wastes of Hades, where they trade in mortal flesh and souls. They are immune to cold, fire, charm, sleep, and fear.]],
+	base_desc = [[This midnight-hued crone is a type of fiend called a night hag. Some scholars believe night hags are the ultimate stage of truly ancient and powerful mortal hags (such as green hags).
+	It can see in the dark and cannot be brought back to life by normal means. ]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=19, dex=12, con=18, int=11, wis=15, cha=12, luc=12 },
@@ -239,6 +254,10 @@ newEntity{
 	display = 'O', color=colors.FIREBRICK,
 	body = { INVEN = 10 },
 	desc = [[A horse made of smoke, with flaming hooves.]],
+	specialist_desc = [[Nightmares, at will, can use astral projection and etherealness, as the spells.]],
+	uncommon_desc = [[Nightmares can fly and often serve as companions and steeds for powerful, evil individuals. Nightmares produce a thick, black smoke when enraged, granting it concealment, as well as blinding and choking opponents.]],
+	common_desc = [[The powerful hooves of a nightmare are sheathed in flame and a blow from them sets combustible objects alight.]],
+	base_desc = [[This ebon-skinned, flame-covered steed is a nightmare. It can see in the dark and cannot be brought back to life by usual means.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=18, dex=15, con=16, int=13, wis=13, cha=12, luc=12 },
@@ -305,6 +324,9 @@ newEntity{
 	display = 'O', color=colors.UMBER,
 	body = { INVEN = 10 },
 	desc = [[A creature roughly the size of a human head.]],
+	uncommon_desc = [[Vargouilles can emit a terrible shriek that causes paralysis in its victims. The "kiss" of a vargouille on a paralyzed victim can cause a terrible transformation that slowly changes it into another vargouille. This transformation is slowed by sunlight or the daylight spell, but can only be reversed with remove disease.]],
+	common_desc = [[The bite of a vargouille contains a poison that cannot be healed except through the use of neutralize poison or heal.]],
+	base_desc = [[This is a vargouille, a hideous outsider from the deepest pits of Carceri. It can see in the dark and cannot be brought back to life by normal means.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=13, con=12, int=5, wis=12, cha=8, luc=8 },

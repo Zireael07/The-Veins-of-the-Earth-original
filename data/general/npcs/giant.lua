@@ -3,6 +3,8 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
+local giant_desc = [[It is proficient with simple and martial weapons, as well as any armor it wears. It has to eat, sleep and breathe.]]
+
 newEntity{
 	define_as = "BASE_NPC_ETTIN",
 	type = "giant",
@@ -50,6 +52,10 @@ newEntity{
 	display = "H", color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A dumb brute.]],
+    specialist_desc = [[Ogres sometimes associate with other monstrous giants, such as trolls, ogre magi, or oni. Ogres can also interbreed with humans, though such offspring are incredibly rare.]],
+    uncommon_desc = [[A scaly, aquatic variant of the common ogre lurks in freshwater lakes and rivers; these creatures are called merrow. Merrow can breathe air, but are slower on land than their more common kin.]],
+    common_desc = [[As one might expect from their build, ogres are physically powerful but somewhat clumsy. They are dimwitted and cruel, but can sometimes be bargained with.]],
+    base_desc = "This brutish and bestial giant is called an ogre. These creatures are renowned for their love for the taste of humanoid flesh. Ogres speak Giant, and exceptionally clever ones may have learned Common as well. "..giant_desc.."",
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=8, con=15, int=6, wis=10, cha=7, luc=8 },
@@ -87,6 +93,10 @@ newEntity{
 	display = "H", color=colors.BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A blue-skinned ogre.]],
+    specialist_desc = [[Ogre mages can use the following as spell-like abilities: change shape, charm person, cone of cold, darkness, gaseous form, invisibility, and sleep.]],
+    uncommon_desc = [[Ogre mages can fly and can regenerate severed limbs or body parts.]],
+    common_desc = [[Ogre mages dominate regular ogres and dwell in fortified structures or underground lairs. Fire and acid damage deal normal damage to an ogre mage.]],
+    base_desc = "This is an ogre mage, which is a more intelligent, powerful, and dangerous variety of ogre. "..giant_desc.."",
     
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=10, con=17, int=14, wis=14, cha=17, luc=8 },

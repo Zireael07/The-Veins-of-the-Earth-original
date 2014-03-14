@@ -23,6 +23,9 @@ newEntity{
 	display = 'e', color=colors.LIGHT_BLUE,
 	body = { INVEN = 10 },
 	desc = [[A bird with shimmering feathers.]],
+	uncommon_desc = [[Arrowhawks are extremely territorial creatures, and though intelligent will usually attack any creature that encrouches upon its territory with little thought, much like predatory animals from the material plane. In combat they prefer to rely on their ability to unleash a ray of electricity fired from their tails whilst in flight. Arrowhawks speak Auran, but they are not usually talkative creatures.]],
+	common_desc = [[An arrowhawk is at home on the wing, eating, sleeping and mating without ever touching the ground. As such they are expert flyers, with manoeuvrability matched only by air elementals and other such creatures. Even the eggs of these creature have an innate levitation abuility, and older examples of this creature regularly perfect the art of the flyby attack. Most examples of these creature range in size from a large brid of prey to a fully grown pegasus, though there are rare cases of the eldest of arrowhawks reaching the size of an adult roc.]],
+	base_desc = [[This strange bird-like creature is an arrowhawk, an extraplanar predator and scavenger from the elemental plane of air. It can see in the dark and cannot be brought back to life by normal means.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=12, dex=21, con=12, int=10, wis=13, cha=13, luc=12 },
@@ -104,6 +107,9 @@ newEntity{
 	display = 'E', color=colors.LIGHT_BLUE,
 	body = { INVEN = 10 },
 	desc = [[A demonic humanoid composed of smoke.]],
+	uncommon_desc = [[Though not a demon, belkers are undeniably evil. However, they tend to be reclusive creatures that have no or little interest in the affairs of others. When belkers do show interest enough to communicate with others, they usually use the Auran language.]],
+	common_desc = [[In normal combat, a belker attacks with its claws, bite and wings. However, they can also take on a smoke form (much like using the spell gaseous form). In this smoke form, a belker can engulf a victim, forcing them to inhale a portion of the belker's essence which then solidifies into a claw within the victim and starts to attack them from within.]],
+	base_desc = [[This demonic looking monster is in fact a belker, an elemental creature from the Plane of Air. It can see in the dark and cannot be brought back to life by normal means. It can fly.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=21, con=13, int=6, wis=11, cha=11, luc=12 },

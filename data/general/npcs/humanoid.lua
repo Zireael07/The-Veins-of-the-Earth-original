@@ -160,6 +160,10 @@ newEntity{
 	display = 'h', color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A dark silhouette.]],
+	specialist_desc = [[Drow do not sleep or dream, and are immune to sleep effects. Instead, they refresh themselves by entering a meditative reverie for a few hours a night. Drow are resistant to magic, but once per day they can use spell-like abilities to create dancing lights, darkness, and faerie fire, which they use to disorient their foes.]],
+	uncommon_desc = [[A drow’s sharp senses are attuned to life underground. Drow can see so well in the dark that sudden exposure to bright light can blind them.]],
+	common_desc = [[Drow are known for their evil natures, matriarchal cultures, and zealous worship of malign, arachnid gods. They are more delicate than humans, but also more dextrous and more cunning. Drow are talented spellcasters, with drow women holding all divine roles. Culturally, drow train their children with the rapier, short sword, and hand crossbow, and they often poison their weapons.]],
+	base_desc = [[This lithe, ebon-skinned humanoid is a dark elf, also known as a drow. These suberttanean elves speak both Elven and Undercommon, and typically also speak Common. Some drow also learn oher racial languages or a form of sign language known only to them.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
@@ -269,6 +273,9 @@ newEntity{
 	{ name = "fresh corpse" },
     { name = "shortbow" },
 	},
+	uncommon_desc = [[ Dwarves come off as gruff or even rude, but they are an extremely determined and honorable people. They look down upon those who flaunt their wealth and usually wear only one or two pieces of finery themselves, although dwarven jewelry tends to be exceedingly beautiful and well-crafted.]],
+	common_desc = [[Dwarves build their kingdoms underground, carving them straight into the stone of mountainsides. They are naturally adept at working stone, and spend their days mining gems and precious metals from beneath the earth.]],
+	base_desc = [[This short, stocky humanoid is a dwarf. It can see in the dark.]],
 }
 
 newEntity{
@@ -314,6 +321,9 @@ newEntity{
 	skill_movesilently = 5,
 	skill_listen = 4,
 	skill_spot = 4,
+	uncommon_desc = [[Bugbears tend to live in small tribal units, with the biggest and meanest of them the tribal leader by default. They tend to have but two goals in life: food and treasure, and a group of adventures would be considered a great source of both.]],
+	common_desc = [[As well as being considerably stronger, healthier and more light footed than the average human, bugbears have an affinity for moving quietly despite their bulk. Combined with their natural darkvision, these qualities add up to a creature very well suited for raids on camp sites in the dead of night.]],
+	base_desc = [[This muscular humanoid is a bugbear, the biggest and strongest of the common goblinoids. Bugbears speak Goblin and Common. It is proficient in simple weapons and needs to eat, breathe and sleep.]],
 }
 
 newEntity{
@@ -388,6 +398,9 @@ newEntity{
 	display = 'h', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost gnome.]],
+	uncommon_desc = [[Gnomes are renowned for two traits: their sense of humor and their innate talents for arcane illusions. As a spell-like ability, any gnome can speak with burrowing mammals, and talented gnomes can produce dancing lights, ghost sound, and prestidigitation as well.]],
+	common_desc = [[Gnomes can see well in dim light and have sharp ears. They have a particular dislike for the more bestial “smallfolk,” such as goblins and kobolds, and are well-versed at evading the ponderous attacks of giants.]],
+	base_desc = [[This small, spindly humanoid is a gnome, one of the civilized nonhuman races. Gnomes speak their own language, but also learn Common. Clever gnomes often know other racial languages as well.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=11, con=14, int=10, wis=9, cha=8, luc=10 },
@@ -460,6 +473,9 @@ newEntity{
 	display = 'h', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost halfling.]],
+	uncommon_desc = [[Desipite their small stature, halflings are generally brave and good-natured. These nomadic smallfolk are widely traveled.]],
+	common_desc = [[Halflings use their small size and nimble physique to escape notice, evade the ponderous attacks of larger creatures, and slip into places where they are not necessarily invited.]],
+	base_desc = [[This childlike humanoid is a halfling. Halflings have their own tongue, but also speak the local language. Clever halflings may know other racial languages as well.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=8, luc=12 },

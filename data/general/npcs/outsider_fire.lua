@@ -13,6 +13,10 @@ newEntity{
 	display = 'h', color=colors.FIREBRICK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A flamehaired dwarf wearing a metal kilt.]],
+	specialist_desc = [[Although unfriendly and taciturn, azers are not naturally agressive, though their love of gems can provoke an agressive reaction out of them if those they meet refuse to give them up.]],
+	uncommon_desc = [[Azers have a thick skin which protects them against physical blows, and an innate resistance to magic which protects them against spells.]],
+	common_desc = [[Though not an elemental, azers share some traits with their firey cousins. As well as an invulnerability to fire and a vulnerability to cold, all natural attacks it make, as well as those with metalic weapons deal extra fire damage when they hit. Azers speak Ignan and Common.]],
+	base_desc = [[This flaming dwarf-like creature is an azer, a creature native to the Elemental Plane of Fire. It can see in the dark and needs to eat and sleep.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=13, int=12, wis=12, cha=9, luc=10 },
@@ -55,6 +59,11 @@ newEntity{
 	display = 'O', color=colors.ORANGE,
 	body = { INVEN = 10 },
 	desc = [[A large humanoid clothed in red and seemingly hovering in air.]],
+	specialist_desc = [[An efreeti has numerous spell-like abilities it can call upon. At will, it can detect magic or produce flames in a number of different lesser ways. Three times per day, it can polymorph itself, use gaseous form or invisibility, and produce a permanent image or wall of fire.]],
+	uncommon_desc = [[The malevolent efreet particularly enjoy befuddling their foes. Twice per day, an efreeti can magically enlarge or shrink itself or any humanoid. An efreeti’s body is so hot it burns to the touch.]],
+	common_desc = [[Genies are clever entities who prefer to outwit opponents. If trapped, they try to bargain their way out, offering to use their magical abilities as boons. In fact, however, most genies lack the power to grant wishes. As a genie, an efreeti can plane shift itself and up to eight other creatures between the Material Plane, the Astral Plane, and any of the elemental planes.]],
+	base_desc = [[This fiery, devilish-looking giant is an efreeti, a type of genie. Genies are renowned for their ability to grant wishes. 
+	It can see in the dark and cannot be brought back to life by normal means.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=23, dex=17, con=13, int=12, wis=12, cha=9, luc=10 },

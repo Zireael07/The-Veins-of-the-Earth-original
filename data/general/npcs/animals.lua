@@ -17,6 +17,8 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
+local animal_desc = [[It has low Intelligence and is always neutral. It needs to eat, sleep and breathe.]]
+
 newEntity{
 	define_as = "BASE_NPC_RAT",
 	type = "animal",
@@ -24,6 +26,8 @@ newEntity{
 	display = 'r', color=colors.WHITE,
 	body = { INVEN = 10 },
 	desc = [[A small rat.]],
+	common_desc = [[A dire rat spreads filth fever, a dangerous disease, with its sharp bite.]],
+	base_desc = "This child-sized rodent is a dire rat. Dire rats are scavengers, but fearlessly defend their territory. "..animal_desc.."",
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=17, con=12, int=1, wis=12, cha=4, luc=2 },
@@ -59,10 +63,7 @@ newEntity{
 	skill_hide = 14,
 	skill_swim = 14,
 	stats = { str=2, dex=15, con=10, int=2, wis=12, cha=2, luc=2 },
-	
 }
-
-
 
 newEntity{
 	define_as = "BASE_NPC_SNAKE",
@@ -191,6 +192,8 @@ newEntity{
 	display = 'b', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large bat.]],
+	common_desc = [[Dire bats use echolocation to sense their surroundings. If deafened, they must rely on their weak vision instead.]],
+	base_desc = "This leathery creature is a dire bat. Dire bats are easily excited, and usually attack any creatures they encounter. "..animal_desc.."",
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=1, dex=15, con=10, int=2, wis=14, cha=4, luc=10 },
@@ -223,6 +226,8 @@ newEntity{
 	display = 'b', color=colors.GREY,
 	body = { INVEN = 10 },
 	desc = [[A large raven.]],
+	common_desc = [[Dire ravens are attacted to shiny baubles, and if attacked, instinctually try to peck out their opponents’ eyes.]],
+	base_desc = "This ebon bird is a dire raven. It is a scavenger that attacks only to defend its carrion meals. "..animal_desc.."",
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=1, dex=15, con=10, int=2, wis=14, cha=6, luc=10 },

@@ -35,6 +35,10 @@ newEntity{
 	skill_spot = 11,
 	skill_tumble = 11,
 	movement_speed_bonus = -0.33,
+	specialist_desc = [[A victim of a chaos beast’s touch does not immediately die from the transformation. A shapechange or stoneskin spell can stop the process temporarily, but a restoration, heal, or greater restoration spell is needed to remove the affliction.]],
+	uncommon_desc = [[A chaos beast can cause very little damage. However, its touch is damaging to corporeal creatures, causing them to melt into an amorphous mass, slowing going into shock and eventually becoming a chaos beast themselves. They are completely immune to transmutation.]],
+	common_desc = [[Much like their home plane of Limbo, chaos beasts have no set form. Instead, they constantly shift and alter their bodies, and there’s no telling what one might look like.]],
+	base_desc = [[ This amorphous, revolting creature is a chaos beast. It can see in the dark and cannot be brought back to life by normal means.]],
 }
 
 --Immunity to poison, petrification & cold
@@ -240,6 +244,11 @@ newEntity{
 	display = 'O', color=colors.LIGHT_RED,
 	body = { INVEN = 10 },
 	desc = [[A humanoid with inverted hands.]],
+	specialist_desc = [[Not only are rakshasas strong, intelligent, and charming, they can transform themselves to assume any humanoid form. True seeing can still reveal the fiend’s true appearance. Rakshasas feed on human flesh.]],
+	uncommon_desc = [[A rakshasa can read minds and is a talented innate sorcerous spellcaster. Their king is Ravana, a mountainous demon lord with ten heads. Ravana is more powerful than he is clever.]],
+	common_desc = [[akshasas are masters of deceit and illusion. They are also highly resistant to physical harm, though good-aligned piercing weapons can penetrate their supernatural defenses.]],
+	base_desc = [[This malevolent tiger-headed humanoid is actually a fiend called a rakshasa.  They may have been extremely wicked humans in previous incarnations.
+	It can see in the dark and cannot be brought back to life by normal means.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=12, dex=14, con=16, int=13, wis=13, cha=17, luc=12 },
@@ -336,6 +345,8 @@ newEntity{
 	display = 'O', color=colors.DARK_BROWN,
 	body = { INVEN = 10 },
 	desc = [[A creature of fire and earth.]],
+	common_desc = [[ese creatures are generally summoned from the Elemental Plane of Fire or, more rarely, the Elemental Plane of Earth. A thoqqua is so hot that its mere touch can ignite almost any material.]],
+	base_desc = [[This rocky, red-hot worm is a thoqqua. It can see in the dark and cannot be brought back by normal means. It burrows through earth and rock. It resists fire and takes double damage from cold.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=13, con=13, int=6, wis=12, cha=10, luc=10 },

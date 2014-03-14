@@ -5,6 +5,8 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
+local construct_desc = [[It can see in the dark. It is immune to mind-affecting effects, such as charms, compulsions or phantasms. It is immune to poison, sleep effects, paralysis, stunning, disease, death effects, and necromancy effects. It is immune to critical hits, ability damage, ability drain or energy drain. They do not eat, sleep or breathe.]]
+
 --Immunity to magic
 newEntity{
 	define_as = "BASE_NPC_GOLEM",
@@ -102,6 +104,10 @@ newEntity{
 	display = 'C', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10 },
 	desc = [[A wizard's miniature servant.]],
+	specialist_desc = [[A homunculus’ body is formed from a mixture of clay, ashes, mandrake root, spring water, and one pint of the creator’s blood. Destroying a homunculus instantly strikes a painful blow to its master.]],
+	uncommon_desc = [[A homunculus cannot speak, but it is linked telepathically to its creator. So long as a homunculus remains relatively nearby, the creature’s master also sees and hears everything its minion witnesses. A homunculus never willingly wanders beyond the range of the telepathic link with its master.]],
+	common_desc = [[Homunculi are usually created by arcane spellcasters, who primarily use them as spies. Although it is not a fearsome combatant, a homunculus can inject sleep-inducing venom with its bite.]],
+	base_desc = "This misshapen little bat-winged creature is a homunculus, a magical creation. "..construct_desc.."",
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=8, dex=15, con=1, int=10, wis=12, cha=6, luc=12 },

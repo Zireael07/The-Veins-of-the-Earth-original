@@ -5,6 +5,8 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
+local angel_desc = [[It can see in the dark. It is immune to acid, cold and petrification. It resists electricity and fire.]]
+
 newEntity{
     define_as = "BASE_NPC_CELESTIAL",
     type = "outsider",
@@ -50,6 +52,10 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
                 [DamageType.FIRE] = 10,
                 [DamageType.ELECTRIC] = 10,
         },
+        specialist_desc = [[Astral devas have a large array of powerful spell-like abilities at their disposal and are extremely resilient to magical attacks. They can also stun foes that they hit multiple times in combat with their maces.]],
+        uncommon_desc = [[Astral devas take fierce joy in wading into combat to battle evil foes, usually relying on their large enchanted maces to smite their foes. Their natural weapons and any weapons wielded are good aligned and they are vulnerable to evil weapons.]],
+        common_desc = "This creature is an astral deva, an angel from the Blessed Fields of Elysium or another good-aligned plane. These angels watch over creatures of good alignment, especially planar travellers and those on missions of a good cause."..angel_desc.."",
+        base_desc = [[Though uncertain exactly what this creature is, you can tell it is not native to this world. It can see in the dark and cannot be brought to life by normal means.]],
 }
 
 --fly 90 ft.; wields greatsword +3; change shape; immunity to acid, cold, petrification; regen 10
@@ -83,6 +89,10 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
                 [DamageType.FIRE] = 10,
                 [DamageType.ELECTRIC] = 10,
         },
+        specialist_desc = [[ As well as a large range of spell-like abilities, planetars can also call upon the divine spells of the deities they serve, much in the same way as a very powerful cleric, and they are highly resilient to magical attacks.]],
+        uncommon_desc = [[Despite their vast array of magical powers, planetars usually prefer to enter melee, wielding their massive enchanted greatswords. Their natural weapons and any weapons wielded are good aligned and they are vulnerable to evil weapons, though damage from other sources will regenerate.]],
+        common_desc = "This creature is a planetar, an angelic race of creatures with a hatred of all fiends whose members serve as the generals of celestial armies."..angel_desc.."",
+        base_desc = [[Though uncertain exactly what this creature is, you can tell it is not native to this world. It can see in the dark and cannot be brought to life by normal means.]],
 --        resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }
 
@@ -121,6 +131,10 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         resolvers.talents{ [Talents.T_DODGE]=1,
 --         [Talents.T_POWER_ATTACK]=1,
         },
+        specialist_desc = [[As well as a large range of spell-like abilities, solars can also call upon the divine spells of the deities they serve, much in the same way as a very powerful cleric, and they are highly resilient to magical attacks. Some of their spell-like abilities which help them see through illusions and discern falsehoods and other dangers are always active.]],
+        uncommon_desc = [[Solars are champions in melee, wielding their massive enchanted greatswords, but even more fearsome than these weapons are their magical composite longbows that create any sort of slaying arrow when drawn. Their natural weapons and any weapons wielded are good aligned and they are only vulnerable to epic, evil weapons, though damage from other sources will regenerate.]],
+        common_desc = "This creature is a solar, cohort of the gods and the most powerful of angels."..angel_desc.."",
+        base_desc = [[Though uncertain exactly what this creature is, you can tell it is not native to this world. It can see in the dark and cannot be brought to life by normal means.]],
 }
 
 --Guardinals

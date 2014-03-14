@@ -76,6 +76,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_climb = 3,
 	skill_listen = 5,
 	skill_spot = 2,
+	uncommon_desc = [[These natural tunnellers can see in most conditions, and have a extra sense that allows them to detect the slightest of movements through the earth.]],
+	common_desc = [[As well as its lethal bite with which it can latch on to its victims, an ankheg has a natural acidic vemon which coats its mandibles and can be spit over short distances. Once an ankheg spits however, it takes a number of hours for it to build up its acid once more.]],
+	base_desc = [[This creature is an ankheg, a huge, burrowing insect with a dangerous bite and a tenacity matched only by its hunger. It can see in the dark. 
+	The tough, chitinous carapace of an ankheg can be used in the crafting of certain exotic heavy armours. Though a tricky material to work with, a skilled smith might find relatively undamaged specimens useful.]],
 }
 
 --Poison, spells, web, shapechange
@@ -97,6 +101,9 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 5,
 	skill_spot = 5,
 	skill_concentration = 6,
+	uncommon_desc = [[All araneas have some sorcerous talents, usually preferring illusions and enchantments and avoiding fire spells.]],
+	common_desc = [[In its spider or hybrid forms, an aranea can throw webs and has a poisonous bite that can weaken or incapacitate opponents. Most araneas speak Common and Sylvan.]],
+	base_desc = [[This creature is an aranea, an intelligent, shapechanging spider. It can see in the dark and change shape.]],
 }
 
 --Petrifying gaze 3 squares Fort DC 13, Blind-Fight
@@ -117,6 +124,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_hide = 4,
 	skill_listen = 6,
 	skill_spot = 6,
+	specialist_desc = [[A much greater threat than the average basilisk is a fiendish variant known as the abyssal greater basilisk. Not only larger and stronger, the gaze of these creatures is far more potent.]],
+	uncommon_desc = [[A basilisk's usual prey includes small mammals, birds, reptiles and similar creatures which it waits to ambush, turns to stone and then eats at its leisure. They are omnivorous and able to consume theur petrified victims, which are often a clear sign of a nearby basilisk lair.]],
+	common_desc = [[Though very dangerous, the gaze attack of the basilisk has a limited range of about ten paces. Coupled with the fact that these creatures are slow and sluggish, most opponents can escape these creatures if they so wish.]],
+	base_desc = [[This eight-legged reptilian creature is a basilisk that can turn creatures to stone with a mere glance. It can see in the dark.]],
 }
 
 --Speed 40 ft. breath weapon 2 squares cooldown 10 7d6 electric Ref DC 19; constrict 2d8, rake 1d4, immunity to electricity, scent
@@ -140,6 +151,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 2,
 	skill_spot = 2,
 --	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
+	specialist_desc = [[Though fearsome to behold, behirs are not necesarily aggressive. They have a similar outlook on life as many animals, are only guaranteed to attack if they feel threatened or are exceptionally hungry. They are also intelligent enough to be able to determine if the foe they face is likely to be stronger than they are. One of the few things they feel passionate about is dragonkind, with whom they refuse to coexist with peacefully. If a dragon moves in on a behir's territory, the behir will either drive it away if it can, or if not then move off to find a new home.]],
+	uncommon_desc = [[Close combat with behirs is inadvisable. As well as a nasty bite, these creatures are natural grapplers, can constrict opponents in the coils of their bodies and can inflict multiple rake attacks on grappled foes with their six pairs of legs.]],
+	common_desc = [[These creatures have a nasty breath weapon in the form of a bolt of electricity. Much like a snake, they are also capable of oppening their gullets to swallow creatures whole. Though somewhat draconic in appearance, behirs are unrelated to those creatures, and typically speak just the common tongue.]],
+	base_desc = [[This huge monster is a behir, a serpentine creature that can slither like a snake or expand its dozen legs to run upon. It can see in the dark.]],
 }
 
 --Blink, dimension door; speed 40 ft.
@@ -161,6 +176,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 2,
 	skill_spot = 2,
 	skill_survival = 3,
+	specialist_desc = [[Blink dogs and displacer beasts are natural enemies and attack each other on sight.]],
+	uncommon_desc = [[Blink dogs are capable of producing dimension door once per round.]],
+	common_desc = [[Blink dogs are intelligent, but cannot speak except in their own language. They can be convinced to make excellent companions.]],
+	base_desc = [[This creature is a blink dog, named for their natural ability to use blink, as the spell. It can see in the dark.]],
 }
 
 --Scent, tremorsense 4 squares
@@ -182,6 +201,9 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_jump = 10,
 	skill_listen = 8,
 	skill_spot = 2,
+	uncommon_desc = [[Despite their massive bulk, bulettes can leap into the air, which allows it to attack with all four of its claws at the same time.]],
+	common_desc = [[Bulettes can and do eat anything -- except elves. It dislikes the taste of dwarves and avoids them in favor of other prey. Bulettes can detect the presence of creatures by the subtle vibrations they make on the ground.]],
+	base_desc = [[This creature is a bulette, commonly known as the "landshark." It is a voracious predator that is universally shunned by all other creatures. It can see in the dark.]],
 }
 
 --Fly 50 ft., scent; breath weapon 3d8 Ref DC 17 in a random color
@@ -202,6 +224,9 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	combat_natural = 8,
 	skill_listen = 8,
 	skill_spot = 8,
+	uncommon_desc = [[Chimeras can attack from the ground or while flying, using their claws, both sets of teeth, its horns, or its breath weapon. The damage and shape of its breath weapon depends on the variety of its dragon head.]],
+	common_desc = [[A chimera’s draconic head may be that of a black, blue, green, red, or white dragon. Because of their three heads, chimeras have exceptionally good hearing and vision.]],
+	base_desc = [[This draconic creature is a chimera. It can see in the dark.]],
 }
 
 --Fly 60 ft.; petrification DC 12 on hit
@@ -223,6 +248,9 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 6,
 	resolvers.talents{ [Talents.T_DODGE]=1, },
 	movement_speed_bonus = -0.33,
+	uncommon_desc = [[Cockatrices are infamous for their ability to turn creatures to stone with their bite. They are immune to the bite of other cockatrices, but other methods of petrification affect them normally.]],
+	common_desc = [[Cockatrices fiercely attack anything and everything they perceive to be a threat. Flocks of cockatrices attempt to overcome opponents through confusion, often flying straight into their faces.]],
+	base_desc = [[ This hybrid avian creature is a cockatrice. It can see in the dark.]],
 }
 
 --Fly 30 ft.; darkness, improved grab, constrict 1d4, blindsight 6 squares
@@ -244,6 +272,9 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_hide = 10,
 	skill_spot = 5,
 	movement_speed_bonus = -0.33,
+	uncommon_desc = [[ As well as having a natural camouflage that allows them to hide easily in underground caverns, darkmantles can also cause darkness once per day. Darkmantles see easily through this magical darkness through the use of bat-like sonar, though this can be disrupted by the use of the silence spell.]],
+	common_desc = [[ Though small creatures, darkmantles are strong for their size, and make natural grapplers due to their tentacles and cloak-like skin. Typically attacking by dropping from above, a darkmantle that misses will usually fly back up to the roof of its chamber and try again.]],
+	base_desc = [[This squid-like dark-skinned creature is a darkmantle, a subterranean predator that attacks by dropping onto its prey. It can see in the dark.]],
 }
 
 --Acid spray (4d8 2 squares cone or 8d8 4 squares line Ref DC 17, immunity to acid, scent
@@ -251,7 +282,12 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_DIGESTER",
 	image = "tiles/lizard.png",
 	display = 'B', color=colors.LIGHT_BROWN,
-	desc = [[An eternally hungry monster.]],
+	desc = [[An eternally hungry dinosaur-shaped monster.]],
+	specialist_desc = [[When unable to rely on its acid attack, a digester can also attack with its talon-like claws. They have patches of colouration that help them to hide in most environments.]],
+	uncommon_desc = [[As well as being able to deliver its acid in a cone-shaped spray, a digester can unleash a concentrated stream of acid upon an opponent it stands next too. This acid is particularly deadly to all but the strongest opponents.]],
+	common_desc = [[This incredibly fast sprinter has a deadly acid attack that can reduce an average humanoid to a pile of glop in seconds. Luckily, this acid attack has a limited range and a digester has to wait a few seconds for its acid supplies to fill up for a follow-up attack.]],
+	base_desc = [[This two-legged dinosaur-like creature is a digester, a predator native to warmer climes such as equatorial forests, jungles and deserts. It can see in the dark.]],
+
 	stats = { str=17, dex=15, con=17, int=2, wis=12, cha=10, luc=8 },
 	combat = { dam= {1,8} },
 	name = "digester",
@@ -274,7 +310,11 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_DRAGONNE",
 	image = "tiles/lizard.png",
 	display = 'D', color=colors.LIGHT_BROWN,
-	desc = [[An eternally hungry monster.]],
+	desc = [[A scaled lion.]],
+	uncommon_desc = [[ Although draconic in appearance, a dragonne lacks a breath weapon and its wings are useful for only short flights. In combat, it relies on its powerful pounce and exhausting roar to take down prey.]],
+	common_desc = [[Although they have a reputation for being ruthless killers, it is largely underserved. Dragonnes only attack those who threaten its territory or its lair, and far prefer goats for food over humanoids, since they can’t fight back as readily.]],
+	base_desc = [[This scaled, leonine creature is a dragonne, a mix of brass dragon and lion. It can see in the dark.]],
+
 	stats = { str=19, dex=15, con=17, int=6, wis=12, cha=12, luc=10 },
 	combat = { dam= {2,6} },
 	name = "dragonne",
@@ -314,6 +354,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1
 	},
+	specialist_desc = [[The eggs of frost worms resemble simple oval-shaped spheres of ice, easily overlooked in the frost worm's lair. When a frost worm dies, it turns to ice and shatters, exploding over a large diameter.]],
+	uncommon_desc = [[ Frost worms can produce a hypnotic trill that forces prey to stand motionless. A creature that resists this effect is immune for 24 hours.]],
+	common_desc = [[Frost worms generate intense cold that damages creatures that touch it. They also can produce a breath weapon that deals cold damage.]],
+	base_desc = [[This immense creature is a frost worm. It can see in the dark, is immune to cold and takes double damage from fire.]],
 }
 
 --Climb 40 ft.; scent, rend 2d4, Toughness
@@ -435,6 +479,11 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	image = "tiles/cat.png",
 	display = 'c', color=colors.WHITE,
 	desc = [[A feline carnivore.]],
+	specialist_desc = [[Krenshar cubs raised in captivity can be domesticated (if not truly tamed), producing fierce and loyal companions.]],
+	uncommon_desc = [[The skin on a krenshar’s face is extremely flexible. A krenshar can pull this skin back, exposiring the skull beneath to frighten prey.]],
+	common_desc = [[Krenshars are social creatures that hunt in small packs or prides. They possess a sharp cunning that sometimes seems eerily intelligent.]],
+	base_desc = [[This strange, catlike creature is a krenshar. It can see in the dark.]],
+
 	stats = { str=11, dex=14, con=11, int=6, wis=13, cha=8, luc=12 },
 	name = "krenshar",
 	level_range = {1, 25}, exp_worth = 300,
@@ -480,6 +529,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	[Talents.T_MOBILITY]=1,
 	[Talents.T_IRON_WILL]=1,
 	},
+	specialist_desc = [[Lamias can employ charm monster, deep slumber, disguise self, major image, mirror image, suggestion, and ventriloquism as spell-like abilities.]],
+	uncommon_desc = [[The touch of a lamia drains Wisdom from its victims. They try to use this power early on to make foes more susceptible to mind-affecting effects, such as charm monster and suggestion.]],
+	common_desc = [[Lamias are wicked and cruel beings that exist just to cause misery in others. They set up elaborate traps and ambushes to lure in potential victims.]],
+	base_desc = [[This centaurlike cross between a human and a lion is a lamia. It can see in the dark.]],
 }
 
 --Fly 60 ft.; magic circle against evil; pounce, rake 1d6, spells as Clr7; Blind-Fight
@@ -535,6 +588,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	image = "tiles/owl.png",
 	display = 'b', color=colors.BROWN,
 	desc = [[A giant owl.]],
+	uncommon_desc = [[Giant owl young can be trained to accept a rider. Giant owl eggs thus demand exorbitant prices on the open market.]],
+	common_desc = [[A giant owl can see extremely well by moonlight. They speak Sylvan and Common.]],
+	base_desc = [[This massive night hunter is a giant owl, a noble creature as intelligent as a human. It can see in the dark.]],
+
 	stats = { str=18, dex=17, con=12, int=10, wis=14, cha=10, luc=12 },
 	name = "giant owl",
 	level_range = {5, 25}, exp_worth = 900,
@@ -603,6 +660,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	image = "tiles/spider.png",
 	display = 's', color=colors.GREEN,
 	desc = [[A spider with green markings.]],
+	uncommon_desc = [[A phase spider can shift into or out of the Ethereal Plane without warning. Its usual tactic is to suddenly appear on the Material Plane, bite a victim, and then immediately retreat to the Ethereal Plane, where it waits for the creature to die before returning to feed.]],
+	common_desc = [[A phase spider is fairly intelligent and its bite delivers a deadly venom.]],
+	base_desc = [[Judging by its markings, this monstrous arachnid is a phase spider. It can see in the dark.]],
+
 	stats = { str=17, dex=17, con=16, int=7, wis=13, cha=10, luc=12 },
 	name = "phase spider",
 	level_range = {5, 25}, exp_worth = 1500,
@@ -689,6 +750,9 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 7,
 	skill_spot = 7,
 --	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+	uncommon_desc = [[Remorhazes subsist on frost giants, polar bears, elk, and other large arctic creatures. Giants sometimes train or entice remorhazes to guard their lairs.]],
+	common_desc = [[Remorhazes can swallow their prey whole and can sense the presence of creatures due to the vibrations they make on the ground. When enraged, the remorhaz produces an incredible heat that chars flesh and can even melt weapons.]],
+	base_desc = [[This terrifying blend of insect and reptile is a remorhaz. It can see in the dark.]],
 }
 
 --Strand range 5 squares - drag 1 sq closer each round; 2d8 STR damage Fort DC 18; Weapon Focus
@@ -716,6 +780,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1
 	},
+	specialist_desc = [[The strands of a roper can sap an opponent's strength. These strands have an incredible reach and grow back if severed.]],
+	uncommon_desc = [[Both the shape and coloration of ropers make them extremely difficult to locate in their natural environment.]],
+	common_desc = [[Ropers are remarkably intelligent, if evil, creatures. They are immune to electricity, resistant to cold, and vulnerable to fire.]],
+	base_desc = [[This curious underground dweller is a roper. It can see in the dark.]],
 }
 
 --Swim 40 ft., hold breath (6xCON), scent, rend 2d6
@@ -723,7 +791,11 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_SEA_CAT",
 	image = "tiles/cat.png",
 	display = 'c', color=colors.LIGHT_BLUE,
-	desc = [[A boar with razor sharp tusks.]],
+	desc = [[A sea lion with strong paws.]],
+	uncommon_desc = [[A sea cat tries to strike its victim with both claws, then rends the creature’s flesh.]],
+	common_desc = [[A sea cat cannot breathe underwater, but it can hold its breath for more than ten minutes.]],
+	base_desc = [[This creature is a sea cat, a vicious aquatic predator that combines the body of a sea lion with the head and forepaws of a great cat. It can see in the dark.]],
+
 	stats = { str=19, dex=12, con=17, int=2, wis=13, cha=10, luc=12 },
 	name = "sea cat",
 	level_range = {5, nil}, exp_worth = 1200,
@@ -750,7 +822,10 @@ newEntity{
 	image = "tiles/stirge.png",
 	display = 'w', color=colors.LIGHT_RED,
 	body = { INVEN = 10 },
-	desc = [[A boar with razor sharp tusks.]],
+	desc = [[A tiny flying creature.]],
+	uncommon_desc = [[If a victim dies before a stirge is satiated, it detaches and seeks a new target.]],
+	common_desc = [[Stirges are little threats singly, but they travel in large colonies. The long proboscis of the stirge allows it to attach to its victim, making it extremely difficult to remove. Stirges drain blood from their victims.]],
+	base_desc = [[This strange flying creature is a stirge. It can see in the dark.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=3, dex=19, con=10, int=1, wis=12, cha=6, luc=10 },
@@ -829,6 +904,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	image = "tiles/wolf.png",
 	display = 'w', color=colors.LIGHT_BLUE,
 	desc = [[A white-blue wolf.]],
+	uncommon_desc = [[Winter wolves are so named because their bite produces freezing cold. They have a breath weapon -- a cone of cold. Winter wolves are immune to cold and vulnerable to fire.]],
+	common_desc = [[Like regular wolves, winter wolves can make trip attacks after a successful bite attack. They are remarkably intelligent and can speak Common and Giant.]],
+	base_desc = [[This is a winter wolf. It can see in the dark. It is immune to cold but takes double damage from fire.]],
+
 	stats = { str=18, dex=13, con=16, int=9, wis=13, cha=10, luc=10 },
 	combat = { dam= {1,8} },
 	name = "winter wolf",
@@ -880,6 +959,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	image = "tiles/UT/gargoyle.png",
 	display = 'Y', color=colors.LIGHT_BROWN,
 	desc = [[A large blind gargoyle with a long tongue.]],
+	uncommon_desc = [[Yrthaks can focus their sonic power at the ground, a wall, or other large object, creating a massive explosion that causes a shower of stones and debris.]],
+	common_desc = [[Yrthaks are blind, but sense their environment through other means. They are immune to gaze attacks, illusions, and other effects that rely on sight. Yrthaks can produce a powerful blast of energy that deals sonic damage.]],
+	base_desc = [[This strange, eyeless reptilian creature is an yrthak.]],
+
 	stats = { str=20, dex=14, con=17, int=7, wis=13, cha=11, luc=10 },
 	combat = { dam= {2,8} },
 	name = "yrthak",

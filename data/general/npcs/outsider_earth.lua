@@ -11,6 +11,9 @@ newEntity{
 	display = 'O', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10 },
 	desc = [[An earthen creature.]],
+	uncommon_desc = [[Xorns are immune to cold and fire, and they are resistant to electricity. There are several different shapes and sizes of xorns. Some grow to tremendous size and are known as elder xorns. Xorns ignore most creatures (since they cannot digest meat), unless they carry substantial amounts of metal or stone on them.]],
+	common_desc = [[Xorns have all-around vision and can glide through earth and stone as if they were swimming -- they do not leave behind any trace of their passage. Xorns can sense the presence of creatures by the small tremors they produce on the ground.]],
+	base_desc = [[This bizarre creature is a xorn, a native of the Elemental Plane of Earth. It can see in the dark and cannot be brought back to life by usual means. It can burrow through rock and earth.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=10, con=15, int=10, wis=11, cha=10, luc=10 },

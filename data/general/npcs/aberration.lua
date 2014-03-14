@@ -24,6 +24,9 @@ newEntity{
 	display = "X", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A horrid thing with tentacles!]],
+    uncommon_desc = [[Aboleths have a array of psionic powers that create illusions to help ensnare their victims. They can also enslave a victim through the domination of their mind.]],
+    common_desc = [[An aboleth's attacks can cause a terrible affliction where the victim's skin becomes a clear, slimey membrane that must remain moistened with cool, fresh water. They also surround themselves with a viscous cloud of mucus that can cause victims to temporarily lose the ability to breath air. Aboleths speak their own language, as well as Undercommon and Aquan. The mucus that aboleths exude can be used to great effect in the creation of potions of water breathing.]],
+    base_desc = [[This creature is an aboleth, an intelligent, aquatic aberration. This intelligent race make natural arcane casters, and the most powerful of their kind are usually competent wizards. It can see in the dark and needs to eat, sleep and breathe.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=8, dex=10, con=7, int=14, wis=12, cha=12, luc=12 },
@@ -76,6 +79,9 @@ newEntity{
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A hulking deformed creature.]],
+    uncommon_desc = [[Though having no sense of personal hygene, athachs do have a love for the finery of gems, crystals and jewellery - a passion only matched by their love of food and violence. Though fearful of most giantkin, athachs hate hill giants with a passion and will usually attack them on sight.]],
+    common_desc = [[As well as being superb melee combatants, athachs can hurl rocks as skillfully as most giants, and have a nasty poisonous bite that can drain the strength of its victims. Athachs speak a crude dialect of giant.]],
+    base_desc = [[This huge, portly giant-like creature is in fact an athach, identifiable by its third arm and its unbelievable stench. It can see in the dark and needs to eat, sleep and breathe.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=26, dex=13, con=21, int=7, wis=12, cha=6, luc=8 },
@@ -132,6 +138,9 @@ newEntity{ base = "BASE_NPC_CHOKER",
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
+	uncommon_desc = [[While not overly dexterous, chokers are unnaturally fast, and thus can perform more actions than a normal creature can.]],
+	common_desc = [[A choker’s hands are covered with spiny pads that allow it to traverse walls and ceilings, where it likes to lay in hiding. When prey passes by, it grabs the creature by the neck with its tentacle-like arms and proceeds to strangle the victim until it dies.]],
+	base_desc = [[This small creature is a choker, a subterranean beast. It can see in the dark.]],
 }        
 
 newEntity{
@@ -140,6 +149,9 @@ newEntity{
 	display = "X", color=colors.BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A large serpent-like squid.]],
+    uncommon_desc = [[Although unable to use many items, chuuls enjoy taking trophies from their kills, particularly lizardfolk, so they take victims’ equipment back to their lairs. If a victim should happen to own no interesting items, a chuul will take its skull or other symbol of the kill.]],
+    common_desc = [[A chuul fights primarily with its two large, powerful pincers. However, it can also paralyze victims with its tentacles. Despite their amphibious nature, chuuls prefer to stay on land or in shallow water during combat.]],
+    base_desc = [[This amphibious creature is a chuul. It can see in the dark.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=20, dex=16, con=18, int=10, wis=14, cha=5, luc=8 },
@@ -172,6 +184,10 @@ newEntity{
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[It looks like a cloak.]],
+    specialist_desc = [[A cloaker can manipulate the shadows, producing several effects that mimic the following spells -- obscure vision, dancing images, and silent image.]],
+    uncommon_desc = [[Cloakers can produce a dangerous subsonic moan that causes shakiness, fear, nausea, or stupor in its victims.]],
+    common_desc = [[When at rest cloakers closely resemble large black cloaks, which aids their disguise. They can fly, and they can also unfurl and completely engulf a Medium creature.]],
+    base_desc = [[This creature is a cloaker, a foul creature that prowls the vast caverns beneath the earth. It can see in the dark and needs to eat, sleep and breathe.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=17, con=17, int=14, wis=15, cha=15, luc=8 },
@@ -205,6 +221,10 @@ newEntity{
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A mix between a drow and a spider.]],
+    uncommon_desc = [[Driders are resistant to magic and possess several innate magical abilities, such as darkness and suggestion. In addition, they can cast spells as clerics, wizards, or sorcerers.]],
+    common_desc = [[ Driders have a weak bite attack that can poison creatures, but they also wield manufactured weapons in combat.]],
+    base_desc = [[This arachnoid creature is a drider. It can see in the dark and needs to eat, sleep and breathe.
+    Driders were once dark elves who failed some test of their goddess Lolth, and were transformed as punishment. Drow and driders hate each other passionately. Driders are outcasts from drow society.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=15, con=16, int=15, wis=16, cha=16, luc=8 },
@@ -229,7 +249,7 @@ newEntity{ base = "BASE_NPC_DRIDER",
 	resolvers.equip{
                 full_id=true,
                 { name = "shortbow" },
-                { name = "arrows (20)" },
+                { name = "arrows" },
         },
 	resolvers.inventory {
 	full_id=true,
@@ -243,7 +263,7 @@ newEntity{
 	image = "tiles/ettercap.png",
 	display = "X", color=colors.DARK_GRAY,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-        desc = [[A small twisted creature.]],
+    desc = [[A small twisted creature.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=17, con=13, int=6, wis=15, cha=8, luc=8 },
@@ -274,6 +294,9 @@ newEntity{
 	display = "X", color=colors.UMBER,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A small dirty twisted creature.]],
+    uncommon_desc = [[Intelligent subterranean creatures sometimes coexist with otyughs, using them as living garbage disposals.]],
+    common_desc = [[Otyughs live in heaps of refuse, scavenging almost anything for food. They have powerful tentacles to grasp prey. The bite of an otyugh is filled with the filth fever disease.]],
+    base_desc = [[This disgusting creature is an otyugh. It can see in the dark.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=10, con=13, int=5, wis=12, cha=6, luc=8 },
@@ -295,6 +318,7 @@ newEntity{
 }    
 
 --Burrow 10 ft.; Immunity to acid, tremorsense 4 squares, stone shape
+--Toughness, Power Attack
 newEntity{
 	define_as = "BASE_NPC_DELVER",
 	type = "aberration",
@@ -302,6 +326,9 @@ newEntity{
 	display = "X", color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A huge slimy burrowing creature.]],
+    uncommon_desc = [[ Most delvers are shy and inoffensive creatures, but like with nearly all species, there are exceptions to this rule. Delvers can also become addicted to metal which acts like an intoxicating drug to them. Such addicted specimens can also act very unlike most of their kin.]],
+    common_desc = [[The slime that covers a delver is corrosive to most objects, highly corrosive to metallic objects or creatures, and devastating against stone objects or creatures. A delver can also alter the effect of its slime so that instead of disolving stone, it can soften it instead, much like using the spell stone shape. Most delvers speak Terran and Undercommon.]],
+    base_desc = [[This huge creature is a delver, an intelligent subterranean dweller that feeds on the rocks that it disolved with a corrosive slime that covers its body. It can see in the dark.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=27, dex=13, con=21, int=14, wis=14, cha=12, luc=8 },
@@ -319,9 +346,6 @@ newEntity{
 	skill_movesilently = 16,
 	skill_spot = 18,
 	skill_survival = 12,
---[[	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, 
-		[Talents.T_TOUGHNESS] = 1,	
-		},]]
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
@@ -330,7 +354,6 @@ newEntity{
 
 --Blindsight 6 squares; immune to gaze attacks, visual effects, illusions, +4 to saves against sonic effects
 --Disruptive harmonics: 4d6 Reflex DC 15
---neutral evil alignment
 newEntity{
 	define_as = "BASE_NPC_DESTRACHAN",
 	type = "aberration",
@@ -338,6 +361,9 @@ newEntity{
 	display = "X", color=colors.ORANGE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A blind aberrant creature.]],
+    uncommon_desc = [[Destrachans can unleash a sonic blast that has various effects depending on the harmonics is uses, but can cause both lethal and non-lethal damage to the subjects it targets. They have accute hearing but can protect themselves against sonic attack forms by closing the flaps of skin that surround their sensitive ears.]],
+    common_desc = [[Destrachan are sightless creatures, and rely on their acute sense of hearing to interact with their surroundings. They use sonics to interpret their environment and are immune to effects that target the eyes of the victim such as visual illusions and gaze attacks. Destrachan do not usually communicate through language, but most understand Common.]],
+    base_desc = [[This creature, though looking like a simple reptilian beast is in fact a destrachan, a malevolent and craftily sadistic subterranean creature.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=18, dex=12, con=16, int=12, wis=18, cha=12, luc=8 },
@@ -349,12 +375,12 @@ newEntity{
 	hit_die = 8,
 	challenge = 8,
 	combat_natural = 7,
-	infravision = 4,
 	skill_hide = 6,
 	skill_listen = 21,
 	skill_movesilently = 6,
 	skill_spot = 18,
 	skill_survival = 5,
+	alignment = "neutral evil",
 	resolvers.talents{ [Talents.T_DODGE]=1, 	
 	},
 	resolvers.inventory {
@@ -460,6 +486,9 @@ newEntity{
 	display = "X", color=colors.BLUE,
 	body = { INVEN = 10 },
     desc = [[A small tentacled creature.]],
+    uncommon_desc = [[The natural coloration of gricks makes them difficult to locate in naturally rocky areas. Gricks may gather and attack in a group, but they do not act in concert with each other.]],
+    common_desc = [[Gricks resist normal weapons. They infest dungeons, caves, and other underground places, although they sometimes haunt open spaces when food is scarce.]],
+    base_desc = [[This wormlike creature is a grick. It can see in the dark.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=14, con=11, int=3, wis=14, cha=5, luc=10 },
@@ -623,6 +652,9 @@ newEntity{
 	display = "X", color=colors.LIGHT_YELLOW,
 	body = { INVEN = 10 },
     desc = [[A colorful group of lights, similar to a lantern.]],
+    uncommon_desc = [[When startled or frightened, a will-o'-wisp can extinguish its glow, effectively turning it invisible. Although immune to most spells or spell-like effects, they are affected by magic missile and maze.]],
+    common_desc = [[Will-o'-wisps can fly with remarkable agility. They are completely immune to most spells or spell-like effects, and they attack by inflicting powerful electrical shocks.]],
+    base_desc = [[This floating, glowing orb is actually a creature called a will-o'-wisp. It can see in the dark and fly.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=1, dex=29, con=10, int=15, wis=16, cha=12, luc=12 },
@@ -690,6 +722,10 @@ newEntity{ base = "BASE_NPC_NAGA",
 	[Talents.T_DODGE]=1,
 	[Talents.T_COMBAT_CASTING]=1
 	},
+	specialist_desc = [[Most dark nagas speak Infernal and Common, but they can also read thoughts as easily as a wizard reads a book.]],
+	uncommon_desc = [[A dark naga’s fangs and the stinger in its tail both deliver a debilitating venom that can plunge its victim into a nightmare-wracked coma for several minutes.]],
+	common_desc = [[A dark naga is a talented innate sorcerous spellcaster. They often form alliances with other foul creatures for their mutual gain.]],
+	base_desc = [[This slithering eel-like creature with the vaguely human-like face is a scheming creature called a dark naga. It can see in the dark.]],
 }      
 
 --Poison pri & sec 1d10 Con; Fort DC 19; spells as Sor9 + Good & Law domains
@@ -733,6 +769,10 @@ newEntity{ base = "BASE_NPC_NAGA",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_COMBAT_CASTING]=1
 	},
+	specialist_desc = [[Other varieties of naga exist, including the eel-like dark naga.]],
+	uncommon_desc = [[A spirit naga can charm people simply by meeting their gaze, and its bite carries a deadly poison.]],
+	common_desc = [[Spirit nagas possess significant innate sorcererous ability. Their name comes from their habit of lairing in spiritually unclean areas.]],
+	base_desc = [[This large serpent with black-and-crimson bands and a humanlike head is a spirit naga. It can see in the dark. Most spirit nagas speak Abyssal and Common.]],
 }      
 
 --Swim 50 ft.; poison pri & sec 1d8 CON Fort DC 17

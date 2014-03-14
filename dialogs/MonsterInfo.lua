@@ -5,6 +5,7 @@ require "engine.class"
 
 local Dialog = require "engine.ui.Dialog"
 local SurfaceZone = require "engine.ui.SurfaceZone"
+local Textzone = require "engine.ui.Textzone"
 
 module(..., package.seeall, class.inherit(Dialog))
 
@@ -18,6 +19,7 @@ function _M:init(actor)
 
     self:loadUI{
         {left=0, top=0, ui=self.c_desc},
+        
     }
     
     self:setupUI()
@@ -48,10 +50,19 @@ function _M:drawDialog()
  h = h + self.font_h -- Adds an empty row
 
 --Display in-character info
- if player:skillCheck("knowledge", 25+actor.challenge) then s:drawColorStringBlended(self.font, "You know arcane stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h
- elseif player:skillCheck("knowledge", 20+actor.challenge) then s:drawColorStringBlended(self.font, "You know uncommon stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h
- elseif player:skillCheck("knowledge", 15+actor.challenge) then s:drawColorStringBlended(self.font, "You know obvious stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h
- else s:drawColorStringBlended(self.font, "You know basic stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h end
+    local x = rng.dice(1,20) + (player:getSkill("knowledge") or 0)
+
+ if x > 25+actor.challenge then 
+    if actor.specialist_desc then s:drawColorStringBlended(self.font, actor.specialist_desc.." \n"..actor.uncommon_desc.." \n"..actor.common_desc.." \n"..actor.base_desc or "#LIGHT_BLUE#You know specialist stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h
+    elseif actor.uncommon_desc then s:drawColorStringBlended(self.font, actor.uncommon_desc.." \n"..actor.common_desc.." \n"..actor.base_desc or "#LIGHT_BLUE#You know specialist stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h 
+    else s:drawColorStringBlended(self.font, actor.common_desc.." \n"..actor.base_desc or "#LIGHT_BLUE#You know specialist stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+ elseif x > 20+actor.challenge then 
+    if actor.uncommon_desc then s:drawColorStringBlended(self.font, actor.uncommon_desc.." \n"..actor.common_desc.." \n"..actor.base_desc or "#LIGHT_BLUE#You know uncommon stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h
+    else s:drawColorStringBlended(self.font, actor.common_desc.." \n"..actor.base_desc or "#LIGHT_BLUE#You know uncommon stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+ elseif x > 15+actor.challenge then s:drawColorStringBlended(self.font, actor.common_desc.." \n"..actor.base_desc or "#LIGHT_BLUE#You know obvious stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h
+ else s:drawColorStringBlended(self.font, actor.base_desc or "#LIGHT_BLUE#You know basic stuff about the monster", w, h, 255, 255, 255, true) h = h + self.font_h end
 
  	self.c_desc:generate()
     self.changed = false

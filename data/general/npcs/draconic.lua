@@ -3,6 +3,8 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
+local dragon_desc = [[It can see in the dark. It is immune to sleep effects and paralysis effects. It needs to eat, sleep and breathe.]]
+
 --Scent; immunity to fire, sleep & paralysis; breath weapon 12d6 fire Ref DC 21 half
 -- neutral alignment
 newEntity{
@@ -49,6 +51,10 @@ newEntity{
         display = 'D', color=colors.LIGHT_GREEN,
         body = { INVEN = 10 },
         desc = [[A tiny draconic creature in shades of green.]],
+        specialist_desc = [[The eggs and young of pseudodragons can fetch a tremendous price.]],
+        uncommon_desc = [[ Pseudodragons can communicate telepathically with creatures that speak Common or Sylvan.]],
+        common_desc = [[Pseudodragons are playful, mischievous members of the dragon family. Powerful individuals prize them as companions, and sorcerers and wizards covet them as familiars.]],
+        base_desc = "This tiny reptilian creature with butterfly-like wings is a pseudodragon."..dragon_desc.."",
 
         ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=6, dex=15, con=13, int=10, wis=12, cha=10, luc=14 },
@@ -85,6 +91,9 @@ newEntity{
         display = 'D', color=colors.GRAY,
         body = { INVEN = 10 },
         desc = [[A huge flying lizard with a stinging tail.]],
+        uncommon_desc = [[Wyverns are stupid creatures, but they can speak Draconic. Wyverns are often used as steeds for more powerful creatures.]],
+        common_desc = [[Wyverns are clumsy fliers. They have stingers on the end of their tails that deal poison damage and are proficient at grabbing prey.]],
+        base_desc = "This large reptilian creature resembles a dragon, but it is in fact a wyvern. "..dragon_desc.."",
 
         ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=19, dex=12, con=15, int=6, wis=12, cha=9, luc=10 },

@@ -3,6 +3,8 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
+local plant_desc = [[It is immune to mind-affecting effects such as charms, compulsions, phantasms. It is immune to critical hits, poison, sleep effects, paralysis, polymorph and stunning. It breathes and eats, but does not sleep.]]
+
 --Constrict, entangle; camouflage, immunity to electricity
 newEntity{
 	define_as = "BASE_NPC_ASSAVINE",
@@ -10,6 +12,10 @@ newEntity{
 	display = 'P', color=colors.DARK_GREEN,
 	body = { INVEN = 10 },
 	desc = [[A crawling vine.]],
+	specialist_desc = [[Though lacking visual organs, assassin vines can detect nearby foes by sound, scent and vibration. As they look like normal plants when at rest, they can be difficult to spot before they attack. Subterranean versions of these creatures are known to exist, looking much like mineral deposits to the untrained eye.]],
+	uncommon_desc = [[Perhaps the most dangerous aspect of the assassin vine is its ability to animate all nearby plants. These plants entangle and trap victims within their range, allowing the assassin vine the luxury of finishing off one foe before having to deal with others. These creatures are also very resilient to extremes of temperature.]],
+	common_desc = [[Though unable to move at any great speed, these plants have a large reach and are dangerous enemies. As well as being capable of dealing nasty blows with the trunk of their vine, the construction of these vines allow them to grab and strangle their victims with ease.]],
+	base_desc = "This creature is an assassin vine, a semimobile plant that collects its own grisly fertilizer."..plant_desc.."",
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=20, dex=10, con=16, int=1, wis=13, cha=9, luc=10 },
@@ -119,6 +125,9 @@ newEntity{
 	resolvers.talents{ [Talents.T_IRON_WILL]=1,
 --	[Talents.T_POWER_ATTACK]=1,
 	},
+	uncommon_desc = [[Shambling mounds become incredibly active during powerful thunderstorms and can survive direct strikes from lightning.]],
+	common_desc = [[ Shambling mounds are immune to electricity and resistant to fire. They are virtually silent and invisible in their natural environment.]],
+	base_desc = "This animated mound of vegetation is a shambling mound. "..plant_desc.."",
 }
 
 --Regeneration 10; improved grab, swallow whole

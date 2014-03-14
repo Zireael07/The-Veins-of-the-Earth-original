@@ -32,6 +32,9 @@ newEntity{
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
+	uncommon_desc = [[Centaurs are skilled horticulturists and often cultivate various plants near their lairs. Despite their calm nature, centaurs are known for becoming rowdy and aggressive under the influence of alcohol.]],
+	common_desc = [[Although sociable among themselves and generally even-headed, centaurs shun outsiders and are almost always armed.]],
+	base_desc = [[This creature, known as a centaur, has the upper body of a humanoid but the lower body of a horse.  It can see in the dark and needs to sleep, eat and breathe.]],
 }
 
 --Poison use, immunity to confusion and insanity effects
@@ -44,6 +47,10 @@ newEntity{
 	display = 'h', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A small twisted creature.]],
+	specialist_desc = [[Derro are capable of creating some minor illusory magic and are themselves quite resistant to magic. They are vulnerable to sunlight, but need to stay exposed for hours for this to be damaging to their health. It is possible for derro to be cured of their madness, but only through the use of the most powerful of magics.]],
+	uncommon_desc = [[Though their madness-induced high charisma make derro natural spontaneous casters, they are also highly adapted to a life of stealth and subtefuge. They have the ability to take advantage of unaware or distracted foes to place a telling blow much like a rogue does, are natural poison users and suffer no risk of exposing themselves to the toxins they employ, and have a racial knack for staying quiet and hiding from view.]],
+	common_desc = [[Derro are afflicted by a form of racial madness that gives them delusions of grandeur and a sadistic streak a mile wide. Of course, though other creatures realise this, no derro is capable of recognizing he is out of his mind. A derro is so confident of himself that this manifests as a defence for magics that attack an individuals willpower, against which their deranged minds would naturally have little defence. Derro speak Common and Undercommon.]],
+	base_desc = [[This pale-skinned dwarf-like creature is a derro, a degenerate and evil creature of the underground. It can see in the dark and needs to eat, sleep and breathe.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=14, con=13, int=10, wis=5, cha=16, luc=6 },
@@ -326,6 +333,10 @@ newEntity{
 	display = 'B', color=colors.DARK_GRAY,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A winged creature with an ugly face.]],
+	specialist_desc = [[While not particularly intelligent, harpies are smart enough to set up ambushes. They often ally themselves with more powerful creatures.]],
+	uncommon_desc = [[The song of a harpy can captivate living creatures and cause them to approach it. Creatures within 5 feet do nothing, even as the harpy rends them apart.]],
+	common_desc = [[Harpies can fly with average maneuverability and can make flyby attacks.]],
+	base_desc = [[This filthy, wretched creature is a harpy. It can see in the dark and needs to eat, sleep and breathe.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=15, con=10, int=7, wis=12, cha=17, luc=10 },
@@ -366,6 +377,10 @@ newEntity{
 	display = 'h', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A female humanoid hiding her face behind a veil.]],
+	specialist_desc = [[Medusas are skilled at lying and keeping their appearance hidden. They use these skills to lure victims into believing the situation is safe before using their abilities.]],
+	uncommon_desc = [[Medusas have snakes for hair that inflict powerful poison when they successfully bite.]],
+	common_desc = [[The gaze of a medusa turns its victims permanently into stone.]],
+	base_desc = [[This horrific humanoid is a medusa. It can see in the dark and needs to eat, sleep and breathe.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=15, con=12, int=12, wis=13, cha=15, luc=12 },
