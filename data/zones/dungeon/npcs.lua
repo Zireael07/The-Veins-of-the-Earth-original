@@ -24,9 +24,12 @@ load("/data/general/npcs/vermin.lua")
 load("/data/general/npcs/aberration.lua")
 load("/data/general/npcs/construct.lua")
 
-load("/data/general/npcs/magicalbeasts.lua")
 load("/data/general/npcs/fey.lua")
 load("/data/general/npcs/draconic.lua")
+
+load("/data/general/npcs/magical_beasts.lua")
+load("/data/general/npcs/magical_beasts_highend.lua")
+
 
 load("/data/general/npcs/elementals.lua")
 
