@@ -115,7 +115,7 @@ newEntity{
 		if not save then
 			local DT = engine.DamageType
 			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.dice(self.mindam, self.maxdam))
-		 	if dam > 0 then game.logPlayer(who, "You start drowning!") end
+		 	if who == game.player and dam > 0 then game.logPlayer(who, "You start drowning!") end
 		end
 	end,
 }
@@ -134,7 +134,7 @@ newEntity{
 		if not save then
 			local DT = engine.DamageType
 			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.dice(self.mindam, self.maxdam))
-		 	if dam > 0 then game.logPlayer(who, "You start drowning!") end end
+		 	if who == game.player and dam > 0 then game.logPlayer(who, "You start drowning!") end end
 	end
 }
 
