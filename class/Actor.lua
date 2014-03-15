@@ -253,7 +253,7 @@ function _M:act()
 
 	--From Startide
 	-- Shrug off effects
-	for eff_id, params in pairs(self.tmp) do
+for eff_id, params in pairs(self.tmp) do
 		local DC = params.DC_ongoing or 10
 		local eff = self.tempeffect_def[eff_id]
 		if eff.decrease == 0 then 
@@ -261,7 +261,7 @@ function _M:act()
 				params.dur = 0 
 			end
 		end
-	end
+end
 
 
 	-- Still enough energy to act ?
@@ -644,25 +644,58 @@ function _M:worthExp(target)
 	else return (self.exp_worth) end
 end
 
+
+
+
 --- Can the actor see the target actor
 -- This does not check LOS or such, only the actual ability to see it.<br/>
 -- Check for telepathy, invisibility, stealth, ...
-function _M:canSee(actor, def, def_pct)
+function _M:canSeeNoCache(actor, def, def_pct)
 	if not actor then return false, 0 end
 
 	-- Newsflash: blind people can't see!
 	if self:hasEffect(self.EFF_BLIND) then return false,100 end --Like this, the actor actually knows where its target is. Its just bad at hitting
 
---	if def ~= nil then
---		return def, def_pct
 
 	if actor:attr("stealth") and actor ~= self then
-		local check = self:opposedCheck("spot", "actor", "hide")
-		if not check then return false, 0 end
+		local check = self:opposedCheck("spot", actor, "hide")
+		if not check then 
+			local check2 = self:opposedCheck("listen", actor, "movesilently")
+			if check2 then return false, 100 end --we know where target is thanks to hearing
+			return false, 0 
+		end
 	end
-	
 
 	return true, 100
+end
+
+--Taken from ToME
+function _M:canSee(actor, def, def_pct)
+	if not actor then return false, 0 end
+
+	self.can_see_cache = self.can_see_cache or {}
+	local s = tostring(def).."/"..tostring(def_pct)
+
+	if self.can_see_cache[actor] and self.can_see_cache[actor][s] then return self.can_see_cache[actor][s][1], self.can_see_cache[actor][s][2] end
+	self.can_see_cache[actor] = self.can_see_cache[actor] or {}
+	self.can_see_cache[actor][s] = self.can_see_cache[actor][s] or {}
+
+	local res, chance = self:canSeeNoCache(actor, def, def_pct)
+	self.can_see_cache[actor][s] = {res,chance}
+
+	-- Make sure the display updates
+	if self.player and type(def) == "nil" and actor._mo then actor._mo:onSeen(res) end
+
+	return res, chance
+end
+
+--- Reset the cache of everything else that had see us on the level
+function _M:resetCanSeeCacheOf()
+	if not game.level then return end
+	for uid, e in pairs(game.level.entities) do
+		if e.can_see_cache and e.can_see_cache[self] then e.can_see_cache[self] = nil end
+	end
+	game.level.map:updateMap(self.x, self.y)
 end
 
 --Taken from Qi Daozei
@@ -730,11 +763,31 @@ function _M:skillCheck(skill, dc, silent)
 end
 
 function _M:opposedCheck(skill1, target, skill2)
+	local success = false
+
 	local my_skill = self:getSkill(skill1)
 	local enemy_skill = target:getSkill(skill2)
+	local d = rng.dice(1,20)
+	local d2 = rng.dice(1,20)
+	local enemy_total = d2 + (enemy_skill or 0)
+	local my_total = d + (my_skill or 0)
 
-	if d + (my_skill or 0) > d + (enemy_skill or 0) then return true end
-	return false
+	if d + (my_skill or 0) > enemy_total then success = true end
+
+	if self == game.player then
+		local s = ("Opposed check: dice roll %d + bonus %d versus DC %d -> %s"):format(
+			d, my_skill or 0, enemy_total, success and "success" or "failure")
+		game.log(s)
+	end 
+	if target == game.player then
+		local player_success = true
+		if success then player_success = false end
+		local s = ("Opposed check: %d versus DC %d -> %s"):format(
+			my_total, enemy_total, player_success and "success" or "failure")
+		game.log(s)
+	end 
+
+	return success
 end
 
 --Cross-class skills, Zireael

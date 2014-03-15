@@ -50,6 +50,7 @@ newBirthDescriptor{
     [ActorTalents.T_SHOOT]=1,
 --    [ActorTalents.T_INTUITION]=1,
     [ActorTalents.T_POLEARM]=1,
+    [ActorTalents.T_STEALTH]=1,
   },
   talents_types = {
     ["special/special"] = {true, 0.0},
