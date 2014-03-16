@@ -28,7 +28,8 @@ TOOLTIP_EXP = [[ This is the number of current #ORANGE#Experience Points#LAST# a
 TOOLTIP_AC = [[ AC is short for #ORANGE#Armor Class#LAST#. It determines how hard you are to hit.
 	#GOLD#10 + armor bonus + shield bonus + magic bonus + natural bonus + Dex modifier (may be limited by armor)#LAST# ]]
 
-TOOLTIP_FEAT = [[ You gain a feat point upon birth and one point every three character levels. ]]
+TOOLTIP_FEAT = [[ You gain a feat point upon birth and one point every three character levels. 
+Feats in #GOLD#gold#LAST# are class feats, gained automatically when you gained a level in the class. ]]
 TOOLTIP_ENC = [[ If your #ORANGE#encumbrance#LAST# exceeds #GOLD#33%#LAST# of your #ORANGE#max encumbrance#LAST#, you suffer penalties from #SANDY_BROWN#light load#LAST#. 
 	If it exceeds #GOLD#66%#LAST#, you suffer penalties from #SANDY_BROWN#heavy load#LAST#, instead.]]
 

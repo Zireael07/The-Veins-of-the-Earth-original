@@ -253,19 +253,27 @@ end
 
     h = 0
     w = self.w * 0.75 
-    -- start on last column
+    -- start on last column (feats)
     self:mouseTooltip(self.TOOLTIP_FEAT, s:drawColorStringBlended(self.font, "#CHOCOLATE#Feats", w, h, 255, 255, 255, true)) h = h + self.font_h
     local list = {}
+  
         for j, t in pairs(player.talents_def) do
-            if player:knowTalent(t.id) and t.is_feat then
+          if player:knowTalent(t.id) and t.is_feat then
+                if player:classFeat(t.id) then name = "#GOLD#"..t.name
+                else name = ("%s"):format(t.name) end
+
 
                 list[#list+1] = {
-                    name = ("%s"):format(t.name),
+                    name = name,
+                --    name = ("%s"):format(t.name),
                 --    desc = player:getTalentFullDescription(t):toString(),
                     desc = ("%s"):format(t.info(player,t)),
                 }
             end
         end
+
+
+
 
         table.sort(list, function(a,b) return a.name < b.name end)
 

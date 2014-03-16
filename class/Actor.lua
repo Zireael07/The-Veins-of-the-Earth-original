@@ -824,6 +824,34 @@ function _M:crossClass(skill)
 	return false
 end
 
+function _M:classFeat(tid)
+	local Talents = require "engine.interface.ActorTalents"
+
+	--A hardcoded list of class feats per class
+	local f_barbarian = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes", T_MARTIAL_WEAPON_PROFICIENCY = "yes" }
+	local f_bard = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes" }
+	local f_cleric = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_HEAVY_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes"  }
+	local f_druid = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes" }
+	local f_fighter = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_HEAVY_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes", T_MARTIAL_WEAPON_PROFICIENCY = "yes" }
+	local f_monk = { T_SIMPLE_WEAPON_PROFICIENCY = "yes" }
+	local f_paladin = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes", T_MARTIAL_WEAPON_PROFICIENCY = "yes" }
+	local f_ranger = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes", T_MARTIAL_WEAPON_PROFICIENCY = "yes" }
+	local f_rogue = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes" }
+
+
+	if self.classes and self.classes["Barbarian"] and f_barbarian[tid] == "yes" then return true end
+	if self.classes and self.classes["Bard"] and f_bard[tid] == "yes" then return true end
+	if self.classes and self.classes["Cleric"] and f_cleric[tid] == "yes" then return true end
+	if self.classes and self.classes["Druid"] and f_druid[tid] == "yes" then return true end
+	if self.classes and self.classes["Fighter"] and f_fighter[tid] == "yes" then return true end
+	if self.classes and self.classes["Monk"] and f_monk[tid] == "yes" then return true end
+	if self.classes and self.classes["Paladin"] and f_paladin[tid] == "yes" then return true end
+	if self.classes and self.classes["Ranger"] and f_ranger[tid] == "yes" then return true end
+	if self.classes and self.classes["Rogue"] and f_rogue[tid] == "yes" then return true end
+
+	return false
+end
+
 --AC, Sebsebeleb & Zireael
 function _M:getAC()
 	local dex_bonus = (self:getDex()-10)/2
