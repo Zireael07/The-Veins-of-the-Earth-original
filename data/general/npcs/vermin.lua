@@ -31,6 +31,7 @@ newEntity{
 	max_life = resolvers.rngavg(1,3),
 	hit_die = 1,
 	challenge = 1/4,
+	poison = "medium_spider"
 }
 
 newEntity{
@@ -42,7 +43,8 @@ newEntity{
 	hit_die = 1,
 	challenge = 1/3,
 	stats = { str=7, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {1,4} }
+	combat = { dam= {1,4} },
+	poison = "medium_spider"
 }
 
 newEntity{
@@ -54,7 +56,8 @@ newEntity{
 	hit_die = 2,
 	challenge = 1,
 	stats = { str=11, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {1,6} }
+	combat = { dam= {1,6} },
+	poison = "medium_spider"
 }
 
 newEntity{
@@ -66,7 +69,8 @@ newEntity{
 	hit_die = 4,
 	challenge = 4,
 	stats = { str=15, dex=17, con=12, int=1, wis=10, cha=2, luc=10 },
-	combat = { dam= {1,8} }
+	combat = { dam= {1,8} },
+	poison = "medium_spider"
 }
 
 newEntity{
@@ -79,6 +83,7 @@ newEntity{
 	challenge = 8,
 	stats = { str=19, dex=17, con=14, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {2,6} },
+	poison = "medium_spider"
 }
 
 newEntity{
@@ -168,6 +173,7 @@ newEntity{
 	hit_die = 1,
 	challenge = 1/8,
 	skill_hide = 16,
+	poison = "small_centipede"
 }
 
 newEntity{
@@ -181,6 +187,7 @@ newEntity{
 	skill_hide = 14,
 	stats = { str=5, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,4} },
+	poison = "small_centipede"
 }
 
 newEntity{
@@ -194,6 +201,7 @@ newEntity{
 	skill_hide = 8,
 	stats = { str=9, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,6} },
+	poison = "small_centipede"
 }
 
 newEntity{
@@ -207,6 +215,7 @@ newEntity{
 	skill_hide = 4,
 	stats = { str=13, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,8} },
+	poison = "small_centipede"
 }
 
 newEntity{
@@ -219,6 +228,7 @@ newEntity{
 	challenge = 2,
 	stats = { str=17, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {2,6} },
+	poison = "small_centipede"
 }
 
 newEntity{
@@ -231,6 +241,7 @@ newEntity{
 	challenge = 6,
 	stats = { str=23, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {2,8} },
+	poison = "small_centipede"
 }
 
 newEntity{
@@ -243,6 +254,7 @@ newEntity{
 	challenge = 9,
 	stats = { str=27, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {2,6} },
+	poison = "small_centipede"
 }
 
 newEntity{
@@ -274,6 +286,7 @@ newEntity{
 	hit_die = 1,
 	challenge = 1/4,
 	skill_hide = 12,
+	poison = "large_scorpion"
 }
 
 newEntity{
@@ -288,6 +301,7 @@ newEntity{
 	skill_climb = 3,
 	stats = { str=9, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,3} },
+	poison = "large_scorpion"
 }
 
 newEntity{
@@ -302,6 +316,7 @@ newEntity{
 	skill_climb = 4,
 	stats = { str=13, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,4} },
+	poison = "large_scorpion"
 }
 
 newEntity{
@@ -315,6 +330,7 @@ newEntity{
 	skill_climb = 4,
 	stats = { str=19, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,6} },
+	poison = "large_scorpion"
 }
 
 newEntity{
@@ -328,6 +344,7 @@ newEntity{
 	skill_climb = 4,
 	stats = { str=23, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,8} },
+	poison = "large_scorpion"
 }
 
 newEntity{

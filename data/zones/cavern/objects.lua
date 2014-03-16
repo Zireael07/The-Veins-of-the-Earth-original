@@ -30,6 +30,7 @@ load("/data/general/objects/magicitems.lua")
 load("/data/general/objects/containers.lua")
 load("/data/general/objects/potions.lua")
 load("/data/general/objects/charged.lua")
+load("/data/general/objects/poisons.lua")
 
 load("/data/general/objects/pickaxes.lua")
 load("/data/general/objects/money.lua")

@@ -210,6 +210,10 @@ function _M:act()
 	-- Compute timed effects
 	self:timedEffects()
 
+	--Poison timer
+	if self.poison_timer then self.poison_timer = self.poison_timer - 1 end
+
+
 	--Death & dying related stuff
 	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
 

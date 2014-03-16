@@ -221,7 +221,13 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
    end
    
    if hit then
-      local dam = rng.dice(weapon.combat.dam[1], weapon.combat.dam[2])
+
+    self:dealDamage(target, weapon, crit) end
+end
+
+
+function _M:dealDamage(target, weapon, crit)
+  local dam = rng.dice(weapon.combat.dam[1], weapon.combat.dam[2])
 
       -- magic damage bonus
       dam = dam + (weapon and weapon.combat.magic_bonus or 0)
@@ -250,7 +256,12 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
             else
                 if target.subtype == self.favored_enemy then dam = dam + 2 end
             end
-        end  
+      end  
+
+      if not target.dead and self.poison then
+        self:applyPoison(self.poison, target)
+      end
+
 
       --Minimum 1 point of damage unless Damage Reduction works
         dam = math.max(1, dam)
@@ -258,8 +269,54 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
 
         target:takeHit(dam, self)
         game.log(("%s deals %d damage to %s!"):format(self.name:capitalize(), dam, target.name:capitalize()))
-   end
 end
+
+_M.poisons = {
+  small_centipede = { 11, POISON_SMALL_CENTIPEDE, POISON_SMALL_CENTIPEDE },
+  medium_spider = { 14, POISON_1d4STR, POISON_1d4STR },
+  large_scorpion = { 18, POISON_1d6STR, POISON_1d6STR },
+
+  nitharit = { 13, nil, POISON_3d6CON },
+  sassone = { 16, nil, POISON_1d6CON },
+  malyss = { 16, POISON_MALYSS_PRI, POISON_MALYSS_SEC },
+  terinav = { 16, POISON_1d6DEX, POISON_TERINAV_SEC },
+  blacklotus = { 20, POISON_3d6CON, POISON_3d6CON  },
+  dragon = { 26, POISON_DRAGON_BILE, nil },
+  toadstool = { 11, POISON_TOADSTOOL_PRI, POISON_TOADSTOOL_SEC },
+  arsenic = { 13, POISON_1CON, POISON_ARSENIC_SEC },
+  idmoss = { 14, POISON_1d4INT, POISON_MOSS_SEC },
+  lichdust = { 17, POISON_2d6STR, POISON_1d6STR },
+  darkreaver = { 18, POISON_2d6CON, POISON_DARK_REAVER_SEC },
+  ungoldust = { 15, POISON_UNGOL_DUST_PRI, POISON_UNGOL_DUST_SEC },
+  insanitymist = { 15, POISON_INSANITY_MIST_PRI, POISON_INSANITY_MIST_SEC },
+  burnt_othur = { 18, POISON_1CON, POISON_3d6CON },
+  blackadder = { 11, POISON_1d6CON, POISON_1d6CON },
+  bloodroot = { 12, nil, POISON_BLOODROOT_SEC },
+  greenblood = { 13, POISON_1CON, POISON_GREENBLOOD_SEC },
+  whinnis = { 14, POISON_1CON, nil }, -- temporarily until I make unconsciousness work
+  shadowessence = { 17, POISON_SHADOW_ESSENCE_PRI, POISON_2d6STR },
+  wyvern = { 17, POISON_2d6CON, POISON_2d6CON },
+  giantwasp = { 18, POISON_1d6DEX, POISON_1d6DEX },
+  deathblade = { 20, POISON_1d6CON, POISON_2d6CON },
+  purpleworm = { 24, POISON_1d6STR, POISON_2d6STR },
+  }
+
+
+function _M:applyPoison(poison, target)
+  
+  if not target:fortitudeSave(poisons[poison][1]) then
+  target.poison_timer = 10
+    if poisons[poison][2] then target:setEffect(poisons[poison][2], 2, {}, true) end
+  end
+
+  if not target:fortitudeSave(poisons[poison][1]) then
+    if target.poison_timer == 0 and poisons[poison][3] then target:setEffect(poisons[poisons][3], 2, {}, true) end
+  end
+
+
+end
+
+
 
 _M.focuses = {
   axe = Talents.T_WEAPON_FOCUS_AXE,
