@@ -19,14 +19,14 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
-version = {0,12,0}
+version = {0,13,0}
 engine = {1,1,5,"te4"}
 description = [[
-In DarkGod's words, "a fantasy d20-themed dungeon crawler".
+In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
 You are an adventurer in a world of immense sunless corridors and tunnels. How long can you survive?
 
 ***
-Please use either the built-in report error function (remember to fill in "what I was doing" field) or report any bugs on ToME 4 forums 
+Please use either the built-in #LIGHT_RED#report error function#LAST# (remember to fill in "what I was doing" field) or report any bugs on ToME 4 forums. 
 
 Liked it? Disliked? Wished for a feature? Let me know - there are multiple ways to contact me, including GitHub, ModDB and various forums.
 

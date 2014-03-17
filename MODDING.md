@@ -49,7 +49,6 @@ combat_natural -> the AC bonus granted by amulets of natural armor
 combat_protection -> the AC bonus granted by rings of protection
 
 NPCs
-level_range -> what level must the player be for the monster to be generated
 ai -> do NOT change this line!
 type -> what it says on the tin
 subtype -> enter the name of the monster. It is used to track favored enemies
@@ -93,6 +92,14 @@ Darkvision 6 - 60 ft.
 
 skill_... -> any bonuses the monster receives (not counting the bonuses from stats and/or feats)
 combat_natural -> the natural armor bonus minus the size bonus (the latter doesn't exist in VotE)
+poison -> the name of the poison's entry in Combat.lua
+
+specialist_desc -> the top-level knowledge about the monster a character can have
+uncommon_desc -> uncommon knowledge about the monster a character can have
+common_desc -> common "
+base_desc -> base "
+Note that there's no need to repeat information from lower levels in higher levels.
+
 
 Spells
 Icon names for spells must match the spell's name exactly, otherwise they won't be displayed.
