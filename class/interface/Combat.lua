@@ -258,17 +258,16 @@ function _M:dealDamage(target, weapon, crit)
             end
       end  
 
-      if not target.dead and self.poison then
-        self:applyPoison(self.poison, target)
-      end
-
-
-      --Minimum 1 point of damage unless Damage Reduction works
+        --Minimum 1 point of damage unless Damage Reduction works
         dam = math.max(1, dam)
         dam = dam - (target.combat_dr or 0)
 
         target:takeHit(dam, self)
         game.log(("%s deals %d damage to %s!"):format(self.name:capitalize(), dam, target.name:capitalize()))
+
+        if not target.dead and self:attr("poison") then
+        self:applyPoison(self:attr("poison"), target)
+        end
 end
 
 _M.poisons = {
@@ -303,6 +302,7 @@ _M.poisons = {
 
 
 function _M:applyPoison(poison, target)
+  if not poison then return end
   
   if not target:fortitudeSave(poisons[poison][1]) then
   target.poison_timer = 10

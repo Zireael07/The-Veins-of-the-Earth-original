@@ -65,6 +65,7 @@ function _M:init(t, no_default)
 
 	--Some more combat stuff
 	self.more_attacks = 0
+	self.poison = self.poison or nil
 
 	--Challenge Rating & ECL set to 0 & 1
 	self.challenge = 0
@@ -886,6 +887,12 @@ function _M:reflexSave(dc)
 	else
 		return false
 	end
+
+	if self == game.player then
+	local s = ("Reflex save: %d roll + bonus = %d versus DC %d"):format(
+			roll, save, dc)--, success and "success" or "failure")
+		game.log(s)
+	end
 end
 
 function _M:fortitudeSave(dc)
@@ -895,6 +902,12 @@ function _M:fortitudeSave(dc)
 		return true
 	else
 		return false
+	end
+
+	if self == game.player then
+	local s = ("Fortitude save: %d roll + bonus = %d versus DC %d"):format(
+			roll, save, dc)--, success and "success" or "failure")
+		game.log(s)
 	end
 end
 
@@ -906,6 +919,13 @@ function _M:willSave(dc)
 	else
 		return false
 	end
+
+	if self == game.player then
+	local s = ("Will save: %d roll + bonus = %d versus DC %d"):format(
+			roll, save, dc)--, success and "success" or "failure")
+		game.log(s)
+	end
+
 end
 
 function _M:saveRoll(DC, type)
