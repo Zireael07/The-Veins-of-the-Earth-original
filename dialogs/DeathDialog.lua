@@ -1,4 +1,4 @@
--- Underdark
+-- Veins of the Earth
 -- Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
@@ -34,8 +34,6 @@ function _M:init(actor)
 	self.c_desc = Textzone.new{width=self.iw, auto_height=true, text=[[You have #LIGHT_RED#died#LAST#!
 Death in #SANDY_BROWN#the Veins of the Earth#LAST# is usually permanent. 
 Luckily, you can review your character sheet and try once again to survive in the wilds!
-
-Do not forget to vote for VotE!
 ]]}
 	self.c_list = List.new{width=self.iw, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end}
 
