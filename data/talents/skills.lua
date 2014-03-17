@@ -69,9 +69,9 @@ newTalent{
 	points = 1,
 	cooldown = 20,
 	on_pre_use = function(self, t, silent)
---[[	if self:isTalentActive(t.id) then 
-			--return true end
-			if stealthTest(self) then return true 
+	if self:isTalentActive(t.id) then 
+			return true end
+	--[[		if stealthTest(self) then return true 
 			else return nil end
 		end]]
 
@@ -83,30 +83,30 @@ newTalent{
 			return nil 
 		end
 	end,
-	on_post_use = function(self, t, silent)
+--[[	on_post_use = function(self, t, silent)
 	if stealthTest(self) then return true
 	else return nil end
-	end,
+	end,]]
 	activate = function(self, t)
-		local res = {
-			stealth = self:addTemporaryValue("stealth", 1),
-			lite = self:addTemporaryValue("lite", -1000),
-			infra = self:addTemporaryValue("infravision", 3),
+		local res = { 
+		slow = self:addTemporaryValue("movement_speed_bonus", -0.50),
+		stealth = self:addTemporaryValue("stealth", 1),
+		lite = self:addTemporaryValue("lite", -1000),
 		}
-
 		self:resetCanSeeCacheOf()
-		return res
-	
-	--[[	stealth = self:addTemporaryValue("stealth", 1)
-		lite = self:addTemporaryValue("lite", -1000)
+		
 		--Account for Underdark races
-		if self.infravision < 3 then infra = self:addTemporaryValue("infravision", 3) end]]
+		if self.infravision < 3 then infra = self:addTemporaryValue("infravision", 3) end
+		
+		return res 
 	end,
 		
 	deactivate = function(self, t, p)
 	self:removeTemporaryValue("stealth", p.stealth)
-	self:removeTemporaryValue("infravision", p.infra)
 	self:removeTemporaryValue("lite", p.lite)
+	self:removeTemporaryValue("slow", p.slow)
+	if p.infra then self:removeTemporaryValue("infravision", p.infra) end
+	
 	self:resetCanSeeCacheOf()
 	return true
 	end,
