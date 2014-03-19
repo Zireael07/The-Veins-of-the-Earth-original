@@ -33,7 +33,8 @@ function _M:generateOne()
 	if m and m.challenge <= (game.level.level + 5) then
 		local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
 		local tries = 0
-		while (not m:canMove(x, y) or (self.map.room_map[x][y] and self.map.room_map[x][y].special)) and tries < 100 do
+		--No more spawning in walls!
+		while (self.map:checkEntity(x, y, Map.TERRAIN, "block_move") or (self.map.room_map[x][y] and self.map.room_map[x][y].special)) and tries < 100 do
 			x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
 			tries = tries + 1
 		end

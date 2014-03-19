@@ -19,7 +19,7 @@ return {
 	level_range = {1, 1},
 	max_level = 1000,
 	decay = {300, 800},
-	width = 50, height = 50,
+	width = 100, height = 100,
 --	persistent = "zone",
 	generator =  {
 		map = {
