@@ -12,6 +12,13 @@ local Stats = require "engine.interface.ActorStats"
 local Talents = require "engine.interface.ActorTalents"
 local Player = require "mod.class.Player"
 
+--Required for the premades
+local Savefile = require "engine.Savefile"
+local Module = require "engine.Module"
+local CharacterVaultSave = require "engine.CharacterVaultSave"
+local TextzoneList = require "engine.ui.TextzoneList"
+local Separator = require "engine.ui.Separator"
+local List = require "engine.ui.List"
 
 module(..., package.seeall, class.inherit(Dialog))
 
@@ -46,6 +53,7 @@ function _M:init(actor)
 
     --Birth button
     self.c_save = Button.new{text="Birth", fct=function() self:onBirth() end}
+    self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
 
     self.t_roll:select()
 
@@ -68,6 +76,7 @@ function _M:drawDialog(tab)
         {left=0, top=10, ui=self.c_desc},
         {left=0, bottom=0, ui=self.c_reroll},
         {left=self.c_reroll, bottom=0, ui=self.c_save},
+        {left=self.c_save, bottom=0, ui=self.c_premade},
     }
     
     self:setupUI()
@@ -103,16 +112,21 @@ function _M:onBirth()
         game.player:resolve(nil, true)
         game.player.energy.value = game.energy_to_act
         game.paused = true
-        game.creating_player = false
+        
+--        game.player:onBirth()
+        
+        print("[PLAYER BIRTH] resolved!")
+        
+        game.player:onBirth()
+        local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
+--self.player:playerLevelup() 
+         game.creating_player = false
+
         game.player:levelPassives()
         game.player.changed = true
---        game.player:onBirth()
-        local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
---            self.player:playerLevelup()
-        game.player:onBirth()
         end, true)
         game:registerDialog(d)
-        print("[PLAYER BIRTH] resolved!")
+
         end, quickbirth, game.w*0.6, game.h*0.6)
 
     game:registerDialog(birth)
@@ -212,4 +226,105 @@ function _M:drawTab()
 
     self.c_desc:generate()
     self.changed = false
+end
+
+--Adjusted from ToME 4
+function _M:loadPremade(pm)
+   local fallback = pm.force_fallback
+
+    -- Load the entities directly
+    if not fallback and pm.module_version and pm.module_version[1] == game.__mod_info.version[1] and pm.module_version[2] == game.__mod_info.version[2] and pm.module_version[3] == game.__mod_info.version[3] then
+        savefile_pipe:ignoreSaveToken(true)
+        local qb = savefile_pipe:doLoad(pm.short_name, "entity", "engine.CharacterVaultSave", "character")
+        savefile_pipe:ignoreSaveToken(false)
+
+        -- Load the player directly
+        if qb then
+            game:unregisterDialog(d)
+            game.player = qb
+            self:loadedPremade()
+        else
+            fallback = true
+        end
+    else
+        fallback = true
+    end
+
+    -- Do nothing
+    if fallback then
+        local ok = 0    
+    end
+end
+
+--Taken from ToME 4
+function _M:loadPremadeUI()
+    local lss = Module:listVaultSavesForCurrent()
+    local d = Dialog.new("Characters Vault", 600, 550)
+
+    local sel = nil
+    local desc = TextzoneList.new{width=220, height=400}
+    local list list = List.new{width=350, list=lss, height=400,
+        fct=function(item)
+            local oldsel, oldscroll = list.sel, list.scroll
+            if sel == item then self:loadPremade(sel) game:unregisterDialog(d) end
+            if sel then sel.color = nil end
+            item.color = colors.simple(colors.LIGHT_GREEN)
+            sel = item
+            list:generate()
+            list.sel, list.scroll = oldsel, oldscroll
+        end,
+        select=function(item) desc:switchItem(item, item.description) end
+    }
+    local sep = Separator.new{dir="horizontal", size=400}
+
+    local load = Button.new{text=" Load ", fct=function() if sel then self:loadPremade(sel) game:unregisterDialog(d) end end}
+    local del = Button.new{text="Delete", fct=function() if sel then
+        self:yesnoPopup(sel.name, "Really delete premade: "..sel.name, function(ret) if ret then
+            local vault = CharacterVaultSave.new(sel.short_name)
+            vault:delete()
+            vault:close()
+            lss = Module:listVaultSavesForCurrent()
+            list.list = lss
+            list:generate()
+            sel = nil
+        end end)
+    end end}
+
+    d:loadUI{
+        {left=0, top=0, ui=list},
+        {left=list.w, top=0, ui=sep},
+        {right=0, top=0, ui=desc},
+
+        {left=0, bottom=0, ui=load},
+        {right=0, bottom=0, ui=del},
+    }
+    d:setupUI(true, true)
+    d.key:addBind("EXIT", function() game:unregisterDialog(d) end)
+    game:unregisterDialog(self)
+    game:registerDialog(d)
+end
+
+function _M:loadedPremade()
+
+    game:unregisterDialog(self)
+--    game:unregisterDialog(d)
+    self.creating_player = true
+    game:changeLevel(1, "dungeon")
+    print("[PLAYER BIRTH] resolve...")
+    game.player:resolve()
+    game.player:resolve(nil, true)
+    game.player.energy.value = game.energy_to_act
+    game.paused = true
+        
+    print("[PLAYER BIRTH] resolved!")
+
+    game.player:onPremadeBirth()
+    local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
+--self.player:playerLevelup() 
+    game.creating_player = false
+
+    game.player:levelPassives()
+    game.player.changed = true
+    end, true)
+    game:registerDialog(d)
 end

@@ -85,6 +85,7 @@ end
 function _M:onBirth()
   self:birthName()
   self:levelClass(self.descriptor.class)
+
   self:setTile()
 --  self:equipAllItems()
   -- HACK: This forces PlayerDisplay and HotkeysDisplay to update after birth descriptors are finished.
@@ -93,6 +94,17 @@ function _M:onBirth()
   self:setCountID()
 --  game:registerDialog(require"mod.dialogs.Help".new(self.player))
 end
+
+function _M:onPremadeBirth()
+  self:setTile()
+--  self:equipAllItems()
+  -- HACK: This forces PlayerDisplay and HotkeysDisplay to update after birth descriptors are finished.
+  game.player.changed = true
+  self:resetToFull()
+  self:setCountID()
+--  game:registerDialog(require"mod.dialogs.Help".new(self.player))
+end 
+
 
 function _M:randomPerk()
 local d = rng.dice(1,2)
@@ -117,6 +129,8 @@ end
 function _M:birthName()
   game:registerDialog(require("mod.dialogs.BirtherGetName").new(actor, function(text)
   self:setName(text)
+  -- For quickbirth
+  savefile_pipe:push(game.player.name, "entity", game.player, "engine.CharacterVaultSave")
 --  actor.name = text
 end, 
 function()

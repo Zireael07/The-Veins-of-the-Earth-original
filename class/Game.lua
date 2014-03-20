@@ -231,6 +231,14 @@ function _M:getSaveDescription()
 	}
 end
 
+function _M:getVaultDescription(e)
+	return {
+		name = ([[%s the %s %s]]):format(e.name, e.descriptor.race, e.descriptor.class),
+		descriptors = e.descriptor,
+		description = ([[%s %s %s %s. AL %s]]):format(e.name, e.descriptor.sex, e.descriptor.race, e.descriptor.class, e.descriptor.alignment),
+	}
+end
+
 function _M:leaveLevel(level, lev, old_lev)
 	if level:hasEntity(self.player) then
 		level.exited = level.exited or {}
