@@ -180,6 +180,10 @@ newBirthDescriptor {
 		skill_point = 6, --4x skill points at 1st level
 	},
 	descriptor_choices = {
+		deity =
+    	{
+      		__ALL__ = "allow",
+    	},
 		domains = {
 			__ALL__ = "allow",
 		},

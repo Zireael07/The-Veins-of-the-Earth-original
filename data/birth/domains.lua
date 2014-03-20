@@ -1,3 +1,4 @@
+--44 domains total
 local help = '#SANDY_BROWN#This is a list of domains. Some domains may give you additional abilities or feats.\n\n'
 
 newBirthDescriptor {
@@ -29,6 +30,23 @@ newBirthDescriptor {
 	},
 	talents_types = {
 		["domains/animal"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Beauty',
+  	desc = help..'#LIGHT_BLUE# Test#LAST#.',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Beauty = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/beauty"] = {true, 0.0},
   },
 }
 
@@ -64,6 +82,41 @@ newBirthDescriptor {
   },
 }
 
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Community',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Community = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/community"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Craft',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Craft = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/craft"] = {true, 0.0},
+  },
+}
+
+
 newBirthDescriptor {
   	type = 'domains',
   	name = 'Death',
@@ -96,6 +149,39 @@ newBirthDescriptor {
   },
 }
 
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Domination',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Domination = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/domination"] = {true, 0.0},
+  },
+}
+
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Earth',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Earth = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/earth"] = {true, 0.0},
+  },
+}
+
 newBirthDescriptor {
   	type = 'domains',
   	name = 'Evil',
@@ -109,6 +195,23 @@ newBirthDescriptor {
 	},
 	talents_types = {
 		["domains/evil"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Fate',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Fate = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/fate"] = {true, 0.0},
   },
 }
 
@@ -143,6 +246,40 @@ newBirthDescriptor {
 		["domains/good"] = {true, 0.0},
   },
 }	
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Guardian',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Guardian = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/guardian"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Hatred',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Hatred = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/hatred"] = {true, 0.0},
+  },
+}
 
 newBirthDescriptor {
   	type = 'domains',
@@ -192,6 +329,23 @@ newBirthDescriptor {
   },
 }
 
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Liberation',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Liberation = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/liberation"] = {true, 0.0},
+  },
+}
+
 newBirthDescriptor {
   	type = 'domains',
   	name = 'Luck',
@@ -224,6 +378,40 @@ newBirthDescriptor {
   },
 }
 
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Moon',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Moon = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/moon"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Mysticism',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Mysticism = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/mysticism"] = {true, 0.0},
+  },
+}
+
 newBirthDescriptor {
   	type = 'domains',
   	name = 'Nature',
@@ -239,6 +427,92 @@ newBirthDescriptor {
 		["domains/nature"] = {true, 0.0},
   },
 }
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Night',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Night = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/night"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Nobility',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Nobility = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/nobility"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Pain',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Pain = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/pain"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Passion',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Passion = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/passion"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Planning',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Planning = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/planning"] = {true, 0.0},
+  },
+}
+
 
 newBirthDescriptor {
   	type = 'domains',
@@ -256,6 +530,58 @@ newBirthDescriptor {
   },
 }
 
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Retribution',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Retribution = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/retribution"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Slime',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Slime = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/slime"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Spider',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Spider = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/spider"] = {true, 0.0},
+  },
+}
+
+
 newBirthDescriptor {
   	type = 'domains',
   	name = 'Strength',
@@ -272,6 +598,23 @@ newBirthDescriptor {
   },
 }
 
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Succor',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Succor = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/succor"] = {true, 0.0},
+  },
+}
+
 newBirthDescriptor {
   	type = 'domains',
   	name = 'Sun',
@@ -285,6 +628,23 @@ newBirthDescriptor {
 	},
 	talents_types = {
 		["domains/sun"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Time',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Time = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/time"] = {true, 0.0},
   },
 }
 
@@ -316,7 +676,7 @@ newBirthDescriptor {
 	    }
 	},
 	talents_types = {
-		["domains/fire"] = {true, 0.0},
+		["domains/trickery"] = {true, 0.0},
   },
 }
 
@@ -349,5 +709,22 @@ newBirthDescriptor {
 	},
 	talents_types = {
 		["domains/water"] = {true, 0.0},
+  },
+}
+
+--Taken from Incursion
+newBirthDescriptor {
+  	type = 'domains',
+  	name = 'Weather',
+  	desc = help..'#LIGHT_BLUE#Test#LAST#',
+  	descriptor_choices =
+	{
+	    domains =
+	    {
+	      Weather = "forbid",
+	    }
+	},
+	talents_types = {
+		["domains/weather"] = {true, 0.0},
   },
 }

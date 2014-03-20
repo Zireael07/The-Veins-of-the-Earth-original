@@ -22,6 +22,7 @@ Features:
 - 2 prestige classes: shadowdancer, assasin
 - 13 races: human, half-elf, half-drow, gnome, halfling, elf, dwarf, half-orc; drow, duergar, deep gnomes
 - backgrounds for quicker character creation; basic rules info while creating a character
+- ability to load a character that was already created once
 - attributes can be generated either via rolling or via point buy
 - random name generator taking into account your character's race and sex, now with an option to type the name yourself
 - Effective Character Level
@@ -35,6 +36,7 @@ Features:
 - inventory & encumbrance
 - spellbook, an iconed hotbar for spells [Seb]; some 0, 1st, 2nd, 3rd level spells
 - armor spell failure chance; key stat must be 9 to cast spells; casters gain access to next spell level every 3rd level
+- clerics now pick deities which limit their alignment and domain choices
 - skill checks (printed to log) including armor check penalty & racial or feat bonuses; opposed checks
 - stealth
 - all weapons from SRD; magic armors and shields; magic weapons; light sources; magic items
@@ -55,6 +57,9 @@ Features:
 
 ***
 Thanks to:
+- Daniel E.Gervais for releasing his tiles under Creative Commons
+- Julian Mensch aka Journeyman for releasing Incursion as open source and OGL
+
 - rsaarelm from #rgrd for coming up with the name "Veins of the Earth"
 - Grey, DarkGod, HousePet for coding help
 - Zonk for brainstorming
@@ -63,5 +68,5 @@ Thanks to:
 - AuraOfTheDawn for testing & coming up with a nice meme
 - grazz for two small fixes
 - lukep for Combat.lua patch and testing
-- Daniel E.Gervais for releasing his tiles under Creative Commons
+
 

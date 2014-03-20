@@ -59,6 +59,10 @@ newBirthDescriptor{
   },
   descriptor_choices =
   {
+    deity =
+    {
+      __ALL__ = "disallow",
+    },
     domains =
     {
       __ALL__ = "disallow",
@@ -204,4 +208,5 @@ newBirthDescriptor {
 load('/data/birth/races.lua')
 load('/data/birth/class.lua')
 load('/data/birth/background.lua')
+load('/data/birth/deities.lua')
 load('/data/birth/domains.lua')
