@@ -34,7 +34,7 @@ newEntity{
 	skill_spot = 1,
 	skill_search = 1,
 	skill_movesilently = 1,
-        }
+}
 
 newEntity{ base = "BASE_NPC_KOBOLD",
 	name = "kobold warrior", color=colors.GREEN,
@@ -68,6 +68,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 		full_id=true,
 		{ name = "arrows" },
         { name = "shortbow" },
+        { name = "leather armor"},
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -90,6 +91,7 @@ newEntity{
 	infravision = 2,
 	skill_listen = 2,
 	skill_spot = 2,
+	resolvers.class()
 }
 
 newEntity{
@@ -130,6 +132,7 @@ newEntity{
 	skill_movesilently = 4,
 	skill_listen = 2,
 	skill_spot = 1,
+	resolvers.class()
 }
 
 newEntity{
@@ -174,6 +177,7 @@ newEntity{
 	skill_listen = 2,
 	skill_search = 3,
 	skill_spot = 2,
+--	resolvers.class()
 }
 
 newEntity{
@@ -211,6 +215,7 @@ newEntity{
 	stats = { str=11, dex=11, con=12, int=11, wis=9, cha=9, luc=10 },
 	combat = { dam= {1,6} },
 	lite = 3,
+	resolvers.class()
 }
 
 newEntity{
@@ -247,6 +252,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
 	combat = { dam= {1,6} },
+	resolvers.class()
 }
 
 newEntity{
@@ -405,6 +411,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=11, con=14, int=10, wis=9, cha=8, luc=10 },
 	combat = { dam= {1,6} },
+	resolvers.class()
 }
 
 newEntity{
@@ -480,6 +487,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
+	resolvers.class()
 }
 
 newEntity{
@@ -723,7 +731,7 @@ newEntity{
 	infravision = 3,
 	skill_bluff = 6,
 	skill_hide = 4,
-
+	resolvers.class()
 }
 
 newEntity{
@@ -769,6 +777,7 @@ newEntity{
 	skill_heal = 4,
 	skill_listen = 2,
 	skill_spot = 2,
+	resolvers.class()
 }
 
 newEntity{

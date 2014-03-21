@@ -78,6 +78,9 @@ function _M:init(t, no_default)
 	-- Default melee barehanded damage
 	self.combat = { dam = {1,4} }
 
+	--Can now get classes
+	self.classes = self.classes or {}
+
 	--Saves
 	self.will_save = self.will_save or 0
 	self.reflex_save = self.reflex_save or 0
@@ -1211,6 +1214,13 @@ function _M:levelClass(name)
 	self.last_class = name
 
 	d.on_level(self, level)
+end
+
+function _M:giveLevels(name, n)
+	while n > 0 do
+	self:levelClass(name)
+	n = n-1
+	end
 end
 
 --Encumbrance & auto-ID stuff, Zireael

@@ -267,3 +267,47 @@ function resolvers.calc.tactic(t, e)
 	return {}
 end
 
+
+function resolvers.classes()
+	return {__resolver="classes", __resolve_last=true}
+end
+
+function resolvers.calc.classes(t, e)
+	local Birther = require("engine.Birther")
+	local class = {}
+
+	local class_list = Birther.birth_descriptor_def.class
+
+	for class, n in ipairs(t[1]) do
+		e = e:giveLevels(class, n)
+		return e
+	end
+end
+
+function resolvers.class()
+ 	return {__resolver="class", __resolve_last=true}
+end
+
+
+function resolvers.calc.class(t, e)
+	local Birther = require("engine.Birther")
+	local class
+
+	local n = rng.dice(1,8)
+
+	if rng.chance(2) then class = "Fighter" --end
+	elseif rng.chance(4) then class = "Cleric" --end
+	elseif rng.chance(2) then class = "Barbarian"
+	elseif rng.chance(3) then class = "Rogue"
+	elseif rng.chance(3) then class = "Ranger"
+	elseif rng.chance(5) then class = "Wizard"
+ 	elseif rng.chance(6) then class = "Sorcerer"
+	elseif rng.chance(8) then class = "Druid" --end
+	elseif rng.chance(10) then class = "Warlock" 
+	else end
+
+	if not class then end
+	
+	e = e:giveLevels(class, n)
+	return e
+end
