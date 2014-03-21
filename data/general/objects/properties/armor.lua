@@ -41,6 +41,7 @@ newEntity {
 	keywords = {bonus=true},
 	level_range = {10, 20},
 	rarity = 10,
+	greater_ego = 1,
 	cost = 32000,
 	wielder = {
 		combat_magic_armor = 4,
@@ -51,6 +52,7 @@ newEntity {
 	name = " +5", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
+	greater_ego = 1,
 	rarity = 15,
 	cost = 50000,
 	wielder = {
@@ -113,6 +115,7 @@ newEntity {
 	name = " of improved shadow", suffix = true,
 	keywords = {shadow=true},
 	level_range = {10, nil},
+	greater_ego = 1,
 	rarity = 13,
 	cost = 15000,
 	wielder = {
@@ -124,6 +127,7 @@ newEntity {
 	name = " of greater shadow", suffix = true,
 	keywords = {shadow=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 18,
 	cost = 33750,
 	wielder = {
@@ -146,6 +150,7 @@ newEntity {
 	name = " of improved silent moves", suffix = true,
 	keywords = {silent=true},
 	level_range = {10, nil},
+	greater_ego = 1,
 	rarity = 13,
 	cost = 15000,
 	wielder = {
@@ -157,6 +162,7 @@ newEntity {
 	name = " of greater silent moves", suffix = true,
 	keywords = {silent=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 18,
 	cost = 33750,
 	wielder = {
@@ -179,6 +185,7 @@ newEntity {
 	name = "improved slick ", prefix = true,
 	keywords = {slick=true},
 	level_range = {10, nil},
+	greater_ego = 1,
 	rarity = 13,
 	cost = 15000,
 	wielder = {
@@ -190,6 +197,7 @@ newEntity {
 	name = "greater slick ", prefix = true,
 	keywords = {slick=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 18,
 	cost = 33750,
 	wielder = {
@@ -202,6 +210,7 @@ newEntity {
 	name = " of spell resistance 13", suffix = true,
 	keywords = {spellres=true},
 	level_range = {10, nil},
+	greater_ego = 1,
 	rarity = 15,
 	cost = 8000,
 	wielder = {
@@ -213,6 +222,7 @@ newEntity {
 	name = " of spell resistance 15", suffix = true,
 	keywords = {spellres=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 15,
 	cost = 16000,
 	wielder = {
@@ -224,6 +234,7 @@ newEntity {
 	name = " of spell resistance 17", suffix = true,
 	keywords = {spellres=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 17,
 	cost = 32000,
 	wielder = {
@@ -235,6 +246,7 @@ newEntity {
 	name = " of spell resistance 19", suffix = true,
 	keywords = {spellres=true},
 	level_range = {20, nil},
+	greater_ego = 1,
 	rarity = 20,
 	cost = 50000,
 	wielder = {
@@ -260,6 +272,7 @@ newEntity {
 	name = " of improved fire resistance", suffix = true,
 	keywords = {fireres=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 15,
 	cost = 42000,
 	wielder = {
@@ -273,6 +286,7 @@ newEntity {
 	name = " of greater fire resistance", suffix = true,
 	keywords = {fireres=true},
 	level_range = {18, nil},
+	greater_ego = 1,
 	rarity = 20,
 	cost = 66000,
 	wielder = {
@@ -300,6 +314,7 @@ newEntity {
 	name = " of improved acid resistance", suffix = true,
 	keywords = {acidres=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 15,
 	cost = 42000,
 	wielder = {
@@ -313,6 +328,7 @@ newEntity {
 	name = " of greater acid resistance", suffix = true,
 	keywords = {acidres=true},
 	level_range = {18, nil},
+	greater_ego = 1,
 	rarity = 20,
 	cost = 66000,
 	wielder = {
@@ -339,6 +355,7 @@ newEntity {
 	name = " of improved cold resistance", suffix = true,
 	keywords = {coldres=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 15,
 	cost = 42000,
 	wielder = {
@@ -352,6 +369,7 @@ newEntity {
 	name = " of greater cold resistance", suffix = true,
 	keywords = {coldres=true},
 	level_range = {18, nil},
+	greater_ego = 1,
 	rarity = 20,
 	cost = 66000,
 	wielder = {
@@ -378,6 +396,7 @@ newEntity {
 	name = " of improved electricity resistance", suffix = true,
 	keywords = {electres=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 15,
 	cost = 42000,
 	wielder = {
@@ -391,6 +410,7 @@ newEntity {
 	name = " of greater electricity resistance", suffix = true,
 	keywords = {electres=true},
 	level_range = {18, nil},
+	greater_ego = 1,
 	rarity = 20,
 	cost = 66000,
 	wielder = {
@@ -417,6 +437,7 @@ newEntity {
 	name = " of improved sonic resistance", suffix = true,
 	keywords = {sonicres=true},
 	level_range = {15, nil},
+	greater_ego = 1,
 	rarity = 15,
 	cost = 42000,
 	wielder = {
@@ -431,6 +452,7 @@ newEntity {
 	keywords = {sonicres=true},
 	level_range = {18, nil},
 	rarity = 20,
+	greater_ego = 1,
 	cost = 66000,
 	wielder = {
 		resists = {

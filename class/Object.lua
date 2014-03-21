@@ -14,10 +14,11 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
- require "engine.class"
+require "engine.class"
 require "engine.Object"
 require "engine.interface.ObjectActivable"
-require "engine.interface.ObjectIdentify"
+--require "engine.interface.ObjectIdentify"
+require "mod.class.interface.ObjectIdentify"
 
 local Stats = require("engine.interface.ActorStats")
 local Talents = require("engine.interface.ActorTalents")
@@ -26,7 +27,8 @@ local DamageType = require("engine.DamageType")
 module(..., package.seeall, class.inherit(
     engine.Object,
     engine.interface.ObjectActivable,
-    engine.interface.ObjectIdentify,
+--    engine.interface.ObjectIdentify,
+    mod.class.interface.ObjectIdentify,
     engine.interface.ActorTalents,
     engine.interface.ActorInventory
 ))
@@ -36,7 +38,8 @@ function _M:init(t, no_default)
 
     engine.Object.init(self, t, no_default)
     engine.interface.ObjectActivable.init(self, t)
-    engine.interface.ObjectIdentify.init(self, t)
+--    engine.interface.ObjectIdentify.init(self, t)
+    mod.class.interface.ObjectIdentify.init(self,t)
     engine.interface.ActorTalents.init(self, t)
     --Inventory!
     engine.interface.ActorInventory.init(self, t)
@@ -88,14 +91,50 @@ function _M:descAttribute(attr)
     end
 end
 
+--- Gets the color in which to display the object in lists
+function _M:getDisplayColor()  
+    if self.pseudo_id == true then
+        if self.cursed then return {201, 0, 0}, "#RED#" end
+    
+--[[    if self.rare then
+        return {250, 128, 114}, "#SALMON#"]]
+        if self.egoed then
+            if self.greater_ego then return {255, 215, 0}, "#GOLD#"
+            --More than 1 greater ego
+        --[[    if self.greater_ego > 1 then
+                return {0x8d, 0x55, 0xff}, "#8d55ff#"
+            else]]
+                
+        --    end
+            else
+            return {81, 221, 255}, "#LIGHT_BLUE#"
+            end
+        else return {255, 255, 255}, "#FFFFFF#"
+        end
+
+    else return {210, 180, 140}, "#TAN#" --end
+    end
+end
+
+
 --- Gets the full name of the object
 function _M:getName(t)
     t = t or {}
     local qty = self:getNumber()
     local name = self.name
 
+
     if self.identified == false and not t.force_id and self:getUnidentifiedName() then name = self:getUnidentifiedName() end
     
+    if self.pseudo_id == true and self.identified == false and not t.force_id then --and self:getUnidentifiedName() then
+        if self.cursed then name = name.." {cursed}"
+        elseif self.egoed and self.greater_ego then name = name.." {excellent}"
+        elseif self.egoed then name = name.." {magical}"
+        else name = name.." {average}"
+        end
+    end
+
+
     --Display ammo capacity correctly
     if self.combat and self.combat.capacity then
         name = name.." ("..self.combat.capacity..")"
@@ -113,19 +152,25 @@ function _M:getName(t)
         end)
     end
 
-
-    if qty == 1 or t.no_count then return name
-    else return qty.." "..name
+    if not t.do_color then
+        if qty == 1 or t.no_count then return name
+        else return qty.." "..name
+        end
+    else
+        local _, c = self:getDisplayColor()
+        if qty == 1 or t.no_count then return c..name.."#LAST#"
+        else return c..qty.." "..name.."#LAST#"
+        end
     end
 end
 
 --[[ 
     --Describing special materials    
     if self.keywords then
-    if self.keywords.mithril and self.identified == true then str = str.."\n#GOLD#This armor is made of mithril, reducing the armor check penalty by 3 and spell failure chance by 10% and increasing max Dex bonus to AC by 2." end
-    if self.keywords.adamantine and self.identified == true then str = str.."\n#GOLD#This armor is made of adamantine, reducing damage taken by 1 and armor check penalty by 1." end
-    if self.keywords.dragonhide and self.identified == true then str = str.."\n#GOLD#This armor is made of dragonhide, giving the wearer fire resistance 20 and reducing the armor check penalty by 1." end
-    if self.keywords.darkwood and self.identified == true then str = str.."\n#GOLD#This shield is made of darkwood, reducing armor check penalty by 2" end
+    if self.keywords and self.keywords.mithril and self.identified == true then str = str.."\n#GOLD#This armor is made of mithril, reducing the armor check penalty by 3 and spell failure chance by 10% and increasing max Dex bonus to AC by 2." end
+    if self.keywords and self.keywords.adamantine and self.identified == true then str = str.."\n#GOLD#This armor is made of adamantine, reducing damage taken by 1 and armor check penalty by 1." end
+    if self.keywords and self.keywords.dragonhide and self.identified == true then str = str.."\n#GOLD#This armor is made of dragonhide, giving the wearer fire resistance 20 and reducing the armor check penalty by 1." end
+    if self.keywords and self.keywords.darkwood and self.identified == true then str = str.."\n#GOLD#This shield is made of darkwood, reducing armor check penalty by 2" end
   ]]
 
 

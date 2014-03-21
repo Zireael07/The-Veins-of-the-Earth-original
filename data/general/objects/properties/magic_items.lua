@@ -42,6 +42,7 @@ newEntity {
 	name = " of natural armor +4", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 20},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 32000,
 	wielder = {
@@ -53,6 +54,7 @@ newEntity {
 	name = " of natural armor +5", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 50000,
 	wielder = {
@@ -97,6 +99,7 @@ newEntity {
 	name = " of protection +4", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 20},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 32000,
 	wielder = {
@@ -108,6 +111,7 @@ newEntity {
 	name = " of protection +5", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 50000,
 	wielder = {
@@ -154,6 +158,7 @@ newEntity {
 	name = " of armor +4", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 20},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 32000,
 	wielder = {
@@ -165,6 +170,7 @@ newEntity {
 	name = " of armor +5", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 50000,
 	wielder = {
@@ -200,6 +206,7 @@ newEntity {
 	name = " of giant strength +6", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 32000,
 	wielder = {
@@ -233,6 +240,7 @@ newEntity {
 	name = " of Dexterity +6", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 32000,
 	wielder = {
@@ -266,6 +274,7 @@ newEntity {
 	name = " of health +6", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 32000,
 	wielder = {
@@ -299,6 +308,7 @@ newEntity {
 	name = " of Intelligence +6", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 32000,
 	wielder = {
@@ -332,6 +342,7 @@ newEntity {
 	name = " of Wisdom +6", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 32000,
 	wielder = {
@@ -365,6 +376,7 @@ newEntity {
 	name = " of charisma +6", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
+	greater_ego = 1,
 	rarity = 5,
 	cost = 32000,
 	wielder = {
@@ -378,6 +390,7 @@ newEntity{
 	keywords = {cursed=true},
 	level_range = {1,10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	wielder = {
      inc_stats = { [Stats.STAT_DEX] = -4, },
@@ -390,6 +403,7 @@ newEntity{
 	keywords = {cursed=true},
 	level_range = {1,10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = -2, },
@@ -401,6 +415,7 @@ newEntity{
 	keywords = {cursed=true},
 	level_range = {1,10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	wielder = {
     combat_armor=-1
@@ -412,6 +427,7 @@ newEntity{
 	keywords = {cursed=true},
 	level_range = {1,10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	wielder = {
     combat_armor=-2
@@ -423,6 +439,7 @@ newEntity{
 	keywords = {cursed=true},
 	level_range = {1,10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	wielder = {
     combat_armor=-3
@@ -434,6 +451,7 @@ newEntity{
 	keywords = {cursed=true},
 	level_range = {1,10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	wielder = {
     combat_armor=-4
@@ -445,6 +463,7 @@ newEntity{
 	keywords = {cursed=true},
 	level_range = {1,10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	wielder = {
     combat_armor=-5

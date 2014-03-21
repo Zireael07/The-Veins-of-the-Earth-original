@@ -40,6 +40,7 @@ newEntity {
 	name = " +4", suffix = true,
 	keywords = {bonus=true},
 	level_range = {10, 20},
+	greater_ego = 1,
 	rarity = 10,
 	cost = 32000,
 	wielder = {
@@ -51,6 +52,7 @@ newEntity {
 	name = " +5", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
+	greater_ego = 1,
 	rarity = 15,
 	cost = 50000,
 	wielder = {
@@ -90,6 +92,7 @@ newEntity {
 	keywords = {dragonhide=true},
 	level_range = {20, nil},
 	rarity = 15,
+	greater_ego = 1,
 	cost = 3500,
 	wielder = {
 		resists = {
@@ -118,6 +121,7 @@ newEntity {
 	keywords = {fireres=true},
 	level_range = {15, nil},
 	rarity = 15,
+	greater_ego = 1,
 	cost = 42000,
 	wielder = {
 		resists = {
@@ -131,6 +135,7 @@ newEntity {
 	keywords = {fireres=true},
 	level_range = {18, nil},
 	rarity = 20,
+	greater_ego = 1,
 	cost = 66000,
 	wielder = {
 		resists = {
@@ -158,6 +163,7 @@ newEntity {
 	keywords = {acidres=true},
 	level_range = {15, nil},
 	rarity = 15,
+	greater_ego = 1,
 	cost = 42000,
 	wielder = {
 		resists = {
@@ -171,6 +177,7 @@ newEntity {
 	keywords = {acidres=true},
 	level_range = {18, nil},
 	rarity = 20,
+	greater_ego = 1,
 	cost = 66000,
 	wielder = {
 		resists = {
@@ -197,6 +204,7 @@ newEntity {
 	keywords = {coldres=true},
 	level_range = {15, nil},
 	rarity = 15,
+	greater_ego = 1,
 	cost = 42000,
 	wielder = {
 		resists = {
@@ -210,6 +218,7 @@ newEntity {
 	keywords = {coldres=true},
 	level_range = {18, nil},
 	rarity = 20,
+	greater_ego = 1,
 	cost = 66000,
 	wielder = {
 		resists = {
@@ -236,6 +245,7 @@ newEntity {
 	keywords = {electres=true},
 	level_range = {15, nil},
 	rarity = 15,
+	greater_ego = 1,
 	cost = 42000,
 	wielder = {
 		resists = {
@@ -249,6 +259,7 @@ newEntity {
 	keywords = {electres=true},
 	level_range = {18, nil},
 	rarity = 20,
+	greater_ego = 1,
 	cost = 66000,
 	wielder = {
 		resists = {
@@ -275,6 +286,7 @@ newEntity {
 	keywords = {sonicres=true},
 	level_range = {15, nil},
 	rarity = 15,
+	greater_ego = 1,
 	cost = 42000,
 	wielder = {
 		resists = {
@@ -288,6 +300,7 @@ newEntity {
 	keywords = {sonicres=true},
 	level_range = {18, nil},
 	rarity = 20,
+	greater_ego = 1,
 	cost = 66000,
 	wielder = {
 		resists = {

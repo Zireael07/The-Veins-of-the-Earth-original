@@ -39,6 +39,7 @@ newEntity {
 	keywords = {bonus=true},
 	level_range = {10, 20},
 	rarity = 10,
+	greater_ego = 1,
 	cost = 32000,
 	combat = {
 	magic_bonus = 4,
@@ -50,6 +51,7 @@ newEntity {
 	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 15,
+	greater_ego = 1,
 	cost = 50000,
 	combat = {
 	magic_bonus = 5,
@@ -62,6 +64,7 @@ newEntity {
 	keywords = {cursed=true},
 	level_range = {1, 10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	combat = {
 	magic_bonus = -1,
@@ -73,6 +76,7 @@ newEntity {
 	keywords = {cursed=true},
 	level_range = {1, 10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	combat = {
 	magic_bonus = -2,
@@ -84,6 +88,7 @@ newEntity {
 	keywords = {cursed=true},
 	level_range = {1, 10},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	combat = {
 	magic_bonus = -3,
@@ -95,6 +100,7 @@ newEntity {
 	keywords = {cursed=true},
 	level_range = {10, 20},
 	rarity = 8,
+	cursed = true,
 	cost = 0,
 	combat = {
 	magic_bonus = -4,

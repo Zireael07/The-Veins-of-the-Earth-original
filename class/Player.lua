@@ -73,7 +73,8 @@ function _M:init(t, no_default)
   --Timers :D
   self.nutrition = 500
   self.lite_counter = 5000
-  self.id_counter = 10
+  self.pseudo_id_counter = 10
+  self.id_counter = 50
 
   self.weapon_type = {}
   self.favored_enemy = {}
@@ -226,13 +227,19 @@ function _M:act()
 
  self.nutrition = self.nutrition - 1
 
- --ID counter
+ --ID counters
  local inven = game.player:getInven("INVEN")
  self.id_counter = self.id_counter - 1
+ self.pseudo_id_counter = self.pseudo_id_counter - 1
 
-  if self.id_counter == 0 then --and inven > 0 then
-    self:autoID()
+  if self.pseudo_id_counter == 0 then --and inven > 0 then
+    self:pseudoID()
     self:setCountID()
+  end
+
+  if self.id_counter == 0 then
+    self:autoID()
+    self.id_counter = 50
   end
 
   -- Clean log flasher
@@ -456,11 +463,24 @@ end
 --Auto ID stuff
 
 function _M:setCountID()
-  if self.descriptor.class == "Rogue" then self.id_counter = 8
-  elseif self.descriptor.class == "Fighter" or self.descriptor.class == "Barbarian" then self.id_counter = 10
-  elseif self.descriptor.class == "Ranger" or self.descriptor.class == "Paladin" or self.descriptor.class == "Monk" or self.descriptor.class == "Warlock" or self.descriptor.class == "Cleric" then self.id_counter = 15
-  elseif self.descriptor.class == "Wizard" or self.descriptor.class == "Sorcerer" then self.id_counter = 20
+  if self.descriptor.class == "Rogue" then self.pseudo_id_counter = 8
+  elseif self.descriptor.class == "Fighter" or self.descriptor.class == "Barbarian" then self.pseudo_id_counter = 10
+  elseif self.descriptor.class == "Ranger" or self.descriptor.class == "Paladin" or self.descriptor.class == "Monk" or self.descriptor.class == "Warlock" or self.descriptor.class == "Cleric" then self.pseudo_id_counter = 15
+  elseif self.descriptor.class == "Wizard" or self.descriptor.class == "Sorcerer" then self.pseudo_id_counter = 20
   end
+end
+
+function _M:pseudoID()
+local list = {}
+        local inven = game.player:getInven("INVEN")
+        i = rng.range(1, #inven)
+        local o = inven[i]
+          if o.pseudo_id == false then
+            local check = self:skillCheck("intuition", 10)
+                        if check then 
+                          o.pseudo_id = true 
+                        end        
+            else end
 end
 
 function _M:autoID()
@@ -468,9 +488,12 @@ function _M:autoID()
         local inven = game.player:getInven("INVEN")
         i = rng.range(1, #inven)
         local o = inven[i]
-          if o.identified == false then
-            local check = self:skillCheck("intuition", 10)
-                        if check then o.identified = true end        
+          if o.identified == false and o.pseudo_id == true then
+            local check = self:skillCheck("intuition", 25)
+                        if check then 
+                          o.identified = true 
+                          o:identify(true)
+                        end        
             else end
 end
 

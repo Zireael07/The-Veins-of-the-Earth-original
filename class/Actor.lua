@@ -1216,10 +1216,10 @@ end
 --Encumbrance & auto-ID stuff, Zireael
 function _M:on_pickup_object(o)
 --	self:checkEncumbrance()
-	if self == game.player and o.identified == false then
+	if self == game.player and o.pseudo_id == false then
 		local check = self:skillCheck("intuition", 10)
 		if check then
-			o.identified = true
+			o.pseudo_id = true
 		end	
 	end
 end
