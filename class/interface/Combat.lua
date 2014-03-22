@@ -249,17 +249,11 @@ function _M:dealDamage(target, weapon, crit)
          dam = dam * (weapon and weapon.combat.critical or 2)
       end
 
-
-      if self:knowTalent(self.T_FAVORED_ENEMY) then
-            if target.type ~= "humanoid" then
-                if target.type == self.favored_enemy then dam = dam + 2 end
-            else
-                if target.subtype == self.favored_enemy then dam = dam + 2 end
-            end
-      end  
+      --Favored enemy bonus
+      if self:favoredEnemy(target) then dam = dam + 2 end
 
         --Minimum 1 point of damage unless Damage Reduction works
-        dam = math.max(1, dam)
+        dam = math.min(1, dam)
         dam = dam - (target.combat_dr or 0)
 
         target:takeHit(dam, self)
@@ -317,6 +311,49 @@ function _M:applyPoison(poison, target)
 end
 
 
+_M.fav_enemies = {
+  aberration = Talents.T_FAVORED_ENEMY_ABERRATION,
+  animal = Talents.T_FAVORED_ENEMY_ANIMAL,
+  construct = Talents.T_FAVORED_ENEMY_CONSTRUCT,
+  dragon = Talents.T_FAVORED_ENEMY_DRAGON,
+  elemental = Talents.T_FAVORED_ENEMY_ELEMENTAL,
+  fey = Talents.T_FAVORED_ENEMY_FEY,
+  giant = Talents.T_FAVORED_ENEMY_GIANT,
+  magical_beast = Talents.T_FAVORED_ENEMY_MAGBEAST,
+  monstrous_humanoid = Talents.T_FAVORED_ENEMY_MONSTROUS_HUMANOID,
+  ooze = Talents.T_FAVORED_ENEMY_OOZE,
+  plant = Talents.T_FAVORED_ENEMY_PLANT,
+  undead = Talents.T_FAVORED_ENEMY_UNDEAD,
+  vermin = Talents.T_FAVORED_ENEMY_VERMIN,
+  dwarf = Talents.T_FAVORED_ENEMY_HUMANOID_DWARF,
+  gnome = Talents.T_FAVORED_ENEMY_HUMANOID_GNOME,
+  drow = Talents.T_FAVORED_ENEMY_HUMANOID_DROW,
+  elf = Talents.T_FAVORED_ENEMY_HUMANOID_ELF,
+  human = Talents.T_FAVORED_ENEMY_HUMANOID_HUMAN,
+  halfling = Talents.T_FAVORED_ENEMY_HUMANOID_HALFLING,
+  planetouched = Talents.T_FAVORED_ENEMY_HUMANOID_PLANETOUCHED,
+  humanoid_aquatic = Talents.T_FAVORED_ENEMY_HUMANOID_AQUATIC,
+  goblinoid = Talents.T_FAVORED_ENEMY_HUMANOID_GOBLINOID,
+  gnoll = Talents.T_FAVORED_ENEMY_HUMANOID_GNOLL,
+  reptilian = Talents.T_FAVORED_ENEMY_HUMANOID_REPTILIAN,
+  orc = Talents.T_FAVORED_ENEMY_HUMANOID_ORC,
+  air = Talents.T_FAVORED_ENEMY_OUTSIDER_AIR,
+  earth = Talents.T_FAVORED_ENEMY_OUTSIDER_EARTH,
+  evil = Talents.T_FAVORED_ENEMY_OUTSIDER_EVIL,
+  fire = Talents.T_FAVORED_ENEMY_OUTSIDER_FIRE,
+  good = Talents.T_FAVORED_ENEMY_OUTSIDER_GOOD,
+  water = Talents.T_FAVORED_ENEMY_OUTSIDER_WATER,
+}
+
+function _M:favoredEnemy(target)
+  if target.type ~= "humanoid" and target.type ~= "outsider" then
+                if self:knowTalent(fav_enemies[target.type]) then return true
+                else return false end
+  else
+                if self:knowTalent(fav_enemies[target.subtype]) then return true
+                else return false end
+  end
+end
 
 _M.focuses = {
   axe = Talents.T_WEAPON_FOCUS_AXE,

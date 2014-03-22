@@ -643,8 +643,79 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
 
-			actor:learnTalent(actor.T_FAVORED_ENEMY, true)
+
 --			actor:learnTalent(actor.T_TWO_WEAPON_FIGHTING, true)
+			if actor == game.player then
+            game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your favored enemy",{
+                {name="Aberration", desc=""},
+                {name="Animal", desc=""},
+                {name="Construct", desc=""},
+                {name="Dragon", desc=""},
+                {name="Elemental", desc=""},
+                {name="Fey", desc=""},
+                {name="Giant", desc=""},
+                {name="Humanoid (dwarf)", desc=""},
+                {name="Humanoid (gnome)", desc=""},
+                {name="Humanoid (drow)", desc=""},
+                {name="Humanoid (elf)", desc=""},
+                {name="Humanoid (human)", desc=""},
+                {name="Humanoid (halfling)", desc=""},
+                {name="Humanoid (planetouched)", desc=""},
+                {name="Humanoid (aquatic)", desc=""},
+                {name="Humanoid (goblinoid)", desc=""},
+                {name="Humanoid (gnoll)", desc=""},
+                {name="Humanoid (reptilian)", desc=""},
+                {name="Humanoid (orc)", desc=""},
+                {name="Magical beast", desc=""},
+                {name="Monstrous humanoid", desc=""},
+                {name="Outsider (air)", desc=""},
+                {name="Outsider (earth)", desc=""},
+                {name="Outsider (evil)", desc=""},
+                {name="Outsider (fire)", desc=""},
+                {name="Outsider (good)", desc=""},
+                {name="Outsider (water)", desc=""},
+                {name="Ooze", desc=""},
+                {name="Plant", desc=""},
+                {name="Undead", desc=""},
+                {name="Vermin", desc=""}
+                },
+
+            function(result)
+            	game.log("Result: "..result)
+            	--Learn talent types based on the choice
+            	if result == "Aberration" then actor:learnTalent(actor.T_FAVORED_ENEMY_ABERRATION) end
+            	if result == "Animal" then actor:learnTalent(actor.T_FAVORED_ENEMY_ANIMAL) end
+	            if result == "Construct" then actor:learnTalent(actor.T_FAVORED_ENEMY_CONSTRUCT) end
+	            if result == "Dragon" then actor:learnTalent(actor.T_FAVORED_ENEMY_DRAGON) end
+            	if result == "Elemental" then actor:learnTalent(actor.T_FAVORED_ENEMY_ELEMENTAL) end
+            	if result == "Fey" then actor:learnTalent(actor.T_FAVORED_ENEMY_FEY) end
+            	if result == "Giant" then actor:learnTalent(actor.T_FAVORED_ENEMY_GIANT) end
+            	if result == "Magical beast" then actor:learnTalent(actor.T_FAVORED_ENEMY_MAGBEAST) end
+	           	if result == "Monstrous humanoid" then actor:learnTalent(actor.T_FAVORED_ENEMY_MONSTROUS_HUMANOID) end
+	           	if result == "Ooze" then actor:learnTalent(actor.T_FAVORED_ENEMY_OOZE) end
+	           	if result == "Plant" then actor:learnTalent(actor.T_FAVORED_ENEMY_PLANT) end
+	           	if result == "Undead" then actor:learnTalent(actor.T_FAVORED_ENEMY_UNDEAD) end
+	           	if result == "Vermin" then actor:learnTalent(actor.T_FAVORED_ENEMY_VERMIN) end
+	           	if result == "Humanoid (dwarf)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_DWARF) end
+	           	if result == "Humanoid (gnome)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_GNOME) end
+	           	if result == "Humanoid (drow)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_DROW) end
+	           	if result == "Humanoid (elf)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_ELF) end
+	           	if result == "Humanoid (human)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_HUMAN) end
+	           	if result == "Humanoid (halfling)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_HALFLING) end
+	           	if result == "Humanoid (planetouched)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_PLANETOUCHED) end
+	           	if result == "Humanoid (aquatic)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_AQUATIC) end
+	           	if result == "Humanoid (goblinoid)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_GOBLINOID) end
+	           	if result == "Humanoid (gnoll)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_GNOLL) end
+	           	if result == "Humanoid (reptilian)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_REPTILIAN) end
+	           	if result == "Humanoid (orc)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_ORC) end
+	           	if result == "Outsider (air)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_AIR) end
+	           	if result == "Outsider (earth)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_EARTH) end
+	           	if result == "Outsider (evil)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_EVIL) end
+	           	if result == "Outsider (fire)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_FIRE) end
+	           	if result == "Outsider (good)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_GOOD) end
+	           	if result == "Outsider (water)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_WATER) end
+	        end))
+			end
 
 			if actor == game.player then
 				if actor.descriptor.race == "Elf" then

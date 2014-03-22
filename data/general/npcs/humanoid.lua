@@ -19,7 +19,7 @@ local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
 	define_as = "BASE_NPC_KOBOLD",
-	type = "humanoid", subtype = "humanoid_kobold",
+	type = "humanoid", subtype = "reptilian",
 	image = "tiles/kobold.png",
 	display = "k", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
@@ -79,7 +79,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 
 newEntity{
 	define_as = "BASE_NPC_ORC",
-	type = "humanoid", subtype = "humanoid_orc",
+	type = "humanoid", subtype = "orc",
 	image = "tiles/orc.png",
 	display = 'o', color=colors.GREEN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -118,7 +118,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_GOBLIN",
-	type = "humanoid", subtype = "humanoid_goblin",
+	type = "humanoid", subtype = "goblinoid",
 	image = "tiles/goblin.png",
 	display = 'g', color=colors.GREEN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -158,7 +158,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_DROW",
-	type = "humanoid", subtype = "humanoid_drow",
+	type = "humanoid", subtype = "drow",
 	image = "tiles/drow.png",
 	display = 'h', color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -205,7 +205,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_HUMAN",
-	type = "humanoid", subtype = "humanoid_human",
+	type = "humanoid", subtype = "human",
 	image = "tiles/human.png",
 	display = 'h', color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -243,7 +243,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_DWARF",
-	type = "humanoid", subtype = "humanoid_dwarf",
+	type = "humanoid", subtype = "dwarf",
 	image = "tiles/npc/dwarf_fighter.png",
 	display = 'h', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -312,7 +312,7 @@ newEntity{
 --Scent
 newEntity{
 	define_as = "BASE_NPC_BUGBEAR",
-	type = "humanoid", subtype = "humanoid_goblin",
+	type = "humanoid", subtype = "goblinoid",
 	image = "tiles/goblin.png",
 	display = 'g', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -356,7 +356,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_GNOLL",
-	type = "humanoid", subtype = "humanoid_gnoll",
+	type = "humanoid", subtype = "gnoll",
 	image = "tiles/gnoll.png",
 	display = 'h', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -399,7 +399,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_GNOME",
-	type = "humanoid", subtype = "humanoid_gnome",
+	type = "humanoid", subtype = "gnome",
 	image = "tiles/npc/gnome_fighter.png",
 	display = 'h', color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -475,7 +475,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_HALFLING",
-	type = "humanoid", subtype = "humanoid_halfling",
+	type = "humanoid", subtype = "halfling",
 	image = "tiles/npc/halfling_fighter.png",
 	display = 'h', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -515,7 +515,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_HOBGOBLIN",
-	type = "humanoid", subtype = "humanoid_goblin",
+	type = "humanoid", subtype = "goblinoid",
 	image = "tiles/goblin.png",
 	display = 'g', color=colors.RED,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -552,7 +552,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_LIZARDFOLK",
-	type = "humanoid", subtype = "humanoid_reptilian",
+	type = "humanoid", subtype = "reptilian",
 	image = "tiles/lizardfolk.png",
 	display = 'h', color=colors.DARK_GREEN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -678,7 +678,7 @@ newEntity{
 --stench 3 sq Fort DC 13 or sickened; Multiattack, Weapon Focus
 newEntity{
 	define_as = "BASE_NPC_TROG",
-	type = "humanoid", subtype = "humanoid_reptilian",
+	type = "humanoid", subtype = "reptilian",
 	image = "tiles/goblin.png",
 	display = 'h', color=colors.DARK_UMBER,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -719,7 +719,7 @@ newEntity{
 --Darkness
 newEntity{
 	define_as = "BASE_NPC_TIEFLING",
-	type = "planetouched",
+	type = "humanoid", subtype = "planetouched",
 	image = "tiles/human.png",
 	display = 'h', color=colors.RED,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
@@ -763,7 +763,7 @@ newEntity{
 --Daylight
 newEntity{
 	define_as = "BASE_NPC_AASIMAR",
-	type = "planetouched",
+	type = "humanoid", subtype = "planetouched",
 	image = "tiles/human.png",
 	display = 'h', color=colors.GOLD,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },

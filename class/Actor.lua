@@ -1083,7 +1083,7 @@ end
 
 --Random perks
 function _M:randomFeat()
-	local chance = rng.dice(1,24)
+	local chance = rng.dice(1,26)
 	
 	if chance == 1 then self:learnTalent(self.T_DODGE, true)
 	elseif chance == 2 then self:learnTalent(self.T_FINESSE, true)
@@ -1108,9 +1108,9 @@ function _M:randomFeat()
 	elseif chance == 21 then self:learnTalent(self.T_TWO_WEAPON_FIGHTING, true)
 	elseif chance == 22 then self:randomFocus()
 	elseif chance == 23 then self:randomFocus()
-	--TO DO: Figure out how to do the choice part of it
---[[	elseif chance == 5 then self:learnTalent(self.T_FAVORED_ENEMY, true)
-		--Commented out due to the problems with on_pre_use
+	elseif chance == 24 then self:randomFavEnemy()
+	elseif chance == 25 then self:randomFavEnemy()
+		--[[Commented out due to the problems with on_pre_use
 		if chance == 1 then self:learnTalent(self.T_POWER_ATTACK, true)]]
 	
 	else self:learnTalent(self.T_IRON_WILL, true) end
@@ -1145,6 +1145,43 @@ function _M:randomFocus()
 	elseif chance == 23 then self:learnTalent(self.T_WEAPON_FOCUS_SWORD, true)
 
 	else self:learnTalent(self.T_WEAPON_FOCUS_TRIDENT, true) end
+
+end
+
+function _M:randomFavEnemy()
+	local chance = rng.dice(1,30)
+
+	if chance == 1 then self:learnTalent(self.T_FAVORED_ENEMY_ABERRATION, true)
+	elseif chance == 2 then self:learnTalent(self.T_FAVORED_ENEMY_ANIMAL, true)
+	elseif chance == 3 then self:learnTalent(self.T_FAVORED_ENEMY_CONSTRUCT, true)
+	elseif chance == 4 then self:learnTalent(self.T_FAVORED_ENEMY_DRAGON, true)
+	elseif chance == 5 then self:learnTalent(self.T_FAVORED_ENEMY_ELEMENTAL, true)
+	elseif chance == 6 then self:learnTalent(self.T_FAVORED_ENEMY_FEY, true)
+	elseif chance == 7 then self:learnTalent(self.T_FAVORED_ENEMY_GIANT, true)
+	elseif chance == 8 then self:learnTalent(self.T_FAVORED_ENEMY_MAGBEAST, true)
+	elseif chance == 9 then self:learnTalent(self.T_FAVORED_ENEMY_MONSTROUS_HUMANOID, true)
+	elseif chance == 10 then self:learnTalent(self.T_FAVORED_ENEMY_OOZE, true)
+	elseif chance == 11 then self:learnTalent(self.T_FAVORED_ENEMY_PLANT, true)
+	elseif chance == 12 then self:learnTalent(self.T_FAVORED_ENEMY_UNDEAD, true)
+	elseif chance == 13 then self:learnTalent(self.T_FAVORED_ENEMY_VERMIN, true)
+	elseif chance == 14 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_DWARF, true)
+	elseif chance == 15 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_GNOME, true)
+	elseif chance == 16 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_DROW, true)
+	elseif chance == 17 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_ELF, true)
+	elseif chance == 18 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_HUMAN, true)
+	elseif chance == 19 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_HALFLING, true)
+	elseif chance == 20 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_PLANETOUCHED, true)
+	elseif chance == 21 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_AQUATIC, true)
+	elseif chance == 22 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_GOBLINOID, true)
+	elseif chance == 23 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_REPTILIAN, true)
+	elseif chance == 24 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_ORC, true)
+	elseif chance == 25 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_AIR, true)
+	elseif chance == 26 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_EARTH, true)
+	elseif chance == 27 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_EVIL, true)
+	elseif chance == 28 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_FIRE, true)
+	elseif chance == 29 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_GOOD, true)
+
+	else self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_WATER, true) end
 
 end
 

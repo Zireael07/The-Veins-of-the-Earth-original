@@ -5,7 +5,7 @@ local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
 	define_as = "BASE_NPC_CENTAUR",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	name = "centaur",
 	image = "tiles/newtiles/centaur.png",
 	display = 'q', color=colors.LIGHT_BROWN,
@@ -41,7 +41,7 @@ newEntity{
 --Spell-likes: At will—darkness, ghost sound; 1/day— daze (DC 13), sound burst (DC 15). Caster level 3rd
 newEntity{
 	define_as = "BASE_NPC_DERRO",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	name = "derro",
 	image = "tiles/npc/dwarf_fighter.png",
 	display = 'h', color=colors.LIGHT_BROWN,
@@ -85,7 +85,7 @@ newEntity{
 --Detect thoughts, shapechange; immunity to sleep & charm effects; neutral alignment
 newEntity{
 	define_as = "BASE_NPC_DOPPELGANGER",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	name = "doppelganger",
 	image = "tiles/doppelganger.png",
 	display = 'h', color=colors.GRAY,
@@ -120,7 +120,7 @@ newEntity{
 --Fly 60 ft.; Toughness
 newEntity{
 	define_as = "BASE_NPC_GARGOYLE",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	name = "gargoyle",
 	image = "tiles/UT/gargoyle.png",
 	display = 'Y', color=colors.GRAY,
@@ -160,7 +160,7 @@ newEntity{
 --Blind (immune to gaze attacks, visual effects, illusions); blindsight 4 squares; scent
 newEntity{
 	define_as = "BASE_NPC_GRIMLOCK",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	name = "grimlock",
 	image = "tiles/human.png",
 	display = 'h', color=colors.DARK_GRAY,
@@ -197,7 +197,7 @@ newEntity{
 --Swim 60 ft., rake 1d4, blindsense 30 ft, light sensitivity
 newEntity{
 	define_as = "BASE_NPC_SAHUAGIN",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	name = "sahuagin",
 	image = "tiles/merfolk.png",
 	display = 'h', color=colors.DARK_BLUE,
@@ -237,7 +237,7 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_HAG",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	image = "tiles/hag.png",
 	display = 'u', color=colors.BLUE,
 	body = { INVEN = 10 },
@@ -328,7 +328,7 @@ newEntity{
 --Fly 80 ft., captivating song
 newEntity{
 	define_as = "BASE_NPC_HARPY",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	name = "harpy",
 	display = 'B', color=colors.DARK_GRAY,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
@@ -372,7 +372,7 @@ newEntity{
 --Point Blank Shot, Precise Shot feats
 newEntity{
 	define_as = "BASE_NPC_MEDUSA",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	name = "medusa",
 	display = 'h', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
@@ -415,7 +415,7 @@ newEntity{
 --Powerful charge 4d6
 newEntity{
 	define_as = "BASE_NPC_MINOTAUR",
-	type = "monstrous humanoid",
+	type = "monstrous_humanoid",
 	name = "minotaur",
 	image = "tiles/minotaur.png",
 	display = 'h', color=colors.BROWN,
