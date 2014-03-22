@@ -1253,6 +1253,8 @@ function _M:levelClass(name)
 	local birther = require "engine.Birther"
 	local d = birther:getBirthDescriptor("class", name)
 
+	if not name then end
+
 	local level = (self.classes[name] or 0) + 1
 	self.classes[name] = level
 	if self.class_points then
@@ -1278,12 +1280,7 @@ end
 --Encumbrance & auto-ID stuff, Zireael
 function _M:on_pickup_object(o)
 --	self:checkEncumbrance()
-	if self == game.player and o.pseudo_id == false then
-		local check = self:skillCheck("intuition", 10)
-		if check then
-			o.pseudo_id = true
-		end	
-	end
+	
 end
 
 --[[function _M:onAddObject(o)

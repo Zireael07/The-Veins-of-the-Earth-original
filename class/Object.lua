@@ -251,3 +251,14 @@ end
 function _M:on_identify()
     game.logSeen(game.player, "Identified: %s", self.name)
 end
+
+
+function _M:on_prepickup(who, idx)
+    if who == game.player and self.pseudo_id == false then
+        local check = who:skillCheck("intuition", 10)
+        if check then
+            self.pseudo_id = true
+        end 
+    end
+    if self.pseudo_id == true and self.cursed then game.level.map:removeObject(who.x, who.y, idx) return true end
+end
