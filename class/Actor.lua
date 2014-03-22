@@ -311,6 +311,21 @@ function _M:move(x, y, force)
 	return moved
 end
 
+--Tooltip stuffs
+function _M:className()
+	if self == game.player then end
+	if self.classes and self.classes["Fighter"] then return "fighter#LAST#"
+	elseif self.classes and self.classes["Cleric"] then return "cleric#LAST#" 
+	elseif self.classes and self.classes["Barbarian"] then return "barbarian#LAST#"
+	elseif self.classes and self.classes["Rogue"] then return "rogue#LAST#"
+	elseif self.classes and self.classes["Ranger"] then return "ranger#LAST#"
+	elseif self.classes and self.classes["Wizard"] then return "wizard#LAST#"
+	elseif self.classes and self.classes["Sorcerer"] then return "sorcerer#LAST#"
+	elseif self.classes and self.classes["Druid"] then return "druid#LAST#"
+	elseif self.classes and self.classes["Warlock"] then return "warlock#LAST#"
+	else return "#LAST#" end
+end
+
 function _M:colorStats(stat)
 	local player = game.player
 	
@@ -335,14 +350,14 @@ end
 
 function _M:tooltip()
 	if self.life >= 0 then
-	return ([[%s%s
+	return ([[%s%s #LIGHT_BLUE#%s
 		#RED#HP: %d (%d%%)#LAST#
 		STR %s DEX %s CON %s 
 		INT %s WIS %s CHA %s
 		#GOLD#CR %s#LAST#
 		#WHITE#%s]]):format(
 		self:getDisplayString(),
-		self.name,
+		self.name, self:className(),
 		self.life, self.life / self.max_life *100,
 		self:colorStats('str'),
 		self:colorStats('dex'),
@@ -362,7 +377,7 @@ function _M:tooltip()
 		#GOLD#CR %s#LAST#
 		#WHITE#%s]]):format(
 		self:getDisplayString(),
-		self.name,
+		self.name, self:className(),
 		self.life,
 		self:colorStats('str'),
 		self:colorStats('dex'),

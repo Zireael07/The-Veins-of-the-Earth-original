@@ -8,9 +8,11 @@ newTalent{
 	cooldown = 0,
 	range = 0,
 	action = function(self, t)
+        if self == game.player then
 		local book = require("mod.dialogs.SpellBook").new(self)
 		game:registerDialog(book)
 		return nil
+        end
 	end,
 	info = function(self, t )
 		return "Shows your spellbook"
