@@ -1,6 +1,6 @@
 CHANGELOG
 
-0.13.0 - 17/03/2014
+0.13.0 beta 4.5 - 17/03/2014
 * bug fix: no longer freezing on actor gen
 * bug fix: ranged combat now works properly again
 * bug fix: decrease hp properly if your Con is lowered
@@ -25,7 +25,7 @@ CHANGELOG
 0.12.1 - 5/12/2013
 * bug fix: bags no longer bug out and block inventory
 
-0.12.0 - 30/11/2013
+0.12.0 beta 4.4 - 30/11/2013
 * bug fix: not being able to use the mouse in some parts of the map
 * bug fix: map being covered by the log/HUD
 * bug fix: cross-class code now checks for the last leveled class
@@ -46,7 +46,7 @@ CHANGELOG
 * added loading screen to module file
 * added intro depending on player race
 
-0.11.0 - 12/11/2013
+0.11.0 beta 4.3 - 12/11/2013
 * bug fix: shadow armor lua error fixed [Seb]
 * bug fix: apply increased Str bonus to two-handed weapons
 * bug fix: chasm displays its proper name in tooltip
@@ -67,7 +67,7 @@ CHANGELOG
 * multiclassing now requires 13 in core ability except for sorcerers and wizards, who require 16 in CHA or INT, respectively
 * cross-class skills are now coded and working
 
-0.10.0 - 04/11/2013
+0.10.0 beta 4 - 04/11/2013
 * bug fix: eldritch blast lua error fixed
 * bug fix: shield no longer counts as offhand weapon for TWF
 * bug fix: druid skill points are now set to 2
@@ -94,7 +94,7 @@ CHANGELOG
 * light & heavy load now works per SRD; implemented Loadbearer feat
 * activable Power Attack and Combat Expertise feats
 
-0.9.0 - 28/10/2013
+0.9.0 beta 3.75 - 28/10/2013
 * bug fix: all dialogs now obey screen size
 * bug fix: fire beetle AC is no longer through the roof
 * bug fix: spells are now properly restricted [Seb]
@@ -118,7 +118,7 @@ CHANGELOG
 * spellbook now displays higher-level spells properly [Seb]
 * tooltips now describe magic properties (except elemental resistances) for identified items
 
-0.8.0 - 21/10/2013
+0.8.0 beta 3.5 - 21/10/2013
 * bug fix: gain spellcasting properly if you multiclassed from a non-casting class
 * bug fix: apply (uncapped) feat bonuses on top of skill ranks
 * bug fix: Intuition now applies to a single item
@@ -133,7 +133,7 @@ CHANGELOG
 * random naming for potions & scrolls
 
 
-0.7.1 - 12/10/2013
+0.7.1 beta 3.25 - 12/10/2013
 * bug fix for player leaving lit tiles behind himself (kudos to Castler)
 * bug fix for new keybinds (spellbook and help) not being recognized at game start [Sebsebeleb]
 * bug fixes
@@ -142,7 +142,7 @@ CHANGELOG
 * expanded Quit dialog to allow discarding characters
 * traps are coded in but do not spawn yet
 
-0.7.0 - 2/10/2013
+0.7.0 beta 3.1 - 2/10/2013
 * typo fixes
 * bug fix: unintended bonuses at 1st character level
 * backgrounds - for those who want quicker character creation
@@ -154,7 +154,7 @@ CHANGELOG
 * Toughness feat works as intended
 * casters gain a new spell level every 3rd level; rangers become eligible for this rule from lvl 5 onwards
 
-0.6.0 - 26/09/2013
+0.6.0 beta 3 - 26/09/2013
 * typo fixes
 * bugfix for magic items not showing up
 * new spells: bardic cure light wounds; heal x wounds (heals a percentage of total hp); cure moderate/serious/critical wounds
@@ -169,7 +169,7 @@ CHANGELOG
 * double weapons working as intended
 
 
-0.5.5 - 22/09/2013
+0.5.5 beta 2.9 - 22/09/2013
 * new races: half-drow, gnome, halfling
 * revised AC (cannot exceed +5 from rings)
 * revised BAB (BAB requirements for feats work now)
@@ -184,14 +184,14 @@ CHANGELOG
 * monster symbols overhauled & added to legend screen
 * controls screen shown automatically after char creation, now includes 'r' for rest
 
-0.5.0 - 16/09/2013
+0.5.0 beta 2.8 - 16/09/2013
 * tooltips for character sheet, containing the info that used to be in the Help screen
 * Help screen now shows controls 
 * luminescent moss is luminescent again; typo fix; some tweaks to level generation
 * new magic items: belts of Strength, boots of dodging
 * random name generator, taking into account your class and race
 
-0.4.0 - 12/09/2013
+0.4.0 beta 2.7 - 12/09/2013
 * fix for money bug
 * code cleanup; undead moved to templates
 * increased the number of items and monsters spawned
@@ -200,14 +200,14 @@ CHANGELOG
 * working ECL
 * [standalone version only] brand-new start-up screen and menu
 
-0.3.6 - 10/09/2013
+0.3.6 beta 2.6 - 10/09/2013
 * new class: bard
 * level-up screen now contains tips
 * healing now prints out a message in the log
 * character sheet shows feats only
 * tooltips added to inventory screen
 
-0.3.5 - 3/09/2013
+0.3.5 beta 2.5 - 3/09/2013
 * new magic items: boots of elvenkind, cloak of elvenkind, bracers of armor
 * new monsters: giant eagle, shocker lizard, monitor lizard; wolf, raven, rat; monstrous centipede, monstrous scorpion, giant ant, fire beetle, stag beetle
 * improved food descriptions
@@ -216,7 +216,7 @@ CHANGELOG
 * working auto-ID on pickup
 * offhand attack and iterative attacks
 
-0.3.1 - 28/08/2013
+0.3.1 beta 2.3 - 28/08/2013
 * bugfixes
 * money
 * more room types
@@ -226,7 +226,7 @@ CHANGELOG
 * magic item properties
 * humanoid templates coded in
 
-0.3.0 - 22/08/2013
+0.3.0 beta 2.25 - 22/08/2013
 * bugfixes
 * new monsters: drow, goblin, human
 * adjusted monster spawn rate
@@ -248,13 +248,13 @@ CHANGELOG
 * working skill select screen
 * added skill enhancing feats
 
-0.2.5 - 15/08/2013
+0.2.5 beta 2 - 15/08/2013
 * skill tests printed to log
 * bugfixes
 * working level-up bonuses
 * halved the amount of XP needed to advance
 
-0.2.2 - 13/08/2013
+0.2.2 beta 1.9 - 13/08/2013
 * bugfixes
 * ranger, rogue and wizard now get ranged weapons as starting equipment
 * FOV fixes
