@@ -34,6 +34,10 @@ newEntity{
 	skill_spot = 1,
 	skill_search = 1,
 	skill_movesilently = 1,
+
+	encounter_escort = {
+	{chance = 80, type="humanoid", name="kobold", number=3, no_subescort = true},
+  	},
 }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
@@ -91,7 +95,11 @@ newEntity{
 	infravision = 2,
 	skill_listen = 2,
 	skill_spot = 2,
-	resolvers.class()
+	
+	encounter_escort = {
+	{chance = 50, type="humanoid", name="orc", number=1, no_subescort = true},
+  	},
+  	resolvers.class()
 }
 
 newEntity{
@@ -132,7 +140,10 @@ newEntity{
 	skill_movesilently = 4,
 	skill_listen = 2,
 	skill_spot = 1,
-	resolvers.class()
+	encounter_escort = {
+	{chance = 80, type="humanoid", name="kobold", number=2, no_subescort = true},
+  	},
+--	resolvers.class()
 }
 
 newEntity{
@@ -177,7 +188,11 @@ newEntity{
 	skill_listen = 2,
 	skill_search = 3,
 	skill_spot = 2,
---	resolvers.class()
+
+	encounter_escort = {
+	{chance = 80, type="humanoid", name="drow", faction = "enemies", number=3, no_subescort = true},
+  	},
+	resolvers.class()
 }
 
 newEntity{
@@ -352,6 +367,10 @@ newEntity{
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
+	encounter_escort = {
+	{chance = 20, type="humanoid", name="bugbear", number=1, no_subescort = true},
+	{chance = 60, type="humanoid", name="goblin", number=2, no_subescort = true},
+  	},
 }
 
 newEntity{
@@ -525,6 +544,9 @@ newEntity{
 	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=8, luc=10 },
 	combat = { dam= {1,6} },
 	infravision = 3,
+	encounter_escort = {
+	{chance = 80, type="humanoid", name="hobgoblin", number=1},
+  	},
 }
 
 newEntity{

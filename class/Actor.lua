@@ -314,15 +314,15 @@ end
 --Tooltip stuffs
 function _M:className()
 	if self == game.player then end
-	if self.classes and self.classes["Fighter"] then return "#LIGHT_BLUE#%fighter#LAST#"
-	elseif self.classes and self.classes["Cleric"] then return "#LIGHT_BLUE#%cleric#LAST#" 
-	elseif self.classes and self.classes["Barbarian"] then return "#LIGHT_BLUE#%barbarian#LAST#"
-	elseif self.classes and self.classes["Rogue"] then return "#LIGHT_BLUE#%rogue#LAST#"
-	elseif self.classes and self.classes["Ranger"] then return "#LIGHT_BLUE#%ranger#LAST#"
-	elseif self.classes and self.classes["Wizard"] then return "#LIGHT_BLUE#%wizard#LAST#"
-	elseif self.classes and self.classes["Sorcerer"] then return "#LIGHT_BLUE#%sorcerer#LAST#"
-	elseif self.classes and self.classes["Druid"] then return "#LIGHT_BLUE#%druid#LAST#"
-	elseif self.classes and self.classes["Warlock"] then return "#LIGHT_BLUE#%warlock#LAST#"
+	if self.classes and self.classes["Fighter"] then return "#LIGHT_BLUE#fighter#LAST#"
+	elseif self.classes and self.classes["Cleric"] then return "#LIGHT_BLUE#cleric#LAST#" 
+	elseif self.classes and self.classes["Barbarian"] then return "#LIGHT_BLUE#barbarian#LAST#"
+	elseif self.classes and self.classes["Rogue"] then return "#LIGHT_BLUE#rogue#LAST#"
+	elseif self.classes and self.classes["Ranger"] then return "#LIGHT_BLUE#ranger#LAST#"
+	elseif self.classes and self.classes["Wizard"] then return "#LIGHT_BLUE#wizard#LAST#"
+	elseif self.classes and self.classes["Sorcerer"] then return "#LIGHT_BLUE#sorcerer#LAST#"
+	elseif self.classes and self.classes["Druid"] then return "#LIGHT_BLUE#druid#LAST#"
+	elseif self.classes and self.classes["Warlock"] then return "#LIGHT_BLUE#warlock#LAST#"
 	else return "#LAST#" end
 end
 
@@ -750,6 +750,42 @@ function _M:canBe(what)
 	if what == "instakill" and rng.percent(100 * (self:attr("instakill_immune") or 0)) then return false end
 	return true
 end
+
+function _M:addedToLevel(level, x, y)
+	local nb_encounters_made = 0
+	local encounter_level = self.challenge
+	--Default number of encounters is 4 + 1 per every 5 levels down
+	if nb_encounters_made <= 4+math.max(0, game.level.level/5) then 
+--		if encounter_level <= player.level then
+	--Taken from ToME 4
+	if self.encounter_escort then
+		for _, filter in ipairs(self.encounter_escort) do
+			for i = 1, filter.number do
+			--	encounter_level = self.encounter_level + 1
+				if not filter.chance or rng.percent(filter.chance) then
+					-- Find space
+					local x, y = util.findFreeGrid(self.x, self.y, 10, true, {[Map.ACTOR]=true})
+					if not x then break end
+
+					-- Find an actor with that filter
+					local m = game.zone:makeEntity(game.level, "actor", filter, nil, true)
+					if m and m:canMove(x, y) then
+						if filter.no_subescort then m.encounter_escort = nil end
+						if self._empty_drops_escort then m:emptyDrops() end
+						game.zone:addEntity(game.level, m, "actor", x, y)
+						if filter.post then filter.post(self, m) end
+					elseif m then m:removed() end
+				end
+			end
+		end
+		self.encounter_escort = nil
+	end
+	nb_encounters_made = nb_encounters_made + 1
+	end
+
+self:check("on_added_to_level", level, x, y)
+end
+
 
 --Skill checks, Zireael
 function _M:getSkill(skill)
