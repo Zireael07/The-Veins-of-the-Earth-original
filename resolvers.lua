@@ -306,8 +306,8 @@ function resolvers.calc.class(t, e)
 	elseif rng.chance(10) then class = "Warlock" 
 	else end
 
-	if not class then end
-	
+	if class then
 	e = e:giveLevels(class, n)
 	return e
+	end
 end
