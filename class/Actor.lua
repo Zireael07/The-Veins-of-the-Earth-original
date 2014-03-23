@@ -314,15 +314,15 @@ end
 --Tooltip stuffs
 function _M:className()
 	if self == game.player then end
-	if self.classes and self.classes["Fighter"] then return "fighter#LAST#"
-	elseif self.classes and self.classes["Cleric"] then return "cleric#LAST#" 
-	elseif self.classes and self.classes["Barbarian"] then return "barbarian#LAST#"
-	elseif self.classes and self.classes["Rogue"] then return "rogue#LAST#"
-	elseif self.classes and self.classes["Ranger"] then return "ranger#LAST#"
-	elseif self.classes and self.classes["Wizard"] then return "wizard#LAST#"
-	elseif self.classes and self.classes["Sorcerer"] then return "sorcerer#LAST#"
-	elseif self.classes and self.classes["Druid"] then return "druid#LAST#"
-	elseif self.classes and self.classes["Warlock"] then return "warlock#LAST#"
+	if self.classes and self.classes["Fighter"] then return "#LIGHT_BLUE#%fighter#LAST#"
+	elseif self.classes and self.classes["Cleric"] then return "#LIGHT_BLUE#%cleric#LAST#" 
+	elseif self.classes and self.classes["Barbarian"] then return "#LIGHT_BLUE#%barbarian#LAST#"
+	elseif self.classes and self.classes["Rogue"] then return "#LIGHT_BLUE#%rogue#LAST#"
+	elseif self.classes and self.classes["Ranger"] then return "#LIGHT_BLUE#%ranger#LAST#"
+	elseif self.classes and self.classes["Wizard"] then return "#LIGHT_BLUE#%wizard#LAST#"
+	elseif self.classes and self.classes["Sorcerer"] then return "#LIGHT_BLUE#%sorcerer#LAST#"
+	elseif self.classes and self.classes["Druid"] then return "#LIGHT_BLUE#%druid#LAST#"
+	elseif self.classes and self.classes["Warlock"] then return "#LIGHT_BLUE#%warlock#LAST#"
 	else return "#LAST#" end
 end
 
@@ -350,7 +350,7 @@ end
 
 function _M:tooltip()
 	if self.life >= 0 then
-	return ([[%s%s #LIGHT_BLUE#%s
+	return ([[%s%s %s
 		#RED#HP: %d (%d%%)#LAST#
 		STR %s DEX %s CON %s 
 		INT %s WIS %s CHA %s
@@ -370,7 +370,7 @@ function _M:tooltip()
 	)
 		--To stop % getting out of whack when HP are negative, we remove them from the tooltips altogether
 	else
-	return ([[%s%s
+	return ([[%s%s %s
 		#CRIMSON#HP: %d#LAST#
 		STR %s DEX %s CON %s 
 		INT %s WIS %s CHA %s
@@ -1271,6 +1271,8 @@ function _M:levelClass(name)
 end
 
 function _M:giveLevels(name, n)
+	if not name or not n then end
+	
 	while n > 0 do
 	self:levelClass(name)
 	n = n-1
