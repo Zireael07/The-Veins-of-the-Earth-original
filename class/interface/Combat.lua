@@ -253,7 +253,7 @@ function _M:dealDamage(target, weapon, crit)
       if self:favoredEnemy(target) then dam = dam + 2 end
 
         --Minimum 1 point of damage unless Damage Reduction works
-        dam = math.min(1, dam)
+        dam = math.max(1, dam)
         dam = dam - (target.combat_dr or 0)
 
         target:takeHit(dam, self)
