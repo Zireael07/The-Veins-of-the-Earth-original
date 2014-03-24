@@ -53,8 +53,12 @@ return {
 			['>'] = { "DOWN", "SHAFT_DOWN" },
 		},
 		actor = {
+		--	class = "mod.class.generator.actor.EncounterRandom",
 			class = "mod.class.generator.actor.Random",
 			nb_npc = {10, 20},
+		--[[	class = "mod.class.generator.actor.OnSpots",
+				nb_spots = 2, on_spot_chance = 75,]]
+		
 		},
 		object = {
             class = "engine.generator.object.Random",

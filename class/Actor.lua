@@ -752,16 +752,10 @@ function _M:canBe(what)
 end
 
 function _M:addedToLevel(level, x, y)
-	local nb_encounters_made = 0
-	local encounter_level = self.challenge
-	--Default number of encounters is 4 + 1 per every 5 levels down
-	if nb_encounters_made <= 4+math.max(0, game.level.level/5) then 
---		if encounter_level <= player.level then
 	--Taken from ToME 4
 	if self.encounter_escort then
 		for _, filter in ipairs(self.encounter_escort) do
 			for i = 1, filter.number do
-			--	encounter_level = self.encounter_level + 1
 				if not filter.chance or rng.percent(filter.chance) then
 					-- Find space
 					local x, y = util.findFreeGrid(self.x, self.y, 10, true, {[Map.ACTOR]=true})
@@ -780,10 +774,13 @@ function _M:addedToLevel(level, x, y)
 		end
 		self.encounter_escort = nil
 	end
-	nb_encounters_made = nb_encounters_made + 1
-	end
+
 
 self:check("on_added_to_level", level, x, y)
+
+
+--Auto-remove dummy encounter npcs
+if self.type == "encounter" then self:die() end
 end
 
 

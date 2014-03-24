@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,6 +13,10 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+--Encounters are dummy npcs
+load("/data/general/npcs/encounters.lua")
+
 
 load("/data/general/npcs/humanoid.lua")
 load("/data/general/npcs/monstrous_humanoid.lua")
