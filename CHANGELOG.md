@@ -1,5 +1,20 @@
 CHANGELOG
 
+0.14.0 beta 4.6 - 24/03/2014
+* bug fix - no more monsters spawning in walls
+
+* point buy now working as intended and resettable
+* stat increases every 4th level now working
+* d20-style encounters
+* implemented Luck, which makes rare items more common
+* ability to load/import/recreate older characters
+* pseudo-ID, auto-destroying known cursed items
+* item feelings when entering a level
+* humanoid NPCs can now have character classes
+* deities for clerics
+* coded in a lot of new terrain
+
+
 0.13.0 beta 4.5 - 17/03/2014
 * bug fix: no longer freezing on actor gen
 * bug fix: ranged combat now works properly again
