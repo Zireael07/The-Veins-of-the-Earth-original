@@ -49,6 +49,8 @@ Press #00FF00#Enter#FFFFFF# when done to start creating your character.
 ]]}
 	self.c_desc = TextzoneList.new{width=math.floor(self.iw - 10), height=self.ih - self.c_tut.h - 20, no_color_bleed=true}
 	self.c_points = Textzone.new{width=math.floor(self.iw - 10), auto_height=true, no_color_bleed=true, text=_points_text:format(self.unused_stats)}
+	self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
+	self.c_birth = Button.new{text="Birth", fct=function() self:onBirth() end}
 	
 	self.c_list = ListColumns.new{width=math.floor((self.iw/2)- 10), height=self.ih - 10, all_clicks=true, columns={
 		{name="Stat", width=30, display_prop="name"},
@@ -62,10 +64,12 @@ Press #00FF00#Enter#FFFFFF# when done to start creating your character.
 		{name="CHA", val=self.actor:getCha(), stat_id=self.actor.STAT_CHA, delta = 1},
 	}, fct=function(item, _, v)
 		self:incStat(v == "left" and 1 or -1, item.stat_id)
-	end, select=function(item, sel) self.sel = sel self.id = item.stat_id self.delta = item.delta end}
+	end, select=function(item, sel) self.sel = sel self.val = item.val self.id = item.stat_id self.delta = item.delta end}
 	self:loadUI{
-		{left=0, top=0, ui=self.c_points},
-		{left=0, top=self.c_points.h+15, ui=self.c_list},
+		{left=0, top=0, ui=self.c_birth},
+		{left=self.c_birth, top=0, ui=self.c_reset},
+		{left=0, top=25, ui=self.c_points},
+		{left=0, top=55, ui=self.c_list},
 
 		{hcenter=0, top=5, ui=Separator.new{dir="horizontal", size=self.ih - 10}},
 
@@ -80,12 +84,21 @@ Press #00FF00#Enter#FFFFFF# when done to start creating your character.
 	self.key:addBinds{
 		EXIT = function()
 			game:unregisterDialog(self)
-			self:finish()
+			game:registerDialog(require("mod.dialogs.Birther").new(game.player))
 		end,
 	}
 end
 
-function _M:finish()
+function _M:onReset()
+--[[	for i, s in ipairs(self.actor.stats_def) do
+        self.actor.stats[i] = 10
+    end
+    self.c_list:generate()]]
+    game:unregisterDialog(self)
+	game:registerDialog(require("mod.dialogs.Birther").new(game.player))
+end
+
+function _M:onBirth()
 	self.creating_player = true
     local birth = Birther.new(nil, self.actor, {"base", 'sex', 'race', 'class', 'alignment', 'domains', 'domains'}, function()
         game:changeLevel(1, "dungeon")
@@ -104,26 +117,29 @@ function _M:finish()
     game:registerDialog(birth)
 end
 
+function _M:getCost(val)
+	--Handle differing costs (PF style)
+	-- 7 = -4; 8 = -2; 9 = -1; 10 = 0; 11 = 1; 12 = 2; 13 = 3; 14 = 5; 15 = 7; 16 = 10; 17 = 13; 18 = 17
+	local costs = { -4, -2, -1, 0, 1, 2, 3, 5, 7, 10, 13, 17 }
+
+
+	return costs[val-6]
+end
+
 function _M:incStat(v, id)
 	print("inside incStat. self.sel is", self.sel)
 	print("inside incStat. id is", self.id)
 	local id = self.id
-	
+	local val = self.val
 
-	--Handle differing costs (PF style)
-	-- 7 = -4; 8 = -2; 9 = -1; 10 = 0; 11 = 1; 12 = 2; 13 = 3; 14 = 5; 15 = 7; 16 = 10; 17 = 13; 18 = 17
-	if self.actor.stats[id] == 7 then self.delta = 4
-	elseif self.actor.stats[id] == 8 then self.delta = 2
-	elseif self.actor.stats[id] >= 9 then self.delta = 1
-	elseif self.actor.stats[id] >= 14 then self.delta = 2
-	elseif self.actor.stats[id] == 15 then self.delta = 2
-	elseif self.actor.stats[id] >= 16 then self.delta = 3
-	else end
-
-	local delta = self.delta * v
+	local delta = self:getCost(val) * v
 
 	--Limits
 	if v == 1 then
+		if delta > self.unused_stats then
+			self:simplePopup("Not enough stat points", "You have no stat points left!")
+			return
+		end
 		if self.unused_stats <= 0 then
 			self:simplePopup("Not enough stat points", "You have no stat points left!")
 			return
@@ -132,8 +148,8 @@ function _M:incStat(v, id)
 			self:simplePopup("Max stat value reached", "You cannot increase a stat above 18")
 			return
 		end
-	else 
-		if self.unused_stats >= 32 then
+	else return end
+--[[		if self.unused_stats >= 32 then
 			self:simplePopup("Max stat points reached", "You can't have more stat points!")
 			return
 		end
@@ -141,7 +157,7 @@ function _M:incStat(v, id)
 			self:simplePopup("Min stat value reached", "You cannot decrease a stat below 3")
 			return
 		end
-	end
+	end]]
 
 	local sel = self.sel
 --	self.actor.stats[id] = self.actor.stats[id] + v
