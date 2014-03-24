@@ -61,6 +61,22 @@ newEntity{
 	display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
 }
 
+--Taken from Incursion
+newEntity{
+	base = "FLOOR",
+	define_as = "FLOOR_BLOOD",
+	name = "pool of blood",
+	display = ' ', color=colors.RED, back_color=colors.DARK_GREY,
+}
+
+newEntity{
+	base = "FLOOR",
+	define_as = "FLOOR_SLIME",
+	name = "pool of slime",
+	display = ' ', color=colors.YELLOW_GREEN, back_color=colors.DARK_GREY,
+}
+
+
 newEntity{
 	define_as = "WALL",
 	name = "wall", image = "tiles/wall.png",
@@ -73,16 +89,80 @@ newEntity{
 	dig = "FLOOR",
 }
 
+--Taken from Incursion
+newEntity{
+	base = "WALL",
+	define_as = "WALL_ICE",
+	display = '#', color=colors.LIGHT_BLUE, back_color=colors.STEEL_BLUE,
+}
+
+newEntity{
+	base = "WALL",
+	define_as = "WALL_LIMESTONE",
+	display = '#', color=colors.LIGHT_GREEN, back_color=colors.DARK_GREY,
+}
+
+newEntity{
+	base = "WALL",
+	define_as = "WALL_WARDED",
+	display = '#', color=colors.VIOLET, back_color={r=30, g=30, b=60},
+}
+
+newEntity{
+	base = "WALL",
+	define_as = "WALL_ADAMANT",
+	display = '#', color=colors.LIGHT_SLATE, back_color={r=30, g=30, b=60},
+}
+
+--Digging grids taken from Incursion
+newEntity{
+	base = "WALL",
+	define_as = "GOLD_VEIN",
+	display = '#', color=colors.YELLOW, back_color={r=30, g=30, b=60},
+}
+
+newEntity{
+	base = "WALL",
+	define_as = "DIAMOND_VEIN",
+	display = '#', color=colors.WHITE, back_color={r=30, g=30, b=60},
+}
+
+newEntity{
+	base = "WALL",
+	define_as = "GOLD_VEIN",
+	display = '#', color=colors.YELLOW, back_color={r=30, g=30, b=60},
+}
+
+newEntity{
+	base = "WALL",
+	define_as = "MITHRIL_VEIN",
+	display = '#', color=colors.STEEL_BLUE, back_color={r=30, g=30, b=60},
+}
+
+newEntity{
+	base = "WALL",
+	define_as = "ADAMANT_VEIN",
+	display = '#', color=colors.DARK_SLATE, back_color={r=30, g=30, b=60},
+}
+
+--Inspired by Angband
+newEntity{
+	base = "WALL",
+	define_as = "TREASURE_VEIN",
+	display = '#', color=colors.ORANGE, back_color={r=30, g=30, b=60},
+}
+
 newEntity{
 	define_as = "DOOR",
-	name = "door", image = "tiles/door.png",
-	display = '+', color_r=238, color_g=154, color_b=77, back_color=colors.DARK_UMBER,
+	name = "oak door", image = "tiles/door.png",
+	display = '+', color_r=238, color_g=154, color_b=77, back_color=colors.LIGHT_UMBER,
 	notice = true,
 	always_remember = true,
 	block_sight = true,
 	door_opened = "DOOR_OPEN",
 	dig = "DOOR_OPEN",
 }
+
 
 newEntity{
 	define_as = "DOOR_OPEN",
@@ -91,6 +171,29 @@ newEntity{
 	always_remember = true,
 	door_closed = "DOOR",
 }
+
+--Taken from Incursion
+newEntity{ base = "DOOR",
+	define_as = "DOOR_IRON",
+	name = "iron door",
+	display = '+', color=colors.DARK_GREY, back_color=colors.SLATE,
+	door_opened = "DOOR_OPEN",
+}
+
+newEntity{ base = "DOOR",
+	define_as = "DOOR_DARKWOOD",
+	name = "darkwood door",
+	display = '+', color=colors.DARK_GREY, back_color=colors.DARK_BROWN,
+	door_opened = "DOOR_OPEN",
+}
+
+newEntity{ base = "DOOR",
+	define_as = "DOOR_WARDED",
+	name = "warded oak door",
+	display = '+', color=colors.VIOLET, back_color=colors.DARK_BROWN,
+	door_opened = "DOOR_OPEN",
+}
+
 
 -- Special stuff
 
@@ -212,5 +315,13 @@ newEntity{
 	type = "floor", subtype = "swamp",
 	name = "sand", 
 	display = ' ', color=colors.UMBER, back_color=colors.DARK_GREEN,
+	always_remember = true,
+}
+
+newEntity{
+	define_as = "ALTAR",
+	type = "floor", subtype = "furniture",
+	name = "sand", 
+	display = '&', color=colors.WHITE, back_color=colors.DARK_GREY,
 	always_remember = true,
 }
