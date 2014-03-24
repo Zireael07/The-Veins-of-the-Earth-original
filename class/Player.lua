@@ -492,7 +492,7 @@ function _M:autoID()
             local check = self:skillCheck("intuition", 25)
                         if check then 
                           o.identified = true 
-                          o:identify(true)
+                          game.logSeen(game.player, "Identified: %s", self.name)
                         end        
             else end
 end
