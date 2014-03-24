@@ -16,24 +16,26 @@
 
 local Talents = require "engine.interface.ActorTalents"
 
-load("/data/general/objects/armor.lua")
+local luck = game.player:getLuc()
+
+load("/data/general/objects/armor.lua", rarity(-luck))
 load("/data/general/objects/shields.lua")
 
-load("/data/general/objects/weapons.lua")
-load("/data/general/objects/ranged.lua")
-load("/data/general/objects/exotic.lua")
-load("/data/general/objects/exoticranged.lua")
-load("/data/general/objects/reach.lua")
+load("/data/general/objects/weapons.lua", rarity(-luck))
+load("/data/general/objects/ranged.lua", rarity(-luck))
+load("/data/general/objects/exotic.lua", rarity(-luck))
+load("/data/general/objects/exoticranged.lua", rarity(-luck))
+load("/data/general/objects/reach.lua", rarity(-luck))
 
 load("/data/general/objects/consumables.lua")
-load("/data/general/objects/magicitems.lua")
+load("/data/general/objects/magicitems.lua", rarity(-luck))
 load("/data/general/objects/containers.lua")
-load("/data/general/objects/potions.lua")
-load("/data/general/objects/charged.lua")
+load("/data/general/objects/potions.lua", rarity(-luck))
+load("/data/general/objects/charged.lua", rarity(-luck))
 load("/data/general/objects/poisons.lua")
 
 load("/data/general/objects/pickaxes.lua")
-load("/data/general/objects/money.lua")
+load("/data/general/objects/money.lua", rarity(-luck))
 
 
 
