@@ -71,7 +71,10 @@ function _M:load()
 	if filter.max_cr then
 			if e.challenge >= zone.base_level + game.level.level + filter.max_cr then return false end
  	end
-end
+ 	if filter.challenge then
+ 		if e.challenge ~= filter.challenge then return false end
+	end
+	end
 end
 
 function _M:run()
