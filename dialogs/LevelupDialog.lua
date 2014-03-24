@@ -27,12 +27,15 @@ function _M:init()
 
     self.c_skills = Button.new{text="Skill", fct=function() self:onSkill() end}
 
+    self.c_stats = Button.new{text="Stats", fct=function() self:onStats() end}
+
     self:loadUI{
         {left=0, top=0, ui=self.c_desc},
         {left=0, bottom=0, ui=self.c_accept},
         {left=self.c_accept, bottom=0, ui=self.c_classes},
         {left=self.c_classes, bottom=0, ui=self.c_feats},
         {left=self.c_feats, bottom=0, ui=self.c_skills},
+        {left=self.c_skills, bottom=0, ui=self.c_stats},
 
     }
     
@@ -69,6 +72,7 @@ function _M:drawDialog()
     s:drawColorStringBlended(self.font, "Available skill points: #GOLD#"..(player.skill_point.. " #LAST#Max skill ranks: #GOLD#"..player.max_skill_ranks), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Available class points: #GOLD#"..(player.class_points or 0), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Available feat points: #GOLD#"..(player.feat_point or 0), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Available stat points: #GOLD#"..(player.stat_point or 0), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = 0
     w = self.w * 0.25 
@@ -106,6 +110,11 @@ end
 function _M:onClass()
     game:unregisterDialog(self)
     game:registerDialog(require("mod.dialogs.ClassLevelupDialog").new(game.player))
+end
+
+function _M:onStats()
+    game:unregisterDialog(self)
+    game:registerDialog(require("mod.dialogs.StatsDialog").new(game.player))
 end
 
 function _M:onEnd(result)

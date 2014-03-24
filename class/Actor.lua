@@ -1248,16 +1248,11 @@ function _M:randomItem()
 	--Add a random ego-ed item
 			
 			local o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=1000}, nil, true)
-			local inven = game.player:getInven("MAINHAND")
 			if o then
 				game.zone:addEntity(game.level, o, "object")
-				self.player:addObject(inven, o)
+				self.player:addObject(game.player:getInven("MAINHAND"), o)
 			end
 
---[[			actor:wearObject(inven, o)
-			if actor:wearObject(o, true, false) == false then
-				actor:addObject(e.INVEN_INVEN, o)
-			end]]
 end
 
 
@@ -1272,9 +1267,13 @@ function _M:levelup()
 	--May level up class (player only)
 	if self == game.player then self.class_points = self.class_points + 1 end
 
-	if self.level % 3 == 0 then --feat points given every 3 levels. Classes may give additional feat points.
+	--feat points given every 3 levels. Classes may give additional feat points.
+	if self.level % 3 == 0 then 
 		self.feat_point = self.feat_point + 1
 	end
+
+	--stat point gained every 4 levels
+	if self.level % 4 == 0 then self.stat_point = self.stat_point + 1 end
 
 	-- Auto levelup ?
 	if self.autolevel then
