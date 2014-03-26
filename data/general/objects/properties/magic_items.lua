@@ -351,7 +351,7 @@ newEntity {
 }
 
 newEntity {
-	name = " of charisma +2", suffix = true,
+	name = " of Charisma +2", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
@@ -362,7 +362,7 @@ newEntity {
 }
 
 newEntity {
-	name = " of charisma +4", suffix = true,
+	name = " of Charisma +4", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
@@ -373,7 +373,7 @@ newEntity {
 }
 
 newEntity {
-	name = " of charisma +6", suffix = true,
+	name = " of Charisma +6", suffix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	greater_ego = 1,
@@ -383,6 +383,41 @@ newEntity {
     inc_stats = { [Stats.STAT_CHA] = 6, },
   }, 
 }
+
+newEntity {
+	name = " of Providence +2", suffix = true,
+--	keywords = {bonus=true},
+	level_range = {10, 30},
+	rarity = 5,
+	cost = 4000,
+	wielder = {
+    inc_stats = { [Stats.STAT_LUC] = 2, },
+  }, 
+}
+
+newEntity {
+	name = " of Providence +4", suffix = true,
+--	keywords = {bonus=true},
+	level_range = {10, 30},
+	rarity = 5,
+	cost = 16000,
+	wielder = {
+    inc_stats = { [Stats.STAT_LUC] = 4, },
+  }, 
+}
+
+newEntity {
+	name = " of Providence +6", suffix = true,
+--	keywords = {bonus=true},
+	level_range = {10, 30},
+	greater_ego = 1,
+	rarity = 5,
+	cost = 32000,
+	wielder = {
+    inc_stats = { [Stats.STAT_LUC] = 6, },
+  }, 
+}
+
 
 --Curses
 newEntity{
