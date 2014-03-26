@@ -245,8 +245,11 @@ function _M:dealDamage(target, weapon, crit)
       if self:isTalentActive(self.T_POWER_ATTACK) then dam = dam + 5 end
 
       if crit then
+        if target:canBe("crit") then
             game.log(("%s makes a critical attack!"):format(self.name:capitalize()))
          dam = dam * (weapon and weapon.combat.critical or 2)
+        else game.log("Its lack of physiology prevents serious injury")
+          dam = dam end
       end
 
       --Favored enemy bonus
@@ -259,8 +262,8 @@ function _M:dealDamage(target, weapon, crit)
         target:takeHit(dam, self)
         game.log(("%s deals %d damage to %s!"):format(self.name:capitalize(), dam, target.name:capitalize()))
 
-        if not target.dead and self:attr("poison") then
-        self:applyPoison(self:attr("poison"), target)
+        if not target.dead and self.poison then
+        self:applyPoison(self.poison, target)
         end
 end
 

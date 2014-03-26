@@ -740,14 +740,25 @@ end
 --- Can the target be applied some effects
 -- @param what a string describing what is being tried
 function _M:canBe(what)
-	if what == "poison" and rng.percent(100 * (self:attr("poison_immune") or 0)) then return false end
-	if what == "cut" and rng.percent(100 * (self:attr("cut_immune") or 0)) then return false end
-	if what == "confusion" and rng.percent(100 * (self:attr("confusion_immune") or 0)) then return false end
-	if what == "blind" and rng.percent(100 * (self:attr("blind_immune") or 0)) then return false end
-	if what == "stun" and rng.percent(100 * (self:attr("stun_immune") or 0)) then return false end
-	if what == "fear" and rng.percent(100 * (self:attr("fear_immune") or 0)) then return false end
-	if what == "knockback" and rng.percent(100 * (self:attr("knockback_immune") or 0)) then return false end
-	if what == "instakill" and rng.percent(100 * (self:attr("instakill_immune") or 0)) then return false end
+	if what == "crit" and self.type == "construct" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
+	if what == "poison" and self.type == "construct" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
+	if what == "sleep" and self.type == "construct" or self.type == "dragon" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
+	if what == "paralysis" and self.type == "construct" or self.type == "dragon" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
+	if what == "stun" and self.type == "construct" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
+	if what == "disease" and self.type == "construct" or self.type == "undead" then return false end
+	if what == "death" and self.type == "construct" or self.type == "undead" then return false end
+	if what == "petrification" and self.subtype == "angel" or self.subtype == "archon" then return false end
+	if what == "polymorph" and self.type == "ooze" or self.type == "plant" then return false end
+	if what == "mind-affecting" and self.type == "construct" and self.type == "ooze" and self.type == "plant" and self.type == "undead" and self.type == "vermin" then return false end
+	if what == "blind" and self.type == "ooze" then return false end
+	if what == "fatigue" and self.type == "construct" or self.type == "undead" then return false end
+--IMPORTANT! This one covers both ability drain, ability damage and energy drain, since those immunities always go together
+	if what == "drain" and self.type == "construct" or self.type == "undead" then return false end
+
+	if what == "acid" and self.subtype == "angel" then return false end
+	if what == "cold" and self.subtype == "angel" then return false end
+	if what == "electricity" and self.subtype == "archon" then return false end
+	
 	return true
 end
 

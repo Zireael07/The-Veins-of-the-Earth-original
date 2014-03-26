@@ -24,10 +24,11 @@ newEntity{
 
 --Angels
 
---fly 100 ft. land 50 ft.; wields heavy mace of disruption +3; stun (DC 22) on two hits in a round; change shape; immunity to acid, cold, petrification; 
+--fly 100 ft. land 50 ft.; wields heavy mace of disruption +3; stun (DC 22) on two hits in a round; change shape; 
 --Spell-likes: At will—aid, continual flame, detect evil, discern lies (DC 19), dispel evil (DC 20), dispel magic, holy aura (DC 23), holy smite (DC 19), holy word (DC 22), invisibility (self only), plane shift (DC 22), remove curse (DC 18), remove disease (DC 18), remove fear (DC 16); 7/day—cure light wounds (DC 16), see invisibility; 1/day—blade barrier (DC 21), heal (DC 21). Caster level 12th. The save DCs are Charisma-based. 
 newEntity{ base = "BASE_NPC_CELESTIAL",
         define_as = "BASE_NPC_DEVA",
+        subtype = "angel",
         stats = { str=22, dex=18, con=18, int=18, wis=18, cha=20, luc=12 },
         name = "astral deva",
         level_range = {10, nil}, exp_worth = 4000,
@@ -58,10 +59,11 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         base_desc = [[Though uncertain exactly what this creature is, you can tell it is not native to this world. It can see in the dark and cannot be brought to life by normal means.]],
 }
 
---fly 90 ft.; wields greatsword +3; change shape; immunity to acid, cold, petrification; regen 10
+--fly 90 ft.; wields greatsword +3; change shape; regen 10
 --Spell-likes: At will—continual flame, dispel magic, holy smite (DC 20), invisibility (self only), lesser restoration (DC 18), remove curse (DC 19), remove disease (DC 19), remove fear (DC 17), speak with dead (DC 19); 3/day—blade barrier (DC 22), flame strike (DC 21), power word stun, raise dead, waves of fatigue; 1/day—earthquake (DC 24), greater restoration (DC 23), mass charm monster (DC 24), waves of exhaustion. Caster level 17th. The save DCs are Charisma-based. 
 newEntity{ base = "BASE_NPC_CELESTIAL",
         define_as = "BASE_NPC_PLANETAR",
+        subtype = "angel",
         color=colors.GOLD,
         stats = { str=25, dex=19, con=20, int=22, wis=23, cha=22, luc=14 },
         combat = { dam= {2,8} },
@@ -101,6 +103,7 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
 --Spell-likes: At will—aid, animate objects, commune, continual flame, dimensional anchor, greater dispel magic, holy smite (DC 21), imprisonment (DC 26), invisibility (self only), lesser restoration (DC 19), remove curse (DC 20), remove disease (DC 20), remove fear (DC 18), resist energy, summon monster VII, speak with dead (DC 20), waves of fatigue; 3/day—blade barrier (DC 23), earthquake (DC 25), heal (DC 23), mass charm monster (DC 25), permanency, resurrection, waves of exhaustion; 1/day—greater restoration (DC 24), power word blind, power word kill, power word stun, prismatic spray (DC 24), wish. Caster level 20th. The save DCs are Charisma-based. 
 newEntity{ base = "BASE_NPC_CELESTIAL",
         define_as = "BASE_NPC_SOLAR",
+        subtype = "angel",
         color=colors.YELLOW,
         stats = { str=28, dex=20, con=20, int=23, wis=25, cha=25, luc=14 },
         name = "solar",
