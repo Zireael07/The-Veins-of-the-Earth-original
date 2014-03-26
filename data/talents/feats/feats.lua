@@ -119,6 +119,31 @@ newTalent{
 	info = [[This feat allows you to wield a two-handed weapon in one hand, albeit at a -2 penalty.]],
 }
 
+--Taken from Incursion
+newTalent{
+	name = "Shield Focus",
+	type = {"class/general", 1},
+	require = {
+		talent = { Talents.T_SHIELD_PROFICIENCY },
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[When wielding a shield, you gain a +2 bonus to AC in addition to the shield's bonus.]],
+}
+
+newTalent{
+	name = "Armor Optimisation",
+	type = {"class/general", 1},
+	require = {
+		talent = { Talents.T_HEAVY_ARMOR_PROFICIENCY },
+	},
+	points = 1,
+	mode = "passive",
+	is_feat = true,
+	info = [[Your armor check penalty is reduced by 1/3.]],
+}
+
 --Archery feats
 --[[newTalent{
 	name = "Point Blank Shot",
@@ -647,6 +672,127 @@ newTalent{
         self.skill_bonus_intimidate = (self.skill_bonus_intimidate or 0) - 2
     end
 }
+
+--Taken from Incursion
+newTalent{
+	name = "Improved Strength",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Strength by +1.]],
+	on_learn = function(self, t)
+		self.inc_stats[self.STAT_STR] = (self.inc_stats[self.STAT_STR] or 0) + 1
+  		self:onStatChange(self.STAT_STR, 1)
+	end,
+	on_unlearn = function(self, t)
+		self.inc_stats[self.STAT_STR] = (self.inc_stats[self.STAT_STR] or 0) - 1
+  		self:onStatChange(self.STAT_STR, -1)
+	end
+}
+
+newTalent{
+	name = "Improved Dexterity",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Dexterity by +1.]],
+	on_learn = function(self, t)
+		self.inc_stats[self.STAT_DEX] = (self.inc_stats[self.STAT_DEX] or 0) + 1
+  		self:onStatChange(self.STAT_DEX, 1)
+	end,
+	on_unlearn = function(self, t)
+		self.inc_stats[self.STAT_DEX] = (self.inc_stats[self.STAT_DEX] or 0) - 1
+  		self:onStatChange(self.STAT_DEX, -1)
+	end
+}
+
+newTalent{
+	name = "Improved Constitution",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Constitution by +1.]],
+	on_learn = function(self, t)
+		self.inc_stats[self.STAT_CON] = (self.inc_stats[self.STAT_CON] or 0) + 1
+  		self:onStatChange(self.STAT_CON, 1)
+	end,
+	on_unlearn = function(self, t)
+		self.inc_stats[self.STAT_DEX] = (self.inc_stats[self.STAT_CON] or 0) - 1
+  		self:onStatChange(self.STAT_CON, -1)
+	end
+}
+
+newTalent{
+	name = "Improved Intelligence",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Intelligence by +1.]],
+	on_learn = function(self, t)
+		self.inc_stats[self.STAT_INT] = (self.inc_stats[self.STAT_INT] or 0) + 1
+  		self:onStatChange(self.STAT_INT, 1)
+	end,
+	on_unlearn = function(self, t)
+		self.inc_stats[self.STAT_INT] = (self.inc_stats[self.STAT_INT] or 0) - 1
+  		self:onStatChange(self.STAT_INT, -1)
+	end
+}
+
+newTalent{
+	name = "Improved Wisdom",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Wisdom by +1.]],
+	on_learn = function(self, t)
+		self.inc_stats[self.STAT_WIS] = (self.inc_stats[self.STAT_WIS] or 0) + 1
+  		self:onStatChange(self.STAT_WIS, 1)
+	end,
+	on_unlearn = function(self, t)
+		self.inc_stats[self.STAT_WIS] = (self.inc_stats[self.STAT_WIS] or 0) - 1
+  		self:onStatChange(self.STAT_WIS, -1)
+	end
+}
+
+newTalent{
+	name = "Improved Charisma",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Charisma by +1.]],
+	on_learn = function(self, t)
+		self.inc_stats[self.STAT_CHA] = (self.inc_stats[self.STAT_CHA] or 0) + 1
+  		self:onStatChange(self.STAT_CHA, 1)
+	end,
+	on_unlearn = function(self, t)
+		self.inc_stats[self.STAT_CHA] = (self.inc_stats[self.STAT_CHA] or 0) - 1
+  		self:onStatChange(self.STAT_CHA, -1)
+	end
+}
+
+newTalent{
+	name = "Improved Luck",
+	type = {"class/general", 1},
+	is_feat = true,
+	points = 1,
+	mode = "passive",
+	info = [[This feat increases your Luck by +1.]],
+	on_learn = function(self, t)
+		self.inc_stats[self.STAT_LUC] = (self.inc_stats[self.STAT_LUC] or 0) + 1
+  		self:onStatChange(self.STAT_LUC, 1)
+	end,
+	on_unlearn = function(self, t)
+		self.inc_stats[self.STAT_LUC] = (self.inc_stats[self.STAT_LUC] or 0) - 1
+  		self:onStatChange(self.STAT_LUC, -1)
+	end
+}
+
 
 --SPECIAL!!!
 newTalent{

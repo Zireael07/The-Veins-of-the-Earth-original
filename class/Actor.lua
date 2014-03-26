@@ -803,7 +803,11 @@ function _M:getSkill(skill)
 
 	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) 
 
-	if penalty_for_skill[skill] == "yes" then return check - (self:attr("armor_penalty") or 0) - (self:attr("load_penalty") or 0) end
+	if penalty_for_skill[skill] == "yes" then 
+		if self:knowTalent(self.T_ARMOR_OPTIMISATION) and self:attr("armor_penalty") then
+			return check - (self:attr("armor_penalty")/3 or 0) - (self:attr("load_penalty") or 0) end
+		else
+		return check - (self:attr("armor_penalty") or 0) - (self:attr("load_penalty") or 0) end
 	return check end 
 
 function _M:skillCheck(skill, dc, silent)
@@ -936,6 +940,9 @@ function _M:getAC()
 	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end 
 
 	if self.combat_protection then protection = math.min(protection, 5) end
+
+	--Shield Focus feat
+	if self.combat_shield and self:knowTalent(self.T_SHIELD_FOCUS) then shield = shield + 2 end
 	
 	return math.floor((10 + armor + magic_armor + shield + magic_shield + natural + protection + dodge) + (dex_bonus or 0))
 end
