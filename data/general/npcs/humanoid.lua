@@ -656,7 +656,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_MERFOLK",
 	type = "humanoid", subtype = "humanoid_aquatic",
-	image = "tiles/UT/merfolk.png",
+	image = "tiles/merfolk.png",
 	display = 'h', color=colors.DARK_BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly fish-like humanoid.]],

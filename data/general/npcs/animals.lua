@@ -254,7 +254,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_WOLF",
 	type = "animal",
-	image = "tiles/wolf.png",
+	image = "tiles/UT/wolf.png",
 	display = 'd', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large wolf.]],
