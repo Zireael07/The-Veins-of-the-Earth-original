@@ -8,6 +8,7 @@ newTalent{
 		stat = {str = 13}
 	},
 	is_feat = true,
+    fighter = true,
 	points = 1,
 	mode = "sustained",
 	cooldown = 0,
@@ -40,6 +41,7 @@ newTalent{
 		stat = { int = 13 }
 	},
 	is_feat = true,
+    fighter = true,
 	points = 1,
 	mode = "sustained",
 	cooldown = 0,

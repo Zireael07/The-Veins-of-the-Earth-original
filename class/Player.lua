@@ -81,6 +81,7 @@ function _M:init(t, no_default)
   self.last_class = {}
   self.all_kills = self.all_kills or {}
   self.all_seen = self.all_seen or {}
+  self.bone_levels = self.bone_levels or {}
 end
 
 function _M:onBirth()
@@ -306,9 +307,12 @@ end
 function _M:die(src)
   if self.game_ender then
     engine.interface.ActorLife.die(self, src)
+
     game.paused = true
     self.energy.value = game.energy_to_act
     game:registerDialog(DeathDialog.new(self))
+    --Mark depth for bones
+    self.bone_levels = self.bone_levels[game.level.level]
   else
     mod.class.Actor.die(self, src)
   end
@@ -492,7 +496,7 @@ function _M:autoID()
             local check = self:skillCheck("intuition", 25)
                         if check then 
                           o.identified = true 
-                          game.logSeen(game.player, "Identified: %s", self.name)
+                          game.logSeen(game.player, "Identified: %s", o.name)
                         end        
             else end
 end

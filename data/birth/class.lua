@@ -409,6 +409,8 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
 
+			actor.fighter_bonus = 1
+
 			if actor == game.player then
 			 if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
 			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2
@@ -417,7 +419,24 @@ newBirthDescriptor {
 			else 
 			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
 
-		else
+		elseif level == 2 then
+			actor.fortitude_save = (actor.fortitude_save or 0) + 1
+			actor.reflex_save = (actor.reflex_save or 0) + 0.5
+			actor.will_save = (actor.will_save or 0) + 0.5
+			actor.combat_bab = (actor.combat_bab or 0) + 1
+			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
+
+			actor.fighter_bonus = (actor.fighter_bonus or 0) + 1
+
+			if actor == game.player then
+			 if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
+			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2
+			else
+			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
+			else 
+			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
+
+		else	
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -1031,6 +1050,34 @@ newBirthDescriptor {
 			        end
 		    	end
 			end))
+
+			game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a familiar",
+				{
+                {name="Bat", desc="Master gains a +3 bonus on Listen checks."},
+                {name="Cat", desc="Master gains a +3 bonus on Move Silently checks."},
+                {name="Hawk", desc="Master gains a +3 bonus to Spot checks in bright light."},
+                {name="Lizard", desc="Master gains a +3 bonus to Climb checks."},
+                {name="Owl", desc="Master gains a +3 bonus to Spot checks in shadows."},
+                {name="Rat", desc="Master gains a +2 bonus on Fortitude saves."},
+                {name="Raven", desc="Master gains a +3 bonus on Appraise checks."},
+                {name="Snake", desc="Master gains a +3 bonus on Bluff checks"},
+                {name="Toad", desc="Master gains +3 hit points."},
+                {name="Weasel", desc="Master gains a +2 bonus on Reflex saves."}
+                },
+
+            function(result)
+            	if result == "Bat" then actor.skill_listen = (actor.skill_listen or 0) + 3 end
+            	if result == "Cat" then actor.skill_movesilently = (actor.skill_movesilently or 0) + 3 end
+            	if result == "Hawk" then actor.skill_spot = (actor.skill_spot or 0) + 3 end
+            	if result == "Lizard" then actor.skill_climb = (actor.skill_climb or 0) + 3 end
+            	if result == "Owl" then actor.skill_spot = (actor.skill_spot or 0) + 3 end
+            	if result == "Rat" then actor.fortitude_save = (actor.fortitude_save or 0) + 2 end
+            	if result == "Snake" then actor.skill_bluff = (actor.skill_bluff or 0) + 3 end
+            	if result == "Toad" then actor.max_life = actor.max_life + 3 end
+            	if result == "Weasel" then actor.reflex_save = (actor.reflex_save or 0) +2 end
+            	
+			end))
+
 			end
 
 			actor:learnTalentType("arcane/arcane", true)

@@ -77,6 +77,7 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	is_feat = true,
+	fighter = true,
 	info = [[This feat makes you proficient in exotic weapons.]],
 }
 
@@ -95,6 +96,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[With a light weapon, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.]],
@@ -116,6 +118,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	info = [[This feat allows you to wield a two-handed weapon in one hand, albeit at a -2 penalty.]],
 }
 
@@ -129,6 +132,7 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	is_feat = true,
+	fighter = true,
 	info = [[When wielding a shield, you gain a +2 bonus to AC in addition to the shield's bonus.]],
 }
 
@@ -141,6 +145,7 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	is_feat = true,
+	fighter = true,
 	info = [[Your armor check penalty is reduced by 1/3.]],
 }
 
@@ -153,7 +158,8 @@ newTalent{
 	},
 	points = 1,
 	mode = "passive",
-	is_feat = true,]]
+	is_feat = true,
+	fighter = true,]]
 --	info = [[This feat makes you better at shooting at close range, adding a +1 bonus.]],
 --[[}
 
@@ -165,7 +171,8 @@ newTalent{
 	},
 	points = 1,
 	mode = "passive",
-	is_feat = true,]]
+	is_feat = true,
+	fighter = true,]]
 --	info = [[This feat increases the range of your bow or crossbow by 1,5.]],
 --[[}
 
@@ -178,7 +185,8 @@ newTalent{
 	},
 	points = 1,
 	mode = "passive",
-	is_feat = true,]]
+	is_feat = true,
+	fighter = true,]]
 --	info = [[This feat lets you make a second shot, but both shots have a -2 penalty.]],
 --[[}
 
@@ -199,7 +207,8 @@ newTalent{
 	},
 	points = 1,
 	mode = "passive",
-	is_feat = true,]]
+	is_feat = true,
+	fighter = true,]]
 --	info = [[This feat lets you make a second shot, but both shots have a -2 penalty.]],
 --}
 
@@ -213,6 +222,7 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	is_feat = true,
+	fighter = true,
 	info = [[This feat makes you proficient in fighting with two weapons, reducing the penalties.]],
 }
 
@@ -226,6 +236,7 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	is_feat = true,
+	fighter = true,
 	info = [[This feat gives you a +1 shield bonus to AC when fighting with two weapons.]],
 }
 
@@ -247,6 +258,7 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	is_feat = true,
+	fighter = true,
 	info = [[This feat gives you an additional offhand attack when fighting with two weapons.]],
 }
 
@@ -268,6 +280,7 @@ newTalent{
 	points = 1,
 	mode = "passive",
 	is_feat = true,
+	fighter = true,
 	info = [[This feat gives you a third offhand attack when fighting with two weapons.]],
 }
 
@@ -354,10 +367,10 @@ newTalent{
 	name = "Mobility",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	require = { talent = { Talents.T_DODGE }, },
 	mode = "passive",
-	is_feat = true,
 	info = [[This feat increases your AC by +4.]],
     on_learn = function(self, t)
         self.combat_dodge = (self.combat_dodge or 0) + 4

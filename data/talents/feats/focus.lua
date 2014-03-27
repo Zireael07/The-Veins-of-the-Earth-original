@@ -13,6 +13,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with axes.]],
@@ -33,6 +34,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with battleaxes.]],
@@ -53,6 +55,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with bows.]],
@@ -73,6 +76,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with clubs.]],
@@ -93,6 +97,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with crossbows.]],
@@ -113,6 +118,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with daggers.]],
@@ -133,6 +139,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with falchions.]],
@@ -153,6 +160,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with flails.]],
@@ -173,6 +181,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with halberds.]],
@@ -193,6 +202,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with hammers.]],
@@ -213,6 +223,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with handaxes.]],
@@ -233,6 +244,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with javelins.]],
@@ -253,6 +265,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with kukris.]],
@@ -273,6 +286,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with maces.]],
@@ -293,6 +307,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with morningstars.]],
@@ -313,6 +328,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with rapiers.]],
@@ -333,6 +349,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with scimitars.]],
@@ -353,6 +370,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with scythes.]],
@@ -373,6 +391,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with short swords.]],
@@ -393,6 +412,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with slings.]],
@@ -413,6 +433,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with spears.]],
@@ -433,6 +454,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with staves.]],
@@ -453,6 +475,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with swords.]],
@@ -473,6 +496,7 @@ newTalent{
 		}
 	},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with tridents.]],
@@ -485,6 +509,7 @@ newTalent{
 	name = "Improved Critical (axe)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -498,7 +523,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your axes' critical range by 2.]],
 }
 
@@ -507,6 +531,7 @@ newTalent{
 	name = "Improved Critical (battleaxe)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -520,7 +545,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your battleaxes' critical range by 2.]],
 }
 
@@ -529,6 +553,7 @@ newTalent{
 	name = "Improved Critical (bow)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -542,7 +567,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your bows' critical range by 2.]],
 }
 
@@ -551,6 +575,7 @@ newTalent{
 	name = "Improved Critical (club)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -564,7 +589,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your clubs' critical range by 2.]],
 }
 
@@ -573,6 +597,7 @@ newTalent{
 	name = "Improved Critical (crossbow)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -586,7 +611,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your crossbows' critical range by 2.]],
 }
 
@@ -595,6 +619,7 @@ newTalent{
 	name = "Improved Critical (dagger)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -608,7 +633,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your daggers' critical range by 2.]],
 }
 
@@ -617,6 +641,7 @@ newTalent{
 	name = "Improved Critical (falchion)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -630,7 +655,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your falchions' critical range by 2.]],
 }
 
@@ -639,6 +663,7 @@ newTalent{
 	name = "Improved Critical (flail)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -652,7 +677,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your flails' critical range by 2.]],
 }
 
@@ -661,6 +685,7 @@ newTalent{
 	name = "Improved Critical (halberd)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -674,7 +699,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your halberds' critical range by 2.]],
 }
 
@@ -683,6 +707,7 @@ newTalent{
 	name = "Improved Critical (hammer)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -696,7 +721,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your hammers' critical range by 2.]],
 }
 
@@ -705,6 +729,7 @@ newTalent{
 	name = "Improved Critical (handaxe)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -718,7 +743,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your handaxes' critical range by 2.]],
 }
 
@@ -727,6 +751,7 @@ newTalent{
 	name = "Improved Critical (javelin)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -740,7 +765,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your javelins' critical range by 2.]],
 }
 
@@ -749,6 +773,7 @@ newTalent{
 	name = "Improved Critical (kukri)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -762,7 +787,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your kukris' critical range by 2.]],
 }
 
@@ -771,6 +795,7 @@ newTalent{
 	name = "Improved Critical (mace)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -784,7 +809,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your maces' critical range by 2.]],
 }
 
@@ -793,6 +817,7 @@ newTalent{
 	name = "Improved Critical (morningstar)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -806,7 +831,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your morningstars' critical range by 2.]],
 }
 
@@ -815,6 +839,7 @@ newTalent{
 	name = "Improved Critical (rapier)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -828,7 +853,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your rapiers' critical range by 2.]],
 }
 
@@ -837,6 +861,7 @@ newTalent{
 	name = "Improved Critical (scimitar)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -850,7 +875,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your scimitars' critical range by 2.]],
 }
 
@@ -859,6 +883,7 @@ newTalent{
 	name = "Improved Critical (scythe)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -872,7 +897,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your scythes' critical range by 2.]],
 }
 
@@ -881,6 +905,7 @@ newTalent{
 	name = "Improved Critical (short sword)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -894,7 +919,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your short swords' critical range by 2.]],
 }
 
@@ -903,6 +927,7 @@ newTalent{
 	name = "Improved Critical (sling)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -916,7 +941,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your slings' critical range by 2.]],
 }
 
@@ -925,6 +949,7 @@ newTalent{
 	name = "Improved Critical (spear)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -938,7 +963,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your spears' critical range by 2.]],
 }
 
@@ -947,6 +971,7 @@ newTalent{
 	name = "Improved Critical (staff)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -960,7 +985,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your staves' critical range by 2.]],
 }
 
@@ -969,6 +993,7 @@ newTalent{
 	name = "Improved Critical (sword)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -982,7 +1007,6 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your swords' critical range by 2.]],
 }
 
@@ -991,6 +1015,7 @@ newTalent{
 	name = "Improved Critical (trident)",
 	type = {"class/general", 1},
 	is_feat = true,
+	fighter = true,
 	points = 1,
 	mode = "passive",
 	require = {
@@ -1004,6 +1029,5 @@ newTalent{
 			desc = "Base attack bonus 8",		 
 		}
 	},
-	is_feat = true,
 	info = [[This feat increases your tridents' critical range by 2.]],
 }
