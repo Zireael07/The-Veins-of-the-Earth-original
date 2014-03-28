@@ -16,7 +16,7 @@
 
 local Talents = require "engine.interface.ActorTalents"
 
-local luck = game.player:getLuc()
+local luck = (game.player:getLuc()-10)/2
 
 load("/data/general/objects/armor.lua", rarity(-luck))
 load("/data/general/objects/shields.lua")
@@ -37,7 +37,15 @@ load("/data/general/objects/poisons.lua")
 load("/data/general/objects/pickaxes.lua")
 load("/data/general/objects/money.lua", rarity(-luck))
 
-
+--Bones
+newEntity{
+    define_as = "BONES",
+    image = "tiles/bones.png",
+    display = "%", color=colors.WHITE,
+    encumber = 30,
+    name = "bones",
+    desc = [[Bones of some dead adventurer.]],
+}
 
 --Light sources
 newEntity{
