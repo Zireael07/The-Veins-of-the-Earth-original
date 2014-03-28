@@ -326,6 +326,16 @@ function _M:changeLevel(lev, zone)
 	if feeling then self.log("#TEAL#%s", feeling) end
 	if item_feeling then self.log("#TEAL#%s", item_feeling) end
 
+	--Bones
+	if world.bone_levels and world.bone_levels[game.level.level] then
+		local x, y = util.findFreeGrid(player.x, player.y, 50, true, {[Map.ACTOR]=true})
+		local bones = game.zone:makeEntityByName(game.level, "object", "BONES")
+		if not x then return end
+		if bones then
+			game.zone:addEntity(game.level, bones, "object", x, y)
+		end
+
+	end
 end
 
 function _M:getPlayer()
@@ -512,7 +522,7 @@ function _M:setupCommands()
 			if self.player:enoughEnergy() and e.change_level then
 				--Implement min_depth
 				local days = math.floor(self.turn / game.calendar.DAY) + (game.calendar.start_day - 1)
-				local min_depth = 1*math.max(1, days/3)
+				local min_depth = math.max(1, days/3)
 				local level = self.level.level
 				if level + e.change_level < min_depth then
 					game.logPlayer(self.player, "#SANDY_BROWN#You cannot ascend higher")

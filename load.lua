@@ -105,4 +105,4 @@ Birther:loadDefinition("/data/birth/descriptors.lua")
 --Stores
 Store:loadStores("/data/general/stores/general.lua")
 
-return {require "mod.class.Game" }
+return {require "mod.class.Game", require "mod.class.World" }

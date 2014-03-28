@@ -81,7 +81,6 @@ function _M:init(t, no_default)
   self.last_class = {}
   self.all_kills = self.all_kills or {}
   self.all_seen = self.all_seen or {}
-  self.bone_levels = self.bone_levels or {}
 end
 
 function _M:onBirth()
@@ -312,7 +311,7 @@ function _M:die(src)
     self.energy.value = game.energy_to_act
     game:registerDialog(DeathDialog.new(self))
     --Mark depth for bones
-    self.bone_levels = self.bone_levels[game.level.level]
+    world.bone_levels = world.bone_levels[game.level.level]
   else
     mod.class.Actor.die(self, src)
   end
