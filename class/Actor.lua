@@ -1260,14 +1260,139 @@ function _M:randomSpell()
 end	
 
 function _M:randomItem()
-	--Add a random ego-ed item
-			
-			local o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=1000}, nil, true)
+	local chance = rng.dice(1,15)
+	if chance == 1 then return "iron battleaxe"
+	elseif chance == 2 then return "rapier"
+	elseif chance == 3 then return "long sword"
+	elseif chance == 4 then return "iron dagger"
+	elseif chance == 5 then return "morningstar"
+	--Ranged weapons
+	elseif chance == 6 then return "shortbow"
+	elseif chance == 7 then return "longbow"
+	elseif chance == 8 then return "sling"
+	elseif chance == 9 then return "light crossbow"
+	elseif chance == 10 then return "heavy crossbow"
+	--Armor 
+	elseif chance == 11 then return "chain mail"
+	elseif chance == 12 then return "chain shirt"
+	elseif chance == 13 then return "studded leather"
+	elseif chance == 14 then return "breastplate"
+	else return "plate armor" end
+end
+
+--Add a random ego-ed item
+function _M:giveRandomItem()
+--	local inven = game.player:getInven("MAINHAND")
+		--Weapon
+		if randomItem() == "iron battleaxe" then			
+			local o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=1000}, 1, true)
 			if o then
 				game.zone:addEntity(game.level, o, "object")
-				self.player:addObject(game.player:getInven("MAINHAND"), o)
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
 			end
+		elseif randomItem() == "rapier" then
+			local o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "long sword" then
+		local o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "iron dagger" then
+		local o = game.zone:makeEntity(game.level, "object", {name="iron dagger", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "morningstar" then
+		local o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		--Ranged weapons
+		elseif randomItem() == "shortbow" then
+		local o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "longbow" then
+		local o = game.zone:makeEntity(game.level, "object", {name="longbow", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "sling" then
+		local o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "light crossbow" then
+		local o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "heavy crossbow" then
+		local o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		--Armor
+		elseif randomItem() == "chain mail" then
+			local o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end	
+		elseif randomItem() == "chain shirt" then
+		local o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "studded leather" then
+		local o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "breastplate" then
+		local o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+		elseif randomItem() == "plate armor" then
+		local o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=1000}, 1, true)
+			if o then
+				game.zone:addEntity(game.level, o, "object")
+			--	game.player:addObject(inven, o)
+				game.player:addObject(game.player:getInven("INVEN"), o)
+			end
+--		else end
 
+		end
 end
 
 
