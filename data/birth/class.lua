@@ -10,11 +10,6 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#Raging warriors of the wilds.\n\n #LIGHT_BLUE#Class skills: Climb, Handle Animal, Intimidate, Jump, Listen, Swim, Survival.\n\n #WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	rarity = 2,
 	copy = {
-		resolvers.equip {
-			full_id=true,
-			{ name="iron battleaxe", ego_chance=-1000 },
-			{ name="chain mail", ego_chance=-1000 },
-		},
 	},
 	copy_add = {
 		skill_point = 12, --4x skill points at 1st character level
@@ -88,11 +83,6 @@ newBirthDescriptor {
 	name = 'Bard',
 	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Balance, Bluff, Climb, Concentration, Diplomacy, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	copy = {
-		resolvers.equip {
-			full_id=true,
-			{ name="rapier", ego_chance=-1000 },
-			{ name="chain shirt", ego_chance=-1000 },
-		},
 	},
 	copy_add = {
 		skill_point = 18, --4x skill points at 1st level
@@ -186,11 +176,6 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#Clerics are masters of healing.\n\n #LIGHT_BLUE# Class skills: Concentration, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n  #WHITE#8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 	rarity = 4,
 	copy = {
-		resolvers.equip {
-			full_id=true,
-			{ name="heavy mace", ego_chance=-1000 },
-			{ name="chain mail", ego_chance=-1000 },
-		},
 	},
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
@@ -292,11 +277,6 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#Clerics of nature.\n\n #LIGHT_BLUE# Class skills: Concentration, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Spot, Swim, Spellcraft, Survival.\n\n  #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 	rarity = 8,
 	copy = {
-		resolvers.equip {
-			full_id=true,
-			{ name="quarterstaff", ego_chance=-1000 },
-			{ name="padded armor", ego_chance=-1000 },
-		},
 	},
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
@@ -372,11 +352,6 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#Simple fighters, they hack away with their trusty weapon.\n\n #LIGHT_BLUE# Class skills: Climb, Handle Animal, Intimidate, Jump, Swim.\n\n  #WHITE#10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	rarity = 2,
 	copy = {
-		resolvers.equip {
-			full_id=true,
-			{ name="long sword", ego_chance=-1000 },
-			{ name="chain mail", ego_chance=-1000 },
-		},
 	},
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
@@ -461,13 +436,6 @@ newBirthDescriptor {
         type = 'class',
         name = 'Monk',
         desc = help..'#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors.\n\n #LIGHT_BLUE#Class skills: Balance, Climb, Concentration, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble.\n\n #WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +1, Ref +1, 4 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
---[[        copy = {
-                resolvers.equip {
-                        full_id=true,
-                        { name="long sword", ego_chance=-1000 },
-                        { name="chain mail", ego_chance=-1000 },
-                },
-        },]]
         copy_add = {
                 skill_point = 16, --4x skill points at 1st character level
         },
@@ -522,11 +490,6 @@ newBirthDescriptor {
         name = 'Paladin',
         desc = help..'#ORANGE#Holy warriors of the deities of good and law.\n\n #LIGHT_BLUE#Class skills: Concentration, Diplomacy, Handle Animal, Heal, Knowledge, Sense Motive.\n\n #WHITE#10 hit points per level, BAB +1, Fort +2 at first class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
         copy = {
-                resolvers.equip {
-                        full_id=true,
-                        { name="long sword", ego_chance=-1000 },
-                        { name="chain mail", ego_chance=-1000 },
-                },
         },
         copy_add = {
                 skill_point = 8, --4x skill points at 1st character level
@@ -619,19 +582,12 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n #LIGHT_BLUE# Class skills: Climb, Concentration, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Search, Spot, Swim, Survival.\n\n  #WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	rarity = 3,
 	copy = {
-		resolvers.equip {
-			full_id=true,
-			{ name="long sword", ego_chance=-1000 },
-			{ name="iron dagger", ego_chance=-1000 },
-			{ name="studded leather", ego_chance=-1000 },
-
-		},
 		resolvers.inventory {
 			full_id=true,
 			{ name="shortbow", ego_chance=-1000},
 			{ name="arrows", ego_chance=-1000 },
+			{ name="iron dagger", ego_chance=-1000 },
 		},
-
 	},
 	copy_add = {
 		skill_point = 18, --4x skill points at 1st level
@@ -802,9 +758,7 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
-			{ name="light crossbow", ego_chance=-1000 },
 			{ name="bolts", ego_chance=-1000 },
-			{ name="studded leather", ego_chance=-1000 },
 		},
 		resolvers.inventory {
 			full_id=true,
@@ -882,17 +836,11 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Bluff, Concentration, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 16#LAST# to multiclass to this class.',
 	rarity = 6,
 	copy = {
-		resolvers.equip {
-			full_id=true,
-			{ name="iron dagger", ego_chance=-1000 },
-
-		},
 		resolvers.inventory {
 			full_id=true,
 			{ name="light crossbow", ego_chance=-1000},
 			{ name="bolts", ego_chance=-1000},
 		}
-
 	},
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
@@ -965,17 +913,11 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Concentration, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.\n\n #GOLD#INT 16#LAST# to multiclass to this class.',
 	rarity = 5,
 	copy = {
-		resolvers.equip {
-			full_id=true,
-			{ name="iron dagger", ego_chance=-1000 },
-
-		},
 		resolvers.inventory {
 			full_id=true,
 			{ name="light crossbow", ego_chance=-1000},
 			{ name="bolts", ego_chance=-1000},
 		}
-
 	},
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
@@ -1129,11 +1071,6 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#A spellcaster who needs no weapon.\n\n #LIGHT_BLUE# Class skills: Concentration, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n #WHITE#6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	rarity = 10,
 	copy = {
-		resolvers.equip {
-			full_id=true,
-			{ name="long sword", ego_chance=-1000 },
-			{ name="chain shirt", ego_chance=-1000 },
-		},
 	},
 	copy_add = {
 		skill_point = 6, --4x skill points at start

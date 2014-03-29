@@ -40,6 +40,28 @@ newEntity{ base = "BASE_DAGGER",
 }
 
 newEntity{ base = "BASE_WEAPON",
+    define_as = "BASE_SICKLE",
+    type = "weapon", subtype = "sickle",
+-- image = "tiles/sickle.png",
+    display = "|", color=colors.SLATE,
+    encumber = 2,
+    rarity = 9,
+    combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
+    name = "sickle",
+    desc = "A normal sickle.\n\n Damage 1d6.",
+}
+
+newEntity{ base = "BASE_SICKLE",
+    level_range = {1, 10},
+    cost = 6,
+    light = true,
+    combat = {
+        dam = {1,6},
+        threat = 1,
+    },  
+}
+
+newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SSPEAR",
     slot = "MAIN_HAND", 
     type = "weapon", subtype="spear",

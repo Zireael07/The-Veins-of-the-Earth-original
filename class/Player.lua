@@ -86,7 +86,7 @@ end
 function _M:onBirth()
   self:birthName()
   self:levelClass(self.descriptor.class)
-  self:giveRandomItem()
+  self:giveStartingEQ()
 
   self:setTile()
 --  self:equipAllItems()
@@ -113,7 +113,7 @@ local d = rng.dice(1,6)
   if d == 1 then self:randomFeat()
   elseif d == 2 then self:randomFeat()
   elseif d == 3 then self:randomFeat()
-  elseif d == 4 then self:randomSpell() end
+  elseif d == 4 then self:randomSpell()
   elseif d == 5 then self:randomItem()
   else self:randomItem() end 
 end

@@ -134,3 +134,29 @@ newEntity{ base = "BASE_RANSEUR",
         critical = 3,
     },
 }
+
+newEntity{ base = "BASE_WEAPON_REACH",
+    define_as = "BASE_LANCE",
+    slot = "MAIN_HAND",
+    slot_forbid = "OFF_HAND",
+    type = "weapon", subtype="lance",
+    image = "tiles/lance.png",
+    display = "\\", color=colors.SLATE,
+    encumber = 10,
+    rarity = 12,
+    martial = true,
+    combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
+    name = "a scythe",
+    desc = "A plain metal lance.\n\n Damage 1d8. Critical x3.",
+}
+
+newEntity{ base = "BASE_RANSEUR",
+    name = "ranseur",
+    level_range = {1, 10},
+    cost = 10,
+    martial = true,
+    combat = {
+        dam = {1,8},
+        critical = 3,
+    },
+}
