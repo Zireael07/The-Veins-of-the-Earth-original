@@ -3,6 +3,9 @@ The Veins of the Earth
 
 A short guide to modding
 
+Important note:
+As opposed to ToME 4, the main hand slot has an *underscore* in the name! It's MAIN_HAND not MAINHAND to better differentiate from OFF_HAND!
+
 General entities (NPCs, objects)
 rarity -> how often do we want this to appear. the bigger the number, the rarer it is. Never set to 0.
 display -> what ASCII character is used. Look at Legend.lua for the list of symbols used
@@ -50,8 +53,8 @@ combat_protection -> the AC bonus granted by rings of protection
 
 NPCs
 ai -> do NOT change this line!
-type -> what it says on the tin
-subtype -> enter the name of the monster. It is used to track favored enemies
+type -> what it says on the tin; used to track some immunities
+subtype -> enter the name of the monster. It is used to track favored enemies and some immunities
 body -> this line defines which slots the creature will have
 stats -> what it says on the tin
 
