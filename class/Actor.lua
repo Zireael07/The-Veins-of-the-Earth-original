@@ -1288,6 +1288,7 @@ function _M:giveEgoAxe()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1297,6 +1298,7 @@ function _M:giveEgoRapier()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1306,6 +1308,7 @@ function _M:giveEgoSword()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1315,6 +1318,7 @@ function _M:giveEgoDagger()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1324,6 +1328,7 @@ function _M:giveEgoMorningstar()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1333,6 +1338,7 @@ function _M:giveEgoShortbow()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1342,6 +1348,7 @@ function _M:giveEgoLongbow()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1351,6 +1358,7 @@ function _M:giveEgoSling()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1360,6 +1368,7 @@ function _M:giveEgoLCrossbow()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1369,6 +1378,7 @@ function _M:giveEgoHCrossbow()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1378,6 +1388,7 @@ function _M:giveEgoChainmail()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end	
 end
 
@@ -1387,6 +1398,7 @@ function _M:giveEgoChainShirt()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1396,6 +1408,7 @@ function _M:giveEgoLeather()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1405,6 +1418,7 @@ function _M:giveEgoBreastplate()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1414,6 +1428,7 @@ function _M:giveEgoPlate()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1424,6 +1439,7 @@ function _M:giveAxe()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1433,6 +1449,7 @@ function _M:giveRapier()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1442,6 +1459,7 @@ function _M:giveScimitar()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1451,6 +1469,7 @@ function _M:giveSword()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1460,6 +1479,7 @@ function _M:giveDagger()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1469,6 +1489,7 @@ function _M:giveMorningstar()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1478,6 +1499,7 @@ function _M:giveLMace()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1487,6 +1509,7 @@ function _M:giveHMace()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1496,6 +1519,7 @@ function _M:giveSickle()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1505,6 +1529,7 @@ function _M:giveStaff()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end	
 
@@ -1514,6 +1539,7 @@ function _M:giveHammer()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end	
 
@@ -1523,6 +1549,7 @@ function _M:giveSpear()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1532,6 +1559,7 @@ function _M:giveScythe()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1541,6 +1569,7 @@ function _M:giveShortbow()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1550,6 +1579,7 @@ function _M:giveLongbow()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1559,6 +1589,7 @@ function _M:giveSling()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1568,6 +1599,7 @@ function _M:giveLCrossbow()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject("MAIN_HAND", o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1577,6 +1609,7 @@ function _M:giveHCrossbow()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject("MAIN_HAND", o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1585,6 +1618,7 @@ function _M:giveHandCrossbow()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject("MAIN_HAND", o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1594,6 +1628,7 @@ function _M:giveChainmail()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end	
 end
 
@@ -1603,6 +1638,7 @@ function _M:giveChainShirt()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1612,6 +1648,7 @@ function _M:giveLeather()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1621,6 +1658,7 @@ function _M:givePadded()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1630,6 +1668,7 @@ function _M:giveBreastplate()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end
 end
 
@@ -1639,6 +1678,7 @@ function _M:givePlate()
 			if o then
 				game.zone:addEntity(game.level, o, "object")
 				game.player:addObject(game.player:getInven("BODY"), o)
+				o.pseudo_id = true
 			end
 end
 
