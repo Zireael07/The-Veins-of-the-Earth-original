@@ -1,5 +1,21 @@
 CHANGELOG
 
+0.15.0 - 31/03/2013
+* bug fix - reverted Luck influencing items
+* bug fix - undead, elementals and others made immune to criticals
+
+* new tiles: centipede, krenshar, displacer beast
+* new feats: Armor Optimisation, Shield Focus; Improved Strength, Improved Dexterity, Improved Constitution, Improved Intelligence, Improved Wisdom, Improved Charisma, Improved Luck
+* fighter bonus feat selection
+* wizards can now select familiars
+* improved starting equipment selection, now taking race into account
+* magic items as starting perks
+* magic items can now increase Luck, too
+* types and subtypes now influence immunities
+* a batch of new rooms to see
+
+
+
 0.14.0 beta 4.6 - 24/03/2014
 * bug fix - no more monsters spawning in walls
 
