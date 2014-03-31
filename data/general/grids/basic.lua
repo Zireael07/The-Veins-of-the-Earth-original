@@ -104,6 +104,12 @@ newEntity{
 
 newEntity{
 	base = "WALL",
+	define_as = "WALL_MARBLE",
+	display = '#', color=colors.DARK_GREEN, back_color=colors.DARK_BLUE,
+}
+
+newEntity{
+	base = "WALL",
 	define_as = "WALL_WARDED",
 	display = '#', color=colors.VIOLET, back_color={r=30, g=30, b=60},
 }
