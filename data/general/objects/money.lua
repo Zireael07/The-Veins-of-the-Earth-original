@@ -61,3 +61,33 @@ newEntity{
     desc = [[A pile of gold coins.]],
     money_value = rng.range(152, 500),
 }
+
+newEntity{
+    base = "BASE_MONEY",
+    name = "platinum coins",
+    image = "tiles/platinum_coins.png",
+    color = colors.STEEL_BLUE,
+    level_range = {15,nil},
+    desc = [[A pile of platinum coins.]],
+    money_value = rng.range(500, 5000),
+}
+
+newEntity{
+    base = "BASE_MONEY",
+    name = "adamantine coins",
+    image = "tiles/adamantine_coins.png",
+    color = colors.LIGHT_GREEN,
+    level_range = {10,nil},
+    desc = [[A pile of adamantine coins.]],
+    money_value = rng.range(400, 1500),
+}
+
+newEntity{
+    base = "BASE_MONEY",
+    name = "garnets",
+    image = "tiles/red_jewels.png",
+    color = colors.LIGHT_RED,
+    level_range = {5,nil},
+    desc = [[A pile of garnets.]],
+    money_value = rng.range(72, 700),
+}
