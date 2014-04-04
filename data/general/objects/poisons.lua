@@ -7,6 +7,7 @@ newEntity{
     slot = "INVEN",
     type = "potion", subtype = "vial",
     display = "!", color=colors.SLATE,
+    image = "tiles/poison_vial.png",
     encumber = 0,
     name = "a potion",
     desc = [[A potion.]],
