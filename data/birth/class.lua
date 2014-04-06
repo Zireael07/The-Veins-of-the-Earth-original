@@ -58,6 +58,7 @@ newBirthDescriptor {
 			else
 			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2 end
 
+		--Any level higher than 1
 		else
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
@@ -136,6 +137,7 @@ newBirthDescriptor {
 			else
 			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 		
+		--Any level higher than 1
 		else
 
 		--Learn a new spell tier every 3rd level
@@ -165,7 +167,6 @@ newBirthDescriptor {
 		else
 		actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 		end
-	--	end
 	end,
 } 
 
@@ -237,8 +238,10 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end	
-			
+		
+		--Any level higher than 1	
 		else
+
 		--Learn a new spell tier every 3rd level
 		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
@@ -249,7 +252,6 @@ newBirthDescriptor {
 		        end
 		    end
 		end
-
 
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -322,6 +324,7 @@ newBirthDescriptor {
 
 			actor:learnTalentType("divine", true)
 		
+		--Any level higher than 1
 		else
 		--Learn a new spell tier every 3rd level
 		if level % 3 == 0 then
@@ -394,24 +397,12 @@ newBirthDescriptor {
 			else 
 			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
 
-		elseif level == 2 then
-			actor.fortitude_save = (actor.fortitude_save or 0) + 1
-			actor.reflex_save = (actor.reflex_save or 0) + 0.5
-			actor.will_save = (actor.will_save or 0) + 0.5
-			actor.combat_bab = (actor.combat_bab or 0) + 1
-			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
+		--Any level higher than 1
+		else
 
-			actor.fighter_bonus = (actor.fighter_bonus or 0) + 1
+		--Bonus fighter feat every 2 levels
+		if level % 2 == 0 then actor.fighter_bonus = (actor.fighter_bonus or 0) + 1 end
 
-			if actor == game.player then
-			 if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
-			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2
-			else
-			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
-			else 
-			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
-
-		else	
 
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
@@ -436,6 +427,13 @@ newBirthDescriptor {
         type = 'class',
         name = 'Monk',
         desc = help..'#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors.\n\n #LIGHT_BLUE#Class skills: Balance, Climb, Concentration, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble.\n\n #WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +1, Ref +1, 4 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+--[[        copy = {
+                resolvers.equip {
+                        full_id=true,
+                        { name="long sword", ego_chance=-1000 },
+                        { name="chain mail", ego_chance=-1000 },
+                },
+        },]]
         copy_add = {
                 skill_point = 16, --4x skill points at 1st character level
         },
@@ -473,6 +471,7 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
             actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
+            --Any level higher than 1
             else
 
             actor.combat_bab = (actor.combat_bab or 0) + 1
@@ -534,38 +533,27 @@ newBirthDescriptor {
                 actor:learnTalent(actor.T_LAY_ON_HANDS, true)
 
                 actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
-                     
-            elseif level == 4 then   
-                actor:learnTalent(actor.T_TURN_UNDEAD, true)
-                    
-                actor.combat_bab = (actor.combat_bab or 0) + 1
-				actor.fortitude_save = (actor.fortitude_save or 0) + 1
-				actor.reflex_save = (actor.reflex_save or 0) + 0.5
-				actor.will_save = (actor.will_save or 0) + 0.5
-				actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
-                     
-            elseif level == 5 then
-				actor:learnTalentType("divine", true)
 
-				actor.combat_bab = (actor.combat_bab or 0) + 1
-				actor.fortitude_save = (actor.fortitude_save or 0) + 1
-				actor.reflex_save = (actor.reflex_save or 0) + 0.5
-				actor.will_save = (actor.will_save or 0) + 0.5
-				actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
-                  
-         	
-        --Learn a new spell tier every 3rd level starting from lvl 5
-		if level >= 5 and level % 3 == 0 then
+            --Any level higher than 1
+            else
+                     
+            --Learn a new spell tier every 3rd level starting from lvl 5
+			if level >= 5 and level % 3 == 0 then
 			local spell_level = ((level-5) / 3) + 1
-			for tid, _ in pairs(actor.talents_def) do
+				for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+		        	if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
 		        	actor:learnTalent(t.id)
-		        end
-		    end
-		end 
+		        	end
+		    	end
+			end   
 
-			else
+			--Level-specific bonuses
+            if level == 4 then actor:learnTalent(actor.T_TURN_UNDEAD, true) end
+            if level == 5 then actor:learnTalentType("divine", true) end
+
+			
+            --Level >1, generic bonuses
 				actor.combat_bab = (actor.combat_bab or 0) + 1
         		actor.fortitude_save = (actor.fortitude_save or 0) + 1
         		actor.reflex_save = (actor.reflex_save or 0) + 0.5
@@ -588,6 +576,7 @@ newBirthDescriptor {
 			{ name="arrows", ego_chance=-1000 },
 			{ name="iron dagger", ego_chance=-1000 },
 		},
+
 	},
 	copy_add = {
 		skill_point = 18, --4x skill points at 1st level
@@ -701,24 +690,9 @@ newBirthDescriptor {
 			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 		
-		elseif level == 5 then
-			actor:learnTalentType("divine", true)
-
-		actor.combat_bab = (actor.combat_bab or 0) + 1
-		actor.fortitude_save = (actor.fortitude_save or 0) + 1
-		actor.reflex_save = (actor.reflex_save or 0) + 1
-		actor.will_save = (actor.will_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
-		if actor == game.player then
-			if actor.descriptor.race == "Elf" then
-		--Favored class bonuses
-		actor.combat_attack = (actor.combat_attack or 0) + 1
-		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
-			else
-			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
+		--Any level higher than 1
 		else
-		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
-		
+
 		--Learn a new spell tier every 3rd level starting from lvl 5
 		if level >= 5 and level % 3 == 0 then
 			local spell_level = ((level-5) / 3) + 1
@@ -730,7 +704,10 @@ newBirthDescriptor {
 		    end
 		end
 
-		else
+
+		if level == 5 then actor:learnTalentType("divine", true) end
+
+		--Level >1, generic bonuses
 		actor.combat_bab = (actor.combat_bab or 0) + 1
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 1
@@ -758,7 +735,9 @@ newBirthDescriptor {
 	copy = {
 		resolvers.equip {
 			full_id=true,
+		--	{ name="light crossbow", ego_chance=-1000 },
 			{ name="bolts", ego_chance=-1000 },
+		--	{ name="studded leather", ego_chance=-1000 },
 		},
 		resolvers.inventory {
 			full_id=true,
@@ -810,8 +789,21 @@ newBirthDescriptor {
 			else
 			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 		
+		--Any level higher than 1
 		else
 
+		--Level-specific bonuses
+		if level == 3 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 5 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 7 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 9 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 11 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 13 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 15 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 17 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 19 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+
+		--Level >1, generic bonuses
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
 		actor.will_save = (actor.will_save or 0) + 0.5
@@ -841,6 +833,7 @@ newBirthDescriptor {
 			{ name="light crossbow", ego_chance=-1000},
 			{ name="bolts", ego_chance=-1000},
 		}
+
 	},
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
@@ -883,7 +876,8 @@ newBirthDescriptor {
 			actor:learnTalentType("sorcerer/sorcerer", true)			
 
 			actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
-		
+
+		--Any level higher than 1
 		else
 
 		--Learn a new spell tier every 3rd level
@@ -897,6 +891,7 @@ newBirthDescriptor {
 		    end
 		end
 
+		--Level >1, generic bonuses
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
@@ -918,6 +913,7 @@ newBirthDescriptor {
 			{ name="light crossbow", ego_chance=-1000},
 			{ name="bolts", ego_chance=-1000},
 		}
+
 	},
 	copy_add = {
 		skill_point = 6, --4x skill points at 1st level
@@ -1032,6 +1028,8 @@ newBirthDescriptor {
 				actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2 end
 			else
 			actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2 end
+
+		--Any level higher than 1	
 		else
 
 		--Learn a new spell tier every 3rd level
@@ -1046,6 +1044,7 @@ newBirthDescriptor {
 		    end
 		end
 
+		--Level >1, generic bonuses
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
@@ -1107,6 +1106,7 @@ newBirthDescriptor {
 
 		else
 
+		--Level >1, generic bonuses
 		actor.will_save = (actor.will_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
@@ -1140,25 +1140,23 @@ newBirthDescriptor {
 
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
-			--grant hide in plain sight
-		elseif level == 2 then 
-			actor.combat_bab = (actor.combat_bab or 0) + 1
-			actor.reflex_save = (actor.reflex_save or 0) + 1
-
-		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-		actor.will_save = (actor.will_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
-		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 		
-		-- only if he doesn't have better infravision already
+		--Any level higher than 1
+		else
+
+		--Level-specific bonuses
+		if level == 2 then
+			--grant hide in plain sight
+			-- only if he doesn't have better infravision already
 			if actor.infravision and actor.infravision > 3 then
 				actor.infravision = actor.infravision + 1
 			else
 				actor.infravision = 3
 			end
+		end
 		
-		else
+
+		--Level >1, generic bonuses
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
@@ -1179,7 +1177,8 @@ newBirthDescriptor {
 	Evil backstabbers who want to kill just for the fun of it.]],
 	can_level = function(actor)
 		if actor.classes and actor.classes["Assasin"] and actor.classes["Assasin"] >= 10 then return false end
-	--	if player.descriptor.alignment ~= "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
+	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then	
+
 		if actor.skill_movesilently >= 8 and actor.skill_hide >= 8 then return true end
 
 		return false
@@ -1196,42 +1195,16 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 
-		elseif level == 3 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
-			actor.reflex_save = (actor.reflex_save or 0) + 1
-		actor.combat_bab = (actor.combat_bab or 0) + 0.5
-		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-		actor.will_save = (actor.will_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
-		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
-
-		elseif level == 5 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
-			actor.reflex_save = (actor.reflex_save or 0) + 1
-		actor.combat_bab = (actor.combat_bab or 0) + 0.5
-		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-		actor.will_save = (actor.will_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
-		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
-
-		elseif level == 7 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
-			actor.reflex_save = (actor.reflex_save or 0) + 1
-		actor.combat_bab = (actor.combat_bab or 0) + 0.5
-		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-		actor.will_save = (actor.will_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
-		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
-
-		elseif level == 9 then actor.sneak_attack = (actor.sneak_attack or 0) + 1
-		actor.reflex_save = (actor.reflex_save or 0) + 1
-		actor.combat_bab = (actor.combat_bab or 0) + 0.5
-		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-		actor.will_save = (actor.will_save or 0) + 0.5
-
-		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
-		actor.skill_point = (actor.skill_point or 0) + 6
+		--Any level higher than 1
 		else
+
+		--Level-specific bonuses
+		if level == 3 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 5 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 7 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 9 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+
+		--Level >1, generic bonuses
 		actor.reflex_save = (actor.reflex_save or 0) + 1
 		actor.combat_bab = (actor.combat_bab or 0) + 0.5
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
@@ -1240,5 +1213,195 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
 		end
+		
+	end,
+} 
+
+newBirthDescriptor {
+	type = 'class',
+	prestige = true,
+	name = 'Blackguard',
+	--to do: enable Power Attack requirement
+	desc = [[Requires BAB +6. Hide 6 ranks, Knowledge 2 ranks.
+
+	Worshippers of evil powers.]],
+	can_level = function(actor)
+		if actor.classes and actor.classes["Blackguard"] and actor.classes["Blackguard"] >= 10 then return false end
+	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
+	-- 	if actor:knowTalent(actor.T_POWER_ATTACK) then
+		if actor.skill_movesilently >= 6 and actor.skill_knowledge >= 2 and actor.combat_bab >= 6 then return true end
+
+		return false
+	
+	end,
+	on_level = function(actor, level)
+		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
+			actor.sneak_attack = (actor.sneak_attack or 0) + 1
+
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
+
+		--Any level higher than 1
+		else
+
+		--Level-specific bonuses
+		if level == 4 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 7 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+		if level == 10 then actor.sneak_attack = (actor.sneak_attack or 0) + 1 end
+
+		--Level >1, generic bonuses
+		actor.fortitude_save = (actor.fortitude_save or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 6 + (actor:getInt()-10)/2
+		end
+		
+	end,
+} 
+
+newBirthDescriptor {
+	type = 'class',
+	prestige = true,
+	name = 'Arcane archer',
+	--to do: enable feat requirements and 1st level arcane spells requirement
+	desc = [[Requires BAB +6.
+
+	Elven archers who fuel their arrows with magic.]],
+	can_level = function(actor)
+		if actor.classes and actor.classes["Arcane archer"] and actor.classes["Arcane archer"] >= 10 then return false end
+	--	if player.descriptor.race == "Elf" or player.descriptor.race == "Half-Elf" then
+	-- 	if actor:knowTalent(actor.T_WEAPON_FOCUS_BOW) then
+		if actor.combat_bab >= 6 then return true end
+
+		return false
+	
+	end,
+	on_level = function(actor, level)
+		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
+		actor.reflex_save = (actor.reflex_save or 0) + 2
+
+		actor.combat_bab = (actor.combat_bab or 0) + 1
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
+
+		--Any level higher than 1
+		else
+
+		--Level-specific bonuses
+		--Enhance arrow 1,3,5,7,9
+
+		--Level >1, generic bonuses
+		actor.fortitude_save = (actor.fortitude_save or 0) + 1
+		actor.reflex_save = (actor.reflex_save or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 1
+		
+		actor.will_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
+		end
+		
+	end,
+} 
+
+newBirthDescriptor {
+	type = 'class',
+	prestige = true,
+	name = 'Loremaster',
+	--to do: enable feat requirements (3x metamagic feats) and 3rd level arcane spells requirement
+	desc = [[Requires Knowledge 12 ranks.
+
+	The most knowledgeable mages the world knows.]],
+	can_level = function(actor)
+		if actor.classes and actor.classes["Loremaster"] and actor.classes["Loremaster"] >= 10 then return false end
+--		if actor:knowTalent(actor.T_SKILL_FOCUS_KNOWLEDGE)
+		if actor.skill_knowledge >= 12 then return true end
+
+		return false
+	
+	end,
+	on_level = function(actor, level)
+		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
+
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.will_save = (actor.fortitude_save or 0) + 0.5
+		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
+
+		--Any level higher than 1
+		else
+
+		--Level-specific bonuses
+		--Secret 1,3,5,7,9
+
+		--Level >1, generic bonuses
+		actor.will_save = (actor.will_save or 0) + 1
+		
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+		actor.fortitude_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
+		end
+		
+	end,
+} 
+
+newBirthDescriptor {
+	type = 'class',
+	prestige = true,
+	name = 'Archmage',
+	--to do: enable feat requirements (2x spell focus) and 7th level arcane spells requirement
+	desc = [[Requires Knowledge 15 ranks, Spellcraft 15 ranks.
+
+	The best mages the world knows.]],
+	can_level = function(actor)
+		if actor.classes and actor.classes["Archmage"] and actor.classes["Archmage"] >= 5 then return false end
+--		if actor:knowTalent(actor.T_SKILL_FOCUS_SPELLCRAFT)
+		if actor.skill_knowledge >= 15 and actor.skill_spellcraft >= 15 then return true end
+
+		return false
+	
+	end,
+	on_level = function(actor, level)
+		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
+
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.will_save = (actor.fortitude_save or 0) + 0.5
+		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
+
+		--High arcana (from a list)
+
+		--Any level higher than 1
+		else
+
+		--Level >1, generic bonuses
+		actor.will_save = (actor.will_save or 0) + 1
+		
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+		actor.fortitude_save = (actor.will_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
+
+		--High arcana (from a list)
+		end
+		
 	end,
 } 

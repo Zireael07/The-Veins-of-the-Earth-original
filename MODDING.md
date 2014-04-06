@@ -6,6 +6,9 @@ A short guide to modding
 Important note:
 As opposed to ToME 4, the main hand slot has an *underscore* in the name! It's MAIN_HAND not MAINHAND to better differentiate from OFF_HAND!
 
+Classes
+If you add a prestige class, it must be added to the section in base descriptor which disallows them at birth. Also, it needs to have prestige = true.
+
 General entities (NPCs, objects)
 rarity -> how often do we want this to appear. the bigger the number, the rarer it is. Never set to 0.
 display -> what ASCII character is used. Look at Legend.lua for the list of symbols used

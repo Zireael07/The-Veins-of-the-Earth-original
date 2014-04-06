@@ -72,6 +72,10 @@ newBirthDescriptor{
     {
      ['Shadowdancer'] = "disallow",
      ['Assasin'] = "disallow",
+     ['Blackguard'] = "disallow",
+     ['Arcane archer'] = "disallow",
+     ['Loremaster'] = "disallow",
+     ['Archmage'] = "disallow",
     }
 	},
 }
