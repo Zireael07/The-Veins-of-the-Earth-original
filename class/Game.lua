@@ -238,7 +238,9 @@ function _M:getVaultDescription(e)
 	return {
 		name = ([[%s the %s %s]]):format(e.name, e.descriptor.race, e.descriptor.class),
 		descriptors = e.descriptor,
-		description = ([[%s %s %s %s. AL %s]]):format(e.name, e.descriptor.sex, e.descriptor.race, e.descriptor.class, e.descriptor.alignment),
+
+		description = ([[%s %s %s %s. AL %s
+		STR %s DEX %s CON %s INT %s WIS %s CHA %s LUC %s]]):format(e.name, e.descriptor.sex, e.descriptor.race, e.descriptor.class, e.descriptor.alignment, e:colorHighStats('str'), e:colorHighStats('dex'), e:colorHighStats('con'), e:colorHighStats('int'), e:colorHighStats('wis'), e:colorHighStats('cha'), e:colorHighStats('luc')),
 	}
 end
 

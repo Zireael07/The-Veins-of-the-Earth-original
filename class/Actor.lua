@@ -311,6 +311,13 @@ function _M:move(x, y, force)
 	return moved
 end
 
+--Helper function to color high stats (15+) when loading
+function _M:colorHighStats(stat)
+	if self:getStat(stat) > 15 then return "#GREEN#"..self:getStat(stat).."#LAST#"
+	else return "#WHITE#"..self:getStat(stat).."#LAST#" end
+end
+
+
 --Tooltip stuffs
 function _M:className()
 	if self == game.player then end

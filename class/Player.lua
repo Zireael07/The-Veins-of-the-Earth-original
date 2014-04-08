@@ -99,7 +99,11 @@ end
 
 function _M:onPremadeBirth()
   self:setTile()
---  self:equipAllItems()
+  --Add the basic talents
+  self:learnTalent(self.T_SHOOT, true)
+  self:learnTalent(self.T_POLEARM, true)
+  self:learnTalent(self.T_STEALTH, true)
+
   -- HACK: This forces PlayerDisplay and HotkeysDisplay to update after birth descriptors are finished.
   game.player.changed = true
   self:resetToFull()
