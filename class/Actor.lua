@@ -1920,7 +1920,7 @@ function _M:levelup()
 	end
 
 	--stat point gained every 4 levels
-	if self.level % 4 == 0 then self.stat_point = self.stat_point + 1 end
+	if self.level % 4 == 0 then self.stat_point = (self.stat_point or 0) + 1 end
 
 	-- Auto levelup ?
 	if self.autolevel then
