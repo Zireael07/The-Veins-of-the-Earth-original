@@ -1,6 +1,8 @@
 --Veins of the Earth
 -- Zireael
 
+--TO DO: Make it work using use_talent
+
 local Talents = require "engine.interface.ActorTalents"
 
 --Wands
@@ -11,8 +13,6 @@ newEntity{
     image = "tiles/wand.png",
     display = "-", color=colors.RED,
     encumber = 0,
-    rarity = 20,
-    multicharge = 50,
     name = "A wand",
     desc = [[A wand.]],
 }
@@ -24,20 +24,23 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 4500,
-    max_power = 50,
-    power_regen = 0,
-    use_talent = {id = Talents.T_MAGIC_MISSILE, level = 1, power = 1 },
---    use_simple = { name = "magic missile",
- --   use = function(self,t)
---    local tg = self:getTalentTarget(t)
---        local x, y = self:getTarget(tg)
---        local _ _, _, _, x, y = self:canProject(tg, x, y)
---        if not x or not y then return nil end
+    rarity = 20,
+ --[[   max_power = 50,
+    power_regen = 1,
+    use_talent = {id = Talents.T_MAGIC_MISSILE, level = 1, power = 1 },]]
+    multicharge = 50,
+    use_simple = { name = "magic missile",
+    use = function(self,t)
+        local tg = {type="bolt", range=5, talent=t, display={display='*',color=colors.ORCHID}}
+        local x, y = self:getTarget(tg)
+        local _ _, _, _, x, y = self:canProject(tg, x, y)
+        if not x or not y then return nil end
 
---        local damage = rng.dice(1,4)+1
+        local damage = rng.dice(1,4)+1
 
---        self:projectile(tg, x, y, DamageType.FORCE, damage)    
--- end
+        self:projectile(tg, x, y, DamageType.FORCE, damage)    
+end
+},
 }
 
 newEntity{
@@ -47,15 +50,16 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 4500,
-    max_power = 50,
-    power_regen = 0,
-    use_talent = { id= Talents.T_BEAR_ENDURANCE, level = 2, power = 1 },
---    use_simple = { name = "bear endurance",
---    use = function(self, who)
---    who:setEffect(self.EFF_BEAR_ENDURANCE, 5, {})
---    return {used = true, destroy = true}
---end
---},
+    rarity = 20,
+--[[    max_power = 50,
+    power_regen = 1,
+    use_talent = { id= Talents.T_BEAR_ENDURANCE, level = 2, power = 1 },]]
+    use_simple = { name = "bear endurance",
+    use = function(self, who)
+    who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+    return {used = true, destroy = true}
+end
+},
 }
 
 game.scroll_materials = {"abbil", "abban","alae","alartae","akh","belbau","belbol","bol","dro","dalharil","dalharuk","dalninil","dalninuk","dhaerow","dobluth","darthiir","faer","faern","hargluk","harl","harluth","Har'oloth","ilhar","ilharn","ilythiiri","jal","malla","maglust","natha","obsul","orbb","phor","pholor","phuul","plynn","qu'ellar","rivvil", "rivvin","ssin'urn","ssussun","xun","xundus","tagnik", "tagnik'zur","tluth","ulartae","valsharess","veldruk", "veldriss", "veldrin","z'ress" }
@@ -68,8 +72,7 @@ newEntity{
     image = "tiles/scroll.png",
     display = "?", color=colors.WHITE,
     encumber = 0,
-    rarity = 20,
-    multicharge = 50,
+--    multicharge = 50,
     name = "a scroll", instant_resolve = true,
     desc = [[A scroll.]],
     resolvers.genericlast(function(e)
@@ -90,9 +93,23 @@ newEntity{
     identified = false,
     level_range = {1, 10},
     cost = 4500,
-    max_power = 50,
-    power_regen = 0,
-    use_talent = { id = Talents.T_MAGIC_MISSILE, level = 1, power = 1},
+    rarity = 2,
+--[[    max_power = 50,
+    power_regen = 1,
+    use_talent = { id = Talents.T_MAGIC_MISSILE, level = 1, power = 1},]]
+    multicharge = 50,
+    use_simple = { name = "magic missile",
+    use = function(self,t)
+    local tg = {type="bolt", range=5, talent=t, display={display='*',color=colors.ORCHID}}
+        local x, y = self:getTarget(tg)
+        local _ _, _, _, x, y = self:canProject(tg, x, y)
+        if not x or not y then return nil end
+
+        local damage = rng.dice(1,4)+1
+
+        self:projectile(tg, x, y, DamageType.FORCE, damage)    
+end
+},
 }
 
 newEntity{
@@ -102,13 +119,15 @@ newEntity{
     identified = false,
     level_range = {1,10},
     cost = 4500,
-    max_power = 50,
-    power_regen = 0,
-    use_talent = { id = Talents. T_BEAR_ENDURANCE, level = 2, power = 1}
---    use_simple = { name = "bear endurance",
---    use = function(self, who)
---    who:setEffect(self.EFF_BEAR_ENDURANCE, 5, {})
---    return {used = true, destroy = true}
---end
---},
+    rarity = 2,
+--[[    max_power = 50,
+    power_regen = 1,
+    use_talent = { id = Talents. T_BEAR_ENDURANCE, level = 2, power = 1}]]
+    multicharge = 50,
+    use_simple = { name = "bear endurance",
+    use = function(self, who)
+       who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+    return {used = true, destroy = true}
+end
+},
 }

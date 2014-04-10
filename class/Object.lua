@@ -56,6 +56,10 @@ function _M:act()
     self:useEnergy()
 end
 
+function _M:canUseObject()
+    return engine.interface.ObjectActivable.canUseObject(self)
+end    
+
 function _M:use(who, typ, inven, item)
     inven = who:getInven(inven)
     if self:wornInven() and not self.lost == "INVEN" and not self.wielded and not self.use_no_wear then
