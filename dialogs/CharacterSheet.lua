@@ -8,6 +8,7 @@ local Stats = require "engine.interface.ActorStats"
 local Textzone = require "engine.ui.Textzone"
 local Tab = require 'engine.ui.Tab'
 local ListColumns = require "engine.ui.ListColumns"
+local Button = require "engine.ui.Button"
 
 module(..., package.seeall, class.inherit(Dialog, mod.class.interface.TooltipsData))
 
@@ -20,6 +21,7 @@ function _M:init(actor)
     Dialog.init(self, "Character Sheet: "..self.actor.name, math.max(game.w * 0.7, 950), math.max(game.h*0.6, 550), nil, nil, font)
     
     self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
+    self.c_kills = Button.new{text="Kills", fct=function() self:onKill() end}
 
     self.c_list = ListColumns.new{width=self.iw, height=self.ih - 50, scrollbar=true, columns={
         {name="Name", width=20, display_prop="name"},
@@ -102,6 +104,7 @@ function _M:drawDialog(tab)
         {left=0, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_skill},
         {left=0, top=t_general, ui=self.c_desc},
+--       {left=0, bottom=0, ui=self.c_kills},
     }
     
     self:setupUI()
@@ -285,4 +288,9 @@ end
 
     self.c_desc:generate()
     self.changed = false
+end
+
+function _M:onKill()
+    game:unregisterDialog(self)
+    game:registerDialog(require("mod.dialogs.KillCount").new(game.player))
 end
