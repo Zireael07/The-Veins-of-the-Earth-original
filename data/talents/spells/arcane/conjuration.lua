@@ -135,7 +135,10 @@ newTalent{
 		local co = coroutine.running()
 		d.unload = function() coroutine.resume(co, t.creature) end --This is currently bugged, only works if the player has already summoned,
 
+		--No more dialog spam for NPCs
+		if game.player then 
 		game:registerDialog(d)
+		end
 		
 		if not coroutine.yield() then return nil end
 
@@ -155,7 +158,7 @@ newTalent{
 		if t.creature then
 			game.logPlayer(self,("Player summons a %s!"):format(t.creature))
 		else
-			game.logPlayer(self,"Player doesnt summon a creature")
+			game.logPlayer(self,"Player doesn't summon a creature")
 		end
 
 		local creature = t.makeCreature(self, t)
@@ -179,11 +182,14 @@ newTalent{
 	tactical = { BUFF = 2 },
 	range = 1,
 	requires_target = true,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
 	action = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t)}
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
-		if core.fov.distance(self.x, self.y, x, y) > 1 then return nil end
+	--	if core.fov.distance(self.x, self.y, x, y) > 1 then return nil end
 
 		target:setEffect(self.EFF_MAGE_ARMOR, 10, {})
 		
