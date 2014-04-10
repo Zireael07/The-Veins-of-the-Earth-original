@@ -25,6 +25,7 @@ local Dialog = require "engine.Dialog"
 local DeathDialog = require "mod.dialogs.DeathDialog"
 local Astar = require"engine.Astar"
 local DirectPath = require "engine.DirectPath"
+local World = require "mod.class.World"
 --local NameGenerator = require "engine.NameGenerator"
 
 --- Defines the player
@@ -319,7 +320,7 @@ function _M:die(src)
     self.energy.value = game.energy_to_act
     game:registerDialog(DeathDialog.new(self))
     --Mark depth for bones
-    world.bone_levels = world.bone_levels[game.level.level]
+    World:boneLevel(game.level.level)
   else
     mod.class.Actor.die(self, src)
   end

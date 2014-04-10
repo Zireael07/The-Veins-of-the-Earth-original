@@ -32,6 +32,12 @@ function _M:run()
 	self:loadAchievements()
 end
 
+
+function _M:boneLevel(level)
+	self.bone_levels = self.bone_levels or {}
+	self.bone_levels[level] = true
+end
+
 --- Requests the world to save
 function _M:saveWorld(no_dialog)
 	-- savefile_pipe is created as a global by the engine
