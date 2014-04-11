@@ -181,21 +181,21 @@ newEntity{
 --Taken from Incursion
 newEntity{ base = "DOOR",
 	define_as = "DOOR_IRON",
-	name = "iron door",
+	name = "iron door", image = "tiles/newtiles/door_iron.png",
 	display = '+', color=colors.DARK_GREY, back_color=colors.SLATE,
 	door_opened = "DOOR_OPEN",
 }
 
 newEntity{ base = "DOOR",
 	define_as = "DOOR_DARKWOOD",
-	name = "darkwood door",
+	name = "darkwood door", image = "tiles/newtiles/door_darkwood.png",
 	display = '+', color=colors.DARK_GREY, back_color=colors.DARK_BROWN,
 	door_opened = "DOOR_OPEN",
 }
 
 newEntity{ base = "DOOR",
 	define_as = "DOOR_WARDED",
-	name = "warded oak door",
+	name = "warded oak door", image = "tiles/newtiles/door_warded.png",
 	display = '+', color=colors.VIOLET, back_color=colors.DARK_BROWN,
 	door_opened = "DOOR_OPEN",
 }
@@ -327,7 +327,47 @@ newEntity{
 newEntity{
 	define_as = "ALTAR",
 	type = "floor", subtype = "furniture",
-	name = "sand", 
+	name = "altar", 
 	display = '&', color=colors.WHITE, back_color=colors.DARK_GREY,
 	always_remember = true,
+}
+
+--Taken from Gatecrashers
+newEntity{
+	define_as = "CHEST",
+	type = "chest", subtype = "floor",
+	name = "chest",
+	add_mos = {{image="tiles/chest.png", display_h=1, display_w=1, display_y=0, display_x=0}},
+	always_remember = true,
+	force_clone = true,
+	block_move = function(self, x, y, who, act, couldpass)
+		-- Open chest
+		if not self.opened then
+			--block if not player
+			if not who or not who.player or not act then return true end
+			if not rng.percent(20) then
+				game.log("You open the chest!")
+			--[[	self.add_mos = {{image="tiles/chest_open.png", display_h=1, display_w=1, display_y=0, display_x=0}}
+				self:removeAllMOs()]]
+				self.opened = true
+				o = game.zone:makeEntity(game.level, "object", nil, nil, true)
+				game.zone:addEntity(game.level, o, "object", x, y)
+			else
+				game.log("The chest was a mimic!")
+				local m = game.zone:makeEntity(game.level, "actor", {name="mimic"}, nil, true)
+				if m then 
+					m:resolve()
+					game.zone:addEntity(game.level, m, "actor", x, y)
+				end
+				local g = game.zone:makeEntityByName(game.level, "terrain", "FLOOR")
+				if g then
+					--TURN CHEST INTO FLOOR
+					game.zone:addEntity(game.level, g, "terrain", x, y)
+				end
+			end
+			return true
+		end
+		
+		return false
+	end,
 }
