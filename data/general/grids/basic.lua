@@ -100,12 +100,14 @@ newEntity{
 	base = "WALL",
 	define_as = "WALL_LIMESTONE",
 	display = '#', color=colors.LIGHT_GREEN, back_color=colors.DARK_GREY,
+	image = "tiles/limestone.png",
 }
 
 newEntity{
 	base = "WALL",
 	define_as = "WALL_MARBLE",
 	display = '#', color=colors.DARK_GREEN, back_color=colors.DARK_BLUE,
+	image = "tiles/marble.png",
 }
 
 newEntity{
@@ -125,30 +127,28 @@ newEntity{
 	base = "WALL",
 	define_as = "GOLD_VEIN",
 	display = '#', color=colors.YELLOW, back_color={r=30, g=30, b=60},
+	image = "tiles/veins.png",
 }
 
 newEntity{
 	base = "WALL",
 	define_as = "DIAMOND_VEIN",
 	display = '#', color=colors.WHITE, back_color={r=30, g=30, b=60},
-}
-
-newEntity{
-	base = "WALL",
-	define_as = "GOLD_VEIN",
-	display = '#', color=colors.YELLOW, back_color={r=30, g=30, b=60},
+	image = "tiles/veins.png",
 }
 
 newEntity{
 	base = "WALL",
 	define_as = "MITHRIL_VEIN",
 	display = '#', color=colors.STEEL_BLUE, back_color={r=30, g=30, b=60},
+	image = "tiles/veins.png",
 }
 
 newEntity{
 	base = "WALL",
 	define_as = "ADAMANT_VEIN",
 	display = '#', color=colors.DARK_SLATE, back_color={r=30, g=30, b=60},
+	image = "tiles/veins.png",
 }
 
 --Inspired by Angband
@@ -156,6 +156,7 @@ newEntity{
 	base = "WALL",
 	define_as = "TREASURE_VEIN",
 	display = '#', color=colors.ORANGE, back_color={r=30, g=30, b=60},
+	image = "tiles/veins.png",
 }
 
 newEntity{
