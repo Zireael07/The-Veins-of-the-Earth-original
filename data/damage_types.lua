@@ -38,6 +38,16 @@ setDefaultProjector(function(src, x, y, type, dam)
 				game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -3, tostring(-math.ceil(dam)), {255,0,0})
 			end
 		end
+
+		--Damage increases
+		if src.inc_damage then
+			local inc
+			inc = (src.inc_damage.all or 0) + (src.inc_damage[type] or 0)
+
+			dam = dam + (dam * inc / 100)
+		end
+
+
 		return dam
 	end
 	return 0
@@ -171,6 +181,7 @@ newDamageType{
 }
 
 
+--Specials!
 newDamageType{
 	name = "grease", type = "GREASE",
 	projector = function(src, x, y, type, dam)
@@ -185,6 +196,18 @@ newDamageType{
 		end
 	end,
 }
+
+newDamageType{
+	name = "darkness", type = "DARKNESS",
+	projector = function(src, x, y, type, dam, extra)
+		local realdam = DamageType.defaultProjector(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR)
+		-- Darken
+		game.level.map.lites(x, y, false)
+		if src.x and src.y then game.level.map.lites(src.x, src.y, false) end
+	end,
+}
+
 
 --Enable digging
 
