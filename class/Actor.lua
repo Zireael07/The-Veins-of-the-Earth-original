@@ -752,6 +752,7 @@ end
 -- Returns false if it isn't, or a number (50%/20% concealment) if it is
 function _M:isConcealed(actor)
 	if self:hasEffect(self.EFF_BLIND) then return 50 end
+	if self:hasEffect(self.EFF_DARKNESS) then return 20 end
 	return false
 end
 

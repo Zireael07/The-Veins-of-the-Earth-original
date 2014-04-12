@@ -1,5 +1,49 @@
 newTalentType{ type="innate/innate", name = "innate", description = "Spell-like abilities" }
 
+--Racial spell-likes
+newTalent{	
+	name = "Darkness", short_name = "DARKNESS_INNATE",
+	type = {"innate/innate", 1},
+	image = "talents/darkness.png",
+	display = { image = "talents/darkness.png"},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	cooldown = 5,
+	tactical = { BUFF = 2 },
+	range = 5,
+	requires_target = false,
+	radius = 1.5,
+	target = function(self, t)
+		local tg = {type="ball", range=self:getTalentRange(t), nolock = true, radius=self:getTalentRadius(t), talent=t}
+		return tg
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = 5
+
+		game.level.map:addEffect(self,
+			x, y, duration,
+			DamageType.DARKNESS, 0,
+			1.5,
+			5, nil,
+			engine.Entity.new{alpha=100, display='', color_br=50, color_bg=50, color_bb=50},
+			nil, true
+		)
+
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[You create a sphere of magical darkness, giving all creatures in it 20% concealment.]])
+	end,
+}
+
+
 --Arcane spell-likes
 newTalent{
 	name = "Acid Splash", short_name = "ACID_SPLASH_INNATE",

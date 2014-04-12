@@ -186,7 +186,7 @@ newDamageType{
 	name = "grease", type = "GREASE",
 	projector = function(src, x, y, type, dam)
 		--dam is the dc to beat
-		local target = game.level.map(x, y, Map.ACTOR) or src
+		local target = game.level.map(x, y, Map.ACTOR)
 		if target then
 			if not target:reflexSave(dam.dc) then
 				target:setEffect(target.EFF_FELL, 1, {})
@@ -199,12 +199,30 @@ newDamageType{
 
 newDamageType{
 	name = "darkness", type = "DARKNESS",
-	projector = function(src, x, y, type, dam, extra)
+	projector = function(src, x, y, type, dam)
 		local realdam = DamageType.defaultProjector(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR)
-		-- Darken
-		game.level.map.lites(x, y, false)
-		if src.x and src.y then game.level.map.lites(src.x, src.y, false) end
+		if target then 
+			target:setEffect(target.EFF_DARKNESS, 1, {})
+			-- Darken
+			game.level.map.lites(x, y, false)
+		--	if src.x and src.y then game.level.map.lites(src.x, src.y, false) end
+		end
+	end,
+}
+
+-- Lite up the room (from ToME)
+newDamageType{
+	name = "lite", type = "LITE", text_color = "#YELLOW#",
+	projector = function(src, x, y, type, dam)
+		-- Don't lit magically unlit grids
+		local g = game.level.map(x, y, Map.TERRAIN+1)
+		if g and g.unlit then
+			if g.unlit <= dam then game.level.map:remove(x, y, Map.TERRAIN+1)
+			else return end
+		end
+
+		game.level.map.lites(x, y, true)
 	end,
 }
 

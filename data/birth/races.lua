@@ -197,6 +197,9 @@ newBirthDescriptor {
 	},
 	copy = {
 	starting_intro = "dark",
+	talents = {
+    [ActorTalents.T_DARKNESS_INNATE]=1,
+	}
 	}
 }
 

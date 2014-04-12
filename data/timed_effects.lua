@@ -129,6 +129,16 @@ newEffect{
 }
 
 newEffect{
+	name = "DARKNESS",
+	desc = "In magical darkness",
+	long_desc = [[The character cannot see. All opponents have partial concealment (20% miss chance).]],
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# loses sight!", "+Blind" end,
+	on_lose = function(self, err) return "#Target# regains sight.", "-Blind" end,
+}
+
+newEffect{
 	name = "FATIGUE",
 	desc = "Fatigued",
 	long_desc = [["A fatigued character can neither run nor charge and takes a -2 penalty to Strength and Dexterity. Doing anything that would normally cause fatigue causes the fatigued character to become exhausted. After 8 hours of complete rest, fatigued characters are no longer fatigued.]],
@@ -154,6 +164,34 @@ newEffect{
 		DamageType:get(DamageType.ACID).projector(eff.src or self, self.x, self.y, DamageType.ACID, eff.power)
 	end,
 }
+
+newEffect{
+	name = "INVISIBLE",
+	desc = "Invisible",
+	type = "physical",
+	status = "beneficial",
+	parameters = { power=1 },
+	on_gain = function(self, err) return "#Target# fades from sight!", "+Invisible" end,
+	on_lose = function(self, err) return "#Target# reappears!", "-Invisible" end,
+	activate = function(self, eff)
+		eff.invis = self:addTemporaryValue("stealth", eff.power)
+	--[[	if not self.shader then
+			eff.set_shader = true
+			self.shader = "invis_edge"
+			self:removeAllMOs()
+			game.level.map:updateMap(self.x, self.y)
+		end]]
+	end,
+	deactivate = function(self, eff)
+	--[[	if eff.set_shader then
+			self.shader = nil
+			self:removeAllMOs()
+			game.level.map:updateMap(self.x, self.y)
+		end]]
+		self:removeTemporaryValue("stealth", eff.invis)
+	end,
+}
+
 
 --Modified ToME 4 code
 newEffect{

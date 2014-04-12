@@ -6,6 +6,46 @@ newTalentType{
 	description = "the evocation school harnesses the elements, using them to cause great damage"
 }
 
+newTalent{	
+	name = "Light",
+	type = {"evocation", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	cooldown = 0,
+	tactical = { BUFF = 2 },
+	range = 5,
+	requires_target = false,
+	radius = 3,
+	target = function(self, t)
+		local tg = {type="ball", range=self:getTalentRange(t), nolock = true, radius=self:getTalentRadius(t), talent=t}
+		return tg
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = 5
+
+		game.level.map:addEffect(self,
+			x, y, duration,
+			DamageType.LITE, 0,
+			1.5,
+			5, nil,
+			engine.Entity.new{alpha=100, display='', color_br=255, color_bg=255, color_bb=0},
+			nil, true
+		)
+
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[You create a sphere of magical light.]])
+	end,
+}
+
 
 newTalent{	
 	name = "Magic Missile", --image="talents/magic_missile.png",
@@ -96,12 +136,52 @@ newTalent{
 	end,
 }
 
+newTalent{	
+	name = "Darkness",
+	type = {"evocation", 1},
+	mode = 'activated',
+	level = 2,
+	points = 1,
+	cooldown = 0,
+	tactical = { BUFF = 2 },
+	range = 5,
+	requires_target = false,
+	radius = 1.5,
+	target = function(self, t)
+		local tg = {type="ball", range=self:getTalentRange(t), nolock = true, radius=self:getTalentRadius(t), talent=t}
+		return tg
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = 5
+
+		game.level.map:addEffect(self,
+			x, y, duration,
+			DamageType.DARKNESS, 0,
+			1.5,
+			5, nil,
+			engine.Entity.new{alpha=100, display='', color_br=50, color_bg=50, color_bb=50},
+			nil, true
+		)
+
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[You create a sphere of magical darkness, giving all creatures in it 20% concealment.]])
+	end,
+}
+
+
 newTalent{
 	name = "Fireball",
 	type = {"evocation", 1},
 	display = { image = "fireball.png"},
 	mode = 'activated',
-	--require = ,
 	level = 3,
 	points = 1,
 	cooldown = 20,
