@@ -96,17 +96,17 @@ function _M:attackTarget(target, noenergy)
          if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 2 end
       end
 
-      self:attackRoll(target, weapon, attackmod, strmod)
+      self:attackRoll(target, weapon, attackmod, strmod, false)
 
       --extra attacks for high BAB, at lower bonuses
       if self.combat_bab >=6 then
-         self:attackRoll(target, weapon, attackmod - 5, strmod)
+         self:attackRoll(target, weapon, attackmod - 5, strmod, true)
       end
       if self.combat_bab >=11 then
-         self:attackRoll(target, weapon, attackmod - 10, strmod)
+         self:attackRoll(target, weapon, attackmod - 10, strmod, true)
       end
       if self.combat_bab >=16 then
-         self:attackRoll(target, weapon, attackmod - 15, strmod)
+         self:attackRoll(target, weapon, attackmod - 15, strmod, true)
       end
       
       -- offhand/double weapon attacks
@@ -116,13 +116,13 @@ function _M:attackTarget(target, noenergy)
          if offweapon.light or weapon.double then attackmod = attackmod + 2 end
          if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 6 end
 
-         self:attackRoll(target, offweapon, attackmod, strmod)
+         self:attackRoll(target, offweapon, attackmod, strmod, true)
 
          if self:knowTalent(self.T_IMPROVED_TWO_WEAPON_FIGHTING) then
-            self:attackRoll(target, offweapon, attackmod - 5, strmod)
+            self:attackRoll(target, offweapon, attackmod - 5, strmod, true)
          end
          if self:knowTalent(self.T_GREATER_TWO_WEAPON_FIGHTING) then
-            self:attackRoll(target, offweapon, attackmod - 10, strmod)
+            self:attackRoll(target, offweapon, attackmod - 10, strmod, true)
          end
       end
    end
@@ -133,7 +133,7 @@ function _M:attackTarget(target, noenergy)
    end
 end
 
-function _M:attackRoll(target, weapon, atkmod, strmod)
+function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
    local d = rng.range(1,20)
    local hit = true
    local crit = false
@@ -211,7 +211,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
     local threat = 0 + (weapon and weapon.combat.threat or 0)
     
     --Improved Critical
-    if weapon and weapon.subtype and self:hasCritical(weapon.subtype) then combat.weapon.threat = combat.weapon.threat + 2 end
+    if weapon and weapon.subtype and self:hasCritical(weapon.subtype) then combat.weapon.threat = (combat.weapon.threat or 0) + 2 end
 
     if hit and d >= 20 - threat then
       -- threatened critical hit confirmation roll
@@ -221,12 +221,14 @@ function _M:attackRoll(target, weapon, atkmod, strmod)
    end
    
    if hit then
-
-    self:dealDamage(target, weapon, crit) end
+    if not no_sneak then self:dealDamage(target, weapon, crit, true)
+    else
+    self:dealDamage(target, weapon, crit, false) end
+  end
 end
 
 
-function _M:dealDamage(target, weapon, crit)
+function _M:dealDamage(target, weapon, crit, sneak)
   local dam = rng.dice(weapon.combat.dam[1], weapon.combat.dam[2])
 
       -- magic damage bonus
@@ -241,7 +243,14 @@ function _M:dealDamage(target, weapon, crit)
 
       dam = dam + strmod * (self:getStr()-10)/2
 
-      --Power Attack damage bonus (Zireael)
+      --Sneak attack!
+      if sneak and self:isTalentActive(self.T_STEALTH) and self.sneak_attack then
+        local sneak_dam = rng.dice(self.sneak_attack, 6)
+        game.log(("%s makes a sneak attack!"):format(self.name:capitalize()))
+        dam = dam + rng.dice(self.sneak_attack, 6)
+      end
+
+      --Power Attack damage bonus
       if self:isTalentActive(self.T_POWER_ATTACK) then dam = dam + 5 end
 
       if crit then
