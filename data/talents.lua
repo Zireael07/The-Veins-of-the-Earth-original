@@ -47,6 +47,7 @@ load("data/talents/domains/domains.lua")
 load("data/talents/spells/divine.lua")
 load("data/talents/spells/arcane.lua")
 load("data/talents/spells/innate.lua")
+load("data/talents/spells/shaman.lua")
 load("data/talents/spells/sorcerer.lua")
 load("data/talents/spells/monster.lua")
 

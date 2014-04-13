@@ -886,7 +886,7 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "arcane/arcane" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+		        if t.type[1] == "sorcerer/sorcerer" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
 		        	actor:learnTalent(t.id)
 		        end
 		    end
@@ -1118,6 +1118,83 @@ newBirthDescriptor {
 		end
 	end,
 } 
+
+
+--Non-standard class
+newBirthDescriptor {
+	type = 'class',
+	name = 'Shaman',
+	desc = help..'#ORANGE#A divine spellcaster who does not need to prepare spells.\n\n #LIGHT_BLUE# Class skills: Concentration, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n #WHITE#8 hit points per level, Fort +2, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +1, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	rarity = 10,
+	copy = {
+	},
+	copy_add = {
+		skill_point = 8, --4x skill points at start
+	},
+	descriptor_choices =
+	{
+		deity =
+    	{
+      		__ALL__ = "allow",
+    	},
+		--Prevent game-breaking combos due to 1 BAB requirement of some feats
+		background =
+		{
+			['Master of one'] = "disallow",
+			['Fencing duelist'] = "disallow",
+			['Exotic fighter'] = "disallow",
+			--Prevent another game-breaking combo
+			['Magical thief'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
+		}
+	},
+	can_level = function(actor)
+	if actor.classes and actor.classes["Shaman"] and actor.descriptor.class == "Shaman" then return true end
+		
+		if actor:getCha() >= 13 then return true end
+		return false
+	end,
+	on_level = function(actor, level)
+		if level == 1 then actor.will_save = (actor.will_save or 0) + 2
+			actor.fortitude_save = (actor.fortitude_save or 0) + 2
+			actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
+			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
+		
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+
+			actor:learnTalent(actor.T_CLW_SHAMAN, true)
+			actor:learnTalent(actor.T_ICW_SHAMAN, true)
+			actor:learnTalent(actor.T_FAERIE_FIRE_SHAMAN, true)
+
+			actor:learnTalentType("shaman/shaman", true)
+
+		else
+
+		--Learn a new spell tier every 3rd level
+		if level % 3 == 0 then
+			local spell_level = (level / 3) + 1
+			for tid, _ in pairs(actor.talents_def) do
+				t = actor:getTalentFromId(tid)
+		        if t.type[1] == "shaman/shaman" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+		        	actor:learnTalent(t.id)
+		        end
+		    end
+		end
+
+		--Level >1, generic bonuses
+		actor.will_save = (actor.will_save or 0) + 1
+		actor.combat_bab = (actor.combat_bab or 0) + 0.5
+		actor.fortitude_save = (actor.fortitude_save or 0) + 1
+		actor.reflex_save = (actor.reflex_save or 0) + 0.5
+
+		actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2
+		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
+		end
+	end,
+} 
+
 
 --Prestige classes!
 newBirthDescriptor {
