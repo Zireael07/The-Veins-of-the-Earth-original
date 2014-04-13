@@ -323,6 +323,36 @@ newTalent{
 	end,	 
 }
 
+newTalent{
+	name = "Faerie Fire",
+	type = {"divine", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	range = 10,
+	radius = 1.5,
+	target = function(self, t)
+		local tg = {type="ball", range=self:getTalentRange(t), nolock = true, radius=self:getTalentRadius(t), talent=t}
+		return tg
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = 5
+
+		self:project(tg, x, y, DamageType.FAERIE, damage, {type="faerie"})
+
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[You create a sphere of magical light.]])
+	end,
+}
+
 
 --"Animal buff" spells
 newTalent{

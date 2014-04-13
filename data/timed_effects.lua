@@ -128,6 +128,7 @@ newEffect{
 
 }
 
+--Dummies so that concealment works
 newEffect{
 	name = "DARKNESS",
 	desc = "In magical darkness",
@@ -136,6 +137,16 @@ newEffect{
 	status = "detrimental",
 	on_gain = function(self, err) return "#Target# loses sight!", "+Blind" end,
 	on_lose = function(self, err) return "#Target# regains sight.", "-Blind" end,
+}
+
+newEffect{
+	name = "FAERIE",
+	desc = "Outlined",
+	long_desc = [[The character is outlined by a magical ring of fire. All concealment except darkness spell is cancelled.]],
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is outlined!", "+Outline" end,
+	on_lose = function(self, err) return "#Target# is no longer outlined.", "-Outline" end,
 }
 
 newEffect{
@@ -311,6 +322,7 @@ newEffect{
 	name = "BEAR_ENDURANCE",
 	desc = "Boost Con!",
 	type = "mental",
+	status = "beneficial",
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_CON]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
@@ -321,6 +333,7 @@ newEffect{
 	name = "BULL_STRENGTH",
 	desc = "Boost Str!",
 	type = "mental",
+	status = "beneficial",
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_STR]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
@@ -331,6 +344,7 @@ newEffect{
 	name = "EAGLE_SPLENDOR",
 	desc = "Boost Cha!",
 	type = "mental",
+	status = "beneficial",
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_CHA]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
@@ -341,6 +355,7 @@ newEffect{
 	name = "OWL_WISDOM",
 	desc = "Boost Wis!",
 	type = "mental",
+	status = "beneficial",
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_WIS]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
@@ -351,6 +366,7 @@ newEffect{
 	name = "CAT_GRACE",
 	desc = "Boost Dex!",
 	type = "mental",
+	status = "beneficial",
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_DEX]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
@@ -361,6 +377,7 @@ newEffect{
 	name = "FOX_CUNNING",
 	desc = "Boost Int!",
 	type = "mental",
+	status = "beneficial",
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_INT]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
@@ -372,6 +389,7 @@ newEffect{
 	name = "MAGE_ARMOR",
 	desc = "Mage Armor",
 	type = "magical",
+	status = "beneficial",
 	on_gain = function(self, err) return "A field seems to surround #Target#", "+Mage Armor" end,
 	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
 	activate = function(self, eff)

@@ -226,6 +226,17 @@ newDamageType{
 	end,
 }
 
+--Dummy
+newDamageType{
+	name = "faerie", type  = "FAERIE",
+	projector = function(src, x, y, type, dam)
+	local target = game.level.map(x, y, Map.ACTOR)
+	if target then
+		target:setEffect(target.EFF_FAERIE, 1, {})
+	end
+	end,
+}
+
 
 --Enable digging
 

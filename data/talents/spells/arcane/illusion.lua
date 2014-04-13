@@ -75,6 +75,26 @@ newTalent{
 }
 
 newTalent{
+	name = "Invisibility",
+	type = {"enchantment", 1},
+	display = { image = "invisibility.png"},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	action = function(self)
+	if not self then return nil end
+		self:setEffect(self.EFF_INVISIBLE, 5, {})
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[You turn invisible.]])
+	end,	
+}
+
+newTalent{
 	name = "Blindness/Deafness", short_name = "BLINDNESS_DEAFNESS",
 	type = {"illusion",1},
 	mode = "activated",

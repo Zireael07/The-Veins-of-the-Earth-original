@@ -321,6 +321,7 @@ newBirthDescriptor {
 
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
 			actor:learnTalent(actor.T_CURE_LIGHT_WOUNDS, true)
+			actor:learnTalent(actor.T_FAERIE_FIRE, true)
 
 			actor:learnTalentType("divine", true)
 		

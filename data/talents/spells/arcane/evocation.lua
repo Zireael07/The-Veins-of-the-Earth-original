@@ -201,7 +201,7 @@ newTalent{
 
 		local damage = rng.dice(3,6)
 
-		who:project(tg, x, y, DamageType.FIRE, damage, {type=explosion})
+		self:project(tg, x, y, DamageType.FIRE, damage, {type=explosion})
 
 	return true
 	end,

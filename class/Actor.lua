@@ -753,6 +753,8 @@ end
 function _M:isConcealed(actor)
 	if self:hasEffect(self.EFF_BLIND) then return 50 end
 	if self:hasEffect(self.EFF_DARKNESS) then return 20 end
+	if self:hasEffect(self.EFF_FAERIE) then return false end
+	--All other effects go here since they're cancelled by faerie fire
 	return false
 end
 

@@ -43,6 +43,60 @@ newTalent{
 	end,
 }
 
+newTalent{
+	name = "Faerie Fire", short_name = "FAERIE_FIRE_INNATE",
+	type = {"innate/innate", 1},
+	mode = 'activated',
+	image = "talents/darkness.png",
+	display = { image = "talents/darkness.png"},
+	level = 1,
+	points = 1,
+	cooldown = 5,
+	range = 10,
+	radius = 1.5,
+	target = function(self, t)
+		local tg = {type="ball", range=self:getTalentRange(t), nolock = true, radius=self:getTalentRadius(t), talent=t}
+		return tg
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = 5
+
+		self:project(tg, x, y, DamageType.FAERIE, damage, {type="faerie"})
+
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[You create a sphere of magical light.]])
+	end,
+}
+
+newTalent{
+	name = "Invisibility", short_name = "INVISIBILITY_INNATE",
+	type = {"innate/innate", 1},
+	display = { image = "invisibility.png"},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	cooldown = 5,
+	tactical = { BUFF = 2 },
+	range = 0,
+	action = function(self)
+	if not self then return nil end
+		self:setEffect(self.EFF_INVISIBLE, 5, {})
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[You turn invisible.]])
+	end,	
+}
+
 
 --Arcane spell-likes
 newTalent{
