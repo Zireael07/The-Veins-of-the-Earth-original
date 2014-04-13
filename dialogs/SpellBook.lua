@@ -1,3 +1,8 @@
+--Veins of the Earth
+--Zireael 2013-2014
+
+--TO DO: Implement tooltips using mousezones
+
 require "engine.class"
 
 local Dialog = require "engine.ui.Dialog"
@@ -10,6 +15,9 @@ local ImageList = require "engine.ui.ImageList"
 local Player = require "mod.class.Player"
 local UI = require "engine.ui.Base"
 local Tabs = require "engine.ui.Tabs"
+local TextzoneList = require "engine.ui.TextzoneList"
+local Separator = require "engine.ui.Separator"
+local List = require "engine.ui.List"
 
 module(..., package.seeall, class.inherit(Dialog))
 
@@ -17,7 +25,9 @@ function _M:init(actor)
     self.actor = actor
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
-    Dialog.init(self, "Spellbook: "..self.actor.name, math.max(game.w * 0.5, 70), math.max(game.h*0.6, 500), nil, nil, font)
+    Dialog.init(self, "Spellbook: "..self.actor.name, math.max(game.w * 0.8, 700), math.max(game.h*0.6, 500), nil, nil, font)
+
+    self:generateSpell()
 
     local types = {}
     if self.actor:knowTalentType("arcane/arcane") then
@@ -37,11 +47,18 @@ function _M:init(actor)
     for i=1, 9 do
         self.spells[i] =  ImageList.new{width=self.w, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list[i],
             fct=function(item, button) self:onSpell(item, button) end,
+--            on_select=function(item,sel) self:on_select(item) end,
         }
     end
 
     self.c_desc = SurfaceZone.new{width=500, height=500,alpha=1.0}
     self.c_charges = SurfaceZone.new{width = 500, height=500,alpha=1.0}
+
+    --Spell info stuff
+    self.c_spell = List.new{width=200, nb_items=#self.list_spellsinfo, height = self.ih*0.8, list=self.list_spellsinfo, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+    self.c_info = TextzoneList.new{ scrollbar = true, width=200, height = self.ih }
+    self.c_sep = Separator.new{dir="horizontal", size=self.ih - 20}
+
 
     self:generateList(types[1].kind)
 
@@ -61,6 +78,10 @@ function _M:init(actor)
         {top=self.spells[7].h+90,ui=self.spells[8]},
         {top=self.spells[8].h+90,ui=self.spells[9]},
         {top=self.c_desc,ui=self.c_charges},
+        {left=550, top=0, ui=self.c_spell},
+        {right=0, top=0, ui=self.c_info}, 
+        {right=self.c_info.w +5, top = 0, ui=self.c_sep}, 
+        
     }
 
     self:setupUI()
@@ -141,6 +162,7 @@ function _M:onSpell(item, button)
     local p = game.player
     if item then 
         p:incMaxCharges(item.data, v, self.spell_list) 
+--        self.c_info.text = item.desc
     end
     self:drawDialog()
 
@@ -190,7 +212,50 @@ function _M:generateList(spellist)
     end
 
     self.list = list
+
 end
+
+--Spell info stuff
+function _M:generateSpell()
+    local player = game.player
+    local list = {}
+      for tid, _ in pairs(player.talents_def) do
+
+        local t = player:getTalentFromId(tid)
+        --Only divine or arcane spells (not innates)
+      if t.type[1] == "arcane/arcane" or t.type[1] == "divine" or t.type[1] == "abjuration" or t.type[1] == "conjuration" or t.type[1] == "divination" or t.type[1] == "enchantment" or t.type[1] == "evocation" or t.type[1] == "illusion" or t.type[1] == "necromancy" or t.type[1] == "transmutation" then
+      --TO DO: get rid of duplicates
+                local tid
+                local color
+                if player:knowTalent(t) then color = {255,255,255}
+                else color = {0, 187, 187} end
+                local d = "#GOLD#"..t.name.."#LAST#\n"
+                s = player:getTalentReqDesc(t.id):toString()
+                d = d..s.."\n#WHITE#"
+                d = d..t.info(player,t)
+                list[#list+1] = {name=t.name, color = color, desc=d, talent=t }
+            end
+--        end
+    end
+    self.list_spellsinfo = list
+    --Sort it alphabetically
+    table.sort(self.list_spellsinfo, function (a,b) 
+            return a.name < b.name
+    end)
+
+end
+
+function _M:on_select(item,sel)
+    if self.c_info then self.c_info:switchItem(item, item.desc) end
+    self.selection = sel    
+end
+
+--[[function _M:on_select(item)
+    print("on select reached! description", item)
+    if item then self.c_info:switchItem(item, item.desc) end
+--    if item then self.c_info.text = item.desc end
+    self.selection = sel    
+end]]
 
 function _M:onEnd(result)
     game:unregisterDialog(self)
