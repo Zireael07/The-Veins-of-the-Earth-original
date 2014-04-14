@@ -266,7 +266,10 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
         --Minimum 1 point of damage unless Damage Reduction works
         dam = math.max(1, dam)
-        dam = dam - (target.combat_dr or 0)
+        --No negative damage with DR/-
+        local reduced_dam = dam - (target.combat_dr or 0)
+        dam = math.max(0, reduced_dam)
+
 
         if self.poison and not target.dead then
           local poison = self.poison
@@ -278,59 +281,79 @@ function _M:dealDamage(target, weapon, crit, sneak)
         game.log(("%s deals %d damage to %s!"):format(self.name:capitalize(), dam, target.name:capitalize()))
 end
 
-_M.poisons = {
-  small_centipede = { 11, POISON_SMALL_CENTIPEDE, POISON_SMALL_CENTIPEDE },
-  medium_spider = { 14, POISON_1d4STR, POISON_1d4STR },
-  large_scorpion = { 18, POISON_1d6STR, POISON_1d6STR },
-
-  nitharit = { 13, nil, POISON_3d6CON },
-  sassone = { 16, nil, POISON_1d6CON },
-  malyss = { 16, POISON_MALYSS_PRI, POISON_MALYSS_SEC },
-  terinav = { 16, POISON_1d6DEX, POISON_TERINAV_SEC },
-  blacklotus = { 20, POISON_3d6CON, POISON_3d6CON  },
-  dragon = { 26, POISON_DRAGON_BILE, nil },
-  toadstool = { 11, POISON_TOADSTOOL_PRI, POISON_TOADSTOOL_SEC },
-  arsenic = { 13, POISON_1CON, POISON_ARSENIC_SEC },
-  idmoss = { 14, POISON_1d4INT, POISON_MOSS_SEC },
-  lichdust = { 17, POISON_2d6STR, POISON_1d6STR },
-  darkreaver = { 18, POISON_2d6CON, POISON_DARK_REAVER_SEC },
-  ungoldust = { 15, POISON_UNGOL_DUST_PRI, POISON_UNGOL_DUST_SEC },
-  insanitymist = { 15, POISON_INSANITY_MIST_PRI, POISON_INSANITY_MIST_SEC },
-  burnt_othur = { 18, POISON_1CON, POISON_3d6CON },
-  blackadder = { 11, POISON_1d6CON, POISON_1d6CON },
-  bloodroot = { 12, nil, POISON_BLOODROOT_SEC },
-  greenblood = { 13, POISON_1CON, POISON_GREENBLOOD_SEC },
-  whinnis = { 14, POISON_1CON, nil }, -- temporarily until I make unconsciousness work
-  shadowessence = { 17, POISON_SHADOW_ESSENCE_PRI, POISON_2d6STR },
-  wyvern = { 17, POISON_2d6CON, POISON_2d6CON },
-  giantwasp = { 18, POISON_1d6DEX, POISON_1d6DEX },
-  deathblade = { 20, POISON_1d6CON, POISON_2d6CON },
-  purpleworm = { 24, POISON_1d6STR, POISON_2d6STR },
-  }
-
 
 function _M:applyPoison(poison, target)
 
-  game.log(("Poison is %s"):format(poison))
-
   local poison_dc = { small_centipede = 11, medium_spider = 14, large_scorpion = 18, nitharit = 13, sassone = 16, malyss = 16, terinav = 16, blacklotus = 20, dragon = 26, toadstool = 11, arsenic = 13, idmoss = 14, lichdust = 17, darkreaver = 18, ungoldust = 15, insanitymist = 15, burnt_othur = 18, blackadder = 11, bloodroot = 12, greenblood = 13, whinnis = 14, shadowessence = 17, wyvern = 17, giantwasp = 18, deathblade = 20, purpleworm = 24 }
-  --Why the hell isn't it working?! effect is nil...
-  local poison_pri = { small_centipede = target.EFF_POISON_SMALL_CENTIPEDE, medium_spider = target.EFF_POISON_1d4STR, large_scorpion = target.EFF_POISON_1d6STR, malyss = target.EFF_POISON_MALYSS_PRI, terinav = target.EFF_POISON_1d6DEX, blacklotus = target.EFF_POISON_3d6CON, dragon = target.EFF_POISON_DRAGON_BILE, toadstool = target.EFF_POISON_TOADSTOOL_PRI, arsenic = target.EFF_POISON_1CON, idmoss = target.EFF_POISON_1d4INT, lichdust = target.EFF_POISON_2d6STR, darkreaver = target.EFF_POISON_2d6CON, ungoldust = target.EFF_POISON_UNGOL_DUST_PRI, insanitymist = target.EFF_POISON_INSANITY_MIST_PRI, burnt_othur = target.EFF_POISON_1CON, blackadder = target.EFF_POISON_1d6CON, greenblood = target.EFF_POISON_1CON, whinnis = target.EFF_POISON_1CON, shadowessence = target.EFF_POISON_SHADOW_ESSENCE_PRI, wyvern = target.EFF_POISON_2d6CON, giantwasp = target.EFF_POISON_1d6DEX, deathblade = target.EFF_POISON_1d6CON, purpleworm = target.EFF_POISON_1d6STR }
-  local poison_sec = { small_centipede = target.EFF_POISON_SMALL_CENTIPEDE, medium_spider = target.EFF_POISON_1d4STR, large_scorpion = target.EFF_POISON_1d6STR, nitharit = target.EFF_POISON_3d6CON, sassone = target.EFF_POISON_1d6CON, malyss = target.EFF_POISON_MALYSS_SEC, terinav = target.EFF_POISON_TERINAV_SEC, blacklotus = target.EFF_POISON_3d6CON, toadstool = target.EFF_POISON_TOADSTOOL_SEC, arsenic = target.EFF_POISON_ARSENIC_SEC, idmoss = target.EFF_POISON_MOSS_SEC, lichdust = target.EFF_POISON_1d6STR, darkreaver = target.EFF_POISON_DARK_REAVER_SEC, ungoldust = target.EFF_POISON_UNGOL_DUST_SEC, insanitymist = EFF_POISON_INSANITY_MIST_SEC, burnt_othur = target.EFF_POISON_3d6CON, blackadder = target.EFF_POISON_1d6CON, bloodroot = target.EFF_POISON_BLOODROOT_SEC, greenblood = target.EFF_POISON_GREENBLOOD_SEC, shadowessence = target.EFF_POISON_2d6STR, wyvern = target.EFF_POISON_2d6CON, giantwasp = target.EFF_POISON_1d6DEX, deathblade = target.EFF_POISON_2d6CON, purpleworm = target.EFF_POISON_2d6STR}
 
---  if not poison then return end
+  if not poison then return end
   
   if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
+  --Failed save, set timer for secondary damage
   else target.poison_timer = 10
-    game.log(("Target fails the save, DC %d, effect %s"):format(poison_dc[poison], poison_pri[poison]))
-    if poison_pri[poison] then target:setEffect(poison_pri[poison], 2, {}, true) end
+    game.log(("Target fails the save, DC %d, poison %s"):format(poison_dc[poison], poison))
+      --Failed save, time for primary poison damage
+      if poison == "medium_spider" then target:setEffect(target.EFF_POISON_1d4STR, 2, {}, true) end
+      if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 2, {}, true) end
+      if poison == "large_scorpion" then target:setEffect(target.EFF_POISON_1d6STR, 2, {}, true) end
+      if poison == "nitharit" then end
+      if poison == "sassone" then end
+      if poison == "malyss" then target:setEffect(target.EFF_POISON_MALYSS_PRI, 2, {}, true) end
+      if poison == "terinav" then target:setEffect(target.EFF_POISON_1d6DEX, 2, {}, true) end
+      if poison == "blacklotus" then target:setEffect(target.EFF_POISON_3d6CON, 2, {}, true) end
+      if poison == "dragon" then target:setEffect(target.EFF_POISON_DRAGON_BILE, 2, {}, true) end
+      if poison == "toadstool" then target:setEffect(target.EFF_POISON_TOADSTOOL_PRI, 2, {}, true) end
+      if poison == "arsenic" then target:setEffect(target.EFF_POISON_1CON, 2, {}, true) end
+      if poison == "idmoss" then target:setEffect(target.EFF_POISON_1d4INT, 2, {}, true) end
+      if poison == "lichdust" then target:setEffect(target.EFF_POISON_2d6STR, 2, {}, true) end
+      if poison == "darkreaver" then target:setEffect(target.EFF_POISON_2d6CON, 2, {}, true) end
+      if poison == "ungoldust" then target:setEffect(target.EFF_POISON_UNGOL_DUST_PRI, 2, {}, true) end
+      if poison == "insanitymist" then target:setEffect(target.EFF_POISON_INSANITY_MIST_PRI, 2, {}, true) end
+      if poison == "burnt_othur" then target:setEffect(target.EFF_POISON_1CON, 2, {}, true) end
+      if poison == "blackadder" then target:setEffect(target.EFF_POISON_1d6CON, 2, {}, true) end
+      if poison == "bloodroot" then end
+      if poison == "greenblood" then target:setEffect(target.EFF_POISON_1CON, 2, {}, true) end
+      if poison == "whinnis" then target:setEffect(target.EFF_POISON_1CON, 2, {}, true) end
+      if poison == "shadowessence" then target:setEffect(target.EFF_POISON_SHADOW_ESSENCE_PRI, 2, {}, true) end
+      if poison == "wyvern" then target:setEffect(target.EFF_POISON_2d6CON, 2, {}, true) end
+      if poison == "giantwasp" then target:setEffect(target.EFF_POISON_1d6DEX, 2, {}, true) end
+      if poison == "deathblade" then target:setEffect(target.EFF_POISON_1d6CON, 2, {}, true) end
+      if poison == "purpleworm" then target:setEffect(target.EFF_POISON_1d6STR, 2, {}, true) end
   end
 
   if target.poison_timer == 0 then 
+    --Timer's up!
     if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
     else 
-      game.log(("Target fails the save, DC %d, effect %s"):format(poison_dc[poison], poison_sec[poison]))
-      if poison_sec[poison] then target:setEffect(poison_sec[poison], 2, {}, true) end
+      game.log(("Target fails the save, DC %d, poison %s"):format(poison_dc[poison], poison))
+      --Secondary damage hits!
+      if poison == "medium_spider" then target:setEffect(target.EFF_POISON_1d4STR, 2, {}, true) end
+      if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 2, {}, true) end
+      if poison == "large_scorpion" then target:setEffect(target.EFF_POISON_1d6STR, 2, {}, true) end
+      if poison == "nitharit" then target:setEffect(target.EFF_POISON_3d6CON, 2, {}, true) end
+      if poison == "sassone" then target:setEffect(target.EFF_POISON_1d6CON, 2, {}, true) end
+      if poison == "malyss" then target:setEffect(target.EFF_POISON_MALYSS_SEC, 2, {}, true) end
+      if poison == "terinav" then target:setEffect(target.EFF_POISON_TERINAV_SEC, 2, {}, true) end
+      if poison == "blacklotus" then target:setEffect(target.EFF_POISON_3d6CON, 2, {}, true) end
+      if poison == "dragon" then end
+      if poison == "toadstool" then target:setEffect(target.EFF_POISON_TOADSTOOL_SEC, 2, {}, true) end
+      if poison == "arsenic" then target:setEffect(target.EFF_POISON_ARSENIC_SEC, 2, {}, true) end
+      if poison == "idmoss" then target:setEffect(target.EFF_POISON_MOSS_SEC, 2, {}, true) end
+      if poison == "lichdust" then target:setEffect(target.EFF_POISON_1d6STR, 2, {}, true) end
+      if poison == "darkreaver" then target:setEffect(target.EFF_POISON_DARK_REAVER_SEC, 2, {}, true) end
+      if poison == "ungoldust" then target:setEffect(target.EFF_POISON_UNGOL_DUST_SEC, 2, {}, true) end
+      if poison == "insanitymist" then target:setEffect(target.EFF_POISON_INSANITY_MIST_SEC, 2, {}, true) end
+      if poison == "burnt_othur" then target:setEffect(target.EFF_POISON_3d6CON, 2, {}, true) end
+      if poison == "blackadder" then target:setEffect(target.EFF_POISON_1d6CON, 2, {}, true) end
+      if poison == "bloodroot" then target:setEffect(target.EFF_POISON_BLOODROOT_SEC, 2, {}, true) end
+      if poison == "greenblood" then target:setEffect(target.EFF_POISON_GREENBLOOD_SEC, 2, {}, true) end
+      if poison == "whinnis" then end -- temporarily until I make unconsciousness work
+      if poison == "shadowessence" then target:setEffect(target.EFF_POISON_2d6STR, 2, {}, true) end
+      if poison == "wyvern" then target:setEffect(target.EFF_POISON_2d6CON, 2, {}, true) end
+      if poison == "giantwasp" then target:setEffect(target.EFF_POISON_1d6DEX, 2, {}, true) end
+      if poison == "deathblade" then target:setEffect(target.EFF_POISON_2d6CON, 2, {}, true) end
+      if poison == "purpleworm" then target:setEffect(target.EFF_POISON_2d6STR, 2, {}, true) end 
+      
     end
   end
 
