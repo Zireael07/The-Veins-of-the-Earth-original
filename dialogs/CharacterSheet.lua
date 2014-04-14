@@ -225,13 +225,13 @@ end
     w = self.w * 0.25 
     -- start on second column 
     self:mouseTooltip(self.TOOLTIP_STATS, s:drawColorStringBlended(self.font, "#CHOCOLATE#Stats", w, h, 255, 255, 255, true)) h = h + self.font_h    
-    self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(player:getStr().." #SANDY_BROWN#"..Strbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(player:getDex().." #SANDY_BROWN#"..Dexbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_CON, s:drawColorStringBlended(self.font, "#SLATE#CON : #YELLOW#"..(player:getCon().." #SANDY_BROWN#"..Conbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_INT, s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(player:getInt().." #SANDY_BROWN#"..Intbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_WIS, s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(player:getWis().." #SANDY_BROWN#"..Wisbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_CHA, s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(player:getCha().." #SANDY_BROWN#"..Chabonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_LUC, s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(player:getLuc().." #SANDY_BROWN#"..Lucbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : "..(player:sheetColorStats('str').." #SANDY_BROWN#"..Strbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : "..(player:sheetColorStats('dex').." #SANDY_BROWN#"..Dexbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_CON, s:drawColorStringBlended(self.font, "#SLATE#CON : "..(player:sheetColorStats('con').." #SANDY_BROWN#"..Conbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_INT, s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(player:sheetColorStats('int').." #SANDY_BROWN#"..Intbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_WIS, s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(player:sheetColorStats('wis').." #SANDY_BROWN#"..Wisbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_CHA, s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(player:sheetColorStats('cha').." #SANDY_BROWN#"..Chabonus), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_LUC, s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(player:sheetColorStats('luc').." #SANDY_BROWN#"..Lucbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     h = h + self.font_h -- Adds an empty row

@@ -9,6 +9,10 @@ As opposed to ToME 4, the main hand slot has an *underscore* in the name! It's M
 Classes
 If you add a prestige class, it must be added to the section in base descriptor which disallows them at birth. Also, it needs to have prestige = true.
 
+Effects (spells, poisons, class abilities, etc.)
+The stat_increase_x temporary value is there for the character sheet to track stat changes. The x has to match the stat's name.
+Same goes for stat_decrease_x.
+
 General entities (NPCs, objects)
 rarity -> how often do we want this to appear. the bigger the number, the rarer it is. Never set to 0.
 display -> what ASCII character is used. Look at Legend.lua for the list of symbols used

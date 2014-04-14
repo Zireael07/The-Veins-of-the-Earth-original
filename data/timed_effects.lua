@@ -147,6 +147,12 @@ newEffect{
 	status = "detrimental",
 	on_gain = function(self, err) return "#Target# is outlined!", "+Outline" end,
 	on_lose = function(self, err) return "#Target# is no longer outlined.", "-Outline" end,
+	activate = function(self, eff)
+        eff.particle = self:addParticles(Particles.new("faerie", 1))
+    end,
+    deactivate = function(self, eff)
+        self:removeParticles(eff.particle)
+    end,
 }
 
 newEffect{
@@ -160,6 +166,12 @@ newEffect{
 	activate = function(self, eff)
 		local stat = { [Stats.STAT_STR]=-2, [Stats.STAT_DEX]=-2 }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+		eff.decrease2 = self:addTemporaryValue("stat_decrease_dex", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease2)
 	end
 }
 
@@ -300,10 +312,15 @@ newEffect{
 		self:effectTemporaryValue(eff, "inc_stats", inc)
 		self:effectTemporaryValue(eff, "will_save", 2)
 		self:effectTemporaryValue(eff, "combat_untyped", -2)
+		eff.increase = self:addTemporaryValue("stat_increase_dex", 1)
+		eff.increase2 = self:addTemporaryValue("stat_increase_str", 1)
 	end,
 	deactivate = function(self, eff)
 		self:setEffect(self.EFF_FATIGUE, 5, {})
-	end
+		self:removeTemporaryValue("stat_increase_dex", eff.increase)
+		self:removeTemporaryValue("stat_increase_str", eff.increase2)
+
+	end,
 }
 
 newEffect{
@@ -313,6 +330,10 @@ newEffect{
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_STR]=2, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.increase = self:addTemporaryValue("stat_increase_str", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_increase_str", eff.increase)
 	end,
 }
 
@@ -326,6 +347,10 @@ newEffect{
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_CON]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.increase = self:addTemporaryValue("stat_increase_con", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_increase_con", eff.increase)
 	end,
 }
 
@@ -337,6 +362,10 @@ newEffect{
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_STR]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.increase = self:addTemporaryValue("stat_increase_str", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_increase_str", eff.increase)
 	end,
 }
 
@@ -348,6 +377,10 @@ newEffect{
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_CHA]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.increase = self:addTemporaryValue("stat_increase_cha", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_increase_cha", eff.increase)
 	end,
 }
 
@@ -359,6 +392,10 @@ newEffect{
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_WIS]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.increase = self:addTemporaryValue("stat_increase_wis", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_increase_wis", eff.increase)
 	end,
 }
 
@@ -370,7 +407,11 @@ newEffect{
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_DEX]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.increase = self:addTemporaryValue("stat_increase_dex", 1)
 	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_increase_dex", eff.increase)
+	end
 }
 
 newEffect{
@@ -381,6 +422,10 @@ newEffect{
 	activate = function(self, eff)
 		local inc = { [Stats.STAT_INT]=4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.increase = self:addTemporaryValue("stat_increase_int", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_increase_int", eff.increase)
 	end,
 }
 
@@ -410,6 +455,10 @@ newEffect{
 		local change = rng.dice(3,6)
 		local stat = { [Stats.STAT_CON]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
 	end,
 }
 
@@ -436,6 +485,10 @@ newEffect{
 		local change = rng.dice(1,6)
 		local stat = { [Stats.STAT_CON]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
 	end,
 }
 
@@ -447,6 +500,10 @@ newEffect{
 	activate = function(self, eff)
 		local stat = { [Stats.STAT_DEX]=-1}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease)
 	end,
 }
 
@@ -459,6 +516,10 @@ newEffect{
 		local change = rng.dice(2,4)
 		local stat = { [Stats.STAT_DEX]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease)
 	end,
 }
 --Terinav root primary; giant wasp primary & secondary
@@ -471,6 +532,10 @@ newEffect{
 		local change = rng.dice(1,6)
 		local stat = { [Stats.STAT_DEX]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease)
 	end,
 }
 
@@ -483,6 +548,10 @@ newEffect{
 		local change = rng.dice(2,6)
 		local stat = { [Stats.STAT_DEX]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease)
 	end,
 }
 
@@ -496,6 +565,10 @@ newEffect{
 		local change = rng.dice(3,6)
 		local stat = { [Stats.STAT_STR]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_str", eff.decrease)
 	end,
 }
 
@@ -507,6 +580,10 @@ newEffect{
 	activate = function(self, eff)
 		local stat = { [Stats.STAT_WIS]=-1}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_wis", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_wis", eff.decrease)
 	end,
 }
 
@@ -520,6 +597,10 @@ newEffect{
 		local change2 = rng.dice(1,4)
 		local stat = { [Stats.STAT_WIS]=-change1, [Stats.STAT_INT]=-change2 }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_int", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_int", eff.decrease)
 	end,
 }
 --Arsenic primary; othur fumes primary; greenblood oil primary; blue whinnis primary
@@ -531,6 +612,10 @@ newEffect{
 	activate = function(self, eff)
 		local stat = { [Stats.STAT_CON]=-1}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
 	end,
 }
 
@@ -543,6 +628,10 @@ newEffect{
 		local change = rng.dice(1,8)
 		local stat = { [Stats.STAT_CON]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
 	end,
 }
 
@@ -556,6 +645,10 @@ newEffect{
 		local change = rng.dice(1,4)
 		local stat = { [Stats.STAT_INT]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_int", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_int", eff.decrease)
 	end,
 }
 
@@ -568,6 +661,10 @@ newEffect{
 		local change = rng.dice(2,6)
 		local stat = { [Stats.STAT_INT]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_int", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_int", eff.decrease)
 	end,
 }
 --Lich dust primary; shadow essence secondary; purple worm secondary
@@ -580,6 +677,10 @@ newEffect{
 		local change = rng.dice(2,6)
 		local stat = { [Stats.STAT_STR]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_str", eff.decrease)
 	end,
 }
 --Lich dust secondary; large scorpion primary & secondary; purple worm primary; red ache
@@ -592,6 +693,10 @@ newEffect{
 		local change = rng.dice(1,6)
 		local stat = { [Stats.STAT_STR]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_str", eff.decrease)
 	end,
 }
 --Dark reaver primary; wyvern primary & secondary; deathblade secondary
@@ -604,6 +709,10 @@ newEffect{
 		local change = rng.dice(2,6)
 		local stat = { [Stats.STAT_CON]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
 	end,
 }
 
@@ -617,6 +726,12 @@ newEffect{
 		local change2 = rng.dice(1,6)
 		local stat = { [Stats.STAT_CON]=-change1, [Stats.STAT_STR]=-change2}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+		eff.decrease2 = self:addTemporaryValue("stat_decrease_str", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_str", eff.decrease2)
 	end,
 }
 
@@ -628,6 +743,10 @@ newEffect{
 	activate = function(self, eff)
 		local stat = { [Stats.STAT_CHA]=-1}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_cha", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_cha", eff.decrease)
 	end,
 }
 
@@ -640,6 +759,10 @@ newEffect{
 		local change = rng.dice(1,6)
 		local stat = { [Stats.STAT_CHA]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_cha", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_cha", eff.decrease)
 	end,
 }
 
@@ -652,6 +775,10 @@ newEffect{
 		local change = rng.dice(1,4)
 		local stat = { [Stats.STAT_WIS]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_wis", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_wis", eff.decrease)
 	end,
 }
 
@@ -664,6 +791,10 @@ newEffect{
 		local change = rng.dice(2,6)
 		local stat = { [Stats.STAT_WIS]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_wis", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_wis", eff.decrease)
 	end,
 }
 
@@ -677,6 +808,10 @@ newEffect{
 		local change = rng.dice(1,2)
 		local stat = { [Stats.STAT_DEX]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease)
 	end,
 }
 --No primary effect
@@ -690,6 +825,12 @@ newEffect{
 		local change2 = rng.dice(1,3)
 		local stat = { [Stats.STAT_CON]=-change1, [Stats.STAT_WIS]=-change2}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+		eff.decrease2 = self:addTemporaryValue("stat_decrease_wis", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_wis", eff.decrease2)
 	end,
 }
 
@@ -702,6 +843,10 @@ newEffect{
 		local change = rng.dice(1,2)
 		local stat = { [Stats.STAT_STR]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_str", eff.decrease)
 	end,
 }
 --Primary & secondary medium spider; blinding sickness, devil chills
@@ -714,6 +859,10 @@ newEffect{
 		local change = rng.dice(1,4)
 		local stat = { [Stats.STAT_STR]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_str", eff.decrease)
 	end,
 }
 
@@ -725,6 +874,10 @@ newEffect{
 	activate = function(self, eff)
 		local stat = { [Stats.STAT_STR]=-1}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_str", eff.decrease)
 	end,
 }
 
@@ -738,6 +891,10 @@ newEffect{
 		local change = rng.dice(1,6)
 		local stat = { [Stats.STAT_WIS]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_wis", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_wis", eff.decrease)
 	end,
 }
 
@@ -751,6 +908,12 @@ newEffect{
 		local change2 = rng.dice(1,3)
 		local stat = { [Stats.STAT_DEX]=-change1, [Stats.STAT_CON]=-change2 }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
+		eff.decrease2 = self:addTemporaryValue("stat_decrease_con", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease2)
 	end,
 }
 
@@ -763,6 +926,10 @@ newEffect{
 		local change = rng.dice(1,8)
 		local stat = { [Stats.STAT_DEX]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease)
 	end,
 }
 --Slimy doom
@@ -775,6 +942,10 @@ newEffect{
 		local change = rng.dice(1,4)
 		local stat = { [Stats.STAT_CON]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
 	end,
 }
 
@@ -787,5 +958,9 @@ newEffect{
 		local change = rng.dice(1,10)
 		local stat = { [Stats.STAT_CON]=-change}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
 	end,
 }

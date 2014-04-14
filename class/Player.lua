@@ -187,6 +187,21 @@ function _M:tooltip()
   )
 end
 
+--Character sheet stuff specific to player
+function _M:sheetColorStats(stat)
+--Basic value without increases  
+local basestat = self:getStat(stat, nil, nil, true)
+
+  --Case 1: stat temporarily increased by spells 
+  if self:attr("stat_increase_"..stat) then return "#LIGHT_GREEN#"..self:getStat(stat).."#LAST#"
+  --Case 2: stat temporarily decreased (poisons etc.)
+  elseif self:attr("stat_decrease_"..stat) then return "#RED#"..self:getStat(stat).."#LAST#"
+  --Case 3: magic items permanent bonus
+  elseif self:getStat(stat) > basestat then return "#DARK_GREEN#"..self:getStat(stat).."#LAST#"
+  else return "#YELLOW#"..self:getStat(stat).."#LAST#" end
+
+end
+
 function _M:describeFloor(x, y)
   if self.old_x == self.x and self.old_y == self.y then return end
 
@@ -393,7 +408,7 @@ function _M:restCheck()
 
   self.resting.wait_cooldowns = nil
 
-  return false, "all resources and life at maximum"
+  return false, "You feel fully rested"
 end
 
 function _M:onRestStop()
