@@ -257,7 +257,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
         if target:canBe("crit") then
             game.log(("%s makes a critical attack!"):format(self.name:capitalize()))
          dam = dam * (weapon and weapon.combat.critical or 2)
-        else game.log("Its lack of physiology prevents serious injury")
+        else game.log("The target's lack of physiology prevents serious injury")
           dam = dam end
       end
 
@@ -268,12 +268,14 @@ function _M:dealDamage(target, weapon, crit, sneak)
         dam = math.max(1, dam)
         dam = dam - (target.combat_dr or 0)
 
+        if self.poison and not target.dead then
+          local poison = self.poison
+          self:applyPoison(poison, target)
+          game.log(("%s tries to poison %s"):format(self.name:capitalize(), target.name:capitalize()))
+        end
+
         target:takeHit(dam, self)
         game.log(("%s deals %d damage to %s!"):format(self.name:capitalize(), dam, target.name:capitalize()))
-
-        if not target.dead and self.poison then
-        self:applyPoison(self.poison, target)
-        end
 end
 
 _M.poisons = {
@@ -308,17 +310,29 @@ _M.poisons = {
 
 
 function _M:applyPoison(poison, target)
-  if not poison then return end
+
+  game.log(("Poison is %s"):format(poison))
+
+  local poison_dc = { small_centipede = 11, medium_spider = 14, large_scorpion = 18, nitharit = 13, sassone = 16, malyss = 16, terinav = 16, blacklotus = 20, dragon = 26, toadstool = 11, arsenic = 13, idmoss = 14, lichdust = 17, darkreaver = 18, ungoldust = 15, insanitymist = 15, burnt_othur = 18, blackadder = 11, bloodroot = 12, greenblood = 13, whinnis = 14, shadowessence = 17, wyvern = 17, giantwasp = 18, deathblade = 20, purpleworm = 24 }
+  --Why the hell isn't it working?! effect is nil...
+  local poison_pri = { small_centipede = target.EFF_POISON_SMALL_CENTIPEDE, medium_spider = target.EFF_POISON_1d4STR, large_scorpion = target.EFF_POISON_1d6STR, malyss = target.EFF_POISON_MALYSS_PRI, terinav = target.EFF_POISON_1d6DEX, blacklotus = target.EFF_POISON_3d6CON, dragon = target.EFF_POISON_DRAGON_BILE, toadstool = target.EFF_POISON_TOADSTOOL_PRI, arsenic = target.EFF_POISON_1CON, idmoss = target.EFF_POISON_1d4INT, lichdust = target.EFF_POISON_2d6STR, darkreaver = target.EFF_POISON_2d6CON, ungoldust = target.EFF_POISON_UNGOL_DUST_PRI, insanitymist = target.EFF_POISON_INSANITY_MIST_PRI, burnt_othur = target.EFF_POISON_1CON, blackadder = target.EFF_POISON_1d6CON, greenblood = target.EFF_POISON_1CON, whinnis = target.EFF_POISON_1CON, shadowessence = target.EFF_POISON_SHADOW_ESSENCE_PRI, wyvern = target.EFF_POISON_2d6CON, giantwasp = target.EFF_POISON_1d6DEX, deathblade = target.EFF_POISON_1d6CON, purpleworm = target.EFF_POISON_1d6STR }
+  local poison_sec = { small_centipede = target.EFF_POISON_SMALL_CENTIPEDE, medium_spider = target.EFF_POISON_1d4STR, large_scorpion = target.EFF_POISON_1d6STR, nitharit = target.EFF_POISON_3d6CON, sassone = target.EFF_POISON_1d6CON, malyss = target.EFF_POISON_MALYSS_SEC, terinav = target.EFF_POISON_TERINAV_SEC, blacklotus = target.EFF_POISON_3d6CON, toadstool = target.EFF_POISON_TOADSTOOL_SEC, arsenic = target.EFF_POISON_ARSENIC_SEC, idmoss = target.EFF_POISON_MOSS_SEC, lichdust = target.EFF_POISON_1d6STR, darkreaver = target.EFF_POISON_DARK_REAVER_SEC, ungoldust = target.EFF_POISON_UNGOL_DUST_SEC, insanitymist = EFF_POISON_INSANITY_MIST_SEC, burnt_othur = target.EFF_POISON_3d6CON, blackadder = target.EFF_POISON_1d6CON, bloodroot = target.EFF_POISON_BLOODROOT_SEC, greenblood = target.EFF_POISON_GREENBLOOD_SEC, shadowessence = target.EFF_POISON_2d6STR, wyvern = target.EFF_POISON_2d6CON, giantwasp = target.EFF_POISON_1d6DEX, deathblade = target.EFF_POISON_2d6CON, purpleworm = target.EFF_POISON_2d6STR}
+
+--  if not poison then return end
   
-  if not target:fortitudeSave(poisons[poison][1]) then
-  target.poison_timer = 10
-    if poisons[poison][2] then target:setEffect(poisons[poison][2], 2, {}, true) end
+  if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
+  else target.poison_timer = 10
+    game.log(("Target fails the save, DC %d, effect %s"):format(poison_dc[poison], poison_pri[poison]))
+    if poison_pri[poison] then target:setEffect(poison_pri[poison], 2, {}, true) end
   end
 
-  if not target:fortitudeSave(poisons[poison][1]) then
-    if target.poison_timer == 0 and poisons[poison][3] then target:setEffect(poisons[poisons][3], 2, {}, true) end
+  if target.poison_timer == 0 then 
+    if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
+    else 
+      game.log(("Target fails the save, DC %d, effect %s"):format(poison_dc[poison], poison_sec[poison]))
+      if poison_sec[poison] then target:setEffect(poison_sec[poison], 2, {}, true) end
+    end
   end
-
 
 end
 
