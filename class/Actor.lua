@@ -191,6 +191,15 @@ function _M:onStatChange(stat, v)
 	if stat == self.STAT_CON then self.max_life = self.max_life + v*2 end
 end 
 
+function _M:zeroStats()
+	if self:getStat('str') == 0 and not self.dead then self:die() end --should be helpless
+	if self:getStat('dex') == 0 and not self.dead then self:die() end --should be paralyzed
+	if self:getStat('con') == 0 and not self.dead then self:die() end
+	if self:getStat('int') == 0 and not self.dead then self:die() end -- should be unconscious
+	if self:getStat('wis') == 0 and not self.dead then self:die() end --should be unconscious
+	if self:getStat('cha') == 0 and not self.dead then self:die() end --should be unconscious
+end
+
 function _M:getName(t)
 	t = t or {}
 	local name = self.name
@@ -213,6 +222,9 @@ function _M:act()
 	self:regenResources()
 	-- Compute timed effects
 	self:timedEffects()
+
+	--Check if stats aren't 0
+	self:zeroStats()
 
 	--Poison timer
 	if self.poison_timer then self.poison_timer = self.poison_timer - 1 end
@@ -847,7 +859,7 @@ function _M:skillCheck(skill, dc, silent)
 	if not silent and self == game.player then
 		local who = self:getName()
 		local s = ("%s check for %s: dice roll %d + bonus %d = %d vs DC %d -> %s"):format(
-			skill:capitalize(), who, d, self:getSkill(skill) or 0, result, dc, success and "success" or "failure")
+			skill:capitalize(), who, d, self:getSkill(skill) or 0, result, dc, success and "#GREEN#success#LAST#" or "#RED#failure#LAST#")
 		game.log(s)
 	end
 
@@ -868,14 +880,14 @@ function _M:opposedCheck(skill1, target, skill2)
 
 	if self == game.player then
 		local s = ("Opposed check: dice roll %d + bonus %d versus DC %d -> %s"):format(
-			d, my_skill or 0, enemy_total, success and "success" or "failure")
+			d, my_skill or 0, enemy_total, success and "#GREEN#success#LAST#" or "#RED#failure#LAST#")
 		game.log(s)
 	end 
 	if target == game.player then
 		local player_success = true
 		if success then player_success = false end
-		local s = ("Opposed check: %d versus DC %d -> %s"):format(
-			my_total, enemy_total, player_success and "success" or "failure")
+		local s = ("Opposed check for the monster: %d versus DC %d -> player %s"):format(
+			my_total, enemy_total, player_success and "#GREEN#success#LAST#" or "#RED#failure#LAST#")
 		game.log(s)
 	end 
 
