@@ -455,8 +455,7 @@ newEffect{
 	type = "physical",
 	status = "detrimental",
 	parameters = {},
-	activate = function(self, eff)
-		local change = 
+	activate = function(self, eff) 
 		local stat = { [Stats.STAT_CON]=-rng.dice(3,6)}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
