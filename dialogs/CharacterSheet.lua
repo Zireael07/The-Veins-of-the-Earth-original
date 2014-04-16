@@ -104,7 +104,7 @@ function _M:drawDialog(tab)
         {left=0, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_skill},
         {left=0, top=t_general, ui=self.c_desc},
---       {left=0, bottom=0, ui=self.c_kills},
+        {left=0, bottom=0, ui=self.c_kills},
     }
     
     self:setupUI()
