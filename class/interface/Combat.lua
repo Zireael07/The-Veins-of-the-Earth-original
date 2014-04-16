@@ -293,32 +293,32 @@ function _M:applyPoison(poison, target)
   else target.poison_timer = 10
     game.log(("Target fails the save, DC %d, poison %s"):format(poison_dc[poison], poison))
       --Failed save, time for primary poison damage
-      if poison == "medium_spider" then target:setEffect(target.EFF_POISON_1d4STR, 2, {}, true) end
+      if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MIDDLING_STR, 2, {}) end
       if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 2, {}, true) end
-      if poison == "large_scorpion" then target:setEffect(target.EFF_POISON_1d6STR, 2, {}, true) end
+      if poison == "large_scorpion" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 2, {}, true) end
       if poison == "nitharit" then end
       if poison == "sassone" then end
       if poison == "malyss" then target:setEffect(target.EFF_POISON_MALYSS_PRI, 2, {}, true) end
-      if poison == "terinav" then target:setEffect(target.EFF_POISON_1d6DEX, 2, {}, true) end
-      if poison == "blacklotus" then target:setEffect(target.EFF_POISON_3d6CON, 2, {}, true) end
+      if poison == "terinav" then target:setEffect(target.EFF_POISON_MEDIUM_DEX, 2, {}, true) end
+      if poison == "blacklotus" then target:setEffect(target.EFF_POISON_EXTRASTRONG_CON, 2, {}, true) end
       if poison == "dragon" then target:setEffect(target.EFF_POISON_DRAGON_BILE, 2, {}, true) end
       if poison == "toadstool" then target:setEffect(target.EFF_POISON_TOADSTOOL_PRI, 2, {}, true) end
-      if poison == "arsenic" then target:setEffect(target.EFF_POISON_1CON, 2, {}, true) end
-      if poison == "idmoss" then target:setEffect(target.EFF_POISON_1d4INT, 2, {}, true) end
-      if poison == "lichdust" then target:setEffect(target.EFF_POISON_2d6STR, 2, {}, true) end
-      if poison == "darkreaver" then target:setEffect(target.EFF_POISON_2d6CON, 2, {}, true) end
+      if poison == "arsenic" then target:setEffect(target.EFF_POISON_WEAK_CON, 2, {}, true) end
+      if poison == "idmoss" then target:setEffect(target.EFF_POISON_MIDDLING_INT, 2, {}, true) end
+      if poison == "lichdust" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 2, {}, true) end
+      if poison == "darkreaver" then target:setEffect(target.EFF_POISON_MEDIUM_CON, 2, {}, true) end
       if poison == "ungoldust" then target:setEffect(target.EFF_POISON_UNGOL_DUST_PRI, 2, {}, true) end
       if poison == "insanitymist" then target:setEffect(target.EFF_POISON_INSANITY_MIST_PRI, 2, {}, true) end
-      if poison == "burnt_othur" then target:setEffect(target.EFF_POISON_1CON, 2, {}, true) end
-      if poison == "blackadder" then target:setEffect(target.EFF_POISON_1d6CON, 2, {}, true) end
+      if poison == "burnt_othur" then target:setEffect(target.EFF_POISON_WEAK_CON, 2, {}, true) end
+      if poison == "blackadder" then target:setEffect(target.EFF_POISON_MEDIUM_CON, 2, {}, true) end
       if poison == "bloodroot" then end
-      if poison == "greenblood" then target:setEffect(target.EFF_POISON_1CON, 2, {}, true) end
-      if poison == "whinnis" then target:setEffect(target.EFF_POISON_1CON, 2, {}, true) end
+      if poison == "greenblood" then target:setEffect(target.EFF_POISON_WEAK_CON, 2, {}, true) end
+      if poison == "whinnis" then target:setEffect(target.EFF_POISON_WEAK_CON, 2, {}, true) end
       if poison == "shadowessence" then target:setEffect(target.EFF_POISON_SHADOW_ESSENCE_PRI, 2, {}, true) end
-      if poison == "wyvern" then target:setEffect(target.EFF_POISON_2d6CON, 2, {}, true) end
-      if poison == "giantwasp" then target:setEffect(target.EFF_POISON_1d6DEX, 2, {}, true) end
-      if poison == "deathblade" then target:setEffect(target.EFF_POISON_1d6CON, 2, {}, true) end
-      if poison == "purpleworm" then target:setEffect(target.EFF_POISON_1d6STR, 2, {}, true) end
+      if poison == "wyvern" then target:setEffect(target.EFF_POISON_STRONG_CON, 2, {}, true) end
+      if poison == "giantwasp" then target:setEffect(target.EFF_POISON_MEDIUM_DEX, 2, {}, true) end
+      if poison == "deathblade" then target:setEffect(target.EFF_POISON_MEDIUM_CON, 2, {}, true) end
+      if poison == "purpleworm" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 2, {}, true) end
   end
 
   if target.poison_timer == 0 then 
@@ -327,32 +327,32 @@ function _M:applyPoison(poison, target)
     else 
       game.log(("Target fails the save, DC %d, poison %s"):format(poison_dc[poison], poison))
       --Secondary damage hits!
-      if poison == "medium_spider" then target:setEffect(target.EFF_POISON_1d4STR, 2, {}, true) end
+      if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 10, {}, true) end
       if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 2, {}, true) end
-      if poison == "large_scorpion" then target:setEffect(target.EFF_POISON_1d6STR, 2, {}, true) end
-      if poison == "nitharit" then target:setEffect(target.EFF_POISON_3d6CON, 2, {}, true) end
-      if poison == "sassone" then target:setEffect(target.EFF_POISON_1d6CON, 2, {}, true) end
+      if poison == "large_scorpion" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 2, {}, true) end
+      if poison == "nitharit" then target:setEffect(target.EFF_POISON_EXTRASTRONG_CON, 2, {}, true) end
+      if poison == "sassone" then target:setEffect(target.EFF_POISON_MEDIUM_CON, 2, {}, true) end
       if poison == "malyss" then target:setEffect(target.EFF_POISON_MALYSS_SEC, 2, {}, true) end
       if poison == "terinav" then target:setEffect(target.EFF_POISON_TERINAV_SEC, 2, {}, true) end
-      if poison == "blacklotus" then target:setEffect(target.EFF_POISON_3d6CON, 2, {}, true) end
+      if poison == "blacklotus" then target:setEffect(target.EFF_POISON_EXTRASTRONG_CON, 2, {}, true) end
       if poison == "dragon" then end
       if poison == "toadstool" then target:setEffect(target.EFF_POISON_TOADSTOOL_SEC, 2, {}, true) end
       if poison == "arsenic" then target:setEffect(target.EFF_POISON_ARSENIC_SEC, 2, {}, true) end
       if poison == "idmoss" then target:setEffect(target.EFF_POISON_MOSS_SEC, 2, {}, true) end
-      if poison == "lichdust" then target:setEffect(target.EFF_POISON_1d6STR, 2, {}, true) end
+      if poison == "lichdust" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 2, {}, true) end
       if poison == "darkreaver" then target:setEffect(target.EFF_POISON_DARK_REAVER_SEC, 2, {}, true) end
       if poison == "ungoldust" then target:setEffect(target.EFF_POISON_UNGOL_DUST_SEC, 2, {}, true) end
       if poison == "insanitymist" then target:setEffect(target.EFF_POISON_INSANITY_MIST_SEC, 2, {}, true) end
-      if poison == "burnt_othur" then target:setEffect(target.EFF_POISON_3d6CON, 2, {}, true) end
-      if poison == "blackadder" then target:setEffect(target.EFF_POISON_1d6CON, 2, {}, true) end
+      if poison == "burnt_othur" then target:setEffect(target.EFF_POISON_EXTRASTRONG_CON, 2, {}, true) end
+      if poison == "blackadder" then target:setEffect(target.EFF_POISON_MEDIUM_CON, 2, {}, true) end
       if poison == "bloodroot" then target:setEffect(target.EFF_POISON_BLOODROOT_SEC, 2, {}, true) end
       if poison == "greenblood" then target:setEffect(target.EFF_POISON_GREENBLOOD_SEC, 2, {}, true) end
       if poison == "whinnis" then end -- temporarily until I make unconsciousness work
-      if poison == "shadowessence" then target:setEffect(target.EFF_POISON_2d6STR, 2, {}, true) end
-      if poison == "wyvern" then target:setEffect(target.EFF_POISON_2d6CON, 2, {}, true) end
-      if poison == "giantwasp" then target:setEffect(target.EFF_POISON_1d6DEX, 2, {}, true) end
-      if poison == "deathblade" then target:setEffect(target.EFF_POISON_2d6CON, 2, {}, true) end
-      if poison == "purpleworm" then target:setEffect(target.EFF_POISON_2d6STR, 2, {}, true) end 
+      if poison == "shadowessence" then target:setEffect(target.EFF_POISON_STRONG_STR, 2, {}, true) end
+      if poison == "wyvern" then target:setEffect(target.EFF_POISON_STRONG_CON, 2, {}, true) end
+      if poison == "giantwasp" then target:setEffect(target.EFF_POISON_MEDIUM_DEX, 2, {}, true) end
+      if poison == "deathblade" then target:setEffect(target.EFF_POISON_STRONG_CON, 2, {}, true) end
+      if poison == "purpleworm" then target:setEffect(target.EFF_POISON_STRONG_STR, 2, {}, true) end 
       
     end
   end

@@ -18,6 +18,8 @@
 local Stats = require "engine.interface.ActorStats"
 local Particles = require "engine.Particles"
 
+--Poisons: 1 is WEAK, 1d4 is MIDDLING, 1d6 damage is MEDIUM, 2d6 is STRONG, 3d6 is EXTRASTRONG because numbers are EVIL!!!
+
 --Conditions for below 0 hp
 newEffect{
 	name = "DISABLED",
@@ -443,17 +445,19 @@ newEffect{
 }
 
 --Poisons, Zireael
+--1 is WEAK, 1d4 is MIDDLING, 1d6 damage is MEDIUM, 2d6 is STRONG, 3d6 is EXTRASTRONG because numbers are EVIL!!
 --Oil of taggit and drow poison are missing because I have no idea for unconsciousness now
 
 --Nitharit secondary effect; black lotus primary and secondary; othur fumes secondary
 newEffect{
-	name = "POISON_3d6CON",
+	name = "POISON_EXTRASTRONG_CON",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(3,6)
-		local stat = { [Stats.STAT_CON]=-change}
+		local change = 
+		local stat = { [Stats.STAT_CON]=-rng.dice(3,6)}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
 	end,
@@ -464,26 +468,25 @@ newEffect{
 
 --Sassone primary effect
 newEffect{
-	name = "POISON_2d12hp",
+	name = "POISON_hp",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
 	activate = function(self, eff)
-		local change = rng.dice(2,12)
---		local stat = { [Stats.STAT_CON]=-change}
+--		local stat = { [Stats.STAT_CON]=-rng.dice(2,12)}
 --		self:effectTemporaryValue(eff, "inc_stats", stat)
 	end,
 }
 
 --Sassone secondary effect; black adder primary & secondary; deathblade primary; demon fever
 newEffect{
-	name = "POISON_1d6CON",
+	name = "POISON_MEDIUM_CON",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,6)
-		local stat = { [Stats.STAT_CON]=-change}
+		local stat = { [Stats.STAT_CON]=-rng.dice(1,6)}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
 	end,
@@ -524,13 +527,12 @@ newEffect{
 }
 --Terinav root primary; giant wasp primary & secondary
 newEffect{
-	name = "POISON_1d6DEX",
+	name = "POISON_MEDIUM_DEX",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
 	activate = function(self, eff)
-		local change = rng.dice(1,6)
-		local stat = { [Stats.STAT_DEX]=-change}
+		local stat = { [Stats.STAT_DEX]=-rng.dice(1,6)}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
 	end,
@@ -605,7 +607,7 @@ newEffect{
 }
 --Arsenic primary; othur fumes primary; greenblood oil primary; blue whinnis primary
 newEffect{
-	name = "POISON_1CON",
+	name = "POISON_WEAK_CON",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
@@ -624,9 +626,9 @@ newEffect{
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,8)
-		local stat = { [Stats.STAT_CON]=-change}
+		local stat = { [Stats.STAT_CON]=-rng.dice(1,8)}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
 	end,
@@ -637,13 +639,13 @@ newEffect{
 
 --Poison moss primary; mindfire
 newEffect{
-	name = "POISON_1d4INT",
+	name = "POISON_MIDDLING_INT",
 	desc = "Poison",
 	type = "mental",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,4)
-		local stat = { [Stats.STAT_INT]=-change}
+		local stat = { [Stats.STAT_INT]=-rng.dice(1,4), }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_int", 1)
 	end,
@@ -657,9 +659,9 @@ newEffect{
 	desc = "Poison",
 	type = "mental",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(2,6)
-		local stat = { [Stats.STAT_INT]=-change}
+		local stat = { [Stats.STAT_INT]=-rng.dice(2,6), }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_int", 1)
 	end,
@@ -669,14 +671,13 @@ newEffect{
 }
 --Lich dust primary; shadow essence secondary; purple worm secondary
 newEffect{
-	name = "POISON_2d6STR",
+	name = "POISON_STRONG_STR",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
 	activate = function(self, eff)
-		local change = rng.dice(2,6)
-		local stat = { [Stats.STAT_STR]=-change}
-		self:effectTemporaryValue(eff, "inc_stats", stat)
+		local inc = { [Stats.STAT_STR]=-rng.dice(2,6), }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
 		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
 	end,
 	deactivate = function(self, eff)
@@ -685,14 +686,14 @@ newEffect{
 }
 --Lich dust secondary; large scorpion primary & secondary; purple worm primary; red ache
 newEffect{
-	name = "POISON_1d6STR",
+	name = "POISON_MEDIUM_STR",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,6)
-		local stat = { [Stats.STAT_STR]=-change}
-		self:effectTemporaryValue(eff, "inc_stats", stat)
+		local inc = { [Stats.STAT_STR]=-rng.dice(1,6), }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
 		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
 	end,
 	deactivate = function(self, eff)
@@ -701,14 +702,13 @@ newEffect{
 }
 --Dark reaver primary; wyvern primary & secondary; deathblade secondary
 newEffect{
-	name = "POISON_2d6CON",
+	name = "POISON_STRONG_CON",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
 	activate = function(self, eff)
-		local change = rng.dice(2,6)
-		local stat = { [Stats.STAT_CON]=-change}
-		self:effectTemporaryValue(eff, "inc_stats", stat)
+		local inc = { [Stats.STAT_CON]=-rng.dice(2,6), }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
 	end,
 	deactivate = function(self, eff)
@@ -721,10 +721,9 @@ newEffect{
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change1 = rng.dice(1,6)
-		local change2 = rng.dice(1,6)
-		local stat = { [Stats.STAT_CON]=-change1, [Stats.STAT_STR]=-change2}
+		local stat = { [Stats.STAT_CON]=-rng.dice(1,6), [Stats.STAT_STR]=-rng.dice(1,6), }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
 		eff.decrease2 = self:addTemporaryValue("stat_decrease_str", 1)
@@ -804,10 +803,10 @@ newEffect{
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,2)
-		local stat = { [Stats.STAT_DEX]=-change}
-		self:effectTemporaryValue(eff, "inc_stats", stat)
+		local inc = { [Stats.STAT_DEX]=-rng.dice(1,2), }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
 		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
 	end,
 	deactivate = function(self, eff)
@@ -820,10 +819,9 @@ newEffect{
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,4)
-		local change2 = rng.dice(1,3)
-		local stat = { [Stats.STAT_CON]=-change1, [Stats.STAT_WIS]=-change2}
+		local stat = { [Stats.STAT_CON]=-rng.dice(1,4), [Stats.STAT_WIS]=-rng.dice(1,3), }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
 		eff.decrease2 = self:addTemporaryValue("stat_decrease_wis", 1)
@@ -839,9 +837,9 @@ newEffect{
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,2)
-		local stat = { [Stats.STAT_STR]=-change}
+		local stat = { [Stats.STAT_STR]=-rng.dice(1,2), }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
 	end,
@@ -851,14 +849,14 @@ newEffect{
 }
 --Primary & secondary medium spider; blinding sickness, devil chills
 newEffect{
-	name = "POISON_1d4STR",
+	name = "POISON_MIDDLING_STR",
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,4)
-		local stat = { [Stats.STAT_STR]=-change}
-		self:effectTemporaryValue(eff, "inc_stats", stat)
+		local inc = { [Stats.STAT_STR]=-rng.dice(1,4), }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
 		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
 	end,
 	deactivate = function(self, eff)
@@ -888,8 +886,7 @@ newEffect{
 	type = "mental",
 	status = "detrimental",
 	activate = function(self, eff)
-		local change = rng.dice(1,6)
-		local stat = { [Stats.STAT_WIS]=-change}
+		local stat = { [Stats.STAT_WIS]=-rng.dice(1,6), }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_wis", 1)
 	end,
@@ -903,10 +900,9 @@ newEffect{
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change1 = rng.dice(1,3)
-		local change2 = rng.dice(1,3)
-		local stat = { [Stats.STAT_DEX]=-change1, [Stats.STAT_CON]=-change2 }
+		local stat = { [Stats.STAT_DEX]=-rng.dice(1,3), [Stats.STAT_CON]=-rng.dice(1,3), }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
 		eff.decrease2 = self:addTemporaryValue("stat_decrease_con", 1)
@@ -922,9 +918,9 @@ newEffect{
 	desc = "Poison",
 	type = "physical",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,8)
-		local stat = { [Stats.STAT_DEX]=-change}
+		local stat = { [Stats.STAT_DEX]=-rng.dice(1,8), }
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
 	end,
@@ -934,13 +930,13 @@ newEffect{
 }
 --Slimy doom
 newEffect{
-	name = "POISON_1d4CON",
+	name = "POISON_MIDDLING_CON",
 	desc = "Poison",
 	type = "mental",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,4)
-		local stat = { [Stats.STAT_CON]=-change}
+		local stat = { [Stats.STAT_CON]=-rng.dice(1,4)}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
 	end,
@@ -950,13 +946,13 @@ newEffect{
 }
 
 newEffect{
-	name = "POISON_1d10CON",
+	name = "POISON_SPELL",
 	desc = "Poison",
 	type = "mental",
 	status = "detrimental",
+	parameters = {},
 	activate = function(self, eff)
-		local change = rng.dice(1,10)
-		local stat = { [Stats.STAT_CON]=-change}
+		local stat = { [Stats.STAT_CON]=-rng.dice(1,10)}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
 	end,

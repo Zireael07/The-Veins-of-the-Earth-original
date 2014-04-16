@@ -10,6 +10,7 @@ Classes
 If you add a prestige class, it must be added to the section in base descriptor which disallows them at birth. Also, it needs to have prestige = true.
 
 Effects (spells, poisons, class abilities, etc.)
+DO NOT ever use numbers in effect names, EVER!!
 The stat_increase_x temporary value is there for the character sheet to track stat changes. The x has to match the stat's name.
 Same goes for stat_decrease_x.
 
