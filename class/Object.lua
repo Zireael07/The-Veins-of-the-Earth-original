@@ -258,6 +258,7 @@ end
 
 
 function _M:on_prepickup(who, idx)
+    --Auto-destroy cursed items
     if who == game.player and self.pseudo_id == false then
         local check = who:skillCheck("intuition", 10)
         if check then
@@ -265,4 +266,9 @@ function _M:on_prepickup(who, idx)
         end 
     end
     if self.pseudo_id == true and self.cursed then game.level.map:removeObject(who.x, who.y, idx) return true end
+    
+    --Item manager settings
+    local tt = self.subtype
+    if who == game.player and tt.destroy then game.level.map:removeObject(who.x, who.y, idx) return true end
+    if who == game.player and tt.no_pickup then return true end
 end

@@ -21,6 +21,7 @@ local ListColumns = require "engine.ui.ListColumns"
 local Textzone = require "engine.ui.Textzone"
 local TextzoneList = require "engine.ui.TextzoneList"
 local Separator = require "engine.ui.Separator"
+local Button = require "engine.ui.Button"
 
 module(..., package.seeall, class.inherit(Dialog))
 
@@ -44,6 +45,7 @@ function _M:init(title, actor, filter, action, on_select)
 		end
 	end
 
+	self.c_manager = Button.new{text="Item Manager", fct=function() self:onManager() end}
 
 	self.c_inven = ListColumns.new{width=math.floor(self.iw / 2 - 10), height=self.ih - self.max_h*self.font_h - 10, sortable=true, scrollbar=true, columns={
 		{name="", width={25,"fixed"}, display_prop="char", sort="id"},
@@ -66,7 +68,10 @@ function _M:init(title, actor, filter, action, on_select)
 	self:loadUI{
 		{left=0, top=0, ui=self.c_equip},
 		{right=0, top=0, ui=self.c_inven},
-		{hcenter=0, top=5, ui=Separator.new{dir="horizontal", size=self.ih - 10}},
+		{hcenter=0, top=5, ui=Separator.new{dir="horizontal", size=self.ih - 50}},
+		{left=0, bottom=0, ui=self.c_manager},
+		{left=0, bottom=self.c_manager.h, ui=Separator.new{dir="vertical", size=self.iw - 10}},
+		
 	}
 	self:setFocus(self.c_inven)
 	self:setupUI()
@@ -191,6 +196,10 @@ function _M:on_recover_focus()
 	self:generateList()
 end
 
+function _M:onManager()
+	game:unregisterDialog(self)
+    game:registerDialog(require("mod.dialogs.ItemManager").new(game.player))
 
+end
 
 
