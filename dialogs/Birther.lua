@@ -207,6 +207,8 @@ function _M:drawTab()
            if h + self.font_h >= self.c_desc.h then h = 0 w = w + self.c_desc.w / 6 end
         end
 
+--    s:drawColorStringBlended(self.font, ""..(player:randomItem())    
+
     h = 0
     w = self.w * 0.25
     -- start on second column
@@ -299,7 +301,11 @@ function _M:loadPremadeUI()
         {right=0, bottom=0, ui=del},
     }
     d:setupUI(true, true)
-    d.key:addBind("EXIT", function() game:unregisterDialog(d) end)
+    --Can now go back to roller
+    d.key:addBind("EXIT", function() 
+        game:unregisterDialog(d) 
+        game:registerDialog(require("mod.dialogs.Birther").new(game.player)) 
+    end)
     game:unregisterDialog(self)
     game:registerDialog(d)
 end
