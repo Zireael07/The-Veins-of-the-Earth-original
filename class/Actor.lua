@@ -323,6 +323,16 @@ function _M:move(x, y, force)
 	return moved
 end
 
+--From Qi Daozei
+function _M:getLogName()
+    if self == game.player or (game.level.map.seens(self.x, self.y) and game.player:canSee(self)) then
+        return self.name, true
+    else
+        return "something", false
+    end
+end
+
+
 --Helper function to color high stats (15+) when loading
 function _M:colorHighStats(stat)
 	if self:getStat(stat) > 15 then return "#GREEN#"..self:getStat(stat).."#LAST#"
@@ -620,11 +630,11 @@ function _M:preUseTalent(ab, silent)
 				game.logSeen(self, "%s", self:useTalentMessage(ab))
 			end
 			elseif ab.mode == "sustained" and not self:isTalentActive(ab.id) then
-				game.logSeen(self, "%s activates %s.", self.name:capitalize(), ab.name)
+				game.logSeen(self, "%s activates %s.", self:getLogName():capitalize(), ab.name)
 			elseif ab.mode == "sustained" and self:isTalentActive(ab.id) then
-				game.logSeen(self, "%s deactivates %s.", self.name:capitalize(), ab.name)
+				game.logSeen(self, "%s deactivates %s.", self:getLogName():capitalize(), ab.name)
 			else
-				game.logSeen(self, "%s uses %s.", self.name:capitalize(), ab.name)
+				game.logSeen(self, "%s uses %s.", self:getLogName():capitalize(), ab.name)
 		end
 	end
 	return true
@@ -835,13 +845,19 @@ function _M:getSkill(skill)
 	local penalty_for_skill = { balance = "yes", bluff = "no", climb = "yes", concentration = "no", diplomacy = "no", disabledevice = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
 
 	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) 
+	
+	if penalty_for_skill[skill] == "no" then return check end
 
 	if penalty_for_skill[skill] == "yes" then 
 		if self:knowTalent(self.T_ARMOR_OPTIMISATION) and self:attr("armor_penalty") then
-			return check - (self:attr("armor_penalty")/3 or 0) - (self:attr("load_penalty") or 0) end
+			return check - (self:attr("armor_penalty")/3 or 0) - (self:attr("load_penalty") or 0) --end
 		else
 		return check - (self:attr("armor_penalty") or 0) - (self:attr("load_penalty") or 0) end
-	return check end 
+	end
+
+	 
+
+end
 
 function _M:skillCheck(skill, dc, silent)
 	local success = false
