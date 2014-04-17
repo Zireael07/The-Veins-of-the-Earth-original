@@ -45,9 +45,11 @@ newEffect{
 	on_lose = function(self, err) return "#Target# has become stable.", "-Dying" end,
 	activate = function(self, eff)
 		eff.tmpid = self:addTemporaryValue("never_move", 1)
+		eff.particle = self:addParticles(Particles.new("bleeding", 1))
 	end,
 	deactivate = function(self, eff)
 		self:removeTemporaryValue("never_move", eff.tmpid)
+		self:removeParticles(eff.particle)
 	end,
 }
 
@@ -95,6 +97,21 @@ newEffect{
 	status = "detrimental",
 	on_gain = function(self, err) return "#Target# fell!", "+Fell" end,
 	on_lose = function(self, err) return "#Target# got up from the ground.", "-Fell" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("never_move", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("never_move", eff.tmpid)
+	end,
+}
+
+newEffect{
+	name = "UNCONSCIOUS",
+	desc = "Lost consciousness",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# fell into slumber!", "+Unconscious" end,
+	on_lose = function(self, err) return "#Target# regained consciousness.", "-Unconscious" end,
 	activate = function(self, eff)
 		eff.tmpid = self:addTemporaryValue("never_move", 1)
 	end,
