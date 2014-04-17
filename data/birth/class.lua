@@ -1165,7 +1165,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
 			actor:learnTalent(actor.T_CLW_SHAMAN, true)
-			actor:learnTalent(actor.T_ICW_SHAMAN, true)
+			actor:learnTalent(actor.T_ILW_SHAMAN, true)
 			actor:learnTalent(actor.T_FAERIE_FIRE_SHAMAN, true)
 
 			actor:learnTalentType("shaman/shaman", true)
