@@ -71,12 +71,14 @@ function _M:generateList()
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
         local level = self.player.classes[d.name] or 0
         local can_level = d.can_level(self.player)
+        local prestige = false
         local name = ""
 
         --generate description
         local desc = "#KHAKI#"..d.name.."#LAST#"
         if d.prestige then
             desc = desc.."\n#ORCHID#Prestige class#LAST#"
+            prestige = true
         end
         desc = desc.."\n\n"..d.desc
         if can_level then
@@ -84,24 +86,22 @@ function _M:generateList()
         else
             name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #DARK_GREY#"..d.name
         end
-        table.insert(list, {name = name, desc = desc, level = level, real_name = d.name, can_level = can_level})
+        table.insert(list, {name = name, desc = desc, level = level, real_name = d.name, can_level = can_level, prestige = prestige})
     end
 
-    --list[#list+1] = {name="Hello", desc="There"}
-    --list[#list+1] = {name="Hello", desc="To you"}
-
-
-
     local player = game.player
-    --for tid, _ in pairs(descriptor.class) do
-    --    local t = player:getTalentFromId(tid)
-    --end
+
+
     self.list = list
 
     table.sort(self.list, function (a,b)
+        --Can I level it?
         if not a.can_level == b.can_level then
             return a.can_level
         end  
+        --Prestige classes after normal classes
+        if not a.prestige and b.prestige then return true
+        elseif a.prestige and not b.prestige then return false end
         if a.level == b.level then 
             return a.name < b.name
         else 
