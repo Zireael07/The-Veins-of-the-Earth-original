@@ -26,7 +26,13 @@ newChat{ id="start",
 newChat{ id="shop",
     text = [[I will show you my wares.]],
     answers = {
-        {[[Thank you]]},
+        {[[Thank you]], action = function(npc, player)
+    local shop = game:getStore("GENERAL")
+    shop:loadup(game.level, game.zone)
+    shop:interact(game.player, "General shop wares")
+    shop = nil
+    end
+    },
     },
 }
 

@@ -256,6 +256,10 @@ function _M:on_identify()
     game.logSeen(game.player, "Identified: %s", self.name)
 end
 
+function _M:getPrice()
+    local base = self.cost or 0
+    return base
+end
 
 function _M:on_prepickup(who, idx)
     --Auto-destroy cursed items
@@ -268,7 +272,7 @@ function _M:on_prepickup(who, idx)
     if self.pseudo_id == true and self.cursed then game.level.map:removeObject(who.x, who.y, idx) return true end
     
     --Item manager settings
-    local tt = self.subtype
+--[[    local tt = self.subtype
     if who == game.player and tt.destroy then game.level.map:removeObject(who.x, who.y, idx) return true end
-    if who == game.player and tt.no_pickup then return true end
+    if who == game.player and tt.no_pickup then return true end]]
 end

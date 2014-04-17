@@ -36,7 +36,7 @@ function _M:init(t, no_default)
 	t.store.purse = t.store.purse or 20
 	Store.init(self, t, no_default)
 
-	self.name = self.name .. (" (Max buy %0.2f gold)"):format(self.store.purse)
+	self.name = self.name .. (" (Max buy %d gold)"):format(self.store.purse)
 
 	if not self.store.actor_filter then
 		self.store.actor_filter = function(o)
@@ -53,18 +53,23 @@ end
 --- Restock based on player level
 function _M:canRestock()
 	local s = self.store
-	if self.last_filled and self.last_filled >= game.state.stores_restock then
-		print("[STORE] not restocking yet [stores_restock]", game.state.stores_restock, s.restock_every, self.last_filled)
+	if self.last_filled and game.turn and self.last_filled >= game.turn - s.restock_after then
+		print("[STORE] not restocking yet", game.turn, s.restock_after, self.last_filled)
 		return false
 	end
 	return true
+--[[	if self.last_filled and self.last_filled >= game.state.stores_restock then
+		print("[STORE] not restocking yet [stores_restock]", game.state.stores_restock, s.restock_every, self.last_filled)
+		return false
+	end
+	return true]]
 end
 
 --- Fill the store with goods
 -- @param level the level to generate for (instance of type engine.Level)
 -- @param zone the zone to generate for
 function _M:loadup(level, zone)
-	local oldlev = zone.base_level
+--[[	local oldlev = zone.base_level
 
 	if zone.store_levels_by_restock then
 		zone.base_level = zone.store_levels_by_restock[game.state.stores_restock] or zone.base_level
@@ -75,12 +80,7 @@ function _M:loadup(level, zone)
 	end
 
 	zone.base_level = oldlev
-
-	-- clear chrono worlds and their various effects
-	if game._chronoworlds then
-		game.log("#CRIMSON#Your timetravel has no effect on pre-determined outcomes such as this.")
-		game._chronoworlds = nil
-	end
+	end]]
 end
 
 --- Checks if the given entity is allowed
@@ -129,7 +129,7 @@ function _M:onBuy(who, o, item, nb, before)
 	local price = self:getObjectPrice(o, "buy")
 	if who.money >= price * nb then
 		who:incMoney(- price * nb)
-		game.log("Bought: %s for %0.2f gold.", o:getName{do_color=true}, price * nb)
+		game.log("Bought: %s for %d gold.", o:getName{do_color=true}, price * nb)
 	end
 end
 
@@ -148,7 +148,7 @@ function _M:onSell(who, o, item, nb, before)
 	price = math.min(price * nb, self.store.purse * nb)
 	who:incMoney(price)
 	o:forAllStack(function(so) so.__force_store_forget = true end) -- Make sure the store does forget about it when it restocks
-	game.log("Sold: %s for %0.2f gold.", o:getName{do_color=true}, price)
+	game.log("Sold: %s for %d gold.", o:getName{do_color=true}, price)
 end
 
 --- Override the default
@@ -157,15 +157,15 @@ function _M:doBuy(who, o, item, nb, store_dialog)
 	local price
 	nb, price = self:tryBuy(who, o, item, nb)
 	if nb then
-		Dialog:yesnoPopup("Buy", ("Buy %d %s for %0.2f gold"):format(nb, o:getName{do_color=true, no_count=true}, price), function(ok) if ok then
+		Dialog:yesnoPopup("Buy", ("Buy %d %s for %d gold"):format(nb, o:getName{do_color=true, no_count=true}, price), function(ok) if ok then
 			self:onBuy(who, o, item, nb, true)
-			-- Learn lore ?
+			--[[ Learn lore ?
 			if who.player and o.lore then
 				self:removeObject(self:getInven("INVEN"), item)
 				game.party:learnLore(o.lore)
-			else
+			else]]
 				self:transfer(self, who, item, nb)
-			end
+		--	end
 			self:onBuy(who, o, item, nb, false)
 			if store_dialog then store_dialog:updateStore() end
 		end end, "Buy", "Cancel")
@@ -178,7 +178,7 @@ function _M:doSell(who, o, item, nb, store_dialog)
 	local price
 	nb, price = self:trySell(who, o, item, nb)
 	if nb then
-		Dialog:yesnoPopup("Sell", ("Sell %d %s for %0.2f gold"):format(nb, o:getName{do_color=true, no_count=true}, price), function(ok) if ok then
+		Dialog:yesnoPopup("Sell", ("Sell %d %s for %d gold"):format(nb, o:getName{do_color=true, no_count=true}, price), function(ok) if ok then
 			self:onSell(who, o, item, nb, true)
 			self:transfer(who, self, item, nb)
 			self:onSell(who, o, item, nb, false)
@@ -194,11 +194,11 @@ end
 -- @return a string (possibly multiline) describing the object
 function _M:descObject(who, what, o)
 	if what == "buy" then
-		local desc = tstring({"font", "bold"}, {"color", "GOLD"}, ("Buy for: %0.2f gold (You have %0.2f gold)"):format(self:getObjectPrice(o, "buy"), who.money), {"font", "normal"}, {"color", "LAST"}, true, true)
+		local desc = tstring({"font", "bold"}, {"color", "GOLD"}, ("Buy for: %d gold (You have %d gold)"):format(self:getObjectPrice(o, "buy"), who.money), {"font", "normal"}, {"color", "LAST"}, true, true)
 		desc:merge(o:getDesc())
 		return desc
 	else
-		local desc = tstring({"font", "bold"}, {"color", "GOLD"}, ("Sell for: %0.2f gold (You have %0.2f gold)"):format(self:getObjectPrice(o, "sell"), who.money), {"font", "normal"}, {"color", "LAST"}, true, true)
+		local desc = tstring({"font", "bold"}, {"color", "GOLD"}, ("Sell for: %d gold (You have %d gold)"):format(self:getObjectPrice(o, "sell"), who.money), {"font", "normal"}, {"color", "LAST"}, true, true)
 		desc:merge(o:getDesc())
 		return desc
 	end

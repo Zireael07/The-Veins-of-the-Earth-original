@@ -46,6 +46,8 @@ local QuitDialog = require "mod.dialogs.Quit"
 
 local HighScores = require "engine.HighScores"
 local MapMenu = require "mod.dialogs.MapMenu"
+--local Store = require "engine.Store"
+local Store = require "mod.class.Store"
 
 local Tiles = require "engine.Tiles" --required for tiles
 local Shader = require "engine.Shader" --required for fbo + prettiness
@@ -132,7 +134,7 @@ end
 
 function _M:loaded()
 	engine.GameTurnBased.loaded(self)
-	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", }
+	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", trap_class="mod.class.Trap"}
 	Map:setViewerActor(self.player)
 	local th, tw = 32, 32
 	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
@@ -245,6 +247,10 @@ STR %s DEX %s CON %s INT %s WIS %s CHA %s LUC %s]]):format(
 		e:colorHighStats('str'), e:colorHighStats('dex'), e:colorHighStats('con'), e:colorHighStats('int'), e:colorHighStats('wis'), e:colorHighStats('cha'), e:colorHighStats('luc')
 		),
 	}
+end
+
+function _M:getStore(def)
+	return Store.stores_def[def]:clone()
 end
 
 function _M:leaveLevel(level, lev, old_lev)
