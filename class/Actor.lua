@@ -634,7 +634,8 @@ function _M:preUseTalent(ab, silent)
 			elseif ab.mode == "sustained" and self:isTalentActive(ab.id) then
 				game.logSeen(self, "%s deactivates %s.", self:getLogName():capitalize(), ab.name)
 			else
-				game.logSeen(self, "%s uses %s.", self:getLogName():capitalize(), ab.name)
+			--	game.logSeen(self, "%s uses %s.", self:getLogName():capitalize(), ab.name)
+				game.logSeen(self, "%s uses %s.", self:getLogName():capitalize(), self:getTalentName(ab))
 		end
 	end
 	return true
@@ -697,6 +698,31 @@ function _M:getTalentFullDescription(t)
 
 	return table.concat(d, "\n").."\n#6fff83#Description: #FFFFFF#"..t.info(self, t)
 end
+
+function _M:isSpell(t)
+	local tt_def = self:getTalentTypeFrom(t.type[1])
+	local tt = self:getTalentTypeFrom(t)
+
+	if tt_def.all_limited then return true end
+	if t.type[1] == "innate/innate" or t.type[1] == "shaman/shaman" or t.type == "sorcerer/sorcerer" then return true end
+
+	return false 
+
+end
+
+function _M:getTalentName(t)
+	if not self:isSpell(t) then return t.name end
+	if self:isSpell(t) then 
+		if self == game.player then return t.name end
+		--If player can see the source but he isn't the source
+		if self ~= game.player and (game.level.map.seens(self.x, self.y) and game.player:canSee(self)) then 
+			local check = game.player:skillCheck("spellcraft", t.level+15)
+			if check then return t.name --end
+			else return "something" end
+		else return "something" end
+	end
+end	
+
 
 --- How much experience is this actor worth
 -- @param target to whom is the exp rewarded
