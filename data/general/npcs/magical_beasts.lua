@@ -102,6 +102,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 5,
 	skill_spot = 5,
 	skill_concentration = 6,
+	poison = "medium_spider",
 	uncommon_desc = [[All araneas have some sorcerous talents, usually preferring illusions and enchantments and avoiding fire spells.]],
 	common_desc = [[In its spider or hybrid forms, an aranea can throw webs and has a poisonous bite that can weaken or incapacitate opponents. Most araneas speak Common and Sylvan.]],
 	base_desc = [[This creature is an aranea, an intelligent, shapechanging spider. It can see in the dark and change shape.]],
@@ -658,7 +659,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --Climb 20 ft; Poison pri & sec 1d8 CON Fort DC 17, ethereal jaunt
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_PHASE_SPIDER",
-	image = "tiles/spider.png",
+	image = "tiles/newtiles/phase_spider.png",
 	display = 's', color=colors.GREEN,
 	desc = [[A spider with green markings.]],
 	uncommon_desc = [[A phase spider can shift into or out of the Ethereal Plane without warning. Its usual tactic is to suddenly appear on the Material Plane, bite a victim, and then immediately retreat to the Ethereal Plane, where it waits for the creature to die before returning to feed.]],
@@ -678,10 +679,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_movesilently = 8,
 	skill_spot = 3,
 	movement_speed_bonus = 0.33,
+	poison = "medium_spider",
 }
 
 --Burrow 20 ft. swim 10 ft.; improved grab, swallow whole, tremorsense 4 squares
---Poison pri 1d6 STR sec 2d6 STR Fort DC 25
 --Cleave, Imp Bull Rush, Awesome Blow, Weapon Focus
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_PURPLE_WORM",
@@ -701,6 +702,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 19,
 	skill_swim = 8,
 	movement_speed_bonus = -0.33,
+	poison = "purpleworm",
 --	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
 
