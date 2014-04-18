@@ -1,6 +1,36 @@
 CHANGELOG
 
-0.15.0 - 31/03/2013
+0.16.0 beta 5 - 18/04/2014
+* bug fix - summon monster dialog no longer appears if NPCs are trying to use it
+* bug fix - fix trying to perform calculations on nil stat_points
+* bug fix - wands and scrolls being unusable (but they don't work 100% properly yet)
+* bug fix - negative damage when DR x/- is applied
+* bug fix - load penalty is no longer incorrectly applied to skills such as Diplomacy or Intuition
+* bug fix - finished implementing ghoul touch spell
+
+* chests (and mimics)!
+* you can now buy and sell from shopkeepers!
+* poisons! watch out for spiders and centipedes
+* implemented sneak attack and added flanking code in
+* monsters now flee if reduced to below 50% max hp
+* spellbook screen now contains spell information in a separate column
+* kill count screen implemented; item manager screen implemented but non-functional yet
+* implemented Spellcraft
+* drow and duergar got (some) spell-like abilities
+* new tiles: chest, bolas, shuriken, iron door, warded door, darkwood door
+* new races: lizardfolk, kobold, orc
+* new class: shaman (a divine equivalent of a sorcerer)
+* new prestige classes: archmage, loremaster, blackguard, arcane archer
+* new spells: darkness, faerie fire, invisibility, light, charm person
+* character sheet now colors increased/decreased stats
+* can go back to rolling/buying stats screen from the load character screen
+* failure/success messages are now color-coded in log
+* log messages no longer tell you what exactly damaged you if you can't see the source actor
+* particle effects added to bleeding out and faerie fire
+
+
+
+0.15.0 beta 4.7 - 31/03/2014
 * bug fix - reverted Luck influencing items
 * bug fix - undead, elementals and others made immune to criticals
 
@@ -13,7 +43,6 @@ CHANGELOG
 * magic items can now increase Luck, too
 * types and subtypes now influence immunities
 * a batch of new rooms to see
-
 
 
 0.14.0 beta 4.6 - 24/03/2014
