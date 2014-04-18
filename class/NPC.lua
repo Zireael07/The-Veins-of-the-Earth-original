@@ -38,7 +38,7 @@ function _M:act()
 
 	--Morale and fleeing
 	if self.morale_life then --and not self.inactive then
-		if self.life < self.morale_life or (self.life*0.5) then
+		if self.life < self.morale_life or (self.max_life*0.5) then
 			if not self.energy.used then self:runAI("flee_dmap") end
 		end
 	end
