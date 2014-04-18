@@ -19,7 +19,18 @@ newTalent{
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
 	end,
 	action = function (self, t)
-		return True
+		local tg = self:getTalentTarget(t)
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		local duration = 4 --1d6+2
+
+		if target:fortitudeSave(15) then game.log("Target resists the spell!")
+		else 
+			if target:canBe("paralysis") then target:setEffect(target.EFF_GHOUL_TOUCH, duration, {}) end
+		end
+
+		return true
 	end,
 	info = "The target you touch is afflicted with a terrible ailment.", 
 }

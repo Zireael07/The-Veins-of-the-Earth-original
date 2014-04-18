@@ -2121,8 +2121,19 @@ function _M:checkEncumbrance()
 	end
 end
 
+function _M:reactionToward(target)
+    local v = engine.Actor.reactionToward(self, target)
 
-function _M:computeGlobalSpeed()
+    if self:hasEffect(self.EFF_CHARM) then v = math.max(v, 100) end
+
+    return v
+end
+
+
+
+
+
+--[[function _M:computeGlobalSpeed()
 	if self.speed < 0 then
 		self.global_speed = 1/(1 - self.speed/10)
 	elseif self.speed <= 26 then
@@ -2155,3 +2166,4 @@ end
 function _M:has(flag)
 	return self.flags and self.flags[flag] or self:hasEffect(self['EFF_'..flag])
 end
+]]

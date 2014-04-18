@@ -22,6 +22,60 @@ newEffect{
 }
 
 newEffect{
+	name = "CHARM",
+	desc = "Charmed",
+	type = "mental",
+	status = "beneficial", --?
+	on_gain = function(self, err) return "#Target# is charmed!", "+Charm" end,
+	on_lose = function(self, err) return "#Target# regains free will.", "-Charm" end,
+	activate = function(self, eff)
+		--From Qi Daozei
+		 -- Reset NPCs' targets.  Otherwise, they follow the player around
+        -- like a puppy dog.
+        for uid, e in pairs(game.level.entities) do
+            print(e.name)
+            if e.setTarget and e ~= game.player then
+                e:setTarget(nil)
+            end
+        end
+    end,
+	deactivate = function(self, eff)
+	end,
+}
+
+newEffect{
+	name = "GHOUL_TOUCH",
+	desc = "Ghouled",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is rotting!", "+Ghoul" end,
+	on_lose = function(self, err) return "#Target# is no longer rotting.", "-Ghoul" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("never_move", 1)
+		--TO DO: Sicken in 2 sq radius
+    end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("never_move", eff.tmpid)
+	end,
+}
+
+newEffect{
+	name = "HOLD",
+	desc = "Paralyzed",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is paralyzed!", "+Hold" end,
+	on_lose = function(self, err) return "#Target# is no longer paralyzed.", "-Hold" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("never_move", 1)
+    end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("never_move", eff.tmpid)
+	end,
+}
+
+
+newEffect{
 	name = "INVISIBLE",
 	desc = "Invisible",
 	type = "physical",
