@@ -274,7 +274,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
         if self.poison and not target.dead then
           local poison = self.poison
           self:applyPoison(poison, target)
-          game.log(("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name:capitalize()))
+      --    game.log(("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name:capitalize()))
         end
 
         target:takeHit(dam, self)
@@ -292,7 +292,7 @@ function _M:applyPoison(poison, target)
   --Failed save, set timer for secondary damage
   else 
     target.poison_timer = 10
-    game.log(("Target fails the save, DC %d, poison %s"):format(poison_dc[poison], poison))
+    game.log("Target is poisoned!")
       --Failed save, time for primary poison damage
       if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MIDDLING_STR, 10, {}) end
       if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 10, {}, true) end
@@ -326,7 +326,7 @@ function _M:applyPoison(poison, target)
     --Timer's up!
     if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
     else 
-      game.log(("Target fails the save, DC %d, poison %s"):format(poison_dc[poison], poison))
+      game.log("Target is poisoned!")
       --Secondary damage hits!
       if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 10, {}, true) end
       if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 10, {}, true) end
