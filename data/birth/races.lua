@@ -105,6 +105,7 @@ newBirthDescriptor {
 	stats = { str = 2, int = -2, cha = -2, },
 	copy_add = {
 		infravision = 3,
+		--to do: orc blood
 	},
 	copy = {
 		starting_intro = "main",
@@ -239,6 +240,59 @@ newBirthDescriptor {
 		reflex_save = 2,
 		will_save = 2,
 		ecl = 3,
+	},
+	copy = {
+	starting_intro = "dark",
+	}
+}
+
+--Incursion races
+newBirthDescriptor{
+	type = 'race',
+	name = "Lizardfolk",
+	desc = help..'Lizardfolk have a mindset highly different from other sentient races. Because of this, they seem dispassionate and ruthless.\n\n Str +2 Con +2 Int -2 Luc -2. ECL +1. Ref +3. AC +5. Jump, Swim, Balance +4. Favored class: Druid.',
+	stats = { str = 2, con = 2, int = -2, luc = -2, },
+	copy_add = {
+		reflex_save = 3,
+		combat_natural = 5,
+		skill_jump = 4,
+		skill_swim = 4,
+		skill_balance = 4,
+		ecl = 1,
+	},
+	copy = {
+	starting_intro = "dark",
+	}
+}
+
+newBirthDescriptor{
+	type = 'race',
+	name = "Kobold",
+	desc = help..' Small reptilians, cowardly but crafty.\n\n Str -4 Dex +4 Int +2 Cha -2. Darkvision 3. Hide +4, Search +2. AC +2, attack +1. Favored class: Rogue',
+	stats = { str = -4, dex = 4, int = 2, cha = -2, },
+	copy_add = {
+		infravision = 3,
+		skill_search = 2,
+		combat_natural = 1,
+		combat_untyped = 1,
+		combat_attack = 1,
+		skill_hide = 4,
+		--skill_craft = 2,
+	},
+	copy = {
+	starting_intro = "dark",
+	}
+}
+
+--Note: Wisdom bonus as opposed to penalty in SRD!!!
+newBirthDescriptor{
+	type = 'race',
+	name = "Orc",
+	desc = help..'Huge and muscular, the orcs are seen as a plague by the civilized races. However, on their own, their societies prosper.\n\n Str +4 Int -2 Wis +2 Cha -2. Darkvision 3. Favored class: Barbarian.',
+	stats = { str = 4, int = -2, wis = 2, cha = -2, },
+	copy_add = {
+		infravision = 3,
+		--to do: orc blood
 	},
 	copy = {
 	starting_intro = "dark",

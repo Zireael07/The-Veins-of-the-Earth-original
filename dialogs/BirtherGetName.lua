@@ -143,6 +143,20 @@ local random_name = {
   rules = "$s $e",
   },
 
+  --Names taken from Incursion
+  kobold_male = { 
+  syllablesStart = "Izi, Vucha, Tizzit, Zik, Zzas, Olik, Szissrit, Viska, Kissi, Wixel, Zichna, Ezzan, Kitz, Quizzit, Zazel, Igniz, Zigrat, Gizgaz, Rozrim, Zorbin, Aztan, Uzi, Ognin",
+  syllablesEnd = "",
+  rules = "$s $e",
+  },
+
+  kobold_female = { 
+  syllablesStart = "Izi, Vucha, Tizzit, Zik, Zzas, Olik, Szissrit, Viska, Kissi, Wixel, Zichna, Ezzan, Kitz, Quizzit, Zazel, Igniz, Zigrat, Gizgaz, Rozrim, Zorbin, Aztan, Uzi, Ognin",
+  syllablesEnd = "",
+  rules = "$s $e",
+  },
+
+
   --Expanded with some Incursion names that matched the theme
   dwarf_male = {
   syllablesStart ="Barundar, Dorn, Jovin, Khondar, Roryn, Storn, Thorik, Barendd, Brottor, Eberk, Einkil, Oskar, Ragnar, Rurik, Taklinn, Traubon, Ulfgar, Veit, Balderk, Dankil, Gorunn, Holderhek, Loderr, Lutgehr, Ungart, Orgil, Maenlin, Shaldar, Holdgen, Urthak, Gromlin, Makki",
@@ -226,7 +240,7 @@ local random_name = {
       else 
       local ng = NameGenerator.new(random_name.elf_male)
       self.c_box:setText(ng:generate()) end
-    elseif player.descriptor.race == "Half-Orc" then 
+    elseif player.descriptor.race == "Half-Orc" or player.descriptor.race == "Orc" or player.descriptor.race == "Lizardfolk" then 
       if player.descriptor.sex == "Female" then
         local ng = NameGenerator.new(random_name.halforc_female)
         self.c_box:setText(ng:generate())
@@ -267,6 +281,13 @@ local random_name = {
         self.c_box:setText(ng:generate()) 
       else
       local ng = NameGenerator.new(random_name.halfling_male) 
+      self.c_box:setText(ng:generate()) end
+    elseif player.descriptor.race == "Kobold" then
+      if player.descriptor.sex == "Female" then
+        local ng = NameGenerator.new(random_name.kobold_female)
+        self.c_box:setText(ng:generate()) 
+      else
+      local ng = NameGenerator.new(random_name.kobold_male) 
       self.c_box:setText(ng:generate()) end
     end
 

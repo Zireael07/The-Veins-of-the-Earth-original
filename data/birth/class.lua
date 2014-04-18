@@ -51,7 +51,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_RAGE, true)
 
 			if actor == game.player then
-				if actor.descriptor.race == "Half-Orc" then
+				if actor.descriptor.race == "Half-Orc" or actor.descriptor.race == "Orc" then
 			actor.max_life = actor.max_life + 14 + (actor:getCon()-10)/2
 			else
 			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2 end
@@ -67,7 +67,7 @@ newBirthDescriptor {
 		actor.will_save = (actor.will_save or 0) + 0.5
 		actor.skill_point = (actor.skill_point or 0) + 4 + (actor:getInt()-10)/2
 			if actor == game.player then
-				if actor.descriptor.race == "Half-Orc" then
+				if actor.descriptor.race == "Half-Orc" or actor.descriptor.race == "Orc" then
 			--Favored class bonuses
 			actor.combat_attack = (actor.combat_attack or 0) + 1
 			actor.max_life = actor.max_life + 14 + (actor:getCon()-10)/2
@@ -312,8 +312,6 @@ newBirthDescriptor {
 	on_level = function(actor, level)
 		if level == 1 then actor.fortitude_save = (actor.fortitude_save or 0) + 2
 			actor.will_save = (actor.will_save or 0) + 2
-
-			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
@@ -324,6 +322,18 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_FAERIE_FIRE, true)
 
 			actor:learnTalentType("divine", true)
+
+			if actor == game.player then
+				if actor.descriptor.race == "Lizardfolk" then
+				--Favored class bonuses
+				actor.combat_attack = (actor.combat_attack or 0) + 1
+				actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
+			else		 
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
+		
+		else		 
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 
+		end
 		
 		--Any level higher than 1
 		else
@@ -342,10 +352,19 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 1
 		actor.reflex_save = (actor.reflex_save or 0) + 0.5
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
-
-		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
-		end
+
+		if actor == game.player then
+				if actor.descriptor.race == "Lizardfolk" then
+				--Favored class bonuses
+				actor.combat_attack = (actor.combat_attack or 0) + 1
+				actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
+			else		 
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
+		
+		else		 
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
+	end
 	end,
 }   
 
@@ -782,7 +801,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
 			if actor == game.player then
-				if actor.descriptor.race == "Deep gnome" then
+				if actor.descriptor.race == "Deep gnome" or actor.descriptor.race == "Kobold" then
 			--Favored class bonuses
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 				else
@@ -811,7 +830,7 @@ newBirthDescriptor {
 		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
 		actor.skill_point = (actor.skill_point or 0) + 8 + (actor:getInt()-10)/2
 		if actor == game.player then
-			if actor.descriptor.race == "Deep gnome" then
+			if actor.descriptor.race == "Deep gnome" or actor.descriptor.race == "Kobold" then
 		--Favored class bonuses
 		actor.combat_attack = (actor.combat_attack or 0) + 1
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2

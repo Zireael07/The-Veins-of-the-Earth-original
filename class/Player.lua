@@ -711,7 +711,7 @@ function _M:setTile()
     if self.descriptor.class == "Wizard" then self.image = "tiles/newtiles/player/player_human_mage.png" end
     if self.descriptor.class == "Warlock" then self.image = "tiles/newtiles/player/player_human_sorcerer.png" end
     
-  elseif self.descriptor.race == "Half-Elf" then
+  elseif self.descriptor.race == "Half-Elf" or self.descriptor.race == "Half-Drow" then
     if self.descriptor.class == "Barbarian" then self.image = "tiles/newtiles/player/player_halfelf_fighter.png" end
     if self.descriptor.class == "Bard" then self.image = "tiles/newtiles/player/player_halfelf_rogue.png" end
     if self.descriptor.class == "Cleric" then self.image = "tiles/player.png" end
@@ -747,7 +747,7 @@ function _M:setTile()
     if self.descriptor.class == "Wizard" then self.image = "tiles/newtiles/player/player_drow_mage.png" end
     if self.descriptor.class == "Warlock" then self.image = "tiles/newtiles/player/player_drow_sorcerer.png" end
 
-  elseif self.descriptor.race == "Dwarf" then
+  elseif self.descriptor.race == "Dwarf" or self.descriptor.race == "Duergar" then
     if self.descriptor.class == "Barbarian" then self.image = "tiles/newtiles/player/player_dwarf_fighter.png" end
     if self.descriptor.class == "Bard" then self.image = "tiles/newtiles/player/player_dwarf_rogue.png" end
     if self.descriptor.class == "Cleric" then self.image = "tiles/player.png" end
@@ -771,7 +771,7 @@ function _M:setTile()
     if self.descriptor.class == "Wizard" then self.image = "tiles/newtiles/player/player_halfling_mage.png" end
     if self.descriptor.class == "Warlock" then self.image = "tiles/newtiles/player/player_halfling_sorcerer.png" end
 
-  elseif self.descriptor.race == "Gnome" then
+  elseif self.descriptor.race == "Gnome" or self.descriptor.race == "Kobold" then
     if self.descriptor.class == "Barbarian" then self.image = "tiles/newtiles/player/player_gnome_fighter.png" end
     if self.descriptor.class == "Bard" then self.image = "tiles/newtiles/player/player_gnome_rogue.png" end
     if self.descriptor.class == "Cleric" then self.image = "tiles/player.png" end
