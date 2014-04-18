@@ -27,7 +27,6 @@ Features:
 - improved starting equipment, now taking both class and race into account; magic items as perks
 - random name generator taking into account your character's race and sex, now with an option to type the name yourself
 - Effective Character Level
-- Luck stat affects generation of rare loot (but not magical properties)
 - XP for killing monsters, descending deeper, disarming traps, seeing first 4 monsters of a kind
 - multiclassing (with ability score requirements) & prestige classes & favored classes & bonus feats granted by class
 - complete, colored character sheet with tooltips displaying rules info
