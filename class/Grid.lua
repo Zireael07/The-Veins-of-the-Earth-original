@@ -66,3 +66,11 @@ function _M:tooltip()
 		return self:getDisplayString()..self.name
 	end
 end
+
+--Overloads to show exits on minimap:
+function _M:setupMinimapInfo(mo, map)
+	if self:check("block_move") then mo:minimap(150, 150, 150)
+	elseif self:check("change_level") then mo:minimap(255, 255, 0)
+	else mo:minimap(0, 0, 0)
+	end
+end
