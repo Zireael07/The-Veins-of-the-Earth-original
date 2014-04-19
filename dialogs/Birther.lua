@@ -34,7 +34,7 @@ function _M:init(actor)
     self.c_reroll = Button.new{text="Reroll",fct=function() self:onRoll() end}
 
      --Pointbuy button
-    self.c_pointbuy = Button.new{text="Point buy",fct=function() self:onPointBuy() end}
+    self.c_pointbuy = Button.new{text="Next",fct=function() self:onPointBuy() end}
 
     self.t_roll = Tab.new {
     title = 'Roller',
@@ -52,7 +52,7 @@ function _M:init(actor)
     self.player = Player.new{name=self.player_name, game_ender=true}
 
     --Birth button
-    self.c_save = Button.new{text="Birth", fct=function() self:onBirth() end}
+    self.c_save = Button.new{text="Next", fct=function() self:onBirth() end}
     self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
 
     self.t_roll:select()
@@ -74,9 +74,10 @@ function _M:drawDialog(tab)
         {left=0, top=0, ui=self.t_roll},
         {left=self.t_roll, top=0, ui=self.t_pointbuy},
         {left=0, top=10, ui=self.c_desc},
-        {left=0, bottom=0, ui=self.c_reroll},
-        {left=self.c_reroll, bottom=0, ui=self.c_save},
+        {left=0, bottom=100, ui=self.c_reroll},
+        {left=0, bottom=0, ui=self.c_save},
         {left=self.c_save, bottom=0, ui=self.c_premade},
+        {left=0, bottom=self.c_save.h + 5, ui=Separator.new{dir="vertical", size=self.iw - 10}},
     }
     
     self:setupUI()
@@ -112,9 +113,7 @@ function _M:onBirth()
         game.player:resolve(nil, true)
         game.player.energy.value = game.energy_to_act
         game.paused = true
-        
---        game.player:onBirth()
-        
+        game.player.changed = true
         print("[PLAYER BIRTH] resolved!")
         
         game.player:onBirth()
@@ -319,6 +318,7 @@ function _M:loadedPremade()
     print("[PLAYER BIRTH] resolve...")
     game.player:resolve()
     game.player:resolve(nil, true)
+    game.player.changed = true
     game.player.energy.value = game.energy_to_act
     game.paused = true
         
