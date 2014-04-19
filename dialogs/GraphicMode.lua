@@ -55,7 +55,8 @@ function _M:use(item)
 
 	game.gfx = item.val
 	self.changed = true
-	Map:resetTiles()
+	game:setupDisplayMode(true)
+--	Map:resetTiles()
 	game:unregisterDialog(self)
 end
 
