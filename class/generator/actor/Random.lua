@@ -29,6 +29,23 @@ function _M:generateOne()
 	local f = nil
 	if self.filters then f = self.filters[rng.range(1, #self.filters)] end
 	local m = self.zone:makeEntity(self.level, "actor", f, nil, true)
+	--Special case: dlevel 1
+	if game.level.level == 1 then
+		if m and m.challenge <= (game.level.level + 3) then
+			local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
+		local tries = 0
+		--No more spawning in walls!
+		while (self.map:checkEntity(x, y, Map.TERRAIN, "block_move") or (self.map.room_map[x][y] and self.map.room_map[x][y].special)) and tries < 100 do
+			x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
+			tries = tries + 1
+		end
+		if tries < 10000 then
+			self.zone:addEntity(self.level, m, "actor", x, y)
+			if self.post_generation then self.post_generation(m) end
+		end
+		end
+	end
+
 	--Hack! No more CR 20 opponents on dungeon level 1
 	if m and m.challenge <= (game.level.level + 5) then
 		local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
