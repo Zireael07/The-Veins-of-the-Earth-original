@@ -80,8 +80,8 @@ function _M:load()
 end
 
 function _M:run()
-	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
-	self.logdisplay = LogDisplay.new(290, self.h - 150, self.w*0.45, self.h*0.15, nil, nil, 14, {255,255,255}, {30,30,30})
+--	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
+	self.logdisplay = LogDisplay.new(290, self.h - 150, self.w*0.65, self.h*0.15, nil, nil, 14, {255,255,255}, {30,30,30})
 	self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.75, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
 	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
 	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
@@ -90,7 +90,8 @@ function _M:run()
 	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
 
-	self.log = function(style, ...) if type(style) == "number" then self.logdisplay(...) self.flash(style, ...) else self.logdisplay(style, ...) self.flash(self.flash.NEUTRAL, style, ...) end end
+--	self.log = function(style, ...) if type(style) == "number" then self.logdisplay(...) self.flash(style, ...) else self.logdisplay(style, ...) self.flash(self.flash.NEUTRAL, style, ...) end end
+	self.log = function(style, ...) self.logdisplay(style, ...) end
 	self.logSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.log(style, ...) end end
 	self.logPlayer = function(e, style, ...) if e == self.player then self.log(style, ...) end end
 
@@ -98,7 +99,8 @@ function _M:run()
 	self.real_starttime = os.time()
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
-	self.log(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 to open the help screen.")
+--	self.log(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 to open the help screen.")
+	self.log("Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 to open the help screen.")
 
 	-- Setup inputs
 	self:setupCommands()
@@ -429,7 +431,7 @@ function _M:display(nb_keyframe)
 	end
 
 	-- We display the player's interface
-	self.flash:toScreen(nb_keyframe)
+--	self.flash:toScreen(nb_keyframe)
 	self.logdisplay:toScreen()
 	if self.show_npc_list then
 		self.npcs_display:toScreen()
@@ -615,8 +617,9 @@ function _M:setupCommands()
 		end,]]
 
 		LOOK_AROUND = function()
-			self.flash:empty(true)
-			self.flash(self.flash.GOOD, "Looking around... (direction keys to select interesting things, shift+direction keys to move freely)")
+--			self.flash:empty(true)
+--			self.flash(self.flash.GOOD, "Looking around... (direction keys to select interesting things, shift+direction keys to move freely)")
+			self.log("Looking around... (direction keys to select interesting things, shift+direction keys to move freely)")
 			local co = coroutine.create(function() self.player:getTarget{type="hit", no_restrict=true, range=2000} 
 				if x and y then
                     local tmx, tmy = self.level.map:getTileToScreen(x, y)
