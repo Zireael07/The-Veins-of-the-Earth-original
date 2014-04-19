@@ -234,9 +234,12 @@ function _M:act()
 	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
 
 	if self.life == 0 then 
+		--Undead and constructs now die at 0
+		if self.type ~= "undead" and self.type ~= "construct" then
 		self:setEffect(self.EFF_DISABLED, 1, {})
 		self:removeEffect(self.EFF_DYING)
-		end
+		else self:die() end
+	end	
 
 
 	if self.life < 0 then 
