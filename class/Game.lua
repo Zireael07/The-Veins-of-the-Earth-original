@@ -34,7 +34,8 @@ local PlayerDisplay = require "mod.class.PlayerDisplay"
 local HotkeysIconsDisplay = require "mod.class.HotkeysIconsDisplay"
 local ActorsSeenDisplay = require "engine.ActorsSeenDisplay"
 local LogDisplay = require "engine.LogDisplay"
-local LogFlasher = require "engine.LogFlasher"
+--local LogFlasher = require "engine.LogFlasher"
+local LogFlasher = require "mod.class.patch.LogFlasher"
 local DebugConsole = require "engine.DebugConsole"
 local FlyingText = require "engine.FlyingText"
 local Tooltip = require "engine.Tooltip"
@@ -90,15 +91,19 @@ function _M:run()
 	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
 
-	self.log = function(style, ...) if type(style) == "number" then self.logdisplay(...) self.flash(style, ...) else self.logdisplay(style, ...) self.flash(self.flash.NEUTRAL, style, ...) end end
+	self.log = function(style, ...) self.logdisplay(style, ...) end
 	self.logSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.log(style, ...) end end
 	self.logPlayer = function(e, style, ...) if e == self.player then self.log(style, ...) end end
+	--Variations for using the flasher
+	self.flashLog = function(style, ...) if type(style) == "number" then self.logdisplay(...) self.flash(style, ...) else self.logdisplay(style, ...) self.flash(self.flash.NEUTRAL, style, ...) end end
+	self.flashSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.flashLog(style, ...) end end
+	self.flashPlayer = function(e, style, ...) if e == self.player then self.flashLog(style, ...) end end
 
 -- Start time
 	self.real_starttime = os.time()
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
-	self.log(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 to open the help screen.")
+	self.flashLog(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 to open the help screen.")
 
 	-- Setup inputs
 	self:setupCommands()
@@ -388,7 +393,10 @@ end
 function _M:killDead()
 	if not self.level then return end
 	for uid, e in pairs(self.level.entities) do
-		if e.life <= -10 then self.level:removeEntity(e) end
+		if e.life <= -10 then 
+			e:die() 
+			self.level:removeEntity(e) 
+		end
 	end
 end
 
@@ -625,7 +633,7 @@ function _M:setupCommands()
 
 		LOOK_AROUND = function()
 			self.flash:empty(true)
-			self.flash(self.flash.GOOD, "Looking around... (direction keys to select interesting things, shift+direction keys to move freely)")
+			self.flash("Looking around... (direction keys to select interesting things, shift+direction keys to move freely)")
 			local co = coroutine.create(function() self.player:getTarget{type="hit", no_restrict=true, range=2000} 
 				if x and y then
                     local tmx, tmy = self.level.map:getTileToScreen(x, y)
@@ -665,7 +673,7 @@ function _M:setupCommands()
     		if self.player.knowTalent and self.player:knowTalent(self.player.T_SHOW_SPELLBOOK) then 
     			self.player:useTalent(self.player.T_SHOW_SPELLBOOK)
     		else
-    			game.log("Sorry, you do not have a spellbook")
+    			game.logPlayer("Sorry, you do not have a spellbook")
     		end 
 		end,
 

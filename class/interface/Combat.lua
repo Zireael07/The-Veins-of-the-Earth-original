@@ -255,7 +255,8 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
       if crit then
         if target:canBe("crit") then
-            game.log(("%s makes a critical attack!"):format(self:getLogName():capitalize()))
+    --[[        if self == game.player then game.flashLog((game.flash.BAD, "%s makes a critical attack!"):format(self:getLogName():capitalize()))
+            else]] game.log(("%s makes a critical attack!"):format(self:getLogName():capitalize())) --end
          dam = dam * (weapon and weapon.combat.critical or 2)
         else game.log("The target's lack of physiology prevents serious injury")
           dam = dam end
@@ -292,7 +293,8 @@ function _M:applyPoison(poison, target)
   --Failed save, set timer for secondary damage
   else 
     target.poison_timer = 10
-    game.log("Target is poisoned!")
+    if target == game.player then game.flashLog(game.flash.BAD, "You are poisoned!")
+    else game.log("Target is poisoned!") end
       --Failed save, time for primary poison damage
       if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MIDDLING_STR, 10, {}) end
       if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 10, {}, true) end
@@ -326,7 +328,8 @@ function _M:applyPoison(poison, target)
     --Timer's up!
     if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
     else 
-      game.log("Target is poisoned!")
+     if target == game.player then game.flashLog(game.flash.BAD, "You are poisoned!")
+      else game.log("Target is poisoned!") end
       --Secondary damage hits!
       if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 10, {}, true) end
       if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 10, {}, true) end
