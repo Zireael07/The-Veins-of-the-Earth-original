@@ -238,7 +238,10 @@ function _M:act()
 		if self.type ~= "undead" and self.type ~= "construct" then
 		self:setEffect(self.EFF_DISABLED, 1, {})
 		self:removeEffect(self.EFF_DYING)
-		else self:die() end
+		else 
+			if self:hasEffect(self.EFF_DYING) then self:removeEffect(self.EFF_DYING) end
+		self:die() 
+		end
 	end	
 
 
@@ -258,8 +261,13 @@ function _M:act()
 	end	
 
 	--Ensure they can actually die due to bleeding out
-	if not self == game.player and self.life <= -10 and not self.dead then self:die(game.player) end
-	if self.life <= -10 and not self.dead then self:die() end
+	if not self == game.player and self.life <= -10 and not self.dead then 
+		self:removeEffect(self.EFF_DYING) 
+		self:die(game.player) 
+	end
+	if self.life <= -10 and not self.dead then 
+		self:removeEffect(self.EFF_DYING) 
+		self:die() end
 
 	-- check passive stuff. This should be in actbase I think but I cant get it to work
 	if self:knowTalent(self.T_BLOOD_VENGANCE) then
@@ -525,7 +533,11 @@ function _M:levelupMsg()
 		self.level_hiwater = math.max(self.level_hiwater, self.level)
 	end
 
-	game.logSeen(self, "#00FFFF#%s %s level %d.#LAST#", self.name, stale and 'regains' or 'gains', self.level)
+	--Add flash for player
+	if self == game.player then flash = game.flash.GOOD
+	else flash = game.flash.NEUTRAL end
+
+	game.logSeen(self, flash, "#00FFFF#%s %s level %d.#LAST#", self.name, stale and 'regains' or 'gains', self.level)
 	if self.x and self.y and game.level.map.seens(self.x, self.y) then
 		local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
 		game.flyers:add(sx, sy, 80, 0.5, -2, 'LEVEL UP!', stale and {255, 0, 255} or {0, 255, 255})

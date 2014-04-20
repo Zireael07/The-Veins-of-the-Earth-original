@@ -30,6 +30,8 @@ function _M:init(t, no_default)
 end
 
 function _M:act()
+	if self.life <= -10 then self:die() end
+
 	-- Do basic actor stuff
 	if not mod.class.Actor.act(self) then return end
 
@@ -38,9 +40,13 @@ function _M:act()
 
 	--Morale and fleeing
 	if self.morale_life then --and not self.inactive then
-		if self.life < self.morale_life or (self.max_life*0.5) then
+		if self.life < self.morale_life then
 			if not self.energy.used then self:runAI("flee_dmap") end
 		end
+	end
+
+	if self.life / self.max_life < 0.5 then
+		if not self.energy.used then self:runAI("flee_dmap") end
 	end
 
 	-- Let the AI think .... beware of Shub !
