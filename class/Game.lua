@@ -130,10 +130,33 @@ function _M:newGame()
 	self:setupDisplayMode()
 
 	self.creating_player = true
-	
-    --Displays attributes roller before the birther
-    local birther = mod.dialogs.Birther.new(self.player)
-    self:registerDialog(birther)
+
+	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment'}, function()
+
+--    local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'deity', 'alignment', 'domains', 'domains'}, function()
+        game:changeLevel(1, "dungeon")
+        print("[PLAYER BIRTH] resolve...")
+        game.player:resolve()
+        game.player:resolve(nil, true)
+        game.player.energy.value = game.energy_to_act
+        game.paused = true
+        game.player.changed = true
+        print("[PLAYER BIRTH] resolved!")
+        
+        game.player:onBirth()
+        local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
+--self.player:playerLevelup() 
+         game.creating_player = false
+
+        game.player:levelPassives()
+        game.player.changed = true
+        end, true)
+        game:registerDialog(d)
+
+        end, quickbirth, game.w*0.6, game.h*0.6)
+
+    game:registerDialog(birth)
+--end
 
 end
 
