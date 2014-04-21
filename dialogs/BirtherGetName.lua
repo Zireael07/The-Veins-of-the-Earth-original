@@ -70,7 +70,8 @@ function _M:checkNew(name, fct)
 		fct()
 	end
 end
---self:setName
+
+
 function _M:randomName()
 
   self.actor = actor
@@ -260,7 +261,7 @@ local random_name = {
         self.c_box:setText(ng:generate()) 
       else
       local ng = NameGenerator.new(random_name.drow_male)
-      self:setName(ng:generate()) end
+      self.c_box:setText(ng:generate()) end
     elseif player.descriptor.race == "Duergar" then 
       if player.descriptor.sex == "Female" then
         local ng = NameGenerator.new(random_name.duergar_female)
