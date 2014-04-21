@@ -39,7 +39,7 @@ function _M:act()
 		self:doFOV()
 
 	--Morale and fleeing
-	if self.morale_life then --and not self.inactive then
+--[[	if self.morale_life then --and not self.inactive then
 		if self.life < self.morale_life then
 			if not self.energy.used then self:runAI("flee_dmap") end
 		end
@@ -47,14 +47,14 @@ function _M:act()
 
 	if self.life / self.max_life < 0.5 then
 		if not self.energy.used then self:runAI("flee_dmap") end
-	end
+	end]]
 
 	-- Let the AI think .... beware of Shub !
 	-- If AI did nothing, use energy anyway
 	self:doAI()
 
-	if not self.energy.used then self:runAI("move_simple") end
-	if not self.energy.used then self:runAI("move_wander") end
+--	if not self.energy.used then self:runAI("move_simple") end
+--	if not self.energy.used then self:runAI("move_wander") end
 	if not self.energy.used then self:useEnergy() end
 end
 
