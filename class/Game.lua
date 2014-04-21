@@ -416,11 +416,16 @@ end
 function _M:killDead()
 	if not self.level then return end
 	for uid, e in pairs(self.level.entities) do
-		if e.life <= -10 then 
-			e:die() 
-			self.level:removeEntity(e) 
-		end
+		if e.life > -10 then end
+		if e.life <= -10 then e:disappear() end
+			--l[#l+1] = e end
 	end
+--	for i, e in ipairs(l) do
+			--e:disappear()
+			--e:die() 
+		--	self.level:removeEntity(e)
+			--game.level:removeEntity(e)
+--	end
 end
 
 
