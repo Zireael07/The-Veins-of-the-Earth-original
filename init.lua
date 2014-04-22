@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013 Zireael
+-- Copyright (C) 2013-2014 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
-version = {0,16,0}
+version = {0,16,1}
 engine = {1,1,5,"te4"}
 description = [[
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
