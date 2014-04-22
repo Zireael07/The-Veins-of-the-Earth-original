@@ -24,6 +24,21 @@ defineAction{
 	name = "Show message log",
 }
 
+--From Marson's AWOL addon
+defineAction{
+	default = { "sym:_b:true:false:false:false" },
+	type = "MARSON_AWOL",
+	group = "debug",
+	name = "Display NPC tracking screen",
+}
+defineAction{
+	default = { "sym:_c:true:false:false:false" },
+	type = "MARSON_CLONE",
+	group = "debug",
+	name = "Clear clones off current level",
+}
+
+
 
 -- Character movements
 defineAction{

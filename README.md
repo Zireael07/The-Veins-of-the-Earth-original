@@ -63,12 +63,14 @@ Features:
 - level feelings and item feelings (warning: these affect only pre-spawned items, not monster loot)
 - calendar
 - hunger counter and display
+- integrated most of Marson's Bosses AWOL functions
 
 ***
 Thanks to:
 
 - Daniel E.Gervais for releasing his tiles under Creative Commons
 - Julian Mensch aka Journeyman for releasing Incursion as open source and OGL
+- Marson from te4.org forums for his Bosses AWOL and Dev Tools addons
 - rsaarelm from #rgrd for coming up with the name "Veins of the Earth"
 - Grey, DarkGod, HousePet for coding help
 - Zonk for brainstorming

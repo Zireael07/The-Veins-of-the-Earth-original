@@ -24,7 +24,7 @@ function _M:init()
     Press #YELLOW#ESC#LAST# to access the game menu.
     Press #YELLOW#'c'#LAST# to display character sheet.
     Press #YELLOW#'p'#LAST# to display level-up screen.
-    Press #YELLOW#'m'#LAST# to display a list of your activable abilities (shoot, intuition & any spells you might have)
+    Press #YELLOW#'m'#LAST# to display a list of your activable abilities (shoot, polearm & any spells you might have)
     Press #YELLOW#'r'#LAST# to rest.
     Press #YELLOW#'i'#LAST# to display inventory screen.
     Press #YELLOW#'g'#LAST# to pick up items.
@@ -33,6 +33,9 @@ function _M:init()
 
     Press #YELLOW#'F1'#LAST# to display this screen again.
     Press #YELLOW#'F2'#LAST# to display the message log.
+
+    To use debug functions, press #YELLOW#Shift + b#LAST# to see a list of all entities on a level.
+    If you happen to run into an unkillable monster, press #YELLOW#Ctrl + c#LAST# to run a script which kills all such entities.
 ]]
         
     self.c_desc = Textzone.new{width=self.iw, height=self.ih, scrollbar=true, text = self.text}

@@ -53,6 +53,9 @@ local Store = require "mod.class.Store"
 local Tiles = require "engine.Tiles" --required for tiles
 local Shader = require "engine.Shader" --required for fbo + prettiness
 
+local EntityTracker = require "mod.dialogs.debug.EntityTracker"
+local Dialog = require "engine.ui.Dialog"
+
 module(..., package.seeall, class.inherit(engine.GameTurnBased, engine.interface.GameTargeting))
 
 -- Tell the engine that we have a fullscreen shader that supports gamma correction
@@ -724,6 +727,35 @@ function _M:setupCommands()
 		local Chat = require("engine.UserChat")
 			Chat:talkBox()
 		end,
+
+		--From Marson's AWOL addon
+		MARSON_AWOL = function()
+		--	if config.settings.cheat then
+				self:registerDialog(EntityTracker.new())
+		--[[	else
+				Dialog:simplePopup("NPC Tracker", "You need to have cheat mode enabled in order to view this screen.")
+			end]]
+		end,
+
+		MARSON_CLONE = function()
+			for loc, tile in ipairs(game.level.map.map) do
+				local actor = tile[Map.ACTOR]
+				if actor and loc ~= actor.x + actor.y * game.level.map.w then
+					local x = loc % game.level.map.w
+					local y = math.floor(loc / game.level.map.w)
+					local text = ("A clone of '%s' (UID: %d) was found at tile ##%d (%d, %d). The original is located at tile ##%d (%d, %d). Would you like to remove this clone from the level?"):format(actor.name, actor.uid, loc, x, y, actor.x + actor.y * game.level.map.w, actor.x, actor.y)
+					Dialog:yesnoLongPopup("Clone Killer", text, game.w * 0.25,function(kill)
+						if kill then
+							game.log("#LIGHT_RED#[DEBUG] Removed clone of %d '%s' from tile %d (%d, %d)", actor.uid, actor.name, loc, x, y)
+							print("[DEBUG] Removed clone of "..actor.uid.." '"..actor.name.."' from tile "..loc.." ("..x..", "..y..")")
+							game.level.map:remove(x, y, Map.ACTOR)
+						end
+					end)
+				end
+			end
+		end,
+
+
 	 
 	}
 	engine.interface.PlayerHotkeys:bindAllHotkeys(self.key, function(i) self.player:activateHotkey(i) end)
