@@ -132,7 +132,8 @@ newTalent{
 
 		local check = self:skillCheck("diplomacy", 15)
 
-		if check then target:setPersonalReaction(game.player, 150) --makes it neutral
+		if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
+			target.faction = "neutral"
 		else game.log("The target resists your attempts to influence it") end
 
 		return true
@@ -159,8 +160,8 @@ newTalent{
 
 		local check = self:skillCheck("handleanimal", 15)
 
-		if check then target:setPersonalReaction(game.player, 150) --makes it neutral
-
+		if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
+			target.faction = "neutral"
 		else game.log("The target resists your attempts to influence it") end
 		
 		return true

@@ -29,6 +29,7 @@ newEffect{
 	on_gain = function(self, err) return "#Target# is charmed!", "+Charm" end,
 	on_lose = function(self, err) return "#Target# regains free will.", "-Charm" end,
 	activate = function(self, eff)
+		self.faction = "neutral"
 		--From Qi Daozei
 		 -- Reset NPCs' targets.  Otherwise, they follow the player around
         -- like a puppy dog.
@@ -40,6 +41,7 @@ newEffect{
         end
     end,
 	deactivate = function(self, eff)
+		self.faction = "enemies"
 	end,
 }
 
