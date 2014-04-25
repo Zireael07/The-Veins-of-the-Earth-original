@@ -114,3 +114,58 @@ newTalent{
 		return "Hides in shadows"
 	end,
 }
+
+newTalent{
+	name = "Diplomacy", image = "talents/diplomacy.png",
+	type = {"skill/skill",1},
+	mode = "activated",
+	points = 1,
+	cooldown = 20,
+	range = 5,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		local check = self:skillCheck("diplomacy", 15)
+
+		if check then target:setPersonalReaction(game.player, 150) --makes it neutral
+		else game.log("The target resists your attempts to influence it") end
+
+		return true
+	end,
+	info = function(self, t)
+		return "Talk to a sentient creature"
+	end,
+}
+
+newTalent{
+	name = "Animal Empathy", image = "talents/animal_empathy.png",
+	type = {"skill/skill",1},
+	mode = "activated",
+	points = 1,
+	cooldown = 20,
+	range = 5,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		local check = self:skillCheck("handleanimal", 15)
+
+		if check then target:setPersonalReaction(game.player, 150) --makes it neutral
+
+		else game.log("The target resists your attempts to influence it") end
+		
+		return true
+	end,
+	info = function(self, t)
+		return "Attempt to influence an animal"
+	end,
+}

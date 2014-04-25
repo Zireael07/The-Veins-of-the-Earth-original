@@ -94,7 +94,7 @@ function _M:init(t, no_default)
 	self.skill_diplomacy = 0
 	self.skill_disabledevice = 0
 	self.skill_escapeartist = 0
-	self.skill_handleanimal = 0
+	self.skill_handleanimal = 0 --what is called Animal Empathy in Incursion
 	self.skill_heal = 0
 	self.skill_hide = 0
 	self.skill_intimidate = 0
@@ -572,6 +572,14 @@ function _M:die(src)
 
 
 	return true
+end
+
+function _M:resolveSource()
+	if self.summoner_gain_exp and self.summoner then
+		return self.summoner:resolveSource()
+	else
+		return self
+	end
 end
 
 function _M:resetToFull()

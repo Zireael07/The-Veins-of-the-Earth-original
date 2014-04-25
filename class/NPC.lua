@@ -95,6 +95,23 @@ function _M:onTakeHit(value, src)
 	return mod.class.Actor.onTakeHit(self, value, src)
 end
 
+--Personal reaction stuff
+function _M:setPersonalReaction(src, value)
+	local rsrc = src:resolveSource()
+	local rid = rsrc.unique or rsrc.name
+	if not self.reaction_actor then self.reaction_actor = {} end
+	self.reaction_actor[rid] = util.bound(value, -200, 200)
+end
+
+function _M:getPersonalReaction(src, value)
+	local rsrc = src:resolveSource()
+	local rid = rsrc.unique or rsrc.name
+	if not self.reaction_actor then self.reaction_actor = {} end
+	return self.reaction_actor[rid] or 0
+end
+
+
+
 function _M:tooltip()
 	local str = mod.class.Actor.tooltip(self)
 	return str..([[

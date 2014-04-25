@@ -51,6 +51,8 @@ newBirthDescriptor{
 --    [ActorTalents.T_INTUITION]=1,
     [ActorTalents.T_POLEARM]=1,
     [ActorTalents.T_STEALTH]=1,
+    [ActorTalents.T_DIPLOMACY]=1,
+    [ActorTalents.T_ANIMAL_EMPATHY]=1,
   },
   talents_types = {
     ["special/special"] = {true, 0.0},
