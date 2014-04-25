@@ -21,6 +21,7 @@ local GetQuantity = require "engine.dialogs.GetQuantity"
 
 local Map = require "engine.Map"
 local Dialog = require "engine.ui.Dialog"
+local DebugConsole = require "engine.DebugConsole"
 
 module(..., package.seeall, class.inherit(engine.ui.Dialog))
 
@@ -86,17 +87,19 @@ function _M:use(item)
 				if actor and loc ~= actor.x + actor.y * game.level.map.w then
 					local x = loc % game.level.map.w
 					local y = math.floor(loc / game.level.map.w)
-					local text = ("A clone of '%s' (UID: %d) was found at tile ##%d (%d, %d). The original is located at tile ##%d (%d, %d). Would you like to remove this clone from the level?"):format(actor.name, actor.uid, loc, x, y, actor.x + actor.y * game.level.map.w, actor.x, actor.y)
+					--skip dialog
+				--[[	local text = ("A clone of '%s' (UID: %d) was found at tile ##%d (%d, %d). The original is located at tile ##%d (%d, %d). Would you like to remove this clone from the level?"):format(actor.name, actor.uid, loc, x, y, actor.x + actor.y * game.level.map.w, actor.x, actor.y)
 					Dialog:yesnoLongPopup("Clone Killer", text, game.w * 0.25,function(kill)
-						if kill then
+						if kill then]]
 							game.log("#LIGHT_RED#[DEBUG] Removed clone of %d '%s' from tile %d (%d, %d)", actor.uid, actor.name, loc, x, y)
 							print("[DEBUG] Removed clone of "..actor.uid.." '"..actor.name.."' from tile "..loc.." ("..x..", "..y..")")
 							game.level.map:remove(x, y, Map.ACTOR)
-						end
-					end)
+					--	end
+					--end)
 				end
-		--	end
 		end
+	elseif act == "lua-console" then
+		game:registerDialog(DebugConsole.new())
 	else
 		self:triggerHook{"DebugMain:use", act=act}
 	end
@@ -115,6 +118,7 @@ function _M:generateList()
 --	list[#list+1] = {name="Alter Faction", dialog="AlterFaction"}
 --	list[#list+1] = {name="Create Trap", dialog="CreateTrap"}
 	list[#list+1] = {name="Remove all creatures", action="remove-all"}
+	list[#list+1] = {name="Lua Console", action="lua-console"}
 
 	self:triggerHook{"DebugMain:generate", menu=list}
 
