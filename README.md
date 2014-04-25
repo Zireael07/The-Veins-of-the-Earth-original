@@ -71,6 +71,7 @@ Thanks to:
 - Daniel E.Gervais for releasing his tiles under Creative Commons
 - Julian Mensch aka Journeyman for releasing Incursion as open source and OGL
 - Marson from te4.org forums for his Bosses AWOL and Dev Tools addons
+- Lost Garden for free graphics
 - rsaarelm from #rgrd for coming up with the name "Veins of the Earth"
 - Grey, DarkGod, HousePet for coding help
 - Zonk for brainstorming

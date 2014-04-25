@@ -94,6 +94,8 @@ function _M:run()
 	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
 
+	self.minimap_bg, self.minimap_bg_w, self.minimap_bg_h = core.display.loadImage("/data/gfx/ui/minimap.png"):glTexture()
+
 	self.log = function(style, ...) self.logdisplay(style, ...) end
 	self.logSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.log(style, ...) end end
 	self.logPlayer = function(e, style, ...) if e == self.player then self.log(style, ...) end end
@@ -472,7 +474,17 @@ function _M:display(nb_keyframe)
 		self.target:display()
 
 		-- And the minimap
-		self.level.map:minimapDisplay(self.w - 200, 20, util.bound(self.player.x - 25, 0, self.level.map.w - 50), util.bound(self.player.y - 25, 0, self.level.map.h - 50), 50, 50, 0.6)
+	--	self.level.map:minimapDisplay(self.w - 200, 20, util.bound(self.player.x - 25, 0, self.level.map.w - 50), util.bound(self.player.y - 25, 0, self.level.map.h - 50), 50, 50, 0.6)
+		
+		--Taken from ToME
+		self.minimap_bg:toScreen(self.w - 200, 20, 200, 200)
+			if game.player.x then
+				game.minimap_scroll_x, game.minimap_scroll_y = util.bound(game.player.x - 25, 0, map.w - 50), util.bound(game.player.y - 25, 0, map.h - 50)
+			else
+				game.minimap_scroll_x, game.minimap_scroll_y = 0, 0
+			end
+			map:minimapDisplay(self.w - 200, 20, game.minimap_scroll_x, game.minimap_scroll_y, 50, 50, 1)
+
 		self.player_display:toScreen()
 	end
 
