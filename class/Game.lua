@@ -134,6 +134,8 @@ function _M:newGame()
 	Map:setViewerActor(self.player)
 	self:setupDisplayMode()
 
+	self.always_target = true
+
 	self.creating_player = true
 
 	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment'}, function()
@@ -144,6 +146,8 @@ function _M:newGame()
         game.player:resolve()
         game.player:resolve(nil, true)
         game.player.energy.value = game.energy_to_act
+        --Faction display
+        Map:setViewerFaction(self.player.faction)
         game.paused = true
         game.player.changed = true
         print("[PLAYER BIRTH] resolved!")
@@ -663,7 +667,7 @@ function _M:setupCommands()
 		--[[TOGGLE_NPC_LIST = function()
 			self.show_npc_list = not self.show_npc_list
 			self.player.changed = true
-		end,
+		end,]]
 
 		TACTICAL_DISPLAY = function()
 			if Map.view_faction then
@@ -673,7 +677,7 @@ function _M:setupCommands()
 				self.always_target = true
 				Map:setViewerFaction("players")
 			end
-		end,]]
+		end,
 
 		LOOK_AROUND = function()
 			self.flash:empty(true)
