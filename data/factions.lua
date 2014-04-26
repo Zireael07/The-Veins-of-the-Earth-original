@@ -16,8 +16,8 @@
 
 engine.Faction:add{ name="Neutral", reaction={}, }
 --Shopkeepers shouldn't fight random monsters
-engine.Faction:setInitialReaction("neutral", "enemies", 50, true)
-engine.Faction:setInitialReaction("neutral", "players", 50, true)
+engine.Faction:setInitialReaction("neutral", "enemies", 0, true)
+engine.Faction:setInitialReaction("neutral", "players", 0, true)
 
 engine.Faction:add{ name="Allies", reaction={}, }
 engine.Faction:setInitialReaction("allies", "enemies", -100, true)
