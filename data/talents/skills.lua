@@ -134,6 +134,15 @@ newTalent{
 
 		if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
 			target.faction = "neutral"
+			--From Qi Daozei
+		 -- Reset NPCs' targets.  Otherwise, they follow the player around
+        -- like a puppy dog.
+        for uid, e in pairs(game.level.entities) do
+            print(e.name)
+            if e.setTarget and e ~= game.player then
+                e:setTarget(nil)
+            end
+        end
 		else game.log("The target resists your attempts to influence it") end
 
 		return true
@@ -162,6 +171,15 @@ newTalent{
 
 		if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
 			target.faction = "neutral"
+			--From Qi Daozei
+		 -- Reset NPCs' targets.  Otherwise, they follow the player around
+        -- like a puppy dog.
+        for uid, e in pairs(game.level.entities) do
+            print(e.name)
+            if e.setTarget and e ~= game.player then
+                e:setTarget(nil)
+            end
+        end
 		else game.log("The target resists your attempts to influence it") end
 		
 		return true
