@@ -384,6 +384,19 @@ function _M:changeLevel(lev, zone)
 		end
 
 	end
+
+	--Kill off clones automatically
+	for loc, tile in ipairs(game.level.map.map) do
+		local actor = tile[Map.ACTOR]
+		if actor and loc ~= actor.x + actor.y * game.level.map.w then
+			local x = loc % game.level.map.w
+			local y = math.floor(loc / game.level.map.w)
+		--	game.log("#LIGHT_RED#[DEBUG] Removed clone of %d '%s' from tile %d (%d, %d)", actor.uid, actor.name, loc, x, y)
+		--	print("[DEBUG] Removed clone of "..actor.uid.." '"..actor.name.."' from tile "..loc.." ("..x..", "..y..")")
+			game.level.map:remove(x, y, Map.ACTOR)
+		end
+	end
+
 end
 
 function _M:getPlayer()
