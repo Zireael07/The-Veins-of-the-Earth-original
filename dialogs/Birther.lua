@@ -319,6 +319,47 @@ function _M:isDescriptorAllowed(d, ignore_type)
 return allowed
 end
 
+
+--Helper functions yaay for beginner players!
+function _M:isFavoredClass(d)
+    self:updateDescriptors()
+
+    if not self.sel_race then end
+
+    if self.sel_race.name == "Half-Orc" and d.name == "Barbarian" then return true end
+    if self.sel_race.name == "Orc" and d.name == "Barbarian" then return true end
+    if self.sel_race.name == "Half-Elf" and d.name == "Bard" then return true end
+    if self.sel_race.name == "Gnome" and d.name == "Bard" then return true end
+    if self.sel_race.name == "Drow" and self.c_female.checked and d.name == "Cleric" then return true end
+    if self.sel_race.name == "Lizardfolk" and d.name == "Druid" then return true end
+    if self.sel_race.name == "Dwarf" and d.name == "Fighter" then return true end
+    if self.sel_race.name == "Duergar" and d.name == "Fighter" then return true end
+    if self.sel_race.name == "Elf" and d.name == "Ranger" then return true end
+    if self.sel_race.name == "Deep gnome" and d.name == "Rogue" then return true end
+    if self.sel_race.name == "Kobold" and d.name == "Rogue" then return true end
+    if self.sel_race.name == "Drow" and self.c_male.checked and d.name == "Wizard" then return true end
+
+    return false
+end
+
+function _M:isSuggestedClass(d)
+    self:updateDescriptors()
+
+    if self.actor:getStr() >= 15 and d.name == "Barbarian" then return true end
+    if self.actor:getStr() >= 15 and d.name == "Fighter" then return true end
+    if self.actor:getDex() >= 15 and d.name == "Rogue" then return true end
+    if self.actor:getCon() >= 15 and d.name == "Barbarian" then return true end
+    if self.actor:getCon() >= 15 and d.name == "Fighter" then return true end
+    if self.actor:getInt() >= 14 and d.name == "Wizard" then return true end
+    if self.actor:getWis() >= 14 and d.name == "Cleric" then return true end
+    if self.actor:getCha() >= 14 and d.name == "Sorcerer" then return true end
+    if self.actor:getCha() >= 14 and d.name == "Shaman" then return true end
+
+    return false
+end  
+
+
+
 --Generate the lists
 
 function _M:generateLists()
@@ -332,9 +373,11 @@ function _M:generateClasses()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
         if self:isDescriptorAllowed(d) then
-          local color = {255, 255, 255}
-     --[[    if name == self.descriptors_by_type[class] then color = {255,215,0}
-          else color = {255, 255, 255} end]]
+          local color
+            if self:isSuggestedClass(d) then color = {0, 255, 0}
+            elseif self.sel_race and self:isFavoredClass(d) then color = {81, 221, 255}
+            else color = {255, 255, 255} end
+
           list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
         end
     end
@@ -386,12 +429,12 @@ end
 function _M:RaceUse(item, sel)
     if not item then return end
     self.sel_race = nil
-    self:setDescriptor("race", item.name) 
-    --self:updateClasses()
+--    self.sel_race.color = {255, 255, 255}
+    self:setDescriptor("race", item.name)
     self.sel_race = item
     self.sel_race.color = {255, 215, 0}
     self.c_race:drawItem(item)
-
+    self:updateClasses()
 end
 
 function _M:ClassUse(item, sel)
@@ -483,6 +526,7 @@ function _M:incStat(v, id)
     self.c_points.text = _points_text:format(self.unused_stats)
     self.c_points:generate()
     self:StatUpdate()
+    self:updateClasses()
 end
 
 function _M:StatUpdate()
