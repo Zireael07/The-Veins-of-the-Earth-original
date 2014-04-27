@@ -73,6 +73,18 @@ function _M:use(item)
 		game:registerDialog(GetQuantity.new("Zone: "..game.zone.name, "Level 1-"..game.zone.max_level, game.level.level, game.zone.max_level, function(qty)
 			game:changeLevel(qty)
 		end), 1)
+	elseif act == "gain-xp" then
+		game:registerDialog(GetQuantity.new("XP to gain", "1-100000", 1000, 100000, function(qty)
+			game.player:gainExp(qty)
+		end), 1)
+	elseif act == "identify-items" then
+		local inven = game.player:getInven("INVEN")
+		for k, o in ipairs(inven) do
+			if o.pseudo_id == false then o.pseudo_id = true end
+			if  o.identified == false then
+				o.identified = true
+			end
+		end
 	elseif act == "remove-all" then
 		local l = {}
 		for uid, e in pairs(game.level.entities) do
@@ -111,6 +123,8 @@ function _M:generateList()
 	list[#list+1] = {name="Kill off clones", action="kill-clones"} 
 --	list[#list+1] = {name="Change Zone", dialog="ChangeZone"}
 	list[#list+1] = {name="Change Level", action="change_level"}
+	list[#list+1] = {name="Gain XP", action="gain-xp"}
+	list[#list+1] = {name="Identify items in inventory", action="identify-items"}
 	list[#list+1] = {name="Reveal all map", action="magic_map"}
 --	list[#list+1] = {name="Grant/Alter Quests", dialog="GrantQuest"}
 	list[#list+1] = {name="Summon Creature", dialog="SummonCreature"}
