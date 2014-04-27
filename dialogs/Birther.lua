@@ -51,7 +51,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     --UI starts here
 --    self.c_name = Textbox.new{title="Name: ", text="", chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
 
-    self.c_name = Textbox.new{title="Name: ", text="", chars=30, max_len=self.max, fct=function() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
+    self.c_name = Textbox.new{title="Name: ", text="" or game.player_name, chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
 
     self.c_female = Checkbox.new{title="Female", default=true,
         fct=function() end,
@@ -64,6 +64,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
 --    self:onRoll()
     self:onSetupPB()
+    
 
     --Stats list
 
@@ -90,18 +91,22 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     --Lists --self:use(item)
     self:setDescriptor("base", "base")
+    self:generateLists()
 
-
-    self:generateClasses()
+ --   self:generateClasses()
+    self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
     self.c_class = List.new{width=self.iw/6, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end}--self:on_select(item,sel) end}
 
-    self:generateRaces()
+--    self:generateRaces()
+    self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
     self.c_race = List.new{width=self.iw/6, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end} --self:on_select(item,sel) end}
 
-    self:generateBackgrounds()
+--    self:generateBackgrounds()
+    self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
     self.c_background = List.new{width=self.iw/6, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end}
 
-    self:generateAlignment()
+--    self:generateAlignment()
+    self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
     self.c_alignment = List.new{width=self.iw/6, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end}
 
     self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = 400, scrollbar=true, text="Hello from description"}
@@ -124,10 +129,14 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
    --     topstuff self.c_name.h + 15 + self.c_points.h + self.c_stats.h
         --Third line (lists)
-        {left=0, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_class},
-        {left=self.c_class, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_race},
-        {left=self.c_race, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_background},
-        {left=self.c_background, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_alignment},
+        {left=0, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_race_text},
+        {left=0, top=self.c_race_text, ui=self.c_race},
+        {left=self.c_race, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_class_text},
+        {left=self.c_race, top=self.c_class_text, ui=self.c_class},
+        {left=self.c_class, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_background_text},
+        {left=self.c_class, top=self.c_background_text, ui=self.c_background},
+        {left=self.c_background, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_alignment_text},
+        {left=self.c_background, top=self.c_alignment_text, ui=self.c_alignment},
 
         --Description
         {right=0, top=self.c_name.h + 15, ui=self.c_desc},
@@ -212,6 +221,48 @@ function _M:on_select(item,sel)
     self.selection = sel    
 end
 
+function _M:update()
+    local sel = self.selection
+--  game.log(""..self.selection)
+    self:generateLists() -- Slow! Should just update the one changed and sort again
+    self.c_class.list = self.list_class
+    self.c_race.list = self.list_race
+    self.c_alignment.list = self.list_alignment
+    self.c_background.list = self.list_background
+    self.c_class:generate()
+    self.c_race:generate()
+    self.c_alignment:generate()
+    self.c_background:generate()
+end
+
+function _M:updateRaces()
+    local sel = self.selection
+    self:generateRaces()
+    self.c_race.list = self.list_race
+    self.c_race:generate()
+end
+
+function _M:updateClasses()
+    local sel = self.selection
+    self:generateClasses()
+    self.c_class.list = self.list_class
+    self.c_class:generate()
+end
+
+function _M:updateAlignment()
+    local sel = self.selection
+    self:generateAlignment()
+    self.c_alignment.list = self.list_alignment
+    self.c_alignment:generate()
+end
+
+function _M:updateBackgrounds()
+    local sel = self.selection
+    self:generateBackgrounds()
+    self.c_background.list = self.list_background
+    self.c_background:generate()
+end
+
 function _M:updateDescriptors()
     self.descriptors = {}
     table.insert(self.descriptors, self.birth_descriptor_def.base[self.descriptors_by_type.base])
@@ -269,12 +320,21 @@ return allowed
 end
 
 --Generate the lists
+
+function _M:generateLists()
+    self:generateClasses()
+    self:generateRaces()
+    self:generateBackgrounds()
+    self:generateAlignment()
+end
+
 function _M:generateClasses()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
         if self:isDescriptorAllowed(d) then
-
-          local color = {255,255,255}
+          local color = {255, 255, 255}
+     --[[    if name == self.descriptors_by_type[class] then color = {255,215,0}
+          else color = {255, 255, 255} end]]
           list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
         end
     end
@@ -285,7 +345,9 @@ function _M:generateRaces()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.race) do
         if self:isDescriptorAllowed(d) then
-          local color = {255,255,255}
+          local color = {255, 255, 255}
+    --[[      if d.name == self.actor.descriptor.race then color = {255, 215, 0}
+          else color = {255,255,255} end]]
 
           list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
         end
@@ -297,8 +359,9 @@ function _M:generateBackgrounds()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.background) do
         if self:isDescriptorAllowed(d) then
-
-          local color = {255,255,255}
+          local color = {255, 255, 255}
+ --[[     if name == self.actor.descriptor.background then color = {255, 215, 0}
+          else color = {255,255,255} end]]
 
           list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
         end
@@ -310,8 +373,9 @@ function _M:generateAlignment()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.alignment) do
         if self:isDescriptorAllowed(d) then
-
-          local color = {255,255,255}
+          local color = {255, 255, 255}
+    --[[      if name == self.actor.descriptor.background then color = {255, 215, 0}
+          else color = {255,255,255} end]]
 
           list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
         end
@@ -321,45 +385,47 @@ end
 
 function _M:RaceUse(item, sel)
     if not item then return end
-    self:setDescriptor("race", item.name)
+    self.sel_race = nil
+    self:setDescriptor("race", item.name) 
+    --self:updateClasses()
     self.sel_race = item
     self.sel_race.color = {255, 215, 0}
     self.c_race:drawItem(item)
---    self:generateRaces()
+
 end
 
 function _M:ClassUse(item, sel)
     if not item then return end
+    self.sel_class = nil
     self:setDescriptor("class", item.name)
+    self:updateBackgrounds()
+    self:updateAlignment()
     self.sel_class = item
     self.sel_class.color = {255, 215, 0}
     self.c_class:drawItem(item)
---[[    self.generateClasses()
 
-    self:generateBackgrounds()
-    self:generateAlignment()]]
 end
 
 function _M:AlignmentUse(item, sel)
     if not item then return end
+    self.sel_alignment = nil
     self:setDescriptor("alignment", item.name)
     self.sel_alignment = item
     self.sel_alignment.color = {255, 215, 0}
     self.c_alignment:drawItem(item)
 
---[[    self:generateClasses()
-    self:generateAlignment()]]
 end
 
 function _M:BackgroundUse(item, sel)
     if not item then return end
+    self.sel_background = nil
     self:setDescriptor("background", item.name)
+--    self:updateBackgrounds()
+--    self:update()
     self.sel_background = item
     self.sel_background.color = {255, 215, 0}
     self.c_background:drawItem(item)
---[[    self:generateBackgrounds()
-
-    self:generateClasses()]]
+    
 end
 
 --Stats stuff
@@ -416,10 +482,10 @@ function _M:incStat(v, id)
     self.c_stats:onSelect()
     self.c_points.text = _points_text:format(self.unused_stats)
     self.c_points:generate()
-    self:update()
+    self:StatUpdate()
 end
 
-function _M:update()
+function _M:StatUpdate()
     self.c_stats.key:addBinds{
     --    ACCEPT = function() self.key:triggerVirtual("EXIT") end,
         MOVE_LEFT = function() self:incStat(-1) end,
@@ -447,7 +513,9 @@ function _M:onRoll()
     local player = self.actor
     local mod_sum = (player:getStr()-10)/2 + (player:getDex()-10)/2 + (player:getCon()-10)/2 + (player:getInt()-10)/2 + (player:getWis()-10)/2 + (player:getCha()-10)/2 
     if mod_sum <= 0 or (math.max(player:getStr(), math.max(player:getDex(), math.max(player:getCon(), math.max(player:getInt(), math.max(player:getWis(), player:getCha()))))) <= 13) then self:onRoll()
-    else self.c_stats:generate() end
+    else 
+        self.c_stats:generate() 
+    end
 
 
     --self:drawTab() end
@@ -557,7 +625,7 @@ function _M:loadedPremade()
 
     game:unregisterDialog(self)
 --    game:unregisterDialog(d)
-    self.creating_player = true
+--[[  self.creating_player = true
     game:changeLevel(1, "dungeon")
     print("[PLAYER BIRTH] resolve...")
     game.player:resolve()
@@ -566,7 +634,9 @@ function _M:loadedPremade()
     game.player.energy.value = game.energy_to_act
     game.paused = true
         
-    print("[PLAYER BIRTH] resolved!")
+    print("[PLAYER BIRTH] resolved!")]] 
+
+    game:changeLevel(1, "dungeon")
 
     game.player:onPremadeBirth()
     local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
@@ -727,6 +797,9 @@ local random_name = {
 } 
 
   local player = game.player
+
+  local sex_def = self.birth_descriptor_def.sex[self.descriptors_by_type.sex]
+  local race_def = self.birth_descriptor_def.race[self.descriptors_by_type.race]
 
     if player.descriptor.race == "Human" then
       if player.descriptor.sex == "Female" then 
