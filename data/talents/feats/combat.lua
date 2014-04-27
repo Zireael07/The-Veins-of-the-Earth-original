@@ -25,10 +25,14 @@ newTalent{
             return false
         end
     end,
-    activate = function(self, t)
-        return true
+    activate = function(self, t) 
+    local res = {
+        attack = self:addTemporaryValue("combat_attack", -5)
+}
+        return res
     end,
-    deactivate = function(self, t)
+    deactivate = function(self, t, p)
+        self:removeTemporaryValue("combat_attack", p.attack)
         return true
     end,
 	info = [[You can substract a number from your base attack bonus and add it to damage bonus.]],
@@ -60,12 +64,16 @@ newTalent{
     end,
     activate = function(self, t)
         local d = rng.dice(1,5)
-
-        self:addTemporaryValue("combat_untyped", d)
-        return true
+        local res = {
+        ac = self:addTemporaryValue("combat_untyped", d),
+        attack = self:addTemporaryValue("combat_attack", -d)
+    }
+    
+        return res
     end,
-    deactivate = function(self, t)
-        self:removeTemporaryValue("combat_untyped", d)
+    deactivate = function(self, t, p)
+        self:removeTemporaryValue("combat_untyped", p.ac)
+        self:removeTemporaryValue("combat_attack", p.attack)
 
         return true
     end,

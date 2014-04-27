@@ -79,15 +79,15 @@ function _M:attackTarget(target, noenergy)
     --  if self:knowTalent(self.T_MONKEY_GRIP) and weapon and weapon.slot_forbid == "OFF_HAND" then
           
       
-      --Combat Expertise & Power Attack penalties (Zi)
+      --[[Combat Expertise & Power Attack penalties (Zi)
       if self:isTalentActive(self.T_COMBAT_EXPERTISE) then 
         local d = rng.dice(1,5)
         attackmod = attackmod -d
       end
-
+      
       if self:isTalentActive(self.T_POWER_ATTACK) then
         attackmod = attackmod - 5
-      end 
+      end ]]
       
       --Dual-wielding
       if offweapon then
