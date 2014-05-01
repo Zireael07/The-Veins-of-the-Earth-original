@@ -23,7 +23,12 @@ return {
 --	persistent = "zone",
 	generator =  {
 		map = {
-			class = "mod.class.generator.map.Roomer",
+			class = "engine.generator.map.TileSet",
+		--	tileset = {"5x5/base", "5x5/basic_rooms", "5x5/tunnel", "5x5/windy_tunnel", "5x5/crypt"},
+			tileset = {"5x5/base", "5x5/basic_rooms", "5x5/tunnel", "5x5/windy_tunnel", "5x5/new_rooms" },
+			tunnel_chance = 80,
+
+		--[[	class = "mod.class.generator.map.Roomer",
 			nb_rooms = 10,
 			rooms = { 
 			--Nothing special
@@ -36,7 +41,7 @@ return {
 			lite_room_chance = 0,
 			door_chance = 1,
 			tunnel_change = 90,
-			tunnel_random = 40,
+			tunnel_random = 40,]]
 			['.'] = "FLOOR",
 	--		['.'] = { "FLOOR", "MOSS", "CHASM", "WATER", }
 			['#'] = "WALL",
