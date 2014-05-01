@@ -35,9 +35,9 @@ newEntity{
 	skill_search = 1,
 	skill_movesilently = 1,
 
-	encounter_escort = {
+--[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="kobold", number=3, no_subescort = true},
-  	},
+  	},]]
 }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
@@ -96,9 +96,9 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 2,
 	
-	encounter_escort = {
+--[[	encounter_escort = {
 	{chance = 50, type="humanoid", name="orc", number=1, no_subescort = true},
-  	},
+  	},]]
   	resolvers.class()
 }
 
@@ -140,9 +140,9 @@ newEntity{
 	skill_movesilently = 4,
 	skill_listen = 2,
 	skill_spot = 1,
-	encounter_escort = {
+--[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="kobold", number=2, no_subescort = true},
-  	},
+  	},]]
 --	resolvers.class()
 }
 
@@ -189,9 +189,9 @@ newEntity{
 	skill_search = 3,
 	skill_spot = 2,
 
-	encounter_escort = {
+--[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="drow", faction = "enemies", number=3, no_subescort = true},
-  	},
+  	},]]
 	resolvers.class()
 }
 
@@ -738,7 +738,6 @@ newEntity{
 
 
 --Planetouched
---Darkness
 newEntity{
 	define_as = "BASE_NPC_TIEFLING",
 	type = "humanoid", subtype = "planetouched",
@@ -768,7 +767,9 @@ newEntity{
 	[DamageType.ELECTRIC] = 5,
 	[DamageType.COLD] = 5,
 	},
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.talents{ [Talents.T_SHOOT]=1, 
+		[Talents.T_DARKNESS_INNATE]=1,
+	},
 	resolvers.equip{
 		full_id=true,
 		{ name = "studded leather armor" },
@@ -833,7 +834,7 @@ newEntity{
 --Shopkeepers
 newEntity{
 	base = "BASE_NPC_DROW",
-	name = "drow", color=colors.BLACK,
+	name = "drow shopkeeper", color=colors.BLACK,
 	image = "tiles/newtiles/drow_shop.png",
 	level_range = {1, nil}, exp_worth = 150,
 	rarity = 3,
@@ -859,7 +860,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_HUMAN",
-	name = "human", color=colors.WHITE,
+	name = "human shopkeeper", color=colors.WHITE,
 	image = "tiles/newtiles/human_shop.png",
 	level_range = {1, 5}, exp_worth = 150,
 	rarity = 5,
