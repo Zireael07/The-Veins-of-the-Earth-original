@@ -49,9 +49,10 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.min = 2
 
     --UI starts here
---    self.c_name = Textbox.new{title="Name: ", text="", chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
+--    self.c_name = Textbox.new{title="Name: ", text="" or game.player_name, chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
 
-    self.c_name = Textbox.new{title="Name: ", text="" or game.player_name, chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
+    local c_box = Textbox.new{title="Name: ", text="", chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_mouse = function(button) if button == "right" then self:randomName() end end }
+    self.c_name = c_box
 
     self.c_female = Checkbox.new{title="Female", default=true,
         fct=function() end,
@@ -62,7 +63,6 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         on_change=function(s) self.c_female.checked = not s self:setDescriptor("sex", s and "Male" or "Female") end
     }
 
---    self:onRoll()
     self:onSetupPB()
     
 
@@ -71,41 +71,34 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.unused_stats = self.unused_stats or 32
     self.c_points = Textzone.new{width=self.iw/6, height=15, no_color_bleed=true, text=_points_text:format(self.unused_stats)}
 
+    self:generateStats()
     self.c_stats = ListColumns.new{width=self.iw/6, height=200, all_clicks=true, columns={
         {name="Stat", width=30, display_prop="name"},
         {name="Value", width=30, display_prop="val"},
-    }, list={
-        {name="STR", val=self.actor:getStr(), stat_id=self.actor.STAT_STR, delta = 1},
-        {name="DEX", val=self.actor:getDex(), stat_id=self.actor.STAT_DEX, delta = 1},
-        {name="CON", val=self.actor:getCon(), stat_id=self.actor.STAT_CON, delta = 1},
-        {name="INT", val=self.actor:getInt(), stat_id=self.actor.STAT_INT, delta = 1},
-        {name="WIS", val=self.actor:getWis(), stat_id=self.actor.STAT_WIS, delta = 1},
-        {name="CHA", val=self.actor:getCha(), stat_id=self.actor.STAT_CHA, delta = 1},
-        {name="LUC", val=self.actor:getLuc(), stat_id=self.actor.STAT_LUC, delta = 1},
-    }, fct=function(item, _, v)
+    }, list=self.list_stats, fct=function(item, _, v)
         self:incStat(v == "left" and 1 or -1, item.stat_id)
     end, select=function(item, sel) self.sel = sel self.val = item.val self.id = item.stat_id self.delta = item.delta end}
 
     self.c_reroll = Button.new{text="Reroll",fct=function() self:onRoll() end}
+    self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
+
+    self:generatePerkText()
+    self.c_perk = Textzone.new{auto_width=true, auto_height=true, text="#LIGHT_BLUE#"..self.perk_text}
 
 
-    --Lists --self:use(item)
+    --Lists
     self:setDescriptor("base", "base")
     self:generateLists()
 
- --   self:generateClasses()
     self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
     self.c_class = List.new{width=self.iw/6, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end}--self:on_select(item,sel) end}
 
---    self:generateRaces()
     self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
     self.c_race = List.new{width=self.iw/6, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end} --self:on_select(item,sel) end}
 
---    self:generateBackgrounds()
     self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
     self.c_background = List.new{width=self.iw/6, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end}
 
---    self:generateAlignment()
     self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
     self.c_alignment = List.new{width=self.iw/6, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end}
 
@@ -113,6 +106,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
     self.c_save = Button.new{text="     Play!     ", fct=function() self:atEnd() end}
+    self.c_cancel = Button.new{text="Cancel", fct=function() self:cancel() end}
 
     self:loadUI{
         -- First line
@@ -124,7 +118,10 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         --Second line (stats)
         {left=0, top=self.c_name.h + 20, ui=self.c_points},
         {left=0, top=self.c_name.h + 20 + self.c_points.h, ui=self.c_stats},
-        {left=self.c_stats.w + 5, top = self.c_name.h + 20, ui=self.c_reroll},
+        {left=self.c_stats.w + 5, top = self.c_name.h + 20, ui=self.c_reset},
+        {left=self.c_stats.w +5, top = self.c_name.h + 20 + self.c_reset.h + 5, ui=self.c_reroll},
+        {left=self.c_stats.w + 5, top = self.c_name.h + 20 + self.c_reset.h + 5 + self.c_reroll.h + 5, ui=self.c_perk },
+        
         {left=0, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
 
    --     topstuff self.c_name.h + 15 + self.c_points.h + self.c_stats.h
@@ -142,20 +139,19 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         {right=0, top=self.c_name.h + 15, ui=self.c_desc},
 
         --Buttons
-        {left=0, bottom=0, ui=self.c_premade},
+        {left=0, bottom=0, ui=self.c_cancel},
+        {left=self.c_cancel, bottom=0, ui=self.c_premade},
         {right=0, bottom=0, ui=self.c_save},
         {left=0, bottom=self.c_save.h + 5, ui=Separator.new{dir="vertical", size=self.iw - 10}},
 
     }
-    self:setFocus(self.c_stats)
     self:setFocus(self.c_name)
+    self:setFocus(self.c_stats)
+    
 
     self:setupUI()
 
 --    self.key:addBind("EXIT", function() game:unregisterDialog(self) end)
-    
---        self:onRoll()
---    self:onSetupPB()
 
 end
 
@@ -172,6 +168,10 @@ function _M:atEnd()
     self:apply()
     self.at_end()
     print("[BIRTHER] Finished!")
+end
+
+function _M:cancel()
+    util.showMainMenu()
 end
 
 --Name stuffs 
@@ -223,7 +223,6 @@ end
 
 function _M:update()
     local sel = self.selection
---  game.log(""..self.selection)
     self:generateLists() -- Slow! Should just update the one changed and sort again
     self.c_class.list = self.list_class
     self.c_race.list = self.list_race
@@ -288,7 +287,7 @@ function _M:setDescriptor(key, val)
             break
         end
     end
-    self:toggleDisplay(self.c_save, ok) ]] 
+    self:toggleDisplay(self.c_save, ok)  ]]
 end
 
 function _M:isDescriptorAllowed(d, ignore_type)
@@ -358,10 +357,32 @@ function _M:isSuggestedClass(d)
     return false
 end  
 
+function _M:isSuggestedBackground(d)
+    self:updateDescriptors()
+
+    if not self.sel_class then return end
+
+    if self.sel_class.name == "Barbarian" and d.name == "Brawler" then return true end
+    if self.sel_class.name == "Cleric" and d.name == "Spellcaster" then return true end
+    if self.sel_class.name == "Druid" and d.name == "Spellcaster" then return true end
+    if self.sel_class.name == "Fighter" and d.name == "Tough guy" then return true end
+    if self.sel_class.name == "Rogue" and d.name == "Sneaky thief" then return true end
+    if self.sel_class.name == "Shaman" and d.name == "Spellcaster" then return true end
+    if self.sel_class.name == "Sorcerer" and d.name == "Spellcaster" then return true end
+    if self.sel_class.name == "Wizard" and d.name == "Spellcaster" then return true end
+
+    if self.sel_class.name == "Monk" and d.name == "Born hero" then return true end
+    if self.sel_class.name == "Bard" and d.name == "Born hero" then return true end
+    if self.sel_class.name == "Ranger" and d.name == "Born hero" then return true end
+    if self.sel_class.name == "Warlock" and d.name == "Born hero" then return true end
+
+
+    return false
+end
+
 
 
 --Generate the lists
-
 function _M:generateLists()
     self:generateClasses()
     self:generateRaces()
@@ -369,12 +390,73 @@ function _M:generateLists()
     self:generateAlignment()
 end
 
+
+--Display random perk
+function _M:generatePerkText()
+
+    for j, t in pairs(self.actor.talents_def) do
+            if self.actor:knowTalent(t.id) then
+            --    self.perk_text = t.name
+                self.perk_text = ("%s"):format(t.name)
+            end
+            self.perk_text = ""
+    end
+
+   
+--[[    local list = {}
+        for j, t in pairs(self.actor.talents_def) do
+            if self.actor:knowTalent(t.id) then
+
+                list[#list+1] = {
+                    name = ("%s"):format(t.name),
+                    desc = self.actor:getTalentFullDescription(t):toString(),
+                }
+            end
+        end
+
+        for i, t in ipairs(list) do
+--            s:drawColorStringBlended(self.font, ("#LIGHT_BLUE#%s#LAST#"):format(t.name), w, h, 255, 255, 255, true) h = h + self.font_h
+        end]]
+end
+
+function _M:generateStats()
+    local list = {}
+
+    list = 
+    {
+            {name="STR", val=self.actor:getStr(), stat_id=self.actor.STAT_STR, delta = 1},
+            {name="DEX", val=self.actor:getDex(), stat_id=self.actor.STAT_DEX, delta = 1},
+            {name="CON", val=self.actor:getCon(), stat_id=self.actor.STAT_CON, delta = 1},
+            {name="INT", val=self.actor:getInt(), stat_id=self.actor.STAT_INT, delta = 1},
+            {name="WIS", val=self.actor:getWis(), stat_id=self.actor.STAT_WIS, delta = 1},
+            {name="CHA", val=self.actor:getCha(), stat_id=self.actor.STAT_CHA, delta = 1},
+            {name="LUC", val=self.actor:getLuc(), stat_id=self.actor.STAT_LUC, delta = 1},
+        }
+
+    self.list_stats = list
+end
+
+function _M:generateRaces()
+    local list = {}
+    for i, d in ipairs(Birther.birth_descriptor_def.race) do
+        if self:isDescriptorAllowed(d) then
+          local color 
+          if self.sel_race and self.sel_race.name == d.name then color = {255, 215, 0}
+          else color = {255, 255, 255} end
+
+          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
+        end
+    end
+    self.list_race = list
+end 
+
 function _M:generateClasses()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
         if self:isDescriptorAllowed(d) then
           local color
-            if self:isSuggestedClass(d) then color = {0, 255, 0}
+            if self.sel_class and self.sel_class.name == d.name then color = {255, 215, 0}
+            elseif self:isSuggestedClass(d) then color = {0, 255, 0}
             elseif self.sel_race and self:isFavoredClass(d) then color = {81, 221, 255}
             else color = {255, 255, 255} end
 
@@ -384,27 +466,14 @@ function _M:generateClasses()
     self.list_class = list
 end 
 
-function _M:generateRaces()
-    local list = {}
-    for i, d in ipairs(Birther.birth_descriptor_def.race) do
-        if self:isDescriptorAllowed(d) then
-          local color = {255, 255, 255}
-    --[[      if d.name == self.actor.descriptor.race then color = {255, 215, 0}
-          else color = {255,255,255} end]]
-
-          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
-        end
-    end
-    self.list_race = list
-end 
-
 function _M:generateBackgrounds()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.background) do
         if self:isDescriptorAllowed(d) then
-          local color = {255, 255, 255}
- --[[     if name == self.actor.descriptor.background then color = {255, 215, 0}
-          else color = {255,255,255} end]]
+          local color 
+          if self.sel_background and self.sel_background.name == d.name then color = {255, 215, 0}
+          elseif self.sel_class and self:isSuggestedBackground(d) then color = {81, 221, 255}
+          else color = {255, 255, 255} end
 
           list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
         end
@@ -416,9 +485,9 @@ function _M:generateAlignment()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.alignment) do
         if self:isDescriptorAllowed(d) then
-          local color = {255, 255, 255}
-    --[[      if name == self.actor.descriptor.background then color = {255, 215, 0}
-          else color = {255,255,255} end]]
+          local color 
+          if self.sel_alignment and self.sel_alignment.name == d.name then color = {255, 215, 0}
+          else color = {255, 255, 255} end
 
           list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
         end
@@ -429,11 +498,9 @@ end
 function _M:RaceUse(item, sel)
     if not item then return end
     self.sel_race = nil
---    self.sel_race.color = {255, 255, 255}
     self:setDescriptor("race", item.name)
     self.sel_race = item
-    self.sel_race.color = {255, 215, 0}
-    self.c_race:drawItem(item)
+    self:updateRaces()
     self:updateClasses()
 end
 
@@ -441,12 +508,10 @@ function _M:ClassUse(item, sel)
     if not item then return end
     self.sel_class = nil
     self:setDescriptor("class", item.name)
+    self.sel_class = item
+    self:updateClasses()
     self:updateBackgrounds()
     self:updateAlignment()
-    self.sel_class = item
-    self.sel_class.color = {255, 215, 0}
-    self.c_class:drawItem(item)
-
 end
 
 function _M:AlignmentUse(item, sel)
@@ -454,21 +519,15 @@ function _M:AlignmentUse(item, sel)
     self.sel_alignment = nil
     self:setDescriptor("alignment", item.name)
     self.sel_alignment = item
-    self.sel_alignment.color = {255, 215, 0}
-    self.c_alignment:drawItem(item)
-
+    self:updateAlignment()
 end
 
 function _M:BackgroundUse(item, sel)
     if not item then return end
     self.sel_background = nil
     self:setDescriptor("background", item.name)
---    self:updateBackgrounds()
---    self:update()
     self.sel_background = item
-    self.sel_background.color = {255, 215, 0}
-    self.c_background:drawItem(item)
-    
+    self:updateBackgrounds()
 end
 
 --Stats stuff
@@ -537,6 +596,8 @@ function _M:StatUpdate()
     }
 end
 
+
+
 --Roller stuff now
 function _M:onRoll()
     local player = self.actor
@@ -558,12 +619,30 @@ function _M:onRoll()
     local mod_sum = (player:getStr()-10)/2 + (player:getDex()-10)/2 + (player:getCon()-10)/2 + (player:getInt()-10)/2 + (player:getWis()-10)/2 + (player:getCha()-10)/2 
     if mod_sum <= 0 or (math.max(player:getStr(), math.max(player:getDex(), math.max(player:getCon(), math.max(player:getInt(), math.max(player:getWis(), player:getCha()))))) <= 13) then self:onRoll()
     else 
+        self:generateStats()
+        self.c_stats.list = self.list_stats
         self.c_stats:generate() 
+        self:updateClasses()
+    --[[    self.generatePerkText()
+        self.c_perk.text = self.perk_text
+        self.c_perk:generate()]]
     end
 
 
     --self:drawTab() end
 end
+
+function _M:onReset()
+    self.unused_stats = 32
+    self.c_points.text = _points_text:format(self.unused_stats)
+    self.c_points:generate()
+    self:onSetupPB()
+    self:generateStats()
+    self.c_stats.list = self.list_stats
+    self.c_stats:generate()
+    self:updateClasses()
+end
+
 
 
 -- Disable stuff from the base Birther
@@ -634,6 +713,7 @@ function _M:loadPremadeUI()
     local sep = Separator.new{dir="horizontal", size=400}
 
     local load = Button.new{text=" Load ", fct=function() if sel then self:loadPremade(sel) game:unregisterDialog(d) end end}
+    local close = Button.new{text="Close", fct=function() unregisterDialog(d) end }
     local del = Button.new{text="Delete", fct=function() if sel then
         self:yesnoPopup(sel.name, "Really delete premade: "..sel.name, function(ret) if ret then
             local vault = CharacterVaultSave.new(sel.short_name)
@@ -652,15 +732,12 @@ function _M:loadPremadeUI()
         {right=0, top=0, ui=desc},
 
         {left=0, bottom=0, ui=load},
-        {right=0, bottom=0, ui=del},
+        {left=load.w + 5, bottom=0, ui=del},
+        {right=0, bottom=0, ui=close},
     }
     d:setupUI(true, true)
-    --Can now go back to roller
-    d.key:addBind("EXIT", function() 
-        game:unregisterDialog(d) 
-    --    game:registerDialog(require("mod.dialogs.Birther").new(game.player))
-        game:registerDialog(self) 
-    end)
+
+
     game:unregisterDialog(self)
     game:registerDialog(d)
 end
@@ -841,77 +918,77 @@ local random_name = {
 } 
 
   local player = game.player
+  self:updateDescriptors()
 
-  local sex_def = self.birth_descriptor_def.sex[self.descriptors_by_type.sex]
-  local race_def = self.birth_descriptor_def.race[self.descriptors_by_type.race]
+    if not self.sel_race then return end
 
-    if player.descriptor.race == "Human" then
-      if player.descriptor.sex == "Female" then 
+    if self.sel_race.name == "Human" then
+      if self.c_female_checked then 
       local ng = NameGenerator.new(random_name.human_female) 
       self.c_name:setText(ng:generate()) 
       else local ng = NameGenerator.new(random_name.human_male)
         self.c_name:setText(ng:generate()) end
-    elseif player.descriptor.race == "Half-Elf" or player.descriptor.race == "Half-Drow" then 
-      if player.descriptor.sex == "Female" then
+    elseif self.sel_race.name == "Half-Elf" or self.sel_race.name == "Half-Drow" then 
+      if self.c_female_checked then
         local ng = NameGenerator.new(random_name.halfelf_female)
         self.c_name:setText(ng:generate()) 
       else
       local ng = NameGenerator.new(random_name.halfelf_male) 
       self.c_name:setText(ng:generate()) end
-    elseif player.descriptor.race == "Elf" then
-      if player.descriptor.sex == "Female" then
+    elseif self.sel_race.name == "Elf" then
+      if self.c_female_checked then
       local ng = NameGenerator.new(random_name.elf_female)
       self.c_name:setText(ng:generate()) 
       else 
       local ng = NameGenerator.new(random_name.elf_male)
       self.c_name:setText(ng:generate()) end
-    elseif player.descriptor.race == "Half-Orc" or player.descriptor.race == "Orc" or player.descriptor.race == "Lizardfolk" then 
-      if player.descriptor.sex == "Female" then
+    elseif self.sel_race.name == "Half-Orc" or self.sel_race.name == "Orc" or self.sel_race.name == "Lizardfolk" then 
+      if self.c_female_checked then
         local ng = NameGenerator.new(random_name.halforc_female)
         self.c_name:setText(ng:generate())
       else
       local ng = NameGenerator.new(random_name.halforc_male)
       self.c_name:setText(ng:generate()) end
-    elseif player.descriptor.race == "Dwarf" then 
-      if player.descriptor.sex == "Female" then
+    elseif self.sel_race.name == "Dwarf" then 
+      if self.c_female_checked then
         local ng = NameGenerator.new(random_name.dwarf_female)
         self.c_name:setText(ng:generate()) 
       else 
       local ng = NameGenerator.new(random_name.dwarf_male) 
       self.c_name:setText(ng:generate()) end
-    elseif player.descriptor.race == "Drow" then 
-      if player.descriptor.sex == "Female" then
+    elseif self.sel_race.name == "Drow" then 
+      if self.c_female_checked then
         local ng = NameGenerator.new(random_name.drow_female)
         self.c_name:setText(ng:generate()) 
-      else
+      else--if self.c_male.checked then
       local ng = NameGenerator.new(random_name.drow_male)
       self.c_name:setText(ng:generate()) end
-    elseif player.descriptor.race == "Duergar" then 
-      if player.descriptor.sex == "Female" then
+    elseif self.sel_race.name == "Duergar" then 
+      if self.c_female_checked then
         local ng = NameGenerator.new(random_name.duergar_female)
         self.c_name:setText(ng:generate())
       else
       local ng = NameGenerator.new(random_name.duergar_male) 
       self.c_name:setText(ng:generate()) end
-    elseif player.descriptor.race == "Deep gnome" or player.descriptor.race == "Gnome" then 
-      if player.descriptor.sex == "Female" then
+    elseif self.sel_race == "Deep gnome" or self.sel_race.name == "Gnome" then 
+      if self.c_female_checked then
         local ng = NameGenerator.new(random_name.gnome_female)
         self.c_name:setText(ng:generate()) 
       else
       local ng = NameGenerator.new(random_name.gnome_male) 
       self.c_name:setText(ng:generate()) end
-    elseif player.descriptor.race == "Halfling" then
-      if player.descriptor.sex == "Female" then
+    elseif self.sel_race.name == "Halfling" then
+      if self.c_female_checked then
         local ng = NameGenerator.new(random_name.halfling_female)
         self.c_name:setText(ng:generate()) 
       else
       local ng = NameGenerator.new(random_name.halfling_male) 
       self.c_name:setText(ng:generate()) end
-    elseif player.descriptor.race == "Kobold" then
-      if player.descriptor.sex == "Female" then
+    elseif self.sel_race.name == "Kobold" then
+      if self.c_female_checked then
         local ng = NameGenerator.new(random_name.kobold_female)
         self.c_name:setText(ng:generate()) 
-      else
+      else--if self.c_male.checked then
       local ng = NameGenerator.new(random_name.kobold_male) 
       self.c_name:setText(ng:generate()) end
     end
