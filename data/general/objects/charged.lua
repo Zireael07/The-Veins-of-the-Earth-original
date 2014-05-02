@@ -25,20 +25,18 @@ newEntity{
     level_range = {1,10},
     cost = 4500,
     rarity = 20,
- --[[   max_power = 50,
-    power_regen = 1,
-    use_talent = {id = Talents.T_MAGIC_MISSILE, level = 1, power = 1 },]]
     multicharge = 50,
     use_simple = { name = "magic missile",
-    use = function(self,t)
-        local tg = {type="bolt", range=5, talent=t, display={display='*',color=colors.ORCHID}}
-        local x, y = self:getTarget(tg)
-        local _ _, _, _, x, y = self:canProject(tg, x, y)
+    use = function(self, who)
+        local tg = {type="bolt", range=5, display={display='*',color=colors.ORCHID}}
+        local x, y = who:getTarget(tg)
+        local _ _, _, _, x, y = who:canProject(tg, x, y)
         if not x or not y then return nil end
 
         local damage = rng.dice(1,4)+1
 
-        self:projectile(tg, x, y, DamageType.FORCE, damage)    
+        who:projectile(tg, x, y, DamageType.FORCE, {dam=damage})    
+        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
 end
 },
 }
@@ -51,16 +49,126 @@ newEntity{
     level_range = {1,10},
     cost = 4500,
     rarity = 20,
---[[    max_power = 50,
-    power_regen = 1,
-    use_talent = { id= Talents.T_BEAR_ENDURANCE, level = 2, power = 1 },]]
     use_simple = { name = "bear endurance",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
     return {used = true, destroy = true}
 end
 },
 }
+
+newEntity{
+    base = "BASE_WAND",
+    name = "wand of bull strength",
+    unided_name = "a wand",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "bull strength",
+    use = function(self, who)
+       who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_WAND",
+    name = "wand of cat's grace",
+    unided_name = "a wand",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "cat grace",
+    use = function(self, who)
+       who:setEffect(who.EFF_CAT_GRACE, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_WAND",
+    name = "wand of fox cunning",
+    unided_name = "a scroll",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "fox cunning",
+    use = function(self, who)
+       who:setEffect(who.EFF_FOX_CUNNING, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_WAND",
+    name = "wand of owl wisdom",
+    unided_name = "a wand",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "owl wisdom",
+    use = function(self, who)
+       who:setEffect(who.EFF_OWL_WISDOM, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_WAND",
+    name = "wand of eagle splendor",
+    unided_name = "a wand",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "eagle splendor",
+    use = function(self, who)
+       who:setEffect(who.EFF_EAGLE_SPLENDOR, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_WAND",
+    name = "wand of identify",
+    unided_name = "a wand",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "identify",
+    use = function(self, who)
+        local inven = game.player:getInven("INVEN")
+        local d d = who:showInventory("Identify which item?", inven, function(o) return not o.identified end, function(o, item)
+            if o.identified == false then o.identified = true end
+        end)
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
 
 game.scroll_materials = {"abbil", "abban","alae","alartae","akh","belbau","belbol","bol","dro","dalharil","dalharuk","dalninil","dalninuk","dhaerow","dobluth","darthiir","faer","faern","hargluk","harl","harluth","Har'oloth","ilhar","ilharn","ilythiiri","jal","malla","maglust","natha","obsul","orbb","phor","pholor","phuul","plynn","qu'ellar","rivvil", "rivvin","ssin'urn","ssussun","xun","xundus","tagnik", "tagnik'zur","tluth","ulartae","valsharess","veldruk", "veldriss", "veldrin","z'ress" }
 
@@ -94,20 +202,19 @@ newEntity{
     level_range = {1, 10},
     cost = 4500,
     rarity = 2,
---[[    max_power = 50,
-    power_regen = 1,
-    use_talent = { id = Talents.T_MAGIC_MISSILE, level = 1, power = 1},]]
     multicharge = 50,
     use_simple = { name = "magic missile",
-    use = function(self,t)
-    local tg = {type="bolt", range=5, talent=t, display={display='*',color=colors.ORCHID}}
-        local x, y = self:getTarget(tg)
-        local _ _, _, _, x, y = self:canProject(tg, x, y)
+    use = function(self, who)
+        local tg = {type="bolt", range=5, display={display='*',color=colors.ORCHID}}
+        local x, y = who:getTarget(tg)
+        local _ _, _, _, x, y = who:canProject(tg, x, y)
         if not x or not y then return nil end
 
         local damage = rng.dice(1,4)+1
 
-        self:projectile(tg, x, y, DamageType.FORCE, damage)    
+        who:projectile(tg, x, y, DamageType.FORCE, {dam=damage})    
+
+        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
 end
 },
 }
@@ -120,13 +227,122 @@ newEntity{
     level_range = {1,10},
     cost = 4500,
     rarity = 2,
---[[    max_power = 50,
-    power_regen = 1,
-    use_talent = { id = Talents. T_BEAR_ENDURANCE, level = 2, power = 1}]]
     multicharge = 50,
     use_simple = { name = "bear endurance",
     use = function(self, who)
        who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_SCROLL",
+    name = "scroll of bull strength",
+    unided_name = "a scroll",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "bull strength",
+    use = function(self, who)
+       who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_SCROLL",
+    name = "scroll of cat's grace",
+    unided_name = "a scroll",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "cat grace",
+    use = function(self, who)
+       who:setEffect(who.EFF_CAT_GRACE, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_SCROLL",
+    name = "scroll of fox cunning",
+    unided_name = "a scroll",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "fox cunning",
+    use = function(self, who)
+       who:setEffect(who.EFF_FOX_CUNNING, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_SCROLL",
+    name = "scroll of owl wisdom",
+    unided_name = "a scroll",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "owl wisdom",
+    use = function(self, who)
+       who:setEffect(who.EFF_OWL_WISDOM, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_SCROLL",
+    name = "scroll of eagle splendor",
+    unided_name = "a scroll",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "eagle splendor",
+    use = function(self, who)
+       who:setEffect(who.EFF_EAGLE_SPLENDOR, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    base = "BASE_SCROLL",
+    name = "scroll of identify",
+    unided_name = "a scroll",
+    identified = false,
+    level_range = {1,10},
+    cost = 4500,
+    rarity = 2,
+    multicharge = 50,
+    use_simple = { name = "identify",
+    use = function(self, who)
+        local inven = game.player:getInven("INVEN")
+        local d d = who:showInventory("Identify which item?", inven, function(o) return not o.identified end, function(o, item)
+            if o.identified == false then o.identified = true end
+        end)
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
     return {used = true, destroy = true}
 end
 },
