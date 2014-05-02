@@ -870,19 +870,3 @@ newTalent{
     	self.inc_damage = nil
     end
 }
-
---SPECIAL!!!
-newTalent{
-	name = "Born Hero",
-	type = {"class/general", 1},
---	is_feat = true,
-	points = 1,
-	mode = "passive",
-	info = [[This feat increases all your saves and AC by 1.]],
-	on_learn = function(self, t)
-        self.combat_untyped = (self.combat_untyped or 0) + 1
-        self.fortitude_save = (self.fortitude_save or 0) + 2
-        self.reflex_save = (self.reflex_save or 0) + 2
-        self.will_save = (self.will_save or 0) + 2
-    end
-}

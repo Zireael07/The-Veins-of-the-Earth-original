@@ -39,6 +39,7 @@ end
 
 
 load("data/talents/feats/feats.lua")
+load("data/talents/feats/perks.lua")
 load("data/talents/feats/metamagic.lua")
 load("data/talents/feats/combat.lua")
 

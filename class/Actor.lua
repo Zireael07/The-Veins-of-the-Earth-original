@@ -888,6 +888,13 @@ end
 --- Can the target be applied some effects
 -- @param what a string describing what is being tried
 function _M:canBe(what)
+	if what == "poison" and self:knowTalent(self.T_POISON_IMMUNITY) then return false end
+	if what == "disease" and self:knowTalent(self.T_DISEASE_IMMUNITY) then return false end
+	if what == "sleep" and self:knowTalent(self.T_SLEEP_IMMUNITY) then return false end
+	if what == "paralysis" and self:knowTalent(self.T_PARALYSIS_IMMUNITY) then return false end
+	if what == "confusion" and self:knowTalent(self.T_CONFUSION_IMMUNITY) then return false end
+
+
 	if what == "crit" and self.type == "construct" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
 	if what == "poison" and self.type == "construct" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
 	if what == "sleep" and self.type == "construct" or self.type == "dragon" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
@@ -1309,7 +1316,7 @@ end
 
 --Random perks
 function _M:randomFeat()
-	local chance = rng.dice(1,26)
+	local chance = rng.dice(1,29)
 	
 	if chance == 1 then self:learnTalent(self.T_DODGE, true) self.perk = "Dodge"
 	elseif chance == 2 then self:learnTalent(self.T_FINESSE, true) self.perk = "Finesse"
@@ -1336,6 +1343,9 @@ function _M:randomFeat()
 	elseif chance == 23 then self:randomFocus()
 	elseif chance == 24 then self:randomFavEnemy()
 	elseif chance == 25 then self:randomFavEnemy()
+	elseif chance == 26 then self:randomImmunity()
+	elseif chance == 27 then self:randomImmunity()
+	elseif chance == 28 then self:randomImmunity()
 		--[[Commented out due to the problems with on_pre_use
 		if chance == 1 then self:learnTalent(self.T_POWER_ATTACK, true)]]
 	
@@ -1410,6 +1420,20 @@ function _M:randomFavEnemy()
 	else self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_WATER, true) self.perk = "Favored Enemy (water outsiders)" end
 
 end
+
+function _M:randomImmunity()
+	local chance = rng.dice(1,10)
+	if chance == 1 then self:learnTalent(self.T_POISON_IMMUNITY, true) self.perk = "Poison Immunity"
+	elseif chance == 2 then self:learnTalent(self.T_DISEASE_IMMUNITY, true) self.perk = "Disease Immunity"
+	elseif chance == 3 then self:learnTalent(self.T_SLEEP_IMMUNITY, true) self.perk = "Sleep Immunity"
+	elseif chance == 4 then self:learnTalent(self.T_PARALYSIS_IMMUNITY, true) self.perk = "Paralysis Immunity"
+	elseif chance == 5 then self:learnTalent(self.T_FIRE_RESISTANCE, true) self.perk = "Fire Resistance"
+	elseif chance == 6 then	self:learnTalent(self.T_ACID_RESISTANCE, true) self.perk = "Acid Resistance"
+	elseif chance == 7 then self:learnTalent(self.T_COLD_RESISTANCE, true) self.perk = "Cold Resistance"
+	elseif chance == 8 then self:learnTalent(self.T_ELECTRICITY_RESISTANCE, true) self.perk = "Electricity Resistance"
+	elseif chance == 9 then self:learnTalent(self.T_SONIC_RESISTANCE, true) self.perk = "Sonic Resistance"	
+	else self:learnTalent(self.T_CONFUSION_IMMUNITY, true) self.perk = "Confusion Immunity" end
+end	
 
 function _M:randomSpell()
 	local chance = rng.dice(1,4)
