@@ -66,6 +66,7 @@ function _M:init(t, no_default)
 	--Some more combat stuff
 	self.more_attacks = 0
 	self.poison = self.poison or nil
+	self.perk = self.perk or ""
 
 	--Challenge Rating & ECL set to 0 & 1
 	self.challenge = 0
@@ -121,7 +122,7 @@ function _M:init(t, no_default)
 	self.skill_bonus_diplomacy = 0
 	self.skill_bonus_disabledevice = 0
 	self.skill_bonus_escapeartist = 0
-	self.skill_bonus_handleanimal = 0
+	self.skill_bonus_handleanimal = 0 --what is called Animal Empathy in Incursion
 	self.skill_bonus_heal = 0
 	self.skill_bonus_hide = 0
 	self.skill_bonus_intimidate = 0
@@ -959,8 +960,6 @@ function _M:getSkill(skill)
 		return check - (self:attr("armor_penalty") or 0) - (self:attr("load_penalty") or 0) end
 	end
 
-	 
-
 end
 
 function _M:skillCheck(skill, dc, silent)
@@ -1039,6 +1038,7 @@ function _M:crossClass(skill)
 	if self.last_class and self.last_class == "Fighter" and c_fighter[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Monk" and c_monk[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Paladin" and c_paladin[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Ranger" and c_ranger[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Rogue" and c_rogue[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Sorcerer" and c_sorcerer[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Wizard" and c_wizard[skill] == "no" then return true end
@@ -1311,27 +1311,27 @@ end
 function _M:randomFeat()
 	local chance = rng.dice(1,26)
 	
-	if chance == 1 then self:learnTalent(self.T_DODGE, true)
-	elseif chance == 2 then self:learnTalent(self.T_FINESSE, true)
-	elseif chance == 3 then self:learnTalent(self.T_TOUGHNESS, true)
-	elseif chance == 4 then self:learnTalent(self.T_ACROBATIC, true)
-	elseif chance == 5 then self:learnTalent(self.T_AGILE, true)
-	elseif chance == 6 then self:learnTalent(self.T_ALERTNESS, true)
-	elseif chance == 7 then self:learnTalent(self.T_ANIMAL_AFFINITY, true)
-	elseif chance == 8 then self:learnTalent(self.T_ARTIST, true)
-	elseif chance == 9 then self:learnTalent(self.T_ATHLETIC, true)
-	elseif chance == 10 then self:learnTalent(self.T_COMBAT_CASTING, true)
-	elseif chance == 11 then self:learnTalent(self.T_DEFT_HANDS, true)
-	elseif chance == 12 then self:learnTalent(self.T_INVESTIGATOR, true)
-	elseif chance == 13 then self:learnTalent(self.T_MAGICAL_APTITUDE, true)
-	elseif chance == 14 then self:learnTalent(self.T_MAGICAL_TALENT, true)
-	elseif chance == 15 then self:learnTalent(self.T_NEGOTIATOR, true)
-	elseif chance == 16 then self:learnTalent(self.T_NIMBLE_FINGERS, true)
-	elseif chance == 17 then self:learnTalent(self.T_PERSUASIVE, true)
-	elseif chance == 18 then self:learnTalent(self.T_SILVER_PALM, true)
-	elseif chance == 19 then self:learnTalent(self.T_STEALTHY, true)
-	elseif chance == 20 then self:learnTalent(self.T_THUG, true)
-	elseif chance == 21 then self:learnTalent(self.T_TWO_WEAPON_FIGHTING, true)
+	if chance == 1 then self:learnTalent(self.T_DODGE, true) self.perk = "Dodge"
+	elseif chance == 2 then self:learnTalent(self.T_FINESSE, true) self.perk = "Finesse"
+	elseif chance == 3 then self:learnTalent(self.T_TOUGHNESS, true) self.perk = "Toughness"
+	elseif chance == 4 then self:learnTalent(self.T_ACROBATIC, true) self.perk = "Acrobatic"
+	elseif chance == 5 then self:learnTalent(self.T_AGILE, true) self.perk = "Agile"
+	elseif chance == 6 then self:learnTalent(self.T_ALERTNESS, true) self.perk = "Alertness"
+	elseif chance == 7 then self:learnTalent(self.T_ANIMAL_AFFINITY, true) self.perk = "Animal Affinity"
+	elseif chance == 8 then self:learnTalent(self.T_ARTIST, true) self.perk = "Artist"
+	elseif chance == 9 then self:learnTalent(self.T_ATHLETIC, true) self.perk = "Athletic"
+	elseif chance == 10 then self:learnTalent(self.T_COMBAT_CASTING, true) self.perk = "Combat Casting"
+	elseif chance == 11 then self:learnTalent(self.T_DEFT_HANDS, true) self.perk = "Deft Hands"
+	elseif chance == 12 then self:learnTalent(self.T_INVESTIGATOR, true) self.perk = "Investigator"
+	elseif chance == 13 then self:learnTalent(self.T_MAGICAL_APTITUDE, true) self.perk = "Magical Aptitude"
+	elseif chance == 14 then self:learnTalent(self.T_MAGICAL_TALENT, true) self.perk = "Magical Talent"
+	elseif chance == 15 then self:learnTalent(self.T_NEGOTIATOR, true) self.perk = "Negotiator"
+	elseif chance == 16 then self:learnTalent(self.T_NIMBLE_FINGERS, true) self.perk = "Nimble Fingers"
+	elseif chance == 17 then self:learnTalent(self.T_PERSUASIVE, true) self.perk = "Persuasive"
+	elseif chance == 18 then self:learnTalent(self.T_SILVER_PALM, true) self.perk = "Silver Palm"
+	elseif chance == 19 then self:learnTalent(self.T_STEALTHY, true) self.perk = "Stealthy"
+	elseif chance == 20 then self:learnTalent(self.T_THUG, true) self.perk = "Thug"
+	elseif chance == 21 then self:learnTalent(self.T_TWO_WEAPON_FIGHTING, true) self.perk = "Two Weapon Fighting"
 	elseif chance == 22 then self:randomFocus()
 	elseif chance == 23 then self:randomFocus()
 	elseif chance == 24 then self:randomFavEnemy()
@@ -1339,106 +1339,106 @@ function _M:randomFeat()
 		--[[Commented out due to the problems with on_pre_use
 		if chance == 1 then self:learnTalent(self.T_POWER_ATTACK, true)]]
 	
-	else self:learnTalent(self.T_IRON_WILL, true) end
+	else self:learnTalent(self.T_IRON_WILL, true) self.perk = "Iron Will" end
 
 end
 
 function _M:randomFocus()
 	local chance = rng.dice(1,24)
 
-	if chance == 1 then self:learnTalent(self.T_WEAPON_FOCUS_AXE, true)
-	elseif chance == 2 then self:learnTalent(self.T_WEAPON_FOCUS_BATTLEAXE, true)
-	elseif chance == 3 then self:learnTalent(self.T_WEAPON_FOCUS_BOW, true)
-	elseif chance == 4 then self:learnTalent(self.T_WEAPON_FOCUS_CLUB, true)
-	elseif chance == 5 then self:learnTalent(self.T_WEAPON_FOCUS_CROSSBOW, true)
-	elseif chance == 6 then self:learnTalent(self.T_WEAPON_FOCUS_DAGGER, true)
-	elseif chance == 7 then self:learnTalent(self.T_WEAPON_FOCUS_FALCHION, true)
-	elseif chance == 8 then self:learnTalent(self.T_WEAPON_FOCUS_FLAIL, true)
-	elseif chance == 9 then self:learnTalent(self.T_WEAPON_FOCUS_HALBERD, true)
-	elseif chance == 10 then self:learnTalent(self.T_WEAPON_FOCUS_HAMMER, true)
-	elseif chance == 11 then self:learnTalent(self.T_WEAPON_FOCUS_HANDAXE, true)
-	elseif chance == 12 then self:learnTalent(self.T_WEAPON_FOCUS_JAVELIN, true)
-	elseif chance == 13 then self:learnTalent(self.T_WEAPON_FOCUS_KUKRI, true)
-	elseif chance == 14 then self:learnTalent(self.T_WEAPON_FOCUS_MACE, true)
-	elseif chance == 15 then self:learnTalent(self.T_WEAPON_FOCUS_MORNINGSTAR, true)
-	elseif chance == 16 then self:learnTalent(self.T_WEAPON_FOCUS_RAPIER, true)
-	elseif chance == 17 then self:learnTalent(self.T_WEAPON_FOCUS_SCIMITAR, true)
-	elseif chance == 18 then self:learnTalent(self.T_WEAPON_FOCUS_SCYTHE, true)
-	elseif chance == 19 then self:learnTalent(self.T_WEAPON_FOCUS_SHORTSWORD, true)
-	elseif chance == 20 then self:learnTalent(self.T_WEAPON_FOCUS_SPEAR, true)
-	elseif chance == 21 then self:learnTalent(self.T_WEAPON_FOCUS_SLING, true)
-	elseif chance == 22 then self:learnTalent(self.T_WEAPON_FOCUS_STAFF, true)
-	elseif chance == 23 then self:learnTalent(self.T_WEAPON_FOCUS_SWORD, true)
+	if chance == 1 then self:learnTalent(self.T_WEAPON_FOCUS_AXE, true) self.perk = "Weapon Focus (axe)"
+	elseif chance == 2 then self:learnTalent(self.T_WEAPON_FOCUS_BATTLEAXE, true) self.perk = "Weapon Focus (battleaxe)"
+	elseif chance == 3 then self:learnTalent(self.T_WEAPON_FOCUS_BOW, true) self.perk = "Weapon Focus (bow)"
+	elseif chance == 4 then self:learnTalent(self.T_WEAPON_FOCUS_CLUB, true) self.perk = "Weapon Focus (club)"
+	elseif chance == 5 then self:learnTalent(self.T_WEAPON_FOCUS_CROSSBOW, true) self.perk = "Weapon Focus (crossbow)"
+	elseif chance == 6 then self:learnTalent(self.T_WEAPON_FOCUS_DAGGER, true) self.perk = "Weapon Focus (dagger)"
+	elseif chance == 7 then self:learnTalent(self.T_WEAPON_FOCUS_FALCHION, true) self.perk = "Weapon Focus (falchion)"
+	elseif chance == 8 then self:learnTalent(self.T_WEAPON_FOCUS_FLAIL, true) self.perk = "Weapon Focus (flail)"
+	elseif chance == 9 then self:learnTalent(self.T_WEAPON_FOCUS_HALBERD, true) self.perk = "Weapon Focus (halberd)"
+	elseif chance == 10 then self:learnTalent(self.T_WEAPON_FOCUS_HAMMER, true) self.perk = "Weapon Focus (hammer)"
+	elseif chance == 11 then self:learnTalent(self.T_WEAPON_FOCUS_HANDAXE, true) self.perk = "Weapon Focus (handaxe)"
+	elseif chance == 12 then self:learnTalent(self.T_WEAPON_FOCUS_JAVELIN, true) self.perk = "Weapon Focus (javelin)"
+	elseif chance == 13 then self:learnTalent(self.T_WEAPON_FOCUS_KUKRI, true) self.perk = "Weapon Focus (kukri)"
+	elseif chance == 14 then self:learnTalent(self.T_WEAPON_FOCUS_MACE, true) self.perk = "Weapon Focus (mace)"
+	elseif chance == 15 then self:learnTalent(self.T_WEAPON_FOCUS_MORNINGSTAR, true) self.perk = "Weapon Focus (morningstar)"
+	elseif chance == 16 then self:learnTalent(self.T_WEAPON_FOCUS_RAPIER, true) self.perk = "Weapon Focus (rapier)"
+	elseif chance == 17 then self:learnTalent(self.T_WEAPON_FOCUS_SCIMITAR, true) self.perk = "Weapon Focus (scimitar)"
+	elseif chance == 18 then self:learnTalent(self.T_WEAPON_FOCUS_SCYTHE, true) self.perk = "Weapon Focus (scythe)"
+	elseif chance == 19 then self:learnTalent(self.T_WEAPON_FOCUS_SHORTSWORD, true) self.perk = "Weapon Focus (shortsword)"
+	elseif chance == 20 then self:learnTalent(self.T_WEAPON_FOCUS_SPEAR, true) self.perk = "Weapon Focus (spear)"
+	elseif chance == 21 then self:learnTalent(self.T_WEAPON_FOCUS_SLING, true) self.perk = "Weapon Focus (sling)"
+	elseif chance == 22 then self:learnTalent(self.T_WEAPON_FOCUS_STAFF, true) self.perk = "Weapon Focus (staff)"
+	elseif chance == 23 then self:learnTalent(self.T_WEAPON_FOCUS_SWORD, true) self.perk = "Weapon Focus (sword)"
 
-	else self:learnTalent(self.T_WEAPON_FOCUS_TRIDENT, true) end
+	else self:learnTalent(self.T_WEAPON_FOCUS_TRIDENT, true) self.perk = "Weapon Focus (trident)" end
 
 end
 
 function _M:randomFavEnemy()
 	local chance = rng.dice(1,30)
 
-	if chance == 1 then self:learnTalent(self.T_FAVORED_ENEMY_ABERRATION, true)
-	elseif chance == 2 then self:learnTalent(self.T_FAVORED_ENEMY_ANIMAL, true)
-	elseif chance == 3 then self:learnTalent(self.T_FAVORED_ENEMY_CONSTRUCT, true)
-	elseif chance == 4 then self:learnTalent(self.T_FAVORED_ENEMY_DRAGON, true)
-	elseif chance == 5 then self:learnTalent(self.T_FAVORED_ENEMY_ELEMENTAL, true)
-	elseif chance == 6 then self:learnTalent(self.T_FAVORED_ENEMY_FEY, true)
-	elseif chance == 7 then self:learnTalent(self.T_FAVORED_ENEMY_GIANT, true)
-	elseif chance == 8 then self:learnTalent(self.T_FAVORED_ENEMY_MAGBEAST, true)
-	elseif chance == 9 then self:learnTalent(self.T_FAVORED_ENEMY_MONSTROUS_HUMANOID, true)
-	elseif chance == 10 then self:learnTalent(self.T_FAVORED_ENEMY_OOZE, true)
-	elseif chance == 11 then self:learnTalent(self.T_FAVORED_ENEMY_PLANT, true)
-	elseif chance == 12 then self:learnTalent(self.T_FAVORED_ENEMY_UNDEAD, true)
-	elseif chance == 13 then self:learnTalent(self.T_FAVORED_ENEMY_VERMIN, true)
-	elseif chance == 14 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_DWARF, true)
-	elseif chance == 15 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_GNOME, true)
-	elseif chance == 16 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_DROW, true)
-	elseif chance == 17 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_ELF, true)
-	elseif chance == 18 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_HUMAN, true)
-	elseif chance == 19 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_HALFLING, true)
-	elseif chance == 20 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_PLANETOUCHED, true)
-	elseif chance == 21 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_AQUATIC, true)
-	elseif chance == 22 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_GOBLINOID, true)
-	elseif chance == 23 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_REPTILIAN, true)
-	elseif chance == 24 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_ORC, true)
-	elseif chance == 25 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_AIR, true)
-	elseif chance == 26 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_EARTH, true)
-	elseif chance == 27 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_EVIL, true)
-	elseif chance == 28 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_FIRE, true)
-	elseif chance == 29 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_GOOD, true)
+	if chance == 1 then self:learnTalent(self.T_FAVORED_ENEMY_ABERRATION, true) self.perk = "Favored Enemy (aberrations)"
+	elseif chance == 2 then self:learnTalent(self.T_FAVORED_ENEMY_ANIMAL, true) self.perk = "Favored Enemy (animals)"
+	elseif chance == 3 then self:learnTalent(self.T_FAVORED_ENEMY_CONSTRUCT, true) self.perk = "Favored Enemy (constructs)"
+	elseif chance == 4 then self:learnTalent(self.T_FAVORED_ENEMY_DRAGON, true) self.perk = "Favored Enemy (dragons)"
+	elseif chance == 5 then self:learnTalent(self.T_FAVORED_ENEMY_ELEMENTAL, true) self.perk = "Favored Enemy (elementals)"
+	elseif chance == 6 then self:learnTalent(self.T_FAVORED_ENEMY_FEY, true) self.perk = "Favored Enemy (fey)"
+	elseif chance == 7 then self:learnTalent(self.T_FAVORED_ENEMY_GIANT, true) self.perk = "Favored Enemy (giants)"
+	elseif chance == 8 then self:learnTalent(self.T_FAVORED_ENEMY_MAGBEAST, true) self.perk = "Favored Enemy (magical beasts)"
+	elseif chance == 9 then self:learnTalent(self.T_FAVORED_ENEMY_MONSTROUS_HUMANOID, true) self.perk = "Favored Enemy (monstrous humanoids)"
+	elseif chance == 10 then self:learnTalent(self.T_FAVORED_ENEMY_OOZE, true) self.perk = "Favored Enemy (oozes)"
+	elseif chance == 11 then self:learnTalent(self.T_FAVORED_ENEMY_PLANT, true) self.perk = "Favored Enemy (plants)"
+	elseif chance == 12 then self:learnTalent(self.T_FAVORED_ENEMY_UNDEAD, true) self.perk = "Favored Enemy (undead)"
+	elseif chance == 13 then self:learnTalent(self.T_FAVORED_ENEMY_VERMIN, true) self.perk = "Favored Enemy (vermin)"
+	elseif chance == 14 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_DWARF, true) self.perk = "Favored Enemy (dwarves)"
+	elseif chance == 15 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_GNOME, true) self.perk = "Favored Enemy (gnomes)"
+	elseif chance == 16 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_DROW, true) self.perk = "Favored Enemy (drow)"
+	elseif chance == 17 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_ELF, true) self.perk = "Favored Enemy (elves)"
+	elseif chance == 18 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_HUMAN, true) self.perk = "Favored Enemy (humans)"
+	elseif chance == 19 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_HALFLING, true) self.perk = "Favored Enemy (halflings)"
+	elseif chance == 20 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_PLANETOUCHED, true) self.perk = "Favored Enemy (planetouched)"
+	elseif chance == 21 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_AQUATIC, true) self.perk = "Favored Enemy (aquatic humanoids)"
+	elseif chance == 22 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_GOBLINOID, true) self.perk = "Favored Enemy (goblinoids)"
+	elseif chance == 23 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_REPTILIAN, true) self.perk = "Favored Enemy (reptilians)"
+	elseif chance == 24 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_ORC, true) self.perk = "Favored Enemy (orcs)"
+	elseif chance == 25 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_AIR, true) self.perk = "Favored Enemy (air outsiders)"
+	elseif chance == 26 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_EARTH, true) self.perk = "Favored Enemy (earth outsiders)"
+	elseif chance == 27 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_EVIL, true) self.perk = "Favored Enemy (evil outsiders)"
+	elseif chance == 28 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_FIRE, true) self.perk = "Favored Enemy (fire outsiders)"
+	elseif chance == 29 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_GOOD, true) self.perk = "Favored Enemy (good outsiders)"
 
-	else self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_WATER, true) end
+	else self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_WATER, true) self.perk = "Favored Enemy (water outsiders)" end
 
 end
 
 function _M:randomSpell()
 	local chance = rng.dice(1,4)
-	if chance == 1 then self:learnTalent(self.T_ACID_SPLASH_INNATE, true)
-	elseif chance == 2 then self:learnTalent(self.T_GREASE_INNATE, true)
-	elseif chance == 3 then self:learnTalent(self.T_HLW_INNATE, true)
-	else self:learnTalent(self.T_CLW_INNATE, true) end
+	if chance == 1 then self:learnTalent(self.T_ACID_SPLASH_INNATE, true) self.perk = "Innate Acid Splash"
+	elseif chance == 2 then self:learnTalent(self.T_GREASE_INNATE, true) self.perk = "Innate Grease"
+	elseif chance == 3 then self:learnTalent(self.T_HLW_INNATE, true) self.perk = "Innate Heal Light Wounds"
+	else self:learnTalent(self.T_CLW_INNATE, true) self.perk = "Innate Cure Light Wounds" end
 end	
 
 --Pick a random egoed item to be given as perk
 function _M:randomItem()
 	local chance = rng.dice(1,15)
-	if chance == 1 then return "iron battleaxe"
-	elseif chance == 2 then return "rapier"
-	elseif chance == 3 then return "long sword"
-	elseif chance == 4 then return "iron dagger"
-	elseif chance == 5 then return "morningstar"
+	if chance == 1 then self.perk = "magical battleaxe" return "iron battleaxe"
+	elseif chance == 2 then self.perk = "magical rapier" return "rapier"
+	elseif chance == 3 then self.perk = "magical longsword" return "long sword"
+	elseif chance == 4 then self.perk = "magical dagger" return "iron dagger"
+	elseif chance == 5 then self.perk = "magical morningstar" return "morningstar"
 	--Ranged weapons
-	elseif chance == 6 then return "shortbow"
-	elseif chance == 7 then return "longbow"
-	elseif chance == 8 then return "sling"
-	elseif chance == 9 then return "light crossbow"
-	elseif chance == 10 then return "heavy crossbow"
+	elseif chance == 6 then self.perk = "magical shortbow" return "shortbow"
+	elseif chance == 7 then self.perk = "magical longbow" return "longbow"
+	elseif chance == 8 then self.perk = "magical sling" return "sling"
+	elseif chance == 9 then self.perk = "magical light crossbow" return "light crossbow"
+	elseif chance == 10 then self.perk = "magical heavy crossbow" return "heavy crossbow"
 	--Armor 
-	elseif chance == 11 then return "chain mail"
-	elseif chance == 12 then return "chain shirt"
-	elseif chance == 13 then return "studded leather"
-	elseif chance == 14 then return "breastplate"
-	else return "plate armor" end
+	elseif chance == 11 then self.perk = "magical chainmail" return "chain mail"
+	elseif chance == 12 then self.perk = "magical chain shirt" return "chain shirt"
+	elseif chance == 13 then self.perk = "magical studded leather" return "studded leather"
+	elseif chance == 14 then self.perk = "magical breastplate" return "breastplate"
+	else self.perk = "magical plate armor" return "plate armor" end
 end
 
 --Add a random ego-ed item

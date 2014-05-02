@@ -30,6 +30,7 @@ module(..., package.seeall, class.inherit(Birther))
 
 --For stats
 local _points_text = "Points left: #00FF00#%d#WHITE#"
+local _perks_text = "#LIGHT_BLUE#%s#WHITE#"
 
 function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.quickbirth = quickbirth
@@ -83,7 +84,8 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
 
     self:generatePerkText()
-    self.c_perk = Textzone.new{auto_width=true, auto_height=true, text="#LIGHT_BLUE#"..self.perk_text}
+    self.c_perk_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#STARTING PERK: #LAST#"}
+    self.c_perk = Textzone.new{auto_width=true, auto_height=true, text=_perks_text:format(self.actor.perk)}
 
 
     --Lists
@@ -120,7 +122,8 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         {left=0, top=self.c_name.h + 20 + self.c_points.h, ui=self.c_stats},
         {left=self.c_stats.w + 5, top = self.c_name.h + 20, ui=self.c_reset},
         {left=self.c_stats.w +5, top = self.c_name.h + 20 + self.c_reset.h + 5, ui=self.c_reroll},
-        {left=self.c_stats.w + 5, top = self.c_name.h + 20 + self.c_reset.h + 5 + self.c_reroll.h + 5, ui=self.c_perk },
+        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 45, ui=self.c_perk_text },
+        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 65, ui=self.c_perk },
         
         {left=0, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
 
@@ -394,29 +397,7 @@ end
 --Display random perk
 function _M:generatePerkText()
 
-    for j, t in pairs(self.actor.talents_def) do
-            if self.actor:knowTalent(t.id) then
-            --    self.perk_text = t.name
-                self.perk_text = ("%s"):format(t.name)
-            end
-            self.perk_text = ""
-    end
-
-   
---[[    local list = {}
-        for j, t in pairs(self.actor.talents_def) do
-            if self.actor:knowTalent(t.id) then
-
-                list[#list+1] = {
-                    name = ("%s"):format(t.name),
-                    desc = self.actor:getTalentFullDescription(t):toString(),
-                }
-            end
-        end
-
-        for i, t in ipairs(list) do
---            s:drawColorStringBlended(self.font, ("#LIGHT_BLUE#%s#LAST#"):format(t.name), w, h, 255, 255, 255, true) h = h + self.font_h
-        end]]
+  
 end
 
 function _M:generateStats()
@@ -623,9 +604,8 @@ function _M:onRoll()
         self.c_stats.list = self.list_stats
         self.c_stats:generate() 
         self:updateClasses()
-    --[[    self.generatePerkText()
-        self.c_perk.text = self.perk_text
-        self.c_perk:generate()]]
+        self.c_perk.text = _perks_text:format(self.actor.perk)
+        self.c_perk:generate()
     end
 
 
