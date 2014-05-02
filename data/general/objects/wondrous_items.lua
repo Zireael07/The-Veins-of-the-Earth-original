@@ -110,7 +110,7 @@ newEntity{
     egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
-newEntity{
+--[[newEntity{
     base = "BASE_CLOAK",
     name = "cloak of elvenkind",
     unided_name = "a cloak",
@@ -122,7 +122,7 @@ newEntity{
     wielder = {
     skill_hide=5
   }, 
-}
+}]]
 
 --Boots
 newEntity{ 
@@ -150,7 +150,7 @@ newEntity{
   }, 
 }
 
-newEntity{
+--[[newEntity{
     base = "BASE_BOOTS",
     name = "boots of elvenkind",
     unided_name = "boots",
@@ -160,7 +160,7 @@ newEntity{
     wielder = {
     skill_movesilently=5
   }, 
-}
+}]]
 
 newEntity{
     base = "BASE_BOOTS",
