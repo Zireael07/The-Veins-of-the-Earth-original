@@ -418,6 +418,25 @@ newEntity {
   }, 
 }
 
+--Casting spells
+newEntity {
+	name = "of identify", suffix = true,
+	level_range = {1, 10},
+	rarity = 5,
+	cost = 4500,
+	multicharge = 50,
+    use_simple = { name = "identify",
+    use = function(self, who)
+        local inven = game.player:getInven("INVEN")
+        local d d = who:showInventory("Identify which item?", inven, function(o) return not o.identified end, function(o, item)
+            if o.identified == false then o.identified = true end
+        end)
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
 
 --Curses
 newEntity{
