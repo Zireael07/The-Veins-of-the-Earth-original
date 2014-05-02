@@ -28,10 +28,10 @@ load("/data/general/objects/exoticranged.lua") --, rarity(-luck))
 load("/data/general/objects/reach.lua") --rarity(-luck))
 
 load("/data/general/objects/consumables.lua")
-load("/data/general/objects/magicitems.lua") --, rarity(-luck))
 load("/data/general/objects/containers.lua")
-load("/data/general/objects/potions.lua") -- rarity(-luck))
-load("/data/general/objects/charged.lua") -- rarity(-luck))
+
+load("/data/general/objects/wondrous_items.lua") --, rarity(-luck))
+load("/data/general/objects/magic_items.lua") -- rarity(-luck))
 load("/data/general/objects/poisons.lua")
 
 load("/data/general/objects/pickaxes.lua")
@@ -56,14 +56,14 @@ newEntity{
     display = "~", color=colors.YELLOW,
     encumber = 0,
     rarity = 10,
-    name = "A torch",
+    name = "torch",
     desc = [[A torch.]],
 }
 
 --Should last 5000 turns
 newEntity{
     base = "BASE_LIGHT",
-    name = "a torch",
+    name = "torch",
     level_range = {1,10},
     cost = 0,
     wielder = {
@@ -85,7 +85,7 @@ newEntity{
 --Should last 7500 turns
 newEntity{
     base = "BASE_LIGHT",
-    name = "a lantern",
+    name = "lantern",
     image = "tiles/torch.png",
     level_range = {5,nil},
     cost = 7,
@@ -97,7 +97,7 @@ newEntity{
 --Burnt out torch
 newEntity{
     base = "BASE_LIGHT",
-    name = "a burnt out torch",
+    name = "burnt out torch",
     level_range = {1,10},
     cost = 0,
 }
@@ -105,7 +105,7 @@ newEntity{
 --Burnt out lantern
 newEntity{
     base = "BASE_LIGHT",
-    name = "a burnt out lantern",
+    name = "burnt out lantern",
     image = "tiles/lantern.png",
     level_range = {5,nil},
     cost = 0,
@@ -121,13 +121,13 @@ newEntity{
     display = "^", color=colors.YELLOW,
     encumber = 1,
     rarity = 10,
-    name = "A tool kit",
-    desc = [[A tool kit.]],
+    name = "tool kit",
+    desc = [[tool kit.]],
 }
 
 newEntity{
     base = "BASE_TOOL",
-    name = "a healing kit",
+    name = "healing kit",
     level_range = {1,10},
     cost = 100,
     wielder = {
@@ -137,7 +137,7 @@ newEntity{
 
 newEntity{
     base = "BASE_TOOL",
-    name = "a lockpicking kit",
+    name = "lockpicking kit",
     level_range = {1,10},
     cost = 100,
     wielder = {
@@ -147,7 +147,7 @@ newEntity{
 
 newEntity{
     base = "BASE_TOOL",
-    name = "a survival kit",
+    name = "survival kit",
     level_range = {1,10},
     cost = 100,
     wielder = {

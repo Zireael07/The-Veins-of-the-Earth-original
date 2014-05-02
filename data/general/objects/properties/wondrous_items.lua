@@ -420,7 +420,7 @@ newEntity {
 
 --Casting spells
 newEntity {
-	name = "of identify", suffix = true,
+	name = " of identify", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
 	cost = 4500,

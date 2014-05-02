@@ -16,7 +16,7 @@ newEntity{
 --Weak poisons
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of black adder venom",
+    name = "vial of black adder venom",
     unided_name = "a potion",
     identified = false,
     rarity = 5,
@@ -32,7 +32,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of toadstool poison",
+    name = "vial of toadstool poison",
     unided_name = "a potion",
     identified = false,
     rarity = 5,
@@ -48,7 +48,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of arsenic",
+    name = "vial of arsenic",
     unided_name = "a potion",
     identified = false,
     rarity = 15,
@@ -64,7 +64,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of id moss",
+    name = "vial of id moss",
     unided_name = "a potion",
     identified = false,
     rarity = 15,
@@ -80,7 +80,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of black adder venom",
+    name = "vial of black adder venom",
     unided_name = "a potion",
     identified = false,
     rarity = 15,
@@ -275,7 +275,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of terinav",
+    name = "vial of terinav",
     unided_name = "a potion",
     identified = false,
     rarity = 15,
@@ -291,7 +291,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of lich dust",
+    name = "vial of lich dust",
     unided_name = "a potion",
     identified = false,
     rarity = 15,
@@ -307,7 +307,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of dark reaver powder",
+    name = "vial of dark reaver powder",
     unided_name = "a potion",
     identified = false,
     level_range = {10,15},
@@ -323,7 +323,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of purple worm poison",
+    name = "vial of purple worm poison",
     unided_name = "a potion",
     identified = false,
     level_range = {10,15},
@@ -342,7 +342,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of black lotus extract",
+    name = "vial of black lotus extract",
     unided_name = "a potion",
     identified = false,
     rarity = 15,
@@ -358,7 +358,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of dragon bile",
+    name = "vial of dragon bile",
     unided_name = "a potion",
     identified = false,
     rarity = 15,
@@ -406,7 +406,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of burnt othur",
+    name = "vial of burnt othur",
     unided_name = "a potion",
     identified = false,
     rarity = 15,
@@ -422,7 +422,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of wyvern poison",
+    name = "vial of wyvern poison",
     unided_name = "a potion",
     identified = false,
     rarity = 15,
@@ -438,7 +438,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of deathblade",
+    name = "vial of deathblade",
     unided_name = "a potion",
     identified = false,
     level_range = {20,25},

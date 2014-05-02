@@ -21,7 +21,7 @@ newEntity{
     define_as = "BASE_MAGITEM",
     level_range = {1,nil},
     identified = false,
-    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=80},
+    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=80},
 }
 
 
@@ -39,7 +39,7 @@ newEntity{
     unided_name = "an amulet",
     name = "an amulet",
     desc = [[A beautiful amulet.]],
-    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
+    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
 
@@ -56,7 +56,7 @@ newEntity{
     identified = false,
     name = "a ring",
     desc = [[A pretty ring.]],
-    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
+    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
 
@@ -86,7 +86,7 @@ newEntity{
     name = "bracers",
     unided_name = "bracers",
     desc = [[A set of bracers.]],
-    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
+    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
 --Cloaks
@@ -107,7 +107,7 @@ newEntity{
     unided_name = "a cloak",
     identified = false,
     level_range = {1,nil},
-    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
+    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
 newEntity{
@@ -191,19 +191,5 @@ newEntity{
     name = "a belt",
     unided_name = "a belt",
     desc = [[A sturdy belt.]],
-    egos = "/data/general/objects/properties/magic_items.lua", egos_chance = { prefix=0, suffix=100},
-}
-
-
-
---Tattoos
-newEntity{
-    define_as = "BASE_TATTOO",
-    slot = "INVEN", 
-    type = "scroll", subtype = "tattoo",
-    display = "?", color=colors.RED,
-    encumber = 0,
-    rarity = 50,
-    name = "A tattoo",
-    desc = [[A tattoo.]],
+    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }

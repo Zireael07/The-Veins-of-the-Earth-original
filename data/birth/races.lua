@@ -33,7 +33,7 @@ newBirthDescriptor {
 		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
-			{ name="a torch" },
+			{ name="torch" },
 		},
 	}
 }
@@ -53,7 +53,7 @@ newBirthDescriptor {
 		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
-			{ name="a torch" },
+			{ name="torch" },
 		},
 	}
 }
@@ -73,7 +73,7 @@ newBirthDescriptor {
 		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
-			{ name="a torch" },
+			{ name="torch" },
 		},
 	}
 }
@@ -93,7 +93,7 @@ newBirthDescriptor {
 		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
-			{ name="a torch" },
+			{ name="torch" },
 		},
 	}
 }
@@ -111,7 +111,7 @@ newBirthDescriptor {
 		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
-			{ name="a torch" },
+			{ name="torch" },
 		},
 	}
 }
@@ -132,7 +132,7 @@ newBirthDescriptor {
 		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
-			{ name="a torch" },
+			{ name="torch" },
 		},
 	}
 }
@@ -158,7 +158,7 @@ newBirthDescriptor {
 		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
-			{ name="a torch" },
+			{ name="torch" },
 		},
 	}
 }
@@ -176,7 +176,7 @@ newBirthDescriptor {
 		starting_intro = "main",
 		resolvers.equip {
 			full_id=true,
-			{ name="a torch" },
+			{ name="torch" },
 		},
 	}
 }
@@ -264,7 +264,7 @@ newBirthDescriptor{
 	starting_intro = "main",
 	resolvers.equip {
 			full_id=true,
-			{ name="a torch" },
+			{ name="torch" },
 		},
 	}
 }
