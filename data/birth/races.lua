@@ -261,7 +261,11 @@ newBirthDescriptor{
 		ecl = 1,
 	},
 	copy = {
-	starting_intro = "dark",
+	starting_intro = "main",
+	resolvers.equip {
+			full_id=true,
+			{ name="a torch" },
+		},
 	}
 }
 
