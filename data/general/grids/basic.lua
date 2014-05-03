@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
 
 newEntity{
 	define_as = "UP",
+	type = "floor", subtype = "floor",
 	name = "previous level",
 	image = "tiles/stairs_up.png",
 	display = '<', color_r=255, color_g=255, color_b=0, back_color=colors.DARK_GREY,
@@ -26,6 +27,7 @@ newEntity{
 
 newEntity{
 	define_as = "DOWN",
+	type = "floor", subtype = "floor",
 	name = "next level",
 	image = "tiles/stairs_down.png",
 	display = '>', color_r=255, color_g=255, color_b=0, back_color=colors.DARK_GREY,
@@ -36,6 +38,7 @@ newEntity{
 
 newEntity{
 	define_as = "SHAFT_UP",
+	type = "floor", subtype = "floor",
 	name = "previous level",
 	image = "tiles/shaft_up.png",
 	display = '<', color_r=210, color_g=105, color_b=30, back_color=colors.DARK_GREY,
@@ -46,6 +49,7 @@ newEntity{
 
 newEntity{
 	define_as = "SHAFT_DOWN",
+	type = "floor", subtype = "floor",
 	name = "next level",
 	image = "tiles/shaft_down.png",
 	display = '>', color_r=210, color_g=105, color_b=30, back_color=colors.DARK_GREY,
@@ -57,6 +61,7 @@ newEntity{
 
 newEntity{
 	define_as = "FLOOR",
+	type = "floor", subtype = "floor",
 	name = "floor", image = "tiles/floor.png",
 	display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
 }
@@ -79,6 +84,7 @@ newEntity{
 
 newEntity{
 	define_as = "WALL",
+	type = "wall", subtype = "wall",
 	name = "wall", image = "tiles/wall.png",
 	display = '#', color=colors.BLACK, back_color={r=30, g=30, b=60},
 	always_remember = true,
@@ -113,6 +119,7 @@ newEntity{
 newEntity{
 	base = "WALL",
 	define_as = "WALL_WARDED",
+	name = "warded wall",
 	display = '#', color=colors.VIOLET, back_color={r=30, g=30, b=60},
 }
 
@@ -126,6 +133,7 @@ newEntity{
 newEntity{
 	base = "WALL",
 	define_as = "GOLD_VEIN",
+	name = "gold vein",
 	display = '#', color=colors.YELLOW, back_color={r=30, g=30, b=60},
 	image = "tiles/veins.png",
 }
@@ -133,6 +141,7 @@ newEntity{
 newEntity{
 	base = "WALL",
 	define_as = "DIAMOND_VEIN",
+	name = "diamond vein",
 	display = '#', color=colors.WHITE, back_color={r=30, g=30, b=60},
 	image = "tiles/veins.png",
 }
@@ -140,6 +149,7 @@ newEntity{
 newEntity{
 	base = "WALL",
 	define_as = "MITHRIL_VEIN",
+	name = "mithril vein",
 	display = '#', color=colors.STEEL_BLUE, back_color={r=30, g=30, b=60},
 	image = "tiles/veins.png",
 }
@@ -147,6 +157,7 @@ newEntity{
 newEntity{
 	base = "WALL",
 	define_as = "ADAMANT_VEIN",
+	name = "adamant vein",
 	display = '#', color=colors.DARK_SLATE, back_color={r=30, g=30, b=60},
 	image = "tiles/veins.png",
 }
@@ -154,13 +165,16 @@ newEntity{
 --Inspired by Angband
 newEntity{
 	base = "WALL",
+	name = "treasure vein",
 	define_as = "TREASURE_VEIN",
 	display = '#', color=colors.ORANGE, back_color={r=30, g=30, b=60},
 	image = "tiles/veins.png",
+	dig = "FLOOR",
 }
 
 newEntity{
 	define_as = "DOOR",
+	type = "wall", subtype = "floor",
 	name = "oak door", image = "tiles/door.png",
 	display = '+', color_r=238, color_g=154, color_b=77, back_color=colors.LIGHT_UMBER,
 	notice = true,
@@ -221,6 +235,7 @@ newEntity{
 	mindam = 1,
 	maxdam = 4,
 	on_stand = function(self, x, y, who)
+		if who.fly then return end
 		local save = who:skillCheck("swim", 10)
 		if not save then
 			local DT = engine.DamageType
@@ -240,6 +255,7 @@ newEntity{
 	mindam = 2,
 	maxdam = 6,
 	on_stand = function(self, x, y, who)
+		if who.fly then return end
 		local save = who:skillCheck("swim", 15)
 		if not save then
 			local DT = engine.DamageType
@@ -259,9 +275,10 @@ newEntity{
 	mindam = 2,
 	maxdam = 6,
 	on_stand = function(self, x, y, who)
+		if who.fly then return end
 		local DT = engine.DamageType
 		local dam = DT:get(DT.LAVA).projector(self, x, y, DT.LAVA, rng.dice(self.mindam, self.maxdam))
-		if dam > 0 then game.logPlayer(who, "The lava burns you!") end
+		if who == game.player and dam > 0 then game.logPlayer(who, "The lava burns you!") end
 	end
 }
 
@@ -276,6 +293,8 @@ newEntity{
 			local save1 = who:skillCheck("jump", 30)
 			local save2 = who:skillCheck("balance", 15)
 			if not save1 or save2 then game:changeLevel(game.level.level + rng.dice(1,6)) end
+		else 
+			if not who.fly then who:disappear() end
 		end
 	end
 }
@@ -351,7 +370,7 @@ newEntity{
 			--[[	self.add_mos = {{image="tiles/chest_open.png", display_h=1, display_w=1, display_y=0, display_x=0}}
 				self:removeAllMOs()]]
 				self.opened = true
-				o = game.zone:makeEntity(game.level, "object", nil, nil, true)
+				o = game.zone:makeEntity(game.level, "object", {ego_chance=1000}, nil, true)
 				game.zone:addEntity(game.level, o, "object", x, y)
 			else
 				game.log("The chest was a mimic!")
