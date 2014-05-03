@@ -203,7 +203,10 @@ newEntity{
 	max_life = resolvers.rngavg(3,5),
 	hit_die = 1,
 	challenge = 1,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.talents{ [Talents.T_SHOOT]=1,
+	[Talents.T_DARKNESS_INNATE]=1,
+	[Talents.T_FAERIE_FIRE_INNATE]=1
+	},
 	resolvers.equip{
 		full_id=true,
 		{ name = "chain shirt" },

@@ -30,6 +30,8 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=12, dex=21, con=12, int=10, wis=13, cha=13, luc=12 },
 	combat = { dam= {1,6} },
+	fly = true,
+	movement_speed_bonus = 1,
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,

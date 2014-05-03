@@ -207,13 +207,13 @@ newEntity{ base = "BASE_NPC_CLOAKER",
 	skill_movesilently = 9,
 	skill_listen = 11,
 	skill_spot = 11,
+	fly = true,
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
 }       
 
---Drow spell-likes, poison
 newEntity{
 	define_as = "BASE_NPC_DRIDER",
 	type = "aberration", subtype = "drider",
@@ -224,7 +224,7 @@ newEntity{
     uncommon_desc = [[Driders are resistant to magic and possess several innate magical abilities, such as darkness and suggestion. In addition, they can cast spells as clerics, wizards, or sorcerers.]],
     common_desc = [[ Driders have a weak bite attack that can poison creatures, but they also wield manufactured weapons in combat.]],
     base_desc = [[This arachnoid creature is a drider. It can see in the dark and needs to eat, sleep and breathe.
-    Driders were once dark elves who failed some test of their goddess Lolth, and were transformed as punishment. Drow and driders hate each other passionately. Driders are outcasts from drow society.]],
+    Driders were once dark elves who failed some test of their goddess, and were transformed as punishment. Drow and driders hate each other passionately. Driders are outcasts from drow society.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=15, con=16, int=15, wis=16, cha=16, luc=8 },
@@ -246,6 +246,11 @@ newEntity{ base = "BASE_NPC_DRIDER",
 	skill_movesilently = 10,
 	skill_listen = 6,
 	skill_spot = 6,
+	poison = "medium_spider",
+	resolvers.talents{ [Talents.T_SHOOT]=1,
+	[Talents.T_DARKNESS_INNATE]=1,
+	[Talents.T_FAERIE_FIRE_INNATE]=1
+	},
 	resolvers.equip{
                 full_id=true,
                 { name = "shortbow" },
@@ -645,7 +650,7 @@ newEntity{
 	},
 } 
 
---Too small to drop corpse; fly 50 ft.; electricity damage; immunity to magic, natural invis
+--Too small to drop corpse; electricity damage; immunity to magic, natural invis
 newEntity{
 	define_as = "BASE_NPC_WISP",
 	type = "aberration",
@@ -674,6 +679,7 @@ newEntity{
 	skill_search = 12,
 	skill_spot = 14,
 	movement_speed_bonus = 0.66,
+	fly = true,
 	alignment = "chaotic evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_DODGE]=1 },

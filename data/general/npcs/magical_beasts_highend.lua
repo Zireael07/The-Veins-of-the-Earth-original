@@ -64,6 +64,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 15,
 	skill_spot = 15,
 	alignment = "neutral",
+	fly = true,
 }
 
 --Fly 80 ft.; rake 2d4; roar (40 sq fear Will DC 19); spells as Clr7 + Good, Healing, Protection
@@ -87,7 +88,7 @@ newEntity{
 	},
 }
 
---Fly 60 ft., rake 1d6; Cleave feat
+--rake 1d6; Cleave feat
 newEntity{
 	base = "BASE_NPC_SPHINX",
 	name = "criosphinx",
@@ -100,13 +101,13 @@ newEntity{
 	combat_natural = 10,
 	skill_intimidate = 8,
 	skill_listen = 10,
+	movement_speed_bonus = 1,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1 
 	},
 }
 
---Fly 60 ft., rake 1d6
---Spell-likes: 3/day—clairaudience/clairvoyance, detect magic, read magic, see invisibility; 1/day—comprehend languages, locate object, dispel magic, remove curse (DC 18), legend lore. 
+--rake 1d6; spell-likes: 3/day—clairaudience/clairvoyance, detect magic, read magic, see invisibility; 1/day—comprehend languages, locate object, dispel magic, remove curse (DC 18), legend lore. 
 newEntity{
 	base = "BASE_NPC_SPHINX",
 	name = "gynosphinx",
@@ -123,12 +124,13 @@ newEntity{
 	skill_listen = 13,
 	skill_sensemotive = 11,
 	skill_spot = 13,
+	movement_speed_bonus = 1,
 	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
 	[Talents.T_IRON_WILL]=1 
 	},
 }
 
---Fly 90 ft; rake 1d6; Cleave feat 
+--rake 1d6; Cleave feat 
 newEntity{
 	base = "BASE_NPC_SPHINX",
 	name = "hieracosphinx",
@@ -142,6 +144,7 @@ newEntity{
 	skill_listen = 7,
 	skill_spot = 11,
 	alignment = "chaotic evil",
+	movement_speed_bonus = 2,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1 
 	},

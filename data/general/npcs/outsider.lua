@@ -185,8 +185,7 @@ newEntity{
 	},
 }
 
---Fly 15 ft.; plane shift
---Spell-likes: 3/day—invisibility (self only), speak with animals. Caster level 12th. 1/day - create food and water (caster level 7th), ethereal jaunt (caster level 12th) for 1 hour. 
+--plane shift; spell-likes: 3/day—invisibility (self only), speak with animals. Caster level 12th. 1/day - create food and water (caster level 7th), ethereal jaunt (caster level 12th) for 1 hour. 
 newEntity{
 	define_as = "BASE_NPC_JANNI",
 	type = "outsider",
@@ -218,6 +217,7 @@ newEntity{
 	skill_movesilently = 3,
 	skill_sensemotive = 9,
 	skill_spot = 9,
+	fly = true,
 	resists = { [DamageType.FIRE] = 10 },
 	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1,
@@ -274,7 +274,7 @@ newEntity{
 	alignment = "lawful evil",
 }
 
---Fly 60 ft.; immunity to fire; 2d10 damage to undead on hit
+--immunity to fire; 2d10 damage to undead on hit
 newEntity{
 	define_as = "BASE_NPC_RAVID",
 	type = "outsider",
@@ -301,8 +301,9 @@ newEntity{
 	skill_movesilently = 6,
 	skill_survival = 6,
 	skill_spot = 6,
-	movement_speed_bonus = -0.33,
+	movement_speed_bonus = 0.66,
 	alignment = "neutral",
+	fly = true,
 }
 
 --Bay (Will DC 13 or panicked for 2d4 rounds, once per creature), trip, shadow blend
@@ -484,69 +485,73 @@ newEntity{
 	skill_movesilently = 6,
 	skill_spot = 6,
 	alignment = "neutral",
+	fly = true,
 }
 
---Fly 60 ft.; breath weapon 1d8 Ref DC 12 half
---Spell-likes: 1/hour - blur; 1/day gust of wind DC 14
+--breath weapon 1d8 Ref DC 12 half; spell-likes: 1/hour - blur; 1/day gust of wind DC 14
 newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "air mephit",
 	combat_natural = 4,
+	movement_speed_bonus = 1,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
---Fly 50 ft; breath weapon 1d4 & -4 AC & -2 attack for 3 rounds
---Spell-likes: 1/hour - blur; 1/day wind wall DC 15
+--breath weapon 1d4 & -4 AC & -2 attack for 3 rounds; spell-likes: 1/hour - blur; 1/day wind wall DC 15
 newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "dust mephit",
 	combat_natural = 4,
+	movement_speed_bonus = 0.66,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
---Fly 40 ft.; breath weapon 1d8 Ref DC 13
---Spell-like: 1/day soften earth and stone; 1/hour enlarge person (self)
+--breath weapon 1d8 Ref DC 13; spell-like: 1/day soften earth and stone; 1/hour enlarge person (self)
 newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "earth mephit",
 	combat_natural = 7,
 	max_life = resolvers.rngavg(17,21),
+	movement_speed_bonus = 0.33,
 	stats = { str=17, dex=8, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
 
---Fly 50 ft; immunity to fire, vulnerability to cold; breath weapon 1d8 fire Ref DC 12
+--immunity to fire, vulnerability to cold; breath weapon 1d8 fire Ref DC 12
 --Spell-likes: 1/hour scorching ray DC 14; 1/day heat metal DC 14
 newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "fire mephit",
 	combat_natural = 5,
+	movement_speed_bonus = 0.66,
 	stats = { str=10, dex=13, con=10, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
---Fly 50 ft; immunity to cold, vulnerability to fire; 1d4 cold on hit
+--immunity to cold, vulnerability to fire; 1d4 cold on hit
 --Breath weapon 1d4 cold Ref DC 12 & -4 AC & -2 attack for 3 rounds
 --Spell-likes: 1/hour magic missile; 1/day - chill metal DC 14
 newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "ice mephit",
 	combat_natural = 5,
+	movement_speed_bonus = 0.66,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
---Fly 50 ft; immunity to fire, vulnerability to cold; change shape (lava dr 20 speed -0.80)
+--immunity to fire, vulnerability to cold; change shape (lava dr 20 speed -0.80)
 --Breath weapon: 1d4 fire Ref DC 12 & -4 AC & -2 attack for 3 rounds
 --Spell-likes: 1/day pyrotechnics
 newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "magma mephit",
 	combat_natural = 5,
+	movement_speed_bonus = 0.66,
 	stats = { str=10, dex=13, con=10, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
---Fly 40 ft. swim 30 ft; breath weapon 1d4 acid Ref DC 12 half & -4 AC & -2 attack for 3 rounds
+--swim 30 ft; breath weapon 1d4 acid Ref DC 12 half & -4 AC & -2 attack for 3 rounds
 --Spell-likes: 1/hour acid arrow, 1/day stinking cloud
 newEntity{
 	base = "BASE_NPC_MEPHIT",
@@ -554,38 +559,41 @@ newEntity{
 	combat_natural = 6,
 	max_life = resolvers.rngavg(17,21),
 	skill_swim = 8,
+	movement_speed_bonus = 0.33,
 	stats = { str=14, dex=10, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
 
---Fly 40 ft; breath weapon 1d4 Ref DC 13 half & -4 AC & -2 attack for 3 rounds if failed
+--breath weapon 1d4 Ref DC 13 half & -4 AC & -2 attack for 3 rounds if failed
 --Spell-likes: 1/hour - glitterdust; 1/day 2d8 rad 2 ball Fort DC 14 half
 newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "salt mephit",
 	combat_natural = 7,
 	max_life = resolvers.rngavg(17,21),
+	movement_speed_bonus = 0.33,
 	stats = { str=17, dex=8, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
 
---Fly 50 ft; immunity to fire, vulnerability to cold; breath weapon 1d4 fire Ref DC 12 half & -4 AC & -2 attack for 3 rounds
+--immunity to fire, vulnerability to cold; breath weapon 1d4 fire Ref DC 12 half & -4 AC & -2 attack for 3 rounds
 --Spell-likes: 1/hour - blur; 1/day 2d6 fire Ref DC 14 half in 3 sq radius
 newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "steam mephit",
 	combat_natural = 5,
+	movement_speed_bonus = 0.66,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
---Fly 40 ft. swim 30 ft.; breath weapon 1d8 acid Ref DC 13 half
---Spell-likes: 1/hour - acid arrow; 1/day stinking cloud
+--swim 30 ft.; breath weapon 1d8 acid Ref DC 13 half; spell-likes: 1/hour - acid arrow; 1/day stinking cloud
 newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "water mephit",
 	combat_natural = 6,
 	max_life = resolvers.rngavg(17,21),
 	skill_swim = 8,
+	movement_speed_bonus = 0.66,
 	stats = { str=14, dex=10, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }

@@ -24,7 +24,7 @@ newEntity{
 
 --Angels
 
---fly 100 ft. land 50 ft.; wields heavy mace of disruption +3; stun (DC 22) on two hits in a round; change shape; 
+--wields heavy mace of disruption +3; stun (DC 22) on two hits in a round; change shape; 
 --Spell-likes: At will—aid, continual flame, detect evil, discern lies (DC 19), dispel evil (DC 20), dispel magic, holy aura (DC 23), holy smite (DC 19), holy word (DC 22), invisibility (self only), plane shift (DC 22), remove curse (DC 18), remove disease (DC 18), remove fear (DC 16); 7/day—cure light wounds (DC 16), see invisibility; 1/day—blade barrier (DC 21), heal (DC 21). Caster level 12th. The save DCs are Charisma-based. 
 newEntity{ base = "BASE_NPC_CELESTIAL",
         define_as = "BASE_NPC_DEVA",
@@ -49,6 +49,8 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         skill_sensemotive = 15,
         skill_spot = 19,
         alignment = "lawful good",
+        fly = true,
+        movement_speed_bonus = 0.66,
         resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.ELECTRIC] = 10,
@@ -59,7 +61,7 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         base_desc = [[Though uncertain exactly what this creature is, you can tell it is not native to this world. It can see in the dark and cannot be brought to life by normal means.]],
 }
 
---fly 90 ft.; wields greatsword +3; change shape; regen 10
+--wields greatsword +3; change shape; regen 10
 --Spell-likes: At will—continual flame, dispel magic, holy smite (DC 20), invisibility (self only), lesser restoration (DC 18), remove curse (DC 19), remove disease (DC 19), remove fear (DC 17), speak with dead (DC 19); 3/day—blade barrier (DC 22), flame strike (DC 21), power word stun, raise dead, waves of fatigue; 1/day—earthquake (DC 24), greater restoration (DC 23), mass charm monster (DC 24), waves of exhaustion. Caster level 17th. The save DCs are Charisma-based. 
 newEntity{ base = "BASE_NPC_CELESTIAL",
         define_as = "BASE_NPC_PLANETAR",
@@ -87,6 +89,8 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         skill_search = 17,
         skill_spot = 17,
         alignment = "lawful good",
+        fly = true,
+        movement_speed_bonus = 2,
         resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.ELECTRIC] = 10,
@@ -99,7 +103,7 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
 }
 
 
---fly 150 ft. land 50 ft.; wields dancing greatsword +5; change shape; immunity to acid, cold, petrification; regen 15
+--fly 150 ft; wields dancing greatsword +5; change shape; immunity to acid, cold, petrification; regen 15
 --Spell-likes: At will—aid, animate objects, commune, continual flame, dimensional anchor, greater dispel magic, holy smite (DC 21), imprisonment (DC 26), invisibility (self only), lesser restoration (DC 19), remove curse (DC 20), remove disease (DC 20), remove fear (DC 18), resist energy, summon monster VII, speak with dead (DC 20), waves of fatigue; 3/day—blade barrier (DC 23), earthquake (DC 25), heal (DC 23), mass charm monster (DC 25), permanency, resurrection, waves of exhaustion; 1/day—greater restoration (DC 24), power word blind, power word kill, power word stun, prismatic spray (DC 24), wish. Caster level 20th. The save DCs are Charisma-based. 
 newEntity{ base = "BASE_NPC_CELESTIAL",
         define_as = "BASE_NPC_SOLAR",
@@ -127,6 +131,8 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         skill_spellcraft = 25,
         skill_spot = 25,
         alignment = "lawful good",
+        fly = true,
+        movement_speed_bonus = 0.66,
         resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.ELECTRIC] = 10,
@@ -172,6 +178,8 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         skill_spellcraft = 10,
         skill_spot = 17,
         alignment = "neutral good",
+        fly = true,
+        movement_speed_bonus = 2,
         resists = {
                 [DamageType.COLD] = 10,
                 [DamageType.SONIC] = 10,
@@ -240,6 +248,8 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         skill_spot = 9,
         skill_tumble = 9,
         alignment = "chaotic good",
+        fly = true,
+        movement_speed_bonus = 0.33,
         resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.COLD] = 10,
@@ -303,7 +313,8 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         skill_spellcraft = 12,
         skill_spot = 10,
         skill_survival = 14,
-        movement_speed_bonus = -0.66,
+        movement_speed_bonus = 1.33,
+        fly = true,
         alignment = "chaotic good",
         resolvers.talents{ [Talents.T_COMBAT_CASTING]=1 },
         resists = { [DamageType.FIRE] = 10 },

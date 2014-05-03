@@ -1,7 +1,6 @@
 --Veins of the Earth
 --Zireael
 
---Fly 80 ft.
 newEntity{
         define_as = "BASE_NPC_ROC",
         type = "animal",
@@ -17,7 +16,8 @@ newEntity{
         combat_natural = 5,
         skill_listen = 9,
         skill_spot = 13,
-        movement_speed_bonus = -0.33,
+        movement_speed_bonus = 2,
+        fly = true,
         --Hack! Monsters drop corpses now
         resolvers.inventory {
         full_id=true,

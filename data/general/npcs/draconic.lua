@@ -5,8 +5,7 @@ local Talents = require("engine.interface.ActorTalents")
 
 local dragon_desc = [[It can see in the dark. It is immune to sleep effects and paralysis effects. It needs to eat, sleep and breathe.]]
 
---Scent; immunity to fire, sleep & paralysis; breath weapon 12d6 fire Ref DC 21 half
--- neutral alignment
+--Scent; immunity to fire; breath weapon 12d6 fire Ref DC 21 half
 newEntity{
         define_as = "BASE_NPC_DRAG_TURTLE",
         type = "dragon",
@@ -35,6 +34,7 @@ newEntity{
         skill_spot = 14,
         skill_survival = 14,
         skill_swim = 13,
+        alignment = "neutral",
         --Hack! Monsters drop corpses now
         resolvers.inventory {
         full_id=true,
@@ -42,8 +42,7 @@ newEntity{
         },
 }
 
---Fly 60 ft.; blindsense 60 ft.; immunity to sleep & paralysis
---Poison - pri sleep 10 rounds sec sleep 1d3 hours Fort DC 14
+--blindsense 60 ft.; Poison - pri sleep 10 rounds sec sleep 1d3 hours Fort DC 14
 newEntity{
         define_as = "BASE_NPC_PSEUDODRAGON",
         type = "dragon",
@@ -76,6 +75,8 @@ newEntity{
         skill_spot = 8,
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
         alignment = "neutral good",
+        fly = true,
+        movement_speed_bonus = 1,
         --Hack! Monsters drop corpses now
         resolvers.inventory {
         full_id=true,
@@ -83,7 +84,7 @@ newEntity{
         },
 }
 
---Fly 60 ft; immunity to sleep & paralysis, scent, improved grab
+--Fly 60 ft; scent, improved grab
 --Poison (wyvern poison 2d6 CON) Fort DC 17
 newEntity{
         define_as = "BASE_NPC_WYVERN",
@@ -113,6 +114,7 @@ newEntity{
         movement_speed_bonus = -0.33,
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
         alignment = "neutral",
+        fly = true,
         --Hack! Monsters drop corpses now
         resolvers.inventory {
         full_id=true,

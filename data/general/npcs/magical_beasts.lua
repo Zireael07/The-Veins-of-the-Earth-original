@@ -18,7 +18,6 @@ newEntity{
 	},
 }
 
---Fly 80 ft.
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_EAGLE",
 	display = 'e', color=colors.YELLOW,
@@ -35,7 +34,8 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 2,
 	skill_spot = 13,
 	skill_survival = 1,
-	movement_speed_bonus = -0.66,
+	movement_speed_bonus = 1.66,
+	fly = true,
 }
 
 newEntity{ base = "BASE_NPC_MAGBEAST",
@@ -250,9 +250,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 6,
 	resolvers.talents{ [Talents.T_DODGE]=1, },
 	movement_speed_bonus = -0.33,
+	fly = true,
 	uncommon_desc = [[Cockatrices are infamous for their ability to turn creatures to stone with their bite. They are immune to the bite of other cockatrices, but other methods of petrification affect them normally.]],
 	common_desc = [[Cockatrices fiercely attack anything and everything they perceive to be a threat. Flocks of cockatrices attempt to overcome opponents through confusion, often flying straight into their faces.]],
-	base_desc = [[ This hybrid avian creature is a cockatrice. It can see in the dark.]],
+	base_desc = [[This hybrid avian creature is a cockatrice. It can see in the dark.]],
 }
 
 --Fly 30 ft.; darkness, improved grab, constrict 1d4, blindsight 6 squares
@@ -313,7 +314,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	image = "tiles/lizard.png",
 	display = 'D', color=colors.LIGHT_BROWN,
 	desc = [[A scaled lion.]],
-	uncommon_desc = [[ Although draconic in appearance, a dragonne lacks a breath weapon and its wings are useful for only short flights. In combat, it relies on its powerful pounce and exhausting roar to take down prey.]],
+	uncommon_desc = [[Although draconic in appearance, a dragonne lacks a breath weapon and its wings are useful for only short flights. In combat, it relies on its powerful pounce and exhausting roar to take down prey.]],
 	common_desc = [[Although they have a reputation for being ruthless killers, it is largely underserved. Dragonnes only attack those who threaten its territory or its lair, and far prefer goats for food over humanoids, since they can’t fight back as readily.]],
 	base_desc = [[This scaled, leonine creature is a dragonne, a mix of brass dragon and lion. It can see in the dark.]],
 
@@ -330,6 +331,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 10,
 	skill_spot = 10,
 	movement_speed_bonus = 0.33,
+	fly = true,
 }
 
 --Burrow 10 ft.; immunity to cold, vulnerability to cold; 
@@ -451,9 +453,11 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 5,
 	skill_spot = 9,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1 },
+	fly = true,
+	movement_speed_bonus = 1.33,
 }
 
---Fly 100 ft.; scent
+--scent
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_HIPPOGRIFF",
 	image = "tiles/griffon.png",
@@ -472,6 +476,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 3,
 	skill_spot = 7,
 	movement_speed_bonus = 0.66,
+	fly = true,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
@@ -560,6 +565,8 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_sensemotive = 10,
 	skill_spot = 12,
 	alignment = "lawful good",
+	fly = true,
+	movement_speed_bonus = 1,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1 },
 }
 
@@ -607,8 +614,9 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 15,
 	skill_movesilently = 5,
 	skill_spot = 8,
-	movement_speed_bonus = -0.88,
+	movement_speed_bonus = 1.33,
 	alignment = "neutral good",
+	fly = true,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
@@ -632,8 +640,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
---Scent
---Spell-likes: At will—detect good and detect evil within a 60-foot radius.
+--Scent; spell-likes: At will—detect good and detect evil within a 60-foot radius.
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_PEGASUS",
 	image = "tiles/pegasus.png",
@@ -653,6 +660,8 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_sensemotive = 7,
 	skill_spot = 7,
 	alignment = "chaotic good",
+	fly = true,
+	movement_speed_bonus = 1,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1 },
 }
 
@@ -843,7 +852,8 @@ newEntity{
 	skill_hide = 10,
 	skill_listen = 3,
 	skill_spot = 3,
-	movement_speed_bonus = -0.88,
+--	movement_speed_bonus = -0.88,
+	fly = true,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_FINESSE]=1 
 	},

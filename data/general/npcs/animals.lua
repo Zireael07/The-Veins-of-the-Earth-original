@@ -34,6 +34,7 @@ newEntity{
 	combat = { dam= {1,4} },
 	skill_climb = 10,
 	skill_movesilently = 8,
+	alignment = "neutral",
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -81,6 +82,7 @@ newEntity{
 	skill_hide = 8,
 	skill_listen = 5,
 	skill_spot = 5,
+	alignment = "neutral",
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -134,6 +136,7 @@ newEntity{
 	skill_balance = 8,
 	skill_hide = 10,
 	skill_spot = 2,
+	alignment = "neutral",
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -168,6 +171,7 @@ newEntity{
 	skill_spot = 2,
 	skill_swim = 8,
 	skill_listen = 2,
+	alignment = "neutral",
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -202,6 +206,8 @@ newEntity{
 	skill_hide = 12,
 	skill_spot = 6,
 	skill_listen = 6,
+	fly = true,
+	alignment = "neutral",
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -234,6 +240,8 @@ newEntity{
 	combat = { dam= {1,2} },
 	skill_spot = 4,
 	skill_listen = 3,
+	fly = true,
+	alignment = "neutral",
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -266,6 +274,7 @@ newEntity{
 	skill_listen = 2,
 	skill_movesilently = 1,
 	skill_survival = 5,
+	alignment = "neutral",
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
@@ -291,7 +300,6 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[A large tortoise.]],
 
-	
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=10, con=21, int=2, wis=15, cha=7, luc=2 },
 	combat = { dam= {1,10} },
@@ -308,4 +316,5 @@ newEntity{
 	max_life = resolvers.rngavg(65,72),
 	hit_die = 7,
 	challenge = 2,
+	alignment = "neutral",
 }

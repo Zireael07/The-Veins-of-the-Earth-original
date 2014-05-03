@@ -101,6 +101,16 @@ Darkvision 1 - 20 ft. or less or low-light vision
 Darkvision 3 - 30 ft.
 Darkvision 6 - 60 ft.
 
+Basic speed is 30 ft., any additions/substractions is handled via movement_speed_bonus.
+10 ft. = -0.66
+20 ft. = -0.33 
+40 ft. = 0.33
+50 ft. = 0.66
+60 ft. = 1
+70 ft. = 1.33
+80 ft. = 1.66
+90 ft. = 2
+
 skill_... -> any bonuses the monster receives (not counting the bonuses from stats and/or feats)
 combat_natural -> the natural armor bonus minus the size bonus (the latter doesn't exist in VotE)
 poison -> the name of the poison's entry in Combat.lua
