@@ -47,7 +47,7 @@ end
 
 --- Caleld when a new object is stocked
 function _M:stocked_object(o)
-	o.__store_level = game.zone.base_level + game.level.level - 1
+--	o.__store_level = game.zone.base_level + game.level.level - 1
 end
 
 --- Restock based on player level
@@ -68,25 +68,18 @@ end
 --- Fill the store with goods
 -- @param level the level to generate for (instance of type engine.Level)
 -- @param zone the zone to generate for
-function _M:loadup(level, zone)
---[[	local oldlev = zone.base_level
-
-	if zone.store_levels_by_restock then
-		zone.base_level = zone.store_levels_by_restock[game.state.stores_restock] or zone.base_level
-	end
+function _M:loadup(level, zone, force_nb)
 
 	if Store.loadup(self, level, zone, self.store.nb_fill) then
-		self.last_filled = game.state.stores_restock
+		self.last_filled = game.turn
 	end
 
-	zone.base_level = oldlev
-	end]]
 end
 
 --- Checks if the given entity is allowed
 function _M:allowStockObject(e)
 	local price = self:getObjectPrice(e, "buy")
-	return price > 0
+	return price > 0 and not e.cursed
 end
 
 --- Called on object purchase try
@@ -165,7 +158,6 @@ function _M:doBuy(who, o, item, nb, store_dialog)
 				game.party:learnLore(o.lore)
 			else]]
 				self:transfer(self, who, item, nb)
-		--	end
 			self:onBuy(who, o, item, nb, false)
 			if store_dialog then store_dialog:updateStore() end
 		end end, "Buy", "Cancel")
@@ -206,7 +198,7 @@ end
 
 function _M:getObjectPrice(o, what)
 	local v = o:getPrice() * util.getval(what == "buy" and self.store.sell_percent or self.store.buy_percent, self, o) / 100
-	return math.ceil(v * 10) / 10
+	return math.floor(v) --math.ceil(v * 10) / 10
 end
 
 --- Called to describe an object's price, being to sell or to buy

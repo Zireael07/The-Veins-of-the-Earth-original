@@ -5,8 +5,9 @@ newChat{ id="start",
     text = [[Welcome, adventurer! Would you like to see my wares?]],
     answers = {
         {[[Yes, please.]], action = function(npc, player)
-    if player:skillCheck("diplomacy", 10) then return "shop"
-    else return "sorry"  end
+--[[    if player:skillCheck("diplomacy", 10) then return "shop"
+    else return "sorry"  end]]
+    return "shop"
     end
 	},
         {[[I don't have money.]], action = function(npc, player)

@@ -4,6 +4,7 @@ newEntity{
 	display = '2', color=colors.UMBER,
 	store = {
 		purse = 10000,
+--		nb_fill = 20,
 		empty_before_restock = false,
 		filters = {
 			{type="weapon", subtype="shortsword", id=true },
