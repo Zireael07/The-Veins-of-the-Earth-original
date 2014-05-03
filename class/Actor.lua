@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@ require "engine.class"
 require "engine.Actor"
 require "engine.Autolevel"
 require "engine.interface.ActorTemporaryEffects"
---require "engine.interface.ActorLife"
 require "mod.class.interface.ActorLife"
 require "engine.interface.ActorProject"
 require "engine.interface.ActorLevel"
@@ -47,7 +46,6 @@ module(..., package.seeall, class.inherit(engine.Actor,
 function _M:init(t, no_default)
 	-- Define some basic combat stats
 	self.combat_dr = 0
---	self.combat_base_ac = 10
 	self.combat_bab = 0
 	self.combat_attack = 0
 	self.hit_die = 4
@@ -656,8 +654,8 @@ end
 function _M:preUseTalent(ab, silent)
 	local tt_def = self:getTalentTypeFrom(ab.type[1])
 	if tt_def.all_limited then --all_limited talenttypes all have talents that are daily limited 
+		
 		--No casting spells if your key stat is <= 9
-
 		if self.classes and self.classes["Wizard"] and self:getInt() <= 9 then
 			if not silent then game.logPlayer(self, "Your Intelligence is too low!") end
 		return false
@@ -2171,8 +2169,6 @@ function _M:getEncumbrance()
 		end
 	end
 	
-	--Limit logging to the player
-	--[[if self == game.player then game.log(("#00FF00#Total encumbrance: %d"):format(enc)) end]]
 	return math.floor(enc)
 end
 
@@ -2230,42 +2226,3 @@ function _M:reactionToward(target)
 
     return v
 end
-
-
-
-
-
---[[function _M:computeGlobalSpeed()
-	if self.speed < 0 then
-		self.global_speed = 1/(1 - self.speed/10)
-	elseif self.speed <= 26 then
-		self.global_speed = 1 + self.speed/10
-	elseif self.speed <= 34 then
-	-- Everything from here down is an asymptotic approach to 500% speed,
-	-- roughly mimicking ToME2's tables.c:extract_energy[] table.  Split
-	-- out into cases, as there was no obvious function that suitably
-	-- reproduced the table; this only gets called by the resolver, though
-	-- (and when actor speed actually changes), so this shouldn't be too
-	-- expensive.
-		self.global_speed = 3.6 + (self.speed - 26)/20
-	elseif self.speed <= 46 then
-		self.global_speed = 4 + (self.speed - 34)/30
-	elseif self.speed <= 50 then
-		self.global_speed = 4.4 + (self.speed - 46)/40
-	elseif self.speed <= 70 then
-		self.global_speed = 4.5 + (self.speed - 50)/50
-	else
-		self.global_speed = 5 - 1/(self.speed - 60)
-	end
-end
-
-local super_added = _M.added
-function _M:added()
-	super_added(self)
-	if self.on_add then self:on_add() end
-end
-
-function _M:has(flag)
-	return self.flags and self.flags[flag] or self:hasEffect(self['EFF_'..flag])
-end
-]]
