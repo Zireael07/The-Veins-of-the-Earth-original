@@ -66,11 +66,22 @@ function _M:generateList()
 	local list = {}
 
 	for i, e in ipairs(game.zone.npc_list) do
-		list[#list+1] = {name=e.name, unique=e.unique, e=e}
+		if e.name ~= "unknown actor" then
+			local color
+			if e.type == "encounter" then color = {255, 215, 0}
+			elseif e.faction == "neutral" then color = {81, 221, 255}
+			else color = {255, 255, 255} end
+
+		list[#list+1] = {name=e.name, type=e.type, color=color, unique=e.unique, faction=e.faction, e=e}
+		else end
 	end
+	
 	table.sort(list, function(a,b)
-		if a.unique and not b.unique then return true
-		elseif not a.unique and b.unique then return false end
+		--Show encounters first
+		if a.type == "encounter" and not b.type == "encounter" then return true
+		elseif not a.type == "encounter" and b.type == "encounter" then return false end
+	--[[	if a.unique and not b.unique then return true
+		elseif not a.unique and b.unique then return false end]]
 		return a.name < b.name
 	end)
 
