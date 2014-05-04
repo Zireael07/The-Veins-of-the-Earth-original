@@ -25,11 +25,6 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     encumber = 2,
     rarity = 10,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic hand crossbow",
-    desc = "A normal trusty hand crossbow.\n\n Damage 1d4. Threat range 19-20.",
-}
-
-newEntity{ base = "BASE_HANDXBOW",
     name = "hand crossbow",
     level_range = {1, 10},
     cost = 100,
@@ -38,7 +33,10 @@ newEntity{ base = "BASE_HANDXBOW",
         threat = 1,
         range = 3,
     },
+
+    desc = "A normal trusty hand crossbow.\n\n Damage 1d4. Threat range 19-20.",
 }
+
 
 newEntity{ base = "BASE_EXOTIC_RANGED",
     define_as = "BASE_BOLAS",
@@ -50,11 +48,6 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     encumber = 2,
     rarity = 8,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic bolas",
-    desc = "A normal bolas.\n\n Damage 1d4.",
-}
-
-newEntity{ base = "BASE_BOLAS",
     name = "bolas",
     level_range = {1, 10},
     cost = 5,
@@ -62,7 +55,10 @@ newEntity{ base = "BASE_BOLAS",
         dam = {1,4},
         range = 2,
     },
+
+    desc = "A normal bolas.\n\n Damage 1d4.",
 }
+
 
 newEntity{ base = "BASE_EXOTIC_RANGED",
     define_as = "BASE_SHURIKEN",
@@ -74,11 +70,6 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     encumber = 0.5,
     rarity = 12,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic shuriken",
-    desc = "An exotic shuriken.\n\n Damage 1d2.",
-}
-
-newEntity{ base = "BASE_SHURIKEN",
     name = "shuriken",
     level_range = {1, 10},
     cost = 1,
@@ -86,7 +77,10 @@ newEntity{ base = "BASE_SHURIKEN",
         dam = {1,2},
         range = 2,
     },
+
+    desc = "An exotic shuriken.\n\n Damage 1d2.",
 }
+
 
 newEntity{ base = "BASE_EXOTIC_RANGED",
     define_as = "BASE_NET",
@@ -98,11 +92,6 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     encumber = 6,
     rarity = 8,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic net",
-    desc = "A normal net.\n\n Damage 1d4.",
-}
-
-newEntity{ base = "BASE_NET",
     name = "net",
     level_range = {1, 10},
     cost = 20,
@@ -110,4 +99,5 @@ newEntity{ base = "BASE_NET",
         dam = {1,4}, --should be entangled
         range = 2,
     },
+    desc = "A normal net.\n\n Damage 1d4.",
 }

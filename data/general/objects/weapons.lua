@@ -24,12 +24,6 @@ newEntity{ base = "BASE_WEAPON",
     encumber = 3,
     rarity = 8,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic dagger",
-    desc = "A normal trusty dagger.\n\n Damage 1d4, threat range 19-20.",
-}
-
-newEntity{ base = "BASE_DAGGER",
-    name = "iron dagger",
     level_range = {1, 10},
     cost = 5,
     light = true,
@@ -37,6 +31,7 @@ newEntity{ base = "BASE_DAGGER",
         dam = {1,4},
         threat = 1,
     },
+    desc = "A normal trusty dagger.\n\n Damage 1d4, threat range 19-20.",
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -48,10 +43,6 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 9,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "sickle",
-    desc = "A normal sickle.\n\n Damage 1d6.",
-}
-
-newEntity{ base = "BASE_SICKLE",
     level_range = {1, 10},
     cost = 6,
     light = true,
@@ -59,7 +50,9 @@ newEntity{ base = "BASE_SICKLE",
         dam = {1,6},
         threat = 1,
     },  
+    desc = "A normal sickle.\n\n Damage 1d6.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SSPEAR",
@@ -70,11 +63,6 @@ newEntity{ base = "BASE_WEAPON",
     encumber = 10,
     rarity = 5,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic short spear",
-    desc = "A wooden short spear.\n\n Damage 1d6.",
-}
-
-newEntity{ base = "BASE_SSPEAR",
     name = "short spear",
     level_range = {1, 10},
     cost = 1,
@@ -82,7 +70,9 @@ newEntity{ base = "BASE_SSPEAR",
     combat = {
         dam = {1,6},
     },
+    desc = "A wooden short spear.\n\n Damage 1d6.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_HMACE",
@@ -93,11 +83,6 @@ newEntity{ base = "BASE_WEAPON",
     encumber = 8,
     rarity = 5,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic mace",
-    desc = "A heavy metal mace.\n\n Damage 1d8.",
-}
-
-newEntity{ base = "BASE_HMACE",
     name = "heavy mace",
     level_range = {1, 10},
     cost = 12,
@@ -105,7 +90,9 @@ newEntity{ base = "BASE_HMACE",
     combat = {
         dam = {1,8},
     },
+    desc = "A heavy metal mace.\n\n Damage 1d8.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_LMACE",
@@ -117,11 +104,6 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 5,
     light = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic mace",
-    desc = "A light metal mace.\n\n Damage 1d6.",
-}
-
-newEntity{ base = "BASE_LMACE",
     name = "light mace",
     level_range = {1, 10},
     cost = 5,
@@ -129,7 +111,9 @@ newEntity{ base = "BASE_LMACE",
     combat = {
         dam = {1,6},
     },
+    desc = "A light metal mace.\n\n Damage 1d6.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_CLUB",
@@ -140,17 +124,13 @@ newEntity{ base = "BASE_WEAPON",
     encumber = 3,
     rarity = 3,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic club",
-    desc = "A wooden club.\n\n Damage 1d6.",
-}
-
-newEntity{ base = "BASE_CLUB",
     name = "club",
     level_range = {1, 10},
     cost = 0,
     combat = {
         dam = {1,6},
     },
+    desc = "A wooden club.\n\n Damage 1d6.",
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -162,11 +142,6 @@ newEntity{ base = "BASE_WEAPON",
     encumber = 6,
     rarity = 5,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic morningstar",
-    desc = "A metal morningstar.\n\n Damage 1d8.",
-}
-
-newEntity{ base = "BASE_MSTAR",
     name = "morningstar",
     level_range = {1, 10},
     cost = 8,
@@ -174,6 +149,7 @@ newEntity{ base = "BASE_MSTAR",
     combat = {
         dam = {1,8},
     },
+    desc = "A metal morningstar.\n\n Damage 1d8.",
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -185,11 +161,6 @@ newEntity{ base = "BASE_WEAPON",
     encumber = 4,
     rarity = 2,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic staff",
-    desc = "A wooden staff.\n\n Damage 1d6.",
-}
-
-newEntity{ base = "BASE_STAFF",
     name = "quarterstaff",
     level_range = {1, 10},
     cost = 0,
@@ -197,6 +168,7 @@ newEntity{ base = "BASE_STAFF",
     combat = {
         dam = {1,6},
     },
+    desc = "A wooden staff.\n\n Damage 1d6.",
 }
 
 --Martial weapons
@@ -210,11 +182,6 @@ newEntity{ base = "BASE_WEAPON",
     encumber = 4,
     rarity = 1,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic light hammer",
-    desc = "A light metal hammer.\n\n Damage 1d4.",
-}
-
-newEntity{ base = "BASE_LHAMMER",
     name = "light hammer",
     level_range = {1, 10},
     cost = 1,
@@ -223,7 +190,10 @@ newEntity{ base = "BASE_LHAMMER",
     combat = {
         dam = {1,4},
     },
+
+    desc = "A light metal hammer.\n\n Damage 1d4.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_HANDAXE",
@@ -236,19 +206,16 @@ newEntity{ base = "BASE_WEAPON",
     light = true,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic handaxe",
-    desc = "A normal handaxe.\n\n Damage 1d6. Critical x3.",
-}
-
-newEntity{ base = "BASE_HANDAXE",
-    name = "iron handaxe",
+     name = "iron handaxe",
     level_range = {1, 10},
     cost = 6,
     combat = {
         dam = {1,6},
         critical = 3,
     },
+    desc = "A normal handaxe.\n\n Damage 1d6. Critical x3.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_KUKRI",
@@ -261,18 +228,19 @@ newEntity{ base = "BASE_WEAPON",
     light = true,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic kukri",
-    desc = "A curved blade.\n\n Damage 1d4. Threat range 18-20.",
-}
-
-newEntity{ base = "BASE_KUKRI",
-    name = "iron kukri",
+     name = "iron kukri",
     level_range = {1, 10},
     cost = 8,
     combat = {
         dam = {1,4},
         threat = 2,
     },
+
+    desc = "A curved blade.\n\n Damage 1d4. Threat range 18-20.",
+}
+
+newEntity{ base = "BASE_KUKRI",
+   
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -286,11 +254,6 @@ newEntity{ base = "BASE_WEAPON",
     light = true,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic short sword",
-    desc = "A curved short sword.\n\n Damage 1d6. Threat range 19-20.",
-}
-
-newEntity{ base = "BASE_SHORTSWORD",
     name = "short sword",
     level_range = {1, 10},
     cost = 10,
@@ -298,7 +261,10 @@ newEntity{ base = "BASE_SHORTSWORD",
         dam = {1,6},
         threat = 1,
     },
+
+    desc = "A curved short sword.\n\n Damage 1d6. Threat range 19-20.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_BATTLEAXE",
@@ -310,18 +276,16 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 3,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic battleaxe",
-    desc = "A normal battleaxe.\n\n Damage 1d6.",
-}
-
-newEntity{ base = "BASE_BATTLEAXE",
     name = "iron battleaxe",
     level_range = {1, 10},
     cost = 5,
     combat = {
         dam = {1,6},
     },
+
+    desc = "A normal battleaxe.\n\n Damage 1d6.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SWORD",
@@ -333,11 +297,6 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 5,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic sword",
-    desc = "A trusty sword.\n\n Damage 1d8. Threat range 18-20.",
-}
-
-newEntity{ base = "BASE_SWORD",
     name = "long sword",
     level_range = {1, 10},
     cost = 15,
@@ -345,7 +304,9 @@ newEntity{ base = "BASE_SWORD",
         dam = {1,8},
         threat = 2,
     },
+    desc = "A trusty sword.\n\n Damage 1d8. Threat range 18-20.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_FLAIL",
@@ -357,17 +318,14 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 8,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a metal flail",
-    desc = "A metal flail. Damage 1d8.",
-}
-
-newEntity{ base = "BASE_FLAIL",
     name = "flail",
     level_range = {1, 10},
     cost = 8,
     combat = {
         dam = {1,8},
     },
+
+    desc = "A metal flail. Damage 1d8.",
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -380,11 +338,6 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 6,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a metal rapier",
-    desc = "A metal rapier.\n\n Damage 1d6. Threat range 18-20.",
-}
-
-newEntity{ base = "BASE_RAPIER",
     name = "rapier",
     level_range = {1, 10},
     cost = 20,
@@ -392,7 +345,10 @@ newEntity{ base = "BASE_RAPIER",
         dam = {1,6},
         threat = 2,
     },
+
+    desc = "A metal rapier.\n\n Damage 1d6. Threat range 18-20.",
 }
+
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SCIMITAR",
@@ -404,11 +360,6 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 7,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a metal scimitar",
-    desc = "A metal scimitar.\n\n Damage 1d6. Threat range 18-20.",
-}
-
-newEntity{ base = "BASE_SCIMITAR",
     name = "scimitar",
     level_range = {1, 10},
     cost = 15,
@@ -416,6 +367,8 @@ newEntity{ base = "BASE_SCIMITAR",
         dam = {1,6},
         threat = 2,
     },
+
+    desc = "A metal scimitar.\n\n Damage 1d6. Threat range 18-20.",
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -428,11 +381,6 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 5,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a metal warhammer",
-    desc = "A metal warhammer.\n\n Damage 1d8. Critical x3.",
-}
-
-newEntity{ base = "BASE_WARHAMMER",
     name = "warhammer",
     level_range = {1, 10},
     cost = 12,
@@ -440,7 +388,10 @@ newEntity{ base = "BASE_WARHAMMER",
         dam = {1,8},
         critical = 3,
     },
+
+    desc = "A metal warhammer.\n\n Damage 1d8. Critical x3.",
 }
+
 
 --Two-handed weapons
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
@@ -454,11 +405,6 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     rarity = 10,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a metal falchion",
-    desc = "A metal falchion.\n\n Damage 2d4. Threat range 18-20.",
-}
-
-newEntity{ base = "BASE_FALCHION",
     name = "falchion",
     level_range = {1, 10},
     cost = 75,
@@ -466,7 +412,10 @@ newEntity{ base = "BASE_FALCHION",
         dam = {2,4},
         threat = 2,
     },
+
+    desc = "A metal falchion.\n\n Damage 2d4. Threat range 18-20.",
 }
+
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_GREATAXE",
@@ -479,11 +428,6 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     rarity = 10,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a great axe",
-    desc = "A great metal axe.\n\n Damage 1d12. Critical x3.",
-}
-
-newEntity{ base = "BASE_GREATAXE",
     name = "greataxe",
     level_range = {1, 10},
     cost = 20,
@@ -491,7 +435,10 @@ newEntity{ base = "BASE_GREATAXE",
         dam = {1,12},
         critical = 3,
     },
+
+    desc = "A great metal axe.\n\n Damage 1d12. Critical x3.",
 }
+
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_GREATCLUB",
@@ -504,18 +451,16 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     rarity = 5,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a greatclub",
-    desc = "A huge wooden club.\n\n Damage 1d10.",
-}
-
-newEntity{ base = "BASE_GREATCLUB",
     name = "greatclub",
     level_range = {1, 10},
     cost = 5,
     combat = {
         dam = {1,10},
     },
+
+    desc = "A huge wooden club.\n\n Damage 1d10.",
 }
+
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_HEAVYFLAIL",
@@ -528,11 +473,6 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     rarity = 10,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a heavy flail",
-    desc = "A heavy flail.\n\n Damage 1d10. Threat range 19-20.",
-}
-
-newEntity{ base = "BASE_HEAVYFLAIL",
     name = "heavy flail",
     level_range = {1, 10},
     cost = 15,
@@ -540,6 +480,8 @@ newEntity{ base = "BASE_HEAVYFLAIL",
         dam = {1,10},
         threat = 1,
     },
+
+    desc = "A heavy flail.\n\n Damage 1d10. Threat range 19-20.",
 }
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
@@ -553,11 +495,6 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     rarity = 10,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a greatsword",
-    desc = "A metal great two-handed sword.\n\n Damage 2d6. Threat range 19-20.",
-}
-
-newEntity{ base = "BASE_GREATSWORD",
     name = "greatsword",
     level_range = {1, 10},
     cost = 50,
@@ -565,7 +502,10 @@ newEntity{ base = "BASE_GREATSWORD",
         dam = {2,6},
         threat = 1,
     },
+
+    desc = "A metal great two-handed sword.\n\n Damage 2d6. Threat range 19-20.",
 }
+
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_HALBERD",
@@ -578,11 +518,6 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     rarity = 10,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a halberd",
-    desc = "A metal halberd.\n\n Damage 1d10. Critical x3.",
-}
-
-newEntity{ base = "BASE_HALBERD",
     name = "halberd",
     level_range = {1, 10},
     cost = 10,
@@ -590,7 +525,10 @@ newEntity{ base = "BASE_HALBERD",
         dam = {1,10},
         critical = 3,
     },
+
+    desc = "A metal halberd.\n\n Damage 1d10. Critical x3.",
 }
+
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_SCYTHE",
@@ -603,11 +541,6 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     rarity = 12,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a scythe",
-    desc = "A frightening-looking metal scythe.\n\n Damage 2d4. Critical x4.",
-}
-
-newEntity{ base = "BASE_SCYTHE",
     name = "scythe",
     level_range = {1, 10},
     cost = 18,
@@ -615,4 +548,6 @@ newEntity{ base = "BASE_SCYTHE",
         dam = {2,4},
         critical = 4,
     },
+
+    desc = "A frightening-looking metal scythe.\n\n Damage 2d4. Critical x4.",
 }
