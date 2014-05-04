@@ -15,7 +15,8 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 --Encounters are dummy npcs
-load("/data/general/npcs/encounters.lua")
+load("/data/general/npcs/encounters/encounters_generic.lua")
+load("/data/general/npcs/encounters/encounters_specific.lua")
 
 
 load("/data/general/npcs/humanoid.lua")
