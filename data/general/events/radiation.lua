@@ -15,7 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -- Find a random spot
-local x, y = game.state:findEventGrid(level)
+local x, y = game:findEventGrid(level)
 if not x then return false end
 
 local g = game.level.map(x, y, engine.Map.TERRAIN):cloneFull()
