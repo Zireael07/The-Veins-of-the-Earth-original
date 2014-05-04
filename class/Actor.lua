@@ -916,29 +916,40 @@ function _M:canBe(what)
 end
 
 function _M:addedToLevel(level, x, y)
-	--Taken from ToME 4
-	if self.encounter_escort then
-		for _, filter in ipairs(self.encounter_escort) do
-			for i = 1, filter.number do
-				if not filter.chance or rng.percent(filter.chance) then
-					-- Find space
-					local x, y = util.findFreeGrid(self.x, self.y, 10, true, {[Map.ACTOR]=true})
-					if not x then break end
-
-					-- Find an actor with that filter
-					local m = game.zone:makeEntity(game.level, "actor", filter, nil, true)
-					if m and m:canMove(x, y) then
-						if filter.no_subescort then m.encounter_escort = nil end
-						if self._empty_drops_escort then m:emptyDrops() end
-						game.zone:addEntity(game.level, m, "actor", x, y)
-						if filter.post then filter.post(self, m) end
-					elseif m then m:removed() end
-				end
-			end
-		end
-		self.encounter_escort = nil
-	end
-
+if self.encounter_escort then
+                for _, filter in ipairs(self.encounter_escort) do
+                        for i = 1, filter.number do
+                               
+                                if not filter.chance or rng.percent(filter.chance) then
+                                        -- Find space
+                                        local x, y = util.findFreeGrid(self.x, self.y, 10, true, {[Map.ACTOR]=true})
+                                        if not x then break end
+ 
+                                        -- Find an actor with that filter
+                                        local m = game.zone:makeEntity(game.level, "actor", filter, nil, true)
+ 
+                                        if m and m:canMove(x, y) then
+ 
+                                                if filter.no_subescort then m.encounter_escort = nil end
+                                                if self._empty_drops_escort then m:emptyDrops() end
+ 
+                                                --Hack?
+                                                if filter.challenge then
+                                                		--Thanks Seb!
+                                                        while m.challenge ~= filter.challenge do
+                                                            m = game.zone:makeEntity(game.level, "actor", filter, nil, true)
+                                                        end                                                        
+                                                end
+                                                game.zone:addEntity(game.level, m, "actor", x,y)
+                                        end
+ 
+                                --      game.zone:addEntity(game.level, m, "actor", x, y)
+                                        if filter.post then filter.post(self, m) end
+                                elseif m then m:removed() end
+                        end
+                end
+        end
+        self.encounter_escort = nil
 
 self:check("on_added_to_level", level, x, y)
 
