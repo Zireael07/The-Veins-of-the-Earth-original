@@ -37,6 +37,8 @@ load("/data/general/objects/poisons.lua")
 load("/data/general/objects/pickaxes.lua")
 load("/data/general/objects/money.lua") -- rarity(-luck))
 
+load("/data/general/objects/specific_items.lua")
+
 --Bones
 newEntity{
     define_as = "BONES",
