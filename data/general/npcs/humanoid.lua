@@ -141,6 +141,7 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 1,
 --[[	encounter_escort = {
+	{chance=100, challenge=1, number=1},
 	{chance = 80, type="humanoid", name="kobold", number=2, no_subescort = true},
   	},]]
 --	resolvers.class()
@@ -370,10 +371,10 @@ newEntity{
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
-	encounter_escort = {
+--[[	encounter_escort = {
 	{chance = 20, type="humanoid", name="bugbear", number=1, no_subescort = true},
 	{chance = 60, type="humanoid", name="goblin", number=2, no_subescort = true},
-  	},
+  	},]]
 }
 
 newEntity{
