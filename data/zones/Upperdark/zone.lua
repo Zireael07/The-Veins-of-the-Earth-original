@@ -48,6 +48,9 @@ return {
 			['$'] = {"GOLD_VEIN", "DIAMOND_VEIN", "MITHRIL_VEIN", "ADAMANT_VEIN", "TREASURE_VEIN"},
 		},
 		actor = {
+		--[[	class = "mod.class.generator.actor.Encounters",
+			nb_encounters = 10,]]
+
 		--	class = "mod.class.generator.actor.EncounterRandom",
 			class = "mod.class.generator.actor.Random",
 			nb_npc = {10, 20},
