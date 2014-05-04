@@ -52,12 +52,13 @@ end
 
 function _M:use(item)
 	if not item then return end
-
 	game.gfx = item.val
 	self.changed = true
-	game:setupDisplayMode(true)
---	Map:resetTiles()
+	
+	Map:resetTiles()
 	game:unregisterDialog(self)
+
+	game:setupDisplayMode(true)
 end
 
 function _M:generateList()

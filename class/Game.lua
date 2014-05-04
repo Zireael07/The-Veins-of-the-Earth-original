@@ -78,7 +78,7 @@ function _M:load()
 			if e.challenge >= zone.base_level + game.level.level + filter.max_cr then return false end
  	end
  	if filter.challenge then
- 		if e.challenge ~= filter.challenge then return false end
+ 		if e.challenge >= filter.challenge or e.challenge <= filter.challenge then return false end
 	end
 	end
 end
@@ -106,6 +106,8 @@ function _M:run()
 
 -- Start time
 	self.real_starttime = os.time()
+	self:setupDisplayMode(false, "postinit")
+
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
 	self.flashLog(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 to open the help screen.")
@@ -175,7 +177,18 @@ function _M:loaded()
 	Map:setViewerActor(self.player)
 	local th, tw = 32, 32
 	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
---	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+--	self:setupDisplayMode(false, "init")
+--	self:setupDisplayMode(false, "postinit")
+	if self.player then self.player.changed = true end
+	if self.always_target == true then Map:setViewerFaction(self.player.faction) end
+
+--[[	local th, tw = 32, 32
+	if self.gfx == "tiles" then 
+	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
+	else
+	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+	end]]
+
 	selfppp = engine.KeyBind.new()
 end
 
@@ -202,8 +215,18 @@ function _M:setupDisplayMode(reboot, mode)
 		Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
 		Map.tiles.use_images = true
 		
-		if gfx == "ascii" then Map.tiles.use_images = false
-		elseif gfx == "tiles" then Map.tiles.use_images = true end
+		if gfx == "ascii" then 
+			print("[DISPLAY MODE] 32x32 ASCII/background")
+			Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+			Map:resetTiles()
+			Map.tiles.use_images = false
+			Map.tiles.use_images = false
+		elseif gfx == "tiles" then 
+			Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
+			Map:resetTiles()
+			Map.tiles.use_images = true
+			Map.tiles.use_images = true 
+		end
 
 --[[	print("[DISPLAY MODE] 32x32 ASCII/background")
 	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
