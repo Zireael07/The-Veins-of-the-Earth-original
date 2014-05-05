@@ -98,6 +98,27 @@ newTalent{
 	end,	
 }
 
+--Feat-enabled racial spell-like
+newTalent{
+	name = "Levitate", short_name = "LEVITATE_INNATE",
+	type = {"innate/innate", 1},
+	display = { image = "talents/levitate.png"},
+	mode = "activated",
+	level = 2,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	action = function(self)
+	if not self then return nil end
+		self:setEffect(self.EFF_LEVITATE, 10, {})
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[You start levitating.]])
+	end,
+}
+
 
 --Arcane spell-likes
 newTalent{

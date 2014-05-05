@@ -195,13 +195,15 @@ newBirthDescriptor {
 		skill_search = 2,
 		spell_resistance = 12,
 		ecl = 2,
+		talents = {
+    [ActorTalents.T_DARKNESS_INNATE]=1,
+    [ActorTalents.T_FAERIE_FIRE_INNATE]=1,
+--    [ActorTalents.T_LEVITATE_INNATE]=1,
+	}
 	},
 	copy = {
 	starting_intro = "dark",
-	talents = {
-    [ActorTalents.T_DARKNESS_INNATE]=1,
-    [ActorTalents.T_FAERIE_FIRE_INNATE]=1,
-	}
+	
 	}
 }
 

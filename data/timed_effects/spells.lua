@@ -248,6 +248,41 @@ newEffect{
 	end,
 }
 
+--Flying, Zireael
+newEffect{
+	name = "LEVITATE",
+	desc = "Levitating",
+	type = "magical",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# starts floating in air", "+Levitate" end,
+	on_lose = function(self, err) return "#Target# descends to the ground", "-Levitate" end,
+	activate = function(self, eff)
+		eff.speed = self:addTemporaryValue("movement_speed_bonus", -0.33)
+		self.fly = true
+	end,
+	deactivate = function(self, eff)
+		self.fly = false
+		self:removeTemporaryValue("movement_speed_bonus", eff.speed)
+	end,
+}
+
+newEffect{
+	name = "FLY",
+	desc = "Flying",
+	type = "magical",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# starts flying in the air", "+Fly" end,
+	on_lose = function(self, err) return "#Target# descends gently to the ground", "-Fly" end,
+	activate = function(self, eff)
+		eff.speed = self:addTemporaryValue("movement_speed_bonus", 0.33)
+		self.fly = true
+	end,
+	deactivate = function(self, eff)
+		self.fly = false
+		self:removeTemporaryValue("movement_speed_bonus", eff.speed)
+	end,
+}
+
 
 
 --Modified ToME 4 code
