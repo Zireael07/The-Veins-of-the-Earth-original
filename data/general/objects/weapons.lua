@@ -239,6 +239,10 @@ newEntity{ base = "BASE_WEAPON",
     desc = "A curved blade.\n\n Damage 1d4. Threat range 18-20.",
 }
 
+newEntity{ base = "BASE_KUKRI",
+   
+}
+
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SHORTSWORD",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
