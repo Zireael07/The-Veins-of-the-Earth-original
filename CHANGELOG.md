@@ -1,5 +1,28 @@
 CHANGELOG
 
+0.17.0 - beta 5.2
+* bug fix - fix oversight in naming function for drow females
+* bug fix - no more "clones" (unkillable monsters)
+* bug fix - no more sneaky lua errors related to temporary values
+* bug fix - lizardfolk now get a torch
+* bug fix - wands and scrolls now work properly
+* bug fix - stores now stock properly
+
+* overhauled character creation screen and dungeon generation
+* handle animal and diplomacy skills
+* item creation and enhancement
+* new specific magic items: Holy Avenger, Dwarven Thrower, Flame Tongue, Luckblade, Nine Lives Stealer, Oathbow, Sunblade, Sword of the Planes
+* new magic properties: of resistance, of the Endless Wave, of Detection, of the Eagle, of the Soul, of the Mantis, of the Spur, of Stability, of Contortion, of Magical Aptitude, of Arachnida, of the Bat, of SR 21, of Frostbite, of Fireburn
+* minimap now has background and shows level exits
+* reduced the CR cap for level 1 to player level +3
+* immunities or resistances as perks
+* debug menu - includes adding creatures, removing them, killing off clones, adding XP or items to player, identifying all items in inventory, Lua console for other stuff
+* cut down on flasher (top message bar) use
+* add prompt to intro message and expand the pop-up border
+
+
+
+
 0.16.0 beta 5 - 18/04/2014
 * bug fix - summon monster dialog no longer appears if NPCs are trying to use it
 * bug fix - fix trying to perform calculations on nil stat_points

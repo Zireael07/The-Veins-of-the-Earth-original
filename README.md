@@ -26,7 +26,7 @@ Features:
 - backgrounds for quicker character creation; basic rules info while creating a character
 - ability to load a character that has already been created
 - attributes can be generated either via rolling or via resettable point buy starting from 10
-- improved starting equipment, now taking both class and race into account; magic items as perks
+- improved starting equipment, now taking both class and race into account; magic items, immunities or resistances as perks
 - random name generator taking into account your character's race and sex, now with an option to type the name yourself
 - Effective Character Level
 - XP for killing monsters, descending deeper, disarming traps, seeing first 4 monsters of a kind
@@ -46,6 +46,7 @@ Features:
 - stealth & sneak attacks
 - all weapons from SRD; magic armors and shields; magic weapons; light sources; magic items
 - all feats from SRD except archery feats and unarmed combat feats
+- working item creation feats
 - most monsters from the SRD (missing: demons, devils, dragons, lycanthropes, swarms, most animals which don't fit the dungeon theme)
 - pre-made encounters of more than 1 monster
 - humanoid NPCs can now have character classes
