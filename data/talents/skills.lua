@@ -1,7 +1,5 @@
 newTalentType{ type="skill/skill", name = "skill", description = "Skills" }
 
-
-
 newTalent{
 	name = "Intuition", image = "talents/intuition.png",
 	type = {"skill/skill",1},

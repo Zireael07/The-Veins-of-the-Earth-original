@@ -1,6 +1,8 @@
 newTalentType{ type="class/general", no_tt_req = true, name = "general", description = "General feats" }
 
 load("data/talents/feats/focus.lua")
+--load("data/talents/feats/perks.lua")
+load("data/talents/feats/item_creation.lua")
 
 --Proficiency feats
 newTalent{
