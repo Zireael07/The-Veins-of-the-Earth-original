@@ -455,7 +455,7 @@ function _M:onTurn()
 		self.day_of_year = self.calendar:getDayOfYear(self.turn)
 	end
 
-	self:killDead()
+--	self:killDead()
 end
 
 function _M:killDead()
