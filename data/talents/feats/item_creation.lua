@@ -165,22 +165,7 @@ newTalent{
 	end,
 }
 
-newTalent{
-	name = "Craft Staff",
-	type = {"class/general", 1},
-	is_feat = true,
-	points = 1,
-	mode = "activated",
-	cooldown = 20,
-	range = 0,
-	action = function(self, t)
-		local inven = game.player:getInven("INVEN")
-	end,
-	info = function(self, t)
-		return "Craft magic staves."
-	end,
-}
-
+--These craft new items
 newTalent{
 	name = "Brew Potion",
 	type = {"class/general", 1},
@@ -191,6 +176,199 @@ newTalent{
 	range = 0,
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
+        game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",{
+                {name="cure light wounds", desc=""},
+                {name="cure moderate wounds", desc=""},
+                {name="heal serious wounds", desc=""},
+                {name="bear endurance", desc=""},
+                {name="bull strength", desc=""},
+                },
+                function(result)
+                --  game.log("Result: "..result)
+                
+                    if result == "cure light wounds" then
+                    local gold_cost
+                    local xp_cost
+                    gold_cost = 50
+                    --used a different formula
+                    xp_cost = gold_cost * 0.04
+        
+                    local player = game.player
+                    --Check player gold and XP
+                    if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                    elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                    else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="potion", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:heal(rng.dice(1,8) + 5)
+                        return {used = true, destroy = true}
+                        end
+                        } 
+                        o.unided_name = "potion of cure light wounds"
+
+                    end
+                    end
+                    
+                        if result == "cure moderate wounds" then
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 375
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="potion", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:heal(rng.dice(2,8) + 5)
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "potion of cure moderate wounds"
+
+                    end
+                    end
+
+                    if result == "heal serious wounds" then
+
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 50
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="potion", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:heal(rng.dice(2,8) + 5)
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "potion of heal light wounds"
+
+                    end
+                    end
+
+                if result == "bear endurance" then
+
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 50
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="potion", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+                        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "potion of bear endurance"
+
+                    end
+                    end   
+
+                if result == "bull strength" then
+
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 50
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="potion", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
+                        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "potion of bull strength"
+
+                    end
+                    end   
+
+                end))
+
+            return true
 	end,
 	info = function(self, t)
 		return "Craft magic potions."
@@ -207,6 +385,199 @@ newTalent{
 	range = 0,
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
+             game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",{
+                {name="cure light wounds", desc=""},
+                {name="cure moderate wounds", desc=""},
+                {name="heal serious wounds", desc=""},
+                {name="bear endurance", desc=""},
+                {name="bull strength", desc=""},
+                },
+                function(result)
+                --  game.log("Result: "..result)
+                
+                    if result == "cure light wounds" then
+                    local gold_cost
+                    local xp_cost
+                    gold_cost = 50
+                    --used a different formula
+                    xp_cost = gold_cost * 0.04
+        
+                    local player = game.player
+                    --Check player gold and XP
+                    if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                    elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                    else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="wand", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:heal(rng.dice(1,8) + 5)
+                        return {used = true, destroy = true}
+                        end
+                        } 
+                        o.unided_name = "wand of cure light wounds"
+
+                    end
+                    end
+                    
+                        if result == "cure moderate wounds" then
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 375
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="wand", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:heal(rng.dice(2,8) + 5)
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "wand of cure moderate wounds"
+
+                    end
+                    end
+
+                    if result == "heal serious wounds" then
+
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 50
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="wand", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:heal(rng.dice(2,8) + 5)
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "wand of heal light wounds"
+
+                    end
+                    end
+
+                if result == "bear endurance" then
+
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 50
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="wand", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+                        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "wand of bear endurance"
+
+                    end
+                    end   
+
+                if result == "bull strength" then
+
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 50
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="wand", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
+                        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "wand of bull strength"
+
+                    end
+                    end   
+
+                end))
+
+            return true
 	end,
 	info = function(self, t)
 		return "Craft magic wands."
@@ -223,8 +594,217 @@ newTalent{
 	range = 0,
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
+             game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",{
+                {name="cure light wounds", desc=""},
+                {name="cure moderate wounds", desc=""},
+                {name="heal serious wounds", desc=""},
+                {name="bear endurance", desc=""},
+                {name="bull strength", desc=""},
+                },
+                function(result)
+                --  game.log("Result: "..result)
+                
+                    if result == "cure light wounds" then
+                    local gold_cost
+                    local xp_cost
+                    gold_cost = 50
+                    --used a different formula
+                    xp_cost = gold_cost * 0.04
+        
+                    local player = game.player
+                    --Check player gold and XP
+                    if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                    elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                    else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="scroll", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "cure light wounds",
+                        use = function(self,who)
+                        who:heal(rng.dice(1,8) + 5)
+                        return {used = true, destroy = true}
+                        end
+                        } 
+                        o.unided_name = "scroll of cure light wounds"
+
+                    end
+                    end
+                    
+                        if result == "cure moderate wounds" then
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 375
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="scroll", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "cure moderate wounds",
+                        use = function(self,who)
+                        who:heal(rng.dice(2,8) + 5)
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "scroll of cure moderate wounds"
+
+                    end
+                    end
+
+                    if result == "heal serious wounds" then
+
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 50
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="scroll", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "heal light wounds",
+                        use = function(self,who)
+                        who:heal(rng.dice(2,8) + 5)
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "scroll of heal light wounds"
+
+                    end
+                    end
+
+                if result == "bear endurance" then
+
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 50
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="scroll", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "read",
+                        use = function(self,who)
+                        who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+                        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "scroll of bear endurance"
+
+                    end
+                    end   
+
+                if result == "bull strength" then
+
+                        local gold_cost
+                        local xp_cost
+                        gold_cost = 50
+                        --used a different formula
+                        xp_cost = gold_cost * 0.04
+        
+                        local player = game.player
+                        --Check player gold and XP
+                        if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
+                        elseif (player.exp or 0) < xp_cost then game.log("You don't have enough XP")
+                        else
+                        --Deduct the costs
+                        player.money = player.money - gold_cost
+                        player.exp = player.exp - xp_cost
+
+                        --Create a base item
+                        local o = game.zone:makeEntity(game.level, "object", {name="scroll", ego_chance=-1000}, 1, true)
+                        if o then
+                        game.zone:addEntity(game.level, o, "object")
+                        game.player:addObject(game.player:getInven("INVEN"), o)
+                        o.pseudo_id = true
+                        end
+
+                        o.use_simple = { name = "quaff",
+                        use = function(self,who)
+                        who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
+                        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+                        return {used = true, destroy = true}
+                        end
+                        }
+                        o.unided_name = "scroll of bull strength"
+
+                    end
+                    end   
+
+                end))
+
+            return true
 	end,
 	info = function(self, t)
 		return "Craft magic scrolls."
 	end,
 }
+
+--[[newTalent{
+    name = "Craft Staff",
+    type = {"class/general", 1},
+    is_feat = true,
+    points = 1,
+    mode = "activated",
+    cooldown = 20,
+    range = 0,
+    action = function(self, t)
+        local inven = game.player:getInven("INVEN")
+    end,
+    info = function(self, t)
+        return "Craft magic staves."
+    end,
+}]]

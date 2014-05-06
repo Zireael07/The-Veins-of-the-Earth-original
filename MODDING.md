@@ -125,6 +125,12 @@ Note that there's no need to repeat information from lower levels in higher leve
 Spells
 Icon names for spells must match the spell's name exactly, otherwise they won't be displayed.
 
+Some spells are color-coded:
+Cyan/white - fly spells
+Brown/yellow - "animal buff" spells (e.g. Bull's Strength)
+Blue/yellow - cleric only spells
+
+
 It is imperative that the self.project line look like:
 a) self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15}) -> save DC defined
 b) self:projectile(tg, x, y, DamageType.ACID, {dam=damage}) -> default save DC
@@ -140,3 +146,10 @@ range 3 - close range
 range 5 - medium range
 
 duration 10 - 1 minute
+
+Feats
+Certain (activable or sustained) feats are color-coded, too.
+
+Purple - metamagic feats
+Purple/gold - item creation feats
+Blue/yellow - clerical feats (turn undead, lay on hands)
