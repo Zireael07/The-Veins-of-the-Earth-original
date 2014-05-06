@@ -35,7 +35,7 @@ newEntity{
 	name = " of heal serious wounds", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 120,
+	cost = 1200,
     use_simple = { name = "quaff",
     use = function(self,who)
         who:heal(rng.dice(2,8) + 5)
@@ -105,7 +105,7 @@ newEntity{
 	name = " of cat's grace", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	multicharge = 50,
+	cost = 4500,
     use_simple = { name = "quaff",
     use = function(self, who)
        who:setEffect(who.EFF_CAT_GRACE, 5, {})
@@ -133,6 +133,7 @@ newEntity{
 	name = " of owl wisdom", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
+    cost = 4500,
     use_simple = { name = "quaff",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
