@@ -1,6 +1,42 @@
 newTalentType{ all_limited=true, spell_list = "divine", type="divine", name="divine", description="Divine Spells" }
 
 newTalent{
+	name = "Create Food and Water",
+	type = {"divine", 1},
+	display = { image = "talents/create_food_and_water.png"},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	action = function(self)
+	if not self then return nil end
+	local food = game.zone:makeEntity(game.level, "object", {name="food rations", ego_chance=-1000}, 1, true)
+	local water = game.zone:makeEntity(game.level, "object", {name="flask of water", ego_chance=-1000}, 1, true)
+
+	if food then
+		game.zone:addEntity(game.level, food, "object")
+		self:addObject(game.player:getInven("INVEN"), food)
+		food.pseudo_id = true
+	end
+
+	if water then
+		game.zone:addEntity(game.level, water, "object")
+		self:addObject(game.player:getInven("INVEN"), water)
+		water.pseudo_id = true
+	end
+
+	return true
+	end,
+	info = function(self, t)
+		return ([[You create some food and drink for yourself.]])
+	end,
+	
+}
+
+
+--Cure spells
+newTalent{
 	name = "Cure Light Wounds",
 	type = {"divine", 1},
 	display = { image = "talents/cure_light_wounds.png"},

@@ -220,6 +220,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
 			actor:learnTalent(actor.T_CURE_LIGHT_WOUNDS, true)
 			actor:learnTalent(actor.T_INFLICT_LIGHT_WOUNDS, true)
+			actor:learnTalent(actor.T_CREATE_FOOD_AND_WATER, true)
 
 
 			actor:learnTalentType("divine", true)
