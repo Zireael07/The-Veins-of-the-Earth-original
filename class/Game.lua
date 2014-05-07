@@ -809,6 +809,11 @@ function _M:setupCommands()
 			end
 		end,
 
+		--More Marson stuff
+		MARSON_FLUSH = function()
+			io.flush(stderr)
+		end,
+
 
 	 
 	}

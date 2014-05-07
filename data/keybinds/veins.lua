@@ -37,7 +37,13 @@ defineAction{
 	group = "debug",
 	name = "Clear clones off current level",
 }
-
+--More Marson stuff
+defineAction{
+	default = { "sym:_f:true:false:false:false" },
+	type = "MARSON_FLUSH",
+	group = "debug",
+	name = "Flush Logfile",
+}
 
 
 -- Character movements
