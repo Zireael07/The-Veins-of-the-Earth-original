@@ -19,7 +19,7 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
-version = {0,16,1}
+version = {0,17,0}
 engine = {1,1,5,"te4"}
 description = [[
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
@@ -74,12 +74,16 @@ score_formatters = {
 }
 
 --"Wait finished, counted NNN, MMM ticks." This is NNN
-loading_wait_ticks = 39
+loading_wait_ticks = 57
 
 load_tips = {
   { text = [[If you are a spellcaster, you should pick your spells and rest ASAP to gain them.]] },
   { text = [[If a monster has negative hp, you can simply wait until it bleeds out.]] },
   { text = [[Remember to wear your armor.]]},
+  { text = [[Some spellcasters do not have to memorize their spells - they can cast them innately.]]},
+  { text = [[If you're lucky when creating your hero, you might get some innate spells or resistances!]]},
+  { text = [[Certain races have innate magical abilities due to exposure to magical radiation.]]},
+  { text = [[Remember that being unable to move or act does not mean you're dead (yet).]]},
 }
 
 background_name = {
