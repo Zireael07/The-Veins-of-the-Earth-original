@@ -77,6 +77,10 @@ function _M:use(item)
 		game:registerDialog(GetQuantity.new("XP to gain", "1-100000", 1000, 100000, function(qty)
 			game.player:gainExp(qty)
 		end), 1)
+	elseif act == "gain-gold" then
+		game:registerDialog(GetQuantity.new("Gold to gain", "1-100000", 1000, 100000, function(qty)
+			game.player:incMoney(qty)
+		end), 1)
 	elseif act == "identify-items" then
 		local inven = game.player:getInven("INVEN")
 		for k, o in ipairs(inven) do
@@ -124,6 +128,7 @@ function _M:generateList()
 --	list[#list+1] = {name="Change Zone", dialog="ChangeZone"}
 	list[#list+1] = {name="Change Level", action="change_level"}
 	list[#list+1] = {name="Gain XP", action="gain-xp"}
+	list[#list+1] = {name="Gain gold", action="gain-gold"}
 	list[#list+1] = {name="Identify items in inventory", action="identify-items"}
 	list[#list+1] = {name="Reveal all map", action="magic_map"}
 --	list[#list+1] = {name="Grant/Alter Quests", dialog="GrantQuest"}
