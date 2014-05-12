@@ -88,8 +88,15 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.c_perk = Textzone.new{auto_width=true, auto_height=true, text=_perks_text:format(self.actor.perk)}
 
 
-    --Lists
+    --Make UI work
     self:setDescriptor("base", "base")
+    self:setDescriptor("sex", "Female")
+    --Defaults so that you can't do stupid stuff like trying to play a char without descriptors
+    self:setDescriptor("class", "Barbarian")
+    self:setDescriptor("race", "Human")
+    self:setDescriptor("background", "Brawler")
+    self:setDescriptor("alignment", "Neutral Good")
+    --Create lists
     self:generateLists()
 
     self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
@@ -726,6 +733,9 @@ function _M:loadedPremade()
 
     game:unregisterDialog(self)
 --    game:unregisterDialog(d)
+
+    game:changeLevel(1, "Upperdark")
+
 --[[  self.creating_player = true
     game:changeLevel(1, "dungeon")
     print("[PLAYER BIRTH] resolve...")
@@ -735,9 +745,8 @@ function _M:loadedPremade()
     game.player.energy.value = game.energy_to_act
     game.paused = true
         
-    print("[PLAYER BIRTH] resolved!")]] 
+    print("[PLAYER BIRTH] resolved!")]]
 
-    game:changeLevel(1, "dungeon")
 
     game.player:onPremadeBirth()
     local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
