@@ -1,6 +1,7 @@
 CHANGELOG
 
-0.17.0 - beta 5.2
+0.17.0 - beta 5.2 - 12/05/2014
+* bug fix - no more point buy popping back up after game start
 * bug fix - fix oversight in naming function for drow females
 * bug fix - no more "clones" (unkillable monsters)
 * bug fix - no more sneaky lua errors related to temporary values
@@ -13,10 +14,11 @@ CHANGELOG
 * item creation and enhancement
 * new specific magic items: Holy Avenger, Dwarven Thrower, Flame Tongue, Luckblade, Nine Lives Stealer, Oathbow, Sunblade, Sword of the Planes
 * new magic properties: of resistance, of the Endless Wave, of Detection, of the Eagle, of the Soul, of the Mantis, of the Spur, of Stability, of Contortion, of Magical Aptitude, of Arachnida, of the Bat, of SR 21, of Frostbite, of Fireburn
+* new spells: create food and water, fly, levitate
 * minimap now has background and shows level exits
 * reduced the CR cap for level 1 to player level +3
 * immunities or resistances as perks
-* debug menu - includes adding creatures, removing them, killing off clones, adding XP or items to player, identifying all items in inventory, Lua console for other stuff
+* debug menu - includes adding creatures, removing them, killing off clones, adding XP, gold, or items to player, identifying all items in inventory, Lua console for other stuff
 * cut down on flasher (top message bar) use
 * add prompt to intro message and expand the pop-up border
 

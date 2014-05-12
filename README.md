@@ -44,9 +44,9 @@ Features:
 - clerics now pick from 16 deities which limit their alignment and domain choices (44 domains total)
 - skill checks (printed to log) including armor check penalty & racial or feat bonuses; opposed checks
 - stealth & sneak attacks
-- all weapons from SRD; magic armors and shields; magic weapons; light sources; magic items
+- all weapons from SRD; magic armors and shields; magic weapons; light sources; wondrous items; specific magic items
 - all feats from SRD except archery feats and unarmed combat feats
-- working item creation feats
+- working item creation feats (Craft Magic Arms and Armor, Scribe Scroll, Brew Potion)
 - most monsters from the SRD (missing: demons, devils, dragons, lycanthropes, swarms, most animals which don't fit the dungeon theme)
 - pre-made encounters of more than 1 monster
 - humanoid NPCs can now have character classes
