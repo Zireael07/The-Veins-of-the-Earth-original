@@ -128,21 +128,26 @@ newTalent{
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
-		local check = self:skillCheck("diplomacy", 15)
+		
 
-		if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
+		if target.type == "humanoid" then
+
+			local check = self:skillCheck("diplomacy", 15)
+			if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
 			target.faction = "neutral"
 			--From Qi Daozei
-		 -- Reset NPCs' targets.  Otherwise, they follow the player around
-        -- like a puppy dog.
-        for uid, e in pairs(game.level.entities) do
+		 	-- Reset NPCs' targets.  Otherwise, they follow the player around
+        	-- like a puppy dog.
+        	for uid, e in pairs(game.level.entities) do
             print(e.name)
-            if e.setTarget and e ~= game.player then
-                e:setTarget(nil)
-            end
-        end
-		else game.log("The target resists your attempts to influence it") end
+            	if e.setTarget and e ~= game.player then
+                	e:setTarget(nil)
+            	end
+        	end
+			else game.log("The target resists your attempts to influence it") end
+		else game.log("You pick a wrong target") end
 
+		
 		return true
 	end,
 	info = function(self, t)
@@ -165,20 +170,24 @@ newTalent{
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
-		local check = self:skillCheck("handleanimal", 15)
+		
 
-		if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
+		if target.type == "animal" then
+			local check = self:skillCheck("handleanimal", 15)
+			if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
 			target.faction = "neutral"
 			--From Qi Daozei
 		 -- Reset NPCs' targets.  Otherwise, they follow the player around
-        -- like a puppy dog.
-        for uid, e in pairs(game.level.entities) do
+        	-- like a puppy dog.
+        	for uid, e in pairs(game.level.entities) do
             print(e.name)
-            if e.setTarget and e ~= game.player then
-                e:setTarget(nil)
-            end
-        end
-		else game.log("The target resists your attempts to influence it") end
+            	if e.setTarget and e ~= game.player then
+                	e:setTarget(nil)
+           		end
+        	end
+
+			else game.log("The target resists your attempts to influence it") end
+		else game.log("You pick a wrong target") end
 		
 		return true
 	end,
