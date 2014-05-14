@@ -51,6 +51,7 @@ function _M:init()
 	}
 end
 
+
 function _M:generateList()
 	-- Makes up the list of NPC entities and player
 	local list = {}
@@ -143,9 +144,12 @@ function _M:generateList()
 				name = name.." *DEAD*"
 				row_color = color_error
 			end
-			list[#list+1] = { uid=entity.uid, name=name, unique=unique_text, rank=entity.rank, x=entity.x, y=entity.y, oldx=entity.old_x, oldy=entity.old_y, index=index, type=tile and tile[Map.TERRAIN] and tile[Map.TERRAIN].type or "INVALID", allowed=allowed, color=row_color }
+		--	list[#list+1] = { uid=entity.uid, name=name, unique=unique_text, rank=entity.rank, x=entity.x, y=entity.y, oldx=entity.old_x, oldy=entity.old_y, index=index, type=tile and tile[Map.TERRAIN] and tile[Map.TERRAIN].type or "INVALID", allowed=allowed, color=row_color }
+			list[#list+1] = { uid=entity.uid, name=name, unique=unique_text, x=entity.x, y=entity.y, oldx=entity.old_x, oldy=entity.old_y, index=index, type=tile and tile[Map.TERRAIN] and tile[Map.TERRAIN].type or "INVALID", allowed=allowed, color=row_color }
 		end
 	end
-	table.sort(list, function(a, b) return a.index < b.index end)
+  if #table > 0 then
+    table.sort(list, function(a, b) return a.index < b.index end)
+  end
 	self.list = list
 end
