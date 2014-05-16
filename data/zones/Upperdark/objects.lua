@@ -39,6 +39,21 @@ load("/data/general/objects/money.lua") -- rarity(-luck))
 
 load("/data/general/objects/specific_items.lua")
 
+--Lore
+load("/data/general/objects/lore.lua")
+
+--Lore
+for i = 1, 3 do
+newEntity{ base = "BASE_LORE",
+    define_as = "NOTE"..i,
+    name = "tattered paper scrap", lore="misc-"..i,
+    desc = [[A paper scrap, left by an adventurer.]],
+    rarity = false,
+    encumberance = 0,
+}
+end
+
+
 --Bones
 newEntity{
     define_as = "BONES",

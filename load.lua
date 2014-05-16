@@ -29,7 +29,7 @@ local ActorTemporaryEffects = require "engine.interface.ActorTemporaryEffects"
 local Store = require "mod.class.Store"
 local WorldAchievements = require "mod.class.interface.WorldAchievements"
 local Birther = require "engine.Birther"
-
+local PlayerLore = require "mod.class.interface.PlayerLore"
 
 local UIBase = require "engine.ui.Base"
 
@@ -104,5 +104,8 @@ Birther:loadDefinition("/data/birth/descriptors.lua")
 
 --Stores
 Store:loadStores("/data/general/stores/general.lua")
+
+-- Lore
+PlayerLore:loadDefinition("/data/lore/lore.lua")
 
 return {require "mod.class.Game", require "mod.class.World" }

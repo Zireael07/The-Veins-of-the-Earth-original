@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -100,7 +100,8 @@ function _M:getDisplayColor()
     if self.pseudo_id == true then
         if self.cursed then return {201, 0, 0}, "#RED#" end
     
---[[    if self.rare then
+        if self.lore then return {142, 69, 0}, "#UMBER#" end
+        --[[    if self.rare then
         return {250, 128, 114}, "#SALMON#"]]
         if self.egoed then
             if self.greater_ego then return {255, 215, 0}, "#GOLD#"
@@ -271,6 +272,13 @@ function _M:on_prepickup(who, idx)
     end
     if self.pseudo_id == true and self.cursed then game.level.map:removeObject(who.x, who.y, idx) return true end
     
+    --Lore
+    if who.player and self.lore then
+        game.level.map:removeObject(who.x, who.y, idx)
+        game.player:learnLore(self.lore)
+        return true
+    end
+
     --Item manager settings
 --[[    local tt = self.subtype
     if who == game.player and tt.destroy then game.level.map:removeObject(who.x, who.y, idx) return true end

@@ -26,6 +26,7 @@ local DeathDialog = require "mod.dialogs.DeathDialog"
 local Astar = require"engine.Astar"
 local DirectPath = require "engine.DirectPath"
 local World = require "mod.class.World"
+local PlayerLore = require "mod.class.interface.PlayerLore"
 --local NameGenerator = require "engine.NameGenerator"
 
 --- Defines the player
@@ -35,7 +36,8 @@ module(..., package.seeall, class.inherit(mod.class.Actor,
 					  engine.interface.PlayerRest,
 					  engine.interface.PlayerRun,
 					  engine.interface.PlayerMouse,
-					  engine.interface.PlayerHotkeys))
+					  engine.interface.PlayerHotkeys,
+            PlayerLore))
 
 local exp_chart = function(level)
 if level==1 then return 1000 
@@ -56,6 +58,7 @@ function _M:init(t, no_default)
 
   mod.class.Actor.init(self, t, no_default)
   engine.interface.PlayerHotkeys.init(self, t)
+  PlayerLore.init(self, t)
 
   self.lite = 0 --stealth test
   self.ecl = 1

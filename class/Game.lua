@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -62,6 +62,9 @@ module(..., package.seeall, class.inherit(engine.GameTurnBased, engine.interface
 support_shader_gamma = true
 
 function _M:init()
+
+	self.gfx = {}
+
 	engine.GameTurnBased.init(self, engine.KeyBind.new(), 1000, 100)
 
 	-- Pause at birth
@@ -399,12 +402,26 @@ function _M:changeLevel(lev, zone)
 
 	--Bones
 	if world.bone_levels and world.bone_levels[game.level.level] then
-		local x, y = util.findFreeGrid(player.x, player.y, 50, true, {[Map.ACTOR]=true})
+
+	local bones = game.zone:makeEntityByName(game.level, "object", "BONES")
+	local x, y = rng.range(0, self.level.map.w-1), rng.range(0, self.level.map.h-1)
+	local tries = 0
+	while (self.level.map:checkEntity(x, y, Map.TERRAIN, "block_move") or self.level.map(x, y, Map.OBJECT) or self.level.map.room_map[x][y].special) and tries < 100 do
+		x, y = rng.range(0, self.level.map.w-1), rng.range(0, self.level.map.h-1)
+		tries = tries + 1
+	end
+	if tries < 100 then
+		self.zone:addEntity(self.level, bones, "object", x, y)
+		print("Placed bones", o.name, x, y)
+		o:identify(true)
+	end
+
+--[[		local x, y = util.findFreeGrid(player.x, player.y, 50, true, {[Map.ACTOR]=true})
 		local bones = game.zone:makeEntityByName(game.level, "object", "BONES")
 		if not x then return end
 		if bones then
 			game.zone:addEntity(game.level, bones, "object", x, y)
-		end
+		end]]
 
 	end
 
@@ -875,6 +892,30 @@ function _M:saveGame()
 	savefile_pipe:push(self.save_name, "game", self)
 	self.log("Saving game...")
 end
+
+--Based on ToME 4
+--- Create a random lore object and place it
+function _M:placeRandomLoreObject(define)
+	if type(define) == "table" then define = rng.table(define) end
+	local o = self.zone:makeEntityByName(self.level, "object", define)
+	if not o then return end
+	if o.checkFilter and not o:checkFilter({}) then return end
+
+	local x, y = rng.range(0, self.level.map.w-1), rng.range(0, self.level.map.h-1)
+	local tries = 0
+	while (self.level.map:checkEntity(x, y, Map.TERRAIN, "block_move") or self.level.map(x, y, Map.OBJECT) or self.level.map.room_map[x][y].special) and tries < 100 do
+		x, y = rng.range(0, self.level.map.w-1), rng.range(0, self.level.map.h-1)
+		tries = tries + 1
+	end
+	if tries < 100 then
+		self.zone:addEntity(self.level, o, "object", x, y)
+		print("Placed lore", o.name, x, y)
+		o:identify(true)
+	end
+end
+
+
+
 
 
 --Events stuff taken from ToME
