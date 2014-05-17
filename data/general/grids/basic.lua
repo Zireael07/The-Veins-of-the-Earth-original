@@ -348,6 +348,7 @@ newEntity{
 	define_as = "ALTAR",
 	type = "floor", subtype = "furniture",
 	name = "altar", 
+	image = "tiles/altar.png",
 	display = '&', color=colors.WHITE, back_color=colors.DARK_GREY,
 	always_remember = true,
 }
