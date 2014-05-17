@@ -2101,19 +2101,22 @@ function _M:levelup()
 	if self == game.player then self.class_points = self.class_points + 1 end
 
 	--feat points given every 3 levels. Classes may give additional feat points.
-	if self.level % 3 == 0 then 
+	if self == game.player then
+		if self.level % 3 == 0 then 
 		self.feat_point = self.feat_point + 1
-	end
+	end end
 
 	--stat point gained every 4 levels
-	if self.level % 4 == 0 then self.stat_point = (self.stat_point or 0) + 1 end
+	if self == game.player then
+		if self.level % 4 == 0 then self.stat_point = (self.stat_point or 0) + 1 end
+	end
 
 	-- Auto levelup ?
 	if self.autolevel then
 		engine.Autolevel:autoLevel(self)
 	end
 
-	if game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
+	if self == game.player and game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
 
 end
 
