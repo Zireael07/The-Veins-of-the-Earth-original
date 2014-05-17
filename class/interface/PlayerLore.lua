@@ -20,6 +20,7 @@
 require "engine.class"
 local Dialog = require "engine.ui.Dialog"
 local LoreParchment = require "mod.dialogs.LoreParchment"
+local LoreInfo = require "mod.dialogs.LoreInfo"
 
 module(..., package.seeall, class.make)
 
@@ -85,11 +86,16 @@ function _M:learnLore(lore, nopopup, silent, nostop)
 	
 
 	if not self:knownLore(lore) or l.always_pop then
-		game.logPlayer(self, "Lore found: #0080FF#%s", l.name)
-		if not nopopup then
-			LoreParchment.new(l, game.w * 0.6, 0.8)
-	--		game.logPlayer(self, "You can read all your collected lore in the game menu, by pressing Escape.")
-		end
+		game.logPlayer(self, "Lore found: #UMBER#%s", l.name)
+
+		game:registerDialog(require("mod.dialogs.LoreInfo").new(l, self.player))
+
+	--[[	if not nopopup then
+	--		LoreParchment.new(l, game.w * 0.6, 0.8)
+	--		LoreInfo.new(l, game.player)
+
+			game.logPlayer(self, "You can read all your collected lore in the game menu, by pressing Escape.")
+		end]]
 		learnt = true
 	end
 

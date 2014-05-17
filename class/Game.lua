@@ -894,15 +894,41 @@ function _M:saveGame()
 end
 
 --Based on ToME 4
---- Create a random lore object and place it
+--- Create a random lore object and place it close to entrance
 function _M:placeRandomLoreObject(define)
 	if type(define) == "table" then define = rng.table(define) end
 	local o = self.zone:makeEntityByName(self.level, "object", define)
 	if not o then return end
 	if o.checkFilter and not o:checkFilter({}) then return end
 
+	local x, y = util.findFreeGrid(self.level.default_up.x, self.level.default_up.y, 5, true, {[Map.OBJECT]=true})
+
+	self.zone:addEntity(self.level, o, "object", x, y)
+	print("Placed lore", o.name, x, y)
+	o:identify(true)
+end
+
+--Taken from ToME 4
+--Create a random lore object in a set distance
+function _M:placeRandomLoreObjectScale(base, nb, level)
+	local dist = ({
+		[5] = { {1}, {2,3}, {4,5} }, -- 5 => 3
+		[7] = { {1,2}, {3,4}, {5,6}, {7} }, -- 7 => 4
+	})[nb][level]
+	if not dist then return end
+	for _, i in ipairs(dist) do self:placeRandomLoreObject(base..i) end
+end
+
+--Create a random lore object anywhere in map
+function _M:placeRandomLoreObjectonMap(define)
+	if type(define) == "table" then define = rng.table(define) end
+	local o = self.zone:makeEntityByName(self.level, "object", define)
+	if not o then return end
+	if o.checkFilter and not o:checkFilter({}) then return end
+
 	local x, y = rng.range(0, self.level.map.w-1), rng.range(0, self.level.map.h-1)
-	local tries = 0
+
+		local tries = 0
 	while (self.level.map:checkEntity(x, y, Map.TERRAIN, "block_move") or self.level.map(x, y, Map.OBJECT) or self.level.map.room_map[x][y].special) and tries < 100 do
 		x, y = rng.range(0, self.level.map.w-1), rng.range(0, self.level.map.h-1)
 		tries = tries + 1
@@ -912,10 +938,8 @@ function _M:placeRandomLoreObject(define)
 		print("Placed lore", o.name, x, y)
 		o:identify(true)
 	end
+
 end
-
-
-
 
 
 --Events stuff taken from ToME
