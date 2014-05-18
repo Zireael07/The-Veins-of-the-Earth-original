@@ -176,6 +176,36 @@ newTalent{
 	end,
 }
 
+newTalent{	
+	name = "Ignizarr's fire", short_name = "IGNIZZAR_FIRE",
+	type = {"evocation", 1},
+	mode = 'activated',
+	level = 2,
+	points = 1,
+	cooldown = 0,
+	tactical = { BUFF = 2 },
+	range = 5,
+	requires_target = true,
+	target = function(self, t)
+		return {type="bolt", range=self:getTalentRange(t), nolock = true, selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+		if not x or not y then return nil end
+
+		local level = t.num_dice(self,t)
+		local damage = rng.dice(3,6)
+
+		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})
+		return true
+	end,
+	info = function(self, t)
+		return ([[A line of searing flame shoots from your fingertips. Any creature caught in it takes 3d6 points of fire damage.]])
+	end,
+}
+
 
 newTalent{
 	name = "Fireball",
