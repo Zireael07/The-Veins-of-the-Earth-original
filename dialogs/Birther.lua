@@ -32,6 +32,8 @@ module(..., package.seeall, class.inherit(Birther))
 local _points_text = "Points left: #00FF00#%d#WHITE#"
 local _perks_text = "#LIGHT_BLUE#%s#WHITE#"
 
+local reroll = false
+
 function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.quickbirth = quickbirth
     self.actor = actor
@@ -111,6 +113,13 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
     self.c_alignment = List.new{width=self.iw/6, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end}
 
+    self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
+    Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
+    #00FF00#Left click#FFFFFF# in table to increase a stat; #00FF00#right click#FFFFFF# to decrease a stat.
+    Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
+
+    Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
+    ]]}
     self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = 400, scrollbar=true, text="Hello from description"}
 
     self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
@@ -145,8 +154,10 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         {left=self.c_background, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_alignment_text},
         {left=self.c_background, top=self.c_alignment_text, ui=self.c_alignment},
 
-        --Description
-        {right=0, top=self.c_name.h + 15, ui=self.c_desc},
+        --Instructions and description
+        {right=0, top=self.c_name.h + 15, ui=self.c_tut},
+        {right=0, top=self.c_name.h + self.c_tut.h + 5, ui=Separator.new{dir="vertical", size=self.iw - ((self.iw/6)*4)-20}},
+        {right=0, top=self.c_name.h + self.c_tut.h + 30, ui=self.c_desc},
 
         --Buttons
         {left=0, bottom=0, ui=self.c_cancel},
@@ -170,6 +181,8 @@ function _M:onSetupPB()
     for i, s in ipairs(self.actor.stats_def) do
         self.actor.stats[i] = 10
     end
+
+    reroll = false
 end
 
 
@@ -536,6 +549,9 @@ function _M:incStat(v, id)
 
     local delta = self:getCost(val) * v
 
+    if reroll then return end
+
+
     --Limits
     if v == 1 then
         if delta > self.unused_stats then
@@ -601,6 +617,8 @@ function _M:onRoll()
     for i, s in ipairs(self.actor.stats_def) do
         self.actor.stats[i] = rng.dice(3,6)
     end
+
+    reroll = true
     
     --Make sure that the highest stat is not =< than 13 and that the sum of all modifiers isn't =< 0
     local player = self.actor
@@ -613,6 +631,10 @@ function _M:onRoll()
         self:updateClasses()
         self.c_perk.text = _perks_text:format(self.actor.perk)
         self.c_perk:generate()
+        --Stop pb shenanigans
+        self.unused_stats = 0
+        self.c_points.text = _points_text:format(self.unused_stats)
+        self.c_points:generate()
     end
 
 
