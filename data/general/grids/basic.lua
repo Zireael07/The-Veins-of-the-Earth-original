@@ -193,6 +193,40 @@ newEntity{
 	door_closed = "DOOR",
 }
 
+--Locked doors
+newEntity{ base = "DOOR",
+	define_as = "LOCKED_DOOR",
+	name = "locked door",
+	image = "tiles/door.png",
+	display = '+', color_r=238, color_g=154, color_b=77, back_color=colors.LIGHT_UMBER,
+	notice = true,
+	always_remember = true,
+	block_sight = true,
+	block_move = function(self, x, y, who, act, couldpass)
+		-- Open door
+		if not self.opened then
+			--block if not player
+			if not who or not who.player or not act then return true end
+			local check = game.player:skillCheck("openlock", 15)
+			if check then
+				game.log("You open the door!")
+			--[[	self.add_mos = {{image="tiles/chest_open.png", display_h=1, display_w=1, display_y=0, display_x=0}}
+				self:removeAllMOs()]]
+				self.opened = true
+				local g = game.zone:makeEntityByName(game.level, "terrain", "DOOR_OPEN")
+				if g then
+					--turn into open door
+					game.zone:addEntity(game.level, g, "terrain", x, y)
+				end
+			else game.log("You fail to open the door.")
+			end
+			return true
+		end
+		
+		return false
+	end,
+}
+
 --Taken from Incursion
 newEntity{ base = "DOOR",
 	define_as = "DOOR_IRON",
