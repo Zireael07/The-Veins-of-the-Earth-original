@@ -1,5 +1,5 @@
--- Underdark
--- Zireael
+-- Veins of the Earth
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -14,24 +14,32 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+--Taken from Incursion
+--"Reprise", "Icemelt", "Turnleaf", "Blossom" --spring/summer
+-- "Suntide", "Harvest", "Leafdry", "Softwind", --summer/fall
+--"Thincold", "Deepcold", "Midwint", "Arvester", --fall/winter
+
+--Padded out due to the 365 days requirement
+                            
+
 
 return {
-	{ 30, "Hammer", },
+	{ 30, "Arvester", },
 	{ 1, "Midwinter"},
-	{ 30, "Alturiak" },
-	{ 30, "Ches" },
-	{ 30, "Tarsakh" },
+	{ 30, "Reprise" },
+	{ 30, "Icemelt" },
+	{ 30, "Turnleaf" }, --april
 	{ 1, "Greengrass" },
-	{ 30, "Mirtul" },
-	{ 30, "Kythorn" },
-	{ 30, "Flamerule" },
+	{ 30, "Blossom" }, --may
+	{ 30, "Suntide" }, --june
+	{ 30, "Harvest" },
 	{ 1, "Midsummer" },
-	{ 30, "Eleasias" },
-	{ 30, "Eleint" },
+	{ 30, "Leafdry" }, --august
+	{ 30, "Softwind" },
 	{ 1, "Highharvestide"},
-	{ 30, "Marpenoth" },
-	{ 30, "Uktar"},
-	{ 1, "Feast of the Moon"},
-	{ 30, "Nightal"}
+	{ 30, "Thincold" },
+	{ 30, "Deepcold"}, --november
+	{ 1, "Year Feast"},
+	{ 30, "Midwint"} --december
 
 }
