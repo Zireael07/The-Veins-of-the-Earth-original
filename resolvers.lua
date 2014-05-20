@@ -1,5 +1,5 @@
--- ToME - Tales of Maj'Eyal
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Copyright (C) 2013-2014 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,9 +13,7 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
+
 
 local Talents = require "engine.interface.ActorTalents"
 
@@ -310,4 +308,29 @@ function resolvers.calc.class(t, e)
 	e = e:giveLevels(class, n)
 	return e
 	end
+end
+
+--Special stuff
+function resolvers.specialnpc()
+ 	return {__resolver="specialnpc", __resolve_last=true}
+end
+
+function resolvers.calc.specialnpc(t, e)
+	--BANDIT: give +2 Str, armor proficiencies, martial weapon proficiency. Power Attack; +2 CR
+	if rng.chance(2) then 
+		e:learnTalent(e.POWER_ATTACK, true)
+		e:learnTalent(e.MARTIAL_WEAPON_PROFICIENCY, true)
+		e.challenge = e.challenge +2 end
+	--CHIEFTAIN: give +4 Str  +4 Con, +2 attack, Power Attack, Cleave, +2 CR
+	if rng.chance(8) then 
+		e:learnTalent(e.POWER_ATTACK, true)
+--		e:learnTalent(e.CLEAVE, true)
+		e.combat_attack = e.combat_attack +2
+		e.challenge = e.challenge +2 end
+	--SKILLED: +1 to all attributes, +1 HD, +1 attack, +1 CR
+	if rng.chance(4) then 
+		e.hit_die = e.hit_die +1
+		e.combat_attack = e.combat_attack +1
+		e.challenge = e.challenge +1 end
+	
 end
