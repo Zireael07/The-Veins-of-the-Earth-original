@@ -34,6 +34,7 @@ newEntity{
 	skill_spot = 1,
 	skill_search = 1,
 	skill_movesilently = 1,
+	hit_die = 4,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="kobold", number=3, no_subescort = true},
@@ -45,7 +46,6 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	level_range = {1, 4}, exp_worth = 75,
 	rarity = 6,
 	max_life = resolvers.rngavg(5,9),
-	hit_die = 4,
 	challenge = 1/2,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
@@ -95,6 +95,7 @@ newEntity{
 	infravision = 2,
 	skill_listen = 2,
 	skill_spot = 2,
+	hit_die = 1,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 50, type="humanoid", name="orc", number=1, no_subescort = true},
@@ -104,11 +105,10 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_ORC",
-	name = "orc warrior", color=colors.GREEN,
+	name = "orc", color=colors.GREEN,
 	level_range = {1, 4}, exp_worth = 150,
 	rarity = 8,
 	max_life = resolvers.rngavg(4,7),
-	hit_die = 1,
 	challenge = 1,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
@@ -140,6 +140,7 @@ newEntity{
 	skill_movesilently = 4,
 	skill_listen = 2,
 	skill_spot = 1,
+	hit_die = 1,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="kobold", number=2, no_subescort = true},
@@ -153,7 +154,6 @@ newEntity{
 	level_range = {1, 4}, exp_worth = 50,
 	rarity = 3,
 	max_life = resolvers.rngavg(4,7),
-	hit_die = 1,
 	challenge = 1/3,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
@@ -189,6 +189,7 @@ newEntity{
 	skill_listen = 2,
 	skill_search = 3,
 	skill_spot = 2,
+	hit_die = 1,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="drow", faction = "enemies", number=3, no_subescort = true},
@@ -202,7 +203,6 @@ newEntity{
 	level_range = {1, nil}, exp_worth = 150,
 	rarity = 3,
 	max_life = resolvers.rngavg(3,5),
-	hit_die = 1,
 	challenge = 1,
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_DARKNESS_INNATE]=1,
@@ -234,6 +234,7 @@ newEntity{
 	stats = { str=11, dex=11, con=12, int=11, wis=9, cha=9, luc=10 },
 	combat = { dam= {1,6} },
 	lite = 3,
+	hit_die = 1,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
@@ -244,7 +245,6 @@ newEntity{
 	level_range = {1, 5}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,8),
-	hit_die = 1,
 	challenge = 1,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
@@ -272,6 +272,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
 	combat = { dam= {1,6} },
+	hit_die = 1,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
@@ -282,7 +283,6 @@ newEntity{
 	level_range = {1, 15}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,10),
-	hit_die = 1,
 	challenge = 1,
 	infravision = 3,
 	resolvers.talents{ [Talents.T_SHOOT]=1, 
@@ -395,6 +395,7 @@ newEntity{
 	infravision = 3,
 	skill_listen = 3,
 	skill_spot = 2,
+	hit_die = 2,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
@@ -404,7 +405,6 @@ newEntity{
 	level_range = {1, 10}, exp_worth = 600,
 	rarity = 5,
 	max_life = resolvers.rngavg(10,15),
-	hit_die = 2,
 	challenge = 2,
 	infravision = 3,
 	alignment = "chaotic evil",
@@ -439,6 +439,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=11, con=14, int=10, wis=9, cha=8, luc=10 },
 	combat = { dam= {1,6} },
+	hit_die = 1,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
@@ -449,7 +450,6 @@ newEntity{
 	level_range = {1, 15}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,10),
-	hit_die = 1,
 	challenge = 1/2,
 	darkvision = 3,
 	skill_hide = 3,
@@ -516,6 +516,7 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
+	hit_die = 1,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
@@ -526,7 +527,6 @@ newEntity{
 	level_range = {1, 5}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,8),
-	hit_die = 1,
 	challenge = 1/2,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
@@ -555,6 +555,7 @@ newEntity{
 	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=8, luc=10 },
 	combat = { dam= {1,6} },
 	infravision = 3,
+	hit_die = 1,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="hobgoblin", number=1},
@@ -568,7 +569,6 @@ newEntity{
 	level_range = {1, 5}, exp_worth = 150,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,8),
-	hit_die = 1,
 	challenge = 1/2,
 	skill_movesilently = 4,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
@@ -598,6 +598,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	infravision = 3,
 	combat_natural = 5,
+	hit_die = 2,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
@@ -607,7 +608,6 @@ newEntity{
 	level_range = {1, nil}, exp_worth = 300,
 	rarity = 15,
 	max_life = resolvers.rngavg(10,15),
-	hit_die = 2,
 	challenge = 1,
 	skill_balance = 4,
 	skill_jump = 4,
@@ -680,6 +680,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	infravision = 1,
 	movement_speed_bonus = 0.90,
+	hit_die = 2,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
@@ -689,7 +690,6 @@ newEntity{
 	level_range = {1, 15}, exp_worth = 150,
 	rarity = 15,
 	max_life = resolvers.rngavg(5,10),
-	hit_die = 2,
 	challenge = 1/2,
 	skill_listen = 5,
 	skill_spot = 5,
@@ -727,6 +727,7 @@ newEntity{
 	infravision = 5,
 	combat_natural = 6,
 	alignment = "chaotic evil",
+	hit_die = 2,
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
@@ -736,7 +737,6 @@ newEntity{
 	level_range = {1, nil}, exp_worth = 300,
 	rarity = 10,
 	max_life = resolvers.rngavg(10,15),
-	hit_die = 2,
 	challenge = 1,
 	skill_hide = 6,
 	skill_listen = 3,
