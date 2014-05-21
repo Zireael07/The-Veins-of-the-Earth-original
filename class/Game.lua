@@ -63,7 +63,8 @@ support_shader_gamma = true
 
 function _M:init()
 
-	self.gfx = {}
+	self.gfx = self.gfx or {}
+	self.level_random_seed = {}
 
 	engine.GameTurnBased.init(self, engine.KeyBind.new(), 1000, 100)
 
