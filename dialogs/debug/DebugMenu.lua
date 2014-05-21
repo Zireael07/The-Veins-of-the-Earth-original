@@ -125,7 +125,7 @@ function _M:generateList()
 	local list = {}
 	list[#list+1] = {name="Entities list", dialog="EntityTracker"}
 	list[#list+1] = {name="Kill off clones", action="kill-clones"} 
---	list[#list+1] = {name="Change Zone", dialog="ChangeZone"}
+	list[#list+1] = {name="Change Zone", dialog="ChangeZone"}
 	list[#list+1] = {name="Change Level", action="change_level"}
 	list[#list+1] = {name="Gain XP", action="gain-xp"}
 	list[#list+1] = {name="Gain gold", action="gain-gold"}
