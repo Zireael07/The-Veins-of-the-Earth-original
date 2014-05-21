@@ -16,6 +16,7 @@
 
 
 local Talents = require "engine.interface.ActorTalents"
+local DamageType = require "engine.DamageType"
 
 --- Resolves equipment creation for an actor
 function resolvers.equip(t)
@@ -316,21 +317,108 @@ function resolvers.specialnpc()
 end
 
 function resolvers.calc.specialnpc(t, e)
+	local special
 	--BANDIT: give +2 Str, armor proficiencies, martial weapon proficiency. Power Attack; +2 CR
 	if rng.chance(2) then 
-		e:learnTalent(e.POWER_ATTACK, true)
-		e:learnTalent(e.MARTIAL_WEAPON_PROFICIENCY, true)
-		e.challenge = e.challenge +2 end
+--		e:learnTalent(e.POWER_ATTACK, true)
+--		e:learnTalent(e.MARTIAL_WEAPON_PROFICIENCY, true)
+		e.challenge = e.challenge +2 
+		special = "bandit"
 	--CHIEFTAIN: give +4 Str  +4 Con, +2 attack, Power Attack, Cleave, +2 CR
-	if rng.chance(8) then 
-		e:learnTalent(e.POWER_ATTACK, true)
+	elseif rng.chance(8) then 
+--		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.CLEAVE, true)
 		e.combat_attack = e.combat_attack +2
-		e.challenge = e.challenge +2 end
+		e.challenge = e.challenge +2 
+		special = "chieftain"
 	--SKILLED: +1 to all attributes, +1 HD, +1 attack, +1 CR
-	if rng.chance(4) then 
+	elseif rng.chance(4) then 
 		e.hit_die = e.hit_die +1
 		e.combat_attack = e.combat_attack +1
-		e.challenge = e.challenge +1 end
+		e.challenge = e.challenge +1 
+		special = "skilled"
+	end
 	
+end
+
+--Since egos result in OP, stuff it here
+function resolvers.templates()
+	return {__resolver="templates", __resolve_last=true}
+end
+
+function resolvers.calc.templates(t, e)
+	local template
+
+	if rng.chance(5) then
+		template = "zombie"
+		e.display = "Z"
+		e.color=colors.WHITE
+		e.infravision = 3
+		e.challenge = e.challenge +1
+		e.combat = { dam= {1,6} }
+
+	elseif rng.chance(5) then
+		template = "skeleton"
+		e.display = "s" 
+		e.color=colors.WHITE
+		e.infravision = 3
+		e.challenge = e.challenge +1
+		e.combat = { dam= {1,6} }
+
+	--DR 5/magic
+	elseif rng.chance(10) then
+		template = "celestial"
+		e.infravision = 3
+		e.spell_resistance = e.hit_die + 5
+		e.challenge = e.challenge +2
+		e.resist = { [DamageType.ACID] = 5,
+	[DamageType.COLD] = 5,
+	[DamageType.ELECTRIC] = 5,
+	 }
+	--DR 5/magic
+	elseif rng.chance(10) then
+		template = "fiendish"
+		e.infravision = 3
+		e.spell_resistance = e.hit_die + 5
+		e.challenge = e.challenge +2
+		e.resist = { [DamageType.FIRE] = 5,
+	[DamageType.COLD] = 5,
+	 }
+	--Stat increases, spell-likes, fly speed, 
+	elseif rng.chance(15) then
+		template = "half-celestial"
+		e.infravision = 3
+		e.spell_resistance = e.hit_die + 10
+		e.combat_natural = e.combat_natural +1
+		e.challenge = e.challenge +2
+		e.resist = { [DamageType.ACID] = 5,
+	[DamageType.COLD] = 5,
+	[DamageType.ELECTRIC] = 5,
+	 }
+
+	--Stat increases, spell-likes, fly, bite/claw
+	elseif rng.chance(15) then
+		template = "half-fiend"
+		e.infravision = 3
+		e.spell_resistance = e.hit_die + 10
+		e.combat_natural = e.combat_natural +1
+		e.challenge = e.challenge +2
+		e.resist = { [DamageType.ACID] = 10,
+	[DamageType.COLD] = 10,
+	[DamageType.ELECTRIC] = 10,
+	[DamageType.FIRE] = 10,
+	 }
+
+	--Stat increases, breath weapon; bite/claw
+	elseif rng.chance(15) then
+		template = "half-dragon"
+		e.combat_natural = e.combat_natural +4
+		e.infravision = 3
+		e.challenge = e.challenge +2
+		e.resist = { [DamageType.ACID] = 10,
+	[DamageType.COLD] = 10,
+	[DamageType.ELECTRIC] = 10,
+	 }
+
+	end
 end

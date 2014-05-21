@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ newEntity{
 	image = "tiles/kobold.png",
 	display = "k", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
-        desc = [[Ugly and green!]],
+    desc = [[Ugly and green!]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=9, dex=13, con=10, int=10, wis=9, cha=8, luc=12 },
@@ -35,7 +35,9 @@ newEntity{
 	skill_search = 1,
 	skill_movesilently = 1,
 	hit_die = 4,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="kobold", number=3, no_subescort = true},
   	},]]
@@ -96,7 +98,9 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 2,
 	hit_die = 1,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 50, type="humanoid", name="orc", number=1, no_subescort = true},
   	},]]
@@ -141,7 +145,9 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 1,
 	hit_die = 1,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="kobold", number=2, no_subescort = true},
   	},]]
@@ -190,7 +196,9 @@ newEntity{
 	skill_search = 3,
 	skill_spot = 2,
 	hit_die = 1,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="drow", faction = "enemies", number=3, no_subescort = true},
   	},]]
@@ -235,7 +243,9 @@ newEntity{
 	combat = { dam= {1,6} },
 	lite = 3,
 	hit_die = 1,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
 
@@ -273,7 +283,9 @@ newEntity{
 	stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
 	combat = { dam= {1,6} },
 	hit_die = 1,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
 
@@ -373,6 +385,8 @@ newEntity{
 	full_id=true,
 	{ name = "fresh corpse" }
 	},
+	resolvers.specialnpc(),
+	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 20, type="humanoid", name="bugbear", number=1, no_subescort = true},
@@ -396,7 +410,9 @@ newEntity{
 	skill_listen = 3,
 	skill_spot = 2,
 	hit_die = 2,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -440,7 +456,9 @@ newEntity{
 	stats = { str=11, dex=11, con=14, int=10, wis=9, cha=8, luc=10 },
 	combat = { dam= {1,6} },
 	hit_die = 1,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
 
@@ -517,7 +535,9 @@ newEntity{
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
 	hit_die = 1,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
 
@@ -556,7 +576,9 @@ newEntity{
 	combat = { dam= {1,6} },
 	infravision = 3,
 	hit_die = 1,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --[[	encounter_escort = {
 	{chance = 80, type="humanoid", name="hobgoblin", number=1},
   	},
@@ -599,7 +621,9 @@ newEntity{
 	infravision = 3,
 	combat_natural = 5,
 	hit_die = 2,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -681,7 +705,9 @@ newEntity{
 	infravision = 1,
 	movement_speed_bonus = 0.90,
 	hit_die = 2,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -728,7 +754,9 @@ newEntity{
 	combat_natural = 6,
 	alignment = "chaotic evil",
 	hit_die = 2,
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	resolvers.specialnpc()
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -768,6 +796,8 @@ newEntity{
 	infravision = 3,
 	skill_bluff = 6,
 	skill_hide = 4,
+	resolvers.specialnpc(),
+	resolvers.templates(),
 	resolvers.class()
 }
 
@@ -816,6 +846,8 @@ newEntity{
 	skill_heal = 4,
 	skill_listen = 2,
 	skill_spot = 2,
+	resolvers.specialnpc(),
+	resolvers.templates(),
 	resolvers.class()
 }
 
