@@ -230,43 +230,7 @@ function _M:act()
 
 
 	--Death & dying related stuff
-	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
-
-	if self.life == 0 then 
-		--Undead and constructs now die at 0
-		if self.type ~= "undead" and self.type ~= "construct" then
-		self:setEffect(self.EFF_DISABLED, 1, {})
-		self:removeEffect(self.EFF_DYING)
-		else 
-			if self:hasEffect(self.EFF_DYING) then self:removeEffect(self.EFF_DYING) end
-		self:die() 
-		end
-	end	
-
-
-	if self.life < 0 then 
-		self:removeEffect(self.EFF_DISABLED)
-		self:setEffect(self.EFF_DYING, 1, {})
-		--Monsters bleed out quicker than players and have a smaller chance to stabilize
-		if self == game.player then
-			--Raging characters are considered stable as long as they are raging
-			if self:hasEffect(self.EFF_RAGE) then self.life = 0 end
-			if rng.percent(10) then self.life = 0
-			else self.life = self.life - 1 end	
-		else
-			if rng.percent(2) then self.life = 0
-			else self.life = self.life - 3 end
-		end		
-	end	
-
-	--Ensure they can actually die due to bleeding out
-	if not self == game.player and self.life <= -10 and not self.dead then 
-		self:removeEffect(self.EFF_DYING, true, true) 
-		self:die(game.player) 
-	end
-	if self.life <= -10 and not self.dead then 
-		self:removeEffect(self.EFF_DYING, true, true) 
-		self:die() end
+	self:deathStuff()
 
 	-- check passive stuff. This should be in actbase I think but I cant get it to work
 	if self:knowTalent(self.T_BLOOD_VENGANCE) then
@@ -293,6 +257,15 @@ for eff_id, params in pairs(self.tmp) do
 		end
 end
 
+	-- Still not dead ?
+	if self.dead then return false end
+
+	-- Ok reset the seen cache
+--	self:resetCanSeeCache()
+
+	if self.on_act then self:on_act() end
+
+	if self.never_act then return false end
 
 	-- Still enough energy to act ?
 	if self.energy.value < game.energy_to_act then return false end
@@ -333,6 +306,8 @@ function _M:move(x, y, force)
 	return moved
 end
 
+
+--Descriptive stuff
 --From Qi Daozei
 function _M:getLogName()
     if self == game.player or (game.level.map.seens(self.x, self.y) and game.player:canSee(self)) then
@@ -430,6 +405,60 @@ function _M:tooltip()
 	end	
 end
 
+--End of desc stuff
+--Death & dying related stuff
+function _M:deathStuff()
+	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
+
+	if self.life == 0 then 
+		--Undead and constructs now die at 0
+		if self.type ~= "undead" and self.type ~= "construct" then
+		self:setEffect(self.EFF_DISABLED, 1, {})
+		self:removeEffect(self.EFF_DYING)
+		else 
+			if self:hasEffect(self.EFF_DYING) then self:removeEffect(self.EFF_DYING) end
+		self:die() 
+		end
+	end	
+
+
+	if self.life < 0 then 
+		self:removeEffect(self.EFF_DISABLED)
+		self:setEffect(self.EFF_DYING, 1, {})
+		--Monsters bleed out quicker than players and have a smaller chance to stabilize
+		if self == game.player then
+			--Raging characters are considered stable as long as they are raging
+			if self:hasEffect(self.EFF_RAGE) then self.life = 0 end
+			if rng.percent(10) then self.life = 0
+			else self.life = self.life - 1 end	
+		else
+			if rng.percent(2) then self.life = 0
+			else self.life = self.life - 3 end
+		end		
+	end	
+
+	--Ensure they can actually die due to bleeding out
+	if not self == game.player and self.life <= -10 and not self.dead then 
+		self:removeEffect(self.EFF_DYING, true, true) 
+
+		--Remove any particles we have
+		local ps = self:getParticlesList()
+		for i, p in ipairs(ps) do self:removeParticles(p) end
+
+		self:die(game.player) 
+	end
+	if self.life <= -10 and not self.dead then 
+		self:removeEffect(self.EFF_DYING, true, true) 
+
+		--Remove any particles we have
+		local ps = self:getParticlesList()
+		for i, p in ipairs(ps) do self:removeParticles(p) end
+
+		self:die() end
+end
+
+
+
 function _M:onTakeHit(value, src)
 
 	--if a sleeping target is hit, it will wake up
@@ -498,6 +527,12 @@ function _M:die(src)
 	--Remove any particles we have
 	local ps = self:getParticlesList()
 	for i, p in ipairs(ps) do self:removeParticles(p) end
+
+	-- Trigger on_die effects if any
+	for eff_id, p in pairs(self.tmp) do
+		local e = self.tempeffect_def[eff_id]
+		if e.on_die then e.on_die(self, p) end
+	end
 
 	-- Gives the killer some exp for the kill
 	local killer
