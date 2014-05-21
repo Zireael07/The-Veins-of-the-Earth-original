@@ -237,6 +237,19 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
    end
    
    if hit then
+    --reactive damage (spikes, fire shield etc.)
+    for typ, dam in pairs(target.on_melee_hit) do
+      if type(dam) == "number" then if dam > 0 then DamageType:get(typ).projector(target, self.x, self.y, typ, dam) end
+    --account for randomly determined damage
+      elseif type(dam) == "table" then 
+      local actual_dam = rng.dice(dam[1], dam[2])
+        if actual_dam > 0 then DamageType:get(typ).projector(target, self.x, self.y, typ, actual_dam) end
+      elseif dam.dam and dam.dam > 0 then DamageType:get(typ).projector(target, self.x, self.y, typ, dam)
+      end
+    end
+
+
+    --Actually deal damage
     if not no_sneak then self:dealDamage(target, weapon, crit, true)
     else
     self:dealDamage(target, weapon, crit, false) end

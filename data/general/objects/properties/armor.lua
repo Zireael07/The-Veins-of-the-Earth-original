@@ -461,16 +461,16 @@ newEntity {
 	}
 }
 
---Spikes!
---newEntity {
---	name = "spiked ", prefix = true,
---	keywords = {spiked=true},
---	level_range = {1, nil},
---	rarity = 5,
---	cost = 50,
---	encumber = 5,
---	wielder = {
---		on_melee_hit={ [DamageType.PHYSICAL] = {1, 6},
---	},
---}
---}
+--Spikes!!
+--[[newEntity {
+	name = "spiked ", prefix = true,
+	keywords = {spiked=true},
+	level_range = {1, nil},
+	rarity = 5,
+	cost = 10,
+	encumber = 5,
+	wielder = {
+		on_melee_hit={[DamageType.PHYSICAL] = {1, 6}
+	}
+}
+]]

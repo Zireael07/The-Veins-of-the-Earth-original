@@ -144,6 +144,7 @@ function _M:init(t, no_default)
     t.melee_project = t.melee_project or {}
     t.ranged_project = t.ranged_project or {}
 	t.can_pass = t.can_pass or {}
+	t.on_melee_hit = t.on_melee_hit or {}
 
 	--Actually initiate some basic engine stuff
 	engine.Actor.init(self, t, no_default)
