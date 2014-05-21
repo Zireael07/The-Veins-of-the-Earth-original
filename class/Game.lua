@@ -717,6 +717,8 @@ function _M:setupCommands()
 			local menu menu = require("engine.dialogs.GameMenu").new{
 				"resume",
 				"keybinds",
+				{ "Show Achievements", function() self:unregisterDialog(menu) self:registerDialog(require("engine.dialogs.ShowAchievements").new("Veins of the Earth Achievements", self.player)) end },
+				{ "Show known Lore", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.LoreList").new("Veins of the Earth Lore", self.player)) end },
 				"highscores",
 				{"Graphic Mode", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GraphicMode").new()) end},
 				"video",
