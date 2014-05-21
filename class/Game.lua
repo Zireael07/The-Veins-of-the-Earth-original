@@ -63,8 +63,8 @@ support_shader_gamma = true
 
 function _M:init()
 
-	self.gfx = self.gfx or {}
-	self.level_random_seed = {}
+	self.gfx = self.gfx or nil
+	self.level_random_seed = self.level_random_seed or nil
 
 	engine.GameTurnBased.init(self, engine.KeyBind.new(), 1000, 100)
 
@@ -136,7 +136,20 @@ function _M:run()
 end
 
 function _M:newGame()
-	self.player = Player.new{name=self.player_name, game_ender=true}
+--	self.player = Player.new{name=self.player_name, game_ender=true}
+-- Enable party
+	self.party = Party.new{}
+	local player = Player.new{name=self.player_name, game_ender=true}
+	self.party:addMember(player, {
+		control="full",
+		type="player",
+		title="Main character",
+		main=true,
+		orders = {target=true, anchor=true, behavior=true, leash=true, talents=true},
+	})
+	self.party:setPlayer(player)
+
+
 	Map:setViewerActor(self.player)
 	self:setupDisplayMode()
 
@@ -187,10 +200,12 @@ function _M:loaded()
 	if self.always_target == true then Map:setViewerFaction(self.player.faction) end
 
 --[[	local th, tw = 32, 32
-	if self.gfx == "tiles" then 
-	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
-	else
+	if self.gfx == "ascii" then 
 	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+	Map:resetTiles()
+	Map.tiles.use_images = true
+	else
+	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
 	end]]
 
 	selfppp = engine.KeyBind.new()

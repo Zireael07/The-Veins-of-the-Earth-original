@@ -324,7 +324,7 @@ function _M:move(x, y, force)
 				game.logPlayer(self, "You have found a trap (%s)!", trap:getName())
 			end
 		end end
-		
+
 	return moved
 end
 
@@ -2151,26 +2151,58 @@ function _M:levelup()
 	engine.interface.ActorLevel.levelup(self)
 	engine.interface.ActorTalents.resolveLevelTalents(self)
 
-	--Gain max skill ranks (generic)
-	self.max_skill_ranks = self.max_skill_ranks + 1
-	
-	--May level up class (player only)
-	if self == game.player then self.class_points = self.class_points + 1 end
+	--Player only stuff
+	if self == game.player or game.party:hasMember(self) then
+		--gain skill ranks
+		self.max_skill_ranks = self.max_skill_ranks + 1
+		--may level up class (player only)
+		self.class_points = self.class_points + 1
 
-	--feat points given every 3 levels. Classes may give additional feat points.
-	if self == game.player then
-		if self.level % 3 == 0 then 
-		self.feat_point = self.feat_point + 1
-	end end
-
-	--stat point gained every 4 levels
-	if self == game.player then
+		--feat points given every 3 levels. Classes may give additional feat points.
+		if self.level % 3 == 0 then self.feat_point = (self.feat_point or 0) + 1 end
+		
+		--stat point gained every 4 levels
 		if self.level % 4 == 0 then self.stat_point = (self.stat_point or 0) + 1 end
+
 	end
+
 
 	-- Auto levelup ?
 	if self.autolevel then
 		engine.Autolevel:autoLevel(self)
+	end
+
+	-- Heal up NPC on new level
+	if self ~= game.player then self:resetToFull() end
+
+	--NPC only stuff
+	if self ~= game.player then
+
+	end	
+
+
+
+	--Notify player on epic level
+	if self.level == 40 and self == game.player then
+		Dialog:simpleLongPopup("Level 40!", "You have achieved #GOLD#level 40#WHITE#, congratulations!\n\nThis means you are now an #GOLD#EPIC#LAST# hero!", 400)
+	end
+	
+	--Notify on party levelups
+	if self.x and self.y and game.party:hasMember(self) and not self.silent_levelup then
+		local x, y = game.level.map:getTileToScreen(self.x, self.y)
+		game.flyers:add(x, y, 80, 0.5, -2, "LEVEL UP!", {0,255,255})
+		game.log("#00ffff#Welcome to level %d [%s].", self.level, self.name:capitalize())
+		if game.player ~= self then game.log = "Select "..self.name.. " in the party list and press G to use them." end
+	end
+
+	--Level up achievements
+	if self == game.player then
+		if self.level == 10 then world:gainAchievement("LEVEL_10", self) end
+--[[		if self.level == 20 then world:gainAchievement("LEVEL_20", self) end
+		if self.level == 30 then world:gainAchievement("LEVEL_30", self) end
+		if self.level == 40 then world:gainAchievement("LEVEL_40", self) end
+		if self.level == 50 then world:gainAchievement("LEVEL_50", self) end
+]]
 	end
 
 	if self == game.player and game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end

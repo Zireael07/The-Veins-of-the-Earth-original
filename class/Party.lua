@@ -56,6 +56,32 @@ function _M:addMember(actor, def)
 	if game.player then game.player.changed = true end
 end
 
+function _M:removeMember(actor, silent)
+	if not self.members[actor] then
+		if not silent then
+			print("[PARTY] error trying to remove non-existing actor: ", actor.uid, actor.name)
+		end
+		return false
+	end
+	table.remove(self.m_list, self.members[actor].index)
+	self.members[actor] = nil
+
+	actor.addEntityOrder = nil
+
+	-- Update indexes
+	for i = 1, #self.m_list do
+		self.members[self.m_list[i]].index = i
+	end
+
+	-- Notify the UI
+	game.player.changed = true
+end
+
+function _M:hasMember(actor)
+	return self.members[actor]
+end
+
+
 function _M:setPlayer(actor, bypass)
 	if type(actor) == "number" then actor = self.m_list[actor] end
 
@@ -90,7 +116,7 @@ function _M:setPlayer(actor, bypass)
 	actor.player = true
 	game.paused = actor:enoughEnergy()
 	game.player = actor
-	game.uiset.hotkeys_display.actor = actor
+	game.hotkeys_display.actor = actor
 	Map:setViewerActor(actor)
 	if game.target then game.target.source_actor = actor end
 	if game.level and actor.x and actor.y then game.level.map:moveViewSurround(actor.x, actor.y, 8, 8) end
