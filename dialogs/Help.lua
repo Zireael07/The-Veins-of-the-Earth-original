@@ -31,11 +31,15 @@ function _M:init()
     Press #YELLOW#'d'#LAST# to drop items.
     Press #YELLOW#'b'#LAST# to diplay your spellbook, if you have it.
 
-    Press #YELLOW#'F1'#LAST# to display this screen again.
+    Press #YELLOW#'F1'#LAST# or #YELLOW#h#LAST# to display this screen again.
     Press #YELLOW#'F2'#LAST# to display the message log.
+
+
+
 
     To use debug functions, press #YELLOW#Shift + b#LAST# to see a list of all entities on a level.
     If you happen to run into an unkillable monster, press #YELLOW#Ctrl + c#LAST# to run a script which kills all such entities.
+    To flush the te4_log.txt file, press #YELLOW#Shift + f#LAST#.
 ]]
         
     self.c_desc = Textzone.new{width=self.iw, height=self.ih, scrollbar=true, text = self.text}

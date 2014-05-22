@@ -114,7 +114,7 @@ function _M:run()
 
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
-	self.flashLog(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 to open the help screen.")
+	self.flashLog(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 or h to open the help screen.")
 
 	-- Setup inputs
 	self:setupCommands()
