@@ -658,6 +658,10 @@ newBirthDescriptor {
 		
 		--Any level higher than 1
 		else
+
+		if level == 4 then 
+			actor:learnTalent(actor.T_WILD_SHAPE, true)
+		end	
 		--Learn a new spell tier every 3rd level
 		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1

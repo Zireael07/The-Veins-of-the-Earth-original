@@ -6,6 +6,46 @@ newTalentType{
 	description = "focuses on manipulatting matter and bodies"
 }
 
+newTalent{
+	name = "Alter Self",
+	type = {"transmutation", 1},
+	mode = 'activated',
+	level = 2,
+	points = 1,
+	tactical = { BUFF = 5 },
+	range = 0,
+	requires_target = true,
+	action = function(self)
+		if not self then return nil end
+
+		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the humanoid form",{
+                {name="Human", desc=""},
+                {name="Drow", desc=""},
+                {name="Lizardfolk", desc=""},
+                },
+                function(result)
+                if result == "Human" then
+                	self.setEffect(self.EFF_ALTER_SELF_HUMAN, 100, {})
+                elseif result == "Drow" then
+                	self:setEffect(self.EFF_ALTER_SELF_DROW, 100, {})
+                elseif result == "Lizardfolk" then
+                	self:setEffect(self.EFF_ALTER_SELF_LIZARDFOLK, 100, {})
+                end
+
+                end))
+
+
+		return true
+	end,
+	info = function(self, t)
+		return ([[You can change your shape to a humanoid. The Hit Dice of the assumed form cannot exceed your own Hit Dice, with a cap of 5.
+
+			You gain the form's natural armor bonuses, natural attack forms, bonus skills and feats and movement modes (flying, swimming, burrowing etc.).
+			You do NOT gain any of the form's special qualities or extraordinary attack forms or spell-like abilities.]])
+	end,
+}
+
+
 --Arcane versions of buff spells
 newTalent{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE_ARCANE",
@@ -165,5 +205,40 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You can fly (at least for some time).]])
+	end,
+}
+
+newTalent{
+	name = "Polymorph",
+	type = {"transmutation", 1},
+	mode = 'activated',
+	level = 4,
+	points = 1,
+	tactical = { BUFF = 5 },
+	range = 0,
+	requires_target = true,
+	action = function(self)
+		if not self then return nil end
+
+		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the new form",{
+                {name="Cloaker", desc=""},
+                },
+                function(result)
+                if result == "Cloaker" then
+                	self.setEffect(self.EFF_POLYMORPH_SELF_CLOAKER, 100, {})
+    --[[            elseif result == "Drow" then
+                	self:setEffect(self.EFF_ALTER_SELF_DROW, 100, {})]]
+                end
+
+                end))
+
+		return true
+	end,
+	info = function(self, t)
+		return ([[You can polymorph into an aberration, animal, dragon, fey, giant, humanoid, magical beast, monstrous humanoid, ooze, plant, or vermin. The Hit Dice of the assumed form cannot exceed your own Hit Dice, with a cap of 15.
+
+			You gain the form's Strength, Dexterity and Constitution but keep your Intelligence, Wisdom and Charisma and you regain health as though you had rested.
+			You gain the form's natural armor bonuses, natural or extraordinary attack forms, bonus skills and feats and movement modes (flying, swimming, burrowing etc.)
+			You do not gain their extraordinary special qualities, nor any supernatural or spell-like abilities.]])
 	end,
 }

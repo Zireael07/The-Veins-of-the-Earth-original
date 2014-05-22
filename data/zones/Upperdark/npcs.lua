@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2014
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ load("/data/general/npcs/monstrous_humanoid.lua")
 load("/data/general/npcs/giant.lua")
 
 load("/data/general/npcs/animals.lua")
+load("/data/general/npcs/animals_druid.lua")
 load("/data/general/npcs/vermin.lua")
 
 load("/data/general/npcs/aberration.lua")

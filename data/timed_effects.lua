@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013 Zireael, Sebsebeleb
+-- Copyright (C) 2013-2014 Zireael, Sebsebeleb
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@ local Particles = require "engine.Particles"
 
 load("/data/timed_effects/poisons.lua")
 load("/data/timed_effects/spells.lua")
+load("/data/timed_effects/shapechange.lua")
 
 --Conditions for below 0 hp
 newEffect{
