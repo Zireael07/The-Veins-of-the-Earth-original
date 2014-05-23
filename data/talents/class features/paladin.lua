@@ -50,6 +50,7 @@ newTalent{
 			combat_base_ac = 10, combat_dr = 0, combat_natural = 3,
 			combat = { dam={1,4}, atk=1, },
 			movement_speed_bonus = 0.66,
+			mount = true,
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 1200, --2 hrs
@@ -88,6 +89,7 @@ newTalent{
 			combat_base_ac = 10, combat_dr = 0, combat_natural = 2,
 			combat = { dam={1,6}, atk=1, },
 			movement_speed_bonus = 0.33,
+			mount = true,
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 1200,  --2 hrs

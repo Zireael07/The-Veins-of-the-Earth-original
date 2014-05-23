@@ -65,6 +65,7 @@ function _M:init(t, no_default)
 	self.more_attacks = 0
 	self.poison = self.poison or nil
 	self.perk = self.perk or ""
+	self.horse = self.horse or nil
 
 	--Challenge Rating & ECL set to 0 & 1
 	self.challenge = 0

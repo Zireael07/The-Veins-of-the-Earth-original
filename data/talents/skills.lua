@@ -202,6 +202,10 @@ newTalent{
 	mode = "sustained",
 	points = 1,
 	cooldown = 0,
+	range = 1,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
 	on_pre_use = function(self, t, silent)
 		local ride = self.skill_ride
 
@@ -217,11 +221,39 @@ newTalent{
 	local res = {
         mount_speed = self:addTemporaryValue("movement_speed_bonus", 0.33)
 	}
-        return res
+
+		local tg = self:getTalentTarget(t)
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		if target.faction == "neutral" or target.faction == self.faction then
+			if target.mount == true then
+
+			--Clone it for later
+
+		--	game.player.horse = target.clone()
+			horse = target:clone()
+			game.player.horse = horse
+
+			--Despawn the mount 
+			target:disappear()
+
+        	return res
+
+        	else game.log("You cannot mount"..target.name) end
+        else game.log("You cannot mount a hostile creature") end
 
 	end,
 	deactivate = function(self, t, p)
         self:removeTemporaryValue("movement_speed_bonus", p.mount_speed)
+
+        -- Find space
+		local x, y = util.findFreeGrid(self.x, self.y, 1, true, {[Map.ACTOR]=true})
+
+	--	horse = target:clone()
+
+        --Spawn the mount back
+        game.zone:addEntity(game.level, game.player.horse, "actor", x, y)
 
 		return true
 	end,
