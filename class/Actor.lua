@@ -1407,6 +1407,191 @@ function _M:levelPassives()
 	end
 end
 
+--Leveling up
+function _M:levelup()
+	engine.interface.ActorLevel.levelup(self)
+	engine.interface.ActorTalents.resolveLevelTalents(self)
+
+	--Player only stuff
+	if self == game.player or game.party:hasMember(self) then
+		--gain skill ranks
+		self.max_skill_ranks = self.max_skill_ranks + 1
+		--may level up class (player only)
+		self.class_points = self.class_points + 1
+
+		--feat points given every 3 levels. Classes may give additional feat points.
+		if self.level % 3 == 0 then self.feat_point = (self.feat_point or 0) + 1 end
+		
+		--stat point gained every 4 levels
+		if self.level % 4 == 0 then self.stat_point = (self.stat_point or 0) + 1 end
+
+	end
+
+
+	-- Auto levelup ?
+	if self.autolevel then
+		engine.Autolevel:autoLevel(self)
+	end
+
+	-- Heal up NPC on new level
+	if self ~= game.player then self:resetToFull() end
+
+	--NPC only stuff
+	if self ~= game.player then
+
+	end	
+
+
+
+	--Notify player on epic level
+	if self.level == 40 and self == game.player then
+		Dialog:simpleLongPopup("Level 40!", "You have achieved #GOLD#level 40#WHITE#, congratulations!\n\nThis means you are now an #GOLD#EPIC#LAST# hero!", 400)
+	end
+	
+	--Notify on party levelups
+	if self.x and self.y and game.party:hasMember(self) and not self.silent_levelup then
+		local x, y = game.level.map:getTileToScreen(self.x, self.y)
+		game.flyers:add(x, y, 80, 0.5, -2, "LEVEL UP!", {0,255,255})
+		game.log("#00ffff#Welcome to level %d [%s].", self.level, self.name:capitalize())
+		if game.player ~= self then game.log = "Select "..self.name.. " in the party list and press G to use them." end
+	end
+
+	--Level up achievements
+	if self == game.player then
+		if self.level == 10 then world:gainAchievement("LEVEL_10", self) end
+--[[		if self.level == 20 then world:gainAchievement("LEVEL_20", self) end
+		if self.level == 30 then world:gainAchievement("LEVEL_30", self) end
+		if self.level == 40 then world:gainAchievement("LEVEL_40", self) end
+		if self.level == 50 then world:gainAchievement("LEVEL_50", self) end
+]]
+	end
+
+	if self == game.player and game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
+
+end
+
+function _M:levelClass(name)
+	local birther = require "engine.Birther"
+	local d = birther:getBirthDescriptor("class", name)
+
+	if not name then end
+
+	local level = (self.classes[name] or 0) + 1
+	self.classes[name] = level
+	if self.class_points then
+		self.class_points = self.class_points - 1
+	end
+
+	if level == 1 then --Apply the descriptor... or not?
+
+	end
+
+	self.last_class = name
+
+	d.on_level(self, level)
+end
+
+function _M:giveLevels(name, n)
+	if not name or not n then end
+	
+	while n > 0 do
+	self:levelClass(name)
+	n = n-1
+	end
+end
+
+--Encumbrance & auto-ID stuff, Zireael
+function _M:on_pickup_object(o)
+--	self:checkEncumbrance()
+	
+end
+
+--[[function _M:onAddObject(o)
+	
+end]]
+
+function _M:onRemoveObject(o)
+	self:checkEncumbrance()
+end	
+
+function _M:getMaxEncumbrance()
+	local add = 0
+	--Streamlined d20's encumbrance
+	if self:getStr() <= 10 then return math.floor(10*self:getStr())
+	else return math.ceil((10*self:getStr()) + (5*(self:getStr()-10))) end
+end
+
+function _M:getEncumbrance()
+	local enc = 0
+
+	local fct = function(so) enc = enc + so.encumber end
+
+	-- Compute encumbrance
+	for inven_id, inven in pairs(self.inven) do
+		for item, o in ipairs(inven) do
+				o:forAllStack(fct)
+		end
+	end
+	
+	return math.floor(enc)
+end
+
+function _M:checkEncumbrance()
+	-- Compute encumbrance
+	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()	
+
+	--Light load
+	if enc < max * 0.33 and self:hasEffect(self.EFF_MEDIUM_LOAD) then 
+		self:removeEffect(self.EFF_MEDIUM_LOAD, true)
+	end
+
+	--Heavy load
+	if enc > max * 0.66 and self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
+	self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true) 
+	end
+	
+	if enc > max * 0.66 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_HEAVY_LOAD) then
+		self:removeEffect(self.EFF_MEDIUM_LOAD, true)
+		self:setEffect(self.EFF_HEAVY_LOAD, 2, {}, true)
+	end
+	
+	--Medium load
+	if enc > max * 0.33 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
+		self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true)
+		if self:hasEffect(self.EFF_HEAVY_LOAD) then self:removeEffect(self.EFF_HEAVY_LOAD, true) end
+	end
+	
+	-- We are pinned to the ground if we carry too much
+	if not self.encumbered and enc > max then
+		game.logPlayer(self, "#FF0000#You carry too much--you are encumbered!")
+		game.logPlayer(self, "#FF0000#Drop some of your items.")
+		self.encumbered = self:addTemporaryValue("never_move", 1)
+
+	if self.x and self.y then
+		local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
+		game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, rng.float(-2.5, -1.5), "+ENCUMBERED!", {255,0,0}, true)
+	end
+	elseif self.encumbered and enc <= max then
+		self:removeTemporaryValue("never_move", self.encumbered)
+		self.encumbered = nil
+		game.logPlayer(self, "#00FF00#You are no longer encumbered.")
+
+		if self.x and self.y then
+			local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
+			game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, rng.float(-2.5, -1.5), "-ENCUMBERED!", {255,0,0}, true)
+		end
+	end
+end
+
+function _M:reactionToward(target)
+    local v = engine.Actor.reactionToward(self, target)
+
+    if self:hasEffect(self.EFF_CHARM) then v = math.max(v, 100) end
+
+    return v
+end
+
+
 --Random perks
 function _M:randomFeat()
 	local chance = rng.dice(1,29)
@@ -2043,8 +2228,8 @@ function _M:giveStartingEQ()
 			--Account for perk items
 			if item == "iron battleaxe" or item == "rapier" or item == "long sword" or item == "iron dagger" or item == "morningstar"
 				--Ranged weapons
-			 or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
-				then self:givePerkWeapon() end
+			 	or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
+					then self:givePerkWeapon() end
 			if race == "Halfling" or race == "Gnome" then self:giveSword()
 			elseif race == "Drow" then self:giveScimitar()
 			elseif race == "Half-Orc" then self:giveAxe()
@@ -2057,8 +2242,8 @@ function _M:giveStartingEQ()
 			--Account for perk items
 			if item == "iron battleaxe" or item == "rapier" or item == "long sword" or item == "iron dagger" or item == "morningstar"
 				--Ranged weapons
-			 or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
-				then self:givePerkWeapon() end
+			 	or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
+					then self:givePerkWeapon() end
 			if item == "chain mail" or item == "chain shirt" or item == "studded leather" or item == "breastplate" or item == "plate armor" 
 				then self:givePerkArmor()  end
 
@@ -2066,8 +2251,8 @@ function _M:giveStartingEQ()
 			--Account for perk items
 			if item == "iron battleaxe" or item == "rapier" or item == "long sword" or item == "iron dagger" or item == "morningstar"
 				--Ranged weapons
-			 or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
-				then self:givePerkWeapon() end
+			 	or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
+					then self:givePerkWeapon() end
 			if race == "Halfling" or race == "Gnome" then self:giveSword()
 			elseif race == "Dwarf" then self:giveHammer()
 			--TO DO: give lance once mounts are in
@@ -2080,8 +2265,8 @@ function _M:giveStartingEQ()
 			--Account for perk items
 			if item == "iron battleaxe" or item == "rapier" or item == "long sword" or item == "iron dagger" or item == "morningstar"
 				--Ranged weapons
-			 or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
-				then self:givePerkWeapon() end
+			 	or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
+					then self:givePerkWeapon() end
 			--Racial weapons
 			if race == "Halfling" or race == "Gnome" or race == "Half-Orc" then self:giveSpear()
 			elseif race == "Drow" then self:giveScimitar()
@@ -2095,8 +2280,8 @@ function _M:giveStartingEQ()
 			--Account for perk items
 			if item == "iron battleaxe" or item == "rapier" or item == "long sword" or item == "iron dagger" or item == "morningstar"
 				--Ranged weapons
-			 or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
-				then self:givePerkWeapon() end
+			 	or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
+					then self:givePerkWeapon() end
 			--Racial weapons
 			if race == "Halfling" or race == "Gnome" then self:giveLCrossbow()
 			elseif race == "Drow" then self:giveHandCrossbow()
@@ -2110,8 +2295,8 @@ function _M:giveStartingEQ()
 			--Account for perk items
 			if item == "iron battleaxe" or item == "rapier" or item == "long sword" or item == "iron dagger" or item == "morningstar"
 				--Ranged weapons
-			 or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
-				then self:givePerkWeapon() end
+			 	or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
+					then self:givePerkWeapon() end
 			self:giveDagger()
 			--Account for perk items
 			if item == "chain mail" or item == "chain shirt" or item == "studded leather" or item == "breastplate" or item == "plate armor" 
@@ -2121,8 +2306,8 @@ function _M:giveStartingEQ()
 			--Account for perk items
 			if item == "iron battleaxe" or item == "rapier" or item == "long sword" or item == "iron dagger" or item == "morningstar"
 				--Ranged weapons
-			 or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
-				then self:givePerkWeapon() end
+			 	or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
+					then self:givePerkWeapon() end
 			--Racial items
 			if race == "Halfling" or race == "Gnome" then self:giveDagger()
 			else self:giveStaff() end
@@ -2134,8 +2319,8 @@ function _M:giveStartingEQ()
 			--Account for perk items
 			if item == "iron battleaxe" or item == "rapier" or item == "long sword" or item == "iron dagger" or item == "morningstar"
 				--Ranged weapons
-			 or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
-				then self:givePerkWeapon() end
+			 	or item == "shortbow" or item == "longbow" or item == "sling" or item == "light crossbow" or item == "heavy crossbow"
+					then self:givePerkWeapon() end
 			self:giveSword()
 			--Account for perk items
 			if item == "chain mail" or item == "chain shirt" or item == "studded leather" or item == "breastplate" or item == "plate armor" 
@@ -2170,189 +2355,4 @@ function _M:givePerkArmor()
 		elseif self:randomItem() == "breastplate" then self:giveEgoBreastplate()
 		elseif self:randomItem() == "plate armor" then self:giveEgoPlate()
 		else end
-end
-
-
---Leveling up
-function _M:levelup()
-	engine.interface.ActorLevel.levelup(self)
-	engine.interface.ActorTalents.resolveLevelTalents(self)
-
-	--Player only stuff
-	if self == game.player or game.party:hasMember(self) then
-		--gain skill ranks
-		self.max_skill_ranks = self.max_skill_ranks + 1
-		--may level up class (player only)
-		self.class_points = self.class_points + 1
-
-		--feat points given every 3 levels. Classes may give additional feat points.
-		if self.level % 3 == 0 then self.feat_point = (self.feat_point or 0) + 1 end
-		
-		--stat point gained every 4 levels
-		if self.level % 4 == 0 then self.stat_point = (self.stat_point or 0) + 1 end
-
-	end
-
-
-	-- Auto levelup ?
-	if self.autolevel then
-		engine.Autolevel:autoLevel(self)
-	end
-
-	-- Heal up NPC on new level
-	if self ~= game.player then self:resetToFull() end
-
-	--NPC only stuff
-	if self ~= game.player then
-
-	end	
-
-
-
-	--Notify player on epic level
-	if self.level == 40 and self == game.player then
-		Dialog:simpleLongPopup("Level 40!", "You have achieved #GOLD#level 40#WHITE#, congratulations!\n\nThis means you are now an #GOLD#EPIC#LAST# hero!", 400)
-	end
-	
-	--Notify on party levelups
-	if self.x and self.y and game.party:hasMember(self) and not self.silent_levelup then
-		local x, y = game.level.map:getTileToScreen(self.x, self.y)
-		game.flyers:add(x, y, 80, 0.5, -2, "LEVEL UP!", {0,255,255})
-		game.log("#00ffff#Welcome to level %d [%s].", self.level, self.name:capitalize())
-		if game.player ~= self then game.log = "Select "..self.name.. " in the party list and press G to use them." end
-	end
-
-	--Level up achievements
-	if self == game.player then
-		if self.level == 10 then world:gainAchievement("LEVEL_10", self) end
---[[		if self.level == 20 then world:gainAchievement("LEVEL_20", self) end
-		if self.level == 30 then world:gainAchievement("LEVEL_30", self) end
-		if self.level == 40 then world:gainAchievement("LEVEL_40", self) end
-		if self.level == 50 then world:gainAchievement("LEVEL_50", self) end
-]]
-	end
-
-	if self == game.player and game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
-
-end
-
-function _M:levelClass(name)
-	local birther = require "engine.Birther"
-	local d = birther:getBirthDescriptor("class", name)
-
-	if not name then end
-
-	local level = (self.classes[name] or 0) + 1
-	self.classes[name] = level
-	if self.class_points then
-		self.class_points = self.class_points - 1
-	end
-
-	if level == 1 then --Apply the descriptor... or not?
-
-	end
-
-	self.last_class = name
-
-	d.on_level(self, level)
-end
-
-function _M:giveLevels(name, n)
-	if not name or not n then end
-	
-	while n > 0 do
-	self:levelClass(name)
-	n = n-1
-	end
-end
-
---Encumbrance & auto-ID stuff, Zireael
-function _M:on_pickup_object(o)
---	self:checkEncumbrance()
-	
-end
-
---[[function _M:onAddObject(o)
-	
-end]]
-
-function _M:onRemoveObject(o)
-	self:checkEncumbrance()
-end	
-
-function _M:getMaxEncumbrance()
-	local add = 0
-	--Streamlined d20's encumbrance
-	if self:getStr() <= 10 then return math.floor(10*self:getStr())
-	else return math.ceil((10*self:getStr()) + (5*(self:getStr()-10))) end
-end
-
-function _M:getEncumbrance()
-	local enc = 0
-
-	local fct = function(so) enc = enc + so.encumber end
-
-	-- Compute encumbrance
-	for inven_id, inven in pairs(self.inven) do
-		for item, o in ipairs(inven) do
-				o:forAllStack(fct)
-		end
-	end
-	
-	return math.floor(enc)
-end
-
-function _M:checkEncumbrance()
-	-- Compute encumbrance
-	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()	
-
-	--Light load
-	if enc < max * 0.33 and self:hasEffect(self.EFF_MEDIUM_LOAD) then 
-		self:removeEffect(self.EFF_MEDIUM_LOAD, true)
-	end
-
-	--Heavy load
-	if enc > max * 0.66 and self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
-	self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true) 
-	end
-	
-	if enc > max * 0.66 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_HEAVY_LOAD) then
-		self:removeEffect(self.EFF_MEDIUM_LOAD, true)
-		self:setEffect(self.EFF_HEAVY_LOAD, 2, {}, true)
-	end
-	
-	--Medium load
-	if enc > max * 0.33 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
-		self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true)
-		if self:hasEffect(self.EFF_HEAVY_LOAD) then self:removeEffect(self.EFF_HEAVY_LOAD, true) end
-	end
-	
-	-- We are pinned to the ground if we carry too much
-	if not self.encumbered and enc > max then
-		game.logPlayer(self, "#FF0000#You carry too much--you are encumbered!")
-		game.logPlayer(self, "#FF0000#Drop some of your items.")
-		self.encumbered = self:addTemporaryValue("never_move", 1)
-
-	if self.x and self.y then
-		local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
-		game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, rng.float(-2.5, -1.5), "+ENCUMBERED!", {255,0,0}, true)
-	end
-	elseif self.encumbered and enc <= max then
-		self:removeTemporaryValue("never_move", self.encumbered)
-		self.encumbered = nil
-		game.logPlayer(self, "#00FF00#You are no longer encumbered.")
-
-		if self.x and self.y then
-			local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
-			game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, rng.float(-2.5, -1.5), "-ENCUMBERED!", {255,0,0}, true)
-		end
-	end
-end
-
-function _M:reactionToward(target)
-    local v = engine.Actor.reactionToward(self, target)
-
-    if self:hasEffect(self.EFF_CHARM) then v = math.max(v, 100) end
-
-    return v
 end
