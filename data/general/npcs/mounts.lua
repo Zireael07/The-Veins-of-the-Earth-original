@@ -26,7 +26,7 @@ local animal_desc = [[It has low Intelligence and is always neutral. It needs to
 newEntity{
 	define_as = "BASE_NPC_HORSE",
 	type = "animal",
-	image = "tiles/horse.png",
+	image = "tiles/horse_brown.png",
 	display = 'q', color=colors.TAN,
 	body = { INVEN = 10 },
 	desc = [[A large hoofed quadruped, often used as a mount.]],
@@ -141,7 +141,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_PONY",
 	type = "animal",
-	image = "tiles/horse.png",
+	image = "tiles/horse_spotted.png",
 	display = 'q', color=colors.DARK_TAN,
 	body = { INVEN = 10 },
 	desc = [[A small horse, under 5 feet tall at the shoulder, often used as a mount.]],

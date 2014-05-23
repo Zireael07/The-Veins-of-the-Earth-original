@@ -24,6 +24,7 @@ newTalent{
 		local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
+			image = "tiles/horse_brown.png",
 			name = "war horse mount", faction = self.faction,
 			desc = [[A large peaceful war horse.]],
 			--autolevel = "none",
@@ -63,6 +64,7 @@ newTalent{
 			local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
+			image = "tiles/horse_spotted.png",
 			name = "war pony mount", faction = self.faction,
 			desc = [[A large peaceful war pony.]],
 			--autolevel = "none",
