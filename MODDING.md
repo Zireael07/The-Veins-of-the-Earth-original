@@ -75,6 +75,7 @@ CR 1/8 - 40 XP
 CR 1/6 - 50 XP
 CR 1/4 - 75 XP
 CR 1/3 - 100 XP
+CR 1/2 - 150 XP
 CR 1 - 300 XP
 CR 2 - 600 XP
 CR 3 - 900 XP
@@ -146,6 +147,8 @@ range 3 - close range
 range 5 - medium range
 
 duration 10 - 1 minute
+duration 100 - 10 minutes
+duration 600 - 1 hour
 
 Feats
 Certain (activable or sustained) feats are color-coded, too.

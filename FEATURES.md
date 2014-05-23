@@ -27,6 +27,7 @@ FEATURES
 - armor spell failure chance; key stat must be 9 to cast spells; casters gain access to next spell level every 3rd level
 - spell-like abilities for drow & duergar; other spell-likes as random perks at start
 - Spellcraft test required to identify spells cast by others
+- polymorphing & wild shape
 - clerics now pick from 16 deities which limit their alignment and domain choices (44 domains total)
 - skill checks (printed to log) including armor check penalty & racial or feat bonuses; opposed checks
 - stealth & sneak attacks
@@ -34,6 +35,7 @@ FEATURES
 - all feats from SRD except archery feats and unarmed combat feats
 - working item creation feats (Craft Magic Arms and Armor, Scribe Scroll, Brew Potion)
 - most monsters from the SRD (missing: demons, devils, dragons, lycanthropes, swarms, most animals which don't fit the dungeon theme)
+- monsters can now have templates
 - pre-made encounters of more than 1 monster
 - humanoid NPCs can now have character classes
 - shopkeepers can now sell & buy items
@@ -44,6 +46,7 @@ FEATURES
 - colored tooltips (color-coded relative monster stats and CR); colored log messages; item tooltips both on ground and in inventory
 - in-character monster info screen
 - terrain effects
+- rideable mounts
 - resting takes 8 hours, monsters respawn on rest
 - cure x wounds spells work in a traditional way; heal x wounds spells heal a percentage of total hp
 - stairs have a chance of not changing the dungeon level [Seb]; Sil-style min depth and anti-stairscum measures
