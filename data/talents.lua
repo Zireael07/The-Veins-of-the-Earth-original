@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -60,3 +60,4 @@ load("data/talents/class features/cleric.lua")
 load("data/talents/class features/eldritch.lua")
 load("data/talents/class features/ranger.lua")
 load("data/talents/class features/druid.lua")
+load("data/talents/class features/paladin.lua")

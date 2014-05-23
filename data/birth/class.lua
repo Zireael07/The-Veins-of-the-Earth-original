@@ -734,6 +734,8 @@ newBirthDescriptor {
 
 			actor.fighter_bonus = 1
 
+			actor:learnTalent(actor.T_SUMMON_MOUNT, true)
+
 			if actor == game.player then
 			 if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
 			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2
@@ -877,6 +879,8 @@ newBirthDescriptor {
                 actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
                 actor:learnTalent(actor.T_LAY_ON_HANDS, true)
 
+--                actor:learnTalent(actor.T_SUMMON_MOUNT, true)
+
                 actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 
             --Any level higher than 1
@@ -895,7 +899,10 @@ newBirthDescriptor {
 
 			--Level-specific bonuses
             if level == 4 then actor:learnTalent(actor.T_TURN_UNDEAD, true) end
-            if level == 5 then actor:learnTalentType("divine", true) end
+            if level == 5 then 
+            	actor:learnTalentType("divine", true) 
+            	actor:learnTalent(actor.T_SUMMON_MOUNT, true)
+            end
 
 			
             --Level >1, generic bonuses
