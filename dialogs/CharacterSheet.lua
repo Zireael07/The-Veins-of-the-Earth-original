@@ -51,6 +51,7 @@ function _M:init(actor)
         {name="Move Silently (DEX)", total=player:getSkill("movesilently") or "0", ranks=(player.skill_movesilently or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_movesilently or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
         {name="Open Lock (DEX)", total=player:getSkill("openlock") or "0", ranks=(player.skill_openlock or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_openlock or "0") },
         {name="Pick Pocket (DEX)", total=player:getSkill("pickpocket") or "0", ranks=(player.skill_pickpocket or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_pickpocket or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Ride (DEX)", total=player:getSkill("ride") or "0", ranks=(player.skill_ride or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_ride or "0") },
         {name="Search (INT)", total=player:getSkill("search") or "0", ranks=(player.skill_search or "0"), stat=math.floor((player:getInt()-10)/2), bonus=(player.skill_bonus_search or "0") },
         {name="Sense Motive (WIS)", total=player:getSkill("sensemotive") or "0", ranks=(player.skill_sensemotive or "0"), stat=math.floor((player:getWis()-10)/2), bonus=(player.skill_bonus_sensemotive or "0") },
         {name="Spot (WIS)", total=player:getSkill("spot") or "0", ranks=(player.skill_spot or "0"), stat=math.floor((player:getWis()-10)/2), bonus=(player.skill_bonus_spot or "0") },

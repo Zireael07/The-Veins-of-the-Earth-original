@@ -32,6 +32,7 @@ local skills = {
 	movesilently = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed to hide from enemies.',
 	openlock = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed to open locks.',
 	pickpocket = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\n#STEEL_BLUE#Rogues only!#LAST# Used to steal from NPCs.',
+	ride = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed to ride mounts.',
 	search = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#\n\nUsed to find traps. #STEEL_BLUE#Only rogues can find traps with a DC over 20.#LAST#',
 	sensemotive = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Wisdom#LAST#\n\nUsed to detect if someone is lying.',
 	swim = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE#Strength#LAST#\n\nUsed to avoid drowning in water.',
