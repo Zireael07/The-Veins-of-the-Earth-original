@@ -87,7 +87,7 @@ newTalent{
 	end,]]
 	activate = function(self, t)
 		local res = { 
-		slow = self:addTemporaryValue("movement_speed_bonus", -0.50),
+		stealth_slow = self:addTemporaryValue("movement_speed_bonus", -0.50),
 		stealth = self:addTemporaryValue("stealth", 1),
 		lite = self:addTemporaryValue("lite", -1000),
 		}
@@ -102,7 +102,7 @@ newTalent{
 	deactivate = function(self, t, p)
 	self:removeTemporaryValue("stealth", p.stealth)
 	self:removeTemporaryValue("lite", p.lite)
-	self:removeTemporaryValue("slow", p.slow)
+	self:removeTemporaryValue("stealth_slow", p.stealth_slow)
 	if p.infra then self:removeTemporaryValue("infravision", p.infra) end
 	
 	self:resetCanSeeCacheOf()
@@ -193,5 +193,40 @@ newTalent{
 	end,
 	info = function(self, t)
 		return "Attempt to influence an animal"
+	end,
+}
+
+newTalent{
+	name = "Mount", image = "talents/mount.png",
+	type = {"skill/skill",1},
+	mode = "sustained",
+	points = 1,
+	cooldown = 0,
+	on_pre_use = function(self, t, silent)
+		local ride = self.skill_ride
+
+		if ride > 0 then return true
+		else 
+			if not silent then
+                game.log("You need at least 1 rank in Ride to use this")
+            end
+            return false
+        end
+	end,
+	activate = function(self, t)
+	local res = {
+        mount_speed = self:addTemporaryValue("movement_speed_bonus", 0.33)
+	}
+        return res
+
+	end,
+	deactivate = function(self, t, p)
+        self:removeTemporaryValue("movement_speed_bonus", p.mount_speed)
+
+		return true
+	end,
+
+	info = function(self, t)
+		return "Ride on your mount"
 	end,
 }
