@@ -102,9 +102,8 @@ newTalent{
 
 	end,
 	action = function(self, t)
-	--	local creature
 		-- Choose creature
-		if game.player then 
+		if self == game.player then 
 			game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired mount",{
                 {name="heavy warhorse", desc=""},
                 {name="war pony", desc=""},
@@ -123,7 +122,7 @@ newTalent{
 		end
 		
 
-
+		if self == game.player then 
 		local tg = self:getTalentTarget(t)
 		local x, y =  self:getTarget(tg)
 		local _ _, _, _, x, y = self:canProject(tg, x, y)
@@ -146,6 +145,7 @@ newTalent{
 		local creature = t.makeCreature(self, t)
 		game.zone:addEntity(game.level, creature, "actor", x, y)
 		return true
+		end
 
 		
 	end,
