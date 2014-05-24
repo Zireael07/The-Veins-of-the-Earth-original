@@ -1285,7 +1285,8 @@ function _M:getMaxMaxCharges(spell_list)
 	local l = self.level + 5
 	while l > 5 do
 		t[#t+1] = math.min(8, l)
-		l = l - 3
+		--We gain a new spell level every 3 character levels.
+		l = l - 2
 	end
 	return t
 end
@@ -1311,6 +1312,9 @@ function _M:incMaxCharges(tid, v, spell_list)
 		t = self:getTalentFromId(tid)
 		tt = self:getTalentFromId(tid).type[1]
 	end
+
+	--Does the player have the spell slots for this level?
+	if not self:getMaxMaxCharges()[t.level] then return end
 
 	--Can the player have this many max charges for this type?
 	local a = self:getAllocatedCharges(spell_list, t.level)
