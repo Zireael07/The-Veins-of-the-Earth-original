@@ -78,9 +78,9 @@ function _M:init(actor)
         {top=self.spells[7].h+90,ui=self.spells[8]},
         {top=self.spells[8].h+90,ui=self.spells[9]},
         {top=self.c_desc,ui=self.c_charges},
-        {left=550, top=0, ui=self.c_spell},
-        {right=0, top=0, ui=self.c_info}, 
-        {right=self.c_info.w +5, top = 0, ui=self.c_sep}, 
+        {left=self.c_desc.w + 150, top=0, ui=self.c_spell},
+        {left=self.c_desc.w + 150 + self.c_spell.w, top=0, ui=self.c_info}, 
+--        {left=self.c_desc.w + 150 + self.c_spell.w, top = 0, ui=self.c_sep}, 
         
     }
 
