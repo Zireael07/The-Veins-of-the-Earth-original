@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -294,13 +294,30 @@ function _M:dealDamage(target, weapon, crit, sneak)
       --Favored enemy bonus
       if self:favoredEnemy(target) then dam = dam + 2 end
 
+      
+
         --Minimum 1 point of damage unless Damage Reduction works
         dam = math.max(1, dam)
+
+
+
         --No negative damage with DR/-
         local reduced_dam = dam - (target.combat_dr or 0)
+
+       --Account for magic weapons piercing DR
+      if target.combat_dr and target.combat_dr_tohit then
+        if (self.magic_bonus or 0) >= target.combat_dr_tohit then 
+          reduced_dam = dam 
+          --Repeat the minimum 1 dmg rule
+          dam = math.max(1, dam)
+        end       
+      end
+
+
         dam = math.max(0, reduced_dam)
 
 
+        --Poison target
         if self.poison and not target.dead then
           local poison = self.poison
           self:applyPoison(poison, target)
