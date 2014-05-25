@@ -81,6 +81,10 @@ function _M:init(t, no_default)
 	--Can now get classes
 	self.classes = self.classes or {}
 
+	--Templates (NPC only)
+	self.template = self.template or nil
+	self.special = self.special or nil
+
 	--Saves
 	self.will_save = self.will_save or 0
 	self.reflex_save = self.reflex_save or 0
@@ -352,6 +356,17 @@ end
 
 
 --Tooltip stuffs
+function _M:templateName()
+	if self == game.player then end
+	if not self.special and not self.template then return "" end
+	
+	
+	if self.special ~= nil then return self.special 
+	else return "" end
+	if self.template ~= nil then return self.template
+	else return "" end
+end
+
 function _M:className()
 	if self == game.player then end
 	if self.classes and self.classes["Fighter"] then return "#LIGHT_BLUE#fighter#LAST#"
@@ -390,14 +405,14 @@ end
 
 function _M:tooltip()
 	if self.life >= 0 then
-	return ([[%s%s %s
+	return ([[%s #GOLD#%s#LAST# %s %s
 		#RED#HP: %d (%d%%)#LAST#
 		STR %s DEX %s CON %s 
 		INT %s WIS %s CHA %s
 		#GOLD#CR %s#LAST#
 		#WHITE#%s]]):format(
 		self:getDisplayString(),
-		self.name, self:className(),
+		self:templateName(), self.name, self:className(),
 		self.life, self.life / self.max_life *100,
 		self:colorStats('str'),
 		self:colorStats('dex'),
