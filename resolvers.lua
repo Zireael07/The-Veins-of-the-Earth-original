@@ -306,8 +306,13 @@ function resolvers.calc.class(t, e)
 	else end
 
 	if class then
-	e = e:giveLevels(class, n)
-	return e
+--[[	e = e:giveLevels(class, n)
+	return e]]
+	e:giveLevels(class, n)
+	e.challenge = e.challenge + n
+
+	e.life = e.max_life
+
 	end
 end
 
@@ -317,26 +322,26 @@ function resolvers.specialnpc()
 end
 
 function resolvers.calc.specialnpc(t, e)
-	local special
+	local special = e.special
 	--BANDIT: give +2 Str, armor proficiencies, martial weapon proficiency. Power Attack; +2 CR
 	if rng.chance(2) then 
 --		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.MARTIAL_WEAPON_PROFICIENCY, true)
 		e.challenge = e.challenge +2 
-		special = "bandit"
+		e.special = "bandit"
 	--CHIEFTAIN: give +4 Str  +4 Con, +2 attack, Power Attack, Cleave, +2 CR
 	elseif rng.chance(8) then 
 --		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.CLEAVE, true)
 		e.combat_attack = e.combat_attack +2
 		e.challenge = e.challenge +2 
-		special = "chieftain"
+		e.special = "chieftain"
 	--SKILLED: +1 to all attributes, +1 HD, +1 attack, +1 CR
 	elseif rng.chance(4) then 
 		e.hit_die = e.hit_die +1
 		e.combat_attack = e.combat_attack +1
 		e.challenge = e.challenge +1 
-		special = "skilled"
+		e.special = "skilled"
 	end
 	
 end
@@ -350,7 +355,7 @@ function resolvers.calc.templates(t, e)
 	local template
 
 	if rng.chance(5) then
-		template = "zombie"
+		e.template = "zombie"
 		e.display = "Z"
 		e.color=colors.WHITE
 		e.infravision = 3
@@ -358,7 +363,7 @@ function resolvers.calc.templates(t, e)
 		e.combat = { dam= {1,6} }
 
 	elseif rng.chance(5) then
-		template = "skeleton"
+		e.template = "skeleton"
 		e.display = "s" 
 		e.color=colors.WHITE
 		e.infravision = 3
@@ -367,7 +372,7 @@ function resolvers.calc.templates(t, e)
 
 	--DR 5/magic
 	elseif rng.chance(10) then
-		template = "celestial"
+		e.template = "celestial"
 		e.infravision = 3
 		e.spell_resistance = e.hit_die + 5
 		e.challenge = e.challenge +2
@@ -377,7 +382,7 @@ function resolvers.calc.templates(t, e)
 	 }
 	--DR 5/magic
 	elseif rng.chance(10) then
-		template = "fiendish"
+		e.template = "fiendish"
 		e.infravision = 3
 		e.spell_resistance = e.hit_die + 5
 		e.challenge = e.challenge +2
@@ -386,7 +391,7 @@ function resolvers.calc.templates(t, e)
 	 }
 	--Stat increases, spell-likes, fly speed, 
 	elseif rng.chance(15) then
-		template = "half-celestial"
+		e.template = "half-celestial"
 		e.infravision = 3
 		e.spell_resistance = e.hit_die + 10
 		e.combat_natural = e.combat_natural +1
@@ -398,7 +403,7 @@ function resolvers.calc.templates(t, e)
 
 	--Stat increases, spell-likes, fly, bite/claw
 	elseif rng.chance(15) then
-		template = "half-fiend"
+		e.template = "half-fiend"
 		e.infravision = 3
 		e.spell_resistance = e.hit_die + 10
 		e.combat_natural = e.combat_natural +1
@@ -411,7 +416,7 @@ function resolvers.calc.templates(t, e)
 
 	--Stat increases, breath weapon; bite/claw
 	elseif rng.chance(15) then
-		template = "half-dragon"
+		e.template = "half-dragon"
 		e.combat_natural = e.combat_natural +4
 		e.infravision = 3
 		e.challenge = e.challenge +2
