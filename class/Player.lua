@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -85,6 +85,7 @@ function _M:init(t, no_default)
   self.last_class = {}
   self.all_kills = self.all_kills or {}
   self.all_seen = self.all_seen or {}
+  self.special_known = self.special_known or {}
 end
 
 function _M:onBirth()
@@ -478,7 +479,13 @@ function _M:spottedMonsterXP()
         then self.all_seen = self.all_seen or {}
         self.all_seen[act.name] = self.all_seen[act.name] or 0
         self.all_seen[act.name] = self.all_seen[act.name] + 1 
-        act.seen = true 
+         
+
+
+        --Plugged in: a silent Knowledge check to determine whether you know the specials
+        self:skillCheck("knowledge", 10+act.challenge, true)
+        self.special_known[act.uid] = true
+        act.seen = true
 
         --Formula found on the net because I suck at Maths
         local x = self.all_seen[act.name]

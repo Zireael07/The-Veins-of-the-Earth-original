@@ -361,9 +361,17 @@ function _M:templateName()
 	if not self.special and not self.template then return "" end
 	
 	
-	if self.special ~= nil then return self.special 
+	if self.special ~= nil then
+		if game.player.special_known[self.uid] then return self.special
+		else return "" end
+
+		--return self.special		
 	else return "" end
-	if self.template ~= nil then return self.template
+	if self.template ~= nil then
+		if game.player.special_known[self.uid] then return self.template
+		else return "" end
+
+--		return self.template
 	else return "" end
 end
 
