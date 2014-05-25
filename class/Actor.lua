@@ -305,6 +305,15 @@ function _M:move(x, y, force)
 
 	local ox, oy = self.x, self.y
 
+	 -- Never move, but allow attacking (from Qi Daozei)
+        if not force and self:attr("never_move_but_attack") then
+            -- Copied from ToME - this asks the collision code to check for attacking
+            if not game.level.map:checkAllEntities(x, y, "block_move", self, true) then
+                game.logPlayer(self, "You are unable to move!")
+            end
+            return false
+        end
+
 	if force or self:enoughEnergy() then
 		-- Check for confusion or random movement flag.
 		local rand_prob = self.ai_state and self.ai_state.random_move or 0

@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2014
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -27,6 +27,7 @@ newEntity{
 	hit_die = 4,
 	challenge = 3,
 	combat_natural = 6,
+	movement_speed_bonus = -0.88,
 	resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.COLD] = 10,
@@ -60,8 +61,10 @@ newEntity{ base = "BASE_NPC_FUNGI",
 	hit_die = 2,
 	challenge = 1,
 	combat_natural = 3,
-	movement_speed_bonus = -0.50,
+	movement_speed_bonus = -0.66,
 	alignment = "neutral",
+	--Immobile!!!
+	never_move_but_attack = 1,
 }
 
 --Poison 1d4 STR & 1d4 CON pri & sec
@@ -77,6 +80,8 @@ newEntity{ base = "BASE_NPC_FUNGI",
 	hit_die = 2,
 	challenge = 3,
 	infravision = 1,
+	movement_speed_bonus = -0.66,
+	alignment = "neutral",
 }
 
 --Constant greater invisibility
@@ -120,6 +125,7 @@ newEntity{
 	skill_hide = 3,
 	skill_listen = 8,
 	skill_movesilently = 8,
+	movement_speed_bonus = -0.33,
 	alignment = "neutral",
 	resists = { [DamageType.FIRE] = 10 },
 	resolvers.talents{ [Talents.T_IRON_WILL]=1,
@@ -153,6 +159,7 @@ newEntity{
 	skill_listen = 2,
 	skill_movesilently = 2,
 	skill_spot = 2,
+	movement_speed_bonus = -0.33,
 	alignment = "neutral",
 	resolvers.talents{ [Talents.T_IRON_WILL]=1,
 --	[Talents.T_POWER_ATTACK]=1,
