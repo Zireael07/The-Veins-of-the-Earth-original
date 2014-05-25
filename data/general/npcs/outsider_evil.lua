@@ -86,6 +86,8 @@ newEntity{
 	challenge = 4,
 	infravision = 4,
 	combat_natural = 6,
+	combat_dr = 5,
+	combat_dr_tohit = 1,
 	skill_bluff = 9,
 	skill_diplomacy = 4,
 	skill_hide = 9,

@@ -82,7 +82,7 @@ newEntity{
 	},
 }
 
---Detect thoughts, shapechange; immunity to sleep & charm effects; neutral alignment
+--Detect thoughts, shapechange; immunity to sleep & charm effects;
 newEntity{
 	define_as = "BASE_NPC_DOPPELGANGER",
 	type = "monstrous_humanoid",
@@ -141,6 +141,7 @@ newEntity{
 	skill_listen = 4,
 	skill_spot = 4,
 	combat_dr = 10,
+	combat_dr_tohit = 1,
 	movement_speed_bonus = 0.33,
 	alignment = "chaotic evil",
 	--Hack! Monsters drop corpses now

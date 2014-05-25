@@ -511,6 +511,7 @@ newEntity{
 	skill_listen = 4,
 	skill_spot = 4,
 	combat_dr = 10,
+	combat_dr_tohit = 1,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 	resolvers.inventory {
 	full_id=true,

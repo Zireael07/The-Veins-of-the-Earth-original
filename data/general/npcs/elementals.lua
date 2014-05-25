@@ -519,13 +519,14 @@ newEntity{
 	skill_listen = 11,
 	skill_search = 11,
 	skill_spot = 11,
+	fly = true,
 }]]
 
 --Immunity to fire, vulnerability to cold, melt weapons, combustion 1d8 fire for 1d4+2 rounds
 newEntity{
 	define_as = "BASE_NPC_MAGMIN",
 	type = "elemental", subtype = "fire",
---	image = "tiles/elemental_fire.png",
+	image = "tiles/elemental_fire.png",
 	display = "E", color=colors.DARK_RED,
 	body = { INVEN = 10 },
 	desc = [[A small fiery being.]],
@@ -540,6 +541,7 @@ newEntity{
 	hit_die = 2,
 	challenge = 3,
 	combat_dr = 5,
+	combat_dr_to_hit = 1,
 	combat_natural = 6,
 	infravision = 4,
 	skill_climb = 1,
