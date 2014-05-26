@@ -171,6 +171,7 @@ function _M:newGame()
         game.player.changed = true
         print("[PLAYER BIRTH] resolved!")
         
+        profile.chat:setupOnGame()
         game.player:onBirth()
         local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
 --self.player:playerLevelup() 
@@ -812,7 +813,8 @@ function _M:setupCommands()
 		end,
 
 		USERCHAT_TALK = function()
-		local Chat = require("engine.UserChat")
+		local Chat = require("mod.class.patch.UserChat")
+	--	local Chat = require("engine.UserChat")
 			Chat:talkBox()
 		end,
 
