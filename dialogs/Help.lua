@@ -34,9 +34,9 @@ function _M:init()
     Press #YELLOW#'F1'#LAST# or #YELLOW#h#LAST# to display this screen again.
     Press #YELLOW#'F2'#LAST# to display the message log.
 
-
-
-
+    Press #YELLOW#'Space'#LAST# to bring up the chatbox.
+    Press #YELLOW#'Tab'#LAST# to choose the chat channels.
+ 
     To use debug functions, press #YELLOW#Shift + b#LAST# to see a list of all entities on a level.
     If you happen to run into an unkillable monster, press #YELLOW#Ctrl + c#LAST# to run a script which kills all such entities.
     To flush the te4_log.txt file, press #YELLOW#Shift + f#LAST#.

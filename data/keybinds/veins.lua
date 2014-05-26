@@ -10,14 +10,7 @@ defineAction{
 }
 
 defineAction{
-	default = { "sym:_F1:false:false:false:false" },
-	type = "SHOW_HELP",
-	group = "actions",
-	name = "Open help screen",
-}
-
-defineAction{
-	default = { "sym:_h:false:false:false:false" },
+	default = { "sym:_F1:false:false:false:false", "sym:_h:false:false:false:false" },
 	type = "SHOW_HELP",
 	group = "actions",
 	name = "Open help screen",
@@ -235,6 +228,30 @@ defineAction{
 	group = "actions",
 	name = "Show map",
 }
+
+--Chat
+defineAction{
+	default = { "sym:_SPACE:false:true:false:false" },
+	type = "USERCHAT_SWITCH_CHANNEL",
+	group = "user chat",
+	name = "Cycle chat channels",
+}
+
+defineAction{
+	default = { "sym:_SPACE:false:false:false:false" },
+	type = "USERCHAT_TALK",
+	group = "user chat",
+	name = "Talk to people",
+}
+
+defineAction{
+	default = { "sym:_TAB:false:false:false:false" },
+	type = "SHOW_CHAT_CHANNELS",
+	group = "user chat",
+	name = "Show chat channels",
+}
+
+
 
 -- Hotkeys
 defineAction{
