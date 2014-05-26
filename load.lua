@@ -36,6 +36,7 @@ local UIBase = require "engine.ui.Base"
 
 require("engine.ui.Base").ui_conf = {
 	tweaked_simple = {
+	--	frame_shadow = {x=15, y=15, a=0.5},
 		frame_shadow = nil,
 		frame_alpha = 0.8,
 		frame_ox1 = -42,
@@ -107,5 +108,88 @@ Store:loadStores("/data/general/stores/general.lua")
 
 -- Lore
 PlayerLore:loadDefinition("/data/lore/lore.lua")
+
+--Trying to debug Dialog.lua
+--[[require "engine.class"
+function engine.ui.Dialog:init(title, w, h, x, y, alpha, font, showup, skin)
+	self.title = title
+	self.alpha = self.alpha or 255
+	if showup ~= nil then
+		self.__showup = showup
+	else
+		self.__showup = 2
+	end
+	self.color = self.color or {r=255, g=255, b=255}
+	if skin then self.ui = skin end
+
+	print ("[DEBUG] self.ui is "..self.ui)
+
+	if not self.ui_conf[self.ui] then self.ui = "metal" end
+
+	local conf = self.ui_conf[self.ui]
+	self.frame = self.frame or {
+		b7 = "ui/dialogframe_7.png",
+		b8 = "ui/dialogframe_8.png",
+		b9 = "ui/dialogframe_9.png",
+		b1 = "ui/dialogframe_1.png",
+		b2 = "ui/dialogframe_2.png",
+		b3 = "ui/dialogframe_3.png",
+		b4 = "ui/dialogframe_4.png",
+		b6 = "ui/dialogframe_6.png",
+		b5 = "ui/dialogframe_5.png",
+		shadow = conf.frame_shadow or nil,
+		a = conf.frame_alpha or 1,
+		particles = table.clone(conf.particles, true),
+	}
+	self.frame.ox1 = self.frame.ox1 or conf.frame_ox1
+	self.frame.ox2 = self.frame.ox2 or conf.frame_ox2
+	self.frame.oy1 = self.frame.oy1 or conf.frame_oy1
+	self.frame.oy2 = self.frame.oy2 or conf.frame_oy2
+
+	self.particles = {}
+
+	self.frame.title_x = 0
+	self.frame.title_y = 0
+	if conf.title_bar then
+		self.frame.title_x = conf.title_bar.x
+		self.frame.title_y = conf.title_bar.y
+		self.frame.title_w = conf.title_bar.w
+		self.frame.title_h = conf.title_bar.h
+		self.frame.b7 = self.frame.b7:gsub("dialogframe", "title_dialogframe")
+		self.frame.b8 = self.frame.b8:gsub("dialogframe", "title_dialogframe")
+		self.frame.b9 = self.frame.b9:gsub("dialogframe", "title_dialogframe")
+	end
+
+	self.uis = {}
+	self.ui_by_ui = {}
+	self.focus_ui = nil
+	self.focus_ui_id = 0
+
+	self.force_x = x
+	self.force_y = y
+
+	self.first_display = true
+
+	UIBase.init(self, {}, true)
+
+	self:resize(w, h, true)
+end]]
+
+--More shenanigans
+
+--- Request a line to send
+function engine.UserChat:talkBox(on_end)
+	if not profile.auth then return end
+--	local Talkbox = require "mod.class.patch.Talkbox"
+--	local d = Talkbox.new(self, on_end)
+--	game:registerDialog(d)
+
+	game:registerDialog(require("mod.class.patch.Talkbox").new(self, self.player, on_end))
+
+	self:updateChanList()
+end
+
+
+
 
 return {require "mod.class.Game", require "mod.class.World" }
