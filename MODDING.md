@@ -9,6 +9,9 @@ As opposed to ToME 4, the main hand slot has an *underscore* in the name! It's M
 Classes
 If you add a prestige class, it must be added to the section in base descriptor which disallows them at birth. Also, it needs to have prestige = true.
 
+Skills
+If you add a skill, it must be set in Actor.lua, including the skillCheck and the class skills listing. It must also be added to the lists in SkillDialog.lua so that it can be taken and in character sheet so that it will be displayed.
+
 Effects (spells, poisons, class abilities, etc.)
 DO NOT ever use numbers in effect names, EVER!!
 The stat_increase_x temporary value is there for the character sheet to track stat changes. The x has to match the stat's name.
@@ -18,10 +21,12 @@ General entities (NPCs, objects)
 rarity -> how often do we want this to appear. the bigger the number, the rarer it is. Never set to 0.
 display -> what ASCII character is used. Look at Legend.lua for the list of symbols used
 color -> the color of the above character
+image -> the tile that is used.
 name -> what it says on the tin
 desc -> the description which will be displayed in the tooltips
-egos -> any magic item properties the item or templates the creature might have
+egos -> any magic item properties the item might have
 egos_chance -> what it says on the tin. Be careful not to misspell it.
+resolvers -> these govern the equipment, classes or templates the NPC might have
 
 Items
 unided_name -> the name that is displayed before the item is identified
@@ -103,6 +108,7 @@ Darkvision 3 - 30 ft.
 Darkvision 6 - 60 ft.
 
 Basic speed is 30 ft., any additions/substractions is handled via movement_speed_bonus.
+5 ft. = -0.88
 10 ft. = -0.66
 20 ft. = -0.33 
 40 ft. = 0.33
