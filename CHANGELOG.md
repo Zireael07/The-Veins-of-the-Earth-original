@@ -1,5 +1,35 @@
 CHANGELOG
 
+0.18.0 - beta 5.4 - 26/05/2014
+* bug fix - nil table in EntityTracker
+* bug fix - no more errors caused by mobs trying to level up
+* bug fix - lua error on trying to manually adjust stats lower than 8
+* bug fix - no longer possible to manually adjust stats that were rolled
+* bug fix - spellbook now accounts for levels gained every 3rd level
+* bug fix - no lua errors should spells gain and spell slots gain ever mismatch
+* bug fix - plant critters no longer as fast; shrieker stuck down in a spot
+* bug fix - lua errors on pressing Space
+
+* new tiles - altar, note, horse, griffon
+* new spell - Ignizarr's fire
+* in-game user chat now works!
+* chat keys added to Help
+* polymorphing & wild shape
+* Ride skill and mounts
+* lore framework added
+* DR x/magic implemented; framework ready for other DR types
+* coded locked doors
+* auto-search for traps coded
+* coded party support
+* calendar changed to match Incursion's
+* enabled creature templates, both from SRD and from Incursion
+* Knowledge check necessary to be aware that the monster *HAS* a template
+* show lore and show achievements screens
+* added a test zone
+* change zone capacity added to debug menu
+* revised the README to be more readable; split off complete features listing
+
+
 0.17.0 - beta 5.2 - 12/05/2014
 * bug fix - no more point buy popping back up after game start
 * bug fix - fix oversight in naming function for drow females

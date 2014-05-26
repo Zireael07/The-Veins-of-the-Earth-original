@@ -36,6 +36,7 @@ FEATURES
 - working item creation feats (Craft Magic Arms and Armor, Scribe Scroll, Brew Potion)
 - most monsters from the SRD (missing: demons, devils, dragons, lycanthropes, swarms, most animals which don't fit the dungeon theme)
 - monsters can now have templates
+- Knowledge check necessary to be aware that the monster *HAS* a template
 - pre-made encounters of more than 1 monster
 - humanoid NPCs can now have character classes
 - shopkeepers can now sell & buy items
@@ -54,3 +55,4 @@ FEATURES
 - calendar
 - hunger counter and display
 - integrated most of Marson's Bosses AWOL functions
+- working in-game chat
