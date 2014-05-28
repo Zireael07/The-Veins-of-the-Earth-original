@@ -1,13 +1,12 @@
 newTalentType{ 
 	all_limited=true,
-	spell_list="arcane",
 	type="illusion",
 	name="illusion",
 	description = "illusion magic focuses on disrupting your enemies' senses"
 }
 
 
-newTalent{
+newArcaneSpell{
 	name = "Invisibility",
 	type = {"illusion", 1},
 	display = { image = "invisibility.png"},
@@ -27,7 +26,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Blindness/Deafness", short_name = "BLINDNESS_DEAFNESS",
 	type = {"illusion",1},
 	mode = "activated",

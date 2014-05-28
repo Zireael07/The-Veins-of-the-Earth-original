@@ -1,12 +1,11 @@
 newTalentType{ 
 	all_limited=true,
-	spell_list="arcane",
 	type="transmutation",
 	name="transmutation",
 	description = "focuses on manipulatting matter and bodies"
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Alter Self",
 	type = {"transmutation", 1},
 	mode = 'activated',
@@ -47,7 +46,7 @@ newTalent{
 
 
 --Arcane versions of buff spells
-newTalent{
+newArcaneSpell{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE_ARCANE",
 	type = {"transmutation", 1},
 	display = { image = "talents/bear_endurance.png"},
@@ -68,7 +67,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Bull's Strength", short_name = "BULL_STRENGTH_ARCANE",
 	type = {"transmutation", 1},
 	display = { image = "talents/bull_strength.png"},
@@ -89,7 +88,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Eagle's Splendor", short_name = "EAGLE_SPLENDOR_ARCANE",
 	type = {"transmutation", 1},
 	display = { image = "talents/eagle_splendor.png"},
@@ -110,7 +109,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Owl's Wisdom", short_name = "OWL_WISDOM_ARCANE",
 	type = {"transmutation", 1},
 	display = { image = "talents/owl_wisdom.png"},
@@ -131,7 +130,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Cat's Grace",
 	type = {"transmutation", 1},
 	display = { image = "talents/cat_grace.png"},
@@ -152,7 +151,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Fox's Cunning",
 	type = {"transmutation", 1},
 	display = { image = "talents/fox_cunning.png"},
@@ -174,7 +173,7 @@ newTalent{
 }
 
 
-newTalent{
+newArcaneSpell{
 	name = "Levitate",
 	type = {"transmutation", 1},
 	display = { image = "talents/levitate.png"},
@@ -194,7 +193,7 @@ newTalent{
 	end,
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Fly",
 	type = {"transmutation", 1},
 	display = { image = "talents/fly.png"},
@@ -214,7 +213,7 @@ newTalent{
 	end,
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Polymorph",
 	type = {"transmutation", 1},
 	mode = 'activated',

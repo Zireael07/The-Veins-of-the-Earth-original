@@ -1,12 +1,11 @@
 newTalentType{ 
 	all_limited=true,
-	spell_list="arcane",
 	type="evocation",
 	name="evocation",
 	description = "the evocation school harnesses the elements, using them to cause great damage"
 }
 
-newTalent{	
+newArcaneSpell{	
 	name = "Light",
 	type = {"evocation", 1},
 	mode = 'activated',
@@ -47,20 +46,16 @@ newTalent{
 }
 
 
-newTalent{	
+newArcaneSpell{	
 	name = "Magic Missile", --image="talents/magic_missile.png",
-	type = {"evocation", 1},
+	type = {"evocation", 1}, descriptors = {force=true},
 	mode = 'activated',
 	level = 1,
-	points = 1,
-	cooldown = 0,
-	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = true,
 	proj_speed = 3,
 	num_targets = function(self, t)
-		local caster_level = self.level or 1
-		return 1 + math.min(math.floor(caster_level / 2, 5))
+		return 1 + math.min(math.floor(self:casterLevel(t) / 2, 5))
 	end,
 	target = function(self, t)
 		local tg = {type="bolt", range=self:getTalentRange(t), talent=t, display={display='*',color=colors.ORCHID}}
@@ -73,8 +68,8 @@ newTalent{
 			local x, y = self:getTarget(tg)
 			if x and y then
 				targets[i] = {x,y,tg}
-            else
-                return nil
+            		else
+                		return nil
 			end
 		end
 
@@ -90,16 +85,15 @@ newTalent{
 	end,
 	info = function(self, t)
 		local missiles = t.num_targets(self, t)
-		--local dam = damDesc(self, DamageType.ICE, t.getDamage(self, t))
 		return ([[%d missiles of magical energy darts forth from your fingertip and strike their targets, dealing 1d4+1 points of force damage.
 
 			The number of missiles is one plus half your caster level]]):format(missiles)
 	end,
 }
 
-newTalent{	
+newArcaneSpell{	
 	name = "Burning Hands",
-	type = {"evocation", 1},
+	type = {"evocation", 1}, descriptors = {fire=true},
 	mode = 'activated',
 	level = 1,
 	points = 1,
@@ -109,7 +103,7 @@ newTalent{
 	requires_target = true,
 	radius = 3,
 	num_dice = function(self, t)
-		return math.min(self.level or 1, 5)
+		return math.min(self:casterLevel(t) or 1, 5)
 	end,
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
@@ -136,7 +130,7 @@ newTalent{
 	end,
 }
 
-newTalent{	
+newArcaneSpell{	
 	name = "Darkness",
 	type = {"evocation", 1},
 	mode = 'activated',
@@ -176,7 +170,7 @@ newTalent{
 	end,
 }
 
-newTalent{	
+newArcaneSpell{	
 	name = "Ignizarr's fire", short_name = "IGNIZZAR_FIRE",
 	type = {"evocation", 1},
 	mode = 'activated',
@@ -207,9 +201,9 @@ newTalent{
 }
 
 
-newTalent{
+newArcaneSpell{
 	name = "Fireball",
-	type = {"evocation", 1},
+	type = {"evocation", 1}, descriptors = {fire=true},
 	display = { image = "fireball.png"},
 	mode = 'activated',
 	level = 3,
@@ -224,16 +218,14 @@ newTalent{
 		return {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t)}
 	end,
 	action = function(self, t)
-	local tg = self:getTalentTarget(t)
+		local tg = self:getTalentTarget(t)
 		local x, y = self:getTarget(tg)
 		local _ _, _, _, x, y = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
 		local damage = rng.dice(3,6)
-
 		self:project(tg, x, y, DamageType.FIRE, damage, {type=explosion})
-
-	return true
+		return true
 	end,
 
 	info = function(self, t)

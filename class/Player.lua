@@ -402,7 +402,7 @@ function _M:restCheck()
   end
 
   --Do we need to regen charges?
-  for _, tid in pairs(self.talents_def) do
+  for tid, _ in pairs(self.talents) do
     local c = self:getCharges(tid)
     local m = self:getMaxCharges(tid)
     if c < m then
