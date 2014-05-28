@@ -1,12 +1,11 @@
 newTalentType{ 
 	all_limited=true,
-	spell_list="arcane",
 	type="enchantment",
 	name="enchantment",
 	description = "enchantment blahblah"
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Charm Person",
 	type = {"enchantment", 1},
 	display = { image = "talents/charm_person_png"},
@@ -39,7 +38,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Sleep",
 	type = {"enchantment",1},
 	mode = "activated",

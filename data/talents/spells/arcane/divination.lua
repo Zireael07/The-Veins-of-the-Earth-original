@@ -1,12 +1,11 @@
 newTalentType{ 
 	all_limited=true,
-	spell_list="arcane",
 	type="divination",
 	name="divination",
 	description = "divination blahblah"
 }
 
-newTalent{	
+newArcaneSpell{	
 	name = "Identify",
 	type = {"divination", 1},
 	mode = 'activated',
@@ -29,7 +28,7 @@ newTalent{
 }
 
 --Seb's original identify, renamed and shuffled to a higher level
-newTalent{	
+newArcaneSpell{	
 	name = "Improved Identify",
 	type = {"divination", 1},
 	mode = 'activated',

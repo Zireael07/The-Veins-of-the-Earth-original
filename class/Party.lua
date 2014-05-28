@@ -37,10 +37,10 @@ function _M:addMember(actor, def)
 	actor.ai_state.tactic_leash_anchor = actor.ai_state.tactic_leash_anchor or game.player
 	actor.ai_state.tactic_leash = actor.ai_state.tactic_leash or 10
 
-	actor.addEntityOrder = function(self, level)
-		print("[PARTY] New member, add after", self.name, game.party.m_list[1].name)
-		return game.party.m_list[1] -- Make the sure party is always consecutive in the level entities list
-	end
+	-- actor.addEntityOrder = function(self, level)
+	-- 	print("[PARTY] New member, add after", self.name, game.party.m_list[1].name)
+	-- 	return game.party.m_list[1] -- Make the sure party is always consecutive in the level entities list
+	-- end
 
 	-- -- Turn NPCs into party members
 	-- if not actor.no_party_class then

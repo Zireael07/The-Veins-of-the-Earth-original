@@ -1,12 +1,11 @@
 newTalentType{ 
 	all_limited=true,
-	spell_list="arcane",
 	type="conjuration",
 	name="conjuration",
 	description = "Conjuration magic deals with the creation magical creatures and substances"
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Acid Splash",
 	type = {"conjuration", 1},
 	mode = 'activated',
@@ -37,7 +36,7 @@ newTalent{
 	end,
 }
 
-newTalent{	
+newArcaneSpell{	
 	name = "Grease",
 	type = {"conjuration", 1},
 	mode = 'activated',
@@ -55,7 +54,7 @@ newTalent{
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
 		local x, y = self:getTarget(tg)
-        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+        	local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
 		local duration = 5
@@ -77,7 +76,7 @@ newTalent{
 	end,
 }
 
-newTalent{
+newArcaneSpell{
 	name = "Summon Creature I",
 	type = {"conjuration", 1},
 	mode = "activated",
@@ -172,7 +171,7 @@ newTalent{
 	end,
 }
 
-newTalent{	
+newArcaneSpell{	
 	name = "Mage Armor",
 	type = {"conjuration", 1},
 	mode = 'activated',

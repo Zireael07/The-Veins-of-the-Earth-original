@@ -145,10 +145,10 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "arcane/arcane" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-		        	actor:learnTalent(t.id)
-		        end
-		    end
+				if t.type[1] == "arcane/arcane" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+					actor:learnTalent(t.id)
+				end
+			end
 		end
 		
 		actor.combat_bab = (actor.combat_bab or 0) + 0.75
@@ -271,7 +271,7 @@ newBirthDescriptor {
                 	if result == "Retribution" then end
                 	if result == "Trickery" then end
          		end))]]
-	            end
+				end
             	if result == "Asherath" then 
             --[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
@@ -290,8 +290,8 @@ newBirthDescriptor {
          		end))	]]
 
             	end
-	            if result == "Ekliazeh" then 
-	            --[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+				if result == "Ekliazeh" then 
+				--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Community", desc=""}, 
                 {name="Earth", desc=""},
@@ -306,9 +306,9 @@ newBirthDescriptor {
                 	if result == "Strength" then end
                 	if result == "Protection" then end
          		end))	]]
-	            end
-	            if result == "Erich" then 
-	        --[[    	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+				end
+				if result == "Erich" then 
+			--[[    	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Domination", desc=""},
                 {name="Guardian", desc=""}, 
                 {name="Law", desc=""},
@@ -324,7 +324,7 @@ newBirthDescriptor {
                 	if result == "War" then end
          		end))	]]
 
-	           	end
+			   	end
             	if result == "Essiah" then 
             --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
@@ -393,8 +393,8 @@ newBirthDescriptor {
                 	if result == "War" then end
          		end))]]
             	end
-	           	if result == "Kysul" then 
-	         --[[ 		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	if result == "Kysul" then 
+			 --[[ 		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
                 {name="Good", desc=""}, 
                 {name="Mysticism", desc=""},
@@ -409,9 +409,9 @@ newBirthDescriptor {
                 	if result == "Slime" then end
                 	if result == "Water" then end
          		end))]] 
-	           	end
-	           	if result == "Maeve" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Maeve" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Domination", desc=""},
@@ -426,9 +426,9 @@ newBirthDescriptor {
                 	if result == "Moon" then end
                 	if result == "Nobility" then end
          		end))]]
-	           	end
-	           	if result == "Mara" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Mara" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Death", desc=""}, 
                 {name="Good", desc=""},
@@ -443,9 +443,9 @@ newBirthDescriptor {
                 	if result == "Night" then end
                 	if result == "Succor" then end
          		end))]]
-	           	end
-	           	if result == "Sabin" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Sabin" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Air", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Destruction", desc=""},
@@ -460,9 +460,9 @@ newBirthDescriptor {
                 	if result == "Time" then end
                 	if result == "Weather" then end
          		end))]]
-	           	end
-	           	if result == "Semirath" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Semirath" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Chaos", desc=""},
                 {name="Good", desc=""}, 
                 {name="Liberation", desc=""},
@@ -477,9 +477,9 @@ newBirthDescriptor {
                 	if result == "Retribution" then end
                 	if result == "Trickery" then end
          		end))]]
-	           	end
-	           	if result == "Multitude" then 
-	           	--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Multitude" then 
+			   	--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Blood", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Destruction", desc=""},
@@ -494,9 +494,9 @@ newBirthDescriptor {
                 	if result == "Evil" then end
                 	if result == "Pain" then end
          		end))]]
-	           	end
-	           	if result == "Xavias" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Xavias" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Fate", desc=""},
                 {name="Knowledge", desc=""}, 
@@ -512,9 +512,9 @@ newBirthDescriptor {
                 	if result == "Mysticism" then end
                 	if result == "Planning" then end
          		end))]]
-	           	end
-	           	if result == "Xel" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Xel" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
                 {name="Death", desc=""}, 
                 {name="Evil", desc=""},
@@ -529,9 +529,9 @@ newBirthDescriptor {
                 	if result == "Nature" then end
                 	if result == "Trickery" then end
          		end))]]
-	           	end
-	           	if result == "Zurvash" then 
-	        --[[  		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Zurvash" then 
+			--[[  		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Animal", desc=""},
                 {name="Domination", desc=""}, 
                 {name="Night", desc=""},
@@ -546,9 +546,9 @@ newBirthDescriptor {
                 	if result == "Pain" then end
                 	if result == "Strength" then end
          		end))]] 
-	           	end
-	           	
-	        end))
+			   	end
+			   	
+			end))
 			end
 
 
@@ -568,10 +568,10 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-		        	actor:learnTalent(t.id)
-		        end
-		    end
+				if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+					actor:learnTalent(t.id)
+				end
+			end
 		end
 
 		actor.will_save = (actor.will_save or 0) + 1
@@ -667,10 +667,10 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-		        	actor:learnTalent(t.id)
-		        end
-		    end
+				if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+					actor:learnTalent(t.id)
+				end
+			end
 		end
 
 		actor.will_save = (actor.will_save or 0) + 1
@@ -891,10 +891,10 @@ newBirthDescriptor {
 			local spell_level = ((level-5) / 3) + 1
 				for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        	if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-		        	actor:learnTalent(t.id)
-		        	end
-		    	end
+					if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+					actor:learnTalent(t.id)
+					end
+				end
 			end   
 
 			--Level-specific bonuses
@@ -1001,36 +1001,36 @@ newBirthDescriptor {
             	--Learn talent types based on the choice
             	if result == "Aberration" then actor:learnTalent(actor.T_FAVORED_ENEMY_ABERRATION) end
             	if result == "Animal" then actor:learnTalent(actor.T_FAVORED_ENEMY_ANIMAL) end
-	            if result == "Construct" then actor:learnTalent(actor.T_FAVORED_ENEMY_CONSTRUCT) end
-	            if result == "Dragon" then actor:learnTalent(actor.T_FAVORED_ENEMY_DRAGON) end
+				if result == "Construct" then actor:learnTalent(actor.T_FAVORED_ENEMY_CONSTRUCT) end
+				if result == "Dragon" then actor:learnTalent(actor.T_FAVORED_ENEMY_DRAGON) end
             	if result == "Elemental" then actor:learnTalent(actor.T_FAVORED_ENEMY_ELEMENTAL) end
             	if result == "Fey" then actor:learnTalent(actor.T_FAVORED_ENEMY_FEY) end
             	if result == "Giant" then actor:learnTalent(actor.T_FAVORED_ENEMY_GIANT) end
             	if result == "Magical beast" then actor:learnTalent(actor.T_FAVORED_ENEMY_MAGBEAST) end
-	           	if result == "Monstrous humanoid" then actor:learnTalent(actor.T_FAVORED_ENEMY_MONSTROUS_HUMANOID) end
-	           	if result == "Ooze" then actor:learnTalent(actor.T_FAVORED_ENEMY_OOZE) end
-	           	if result == "Plant" then actor:learnTalent(actor.T_FAVORED_ENEMY_PLANT) end
-	           	if result == "Undead" then actor:learnTalent(actor.T_FAVORED_ENEMY_UNDEAD) end
-	           	if result == "Vermin" then actor:learnTalent(actor.T_FAVORED_ENEMY_VERMIN) end
-	           	if result == "Humanoid (dwarf)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_DWARF) end
-	           	if result == "Humanoid (gnome)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_GNOME) end
-	           	if result == "Humanoid (drow)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_DROW) end
-	           	if result == "Humanoid (elf)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_ELF) end
-	           	if result == "Humanoid (human)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_HUMAN) end
-	           	if result == "Humanoid (halfling)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_HALFLING) end
-	           	if result == "Humanoid (planetouched)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_PLANETOUCHED) end
-	           	if result == "Humanoid (aquatic)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_AQUATIC) end
-	           	if result == "Humanoid (goblinoid)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_GOBLINOID) end
-	           	if result == "Humanoid (gnoll)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_GNOLL) end
-	           	if result == "Humanoid (reptilian)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_REPTILIAN) end
-	           	if result == "Humanoid (orc)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_ORC) end
-	           	if result == "Outsider (air)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_AIR) end
-	           	if result == "Outsider (earth)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_EARTH) end
-	           	if result == "Outsider (evil)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_EVIL) end
-	           	if result == "Outsider (fire)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_FIRE) end
-	           	if result == "Outsider (good)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_GOOD) end
-	           	if result == "Outsider (water)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_WATER) end
-	        end))
+			   	if result == "Monstrous humanoid" then actor:learnTalent(actor.T_FAVORED_ENEMY_MONSTROUS_HUMANOID) end
+			   	if result == "Ooze" then actor:learnTalent(actor.T_FAVORED_ENEMY_OOZE) end
+			   	if result == "Plant" then actor:learnTalent(actor.T_FAVORED_ENEMY_PLANT) end
+			   	if result == "Undead" then actor:learnTalent(actor.T_FAVORED_ENEMY_UNDEAD) end
+			   	if result == "Vermin" then actor:learnTalent(actor.T_FAVORED_ENEMY_VERMIN) end
+			   	if result == "Humanoid (dwarf)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_DWARF) end
+			   	if result == "Humanoid (gnome)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_GNOME) end
+			   	if result == "Humanoid (drow)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_DROW) end
+			   	if result == "Humanoid (elf)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_ELF) end
+			   	if result == "Humanoid (human)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_HUMAN) end
+			   	if result == "Humanoid (halfling)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_HALFLING) end
+			   	if result == "Humanoid (planetouched)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_PLANETOUCHED) end
+			   	if result == "Humanoid (aquatic)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_AQUATIC) end
+			   	if result == "Humanoid (goblinoid)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_GOBLINOID) end
+			   	if result == "Humanoid (gnoll)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_GNOLL) end
+			   	if result == "Humanoid (reptilian)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_REPTILIAN) end
+			   	if result == "Humanoid (orc)" then actor:learnTalent(actor.T_FAVORED_ENEMY_HUMANOID_ORC) end
+			   	if result == "Outsider (air)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_AIR) end
+			   	if result == "Outsider (earth)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_EARTH) end
+			   	if result == "Outsider (evil)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_EVIL) end
+			   	if result == "Outsider (fire)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_FIRE) end
+			   	if result == "Outsider (good)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_GOOD) end
+			   	if result == "Outsider (water)" then actor:learnTalent(actor.T_FAVORED_ENEMY_OUTSIDER_WATER) end
+			end))
 			end
 
 			if actor == game.player then
@@ -1050,10 +1050,10 @@ newBirthDescriptor {
 			local spell_level = ((level-5) / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-		        	actor:learnTalent(t.id)
-		        end
-		    end
+				if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+					actor:learnTalent(t.id)
+				end
+			end
 		end
 
 
@@ -1212,44 +1212,50 @@ newBirthDescriptor {
 		if actor:getCha() >= 16 then return true end
 		return false
 	end,
-	on_level = function(actor, level)
+	learn_all_spells_of_level = function(actor, level)
+		for tid, _ in pairs(actor.talents_def) do
+			t = actor:getTalentFromId(tid)
+			tt = actor:getTalentTypeFrom(t.type[1])
+			if actor:spellIsKind(t, "arcane") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+				actor:learnTalent(t.id)
+			end
+		end
+	end,
+	on_level = function(actor, level, descriptor)
 		if level == 1 then 
-			actor.will_save = (actor.will_save or 0) + 2
-			actor.skill_point = (actor.skill_point or 0) + 2
+			actor:attr("innate_casting_arcane", 1)
 
-		--	actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
-			actor:learnTalent(actor.T_ACID_SPLASH_SORC, true)
-			actor:learnTalent(actor.T_GREASE_SORC, true)
-			actor:learnTalent(actor.T_MM_SORC, true)
-			actor:learnTalent(actor.T_BURNING_HANDS_SORC, true)
-			actor:learnTalent(actor.T_SUMMON_CREATURE_I_SORC, true)
-			actor:learnTalent(actor.T_SLEEP_SORC, true)
+			actor:attr("will_save", 2)
+			actor:attr("skill_point", 2)
 
-			actor:learnTalentType("sorcerer/sorcerer", true)			
+			actor:learnTalentType("abjuration")
+			actor:learnTalentType("conjuration")
+			actor:learnTalentType("divination")
+			actor:learnTalentType("enchantment")
+			actor:learnTalentType("illusion")
+			actor:learnTalentType("transmutation")
+			actor:learnTalentType("evocation")
+			actor:learnTalentType("necromancy")
+			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 
-			actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
-
-		--Any level higher than 1
+			descriptor.learn_all_spells_of_level(actor, 0)
+			descriptor.learn_all_spells_of_level(actor, 1)
 		else
-
-		--Learn a new spell tier every 3rd level
-		if level % 3 == 0 then
-			local spell_level = (level / 3) + 1
-			for tid, _ in pairs(actor.talents_def) do
-				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "sorcerer/sorcerer" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-		        	actor:learnTalent(t.id)
-		        end
-		    end
+			--Level >1, generic bonuses
+			actor:attr("will_save", 1)
+			actor:attr("combat_bab", 0.5)
+			actor:attr("fortitude_save", 0.5)
+			actor:attr("reflex_save", 0.5)
+			actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
+			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 		end
 
-		--Level >1, generic bonuses
-		actor.will_save = (actor.will_save or 0) + 1
-		actor.combat_bab = (actor.combat_bab or 0) + 0.5
-		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-		actor.reflex_save = (actor.reflex_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
-		actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
+		-- Sorcerers gain a caster level every level
+		actor:incCasterLevel("arcane", 1)
+
+		-- At each even level past level 2 we gain a spell level
+		if level % 2 == 0 then
+			descriptor.learn_all_spells_of_level(actor, math.floor(level / 2))
 		end
 	end,
 }
@@ -1285,131 +1291,109 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Wizard"] and actor.descriptor.class == "Wizard" then return true end
-		
 		if actor:getInt() >= 16 then return true end
 		return false
 	end,
-	on_level = function(actor, level)
+	learn_all_spells_of_level = function(actor, level)
+		for tid, _ in pairs(actor.talents_def) do
+			t = actor:getTalentFromId(tid)
+			tt = actor:getTalentTypeFrom(t.type[1])
+			if actor:spellIsKind(t, "arcane") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+				actor:learnTalent(t.id)
+			end
+		end
+	end,
+	on_level = function(actor, level, descriptor)
 		if level == 1 then
-			
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK)
 
-			actor.will_save = (actor.will_save or 0) + 2
-			actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
+			actor:attr("will_save", 2)
+			actor:attr("skill_point", 2 + (actor:getInt()-10) / 2)
 
 			if actor == game.player then
-            game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a specialization",{
-                {name="Generalist", desc="You are the master of everything but nothing. You will be equally good with all spells"},
-                {name="Abjuration", desc="Restricts Conjuration"},
-                {name="Conjuration", desc="Restricts Transmutation"},
-                {name="Divination", desc="Restrics Illusion"},
-                {name="Enchantment", desc="Restricts Illusion"},
-                {name="Evocation", desc="Restrics Conjuration"},
-                {name="Illusion", desc="Restrics Enchantment"},
-                {name="Necromancy", desc="Restricts Divination"},
-                {name="Transmutation", desc="Restrics Conjuration"}
-                },
+				game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a specialization",{
+					{name="Generalist", desc="You are the master of everything but nothing. You will be equally good with all spells"},
+					{name="Abjuration", desc="Restricts Conjuration"},
+					{name="Conjuration", desc="Restricts Transmutation"},
+					{name="Divination", desc="Restrics Illusion"},
+					{name="Enchantment", desc="Restricts Illusion"},
+					{name="Evocation", desc="Restrics Conjuration"},
+					{name="Illusion", desc="Restrics Enchantment"},
+					{name="Necromancy", desc="Restricts Divination"},
+					{name="Transmutation", desc="Restrics Conjuration"}
+				}, function(result)
+					actor:learnTalentType("abjuration")
+					if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then actor:learnTalentType("conjuration") end
+					if result ~= "Necromancy" then actor:learnTalentType("divination") end
+					if result ~= "Illusion" then actor:learnTalentType("enchantment") end
+					actor:learnTalentType("evocation")
+					if result ~= "Divination" and result ~= "Enchantment" then actor:learnTalentType("illusion") end
+					actor:learnTalentType("necromancy")
+					if result ~= "Conjuration" then actor:learnTalentType("transmutation") end
 
-            function(result)
-            	game.log("Result: "..result)
-            	--Learn talent types based on the choice
-            	actor:learnTalentType("abjuration")
-            	if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then
-	            	actor:learnTalentType("conjuration")
-	            end
-	            if result ~= "Necromancy" then
-	            	actor:learnTalentType("divination")
-	            end
-	            if result ~= "Illusion" then
-	            	actor:learnTalentType("enchantment")
-	            end
-            	actor:learnTalentType("evocation")
-            	if result ~= "Divination" and result ~= "Enchantment" then
-	            	actor:learnTalentType("illusion")
-	            end
-            	actor:learnTalentType("necromancy")
-            	if result ~= "Conjuration" then
-	            	actor:learnTalentType("transmutation")
-	            end
+					-- Now that we know our schools, learn spells
+					descriptor.learn_all_spells_of_level(actor, 0)
+					descriptor.learn_all_spells_of_level(actor, 1)
+				end))
 
-	            for tid, _ in pairs(actor.talents_def) do
-					t = actor:getTalentFromId(tid)
-					tt = actor:getTalentTypeFrom(t.type[1])
-			        if tt.spell_list == "arcane" and t.level == 1 and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-			        	actor:learnTalent(t.id)
-			        end
-		    	end
-			end))
-
-			game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a familiar",
-				{
-                {name="Bat", desc="Master gains a +3 bonus on Listen checks."},
-                {name="Cat", desc="Master gains a +3 bonus on Move Silently checks."},
-                {name="Hawk", desc="Master gains a +3 bonus to Spot checks in bright light."},
-                {name="Lizard", desc="Master gains a +3 bonus to Climb checks."},
-                {name="Owl", desc="Master gains a +3 bonus to Spot checks in shadows."},
-                {name="Rat", desc="Master gains a +2 bonus on Fortitude saves."},
-                {name="Raven", desc="Master gains a +3 bonus on Appraise checks."},
-                {name="Snake", desc="Master gains a +3 bonus on Bluff checks"},
-                {name="Toad", desc="Master gains +3 hit points."},
-                {name="Weasel", desc="Master gains a +2 bonus on Reflex saves."}
-                },
-
-            function(result)
-            	if result == "Bat" then actor.skill_listen = (actor.skill_listen or 0) + 3 end
-            	if result == "Cat" then actor.skill_movesilently = (actor.skill_movesilently or 0) + 3 end
-            	if result == "Hawk" then actor.skill_spot = (actor.skill_spot or 0) + 3 end
-            	if result == "Lizard" then actor.skill_climb = (actor.skill_climb or 0) + 3 end
-            	if result == "Owl" then actor.skill_spot = (actor.skill_spot or 0) + 3 end
-            	if result == "Rat" then actor.fortitude_save = (actor.fortitude_save or 0) + 2 end
-            	if result == "Snake" then actor.skill_bluff = (actor.skill_bluff or 0) + 3 end
-            	if result == "Toad" then actor.max_life = actor.max_life + 3 end
-            	if result == "Weasel" then actor.reflex_save = (actor.reflex_save or 0) +2 end
-            	
-			end))
-
+				game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a familiar", {
+					{name="Bat", desc="Master gains a +3 bonus on Listen checks."},
+					{name="Cat", desc="Master gains a +3 bonus on Move Silently checks."},
+					{name="Hawk", desc="Master gains a +3 bonus to Spot checks in bright light."},
+					{name="Lizard", desc="Master gains a +3 bonus to Climb checks."},
+					{name="Owl", desc="Master gains a +3 bonus to Spot checks in shadows."},
+					{name="Rat", desc="Master gains a +2 bonus on Fortitude saves."},
+					{name="Raven", desc="Master gains a +3 bonus on Appraise checks."},
+					{name="Snake", desc="Master gains a +3 bonus on Bluff checks"},
+					{name="Toad", desc="Master gains +3 hit points."},
+					{name="Weasel", desc="Master gains a +2 bonus on Reflex saves."}
+				}, function(result)
+					if result == "Bat" then actor:attr("skill_listen", 3) end
+					if result == "Cat" then actor:attr("skill_movesilently", 3) end
+					if result == "Hawk" then actor:attr("skill_spot", 3) end
+					if result == "Lizard" then actor:attr("skill_climb", 3) end
+					if result == "Owl" then actor:attr("skill_spot", 3) end
+					if result == "Rat" then actor:attr("fortitude_save", 2) end
+					if result == "Snake" then actor:attr("skill_bluff", 3) end
+					if result == "Toad" then actor:attr("max_life", 3) end
+					if result == "Weasel" then actor:attr("reflex_save", 2) end
+				end))
 			end
 
-			actor:learnTalentType("arcane/arcane", true)
+			if actor == game.player then
+				if actor:hasDescriptor{race="Drow", sex="Male"} then
+					actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2
+				else
+					actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
+				end
+			else
+				actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
+			end
+		else
+			--Level >1, generic bonuses
+			actor:attr("will_save", 1)
+			actor:attr("combat_bab", 0.5)
+			actor:attr("fortitude_save", 0.5)
+			actor:attr("reflex_save", 0.5)
+			actor:attr("skill_point", 2 + ((actor:getInt() - 10) / 2))
 
 			if actor == game.player then
-				if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Male" then
-			--Favored class bonuses
-			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2
+				if actor:hasDescriptor{race="Drow", sex="Male"} then
+					actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2
 				else
-				actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2 end
+					actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
+				end
 			else
-			actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2 end
-
-		--Any level higher than 1	
-		else
-
-		--Learn a new spell tier every 3rd level
-		if level % 3 == 0 then
-			local spell_level = (level / 3) + 1
-			for tid, _ in pairs(actor.talents_def) do
-				t = actor:getTalentFromId(tid)
-				tt = actor:getTalentTypeFrom(t.type[1])
-		        if tt.spell_list == "arcane" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-		        	actor:learnTalent(t.id)
-		        end
-		    end
+				actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2
+			end
 		end
 
-		--Level >1, generic bonuses
-		actor.will_save = (actor.will_save or 0) + 1
-		actor.combat_bab = (actor.combat_bab or 0) + 0.5
-		actor.fortitude_save = (actor.fortitude_save or 0) + 0.5
-		actor.reflex_save = (actor.reflex_save or 0) + 0.5
-		actor.skill_point = (actor.skill_point or 0) + 2 + (actor:getInt()-10)/2
-		if actor == game.player then
-			if actor.descriptor.race == "Drow" and actor.descriptor.sex == "Male" then
-		--Favored class bonuses
-		actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2
-			else
-			actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2 end
-		else
-		actor.max_life = actor.max_life + 4 + (actor:getCon()-10)/2 end
+		-- Wizards gain a caster level every level
+		actor:incCasterLevel("arcane", 1)
+
+		-- At each odd level we gain a spell level
+		if level % 2 == 1 then
+			descriptor.learn_all_spells_of_level(actor, math.floor(level / 2) + 1)
 		end
 	end,
 }
@@ -1561,7 +1545,7 @@ newBirthDescriptor {
                 	if result == "Retribution" then end
                 	if result == "Trickery" then end
          		end))]]
-	            end
+				end
             	if result == "Asherath" then 
             --[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
@@ -1580,8 +1564,8 @@ newBirthDescriptor {
          		end))	]]
 
             	end
-	            if result == "Ekliazeh" then 
-	            --[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+				if result == "Ekliazeh" then 
+				--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Community", desc=""}, 
                 {name="Earth", desc=""},
@@ -1596,9 +1580,9 @@ newBirthDescriptor {
                 	if result == "Strength" then end
                 	if result == "Protection" then end
          		end))	]]
-	            end
-	            if result == "Erich" then 
-	        --[[    	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+				end
+				if result == "Erich" then 
+			--[[    	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Domination", desc=""},
                 {name="Guardian", desc=""}, 
                 {name="Law", desc=""},
@@ -1614,7 +1598,7 @@ newBirthDescriptor {
                 	if result == "War" then end
          		end))	]]
 
-	           	end
+			   	end
             	if result == "Essiah" then 
             --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
@@ -1683,8 +1667,8 @@ newBirthDescriptor {
                 	if result == "War" then end
          		end))]]
             	end
-	           	if result == "Kysul" then 
-	         --[[ 		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	if result == "Kysul" then 
+			 --[[ 		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
                 {name="Good", desc=""}, 
                 {name="Mysticism", desc=""},
@@ -1699,9 +1683,9 @@ newBirthDescriptor {
                 	if result == "Slime" then end
                 	if result == "Water" then end
          		end))]] 
-	           	end
-	           	if result == "Maeve" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Maeve" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Domination", desc=""},
@@ -1716,9 +1700,9 @@ newBirthDescriptor {
                 	if result == "Moon" then end
                 	if result == "Nobility" then end
          		end))]]
-	           	end
-	           	if result == "Mara" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Mara" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Death", desc=""}, 
                 {name="Good", desc=""},
@@ -1733,9 +1717,9 @@ newBirthDescriptor {
                 	if result == "Night" then end
                 	if result == "Succor" then end
          		end))]]
-	           	end
-	           	if result == "Sabin" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Sabin" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Air", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Destruction", desc=""},
@@ -1750,9 +1734,9 @@ newBirthDescriptor {
                 	if result == "Time" then end
                 	if result == "Weather" then end
          		end))]]
-	           	end
-	           	if result == "Semirath" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Semirath" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Chaos", desc=""},
                 {name="Good", desc=""}, 
                 {name="Liberation", desc=""},
@@ -1767,9 +1751,9 @@ newBirthDescriptor {
                 	if result == "Retribution" then end
                 	if result == "Trickery" then end
          		end))]]
-	           	end
-	           	if result == "Multitude" then 
-	           	--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Multitude" then 
+			   	--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Blood", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Destruction", desc=""},
@@ -1784,9 +1768,9 @@ newBirthDescriptor {
                 	if result == "Evil" then end
                 	if result == "Pain" then end
          		end))]]
-	           	end
-	           	if result == "Xavias" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Xavias" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Fate", desc=""},
                 {name="Knowledge", desc=""}, 
@@ -1802,9 +1786,9 @@ newBirthDescriptor {
                 	if result == "Mysticism" then end
                 	if result == "Planning" then end
          		end))]]
-	           	end
-	           	if result == "Xel" then 
-	        --[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Xel" then 
+			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
                 {name="Death", desc=""}, 
                 {name="Evil", desc=""},
@@ -1819,9 +1803,9 @@ newBirthDescriptor {
                 	if result == "Nature" then end
                 	if result == "Trickery" then end
          		end))]]
-	           	end
-	           	if result == "Zurvash" then 
-	        --[[  		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+			   	end
+			   	if result == "Zurvash" then 
+			--[[  		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Animal", desc=""},
                 {name="Domination", desc=""}, 
                 {name="Night", desc=""},
@@ -1836,9 +1820,9 @@ newBirthDescriptor {
                 	if result == "Pain" then end
                 	if result == "Strength" then end
          		end))]] 
-	           	end
-	           	
-	        end))
+			   	end
+			   	
+			end))
 			end
 
 		else
@@ -1848,10 +1832,10 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
-		        if t.type[1] == "shaman/shaman" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-		        	actor:learnTalent(t.id)
-		        end
-		    end
+				if t.type[1] == "shaman/shaman" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
+					actor:learnTalent(t.id)
+				end
+			end
 		end
 
 		--Level >1, generic bonuses

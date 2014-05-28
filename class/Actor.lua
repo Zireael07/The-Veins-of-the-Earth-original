@@ -148,8 +148,8 @@ function _M:init(t, no_default)
 
 	--Make resists and projectiles work
 	t.resists = t.resists or {}
-    t.melee_project = t.melee_project or {}
-    t.ranged_project = t.ranged_project or {}
+	t.melee_project = t.melee_project or {}
+	t.ranged_project = t.ranged_project or {}
 	t.can_pass = t.can_pass or {}
 	t.on_melee_hit = t.on_melee_hit or {}
 
@@ -169,10 +169,13 @@ function _M:init(t, no_default)
 	-- doesn't work quite the way we want.
 	self.start_level = self.level
 	
-		-- Charges for spells
+	-- Charges for spells
 	self.charges = {}
 	self.max_charges = {}
 	self.allocated_charges = {}
+
+	-- Caster levels
+	self.caster_levels = {}
 
 	--Scoring
 	self.kills = 0
@@ -802,7 +805,7 @@ function _M:preUseTalent(ab, silent)
 	end
 	
 
-	if not self:enoughEnergy() then print("fail energy") return false end
+	if not self:enoughEnergy() then return false end
 
 	if ab.mode == "sustained" then
 		if ab.sustain_power and self.max_power < ab.sustain_power and not self:isTalentActive(ab.id) then
@@ -1324,12 +1327,26 @@ function _M:getMaxMaxCharges(spell_list)
 end
 
 function _M:getMaxCharges(tid)
-	if type(tid) == "table" then tid = tid.id end
+	local t = self:getTalentFromId(tid)
+	tid = t.id
+
+	local cl, kind = self:casterLevel(t)
+	local innatekind = "innate_casting_"..kind
+	if self:attr(innatekind) then
+		return self:getMaxMaxCharges()[t.level] or 0
+	end
 	return self.max_charges[tid] or 0
 end
 
 function _M:getCharges(tid)
-	if type(tid) == "table" then tid = tid.id end
+	local t = self:getTalentFromId(tid)
+	tid = t.id
+
+	local cl, kind = self:casterLevel(t)
+	local innatekind = "innate_casting_"..kind
+	if self:attr(innatekind) then
+		return self.charges[innatekind..t.level] or 0
+	end
 	return self.charges[tid] or 0
 end
 
@@ -1376,17 +1393,16 @@ end
 
 --- Set the number of available instances of a certain spell
 function _M:setCharges(tid, v)
-	local t
-	local id
-	if type(tid) == "table" then 
-		t = tid
-		id = t.id
+	local t = self:getTalentFromId(tid)
+	tid = t.id
+
+	local cl, kind = self:casterLevel(t)
+	local innatekind = "innate_casting_"..kind
+	if self:attr(innatekind) then
+		self.charges[innatekind..t.level] = v
 	else
-		t = self:getTalentFromId(tid)
-		id = tid
+		self.charges[tid] = v
 	end
-	if t then t.charges = v end
-	self.charges[id] = v
 end
 
 --- Increase the number of available instances of a certain spell
@@ -1426,6 +1442,53 @@ function _M:allocatedChargesReset()
 			self.allocated_charges[k][level] = 0
 		end
 	end
+end
+
+function _M:hasDescriptor(t)
+	if not self.descriptor then return false end
+	for k, v in pairs(t) do
+		if self.descriptor[k] ~= v then return false end
+	end
+	return true
+end
+
+function _M:highestSpellDescriptor(what)
+	local list = {}
+	for tid, _ in pairs(self.talents) do
+		local t = self:getTalentFromId(tid)
+		if t.is_spell and t.descriptors and t.descriptors[what] and self:getCharges(t) > 0 then list[#list+1] = t end
+	end
+	if #list == 0 then return nil end
+	table.sort(list, "level")
+	return list[#list]
+end
+
+function _M:incCasterLevel(kind, v)
+	self.caster_levels[kind] = self.caster_levels[kind] or 0
+	self.caster_levels[kind] = self.caster_levels[kind] + v
+end
+
+function _M:casterLevel(kind)
+	if type(kind) == "string" then
+		if not self.caster_levels[kind] then return 0, "none" end
+		return self.caster_levels[kind], kind
+	else
+		local t = self:getTalentFromId(kind)
+		if not t.spell_kind then return 0, "none" end
+		local max, kind = 0, "none"
+		for k, _ in pairs(t.spell_kind) do
+			max = math.max(max, (self:casterLevel(k)))
+			kind = k
+		end
+		return max, kind
+	end
+end
+
+function _M:spellIsKind(t, kind)
+	if not t then return false end
+	if not t.is_spell then return false end
+	if not t.spell_kind[kind] then return false end
+	return true
 end
 
 function _M:levelPassives()
@@ -1524,7 +1587,7 @@ function _M:levelClass(name)
 
 	self.last_class = name
 
-	d.on_level(self, level)
+	d.on_level(self, level, d)
 end
 
 function _M:giveLevels(name, n)

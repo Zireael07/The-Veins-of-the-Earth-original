@@ -37,11 +37,42 @@ Talents.newTalent = function(self, t)
 	return oldNewTalent(self, t)
 end
 
+newFeat = function(t)
+	if not t.points then t.points = 1 end
+	if not t.is_feat then t.is_feat = true end
+	return newTalent(t)
+end
+
+newArcaneSpell = function(t)
+	if not t.points then t.points = 1 end
+	if not t.is_spell then t.is_spell = true end
+	t.spell_kind = {arcane=true}
+	t.show_in_spellbook = true
+	return newTalent(t)
+end
+
+newDivineSpell = function(t)
+	if not t.points then t.points = 1 end
+	if not t.is_spell then t.is_spell = true end
+	t.spell_kind = {divine=true}
+	t.show_in_spellbook = true
+	return newTalent(t)
+end
+
+newArcaneDivineSpell = function(t)
+	if not t.points then t.points = 1 end
+	if not t.is_spell then t.is_spell = true end
+	t.spell_kind = {divine=true, arcane=true}
+	t.show_in_spellbook = true
+	return newTalent(t)
+end
+
 
 load("data/talents/feats/feats.lua")
 load("data/talents/feats/perks.lua")
 load("data/talents/feats/metamagic.lua")
 load("data/talents/feats/combat.lua")
+load("data/talents/feats/reserve.lua")
 
 load("data/talents/domains/domains.lua")
 

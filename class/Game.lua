@@ -306,7 +306,7 @@ end
 
 
 function _M:save()
-	return class.save(self, self:defaultSavedFields{}, true)
+	return class.save(self, self:defaultSavedFields{party=true}, true)
 end
 
 function _M:getSaveDescription()
@@ -738,7 +738,15 @@ function _M:setupCommands()
 
 		-- Lua console, you probably want to disable it for releases
 		LUA_CONSOLE = function()
-			self:registerDialog(DebugConsole.new())
+			if config.settings.cheat then
+				self:registerDialog(DebugConsole.new())
+			end
+		end,
+
+		DEBUG_MODE = function()
+			if config.settings.cheat then
+				self:registerDialog(require("mod.dialogs.debug.DebugMenu").new())
+			end
 		end,
 
 		-- Toggle monster list

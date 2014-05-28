@@ -1,13 +1,12 @@
 newTalentType{ 
 	all_limited=true,
-	spell_list = "arcane", 
 	type="necromancy", 
 	name="necromancy", 
 	description = "necromancy magic deals with the creation magical creatures and substances"
 }
 
 
-newTalent{
+newArcaneSpell{
 	name = "Ghoul Touch",
 	type = {"necromancy",1},
 	mode = "activated",
@@ -29,7 +28,6 @@ newTalent{
 		else 
 			if target:canBe("paralysis") then target:setEffect(target.EFF_GHOUL_TOUCH, duration, {}) end
 		end
-
 		return true
 	end,
 	info = "The target you touch is afflicted with a terrible ailment.", 
