@@ -37,6 +37,7 @@ Talents.newTalent = function(self, t)
 	return oldNewTalent(self, t)
 end
 
+--Thanks DarkGod!
 newFeat = function(t)
 	if not t.points then t.points = 1 end
 	if not t.is_feat then t.is_feat = true end
