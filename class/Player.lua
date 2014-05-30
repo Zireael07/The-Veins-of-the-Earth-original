@@ -258,6 +258,10 @@ function _M:act()
 
  self.nutrition = self.nutrition - 1
 
+ --Cap nutrition
+ --NOTE: start 500, hungry 200, starving 50
+ if self.nutrition == 1 then self.nutrition = 1 end
+
  --ID counters
  local inven = game.player:getInven("INVEN")
  self.id_counter = self.id_counter - 1
@@ -521,10 +525,10 @@ end
 --Auto ID stuff
 
 function _M:setCountID()
-  if self.descriptor.class == "Rogue" then self.pseudo_id_counter = 8
-  elseif self.descriptor.class == "Fighter" or self.descriptor.class == "Barbarian" then self.pseudo_id_counter = 10
-  elseif self.descriptor.class == "Ranger" or self.descriptor.class == "Paladin" or self.descriptor.class == "Monk" or self.descriptor.class == "Warlock" or self.descriptor.class == "Cleric" then self.pseudo_id_counter = 15
-  elseif self.descriptor.class == "Wizard" or self.descriptor.class == "Sorcerer" then self.pseudo_id_counter = 20
+  if self.descriptor.class == "Rogue" then self.pseudo_id_counter = rng.range(5,10)
+  elseif self.descriptor.class == "Fighter" or self.descriptor.class == "Barbarian" then self.pseudo_id_counter = rng.range(5,15)
+  elseif self.descriptor.class == "Ranger" or self.descriptor.class == "Paladin" or self.descriptor.class == "Monk" or self.descriptor.class == "Warlock" or self.descriptor.class == "Cleric" then self.pseudo_id_counter = rng.range(10, 20)
+  elseif self.descriptor.class == "Wizard" or self.descriptor.class == "Sorcerer" then self.pseudo_id_counter = rng.range(15, 25)
   end
 end
 
@@ -533,12 +537,13 @@ local list = {}
         local inven = game.player:getInven("INVEN")
         i = rng.range(1, #inven)
         local o = inven[i]
-          if o.pseudo_id == false then
-            local check = self:skillCheck("intuition", 10)
+          --add a check for empty inventory
+          if o and o.pseudo_id == false then
+            local check = self:skillCheck("intuition", 10, true)
                         if check then 
                           o.pseudo_id = true 
                         end        
-            else end
+          else end
 end
 
 function _M:autoID()
@@ -546,8 +551,8 @@ function _M:autoID()
         local inven = game.player:getInven("INVEN")
         i = rng.range(1, #inven)
         local o = inven[i]
-          if o.identified == false and o.pseudo_id == true then
-            local check = self:skillCheck("intuition", 25)
+          if o and o.identified == false and o.pseudo_id == true then
+            local check = self:skillCheck("intuition", 25, true)
                         if check then 
                           o.identified = true 
                           game.logSeen(game.player, "Identified: %s", o.name)
