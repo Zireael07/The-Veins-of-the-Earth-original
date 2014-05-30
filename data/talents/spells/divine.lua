@@ -1,6 +1,6 @@
 newTalentType{ all_limited=true, spell_list = "divine", type="divine", name="divine", description="Divine Spells" }
 
-newTalent{
+newDivineSpell{
 	name = "Create Food and Water",
 	type = {"divine", 1},
 	display = { image = "talents/create_food_and_water.png"},
@@ -36,7 +36,7 @@ newTalent{
 
 
 --Cure spells
-newTalent{
+--[[newDivineSpell{
 	name = "Cure Light Wounds",
 	type = {"divine", 1},
 	display = { image = "talents/cure_light_wounds.png"},
@@ -58,12 +58,12 @@ newTalent{
 	--end,
 	end,
 
-	info = function(self, t)
-		return ([[You heal yourself - the amount of damage healed is equal to 1d8 + 1 per caster level (max 5).]])
-	end,	
-}
+	info = function(self, t)]]
+--		return ([[You heal yourself - the amount of damage healed is equal to 1d8 + 1 per caster level (max 5).]])
+--	end,	
+--}
 
-newTalent{
+newDivineSpell{
 	name = "Cure Moderate Wounds",
 	type = {"divine", 1},
 	image = "talents/cure_light_wounds.png",
@@ -90,7 +90,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newDivineSpell{
 	name = "Cure Serious Wounds",
 	type = {"divine", 1},
 	mode = 'activated',
@@ -117,7 +117,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newDivineSpell{
 	name = "Cure Critical Wounds",
 	type = {"divine", 1},
 	image = "talents/cure_light_wounds.png",
@@ -144,7 +144,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newDivineSpell{
 	name = "Heal Light Wounds",
 	type = {"divine", 1},
 	display = { image = "heal_light_wounds.png"},
@@ -166,7 +166,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newDivineSpell{
 	name = "Heal Moderate Wounds",
 	type = {"divine", 1},
 	image = "heal_light_wounds.png",
@@ -189,7 +189,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newDivineSpell{
 	name = "Heal Serious Wounds",
 	type = {"divine", 1},
 	image = "heal_light_wounds.png",
@@ -212,7 +212,7 @@ newTalent{
 	end,	
 }
 
-newTalent{
+newDivineSpell{
 	name = "Heal Critical Wounds",
 	type = {"divine", 1},
 	image = "heal_light_wounds.png",
@@ -236,7 +236,7 @@ newTalent{
 }
 
 --Inflict spells
-newTalent{
+newDivineSpell{
 	name = "Inflict Light Wounds",
 	type = {"divine",1},
 	display = { image = "inflict_light_wounds.png"},
@@ -266,7 +266,7 @@ newTalent{
 	end,	 
 }
 
-newTalent{
+newDivineSpell{
 	name = "Inflict Moderate Wounds",
 	type = {"divine",1},
 	image = "inflict_light_wounds.png",
@@ -297,7 +297,7 @@ newTalent{
 	end,	 
 }
 
-newTalent{
+newDivineSpell{
 	name = "Inflict Serious Wounds",
 	type = {"divine",1},
 	image = "inflict_light_wounds.png",
@@ -328,7 +328,7 @@ newTalent{
 	end,	 
 }
 
-newTalent{
+newDivineSpell{
 	name = "Inflict Critical Wounds",
 	type = {"divine",1},
 	image = "inflict_light_wounds.png",
@@ -359,7 +359,7 @@ newTalent{
 	end,	 
 }
 
-newTalent{
+newDivineSpell{
 	name = "Faerie Fire",
 	type = {"divine", 1},
 	mode = 'activated',
@@ -391,7 +391,7 @@ newTalent{
 
 
 --"Animal buff" spells
-newTalent{
+--[[newDivineSpell{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE",
 	type = {"divine", 1},
 	display = { image = "bear_endurance.png"},
@@ -406,12 +406,12 @@ newTalent{
 		return true
 	end,
 
-	info = function(self, t)
-		return ([[You increase your Constitution by +4.]])
-	end,	
-}
+	info = function(self, t)]]
+--		return ([[You increase your Constitution by +4.]])
+--	end,	
+--}
 
-newTalent{
+--[[newDivineSpell{
 	name = "Bull's Strength", short_name = "BULL_STRENGTH",
 	type = {"divine", 1},
 	display = { image = "bull_strength.png"},
@@ -426,12 +426,12 @@ newTalent{
 		return true
 	end,
 
-	info = function(self, t)
-		return ([[You increase your Strength by +4.]])
-	end,	
-}
+	info = function(self, t)]]
+--		return ([[You increase your Strength by +4.]])
+--	end,	
+--}
 
-newTalent{
+--[[newDivineSpell{
 	name = "Eagle's Splendor", short_name = "EAGLE_SPLENDOR",
 	type = {"divine", 1},
 	display = { image = "eagle_splendor.png"},
@@ -446,12 +446,12 @@ newTalent{
 		return true
 	end,
 
-	info = function(self, t)
-		return ([[You increase your Charisma by +4.]])
-	end,	
-}
+	info = function(self, t)]]
+--		return ([[You increase your Charisma by +4.]])
+--	end,	
+--}
 
-newTalent{
+--[[newDivineSpell{
 	name = "Owl's Wisdom", short_name = "OWL_WISDOM",
 	type = {"divine", 1},
 	display = { image = "owl_wisdom.png"},
@@ -466,7 +466,7 @@ newTalent{
 		return true
 	end,
 
-	info = function(self, t)
-		return ([[You increase your Wisdom by +4.]])
-	end,	
-}
+	info = function(self, t)]]
+--		return ([[You increase your Wisdom by +4.]])
+--	end,	
+--}
