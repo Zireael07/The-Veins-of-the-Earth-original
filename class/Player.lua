@@ -20,6 +20,7 @@ require "engine.interface.PlayerRest"
 require "engine.interface.PlayerRun"
 require "engine.interface.PlayerMouse"
 require "engine.interface.PlayerHotkeys"
+require "mod.class.interface.PlayerExplore"
 local Map = require "engine.Map"
 local Dialog = require "engine.Dialog"
 local DeathDialog = require "mod.dialogs.DeathDialog"
@@ -37,6 +38,7 @@ module(..., package.seeall, class.inherit(mod.class.Actor,
 					  engine.interface.PlayerRun,
 					  engine.interface.PlayerMouse,
 					  engine.interface.PlayerHotkeys,
+            mod.class.interface.PlayerExplore,
             PlayerLore))
 
 local exp_chart = function(level)
@@ -164,6 +166,7 @@ function _M:move(x, y, force)
   if moved then
     game.level.map:moveViewSurround(self.x, self.y, 8, 8)
 
+    game.level.map.attrs(self.x, self.y, "walked", true)
     self:describeFloor(self.x, self.y)
   end
 
@@ -435,15 +438,33 @@ end
 
 --- Can we continue running?
 -- We can run if no hostiles are in sight, and if we no interesting terrains are next to us
-function _M:runCheck()
+-- 'ignore_memory' is only used when checking for paths around traps.  This ensures we don't remember items "obj_seen" that we aren't supposed to
+function _M:runCheck(ignore_memory)
   if spotHostiles(self) then return false, "hostile spotted" end
 
   -- Notice any noticeable terrain
   local noticed = false
-  self:runScan(function(x, y)
+  self:runScan(function(x, y, what)
     -- Only notice interesting terrains
     local grid = game.level.map(x, y, Map.TERRAIN)
     if grid and grid.notice then noticed = "interesting terrain" end
+
+    -- Objects are always interesting, only on curent spot
+    if what == "self" and not game.level.map.attrs(x, y, "obj_seen") then
+      local obj = game.level.map:getObject(x, y, 1)
+      if obj then
+        if not ignore_memory then game.level.map.attrs(x, y, "obj_seen", true) end
+        noticed = "object seen"
+        return false, noticed
+      end
+    end
+
+    local grid = game.level.map(x, y, Map.TERRAIN)
+    if grid and grid.special and not grid.autoexplore_ignore and not game.level.map.attrs(x, y, "autoexplore_ignore") and self.running and self.running.path then
+      game.level.map.attrs(x, y, "autoexplore_ignore", true)
+      noticed = "something interesting"
+      return false, noticed
+    end
   end)
   if noticed then return false, noticed end
   
