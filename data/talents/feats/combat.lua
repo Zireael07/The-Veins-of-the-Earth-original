@@ -1,7 +1,7 @@
 newTalentType{ type="combat/general", no_tt_req = true, name = "combat gen", description = "General combat feats" }
 
 -- Active combat feats
-newTalent{
+newFeat{
 	name = "Power Attack",
 	type = {"combat/general", 1},
 	require = {
@@ -38,7 +38,7 @@ newTalent{
 	info = [[You can substract a number from your base attack bonus and add it to damage bonus.]],
 }
 
-newTalent{
+newFeat{
 	name = "Combat Expertise",
 	type = {"combat/general", 1},
 	require = {

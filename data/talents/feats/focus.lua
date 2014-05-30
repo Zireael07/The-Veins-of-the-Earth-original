@@ -1,4 +1,4 @@
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_AXE",
 	name = "Weapon Focus (axe)",
 	type = {"class/general", 1},
@@ -19,7 +19,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with axes.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_BATTLEAXE",
 	name = "Weapon Focus (battleaxe)",
 	type = {"class/general", 1},
@@ -40,7 +40,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with battleaxes.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_BOW",
 	name = "Weapon Focus (bow)",
 	type = {"class/general", 1},
@@ -61,7 +61,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with bows.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_CLUB",
 	name = "Weapon Focus (club)",
 	type = {"class/general", 1},
@@ -82,7 +82,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with clubs.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_CROSSBOW",
 	name = "Weapon Focus (crossbow)",
 	type = {"class/general", 1},
@@ -103,7 +103,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with crossbows.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_DAGGER",
 	name = "Weapon Focus (dagger)",
 	type = {"class/general", 1},
@@ -124,7 +124,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with daggers.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_FALCHION",
 	name = "Weapon Focus (falchion)",
 	type = {"class/general", 1},
@@ -145,7 +145,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with falchions.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_FLAIL",
 	name = "Weapon Focus (flail)",
 	type = {"class/general", 1},
@@ -166,7 +166,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with flails.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_HALBERD",
 	name = "Weapon Focus (halberd)",
 	type = {"class/general", 1},
@@ -187,7 +187,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with halberds.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_HAMMER",
 	name = "Weapon Focus (hammer)",
 	type = {"class/general", 1},
@@ -208,7 +208,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with hammers.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_HANDAXE",
 	name = "Weapon Focus (handaxe)",
 	type = {"class/general", 1},
@@ -229,7 +229,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with handaxes.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_JAVELIN",
 	name = "Weapon Focus (javelin)",
 	type = {"class/general", 1},
@@ -250,7 +250,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with javelins.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_KUKRI",
 	name = "Weapon Focus (kukri)",
 	type = {"class/general", 1},
@@ -271,7 +271,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with kukris.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_MACE",
 	name = "Weapon Focus (mace)",
 	type = {"class/general", 1},
@@ -292,7 +292,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with maces.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_MORNINGSTAR",
 	name = "Weapon Focus (morningstar)",
 	type = {"class/general", 1},
@@ -313,7 +313,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with morningstars.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_RAPIER",
 	name = "Weapon Focus (rapier)",
 	type = {"class/general", 1},
@@ -334,7 +334,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with rapiers.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_SCIMITAR",
 	name = "Weapon Focus (scimitar)",
 	type = {"class/general", 1},
@@ -355,7 +355,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with scimitars.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_SCYTHE",
 	name = "Weapon Focus (scythe)",
 	type = {"class/general", 1},
@@ -376,7 +376,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with scythes.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_SHORTSWORD",
 	name = "Weapon Focus (short sword)",
 	type = {"class/general", 1},
@@ -397,7 +397,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with short swords.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_SLING",
 	name = "Weapon Focus (sling)",
 	type = {"class/general", 1},
@@ -418,7 +418,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with slings.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_SPEAR",
 	name = "Weapon Focus (spear)",
 	type = {"class/general", 1},
@@ -439,7 +439,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with spears.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_STAFF",
 	name = "Weapon Focus (staff)",
 	type = {"class/general", 1},
@@ -460,7 +460,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with staves.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_SWORD",
 	name = "Weapon Focus (sword)",
 	type = {"class/general", 1},
@@ -481,7 +481,7 @@ newTalent{
 	info = [[You gain a +1 bonus to attacks made with swords.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "WEAPON_FOCUS_TRIDENT",
 	name = "Weapon Focus (trident)",
 	type = {"class/general", 1},
@@ -504,7 +504,7 @@ newTalent{
 
 
 --Improved Criticals
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_AXE",
 	name = "Improved Critical (axe)",
 	type = {"class/general", 1},
@@ -526,7 +526,7 @@ newTalent{
 	info = [[This feat increases your axes' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_BATTLEAXE",
 	name = "Improved Critical (battleaxe)",
 	type = {"class/general", 1},
@@ -548,7 +548,7 @@ newTalent{
 	info = [[This feat increases your battleaxes' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_BOW",
 	name = "Improved Critical (bow)",
 	type = {"class/general", 1},
@@ -570,7 +570,7 @@ newTalent{
 	info = [[This feat increases your bows' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_CLUB",
 	name = "Improved Critical (club)",
 	type = {"class/general", 1},
@@ -592,7 +592,7 @@ newTalent{
 	info = [[This feat increases your clubs' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_CROSSBOW",
 	name = "Improved Critical (crossbow)",
 	type = {"class/general", 1},
@@ -614,7 +614,7 @@ newTalent{
 	info = [[This feat increases your crossbows' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_DAGGER",
 	name = "Improved Critical (dagger)",
 	type = {"class/general", 1},
@@ -636,7 +636,7 @@ newTalent{
 	info = [[This feat increases your daggers' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_FALCHION",
 	name = "Improved Critical (falchion)",
 	type = {"class/general", 1},
@@ -658,7 +658,7 @@ newTalent{
 	info = [[This feat increases your falchions' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_FLAIL",
 	name = "Improved Critical (flail)",
 	type = {"class/general", 1},
@@ -680,7 +680,7 @@ newTalent{
 	info = [[This feat increases your flails' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_HALBERD",
 	name = "Improved Critical (halberd)",
 	type = {"class/general", 1},
@@ -702,7 +702,7 @@ newTalent{
 	info = [[This feat increases your halberds' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_HAMMER",
 	name = "Improved Critical (hammer)",
 	type = {"class/general", 1},
@@ -724,7 +724,7 @@ newTalent{
 	info = [[This feat increases your hammers' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_HANDAXE",
 	name = "Improved Critical (handaxe)",
 	type = {"class/general", 1},
@@ -746,7 +746,7 @@ newTalent{
 	info = [[This feat increases your handaxes' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_JAVELIN",
 	name = "Improved Critical (javelin)",
 	type = {"class/general", 1},
@@ -768,7 +768,7 @@ newTalent{
 	info = [[This feat increases your javelins' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_KUKRI",
 	name = "Improved Critical (kukri)",
 	type = {"class/general", 1},
@@ -790,7 +790,7 @@ newTalent{
 	info = [[This feat increases your kukris' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_MACE",
 	name = "Improved Critical (mace)",
 	type = {"class/general", 1},
@@ -812,7 +812,7 @@ newTalent{
 	info = [[This feat increases your maces' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_MORNINGSTAR",
 	name = "Improved Critical (morningstar)",
 	type = {"class/general", 1},
@@ -834,7 +834,7 @@ newTalent{
 	info = [[This feat increases your morningstars' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_RAPIER",
 	name = "Improved Critical (rapier)",
 	type = {"class/general", 1},
@@ -856,7 +856,7 @@ newTalent{
 	info = [[This feat increases your rapiers' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_SCIMITAR",
 	name = "Improved Critical (scimitar)",
 	type = {"class/general", 1},
@@ -878,7 +878,7 @@ newTalent{
 	info = [[This feat increases your scimitars' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_SCYTHE",
 	name = "Improved Critical (scythe)",
 	type = {"class/general", 1},
@@ -900,7 +900,7 @@ newTalent{
 	info = [[This feat increases your scythes' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_SHORTSWORD",
 	name = "Improved Critical (short sword)",
 	type = {"class/general", 1},
@@ -922,7 +922,7 @@ newTalent{
 	info = [[This feat increases your short swords' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_SLING",
 	name = "Improved Critical (sling)",
 	type = {"class/general", 1},
@@ -944,7 +944,7 @@ newTalent{
 	info = [[This feat increases your slings' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_SPEAR",
 	name = "Improved Critical (spear)",
 	type = {"class/general", 1},
@@ -966,7 +966,7 @@ newTalent{
 	info = [[This feat increases your spears' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_STAFF",
 	name = "Improved Critical (staff)",
 	type = {"class/general", 1},
@@ -988,7 +988,7 @@ newTalent{
 	info = [[This feat increases your staves' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_SWORD",
 	name = "Improved Critical (sword)",
 	type = {"class/general", 1},
@@ -1010,7 +1010,7 @@ newTalent{
 	info = [[This feat increases your swords' critical range by 2.]],
 }
 
-newTalent{
+newFeat{
 	short_name = "IMPROVED_CRIT_TRIDENT",
 	name = "Improved Critical (trident)",
 	type = {"class/general", 1},
