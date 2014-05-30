@@ -43,7 +43,7 @@ load("/data/general/objects/specific_items.lua")
 load("/data/general/objects/lore.lua")
 
 --Lore
-for i = 1, 3 do
+for i = 1, 7 do
 newEntity{ base = "BASE_LORE",
     define_as = "NOTE"..i,
     name = "tattered paper scrap", lore="misc-"..i,
