@@ -131,6 +131,9 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+
+			actor:learnTalentType("arcane")
+			actor:learnTalentType("arcane_divine")
 			
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
@@ -158,9 +161,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 		actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 
-		--Gain a caster level every level
-		actor:incCasterLevel("arcane", 1)
-
 		if actor == game.player then
 			if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
 				--Favored class bonuses
@@ -172,6 +172,9 @@ newBirthDescriptor {
 		else
 		actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 		end
+
+		--Gain a caster level every level
+		actor:incCasterLevel("arcane", 1)
 	end,
 } 
 
@@ -232,12 +235,13 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
-			
-			descriptor.learn_all_spells_of_level(actor, 0)
-			descriptor.learn_all_spells_of_level(actor, 1)
-
 
 			actor:learnTalentType("divine", true)
+			actor:learnTalentType("arcane_divine", true)
+
+			descriptor.learn_all_spells_of_level(actor, 0)
+			descriptor.learn_all_spells_of_level(actor, 1)
+			
 
 			actor:learnTalent(actor.T_LAY_ON_HANDS, true)
 			actor:learnTalent(actor.T_TURN_UNDEAD, true)
@@ -589,9 +593,6 @@ newBirthDescriptor {
 		actor:attr("combat_bab", 0.75)
 		actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
-		--Gain a caster level every level
-		actor:incCasterLevel("divine", 1)
-
 		if actor == game.player then
 			if actor:hasDescriptor{race="Drow", sex="Female"} or actor:hasDescriptor{race="Half-Drow"} then
 		actor.combat_attack = (actor.combat_attack or 0) + 1
@@ -602,6 +603,9 @@ newBirthDescriptor {
 		else
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 		end
+
+		--Gain a caster level every level
+		actor:incCasterLevel("divine", 1)
 	end,
 }
 
@@ -661,13 +665,11 @@ newBirthDescriptor {
 
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
 
+			actor:learnTalentType("divine")
+			actor:learnTalentType("arcane_divine", true)
+
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
-
-		--	actor:learnTalent(actor.T_CURE_LIGHT_WOUNDS, true)
-		--	actor:learnTalent(actor.T_FAERIE_FIRE, true)
-
-		--	actor:learnTalentType("divine", true)
 
 			if actor == game.player then
 				if actor:hasDescriptor{race="Lizardfolk"} then
@@ -704,9 +706,6 @@ newBirthDescriptor {
 		actor:attr("combat_bab", 0.75)
 		actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
-		--Gain a caster level every level
-		actor:incCasterLevel("divine", 1)
-
 		if actor == game.player then
 				if actor:hasDescriptor{race="Lizardfolk"} then
 				--Favored class bonuses
@@ -718,6 +717,10 @@ newBirthDescriptor {
 		else		 
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 	end
+
+		--Gain a caster level every level
+		actor:incCasterLevel("divine", 1)
+
 	end,
 }   
 
@@ -930,6 +933,8 @@ newBirthDescriptor {
 			--Level-specific bonuses
             if level == 4 then actor:learnTalent(actor.T_TURN_UNDEAD, true) end
             if level == 5 then 
+            	actor:learnTalentType("divine")
+
             	descriptor.learn_all_spells_of_level(actor, 0)
 				descriptor.learn_all_spells_of_level(actor, 1)
 
@@ -1098,6 +1103,8 @@ newBirthDescriptor {
 
 
 		if level == 5 then 
+			actor:learnTalentType("divine")
+
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
 		end
@@ -1285,6 +1292,8 @@ newBirthDescriptor {
 			actor:learnTalentType("transmutation")
 			actor:learnTalentType("evocation")
 			actor:learnTalentType("necromancy")
+			actor:learnTalentType("arcane_divine", true)
+
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
