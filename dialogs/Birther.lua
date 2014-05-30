@@ -102,20 +102,20 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self:generateLists()
 
     self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
-    self.c_class = List.new{width=self.iw/6, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end}--self:on_select(item,sel) end}
+    self.c_class = List.new{width=self.iw/6, height = self.ih*0.4, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
 
     self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
-    self.c_race = List.new{width=self.iw/6, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end} --self:on_select(item,sel) end}
+    self.c_race = List.new{width=self.iw/6, height = self.ih*0.4, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
 
     self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
-    self.c_background = List.new{width=self.iw/6, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end}
+    self.c_background = List.new{width=self.iw/6, height = self.ih*0.4, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
     self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
-    self.c_alignment = List.new{width=self.iw/6, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end}
+    self.c_alignment = List.new{width=self.iw/6, height = self.ih*0.4, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
     self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
     Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
-    #00FF00#Left click#FFFFFF# in table to increase a stat; #00FF00#right click#FFFFFF# to decrease a stat.
+    #00FF00#Left click#FFFFFF# in table to increase a stat.
     Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
 
     Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
@@ -595,7 +595,7 @@ end
 function _M:StatUpdate()
     self.c_stats.key:addBinds{
     --    ACCEPT = function() self.key:triggerVirtual("EXIT") end,
-        MOVE_LEFT = function() self:incStat(-1) end,
+    --    MOVE_LEFT = function() self:incStat(-1) end,
         MOVE_RIGHT = function() self:incStat(1) end,
     }
 end
@@ -722,7 +722,7 @@ function _M:loadPremadeUI()
     local sep = Separator.new{dir="horizontal", size=400}
 
     local load = Button.new{text=" Load ", fct=function() if sel then self:loadPremade(sel) game:unregisterDialog(d) end end}
-    local close = Button.new{text="Close", fct=function() unregisterDialog(d) end }
+    local close = Button.new{text="Close", fct=function() game:unregisterDialog(d) game:registerDialog(self) end }
     local del = Button.new{text="Delete", fct=function() if sel then
         self:yesnoPopup(sel.name, "Really delete premade: "..sel.name, function(ret) if ret then
             local vault = CharacterVaultSave.new(sel.short_name)

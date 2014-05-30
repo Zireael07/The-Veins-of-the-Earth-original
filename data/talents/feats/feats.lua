@@ -5,7 +5,7 @@ load("data/talents/feats/focus.lua")
 load("data/talents/feats/item_creation.lua")
 
 --Proficiency feats
-newTalent{
+newFeat{
 	name = "Light Armor Proficiency",
 	type = {"class/general", 1},
 	points = 1,
@@ -14,7 +14,7 @@ newTalent{
 	info = [[This feat makes you proficient in light armors.]],
 }
 
-newTalent{
+newFeat{
 	name = "Medium Armor Proficiency",
 	type = {"class/general", 1},
 	require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
@@ -24,7 +24,7 @@ newTalent{
 	info = [[This feat makes you proficient in medium armors.]],
 }
 
-newTalent{
+newFeat{
 	name = "Heavy Armor Proficiency",
 	type = {"class/general", 1},
 	require = { talent = { Talents.T_MEDIUM_ARMOR_PROFICIENCY }, },
@@ -34,7 +34,7 @@ newTalent{
 	info = [[This feat makes you proficient in heavy armors.]],
 }
 
-newTalent{
+newFeat{
 	name = "Shield Proficiency",
 	type = {"class/general", 1},
 	points = 1,
@@ -44,7 +44,7 @@ newTalent{
 }
 
 
-newTalent{
+newFeat{
 	name = "Simple Weapon Proficiency",
 	type = {"class/general", 1},
 	points = 1,
@@ -53,7 +53,7 @@ newTalent{
 	info = [[This feat makes you proficient in simple weapons.]],
 }
 
-newTalent{
+newFeat{
 	name = "Martial Weapon Proficiency",
 	type = {"class/general", 1},
 	require = { talent = { Talents.T_SIMPLE_WEAPON_PROFICIENCY }, },
@@ -63,7 +63,7 @@ newTalent{
 	info = [[This feat makes you proficient in martial weapons.]],
 }
 
-newTalent{
+newFeat{
 	name = "Exotic Weapon Proficiency",
 	type = {"class/general", 1},
 	require = {
@@ -84,7 +84,7 @@ newTalent{
 }
 
 --Combat feats
-newTalent{
+newFeat{
 	name = "Finesse",
 	type = {"class/general", 1},
 	require = {
@@ -104,7 +104,7 @@ newTalent{
 	info = [[With a light weapon, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.]],
 }
 
-newTalent{
+newFeat{
 	name = "Monkey Grip",
 	type = {"class/general", 1},
 	points = 1,
@@ -125,7 +125,7 @@ newTalent{
 }
 
 --Taken from Incursion
-newTalent{
+newFeat{
 	name = "Shield Focus",
 	type = {"class/general", 1},
 	require = {
@@ -138,7 +138,7 @@ newTalent{
 	info = [[When wielding a shield, you gain a +2 bonus to AC in addition to the shield's bonus.]],
 }
 
-newTalent{
+newFeat{
 	name = "Armor Optimisation",
 	type = {"class/general", 1},
 	require = {
@@ -152,7 +152,7 @@ newTalent{
 }
 
 --Archery feats
---[[newTalent{
+--[[newFeat{
 	name = "Point Blank Shot",
 	type = {"class/general", 1},
 	require = {
@@ -165,7 +165,7 @@ newTalent{
 --	info = [[This feat makes you better at shooting at close range, adding a +1 bonus.]],
 --[[}
 
-newTalent{
+newFeat{
 	name = "Far Shot",
 	type = {"class/general", 1},
 	require = {
@@ -178,7 +178,7 @@ newTalent{
 --	info = [[This feat increases the range of your bow or crossbow by 1,5.]],
 --[[}
 
-newTalent{
+newFeat{
 	name = "Rapid Shot",
 	type = {"class/general", 1},
 	require = {
@@ -192,7 +192,7 @@ newTalent{
 --	info = [[This feat lets you make a second shot, but both shots have a -2 penalty.]],
 --[[}
 
-newTalent{
+newFeat{
 	name = "Manyshot",
 	type = {"class/general", 1},
 	require = {
@@ -215,7 +215,7 @@ newTalent{
 --}
 
 --TWF feats
-newTalent{
+newFeat{
 	name = "Two Weapon Fighting",
 	type = {"class/general", 1},
 	require = {
@@ -228,7 +228,7 @@ newTalent{
 	info = [[This feat makes you proficient in fighting with two weapons, reducing the penalties.]],
 }
 
-newTalent{
+newFeat{
 	name = "Two Weapon Defense",
 	type = {"class/general", 1},
 	require = {
@@ -242,7 +242,7 @@ newTalent{
 	info = [[This feat gives you a +1 shield bonus to AC when fighting with two weapons.]],
 }
 
-newTalent{
+newFeat{
 	name = "Improved Two Weapon Fighting",
 	type = {"class/general", 1},
 	require = {
@@ -264,7 +264,7 @@ newTalent{
 	info = [[This feat gives you an additional offhand attack when fighting with two weapons.]],
 }
 
-newTalent{
+newFeat{
 	name = "Greater Two Weapon Fighting",
 	type = {"class/general", 1},
 	require = {
@@ -288,7 +288,7 @@ newTalent{
 
 
 --Save bonuses feats
-newTalent{
+newFeat{
 	name = "Toughness",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -306,7 +306,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Dodge",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -324,7 +324,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Iron Will",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -341,7 +341,7 @@ newTalent{
 }
 
 --Various feats
-newTalent{
+newFeat{
 	name = "Light Sleeper",
 	type = {"class/general", 1},
 	require = {
@@ -353,7 +353,7 @@ newTalent{
 	info = [[The enemy will not get a free attack if you are resting.]],
 }
 
-newTalent{
+newFeat{
 	name = "Loadbearer",
 	type = {"class/general", 1},
 	require = {
@@ -365,7 +365,7 @@ newTalent{
 	info = [[You suffer no penalties for medium load. The penalty for heavy load is halved.]],
 }
 
-newTalent{
+newFeat{
 	name = "Mobility",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -383,7 +383,7 @@ newTalent{
 }
 
 -- Skill enhancer feats
-newTalent{
+newFeat{
 	name = "Acrobatic",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -400,7 +400,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Agile",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -417,7 +417,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Alertness",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -434,7 +434,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Animal Affinity",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -451,7 +451,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Artist",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -469,7 +469,7 @@ newTalent{
 }
 
 
-newTalent{
+newFeat{
 	name = "Athletic",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -486,7 +486,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Combat Casting",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -501,7 +501,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Deft Hands",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -518,7 +518,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Investigator",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -535,7 +535,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Magical Aptitude",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -552,7 +552,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Magical Talent",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -569,7 +569,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Negotiator",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -586,7 +586,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Nimble Fingers",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -603,7 +603,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Persuasive",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -620,7 +620,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Self-sufficient",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -637,7 +637,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Silver Palm",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -654,7 +654,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Stealthy",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -671,7 +671,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Thug",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -689,7 +689,7 @@ newTalent{
 }
 
 --Taken from Incursion
-newTalent{
+newFeat{
 	name = "Improved Strength",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -706,7 +706,7 @@ newTalent{
 	end
 }
 
-newTalent{
+newFeat{
 	name = "Improved Dexterity",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -723,7 +723,7 @@ newTalent{
 	end
 }
 
-newTalent{
+newFeat{
 	name = "Improved Constitution",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -740,7 +740,7 @@ newTalent{
 	end
 }
 
-newTalent{
+newFeat{
 	name = "Improved Intelligence",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -757,7 +757,7 @@ newTalent{
 	end
 }
 
-newTalent{
+newFeat{
 	name = "Improved Wisdom",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -774,7 +774,7 @@ newTalent{
 	end
 }
 
-newTalent{
+newFeat{
 	name = "Improved Charisma",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -791,7 +791,7 @@ newTalent{
 	end
 }
 
-newTalent{
+newFeat{
 	name = "Improved Luck",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -809,7 +809,7 @@ newTalent{
 }
 
 --More stuff from Incursion
-newTalent{
+newFeat{
 	name = "Lore of Acid",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -825,7 +825,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Lore of Flames",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -841,7 +841,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Lore of Rime",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -857,7 +857,7 @@ newTalent{
     end
 }
 
-newTalent{
+newFeat{
 	name = "Lore of Storms",
 	type = {"class/general", 1},
 	is_feat = true,

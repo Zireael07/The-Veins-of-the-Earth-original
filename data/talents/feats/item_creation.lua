@@ -1,7 +1,7 @@
 --Veins of the Earth
 --Zireael 2014
 
-newTalent{
+newFeat{
 	name = "Craft Arms and Armor",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -166,7 +166,7 @@ newTalent{
 }
 
 --These craft new items
-newTalent{
+newFeat{
 	name = "Brew Potion",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -375,7 +375,7 @@ newTalent{
 	end,
 }
 
-newTalent{
+newFeat{
 	name = "Craft Wand",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -584,7 +584,7 @@ newTalent{
 	end,
 }
 
-newTalent{
+newFeat{
 	name = "Scribe Scroll",
 	type = {"class/general", 1},
 	is_feat = true,
@@ -793,7 +793,7 @@ newTalent{
 	end,
 }
 
---[[newTalent{
+--[[newFeat{
     name = "Craft Staff",
     type = {"class/general", 1},
     is_feat = true,

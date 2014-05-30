@@ -1396,6 +1396,7 @@ function _M:setCharges(tid, v)
 	local t = self:getTalentFromId(tid)
 	tid = t.id
 
+	--Account for innate casting
 	local cl, kind = self:casterLevel(t)
 	local innatekind = "innate_casting_"..kind
 	if self:attr(innatekind) then
@@ -1444,6 +1445,7 @@ function _M:allocatedChargesReset()
 	end
 end
 
+--DarkGod's useful functions
 function _M:hasDescriptor(t)
 	if not self.descriptor then return false end
 	for k, v in pairs(t) do

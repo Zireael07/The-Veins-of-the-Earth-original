@@ -37,6 +37,7 @@ Talents.newTalent = function(self, t)
 	return oldNewTalent(self, t)
 end
 
+--Thanks DarkGod!
 newFeat = function(t)
 	if not t.points then t.points = 1 end
 	if not t.is_feat then t.is_feat = true end
@@ -78,9 +79,10 @@ load("data/talents/domains/domains.lua")
 
 load("data/talents/spells/divine.lua")
 load("data/talents/spells/arcane.lua")
+load("data/talents/spells/arcane_divine.lua")
 load("data/talents/spells/innate.lua")
-load("data/talents/spells/shaman.lua")
-load("data/talents/spells/sorcerer.lua")
+
+
 load("data/talents/spells/monster.lua")
 
 load("data/talents/skills.lua")

@@ -13,6 +13,7 @@ Contributors:
 
 - Sebsebeleb
 - Zireael
+- DarkGod
 
 Key features:
 
@@ -46,7 +47,7 @@ Thanks to:
 - Marson from te4.org forums for his Bosses AWOL and Dev Tools addons
 - Lost Garden for free graphics
 - rsaarelm from #rgrd for coming up with the name "Veins of the Earth"
-- Grey, DarkGod, HousePet for coding help
+- Grey, HousePet for coding help
 - Zonk for brainstorming
 - Leissi for brainstorming and testing
 - Castler for testing

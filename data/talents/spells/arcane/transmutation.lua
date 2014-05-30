@@ -46,6 +46,7 @@ newArcaneSpell{
 
 
 --Arcane versions of buff spells
+--Need to stay because specialization
 newArcaneSpell{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE_ARCANE",
 	type = {"transmutation", 1},

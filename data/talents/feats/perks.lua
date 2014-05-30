@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael 2014
 
+--NOT defined as feats so that they don't show up in feat choice screen
+
 newTalent{
 	name = "Born Hero",
 	type = {"class/general", 1},
