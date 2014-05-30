@@ -270,7 +270,7 @@ function _M:act()
 
 	--From Startide
 	-- Shrug off effects
-for eff_id, params in pairs(self.tmp) do
+	for eff_id, params in pairs(self.tmp) do
 		local DC = params.DC_ongoing or 10
 		local eff = self.tempeffect_def[eff_id]
 		if eff.decrease == 0 then 
@@ -278,7 +278,7 @@ for eff_id, params in pairs(self.tmp) do
 				params.dur = 0 
 			end
 		end
-end
+	end
 
 	-- Still not dead ?
 	if self.dead then return false end
@@ -1642,24 +1642,34 @@ function _M:checkEncumbrance()
 	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()	
 
 	--Light load
-	if enc < max * 0.33 and self:hasEffect(self.EFF_MEDIUM_LOAD) then 
-		self:removeEffect(self.EFF_MEDIUM_LOAD, true)
+	if enc < max * 0.33 then
+		--remove any load effects one might have
+		if self:hasEffect(self.EFF_MEDIUM_LOAD) then self:removeEffect(self.EFF_MEDIUM_LOAD, true) end
+		if self:hasEffect(self.EFF_HEAVY_LOAD) then self:removeEffect(self.EFF_HEAVY_LOAD, true) end
 	end
 
+
 	--Heavy load
-	if enc > max * 0.66 and self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
-	self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true) 
+	if enc > max * 0.66 then
+		--Loadbearer
+		if self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
+			self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true)
+		end
+		--Not loadbearer
+		if self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_HEAVY_LOAD) then
+			--remove medium load if any
+			if self:hasEffect(self.EFF_MEDIUM_LOAD) then self:removeEffect(self.EFF_MEDIUM_LOAD, true) end
+			self:setEffect(self.EFF_HEAVY_LOAD, 2, {}, true)
+		end
 	end
-	
-	if enc > max * 0.66 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_HEAVY_LOAD) then
-		self:removeEffect(self.EFF_MEDIUM_LOAD, true)
-		self:setEffect(self.EFF_HEAVY_LOAD, 2, {}, true)
-	end
+
 	
 	--Medium load
 	if enc > max * 0.33 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
-		self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true)
+		--remove heavy load first
 		if self:hasEffect(self.EFF_HEAVY_LOAD) then self:removeEffect(self.EFF_HEAVY_LOAD, true) end
+		self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true)
+	
 	end
 	
 	-- We are pinned to the ground if we carry too much
