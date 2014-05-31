@@ -80,7 +80,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         {name="Value", width=30, display_prop="val"},
     }, list=self.list_stats, fct=function(item, _, v)
         self:incStat(v == "left" and 1 or -1, item.stat_id)
-    end, select=function(item, sel) self.sel = sel self.val = item.val self.id = item.stat_id self.delta = item.delta end}
+    end, select=function(item, sel) self.sel = sel self.val = item.val self.id = item.stat_id self.delta = item.delta self:updateDesc(item) end}
 
     self.c_reroll = Button.new{text="Reroll",fct=function() self:onRoll() end}
     self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
@@ -88,6 +88,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self:generatePerkText()
     self.c_perk_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#STARTING PERK: #LAST#"}
     self.c_perk = Textzone.new{auto_width=true, auto_height=true, text=_perks_text:format(self.actor.perk)}
+--    self.c_perk = List.new{width=self.iw/6, height=100, nb_items=#self.list_perk, list=self.list_perk, select=function(item, sel) self:updateDesc(item) end}
 
 
     --Make UI work
@@ -416,8 +417,18 @@ end
 
 --Display random perk
 function _M:generatePerkText()
+    local list = {}
+    for j, t in pairs(self.actor.talents_def) do
+        if self.actor:knowTalent(t.id) then
 
-  
+            list[#list+1] = {
+                name = t.name,
+            --    desc = player:getTalentFullDescription(t):toString(),
+                desc = ("%s"):format(t.info(self.actor,t)),
+                }
+        end
+    end
+    self.list_perk = list
 end
 
 function _M:generateStats()
@@ -425,13 +436,13 @@ function _M:generateStats()
 
     list = 
     {
-            {name="STR", val=self.actor:getStr(), stat_id=self.actor.STAT_STR, delta = 1},
-            {name="DEX", val=self.actor:getDex(), stat_id=self.actor.STAT_DEX, delta = 1},
-            {name="CON", val=self.actor:getCon(), stat_id=self.actor.STAT_CON, delta = 1},
-            {name="INT", val=self.actor:getInt(), stat_id=self.actor.STAT_INT, delta = 1},
-            {name="WIS", val=self.actor:getWis(), stat_id=self.actor.STAT_WIS, delta = 1},
-            {name="CHA", val=self.actor:getCha(), stat_id=self.actor.STAT_CHA, delta = 1},
-            {name="LUC", val=self.actor:getLuc(), stat_id=self.actor.STAT_LUC, delta = 1},
+            {name="STR", val=self.actor:getStr(), stat_id=self.actor.STAT_STR, delta = 1, desc="#GOLD#Strength (STR)#LAST#  is important for melee fighting."},
+            {name="DEX", val=self.actor:getDex(), stat_id=self.actor.STAT_DEX, delta = 1, desc="You'll want to increase #GOLD#Dexterity (DEX)#LAST# if you want to play a ranger or a rogue. It's less important for fighters, who wear heavy armor."},
+            {name="CON", val=self.actor:getCon(), stat_id=self.actor.STAT_CON, delta = 1, desc="#GOLD#Constitution (CON)#LAST# is vital for all characters, since it affects your hitpoints."},
+            {name="INT", val=self.actor:getInt(), stat_id=self.actor.STAT_INT, delta = 1, desc="#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard."},
+            {name="WIS", val=self.actor:getWis(), stat_id=self.actor.STAT_WIS, delta = 1, desc="#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster."},
+            {name="CHA", val=self.actor:getCha(), stat_id=self.actor.STAT_CHA, delta = 1, desc="#GOLD#Charisma (CHA)#LAST# is a key attribute for shamans or sorcerers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells."},
+            {name="LUC", val=self.actor:getLuc(), stat_id=self.actor.STAT_LUC, delta = 1, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
         }
 
     self.list_stats = list
