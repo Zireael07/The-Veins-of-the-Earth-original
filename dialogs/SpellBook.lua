@@ -30,10 +30,6 @@ function _M:init(actor)
 
 	self:generateSpell()
 
-	local image = "talents/default.png"
-	self.image = "talents/default.png"
-
-
 	local types = {}
 	if self.actor:casterLevel("arcane") > 0 then
 		types[#types+1]= {title="Arcane", kind="arcane"}
@@ -58,43 +54,11 @@ function _M:init(actor)
 
 	self.c_desc = SurfaceZone.new{width=500, height=500,alpha=1.0}
 	self.c_charges = SurfaceZone.new{width = 500, height=500,alpha=1.0}
-
-	--Images in desc
-	self.c_image = Image.new{file=self.image, auto_width=true, auto_height=true }
 	
 	--Spell info stuff
 	self.c_spell = List.new{width=200, nb_items=#self.list_spellsinfo, height = self.ih*0.8, list=self.list_spellsinfo, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 	self.c_info = TextzoneList.new{ scrollbar = true, width=200, height = self.ih }
 	self.c_sep = Separator.new{dir="horizontal", size=self.ih - 20}
-
-
-	
-
-
---[[	local image
-	if item.image then
-		self.c_image = Image.new{file=image or "talents/default.png", auto_width=true, auto_height=true }
-		uis = {
-			{left=0, top=0, ui=self.c_tabs},
-			{left=0, bottom=0, ui=self.c_accept},
-			{left=self.c_accept, bottom=0, ui=self.c_decline},
-			{right=0, bottom=0, ui=self.c_reset},
-			{top=self.c_tabs.h + 10, ui=self.c_desc},
-			{top=self.c_desc,ui=self.spells[1]},
-			{top=self.spells[1].h+90,ui=self.spells[2]},
-			{top=self.spells[2].h+90,ui=self.spells[3]},
-			{top=self.spells[3].h+90,ui=self.spells[4]},
-			{top=self.spells[4].h+90,ui=self.spells[5]},
-			{top=self.spells[5].h+90,ui=self.spells[6]},
-			{top=self.spells[6].h+90,ui=self.spells[7]},
-			{top=self.spells[7].h+90,ui=self.spells[8]},
-			{top=self.spells[8].h+90,ui=self.spells[9]},
-			{top=self.c_desc,ui=self.c_charges},
-			{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
-			{left=self.c_desc.w + 150 + self.c_spell.w, top=0, ui=self.c_image},
-			{left=self.c_desc.w + 150 + self.c_spell.w, top=self.c_image.h, ui=self.c_info},
-		}
-	end]]
 
 
 	self:generateList(types[1].kind)
@@ -116,9 +80,7 @@ function _M:init(actor)
 		{top=self.spells[8].h+90,ui=self.spells[9]},
 		{top=self.c_desc,ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
-		{left=self.c_desc.w + 150 + self.c_spell.w, top=0, ui=self.c_image},
-		{left=self.c_desc.w + 150 + self.c_spell.w, top=self.c_image.h, ui=self.c_info},
---		{left=self.c_desc.w + 150 + self.c_spell.w, top=0, ui=self.c_info}, 
+		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info}, 
 --        {left=self.c_desc.w + 150 + self.c_spell.w, top = 0, ui=self.c_sep}, 
 		
 	}
@@ -267,11 +229,21 @@ function _M:on_select(item,sel)
 
 	if self.c_info then self.c_info:switchItem(item, item.desc) end
 	self.selection = sel    
-	image = item.image
-	self.image = item.image
-	--actually update the image
-	self.c_image.file = item.image
-	self.c_image:generate()
+
+	--Taken from ToME 4's show lore
+	if item.image then
+			if type(item.image) == "string" then
+				self.image = Image.new{file=item.image, auto_width=true, auto_height=true}
+				local r = self.image.w / self.image.h
+				self.image.w = 64
+				self.image.h = 64
+				item.image = self.image
+			else
+				self.image = item.image
+			end
+	else
+		self.image = nil
+	end
 end
 
 --[[function _M:on_select(item)
@@ -280,6 +252,14 @@ end
 --    if item then self.c_info.text = item.desc end
 	self.selection = sel    
 end]]
+
+--From ToME 4's Show Lore
+function _M:innerDisplay(x, y, nb_keyframes)
+	if self.image then
+		self.image:display(x + self.iw - self.image.w*2, y + 5)
+	end
+end
+
 
 function _M:onEnd(result)
 	game:unregisterDialog(self)
