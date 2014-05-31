@@ -18,6 +18,7 @@ local Tabs = require "engine.ui.Tabs"
 local TextzoneList = require "engine.ui.TextzoneList"
 local Separator = require "engine.ui.Separator"
 local List = require "engine.ui.List"
+local Image = require "engine.ui.Image"
 
 module(..., package.seeall, class.inherit(Dialog))
 
@@ -28,6 +29,10 @@ function _M:init(actor)
 	Dialog.init(self, "Spellbook: "..self.actor.name, math.max(game.w * 0.8, 700), math.max(game.h*0.6, 500), nil, nil, font)
 
 	self:generateSpell()
+
+	local image = "talents/default.png"
+	self.image = "talents/default.png"
+
 
 	local types = {}
 	if self.actor:casterLevel("arcane") > 0 then
@@ -54,10 +59,42 @@ function _M:init(actor)
 	self.c_desc = SurfaceZone.new{width=500, height=500,alpha=1.0}
 	self.c_charges = SurfaceZone.new{width = 500, height=500,alpha=1.0}
 
+	--Images in desc
+	self.c_image = Image.new{file=self.image, auto_width=true, auto_height=true }
+	
 	--Spell info stuff
-	self.c_spell = List.new{width=200, nb_items=#self.list_spellsinfo, height = self.ih*0.8, list=self.list_spellsinfo, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+	self.c_spell = List.new{width=200, nb_items=#self.list_spellsinfo, height = self.ih*0.8, list=self.list_spellsinfo, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 	self.c_info = TextzoneList.new{ scrollbar = true, width=200, height = self.ih }
 	self.c_sep = Separator.new{dir="horizontal", size=self.ih - 20}
+
+
+	
+
+
+--[[	local image
+	if item.image then
+		self.c_image = Image.new{file=image or "talents/default.png", auto_width=true, auto_height=true }
+		uis = {
+			{left=0, top=0, ui=self.c_tabs},
+			{left=0, bottom=0, ui=self.c_accept},
+			{left=self.c_accept, bottom=0, ui=self.c_decline},
+			{right=0, bottom=0, ui=self.c_reset},
+			{top=self.c_tabs.h + 10, ui=self.c_desc},
+			{top=self.c_desc,ui=self.spells[1]},
+			{top=self.spells[1].h+90,ui=self.spells[2]},
+			{top=self.spells[2].h+90,ui=self.spells[3]},
+			{top=self.spells[3].h+90,ui=self.spells[4]},
+			{top=self.spells[4].h+90,ui=self.spells[5]},
+			{top=self.spells[5].h+90,ui=self.spells[6]},
+			{top=self.spells[6].h+90,ui=self.spells[7]},
+			{top=self.spells[7].h+90,ui=self.spells[8]},
+			{top=self.spells[8].h+90,ui=self.spells[9]},
+			{top=self.c_desc,ui=self.c_charges},
+			{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
+			{left=self.c_desc.w + 150 + self.c_spell.w, top=0, ui=self.c_image},
+			{left=self.c_desc.w + 150 + self.c_spell.w, top=self.c_image.h, ui=self.c_info},
+		}
+	end]]
 
 
 	self:generateList(types[1].kind)
@@ -79,7 +116,9 @@ function _M:init(actor)
 		{top=self.spells[8].h+90,ui=self.spells[9]},
 		{top=self.c_desc,ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
-		{left=self.c_desc.w + 150 + self.c_spell.w, top=0, ui=self.c_info}, 
+		{left=self.c_desc.w + 150 + self.c_spell.w, top=0, ui=self.c_image},
+		{left=self.c_desc.w + 150 + self.c_spell.w, top=self.c_image.h, ui=self.c_info},
+--		{left=self.c_desc.w + 150 + self.c_spell.w, top=0, ui=self.c_info}, 
 --        {left=self.c_desc.w + 150 + self.c_spell.w, top = 0, ui=self.c_sep}, 
 		
 	}
@@ -216,7 +255,7 @@ function _M:generateSpell()
 			s = player:getTalentReqDesc(t.id):toString()
 			d = d..s.."\n#WHITE#"
 			d = d..t.info(player,t)
-			list[#list+1] = {name=t.name, color = color, desc=d, talent=t }
+			list[#list+1] = {name=t.name, color = color, desc=d, talent=t, image=t.image }
 		end
 	end
 	self.list_spellsinfo = list
@@ -225,8 +264,14 @@ function _M:generateSpell()
 end
 
 function _M:on_select(item,sel)
+
 	if self.c_info then self.c_info:switchItem(item, item.desc) end
 	self.selection = sel    
+	image = item.image
+	self.image = item.image
+	--actually update the image
+	self.c_image.file = item.image
+	self.c_image:generate()
 end
 
 --[[function _M:on_select(item)
