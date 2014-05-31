@@ -87,8 +87,8 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     self:generatePerkText()
     self.c_perk_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#STARTING PERK: #LAST#"}
-    self.c_perk = Textzone.new{auto_width=true, auto_height=true, text=_perks_text:format(self.actor.perk)}
---    self.c_perk = List.new{width=self.iw/6, height=100, nb_items=#self.list_perk, list=self.list_perk, select=function(item, sel) self:updateDesc(item) end}
+--    self.c_perk = Textzone.new{auto_width=true, auto_height=true, text=_perks_text:format(self.actor.perk)}
+    self.c_perk = List.new{width=self.iw/6, height=100, nb_items=#self.list_perk, list=self.list_perk, select=function(item, sel) self:updateDesc(item) end}
 
 
     --Make UI work
@@ -416,6 +416,7 @@ end
 
 
 --Display random perk
+--Warning: ONLY WORKS FOR PERKS that are talents!
 function _M:generatePerkText()
     local list = {}
     for j, t in pairs(self.actor.talents_def) do
@@ -640,7 +641,10 @@ function _M:onRoll()
         self.c_stats.list = self.list_stats
         self.c_stats:generate() 
         self:updateClasses()
-        self.c_perk.text = _perks_text:format(self.actor.perk)
+        --update perks display
+        --self.c_perk.text = _perks_text:format(self.actor.perk)
+        self:generatePerkText()
+        self.c_perk.list = self.list_perk
         self.c_perk:generate()
         --Stop pb shenanigans
         self.unused_stats = 0
@@ -648,8 +652,6 @@ function _M:onRoll()
         self.c_points:generate()
     end
 
-
-    --self:drawTab() end
 end
 
 function _M:onReset()
