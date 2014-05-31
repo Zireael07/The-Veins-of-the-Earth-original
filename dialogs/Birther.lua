@@ -947,69 +947,69 @@ local random_name = {
     if not self.sel_race then return end
 
     if self.sel_race.name == "Human" then
-      if self.c_female_checked then 
+      if self.c_female.checked then 
       local ng = NameGenerator.new(random_name.human_female) 
       self.c_name:setText(ng:generate()) 
       else local ng = NameGenerator.new(random_name.human_male)
         self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Half-Elf" or self.sel_race.name == "Half-Drow" then 
-      if self.c_female_checked then
+      if self.c_female.checked then
         local ng = NameGenerator.new(random_name.halfelf_female)
         self.c_name:setText(ng:generate()) 
       else
       local ng = NameGenerator.new(random_name.halfelf_male) 
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Elf" then
-      if self.c_female_checked then
+      if self.c_female.checked then
       local ng = NameGenerator.new(random_name.elf_female)
       self.c_name:setText(ng:generate()) 
       else 
       local ng = NameGenerator.new(random_name.elf_male)
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Half-Orc" or self.sel_race.name == "Orc" or self.sel_race.name == "Lizardfolk" then 
-      if self.c_female_checked then
+      if self.c_female.checked then
         local ng = NameGenerator.new(random_name.halforc_female)
         self.c_name:setText(ng:generate())
       else
       local ng = NameGenerator.new(random_name.halforc_male)
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Dwarf" then 
-      if self.c_female_checked then
+      if self.c_female.checked then
         local ng = NameGenerator.new(random_name.dwarf_female)
         self.c_name:setText(ng:generate()) 
       else 
       local ng = NameGenerator.new(random_name.dwarf_male) 
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Drow" then 
-      if self.c_female_checked then
+      if self.c_female.checked then
         local ng = NameGenerator.new(random_name.drow_female)
         self.c_name:setText(ng:generate()) 
-      else--if self.c_male.checked then
+      else
       local ng = NameGenerator.new(random_name.drow_male)
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Duergar" then 
-      if self.c_female_checked then
+      if self.c_female.checked then
         local ng = NameGenerator.new(random_name.duergar_female)
         self.c_name:setText(ng:generate())
       else
       local ng = NameGenerator.new(random_name.duergar_male) 
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race == "Deep gnome" or self.sel_race.name == "Gnome" then 
-      if self.c_female_checked then
+      if self.c_female.checked then
         local ng = NameGenerator.new(random_name.gnome_female)
         self.c_name:setText(ng:generate()) 
       else
       local ng = NameGenerator.new(random_name.gnome_male) 
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Halfling" then
-      if self.c_female_checked then
+      if self.c_female.checked then
         local ng = NameGenerator.new(random_name.halfling_female)
         self.c_name:setText(ng:generate()) 
       else
       local ng = NameGenerator.new(random_name.halfling_male) 
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Kobold" then
-      if self.c_female_checked then
+      if self.c_female.checked then
         local ng = NameGenerator.new(random_name.kobold_female)
         self.c_name:setText(ng:generate()) 
       else--if self.c_male.checked then
