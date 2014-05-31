@@ -12,12 +12,14 @@ module(..., package.seeall, class.inherit(Dialog))
 function _M:init(l, actor)
     self.actor = actor
     
-    self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
-    Dialog.init(self, "Lore found: "..l.name, game.w * 0.3, game.h*0.3, nil, nil, font)
-
+    self.font = core.display.newFont("/data/font/VeraMono.ttf", 14)
 --    self.ui = "parchment"
 
-        local text = l.lore
+    Dialog.init(self, "Lore found: "..l.name, game.w * 0.3, game.h*0.3, nil, nil, font)
+
+    self.ui = "parchment"
+
+        local text = "#BLACK#"..l.lore.."#LAST#"
     
 --       local text = util.getval(l.lore).."\n"
 --    local list = text:splitLines(self.iw - 10, self.font)
