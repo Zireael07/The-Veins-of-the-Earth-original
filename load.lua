@@ -45,13 +45,66 @@ require("engine.ui.Base").ui_conf = {
 		frame_oy2 =  42,
 		title_bar = {x=0, y=-21, w=4, h=25},
 	},
+	--copied over default UI definitions to end nil ui_conf lua errors
+	metal = {
+	frame_shadow = {x=15, y=15, a=0.5},
+	frame_alpha = 0.9,
+	frame_ox1 = -42,
+	frame_ox2 =  42,
+	frame_oy1 = -42,
+	frame_oy2 =  42,
+	title_bar = {x=0, y=-18, w=4, h=25},
+	},
+	
+	stone = {
+	frame_shadow = {x=15, y=15, a=0.5},
+	frame_alpha = 1,
+	frame_ox1 = -42,
+	frame_ox2 =  42,
+	frame_oy1 = -42,
+	frame_oy2 =  42,
+},
+
+	simple = {
+	frame_shadow = nil,
+	frame_alpha = 0.9,
+	frame_ox1 = -2,
+	frame_ox2 =  2,
+	frame_oy1 = -2,
+	frame_oy2 =  2,
+},
+
+	parchment = {
+	frame_shadow = {x = 10, y = 10, a = 0.5},
+	frame_ox1 = -16,
+	frame_ox2 = 16,
+	frame_oy1 = -16,
+	frame_oy2 = 16,
+},
+
+	achievement = {
+	frame_shadow = {x = 10, y = 10, a = 0.5},
+	frame_ox1 = -16,
+	frame_ox2 = 16,
+	frame_oy1 = -16,
+	frame_oy2 = 16,
+},
+
+	tombstone = {
+	frame_shadow = {x = 10, y = 10, a = 0.5},
+	frame_ox1 = -16,
+	frame_ox2 = 16,
+	frame_oy1 = -16,
+	frame_oy2 = 16,
 }
+}
+
 UIBase.ui = "tweaked_simple"
 
 local size = 12
 UIBase.font = core.display.newFont("/data/font/DroidSansFallback.ttf", size)
 
-
+--Resolvers
 dofile('/mod/resolvers.lua')
 
 -- Achievements

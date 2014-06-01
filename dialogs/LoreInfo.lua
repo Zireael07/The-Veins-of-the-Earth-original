@@ -13,20 +13,13 @@ function _M:init(l, actor)
     self.actor = actor
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 14)
---    self.ui = "parchment"
-
-    Dialog.init(self, "Lore found: "..l.name, game.w * 0.3, game.h*0.3, nil, nil, font)
-
+    self.title_shadow = false
     self.ui = "parchment"
 
-        local text = "#BLACK#"..l.lore.."#LAST#"
-    
---       local text = util.getval(l.lore).."\n"
---    local list = text:splitLines(self.iw - 10, self.font)
+    Dialog.init(self, "#BLACK#Lore found: "..l.name, game.w * 0.3, game.h*0.3, nil, nil, font)
 
---[[    self.c_text = Textzone.new{
-        width=self.iw, height=self.ih, scrollbar=(self.ih < self.font_h * #list) and true or false, text=text, color=self.color,
-    }]]
+    local text = "#BLACK#"..l.lore.."#LAST#"
+    
     self.c_text = Textzone.new{width=self.iw, height=self.ih, scrollbar=true, text = text}
 
     self:loadUI{
