@@ -55,15 +55,30 @@ local function house(race)
 	if race == "an elf" then return rng.table(elf_houses) end
 end
 
+drow_gods = {"Khasrach", "the Multitude", "Xel", "Zurvash", "Maeve"}
+dwarf_gods = {"Ekliazeh", "Immotian"}
+elf_gods = {"Maeve"}
+
+local function god(race)
+	if not race then return end
+
+	if race == "a drow" then return rng.table(drow_gods) end
+	if race == "a duergar" then return rng.table(dwarf_gods) end
+	if race == "a dwarf" then return rng.table(dwarf_gods) end
+	if race == "an elf" then return rng.table(elf_gods) end
+end
+
+
+venerate = {"venerate", "pray to", "offer my sacrifices to", "offer my prayers to", "pay homage", "bow to"}
 
 newLore{
 	id = "misc-2",
 	category = "misc",
 	name = "Story",
-	lore = "I am "..race.." named "..name(race).." from House "..house(race)
+	lore = "I am "..race.." named "..name(race).." from House "..house(race)..". I "..rng.table(venerate).." "..god(race).."."
 }
 
-
+--Purely random stuff
 intro = {"I am", "My name is", "My name was"}
 name = {"Vierna", "Zaknafein", "Drizzt", "Alak", "Nalfein", "Thorik", "Roryn", "Belmara"}
 
@@ -71,7 +86,7 @@ newLore{
 	id = "misc-3",
 	category = "misc",
 	name = "...'s notes",
-	lore = rng.table(intro)..rng.table(name)
+	lore = rng.table(intro).." "..rng.table(name)
 }
 
 
