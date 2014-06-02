@@ -15,8 +15,22 @@ local List = require "engine.ui.List"
 
 module(..., package.seeall, class.inherit(Dialog))
 
+--Taken from ToME 4
+local function restore(dest, backup)
+    local bx, by = dest.x, dest.y
+    backup.replacedWith = false
+    dest:replaceWith(backup)
+    dest.replacedWith = nil
+    dest.x, dest.y = bx, by
+    dest.changed = true
+    dest:removeAllMOs()
+    if game.level and dest.x then game.level.map:updateMap(dest.x, dest.y) end
+end
+
 function _M:init(actor)
     self.player = actor
+    self.actor = actor
+    self.actor_dup = actor:clone()
     self:generateList()
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Class select", game.w*0.4, game.h*0.6)
@@ -33,8 +47,36 @@ function _M:init(actor)
     self:setFocus(self.c_list)
     self:setupUI(false, true)
 
-    self.key:addBind("EXIT", function() game:unregisterDialog(self) end)
+--    self.key:addBind("EXIT", function() game:unregisterDialog(self) end)
+    --Taken from ToME 4
+    self.key:addBinds{
+        EXIT = function()
+            if self.actor.class_points~=self.actor_dup.class_points then
+                self:yesnocancelPopup("Finish","Do you accept changes?", function(yes, cancel)
+                if cancel then
+                    return nil
+                else
+                    if yes then ok = true else ok = true self:cancel() end
+                end
+                if ok then
+                    game:unregisterDialog(self)
+                    self.actor_dup = {}
+                    if self.on_finish then self.on_finish() end
+                end
+                end)
+            else
+                game:unregisterDialog(self)
+                self.actor_dup = {}
+                if self.on_finish then self.on_finish() end
+            end
+        end,
+    }
+
     self:on_select(self.list[1])
+end
+
+function _M:cancel()
+    restore(self.actor, self.actor_dup)
 end
 
 function _M:use(item)
