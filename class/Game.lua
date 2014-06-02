@@ -783,12 +783,18 @@ function _M:setupCommands()
 		end,]]
 
 		TACTICAL_DISPLAY = function()
-			if Map.view_faction then
-				self.always_target = nil
+			if self.always_target == true then
+				self.always_target = "health"
 				Map:setViewerFaction(nil)
-			else
+				self.log("Showing healthbars only.")
+			elseif self.always_target == nil then
 				self.always_target = true
 				Map:setViewerFaction("players")
+				self.log("Showing healthbars and tactical borders.")
+			elseif self.always_target == "health" then
+				self.always_target = nil
+				Map:setViewerFaction(nil)
+				self.log("Showing no tactical information.")
 			end
 		end,
 
