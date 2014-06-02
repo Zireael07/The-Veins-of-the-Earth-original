@@ -13,12 +13,26 @@ local List = require "engine.ui.List"
 
 module(..., package.seeall, class.inherit(Dialog))
 
+--Taken from ToME 4
+local function restore(dest, backup)
+	local bx, by = dest.x, dest.y
+	backup.replacedWith = false
+	dest:replaceWith(backup)
+	dest.replacedWith = nil
+	dest.x, dest.y = bx, by
+	dest.changed = true
+	dest:removeAllMOs()
+	if game.level and dest.x then game.level.map:updateMap(dest.x, dest.y) end
+end
+
 function _M:init(actor)
 	self.player = actor
+	self.actor = actor
+	self.actor_dup = actor:clone()
 	Dialog.init(self, "Bonus Feats", math.max(900, game.w*0.8), game.h*0.6)
 	self:generateLists()
 	
-	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available fighter bonus feat points: "..self.player.feat_point}	
+	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available fighter bonus feat points: "..self.player.fighter_bonus}	
 	self.c_learned = List.new{width=250, nb_items=#self.list_learned, height = self.ih*0.8, list=self.list_learned, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 	self.c_avail = List.new{width=250, nb_items=#self.list_avail, height = self.ih*0.8, list=self.list_avail, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 	self.c_barred = List.new{width=250, nb_items=#self.list_barred, height = self.ih*0.7, list=self.list_barred, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
@@ -36,8 +50,37 @@ function _M:init(actor)
 --	self:setupUI(false, true)
 	self:setupUI()
 
-	self.key:addBind("EXIT", function() game:unregisterDialog(self) end)
+--	self.key:addBind("EXIT", function() game:unregisterDialog(self) end)
+
+	--Taken from ToME 4
+	self.key:addBinds{
+		EXIT = function()
+			if self.actor.fighter_bonus~=self.actor_dup.fighter_bonus then
+				self:yesnocancelPopup("Finish","Do you accept changes?", function(yes, cancel)
+				if cancel then
+					return nil
+				else
+					if yes then ok = true else ok = true self:cancel() end
+				end
+				if ok then
+					game:unregisterDialog(self)
+					self.actor_dup = {}
+					if self.on_finish then self.on_finish() end
+				end
+				end)
+			else
+				game:unregisterDialog(self)
+				self.actor_dup = {}
+				if self.on_finish then self.on_finish() end
+			end
+		end,
+	}
+
 	self:on_select(self.list_avail[1])
+end
+
+function _M:cancel()
+	restore(self.actor, self.actor_dup)
 end
 
 function _M:use(item)
