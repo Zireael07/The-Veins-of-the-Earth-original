@@ -236,6 +236,11 @@ end
 function _M:act()
   if not mod.class.Actor.act(self) then return end
 
+  -- Funky shader things !
+  self:updateMainShader()
+
+  self.old_life = self.life
+
   self:spottedMonsterXP()
 
   self:checkEncumbrance()
@@ -285,6 +290,27 @@ function _M:act()
     game.paused = true
   end
 end
+
+--- Funky shader stuff
+function _M:updateMainShader()
+  if game.fbo_shader then
+  -- Set shader HP warning
+    if self.life ~= self.old_life then
+      if self.life < (self.max_life*0.5) then game.fbo_shader:setUniform("hp_warning", 1 - (self.life / self.max_life))
+      else game.fbo_shader:setUniform("hp_warning", 0) end
+    end
+
+
+    -- Colorize shader
+ --   if self.life < self.max_life / 2 then game.fbo_shader:setUniform("colorize", {0.9, 0.2, 0.2, 0.3})
+    if self:attr("stealth") and self:attr("stealth") > 0 then game.fbo_shader:setUniform("colorize", {0.9,0.9,0.9,0.6})
+    elseif self:attr("invisible") and self:attr("invisible") > 0 then game.fbo_shader:setUniform("colorize", {0.3,0.4,0.9,0.8})
+    else game.fbo_shader:setUniform("colorize", {0,0,0,0}) -- Disable
+    end
+
+  end
+end
+
 
 -- Precompute FOV form, for speed
 local fovdist = {}
