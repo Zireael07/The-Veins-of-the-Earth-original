@@ -106,7 +106,8 @@ function _M:cancel()
 end
 
 function _M:use(item)
-	if (self.player.skill_point or 0) > 0 then
+	--check that we don't get negative values AFTER deducting a point
+	if (self.player.skill_point or 0) -1 >= 0 then
 		
 	--Cross class skills
 	if self.player:crossClass(item.skill) then
