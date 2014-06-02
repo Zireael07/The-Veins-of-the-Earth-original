@@ -87,7 +87,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     self:generatePerkText()
     self.c_perk_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#STARTING PERK: #LAST#"}
---    self.c_perk = Textzone.new{auto_width=true, auto_height=true, text=_perks_text:format(self.actor.perk)}
+    self.c_perk_note = Textzone.new{auto_width=true, auto_height=true, text=_perks_text:format(self.actor.perk)}
     self.c_perk = List.new{width=self.iw/6, height=100, nb_items=#self.list_perk, list=self.list_perk, select=function(item, sel) self:updateDesc(item) end}
 
 
@@ -140,8 +140,10 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         {left=self.c_stats.w + 5, top = self.c_name.h + 20, ui=self.c_reset},
         {left=self.c_stats.w +5, top = self.c_name.h + 20 + self.c_reset.h + 5, ui=self.c_reroll},
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 45, ui=self.c_perk_text },
-        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 65, ui=self.c_perk },
+        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 65, ui=self.c_perk_note },
+        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 85, ui=self.c_perk },
         
+
         {left=0, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
 
    --     topstuff self.c_name.h + 15 + self.c_points.h + self.c_stats.h
@@ -423,7 +425,7 @@ function _M:generatePerkText()
         if self.actor:knowTalent(t.id) then
 
             list[#list+1] = {
-                name = t.name,
+                name = "#LIGHT_BLUE#"..t.name.."#WHITE#",
             --    desc = player:getTalentFullDescription(t):toString(),
                 desc = ("%s"):format(t.info(self.actor,t)),
                 }
@@ -623,6 +625,8 @@ function _M:onRoll()
             player:unlearnTalent(t.id) end
     end
 
+    --scrap old perk
+    if self.actor.perk ~= "" then self.actor.perk = "" end
     player:randomPerk()
 
     --Generate stats
@@ -642,7 +646,8 @@ function _M:onRoll()
         self.c_stats:generate() 
         self:updateClasses()
         --update perks display
-        --self.c_perk.text = _perks_text:format(self.actor.perk)
+        self.c_perk_note.text = _perks_text:format(self.actor.perk)
+        self.c_perk_note:generate()
         self:generatePerkText()
         self.c_perk.list = self.list_perk
         self.c_perk:generate()
