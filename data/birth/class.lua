@@ -46,6 +46,7 @@ newBirthDescriptor {
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SHIELD_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
 			actor:learnTalent(actor.T_RAGE, true)
@@ -232,6 +233,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_HEAVY_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SHIELD_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
@@ -760,6 +762,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_HEAVY_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SHIELD_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
 
@@ -915,6 +918,8 @@ newBirthDescriptor {
 
                 actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
                 actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
+                actor:learnTalent(actor.T_HEAVY_ARMOR_PROFICIENCY, true)
+                actor:learnTalent(actor.T_SHIELD_PROFICIENCY, true)
                 actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
                 actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
                 actor:learnTalent(actor.T_LAY_ON_HANDS, true)
