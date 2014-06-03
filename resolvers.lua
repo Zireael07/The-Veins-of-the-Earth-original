@@ -427,3 +427,68 @@ function resolvers.calc.templates(t, e)
 
 	end
 end
+
+--Starting equipment resolver
+--- Resolves equipment creation for an actor
+function resolvers.startingeq(t)
+	return {__resolver="equip", __resolve_last=true, t}
+end
+--- Actually resolve the equipment creation
+function resolvers.calc.startingeq(t, e)
+	if e.perk ~= "" then
+		local o = game.zone:makeEntity(game.level, "object", {name=e:randomItem(), ego_chance=1000}, nil, true)
+
+		if o then
+
+			while o.cursed == true do
+				o = game.zone:makeEntity(game.level, "object", {name=e:randomItem(), ego_chance=1000}, nil, true)
+			end
+
+			if e:wearObject(o, true, false) == false then
+				e:addObject(e.INVEN_INVEN, o)
+			end
+
+			game.zone:addEntity(game.level, o, "object")
+
+			if t[1].id then o:identify(t[1].id) end
+		end
+	end
+
+	for i, race in ipairs(t[1]) do
+	
+		if e.descriptor.race == race then
+	--	print("Equipment resolver for", e.name)
+		-- Iterate of object requests, try to create them and equip them
+			for i, filter in ipairs(race.t[1]) do
+--			print("Equipment resolver", e.name, filter.type, filter.subtype, filter.defined)
+			local o
+			if not filter.defined then
+				o = game.zone:makeEntity(game.level, "object", filter, nil, true)
+			else
+				local forced
+				o, forced = game.zone:makeEntityByName(game.level, "object", filter.defined, filter.random_art_replace and true or false)
+				-- If we forced the generation this means it was already found
+				if forced then
+--					print("Serving unique "..o.name.." but forcing replacement drop")
+					filter.random_art_replace.chance = 100
+				end
+			end
+			if o then
+	--			print("Zone made us an equipment according to filter!", o:getName())
+
+				if e:wearObject(o, true, false) == false then
+					e:addObject(e.INVEN_INVEN, o)
+				end
+
+				game.zone:addEntity(game.level, o, "object")
+
+				if t[1].id then o:identify(t[1].id) end
+
+			end
+			end
+		end
+	end
+
+	-- Delete the origin field
+	return nil
+end
