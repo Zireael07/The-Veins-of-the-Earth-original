@@ -1,5 +1,28 @@
 CHANGELOG
 
+
+* bug fix - character screen on 1366x768 and similar resolutions
+* bug fix - not being able to close the load premade screen
+* bug fix - party info not being saved leading to weird bugs [DarkGod]
+* bug fix - no lua errors on clicking spell names in spellbook
+* bug fix - no more silent lua errors due to an oversight in encumbrance logic
+* bug fix - check if item exists before trying to ID it (kudos to lucianogml for reporting)
+* bug fix - naming box in character creation now picks female names correctly
+* bug fix - perks not being cleared correctly
+* bug fix - skill points going into negatives if half-points are present
+//
+* bug fix - add shield proficiency to the classes that were missing it
+
+* update to T-Engine 1.2.0
+* auto-explore [DarkGod]
+* spell rework [framework by DarkGod]
+* silenced the pseudo-ID Intuition checks
+* changed the font and background of lore notes
+* add tooltips to attributes and feat/spell perks in character creation
+* add 'are you sure?' pop-ups to feat, skill and class dialogs
+* add healthbars display
+
+
 0.18.0 - beta 5.4 - 26/05/2014
 * bug fix - nil table in EntityTracker
 * bug fix - no more errors caused by mobs trying to level up
