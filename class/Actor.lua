@@ -1039,6 +1039,42 @@ function _M:canBe(what)
 end
 
 function _M:addedToLevel(level, x, y)
+--Warning: got a loop once
+--Safeguards against overly high CR monsters
+if game.level.level == 1 then 
+	if self.challenge > (game.level.level + 3) then
+
+		--Create new actor
+		local m = game.zone:makeEntity(game.level, "actor", f, nil, true)
+
+		-- Find space
+        local x, y = util.findFreeGrid(self.x, self.y, 10, true, {[Map.ACTOR]=true})
+        if not x then end
+
+		if m and m:canMove(x, y) then
+			game.zone:addEntity(game.level, m, "actor", x,y)
+		end
+		--Despawn the offender
+		game.level:removeEntity(self, true)
+	end
+else
+	if self.challenge > (game.level.level + 5) then		
+		--Create new actor
+		local m = game.zone:makeEntity(game.level, "actor", f, nil, true)
+		
+		-- Find space
+        local x, y = util.findFreeGrid(self.x, self.y, 10, true, {[Map.ACTOR]=true})
+        if not x then end
+
+		if m and m:canMove(x, y) then
+			game.zone:addEntity(game.level, m, "actor", x,y)
+		end
+		--Despawn the offender
+		game.level:removeEntity(self, true)
+	end
+end
+
+
 if self.encounter_escort then
                 for _, filter in ipairs(self.encounter_escort) do
                         for i = 1, filter.number do
