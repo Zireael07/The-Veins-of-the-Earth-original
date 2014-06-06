@@ -31,6 +31,8 @@ function _M:init()
     Press #YELLOW#'d'#LAST# to drop items.
     Press #YELLOW#'b'#LAST# to diplay your spellbook, if you have it.
 
+    Press #YELLOW#'z'#LAST# to autoexplore.
+
     Press #YELLOW#'F1'#LAST# or #YELLOW#h#LAST# to display this screen again.
     Press #YELLOW#'F2'#LAST# to display the message log.
 

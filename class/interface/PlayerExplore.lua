@@ -25,6 +25,7 @@
 require "engine.class"
 local Map = require "engine.Map"
 local Dialog = require "engine.ui.Dialog"
+local Grid = require "mod.class.Grid"
 
 -- Man, if only I had known about the ffi library when I first wrote auto-explore, I probably would have structured things differently
 local is_ffi, ffi = pcall(require, "ffi") -- check if ffi is available (it should be)
@@ -1850,6 +1851,9 @@ function _M:autoExplore()
 	local minval_special = 999999999999999
 	local minval_portals = 999999999999999
 	local val, _, anode, tile_list
+  -- track the distinct 'block_move()' tiles we avoid - Marson
+  local triggers = {}
+	local minval_triggers = 999999999999999
 
 	-- a few tunable parameters
 	local extra_iters = 5     -- number of extra iterations to do after we found an item or unseen tile
@@ -1958,10 +1962,16 @@ function _M:autoExplore()
 						move_cost = move_cost + 32
 						is_slow = true
 					elseif terrain.on_stand and not terrain.on_stand_safe then
-						move_cost = move_cost + 21
+						move_cost = move_cost + 40
+						is_slow = true
+			--[[		elseif terrain.air_level and terrain.air_level < 0 and not ((self.can_breath.water or 0) > 0) then
+						move_cost = move_cost + 15
+						is_slow = true]]
+          -- Let's not run into Maze cracks and the like - Marson
+					elseif terrain.block_move ~= Grid.block_move then
+						move_cost = move_cost + 10
 						is_slow = true
 					end
-					-- propagate "current_tiles" for next iteration
 					if (not values[c] or values[c] > move_cost or is_slow) and (not is_slow or not slow_values[c] or slow_values[c] > move_cost) then
 --						if not game.level.map:checkEntity(x, y, Map.TERRAIN, "block_move", self, nil, true) then
 --						if not game.level.map:checkAllEntities(x, y, "block_move", self) then
@@ -2281,6 +2291,21 @@ function _M:autoExplore()
 					target_type = "door"
 					choices[#choices + 1] = c
 					local dist = distance_cost(x, y) + 10*door_values[c]
+					distances[c] = dist
+					if dist < mindist then
+						mindist = dist
+					end
+				end
+			end
+		end
+    -- ...or the tiles with distinct block_move() functions that we avoided earlier - Marson
+		if #choices == 0 then
+			for _, c in ipairs(triggers) do
+				if values[c] == minval_triggers then
+					target_type = "trigger"
+					choices[#choices + 1] = c
+					local x, y = toDouble(c)
+					local dist = distance_cost(x, y)
 					distances[c] = dist
 					if dist < mindist then
 						mindist = dist

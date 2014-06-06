@@ -631,7 +631,7 @@ function _M:setupCommands()
 			local ae = function() if self.level and self.zone then
 				local seen = {}
 				-- Check for visible monsters.  Only see LOS actors, so telepathy wont prevent it
-				core.fov.calc_circle(self.player.x, self.player.y, self.level.map.w, self.level.map.h, self.player.sight or 10,
+				core.fov.calc_circle(self.player.x, self.player.y, self.level.map.w, self.level.map.h, self.player.sight or 5,
 					function(_, x, y) return self.level.map:opaque(x, y) end,
 					function(_, x, y)
 						local actor = self.level.map(x, y, self.level.map.ACTOR)
@@ -643,9 +643,9 @@ function _M:setupCommands()
 				elseif #seen > 0 then
 					local dir = game.level.map:compassDirection(seen[1].x - self.player.x, seen[1].y - self.player.y)
 					self.log("You may not auto-explore with enemies in sight (%s to the %s%s)!", seen[1].actor.name, dir, self.level.map:isOnScreen(seen[1].x, seen[1].y) and "" or " - offscreen")
-					for _, node in ipairs(seen) do
+--[[					for _, node in ipairs(seen) do
 						node.actor:addParticles(engine.Particles.new("notice_enemy", 1))
-					end
+					end]]
 				elseif not self.player:autoExplore() then
 					self.log("There is nowhere left to explore.")
 				end
