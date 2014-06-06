@@ -10,10 +10,9 @@ CHANGELOG
 * bug fix - naming box in character creation now picks female names correctly
 * bug fix - perks not being cleared correctly
 * bug fix - skill points going into negatives if half-points are present
-//
 * bug fix - add shield proficiency to the classes that were missing it
 
-* update to T-Engine 1.2.0
+* update to T-Engine 1.2.1
 * auto-explore [DarkGod]
 * spell rework [framework by DarkGod]
 * silenced the pseudo-ID Intuition checks
@@ -21,6 +20,7 @@ CHANGELOG
 * add tooltips to attributes and feat/spell perks in character creation
 * add 'are you sure?' pop-ups to feat, skill and class dialogs
 * add healthbars display
+* make the death dialog a tombstone
 
 
 0.18.0 - beta 5.4 - 26/05/2014

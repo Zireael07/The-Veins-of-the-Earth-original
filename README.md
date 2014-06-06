@@ -3,7 +3,7 @@ The Veins of the Earth
 
 "A fantasy d20-themed dungeon crawler", to quote DarkGod's comment.
 
-Requires T-Engine 1.2.0.
+Requires T-Engine 1.2.1.
 
 Click t-engine.exe to run.
 
