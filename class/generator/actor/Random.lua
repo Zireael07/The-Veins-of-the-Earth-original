@@ -31,7 +31,7 @@ function _M:generateOne()
 	local m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 	--Special case: dlevel 1
 	if game.level.level == 1 then
-		while m and m.challenge <= (game.level.level + 3) do
+		while m and m.challenge > (game.level.level + 3) do
 			m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 		end
 		if m then
@@ -50,7 +50,7 @@ function _M:generateOne()
 	end
 
 	--Hack! No more CR 20 opponents on dungeon level 1
-	while m and m.challenge <= (game.level.level + 5) do
+	while m and m.challenge > (game.level.level + 5) do
 		m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 	end
 	if m then
