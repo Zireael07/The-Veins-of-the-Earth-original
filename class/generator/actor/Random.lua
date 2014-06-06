@@ -31,8 +31,11 @@ function _M:generateOne()
 	local m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 	--Special case: dlevel 1
 	if game.level.level == 1 then
-		if m and m.challenge <= (game.level.level + 3) then
-			local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
+		while m and m.challenge <= (game.level.level + 3) do
+			m = self.zone:makeEntity(self.level, "actor", f, nil, true)
+		end
+		if m then
+		local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
 		local tries = 0
 		--No more spawning in walls!
 		while (self.map:checkEntity(x, y, Map.TERRAIN, "block_move") or (self.map.room_map[x][y] and self.map.room_map[x][y].special)) and tries < 100 do
@@ -47,7 +50,10 @@ function _M:generateOne()
 	end
 
 	--Hack! No more CR 20 opponents on dungeon level 1
-	if m and m.challenge <= (game.level.level + 5) then
+	while m and m.challenge <= (game.level.level + 5) do
+		m = self.zone:makeEntity(self.level, "actor", f, nil, true)
+	end
+	if m then
 		local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
 		local tries = 0
 		--No more spawning in walls!
