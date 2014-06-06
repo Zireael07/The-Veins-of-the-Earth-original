@@ -27,6 +27,9 @@ module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init(actor)
 	self.actor = actor
+--	self.ui = "deathbox"
+	self.ui = "tombstone"
+
 	Dialog.init(self, "Death!", 500, 300)
 
 	self:generateList()
@@ -39,7 +42,7 @@ Luckily, you can review your character sheet and try once again to survive in th
 
 	self:loadUI{
 		{left=0, top=0, ui=self.c_desc},
-		{left=5, top=self.c_desc.h, padding_h=10, ui=Separator.new{dir="vertical", size=self.iw - 10}},
+		{left=5, top=self.c_desc.h, padding_h=10, ui=Separator.new{ui="deathbox", dir="vertical", size=self.iw - 10}},
 		{left=0, bottom=0, ui=self.c_list},
 	}
 	self:setFocus(self.c_list)
