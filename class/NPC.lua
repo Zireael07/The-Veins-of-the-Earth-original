@@ -113,11 +113,19 @@ end
 
 
 function _M:tooltip()
-	local str = mod.class.Actor.tooltip(self)
-	return str..([[
+	local killed = game.player.all_kills and (game.player.all_kills[self.name] or 0) or 0
+	local target = self.ai_target.actor
 
-Target: %s
-UID: %d]]):format(
-	self.ai_target.actor and self.ai_target.actor.name or "none",
+	local str = mod.class.Actor.tooltip(self)
+	--Safeguard from weirdness
+	if not str then return end
+
+
+	return str..([[
+	Killed by you: %s
+	Target: %s
+	UID: %d]]):format(
+	killed,
+	target and target.name or "none",
 	self.uid)
 end

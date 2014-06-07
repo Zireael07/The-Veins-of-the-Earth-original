@@ -29,6 +29,8 @@ require "engine.interface.ActorFOV"
 require 'engine.interface.ActorQuest'
 require "mod.class.interface.Combat"
 local Map = require "engine.Map"
+local Faction = require "engine.Faction"
+local DamageType = require "engine.DamageType"
 
 module(..., package.seeall, class.inherit(engine.Actor,
 	engine.interface.ActorTemporaryEffects,
@@ -427,6 +429,17 @@ function _M:colorCR()
 	else return "#GOLD#"..self:attr('challenge').."#LAST#" end
 end	
 
+function _M:colorFaction()
+	local player = game.player
+	local factlevel = Faction:factionReaction(self.faction, game.player.faction)
+	if self.faction and Faction.factions[self.faction] then 
+		if factlevel == 0 then return "#WHITE#neutral#LAST#"
+		elseif factlevel < 0 then return "#LIGHT_RED#hostile#LAST#"
+		elseif factlevel > 0 then return "#LIGHT_GREEN#friendly#LAST#"
+		end
+	else end
+end
+
 function _M:tooltip()
 	if self.life >= 0 then
 	return ([[%s #GOLD#%s#LAST# %s %s
@@ -434,7 +447,11 @@ function _M:tooltip()
 		STR %s DEX %s CON %s 
 		INT %s WIS %s CHA %s
 		#GOLD#CR %s#LAST#
-		#WHITE#%s]]):format(
+		#GOLD#XP %d#LAST#
+		#WHITE#%s
+
+		%s
+		]]):format(
 		self:getDisplayString(),
 		self:templateName(), self.name, self:className(),
 		self.life, self.life / self.max_life *100,
@@ -445,7 +462,9 @@ function _M:tooltip()
 		self:colorStats('wis'),
 		self:colorStats('cha'),
 		self:colorCR(),
-		self.desc or ""
+		self:worthExp(game.player),
+		self.desc or "",
+		self:colorFaction()
 	)
 		--To stop % getting out of whack when HP are negative, we remove them from the tooltips altogether
 	else
@@ -454,7 +473,11 @@ function _M:tooltip()
 		STR %s DEX %s CON %s 
 		INT %s WIS %s CHA %s
 		#GOLD#CR %s#LAST#
-		#WHITE#%s]]):format(
+		#GOLD#XP %d#LAST#
+		#WHITE#%s
+
+		%s 
+		]]):format(
 		self:getDisplayString(),
 		self.name, self:className(),
 		self.life,
@@ -465,7 +488,9 @@ function _M:tooltip()
 		self:colorStats('wis'),
 		self:colorStats('cha'),
 		self:colorCR(),
-		self.desc or ""
+		self:worthExp(game.player),
+		self.desc or "",
+		self:colorFaction()
 	)	
 	end	
 end

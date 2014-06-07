@@ -54,17 +54,43 @@ function _M:on_move(x, y, who, forced)
 		end
 	end
 end
-function _M:tooltip()
+
+--Make it more informative!!!
+function _M:tooltip(x, y)
+	if not x or not y then return tstring("") end
+	local tstr
+	local dist = nil
+	if game.player.x and game.player.y then dist = tstring{" (range: ", {"font", "italic"}, {"color", "LIGHT_GREEN"}, tostring(core.fov.distance(game.player.x, game.player.y, x, y)), {"color", "LAST"}, {"font", "normal"}, ")"} end
+	--what does this block even do?
 	if self.show_tooltip then
 		local name = ((self.show_tooltip == true) and self.name or self.show_tooltip)
 		if self.desc then
-			return self:getDisplayString()..name.."\n"..self.desc
+			tstr = tstring{{"uid", self.uid}, name}
+			if dist then tstr:merge(dist) end
+			tstr:add(true, self.desc, true)
 		else
-			return self:getDisplayString()..name
+			tstr = tstring{{"uid", self.uid}, name}
+			if dist then tstr:merge(dist) end
+			tstr:add(true)
 		end
 	else
-		return self:getDisplayString()..self.name
+		tstr = tstring{{"uid", self.uid}, self.name}
+		if dist then tstr:merge(dist) end
+		tstr:add(true)
 	end
+
+	--More info
+	if game.player:hasLOS(x, y) then tstr:add({"color", "CRIMSON"}, "In sight", {"color", "LAST"}, true) end
+	
+	if game.level.map.lites(x, y) then tstr:add({"color", "YELLOW"}, "Lit", {"color", "LAST"}, true) end
+	if self:check("block_sight", x, y) then tstr:add({"color", "SANDY_BROWN"}, "Blocks sight", {"color", "LAST"}, true) end
+	if self:check("block_move", x, y, game.player) then tstr:add({"color", "SANDY_BROWN"}, "Blocks movement", {"color", "LAST"}, true) end
+
+	if self:attr("dig") then tstr:add({"color", "SANDY_BROWN"}, "Diggable", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "no_teleport") then tstr:add({"color", "VIOLET"}, "Cannot teleport to this place", {"color", "LAST"}, true) end
+
+	return tstr
+
 end
 
 --Overloads to show exits on minimap:
