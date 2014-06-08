@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -111,8 +111,17 @@ function _M:display()
     h = h + self.font_h
 
     --Display hunger
-    if player.nutrition < 50 then self:makeTexture("#DARK_GREEN#Starving!", x, h, 255, 255, 255)
-    elseif player.nutrition < 200 then self:makeTexture("#LIGHT_GREEN#Hungry", x, h, 255, 255, 255)
+    --   1   -> 2    -->     3   ->     4     ->   5    -->  6      -->  7    --> 8      -->9
+    --Bloated -> Satiated -> Content -> Peckish -> Hungry -> Famished -> Weak -> Fainting -> Starved
+    if player.nutrition < 500 then self:makeTexture("#VERY_DARK_RED#Starved!", x, h, 255, 255, 255)
+    elseif player.nutrition < 1000 then self:makeTexture("#DARK_RED#Fainting", x, h, 255, 255, 255)
+    elseif player.nutrition < 1500 then self:makeTexture("#DARK_RED#Weak", x, h, 255, 255, 255)
+    elseif player.nutrition < 2000 then self:makeTexture("#LIGHT_RED#Famished", x, h, 255, 255, 255)
+    elseif player.nutrition < 2500 then self:makeTexture("#YELLOW#Hungry", x, h, 255, 255, 255)    
+    --Don't display anything if content
+    elseif player.nutrition < 3000 then --self:makeTexture("#DARK_RED#Fainting", x, h, 255, 255, 255)    
+    elseif player.nutrition < 3500 then self:makeTexture("#LIGHT_GREEN#Satiated", x, h, 255, 255, 255)
+    elseif player.nutrition < 4000 then self:makeTexture("#DARK_GREEN#Bloated", x, h, 255, 255, 255)    
     else end
 
     h = h + self.font_h

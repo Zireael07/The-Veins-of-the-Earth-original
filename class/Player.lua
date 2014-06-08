@@ -77,7 +77,7 @@ function _M:init(t, no_default)
   self.class_points = 1 -- Spent on leveling classes, its 1 because it "spends" one when you birth
   
   --Timers :D
-  self.nutrition = 500
+  self.nutrition = 3000
   self.lite_counter = 5000
   self.pseudo_id_counter = 10
   self.id_counter = 50
