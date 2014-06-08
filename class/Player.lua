@@ -143,7 +143,11 @@ function _M:equipAllItems()
 end
 
 function _M:birthName()
-  game:registerDialog(require("mod.dialogs.BirtherGetName").new(actor, function(text)
+
+-- For quickbirth
+  savefile_pipe:push(game.player.name, "entity", game.player, "engine.CharacterVaultSave")
+
+--[[  game:registerDialog(require("mod.dialogs.BirtherGetName").new(actor, function(text)
   self:setName(text)
   -- For quickbirth
   savefile_pipe:push(game.player.name, "entity", game.player, "engine.CharacterVaultSave")
@@ -151,7 +155,7 @@ function _M:birthName()
 end, 
 function()
 --util.showMainMenu()
-end))
+end))]]
 end
 
 function _M:getExpChart(level)

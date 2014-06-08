@@ -52,9 +52,9 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.min = 2
 
     --UI starts here
---    self.c_name = Textbox.new{title="Name: ", text="" or game.player_name, chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
+--    local c_box = Textbox.new{title="Name: ", text="", chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_mouse = function(button) if button == "right" then self:randomName() end end }
+      local c_box = Textbox.new{title="Name: ", text="" or game.player_name, chars=30, max_len=50, fct=function() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
 
-    local c_box = Textbox.new{title="Name: ", text="", chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_mouse = function(button) if button == "right" then self:randomName() end end }
     self.c_name = c_box
 
     self.c_female = Checkbox.new{title="Female", default=true,
@@ -94,11 +94,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     --Make UI work
     self:setDescriptor("base", "base")
     self:setDescriptor("sex", "Female")
-    --Defaults so that you can't do stupid stuff like trying to play a char without descriptors
-    self:setDescriptor("class", "Barbarian")
-    self:setDescriptor("race", "Human")
-    self:setDescriptor("background", "Brawler")
-    self:setDescriptor("alignment", "Neutral Good")
+   
     --Create lists
     self:generateLists()
 
@@ -172,6 +168,12 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self:setFocus(self.c_name)
     self:setFocus(self.c_stats)
     
+  --  self:setDescriptor()
+     --Defaults so that you can't do stupid stuff like trying to play a char without descriptors
+    self:setDescriptor("class", "Barbarian")
+    self:setDescriptor("race", "Human")
+    self:setDescriptor("background", "Brawler")
+    self:setDescriptor("alignment", "Neutral Good")
 
     self:setupUI()
 
@@ -188,9 +190,10 @@ function _M:onSetupPB()
     reroll = false
 end
 
-
+--To do at end/on finish
 function _M:atEnd()
     game:unregisterDialog(self)
+    self.actor:setName(self.c_name.text)
     self:apply()
     self.at_end()
     print("[BIRTHER] Finished!")
@@ -305,15 +308,15 @@ function _M:setDescriptor(key, val)
     end
    self:updateDescriptors()
 
-   local ok --= self.c_name.text:len() >= 2
+   local ok = self.c_name.text:len() >= 2
 --[[   for i, o in ipairs(self.order) do
         if not self.descriptors_by_type[o] then
             ok = false
             print("Missing ", o)
             break
         end
-    end
-    self:toggleDisplay(self.c_save, ok)  ]]
+    end]]
+    self:toggleDisplay(self.c_save, ok)  
 end
 
 function _M:isDescriptorAllowed(d, ignore_type)
