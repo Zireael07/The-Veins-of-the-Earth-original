@@ -54,5 +54,6 @@ FEATURES
 - level feelings and item feelings (warning: these affect only pre-spawned items, not monster loot)
 - calendar
 - hunger counter and display
-- integrated most of Marson's Bosses AWOL functions
+- integrated most of Marson's Bosses AWOL functions; Marson's Autoexplore fixes
 - working in-game chat
+- auto-explore

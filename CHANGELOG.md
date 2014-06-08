@@ -1,5 +1,6 @@
 CHANGELOG
 
+0.19.0 - beta 5.5 - 08/06/2014
 
 * bug fix - character screen on 1366x768 and similar resolutions
 * bug fix - not being able to close the load premade screen
@@ -11,16 +12,20 @@ CHANGELOG
 * bug fix - perks not being cleared correctly
 * bug fix - skill points going into negatives if half-points are present
 * bug fix - add shield proficiency to the classes that were missing it
+* bug fix - no longer able to progress past char creation screen without a name
 
 * update to T-Engine 1.2.1
 * auto-explore [DarkGod]
 * spell rework [framework by DarkGod]
+* rework hunger clock
 * silenced the pseudo-ID Intuition checks
 * changed the font and background of lore notes
 * add tooltips to attributes and feat/spell perks in character creation
 * add 'are you sure?' pop-ups to feat, skill and class dialogs
 * add healthbars display
 * make the death dialog a tombstone
+* make tooltips more informative
+* axed the duplicate naming box
 
 
 0.18.0 - beta 5.4 - 26/05/2014
