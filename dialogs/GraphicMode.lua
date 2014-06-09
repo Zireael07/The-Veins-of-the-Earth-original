@@ -52,7 +52,7 @@ end
 
 function _M:use(item)
 	if not item then return end
-	game.gfx = item.val
+	config.settings.veins.tiles = item.val
 	self.changed = true
 	
 	Map:resetTiles()

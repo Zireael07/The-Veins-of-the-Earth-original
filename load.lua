@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -33,6 +33,11 @@ local PlayerLore = require "mod.class.interface.PlayerLore"
 
 local UIBase = require "engine.ui.Base"
 
+-- Init settings
+config.settings.veins = config.settings.veins or {}
+if not config.settings.veins.tiles then
+	config.settings.veins.tiles = "tiles"
+end
 
 require("engine.ui.Base").ui_conf = {
 	tweaked_simple = {

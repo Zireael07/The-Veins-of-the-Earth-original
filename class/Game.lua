@@ -193,28 +193,36 @@ function _M:loaded()
 	engine.GameTurnBased.loaded(self)
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", trap_class="mod.class.Trap"}
 	Map:setViewerActor(self.player)
+
 	local th, tw = 32, 32
+	local gfx = config.settings.veins.tiles
+	if gfx == "ascii" then 
+	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+	Map:resetTiles()
+	Map.tiles.use_images = false
+	else
 	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
---	self:setupDisplayMode(false, "init")
---	self:setupDisplayMode(false, "postinit")
+	Map.tiles.use_images = true
+	end
+
+--[[	self:setupDisplayMode(false, "init")
+	self:setupDisplayMode(false, "postinit")]]
+--[[	local th, tw = 32, 32
+	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)]]
+
+
 	if self.player then self.player.changed = true end
 	if self.always_target == true then Map:setViewerFaction(self.player.faction) end
 
---[[	local th, tw = 32, 32
-	if self.gfx == "ascii" then 
-	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
-	Map:resetTiles()
-	Map.tiles.use_images = true
-	else
-	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
-	end]]
+
 
 	selfppp = engine.KeyBind.new()
 end
 
 function _M:setupDisplayMode(reboot, mode)
 	if not mode or mode == "init" then
-		local gfx = self.gfx
+		local gfx = config.settings.veins.tiles
+		self:saveSettings("veins.tiles", ('veins.tiles = %s'):format(gfx.tiles))
 
 		if reboot then
 			self.change_res_dialog = true
@@ -226,13 +234,14 @@ function _M:setupDisplayMode(reboot, mode)
 	end
 	
 	if not mode or mode == "postinit" then
-		local gfx = self.gfx
+		local gfx = config.settings.veins.tiles
 		Tiles.prefix = "/data/gfx/"
-	
-		local th, tw = 32, 32
+		print("[DISPLAY MODE] Tileset: "..gfx)
+
+	--[[	local th, tw = 32, 32
 		
 		--switched from "fsize" to 32.
-		Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
+		Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)]]
 
 		Map.tiles.use_images = true
 		
@@ -246,6 +255,7 @@ function _M:setupDisplayMode(reboot, mode)
 			Map.tiles.use_images = false
 			Map.tiles.use_images = false
 		elseif gfx == "tiles" then 
+			local th, tw = 32, 32
 			Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
 			Map:resetTiles()
 			Map.tiles.use_images = true
@@ -257,8 +267,9 @@ function _M:setupDisplayMode(reboot, mode)
 	Map:resetTiles()
 	Map.tiles.use_images = false]]
 
-	if self.level and self.player then self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
- end
+	if self.level and self.player then 
+		self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
+ 	end
 
 	if self.level then
 		self.level.map:recreate()
