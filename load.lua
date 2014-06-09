@@ -33,6 +33,8 @@ local PlayerLore = require "mod.class.interface.PlayerLore"
 
 local UIBase = require "engine.ui.Base"
 
+local MapEffects = require "mod.class.MapEffects" -- This alters Map
+
 -- Init settings
 config.settings.veins = config.settings.veins or {}
 if not config.settings.veins.tiles then
