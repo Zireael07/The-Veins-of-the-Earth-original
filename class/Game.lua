@@ -233,8 +233,12 @@ function _M:setupDisplayMode(reboot, mode)
 		
 		--switched from "fsize" to 32.
 		Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
+
 		Map.tiles.use_images = true
 		
+		-- Show a count for stacked objects
+		Map.object_stack_count = true
+
 		if gfx == "ascii" then 
 			print("[DISPLAY MODE] 32x32 ASCII/background")
 			Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
