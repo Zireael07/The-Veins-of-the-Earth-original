@@ -1,0 +1,68 @@
+
+FONTLOG
+NotCourier
+==============
+
+
+This file provides detailed information on the NotCourier font software.
+This information should be distributed along with the NotCourier fonts and any derivative works.
+
+Basic Font Information
+--------------------------
+NotCourier is a re-interpretation of Nimbus Mono and was designed in Wroclaw at the occasion of Libre Graphics Meeting (LGM 2008).
+For more detailed information: http://ospublish.constantvzw.org
+
+We took Nimbus as the base of the design. We proceeded to remove the serifs with raw cuts. We did not soften the edges. We are not here to be polite.
+See the file NotCourierSans-work.png included in this package.
+
+NotCourier currently provides the following Unicode coverage:
+Basic Latin: 95/95 
+Latin-1 Supplement: 93/96
+Latin Extended-A: 128/128
+Latin Extended-B: 7/208
+Cyrillic: 197/256
+Latin Extended Additional 90/256
+General Punctuation: 16/107
+
+Information for Contributors
+------------------------------
+See the project website for the current trunk and the various branches:
+http://openfontlibrary.org/media/people/OSP
+
+Notes:
+- lower case x-height cyrillic characters are different from latin characters in the bold version - not fixed yet
+- didn't verify yet if all repeated vectors were replaced with references - if has, shouldn't be that much.
+- didn't verify yet if all serifs were removed from cyrillic characters - if has, shouldn't be that much.
+- didn't test the typefaces with cyrillic text intensivelly, since i'm not russian, ukranian or bielo-russian fluent...
+
+
+ChangeLog
+----------
+(This should list both major and minor changes, most recent first.)
+
+
+2008 september 14 (Paulo Silva) - NotCourier version 1.1
+- removed all kerning pairs 
+- fixed all characters width to 600 units 
+- replaced repeated vectorial information from accented characters with references
+- removed serifs from cyrillic characters
+
+
+
+
+Acknowledgements
+-------------------------
+If you make modifications be sure to add your name (N), email (E), web-address
+(W) and description (D). This list is sorted by last name in alphabetical
+order.)
+
+N: OSP (Harrisson, Pierre Huyghebaert, Femke Snelting, Ivan Monroy-Lopez, Yi Jiang, Nicolas Maleve, Ludivine Loiseau)
+E: ludi.loiseau_at_gmail_dot_com
+W: http://ospublish.constantvzw.org 
+D: Open Source Publishing is a graphic design agency that uses only Free Software tools. Closely affiliated with the Brussels based digital culture foundation Constant, OSP aims to test the possibilities and realities of doing graphic design using an expanding range of Free Software tools.
+
+-
+N: Paulo Silva
+E: nitrofurano_at_gmail_dot_com
+W: http://nitrofurano.linuxkafe.com
+D: 
