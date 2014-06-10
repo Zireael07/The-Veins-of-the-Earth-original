@@ -845,6 +845,7 @@ function _M:setupCommands()
 				"highscores",
 				{"Graphic Mode", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GraphicMode").new()) end},
 				"video",
+				{"Game Options", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GameOptions").new()) end},
 				{"#RED#Debug Menu#LAST#", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.debug.DebugMenu").new()) end},
 				"save",
 				"quit"
