@@ -38,7 +38,8 @@ local LogDisplay = require "engine.LogDisplay"
 local LogFlasher = require "mod.class.patch.LogFlasher"
 local DebugConsole = require "engine.DebugConsole"
 local FlyingText = require "engine.FlyingText"
-local Tooltip = require "engine.Tooltip"
+--local Tooltip = require "engine.Tooltip"
+local Tooltip = require "mod.class.patch.Tooltip"
 local Calendar = require "engine.Calendar"
 
 local Birther = require "mod.dialogs.Birther"
@@ -88,14 +89,20 @@ function _M:load()
 end
 
 function _M:run()
+	veins.saveMarson()
 	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
 	self.logdisplay = LogDisplay.new(290, self.h - 150, self.w*0.45, self.h*0.15, nil, nil, 14, {255,255,255}, {30,30,30})
 	self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.75, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
 	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
-	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
 	self.player_display = PlayerDisplay.new(0, self.h*0.75, 200, 150, {0,0,0}, "/data/font/DroidSansMono.ttf", 14)
+--	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
 	
-	self.flyers = FlyingText.new()
+	local flysize = veins.fonts.flying.size or 16
+	self.tooltip = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
+	self.tooltip2 = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
+	self.flyers = FlyingText.new(veins.fonts.flying.style, flysize, veins.fonts.flying.style, flysize + 3)
+
+--	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
 
 	self.minimap_bg, self.minimap_bg_w, self.minimap_bg_h = core.display.loadImage("/data/gfx/ui/minimap.png"):glTexture()
@@ -634,12 +641,31 @@ function _M:display(nb_keyframe)
 	
 	-- Tooltip is displayed over all else
 	-- if tooltip is in way of mouse and its not locked then move it
+
 	local mx, my, button = core.mouse.get()
-	if self.tooltip.w and mx > self.w - self.tooltip.w and my > Tooltip:tooltip_bound_y2() - self.tooltip.h and not self.tooltip.locked then
+	
+	-- If user wants the tooltip to be on the left or top, move the exception box.
+  -- The tooltip will stay in the original positions for now, but will be moved
+  -- in engine.Tooltip.displayAtMap() - Marson
+  if config.settings.veins.tooltip_location == "Lower-Left" and self.tooltip.w and mx < self.tooltip.w and my > Tooltip:tooltip_bound_y2() - self.tooltip.h and not self.tooltip.locked then
+    self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  elseif config.settings.veins.tooltip_location == "Upper-Left" and self.tooltip.w and mx < self.tooltip.w and my < Map.display_y + self.tooltip.h and not self.tooltip.locked then
+    self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  elseif config.settings.veins.tooltip_location == "Upper-Right" and self.tooltip.w and mx > self.w - self.tooltip.w and my < Map.display_y + self.tooltip.h and not self.tooltip.locked then
+    self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  -- otherwise proceed as normal
+  elseif config.settings.veins.tooltip_location == "Lower-Right" and self.tooltip.w and mx > self.w - self.tooltip.w and my > Tooltip:tooltip_bound_y2() - self.tooltip.h and not self.tooltip.locked then
+    self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  else
+    self:targetDisplayTooltip(self.w, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  end
+
+
+--[[	if self.tooltip.w and mx > self.w - self.tooltip.w and my > Tooltip:tooltip_bound_y2() - self.tooltip.h and not self.tooltip.locked then
 		self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
 	else
 		self:targetDisplayTooltip(self.w, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
-	end
+	end]]
 
 	if self.full_fbo then
 		self.full_fbo:use(false)
