@@ -300,12 +300,12 @@ function _M:createFBOs()
 	self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
 	if self.fbo then
 		self.fbo_shader = Shader.new("main_fbo")
---[[		self.posteffects = {
+		self.posteffects = {
 			wobbling = Shader.new("main_fbo/wobbling"),
 			underwater = Shader.new("main_fbo/underwater"),
 			motionblur = Shader.new("main_fbo/motionblur"),
 			blur = Shader.new("main_fbo/blur"),
-		}]]
+		}
 		self.posteffects_use = { self.fbo_shader.shad }
 		if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end 
 		self.fbo2 = core.display.newFBO(Map.viewport.width, Map.viewport.height)
