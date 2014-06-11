@@ -277,46 +277,8 @@ function _M:setupDisplayMode(reboot, mode)
 		self.level.map:moveViewSurround(self.player.x, self.player.y, 8, 8)
 	end
 
-
-	self:createFBOs()	
 	end
 end
-
---Taken from ToME
-function _M:createFBOs()
-	print("[GAME] Creating FBOs")
-
-	-- Create the framebuffer
-	self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
-	if self.fbo then
-		self.fbo_shader = Shader.new("main_fbo")
---[[		self.posteffects = {
-			wobbling = Shader.new("main_fbo/wobbling"),
-			underwater = Shader.new("main_fbo/underwater"),
-			motionblur = Shader.new("main_fbo/motionblur"),
-			blur = Shader.new("main_fbo/blur"),
-		}]]
-		self.posteffects_use = { self.fbo_shader.shad }
-		if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end 
-		self.fbo2 = core.display.newFBO(Map.viewport.width, Map.viewport.height)
-	end
-	
-	if self.player then self.player:updateMainShader() end
-
-	self.full_fbo = core.display.newFBO(self.w, self.h)
-	if self.full_fbo then self.full_fbo_shader = Shader.new("full_fbo") if not self.full_fbo_shader.shad then self.full_fbo = nil self.full_fbo_shader = nil end end
-
-	if self.fbo and self.fbo2 then core.particles.defineFramebuffer(self.fbo)
-	else core.particles.defineFramebuffer(nil) end
-
---	if self.target then self.target:enableFBORenderer("ui/targetshader.png", "target_fbo") end
-
-	Map:enableFBORenderer("target_fbo")
-
---	self.mm_fbo = core.display.newFBO(200, 200)
---	if self.mm_fbo then self.mm_fbo_shader = Shader.new("mm_fbo") if not self.mm_fbo_shader.shad then self.mm_fbo = nil self.mm_fbo_shader = nil end end
-end
-
 
 --Highscore stuff, unused until 1.0.5
 function _M:getPlayer(main)
@@ -566,11 +528,6 @@ function _M:display(nb_keyframe)
 	-- If switching resolution, blank everything but the dialog
 	if self.change_res_dialog then engine.GameTurnBased.display(self, nb_keyframe) return end
 
-	-- Reset gamma setting, something somewhere is disrupting it, this is a stop gap solution
-	if self.support_shader_gamma and self.full_fbo_shader and self.full_fbo_shader.shad then self.full_fbo_shader.shad:uniGamma(config.settings.gamma_correction / 100) end
-
-	if self.full_fbo then self.full_fbo:use(true) end
-
 	-- Now the map, if any
 	if self.level and self.level.map and self.level.map.finished then
 		local map = self.level.map
@@ -639,11 +596,6 @@ function _M:display(nb_keyframe)
 		self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
 	else
 		self:targetDisplayTooltip(self.w, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
-	end
-
-	if self.full_fbo then
-		self.full_fbo:use(false)
-		self.full_fbo:toScreen(0, 0, self.w, self.h, self.full_fbo_shader.shad)
 	end
 end
 
