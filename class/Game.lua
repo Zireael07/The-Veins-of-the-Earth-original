@@ -38,7 +38,8 @@ local LogDisplay = require "engine.LogDisplay"
 local LogFlasher = require "mod.class.patch.LogFlasher"
 local DebugConsole = require "engine.DebugConsole"
 local FlyingText = require "engine.FlyingText"
-local Tooltip = require "engine.Tooltip"
+--local Tooltip = require "engine.Tooltip"
+local Tooltip = require "mod.class.patch.Tooltip"
 local Calendar = require "engine.Calendar"
 
 local Birther = require "mod.dialogs.Birther"
@@ -56,6 +57,8 @@ local Shader = require "engine.Shader" --required for fbo + prettiness
 local EntityTracker = require "mod.dialogs.debug.EntityTracker"
 local Dialog = require "engine.ui.Dialog"
 
+local GameState = require "mod.class.GameState"
+
 module(..., package.seeall, class.inherit(engine.GameTurnBased, engine.interface.GameTargeting))
 
 -- Tell the engine that we have a fullscreen shader that supports gamma correction
@@ -63,7 +66,6 @@ support_shader_gamma = true
 
 function _M:init()
 
-	self.gfx = self.gfx or nil
 	self.level_random_seed = self.level_random_seed or nil
 
 	engine.GameTurnBased.init(self, engine.KeyBind.new(), 1000, 100)
@@ -88,14 +90,20 @@ function _M:load()
 end
 
 function _M:run()
+	veins.saveMarson()
 	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
 	self.logdisplay = LogDisplay.new(290, self.h - 150, self.w*0.45, self.h*0.15, nil, nil, 14, {255,255,255}, {30,30,30})
 	self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.75, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
 	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
-	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
 	self.player_display = PlayerDisplay.new(0, self.h*0.75, 200, 150, {0,0,0}, "/data/font/DroidSansMono.ttf", 14)
+--	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
 	
-	self.flyers = FlyingText.new()
+	local flysize = veins.fonts.flying.size or 16
+	self.tooltip = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
+	self.tooltip2 = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
+	self.flyers = FlyingText.new(veins.fonts.flying.style, flysize, veins.fonts.flying.style, flysize + 3)
+
+--	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
 
 	self.minimap_bg, self.minimap_bg_w, self.minimap_bg_h = core.display.loadImage("/data/gfx/ui/minimap.png"):glTexture()
@@ -149,6 +157,8 @@ function _M:newGame()
 	})
 	self.party:setPlayer(player)
 
+	-- Create the entity to store various game state things
+	self.state = GameState.new{}
 
 	Map:setViewerActor(self.player)
 	self:setupDisplayMode()
@@ -280,6 +290,7 @@ function _M:setupDisplayMode(reboot, mode)
 	end
 end
 
+
 --Highscore stuff, unused until 1.0.5
 function _M:getPlayer(main)
 	return self.player
@@ -375,6 +386,9 @@ function _M:changeLevel(lev, zone)
 		end
 	end
 	self.zone:getLevel(self, lev, old_lev)
+
+	--Actually get the events to work
+	self.state:startEvents()
 
 	--Anti stairscum
 	if self.level.last_turn and self.turn < self.level.last_turn + 10 then
@@ -481,13 +495,15 @@ function _M:isLoadable()
 end
 
 function _M:tick()
-	if self.level then
-		self:targetOnTick()
-
-		engine.GameTurnBased.tick(self)
-	end
-	-- When paused (waiting for player input) we return true: this means we wont be called again until an event wakes us
-	if self.paused and not savefile_pipe.saving then return true end
+    if self.level then
+        self:targetOnTick()
+        engine.GameTurnBased.tick(self)
+    --Castler's fix for textbox input
+    else
+        engine.Game.tick(self)
+    end
+    -- When paused (waiting for player input) we return true: this means we wont be called again until an event wakes us
+    if self.paused and not savefile_pipe.saving then return true end
 end
 
 --- Called every game turns
@@ -590,13 +606,36 @@ function _M:display(nb_keyframe)
 	engine.GameTurnBased.display(self, nb_keyframe)
 	
 	-- Tooltip is displayed over all else
-	-- if tooltip is in way of mouse and its not locked then move it
 	local mx, my, button = core.mouse.get()
+	  if self.target and self.target.target and self.target.target.x and self.target.target.y and self.level and self.level.map then
+    mx, my = self.level.map:getTileToScreen(self.target.target.x, self.target.target.y)
+    --mx, my = self.target.target.x, self.target.target.y
+  end
+
+
+	-- If user wants the tooltip to be on the left or top, move the exception box.
+  -- The tooltip will stay in the original positions for now, but will be moved
+  -- in engine.Tooltip.displayAtMap() - Marson
+  if config.settings.veins.tooltip_location == "Lower-Left" and self.tooltip.w and mx < self.tooltip.w and my > Tooltip:tooltip_bound_y2() - self.tooltip.h and not self.tooltip.locked then
+    self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  elseif config.settings.veins.tooltip_location == "Upper-Left" and self.tooltip.w and mx < self.tooltip.w and my < Map.display_y + self.tooltip.h and not self.tooltip.locked then
+    self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  elseif config.settings.veins.tooltip_location == "Upper-Right" and self.tooltip.w and mx > self.w - self.tooltip.w and my < Map.display_y + self.tooltip.h and not self.tooltip.locked then
+    self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  -- otherwise proceed as normal
+  elseif config.settings.veins.tooltip_location == "Lower-Right" and self.tooltip.w and mx > self.w - self.tooltip.w and my > Tooltip:tooltip_bound_y2() - self.tooltip.h and not self.tooltip.locked then
+    self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  else
+    self:targetDisplayTooltip(self.w, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+  end
+
+
 	if self.tooltip.w and mx > self.w - self.tooltip.w and my > Tooltip:tooltip_bound_y2() - self.tooltip.h and not self.tooltip.locked then
 		self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
 	else
 		self:targetDisplayTooltip(self.w, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
 	end
+
 end
 
 function _M:onRegisterDialog(d)
@@ -771,6 +810,7 @@ function _M:setupCommands()
 				"highscores",
 				{"Graphic Mode", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GraphicMode").new()) end},
 				"video",
+				{"Game Options", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GameOptions").new()) end},
 				{"#RED#Debug Menu#LAST#", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.debug.DebugMenu").new()) end},
 				"save",
 				"quit"
@@ -1024,153 +1064,4 @@ function _M:placeRandomLoreObjectonMap(define)
 end
 
 
---Events stuff taken from ToME
-function _M:doneEvent(id)
-	return self.used_events[id]
-end
 
-function _M:canEventGrid(level, x, y)
-	return game.player:canMove(x, y) and not level.map.attrs(x, y, "no_teleport") and not level.map:checkAllEntities(x, y, "change_level") and not level.map:checkAllEntities(x, y, "special")
-end
-
-function _M:canEventGridRadius(level, x, y, radius, min)
-	local list = {}
-	for i = -radius, radius do for j = -radius, radius do
-		if game.state:canEventGrid(level, x+i, y+j) then list[#list+1] = {x=x+i, y=y+j} end
-	end end
-
-	if #list < min then return false
-	else return list end
-end
-
-function _M:findEventGrid(level)
-	local x, y = rng.range(1, level.map.w - 2), rng.range(1, level.map.h - 2)
-	local tries = 0
-	while not self:canEventGrid(level, x, y) and tries < 100 do
-		x, y = rng.range(1, level.map.w - 2), rng.range(1, level.map.h - 2)
-		tries = tries + 1
-	end
-	if tries >= 100 then return false end
-	return x, y
-end
-
-function _M:findEventGridRadius(level, radius, min)
-	local x, y = rng.range(3, level.map.w - 4), rng.range(3, level.map.h - 4)
-	local tries = 0
-	while not self:canEventGridRadius(level, x, y, radius, min) and tries < 100 do
-		x, y = rng.range(3, level.map.w - 4), rng.range(3, level.map.h - 4)
-		tries = tries + 1
-	end
-	if tries >= 100 then return false end
-	return self:canEventGridRadius(level, x, y, radius, min)
-end
-
-function _M:startEvents()
-	if not game.zone.events then print("No zone events loaded") return end
-
-	if not game.zone.assigned_events then
-		local levels = {}
-		if game.zone.events_by_level then
-			levels[game.level.level] = {}
-		else
-			for i = 1, game.zone.max_level do levels[i] = {} end
-		end
-
-		-- Generate the events list for this zone, eventually loading from group files
-		local evts, mevts = {}, {}
-		for i, e in ipairs(game.zone.events) do
-			if e.name then if e.minor then mevts[#mevts+1] = e else evts[#evts+1] = e end
-			elseif e.group then
-				local f, err = loadfile("/data/general/events/groups/"..e.group..".lua")
-				if not f then error(err) end
-				setfenv(f, setmetatable({level=game.level, zone=game.zone}, {__index=_G}))
-				local list = f()
-				for j, ee in ipairs(list) do
-					if e.percent_factor and ee.percent then ee.percent = math.floor(ee.percent * e.percent_factor) end
-					if ee.name then if ee.minor then mevts[#mevts+1] = ee else evts[#evts+1] = ee end end
-				end
-			end
-		end
-
-		-- Randomize the order they are checked as
-		table.shuffle(evts)
-		table.print(evts)
-		table.shuffle(mevts)
-		table.print(mevts)
-		for i, e in ipairs(evts) do
-			-- If we allow it, try to find a level to host it
-			if (e.always or rng.percent(e.percent) or (e.special and e.special() == true)) and (not e.unique or not self:doneEvent(e.name)) then
-				local lev = nil
-				local forbid = e.forbid or {}
-				forbid = table.reverse(forbid)
-				if game.zone.events_by_level then
-					lev = game.level.level
-				else
-					if game.zone.events.one_per_level then
-						local list = {}
-						for i = 1, #levels do if #levels[i] == 0 and not forbid[i] then list[#list+1] = i end end
-						if #list > 0 then
-							lev = rng.table(list)
-						end
-					else
-						if forbid then
-							local t = table.genrange(1, game.zone.max_level, true)
-							t = table.minus_keys(t, forbid)
-							lev = rng.table(table.keys(t))
-						else
-							lev = rng.range(1, game.zone.max_level)
-						end
-					end
-				end
-
-				if lev then
-					lev = levels[lev]
-					lev[#lev+1] = e.name
-				end
-			end
-		end
-		for i, e in ipairs(mevts) do
-			local forbid = e.forbid or {}
-			forbid = table.reverse(forbid)
-
-			local start, stop = 1, game.zone.max_level
-			if game.zone.events_by_level then start, stop = game.level.level, game.level.level end
-			for lev = start, stop do
-				if rng.percent(e.percent) and not forbid[lev] then
-					local lev = levels[lev]
-					lev[#lev+1] = e.name
-
-					if e.max_repeat then
-						local nb = 1
-						local p = e.percent
-						while nb <= e.max_repeat do
-							if rng.percent(p) then
-								lev[#lev+1] = e.name
-								nb = nb + 1
-							else
-								break
-							end
-							p = p / 2
-						end
-					end
-				end
-			end
-		end
-
-		game.zone.assigned_events = levels
-	end
-
-	return function()
-		print("Assigned events list")
-		table.print(game.zone.assigned_events)
-
-		for i, e in ipairs(game.zone.assigned_events[game.level.level] or {}) do
-			local f, err = loadfile("/data/general/events/"..e..".lua")
-			if not f then error(err) end
-			setfenv(f, setmetatable({level=game.level, zone=game.zone, event_id=e.name, Map=Map}, {__index=_G}))
-			f()
-		end
-		game.zone.assigned_events[game.level.level] = {}
-		if game.zone.events_by_level then game.zone.assigned_events = nil end
-	end
-end
