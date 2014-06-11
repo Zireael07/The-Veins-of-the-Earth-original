@@ -526,15 +526,13 @@ function _M:isLoadable()
 end
 
 function _M:tick()
-    if self.level then
-        self:targetOnTick()
-        engine.GameTurnBased.tick(self)
-    --Castler's fix for textbox input
-    else
-        engine.Game.tick(self)
-    end
-    -- When paused (waiting for player input) we return true: this means we wont be called again until an event wakes us
-    if self.paused and not savefile_pipe.saving then return true end
+	if self.level then
+		self:targetOnTick()
+
+		engine.GameTurnBased.tick(self)
+	end
+	-- When paused (waiting for player input) we return true: this means we wont be called again until an event wakes us
+	if self.paused and not savefile_pipe.saving then return true end
 end
 
 --- Called every game turns
@@ -642,12 +640,9 @@ function _M:display(nb_keyframe)
 	engine.GameTurnBased.display(self, nb_keyframe)
 	
 	-- Tooltip is displayed over all else
-	local mx, my, button = core.mouse.get()
-	  if self.target and self.target.target and self.target.target.x and self.target.target.y and self.level and self.level.map then
-    mx, my = self.level.map:getTileToScreen(self.target.target.x, self.target.target.y)
-    --mx, my = self.target.target.x, self.target.target.y
-  end
+	-- if tooltip is in way of mouse and its not locked then move it
 
+	local mx, my, button = core.mouse.get()
 	
 	-- If user wants the tooltip to be on the left or top, move the exception box.
   -- The tooltip will stay in the original positions for now, but will be moved

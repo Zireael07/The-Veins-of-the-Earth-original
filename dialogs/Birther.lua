@@ -583,10 +583,16 @@ function _M:incStat(v, id)
             self:simplePopup("Max stat value reached", "You cannot increase a stat above 18")
             return
         end
-    else 
-        self:simplePopup("Press Reset", "Press Reset if you find the current selections too high!")
-        return end
-
+    else return end
+--[[        if self.unused_stats >= 32 then
+            self:simplePopup("Max stat points reached", "You can't have more stat points!")
+            return
+        end
+        if self.actor.stats[id] <= 3 then
+            self:simplePopup("Min stat value reached", "You cannot decrease a stat below 3")
+            return
+        end
+    end]]
 
     local sel = self.sel
 --  self.actor.stats[id] = self.actor.stats[id] + v
@@ -606,7 +612,7 @@ end
 function _M:StatUpdate()
     self.c_stats.key:addBinds{
     --    ACCEPT = function() self.key:triggerVirtual("EXIT") end,
-        MOVE_LEFT = function() self:simplePopup("Press Reset", "Press Reset if you find the current selections too high!") end,
+    --    MOVE_LEFT = function() self:incStat(-1) end,
         MOVE_RIGHT = function() self:incStat(1) end,
     }
 end
@@ -674,10 +680,6 @@ function _M:updateList() end
 function _M:selectType(type) end
 
 function _M:on_register()
-    --Castler fix for Textbox input
-    game:onTickEnd(function() self.key:unicodeInput(true) end)
-
-
     if __module_extra_info.auto_quickbirth then
         local qb_short_name = __module_extra_info.auto_quickbirth:gsub("[^a-zA-Z0-9_-.]", "_")
         local lss = Module:listVaultSavesForCurrent()
@@ -950,9 +952,7 @@ local random_name = {
   local player = game.player
   self:updateDescriptors()
 
-    if not self.sel_race then 
-        self:simplePopup("No race selected", "You can't pick a name without a race selected!")
-        return end
+    if not self.sel_race then return end
 
     if self.sel_race.name == "Human" then
       if self.c_female.checked then 
