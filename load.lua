@@ -314,9 +314,9 @@ local Slider = require "engine.ui.Slider"
 		square = {name="Square", file="square", tome=true, mono=true},
 		Vera = {name="Bitstream Vera Sans", file="Vera", tome=true},
 		VeraMono = {name="Bitstream Vera Sans Mono", file="VeraMono", tome=true, mono=true},
-	--	Insula = {name="Insula", file="INSULA__", tome=true},
-	--	SVBasicManual = {name="SV Basic Manual", file="SVBasicManual", tome=true},
-	--	Usenet = {name="Usenet", file="USENET_", tome=true},
+		Insula = {name="Insula", file="INSULA__", tome=true},
+		SVBasicManual = {name="SV Basic Manual", file="SVBasicManual", tome=true},
+		Usenet = {name="Usenet", file="USENET_", tome=true},
 		-- Added fonts
 		Augusta = {name="Augusta", file="Augusta"},
 		Blkchcry = {name="Black Chancery", file="Blkchcry"},
