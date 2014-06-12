@@ -91,12 +91,15 @@ function _M:init(t, no_default)
 end
 
 function _M:onBirth()
-  self:birthName()
+  --Finish the character
   self:levelClass(self.descriptor.class)
   self:giveStartingEQ()
 
   self:setTile()
 --  self:equipAllItems()
+
+  savefile_pipe:push(game.player.name, "entity", game.player, "engine.CharacterVaultSave")
+
   -- HACK: This forces PlayerDisplay and HotkeysDisplay to update after birth descriptors are finished.
   game.player.changed = true
   self:resetToFull()
@@ -140,22 +143,6 @@ function _M:equipAllItems()
       end
     end
     self:sortInven()  
-end
-
-function _M:birthName()
-
--- For quickbirth
-  savefile_pipe:push(game.player.name, "entity", game.player, "engine.CharacterVaultSave")
-
---[[  game:registerDialog(require("mod.dialogs.BirtherGetName").new(actor, function(text)
-  self:setName(text)
-  -- For quickbirth
-  savefile_pipe:push(game.player.name, "entity", game.player, "engine.CharacterVaultSave")
---  actor.name = text
-end, 
-function()
---util.showMainMenu()
-end))]]
 end
 
 function _M:getExpChart(level)
