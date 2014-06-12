@@ -763,6 +763,691 @@ function _M:takeOut(bag)
   end)
 end
 
+--Player-specific perks stuff
+--Pick a random egoed item to be given as perk
+function _M:randomItem()
+  local chance = rng.dice(1,15)
+  if chance == 1 then self.perk_item = "iron battleaxe" 
+  elseif chance == 2 then self.perk_item = "rapier" 
+  elseif chance == 3 then self.perk_item = "long sword"  
+  elseif chance == 4 then self.perk_item = "iron dagger" 
+  elseif chance == 5 then self.perk_item = "morningstar" 
+  --Ranged weapons
+  elseif chance == 6 then self.perk_item = "shortbow" 
+  elseif chance == 7 then self.perk_item = "longbow"
+  elseif chance == 8 then self.perk_item = "sling" 
+  elseif chance == 9 then self.perk_item = "light crossbow" 
+  elseif chance == 10 then self.perk_item ="heavy crossbow" 
+  --Armor 
+  elseif chance == 11 then self.perk_item = "chain mail"  
+  elseif chance == 12 then self.perk_item = "chain shirt"
+  elseif chance == 13 then self.perk_item = "studded leather"
+  elseif chance == 14 then self.perk_item = "breastplate" 
+  else self.perk_item = "plate armor"   end
+  self.perk = "magical "..self.perk_item
+end
+
+--Add a random ego-ed item
+function _M:giveEgoAxe()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=1000}, 1, true)
+        end
+
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoRapier()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoSword()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoDagger()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="iron dagger", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="iron dagger", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoMorningstar()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoShortbow()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoLongbow()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="longbow", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="longbow", ego_chance=1000}, 1, true)
+        end
+
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoSling()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoLCrossbow()
+    local inven = game.player:getInven("MAIN_HAND")
+    local o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoHCrossbow()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoChainmail()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoChainShirt()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoLeather()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoBreastplate()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=1000}, nil, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveEgoPlate()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=1000}, 1, true)
+      if o then
+        while o.cursed == true do
+        o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=1000}, 1, true)
+        end
+      
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+--Actually give the starting items
+function _M:giveAxe()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveRapier()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveScimitar()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="scimitar", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveSword()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveDagger()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="iron dagger", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveMorningstar()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveLMace()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="light mace", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveHMace()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="heavy mace", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveSickle()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="sickle", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveStaff()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="quarterstaff", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end 
+
+function _M:giveHammer()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="warhammer", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end 
+
+function _M:giveSpear()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="short spear", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveScythe()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="scythe", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveShortbow()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveLongbow()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="longbow", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveSling()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("MAIN_HAND"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveLCrossbow()
+    local inven = game.player:getInven("MAIN_HAND")
+    local o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject("MAIN_HAND", o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveHCrossbow()
+  local inven = game.player:getInven("MAIN_HAND")
+  local o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject("MAIN_HAND", o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveHandCrossbow()
+  local o = game.zone:makeEntity(game.level, "object", {name="hand crossbow", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject("MAIN_HAND", o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveChainmail()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end 
+end
+
+function _M:giveChainShirt()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveLeather()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:givePadded()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="padded armor", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveBreastplate()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:givePlate()
+  local inven = game.player:getInven("BODY")
+  local o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=-1000}, 1, true)
+      if o then
+        game.zone:addEntity(game.level, o, "object")
+        game.player:addObject(game.player:getInven("BODY"), o)
+        o.pseudo_id = true
+      end
+end
+
+function _M:giveStartingEQ()
+  local class = game.player.descriptor.class
+  local race = game.player.descriptor.race
+--  local item = self:randomItem()
+    if class == "Barbarian" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+        then self:givePerkWeapon() end
+      --Racial weapons
+      if race == "Halfling" or race == "Gnome" or race == "Elf" or race == "Half-Elf" then self:giveSword()
+      elseif race == "Drow" then self:giveScimitar()
+      else self:giveAxe() end
+      --Account for perk items
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+        then self:givePerkArmor() 
+      else self:giveChainmail() end
+
+    elseif class == "Bard" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+        then self:givePerkWeapon() end
+      --Racial weapons
+      if race == "Halfling" or race == "Gnome" then self:giveDagger()
+      elseif race == "Elf" then self:giveSword()
+      elseif race == "Drow" then self:giveScimitar()
+      elseif race == "Human" or race == "Half-Elf" then self:giveRapier()
+      elseif race == "Dwarf" or race == "Duergar" then self:giveLMace() end
+      --Account for perk items
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
+        then self:givePerkArmor() 
+      else self:giveChainShirt() end
+
+    elseif class == "Cleric" or class == "Shaman" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+        then self:givePerkWeapon() end
+      if race == "Halfling" or race == "Gnome" then self:giveLMace()
+      else self:giveHMace() end
+      --Account for perk items
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
+        then self:givePerkArmor() 
+      else self:giveChainmail() end
+
+    elseif class == "Druid" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+        then self:givePerkWeapon() end
+      --Racial weapons
+      if race == "Halfling" or race == "Gnome" then self:giveSickle()
+      elseif race == "Human" or race == "Half-Elf" then self:giveStaff()
+      elseif race == "Dwarf" or race == "Duergar" then self:giveScythe()
+      else self:giveScimitar() end
+      --Account for perk items
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+        then self:givePerkArmor() 
+      else self:givePadded() end
+
+    elseif class == "Fighter" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+          then self:givePerkWeapon() end
+      if race == "Halfling" or race == "Gnome" then self:giveSword()
+      elseif race == "Drow" then self:giveScimitar()
+      elseif race == "Half-Orc" then self:giveAxe()
+      else self:giveSword() end
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+        then self:givePerkArmor() 
+      else self:giveChainmail() end
+
+    elseif class == "Monk" then 
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+          then self:givePerkWeapon() end
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
+        then self:givePerkArmor()  end
+
+    elseif class == "Paladin" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+          then self:givePerkWeapon() end
+      if race == "Halfling" or race == "Gnome" then self:giveSword()
+      elseif race == "Dwarf" then self:giveHammer()
+      --TO DO: give lance once mounts are in
+      else self:giveSword() end
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+        then self:givePerkArmor()
+      else self:giveChainmail() end
+
+    elseif class == "Ranger" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+          then self:givePerkWeapon() end
+      --Racial weapons
+      if race == "Halfling" or race == "Gnome" or race == "Half-Orc" then self:giveSpear()
+      elseif race == "Drow" then self:giveScimitar()
+      elseif race == "Dwarf" or race == "Duergar" then self:giveHammer()
+      else self:giveSword() end
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+        then self:givePerkArmor()
+      else self:giveLeather() end
+
+    elseif class == "Rogue" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+          then self:givePerkWeapon() end
+      --Racial weapons
+      if race == "Halfling" or race == "Gnome" then self:giveLCrossbow()
+      elseif race == "Drow" then self:giveHandCrossbow()
+      elseif race == "Elf" then self:giveLongbow()
+      else self:giveShortbow() end
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+        then self:givePerkArmor()
+      else self:giveLeather() end
+
+    elseif class == "Sorcerer" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+          then self:givePerkWeapon() end
+      self:giveDagger()
+      --Account for perk items
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+        then self:givePerkArmor() end
+
+    elseif class == "Wizard" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+          then self:givePerkWeapon() end
+      --Racial items
+      if race == "Halfling" or race == "Gnome" then self:giveDagger()
+      else self:giveStaff() end
+      --Account for perk items
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
+        then self:givePerkArmor() end
+
+    elseif class == "Warlock" then
+      --Account for perk items
+      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+        --Ranged weapons
+       or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
+          then self:givePerkWeapon() end
+      self:giveSword()
+      --Account for perk items
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+        then self:givePerkArmor() end
+      self:giveChainShirt()
+
+    else end
+end
+
+
+function _M:givePerkWeapon()      
+    --Weapon
+    if self.perk_item == "iron battleaxe" then self:giveEgoAxe()      
+    elseif self.perk_item == "rapier" then self:giveEgoRapier()
+    elseif self.perk_item == "long sword" then self:giveEgoSword()
+    elseif self.perk_item == "iron dagger" then self:giveEgoDagger()
+    elseif self.perk_item == "morningstar" then self:giveEgoMorningstar()
+    --Ranged weapons
+    elseif self.perk_item == "shortbow" then self:giveEgoShortbow()
+    elseif self.perk_item == "longbow" then self:giveEgoLongbow()
+    elseif self.perk_item == "sling" then self:giveEgoSling()
+    elseif self.perk_item == "light crossbow" then self:giveEgoLCrossbow()  
+    elseif self.perk_item == "heavy crossbow" then self:giveEgoHCrossbow()
+    else end
+end
+
+function _M:givePerkArmor()
+    --Armor
+    if self.perk_item == "chain mail" then self:giveEgoChainmail()
+    elseif self.perk_item == "chain shirt" then self:giveEgoChainShirt()
+    elseif self.perk_item == "studded leather" then self:giveEgoLeather()
+    elseif self.perk_item == "breastplate" then self:giveEgoBreastplate()
+    elseif self.perk_item == "plate armor" then self:giveEgoPlate()
+    else end
+end
+
+
+--Display a cool player tile
 function _M:setTile()
   self:removeAllMOs()
   if self.descriptor.race == "Human" then 
