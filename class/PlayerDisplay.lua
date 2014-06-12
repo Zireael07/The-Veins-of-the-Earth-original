@@ -18,6 +18,8 @@ require "engine.class"
 
 module(..., package.seeall, class.make)
 
+local pf_levelup = {core.display.loadImage("/data/gfx/ui/levelup.png"):glTexture()}
+
 function _M:init(x, y, w, h, bgcolor, font, size)
     self.display_x = x
     self.display_y = y
@@ -100,6 +102,13 @@ function _M:display()
     local cur_exp, max_exp = player.exp, player:getExpChart(player.level+1)
     local exp = cur_exp / max_exp * 100
     
+--[[    if player.class_points > 0 or player.feat_point > 0 or player.stat_point > 0 then
+    --    local glow = (1+math.sin(core.game.getTime() / 500)) / 2 * 100 + 120
+    --    pf_levelup[1]:toScreenFull(50, 800, pf_levelup[6], pf_levelup[7], pf_levelup[2], pf_levelup[3], 1, 1, 1, glow / 255)
+        pf_levelup[1]:toScreenFull(70, 800, pf_levelup[6], pf_levelup[7], pf_levelup[2], pf_levelup[3])
+    else end]]
+
+
     self:makeTextureBar("Exp:", "%d%%", exp, 100, nil, x, h, 255, 255, 255, { r=0, g=100, b=0 }, { r=0, g=50, b=0 }) h = h + self.font_h
 
     h = h + self.font_h 
@@ -157,5 +166,6 @@ function _M:toScreen(nb_keyframes)
             item(self.display_x, self.display_y)
         end
     end
+
 end
 
