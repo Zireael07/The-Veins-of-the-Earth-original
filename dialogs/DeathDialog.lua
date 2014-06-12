@@ -34,6 +34,14 @@ function _M:init(actor)
 
 	self:generateList()
 
+	self.text = ([[%s the %s %s
+
+%s]]):format(actor.name, actor.descriptor.race, actor.descriptor.class,
+	game.calendar:getTimeDate(game.turn)
+	)
+
+	self.c_stat = Textzone.new{width=self.iw, auto_height=true, text=self.text}
+
 	self.c_desc = Textzone.new{width=self.iw, auto_height=true, text=[[You have #LIGHT_RED#died#LAST#!
 Death in #SANDY_BROWN#the Veins of the Earth#LAST# is usually permanent. 
 Luckily, you can review your character sheet and try once again to survive in the wilds!
@@ -41,8 +49,10 @@ Luckily, you can review your character sheet and try once again to survive in th
 	self.c_list = List.new{width=self.iw, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end}
 
 	self:loadUI{
-		{left=0, top=0, ui=self.c_desc},
-		{left=5, top=self.c_desc.h, padding_h=10, ui=Separator.new{ui="deathbox", dir="vertical", size=self.iw - 10}},
+		{left=0, top=0, ui=self.c_stat},
+		{left=5, top=self.c_stat.h, padding_h=10, ui=Separator.new{dir="vertical", size=self.iw - 10}},
+		{left=0, top=self.c_stat.h+10, ui=self.c_desc},
+		{left=5, top=self.c_stat.h + 10 + self.c_desc.h, padding_h=10, ui=Separator.new{dir="vertical", size=self.iw - 10}},
 		{left=0, bottom=0, ui=self.c_list},
 	}
 	self:setFocus(self.c_list)
