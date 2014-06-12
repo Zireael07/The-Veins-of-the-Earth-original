@@ -50,10 +50,11 @@ function _M:init(actor, x, y, w, h, bgcolor, fontname, fontsize, icon_w, icon_h)
 	self.frames = {w=math.floor(fw * icon_w / 64), h=math.floor(fh * icon_h / 64), rw=icon_w / 64, rh=icon_h / 64}
 	self.frames.fx = math.floor((self.frames.w - icon_w) / 2)
 	self.frames.fy = math.floor((self.frames.h - icon_h) / 2)
---	self.frames.ok = { core.display.loadImage("/data/gfx/ui/talent_frame_ok.png"):glTexture() }
---	self.frames.disabled = { core.display.loadImage("/data/gfx/ui/talent_frame_disabled.png"):glTexture() }
---	self.frames.cooldown = { core.display.loadImage("/data/gfx/ui/talent_frame_cooldown.png"):glTexture() }
---	self.frames.sustain = { core.display.loadImage("/data/gfx/ui/talent_frame_sustain.png"):glTexture() }
+	self.frames.ok = { core.display.loadImage("/data/gfx/ui/talent_frame_ok.png"):glTexture() }
+	self.frames.disabled = { core.display.loadImage("/data/gfx/ui/talent_frame_disabled.png"):glTexture() }
+	self.frames.cooldown = { core.display.loadImage("/data/gfx/ui/talent_frame_cooldown.png"):glTexture() }
+	self.frames.sustain = { core.display.loadImage("/data/gfx/ui/talent_frame_sustain.png"):glTexture() }
+	self.frames.divine = { core.display.loadImage("/data/gfx/ui/talent_frame_divine.png"):glTexture() }
 	self.frames.base = UI:makeFrame("ui/icon-frame/frame", self.frames.w, self.frames.h)
 
 
@@ -96,10 +97,12 @@ end
 local page_to_hotkey = {"", "SECOND_", "THIRD_", "FOURTH_", "FIFTH_"}
 
 local frames_colors = {
-	ok = {0.3, 0.6, 0.3},
-	sustain = {0.6, 0.6, 0},
+	ok = {0.3, 0.6, 0.3}, --dark green
+	sustain = {0.6, 0.6, 0}, -- light green
 	cooldown = {0.6, 0, 0},
 	disabled = {0.65, 0.65, 0.65},
+	notspell = {0.8, 0.8, 0.3 },
+	divine = {0, 0.3, 0.6 }, --light blue
 }
 
 -- Displays the hotkeys, keybinds & cooldowns
@@ -151,23 +154,34 @@ function _M:display()
 				local tid = ts[1]
 				local t = a:getTalentFromId(tid)
 				if t then
+					--Display frames based on spell type
+					if not t.is_spell then
+						frame = "notspell"
+
+					--	if t.type == "innate" then frame = "sustain"  end
+					else
+						if a:spellIsKind(t, "arcane") then frame = "cooldown" end
+						if a:spellIsKind(t, "divine") then frame = "divine" end
+					end
+
 					display_entity = t.display_entity
+
 					if a:isTalentCoolingDown(t) then
 						if not a:preUseTalent(t, true, true) then
 							color = {190,190,190}
-							frame = "disabled"
+						--	frame = "disabled"
 						else
-							frame = "cooldown"
+						--	frame = "cooldown"
 							color = {255,0,0}
 							angle = 360 * (1 - (a.talents_cd[t.id] / a:getTalentCooldown(t)))
 						end
 						txt = tostring(a:isTalentCoolingDown(t))
 					elseif a:isTalentActive(t.id) then
 						color = {255,255,0}
-						frame = "sustain"
+					--	frame = "sustain"
 					elseif not a:preUseTalent(t, true, true) then
 						color = {190,190,190}
-						frame = "disabled"
+					--	frame = "disabled"
 					end
 					if a:getCharges(t) then
 						charge_nb = a:getCharges(t)
@@ -180,7 +194,7 @@ function _M:display()
 				if o then cnt = o:getNumber() end
 				if cnt == 0 then
 					color = {190,190,190}
-					frame = "disabled"
+				--	frame = "disabled"
 				end
 				display_entity = o
 				if o and o.use_talent then
@@ -193,7 +207,7 @@ function _M:display()
 					if a:isTalentCoolingDown(t) then
 						color = {255,0,0}
 						angle = 360 * (1 - (a.talents_cd[t.id] / a:getTalentCooldown(t)))
-						frame = "cooldown"
+					--	frame = "cooldown"
 						txt = tostring(a:isTalentCoolingDown(t))
 					end
 				elseif o and (o.use_talent or o.use_power) then
@@ -203,13 +217,13 @@ function _M:display()
 					local need = ((o.use_talent and o.use_talent.power) or (o.use_power and o.use_power.power) or 0)*reduce
 					if o.power < need then
 						if o.power_regen and o.power_regen > 0 then
-							frame = "cooldown"
+						--	frame = "cooldown"
 							txt = tostring(math.ceil((need - o.power) / o.power_regen))
 						else frame = "disabled" end
 					end
 				end
 				if o and o.wielded then
-					frame = "sustain"
+				--	frame = "sustain"
 				end
 			end
 
@@ -272,7 +286,7 @@ function _M:toScreen()
 
 --		frame[1]:toScreenFull(self.display_x + item.x, self.display_y + item.y, self.frames.w, self.frames.h, frame[2] * self.frames.rw, frame[3] * self.frames.rh, pagesel, pagesel, pagesel, 255)
 --		frame[1]:toScreenFull(self.display_x + item.x, self.display_y + item.y, self.frames.w, self.frames.h, frame[2] * self.frames.rw, frame[3] * self.frames.rh, pagesel, pagesel, pagesel, 255)
-		--UI:drawFrame(self.frames.base, self.display_x + item.x, self.display_y + item.y, frame[1], frame[2], frame[3], 1)
+		UI:drawFrame(self.frames.base, self.display_x + item.x, self.display_y + item.y, frame[1], frame[2], frame[3], 1)
 
 		if gtxt then
 			if self.shadow then gtxt._tex:toScreenFull(self.display_x + item.x + self.frames.fy + 2 + (self.icon_w - gtxt.fw) / 2, self.display_y + item.y + self.frames.fy + 2 + (self.icon_h - gtxt.fh) / 2, gtxt.w, gtxt.h, gtxt._tex_w, gtxt._tex_h, 0, 0, 0, self.shadow) end
@@ -284,7 +298,7 @@ function _M:toScreen()
 			ctxt._tex:toScreenFull(self.display_x + item.x + self.frames.fx + (self.icon_w - ctxt.fw) / 2, self.display_y + item.y + self.frames.fy, ctxt.w, ctxt.h, ctxt._tex_w, ctxt._tex_h)
 		end
 
---		core.display.drawQuad(self.display_x + item.x + 1 + self.frames.fx + self.icon_w - key.w, self.display_y + item.y + 1 + self.icon_h - key.h, key.w, key.h, 0, 128, 128, 200)
+		core.display.drawQuad(self.display_x + item.x + 1 + self.frames.fx + self.icon_w - key.w, self.display_y + item.y + 1 + self.icon_h - key.h, key.w, key.h, 0, 128, 128, 200)
 		if self.shadow then key._tex:toScreenFull(self.display_x + item.x + 1 + self.frames.fx + self.icon_w - key.w, self.display_y + item.y + 1 + self.icon_h - key.h, key.w, key.h, key._tex_w, key._tex_h, 0, 0, 0, self.shadow) end
 		key._tex:toScreenFull(self.display_x + item.x + self.frames.fx + self.icon_w - key.w, self.display_y + item.y + self.icon_h - key.h, key.w, key.h, key._tex_w, key._tex_h)
 	end
