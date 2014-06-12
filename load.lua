@@ -355,9 +355,7 @@ local Slider = require "engine.ui.Slider"
 			veins.fonts.dialog.size
 		
 		veins.fonts.tooltip = {}
-		veins.fonts.tooltip.key = config.settings.veins.fonts.tooltipstyle or
-	--[[		({fantasy="DroidSansMono", basic="VeraMono"})[config.settings.tome.fonts.type] or]]
-			"VeraMono"
+		veins.fonts.tooltip.key = config.settings.veins.fonts.tooltipstyle or "VeraMono"
 		veins.fonts.tooltip.size = config.settings.veins.fonts.tooltipsize or
 			veins.fonts.dialog.size
 		
