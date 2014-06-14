@@ -92,8 +92,11 @@ end
 function _M:run()
 	veins.saveMarson()
 	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
-	self.logdisplay = LogDisplay.new(290, self.h - 150, self.w*0.45, self.h*0.15, nil, nil, 14, {255,255,255}, {30,30,30})
-	self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.75, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
+--	self.logdisplay = LogDisplay.new(290, self.h - 150, self.w*0.45, self.h*0.15, nil, nil, 14, {255,255,255}, {30,30,30})
+	self.logdisplay = LogDisplay.new(0, self.h * 0.5, self.w * 0.5, self.h * 0.2, 5, nil, 14, nil, nil)
+	self.logdisplay:enableFading(7)
+
+	self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.85, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
 	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
 	self.player_display = PlayerDisplay.new(0, self.h*0.75, 200, 150, {0,0,0}, "/data/font/DroidSansMono.ttf", 14)
 --	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
@@ -140,7 +143,7 @@ function _M:run()
 	-- Ok everything is good to go, activate the game in the engine!
 	self:setCurrent()
 
-	if self.level then self:setupDisplayMode() end
+--	if self.level then self:setupDisplayMode() end
 end
 
 function _M:newGame()
@@ -207,12 +210,14 @@ function _M:loaded()
 	local th, tw = 32, 32
 	local gfx = config.settings.veins.tiles
 	if gfx == "ascii" then 
-	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
-	Map:resetTiles()
-	Map.tiles.use_images = false
+		Map:setViewPort(0, 0, self.w, self.h, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+--	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+		Map:resetTiles()
+		Map.tiles.use_images = false
 	else
-	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
-	Map.tiles.use_images = true
+		Map:setViewPort(0, 0, self.w, self.h, tw, th, nil, 32, true)
+--	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
+		Map.tiles.use_images = true
 	end
 
 --[[	self:setupDisplayMode(false, "init")
@@ -260,13 +265,15 @@ function _M:setupDisplayMode(reboot, mode)
 
 		if gfx == "ascii" then 
 			print("[DISPLAY MODE] 32x32 ASCII/background")
-			Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+			Map:setViewPort(0, 0, self.w, self.h, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+		--	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
 			Map:resetTiles()
 			Map.tiles.use_images = false
 			Map.tiles.use_images = false
 		elseif gfx == "tiles" then 
 			local th, tw = 32, 32
-			Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
+			Map:setViewPort(0, 0, self.w, self.h, tw, th, nil, 32, true)
+		--	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
 			Map:resetTiles()
 			Map.tiles.use_images = true
 			Map.tiles.use_images = true 
@@ -287,6 +294,33 @@ function _M:setupDisplayMode(reboot, mode)
 		self.level.map:moveViewSurround(self.player.x, self.player.y, 8, 8)
 	end
 
+	-- Create the framebuffer
+		self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
+		if self.fbo then self.fbo_shader = Shader.new("main_fbo") if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end end
+		if self.player then self.player:updateMainShader() end
+
+	end
+end
+
+--Taken from ToME
+function _M:resizeMapViewport(w, h)
+	w = math.floor(w)
+	h = math.floor(h)
+
+	Map.viewport.width = w
+	Map.viewport.height = h
+	Map.viewport.mwidth = math.floor(w / Map.tile_w)
+	Map.viewport.mheight = math.floor(h / Map.tile_h)
+
+	self:createFBOs()
+
+	if self.level then
+		self.level.map:makeCMap()
+		self.level.map:redisplay()
+		if self.player then
+			self.player:updateMainShader()
+			self.level.map:moveViewSurround(self.player.x, self.player.y, config.settings.tome.scroll_dist, config.settings.tome.scroll_dist)
+		end
 	end
 end
 
