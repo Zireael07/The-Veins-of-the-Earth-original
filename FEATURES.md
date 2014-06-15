@@ -22,7 +22,7 @@ FEATURES
 - attack roll & AC & critical hits & offhand attack (including double weapons) & iterative attacks
 - death at -10 and detrimental effects both at 0 and in the -1 to -9 range; certain monsters can now poison you, reducing your stats
 - saving throws printed to log; now take the best of two stats (Dex-Int; Con-Str; Wis-Cha)
-- inventory & encumbrance
+- inventory (with equipdoll) & encumbrance
 - spellbook now with spell information included and an iconed hotbar for spells [Seb]; some 0, 1st, 2nd, 3rd level spells
 - armor spell failure chance; key stat must be 9 to cast spells; casters gain access to next spell level every 3rd level
 - spell-like abilities for drow & duergar; other spell-likes as random perks at start
@@ -43,6 +43,7 @@ FEATURES
 - item identification in two stages, auto-destroying known cursed items
 - CR displayed in tooltips; monsters drop equipment and corpses
 - hp, exp, dungeon level on-screen display now with bars and color changing depending on the amount of HP left
+- tutorial level
 - colored in-game help screen; legend screen; basic rules info
 - colored tooltips (color-coded relative monster stats and CR); colored log messages; item tooltips both on ground and in inventory
 - in-character monster info screen
@@ -54,6 +55,7 @@ FEATURES
 - level feelings and item feelings (warning: these affect only pre-spawned items, not monster loot)
 - calendar
 - hunger counter and display
-- integrated most of Marson's Bosses AWOL functions; Marson's Autoexplore fixes
+- integrated most of Marson's Bosses AWOL functions and Marson UI; Marson's Autoexplore fixes
 - working in-game chat
 - auto-explore
+- shaders, including full FBO

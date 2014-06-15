@@ -1,5 +1,22 @@
 CHANGELOG
 
+* bug fix - naming box not accepting keypresses [kudos to Castler]
+
+* update to T-Engine 1.2.2
+* new spell: mount
+* add stack number display
+* add settings
+* integrate parts of Marson's UI addon
+* add full framebuffer shaders
+* rearrange the UI a bit; add log fade
+* add equipdoll to inventory screen
+* add information pop-ups to char creation screen
+* add tutorial level
+* shuffle events stuff to GameState.lua
+* shuffle item perks stuff to Player.lua
+
+
+
 0.19.0 - beta 5.5 - 08/06/2014
 
 * bug fix - character screen on 1366x768 and similar resolutions

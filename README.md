@@ -3,7 +3,7 @@ The Veins of the Earth
 
 "A fantasy d20-themed dungeon crawler", to quote DarkGod's comment.
 
-Requires T-Engine 1.2.1.
+Requires T-Engine 1.2.2.
 
 Click t-engine.exe to run.
 
@@ -44,13 +44,13 @@ Thanks to:
 
 - Daniel E.Gervais for releasing his tiles under Creative Commons
 - Julian Mensch aka Journeyman for releasing Incursion as open source and OGL
-- Marson from te4.org forums for his Bosses AWOL and Dev Tools addons
+- Marson from te4.org forums for his Bosses AWOL, Marson UI & Dev Tools addons
 - Lost Garden for free graphics
 - rsaarelm from #rgrd for coming up with the name "Veins of the Earth"
 - Grey, HousePet for coding help
 - Zonk for brainstorming
 - Leissi for brainstorming and testing
-- Castler for testing
+- Castler for testing and two important fixes (FOV and textbox input)
 - AuraOfTheDawn for testing & coming up with a nice meme
 - grazz for two small fixes
 - lukep for Combat.lua patch and testing
