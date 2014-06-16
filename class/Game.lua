@@ -92,7 +92,6 @@ end
 function _M:run()
 	veins.saveMarson()
 	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
---	self.logdisplay = LogDisplay.new(290, self.h - 150, self.w*0.45, self.h*0.15, nil, nil, 14, {255,255,255}, {30,30,30})
 	self.logdisplay = LogDisplay.new(0, self.h * 0.5, self.w * 0.5, self.h * 0.2, 5, nil, 14, nil, nil)
 	self.logdisplay:enableFading(7)
 
@@ -147,7 +146,7 @@ function _M:run()
 end
 
 function _M:newGame()
---	self.player = Player.new{name=self.player_name, game_ender=true}
+
 -- Enable party
 	self.party = Party.new{}
 	local player = Player.new{name=self.player_name, game_ender=true}
@@ -173,6 +172,7 @@ function _M:newGame()
 	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment'}, function()
 
 --    local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'deity', 'alignment', 'domains', 'domains'}, function()
+        
         game:changeLevel(1, "Upperdark")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
@@ -187,8 +187,9 @@ function _M:newGame()
         profile.chat:setupOnGame()
         game.player:onBirth()
         local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
---self.player:playerLevelup() 
-         game.creating_player = false
+
+ 
+        game.creating_player = false
 
         game.player:levelPassives()
         game.player.changed = true
@@ -211,12 +212,10 @@ function _M:loaded()
 	local gfx = config.settings.veins.tiles
 	if gfx == "ascii" then 
 		Map:setViewPort(0, 0, self.w, self.h, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
---	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.75) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
 		Map:resetTiles()
 		Map.tiles.use_images = false
 	else
 		Map:setViewPort(0, 0, self.w, self.h, tw, th, nil, 32, true)
---	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
 		Map.tiles.use_images = true
 	end
 
@@ -266,14 +265,12 @@ function _M:setupDisplayMode(reboot, mode)
 		if gfx == "ascii" then 
 			print("[DISPLAY MODE] 32x32 ASCII/background")
 			Map:setViewPort(0, 0, self.w, self.h, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
-		--	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
 			Map:resetTiles()
 			Map.tiles.use_images = false
 			Map.tiles.use_images = false
 		elseif gfx == "tiles" then 
 			local th, tw = 32, 32
 			Map:setViewPort(0, 0, self.w, self.h, tw, th, nil, 32, true)
-		--	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)
 			Map:resetTiles()
 			Map.tiles.use_images = true
 			Map.tiles.use_images = true 
@@ -606,8 +603,6 @@ function _M:display(nb_keyframe)
 			map._map:drawSeensTexture(map.display_x, map.display_y, nb_keyframe)
 		end
 
-
-	--	self.level.map:display(nil, nil, nb_keyframe)
 
 		-- Display the targetting system if active
 		self.target:display()
@@ -956,11 +951,7 @@ function _M:setupCommands()
 
 		--From Marson's AWOL addon
 		MARSON_AWOL = function()
-		--	if config.settings.cheat then
-				self:registerDialog(EntityTracker.new())
-		--[[	else
-				Dialog:simplePopup("NPC Tracker", "You need to have cheat mode enabled in order to view this screen.")
-			end]]
+			self:registerDialog(EntityTracker.new())
 		end,
 
 		MARSON_CLONE = function()
@@ -969,15 +960,9 @@ function _M:setupCommands()
 				if actor and loc ~= actor.x + actor.y * game.level.map.w then
 					local x = loc % game.level.map.w
 					local y = math.floor(loc / game.level.map.w)
-					--skip dialog
-				--[[	local text = ("A clone of '%s' (UID: %d) was found at tile ##%d (%d, %d). The original is located at tile ##%d (%d, %d). Would you like to remove this clone from the level?"):format(actor.name, actor.uid, loc, x, y, actor.x + actor.y * game.level.map.w, actor.x, actor.y)
-					Dialog:yesnoLongPopup("Clone Killer", text, game.w * 0.25,function(kill)
-						if kill then]]
-							game.log("#LIGHT_RED#[DEBUG] Removed clone of %d '%s' from tile %d (%d, %d)", actor.uid, actor.name, loc, x, y)
-							print("[DEBUG] Removed clone of "..actor.uid.." '"..actor.name.."' from tile "..loc.." ("..x..", "..y..")")
-							game.level.map:remove(x, y, Map.ACTOR)
-					--	end
-					--end)
+					game.log("#LIGHT_RED#[DEBUG] Removed clone of %d '%s' from tile %d (%d, %d)", actor.uid, actor.name, loc, x, y)
+					print("[DEBUG] Removed clone of "..actor.uid.." '"..actor.name.."' from tile "..loc.." ("..x..", "..y..")")
+					game.level.map:remove(x, y, Map.ACTOR)
 				end
 			end
 		end,
