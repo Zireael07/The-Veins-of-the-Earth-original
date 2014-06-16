@@ -173,7 +173,7 @@ function _M:newGame()
 
 --    local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'deity', 'alignment', 'domains', 'domains'}, function()
         
-        game:changeLevel(1, "Upperdark")
+   	    game:changeLevel(1, "Upperdark")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
         game.player:resolve(nil, true)
@@ -184,6 +184,13 @@ function _M:newGame()
         game.player.changed = true
         print("[PLAYER BIRTH] resolved!")
         
+        --Tutorial popup
+        Dialog:yesnoPopup("Tutorial", "Go through the tutorial", function(ok) 
+			if ok then game:changeLevel(1, "Tutorial")
+			else end
+		end, "Yes", "No")
+
+
         profile.chat:setupOnGame()
         game.player:onBirth()
         local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
