@@ -48,10 +48,14 @@ function _M:init(actor)
 		{left=500, top=90, ui=self.c_barred},
 		{left=750, top=0, ui=self.c_desc}
 	}
+
+	self:hideButton()
+
 	self:setFocus(self.c_avail)
 --	self:setupUI(false, true)
 	self:setupUI()
 
+	self:hideButton()
 
 --	self.key:addBind("EXIT", function() game:unregisterDialog(self) end)
 	--Taken from ToME 4
@@ -86,6 +90,12 @@ function _M:cancel()
 	restore(self.actor, self.actor_dup)
 end
 
+function _M:hideButton()
+
+	local ok = game.player.fighter_bonus and game.player.fighter_bonus > 0
+	self:toggleDisplay(self.c_bonus, ok) 
+
+end
 
 
 function _M:use(item)
