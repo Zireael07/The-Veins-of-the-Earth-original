@@ -1,6 +1,7 @@
 CHANGELOG
 
 * bug fix - naming box not accepting keypresses [kudos to Castler]
+* bug fix - bonus feats button now available only to fighters
 
 * update to T-Engine 1.2.2
 * new spell: mount
