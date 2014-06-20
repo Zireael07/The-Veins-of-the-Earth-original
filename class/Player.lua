@@ -1524,3 +1524,127 @@ function _M:setTile()
 
   Map:resetTiles()
 end
+
+--Moddable tiles code from ToME 4
+--- Return attachement coords
+function _M:attachementSpot(kind, particle)
+  local as = self.attachement_spots or self.image
+  if not as then return end
+  if not game.tiles_attachements or not game.tiles_attachements[as] or not game.tiles_attachements[as][kind] then return end
+  local x, y = 0, 0
+  if particle then x, y = -0.5, -0.5 end
+  return game.tiles_attachements[as][kind].x + x, game.tiles_attachements[as][kind].y + y
+end
+
+--- Update tile for races that can handle it
+function _M:updateModdableTile()
+  if not self.moddable_tile or Map.tiles.no_moddable_tiles then
+    local add = self.add_mos or {}
+--[[    if self.shader_auras and next(self.shader_auras) then
+      local base, baseh, basey, base1 = nil
+      if self.image == "invis.png" and add[1] and add[1].image then
+        base = add[1].image
+        base1 = true
+        baseh, basey = add[1].display_h, add[1].display_y
+      elseif not self.add_mos then
+        base = self.image
+        base1 = false
+        baseh, basey = self.display_h, self.display_y
+      end
+
+      if base then
+        self.add_mos = add
+        for _, def in pairs(self.shader_auras) do
+          table.insert(add, 1, {_isshaderaura=true, image_alter="sdm", sdm_double=not baseh or baseh < 2, image=base, shader=def.shader, shader_args=def.shader_args, textures=def.textures, display_h=2, display_y=-1})
+        end
+        if not base1 then add[#add+1] = {_isshaderaura=true, image=base, display_y=basey, display_h=baseh} end
+
+        self:removeAllMOs()
+        if self.x and game.level then game.level.map:updateMap(self.x, self.y) end
+      end]]
+    elseif self.add_mos then
+    --[[  for i = #add, 1, -1 do
+        if add[i]._isshaderaura then table.remove(add, i) end
+      end]]
+      if not next(self.add_mos) then self.add_mos = nil end
+
+      self:removeAllMOs()
+      if self.x and game.level then game.level.map:updateMap(self.x, self.y) end
+    end
+    return
+  end
+  self:removeAllMOs()
+
+  local base = "player/"..self.moddable_tile:gsub("#sex#", self.female and "female" or "male").."/"
+
+  self.image = base
+  self.add_mos = {}
+  local add = self.add_mos
+  local i
+
+  self:triggerHook{"Actor:updateModdableTile:back", base=base, add=add}
+
+  i = self.inven[self.INVEN_CLOAK]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile):format("behind")..".png", auto_tall=1} end
+
+--[[  if self.shader_auras and next(self.shader_auras) then
+    for _, def in pairs(self.shader_auras) do
+      add[#add+1] = {image_alter="sdm", sdm_double=true, image=base..(self.moddable_tile_base or "base_01.png"), shader=def.shader, shader_args=def.shader_args, textures=def.textures, display_h=2, display_y=-1}
+    end
+  end]]
+
+  add[#add+1] = {image = base..(self.moddable_tile_base or "base_01.png")}
+
+--[[  if not self:attr("disarmed") then
+    i = self.inven[self.INVEN_MAINHAND]; if i and i[1] and i[1].moddable_tile_back then
+      add[#add+1] = {image = base..(i[1].moddable_tile_back):format("right")..".png", auto_tall=1}
+    end
+    i = self.inven[self.INVEN_OFFHAND]; if i and i[1] and i[1].moddable_tile_back then
+      add[#add+1] = {image = base..(i[1].moddable_tile_back):format("left")..".png", auto_tall=1}
+    end
+  end]]
+
+  i = self.inven[self.INVEN_CLOAK]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile):format("shoulder")..".png", auto_tall=1} end
+  i = self.inven[self.INVEN_FEET]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
+  i = self.inven[self.INVEN_BODY]; if i and i[1] and i[1].moddable_tile2 then add[#add+1] = {image = base..(i[1].moddable_tile2)..".png", auto_tall=1}
+  elseif not self:attr("moddable_tile_nude") then add[#add+1] = {image = base.."lower_body_01.png"} end
+  i = self.inven[self.INVEN_BODY]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1}
+  elseif not self:attr("moddable_tile_nude") then add[#add+1] = {image = base.."upper_body_01.png"} end
+  i = self.inven[self.INVEN_HEAD]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
+  i = self.inven[self.INVEN_HANDS]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
+  i = self.inven[self.INVEN_CLOAK]; if i and i[1] and i[1].moddable_tile_hood then add[#add+1] = {image = base..(i[1].moddable_tile):format("hood")..".png", auto_tall=1} end
+  i = self.inven[self.INVEN_QUIVER]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
+--[[  if not self:attr("disarmed") then
+    i = self.inven[self.INVEN_MAINHAND]; if i and i[1] and i[1].moddable_tile then
+      add[#add+1] = {image = base..(i[1].moddable_tile):format("right")..".png", auto_tall=1}
+      if i[1].moddable_tile_particle then
+        add[#add].particle = i[1].moddable_tile_particle[1]
+        add[#add].particle_args = i[1].moddable_tile_particle[2]
+      end
+      if i[1].moddable_tile_ornament then add[#add+1] = {image = base..(i[1].moddable_tile_ornament):format("right")..".png", auto_tall=1} end
+    end
+    i = self.inven[self.INVEN_OFFHAND]; if i and i[1] and i[1].moddable_tile then
+      add[#add+1] = {image = base..(i[1].moddable_tile):format("left")..".png", auto_tall=1}
+      if i[1].moddable_tile_ornament then add[#add+1] = {image = base..(i[1].moddable_tile_ornament):format("left")..".png", auto_tall=1} end
+    end
+  end]]
+
+--  self:triggerHook{"Actor:updateModdableTile:front", base=base, add=add}
+
+  if self.moddable_tile_ornament and self.moddable_tile_ornament[self.female and "female" or "male"] then add[#add+1] = {image = base..self.moddable_tile_ornament[self.female and "female" or "male"]..".png", auto_tall=1} end
+  if self.moddable_tile_ornament2 and self.moddable_tile_ornament2[self.female and "female" or "male"] then add[#add+1] = {image = base..self.moddable_tile_ornament2[self.female and "female" or "male"]..".png", auto_tall=1} end
+
+  if self.x and game.level then game.level.map:updateMap(self.x, self.y) end
+end
+
+--Actually plug in the above
+--[[function _M:onWear(o, inven_id)
+    engine.interface.ActorInventory.onWear(self, o, inven_id)
+
+    self:updateModdableTile()
+end
+
+function _M:onTakeoff(o, inven_id)
+    engine.interface.ActorInventory.onTakeoff(self, o, inven_id)
+
+    self:updateModdableTile()
+end]]
