@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -36,6 +36,10 @@ newBirthDescriptor{
 		money = 100,
 		max_life = 10,
 		max_level = 100,
+    --Moddable tiles
+    moddable_tile = "default",
+    moddable_tile_base = "human_m.png",
+
 		game_state = {
 		  campaign_name = "Veins",
     },
