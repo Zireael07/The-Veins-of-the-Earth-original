@@ -215,6 +215,28 @@ newArcaneSpell{
 }
 
 newArcaneSpell{
+	name = "Haste",
+	type = {"transmutation", 1},
+	display = { image = "talents/haste.png"},
+	image = "talents/haste.png",
+	mode = 'activated',
+	level = 3,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	action = function(self)
+	if not self then return nil end
+	self:setEffect(self.EFF_HASTE, 5, {})
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[You increase your AC, attack and reflex save by +1. Your speed is increased by 30 feet.]])
+	end,	
+}
+
+
+newArcaneSpell{
 	name = "Polymorph",
 	type = {"transmutation", 1},
 	mode = 'activated',
