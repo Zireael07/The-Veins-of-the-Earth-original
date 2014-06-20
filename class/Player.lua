@@ -1579,15 +1579,15 @@ function _M:updateModdableTile()
   end
   self:removeAllMOs()
 
---  local base = "player/"..self.moddable_tile:gsub("#sex#", self.female and "female" or "male").."/"
 
-    local base = "tiles/player/"..self.moddable_tile.."/"
+--    local base = "tiles/player/"..self.moddable_tile.."/"
 
+    local base = "tiles/player/default/"
 
-  self.image = base
-  self.add_mos = {}
-  local add = self.add_mos
-  local i
+	self.image = base..(self.moddable_tile_base or "human_m.png")
+  	self.add_mos = {}
+  	local add = self.add_mos
+  	local i
 
 --  self:triggerHook{"Actor:updateModdableTile:back", base=base, add=add}
 
@@ -1598,10 +1598,6 @@ function _M:updateModdableTile()
       add[#add+1] = {image_alter="sdm", sdm_double=true, image=base..(self.moddable_tile_base or "base_01.png"), shader=def.shader, shader_args=def.shader_args, textures=def.textures, display_h=2, display_y=-1}
     end
   end]]
-
---  add[#add+1] = {image = base..(self.moddable_tile_base or "base_01.png")}
-  add[#add+1] = {image = base..(self.moddable_tile_base or "human_m.png")}
-
 
   if not self:attr("disarmed") then
     i = self.inven[self.INVEN_MAIN_HAND]; if i and i[1] and i[1].moddable_tile_back then
