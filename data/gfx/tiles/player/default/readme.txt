@@ -1,0 +1,1 @@
+"Part of the graphic tiles in this folder is the Public domain roguelike tileset "RLTiles". Some of the tiles have been modified by Zireael. You can find the original tileset at: http://rltiles.sf.net You can find Dungeon Crawl Stone Soup modified tilesets at: http://code.google.com/p/crawl-tiles/downloads/list"
