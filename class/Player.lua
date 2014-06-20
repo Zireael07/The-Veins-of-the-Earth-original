@@ -54,7 +54,8 @@ function _M:init(t, no_default)
   t.color_b=t.color_b or 230
 
   --Moddable tiles stuff
-  image = "tiles/player.png"
+  --image = "tiles/player.png"
+  moddable_tile = "default"
 
   t.player = true
   t.type = t.type or "humanoid"
@@ -1579,8 +1580,8 @@ function _M:updateModdableTile()
   self:removeAllMOs()
 
 --  local base = "player/"..self.moddable_tile:gsub("#sex#", self.female and "female" or "male").."/"
-    local base = "tiles/player/"
---  local base = "tiles/player/human_m.png"
+
+    local base = "tiles/player/"..self.moddable_tile.."/"
 
 
   self.image = base
