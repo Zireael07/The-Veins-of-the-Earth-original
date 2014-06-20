@@ -75,6 +75,9 @@ function _M:init()
 
 	-- Same init as when loaded from a savefile
 	self:loaded()
+
+	--Moddable tiles
+	self.tiles_attachements = {}
 end
 
 --Thanks DG!
@@ -318,11 +321,11 @@ function _M:setupDisplayMode(reboot, mode)
 	
 	if not mode or mode == "postinit" then
 		local gfx = config.settings.veins.tiles
-		Tiles.prefix = "/data/gfx/"
+		Tiles.prefix = "/data/gfx/tiles/"
 		print("[DISPLAY MODE] Tileset: "..gfx)
 
 		-- Load attachement spots for this tileset
-	--	self:computeAttachementSpots()
+		self:computeAttachementSpots()
 
 
 	--[[	local th, tw = 32, 32

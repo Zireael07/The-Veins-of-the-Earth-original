@@ -47,11 +47,14 @@ else return 500*level*(level+1)/2 end
 end
 
 function _M:init(t, no_default)
-  image = "tiles/player.png"
+--ASCII stuff
   t.display=t.display or '@'
   t.color_r=t.color_r or 230
   t.color_g=t.color_g or 230
   t.color_b=t.color_b or 230
+
+  --Moddable tiles stuff
+  image = "tiles/player.png"
 
   t.player = true
   t.type = t.type or "humanoid"
@@ -95,7 +98,7 @@ function _M:onBirth()
   self:levelClass(self.descriptor.class)
   self:giveStartingEQ()
 
-  self:setTile()
+--  self:setTile()
 --  self:equipAllItems()
 
   savefile_pipe:push(game.player.name, "entity", game.player, "engine.CharacterVaultSave")
@@ -1561,8 +1564,8 @@ function _M:updateModdableTile()
 
         self:removeAllMOs()
         if self.x and game.level then game.level.map:updateMap(self.x, self.y) end
-      end]]
-    elseif self.add_mos then
+      end
+    else]]if self.add_mos then
     --[[  for i = #add, 1, -1 do
         if add[i]._isshaderaura then table.remove(add, i) end
       end]]
@@ -1575,14 +1578,17 @@ function _M:updateModdableTile()
   end
   self:removeAllMOs()
 
-  local base = "player/"..self.moddable_tile:gsub("#sex#", self.female and "female" or "male").."/"
+--  local base = "player/"..self.moddable_tile:gsub("#sex#", self.female and "female" or "male").."/"
+    local base = "tiles/player/"
+--  local base = "tiles/player/human_m.png"
+
 
   self.image = base
   self.add_mos = {}
   local add = self.add_mos
   local i
 
-  self:triggerHook{"Actor:updateModdableTile:back", base=base, add=add}
+--  self:triggerHook{"Actor:updateModdableTile:back", base=base, add=add}
 
   i = self.inven[self.INVEN_CLOAK]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile):format("behind")..".png", auto_tall=1} end
 
@@ -1592,29 +1598,31 @@ function _M:updateModdableTile()
     end
   end]]
 
-  add[#add+1] = {image = base..(self.moddable_tile_base or "base_01.png")}
+--  add[#add+1] = {image = base..(self.moddable_tile_base or "base_01.png")}
+  add[#add+1] = {image = base..(self.moddable_tile_base or "human_m.png")}
 
---[[  if not self:attr("disarmed") then
-    i = self.inven[self.INVEN_MAINHAND]; if i and i[1] and i[1].moddable_tile_back then
+
+  if not self:attr("disarmed") then
+    i = self.inven[self.INVEN_MAIN_HAND]; if i and i[1] and i[1].moddable_tile_back then
       add[#add+1] = {image = base..(i[1].moddable_tile_back):format("right")..".png", auto_tall=1}
     end
-    i = self.inven[self.INVEN_OFFHAND]; if i and i[1] and i[1].moddable_tile_back then
+    i = self.inven[self.INVEN_OFF_HAND]; if i and i[1] and i[1].moddable_tile_back then
       add[#add+1] = {image = base..(i[1].moddable_tile_back):format("left")..".png", auto_tall=1}
     end
-  end]]
+  end
 
   i = self.inven[self.INVEN_CLOAK]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile):format("shoulder")..".png", auto_tall=1} end
-  i = self.inven[self.INVEN_FEET]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
+  i = self.inven[self.INVEN_BOOTS]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
   i = self.inven[self.INVEN_BODY]; if i and i[1] and i[1].moddable_tile2 then add[#add+1] = {image = base..(i[1].moddable_tile2)..".png", auto_tall=1}
   elseif not self:attr("moddable_tile_nude") then add[#add+1] = {image = base.."lower_body_01.png"} end
   i = self.inven[self.INVEN_BODY]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1}
   elseif not self:attr("moddable_tile_nude") then add[#add+1] = {image = base.."upper_body_01.png"} end
-  i = self.inven[self.INVEN_HEAD]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
-  i = self.inven[self.INVEN_HANDS]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
+  i = self.inven[self.INVEN_HELM]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
+  i = self.inven[self.INVEN_GLOVES]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
   i = self.inven[self.INVEN_CLOAK]; if i and i[1] and i[1].moddable_tile_hood then add[#add+1] = {image = base..(i[1].moddable_tile):format("hood")..".png", auto_tall=1} end
   i = self.inven[self.INVEN_QUIVER]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
---[[  if not self:attr("disarmed") then
-    i = self.inven[self.INVEN_MAINHAND]; if i and i[1] and i[1].moddable_tile then
+ if not self:attr("disarmed") then
+    i = self.inven[self.INVEN_MAIN_HAND]; if i and i[1] and i[1].moddable_tile then
       add[#add+1] = {image = base..(i[1].moddable_tile):format("right")..".png", auto_tall=1}
       if i[1].moddable_tile_particle then
         add[#add].particle = i[1].moddable_tile_particle[1]
@@ -1622,11 +1630,11 @@ function _M:updateModdableTile()
       end
       if i[1].moddable_tile_ornament then add[#add+1] = {image = base..(i[1].moddable_tile_ornament):format("right")..".png", auto_tall=1} end
     end
-    i = self.inven[self.INVEN_OFFHAND]; if i and i[1] and i[1].moddable_tile then
+    i = self.inven[self.INVEN_OFF_HAND]; if i and i[1] and i[1].moddable_tile then
       add[#add+1] = {image = base..(i[1].moddable_tile):format("left")..".png", auto_tall=1}
       if i[1].moddable_tile_ornament then add[#add+1] = {image = base..(i[1].moddable_tile_ornament):format("left")..".png", auto_tall=1} end
     end
-  end]]
+  end
 
 --  self:triggerHook{"Actor:updateModdableTile:front", base=base, add=add}
 
@@ -1637,7 +1645,7 @@ function _M:updateModdableTile()
 end
 
 --Actually plug in the above
---[[function _M:onWear(o, inven_id)
+function _M:onWear(o, inven_id)
     engine.interface.ActorInventory.onWear(self, o, inven_id)
 
     self:updateModdableTile()
@@ -1647,4 +1655,4 @@ function _M:onTakeoff(o, inven_id)
     engine.interface.ActorInventory.onTakeoff(self, o, inven_id)
 
     self:updateModdableTile()
-end]]
+end
