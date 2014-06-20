@@ -137,7 +137,7 @@ newEffect{
 		eff.decrease2 = self:addTemporaryValue("stat_decrease_dex", 1)
 	end,
 	deactivate = function(self, eff)
-		self:removeTemporaryValue("stat_decrease_con", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_str", eff.decrease)
 		self:removeTemporaryValue("stat_decrease_dex", eff.decrease2)
 	end
 }
