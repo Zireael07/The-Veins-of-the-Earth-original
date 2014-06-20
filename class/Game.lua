@@ -213,6 +213,9 @@ end
 function _M:loaded()
 	engine.GameTurnBased.loaded(self)
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", trap_class="mod.class.Trap"}
+	--New filters from GameState go here
+
+
 	Map:setViewerActor(self.player)
 
 	local th, tw = 32, 32
@@ -240,6 +243,65 @@ function _M:loaded()
 	selfppp = engine.KeyBind.new()
 end
 
+--Taken from ToME 4
+function _M:computeAttachementSpotsFromTable(ta)
+	local base = ta.default_base or 32
+	local res = { }
+
+	for tile, data in pairs(ta.tiles or {}) do
+		local base = data.base or base
+		local yoff = data.yoff or 0
+		local t = {}
+		res[tile] = t
+		for kind, d in pairs(data) do if kind ~= "base" and kind ~= "yoff" then
+			t[kind] = { x=d.x / base, y=(d.y + yoff) / base }
+		end end
+	end
+
+	for race, data in pairs(ta.dolls or {}) do
+		local base = data.base or base
+		for sex, d in pairs(data) do if sex ~= "base" then
+			local t = {}
+			res["dolls_"..race.."_"..sex] = t
+			local yoff = d.yoff or 0
+			local base = d.base or base
+			for kind, d in pairs(d) do if kind ~= "yoff" and kind ~= "base" then
+				t[kind] = { x=d.x / base, y=(d.y + yoff) / base }
+			end end
+		end end
+	end
+
+	self.tiles_attachements = res
+end
+
+function _M:computeAttachementSpots()
+	local t = {}
+	if fs.exists(Tiles.prefix.."attachements.lua") then
+		print("Loading tileset attachements from ", Tiles.prefix.."attachements.lua")
+		local f, err = loadfile(Tiles.prefix.."attachements.lua")
+		if not f then print("Loading tileset attachements error", err)
+		else
+			setfenv(f, t)
+			local ok, err = pcall(f)
+			if not ok then print("Loading tileset attachements error", err) end
+		end		
+	end
+	for _, file in ipairs(fs.list(Tiles.prefix)) do if file:find("^attachements%-.+.lua$") then
+		print("Loading tileset attachements from ", Tiles.prefix..file)
+		local f, err = loadfile(Tiles.prefix..file)
+		if not f then print("Loading tileset attachements error", err)
+		else
+			setfenv(f, t)
+			local ok, err = pcall(f)
+			if not ok then print("Loading tileset attachements error", err) end
+		end		
+	end end
+	self:computeAttachementSpotsFromTable(t)
+end
+
+
+
+
 function _M:setupDisplayMode(reboot, mode)
 	if not mode or mode == "init" then
 		local gfx = config.settings.veins.tiles
@@ -258,6 +320,10 @@ function _M:setupDisplayMode(reboot, mode)
 		local gfx = config.settings.veins.tiles
 		Tiles.prefix = "/data/gfx/"
 		print("[DISPLAY MODE] Tileset: "..gfx)
+
+		-- Load attachement spots for this tileset
+	--	self:computeAttachementSpots()
+
 
 	--[[	local th, tw = 32, 32
 		
