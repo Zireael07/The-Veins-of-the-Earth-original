@@ -96,6 +96,7 @@ newEntity{
     type = "cloak", subtype = "cloak",
     image = "tiles/cloak.png",
     display = "♠", color=colors.RED,
+    moddable_tile = resolvers.moddable_tile("cloak"),
     encumber = 0,
     rarity = 10,
     name = "a cloak",

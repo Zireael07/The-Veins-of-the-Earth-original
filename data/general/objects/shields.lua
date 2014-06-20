@@ -7,6 +7,7 @@ newEntity{
     type = "armor", subtype="shield",
     display = ")", color=colors.SLATE,
     require = { talent = { Talents.T_SHIELD_PROFICIENCY }, },
+    moddable_tile = resolvers.moddable_tile("shield"),
     encumber = 5,
     rarity = 5,
     name = "shield",
