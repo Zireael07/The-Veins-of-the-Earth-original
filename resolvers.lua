@@ -428,6 +428,54 @@ function resolvers.calc.templates(t, e)
 	end
 end
 
+--Moddable tiles, based on ToME's
+function resolvers.moddable_tile(image, values)
+	return {__resolver="moddable_tile", image}
+end
+function resolvers.calc.moddable_tile(t, e)
+	local slot = t[1]
+	local r, r2
+	if slot == "cloak" then r = {"cloak_green"}
+	elseif slot == "heavy" then
+		r = {"plate","half_plate","half_plate2","half_plate3"}
+		r2 = {"leg_armor01","leg_armor02","leg_armor03","leg_armor04"}
+	elseif slot == "light" then
+		r = {"chainmail","chainmail3","leather_armour","leather_armour2","leather_armour3"}
+	--	r2 = {"lower_body_03","lower_body_04","lower_body_05","lower_body_06","lower_body_06",}
+	elseif slot == "robe" then r = {"monk_black","monk_blue","robe_green","robe_green_gold","robe_yellow"}
+	elseif slot == "shield" then r = {"shield_kite2","shield_round1","shield_round2","shield_round3"}
+	elseif slot == "staff" then r = {"staff_plain", "staff_mage"}
+	elseif slot == "leather_boots" then r = {"middle_brown","middle_brown2","middle_brown3",}
+	elseif slot == "heavy_boots" then r = {"middle_gold"}
+	elseif slot == "gauntlets" then r = {"gauntlet_blue",}
+	elseif slot == "gloves" then r = {"glove_red", "glove_brown"}
+	elseif slot == "sword" then r = {"short_sword", "long_sword"}
+	elseif slot == "greatsword" then r = {"great_sword"}
+	elseif slot == "trident" then r = {"trident"}
+	elseif slot == "whip" then r = {"whip"}
+	elseif slot == "mace" then r = {"mace", "mace2", "mace3"}
+	elseif slot == "handaxe" then r = {"hand_axe"}
+	elseif slot == "axe" then r = {"war_axe"}
+	elseif slot == "greataxe" then r = {"greataxe"}
+	elseif slot == "bow" then r = {"bow"}
+	elseif slot == "crossbow" then r = {"crossbow"}
+	elseif slot == "sling" then r = {"sling"}
+	elseif slot == "dagger" then r = {"dagger"}
+	elseif slot == "helm" then r = {"helm_plume"}
+	elseif slot == "leather_cap" then r = {"cap_black1"}
+	end
+	
+--	r = r[util.bound(ml, 1, #r)]
+	if r2 then
+	--	r2 = r2[util.bound(ml, 1, #r2)]
+		e.moddable_tile2 = r2
+	end
+	if type(r) == "string" then return r else e.moddable_tile_big = true return r[1] end
+end
+
+
+
+
 --Starting equipment resolver
 --- Resolves equipment creation for an actor
 function resolvers.startingeq(t)
