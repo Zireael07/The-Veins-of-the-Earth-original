@@ -52,8 +52,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.min = 2
 
     --UI starts here
---    local c_box = Textbox.new{title="Name: ", text="", chars=30, max_len=self.max, fct=function(text) self:okclick() end, on_mouse = function(button) if button == "right" then self:randomName() end end }
-      local c_box = Textbox.new{title="Name: ", text="" or game.player_name, chars=30, max_len=50, fct=function() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
+    local c_box = Textbox.new{title="Name: ", text="" or game.player_name, chars=30, max_len=50, fct=function() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
 
     self.c_name = c_box
 
@@ -99,16 +98,16 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self:generateLists()
 
     self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
-    self.c_class = List.new{width=self.iw/6, height = self.ih*0.4, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
+    self.c_class = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
 
     self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
-    self.c_race = List.new{width=self.iw/6, height = self.ih*0.4, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
+    self.c_race = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
 
     self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
-    self.c_background = List.new{width=self.iw/6, height = self.ih*0.4, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+    self.c_background = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
     self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
-    self.c_alignment = List.new{width=self.iw/6, height = self.ih*0.4, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+    self.c_alignment = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
     self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
     Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
@@ -117,7 +116,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
     ]]}
-    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = 400, scrollbar=true, text="Hello from description"}
+    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
 
     self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
     self.c_save = Button.new{text="     Play!     ", fct=function() self:atEnd() end}
