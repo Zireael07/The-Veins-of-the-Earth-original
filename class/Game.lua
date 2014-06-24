@@ -189,7 +189,7 @@ function _M:newGame()
         
         --Tutorial popup
         Dialog:yesnoPopup("Tutorial", "Go through the tutorial", function(ok) 
-			if ok then game:changeLevel(1, "Tutorial")
+			if ok then game:changeLevel(1, "tutorial")
 			else end
 		end, "Yes", "No")
 
@@ -224,7 +224,8 @@ function _M:loaded()
 	local th, tw = 32, 32
 	local gfx = config.settings.veins.tiles
 	if gfx == "ascii" then 
-		Map:setViewPort(0, 0, self.w, self.h, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
+		Map:setViewPort(0, 0, self.w, self.h, tw, th, "/data/font/DroidSansFallback.ttf", 32, true)
+	--	Map:setViewPort(0, 0, self.w, self.h, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
 		Map:resetTiles()
 		Map.tiles.use_images = false
 	else
