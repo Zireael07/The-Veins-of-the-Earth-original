@@ -81,8 +81,8 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         self:incStat(v == "left" and 1 or -1, item.stat_id)
     end, select=function(item, sel) self.sel = sel self.val = item.val self.id = item.stat_id self.delta = item.delta self:updateDesc(item) end}
 
-    self.c_reroll = Button.new{text="Reroll",fct=function() self:onRoll() end}
-    self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
+    self.c_reroll = Button.new{text="Reroll", width=45, fct=function() self:onRoll() end}
+    self.c_reset = Button.new{text="Reset",  width=45, fct=function() self:onReset() end}
 
     self:generatePerkText()
     self.c_perk_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#STARTING PERK: #LAST#"}
@@ -93,34 +93,38 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     --Make UI work
     self:setDescriptor("base", "base")
     self:setDescriptor("sex", "Female")
-   
-    --Create lists
-    self:generateLists()
 
-    self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
-    self.c_class = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
-
-    self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
-    self.c_race = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
-
-    self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
-    self.c_background = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
-
-    self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
-    self.c_alignment = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
-
-    self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
-    Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
-    #00FF00#Left click#FFFFFF# in table to increase a stat.
-    Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
-
-    Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
-    ]]}
-    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
-
+    -- Buttons at the bottom of the screen
     self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
     self.c_save = Button.new{text="     Play!     ", fct=function() self:atEnd() end}
     self.c_cancel = Button.new{text="Cancel", fct=function() self:cancel() end}
+
+    --Create lists
+    self:generateLists()
+
+    local lists_top = self.c_name.h + 25 + self.c_points.h + self.c_stats.h + 15
+    local lists_height = self.ih - lists_top - self.c_save.h - 45
+
+    self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
+    self.c_class = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
+
+    self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
+    self.c_race = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
+
+    self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
+    self.c_background = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+
+    self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
+    self.c_alignment = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+
+    self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
+Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
+#00FF00#Left click#FFFFFF# in table to increase a stat.
+Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
+
+Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
+]]}
+    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
 
     self:loadUI{
         -- First line
@@ -129,27 +133,26 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         {left=self.c_female, top=0, ui=self.c_male},
 
         {left=0, top=self.c_name.h + 5, ui=Separator.new{dir="vertical", size=self.iw - 10}},
+
         --Second line (stats)
         {left=0, top=self.c_name.h + 20, ui=self.c_points},
-        {left=0, top=self.c_name.h + 20 + self.c_points.h, ui=self.c_stats},
+        {left=0, top=self.c_name.h + 25 + self.c_points.h, ui=self.c_stats},
         {left=self.c_stats.w + 5, top = self.c_name.h + 20, ui=self.c_reset},
         {left=self.c_stats.w +5, top = self.c_name.h + 20 + self.c_reset.h + 5, ui=self.c_reroll},
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 45, ui=self.c_perk_text },
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 65, ui=self.c_perk_note },
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 85, ui=self.c_perk },
-        
 
-        {left=0, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
+        {left=0, top=self.c_name.h + 25 + self.c_points.h + self.c_stats.h, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
 
-   --     topstuff self.c_name.h + 15 + self.c_points.h + self.c_stats.h
         --Third line (lists)
-        {left=0, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_race_text},
+        {left=0, top=lists_top, ui=self.c_race_text},
         {left=0, top=self.c_race_text, ui=self.c_race},
-        {left=self.c_race, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_class_text},
+        {left=self.c_race, top=lists_top, ui=self.c_class_text},
         {left=self.c_race, top=self.c_class_text, ui=self.c_class},
-        {left=self.c_class, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_background_text},
+        {left=self.c_class, top=lists_top, ui=self.c_background_text},
         {left=self.c_class, top=self.c_background_text, ui=self.c_background},
-        {left=self.c_background, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_alignment_text},
+        {left=self.c_background, top=lists_top, ui=self.c_alignment_text},
         {left=self.c_background, top=self.c_alignment_text, ui=self.c_alignment},
 
         --Instructions and description
