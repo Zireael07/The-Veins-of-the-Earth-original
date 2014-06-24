@@ -32,13 +32,13 @@ module(..., package.seeall, class.inherit(Birther))
 local _points_text = "Points left: #00FF00#%d#WHITE#"
 local _perks_text = "#LIGHT_BLUE#%s#WHITE#"
 
-local reroll = false
-
 function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.quickbirth = quickbirth
     self.actor = actor
     self.order = order
     self.at_end = at_end
+
+    self.reroll = false
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Character Creation", math.max(game.w * 0.7, 950), game.h*0.8, nil, nil, font)
@@ -70,7 +70,8 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     --Stats list
 
-    self.unused_stats = self.unused_stats or 32
+    self.starting_unused_stats = 20
+    self.unused_stats = self.unused_stats or self.starting_unused_stats
     self.c_points = Textzone.new{width=self.iw/6, height=15, no_color_bleed=true, text=_points_text:format(self.unused_stats)}
 
     self:generateStats()
@@ -119,7 +120,8 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
 Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
-#00FF00#Left click#FFFFFF# in table to increase a stat.
+#00FF00#Left click#FFFFFF# on a stat to increase it.
+#00FF00#Right click#FFFFFF# on a stat to decrease it.
 Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
 
 Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
@@ -189,7 +191,7 @@ function _M:onSetupPB()
         self.actor.stats[i] = 10
     end
 
-    reroll = false
+    self.reroll = false
 end
 
 --To do at end/on finish
@@ -552,10 +554,9 @@ end
 
 --Stats stuff
 function _M:getCost(val)
-    --Handle differing costs (PF style)
+    --Handle differing costs (Pathfinder style)
     -- 7 = -4; 8 = -2; 9 = -1; 10 = 0; 11 = 1; 12 = 2; 13 = 3; 14 = 5; 15 = 7; 16 = 10; 17 = 13; 18 = 17
     local costs = { -4, -2, -1, 0, 1, 2, 3, 5, 7, 10, 13, 17 }
-
 
     return costs[val-6]
 end
@@ -566,29 +567,22 @@ function _M:incStat(v, id)
     local id = self.id
     local val = self.val
 
-    local delta = self:getCost(val) * v
-
-    if reroll then return end
-
+    if self.reroll then return end
 
     --Limits
-    if v == 1 then
-        if delta > self.unused_stats then
-            self:simplePopup("Not enough stat points", "You have no stat points left!")
-            return
-        end
-        if self.unused_stats <= 0 then
-            self:simplePopup("Not enough stat points", "You have no stat points left!")
-            return
-        end
-        if self.actor.stats[id] >= 18 then
-            self:simplePopup("Max stat value reached", "You cannot increase a stat above 18")
-            return
-        end
-    else 
-        self:simplePopup("Press Reset", "Press Reset if you find the current selections too high!")
-        return end
-
+    if self.actor.stats[id] + v > 18 then
+        self:simplePopup("Max stat value reached", "You cannot increase a stat above 18.")
+        return
+    end
+    if self.actor.stats[id] + v < 7 then
+        self:simplePopup("Min stat value reached", "You cannot decrease a stat below 7.")
+        return
+    end
+    local delta = self:getCost(val + v) - self:getCost(val)
+    if delta > self.unused_stats then
+        self:simplePopup("Not enough stat points", "You have no stat points left.")
+        return
+    end
 
     local sel = self.sel
 --  self.actor.stats[id] = self.actor.stats[id] + v
@@ -633,7 +627,7 @@ function _M:onRoll()
         self.actor.stats[i] = rng.dice(3,6)
     end
 
-    reroll = true
+    self.reroll = true
     
     --Make sure that the highest stat is not =< than 13 and that the sum of all modifiers isn't =< 0
     local player = self.actor
@@ -659,7 +653,7 @@ function _M:onRoll()
 end
 
 function _M:onReset()
-    self.unused_stats = 32
+    self.unused_stats = self.starting_unused_stats
     self.c_points.text = _points_text:format(self.unused_stats)
     self.c_points:generate()
     self:onSetupPB()
