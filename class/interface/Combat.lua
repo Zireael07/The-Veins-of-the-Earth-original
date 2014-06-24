@@ -339,7 +339,8 @@ function _M:applyPoison(poison, target)
   --Failed save, set timer for secondary damage
   else 
     target.poison_timer = 10
-    if target == game.player then game.flashLog(game.flash.BAD, "You are poisoned!")
+    if target == game.player then --game.flashLog(game.flash.BAD, "You are poisoned!")
+      game.log("You are poisoned!")
     else game.log("Target is poisoned!") end
       --Failed save, time for primary poison damage
       if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MIDDLING_STR, 10, {}) end

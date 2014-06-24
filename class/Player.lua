@@ -278,7 +278,7 @@ function _M:act()
   end
 
   -- Clean log flasher
-  game.flash:empty(true)
+--  game.flash:empty(true)
 
   -- Resting ? Running ? Otherwise pause
   if not self:restStep() and not self:runStep() and self.player then

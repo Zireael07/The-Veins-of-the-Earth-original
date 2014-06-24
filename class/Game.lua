@@ -94,7 +94,7 @@ end
 
 function _M:run()
 	veins.saveMarson()
-	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
+--	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
 	self.logdisplay = LogDisplay.new(0, self.h * 0.5, self.w * 0.5, self.h * 0.2, 5, nil, 14, nil, nil)
 	self.logdisplay:enableFading(7)
 
@@ -127,7 +127,7 @@ function _M:run()
 
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
-	self.flashLog(self.flash.GOOD, "Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 or h to open the help screen.")
+	self.log("Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 or h to open the help screen.")
 
 	-- Setup inputs
 	self:setupCommands()
@@ -700,7 +700,7 @@ function _M:display(nb_keyframe)
 	end
 
 	-- We display the player's interface
-	self.flash:toScreen(nb_keyframe)
+--	self.flash:toScreen(nb_keyframe)
 	self.logdisplay:toScreen()
 	if self.show_npc_list then
 		self.npcs_display:toScreen()
