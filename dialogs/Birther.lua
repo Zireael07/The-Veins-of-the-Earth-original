@@ -32,13 +32,13 @@ module(..., package.seeall, class.inherit(Birther))
 local _points_text = "Points left: #00FF00#%d#WHITE#"
 local _perks_text = "#LIGHT_BLUE#%s#WHITE#"
 
-local reroll = false
-
 function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.quickbirth = quickbirth
     self.actor = actor
     self.order = order
     self.at_end = at_end
+
+    self.reroll = false
     
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Character Creation", math.max(game.w * 0.7, 950), game.h*0.8, nil, nil, font)
@@ -70,7 +70,8 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     --Stats list
 
-    self.unused_stats = self.unused_stats or 32
+    self.starting_unused_stats = 20
+    self.unused_stats = self.unused_stats or self.starting_unused_stats
     self.c_points = Textzone.new{width=self.iw/6, height=15, no_color_bleed=true, text=_points_text:format(self.unused_stats)}
 
     self:generateStats()
@@ -79,10 +80,10 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         {name="Value", width=30, display_prop="val"},
     }, list=self.list_stats, fct=function(item, _, v)
         self:incStat(v == "left" and 1 or -1, item.stat_id)
-    end, select=function(item, sel) self.sel = sel self.val = item.val self.id = item.stat_id self.delta = item.delta self:updateDesc(item) end}
+    end, select=function(item, sel) self.sel = sel self.val = item.val self.id = item.stat_id self:updateDesc(item) end}
 
-    self.c_reroll = Button.new{text="Reroll",fct=function() self:onRoll() end}
-    self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
+    self.c_reroll = Button.new{text="Reroll", width=45, fct=function() self:onRoll() end}
+    self.c_reset = Button.new{text="Reset",  width=45, fct=function() self:onReset() end}
 
     self:generatePerkText()
     self.c_perk_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#STARTING PERK: #LAST#"}
@@ -93,34 +94,39 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     --Make UI work
     self:setDescriptor("base", "base")
     self:setDescriptor("sex", "Female")
-   
-    --Create lists
-    self:generateLists()
 
-    self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
-    self.c_class = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
-
-    self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
-    self.c_race = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
-
-    self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
-    self.c_background = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
-
-    self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
-    self.c_alignment = List.new{width=self.iw/6, height = self.ih*0.3, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
-
-    self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
-    Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
-    #00FF00#Left click#FFFFFF# in table to increase a stat.
-    Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
-
-    Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
-    ]]}
-    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
-
+    -- Buttons at the bottom of the screen
     self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
     self.c_save = Button.new{text="     Play!     ", fct=function() self:atEnd() end}
     self.c_cancel = Button.new{text="Cancel", fct=function() self:cancel() end}
+
+    --Create lists
+    self:generateLists()
+
+    local lists_top = self.c_name.h + 25 + self.c_points.h + self.c_stats.h + 15
+    local lists_height = self.ih - lists_top - self.c_save.h - 45
+
+    self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
+    self.c_class = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
+
+    self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
+    self.c_race = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
+
+    self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
+    self.c_background = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+
+    self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
+    self.c_alignment = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+
+    self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
+Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
+#00FF00#Left click#FFFFFF# on a stat to increase it.
+#00FF00#Right click#FFFFFF# on a stat to decrease it.
+Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
+
+Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
+]]}
+    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
 
     self:loadUI{
         -- First line
@@ -129,27 +135,26 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         {left=self.c_female, top=0, ui=self.c_male},
 
         {left=0, top=self.c_name.h + 5, ui=Separator.new{dir="vertical", size=self.iw - 10}},
+
         --Second line (stats)
         {left=0, top=self.c_name.h + 20, ui=self.c_points},
-        {left=0, top=self.c_name.h + 20 + self.c_points.h, ui=self.c_stats},
+        {left=0, top=self.c_name.h + 25 + self.c_points.h, ui=self.c_stats},
         {left=self.c_stats.w + 5, top = self.c_name.h + 20, ui=self.c_reset},
         {left=self.c_stats.w +5, top = self.c_name.h + 20 + self.c_reset.h + 5, ui=self.c_reroll},
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 45, ui=self.c_perk_text },
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 65, ui=self.c_perk_note },
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 85, ui=self.c_perk },
-        
 
-        {left=0, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
+        {left=0, top=self.c_name.h + 25 + self.c_points.h + self.c_stats.h, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
 
-   --     topstuff self.c_name.h + 15 + self.c_points.h + self.c_stats.h
         --Third line (lists)
-        {left=0, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_race_text},
+        {left=0, top=lists_top, ui=self.c_race_text},
         {left=0, top=self.c_race_text, ui=self.c_race},
-        {left=self.c_race, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_class_text},
+        {left=self.c_race, top=lists_top, ui=self.c_class_text},
         {left=self.c_race, top=self.c_class_text, ui=self.c_class},
-        {left=self.c_class, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_background_text},
+        {left=self.c_class, top=lists_top, ui=self.c_background_text},
         {left=self.c_class, top=self.c_background_text, ui=self.c_background},
-        {left=self.c_background, top=self.c_name.h + 20 + self.c_points.h + self.c_stats.h + 10, ui=self.c_alignment_text},
+        {left=self.c_background, top=lists_top, ui=self.c_alignment_text},
         {left=self.c_background, top=self.c_alignment_text, ui=self.c_alignment},
 
         --Instructions and description
@@ -186,7 +191,7 @@ function _M:onSetupPB()
         self.actor.stats[i] = 10
     end
 
-    reroll = false
+    self.reroll = false
 end
 
 --To do at end/on finish
@@ -441,13 +446,13 @@ function _M:generateStats()
 
     list = 
     {
-            {name="STR", val=self.actor:getStr(), stat_id=self.actor.STAT_STR, delta = 1, desc="#GOLD#Strength (STR)#LAST#  is important for melee fighting."},
-            {name="DEX", val=self.actor:getDex(), stat_id=self.actor.STAT_DEX, delta = 1, desc="You'll want to increase #GOLD#Dexterity (DEX)#LAST# if you want to play a ranger or a rogue. It's less important for fighters, who wear heavy armor."},
-            {name="CON", val=self.actor:getCon(), stat_id=self.actor.STAT_CON, delta = 1, desc="#GOLD#Constitution (CON)#LAST# is vital for all characters, since it affects your hitpoints."},
-            {name="INT", val=self.actor:getInt(), stat_id=self.actor.STAT_INT, delta = 1, desc="#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard."},
-            {name="WIS", val=self.actor:getWis(), stat_id=self.actor.STAT_WIS, delta = 1, desc="#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster."},
-            {name="CHA", val=self.actor:getCha(), stat_id=self.actor.STAT_CHA, delta = 1, desc="#GOLD#Charisma (CHA)#LAST# is a key attribute for shamans or sorcerers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells."},
-            {name="LUC", val=self.actor:getLuc(), stat_id=self.actor.STAT_LUC, delta = 1, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
+            {name="STR", val=self.actor:getStr(), stat_id=self.actor.STAT_STR, desc="#GOLD#Strength (STR)#LAST# is important for melee fighting."},
+            {name="DEX", val=self.actor:getDex(), stat_id=self.actor.STAT_DEX, desc="You'll want to increase #GOLD#Dexterity (DEX)#LAST# if you want to play a ranger or a rogue. It's less important for fighters, who wear heavy armor."},
+            {name="CON", val=self.actor:getCon(), stat_id=self.actor.STAT_CON, desc="#GOLD#Constitution (CON)#LAST# is vital for all characters, since it affects your hitpoints."},
+            {name="INT", val=self.actor:getInt(), stat_id=self.actor.STAT_INT, desc="#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard."},
+            {name="WIS", val=self.actor:getWis(), stat_id=self.actor.STAT_WIS, desc="#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster."},
+            {name="CHA", val=self.actor:getCha(), stat_id=self.actor.STAT_CHA, desc="#GOLD#Charisma (CHA)#LAST# is a key attribute for shamans or sorcerers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells."},
+            {name="LUC", val=self.actor:getLuc(), stat_id=self.actor.STAT_LUC, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
         }
 
     self.list_stats = list
@@ -549,10 +554,9 @@ end
 
 --Stats stuff
 function _M:getCost(val)
-    --Handle differing costs (PF style)
+    --Handle differing costs (Pathfinder style)
     -- 7 = -4; 8 = -2; 9 = -1; 10 = 0; 11 = 1; 12 = 2; 13 = 3; 14 = 5; 15 = 7; 16 = 10; 17 = 13; 18 = 17
     local costs = { -4, -2, -1, 0, 1, 2, 3, 5, 7, 10, 13, 17 }
-
 
     return costs[val-6]
 end
@@ -563,29 +567,22 @@ function _M:incStat(v, id)
     local id = self.id
     local val = self.val
 
-    local delta = self:getCost(val) * v
-
-    if reroll then return end
-
+    if self.reroll then return end
 
     --Limits
-    if v == 1 then
-        if delta > self.unused_stats then
-            self:simplePopup("Not enough stat points", "You have no stat points left!")
-            return
-        end
-        if self.unused_stats <= 0 then
-            self:simplePopup("Not enough stat points", "You have no stat points left!")
-            return
-        end
-        if self.actor.stats[id] >= 18 then
-            self:simplePopup("Max stat value reached", "You cannot increase a stat above 18")
-            return
-        end
-    else 
-        self:simplePopup("Press Reset", "Press Reset if you find the current selections too high!")
-        return end
-
+    if self.actor.stats[id] + v > 18 then
+        self:simplePopup("Max stat value reached", "You cannot increase a stat above 18.")
+        return
+    end
+    if self.actor.stats[id] + v < 7 then
+        self:simplePopup("Min stat value reached", "You cannot decrease a stat below 7.")
+        return
+    end
+    local delta = self:getCost(val + v) - self:getCost(val)
+    if delta > self.unused_stats then
+        self:simplePopup("Not enough stat points", "You have no stat points left.")
+        return
+    end
 
     local sel = self.sel
 --  self.actor.stats[id] = self.actor.stats[id] + v
@@ -630,7 +627,7 @@ function _M:onRoll()
         self.actor.stats[i] = rng.dice(3,6)
     end
 
-    reroll = true
+    self.reroll = true
     
     --Make sure that the highest stat is not =< than 13 and that the sum of all modifiers isn't =< 0
     local player = self.actor
@@ -656,7 +653,7 @@ function _M:onRoll()
 end
 
 function _M:onReset()
-    self.unused_stats = 32
+    self.unused_stats = self.starting_unused_stats
     self.c_points.text = _points_text:format(self.unused_stats)
     self.c_points:generate()
     self:onSetupPB()
