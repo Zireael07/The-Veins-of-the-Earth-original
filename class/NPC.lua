@@ -122,9 +122,9 @@ function _M:tooltip()
 
 
 	return str..([[
-	Killed by you: %s
-	Target: %s
-	UID: %d]]):format(
+Killed by you: %s
+Target: %s
+UID: %d]]):format(
 	killed,
 	target and target.name or "none",
 	self.uid)

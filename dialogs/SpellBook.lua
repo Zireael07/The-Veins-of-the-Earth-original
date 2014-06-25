@@ -38,28 +38,29 @@ function _M:init(actor)
 		types[#types+1] = {title="Divine", kind="divine"}
 	end
 
-	self.c_tabs = Tabs.new{width=self.iw - 5, tabs=types, on_change=function(kind) self:switchTo(kind) end}
+	self.c_tabs = Tabs.new{width=650, tabs=types, on_change=function(kind) self:switchTo(kind) end}
 
 	self.c_accept = Button.new{text="Accept",fct=function() self:onEnd("accept") end}
 	self.c_decline = Button.new{text="Decline",fct=function() self:onEnd("decline") end}
 	self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
-	
+
 	self.spells = {}
 	for i=1, 9 do
-		self.spells[i] =  ImageList.new{width=self.w, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list[i],
+		self.spells[i] = ImageList.new{width=650, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list[i],
 			fct=function(item, button) self:onSpell(item, button) end,
 --            on_select=function(item,sel) self:on_select(item) end,
 		}
 	end
 
 	self.c_desc = SurfaceZone.new{width=500, height=500,alpha=1.0}
-	self.c_charges = SurfaceZone.new{width = 500, height=500,alpha=1.0}
-	
-	--Spell info stuff
-	self.c_spell = List.new{width=200, nb_items=#self.list_spellsinfo, height = self.ih*0.8, list=self.list_spellsinfo, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
-	self.c_info = TextzoneList.new{ scrollbar = true, width=200, height = self.ih }
-	self.c_sep = Separator.new{dir="horizontal", size=self.ih - 20}
+	self.c_charges = SurfaceZone.new{width=650, height=500, alpha=1.0}
 
+	--Spell info stuff
+	self.c_spell = List.new{width=200, nb_items=#self.list_spellsinfo, height = self.ih*0.8, list=self.list_spellsinfo, all_clicks=true,
+		select=function(item, sel) self:on_select(item, sel) end,
+		fct=function(item, sel, button) self:onSpell(item, button) end,
+		scrollbar=true}
+	self.c_info = TextzoneList.new{ scrollbar = true, width=200, height = self.ih }
 
 	self:generateList(types[1].kind)
 
@@ -81,8 +82,6 @@ function _M:init(actor)
 		{top=self.c_desc,ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
 		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info}, 
---        {left=self.c_desc.w + 150 + self.c_spell.w, top = 0, ui=self.c_sep}, 
-		
 	}
 
 	self:setupUI()
@@ -136,7 +135,7 @@ function _M:drawDialog(s)
 			local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
 			c:drawColorString(font, str, ww, hh, 255, 255, 255, true)
 			ww = ww + self.spells[i].tile_w + self.spells[i].padding 
-			end  
+		end  
 		h = h + 90 
 	end
 
@@ -166,7 +165,6 @@ function _M:onSpell(item, button)
 --        self.c_info.text = item.desc
 	end
 	self:drawDialog()
-
 end
 
 function _M:onReset()
@@ -175,8 +173,7 @@ function _M:onReset()
 	self:drawDialog()
 end
 
-function _M:generateList(spellist)
-
+function _M:generateList(kind)
 	local player = game.player
 	local list = {}
 	for i = 1, 9 do
@@ -185,7 +182,7 @@ function _M:generateList(spellist)
 
 	for tid, _ in pairs(player.talents) do
 		local t = player:getTalentFromId(tid)
-		if t.is_spell and t.spell_kind and t.show_in_spellbook then
+		if t.is_spell and t.spell_kind and t.show_in_spellbook and t.spell_kind[kind] then
 			local slist = list[t.level]
 			table.insert(list[t.level], t)
 		end
@@ -209,7 +206,6 @@ function _M:generateSpell()
 		local t = player:getTalentFromId(tid)
 		if player:knowTalent(t) and t.is_spell and t.spell_kind and t.show_in_spellbook then
 	  		--TO DO: get rid of duplicates
-			local tid
 			local color
 			if player:knowTalent(t) then color = {255,255,255}
 			else color = {0, 187, 187} end
@@ -217,30 +213,28 @@ function _M:generateSpell()
 			s = player:getTalentReqDesc(t.id):toString()
 			d = d..s.."\n#WHITE#"
 			d = d..t.info(player,t)
-			list[#list+1] = {name=t.name, color = color, desc=d, talent=t, image=t.image }
+			list[#list+1] = {name=t.name, color = color, desc=d, data=t, image=t.image }
 		end
 	end
 	self.list_spellsinfo = list
 	table.sort(self.list_spellsinfo, function (a,b) return a.name < b.name end)
-
 end
 
-function _M:on_select(item,sel)
-
+function _M:on_select(item, sel)
 	if self.c_info then self.c_info:switchItem(item, item.desc) end
 	self.selection = sel    
 
 	--Taken from ToME 4's show lore
 	if item.image then
-			if type(item.image) == "string" then
-				self.image = Image.new{file=item.image, auto_width=true, auto_height=true}
-				local r = self.image.w / self.image.h
-				self.image.w = 64
-				self.image.h = 64
-				item.image = self.image
-			else
-				self.image = item.image
-			end
+		if type(item.image) == "string" then
+			self.image = Image.new{file=item.image, auto_width=true, auto_height=true}
+			local r = self.image.w / self.image.h
+			self.image.w = 64
+			self.image.h = 64
+			item.image = self.image
+		else
+			self.image = item.image
+		end
 	else
 		self.image = nil
 	end
@@ -259,7 +253,6 @@ function _M:innerDisplay(x, y, nb_keyframes)
 		self.image:display(x + self.iw - self.image.w*2, y + 5)
 	end
 end
-
 
 function _M:onEnd(result)
 	game:unregisterDialog(self)
