@@ -14,6 +14,7 @@ Contributors:
 - Sebsebeleb
 - Zireael
 - DarkGod
+- Josh Kelley (joshkel)
 
 Key features:
 

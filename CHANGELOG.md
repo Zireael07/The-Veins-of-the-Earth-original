@@ -2,9 +2,16 @@ CHANGELOG
 
 * bug fix - naming box not accepting keypresses [kudos to Castler]
 * bug fix - bonus feats button now available only to fighters
+* bug fix - no more lua error due to a typo in one of the poison defs
+* bug fix - play button being unclickable in some resolutions
+* bug fix - charges not shown for some spells in spellbook [joshkel]
+* bug fix - using Diplomacy/Animal Empathy on invalid target no longer wastes a turn [joshkel]
+* bug fix - using Diplomacy on yourself no longer leads to amusing stuff [joshkel]
+
 
 * update to T-Engine 1.2.2
-* new spell: mount
+* new spell: mount, haste
+* make player tiles change depending on player equipment ("moddable" as in ToME 4)
 * add stack number display
 * add settings
 * integrate parts of Marson's UI addon
@@ -12,10 +19,12 @@ CHANGELOG
 * rearrange the UI a bit; add log fade
 * add equipdoll to inventory screen
 * add information pop-ups to char creation screen
+* enable right clicking when manually selecting attributes [joshkel]
 * add tutorial level
 * shuffle events stuff to GameState.lua
 * shuffle item perks stuff to Player.lua
-
+* remove the flasher (top message bar) since it wouldn't clear properly
+* clicking spell name in spellbook now has the same effect as clicking spell icon [joshkel]
 
 
 0.19.0 - beta 5.5 - 08/06/2014
