@@ -133,7 +133,14 @@ newBirthDescriptor {
 
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
 
-			actor:learnTalentType("arcane")
+			actor:learnTalentType("abjuration")
+			actor:learnTalentType("conjuration")
+			actor:learnTalentType("divination")
+			actor:learnTalentType("enchantment")
+			actor:learnTalentType("illusion")
+			actor:learnTalentType("transmutation")
+			actor:learnTalentType("evocation")
+			actor:learnTalentType("necromancy")
 			actor:learnTalentType("arcane_divine")
 			
 			descriptor.learn_all_spells_of_level(actor, 0)
@@ -938,6 +945,9 @@ newBirthDescriptor {
 			--Level-specific bonuses
             if level == 4 then actor:learnTalent(actor.T_TURN_UNDEAD, true) end
             if level == 5 then 
+            	--Get spellbook
+            	actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+
             	actor:learnTalentType("divine")
 
             	descriptor.learn_all_spells_of_level(actor, 0)
@@ -946,7 +956,7 @@ newBirthDescriptor {
             	actor:learnTalent(actor.T_SUMMON_MOUNT, true)
             end
 
-            if level > 5 then
+            if level >= 5 then
 				--Gain a caster level every level
 				actor:incCasterLevel("divine", 1)
 			end
@@ -1108,13 +1118,16 @@ newBirthDescriptor {
 
 
 		if level == 5 then 
+			--Get spellbook
+            actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+
 			actor:learnTalentType("divine")
 
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
 		end
 
-		if level > 5 then
+		if level >= 5 then
 			--Gain a caster level every level
 			actor:incCasterLevel("divine", 1)
 		end

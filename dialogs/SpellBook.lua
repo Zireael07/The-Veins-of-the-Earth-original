@@ -44,6 +44,7 @@ function _M:init(actor)
 	self.c_decline = Button.new{text="Decline",fct=function() self:onEnd("decline") end}
 	self.c_reset = Button.new{text="Reset", fct=function() self:onReset() end}
 
+	--Needs a safeguard for a case when you do not know any spells for some reason
 	self.spells = {}
 	for i=1, 9 do
 		self.spells[i] = ImageList.new{width=650, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list[i],
