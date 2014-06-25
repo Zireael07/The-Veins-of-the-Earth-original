@@ -173,9 +173,9 @@ end
 
 function _M:tooltip()
   return ([[%s%s
-    #RED#HP: %d (%d%%)
-    #WHITE#STR %s DEX %s CON %s 
-    WIS %s INT %s CHA %s]]):format(
+#RED#HP: %d (%d%%)
+#WHITE#STR %s DEX %s CON %s 
+WIS %s INT %s CHA %s]]):format(
     self:getDisplayString(),
     self.name,
     self.life, self.life * 100 / self.max_life,

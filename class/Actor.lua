@@ -416,6 +416,19 @@ function _M:colorStats(stat)
 	else return "#WHITE#"..self:getStat(stat).."#LAST#" end
 end
 
+function _M:formatCR()
+    local cr = self:attr('challenge')
+    local whole = math.floor(cr)
+    local fraction = cr - whole
+
+    if fraction == 0 then fraction = ''
+    else fraction = ("1/%i"):format(math.round(1/fraction)) end
+
+    if whole == 0 and fraction == '' then return "0"
+    elseif whole == 0 then return fraction
+    else return tostring(whole) .. ' ' .. fraction end
+end
+
 function _M:colorCR()
 	local player = game.player
 
@@ -423,10 +436,10 @@ function _M:colorCR()
         return "#WHITE#-#LAST#"
     end
 
-	if self.challenge > player.level then return "#FIREBRICK#"..self:attr('challenge').."#LAST#"
-	elseif self.challenge < (player.level - 4) then return "#LIGHT_GREEN#"..self:attr('challenge').."#LAST#"
-	elseif self.challenge < player.level then return "#DARK_GREEN#"..self:attr('challenge').."#LAST#"
-	else return "#GOLD#"..self:attr('challenge').."#LAST#" end
+	if self.challenge > player.level then return "#FIREBRICK#"..self:formatCR().."#LAST#"
+	elseif self.challenge < (player.level - 4) then return "#LIGHT_GREEN#"..self:formatCR().."#LAST#"
+	elseif self.challenge < player.level then return "#DARK_GREEN#"..self:formatCR().."#LAST#"
+	else return "#GOLD#"..self:formatCR().."#LAST#" end
 end	
 
 function _M:colorFaction()
@@ -443,15 +456,15 @@ end
 function _M:tooltip()
 	if self.life >= 0 then
 	return ([[%s #GOLD#%s#LAST# %s %s
-		#RED#HP: %d (%d%%)#LAST#
-		STR %s DEX %s CON %s 
-		INT %s WIS %s CHA %s
-		#GOLD#CR %s#LAST#
-		#GOLD#XP %d#LAST#
-		#WHITE#%s
+#RED#HP: %d (%d%%)#LAST#
+STR %s DEX %s CON %s 
+INT %s WIS %s CHA %s
+#GOLD#CR %s#LAST#
+#GOLD#XP %d#LAST#
+#WHITE#%s
 
-		%s
-		]]):format(
+%s
+]]):format(
 		self:getDisplayString(),
 		self:templateName(), self.name, self:className(),
 		self.life, self.life / self.max_life *100,
@@ -469,15 +482,15 @@ function _M:tooltip()
 		--To stop % getting out of whack when HP are negative, we remove them from the tooltips altogether
 	else
 	return ([[%s%s %s
-		#CRIMSON#HP: %d#LAST#
-		STR %s DEX %s CON %s 
-		INT %s WIS %s CHA %s
-		#GOLD#CR %s#LAST#
-		#GOLD#XP %d#LAST#
-		#WHITE#%s
+#CRIMSON#HP: %d#LAST#
+STR %s DEX %s CON %s 
+INT %s WIS %s CHA %s
+#GOLD#CR %s#LAST#
+#GOLD#XP %d#LAST#
+#WHITE#%s
 
-		%s 
-		]]):format(
+%s 
+]]):format(
 		self:getDisplayString(),
 		self.name, self:className(),
 		self.life,
