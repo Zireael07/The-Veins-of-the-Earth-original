@@ -128,30 +128,25 @@ newTalent{
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
-		
+		if target.type ~= "humanoid" then game.log("Diplomacy only works on humanoids.") return nil end
 
-		if target.type == "humanoid" then
+		if target == self then
+			game.log("You talk to yourself.")
+			return nil  -- Talking to yourself is a free action. :-)
+		end
 
-			local check = self:skillCheck("diplomacy", 15)
-			if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
+		local check = self:skillCheck("diplomacy", 15)
+		if check then
+			--target:setPersonalReaction(game.player, 150) --makes it neutral
 			target.faction = "neutral"
-			--From Qi Daozei
-		 	-- Reset NPCs' targets.  Otherwise, they follow the player around
-        	-- like a puppy dog.
-        	for uid, e in pairs(game.level.entities) do
-            print(e.name)
-            	if e.setTarget and e ~= game.player then
-                	e:setTarget(nil)
-            	end
-        	end
-			else game.log("The target resists your attempts to influence it") end
-		else game.log("You pick a wrong target") end
+			-- Reset NPC's target.  Otherwise, it may follow the player around like a puppy dog.
+			if target.setTarget then target:setTarget(nil) end
+		else game.log("The target resists your attempts to influence it.") end
 
-		
 		return true
 	end,
 	info = function(self, t)
-		return "Talk to a sentient creature"
+		return "Talk to a sentient creature and attempt to befriend it"
 	end,
 }
 
@@ -170,24 +165,15 @@ newTalent{
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
-		
+		if target.type ~= "animal" then game.log("Animal Empathy only works on animals.") return nil end
 
-		if target.type == "animal" then
-			local check = self:skillCheck("handleanimal", 15)
-			if check then --target:setPersonalReaction(game.player, 150) --makes it neutral
+		local check = self:skillCheck("handleanimal", 15)
+		if check then
+			--target:setPersonalReaction(game.player, 150) --makes it neutral
 			target.faction = "neutral"
-			--From Qi Daozei
-		 -- Reset NPCs' targets.  Otherwise, they follow the player around
-        	-- like a puppy dog.
-        	for uid, e in pairs(game.level.entities) do
-            print(e.name)
-            	if e.setTarget and e ~= game.player then
-                	e:setTarget(nil)
-           		end
-        	end
-
-			else game.log("The target resists your attempts to influence it") end
-		else game.log("You pick a wrong target") end
+			-- Reset NPC's target.  Otherwise, it may follow the player around like a puppy dog.
+			if target.setTarget then target:setTarget(nil) end
+		else game.log("The target resists your attempts to influence it") end
 		
 		return true
 	end,
