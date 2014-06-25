@@ -1430,6 +1430,9 @@ function _M:incMaxCharges(tid, v, spell_list)
 	--Does the player have the spell slots for this level?
 	if not self:getMaxMaxCharges()[t.level] then return end
 
+    -- Disallow going below 0.
+    v = math.max(-(self.max_charges[tid] or 0), v)
+
 	--Can the player have this many max charges for this type?
 	local a = self:getAllocatedCharges(spell_list, t.level)
 	if a + v > self:getMaxMaxCharges()[t.level] then return end
