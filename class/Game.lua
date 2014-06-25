@@ -95,7 +95,7 @@ end
 function _M:run()
 	veins.saveMarson()
 --	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
-	self.logdisplay = LogDisplay.new(0, self.h * 0.5, self.w * 0.5, self.h * 0.2, 5, nil, 14, nil, nil)
+	self.logdisplay = LogDisplay.new(0, self.h * 0.5, 600, self.h * 0.2, 5, nil, 14, nil, nil)
 	self.logdisplay:enableFading(7)
 
 	self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.85, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
