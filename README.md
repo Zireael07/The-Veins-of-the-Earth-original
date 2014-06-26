@@ -14,7 +14,7 @@ Contributors:
 - Sebsebeleb
 - Zireael
 - DarkGod
-- Josh Kelley (joshkel)
+- Castler 
 
 Key features:
 
@@ -51,7 +51,6 @@ Thanks to:
 - Grey, HousePet for coding help
 - Zonk for brainstorming
 - Leissi for brainstorming and testing
-- Castler for testing and two important fixes (FOV and textbox input)
 - AuraOfTheDawn for testing & coming up with a nice meme
 - grazz for two small fixes
 - lukep for Combat.lua patch and testing

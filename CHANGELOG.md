@@ -4,9 +4,11 @@ CHANGELOG
 * bug fix - bonus feats button now available only to fighters
 * bug fix - no more lua error due to a typo in one of the poison defs
 * bug fix - play button being unclickable in some resolutions
-* bug fix - charges not shown for some spells in spellbook [joshkel]
-* bug fix - using Diplomacy/Animal Empathy on invalid target no longer wastes a turn [joshkel]
-* bug fix - using Diplomacy on yourself no longer leads to amusing stuff [joshkel]
+* bug fix - charges not shown for some spells in spellbook [Castler]
+* bug fix - using Diplomacy/Animal Empathy on invalid target no longer wastes a turn [Castler]
+* bug fix - using Diplomacy on yourself no longer leads to amusing stuff [Castler]
+* bug fix - bards not receiving spells
+* bug fix - paladins and rangers missing the spellbook button
 
 
 * update to T-Engine 1.2.2
@@ -19,12 +21,12 @@ CHANGELOG
 * rearrange the UI a bit; add log fade
 * add equipdoll to inventory screen
 * add information pop-ups to char creation screen
-* enable right clicking when manually selecting attributes [joshkel]
+* enable right clicking when manually selecting attributes [Castler]
 * add tutorial level
 * shuffle events stuff to GameState.lua
 * shuffle item perks stuff to Player.lua
 * remove the flasher (top message bar) since it wouldn't clear properly
-* clicking spell name in spellbook now has the same effect as clicking spell icon [joshkel]
+* clicking spell name in spellbook now has the same effect as clicking spell icon [Castler]
 
 
 0.19.0 - beta 5.5 - 08/06/2014
