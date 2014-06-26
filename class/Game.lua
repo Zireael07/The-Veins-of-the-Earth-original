@@ -1074,10 +1074,10 @@ function _M:setupMouse(reset)
 	end)
 
 	-- Scroll message log
-	self.mouse:registerZone(self.logdisplay.display_x, self.logdisplay.display_y, self.w, self.h, function(button)
+--[[	self.mouse:registerZone(self.logdisplay.display_x, self.logdisplay.display_y, self.w, self.h, function(button)
 		if button == "wheelup" then self.logdisplay:scrollUp(1) end
 		if button == "wheeldown" then self.logdisplay:scrollUp(-1) end
-	end, {button=true})
+	end, {button=true})]]
 	-- Use hotkeys with mouse
 	self.mouse:registerZone(self.hotkeys_display.display_x, self.hotkeys_display.display_y, self.w, self.h, function(button, mx, my, xrel, yrel, bx, by, event)
 		self.hotkeys_display:onMouse(button, mx, my, event == "button", function(text) self.tooltip:displayAtMap(nil, nil, self.w, self.h, tostring(text)) end)
