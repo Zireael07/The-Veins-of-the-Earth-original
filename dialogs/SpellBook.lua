@@ -19,6 +19,7 @@ local TextzoneList = require "engine.ui.TextzoneList"
 local Separator = require "engine.ui.Separator"
 local List = require "engine.ui.List"
 local Image = require "engine.ui.Image"
+local Tab = require 'engine.ui.Tab'
 
 module(..., package.seeall, class.inherit(Dialog))
 
@@ -63,37 +64,84 @@ function _M:init(actor)
 		scrollbar=true}
 	self.c_info = TextzoneList.new{ scrollbar = true, width=200, height = self.ih }
 
+	--Tabsception!
+
+	self.t_leveltwo = Tab.new {
+    title = 'Levels 1-2',
+    default = true,
+    fct = function() end,
+    on_change = function(s) if s then self:switchLevels('leveltwo') end end,
+  }
+    self.t_levelfour = Tab.new {
+    title = 'Levels 3-4',
+    default = false,
+    fct = function() end,
+    on_change = function(s) if s then self:switchLevels('levelfour') end end,
+  }
+
 	self:generateList(types[1].kind)
 
-	self:loadUI{
-		{left=0, top=0, ui=self.c_tabs},
-		{left=0, bottom=0, ui=self.c_accept},
-		{left=self.c_accept, bottom=0, ui=self.c_decline},
-		{right=0, bottom=0, ui=self.c_reset},
-		{top=self.c_tabs.h + 10, ui=self.c_desc},
-		{top=self.c_desc,ui=self.spells[1]},
-		{top=self.spells[1].h+90,ui=self.spells[2]},
-		{top=self.spells[2].h+90,ui=self.spells[3]},
-		{top=self.spells[3].h+90,ui=self.spells[4]},
-		{top=self.spells[4].h+90,ui=self.spells[5]},
-		{top=self.spells[5].h+90,ui=self.spells[6]},
-		{top=self.spells[6].h+90,ui=self.spells[7]},
-		{top=self.spells[7].h+90,ui=self.spells[8]},
-		{top=self.spells[8].h+90,ui=self.spells[9]},
-		{top=self.c_desc,ui=self.c_charges},
-		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
-		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info}, 
-	}
-
-	self:setupUI()
-	self:drawDialog()
+	self.t_leveltwo:select()
 
 	self.key:addBinds{
 		EXIT = function() self:onEnd("decline") end,
 	}
 end
 
-function _M:drawDialog(s)
+function _M:switchLevels(tab)
+	self.t_leveltwo.selected = tab == 'leveltwo'
+    self.t_levelfour.selected = tab == 'levelfour'
+
+    self:drawDialog(tab)
+end
+
+function _M:drawDialog(tab)
+
+    if tab == "leveltwo" then
+
+    self:loadUI{
+       	{left=0, top=0, ui=self.c_tabs},
+		{left=0, bottom=0, ui=self.c_accept},
+		{left=self.c_accept, bottom=0, ui=self.c_decline},
+		{right=0, bottom=0, ui=self.c_reset},
+		{top=self.c_tabs, ui=self.t_leveltwo},
+		{left=self.t_leveltwo, top=self.c_tabs, ui=self.t_levelfour},
+		{top=self.t_leveltwo, ui=self.c_desc},
+		{top=self.c_desc,ui=self.spells[1]},
+		{top=self.spells[1].h+100,ui=self.spells[2]},
+		{top=self.c_desc,ui=self.c_charges},
+		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
+		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info}, 
+    }
+    
+    self:setupUI()
+    self:drawGeneral(tab)
+    end
+
+    if tab == "levelfour" then
+
+    self:loadUI{
+       	{left=0, top=0, ui=self.c_tabs},
+		{left=0, bottom=0, ui=self.c_accept},
+		{left=self.c_accept, bottom=0, ui=self.c_decline},
+		{right=0, bottom=0, ui=self.c_reset},
+		{top=self.c_tabs, ui=self.t_leveltwo},
+		{left=self.t_leveltwo, top=self.c_tabs, ui=self.t_levelfour},
+		{top=self.t_leveltwo, ui=self.c_desc},
+		{top=self.c_desc,ui=self.spells[3]},
+		{top=self.spells[3].h+100,ui=self.spells[4]},
+		{top=self.c_desc,ui=self.c_charges},
+		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
+		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info}, 
+    }
+    
+    self:setupUI()
+    self:drawGeneral(tab)
+    end
+    
+end
+
+function _M:drawGeneral(tab)
 	local s = self.c_desc.s
 	local c = self.c_charges.s
 	s:erase(0,0,0,0)
@@ -120,9 +168,20 @@ function _M:drawDialog(s)
 	local font = core.display.newFont("/data/font/DroidSans-Bold.ttf", 12)
 
 	for i, v in ipairs(self.list) do
+		--Account for first tab
+		if tab == "leveltwo" then
+			if i > 2 then
+				break
+			end
+		end
+
 		if not max_charges[i] then
 			break
 		end
+
+		--Account for other tabs
+		if tab == "leveltwo" or (tab == "levelfour" and i == 3 or i == 4) then
+
 		local charges_used = game.player:getAllocatedCharges(self.spell_list, i) --TODO: Fix this function (getAllocatedCharges)
 		local str = "Level-"..i.." Spells "..(charges_used or 0).."/"..(max_charges[i] or 0)
 		s:drawString(self.font, str, w, h, 255, 255, 255, true)
@@ -137,7 +196,9 @@ function _M:drawDialog(s)
 			c:drawColorString(font, str, ww, hh, 255, 255, 255, true)
 			ww = ww + self.spells[i].tile_w + self.spells[i].padding 
 		end  
-		h = h + 90 
+		h = h + 110 
+
+		end
 	end
 
 	self.c_desc:generate()
@@ -153,6 +214,7 @@ end
 function _M:switchTo(kind)
 	self.spell_list = kind
 	self:generateList(kind)
+	self.arcane = kind
 end
 
 function _M:onSpell(item, button)
@@ -186,7 +248,7 @@ function _M:generateList(kind)
 		if t.is_spell and t.spell_kind and t.show_in_spellbook and t.spell_kind[kind] then
 			local slist = list[t.level]
 			table.insert(list[t.level], t)
-		end
+			end
 	end
 
 	if self.spells then
