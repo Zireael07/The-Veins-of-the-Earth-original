@@ -179,7 +179,7 @@ function _M:drawGeneral()
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
     
     local level = player.classes[d.name] or 0
-        if not d.prestige and level > 0 then
+        if level > 0 then
         local name = ""
        name = "#WHITE#"..d.name.." #SANDY_BROWN#"..level.."#LAST#"
 
