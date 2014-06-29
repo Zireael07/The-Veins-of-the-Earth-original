@@ -382,7 +382,7 @@ newEntity{
 	image = "tiles/elemental_water.png",
 	display = 'E', color=colors.BLUE,
 	body = { INVEN = 10 },
-	desc = [[An earth elemental.]],
+	desc = [[A water elemental.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=10, con=13, int=4, wis=11, cha=11, luc=10 },
