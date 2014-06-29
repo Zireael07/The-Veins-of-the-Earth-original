@@ -131,7 +131,10 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
+			--Don't give spellbook to NPCs
+			if actor == game.player then
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+			end
 
 			actor:learnTalentType("abjuration")
 			actor:learnTalentType("conjuration")
@@ -243,7 +246,10 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SHIELD_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
+			--Don't give spellbook to NPCs
+			if actor == game.player then
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+			end
 
 			actor:learnTalentType("divine", true)
 			actor:learnTalentType("arcane_divine", true)
@@ -672,7 +678,10 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 
+			--Don't give spellbook to NPCs
+			if actor == game.player then
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+			end
 
 			actor:learnTalentType("divine")
 			actor:learnTalentType("arcane_divine", true)
@@ -945,8 +954,11 @@ newBirthDescriptor {
 			--Level-specific bonuses
             if level == 4 then actor:learnTalent(actor.T_TURN_UNDEAD, true) end
             if level == 5 then 
+            	--Don't give spellbook to NPCs
+				if actor == game.player then
             	--Get spellbook
             	actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+            	end
 
             	actor:learnTalentType("divine")
 
@@ -1118,8 +1130,11 @@ newBirthDescriptor {
 
 
 		if level == 5 then 
+			--Don't give spellbook to NPCs
+			if actor == game.player then
 			--Get spellbook
             actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+        	end
 
 			actor:learnTalentType("divine")
 
@@ -1381,7 +1396,10 @@ newBirthDescriptor {
 	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
+			--Don't give spellbook to NPCs
+			if actor == game.player then
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK)
+			end
 
 			actor:attr("will_save", 2)
 			actor:attr("skill_point", 2 + (actor:getInt()-10) / 2)
@@ -1419,7 +1437,7 @@ newBirthDescriptor {
 					{name="Lizard", desc="Master gains a +3 bonus to Climb checks."},
 					{name="Owl", desc="Master gains a +3 bonus to Spot checks in shadows."},
 					{name="Rat", desc="Master gains a +2 bonus on Fortitude saves."},
-					{name="Raven", desc="Master gains a +3 bonus on Appraise checks."},
+					{name="Raven", desc="[Placeholder] Gives a +3 bonus to Appraise checks in d20. We won't have this skill!"},
 					{name="Snake", desc="Master gains a +3 bonus on Bluff checks"},
 					{name="Toad", desc="Master gains +3 hit points."},
 					{name="Weasel", desc="Master gains a +2 bonus on Reflex saves."}
