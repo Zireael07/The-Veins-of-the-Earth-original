@@ -103,7 +103,7 @@ newEntity{
 newEntity{
     base = "BASE_LIGHT",
     name = "lantern",
-    image = "tiles/torch.png",
+    image = "tiles/lantern.png",
     level_range = {5,nil},
     cost = 7,
     wielder = {
