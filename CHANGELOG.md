@@ -1,5 +1,7 @@
 CHANGELOG
 
+0.20.0 - beta 5.6 - 29/06/2014
+
 * bug fix - naming box not accepting keypresses [kudos to Castler]
 * bug fix - bonus feats button now available only to fighters
 * bug fix - no more lua error due to a typo in one of the poison defs
@@ -9,10 +11,19 @@ CHANGELOG
 * bug fix - using Diplomacy on yourself no longer leads to amusing stuff [Castler]
 * bug fix - bards not receiving spells
 * bug fix - paladins and rangers missing the spellbook button
+* bug fix - club not being listed as simple weapon; dual-wielding quarterstaves
+* bug fix - two last entries not clickable in stat increase dialog
+* bug fix - typo in water elemental description
+* bug fix - fireball and light spells working as intended
+* bug fix - no more spellbooks for NPCs; clarified raven familiar description
+* bug fix - give specific magic items unided names
+* bug fix - correct lantern tile
+* bug fix - make prestige class levels show up in character sheet
 
 
 * update to T-Engine 1.2.2
 * new spell: mount, haste
+* new spell icons: mage armor, ghoul touch, alter self
 * make player tiles change depending on player equipment ("moddable" as in ToME 4)
 * add stack number display
 * add settings
@@ -27,6 +38,9 @@ CHANGELOG
 * shuffle item perks stuff to Player.lua
 * remove the flasher (top message bar) since it wouldn't clear properly
 * clicking spell name in spellbook now has the same effect as clicking spell icon [Castler]
+* display fractional CR as fractions not decimals [Castler]
+* add spell level tabs to spellbook
+* add tooltips to store interface
 
 
 0.19.0 - beta 5.5 - 08/06/2014
