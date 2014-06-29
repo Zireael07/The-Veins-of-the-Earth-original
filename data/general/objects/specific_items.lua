@@ -6,6 +6,7 @@
 newEntity{
     define_as = "HOLY_AVENGER",
 	name = "Holy Avenger",
+    unided_name = "longsword",
 	slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="sword",
     image = "tiles/longsword.png",
@@ -32,6 +33,7 @@ newEntity{
 newEntity{
     define_as = "DWARVEN_THROWER",
     name = "dwarven thrower",
+    unided_name = "warhammer",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="hammer",
     image = "tiles/hammer.png",
@@ -60,6 +62,7 @@ newEntity{
 newEntity{
     define_as = "FLAME_TONGUE",
     name = "flame tongue",
+    unided_name = "longsword",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="sword",
     image = "tiles/longsword.png",
@@ -93,6 +96,7 @@ newEntity{
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "Luckblade",
+    unided_name = "shortsword",
     level_range = {1, 10},
     cost = 22010,
     combat = {
@@ -111,6 +115,7 @@ newEntity{
 newEntity{
     define_as = "NINE_LIVES",
     name = "Nine Lives Stealer",
+    unided_name = "longsword",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="sword",
     image = "tiles/longsword.png",
@@ -139,6 +144,7 @@ newEntity{
 newEntity{
     define_as = "OATHBOW",
     name = "Oathbow",
+    unided_name = "longbow",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
     type = "weapon", subtype="bow",
@@ -174,6 +180,7 @@ newEntity{
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "Sunblade",
+    unided_name = "shortsword",
     level_range = {1, 10},
     cost = 50335,
     combat = {
@@ -195,6 +202,7 @@ newEntity{
 newEntity{
     define_as = "SWORD_PLANES",
     name = "Sword of the Planes",
+    unided_name = "longsword",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="sword",
     image = "tiles/longsword.png",
