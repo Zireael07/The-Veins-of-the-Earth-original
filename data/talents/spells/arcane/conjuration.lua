@@ -183,8 +183,8 @@ newArcaneSpell{
 		-- Choose creature
 		if self == game.player then 
 			game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired mount",{
-                {name="heavy warhorse", desc=""},
-                {name="war pony", desc=""},
+                {name="light horse", desc=""},
+                {name="pony", desc=""},
                 },
 			function(result)
             	
