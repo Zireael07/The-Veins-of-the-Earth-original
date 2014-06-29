@@ -26,7 +26,7 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     rarity = 10,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic hand crossbow",
-    desc = "A normal trusty hand crossbow.\n\n Damage 1d4. Threat range 19-20.",
+    desc = "A normal trusty hand crossbow.\n\n Damage 1d4. Threat range 19-20. Range 3.",
 }
 
 newEntity{ base = "BASE_HANDXBOW",
@@ -51,7 +51,7 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     rarity = 8,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic bolas",
-    desc = "A normal bolas.\n\n Damage 1d4.",
+    desc = "A normal bolas.\n\n Damage 1d4. Range 2.",
 }
 
 newEntity{ base = "BASE_BOLAS",
@@ -75,7 +75,7 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     rarity = 12,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic shuriken",
-    desc = "An exotic shuriken.\n\n Damage 1d2.",
+    desc = "An exotic shuriken.\n\n Damage 1d2. Range 2.",
 }
 
 newEntity{ base = "BASE_SHURIKEN",
@@ -99,7 +99,7 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     rarity = 8,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     name = "a generic net",
-    desc = "A normal net.\n\n Damage 1d4.",
+    desc = "A normal net.\n\n Damage 1d4. Range 2.",
 }
 
 newEntity{ base = "BASE_NET",
