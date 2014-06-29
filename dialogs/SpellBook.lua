@@ -39,7 +39,9 @@ function _M:init(actor)
 		types[#types+1] = {title="Divine", kind="divine"}
 	end
 
-	self.c_tabs = Tabs.new{width=650, tabs=types, on_change=function(kind) self:switchTo(kind) end}
+	local wide = math.max(650, self.iw-450)
+
+	self.c_tabs = Tabs.new{width=wide, tabs=types, on_change=function(kind) self:switchTo(kind) end}
 
 	self.c_accept = Button.new{text="Accept",fct=function() self:onEnd("accept") end}
 	self.c_decline = Button.new{text="Decline",fct=function() self:onEnd("decline") end}
@@ -48,14 +50,14 @@ function _M:init(actor)
 	--Needs a safeguard for a case when you do not know any spells for some reason
 	self.spells = {}
 	for i=1, 9 do
-		self.spells[i] = ImageList.new{width=650, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list[i],
+		self.spells[i] = ImageList.new{width=wide, height=64, tile_w=48, tile_h=48, padding=5, force_size=true, selection="simple", list=self.list[i],
 			fct=function(item, button) self:onSpell(item, button) end,
 --            on_select=function(item,sel) self:on_select(item) end,
 		}
 	end
 
 	self.c_desc = SurfaceZone.new{width=500, height=500,alpha=1.0}
-	self.c_charges = SurfaceZone.new{width=650, height=500, alpha=1.0}
+	self.c_charges = SurfaceZone.new{width=wide, height=500, alpha=1.0}
 
 	--Spell info stuff
 	self.c_spell = List.new{width=200, nb_items=#self.list_spellsinfo, height = self.ih*0.8, list=self.list_spellsinfo, all_clicks=true,
@@ -227,13 +229,13 @@ function _M:onSpell(item, button)
 		p:incMaxCharges(item.data, v, self.spell_list) 
 --        self.c_info.text = item.desc
 	end
-	self:drawDialog()
+	self:drawGeneral("leveltwo")
 end
 
 function _M:onReset()
 	local p = game.player
 	p:allocatedChargesReset()
-	self:drawDialog()
+	self:drawGeneral("leveltwo")
 end
 
 function _M:generateList(kind)
