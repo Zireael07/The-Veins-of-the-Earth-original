@@ -31,7 +31,7 @@ newArcaneSpell{
 		game.level.map:addEffect(self,
 			x, y, duration,
 			DamageType.LITE, 0,
-			1.5,
+			3,
 			5, nil,
 			engine.Entity.new{alpha=100, display='', color_br=255, color_bg=255, color_bb=0},
 			nil, true
@@ -212,7 +212,7 @@ newArcaneSpell{
 --	tactical = { BUFF = 2 },
 	range = 0,
 	radius = function(self, t)
-		return 4
+		return 3
 	end,
 	target = function(self, t)
 		return {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t)}
@@ -224,7 +224,7 @@ newArcaneSpell{
 		if not x or not y then return nil end
 
 		local damage = rng.dice(3,6)
-		self:project(tg, x, y, DamageType.FIRE, damage, {type=explosion})
+		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})
 		return true
 	end,
 
