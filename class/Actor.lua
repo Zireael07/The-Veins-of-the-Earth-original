@@ -1640,8 +1640,8 @@ function _M:levelup()
 
 	--Level up achievements
 	if self == game.player then
-		if self.level == 10 then world:gainAchievement("LEVEL_10", self) end
---[[		if self.level == 20 then world:gainAchievement("LEVEL_20", self) end
+--[[		if self.level == 10 then world:gainAchievement("LEVEL_10", self) end
+		if self.level == 20 then world:gainAchievement("LEVEL_20", self) end
 		if self.level == 30 then world:gainAchievement("LEVEL_30", self) end
 		if self.level == 40 then world:gainAchievement("LEVEL_40", self) end
 		if self.level == 50 then world:gainAchievement("LEVEL_50", self) end
