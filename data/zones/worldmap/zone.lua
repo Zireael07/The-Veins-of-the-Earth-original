@@ -24,10 +24,9 @@ return {
 	generator =  {
 		map = {
 			class = "mod.class.generator.map.RandomWorldmap",
-
-			['.'] = "FLOOR",
-			['#'] = "WALL",
-			up = "UP",
+			down = "DOWN",
+			wall = "WALL",
+			floor = "FLOOR",
 		},
 	},
 }

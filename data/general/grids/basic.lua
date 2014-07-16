@@ -14,6 +14,20 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+--Worldmap exit
+newEntity{
+	define_as = "EXIT",
+	type = "floor", subtype = "floor",
+	name = "exit to worldmap",
+	image = "tiles/stairs_up.png",
+	display = '<', color=colors.LIGHT_BLUE, back_color=colors.DARK_GREY,
+	notice = true,
+	always_remember = true,
+	change_level = 1,
+	change_zone = "worldmap",
+}
+
+--Dungeon tiles
 newEntity{
 	define_as = "UP",
 	type = "floor", subtype = "floor",

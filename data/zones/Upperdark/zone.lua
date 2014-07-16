@@ -65,10 +65,10 @@ return {
 	},
 	levels =
 	{
-	--No stairs up on level 1
+	--Place exit to worldmap on level 1
 		[1] = { 
 		generator = { map = { 
-		up = "FLOOR",
+		up = "EXIT",
 		},},
 	},
 	--No shaft up on level 2

@@ -23,19 +23,20 @@ module(..., package.seeall, class.inherit(engine.Generator))
 function _M:init(zone, map, level, data)
 	engine.Generator.init(self, zone, map, level)
 	self.grid_list = zone.grid_list
+	self.data = data
 	self.floor = self:resolve("floor")
 	self.wall = self:resolve("wall")
-	self.up = self:resolve("up")
+	self.down = self:resolve("down")
 end
 
 function _M:generate()
-	local chance = rng.dice(1,3)
+	local chance = rng.dice(1,8)
 
 	for i = 0, self.map.w - 1 do for j = 0, self.map.h - 1 do
-		if chance == 1 or chance == 2 or chance == 3 or chance == 4 then
+		if rng.percent(25) then
+			self.map(i, j, Map.TERRAIN, self.down)
+		elseif 	rng.percent(45) then
 			self.map(i, j, Map.TERRAIN, self.floor)
-		elseif chance == 5 or chance == 6 then
-			self.map(i,j, Map.TERRAIN, self.up)
 		else
 			self.map(i, j, Map.TERRAIN, self.wall)
 		end
