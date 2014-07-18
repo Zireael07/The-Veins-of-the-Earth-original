@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2014
 
 local Talents = require "engine.interface.ActorTalents"
 
@@ -40,74 +40,3 @@ newEntity{ base = "BASE_HANDXBOW",
     },
 }
 
-newEntity{ base = "BASE_EXOTIC_RANGED",
-    define_as = "BASE_BOLAS",
-    slot = "MAIN_HAND",
-    slot_forbid = "OFF_HAND",
-    type = "weapon", subtype="bolas",
-    image = "tiles/newtiles/bolas.png",
-    display = "}", color=colors.SLATE,
-    encumber = 2,
-    rarity = 8,
-    combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic bolas",
-    desc = "A normal bolas.\n\n Damage 1d4. Range 2.",
-}
-
-newEntity{ base = "BASE_BOLAS",
-    name = "bolas",
-    level_range = {1, 10},
-    cost = 5,
-    combat = {
-        dam = {1,4},
-        range = 2,
-    },
-}
-
-newEntity{ base = "BASE_EXOTIC_RANGED",
-    define_as = "BASE_SHURIKEN",
-    slot = "MAIN_HAND",
-    slot_forbid = "OFF_HAND",
-    type = "weapon", subtype="dart",
-    image = "tiles/shuriken.png",
-    display = "}", color=colors.SLATE,
-    encumber = 0.5,
-    rarity = 12,
-    combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic shuriken",
-    desc = "An exotic shuriken.\n\n Damage 1d2. Range 2.",
-}
-
-newEntity{ base = "BASE_SHURIKEN",
-    name = "shuriken",
-    level_range = {1, 10},
-    cost = 1,
-    combat = {
-        dam = {1,2},
-        range = 2,
-    },
-}
-
-newEntity{ base = "BASE_EXOTIC_RANGED",
-    define_as = "BASE_NET",
-    slot = "MAIN_HAND",
-    slot_forbid = "OFF_HAND",
-    type = "weapon", subtype="net",
-    image = "tiles/sling.png",
-    display = "}", color=colors.SLATE,
-    encumber = 6,
-    rarity = 8,
-    combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic net",
-    desc = "A normal net.\n\n Damage 1d4. Range 2.",
-}
-
-newEntity{ base = "BASE_NET",
-    name = "net",
-    level_range = {1, 10},
-    cost = 20,
-    combat = {
-        dam = {1,4}, --should be entangled
-        range = 2,
-    },
-}

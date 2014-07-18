@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2014
 
 --Ranged weapons
 newEntity{
@@ -63,56 +63,6 @@ newEntity{ base = "BASE_LXBOW",
         dam = {1,8},
         threat = 1,
         range = 8,
-    },
-}
-
-newEntity{ base = "BASE_RANGED",
-    define_as = "BASE_DART",
-    slot = "MAIN_HAND",
-    slot_forbid = "OFF_HAND",
-    type = "weapon", subtype="dart",
-    image = "tiles/newtiles/darts.png",
-    display = "}", color=colors.SLATE,
-    encumber = 0.5,
-    rarity = 8,
-    simple = true,
-    combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic dart",
-    desc = "An unremarkable dart.\n\n Damage 1d4. Range 2",
-}
-
-newEntity{ base = "BASE_DART",
-    name = "darts",
-    level_range = {1, 10},
-    cost = 0.5,
-    combat = {
-        dam = {1,4},
-        range = 2,
-    },
-}
-
-newEntity{ base = "BASE_RANGED",
-    define_as = "BASE_JAVELIN",
-    slot = "MAIN_HAND",
-    slot_forbid = "OFF_HAND",
-    type = "weapon", subtype="javelin",
-    image = "tiles/newtiles/javelin.png",
-    display = "}", color=colors.SLATE,
-    encumber = 2,
-    rarity = 10,
-    simple = true,
-    combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic javelin",
-    desc = "A normal unremarkable javelin.\n\n Damage 1d6. Range 3",
-}
-
-newEntity{ base = "BASE_JAVELIN",
-    name = "javelin",
-    level_range = {1, 10},
-    cost = 1,
-    combat = {
-        dam = {1,6},
-        range = 3,
     },
 }
 

@@ -26,6 +26,7 @@ load("/data/general/objects/ranged.lua") --rarity(-luck))
 load("/data/general/objects/exotic.lua") --rarity(-luck))
 load("/data/general/objects/exoticranged.lua") --, rarity(-luck))
 load("/data/general/objects/reach.lua") --rarity(-luck))
+load("/data/general/objects/thrown.lua")
 
 load("/data/general/objects/consumables.lua")
 load("/data/general/objects/containers.lua")
