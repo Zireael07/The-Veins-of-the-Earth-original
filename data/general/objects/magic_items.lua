@@ -64,17 +64,57 @@ newEntity{
     end),
 }
 
+--Mushrooms
+newEntity{
+    define_as = "BASE_MUSHROOM",
+    slot = "INVEN",
+    type = "potion", subtype = "mushroom",
+    image = "tiles/potion.png",
+    display = ",", color=colors.RED,
+    name = "mushroom", --instant_resolve = true,
+    unided_name = "mushroom",
+    identified = false,
+    cost = 0,
+    level_range = {1,10},
+    encumber = 0,
+    rarity = 10,
+    desc = [[A mushroom.]],
+}
+
 --Tattoos
 newEntity{
     define_as = "BASE_TATTOO",
-    slot = "INVEN", 
+    slot = "INVEN",
+    name = "tattoo",
+    unided_name = "tattoo",
+    identified = false,
+    cost = 0,
+    level_range = {1,10},
+    rarity = 10,
     type = "scroll", subtype = "tattoo",
     display = "?", color=colors.RED,
     encumber = 0,
---    rarity = 50,
-    name = "A tattoo",
     desc = [[A tattoo.]],
 }
+
+--Rods
+newEntity{
+    define_as = "BASE_ROD",
+    slot = "INVEN", 
+    name = "rod",
+    unided_name = "rod",
+    identified = false,
+    cost = 0,
+    level_range = {1,10},
+    rarity = 10,
+    slot = "INVEN", 
+    type = "wand", subtype = "rod",
+    image = "tiles/wand.png",
+    display = "-", color=colors.GREEN,
+    encumber = 0,
+    desc = [[A rod.]],
+}
+
 
 
 --Charged items
