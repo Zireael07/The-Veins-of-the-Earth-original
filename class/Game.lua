@@ -220,31 +220,15 @@ function _M:loaded()
 
 
 	Map:setViewerActor(self.player)
-
-	local th, tw = 32, 32
-	local gfx = config.settings.veins.tiles
-	if gfx == "ascii" then 
-		Map:setViewPort(0, 0, self.w, self.h, tw, th, "/data/font/DroidSansFallback.ttf", 32, true)
-	--	Map:setViewPort(0, 0, self.w, self.h, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
-		Map:resetTiles()
-		Map.tiles.use_images = false
-	else
-		Map:setViewPort(0, 0, self.w, self.h, tw, th, nil, 32, true)
-		Map.tiles.use_images = true
-	end
-
---[[	self:setupDisplayMode(false, "init")
-	self:setupDisplayMode(false, "postinit")]]
---[[	local th, tw = 32, 32
-	Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)]]
-
+	self:setupDisplayMode(false, "init")
+	self:setupDisplayMode(false, "postinit")
 
 	if self.player then self.player.changed = true end
 	if self.always_target == true then Map:setViewerFaction(self.player.faction) end
 
+--	selfppp = engine.KeyBind.new()
+	self.key = engine.KeyBind.new()
 
-
-	selfppp = engine.KeyBind.new()
 end
 
 --Taken from ToME 4
@@ -303,13 +287,17 @@ function _M:computeAttachementSpots()
 	self:computeAttachementSpotsFromTable(t)
 end
 
+--Taken from ToME 4
 
-
+function _M:getMapSize()
+	local w, h = core.display.size()
+	return 0, 0, w, h
+end
 
 function _M:setupDisplayMode(reboot, mode)
 	if not mode or mode == "init" then
-		local gfx = config.settings.veins.tiles
-		self:saveSettings("veins.tiles", ('veins.tiles = %s'):format(gfx.tiles))
+		local gfx = config.settings.veins.gfx
+		self:saveSettings("veins.gfx", ('veins.gfx = {tiles=%q, size=%q, tiles_custom_dir=%q, tiles_custom_moddable=%s, tiles_custom_adv=%s}\n'):format(gfx.tiles, gfx.size, gfx.tiles_custom_dir or "", gfx.tiles_custom_moddable and "true" or "false", gfx.tiles_custom_adv and "true" or "false"))
 
 		if reboot then
 			self.change_res_dialog = true
@@ -319,56 +307,64 @@ function _M:setupDisplayMode(reboot, mode)
 
 		Map:resetTiles()
 	end
-	
+
 	if not mode or mode == "postinit" then
-		local gfx = config.settings.veins.tiles
-		Tiles.prefix = "/data/gfx/tiles/"
-		print("[DISPLAY MODE] Tileset: "..gfx)
+		local gfx = config.settings.veins.gfx
+
+		-- Select tiles
+		Tiles.prefix = "/data/gfx/"..gfx.tiles.."/"
+		if config.settings.veins.gfx.tiles == "customtiles" then
+			Tiles.prefix = "/data/gfx/"..config.settings.veins.gfx.tiles_custom_dir.."/"
+		end
+		print("[DISPLAY MODE] Tileset: "..gfx.tiles)
+		print("[DISPLAY MODE] Size: "..gfx.size)
 
 		-- Load attachement spots for this tileset
 		self:computeAttachementSpots()
 
+		local do_bg = gfx.tiles == "ascii_full"
+		local _, _, tw, th = gfx.size:find("^([0-9]+)x([0-9]+)$")
+		tw, th = tonumber(tw), tonumber(th)
+		if not tw then tw, th = 64, 64 end
+		local pot_th = math.pow(2, math.ceil(math.log(th-0.1) / math.log(2.0)))
+		local fsize = math.floor( pot_th/th*(0.7 * th + 5) )
 
-	--[[	local th, tw = 32, 32
-		
-		--switched from "fsize" to 32.
-		Map:setViewPort(0, 0, self.w, self.h*0.7, tw, th, nil, 32, true)]]
+		local map_x, map_y, map_w, map_h = self:getMapSize()
+		if th <= 20 then
+			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/DroidSansFallback.ttf", pot_th, do_bg)
+		else
+			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, nil, fsize, do_bg)
+		end
 
-		Map.tiles.use_images = true
-		
 		-- Show a count for stacked objects
 		Map.object_stack_count = true
 
-		if gfx == "ascii" then 
-			print("[DISPLAY MODE] 32x32 ASCII/background")
-			Map:setViewPort(0, 0, self.w, self.h, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
-			Map:resetTiles()
+		if self.level and self.player then 
+		self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
+ 		end
+
+		Map.tiles.use_images = true
+		if gfx.tiles == "ascii" then
 			Map.tiles.use_images = false
+			Map.tiles.force_back_color = {r=0, g=0, b=0, a=255}
+			Map.tiles.no_moddable_tiles = true
+		elseif gfx.tiles == "ascii_full" then
 			Map.tiles.use_images = false
-		elseif gfx == "tiles" then 
-			local th, tw = 32, 32
-			Map:setViewPort(0, 0, self.w, self.h, tw, th, nil, 32, true)
-			Map:resetTiles()
-			Map.tiles.use_images = true
-			Map.tiles.use_images = true 
+			Map.tiles.no_moddable_tiles = true
+		elseif gfx.tiles == "customtiles" then
+			Map.tiles.no_moddable_tiles = not config.settings.veins.gfx.tiles_custom_moddable
+			Map.tiles.nicer_tiles = config.settings.veins.gfx.tiles_custom_adv
 		end
 
---[[	print("[DISPLAY MODE] 32x32 ASCII/background")
-	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/DroidSansFallback.ttf", 22, true)
-	Map:resetTiles()
-	Map.tiles.use_images = false]]
+		if self.level then
+			if self.level.map.finished then
+				self.level.map:recreate()
+				self.level.map:moveViewSurround(self.player.x, self.player.y, 8, 8)
+			end
+			engine.interface.GameTargeting.init(self)
+		end
 
-	if self.level and self.player then 
-		self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
- 	end
-
-	if self.level then
-		self.level.map:recreate()
-		engine.interface.GameTargeting.init(self)
-		self.level.map:moveViewSurround(self.player.x, self.player.y, 8, 8)
-	end
-
-	-- Create the framebuffer
+		-- Create the framebuffer
 		self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
 		if self.fbo then self.fbo_shader = Shader.new("main_fbo") if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end end
 		if self.player then self.player:updateMainShader() end

@@ -37,8 +37,9 @@ local MapEffects = require "mod.class.MapEffects" -- This alters Map
 
 -- Init settings
 config.settings.veins = config.settings.veins or {}
-if not config.settings.veins.tiles then
-	config.settings.veins.tiles = "tiles"
+
+if not config.settings.veins.gfx then
+	config.settings.veins.gfx = {size="32x32", tiles="default"}
 end
 
 require("engine.ui.Base").ui_conf = {
