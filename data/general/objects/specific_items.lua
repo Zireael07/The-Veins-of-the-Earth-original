@@ -25,7 +25,7 @@ newEntity{
     },
     on_wear = function(self, who)
        if who.descriptor and who.descriptor.class == "Paladin" then
-        self.magic_bonus = 5
+        self.combat.magic_bonus = 5
     end
     end,
 }
@@ -53,7 +53,7 @@ newEntity{
     desc = "A dwarven-made metal warhammer.\n\n Damage 1d8+2. Critical x3.",
     on_wear = function(self, who)
        if who.descriptor and who.descriptor.race == "Dwarf" then
-        self.magic_bonus = 3
+        self.combat.magic_bonus = 3
         --returning, range 3
     end
     end,
