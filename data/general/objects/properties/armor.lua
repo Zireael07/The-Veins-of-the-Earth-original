@@ -461,6 +461,34 @@ newEntity {
 	}
 }
 
+--Based on Angband's
+newEntity {
+	name = "dwarven", suffix = false,
+--	keywords = {bonus=true},
+	level_range = {10, 30},
+	rarity = 15,
+	cost = 8000,
+	wielder = {
+		
+		infravision = 1,
+		
+    		inc_stats = { [Stats.STAT_STR] = 2,
+    			[Stats.STAT_CON] = 2,
+    		},
+   
+  }, 
+}
+
+newEntity{
+	name = " of elvenkind", suffix = true,
+	level_range = {10, 30},
+	rarity = 5,
+	cost = 2500,
+	wielder = {
+		skill_bonus_hide = 5,
+	},
+}
+
 --Spikes!!
 --[[newEntity {
 	name = "spiked ", prefix = true,
