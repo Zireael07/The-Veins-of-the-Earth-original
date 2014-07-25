@@ -584,6 +584,29 @@ newEntity{
 	},
 }
 
+newEntity {
+	name = " of the Winterlands", suffix = true,
+--	keywords = {coldres=true},
+	level_range = {10, nil},
+	rarity = 10,
+	cost = 18000,
+	wielder = {
+		resists = {
+		[DamageType.COLD] = 5,
+		--no slipping on ice
+	},
+	}
+}
+
+newEntity {
+	name = " of the Druid", suffix = true,
+	level_range = {10, 30},
+	rarity = 5,
+	cost = 14000,
+	wielder = {
+		--neutral sylvans, doesn't get stuck in webs, trees
+	},
+}
 
 --Originally cloaks only
 newEntity{ 
@@ -597,6 +620,7 @@ newEntity{
 		--neutral spiders, doesn't get stuck in webs, cast web 1/day
 	},
 }
+
 newEntity{
 	name = " of Elvenkind", suffix = true,
 	image = "tiles/elven_cloak.png",
@@ -630,6 +654,22 @@ newEntity{
 	},
 
 }
+
+newEntity {
+	name = " of the Hin", suffix = true,
+--	keywords = {bonus=true},
+	level_range = {10, 30},
+	greater_ego = 1,
+	rarity = 10,
+	cost = 32000,
+	wielder = {
+    inc_stats = { [Stats.STAT_LUC] = 1,
+    		[Stats.STAT_DEX] = 1,
+    		--resist ability damage
+    	},
+  }, 
+}
+
 
 
 --Casting spells
@@ -747,6 +787,9 @@ newEntity{
 	cost = 0,
 	wielder = {
 		--increase cold damage by 50%
+		resists = {
+		[DamageType.COLD] = -50,
+		},
 	},
 }
 
@@ -759,5 +802,8 @@ newEntity{
 	cost = 0,
 	wielder = {
 		--increase fire damage by 25%
+		resists = {
+		[DamageType.COLD] = -25,
+		},
 	},
 }
