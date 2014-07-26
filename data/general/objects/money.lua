@@ -72,6 +72,7 @@ newEntity{
     money_value = rng.range(500, 5000),
 }
 
+--Based on Angband
 newEntity{
     base = "BASE_MONEY",
     name = "adamantine coins",
@@ -84,10 +85,41 @@ newEntity{
 
 newEntity{
     base = "BASE_MONEY",
+    name = "mithril coins",
+    image = "tiles/adamantine_coins.png",
+    color = colors.LIGHT_BLUE,
+    level_range = {12,nil},
+    desc = [[A pile of mithril coins.]],
+    money_value = rng.range(400, 3500),
+}
+
+
+newEntity{
+    base = "BASE_MONEY",
     name = "garnets",
     image = "tiles/red_jewels.png",
     color = colors.LIGHT_RED,
     level_range = {5,nil},
     desc = [[A pile of garnets.]],
     money_value = rng.range(72, 700),
+}
+
+newEntity{
+    base = "BASE_MONEY",
+    name = "emeralds",
+    image = "tiles/red_jewels.png",
+    color = colors.DARK_GREEN,
+    level_range = {10,nil},
+    desc = [[A pile of emeralds.]],
+    money_value = rng.range(100, 900),
+}
+
+newEntity{
+    base = "BASE_MONEY",
+    name = "sapphires",
+    image = "tiles/red_jewels.png",
+    color = colors.DARK_BLUE,
+    level_range = {5,nil},
+    desc = [[A pile of sapphires.]],
+    money_value = rng.range(150, 1500),
 }
