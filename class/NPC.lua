@@ -1,6 +1,5 @@
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
---
+-- Veins of the Earth
+-- Copyright (C) 2013-2014 Zireael
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
@@ -13,9 +12,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
 
 require "engine.class"
 local ActorAI = require "engine.interface.ActorAI"
@@ -48,6 +44,15 @@ function _M:act()
 	if self.life / self.max_life < 0.5 then
 		if not self.energy.used then self:runAI("flee_dmap") end
 	end
+
+	-- Ranged (based on DataQueen)
+	if self.ranged and self:isNear(game.player.x, game.player.y, self.ranged_limit) then
+		self.ai = "flee_dmap"
+	else
+		self.ai = "dumb_talented_simple"
+		if self.tricky then self.ranged = false end -- For ranged enemies
+	end
+
 
 	-- Let the AI think .... beware of Shub !
 	-- If AI did nothing, use energy anyway
