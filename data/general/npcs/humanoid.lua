@@ -25,7 +25,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
     desc = [[Ugly and green!]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=9, dex=13, con=10, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
 	infravision = 3,
@@ -91,7 +91,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[An ugly orc.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=17, dex=11, con=12, int=8, wis=7, cha=6, luc=10 },
 	combat = { dam= {1,4} },
 	infravision = 2,
@@ -136,7 +136,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A dirty goblin.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=6, luc=8 },
 	combat = { dam= {1,6} },
 	infravision = 3,
@@ -186,7 +186,7 @@ newEntity{
 	common_desc = [[Drow are known for their evil natures, matriarchal cultures, and zealous worship of malign, arachnid gods. They are more delicate than humans, but also more dextrous and more cunning. Drow are talented spellcasters, with drow women holding all divine roles. Culturally, drow train their children with the rapier, short sword, and hand crossbow, and they often poison their weapons.]],
 	base_desc = [[This lithe, ebon-skinned humanoid is a dark elf, also known as a drow. These suberttanean elves speak both Elven and Undercommon, and typically also speak Common. Some drow also learn oher racial languages or a form of sign language known only to them.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	infravision = 6,
@@ -238,7 +238,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost human.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=11, dex=11, con=12, int=11, wis=9, cha=9, luc=10 },
 	combat = { dam= {1,6} },
 	lite = 3,
@@ -279,7 +279,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost dwarf.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
 	combat = { dam= {1,6} },
 	hit_die = 1,
@@ -351,7 +351,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A dirty hairy bugbear.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=15, dex=12, con=13, int=10, wis=10, cha=9, luc=8 },
 	combat = { dam= {1,6} },
 	infravision = 3,
@@ -403,7 +403,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A dog-headed humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=15, dex=10, con=13, int=8, wis=11, cha=8, luc=8 },
 	combat = { dam= {1,6} },
 	infravision = 3,
@@ -452,7 +452,7 @@ newEntity{
 	common_desc = [[Gnomes can see well in dim light and have sharp ears. They have a particular dislike for the more bestial “smallfolk,” such as goblins and kobolds, and are well-versed at evading the ponderous attacks of giants.]],
 	base_desc = [[This small, spindly humanoid is a gnome, one of the civilized nonhuman races. Gnomes speak their own language, but also learn Common. Clever gnomes often know other racial languages as well.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=11, dex=11, con=14, int=10, wis=9, cha=8, luc=10 },
 	combat = { dam= {1,6} },
 	hit_die = 1,
@@ -531,7 +531,7 @@ newEntity{
 	common_desc = [[Halflings use their small size and nimble physique to escape notice, evade the ponderous attacks of larger creatures, and slip into places where they are not necessarily invited.]],
 	base_desc = [[This childlike humanoid is a halfling. Halflings have their own tongue, but also speak the local language. Clever halflings may know other racial languages as well.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
 	hit_die = 1,
@@ -571,7 +571,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A brutish goblinoid garbed in red, with reddish skin and dark hair.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=8, luc=10 },
 	combat = { dam= {1,6} },
 	infravision = 3,
@@ -615,7 +615,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly reptilian humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=13, dex=10, con=13, int=9, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	infravision = 3,
@@ -699,7 +699,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly fish-like humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	infravision = 1,
@@ -747,7 +747,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly reptilian humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=10, dex=9, con=14, int=8, wis=10, cha=10, luc=6 },
 	combat = { dam= {1,4} },
 	infravision = 5,
@@ -790,7 +790,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A horned tiefling.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=13, dex=13, con=12, int=12, wis=9, cha=6, luc=14 },
 	combat = { dam= {1,6} },
 	infravision = 3,
@@ -838,7 +838,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A beautiful humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=13, dex=11, con=12, int=10, wis=11, cha=10, luc=14 },
 	combat = { dam= {1,6} },
 	infravision = 3,
