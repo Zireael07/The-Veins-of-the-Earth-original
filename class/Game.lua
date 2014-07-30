@@ -955,7 +955,7 @@ function _M:setupCommands()
 			end
 		end,
 
-		LOOK_AROUND = function()
+	--[[	LOOK_AROUND = function()
 			self.flash:empty(true)
 			self.flash("Looking around... (direction keys to select interesting things, shift+direction keys to move freely)")
 			local co = coroutine.create(function() self.player:getTarget{type="hit", no_restrict=true, range=2000} 
@@ -966,7 +966,7 @@ function _M:setupCommands()
 			end)
 			local ok, err = coroutine.resume(co)
 			if not ok and err then print(debug.traceback(co)) error(err) end
-		end,
+		end,]]
 		
 		--Inventory
 		PICKUP_FLOOR = function()
