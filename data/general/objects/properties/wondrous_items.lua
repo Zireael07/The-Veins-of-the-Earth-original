@@ -691,6 +691,17 @@ end
 },
 }
 
+--Based on Angband
+newEntity {
+	name = " of brightness", suffix = true,
+--	keywords = {bonus=true},
+	level_range = {1, 10},
+	rarity = 5,
+	cost = 2000,
+	wielder = {
+		lite = 1,
+	},
+}
 
 --Curses
 newEntity{
