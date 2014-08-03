@@ -1582,7 +1582,7 @@ function _M:updateModdableTile()
 
 --    local base = "tiles/player/"..self.moddable_tile.."/"
 
-    local base = "tiles/player/default/"
+    local base = "default/tiles/player/default/"
 
 	self.image = base..(self.moddable_tile_base or "human_m.png")
   	self.add_mos = {}
