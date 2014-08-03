@@ -36,7 +36,7 @@ function _M:generateOne()
 		if m and m.type == "encounter" then
 			--Special case - dlvl 1
 			if game.level.level == 1 then
-				if m.challenge <= (game.level.level + 3) then
+				if m.challenge <= (game.level.level + 1) then
 					local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
 					local tries = 0
 					--No more spawning in walls!
@@ -52,7 +52,7 @@ function _M:generateOne()
 				end
 			--Special case: dlvl 2-5
 			elseif game.level.level == 2 or game.level.level == 3 or game.level.level == 4 or game.level.level == 5 then
-				if m.challenge <= (game.level.level + 3) then
+				if m.challenge <= (game.level.level + 2) then
 					local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
 					local tries = 0
 					--No more spawning in walls!
