@@ -2,6 +2,7 @@
 --Zireael
 
 local DamageType = require "engine.DamageType"
+local Stats = require "engine.interface.ActorStats"
 
 newEntity {
 	name = " +1", suffix = true,
