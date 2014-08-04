@@ -194,9 +194,9 @@ function _M:updateTitle(title)
 		g = util.lerp(green.g, red.g, v),
 		b = util.lerp(green.b, red.b, v),
 	}
-	if self.equip_actor.inv_scroll and self.c_inven.c_inven.scrollbar then
+--[[	if self.equip_actor.inv_scroll and self.c_inven.c_inven.scrollbar then
 		self.c_inven.c_inven.scrollbar.pos = util.bound(self.equip_actor.inv_scroll, 0, self.c_inven.c_inven.scrollbar.max)
-	end
+	end]]
 end
 
 function _M:onDrag(item)
