@@ -318,7 +318,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
 
         --Poison target
-        if self.poison and not target.dead then
+        if self.poison and not target.dead and target:canBe("poison") then
           local poison = self.poison
           self:applyPoison(poison, target)
       --    game.log(("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name:capitalize()))
@@ -335,6 +335,8 @@ function _M:applyPoison(poison, target)
 
   if not poison then return end
   
+  if not target:canBe("poison") then game.log("Target seems unaffected by poison") end
+
   if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
   --Failed save, set timer for secondary damage
   else 
