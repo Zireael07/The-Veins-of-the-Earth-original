@@ -94,6 +94,11 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     --Make UI work
     self:setDescriptor("base", "base")
     self:setDescriptor("sex", "Female")
+    --Defaults so that you can't do stupid stuff like trying to play a char without descriptors
+    self:setDescriptor("class", "Barbarian")
+    self:setDescriptor("race", "Human")
+    self:setDescriptor("background", "Brawler")
+    self:setDescriptor("alignment", "Neutral Good")
 
     -- Buttons at the bottom of the screen
     self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
@@ -353,6 +358,17 @@ end
 
 
 --Helper functions yaay for beginner players!
+function _M:isNewbieSuggested(d)
+    self:updateDescriptors()
+
+    if self.actor:getWis() >= 13 and d.name == "Cleric" then return true end
+    if d.name == "Paladin" then return true end
+    if d.name == "Ranger" then return true end
+
+    return false
+end
+
+
 function _M:isFavoredClass(d)
     self:updateDescriptors()
 
@@ -452,7 +468,7 @@ function _M:generateStats()
             {name="INT", val=self.actor:getInt(), stat_id=self.actor.STAT_INT, desc="#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard."},
             {name="WIS", val=self.actor:getWis(), stat_id=self.actor.STAT_WIS, desc="#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster."},
             {name="CHA", val=self.actor:getCha(), stat_id=self.actor.STAT_CHA, desc="#GOLD#Charisma (CHA)#LAST# is a key attribute for shamans or sorcerers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells."},
-            {name="LUC", val=self.actor:getLuc(), stat_id=self.actor.STAT_LUC, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
+            {name="#SLATE#LUC#LAST#", val=self.actor:getLuc(), stat_id=self.actor.STAT_LUC, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
         }
 
     self.list_stats = list
@@ -478,6 +494,7 @@ function _M:generateClasses()
         if self:isDescriptorAllowed(d) then
           local color
             if self.sel_class and self.sel_class.name == d.name then color = {255, 215, 0}
+            elseif self:isNewbieSuggested(d) then color = {255, 192, 203}
             elseif self:isSuggestedClass(d) then color = {0, 255, 0}
             elseif self.sel_race and self:isFavoredClass(d) then color = {81, 221, 255}
             else color = {255, 255, 255} end
@@ -772,6 +789,13 @@ function _M:loadedPremade()
 --    game:unregisterDialog(d)
 
     game:changeLevel(1, "Upperdark")
+
+    Map:setViewerActor(self.player)
+    self:setupDisplayMode()
+
+    self.always_target = true
+
+    self.creating_player = true
 
 --[[  self.creating_player = true
     game:changeLevel(1, "dungeon")
