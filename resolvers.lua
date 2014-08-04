@@ -465,9 +465,11 @@ function resolvers.calc.moddable_tile(t, e)
 	elseif slot == "leather_cap" then r = {"cap_black1"}
 	end
 	
+	r = rng.table(r)
 --	r = r[util.bound(ml, 1, #r)]
 	if r2 then
-	--	r2 = r2[util.bound(ml, 1, #r2)]
+--		r2 = r2[util.bound(ml, 1, #r2)]
+		r2 = rng.table(r2)
 		e.moddable_tile2 = r2
 	end
 	if type(r) == "string" then return r else e.moddable_tile_big = true return r[1] end
