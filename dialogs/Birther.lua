@@ -76,8 +76,8 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     self:generateStats()
     self.c_stats = ListColumns.new{width=self.iw/6, height=200, all_clicks=true, columns={
-        {name="Stat", width=30, display_prop="name"},
-        {name="Value", width=30, display_prop="val"},
+        {name="Stat", width=40, display_prop="name"},
+        {name="Value", width=50, display_prop="val"},
     }, list=self.list_stats, fct=function(item, _, v)
         self:incStat(v == "left" and 1 or -1, item.stat_id)
     end, select=function(item, sel) self.sel = sel self.val = item.val self.id = item.stat_id self:updateDesc(item) end}
@@ -369,6 +369,17 @@ function _M:isNewbieSuggested(d)
 end
 
 
+function _M:isBadChoice(d)
+    self:updateDescriptors()
+
+    if self.actor:getWis() <= 10 and d.name == "Cleric" then return true end
+    if self.actor:getCha() <= 10 and d.name == "Shaman" then return true end
+    if self.actor:getCha() <= 10 and d.name == "Sorcerer" then return true end
+    if self.actor:getInt() <= 10 and d.name == "Wizard" then return true end
+
+    return false
+end
+
 function _M:isFavoredClass(d)
     self:updateDescriptors()
 
@@ -462,13 +473,13 @@ function _M:generateStats()
 
     list = 
     {
-            {name="STR", val=self.actor:getStr(), stat_id=self.actor.STAT_STR, desc="#GOLD#Strength (STR)#LAST# is important for melee fighting."},
-            {name="DEX", val=self.actor:getDex(), stat_id=self.actor.STAT_DEX, desc="You'll want to increase #GOLD#Dexterity (DEX)#LAST# if you want to play a ranger or a rogue. It's less important for fighters, who wear heavy armor."},
-            {name="CON", val=self.actor:getCon(), stat_id=self.actor.STAT_CON, desc="#GOLD#Constitution (CON)#LAST# is vital for all characters, since it affects your hitpoints."},
-            {name="INT", val=self.actor:getInt(), stat_id=self.actor.STAT_INT, desc="#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard."},
-            {name="WIS", val=self.actor:getWis(), stat_id=self.actor.STAT_WIS, desc="#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster."},
-            {name="CHA", val=self.actor:getCha(), stat_id=self.actor.STAT_CHA, desc="#GOLD#Charisma (CHA)#LAST# is a key attribute for shamans or sorcerers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells."},
-            {name="#SLATE#LUC#LAST#", val=self.actor:getLuc(), stat_id=self.actor.STAT_LUC, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
+            {name="STR", val=self.actor:birthColorStats('str'), stat_id=self.actor.STAT_STR, desc="#GOLD#Strength (STR)#LAST# is important for melee fighting."},
+            {name="DEX", val=self.actor:birthColorStats('dex'), stat_id=self.actor.STAT_DEX, desc="You'll want to increase #GOLD#Dexterity (DEX)#LAST# if you want to play a ranger or a rogue. It's less important for fighters, who wear heavy armor."},
+            {name="CON", val=self.actor:birthColorStats('con'), stat_id=self.actor.STAT_CON, desc="#GOLD#Constitution (CON)#LAST# is vital for all characters, since it affects your hitpoints."},
+            {name="INT", val=self.actor:birthColorStats('int'), stat_id=self.actor.STAT_INT, desc="#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard."},
+            {name="WIS", val=self.actor:birthColorStats('wis'), stat_id=self.actor.STAT_WIS, desc="#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster."},
+            {name="CHA", val=self.actor:birthColorStats('cha'), stat_id=self.actor.STAT_CHA, desc="#GOLD#Charisma (CHA)#LAST# is a key attribute for shamans or sorcerers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells."},
+            {name="#SLATE#LUC#LAST#", val=self.actor:birthColorStats('luc'), stat_id=self.actor.STAT_LUC, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
         }
 
     self.list_stats = list
@@ -494,6 +505,7 @@ function _M:generateClasses()
         if self:isDescriptorAllowed(d) then
           local color
             if self.sel_class and self.sel_class.name == d.name then color = {255, 215, 0}
+            elseif self:isBadChoice(d) then color = {201, 0, 0}
             elseif self:isNewbieSuggested(d) then color = {255, 192, 203}
             elseif self:isSuggestedClass(d) then color = {0, 255, 0}
             elseif self.sel_race and self:isFavoredClass(d) then color = {81, 221, 255}

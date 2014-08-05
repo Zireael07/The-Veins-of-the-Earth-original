@@ -365,6 +365,13 @@ function _M:getLogName()
     end
 end
 
+--Helper function to color high & low stats in birther
+function _M:birthColorStats(stat)
+	if self:getStat(stat) <= 6 then return "#RED#"..self:getStat(stat).."#LAST"
+	elseif self:getStat(stat) > 15 then return "#GREEN#"..self:getStat(stat).."#LAST#"
+	else return "#WHITE#"..self:getStat(stat).."#LAST#" end
+end
+
 
 --Helper function to color high stats (15+) when loading
 function _M:colorHighStats(stat)
