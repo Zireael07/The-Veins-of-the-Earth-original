@@ -24,19 +24,21 @@ newEntity{
 	display = '>', color_r=255, color_g=0, color_b=255, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
-	change_level=1,
+--	change_level=1,
 }
 
 newEntity{
 	base = "DOWN",
 	define_as = "DOWN_UPPERDARK",
 	change_zone = "Upperdark",
+	change_level = 1,
 }
 
 newEntity{
 	base = "DOWN",
 	define_as = "DOWN_CAVERN",
 	change_zone = "cavern",
+	change_level = 1,
 }
 
 newEntity{

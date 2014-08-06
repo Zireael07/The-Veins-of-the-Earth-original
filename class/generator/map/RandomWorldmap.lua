@@ -33,9 +33,9 @@ function _M:generate()
 	local chance = rng.dice(1,8)
 
 	for i = 0, self.map.w - 1 do for j = 0, self.map.h - 1 do
-		if rng.percent(25) then
+	--[[	if rng.percent(25) then
 			self.map(i, j, Map.TERRAIN, self.down)
-		elseif 	rng.percent(45) then
+		else]]if 	rng.percent(45) then
 			self.map(i, j, Map.TERRAIN, self.floor)
 		else
 			self.map(i, j, Map.TERRAIN, self.wall)

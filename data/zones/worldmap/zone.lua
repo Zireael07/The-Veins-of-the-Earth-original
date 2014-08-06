@@ -13,6 +13,8 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+local Map = require "engine.Map"
+
 
 return {
 	name = "Veins of the Earth",
@@ -29,4 +31,42 @@ return {
 			floor = "FLOOR",
 		},
 	},
+
+	post_process = function(level)
+		-- put dungeon entrances
+		local l1 = game.zone:makeEntityByName(level, "terrain", "DOWN_UPPERDARK")
+		if not l1 then return end
+
+		local x, y = util.findFreeGrid(game.level.default_up.x, game.level.default_up.y, 5, true, {[Map.OBJECT]=true})
+		game.zone:addEntity(level, l1, "terrain", x, y)
+		print("Placed dungeon entrance", l1.name, x, y)
+
+--[[		local x, y = rng.range(0, (game.level.map.w/2)-1), rng.range(0, (game.level.map.h/2)-1)
+
+		local tries = 0
+		while (game.level.map:checkEntity(x, y, Map.TERRAIN, "block_move") or game.level.map(x, y, Map.OBJECT) or game.level.map.room_map[x][y].special) and tries < 100 do
+			x, y = rng.range(0, game.level.map.w-1), rng.range(0, game.level.map.h-1)
+			tries = tries + 1
+		end
+		if tries < 100 then
+			game.zone:addEntity(level, l1, "terrain", x, y)
+			print("Placed dungeon entrance", l1, x, y)
+		end]]
+
+		local l2 = game.zone:makeEntityByName(level, "terrain", "DOWN_CAVERN")
+		if not l2 then return end
+
+		local x, y = rng.range(0, (game.level.map.w/2)-1), rng.range(0, (game.level.map.h/2)-1)
+
+		local tries = 0
+		while (game.level.map:checkEntity(x, y, Map.TERRAIN, "block_move") or game.level.map(x, y, Map.OBJECT) or game.level.map.room_map[x][y].special) and tries < 100 do
+			x, y = rng.range(0, game.level.map.w-1), rng.range(0, game.level.map.h-1)
+			tries = tries + 1
+		end
+		if tries < 100 then
+			game.zone:addEntity(level, l2, "terrain", x, y)
+			print("Placed dungeon entrance", l2.name, x, y)
+		end
+
+	end,
 }
