@@ -506,7 +506,7 @@ function _M:generateClasses()
           local color
             if self.sel_class and self.sel_class.name == d.name then color = {255, 215, 0}
             elseif self:isBadChoice(d) then color = {201, 0, 0}
-            elseif self:isNewbieSuggested(d) then color = {255, 192, 203}
+            elseif self:isNewbieSuggested(d) then color = {244, 164, 96}
             elseif self:isSuggestedClass(d) then color = {0, 255, 0}
             elseif self.sel_race and self:isFavoredClass(d) then color = {81, 221, 255}
             else color = {255, 255, 255} end
