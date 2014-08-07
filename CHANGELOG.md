@@ -1,5 +1,27 @@
 CHANGELOG
 
+0.21.0 - beta 5.7 - 07/08/2014
+
+* bug fix - all skills triggering the spell failure checks
+* bug fix - specific items had a typo in their on_wear
+* bug fix - look around key throwing a lua error
+* bug fix - locked out of inventory sometimes
+* bug fix - plate armor being worn causing an error in the moddable tiles resolver
+* bug fix - poison code not checking for immunity
+
+* random worldmap
+* humanoids now use A* pathing
+* add ranged AI code inspired by DataQueen
+* new monsters: babau, dretch, quasit
+* new items: throwing axe, throwing knives; mushrooms, rods; enabled tattoos; mithril coins, emeralds, sapphires; 
+* new egos: dwarven, elven; of the Winterland, of the Druid, of the Hin; of brightness
+* reduced the CR cap for dungeon level 1 to player level +1 and to player level +2 for dlvl 2-5
+* tiles/ASCII switch finally works!
+* split off thrown weapons into a separate file
+* add a hint when a cursed item is auto-destroyed
+* prevent clicking on learned feats in feat selection screens
+* character creation screen improvements - highlight Cleric/Ranger/Paladin as newbie friendly; darkened Luck as it's not implemented yet; color-code high & low stats; highlight bad choices (spellcasting classes who wouldn't be able to cast spells) in dark red
+
 0.20.0 - beta 5.6 - 29/06/2014
 
 * bug fix - naming box not accepting keypresses [kudos to Castler]
@@ -117,7 +139,7 @@ CHANGELOG
 * new magic properties: of resistance, of the Endless Wave, of Detection, of the Eagle, of the Soul, of the Mantis, of the Spur, of Stability, of Contortion, of Magical Aptitude, of Arachnida, of the Bat, of SR 21, of Frostbite, of Fireburn
 * new spells: create food and water, fly, levitate
 * minimap now has background and shows level exits
-* reduced the CR cap for level 1 to player level +3
+* reduced the CR cap for dungeon level 1 to player level +3
 * immunities or resistances as perks
 * debug menu - includes adding creatures, removing them, killing off clones, adding XP, gold, or items to player, identifying all items in inventory, Lua console for other stuff
 * cut down on flasher (top message bar) use

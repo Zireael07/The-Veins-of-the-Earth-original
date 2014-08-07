@@ -2,10 +2,12 @@ FEATURES
 
 ======
 
+- random worldmap different for every character
 - brand-new start-up screen and menu [standalone version only]
 - new old gold and black UI skin
 - 32x32 tiles by Daniel E. Gervais & my edits
 - moddable player tiles
+- tiles/ASCII switch
 - controls displayed automatically at game start
 - 13 classes: barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, wizard (with specialist schools [Seb]); warlock, shaman
 - 6 prestige classes: shadowdancer, assasin, arcane archer, blackguard, loremaster, archmage
