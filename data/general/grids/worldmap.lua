@@ -29,8 +29,8 @@ newEntity{
 
 newEntity{
 	base = "DOWN",
-	define_as = "DOWN_UPPERDARK",
-	change_zone = "Upperdark",
+	define_as = "DOWN_TUNNELS",
+	change_zone = "tunnels",
 	change_level = 1,
 }
 
@@ -38,6 +38,13 @@ newEntity{
 	base = "DOWN",
 	define_as = "DOWN_CAVERN",
 	change_zone = "cavern",
+	change_level = 1,
+}
+
+newEntity{
+	base = "DOWN",
+	define_as = "DOWN_COMPOUND",
+	change_zone = "compound",
 	change_level = 1,
 }
 
