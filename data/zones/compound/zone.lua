@@ -15,11 +15,11 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 return {
-	name = "Upperdark",
+	name = "Compound",
 	level_range = {1, 1},
 	max_level = 1000,
-	decay = {300, 800},
-	width = 100, height = 100,
+--	decay = {300, 800},
+	width = 90, height = 90,
 --	persistent = "zone",
 	generator =  {
 		map = {

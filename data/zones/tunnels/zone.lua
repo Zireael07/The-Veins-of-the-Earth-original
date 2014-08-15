@@ -1,12 +1,12 @@
 -- Veins of the Earth
--- Zireael 2013
+-- Zireael 2013-2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
 -- (at your option) any later version.
 --
--- This program is distributed in the hope that it wil_l be useful,
+-- This program is distributed in the hope that it will be useful,
 -- but WITHOUT ANY WARRANTY; without even the implied warranty of
 -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 -- GNU General Public License for more details.
@@ -15,10 +15,10 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 return {
-	name = "Middledark",
+	name = "Tunnels",
 	level_range = {1, 1},
 	max_level = 1000,
-	decay = {300, 800},
+--	decay = {300, 800},
 	width = 100, height = 100,
 --	persistent = "zone",
 	generator =  {
@@ -72,10 +72,10 @@ return {
 	},
 	levels =
 	{
-	--No stairs up on level 1
+	--Place exit to worldmap on level 1
 		[1] = { 
 		generator = { map = { 
-		up = "FLOOR",
+		up = "EXIT",
 		},},
 	},
 	--No shaft up on level 2
@@ -86,4 +86,10 @@ return {
 	},
 
 	},
+
+	post_process = function(level)
+		-- Put lore near the up stairs
+		game:placeRandomLoreObject("NOTE"..level.level)
+
+	end,
 }
