@@ -800,7 +800,7 @@ function _M:loadedPremade()
     game:unregisterDialog(self)
 --    game:unregisterDialog(d)
 
-    game:changeLevel(1, "Upperdark")
+    game:changeLevel(1, "tunnels")
 
     Map:setViewerActor(self.player)
     self:setupDisplayMode()
@@ -810,7 +810,7 @@ function _M:loadedPremade()
     self.creating_player = true
 
 --[[  self.creating_player = true
-    game:changeLevel(1, "dungeon")
+    game:changeLevel(1, "tunnels")
     print("[PLAYER BIRTH] resolve...")
     game.player:resolve()
     game.player:resolve(nil, true)

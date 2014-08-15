@@ -177,7 +177,7 @@ function _M:newGame()
 
 --    local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'deity', 'alignment', 'domains', 'domains'}, function()
         
-   	    game:changeLevel(1, "Upperdark")
+   	    game:changeLevel(1, "tunnels")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
         game.player:resolve(nil, true)
