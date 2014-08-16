@@ -49,6 +49,13 @@ newEntity{
 }
 
 newEntity{
+	base = "DOWN",
+	define_as = "DOWN_LABIRYNTH",
+	change_zone = "labirynth",
+	change_level = 1,
+}
+
+newEntity{
 	define_as = "FLOOR",
 	type = "floor", subtype = "floor",
 	name = "floor", image = "tiles/floor.png",
