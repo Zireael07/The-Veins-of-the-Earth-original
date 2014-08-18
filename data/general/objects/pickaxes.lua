@@ -19,18 +19,10 @@ newEntity{
 	--Based on Qi Daozei
 	digspeed = 10,
     use_no_wear = true,
-    use_no_energy = true, -- energy cost is handled by wait() below
+--    use_no_energy = true, -- energy cost is handled by wait() below
 
     getEffectiveDigSpeed = function(self, who, show_message)
-       --[[ local Talents = require "engine.interface.ActorTalents"
-        local mining = (who:getDex()-10)/2
-        if mining == 0 then
-            if show_message then game.logPlayer(who, "You don't know the first thing about mining. This could take a while...") end
-            ]]
             return math.floor(self.digspeed * 2)
-        --[[else
-            return math.floor(self.digspeed * math.pow(0.9, mining - 1))
-        end]]
     end,
 
     -- Based on ToME's DIG_OBJECT
@@ -51,7 +43,7 @@ newEntity{
             -- I'm not sure why.
             local digspeed = self:getEffectiveDigSpeed(who, true) - 1
 
-            local wait = function()
+        --[[    local wait = function()
                 local co = coroutine.running()
                 local ok = false
                 who:restInit(digspeed, "digging", "dug", function(cnt, max)
@@ -64,10 +56,10 @@ newEntity{
                     return false
                 end
                 return true
-            end
-            if wait() then
+            end]]
+        --    if wait() then
                 who:project(tg, x, y, engine.DamageType.DIG, 1)
-            end
+        --   end
 
             return true
         end,
