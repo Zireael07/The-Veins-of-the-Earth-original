@@ -18,7 +18,6 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=10, con=15, int=10, wis=11, cha=10, luc=10 },
 	combat = { dam= {2,8} },
-	rarity = 15,
 	infravision = 4,
 	combat_dr = 5,
 	skill_hide = 10,
@@ -29,6 +28,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_XORN",
 	name = "minor xorn",
+	rarity = 15,
 	level_range = {5, nil}, exp_worth = 900,
 	max_life = resolvers.rngavg(20,25),
 	hit_die = 3,
@@ -47,6 +47,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_XORN",
 	name = "average xorn",
+	rarity = 18,
 	level_range = {5, nil}, exp_worth = 1800,
 	max_life = resolvers.rngavg(45,50),
 	hit_die = 7,
@@ -68,6 +69,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_XORN",
 	name = "elder xorn",
+	rarity = 15,
 	level_range = {10, nil}, exp_worth = 2500,
 	max_life = resolvers.rngavg(125,130),
 	hit_die = 15,
