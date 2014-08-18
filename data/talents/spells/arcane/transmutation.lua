@@ -270,3 +270,29 @@ newArcaneSpell{
 			You do not gain their extraordinary special qualities, nor any supernatural or spell-like abilities.]])
 	end,
 }
+
+newArcaneSpell{
+	name = "Transmute Stone to Mud",
+	type = {"transmutation", 1},
+	mode = 'activated',
+	level = 5,
+	points = 1,
+	tactical = { BUFF = 5 },
+	range = 1,
+	target = function(self, t)
+		return {type="bolt", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+
+		local tg = {type="bolt", range=1, nolock=true}
+		local x, y = self:getTarget(tg)
+		if not x or not y then return nil end
+
+		self:project(tg, x, y, engine.DamageType.DIG, 1)
+
+	return true
+	end,
+	info = function (self, t)
+		return ([[Transmute stone to mud, effectively digging]])
+	end,
+}
