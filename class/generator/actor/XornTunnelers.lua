@@ -22,7 +22,7 @@ local Map = require "engine.Map"
 require "engine.Generator"
 local Random = require "mod.class.generator.actor.Random"
 
---- Very specialized generator that puts sandworms in interesting spots to dig tunnels
+--- Very specialized generator that puts xorns in interesting spots to dig tunnels
 module(..., package.seeall, class.inherit(engine.Generator))
 
 function _M:init(zone, map, level, spots)
@@ -47,11 +47,11 @@ function _M:generate()
 	end
 
 	-- Always add one near the stairs
-	self:placeWorm(self.level.default_up)
-	self:placeWorm(self.level.default_down)
+	self:placeXorn(self.level.default_up)
+	self:placeXorn(self.level.default_down)
 end
 
-function _M:placeWorm(s)
+function _M:placeXorn(s)
 	if not s.x or not s.y then return end
 	local m = self.zone:makeEntityByName(self.level, "actor", "XORN_TUNNELER")
 	if m then

@@ -58,7 +58,7 @@ newEntity{
 }
 
 --First part copied, now let's get the ball rolling!
-newEntity{
+newEntity{ define_as = "XORN_TUNNELER",
     base = "BASE_NPC_XORN_TUNNELER",
     name = "xorn tunneler",
     level_range = {5, nil}, exp_worth = 0,
