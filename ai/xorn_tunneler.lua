@@ -69,9 +69,9 @@ local function tunnel(self, x1, y1, x2, y2)
 	return nx, ny
 end
 
--- Very special AI for sandworm tunnelers in the sandworm lair
+-- Very special AI for tunnelers in the xorn lair
 -- Does not care about a target, simple crawl toward a level spot and when there, go for the next
-newAI("sandworm_tunneler", function(self)
+newAI("xorn_tunneler", function(self)
 	-- Get a spot
 	if not self.ai_state.spot_x then
 		if game.level.default_up and rng.chance(#game.level.spots + 2) then
@@ -111,9 +111,9 @@ newAI("sandworm_tunneler", function(self)
 	end
 end)
 
--- Very special AI for sandworm tunnelers in the sandworm lair
+-- Very special AI for tunnelers in the xorn lair
 -- Does not care about a target, simple crawl toward a level spot and when there, go for the next
-newAI("sandworm_tunneler_huge", function(self)
+newAI("xorn_tunneler_huge", function(self)
 	-- Get a spot
 	if not self.ai_state.spot_x then
 		self.ai_state.next_spot = self.ai_state.next_spot + 1
