@@ -36,14 +36,14 @@ function _M:generate()
 	-- Make the random generator place normal actors
 	self.random:generate()
 
-	-- Now place sandworm tunnelers
+	-- Now place tunnelers
 	local used= {}
 	for i = 1, self.data.nb_tunnelers do
 		local s, idx = rng.table(self.spots)
 		while used[idx] do s, idx = rng.table(self.spots) end
 		used[idx] = true
 
-		self:placeWorm(s)
+		self:placeXorn(s)
 	end
 
 	-- Always add one near the stairs

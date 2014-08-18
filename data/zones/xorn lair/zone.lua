@@ -72,5 +72,42 @@ return {
 		-- Put lore near the up stairs
 		game:placeRandomLoreObject("NOTE"..level.level)
 
+		--Pick spots for xorn tunnelers
+		local spots = {}
+		for i, spot in ipairs(level.spots) do
+			if spot.type == "room" and spot.subtype:find("^forest_clearing") then
+			local _, _, w, h = spot.subtype:find("^forest_clearing([0-9]+)x([0-9]+)$")
+			if w and h then spots[#spots+1] = {x=spot.x, y=spot.y, w=tonumber(w), h=tonumber(h)} end
+			end
+		end
+		table.sort(spots, "x")
+		level.ordered_spots = spots
+		level.default_up = {x=spots[1].x, y=spots[1].y}
+		level.default_down = {x=spots[#spots].x, y=spots[#spots].y}
+		level.map(level.default_up.x, level.default_up.y, engine.Map.TERRAIN, game.zone.grid_list.SAND_LADDER_UP_WILDERNESS)
+		level.map(level.default_down.x, level.default_down.y, engine.Map.TERRAIN, game.zone.grid_list.SAND_LADDER_DOWN)
+
+		local tx, ty = util.findFreeGrid(level.default_up.x+2, level.default_up.y, 5, true, {[engine.Map.ACTOR]=true})
+		if not tx then level.force_recreate = true return end
+		local m = game.zone:makeEntityByName(level, "actor", "XORN_TUNNELER")
+		if not m then level.force_recreate = true return end
+		game.zone:addEntity(level, m, "actor", tx, ty)
+
+	end,
+
+	last_worm_turn = 0,
+	on_turn = function(self)
+		if game.turn % 100 ~= 0 or game.level.level ~= 1 then return end
+		if game.level.data.last_worm_turn > game.turn - 800 then return end
+
+--		for uid, e in pairs(game.level.entities) do if e.define_as == "SANDWORM_TUNNELER_HUGE" then return end end
+
+		local tx, ty = util.findFreeGrid(game.level.default_up.x+2, game.level.default_up.y, 5, true, {[engine.Map.ACTOR]=true})
+		if not tx then return end
+		local m = game.zone:makeEntityByName(game.level, "actor", "XORN_TUNNELER")
+		if not m then return end
+		game.zone:addEntity(game.level, m, "actor", tx, ty)
+		game.log("#OLIVE_DRAB#You feel the ground shaking from the west.")
+		game.level.data.last_worm_turn = game.turn
 	end,
 }
