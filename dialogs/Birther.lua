@@ -26,6 +26,8 @@ local List = require "engine.ui.List"
 
 local NameGenerator = require "engine.NameGenerator"
 
+local Map = require "engine.Map"
+
 module(..., package.seeall, class.inherit(Birther))
 
 --For stats
@@ -803,11 +805,11 @@ function _M:loadedPremade()
     game:changeLevel(1, "tunnels")
 
     Map:setViewerActor(self.player)
-    self:setupDisplayMode()
+    game:setupDisplayMode()
 
-    self.always_target = true
+    game.always_target = true
 
-    self.creating_player = true
+    game.creating_player = true
 
 --[[  self.creating_player = true
     game:changeLevel(1, "tunnels")
