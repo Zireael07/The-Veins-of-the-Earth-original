@@ -30,7 +30,6 @@ return {
 			floor = "FLOOR",
 			widen_w = 2, widen_h = 2,
 		},
-		},
 		actor = {
 		--[[	class = "mod.class.generator.actor.Encounters",
 			nb_encounters = 10,]]
