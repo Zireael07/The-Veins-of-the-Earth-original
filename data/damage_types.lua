@@ -237,20 +237,25 @@ newDamageType{
 
 
 --Enable digging
-
 newDamageType{
-    name = "dig", type = "DIG",
-    projector = function(src, x, y, typ, dam)
-        local feat = game.level.map(x, y, Map.TERRAIN)
-        if not feat or not feat.dig then return end
+	name = "dig", type = "DIG",
+	projector = function(src, x, y, typ, dam)
+		local feat = game.level.map(x, y, Map.TERRAIN)
+		if feat then
+			if feat.dig then
+				local newfeat_name, newfeat, silence = feat.dig, nil, false
+				if type(feat.dig) == "function" then newfeat_name, newfeat, silence = feat.dig(src, x, y, feat) end
+				newfeat = newfeat or game.zone.grid_list[newfeat_name]
+				if newfeat then
+					game.level.map(x, y, Map.TERRAIN, newfeat)
+					src.dug_times = (src.dug_times or 0) + 1
 
-        local newfeat_name, newfeat, silence = feat.dig, nil, false
-        if type(feat.dig) == "function" then newfeat_name, newfeat, silence = feat.dig(src, x, y, feat) end
-        game.level.map(x, y, Map.TERRAIN, newfeat or game.zone.grid_list[newfeat_name])
-        if not silence then
-            game.logSeen({x=x,y=y}, "The %s turns into %s.", feat.name, (newfeat or game.zone.grid_list[newfeat_name]).name)
-        end
+					if not silence then
+						game.logSeen({x=x,y=y}, "%s turns into %s.", feat.name:capitalize(), newfeat.name)
+					end
+				end
+			end
+		end
+	end,
 
-        if src.talentCallbackAllOn then src:talentCallbackAllOn("on_dig", x, y, feat) end
-    end,
 }
