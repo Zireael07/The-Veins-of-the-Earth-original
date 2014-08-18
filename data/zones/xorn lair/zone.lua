@@ -36,8 +36,7 @@ return {
 			['#'] = "WALL",
 			up = "UP",
 			down = "DOWN",
-			door = "DOOR",
-			nb_rooms = 10,
+			door = "FLOOR",
 		},
 		actor = {
 		--	class = "mod.class.generator.actor.EncounterRandom",
