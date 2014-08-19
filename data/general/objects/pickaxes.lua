@@ -12,10 +12,6 @@ newEntity{
 	encumber = 3,
 	rarity = 20,
 	desc = [[Allows you to dig.]],
---[[	carrier = {
-		learn_talent = { [Talents.T_DIG] = 1, },
-	},]]
-
 	--Based on Qi Daozei
 	digspeed = 10,
     use_no_wear = true,
@@ -61,7 +57,8 @@ newEntity{
                 who:project(tg, x, y, engine.DamageType.DIG, 1)
         --   end
 
-            return true
+        --    return true
+            return {used = true}
         end,
     }
 }
