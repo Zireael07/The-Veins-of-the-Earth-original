@@ -718,6 +718,30 @@ newEntity{
 }
 
 newEntity{
+	name = " of weakness -2", suffix = true,
+	keywords = {cursed=true},
+	level_range = {1,10},
+	rarity = 8,
+	cursed = true,
+	cost = 0,
+	wielder = {
+     inc_stats = { [Stats.STAT_STR] = -2, },
+  }, 
+}
+
+newEntity{
+	name = " of weakness -4", suffix = true,
+	keywords = {cursed=true},
+	level_range = {1,10},
+	rarity = 8,
+	cursed = true,
+	cost = 0,
+	wielder = {
+     inc_stats = { [Stats.STAT_STR] = -4, },
+  }, 
+}
+
+newEntity{
 	name = " of fumbling -2", suffix = true,
 	keywords = {cursed=true},
 	level_range = {1,10},
