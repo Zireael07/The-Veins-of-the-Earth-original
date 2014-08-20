@@ -614,6 +614,11 @@ end
 --- Called every game turns
 -- Does nothing, you can override it
 function _M:onTurn()
+	--Actually do zone on turn stuff
+	if self.zone then
+		if self.zone.on_turn then self.zone:on_turn() end
+	end
+
 	-- The following happens only every 10 game turns (once for every turn of 1 mod speed actors)
 	if self.turn % 10 ~= 0 then return end
 
