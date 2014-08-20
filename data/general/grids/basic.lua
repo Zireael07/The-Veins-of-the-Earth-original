@@ -362,7 +362,7 @@ newEntity{
 	define_as = "ICE",
 	type = "floor", subtype = "ice",
 	name = "ice floor", 
-	image = "tiles/newtiles/ice_floor.png",
+	image = "tiles/UT/ice.png",
 	display = ' ', color=colors.STEEL_BLUE, back_color=colors.STEEL_BLUE,
 	always_remember = true,
 	on_stand = function(self, x, y, who)
@@ -383,7 +383,8 @@ newEntity{
 	define_as = "SAND",
 	type = "floor", subtype = "sand",
 	name = "sand", 
-	display = ' ', color=colors.YELLOW, back_color=colors.GREY,
+	image = "tiles/UT/sand.png",
+	display = ' ', color=colors.YELLOW, back_color=colors.YELLOW,
 	always_remember = true,
 }
 
