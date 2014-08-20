@@ -912,6 +912,7 @@ function _M:setupCommands()
 		EXIT = function()
 			local menu menu = require("engine.dialogs.GameMenu").new{
 				"resume",
+				{ "#GOLD#Help#LAST#", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.Help").new()) end},
 				"keybinds",
 				{ "Show Achievements", function() self:unregisterDialog(menu) self:registerDialog(require("engine.dialogs.ShowAchievements").new("Veins of the Earth Achievements", self.player)) end },
 				{ "Show known Lore", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.LoreList").new("Veins of the Earth Lore", self.player)) end },
