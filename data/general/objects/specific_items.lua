@@ -6,7 +6,7 @@
 newEntity{
     define_as = "HOLY_AVENGER",
 	name = "Holy Avenger",
-    unided_name = "longsword",
+    unided_name = "long sword",
 	slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="sword",
     image = "tiles/longsword.png",
