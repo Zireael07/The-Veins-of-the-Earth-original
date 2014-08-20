@@ -25,11 +25,7 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     encumber = 2,
     rarity = 10,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic hand crossbow",
     desc = "A normal trusty hand crossbow.\n\n Damage 1d4. Threat range 19-20. Range 3.",
-}
-
-newEntity{ base = "BASE_HANDXBOW",
     name = "hand crossbow",
     level_range = {1, 10},
     cost = 100,
@@ -39,4 +35,3 @@ newEntity{ base = "BASE_HANDXBOW",
         range = 3,
     },
 }
-

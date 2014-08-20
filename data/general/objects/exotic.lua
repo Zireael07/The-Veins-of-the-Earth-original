@@ -31,11 +31,7 @@ newEntity{ base = "BASE_EXOTIC",
     encumber = 6,
     rarity = 10,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic bastard sword",
     desc = "A normal bastard sword, which can be wielded in one or two hands.\n\n Damage 1d10. Threat range 19-20.",
-}
-
-newEntity{ base = "BASE_BASTARDSWORD",
     name = "bastard sword",
     level_range = {1, 10},
     cost = 35,
@@ -54,11 +50,7 @@ newEntity{ base = "BASE_EXOTIC",
     encumber = 6,
     rarity = 10,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic dwarven waraxe",
     desc = "A normal dwarven waraxe.\n\n Damage 1d10. Critical x3.",
-}
-
-newEntity{ base = "BASE_WARAXE",
     name = "dwarven waraxe",
     level_range = {1, 10},
     cost = 35,
@@ -80,11 +72,7 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     rarity = 10,
     reach = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic spiked chain",
     desc = "A normal spiked chain.\n\n Damage 2d4.",
-}
-
-newEntity{ base = "BASE_SPIKEDCHAIN",
     name = "spiked chain",
     level_range = {1, 10},
     cost = 25,
@@ -106,11 +94,7 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     rarity = 10,
     double = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic orc double axe",
     desc = "An exotic orc double axe.\n\n Damage 1d8. Critical x3.",
-}
-
-newEntity{ base = "BASE_DAXE",
     name = "orc double axe",
     level_range = {1, 10},
     cost = 60,
@@ -131,11 +115,8 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     rarity = 10,
     double = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic double sword",
+    
     desc = "An exotic double sword.\n\n Damage 1d8. Threat range 19-20.",
-}
-
-newEntity{ base = "BASE_DSWORD",
     name = "two-bladed sword",
     level_range = {1, 10},
     cost = 100,
@@ -144,6 +125,7 @@ newEntity{ base = "BASE_DSWORD",
         threat = 1,
     },
 }
+
 
 --1d8 one head, 1d6 the other
 newEntity{ base = "BASE_EXOTIC_TWOHANDED",
@@ -157,11 +139,7 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     rarity = 12,
     double = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    name = "a generic dwarven urgrosh",
     desc = "An exotic dwarven urgrosh.\n\n Damage 1d8. Critical x3.",
-}
-
-newEntity{ base = "BASE_URGROSH",
     name = "dwarven urgrosh",
     level_range = {1, 10},
     cost = 50,

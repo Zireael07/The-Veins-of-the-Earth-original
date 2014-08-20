@@ -21,11 +21,7 @@ newEntity{ base = "BASE_THROWN",
     rarity = 8,
     simple = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic dart",
     desc = "An unremarkable dart.\n\n Damage 1d4. Range 2",
-}
-
-newEntity{ base = "BASE_DART",
     name = "darts",
     level_range = {1, 10},
     cost = 0.5,
@@ -34,7 +30,6 @@ newEntity{ base = "BASE_DART",
         range = 2,
     },
 }
-
 
 newEntity{ base = "BASE_THROWN",
     define_as = "BASE_JAVELIN",
@@ -47,11 +42,7 @@ newEntity{ base = "BASE_THROWN",
     rarity = 10,
     simple = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic javelin",
     desc = "A normal unremarkable javelin.\n\n Damage 1d6. Range 3",
-}
-
-newEntity{ base = "BASE_JAVELIN",
     name = "javelin",
     level_range = {1, 10},
     cost = 1,
@@ -73,11 +64,7 @@ newEntity{ base = "BASE_THROWN",
     rarity = 15,
     simple = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic thrown axe",
     desc = "A normal unremarkable throwing axe.\n\n Damage 1d6. Range 3",
-}
-
-newEntity{ base = "BASE_THROWN_AXE",
     name = "throwing axe",
     level_range = {1, 10},
     cost = 1,
@@ -98,11 +85,7 @@ newEntity{ base = "BASE_THROWN",
     rarity = 15,
     simple = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic thrown knife",
     desc = "A normal unremarkable throwing knife.\n\n Damage 1d6. Range 3",
-}
-
-newEntity{ base = "BASE_THROWN_KNIFE",
     name = "throwing knife",
     level_range = {1, 10},
     cost = 1,
@@ -126,11 +109,8 @@ newEntity{ base = "BASE_THROWN",
     encumber = 2,
     rarity = 8,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic bolas",
+    
     desc = "A normal bolas.\n\n Damage 1d4. Range 2.",
-}
-
-newEntity{ base = "BASE_BOLAS",
     name = "bolas",
     level_range = {1, 10},
     cost = 5,
@@ -139,7 +119,6 @@ newEntity{ base = "BASE_BOLAS",
         range = 2,
     },
 }
-
 
 
 newEntity{ base = "BASE_THROWN",
@@ -154,11 +133,7 @@ newEntity{ base = "BASE_THROWN",
     encumber = 0.5,
     rarity = 12,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic shuriken",
     desc = "An exotic shuriken.\n\n Damage 1d2. Range 2.",
-}
-
-newEntity{ base = "BASE_SHURIKEN",
     name = "shuriken",
     level_range = {1, 10},
     cost = 1,
@@ -180,11 +155,7 @@ newEntity{ base = "BASE_THROWN",
     encumber = 6,
     rarity = 8,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    name = "a generic net",
     desc = "A normal net.\n\n Damage 1d4. Range 2.",
-}
-
-newEntity{ base = "BASE_NET",
     name = "net",
     level_range = {1, 10},
     cost = 20,
