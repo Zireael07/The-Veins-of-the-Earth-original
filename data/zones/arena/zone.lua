@@ -45,17 +45,32 @@ return {
 
 	on_turn = function(self)
 		if not game.level.turn_counter then return end
+		--paranoia alert
+	--	if game.level.turn_counter < 0 then game.level.turn_counter == 0 end
+
 		game.level.turn_counter = game.level.turn_counter + 1
 
-		ActorRandom:generateOne()
+		--Every 5 player turns
+		if game.level.turn_counter % 50 == 0 then
+			
+		--generate an opponent
+		local m = game.zone:makeEntity(game.level, "actor", f, nil, true)
+		if m then
+		local x, y = rng.range(0, game.level.map.w-1), rng.range(0, game.level.map.h-1)
+		local tries = 0
+		--	while (not m:canMove(x, y) or (game.level.map.room_map[x][y] and game.level.map.room_map[x][y].special)) and tries < 100 do
+			while not m:canMove(x,y) and tries < 100 do
+				x, y = rng.range(0, game.level.map.w-1), rng.range(0, game.level.map.h-1)
+				tries = tries + 1
+			end
+			if tries < 100 then
+			game.zone:addEntity(game.level, m, "actor", x, y)
+		--	if self.post_generation then self.post_generation(m) end
+			end
+		end
 
-	--[[	--paranoia alert
-		if not game.level.level.turn_counter or game.level.turn_counter < 0 then game.level.turn_counter = 0 end
-		--count turns
-		game.level.turn_counter = game.level.turn_counter + 1
-		if game.level.turn_counter % 10 = 0 then
-		--	ActorRandom:generateOne()
-		end]]
+
+		end
+
 	end,
-
 }
