@@ -15,7 +15,7 @@ newTalent{
         end
 	end,
 	info = function(self, t )
-		return "Shows your spellbook"
+		return "Shows your spellbook. Use it to prepare your spells and then rest to memorize them."
 	end,
 }
 

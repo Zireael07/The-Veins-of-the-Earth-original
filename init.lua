@@ -29,7 +29,7 @@ You are an adventurer in a world of immense sunless corridors and tunnels. How l
 ***
 Please use either the built-in #LIGHT_RED#report error function#LAST# (remember to fill in "what I was doing" field) or report any bugs on ToME 4 forums. 
 
-Liked it? Disliked? Wished for a feature? Let me know - there are multiple ways to contact me, including GitHub, ModDB and various forums.
+Liked it? Disliked? Wished for a feature? Let me know - there are multiple ways to contact me, including GitHub, ModDB, Roguetemple forums, Bay12 forums and others.
 
 Know some Lua? All contributions are welcome!
 
@@ -78,7 +78,7 @@ score_formatters = {
 loading_wait_ticks = 57
 
 load_tips = {
-  { text = [[If you are a spellcaster, you should pick your spells and rest ASAP to gain them.]] },
+  { text = [[If you are a spellcaster, you should prepare your spells in your spellbook and rest ASAP to gain them.]] },
   { text = [[If a monster has negative hp, you can simply wait until it bleeds out.]] },
   { text = [[Remember to wear your armor.]]},
   { text = [[Some spellcasters do not have to memorize their spells - they can cast them innately.]]},
@@ -87,6 +87,7 @@ load_tips = {
   { text = [[Remember that being unable to move or act does not mean you're dead (yet).]]},
   { text = [[If you are a spellcaster or a rogue with Use Magic Device skill, you can use wands.]]},
   { text = [[Do not rush into fights if you are wounded. Take your time to rest.]]},
+  { text = [[Use your spellbook to prepare your spells. Remember that you have to rest to memorize them.]]},
 }
 
 background_name = {
