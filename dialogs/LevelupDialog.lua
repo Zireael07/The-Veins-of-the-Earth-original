@@ -25,7 +25,7 @@ function _M:init()
 
     self.c_feats = Button.new{text="Feats", fct=function() self:onFeat() end}
 
-    self.c_skills = Button.new{text="Skill", fct=function() self:onSkill() end}
+    self.c_skills = Button.new{text="Skills", fct=function() self:onSkill() end}
 
     self.c_stats = Button.new{text="Stats", fct=function() self:onStats() end}
 
