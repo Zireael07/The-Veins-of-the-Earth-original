@@ -112,7 +112,7 @@ function _M:onBirth()
 end
 
 function _M:onPremadeBirth()
-  self:setTile()
+--  self:setTile()
   --Add the basic talents
   self:learnTalent(self.T_SHOOT, true)
   self:learnTalent(self.T_POLEARM, true)
