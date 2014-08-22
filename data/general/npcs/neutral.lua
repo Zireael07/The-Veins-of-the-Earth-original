@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael 2013-2014
 
+local Talents = require("engine.interface.ActorTalents")
+
 newEntity{
     define_as = "BASE_NPC_NEUTRAL",
     type = "humanoid",
@@ -84,12 +86,14 @@ newEntity{
     base = "BASE_NPC_HUMAN_SHOP",
     display = "@", color=colors.HONEYDEW,
     image = "tiles/newtiles/human_fighter.png",
+    name = "human hireling",
     can_talk = "hireling",
 }
 
 newEntity{
     base = "BASE_NPC_DROW_SHOP",
     display = "@", color=colors.BLACK,
-    image = "tiles/newtiles/drow_fighter.png",
+    image = "tiles/npc/drow_fighter.png",
+    name = "drow hireling",
     can_talk = "hireling",
 }
