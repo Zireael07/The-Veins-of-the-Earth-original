@@ -18,6 +18,8 @@
 load("/data/general/npcs/encounters/encounters_generic.lua")
 load("/data/general/npcs/encounters/encounters_specific.lua")
 
+--Neutrals
+load("/data/general/npcs/neutral.lua")
 
 load("/data/general/npcs/humanoid.lua")
 load("/data/general/npcs/monstrous_humanoid.lua")

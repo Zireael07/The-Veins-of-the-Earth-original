@@ -12,7 +12,7 @@ newEntity{
 
 
 --Shopkeepers
-newEntity{
+newEntity{ define_as = "BASE_NPC_DROW_SHOP",
     base = "BASE_NPC_NEUTRAL",
     name = "drow shopkeeper", 
     display = 'h', color=colors.BLACK,
@@ -51,7 +51,7 @@ newEntity{
     can_talk = "shop",
 }
 
-newEntity{
+newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
     base = "BASE_NPC_NEUTRAL",
     name = "human shopkeeper", 
     display = 'h', color=colors.WHITE,
@@ -77,4 +77,19 @@ newEntity{
     { name = "shortbow" },
     },
     can_talk = "shop",
+}
+
+--Mercenaries
+newEntity{
+    base = "BASE_NPC_HUMAN_SHOP",
+    display = "@", color=colors.HONEYDEW,
+    image = "tiles/newtiles/human_fighter.png",
+    can_talk = "hireling",
+}
+
+newEntity{
+    base = "BASE_NPC_DROW_SHOP",
+    display = "@", color=colors.BLACK,
+    image = "tiles/newtiles/drow_fighter.png",
+    can_talk = "hireling",
 }
