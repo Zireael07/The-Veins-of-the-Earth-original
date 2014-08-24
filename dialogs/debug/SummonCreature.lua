@@ -32,6 +32,7 @@ function _M:init()
 	self.c_enemies = List.new{width=400, height=400, nb_items=#self.list_enemies, list=self.list_enemies, fct=function(item) self:use(item) end, scrollbar=true}
 	self.c_neutral = List.new{width=400, height=400, nb_items=#self.list_neutral, list=self.list_neutral, fct=function(item) self:use(item) end, scrollbar=true}
 	self.c_encounter = List.new{width=400, height=400, nb_items=#self.list_encounter, list=self.list_encounter, fct=function(item) self:use(item) end, scrollbar=true}
+--    self.c_desc = TextzoneList.new{width=self.iw-410, height = 400, text="Hello from description"}
 
 	self.t_enemies = Tab.new {
     title = 'Enemies',
@@ -153,17 +154,21 @@ function _M:generateListEnemies()
 			elseif e.faction == "neutral" then color = {81, 221, 255}
 			else color = {255, 255, 255} end
 
-		list[#list+1] = {name=e.name, type=e.type, color=color, unique=e.unique, faction=e.faction, e=e}
+		list[#list+1] = {name=e.name, type=e.type, color=color, challenge=e.challenge, unique=e.unique, faction=e.faction, e=e}
 		else end
 	end
 	
 	table.sort(list, function(a,b)
-		--Show encounters first
-		if a.type == "encounter" and not b.type == "encounter" then return true
-		elseif not a.type == "encounter" and b.type == "encounter" then return false end
-	--[[	if a.unique and not b.unique then return true
+        --Sort by challenge
+        if a.challenge == b.challenge then 
+            return a.name < b.name
+        else 
+            return a.challenge < b.challenge
+        end
+		
+        --[[	if a.unique and not b.unique then return true
 		elseif not a.unique and b.unique then return false end]]
-		return a.name < b.name
+	--	return a.name < b.name
 	end)
 
 	local chars = {}
@@ -186,17 +191,21 @@ function _M:generateListNeutral()
 			elseif e.faction == "neutral" then color = {81, 221, 255}
 			else color = {255, 255, 255} end
 
-		list[#list+1] = {name=e.name, type=e.type, color=color, unique=e.unique, faction=e.faction, e=e}
+		list[#list+1] = {name=e.name, type=e.type, color=color, challenge=e.challenge, unique=e.unique, faction=e.faction, e=e}
 		else end
 	end
 	
 	table.sort(list, function(a,b)
-		--Show encounters first
-		if a.type == "encounter" and not b.type == "encounter" then return true
-		elseif not a.type == "encounter" and b.type == "encounter" then return false end
-	--[[	if a.unique and not b.unique then return true
-		elseif not a.unique and b.unique then return false end]]
-		return a.name < b.name
+		 --Sort by challenge
+        if a.challenge == b.challenge then 
+            return a.name < b.name
+        else 
+            return a.challenge < b.challenge
+        end
+        
+        --[[    if a.unique and not b.unique then return true
+        elseif not a.unique and b.unique then return false end]]
+    --  return a.name < b.name
 	end)
 
 	local chars = {}
@@ -219,17 +228,21 @@ function _M:generateListEncounter()
 			elseif e.faction == "neutral" then color = {81, 221, 255}
 			else color = {255, 255, 255} end
 
-		list[#list+1] = {name=e.name, type=e.type, color=color, unique=e.unique, faction=e.faction, e=e}
+		list[#list+1] = {name=e.name, type=e.type, color=color, challenge=e.challenge, unique=e.unique, faction=e.faction, e=e}
 		else end
 	end
 	
 	table.sort(list, function(a,b)
-		--Show encounters first
-		if a.type == "encounter" and not b.type == "encounter" then return true
-		elseif not a.type == "encounter" and b.type == "encounter" then return false end
-	--[[	if a.unique and not b.unique then return true
-		elseif not a.unique and b.unique then return false end]]
-		return a.name < b.name
+		 --Sort by challenge
+        if a.challenge == b.challenge then 
+            return a.name < b.name
+        else 
+            return a.challenge < b.challenge
+        end
+        
+        --[[    if a.unique and not b.unique then return true
+        elseif not a.unique and b.unique then return false end]]
+    --  return a.name < b.name
 	end)
 
 	local chars = {}
