@@ -99,6 +99,8 @@ function _M:onBirth()
   self:levelClass(self.descriptor.class)
   self:giveStartingEQ()
 
+  self:giveStartingSpells()
+
 --  self:setTile()
 --  self:equipAllItems()
 
@@ -108,6 +110,7 @@ function _M:onBirth()
   game.player.changed = true
   self:resetToFull()
   self:setCountID()
+
 --  game:registerDialog(require"mod.dialogs.Help".new(self.player))
 end
 
@@ -117,6 +120,8 @@ function _M:onPremadeBirth()
   self:learnTalent(self.T_SHOOT, true)
   self:learnTalent(self.T_POLEARM, true)
   self:learnTalent(self.T_STEALTH, true)
+
+--  self:giveStartingSpells()
 
   -- HACK: This forces PlayerDisplay and HotkeysDisplay to update after birth descriptors are finished.
   game.player.changed = true
@@ -147,6 +152,23 @@ function _M:equipAllItems()
       end
     end
     self:sortInven()  
+end
+
+function _M:giveStartingSpells()
+  if self.descriptor.class == "Cleric" or self.descriptor.class == "Shaman" then
+    self:setCharges(self.T_CURE_LIGHT_WOUNDS, 2)
+
+  end
+
+  if self.descriptor.class == "Wizard" or self.descriptor.class == "Sorcerer" then
+    self:setCharges(self.T_MAGIC_MISSILE, 2)
+    self:setCharges(self.T_MAGE_ARMOR, 1)
+  end
+
+  if self.descriptor.class == "Bard" then
+    self:setCharges(self.T_MAGIC_MISSILE, 2)
+  end
+
 end
 
 function _M:getExpChart(level)
