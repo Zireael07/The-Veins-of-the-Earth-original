@@ -49,12 +49,30 @@ newEntity{ base = "BASE_NPC_SPIDER", define_as = "TUTORIAL_NPC_SPIDER",
 	challenge = 1/4,
 }
 
-newEntity{ base = "BASE_NPC_DROW", define_as = "TUTORIAL_NPC_BOSS",
-	name = "Drow scout", color=colors.VIOLET, unique=true,
-	desc = [[This lithe, ebon-skinned humanoid is a dark elf, also known as a drow. This one looks quite powerful, beware!]],
+newEntity{ define_as = "TUTORIAL_NPC_BOSS",
+    type = "humanoid",
+    body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+    ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
+    combat = { dam= {1,6} },
+
+	name = "drow scout", color=colors.VIOLET, unique=true,
+	type = "humanoid", subtype = "drow",
+	image = "tiles/npc/drow_fighter.png",
+	display = 'h', color=colors.BLACK,
 	level_range = {1, nil}, exp_worth = 150,
 --	rarity = 3,
 	max_life = resolvers.rngavg(15,20),
+	stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
+	infravision = 6,
+	skill_hide = 1,
+	skill_movesilently = 1,
+	skill_listen = 2,
+	skill_search = 3,
+	skill_spot = 2,
+	hit_die = 1,
+
+	desc = [[This lithe, ebon-skinned humanoid is a dark elf, also known as a drow. This one looks quite powerful, beware!]],
+	
 	challenge = 1,
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_DARKNESS_INNATE]=1,
@@ -72,11 +90,11 @@ newEntity{ base = "BASE_NPC_DROW", define_as = "TUTORIAL_NPC_BOSS",
 	{ name = "fresh corpse" },
 	{ name = "hand crossbow" },
 	},
-	ai = "dumb_talented_simple", ai_state = { talent_in=4, ai_move="move_astar", },
 
 	on_die = function(self, who)
-		game.player:resolveSource():setQuestStatus("tutorial", engine.Quest.COMPLETED)
+	--	game.player:resolveSource():setQuestStatus("tutorial", engine.Quest.COMPLETED)
 		local d = require("engine.dialogs.ShowText").new("Tutorial: Finish", "tutorial/done")
 		game:registerDialog(d)
+		game:changeLevel(1, "tunnels")
 	end,
 }
