@@ -377,7 +377,8 @@ function _M:applyPoison(poison, target)
     --Timer's up!
     if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
     else 
-     if target == game.player then game.flashLog(game.flash.BAD, "You are poisoned!")
+     if target == game.player then --game.flashLog(game.flash.BAD, "You are poisoned!")
+        game.log("You are poisoned!")
       else game.log("Target is poisoned!") end
       --Secondary damage hits!
       if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 10, {}, true) end
