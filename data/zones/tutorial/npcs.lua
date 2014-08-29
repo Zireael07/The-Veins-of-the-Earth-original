@@ -70,6 +70,7 @@ newEntity{ define_as = "TUTORIAL_NPC_BOSS",
 	skill_search = 3,
 	skill_spot = 2,
 	hit_die = 1,
+	open_door = true,
 
 	desc = [[This lithe, ebon-skinned humanoid is a dark elf, also known as a drow. This one looks quite powerful, beware!]],
 	

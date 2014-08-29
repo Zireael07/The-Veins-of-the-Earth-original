@@ -35,6 +35,7 @@ newEntity{
 	skill_search = 1,
 	skill_movesilently = 1,
 	hit_die = 4,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -98,6 +99,7 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 2,
 	hit_die = 1,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -145,6 +147,7 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 1,
 	hit_die = 1,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -196,6 +199,7 @@ newEntity{
 	skill_search = 3,
 	skill_spot = 2,
 	hit_die = 1,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -243,6 +247,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	lite = 3,
 	hit_die = 1,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -283,6 +288,7 @@ newEntity{
 	stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
 	combat = { dam= {1,6} },
 	hit_die = 1,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -360,6 +366,7 @@ newEntity{
 	skill_movesilently = 5,
 	skill_listen = 4,
 	skill_spot = 4,
+	open_door = true,
 	uncommon_desc = [[Bugbears tend to live in small tribal units, with the biggest and meanest of them the tribal leader by default. They tend to have but two goals in life: food and treasure, and a group of adventures would be considered a great source of both.]],
 	common_desc = [[As well as being considerably stronger, healthier and more light footed than the average human, bugbears have an affinity for moving quietly despite their bulk. Combined with their natural darkvision, these qualities add up to a creature very well suited for raids on camp sites in the dead of night.]],
 	base_desc = [[This muscular humanoid is a bugbear, the biggest and strongest of the common goblinoids. Bugbears speak Goblin and Common. It is proficient in simple weapons and needs to eat, breathe and sleep.]],
@@ -410,6 +417,7 @@ newEntity{
 	skill_listen = 3,
 	skill_spot = 2,
 	hit_die = 2,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -456,6 +464,7 @@ newEntity{
 	stats = { str=11, dex=11, con=14, int=10, wis=9, cha=8, luc=10 },
 	combat = { dam= {1,6} },
 	hit_die = 1,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -535,6 +544,7 @@ newEntity{
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
 	hit_die = 1,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -576,6 +586,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	infravision = 3,
 	hit_die = 1,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -621,6 +632,7 @@ newEntity{
 	infravision = 3,
 	combat_natural = 5,
 	hit_die = 2,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -705,6 +717,7 @@ newEntity{
 	infravision = 1,
 	movement_speed_bonus = 0.90,
 	hit_die = 2,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -754,6 +767,7 @@ newEntity{
 	combat_natural = 6,
 	alignment = "chaotic evil",
 	hit_die = 2,
+	open_door = true,
 --	resolvers.specialnpc()
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -796,6 +810,7 @@ newEntity{
 	infravision = 3,
 	skill_bluff = 6,
 	skill_hide = 4,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
 	resolvers.class()
@@ -846,6 +861,7 @@ newEntity{
 	skill_heal = 4,
 	skill_listen = 2,
 	skill_spot = 2,
+	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
 	resolvers.class()

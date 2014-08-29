@@ -10,6 +10,7 @@ newEntity{
     ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
     combat = { dam= {1,6} },
     faction = "neutral",
+    open_door = true,
 }
 
 
