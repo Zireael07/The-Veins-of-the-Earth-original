@@ -59,6 +59,7 @@ newEntity{
 	define_as = "BASE_NPC_BARGHEST",
 	type = "outsider",
 	display = 'd', color=colors.BLACK,
+	image = "tiles/barghest.png",
 	body = { INVEN = 10 },
 	desc = [[A large bluish-reddish wolf.]],
 	specialist_desc = [[When a barghest slays a humanoid opponent, it feasts on both the body and soul, making it extremely difficult to bring the creature back to life even with powerful spells such as true resurrection, miracle, or wish. Those that consume enough corpses grow into powerful versions called greater barghests.]],
@@ -107,6 +108,7 @@ newEntity{
 	define_as = "BASE_NPC_HELL_HOUND",
 	type = "outsider",
 	display = 'd', color=colors.RED,
+	image = "tiles/UT/hell_hound.png",
 	body = { INVEN = 10, BODY = 1 },
 	desc = [[A large flame-colored canine.]],
 	uncommon_desc = [[Larger, more powerful versions of the hell hound exist, including the Nessian warhound. They are used as mounts and hunters for the devil princes of the Nine Hells.]],
@@ -361,6 +363,7 @@ newEntity{
 	define_as = "BASE_NPC_YETH_HOUND",
 	type = "outsider",
 	display = 'd', color=colors.DARK_GRAY,
+	image = "tiles/yeth_hound.png",
 	body = { INVEN = 10 },
 	desc = [[A large black shadowy canine.]],
 
