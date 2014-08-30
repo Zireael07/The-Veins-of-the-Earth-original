@@ -95,11 +95,14 @@ end
 
 function _M:run()
 	veins.saveMarson()
+
+--	self.uiset:activate()
 --	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
 	self.logdisplay = LogDisplay.new(0, self.h * 0.5, 600, self.h * 0.2, 5, nil, 14, nil, nil)
 	self.logdisplay:enableFading(7)
-
-	self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.85, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
+	h = 52
+	--self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.85, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
+	self.hotkeys_display = HotkeysIconsDisplay.new(nil, 216, game.h - h, game.w - 216, h, {30,30,0}, nil, nil, 48, 48)
 	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
 	self.player_display = PlayerDisplay.new(0, self.h*0.75, 200, 150, {0,0,0}, "/data/font/DroidSansMono.ttf", 14)
 --	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
@@ -122,10 +125,6 @@ function _M:run()
 	self.flashSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.flashLog(style, ...) end end
 	self.flashPlayer = function(e, style, ...) if e == self.player then self.flashLog(style, ...) end end
 
--- Start time
-	self.real_starttime = os.time()
-	self:setupDisplayMode(false, "postinit")
-
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
 	self.log("Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 or h to open the help screen.")
@@ -137,6 +136,13 @@ function _M:run()
 	-- Starting from here we create a new game
 	if not self.player then self:newGame() end
 
+	-- Start time
+	self.real_starttime = os.time()
+	self:setupDisplayMode(false, "postinit")
+
+--	if self.level and self.level.data.day_night then self.state:dayNightCycle() end
+	if self.level then self.state:dayNightCycle() end
+
 	self.hotkeys_display.actor = self.player
 	self.npcs_display.actor = self.player
 
@@ -147,6 +153,11 @@ function _M:run()
 	self:setCurrent()
 
 --	if self.level then self:setupDisplayMode() end
+end
+
+--- Resize the hotkeys
+function _M:resizeIconsHotkeysToolbar()
+	self.uiset:resizeIconsHotkeysToolbar()
 end
 
 function _M:newGame()
@@ -219,6 +230,7 @@ function _M:loaded()
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", trap_class="mod.class.Trap"}
 	--New filters from GameState go here
 
+	self.uiset = (require("mod.class.uiset."..(config.settings.tome.uiset_mode or "Veins"))).new()
 
 	Map:setViewerActor(self.player)
 	self:setupDisplayMode(false, "init")
@@ -577,6 +589,10 @@ function _M:changeLevel(lev, zone)
 		end]]
 
 	end
+
+	--Day/night
+--	if self.level.data.day_night then self.state:dayNightCycle() end
+	self.state:dayNightCycle()
 
 	--Kill off clones automatically
 	for loc, tile in ipairs(game.level.map.map) do
