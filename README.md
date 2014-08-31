@@ -11,10 +11,11 @@ Based on the OGL license (included).
 
 Contributors:
 
-- Sebsebeleb
 - Zireael
+- Sebsebeleb
 - DarkGod
 - Castler 
+- desophos
 
 Key features:
 

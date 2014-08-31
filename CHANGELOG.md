@@ -1,5 +1,26 @@
 CHANGELOG
 
+
+* bug fix - Lua errors in load premade
+* bug fix - no more xorns showing up without a name
+* bug fix - digging works properly now without errors
+* bug fix - lance is now named properly
+* bug fix - a rare possibility that a base weapon (without combat values defined) would spawn
+* bug fix - outdated tiles after loading a premade/saved character
+* bug fix - shopkeepers spewing their dialogue every time they bumped into you
+* bug fix - tutorial boss not spawning
+* bug fix - Lua error due to oversight in combat poison code
+* bug fix - increasing stats throwing a Lua error [desophos]
+
+* new spell: transmute rock to mud
+* new zones: labirynth, xorn lair, town, aberrant lair, arena
+* new tiles: sand, ice; blink dog, barghest, hell hound, yeth hound
+* renamed existing zones: Upperdark -> compound; Middledark -> tunnels
+* change starting zone to tunnels
+* new curse: of weakness
+* hirelings
+
+
 0.21.0 - beta 5.7 - 07/08/2014
 
 * bug fix - all skills triggering the spell failure checks
