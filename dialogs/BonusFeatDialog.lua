@@ -47,10 +47,10 @@ function _M:init(actor)
 		{left=0, top=90, ui=self.c_learned_text},
 		{left=250, top=90, ui=self.c_avail_text},
 		{left=500, top=90, ui=self.c_barred_text},
-		{left=0, top=self.c_points.h + 5 + self.c_bonus.h + 5 + self.c_learned_text.h + 15, ui=self.c_learned},
-		{left=250, top=self.c_points.h + 5 + self.c_bonus.h + 5 + self.c_learned_text.h + 15, ui=self.c_avail},
-		{left=500, top=self.c_points.h + 5 + self.c_bonus.h + 5 + self.c_learned_text.h + 15, ui=self.c_barred},
-		{left=750, top=self.c_points.h + 5 + self.c_bonus.h + 5 + self.c_learned_text.h + 15, ui=self.c_desc}
+		{left=0, top=self.c_points.h + 30 + self.c_learned_text.h + 15, ui=self.c_learned},
+		{left=250, top=self.c_points.h + 30 + self.c_learned_text.h + 15, ui=self.c_avail},
+		{left=500, top=self.c_points.h + 30 + self.c_learned_text.h + 15, ui=self.c_barred},
+		{left=750, top=self.c_points.h + 30 + self.c_learned_text.h + 15, ui=self.c_desc}
 	}
 	self:setFocus(self.c_avail)
 --	self:setupUI(false, true)

@@ -77,12 +77,26 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.c_points = Textzone.new{width=self.iw/6, height=15, no_color_bleed=true, text=_points_text:format(self.unused_stats)}
 
     self:generateStats()
-    self.c_stats = ListColumns.new{width=self.iw/6, height=200, all_clicks=true, columns={
-        {name="Stat", width=40, display_prop="name"},
-        {name="Value", width=50, display_prop="val"},
-    }, list=self.list_stats, fct=function(item, _, v)
-        self:incStat(v == "left" and 1 or -1, item.stat_id)
-    end, select=function(item, sel) self.sel = sel self.val = item.val self.id = item.stat_id self:updateDesc(item) end}
+    self.c_stats = ListColumns.new{
+        width=self.iw/6,
+        height=200,
+        all_clicks=true,
+        columns={
+            {name="Stat", width=40, display_prop="name"},
+            {name="Value", width=50, display_prop="val"},
+        },
+        list=self.list_stats,
+        fct=function(item, _, v)
+            self:incStat(v == "left" and 1 or -1, item.stat_id)
+        end,
+        select=function(item, sel)
+            self.sel = sel
+            -- extract the actual val from the formatted string containing it
+            self.val = string.match(item.val, "%d+")
+            self.id = item.stat_id
+            self:updateDesc(item)
+        end
+    }
 
     self.c_reroll = Button.new{text="Reroll", width=45, fct=function() self:onRoll() end}
     self.c_reset = Button.new{text="Reset",  width=45, fct=function() self:onReset() end}
@@ -90,7 +104,16 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self:generatePerkText()
     self.c_perk_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#STARTING PERK: #LAST#"}
     self.c_perk_note = Textzone.new{auto_width=true, auto_height=true, text=_perks_text:format(self.actor.perk)}
-    self.c_perk = List.new{width=self.iw/6, height=100, nb_items=#self.list_perk, list=self.list_perk, select=function(item, sel) self:updateDesc(item) end}
+    self.c_perk = List.new{
+        width=self.iw/6,
+        height=100,
+        nb_items=#self.list_perk,
+        list=self.list_perk,
+        fct=function() end,
+        select=function(item, sel)
+            self:updateDesc(item)
+        end
+    }
 
 
     --Make UI work
@@ -595,6 +618,8 @@ end
 function _M:incStat(v, id)
     print("inside incStat. self.sel is", self.sel)
     print("inside incStat. id is", self.id)
+    print("inside incStat. val is", self.val)
+
     local id = self.id
     local val = self.val
 
@@ -609,7 +634,7 @@ function _M:incStat(v, id)
         self:simplePopup("Min stat value reached", "You cannot decrease a stat below 7.")
         return
     end
-    local delta = self:getCost(val + v) - self:getCost(val)
+    local delta = self:getCost(tonumber(val) + v) - self:getCost(tonumber(val))
     if delta > self.unused_stats then
         self:simplePopup("Not enough stat points", "You have no stat points left.")
         return
