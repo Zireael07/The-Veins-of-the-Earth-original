@@ -59,26 +59,29 @@ function _M:dayNightCycle()
 
 	local hour, minute = game.calendar:getTimeOfDay(game.turn)
 	hour = hour + (minute / 60)
-	local tint = {r = 0.1, g = 0.1, b = 0.1}
-	local startTint = {r = 0.1, g = 0.1, b = 0.1}
-	local endTint = {r = 0.1, g = 0.1, b = 0.1}
+	local tint = {r = 0.5, g = 0.1, b = 0.1}
+	local startTint = {r = 0.5, g = 0.1, b = 0.1}
+	local endTint = {r = 0.5, g = 0.1, b = 0.1}
 	if hour <= 4 then
-		tint = {r = 0.1, g = 0.1, b = 0.1}
+		tint = {r = 0.8, g = 0.75, b = 0.75}
+	--yellow	
 	elseif hour > 4 and hour <= 7 then
-		startTint = { r = 0.1, g = 0.1, b = 0.1 }
-		endTint = { r = 0.3, g = 0.3, b = 0.5 }
+		startTint = { r = 0.5, g = 0.5, b = 0.1 }
+		endTint = { r = 0.5, g = 0.8, b = 0.1 }
 		tint = doTint(startTint, endTint, (hour - 4) / 3)
 	elseif hour > 7 and hour <= 12 then
-		startTint = { r = 0.3, g = 0.3, b = 0.5 }
-		endTint = { r = 0.9, g = 0.9, b = 0.9 }
+		startTint = { r = 0.5, g = 0.8, b = 0.1 }
+		endTint = { r = 0.1, g = 0.3, b = 0.1 }
 		tint = doTint(startTint, endTint, (hour - 7) / 5)
+		--green
 	elseif hour > 12 and hour <= 18 then
-		startTint = { r = 0.9, g = 0.9, b = 0.9 }
-		endTint = { r = 0.9, g = 0.9, b = 0.6 }
+		startTint = { r = 0.1, g = 0.3, b = 0.1 }
+		endTint = { r = 0.9, g = 0.75, b = 0.75 }
 		tint = doTint(startTint, endTint, (hour - 12) / 6)
+	-- pink
 	elseif hour > 18 and hour < 24 then
-		startTint = { r = 0.9, g = 0.9, b = 0.6 }
-		endTint = { r = 0.1, g = 0.1, b = 0.1 }
+		startTint = { r = 0.9, g = 0.75, b = 0.75 }
+		endTint = { r = 0.8, g = 0.75, b = 0.75 }
 		tint = doTint(startTint, endTint, (hour - 18) / 6)
 	end
 	map._map:setShown(shown[1] * (tint.r+0.4), shown[2] * (tint.g+0.4), shown[3] * (tint.b+0.4), shown[4])
