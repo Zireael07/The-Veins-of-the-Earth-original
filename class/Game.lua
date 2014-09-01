@@ -118,7 +118,7 @@ function _M:run()
 	self.minimap_bg, self.minimap_bg_w, self.minimap_bg_h = core.display.loadImage("/data/gfx/ui/minimap.png"):glTexture()
 
 	self.log = function(style, ...) self.logdisplay(style, ...) end
-	self.logSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.log(style, ...) end end
+--	self.logSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.log(style, ...) end end
 	self.logPlayer = function(e, style, ...) if e == self.player then self.log(style, ...) end end
 	--Variations for using the flasher
 	self.flashLog = function(style, ...) if type(style) == "number" then self.logdisplay(...) self.flash(style, ...) else self.logdisplay(style, ...) self.flash(self.flash.NEUTRAL, style, ...) end end
@@ -449,7 +449,8 @@ end
 
 
 function _M:save()
-	return class.save(self, self:defaultSavedFields{party=true}, true)
+	self.time_stamp = os.time()
+	return class.save(self, self:defaultSavedFields{party=true, time_stamp=true}, true)
 end
 
 function _M:getSaveDescription()
@@ -625,9 +626,20 @@ function _M:tick()
     else
         engine.Game.tick(self)
     end
+
+    if self.creating_player then return true end
     -- When paused (waiting for player input) we return true: this means we wont be called again until an event wakes us
     if self.paused and not savefile_pipe.saving then return true end
 end
+
+--game log stuff
+--Fix logSeen from ToME 4
+-- output a message to the log based on the visibility of an actor to the player
+function _M.logSeen(e, style, ...) 
+--	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end 
+	if e and e.player or (not e.dead and e.x and e.y and game.level and game.player:hasLOS(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end 
+end
+
 
 --- Called every game turns
 -- Does nothing, you can override it
@@ -639,6 +651,10 @@ function _M:onTurn()
 
 	-- The following happens only every 10 game turns (once for every turn of 1 mod speed actors)
 	if self.turn % 10 ~= 0 then return end
+
+	-- Day/Night cycle
+--	if self.level.data.day_night then self.state:dayNightCycle() end
+	self.state:dayNightCycle()
 
 	-- Process overlay effects
 	self.level.map:processEffects()
@@ -658,14 +674,11 @@ function _M:killDead()
 		if e.life <= -10 then e:disappear() end
 			--l[#l+1] = e end
 	end
---	for i, e in ipairs(l) do
-			--e:disappear()
-			--e:die() 
-		--	self.level:removeEntity(e)
-			--game.level:removeEntity(e)
---	end
 end
 
+function _M:updateFOV()
+	self.player:playerFOV()
+end
 
 function _M:display(nb_keyframe)
 	
@@ -676,9 +689,8 @@ function _M:display(nb_keyframe)
 	if self.level and self.level.map and self.level.map.finished then
 		local map = self.level.map
 		-- Display the map and compute FOV for the player if needed
-		if self.level.map.changed then
-			self.player:playerFOV()
-		end
+		local changed = map.changed
+		if changed then self:updateFOV() end
 
 		-- Display using Framebuffer, so that we can use shaders and all
 		if self.fbo then

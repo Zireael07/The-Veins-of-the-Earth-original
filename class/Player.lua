@@ -92,6 +92,9 @@ function _M:init(t, no_default)
   self.all_kills = self.all_kills or {}
   self.all_seen = self.all_seen or {}
   self.special_known = self.special_known or {}
+
+  --timestamp for saved chars
+  self.time = os.time()
 end
 
 function _M:onBirth()
@@ -481,6 +484,8 @@ function _M:onRestStop()
 
   --Calendar
   game.log(game.calendar:getTimeDate(game.turn))
+  --Refresh day/nite effects
+  game.state:dayNightCycle()
 end
 
 --- Can we continue running?
