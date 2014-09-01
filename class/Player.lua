@@ -134,6 +134,21 @@ function _M:onPremadeBirth()
 --  game:registerDialog(require"mod.dialogs.Help".new(self.player))
 end 
 
+function _M:onEnterLevel(zone, level)
+  --Place in correct spot in worldmap
+  if zone.worldmap then
+    print("Moved to worldmap")
+    if self.wild_x and self.wild_y then
+    print("Player coords saved:", self.wild_x, self.wild_y)
+    self:move(self.wild_x, self.wild_y, true)
+    else
+    self:move(game.level.default_up.x, game.level.default_up.y, true)
+    end
+  end
+
+end
+
+
 
 function _M:randomPerk()
 local d = rng.dice(1,6)

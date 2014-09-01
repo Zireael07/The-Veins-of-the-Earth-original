@@ -525,16 +525,11 @@ function _M:changeLevel(lev, zone)
 		return
 	end
 
-	--Place in correct spot in worldmap
-	if zone.worldmap then
-		print("Moved to worldmap")
-		if self.player.wild_x and self.player.wild_y then
-		print("Player coords saved:", self.player.wild_x, self.player.wild_y)
-		self.player:move(self.player.wild_x, self.player.wild_y, true)
-		else
-		self.player:move(self.level.default_up.x, self.level.default_up.y, true)
-		end
+	if self.zone.on_enter then
+		self.zone.on_enter(lev, old_lev, zone)
 	end
+
+	self.player:onEnterLevel(self.zone, self.level)
 
 	if lev > old_lev then
 		self.player:move(self.level.default_up.x, self.level.default_up.y, true)
