@@ -67,6 +67,7 @@ function _M:init(t, no_default)
   PlayerLore.init(self, t)
 
   self.lite = 0 --stealth test
+  self.sight = 10
   self.ecl = 1
 
   
@@ -342,7 +343,7 @@ function _M:playerFOV()
   -- Clean FOV before computing it
   game.level.map:cleanFOV()
   -- Compute both the normal and the lite FOV, using cache
-  self:computeFOV(self.sight or 20, "block_sight", function(x, y, dx, dy, sqdist)
+  self:computeFOV(self.sight or 10, "block_sight", function(x, y, dx, dy, sqdist)
     game.level.map:apply(x, y, fovdist[sqdist])
   end, true, false, true)
 
