@@ -290,7 +290,7 @@ function _M:act()
 	if self.dead then return false end
 
 	-- Ok reset the seen cache
---	self:resetCanSeeCache()
+	self:resetCanSeeCache()
 
 	if self.on_act then self:on_act() end
 
@@ -994,7 +994,7 @@ function _M:canSeeNoCache(actor, def, def_pct)
 	if self:hasEffect(self.EFF_BLIND) then return false,100 end --Like this, the actor actually knows where its target is. Its just bad at hitting
 
 
-	if actor:attr("stealth") and actor ~= self then
+	if actor ~= self and actor.attr and actor:attr("stealth") then
 		local check = self:opposedCheck("spot", actor, "hide")
 		if not check then 
 			local check2 = self:opposedCheck("listen", actor, "movesilently")
@@ -1024,6 +1024,12 @@ function _M:canSee(actor, def, def_pct)
 	if self.player and type(def) == "nil" and actor._mo then actor._mo:onSeen(res) end
 
 	return res, chance
+end
+
+--- Reset our own seeing cache
+function _M:resetCanSeeCache()
+	self.can_see_cache = {}
+	setmetatable(self.can_see_cache, {__mode="k"})
 end
 
 --- Reset the cache of everything else that had see us on the level
