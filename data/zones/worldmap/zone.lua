@@ -23,6 +23,7 @@ return {
 	width = 50, height = 50,
 	all_lited = true,
 	persistent = "zone",
+	worldmap = true,
 	generator =  {
 		map = {
 			class = "mod.class.generator.map.RandomWorldmap",

@@ -494,8 +494,17 @@ end
 
 function _M:changeLevel(lev, zone)
 	local old_lev = (self.level and not zone) and self.level.level or -1000
+	local old_zone = self.zone
 	if zone then
 		if self.zone then
+			-- TO DO: changing wild_x and wild_y depending on zone left
+			if not old_zone.worldmap then end
+			if old_zone.worldmap then 
+				self.player.wild_x = self.player.x
+				self.player.wild_y = self.player.y
+				print("Worldmap left, x & y ", self.player.wild_x, self.player.wild_y)
+			end
+
 			self.zone:leaveLevel(false, lev, old_lev)
 			self.zone:leave()
 		end
@@ -514,6 +523,17 @@ function _M:changeLevel(lev, zone)
 	if self.level.last_turn and self.turn < self.level.last_turn + 10 then
 		self.logPlayer("You may not use the stairs again so soon")
 		return
+	end
+
+	--Place in correct spot in worldmap
+	if zone.worldmap then
+		print("Moved to worldmap")
+		if self.player.wild_x and self.player.wild_y then
+		print("Player coords saved:", self.player.wild_x, self.player.wild_y)
+		self.player:move(self.player.wild_x, self.player.wild_y, true)
+		else
+		self.player:move(self.level.default_up.x, self.level.default_up.y, true)
+		end
 	end
 
 	if lev > old_lev then
