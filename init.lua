@@ -19,10 +19,10 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
-version = {0,21,0}
+version = {0,22,0}
 engine = {1,2,2,"te4"}
 description = [[
-#SANDY_BROWN# BETA 5.7#LAST#
+#SANDY_BROWN# BETA 6#LAST#
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
 You are an adventurer in a world of immense sunless corridors and tunnels. How long can you survive?
 
@@ -45,6 +45,8 @@ allow_userchat = true -- We can talk to the online community
 profile_stats_fields = {"scores"}
 
 profile_defs = {
+achievements = { nosync = true,
+    {id="index:string:40"}, {gained_on="timestamp"}, {who="string:50"}, {turn="number"}, receive=function(data, save) save[data.id] = {who=data.who, when=data.gained_on, turn=data.turn} end, export=function(env) for id, v in pairs(env) do add{id=id, who=v.who, gained_on=v.when, turn=v.turn} end end },
 	scores = {
 		nosync=true,
 		receive=function(data,save)
