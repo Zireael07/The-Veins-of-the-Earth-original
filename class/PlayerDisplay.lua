@@ -102,12 +102,17 @@ function _M:display()
     local cur_exp, max_exp = player.exp, player:getExpChart(player.level+1)
     local exp = cur_exp / max_exp * 100
     
---[[    if player.class_points > 0 or player.feat_point > 0 or player.stat_point > 0 then
+    h = h + self.font_h
+
+    if (player.class_points or 0) > 0 or (player.feat_point or 0) > 0 or (player.stat_point or 0) > 0 then
+        self:makeTexture("#LIGHT_GREEN#Level up!", x, h, 255, 255, 255)
     --    local glow = (1+math.sin(core.game.getTime() / 500)) / 2 * 100 + 120
     --    pf_levelup[1]:toScreenFull(50, 800, pf_levelup[6], pf_levelup[7], pf_levelup[2], pf_levelup[3], 1, 1, 1, glow / 255)
-        pf_levelup[1]:toScreenFull(70, 800, pf_levelup[6], pf_levelup[7], pf_levelup[2], pf_levelup[3])
-    else end]]
+    --    pf_levelup[1]:toScreenFull(70, 800, pf_levelup[6], pf_levelup[7], pf_levelup[2], pf_levelup[3])
+    
+    else end
 
+    h = h + self.font_h
 
     self:makeTextureBar("Exp:", "%d%%", exp, 100, nil, x, h, 255, 255, 255, { r=0, g=100, b=0 }, { r=0, g=50, b=0 }) h = h + self.font_h
 
@@ -138,6 +143,8 @@ function _M:display()
     self:makeTexture(("Dungeon lvl: %d"):format(game.level.level), x, h, 240, 240, 170)
 
     h = h + self.font_h
+
+    --TO DO: Level feeling note
 
     if savefile_pipe.saving then
         h = h + self.font_h
