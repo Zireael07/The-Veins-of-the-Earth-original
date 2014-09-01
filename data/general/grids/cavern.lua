@@ -1,5 +1,5 @@
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Copyright (C) 2013-2014 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,18 +13,19 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
 
+
+--Worldmap exit
 newEntity{
-	define_as = "UP_WILDERNESS",
-	name = "exit to the wilds",
+	define_as = "EXIT",
+	type = "floor", subtype = "floor",
+	name = "exit to worldmap",
+	image = "tiles/newtiles/worldmap_stairs_up.png",
 	display = '<', color_r=255, color_g=0, color_b=255, back_color=colors.DARK_GREY,
-	always_remember = true,
 	notice = true,
+	always_remember = true,
 	change_level = 1,
-	change_zone = "wilderness",
+	change_zone = "worldmap",
 }
 
 newEntity{
@@ -47,13 +48,13 @@ newEntity{
 
 newEntity{
 	define_as = "FLOOR",
-	name = "floor", image = "terrain/marble_floor.png",
+	name = "floor", image = "tiles/floor.png",
 	display = ' ', color_r=255, color_g=255, color_b=255, back_color={r=71, g=122, b=136},
 }
 
 newEntity{
 	define_as = "WALL",
-	name = "wall", image = "terrain/granite_wall1.png",
+	name = "wall", image = "tiles/wall.png",
 	display = '#', color_r=0, color_g=0, color_b=0, back_color={r=30, g=30, b=60},
 	always_remember = true,
 	does_block_move = true,
@@ -87,7 +88,7 @@ newEntity{
 newEntity{
 	define_as = "MOSS",
 	type = "floor", subtype = "vegetation",
-	name = "luminicent moss", image = "terrain/marble_floor.png",
+	name = "luminicent moss", image = "tiles/newtiles/moss.png",
 	display = '¤', color_r=52, color_g=222, color_b=137, back_color={r=71, g=122, b=136},
 	
 }
