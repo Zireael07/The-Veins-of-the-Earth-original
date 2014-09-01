@@ -46,6 +46,12 @@ return {
 	},
 	levels =
 	{
+	--Place exit to worldmap on level 1
+		[1] = { 
+		generator = { map = { 
+		up = "EXIT",
+		},},
+	},
 	},	
 
 	post_process = function(level)
