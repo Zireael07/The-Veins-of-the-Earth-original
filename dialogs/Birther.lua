@@ -148,6 +148,15 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
     self.c_alignment = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
+    self.c_legend = Textzone.new{width=self.iw/4, auto_height=true, text=[[
+    List legend:
+    #GOLD#Gold#LAST# is your current choice.
+    #SANDY_BROWN#Brown#LAST# is recommended for new players.
+    #LIGHT_GREEN#Green#LAST# is recommended based on your stats.
+    #LIGHT_BLUE#Light blue#LAST# would grant you small additional bonuses based on your race.
+    #CRIMSON#Red#LAST# is a bad choice!
+    ]]}
+
     self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
 Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
 #00FF00#Left click#FFFFFF# on a stat to increase it.
@@ -155,7 +164,7 @@ Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
 Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
 
 Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
-]]}
+]], scrollbar = true}
     self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
 
     self:loadUI{
@@ -174,6 +183,8 @@ Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 45, ui=self.c_perk_text },
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 65, ui=self.c_perk_note },
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 85, ui=self.c_perk },
+        {left=self.c_stats.w + 5 + self.c_reroll.w + 20 + self.c_perk_text.w + 30, top = self.c_name.h +20, ui=self.c_legend },
+
 
         {left=0, top=self.c_name.h + 25 + self.c_points.h + self.c_stats.h, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
 
