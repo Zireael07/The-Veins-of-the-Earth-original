@@ -203,7 +203,8 @@ newBirthDescriptor {
 	descriptor_choices = {
 		deity =
     	{
-      		__ALL__ = "allow",
+            --Can't be atheists
+      		['None'] = "disallow",
     	},
 		domains = {
 			__ALL__ = "allow",
@@ -265,326 +266,348 @@ newBirthDescriptor {
 			actor:learnTalentType("cleric/cleric", true)
 
 				if actor == game.player then
-            game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your divine patron",{
-                {name="Aiswin", desc="#GOLD#God of Secrets, Vengeance and Shadows#LAST#\nDomains: #LIGHT_BROWN#Fate, Knowledge, Night, Planning, Retribution, Trickery.#LAST#\nFavored weapon: short sword\nAlignment: Neutral\nAccepts clerics of any alignment"},
-                {name="Asherath", desc="#GOLD#God of War, Scholarship, Time and History#LAST#\nDomains: #LIGHT_BROWN#Knowledge, Planning, Strength, Time, Trickery, War.#LAST#\nFavored weapon: long sword\nAlignment: Neutral\nAccepts clerics of any alignment"},
-                {name="Ekliazeh", desc="#GOLD#God of Stone and Strength#LAST#\nDomains: #LIGHT_BROWN#Craft, Community, Earth, Law, Strength, Protection.#LAST#\nFavored weapon: war hammer\nAlignment: Lawful Neutral\nAccepts clerics of any non-Chaotic alignment"},
-                {name="Erich", desc="#GOLD#God of Chivalry, Honor and Social Hierarchy#LAST#\nDomains: #LIGHT_BROWN#Domination, Guardian, Law, Nobility, Protection, War.#LAST#\nFavored weapon: lance\nAlignment: ?\nAccepts clerics of any Lawful alignment"},
-                {name="Essiah", desc="#GOLD#Goddess of Life, Journeys, Joy and Erotic Love#LAST#\nDomains: #LIGHT_BROWN#Beauty, Good, Liberation, Luck, Passion, Travel.#LAST#\nFavored weapon: scourge\nAlignment: Chaotic Good\nAccepts clerics of any Good alignment"},
-                {name="Hesani", desc="#GOLD#God of Light, Balance and Cycles#LAST#\nDomains: #LIGHT_BROWN#Fate, Healing, Magic, Succor, Sun, Weather.#LAST#\nFavored weapon: N/A\nAlignment: Neutral Good\nAccepts clerics of any Good alignment"},
-                {name="Immotian", desc="#GOLD#God of Purity and Community Cleanliness#LAST#\nDomains: #LIGHT_BROWN#Community, Fire, Knowledge, Law, Protection, Succor.#LAST#\nFavored weapon: heavy mace\nAlignment: Lawful Neutral\nAccepts clerics of any Lawful alignment"},
-                {name="Khasrach", desc="#GOLD#Goddess of the Blood#LAST#\nDomains: #LIGHT_BROWN#Destruction, Hatred, Mysticism, Strength, Pain, War.#LAST#\nFavored weapon: long spear\nAlignment: Chaotic Neutral\nAccepts clerics of any alignment"},
-                {name="Kysul", desc="#GOLD#The Watcher Beneath the Waves#LAST#\nDomains: #LIGHT_BROWN#Fate, Good, Mysticism, Planning, Slime, Water.#LAST#\nFavored weapon: trident\nAlignment: Lawful Good\nAccepts clerics of any non-Evil alignment"},
-                {name="Maeve", desc="#GOLD#Queen of the Faeries#LAST#\nDomains: #LIGHT_BROWN#Beauty, Chaos, Domination, Magic, Moon, Nobility.#LAST#\nFavored weapon: short bow\nAlignment: Chaotic Evil\nAccepts clerics of any non-Good Chaotic alignment"},
-                {name="Mara", desc="#GOLD#Goddess of Death, Stillness and Romantic Love#LAST#\nDomains: #LIGHT_BROWN#Beauty, Death, Good, Healing, Night, Succor.#LAST#\nFavored weapon: scythe\nAlignment: Lawful Good\nAccepts clerics of any non-Evil alignment"},
-                {name="Sabin", desc="#GOLD#God of Storms, Athletics, Prophecy and Transformations#LAST#\nDomains: #LIGHT_BROWN#Air, Chaos, Destruction, Luck, Time, Weather.#LAST#\nFavored weapon: javelin\nAlignment: Chaotic Neutral\nAccepts clerics of any alignment"},
-                {name="Semirath", desc="#GOLD#God of Justice, Laughter and Freedom#LAST#\nDomains: #LIGHT_BROWN#Chaos, Good, Liberation, Luck, Retribution, Trickery.#LAST#\nFavored weapon: chakram\nAlignment: Chaotic Good\nAccepts clerics of any Good alignment"},
-                {name="Multitude", desc="#GOLD#Gods of Darkness, Blood, Cruelty, Power, Atrocity, Murder, etc.#LAST#\nDomains: #LIGHT_BROWN#Blood, Chaos, Destruction, Death, Evil, Pain, Spider, Strength, Air, Earth, Fire.#LAST#\nFavored weapon: N/A\nAlignment: Chaotic Evil\nAccept clerics of any evil alignment"},
-                {name="Xavias", desc="#GOLD#God of Science and the Mysteries#LAST#\nDomains: #LIGHT_BROWN#Craft, Fate, Knowledge, Magic, Mysticism, Planning.#LAST#\nFavored weapon: crossbows\nAlignment: Neutral Good\nAccept clerics of any good alignment"},
-                {name="Xel", desc="#GOLD#God of the Harvest#LAST#\nDomains: #LIGHT_BROWN#Community, Death, Evil, Pain, Nature, Trickery.#LAST#\nFavored weapon: sickle\nAlignment: Lawful Evil\nAccept clerics of any non-Good alignment"},
-                {name="Zurvash", desc="#GOLD#God of Animals and the Hunt#LAST#\nDomains: #LIGHT_BROWN#Animal, Night, Domination, Passion, Pain, Strength.#LAST#\nFavored weapon: N/A\nAlignment: Chaotic Evil\nAccept clerics of Chaotic Evil or Neutral Evil alignment"},
+
+                --Domain selection
+                if actor:hasDescriptor{deity="Aiswin"} then
+                game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                {name="Fate", desc=""},
+                {name="Knowledge", desc=""}, 
+                {name="Night", desc=""},
+                {name="Planning", desc=""},
+                {name="Retribution", desc=""},
+                {name="Trickery", desc=""},
                 },
+                function(result)
+                    if result == "Fate" then end
+                    if result == "Knowledge" then end
+                    if result == "Night" then end
+                    if result == "Planning" then end
+                    if result == "Retribution" then end
+                    if result == "Trickery" then end
+                end))
 
-            function(result)
-            	game.log("Result: "..result)
-            	--Learn talent types based on the choice
-            	if result == "Aiswin" then
-            --[[	  game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                end
+
+                if actor:hasDescriptor{deity="Asherath"} then
+                 game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
                 {name="Knowledge", desc=""}, 
                 {name="Night", desc=""},
                 {name="Planning", desc=""},
                 {name="Retribution", desc=""},
                 {name="Trickery", desc=""},
+                },
                 function(result)
-                	if result == "Fate" then end
-                	if result == "Knowledge" then end
-                	if result == "Night" then end
-                	if result == "Planning" then end
-                	if result == "Retribution" then end
-                	if result == "Trickery" then end
-         		end))]]
-				end
-            	if result == "Asherath" then 
-            --[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
-                {name="Fate", desc=""},
-                {name="Knowledge", desc=""}, 
-                {name="Night", desc=""},
-                {name="Planning", desc=""},
-                {name="Retribution", desc=""},
-                {name="Trickery", desc=""},
-                function(result)
-                	if result == "Fate" then end
-                	if result == "Knowledge" then end
-                	if result == "Night" then end
-                	if result == "Planning" then end
-                	if result == "Retribution" then end
-                	if result == "Trickery" then end
-         		end))	]]
+                    if result == "Fate" then end
+                    if result == "Knowledge" then end
+                    if result == "Night" then end
+                    if result == "Planning" then end
+                    if result == "Retribution" then end
+                    if result == "Trickery" then end
+                end))
 
-            	end
-				if result == "Ekliazeh" then 
-				--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                end
+
+                if actor:hasDescriptor{deity="Ekliazeh"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Community", desc=""}, 
                 {name="Earth", desc=""},
                 {name="Law", desc=""},
                 {name="Strength", desc=""},
                 {name="Protection", desc=""},
+                },
                 function(result)
-                	if result == "Craft" then end
-                	if result == "Community" then end
-                	if result == "Earth" then end
-                	if result == "Law" then end
-                	if result == "Strength" then end
-                	if result == "Protection" then end
-         		end))	]]
-				end
-				if result == "Erich" then 
-			--[[    	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Craft" then end
+                    if result == "Community" then end
+                    if result == "Earth" then end
+                    if result == "Law" then end
+                    if result == "Strength" then end
+                    if result == "Protection" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Erich"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Domination", desc=""},
                 {name="Guardian", desc=""}, 
                 {name="Law", desc=""},
                 {name="Nobility", desc=""},
                 {name="Protection", desc=""},
                 {name="War", desc=""},
+                },
                 function(result)
-                	if result == "Domination" then end
-                	if result == "Guardian" then end
-                	if result == "Law" then end
-                	if result == "Nobility" then end
-                	if result == "Protection" then end
-                	if result == "War" then end
-         		end))	]]
+                    if result == "Domination" then end
+                    if result == "Guardian" then end
+                    if result == "Law" then end
+                    if result == "Nobility" then end
+                    if result == "Protection" then end
+                    if result == "War" then end
+                end))
 
-			   	end
-            	if result == "Essiah" then 
-            --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                end
+
+                if actor:hasDescriptor{deity="Essiah"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Good", desc=""}, 
                 {name="Liberation", desc=""},
                 {name="Luck", desc=""},
                 {name="Passion", desc=""},
                 {name="Travel", desc=""},
+                },
                 function(result)
-                	if result == "Beauty" then end
-                	if result == "Good" then end
-                	if result == "Liberation" then end
-                	if result == "Luck" then end
-                	if result == "Passion" then end
-                	if result == "Travel" then end
-         		end))	]]
-            	end
-            	if result == "Hesani" then 
-            --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Beauty" then end
+                    if result == "Good" then end
+                    if result == "Liberation" then end
+                    if result == "Luck" then end
+                    if result == "Passion" then end
+                    if result == "Travel" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Hesani"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
                 {name="Healing", desc=""}, 
                 {name="Magic", desc=""},
                 {name="Succor", desc=""},
                 {name="Sun", desc=""},
                 {name="Weather", desc=""},
+                },
                 function(result)
-                	if result == "Fate" then end
-                	if result == "Healing" then end
-                	if result == "Magic" then end
-                	if result == "Succor" then end
-                	if result == "Sun" then end
-                	if result == "Weather" then end
-         		end))]]	
-            	end
-            	if result == "Immotian" then 
-            --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Fate" then end
+                    if result == "Healing" then end
+                    if result == "Magic" then end
+                    if result == "Succor" then end
+                    if result == "Sun" then end
+                    if result == "Weather" then end
+                end))
+                end
+
+                if actor:hasDescriptor{deity="Immotian"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
                 {name="Fire", desc=""}, 
                 {name="Knowledge", desc=""},
                 {name="Law", desc=""},
                 {name="Protection", desc=""},
                 {name="Succor", desc=""},
+                },
                 function(result)
-                	if result == "Community" then end
-                	if result == "Fire" then end
-                	if result == "Knowledge" then end
-                	if result == "Law" then end
-                	if result == "Protection" then end
-                	if result == "Succor" then end
-         		end))	]]
-            	end
-            	if result == "Khasrach" then 
-            --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Community" then end
+                    if result == "Fire" then end
+                    if result == "Knowledge" then end
+                    if result == "Law" then end
+                    if result == "Protection" then end
+                    if result == "Succor" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Khasrach"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Destruction", desc=""},
                 {name="Hatred", desc=""}, 
                 {name="Mysticism", desc=""},
                 {name="Strength", desc=""},
                 {name="Pain", desc=""},
                 {name="War", desc=""},
+                },
                 function(result)
-                	if result == "Destruction" then end
-                	if result == "Hatred" then end
-                	if result == "Mysticism" then end
-                	if result == "Strength" then end
-                	if result == "Pain" then end
-                	if result == "War" then end
-         		end))]]
-            	end
-			   	if result == "Kysul" then 
-			 --[[ 		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Destruction" then end
+                    if result == "Hatred" then end
+                    if result == "Mysticism" then end
+                    if result == "Strength" then end
+                    if result == "Pain" then end
+                    if result == "War" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Kysul"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
                 {name="Good", desc=""}, 
                 {name="Mysticism", desc=""},
                 {name="Planning", desc=""},
                 {name="Slime", desc=""},
                 {name="Water", desc=""},
+                },
                 function(result)
-                	if result == "Fate" then end
-                	if result == "Good" then end
-                	if result == "Mysticism" then end
-                	if result == "Planning" then end
-                	if result == "Slime" then end
-                	if result == "Water" then end
-         		end))]] 
-			   	end
-			   	if result == "Maeve" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Fate" then end
+                    if result == "Good" then end
+                    if result == "Mysticism" then end
+                    if result == "Planning" then end
+                    if result == "Slime" then end
+                    if result == "Water" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Maeve"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Domination", desc=""},
                 {name="Magic", desc=""},
                 {name="Moon", desc=""},
                 {name="Nobility", desc=""},
+                },
                 function(result)
-                	if result == "Beauty" then end
-                	if result == "Chaos" then end
-                	if result == "Domination" then end
-                	if result == "Magic" then end
-                	if result == "Moon" then end
-                	if result == "Nobility" then end
-         		end))]]
-			   	end
-			   	if result == "Mara" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Beauty" then end
+                    if result == "Chaos" then end
+                    if result == "Domination" then end
+                    if result == "Magic" then end
+                    if result == "Moon" then end
+                    if result == "Nobility" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Mara"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Death", desc=""}, 
                 {name="Good", desc=""},
                 {name="Healing", desc=""},
                 {name="Night", desc=""},
                 {name="Succor", desc=""},
+                },
                 function(result)
-                	if result == "Beauty" then end
-                	if result == "Death" then end
-                	if result == "Good" then end
-                	if result == "Healing" then end
-                	if result == "Night" then end
-                	if result == "Succor" then end
-         		end))]]
-			   	end
-			   	if result == "Sabin" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Beauty" then end
+                    if result == "Death" then end
+                    if result == "Good" then end
+                    if result == "Healing" then end
+                    if result == "Night" then end
+                    if result == "Succor" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Sabin"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Air", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Destruction", desc=""},
                 {name="Luck", desc=""},
                 {name="Time", desc=""},
                 {name="Weather", desc=""},
+                },
                 function(result)
-                	if result == "Air" then end
-                	if result == "Chaos" then end
-                	if result == "Destruction" then end
-                	if result == "Luck" then end
-                	if result == "Time" then end
-                	if result == "Weather" then end
-         		end))]]
-			   	end
-			   	if result == "Semirath" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Air" then end
+                    if result == "Chaos" then end
+                    if result == "Destruction" then end
+                    if result == "Luck" then end
+                    if result == "Time" then end
+                    if result == "Weather" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Semirath"} then
+                game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Chaos", desc=""},
                 {name="Good", desc=""}, 
                 {name="Liberation", desc=""},
                 {name="Luck", desc=""},
                 {name="Retribution", desc=""},
                 {name="Trickery", desc=""},
+                },
                 function(result)
-                	if result == "Chaos" then end
-                	if result == "Good" then end
-                	if result == "Liberation" then end
-                	if result == "Luck" then end
-                	if result == "Retribution" then end
-                	if result == "Trickery" then end
-         		end))]]
-			   	end
-			   	if result == "Multitude" then 
-			   	--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Chaos" then end
+                    if result == "Good" then end
+                    if result == "Liberation" then end
+                    if result == "Luck" then end
+                    if result == "Retribution" then end
+                    if result == "Trickery" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Multitude"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Blood", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Destruction", desc=""},
                 {name="Death", desc=""},
                 {name="Evil", desc=""},
                 {name="Pain", desc=""},
+                },
                 function(result)
-                	if result == "Blood" then end
-                	if result == "Chaos" then end
-                	if result == "Destruction" then end
-                	if result == "Death" then end
-                	if result == "Evil" then end
-                	if result == "Pain" then end
-         		end))]]
-			   	end
-			   	if result == "Xavias" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Blood" then end
+                    if result == "Chaos" then end
+                    if result == "Destruction" then end
+                    if result == "Death" then end
+                    if result == "Evil" then end
+                    if result == "Pain" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Xavias"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Fate", desc=""},
                 {name="Knowledge", desc=""}, 
                 {name="Magic", desc=""},
                 {name="Mysticism", desc=""},
                 {name="Planning", desc=""},
-               
+                },
                 function(result)
-                	if result == "Craft" then end
-                	if result == "Fate" then end
-                	if result == "Knowledge" then end
-                	if result == "Magic" then end
-                	if result == "Mysticism" then end
-                	if result == "Planning" then end
-         		end))]]
-			   	end
-			   	if result == "Xel" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Craft" then end
+                    if result == "Fate" then end
+                    if result == "Knowledge" then end
+                    if result == "Magic" then end
+                    if result == "Mysticism" then end
+                    if result == "Planning" then end
+                end))
+
+                end    
+
+                if actor:hasDescriptor{deity="Xel"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
                 {name="Death", desc=""}, 
                 {name="Evil", desc=""},
                 {name="Pain", desc=""},
                 {name="Nature", desc=""},
                 {name="Trickery", desc=""},
+                },
                 function(result)
-                	if result == "Community" then end
-                	if result == "Death" then end
-                	if result == "Evil" then end
-                	if result == "Pain" then end
-                	if result == "Nature" then end
-                	if result == "Trickery" then end
-         		end))]]
-			   	end
-			   	if result == "Zurvash" then 
-			--[[  		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Community" then end
+                    if result == "Death" then end
+                    if result == "Evil" then end
+                    if result == "Pain" then end
+                    if result == "Nature" then end
+                    if result == "Trickery" then end
+                end))
+                end
+
+                if actor:hasDescriptor{deity="Zurvash"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Animal", desc=""},
                 {name="Domination", desc=""}, 
                 {name="Night", desc=""},
                 {name="Passion", desc=""},
                 {name="Pain", desc=""},
                 {name="Strength", desc=""},
+                },
                 function(result)
-                	if result == "Animal" then end
-                	if result == "Domination" then end
-                	if result == "Night" then end
-                	if result == "Passion" then end
-                	if result == "Pain" then end
-                	if result == "Strength" then end
-         		end))]] 
-			   	end
-			   	
-			end))
-			end
+                    if result == "Animal" then end
+                    if result == "Domination" then end
+                    if result == "Night" then end
+                    if result == "Passion" then end
+                    if result == "Pain" then end
+                    if result == "Strength" then end
+                end))
 
+                end
 
+            end
+        
 			if actor == game.player then
 				if actor:hasDescriptor{race="Drow", sex="Female"} or actor:hasDescriptor{race="Half-Drow"} then
 			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
@@ -1564,9 +1587,10 @@ newBirthDescriptor {
 	descriptor_choices =
 	{
 		deity =
-    	{
-      		__ALL__ = "allow",
-    	},
+        {
+            --Can't be atheists
+            ['None'] = "disallow",
+        },
 		--Prevent game-breaking combos due to 1 BAB requirement of some feats
 		background =
 		{
@@ -1613,324 +1637,349 @@ newBirthDescriptor {
 			descriptor.learn_all_spells_of_level(actor, 1)
 
 			if actor == game.player then
-            game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your divine patron",{
-                {name="Aiswin", desc="#GOLD#God of Secrets, Vengeance and Shadows#LAST#\nDomains: #LIGHT_BROWN#Fate, Knowledge, Night, Planning, Retribution, Trickery.#LAST#\nFavored weapon: short sword\nAlignment: Neutral\nAccepts clerics of any alignment"},
-                {name="Asherath", desc="#GOLD#God of War, Scholarship, Time and History#LAST#\nDomains: #LIGHT_BROWN#Knowledge, Planning, Strength, Time, Trickery, War.#LAST#\nFavored weapon: long sword\nAlignment: Neutral\nAccepts clerics of any alignment"},
-                {name="Ekliazeh", desc="#GOLD#God of Stone and Strength#LAST#\nDomains: #LIGHT_BROWN#Craft, Community, Earth, Law, Strength, Protection.#LAST#\nFavored weapon: war hammer\nAlignment: Lawful Neutral\nAccepts clerics of any non-Chaotic alignment"},
-                {name="Erich", desc="#GOLD#God of Chivalry, Honor and Social Hierarchy#LAST#\nDomains: #LIGHT_BROWN#Domination, Guardian, Law, Nobility, Protection, War.#LAST#\nFavored weapon: lance\nAlignment: ?\nAccepts clerics of any Lawful alignment"},
-                {name="Essiah", desc="#GOLD#Goddess of Life, Journeys, Joy and Erotic Love#LAST#\nDomains: #LIGHT_BROWN#Beauty, Good, Liberation, Luck, Passion, Travel.#LAST#\nFavored weapon: scourge\nAlignment: Chaotic Good\nAccepts clerics of any Good alignment"},
-                {name="Hesani", desc="#GOLD#God of Light, Balance and Cycles#LAST#\nDomains: #LIGHT_BROWN#Fate, Healing, Magic, Succor, Sun, Weather.#LAST#\nFavored weapon: N/A\nAlignment: Neutral Good\nAccepts clerics of any Good alignment"},
-                {name="Immotian", desc="#GOLD#God of Purity and Community Cleanliness#LAST#\nDomains: #LIGHT_BROWN#Community, Fire, Knowledge, Law, Protection, Succor.#LAST#\nFavored weapon: heavy mace\nAlignment: Lawful Neutral\nAccepts clerics of any Lawful alignment"},
-                {name="Khasrach", desc="#GOLD#Goddess of the Blood#LAST#\nDomains: #LIGHT_BROWN#Destruction, Hatred, Mysticism, Strength, Pain, War.#LAST#\nFavored weapon: long spear\nAlignment: Chaotic Neutral\nAccepts clerics of any alignment"},
-                {name="Kysul", desc="#GOLD#The Watcher Beneath the Waves#LAST#\nDomains: #LIGHT_BROWN#Fate, Good, Mysticism, Planning, Slime, Water.#LAST#\nFavored weapon: trident\nAlignment: Lawful Good\nAccepts clerics of any non-Evil alignment"},
-                {name="Maeve", desc="#GOLD#Queen of the Faeries#LAST#\nDomains: #LIGHT_BROWN#Beauty, Chaos, Domination, Magic, Moon, Nobility.#LAST#\nFavored weapon: short bow\nAlignment: Chaotic Evil\nAccepts clerics of any non-Good Chaotic alignment"},
-                {name="Mara", desc="#GOLD#Goddess of Death, Stillness and Romantic Love#LAST#\nDomains: #LIGHT_BROWN#Beauty, Death, Good, Healing, Night, Succor.#LAST#\nFavored weapon: scythe\nAlignment: Lawful Good\nAccepts clerics of any non-Evil alignment"},
-                {name="Sabin", desc="#GOLD#God of Storms, Athletics, Prophecy and Transformations#LAST#\nDomains: #LIGHT_BROWN#Air, Chaos, Destruction, Luck, Time, Weather.#LAST#\nFavored weapon: javelin\nAlignment: Chaotic Neutral\nAccepts clerics of any alignment"},
-                {name="Semirath", desc="#GOLD#God of Justice, Laughter and Freedom#LAST#\nDomains: #LIGHT_BROWN#Chaos, Good, Liberation, Luck, Retribution, Trickery.#LAST#\nFavored weapon: chakram\nAlignment: Chaotic Good\nAccepts clerics of any Good alignment"},
-                {name="Multitude", desc="#GOLD#Gods of Darkness, Blood, Cruelty, Power, Atrocity, Murder, etc.#LAST#\nDomains: #LIGHT_BROWN#Blood, Chaos, Destruction, Death, Evil, Pain, Spider, Strength, Air, Earth, Fire.#LAST#\nFavored weapon: N/A\nAlignment: Chaotic Evil\nAccept clerics of any evil alignment"},
-                {name="Xavias", desc="#GOLD#God of Science and the Mysteries#LAST#\nDomains: #LIGHT_BROWN#Craft, Fate, Knowledge, Magic, Mysticism, Planning.#LAST#\nFavored weapon: crossbows\nAlignment: Neutral Good\nAccept clerics of any good alignment"},
-                {name="Xel", desc="#GOLD#God of the Harvest#LAST#\nDomains: #LIGHT_BROWN#Community, Death, Evil, Pain, Nature, Trickery.#LAST#\nFavored weapon: sickle\nAlignment: Lawful Evil\nAccept clerics of any non-Good alignment"},
-                {name="Zurvash", desc="#GOLD#God of Animals and the Hunt#LAST#\nDomains: #LIGHT_BROWN#Animal, Night, Domination, Passion, Pain, Strength.#LAST#\nFavored weapon: N/A\nAlignment: Chaotic Evil\nAccept clerics of Chaotic Evil or Neutral Evil alignment"},
+
+                --Domain selection
+                if actor:hasDescriptor{deity="Aiswin"} then
+                game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                {name="Fate", desc=""},
+                {name="Knowledge", desc=""}, 
+                {name="Night", desc=""},
+                {name="Planning", desc=""},
+                {name="Retribution", desc=""},
+                {name="Trickery", desc=""},
                 },
+                function(result)
+                    if result == "Fate" then end
+                    if result == "Knowledge" then end
+                    if result == "Night" then end
+                    if result == "Planning" then end
+                    if result == "Retribution" then end
+                    if result == "Trickery" then end
+                end))
 
-            function(result)
-            	game.log("Result: "..result)
-            	--Learn talent types based on the choice
-            	if result == "Aiswin" then
-            --[[	  game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                end
+
+                if actor:hasDescriptor{deity="Asherath"} then
+                 game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
                 {name="Knowledge", desc=""}, 
                 {name="Night", desc=""},
                 {name="Planning", desc=""},
                 {name="Retribution", desc=""},
                 {name="Trickery", desc=""},
+                },
                 function(result)
-                	if result == "Fate" then end
-                	if result == "Knowledge" then end
-                	if result == "Night" then end
-                	if result == "Planning" then end
-                	if result == "Retribution" then end
-                	if result == "Trickery" then end
-         		end))]]
-				end
-            	if result == "Asherath" then 
-            --[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
-                {name="Fate", desc=""},
-                {name="Knowledge", desc=""}, 
-                {name="Night", desc=""},
-                {name="Planning", desc=""},
-                {name="Retribution", desc=""},
-                {name="Trickery", desc=""},
-                function(result)
-                	if result == "Fate" then end
-                	if result == "Knowledge" then end
-                	if result == "Night" then end
-                	if result == "Planning" then end
-                	if result == "Retribution" then end
-                	if result == "Trickery" then end
-         		end))	]]
+                    if result == "Fate" then end
+                    if result == "Knowledge" then end
+                    if result == "Night" then end
+                    if result == "Planning" then end
+                    if result == "Retribution" then end
+                    if result == "Trickery" then end
+                end))
 
-            	end
-				if result == "Ekliazeh" then 
-				--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                end
+
+                if actor:hasDescriptor{deity="Ekliazeh"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Community", desc=""}, 
                 {name="Earth", desc=""},
                 {name="Law", desc=""},
                 {name="Strength", desc=""},
                 {name="Protection", desc=""},
+                },
                 function(result)
-                	if result == "Craft" then end
-                	if result == "Community" then end
-                	if result == "Earth" then end
-                	if result == "Law" then end
-                	if result == "Strength" then end
-                	if result == "Protection" then end
-         		end))	]]
-				end
-				if result == "Erich" then 
-			--[[    	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Craft" then end
+                    if result == "Community" then end
+                    if result == "Earth" then end
+                    if result == "Law" then end
+                    if result == "Strength" then end
+                    if result == "Protection" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Erich"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Domination", desc=""},
                 {name="Guardian", desc=""}, 
                 {name="Law", desc=""},
                 {name="Nobility", desc=""},
                 {name="Protection", desc=""},
                 {name="War", desc=""},
+                },
                 function(result)
-                	if result == "Domination" then end
-                	if result == "Guardian" then end
-                	if result == "Law" then end
-                	if result == "Nobility" then end
-                	if result == "Protection" then end
-                	if result == "War" then end
-         		end))	]]
+                    if result == "Domination" then end
+                    if result == "Guardian" then end
+                    if result == "Law" then end
+                    if result == "Nobility" then end
+                    if result == "Protection" then end
+                    if result == "War" then end
+                end))
 
-			   	end
-            	if result == "Essiah" then 
-            --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                end
+
+                if actor:hasDescriptor{deity="Essiah"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Good", desc=""}, 
                 {name="Liberation", desc=""},
                 {name="Luck", desc=""},
                 {name="Passion", desc=""},
                 {name="Travel", desc=""},
+                },
                 function(result)
-                	if result == "Beauty" then end
-                	if result == "Good" then end
-                	if result == "Liberation" then end
-                	if result == "Luck" then end
-                	if result == "Passion" then end
-                	if result == "Travel" then end
-         		end))	]]
-            	end
-            	if result == "Hesani" then 
-            --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Beauty" then end
+                    if result == "Good" then end
+                    if result == "Liberation" then end
+                    if result == "Luck" then end
+                    if result == "Passion" then end
+                    if result == "Travel" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Hesani"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
                 {name="Healing", desc=""}, 
                 {name="Magic", desc=""},
                 {name="Succor", desc=""},
                 {name="Sun", desc=""},
                 {name="Weather", desc=""},
+                },
                 function(result)
-                	if result == "Fate" then end
-                	if result == "Healing" then end
-                	if result == "Magic" then end
-                	if result == "Succor" then end
-                	if result == "Sun" then end
-                	if result == "Weather" then end
-         		end))]]	
-            	end
-            	if result == "Immotian" then 
-            --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Fate" then end
+                    if result == "Healing" then end
+                    if result == "Magic" then end
+                    if result == "Succor" then end
+                    if result == "Sun" then end
+                    if result == "Weather" then end
+                end))
+                end
+
+                if actor:hasDescriptor{deity="Immotian"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
                 {name="Fire", desc=""}, 
                 {name="Knowledge", desc=""},
                 {name="Law", desc=""},
                 {name="Protection", desc=""},
                 {name="Succor", desc=""},
+                },
                 function(result)
-                	if result == "Community" then end
-                	if result == "Fire" then end
-                	if result == "Knowledge" then end
-                	if result == "Law" then end
-                	if result == "Protection" then end
-                	if result == "Succor" then end
-         		end))	]]
-            	end
-            	if result == "Khasrach" then 
-            --[[		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Community" then end
+                    if result == "Fire" then end
+                    if result == "Knowledge" then end
+                    if result == "Law" then end
+                    if result == "Protection" then end
+                    if result == "Succor" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Khasrach"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Destruction", desc=""},
                 {name="Hatred", desc=""}, 
                 {name="Mysticism", desc=""},
                 {name="Strength", desc=""},
                 {name="Pain", desc=""},
                 {name="War", desc=""},
+                },
                 function(result)
-                	if result == "Destruction" then end
-                	if result == "Hatred" then end
-                	if result == "Mysticism" then end
-                	if result == "Strength" then end
-                	if result == "Pain" then end
-                	if result == "War" then end
-         		end))]]
-            	end
-			   	if result == "Kysul" then 
-			 --[[ 		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Destruction" then end
+                    if result == "Hatred" then end
+                    if result == "Mysticism" then end
+                    if result == "Strength" then end
+                    if result == "Pain" then end
+                    if result == "War" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Kysul"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
                 {name="Good", desc=""}, 
                 {name="Mysticism", desc=""},
                 {name="Planning", desc=""},
                 {name="Slime", desc=""},
                 {name="Water", desc=""},
+                },
                 function(result)
-                	if result == "Fate" then end
-                	if result == "Good" then end
-                	if result == "Mysticism" then end
-                	if result == "Planning" then end
-                	if result == "Slime" then end
-                	if result == "Water" then end
-         		end))]] 
-			   	end
-			   	if result == "Maeve" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Fate" then end
+                    if result == "Good" then end
+                    if result == "Mysticism" then end
+                    if result == "Planning" then end
+                    if result == "Slime" then end
+                    if result == "Water" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Maeve"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Domination", desc=""},
                 {name="Magic", desc=""},
                 {name="Moon", desc=""},
                 {name="Nobility", desc=""},
+                },
                 function(result)
-                	if result == "Beauty" then end
-                	if result == "Chaos" then end
-                	if result == "Domination" then end
-                	if result == "Magic" then end
-                	if result == "Moon" then end
-                	if result == "Nobility" then end
-         		end))]]
-			   	end
-			   	if result == "Mara" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Beauty" then end
+                    if result == "Chaos" then end
+                    if result == "Domination" then end
+                    if result == "Magic" then end
+                    if result == "Moon" then end
+                    if result == "Nobility" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Mara"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
                 {name="Death", desc=""}, 
                 {name="Good", desc=""},
                 {name="Healing", desc=""},
                 {name="Night", desc=""},
                 {name="Succor", desc=""},
+                },
                 function(result)
-                	if result == "Beauty" then end
-                	if result == "Death" then end
-                	if result == "Good" then end
-                	if result == "Healing" then end
-                	if result == "Night" then end
-                	if result == "Succor" then end
-         		end))]]
-			   	end
-			   	if result == "Sabin" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Beauty" then end
+                    if result == "Death" then end
+                    if result == "Good" then end
+                    if result == "Healing" then end
+                    if result == "Night" then end
+                    if result == "Succor" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Sabin"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Air", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Destruction", desc=""},
                 {name="Luck", desc=""},
                 {name="Time", desc=""},
                 {name="Weather", desc=""},
+                },
                 function(result)
-                	if result == "Air" then end
-                	if result == "Chaos" then end
-                	if result == "Destruction" then end
-                	if result == "Luck" then end
-                	if result == "Time" then end
-                	if result == "Weather" then end
-         		end))]]
-			   	end
-			   	if result == "Semirath" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Air" then end
+                    if result == "Chaos" then end
+                    if result == "Destruction" then end
+                    if result == "Luck" then end
+                    if result == "Time" then end
+                    if result == "Weather" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Semirath"} then
+                game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Chaos", desc=""},
                 {name="Good", desc=""}, 
                 {name="Liberation", desc=""},
                 {name="Luck", desc=""},
                 {name="Retribution", desc=""},
                 {name="Trickery", desc=""},
+                },
                 function(result)
-                	if result == "Chaos" then end
-                	if result == "Good" then end
-                	if result == "Liberation" then end
-                	if result == "Luck" then end
-                	if result == "Retribution" then end
-                	if result == "Trickery" then end
-         		end))]]
-			   	end
-			   	if result == "Multitude" then 
-			   	--[[	game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Chaos" then end
+                    if result == "Good" then end
+                    if result == "Liberation" then end
+                    if result == "Luck" then end
+                    if result == "Retribution" then end
+                    if result == "Trickery" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Multitude"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Blood", desc=""},
                 {name="Chaos", desc=""}, 
                 {name="Destruction", desc=""},
                 {name="Death", desc=""},
                 {name="Evil", desc=""},
                 {name="Pain", desc=""},
+                },
                 function(result)
-                	if result == "Blood" then end
-                	if result == "Chaos" then end
-                	if result == "Destruction" then end
-                	if result == "Death" then end
-                	if result == "Evil" then end
-                	if result == "Pain" then end
-         		end))]]
-			   	end
-			   	if result == "Xavias" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Blood" then end
+                    if result == "Chaos" then end
+                    if result == "Destruction" then end
+                    if result == "Death" then end
+                    if result == "Evil" then end
+                    if result == "Pain" then end
+                end))
+
+                end
+
+                if actor:hasDescriptor{deity="Xavias"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Fate", desc=""},
                 {name="Knowledge", desc=""}, 
                 {name="Magic", desc=""},
                 {name="Mysticism", desc=""},
                 {name="Planning", desc=""},
-               
+                },
                 function(result)
-                	if result == "Craft" then end
-                	if result == "Fate" then end
-                	if result == "Knowledge" then end
-                	if result == "Magic" then end
-                	if result == "Mysticism" then end
-                	if result == "Planning" then end
-         		end))]]
-			   	end
-			   	if result == "Xel" then 
-			--[[   		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Craft" then end
+                    if result == "Fate" then end
+                    if result == "Knowledge" then end
+                    if result == "Magic" then end
+                    if result == "Mysticism" then end
+                    if result == "Planning" then end
+                end))
+
+                end    
+
+                if actor:hasDescriptor{deity="Xel"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
                 {name="Death", desc=""}, 
                 {name="Evil", desc=""},
                 {name="Pain", desc=""},
                 {name="Nature", desc=""},
                 {name="Trickery", desc=""},
+                },
                 function(result)
-                	if result == "Community" then end
-                	if result == "Death" then end
-                	if result == "Evil" then end
-                	if result == "Pain" then end
-                	if result == "Nature" then end
-                	if result == "Trickery" then end
-         		end))]]
-			   	end
-			   	if result == "Zurvash" then 
-			--[[  		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
+                    if result == "Community" then end
+                    if result == "Death" then end
+                    if result == "Evil" then end
+                    if result == "Pain" then end
+                    if result == "Nature" then end
+                    if result == "Trickery" then end
+                end))
+                end
+
+                if actor:hasDescriptor{deity="Zurvash"} then
+                    game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Animal", desc=""},
                 {name="Domination", desc=""}, 
                 {name="Night", desc=""},
                 {name="Passion", desc=""},
                 {name="Pain", desc=""},
                 {name="Strength", desc=""},
+                },
                 function(result)
-                	if result == "Animal" then end
-                	if result == "Domination" then end
-                	if result == "Night" then end
-                	if result == "Passion" then end
-                	if result == "Pain" then end
-                	if result == "Strength" then end
-         		end))]] 
-			   	end
-			   	
-			end))
-			end
+                    if result == "Animal" then end
+                    if result == "Domination" then end
+                    if result == "Night" then end
+                    if result == "Passion" then end
+                    if result == "Pain" then end
+                    if result == "Strength" then end
+                end))
+
+                end
+
+            end
+
+		--	end
 
 		else
 

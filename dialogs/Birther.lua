@@ -698,6 +698,7 @@ function _M:ClassUse(item, sel)
     self:updateClasses()
     self:updateBackgrounds()
     self:updateAlignment()
+    self:updateDeity()
 end
 
 function _M:AlignmentUse(item, sel)
