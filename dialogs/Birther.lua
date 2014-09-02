@@ -336,16 +336,68 @@ function _M:drawDialog(tab)
     end
 end
 
---General tab stuff
-
---Ensure stats at start
-function _M:onSetupPB()
-    for i, s in ipairs(self.actor.stats_def) do
-        self.actor.stats[i] = 10
-    end
-
-    self.reroll = false
+--COMMON stuff
+function _M:updateDescriptors()
+    self.descriptors = {}
+    --Tab 1
+    table.insert(self.descriptors, self.birth_descriptor_def.base[self.descriptors_by_type.base])
+    table.insert(self.descriptors, self.birth_descriptor_def.sex[self.descriptors_by_type.sex])
+    table.insert(self.descriptors, self.birth_descriptor_def.race[self.descriptors_by_type.race])
+    table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])  
+    table.insert(self.descriptors, self.birth_descriptor_def.alignment[self.descriptors_by_type.alignment])
+    --Tab 2
+    table.insert(self.descriptors, self.birth_descriptor_def.background[self.descriptors_by_type.background]) 
+    table.insert(self.descriptors, self.birth_descriptor_def.deity[self.descriptors_by_type.deity]) 
 end
+
+function _M:setDescriptor(key, val)
+    if key then
+        self.descriptors_by_type[key] = val
+        print("[BIRTHER] set descriptor", key, val)
+    end
+   self:updateDescriptors()
+
+--   local ok = self.c_name.text:len() >= 2
+--[[   for i, o in ipairs(self.order) do
+        if not self.descriptors_by_type[o] then
+            ok = false
+            print("Missing ", o)
+            break
+        end
+    end]]
+--    self:toggleDisplay(self.c_save, ok)  
+end
+
+function _M:isDescriptorAllowed(d, ignore_type)
+    self:updateDescriptors()
+
+    if type(ignore_type) == "string" then
+        ignore_type = {[ignore_type] = true}
+    end
+    ignore_type = ignore_type or {}
+
+    local allowed = true
+    local type = d.type
+    print("[BIRTHER] checking allowance for ", d.name)
+    for j, od in ipairs(self.descriptors) do
+            if od.descriptor_choices and od.descriptor_choices[type] then
+                local what = util.getval(od.descriptor_choices[type][d.name], self) or util.getval(od.descriptor_choices[type].__ALL__, self)
+                if what and what == "allow" then
+                    allowed = true
+                elseif what and (what == "never" or what == "disallow") then
+                    allowed = false
+                elseif what and what == "forbid" then
+                    allowed = nil
+                end
+                print("[BIRTHER] test against ", od.name, "=>", what, allowed)
+                if allowed == nil then break end
+            end
+    end
+return allowed
+end
+
+
+--GENERAL tab stuff
 
 --To do at end/on finish
 function _M:atEnd()
@@ -445,66 +497,6 @@ function _M:updateAlignment()
     self:updateTab("general")
 end
 
-function _M:updateDescriptors()
-    self.descriptors = {}
-    --Tab 1
-    table.insert(self.descriptors, self.birth_descriptor_def.base[self.descriptors_by_type.base])
-    table.insert(self.descriptors, self.birth_descriptor_def.sex[self.descriptors_by_type.sex])
-    table.insert(self.descriptors, self.birth_descriptor_def.race[self.descriptors_by_type.race])
-    table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])  
-    table.insert(self.descriptors, self.birth_descriptor_def.alignment[self.descriptors_by_type.alignment])
-    --Tab 2
-    table.insert(self.descriptors, self.birth_descriptor_def.background[self.descriptors_by_type.background]) 
-    table.insert(self.descriptors, self.birth_descriptor_def.deity[self.descriptors_by_type.deity]) 
-end
-
-function _M:setDescriptor(key, val)
-    if key then
-        self.descriptors_by_type[key] = val
-        print("[BIRTHER] set descriptor", key, val)
-    end
-   self:updateDescriptors()
-
---   local ok = self.c_name.text:len() >= 2
---[[   for i, o in ipairs(self.order) do
-        if not self.descriptors_by_type[o] then
-            ok = false
-            print("Missing ", o)
-            break
-        end
-    end]]
---    self:toggleDisplay(self.c_save, ok)  
-end
-
-function _M:isDescriptorAllowed(d, ignore_type)
-    self:updateDescriptors()
-
-    if type(ignore_type) == "string" then
-        ignore_type = {[ignore_type] = true}
-    end
-    ignore_type = ignore_type or {}
-
-    local allowed = true
-    local type = d.type
-    print("[BIRTHER] checking allowance for ", d.name)
-    for j, od in ipairs(self.descriptors) do
-            if od.descriptor_choices and od.descriptor_choices[type] then
-                local what = util.getval(od.descriptor_choices[type][d.name], self) or util.getval(od.descriptor_choices[type].__ALL__, self)
-                if what and what == "allow" then
-                    allowed = true
-                elseif what and (what == "never" or what == "disallow") then
-                    allowed = false
-                elseif what and what == "forbid" then
-                    allowed = nil
-                end
-                print("[BIRTHER] test against ", od.name, "=>", what, allowed)
-                if allowed == nil then break end
-            end
-    end
-return allowed
-end
-
-
 --Helper functions yaay for beginner players!
 function _M:isNewbieSuggested(d)
     self:updateDescriptors()
@@ -601,40 +593,6 @@ function _M:generateLists()
 end
 
 
---Display random perk
---Warning: ONLY WORKS FOR PERKS that are talents!
-function _M:generatePerkText()
-    local list = {}
-    for j, t in pairs(self.actor.talents_def) do
-        if self.actor:knowTalent(t.id) then
-
-            list[#list+1] = {
-                name = "#LIGHT_BLUE#"..t.name.."#WHITE#",
-            --    desc = player:getTalentFullDescription(t):toString(),
-                desc = ("%s"):format(t.info(self.actor,t)),
-                }
-        end
-    end
-    self.list_perk = list
-end
-
-function _M:generateStats()
-    local list = {}
-
-    list = 
-    {
-            {name="STR", val=self.actor:birthColorStats('str'), stat_id=self.actor.STAT_STR, desc="#GOLD#Strength (STR)#LAST# is important for melee fighting."},
-            {name="DEX", val=self.actor:birthColorStats('dex'), stat_id=self.actor.STAT_DEX, desc="You'll want to increase #GOLD#Dexterity (DEX)#LAST# if you want to play a ranger or a rogue. It's less important for fighters, who wear heavy armor."},
-            {name="CON", val=self.actor:birthColorStats('con'), stat_id=self.actor.STAT_CON, desc="#GOLD#Constitution (CON)#LAST# is vital for all characters, since it affects your hitpoints."},
-            {name="INT", val=self.actor:birthColorStats('int'), stat_id=self.actor.STAT_INT, desc="#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard."},
-            {name="WIS", val=self.actor:birthColorStats('wis'), stat_id=self.actor.STAT_WIS, desc="#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster."},
-            {name="CHA", val=self.actor:birthColorStats('cha'), stat_id=self.actor.STAT_CHA, desc="#GOLD#Charisma (CHA)#LAST# is a key attribute for shamans or sorcerers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells."},
-            {name="#SLATE#LUC#LAST#", val=self.actor:birthColorStats('luc'), stat_id=self.actor.STAT_LUC, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
-        }
-
-    self.list_stats = list
-end
-
 function _M:generateRaces()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.race) do
@@ -709,7 +667,50 @@ function _M:AlignmentUse(item, sel)
     self:updateAlignment()
 end
 
---Stats stuff
+--STATS TAB
+--Ensure stats at start
+function _M:onSetupPB()
+    for i, s in ipairs(self.actor.stats_def) do
+        self.actor.stats[i] = 10
+    end
+
+    self.reroll = false
+end
+
+--Display random perk
+--Warning: ONLY WORKS FOR PERKS that are talents!
+function _M:generatePerkText()
+    local list = {}
+    for j, t in pairs(self.actor.talents_def) do
+        if self.actor:knowTalent(t.id) then
+
+            list[#list+1] = {
+                name = "#LIGHT_BLUE#"..t.name.."#WHITE#",
+            --    desc = player:getTalentFullDescription(t):toString(),
+                desc = ("%s"):format(t.info(self.actor,t)),
+                }
+        end
+    end
+    self.list_perk = list
+end
+
+function _M:generateStats()
+    local list = {}
+
+    list = 
+    {
+            {name="STR", val=self.actor:birthColorStats('str'), stat_id=self.actor.STAT_STR, desc="#GOLD#Strength (STR)#LAST# is important for melee fighting."},
+            {name="DEX", val=self.actor:birthColorStats('dex'), stat_id=self.actor.STAT_DEX, desc="You'll want to increase #GOLD#Dexterity (DEX)#LAST# if you want to play a ranger or a rogue. It's less important for fighters, who wear heavy armor."},
+            {name="CON", val=self.actor:birthColorStats('con'), stat_id=self.actor.STAT_CON, desc="#GOLD#Constitution (CON)#LAST# is vital for all characters, since it affects your hitpoints."},
+            {name="INT", val=self.actor:birthColorStats('int'), stat_id=self.actor.STAT_INT, desc="#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard."},
+            {name="WIS", val=self.actor:birthColorStats('wis'), stat_id=self.actor.STAT_WIS, desc="#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster."},
+            {name="CHA", val=self.actor:birthColorStats('cha'), stat_id=self.actor.STAT_CHA, desc="#GOLD#Charisma (CHA)#LAST# is a key attribute for shamans or sorcerers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells."},
+            {name="#SLATE#LUC#LAST#", val=self.actor:birthColorStats('luc'), stat_id=self.actor.STAT_LUC, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
+        }
+
+    self.list_stats = list
+end
+
 function _M:getCost(val)
     --Handle differing costs (Pathfinder style)
     -- 7 = -4; 8 = -2; 9 = -1; 10 = 0; 11 = 1; 12 = 2; 13 = 3; 14 = 5; 15 = 7; 16 = 10; 17 = 13; 18 = 17
