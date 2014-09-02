@@ -11,14 +11,20 @@ CHANGELOG
 * bug fix - tutorial boss not spawning
 * bug fix - Lua error due to oversight in combat poison code
 * bug fix - increasing stats throwing a Lua error [desophos]
+* bug fix - ensured reachability and spawning of dungeon entrances in worldmap
+* bug fix - getting messages about unseen enemies using spells/skills
+* bug fix - proper tiles for the cavern zone
+* bug fix - domain selection working as intended again (last seen in beta 5)
 
 * new spell: transmute rock to mud
 * new zones: labirynth, xorn lair, town, aberrant lair, arena
 * new tiles: sand, ice; blink dog, barghest, hell hound, yeth hound
+* new curse: of weakness
 * renamed existing zones: Upperdark -> compound; Middledark -> tunnels
 * change starting zone to tunnels
-* new curse: of weakness
+* made character creation screen tabbed
 * hirelings
+* day/night cycle with exotic colors
 
 
 0.21.0 - beta 5.7 - 07/08/2014
@@ -282,6 +288,7 @@ CHANGELOG
 * bug fix: hotbar no longer covers the log on some screens
 * bug fix: random naming for potions and scrolls now works properly
 * bug fix: you can no longer spend one more skill point per level than intended
+
 * TILES - using David Gervais 32x32 tiles with some new tiles made by me
 * new spells: identify; improved identify, mage armor [Seb]
 * new items: cursed items (bracers of clumsiness, potion of poison, potion of inflict light wounds and others); ring of darkvision
@@ -305,6 +312,7 @@ CHANGELOG
 * bug fix: no more wielding two-handed weapons with one hand
 * bug fix: all spells (including sorcerer and spell-like abilities) now display their proper icon
 * bug fix: drowning and lava lua errors fixed
+
 * new class: sorcerer
 * chat code added
 * highscores working & enabled (based on the number of total kills)
@@ -331,6 +339,7 @@ CHANGELOG
 * bug fix: no more lua errors with some spells
 * bug fix: bard skill points
 * bug fix: assasin and shadowdancer not giving level-up bonuses
+
 * new monsters: aboleth, athach, choker, chuul, cloaker, drider, ettercap, otyugh; ankheg, aranea, arrowhawk, assasin vine, barghest
 * survival kit, healing kit, lockpicking kit added - grant a +2 bonus to skill
 * all characters now receive a single feat when rolling stats as a perk
