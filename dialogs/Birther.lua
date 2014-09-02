@@ -49,28 +49,49 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.descriptors = {}
     self.descriptors_by_type = {}
 
-    --Name stuff
-    self.max = 30
-    self.min = 2
-
-    --UI starts here
-    local c_box = Textbox.new{title="Name: ", text="" or game.player_name, chars=30, max_len=50, fct=function() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
-
-    self.c_name = c_box
-
-    self.c_female = Checkbox.new{title="Female", default=true,
-        fct=function() end,
-        on_change=function(s) self.c_male.checked = not s self:setDescriptor("sex", s and "Female" or "Male") end
-    }
-    self.c_male = Checkbox.new{title="Male", default=false,
-        fct=function() end,
-        on_change=function(s) self.c_female.checked = not s self:setDescriptor("sex", s and "Male" or "Female") end
+    --Tabs
+    self.t_stats = Tab.new {
+    title = 'Stats',
+    default = true,
+    fct = function() end,
+    on_change = function(s) if s then self:switchTo('stats') end end,
     }
 
+    self.t_general = Tab.new {
+    title = 'General (m/m/m)',
+    default = true,
+    fct = function() end,
+    on_change = function(s) if s then self:switchTo('general') end end,
+    }
+    self.t_optional = Tab.new {
+    title = 'Optional (m/m)',
+    default = false,
+    fct = function() end,
+    on_change = function(s) if s then self:switchTo('optional') end end,
+    }
+
+    self.vs = Separator.new { dir='vertical', size=self.iw }
+
+    --UI starts here 
+    --COMMON STUFF
+    self.c_legend = Textzone.new{width=self.iw/4, auto_height=true, text=[[
+    List legend:
+    #GOLD#Gold#LAST# is your current choice.
+    #SANDY_BROWN#Brown#LAST# is recommended for new players.
+    #LIGHT_GREEN#Green#LAST# is recommended based on your stats.
+    #LIGHT_BLUE#Light blue#LAST# would grant you small additional bonuses based on your race.
+    #CRIMSON#Red#LAST# is a bad choice!
+    ]]}
+
+    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
+
+    -- Buttons at the bottom of the screen
+    self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
+    self.c_save = Button.new{text="     Play!     ", fct=function() self:atEnd() end}
+    self.c_cancel = Button.new{text="Cancel", fct=function() self:cancel() end}
+
+    --STATS TAB
     self:onSetupPB()
-    
-
-    --Stats list
 
     self.starting_unused_stats = 20
     self.unused_stats = self.unused_stats or self.starting_unused_stats
@@ -115,26 +136,44 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
         end
     }
 
+    self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
+Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
+#00FF00#Left click#FFFFFF# on a stat to increase it.
+#00FF00#Right click#FFFFFF# on a stat to decrease it.
+Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
+]], scrollbar = true}
 
+    
+    --GENERAL TAB
     --Make UI work
     self:setDescriptor("base", "base")
     self:setDescriptor("sex", "Female")
     --Defaults so that you can't do stupid stuff like trying to play a char without descriptors
-    self:setDescriptor("class", "Barbarian")
+ --[[   self:setDescriptor("class", "Barbarian")
     self:setDescriptor("race", "Human")
     self:setDescriptor("background", "Brawler")
-    self:setDescriptor("alignment", "Neutral Good")
+    self:setDescriptor("alignment", "Neutral Good")]]
 
-    -- Buttons at the bottom of the screen
-    self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
-    self.c_save = Button.new{text="     Play!     ", fct=function() self:atEnd() end}
-    self.c_cancel = Button.new{text="Cancel", fct=function() self:cancel() end}
+     --Name stuff
+    self.max = 30
+    self.min = 2
+
+    local c_box = Textbox.new{title="Name: ", text="" or game.player_name, chars=30, max_len=50, fct=function() end, on_change=function() self:setDescriptor() end, on_mouse = function(button) if button == "right" then self:randomName() end end}
+
+    self.c_name = c_box
+
+    self.c_female = Checkbox.new{title="Female", default=true,
+        fct=function() end,
+        on_change=function(s) self.c_male.checked = not s self:setDescriptor("sex", s and "Female" or "Male") end
+    }
+    self.c_male = Checkbox.new{title="Male", default=false,
+        fct=function() end,
+        on_change=function(s) self.c_female.checked = not s self:setDescriptor("sex", s and "Male" or "Female") end
+    }
+
 
     --Create lists
     self:generateLists()
-
-    local lists_top = self.c_name.h + 25 + self.c_points.h + self.c_stats.h + 15
-    local lists_height = self.ih - lists_top - self.c_save.h - 45
 
     self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
     self.c_class = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
@@ -142,66 +181,114 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
     self.c_race = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
 
-    self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
-    self.c_background = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
-
     self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
     self.c_alignment = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
-    self.c_legend = Textzone.new{width=self.iw/4, auto_height=true, text=[[
-    List legend:
-    #GOLD#Gold#LAST# is your current choice.
-    #SANDY_BROWN#Brown#LAST# is recommended for new players.
-    #LIGHT_GREEN#Green#LAST# is recommended based on your stats.
-    #LIGHT_BLUE#Light blue#LAST# would grant you small additional bonuses based on your race.
-    #CRIMSON#Red#LAST# is a bad choice!
-    ]]}
+    
 
-    self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
-Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
-#00FF00#Left click#FFFFFF# on a stat to increase it.
-#00FF00#Right click#FFFFFF# on a stat to decrease it.
-Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
 
-Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play!#FFFFFF#'
-]], scrollbar = true}
-    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
+    --OPTIONAL TAB
+    self:generateDeities()
+    self.c_deity_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Deity: #LAST#"}
+    self.c_deity = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_deity, list=self.list_deity, fct=function(item) self:DeityUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
+    self:generateBackgrounds()
+    self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
+    self.c_background = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+
+
+    self:updateTab('all')
+    self.t_stats:select()
+end
+
+
+function _M:switchTo(tab)
+    self.t_stats.selected = tab == 'stats'
+    self.t_general.selected = tab == 'general'
+    self.t_optional.selected = tab == 'optional'
+
+    self:drawDialog(tab)
+end
+
+--From ToME 2 by Zizzo
+function _M:updateTab(tab)
+  -- Convenient shorthand alias
+  local dbt = self.descriptors_by_type
+
+    if tab == 'all' then
+        self:updateTab('general')
+        self:updateTab('optional')
+    elseif tab == "general" then
+        local c1 = dbt.race and '*' or '_'
+        local c2 = dbt.class and '*' or '_'
+        local c3 = dbt.alignment and '*' or '_'
+        self.t_general.title = ('General (%s/%s/%s)'):format(c1, c2, c3)
+        self.t_general:generate()
+    elseif tab == "optional" then
+        local c1 = dbt.deity and '*' or '_'
+        local c2 = dbt.background and '*' or '_'
+        self.t_optional.title = ('Optional (%s/%s)'):format(c1, c2)
+        self.t_optional:generate()
+    else end
+end 
+
+function _M:drawDialog(tab)
+    --Helpers for GENERAL tab
+    local lists_top = self.t_general.h + 15 + self.c_name.h + 35
+    local lists_height = self.ih - lists_top - self.c_save.h - 5 
+
+
+
+    if tab == 'stats' then
     self:loadUI{
+        --Top line
+        {left=0, top=0, ui=self.t_stats},
+        {left=self.t_stats, top=0, ui=self.t_general},
+        {left=self.t_general, top=0, ui=self.t_optional},
+        {left=0, top=self.t_general, ui=self.vs },
+        --First line (stats)
+        {left=0, top=self.t_general.h + 15, ui=self.c_points},
+        {left=0, top=self.t_general.h + 15 + self.c_points.h, ui=self.c_stats},
+        {left=self.c_stats.w + 5, top = self.t_general.h + 15, ui=self.c_reset},
+        {left=self.c_stats.w +5, top = self.t_general.h + 15 + self.c_reset.h + 5, ui=self.c_reroll},
+        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.t_general.h + 15, ui=self.c_perk_text },
+        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.t_general.h + 35, ui=self.c_perk_note },
+        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.t_general.h + 35, ui=self.c_perk },
+        --Instruction
+        {right=0, top=self.t_general.h + 15, ui=self.c_tut},
+    }
+
+    self:setFocus(self.c_stats)
+
+    self:setupUI()
+
+
+    elseif tab == 'general' then
+    self:loadUI{
+        --Top line
+        {left=0, top=0, ui=self.t_stats},
+        {left=self.t_stats, top=0, ui=self.t_general},
+        {left=self.t_general, top=0, ui=self.t_optional},
+        {left=0, top=self.t_general, ui=self.vs },
         -- First line
-        {left=0, top=0, ui=self.c_name},
-        {left=self.c_name, top=0, ui=self.c_female},
-        {left=self.c_female, top=0, ui=self.c_male},
+        {left=0, top=self.vs, ui=self.c_name},
+        {left=self.c_name, top=self.vs, ui=self.c_female},
+        {left=self.c_female, top=self.vs, ui=self.c_male},
 
-        {left=0, top=self.c_name.h + 5, ui=Separator.new{dir="vertical", size=self.iw - 10}},
-
-        --Second line (stats)
-        {left=0, top=self.c_name.h + 20, ui=self.c_points},
-        {left=0, top=self.c_name.h + 25 + self.c_points.h, ui=self.c_stats},
-        {left=self.c_stats.w + 5, top = self.c_name.h + 20, ui=self.c_reset},
-        {left=self.c_stats.w +5, top = self.c_name.h + 20 + self.c_reset.h + 5, ui=self.c_reroll},
-        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 45, ui=self.c_perk_text },
-        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 65, ui=self.c_perk_note },
-        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.c_name.h + 85, ui=self.c_perk },
-        {left=self.c_stats.w + 5 + self.c_reroll.w + 20 + self.c_perk_text.w + 30, top = self.c_name.h +20, ui=self.c_legend },
-
-
-        {left=0, top=self.c_name.h + 25 + self.c_points.h + self.c_stats.h, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
+        {left=0, top=self.t_general.h + 10 + self.c_name.h + 25, ui=Separator.new{dir="vertical", size=((self.iw/6)*4)}},
 
         --Third line (lists)
         {left=0, top=lists_top, ui=self.c_race_text},
         {left=0, top=self.c_race_text, ui=self.c_race},
         {left=self.c_race, top=lists_top, ui=self.c_class_text},
         {left=self.c_race, top=self.c_class_text, ui=self.c_class},
-        {left=self.c_class, top=lists_top, ui=self.c_background_text},
-        {left=self.c_class, top=self.c_background_text, ui=self.c_background},
-        {left=self.c_background, top=lists_top, ui=self.c_alignment_text},
-        {left=self.c_background, top=self.c_alignment_text, ui=self.c_alignment},
+        {left=self.c_class, top=lists_top, ui=self.c_alignment_text},
+        {left=self.c_class, top=self.c_alignment_text, ui=self.c_alignment},
 
-        --Instructions and description
-        {right=0, top=self.c_name.h + 15, ui=self.c_tut},
-        {right=0, top=self.c_name.h + self.c_tut.h + 5, ui=Separator.new{dir="vertical", size=self.iw - ((self.iw/6)*4)-20}},
-        {right=0, top=self.c_name.h + self.c_tut.h + 30, ui=self.c_desc},
+        --Instructions and description  
+        {right=0, top = self.t_general.h + 15, ui=self.c_legend },
+        {right=0, top=self.c_name.h + self.c_legend.h + 5, ui=Separator.new{dir="vertical", size=self.iw - ((self.iw/6)*4)-20}},
+        {right=0, top=self.c_name.h + self.c_legend.h + 15, ui=self.c_desc},
 
         --Buttons
         {left=0, bottom=0, ui=self.c_cancel},
@@ -211,20 +298,45 @@ Pick 1 race, 1 class, 1 alignment and 1 background before clicking #00FF00#'Play
 
     }
     self:setFocus(self.c_name)
-    self:setFocus(self.c_stats)
+    
     
   --  self:setDescriptor()
      --Defaults so that you can't do stupid stuff like trying to play a char without descriptors
-    self:setDescriptor("class", "Barbarian")
+--[[    self:setDescriptor("class", "Barbarian")
     self:setDescriptor("race", "Human")
     self:setDescriptor("background", "Brawler")
-    self:setDescriptor("alignment", "Neutral Good")
+    self:setDescriptor("alignment", "Neutral Good")]]
 
     self:setupUI()
 
 --    self.key:addBind("EXIT", function() game:unregisterDialog(self) end)
+    
+    elseif tab == "optional" then
+        self:loadUI{
+        --Top line
+        {left=0, top=0, ui=self.t_stats},
+        {left=self.t_stats, top=0, ui=self.t_general},
+        {left=self.t_general, top=0, ui=self.t_optional},
+        {left=0, top=self.t_general, ui=self.vs },
 
+        --First line (lists)
+        {left=0, top=self.vs, ui=self.c_background_text},
+        {left=0, top=self.c_background_text, ui=self.c_background},
+        {left=self.c_background, top=self.vs, ui=self.c_deity_text},
+        {left=self.c_background, top=self.c_deity_text, ui=self.c_deity},
+        --Description & legend
+        {right=0, top = self.t_general.h + 15, ui=self.c_legend },
+        {right=0, top=self.c_name.h + self.c_legend.h + 5, ui=Separator.new{dir="vertical", size=self.iw - ((self.iw/6)*4)-20}},
+        {right=0, top=self.c_name.h + self.c_legend.h + 15, ui=self.c_desc},
+    }
+
+    self:setFocus(self.c_background)
+
+    self:setupUI()
+    end
 end
+
+--General tab stuff
 
 --Ensure stats at start
 function _M:onSetupPB()
@@ -306,6 +418,7 @@ function _M:update()
     self.c_race:generate()
     self.c_alignment:generate()
     self.c_background:generate()
+    self:updateTab('all')
 end
 
 function _M:updateRaces()
@@ -313,6 +426,7 @@ function _M:updateRaces()
     self:generateRaces()
     self.c_race.list = self.list_race
     self.c_race:generate()
+    self:updateTab('general')
 end
 
 function _M:updateClasses()
@@ -320,6 +434,7 @@ function _M:updateClasses()
     self:generateClasses()
     self.c_class.list = self.list_class
     self.c_class:generate()
+    self:updateTab('general')
 end
 
 function _M:updateAlignment()
@@ -327,23 +442,20 @@ function _M:updateAlignment()
     self:generateAlignment()
     self.c_alignment.list = self.list_alignment
     self.c_alignment:generate()
-end
-
-function _M:updateBackgrounds()
-    local sel = self.selection
-    self:generateBackgrounds()
-    self.c_background.list = self.list_background
-    self.c_background:generate()
+    self:updateTab("general")
 end
 
 function _M:updateDescriptors()
     self.descriptors = {}
+    --Tab 1
     table.insert(self.descriptors, self.birth_descriptor_def.base[self.descriptors_by_type.base])
     table.insert(self.descriptors, self.birth_descriptor_def.sex[self.descriptors_by_type.sex])
     table.insert(self.descriptors, self.birth_descriptor_def.race[self.descriptors_by_type.race])
-    table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])
-    table.insert(self.descriptors, self.birth_descriptor_def.background[self.descriptors_by_type.background])   
+    table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])  
     table.insert(self.descriptors, self.birth_descriptor_def.alignment[self.descriptors_by_type.alignment])
+    --Tab 2
+    table.insert(self.descriptors, self.birth_descriptor_def.background[self.descriptors_by_type.background]) 
+    table.insert(self.descriptors, self.birth_descriptor_def.deity[self.descriptors_by_type.deity]) 
 end
 
 function _M:setDescriptor(key, val)
@@ -353,7 +465,7 @@ function _M:setDescriptor(key, val)
     end
    self:updateDescriptors()
 
-   local ok = self.c_name.text:len() >= 2
+--   local ok = self.c_name.text:len() >= 2
 --[[   for i, o in ipairs(self.order) do
         if not self.descriptors_by_type[o] then
             ok = false
@@ -361,7 +473,7 @@ function _M:setDescriptor(key, val)
             break
         end
     end]]
-    self:toggleDisplay(self.c_save, ok)  
+--    self:toggleDisplay(self.c_save, ok)  
 end
 
 function _M:isDescriptorAllowed(d, ignore_type)
@@ -484,6 +596,8 @@ function _M:generateLists()
     self:generateRaces()
     self:generateBackgrounds()
     self:generateAlignment()
+    --For optional tab
+    self:generateDeities()
 end
 
 
@@ -553,21 +667,6 @@ function _M:generateClasses()
     self.list_class = list
 end 
 
-function _M:generateBackgrounds()
-    local list = {}
-    for i, d in ipairs(Birther.birth_descriptor_def.background) do
-        if self:isDescriptorAllowed(d) then
-          local color 
-          if self.sel_background and self.sel_background.name == d.name then color = {255, 215, 0}
-          elseif self.sel_class and self:isSuggestedBackground(d) then color = {81, 221, 255}
-          else color = {255, 255, 255} end
-
-          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
-        end
-    end
-    self.list_background = list
-end   
-
 function _M:generateAlignment()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.alignment) do
@@ -607,14 +706,6 @@ function _M:AlignmentUse(item, sel)
     self:setDescriptor("alignment", item.name)
     self.sel_alignment = item
     self:updateAlignment()
-end
-
-function _M:BackgroundUse(item, sel)
-    if not item then return end
-    self.sel_background = nil
-    self:setDescriptor("background", item.name)
-    self.sel_background = item
-    self:updateBackgrounds()
 end
 
 --Stats stuff
@@ -728,6 +819,69 @@ function _M:onReset()
     self.c_stats.list = self.list_stats
     self.c_stats:generate()
     self:updateClasses()
+end
+
+--Optional tab stuff
+function _M:generateBackgrounds()
+    local list = {}
+    for i, d in ipairs(Birther.birth_descriptor_def.background) do
+        if self:isDescriptorAllowed(d) then
+          local color 
+          if self.sel_background and self.sel_background.name == d.name then color = {255, 215, 0}
+          elseif self.sel_class and self:isSuggestedBackground(d) then color = {81, 221, 255}
+          else color = {255, 255, 255} end
+
+          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
+        end
+    end
+    self.list_background = list
+end
+
+function _M:updateBackgrounds()
+    local sel = self.selection
+    self:generateBackgrounds()
+    self.c_background.list = self.list_background
+    self.c_background:generate()
+    self:updateTab("optional")
+end
+
+function _M:BackgroundUse(item, sel)
+    if not item then return end
+    self.sel_background = nil
+    self:setDescriptor("background", item.name)
+    self.sel_background = item
+    self:updateBackgrounds()
+end
+
+function _M:generateDeities()
+    local list = {}
+    for i, d in ipairs(Birther.birth_descriptor_def.deity) do
+        if self:isDescriptorAllowed(d) then
+          local color 
+          if self.sel_deity and self.sel_deity.name == d.name then color = {255, 215, 0}
+          else color = {255, 255, 255} end
+
+          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
+        end
+    end
+    self.list_deity = list
+end 
+
+function _M:updateDeity()
+    local sel = self.selection
+    self:generateDeities()
+    self.c_deity.list = self.list_deity
+    self.c_deity:generate()
+    self:updateTab("optional")
+end
+
+
+function _M:DeityUse(item, sel)
+    if not item then return end
+    self.sel_deity = nil
+    self:setDescriptor("deity", item.name)
+    self.sel_deity = item
+    self:updateDeity()
 end
 
 

@@ -184,7 +184,7 @@ function _M:newGame()
 
 	self.creating_player = true
 
-	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment'}, function()
+	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment', 'deity'}, function()
 
 --    local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'deity', 'alignment', 'domains', 'domains'}, function()
         
