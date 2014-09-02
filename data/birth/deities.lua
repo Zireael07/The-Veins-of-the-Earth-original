@@ -1,3 +1,12 @@
+--For players who don't want to follow a deity
+newBirthDescriptor{
+	type = "deity",
+	name = 'None',
+	desc = 'You do not follow a deity',
+}
+
+
+
 --Taken from Incursion by Julian Mensch
 newBirthDescriptor {
   type = 'deity',

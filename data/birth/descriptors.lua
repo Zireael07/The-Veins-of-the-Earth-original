@@ -66,10 +66,6 @@ newBirthDescriptor{
   },
   descriptor_choices =
   {
-    deity =
-    {
-      __ALL__ = "disallow",
-    },
     domains =
     {
       __ALL__ = "disallow",
