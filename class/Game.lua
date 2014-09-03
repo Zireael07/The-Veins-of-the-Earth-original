@@ -558,7 +558,7 @@ function _M:changeLevel(lev, zone)
 	local max_magic = 0
 
 	--Detect powerful magic items
-	for _, o in pairs(game.level.entities) do --list[#list+1] = o
+	for uid, o in pairs(game.level.entities) do --list[#list+1] = o
 		if o.egoed then magic = 2
 		elseif o.egoed and o.greater_ego then magic = 4
 		else end
@@ -679,16 +679,6 @@ function _M:onTurn()
 		self.day_of_year = self.calendar:getDayOfYear(self.turn)
 	end
 
---	self:killDead()
-end
-
-function _M:killDead()
-	if not self.level then return end
-	for uid, e in pairs(self.level.entities) do
-		if e.life > -10 then end
-		if e.life <= -10 then e:disappear() end
-			--l[#l+1] = e end
-	end
 end
 
 function _M:updateFOV()
