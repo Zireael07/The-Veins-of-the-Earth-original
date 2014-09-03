@@ -525,18 +525,23 @@ function _M:changeLevel(lev, zone)
 		return
 	end
 
-	if self.zone.on_enter then
+	--From ToME 2 by Zizzo
+	local startxy = self.zone.entry_point and self.zone.entry_point(lev, old_lev, old_zone) or nil
+  	if startxy then
+    	print('[GAME] changeLevel:  moving to zone entry point ('..startxy.x..','..startxy.y..')')
+    	self.player:move(startxy.x, startxy.y, true)
+  	elseif lev > old_lev then
+    	print('[GAME] changeLevel:  moving to level default_up')
+    	self.player:move(self.level.default_up.x, self.level.default_up.y, true)
+  	else
+    	print('[GAME] changeLevel:  moving to level default_down')
+    	self.player:move(self.level.default_down.x, self.level.default_down.y, true)
+  	end
+  	self.level:addEntity(self.player)
+
+  	if self.zone.on_enter then
 		self.zone.on_enter(lev, old_lev, zone)
 	end
-
-	self.player:onEnterLevel(self.zone, self.level)
-
-	if lev > old_lev then
-		self.player:move(self.level.default_up.x, self.level.default_up.y, true)
-	else
-		self.player:move(self.level.default_down.x, self.level.default_down.y, true)
-	end
-	self.level:addEntity(self.player)
 
 	--Level feeling
 	local player = self.player

@@ -38,9 +38,10 @@ return {
 		local l1 = game.zone:makeEntityByName(level, "terrain", "DOWN_TUNNELS")
 
 		if l1 then
-			local x, y = util.findFreeGrid(game.level.default_up.x, game.level.default_up.y, 5, true, {[Map.OBJECT]=true})
+		--	local x, y = util.findFreeGrid(game.level.default_up.x, game.level.default_up.y, 5, true, {[Map.OBJECT]=true})
+			local x, y = game.level.default_up.x, game.level.default_up.y
 			game.zone:addEntity(level, l1, "terrain", x, y)
-			level.spots[#level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="special", subtype="entrance"}
+			level.spots[#level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="zone-change", subtype="tunnels"}
 			print("Placed dungeon entrance", l1.name, x, y)
 		else
 		print("Tunnels entrance not found")	
@@ -70,7 +71,7 @@ return {
 			end
 			if tries < 100 then
 				game.zone:addEntity(level, l2, "terrain", x, y)
-				level.spots[#level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="special", subtype="entrance"}
+				level.spots[#level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="zone-change", subtype="cavern"}
 				print("Placed dungeon entrance", l2.name, x, y)
 			else
 				level.force_recreate = true
@@ -79,4 +80,17 @@ return {
 			print("Cavern entrance not found")
 		end
 	end,
+
+	--For the worldmap to work properly
+	entry_point = function(_, _, from_zone)
+    if not from_zone then
+      return nil
+    elseif from_zone.name == 'Tunnels' then 
+      return game.level:pickSpot{ type='zone-change', subtype='tunnels' }
+    elseif from_zone.name == "Cavern" then
+      return game.level:pickSpot{ type='zone-change', subtype='cavern' }
+    else
+      return nil
+    end
+  end,
 }
