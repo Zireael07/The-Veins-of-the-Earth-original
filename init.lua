@@ -77,7 +77,7 @@ score_formatters = {
 }
 
 --"Wait finished, counted NNN, MMM ticks." This is NNN
-loading_wait_ticks = 782
+loading_wait_ticks = 100
 
 load_tips = {
   { text = [[If you are a spellcaster, you should prepare your spells in your spellbook and rest ASAP to gain them.]] },
