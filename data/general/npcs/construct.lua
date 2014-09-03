@@ -235,7 +235,7 @@ newEntity{
 	stats = { str=22, dex=10, con=1, int=1, wis=10, cha=1, luc=10 },
 	combat = { dam= {1,8} },
 	name = "shield guardian",
-	level_range = {1, 25}, exp_worth = 2500,
+	level_range = {8, 25}, exp_worth = 2500,
 	rarity = 15,
 	max_life = resolvers.rngavg(110,115),
 	hit_die = 15,
