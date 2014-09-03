@@ -30,6 +30,7 @@ newEntity{
 newEntity{
 	base = "DOWN",
 	define_as = "DOWN_TUNNELS",
+	spot = "tunnels",
 	change_zone = "tunnels",
 	change_level = 1,
 }
@@ -37,6 +38,7 @@ newEntity{
 newEntity{
 	base = "DOWN",
 	define_as = "DOWN_CAVERN",
+	spot = "cavern",
 	change_zone = "cavern",
 	change_level = 1,
 }
@@ -45,6 +47,7 @@ newEntity{
 	base = "DOWN",
 	define_as = "DOWN_COMPOUND",
 	change_zone = "compound",
+	spot = "compound",
 	change_level = 1,
 }
 
@@ -52,9 +55,20 @@ newEntity{
 	base = "DOWN",
 	define_as = "DOWN_LABIRYNTH",
 	change_zone = "labirynth",
+	spot = "labirynth",
 	change_level = 1,
 }
 
+newEntity{
+	base = "DOWN",
+	define_as = "DOWN_ARENA",
+	change_zone = "arena",
+	spot = "arena",
+	change_level = 1,
+}
+
+
+--Other grids
 newEntity{
 	define_as = "FLOOR",
 	type = "floor", subtype = "floor",

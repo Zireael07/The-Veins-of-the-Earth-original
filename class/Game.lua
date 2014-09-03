@@ -1202,5 +1202,25 @@ function _M:placeRandomLoreObjectonMap(define)
 
 end
 
+function _M:placeDungeonEntrance(define)
+	if type(define) == "table" then define = rng.table(define) end
+	local l = self.zone:makeEntityByName(self.level, "terrain", define)
+	if not l then
+		print("Dungeon entrance not found", l.change_zone)
+		return end
 
+	local x, y = rng.range(2, self.level.map.w-2), rng.range(2, self.level.map.h-2)
 
+	local tries = 0
+	while (self.level.map:checkEntity(x, y, Map.TERRAIN, "block_move") or self.level.map(x, y, Map.OBJECT) or self.level.map.room_map[x][y].special) and tries < 100 do
+		x, y = rng.range(2, self.level.map.w-2), rng.range(2, self.level.map.h-2)
+		tries = tries + 1
+	end
+	if tries < 100 then
+		self.zone:addEntity(self.level, l, "terrain", x, y)
+		self.level.spots[#self.level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="zone-change", subtype=l.spot}
+		print("Placed dungeon entrance", l.change_zone, x, y)
+	else
+		self.level.force_recreate = true
+	end
+end
