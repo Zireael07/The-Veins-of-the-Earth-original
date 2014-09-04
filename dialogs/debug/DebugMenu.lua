@@ -133,7 +133,8 @@ function _M:generateList()
 	list[#list+1] = {name="Reveal all map", action="magic_map"}
 --	list[#list+1] = {name="Grant/Alter Quests", dialog="GrantQuest"}
 	list[#list+1] = {name="Summon Creature", dialog="SummonCreature"}
-	list[#list+1] = {name="Create Item", dialog="CreateItem"}
+	list[#list+1] = {name="Create Item", dialog="CreateItem2"}
+--	list[#list+1] = {name="Create Item", dialog="CreateItem"}
 --	list[#list+1] = {name="Alter Faction", dialog="AlterFaction"}
 --	list[#list+1] = {name="Create Trap", dialog="CreateTrap"}
 	list[#list+1] = {name="Remove all creatures", action="remove-all"}

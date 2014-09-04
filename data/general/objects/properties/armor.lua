@@ -4,7 +4,7 @@
 local DamageType = require "engine.DamageType"
 local Stats = require "engine.interface.ActorStats"
 
-newEntity {
+newEntity { define_as = "EGO_PLUS_ONE",
 	name = " +1", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
@@ -15,7 +15,7 @@ newEntity {
 	},
 }
 
-newEntity {
+newEntity { define_as = "EGO_PLUS_TWO",
 	name = " +2", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
@@ -26,7 +26,7 @@ newEntity {
 	},
 }
 
-newEntity {
+newEntity { define_as = "EGO_PLUS_THREE",
 	name = " +3", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
@@ -37,7 +37,7 @@ newEntity {
 	},
 }
 
-newEntity {
+newEntity { define_as = "EGO_PLUS_FOUR",
 	name = " +4", suffix = true,
 	keywords = {bonus=true},
 	level_range = {10, 20},
@@ -49,7 +49,7 @@ newEntity {
 	},
 }
 
-newEntity {
+newEntity { define_as = "EGO_PLUS_FIVE",
 	name = " +5", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
@@ -61,7 +61,7 @@ newEntity {
 	},
 }
 
-newEntity {
+newEntity { define_as = "EGO_MITHRIL",
 	name = "mithril ", prefix = true,
 	keywords = {mithril=true},
 	level_range = {5, nil},
@@ -74,7 +74,7 @@ newEntity {
 	}
 }
 
-newEntity {
+newEntity { define_as = "EGO_ADAMANTINE",
 	name = "adamantine ", prefix = true,
 	keywords = {adamantine=true},
 	level_range = {10, nil},
@@ -86,7 +86,7 @@ newEntity {
 	}
 }
 
-newEntity {
+newEntity { define_as = "EGO_DRAGONHIDE",
 	name = "dragonhide ", prefix = true,
 	keywords = {dragonhide=true},
 	level_range = {20, nil},
@@ -101,7 +101,7 @@ newEntity {
 }
 
 --Magic properties
-newEntity {
+newEntity { define_as = "EGO_SHADOW",
 	name = " of shadow", suffix = true,
 	keywords = {shadow=true},
 	level_range = {5, nil},
@@ -112,7 +112,7 @@ newEntity {
 	}
 }
 
-newEntity {
+newEntity { define_as = "EGO_IMP_SHADOW",
 	name = " of improved shadow", suffix = true,
 	keywords = {shadow=true},
 	level_range = {10, nil},
@@ -124,7 +124,7 @@ newEntity {
 	}
 }
 
-newEntity {
+newEntity { define_as = "EGO_GREATER_SHADOW",
 	name = " of greater shadow", suffix = true,
 	keywords = {shadow=true},
 	level_range = {15, nil},
@@ -136,7 +136,7 @@ newEntity {
 	}
 }
 
-newEntity {
+newEntity { define_as = "EGO_SILENT",
 	name = " of silent moves ", suffix = true,
 	keywords = {silent=true},
 	level_range = {5, nil},
@@ -147,7 +147,7 @@ newEntity {
 	}
 }
 
-newEntity {
+newEntity { define_as = "EGO_IMP_SILENT",
 	name = " of improved silent moves", suffix = true,
 	keywords = {silent=true},
 	level_range = {10, nil},

@@ -16,6 +16,10 @@
 
 
 -- This file loads the game module, and loads data
+local Map = require 'engine.Map'
+-- Dodgy Hack(TM):  This modifies Map functions in place.
+local MapEffects = require 'mod.class.MapEffects'
+
 local ActorInventory = require "engine.interface.ActorInventory"
 local Keybind = require "engine.KeyBind"
 local Faction = require "engine.Faction"
@@ -33,7 +37,8 @@ local PlayerLore = require "mod.class.interface.PlayerLore"
 
 local UIBase = require "engine.ui.Base"
 
-local MapEffects = require "mod.class.MapEffects" -- This alters Map
+
+local Ego = require "mod.class.Ego"
 
 -- Init settings
 config.settings.veins = config.settings.veins or {}
@@ -131,20 +136,6 @@ ActorTalents:loadDefinition("/data/talents.lua")
 ActorTemporaryEffects:loadDefinition("/data/timed_effects.lua")
 
 -- Actor inventory
---[[ActorInventory:defineInventory('MAIN_HAND', 'Main hand', true, 'Weapon')
-ActorInventory:defineInventory('OFF_HAND', 'Off hand', true, 'Shield')
-ActorInventory:defineInventory('BODY', 'Armor', true, 'Body armor')
-ActorInventory:defineInventory('CLOAK', 'Cloak', true, 'Cloak')
-ActorInventory:defineInventory('BELT', 'Belt', true, 'Belt')
-ActorInventory:defineInventory('QUIVER', 'Quiver', true, 'Arrows, crossbow bolts or sling shots')
-ActorInventory:defineInventory('GLOVES', 'Hands', true, 'Gloves or gauntlets')
-ActorInventory:defineInventory('BOOTS', 'Feet', true, 'Boots')
-ActorInventory:defineInventory('HELM', 'Head', true, 'Helmets or other headwear')
-ActorInventory:defineInventory('RING', 'Fingers', true, 'Rings')
-ActorInventory:defineInventory('AMULET', 'Neck', true, 'Amulet')
-ActorInventory:defineInventory('LITE', 'Light', true, 'Torches or lantern')
-ActorInventory:defineInventory('TOOL', 'Tool', true, 'Shovel or other tool')]]
-
 ActorInventory:defineInventory("MAIN_HAND", "In main hand", true, "Most weapons are wielded in the main hand.", nil, {equipdoll_back="ui/equipdoll/mainhand_inv.png"})
 ActorInventory:defineInventory("OFF_HAND", "In off hand", true, "You can use shields or a second weapon in your off-hand, if you have the talents for it.", nil, {equipdoll_back="ui/equipdoll/offhand_inv.png"})
 ActorInventory:defineInventory("BODY", "Main armor", true, "Armor protects you from physical attacks. The heavier the armor the more it hinders the use of talents and spells.", nil, {equipdoll_back="ui/equipdoll/armor_inv.png"})
@@ -204,71 +195,8 @@ Store:loadStores("/data/general/stores/general.lua")
 -- Lore
 PlayerLore:loadDefinition("/data/lore/lore.lua")
 
---Trying to debug Dialog.lua
---[[require "engine.class"
-function engine.ui.Dialog:init(title, w, h, x, y, alpha, font, showup, skin)
-	self.title = title
-	self.alpha = self.alpha or 255
-	if showup ~= nil then
-		self.__showup = showup
-	else
-		self.__showup = 2
-	end
-	self.color = self.color or {r=255, g=255, b=255}
-	if skin then self.ui = skin end
-
-	print ("[DEBUG] self.ui is "..self.ui)
-
-	if not self.ui_conf[self.ui] then self.ui = "metal" end
-
-	local conf = self.ui_conf[self.ui]
-	self.frame = self.frame or {
-		b7 = "ui/dialogframe_7.png",
-		b8 = "ui/dialogframe_8.png",
-		b9 = "ui/dialogframe_9.png",
-		b1 = "ui/dialogframe_1.png",
-		b2 = "ui/dialogframe_2.png",
-		b3 = "ui/dialogframe_3.png",
-		b4 = "ui/dialogframe_4.png",
-		b6 = "ui/dialogframe_6.png",
-		b5 = "ui/dialogframe_5.png",
-		shadow = conf.frame_shadow or nil,
-		a = conf.frame_alpha or 1,
-		particles = table.clone(conf.particles, true),
-	}
-	self.frame.ox1 = self.frame.ox1 or conf.frame_ox1
-	self.frame.ox2 = self.frame.ox2 or conf.frame_ox2
-	self.frame.oy1 = self.frame.oy1 or conf.frame_oy1
-	self.frame.oy2 = self.frame.oy2 or conf.frame_oy2
-
-	self.particles = {}
-
-	self.frame.title_x = 0
-	self.frame.title_y = 0
-	if conf.title_bar then
-		self.frame.title_x = conf.title_bar.x
-		self.frame.title_y = conf.title_bar.y
-		self.frame.title_w = conf.title_bar.w
-		self.frame.title_h = conf.title_bar.h
-		self.frame.b7 = self.frame.b7:gsub("dialogframe", "title_dialogframe")
-		self.frame.b8 = self.frame.b8:gsub("dialogframe", "title_dialogframe")
-		self.frame.b9 = self.frame.b9:gsub("dialogframe", "title_dialogframe")
-	end
-
-	self.uis = {}
-	self.ui_by_ui = {}
-	self.focus_ui = nil
-	self.focus_ui_id = 0
-
-	self.force_x = x
-	self.force_y = y
-
-	self.first_display = true
-
-	UIBase.init(self, {}, true)
-
-	self:resize(w, h, true)
-end]]
+-- Object egos
+Ego:loadEgos('/data/general/objects/ego/egos.lua')
 
 --More shenanigans
 
