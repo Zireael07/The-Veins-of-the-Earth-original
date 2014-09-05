@@ -38,6 +38,9 @@ return {
 		actor = {
 			class = "mod.class.generator.actor.Random",
 			nb_npc = {15, 25},
+			--max cr filter is added to dlvl
+			--NOTE: critters (especially humanoid) might have higher CR due to resolvers
+			filters = {{max_cr=4}},
 		},
 		object = {
             class = "engine.generator.object.Random",
