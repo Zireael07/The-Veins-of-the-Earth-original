@@ -222,6 +222,13 @@ end
     self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(player.combat_bab or "0").." + Str bonus: "..Strbonus, w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(player.combat_bab or "0").." + Dex bonus: "..Dexbonus, w, h, 255, 255, 255, true)) h = h + self.font_h
 
+    h = h + self.font_h -- Adds an empty row
+
+    --Display deity and favor
+    s:drawColorStringBlended(self.font, "Deity : "..(player.descriptor.deity or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Favor : "..(player.favor or 0), w, h, 255, 255, 255, true) h = h + self.font_h
+
+
     h = 0
     w = self.w * 0.25 
     -- start on second column 

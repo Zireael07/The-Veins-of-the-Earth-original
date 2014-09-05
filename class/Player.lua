@@ -94,7 +94,7 @@ function _M:init(t, no_default)
   self.all_seen = self.all_seen or {}
   self.special_known = self.special_known or {}
 
-
+  self.favor = 0
 
   --timestamp for saved chars
   self.time = os.time()
@@ -1466,6 +1466,41 @@ function _M:givePerkArmor()
     elseif self.perk_item == "plate armor" then self:giveEgoPlate()
     else end
 end
+
+--God system code
+
+function _M:isFollowing(deity)
+  return self.descriptor.deity == deity
+end
+
+
+function _M:incFavorFor(deity, d)
+  if self:isFollowing(deity) then
+    self.favor = self.favor + d
+  end
+end
+
+function _M:getFavorLevel(favor)
+  local ret = 0
+
+  --Incursion's values, streamlined
+  if favor >= 100 then ret = 1 end
+  if favor >= 500 then ret = 2 end
+  if favor >= 1250 then ret = 3 end
+  if favor >= 4500 then ret = 4 end
+  if favor >= 12000 then ret = 5 end
+  if favor >= 24000 then ret = 6 end
+  if favor >= 54000 then ret = 7 end
+  if favor >= 96000 then ret = 8 end
+  if favor >= 102000 then ret = 9 end
+  if favor >= 205000 then ret = 10 end
+    
+    game.log("Favor level:"..ret)
+  
+  return ret
+end
+
+
 
 --Moddable tiles code from ToME 4
 --- Return attachement coords
