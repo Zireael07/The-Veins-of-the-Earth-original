@@ -737,6 +737,69 @@ function _M:die(src)
 		player.all_kills[self.name] = player.all_kills[self.name] + 1
 	end	
 
+	--Divine reactions
+	if killer and killer == player then
+		if player:isFollowing("None") then end
+
+		if player:isFollowing("Asherath") 
+			and self.challenge > player.level then
+			player:incFavorFor("Asherath", 30*self.challenge)
+		end
+
+		if player:isFollowing("Ekliazeh") 
+			and self.subtype == "drow" or self.subtype == "goblinoid" or self.type == "giant" then
+				player:incFavorFor("Ekliazeh", 25*self.challenge)
+		end
+
+		if player:isFollowing("Hesani")
+			and self.type == "undead" then
+		--	and self.alignment == "lawful evil" or self.alignment == "neutral evil" or self.alignment == "chaotic evil"
+				player:incFavorFor("Hesani", 25*(math.max(1, self.challenge)))
+			--TO DO: remove favor for killing living
+		end
+
+		if player:isFollowing("Immotian")
+			and self.type == "undead" or self.type == "aberration" or self.type == "demon" then --or self.type == "devil"
+				player:incFavorFor("Immotian", 10*(math.max(1, self.challenge)))
+			--TO DO: remove favor for killing non-evil fire; or self.type == "dragon"
+		end
+
+		if player:isFollowing("Khasrach")
+			and self.subtype == "human" or self.subtype == "elf" or self.subtype == "dwarf" then
+		--	and has arcane spellcasting
+				player:incFavorFor("Khasrach", 10*(math.max(1, self.challenge)))
+
+			--TO DO: remove favor for killing orcs CR >= 2
+			
+		end
+
+		if player:isFollowing("Kysul") then
+			if self.type == "aberration" then
+		--	if	self.alignment == "lawful evil" or self.alignment == "neutral evil" or self.alignment == "chaotic evil"
+				player:incFavorFor("Kysul", 10*self.challenge)
+			--else remove favor for killing non evil aberrations
+			end
+			if self.type == "outsider" then
+				player:incFavorFor("Kysul", 5*self.challenge)
+			end
+		end
+
+		if player:isFollowing("Mara")
+			and self.type == "undead" then --and incorporeal
+				player:incFavorFor("Mara", 50*self.challenge)
+		end
+
+		if player:isFollowing("Maeve")
+			and self.subtype == "drow" then
+				player:incFavorFor("Maeve", 50*self.challenge)
+		end
+
+		if player:isFollowing("Semirath") then
+		--	TO DO: deduce points for killing normally evil race and self.alignment == "lawful good" or self.alignment == "neutral good" or self.alignment == "chaotic good"
+		-- TO DO: deduce points for killing non-evil non-outsider non-elemental humanoid
+		end
+
+	end
 
 	return true
 end
