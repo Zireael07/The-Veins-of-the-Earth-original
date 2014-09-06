@@ -127,24 +127,16 @@ function _M:setupEgoLists()
 
   local pfx_egos = { { name = 'No prefix ego' } }
   local sfx_egos = { { name = 'No suffix ego' } }
-  for _, ego in ipairs(Ego:allowedEgosFor(self.sel_item.e, nil, prefix)) do
-    local item = {name = ego.name, id = ego.define_as}
-    pfx_egos[item.id] = item
-    table.insert(pfx_egos, item)
-    game.log("Inserted ego: "..item)
-end
-    for _, ego in ipairs (Ego:allowedEgosFor(self.sel_item.e, nil, suffix)) do
-    local item = {name = ego.name, id = ego.define_as}
-    sfx_egos[item.id] = {name = ego.name, id = ego.define_as}
-    table.insert(sfx_egos, item)
-    game.log("Inserted ego: "..item.name)
-end
---[[  for _, ego in ipairs(Ego:allowedEgosFor(self.sel_item.e)) do
+
+  for _, ego in ipairs(Ego:allowedEgosFor(self.sel_item.e)) do
+    if ego.define_as then
     local dst = ego.prefix and pfx_egos or ego.suffix and sfx_egos
     local item = { name = ego.name, id = ego.define_as }
     dst[item.id] = item
     table.insert(dst, item)
-  end]]
+    game.log("Inserted ego: "..item.name)
+    end
+  end
   self.ego_names = {}
   for _, item in ipairs(pfx_egos) do self:setDisplayText(item, 'prefix') end
   for _, item in ipairs(sfx_egos) do self:setDisplayText(item, 'suffix') end

@@ -196,7 +196,7 @@ Store:loadStores("/data/general/stores/general.lua")
 PlayerLore:loadDefinition("/data/lore/lore.lua")
 
 -- Object egos
-Ego:loadEgos('/data/general/objects/ego/egos.lua')
+Ego:loadEgos('/data/general/ego/egos.lua')
 
 --More shenanigans
 
