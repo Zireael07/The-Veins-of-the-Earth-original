@@ -53,7 +53,7 @@ list = {
 	end
       },
       {
-	name = 'Quit and abandon character',
+	name = '#RED#Quit and abandon character#LAST#',
 	fct = function(_)
 	  game:unregisterDialog(self)
 	  game.quit_dialog = false
