@@ -148,7 +148,7 @@ function _M:generateListEnemies()
 	local list = {}
 
 	for i, e in ipairs(game.zone.npc_list) do
-		if e.name ~= "unknown actor" and e.type ~= "encounter" then
+		if e.name ~= "unknown actor" and e.type ~= "encounter" and e.faction ~= "neutral" then
 			local color
 			if e.type == "encounter" then color = {255, 215, 0}
 			elseif e.faction == "neutral" then color = {81, 221, 255}
