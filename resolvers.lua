@@ -449,18 +449,18 @@ function resolvers.calc.moddable_tile(t, e)
 	elseif slot == "heavy_boots" then r = {"middle_gold"}
 	elseif slot == "gauntlets" then r = {"gauntlet_blue",}
 	elseif slot == "gloves" then r = {"glove_red", "glove_brown"}
-	elseif slot == "sword" then r = {"short_sword", "long_sword"}
+	elseif slot == "sword" then r = {"short_sword_%s", "long_sword_%s"}
 	elseif slot == "greatsword" then r = {"great_sword"}
 	elseif slot == "trident" then r = {"trident"}
-	elseif slot == "whip" then r = {"whip"}
-	elseif slot == "mace" then r = {"mace", "mace2", "mace3"}
-	elseif slot == "handaxe" then r = {"hand_axe"}
-	elseif slot == "axe" then r = {"war_axe"}
+	elseif slot == "whip" then r = {"whip_%s"}
+	elseif slot == "mace" then r = {"mace_%s", "mace2_%s", "mace3_%s"}
+	elseif slot == "handaxe" then r = {"hand_axe_%s"}
+	elseif slot == "axe" then r = {"war_axe_%s"}
 	elseif slot == "greataxe" then r = {"greataxe"}
 	elseif slot == "bow" then r = {"bow"}
 	elseif slot == "crossbow" then r = {"crossbow"}
 	elseif slot == "sling" then r = {"sling"}
-	elseif slot == "dagger" then r = {"dagger"}
+	elseif slot == "dagger" then r = {"dagger_%s"}
 	elseif slot == "helm" then r = {"helm_plume"}
 	elseif slot == "leather_cap" then r = {"cap_black1"}
 	end
