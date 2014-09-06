@@ -21,6 +21,8 @@ local List = require "engine.ui.List"
 local GetQuantity = require "engine.dialogs.GetQuantity"
 local Tab = require 'engine.ui.Tab'
 
+local TextzoneList = require "engine.ui.TextzoneList"
+
 module(..., package.seeall, class.inherit(engine.ui.Dialog))
 
 function _M:init()
@@ -29,10 +31,10 @@ function _M:init()
 
 
 --	self.c_tabs = Tabs.new{width=wide, tabs=types, on_change=function(kind) self:switchTo(kind) end}
-	self.c_enemies = List.new{width=400, height=400, nb_items=#self.list_enemies, list=self.list_enemies, fct=function(item) self:use(item) end, scrollbar=true}
-	self.c_neutral = List.new{width=400, height=400, nb_items=#self.list_neutral, list=self.list_neutral, fct=function(item) self:use(item) end, scrollbar=true}
-	self.c_encounter = List.new{width=400, height=400, nb_items=#self.list_encounter, list=self.list_encounter, fct=function(item) self:use(item) end, scrollbar=true}
---    self.c_desc = TextzoneList.new{width=self.iw-410, height = 400, text="Hello from description"}
+	self.c_enemies = List.new{width=400, height=400, nb_items=#self.list_enemies, list=self.list_enemies, fct=function(item) self:use(item) end,  select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+	self.c_neutral = List.new{width=400, height=400, nb_items=#self.list_neutral, list=self.list_neutral, fct=function(item) self:use(item) end,  select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+	self.c_encounter = List.new{width=400, height=400, nb_items=#self.list_encounter, list=self.list_encounter, fct=function(item) self:use(item) end,  select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+    self.c_desc = TextzoneList.new{width=self.iw-410, height = 400, text="Hello from description"}
 
 	self.t_enemies = Tab.new {
     title = 'Enemies',
@@ -86,10 +88,11 @@ function _M:drawDialog(tab)
 		{left=self.t_enemies.w + 5, top=0, ui=self.t_neutral},
 		{left=self.t_neutral, top=0, ui=self.t_encounter},
 		{left=0, top=self.t_enemies.h + 5, ui=self.c_enemies},
+        {right=0, top=0, ui=self.c_desc}
     }
     
     self:setupUI()
---	self:setupUI(true, true)
+
 
     end
 
@@ -100,10 +103,11 @@ function _M:drawDialog(tab)
 		{left=self.t_enemies, top=0, ui=self.t_neutral},
 		{left=self.t_neutral, top=0, ui=self.t_encounter},
 		{left=0, top=self.t_enemies.h + 5, ui=self.c_neutral},
+        {right=0, top=0, ui=self.c_desc}
     }
     
     self:setupUI()
- --	self:setupUI(true, true)
+
     end
     
     if tab == "encounters" then
@@ -113,10 +117,11 @@ function _M:drawDialog(tab)
 		{left=self.t_enemies, top=0, ui=self.t_neutral},
 		{left=self.t_neutral, top=0, ui=self.t_encounter},
         {left=0, top=self.t_enemies.h + 5, ui=self.c_encounter},
+        {right=0, top=0, ui=self.c_desc}
     }
     
     self:setupUI()
---    self:setupUI(true, true)
+
     end
 
 
@@ -137,6 +142,12 @@ function _M:use(item)
 	game.zone:addEntity(game.level, n, "actor", x, y)
 end
 
+function _M:on_select(item,sel)
+    if self.c_desc then self.c_desc:switchItem(item, item.desc) end
+    self.selection = sel    
+end
+
+
 function _M:generateLists()
 	self:generateListEnemies()
 	self:generateListNeutral()
@@ -150,11 +161,17 @@ function _M:generateListEnemies()
 	for i, e in ipairs(game.zone.npc_list) do
 		if e.name ~= "unknown actor" and e.type ~= "encounter" and e.faction ~= "neutral" then
 			local color
-			if e.type == "encounter" then color = {255, 215, 0}
-			elseif e.faction == "neutral" then color = {81, 221, 255}
+            local player = game.player
+	
+            if e.challenge > player.level then color = {178, 34, 34}
+            elseif e.challenge < (player.level -4) then color = {0, 255, 0}
+            elseif e.challenge < player.level then color = {50, 77, 12}
 			else color = {255, 255, 255} end
+        --    local d = e.name.." CR: #SANDY_BROWN#"..e.challenge.."#LAST#"
+            local d = e.name.."\n\nCR: #SANDY_BROWN#"..e:formatCR().."#LAST#"
 
-		list[#list+1] = {name=e.name, type=e.type, color=color, challenge=e.challenge, unique=e.unique, faction=e.faction, e=e}
+
+		list[#list+1] = {name=e.name, type=e.type, color=color, desc = d, challenge=e.challenge, unique=e.unique, faction=e.faction, e=e}
 		else end
 	end
 	
