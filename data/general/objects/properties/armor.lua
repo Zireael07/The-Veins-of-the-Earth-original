@@ -13,6 +13,13 @@ newEntity { define_as = "EGO_PLUS_ONE",
 	wielder = {
 		combat_magic_armor = 1,
 	},
+	resolve_data = {
+	all = {
+	wielder = {
+		combat_magic_armor = 1,
+	},
+	},
+},
 }
 
 newEntity { define_as = "EGO_PLUS_TWO",

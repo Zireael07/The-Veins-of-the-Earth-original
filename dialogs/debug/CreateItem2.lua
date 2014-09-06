@@ -9,6 +9,8 @@ local List = require 'engine.ui.List'
 local Button = require 'engine.ui.Button'
 local Numberbox = require 'engine.ui.Numberbox'
 
+local Ego = require 'mod.class.Ego'
+
 module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init()
@@ -110,7 +112,9 @@ function _M:selectItem(item)
     self.c_items:drawItem(self.sel_item)
   end
   self:updateButton()
+  if not self.sel_item.unique then
   self:setupEgoLists()
+  end
 end
 
 function _M:setupEgoLists()
@@ -161,14 +165,19 @@ function _M:createItem()
   if not self:readyToCreate() then return end
   game:unregisterDialog(self)
 
+    
+
+    local qty = self.c_nitems.number
+  --  local o = game.zone:finishEntity(game.level, 'object', self.sel_item.e)
+    local o = game.zone:makeEntity(game.level, "object", {name = self.sel_item.name, ego_chance=-1000}, nil, true)
+    o:setNumber(qty)
+
     if self.ego_names.prefix or self.ego_names.suffix then
         o.force_ego = {}
         for _, id in pairs(self.ego_names) do table.insert(o.force_ego, id) end
     end
 
-    local qty = self.c_nitems.number
-    local o = game.zone:finishEntity(game.level, 'object', self.sel_item.e)
-    o:setNumber(qty)
+    Ego:placeForcedEgos(o)
 
     game.zone:addEntity(game.level, o, 'object', game.player.x, game.player.y)
 end
@@ -179,6 +188,10 @@ function _M:generateList()
 
     for i, e in ipairs(game.zone.object_list) do
         if e.name and e.rarity then
+            local color
+            if e.unique then color = {255, 215, 0}
+            else color = {255, 255, 255} end
+
             list[#list+1] = {name=e.name, unique=e.unique, e=e}
         end
     end

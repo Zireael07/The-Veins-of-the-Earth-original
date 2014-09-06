@@ -144,12 +144,13 @@ function _M:resolveEgos(o, last)
       end
     end
     table.mergeAddAppendArray(o, e.resolve_data.all or {}, true)
-    for k, v in pairs(e.resolve_data.bonus or {}) do
+--[[    for k, v in pairs(e.resolve_data.bonus or {}) do
       if v ~= 0 then
         o[k] = (o[k] or 0) + rng.range(1, math.abs(v)) * (v < 0 and -1 or 1)
       end
-    end
+    end]]
     
+    o.egoed = true
 
 --    if e.rating then o.rating = (o.rating or 0) + e.rating end
       end

@@ -262,6 +262,23 @@ function _M:getPrice()
     return base
 end
 
+function _M:setNumber(n)
+  local qty = self:getNumber()
+  if qty < n then
+    local o = self:clone()
+    -- Don't need to get recursive here...
+    o.stacked = nil
+    for _ = qty + 1, n do
+      self:stack(o:clone())
+    end
+  elseif qty > n then
+    for _ = n + 1, qty do
+      self:unstack()
+    end
+  end
+end
+
+
 function _M:on_prepickup(who, idx)
     --Auto-destroy cursed items
     if who == game.player and self.pseudo_id == false then
