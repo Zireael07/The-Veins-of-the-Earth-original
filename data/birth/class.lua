@@ -1097,7 +1097,7 @@ newBirthDescriptor {
                 },
 
             function(result)
-            	game.log("Result: "..result)
+            --	game.log("Result: "..result)
             	--Learn talent types based on the choice
             	if result == "Aberration" then actor:learnTalent(actor.T_FAVORED_ENEMY_ABERRATION) end
             	if result == "Animal" then actor:learnTalent(actor.T_FAVORED_ENEMY_ANIMAL) end
