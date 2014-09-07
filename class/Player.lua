@@ -94,7 +94,9 @@ function _M:init(t, no_default)
   self.all_seen = self.all_seen or {}
   self.special_known = self.special_known or {}
 
+  --Divine stuff
   self.favor = 0
+  self.anger = 0
 
   --timestamp for saved chars
   self.time = os.time()
@@ -1477,10 +1479,12 @@ end
 function _M:incFavorFor(deity, d)
   if self:isFollowing(deity) then
     self.favor = self.favor + d
+    self.max_favor = self.favor
   end
 end
 
-function _M:getFavorLevel(favor)
+
+function _M:getFavorLevel(max_favor)
   local ret = 0
 
   --Incursion's values, streamlined
@@ -1499,6 +1503,393 @@ function _M:getFavorLevel(favor)
   
   return ret
 end
+
+--Lifted whole from Incursion
+function _M:divineMessage(deity, message, desc)
+  local string
+  local color
+
+  --blue
+  if deity == "Aiswin" then
+    if message == "anger" then string = "The air grows sharply cold, and all the hairs on the back of your neck stand up straight!" end
+    if message == "pleased" then string = "A soft red glow surronds you, and you hear a whispered voice in the back of your mind: |Ideal.|" end
+    if message == "prove worth" then string = "A silky, dangerous voice whispers into your mind: |Prove your devotion.|" end
+    if message == "insufficient" then string = "A silky whisper mindspeaks: |Insufficient.|" end
+    if message == "blessing one" then string = "A silky whisper speaks into your mind: |I will make you one with shadows!|" end
+    if message == "blessing two" then string = "A silky whisper speaks into your mind: |I grant you intimacy with the night!" end
+    if message == "blessing three" then string = "A silky whisper speaks into your mind: |I gift you with secret lore!|" end
+    if message == "blessing four" then string = "A silky whisper speaks into your mind: |I will open your eyes to the weakness of your enemies!" end
+    if message == "blessing five" then string = "A silky whisper speaks into your mind: |I name you master over all shadows!" end
+    if message == "blessing six" then string = "A silky whisper speaks into your mind: |I gift you with words of silk and malice!|" end
+    if message == "blessing seven" then string = "A silky whisper speaks into your mind: |I teach you now to glory in the lamentations of those who have wronged you!|" end
+    if message == "blessing eight" then string = "A silky whisper speaks into your mind: |I teach you now to strike by surprise and inflict pain with a touch!|" end
+    if message == "blessing nine" then string = "A silky whisper speaks into your mind: |To you I open the most secret shadow paths, and grant words to call forth a thousand knives!|" end
+    if message == "crowned" then string = "A silky whisper speaks into your mind: |I crown you the Harbringer of Ruin!|" end
+    if message == "insufficient" then string = "A sinuous voice intones: |Insufficient.|" end
+    if message == "bad sacrifice" then string = "A silky voice hisses angrily: |Abomination!|" end
+    if message == "offer raise" then string = "|I offer to you a chance to avenge yourself from beyond death!|" end
+    if message == "salutation" then string = "|Blessed be those who walk the path of shadows!|" end
+    if message == "convert" then string = "" end
+  end 
+  --cyan
+  if deity == "Asherath" then
+    if message == "salutation" then string = "|Go forth; gain strength and knowledge to shape the world!|" end
+    if message == "anger" then string = "You feel that Asherath is gravely displeased with you." end
+    if message == "bad prayer" then string = "The air grows sharply cold, and you realize you have made a serious mistake." end
+    if message == "jealousy" then string = "|Do you really believe I could not have predicted your betrayal? Fool.|" end
+    if message == "convert" then string = "There is no response from Asherath, but you have a sense of acceptance." end
+    if message == "timeout" then string = "You know that Asherath expects His clerics to succeed with little aid, and you feel gravely uneasy about your frequent requests." end
+    if message == "prayer" then string = "Time seems to slow down around you briefly... or is it just the fog of war?" end
+    if message == "no aid" then string = "As is often the case, Asherath apparently expects you to solve this matter yourself." end
+    if message == "out of aid" then string = "Asherath will no longer aid you." end
+    if message == "nearly out" then string = "You feel certain Asherath grows tired of your entreaties." end
+    if message == "blessing one" then string = "Your training in the Ways of Asherath teaches you to strike true against your enemies." end
+    if message == "blessing two" then string = "Your training in the Ways of Asherath helps you to preserve your mental and physical might." end
+    if message == "blessing three" then string = "Your training in the Ways of Asherath brings you closer to mental and physical perfection. You also improve your knowledge of the arts of Divination and Evocation." end
+    if message == "blessing four" then string = "Your training in the Ways of Asherath expands your horizons." end
+    if message == "blessing five" then string = "Your training in the Ways of Asherath brings you closer to mental and physical perfection." end
+    if message == "blessing six" then string = "Your training in the Ways of Asherath allows you to push your body and mind beyond previously-understood limits. You also improve your knowledge of the arts of Divination and Evocation." end
+    if message == "blessing seven" then string = "Your training in the Ways of Asherath brings you closer to mental and physical perfection." end
+    if message == "blessing eight" then string = "Your training in the Ways of Asherath allows you to push your body and mind beyond previously-understood limits." end
+    if message == "blessing nine" then string = "Your training in the Ways of Asherath brings you closer to mental and physical perfection.  You also improve your knowledge of the arts of Divination and Evocation." end
+    if message == "crowned" then string = "|I crown you the Psyche of War!|" end
+  end
+  --brown
+  if deity == "Ekliazeh" then
+    if message == "salutation" then string = "|By the forge and the hammer, we stand united!|" end
+    if message == "anger" then string = "A deep voice thunders, |Thou hast broken the ancient Law!|" end
+    if message == "pleased" then string = "A deep voice thunders, |Great riches are these!|" end
+    if message == "prove worth" then string = "A deep voice intones, |Any aspirant must first prove his mettle!|" end
+    if message == "not worthy" then string = "A deep voice scorns, |Thou art no child of mine!|" end
+    if message == "bad prayer" then string = "A deep voice thunders, |Unclean creature! Betrayer of the Law!|" end
+    if message == "jealousy" then string = "A deep voice thunders, |Thou turns back on our covenant? Then suffer!|" end
+    if message == "convert" then string = "|Uphold my Law, and I will carry you through all of life's hardships. Honor the ways of my people, and you will discover tremendous strength!|" end
+    if message == "forsake" then string = "A deep voice thunders, |Thou art a traitor to the Law, and art forever anathema to all my people!|" end
+    if message == "timeout" then string = "A deep voice intones, |"..self.name..", you rely overmuch on my aid! You must survive on your own.|" end
+    if message == "prayer" then string = "The earth seems to rumble in time with your heartbeat!" end
+    if message == "no aid" then string = "A deep voice speaks sorrowfully, |I have no further aid to grant unto you, my child.|" end
+    if message == "out of aid" then string = "A deep voice speaks sorrowfully, |I have given you all the aid even a champion may receive in one lifetime!|" end
+    if message == "nearly out" then string = "A deep voice speaks sorrowfully, |Soon I will no longer be able to aid you, my child. Be ready!|" end
+    if message == "sacrifice" then string = "Your sacrifice dissolves in a rich golden light!" end
+    if message == "insufficient" then string = "A deep voice thunders, |This is the paltry portion you reserve for your god?!|" end
+    if message == "satisfied" then string = "A deep voice thunders, |You honor the Law with your offering.|" end
+    if message == "impressed" then string = "A deep voice thunders, |Great glory be upon you for the sacrifice you have wrought!|" end
+    if message == "lessened" then string = "You feel as though your sins have been lessened in Ekliazeh's eyes." end
+    if message == "mollified" then string = "You feel as though your sins have been washed away in Ekliazeh's eyes." end
+    if message == "bad sacrifice" then string = "A deep voice thunders, |You dare to offer me the blood of goodly folk?!|" end
+    -- "A deep voice thunders, |You dare to offer me the blood of my chosen people?!|"
+    if message == "offer raise" then string = "I offer you the chance to return to life, to me my champion and guide my people on the path to righteousness!" end
+    if message == "blessing one" then string = "|I gift you with the fortitude to endure all of life's ordeals!|" end
+    if message == "blessing two" then string = "|I gift you with the endurance of a perfect worker-soldier!|" end
+    if message == "blessing three" then string = "|I gift you with the ability to shape metal, and to speak with the spirits of the earth!|" end
+    if message == "blessing four" then string = "|I gift you with unearthly resilience!|" end
+    if message == "blessing five" then string = "|I shall render your flesh as hard as the stone itself!|" end
+    if message == "blessing six" then string = "|I gift you with unearthly resilience!|" end
+    if message == "blessing seven" then string = "|I shall render your flesh as hard as the stone itself!|" end
+    if message == "blessing eight" then string = "|I gift you with unearthly resilience!|" end
+    if message == "blessing nine" then string = "|I shall render your flesh as hard as the stone itself!|" end
+    if message == "crowned" then string = "|I crown you the Warrior of the Law!|" end
+    --Drow/Goblin
+    if message == "custom one" then string = "|You whose people have slain my children for millenia now appeal to me? Suffer!|" end
+    --Elf/Lizardfolk
+    if message == "custom two" then string = "|Your people are too distant from the Earth to follow my ways.|" end
+    if message == "custom three" then string = "|I bless thy workings of the earth!|" end
+  end  
+  --purple
+  if deity == "Erich" then
+    if message == "salutation" then string = "|Let there be zeal in your heart, truth in your words, honor in your deeds and blood upon your sword!|" end
+    if message == "convert" then string = "" end
+    if message == "bad sacrifice" then string = "A proud voice booms, |Thou stains my altar with the blood of that trash?! Suffer, churl!|" end
+    --Goblin in sight for smite
+    if message == "custom one" then string = "A proud voice booms, |I will cleanse this filth from your presence!|" end
+    --No target for smite
+    if message == "custom two" then string = "A proud voice intones, |I cannot aid you against worthy foes. You must fight your own battles, with my blessing.|" end
+    --Grant item
+    if message == "custom three" then string = "A proud voice proclaims, |Use this and find glory in my name!|" end
+    --Erich's Disfavor Effect (-4 penalty on all rolls in combat, persistent)
+    if message == "custom four" then string = "A proud voice scorns, |Vile cur, suffer for thy cowardice!|" end
+    --Goblinoid
+    if message == "custom five" then string = "An angry voice declares, |I deal not with filth and base creatures!|" end
+  end  
+  --magenta/azure
+  if deity == "Essiah" then
+    if message == "salutation" then string = "|The horizon awaits...|" end
+    if message == "convert" then string = "" end
+    if message == "blessing one" then string = "|I teach thee now to honor the feelings of thy lovers, and the crafts of herbs to control thine own body.|" end
+    if message == "blessing two" then string = "|May all thy journeys be swift and clear, if not uninteresting.|" end
+    if message == "blessing three" then string = "|I grant to thee the beauty to lead an entertaining life, and further the wisdom to lead a good one.|" end
+    if message == "blessing four" then string = "|Let nothing impede thy freedom to move!|" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+
+  end
+  --yellow/skyblue
+  if deity == "Hesani" then
+    if message == "salutation" then string = "|Walk in harmony with the world, and your prosperity shall multiply a thousand-fold. Fight against its tides, and they will tear your life asunder.|" end
+    if message == "convert" then string = "" end
+    --only barbarian levels
+    if message == "custom one" then string = "|To embrace the path of harmony, one must first turn away from barbarism.|" end
+
+  end  
+  --pink
+  if deity == "Immotian" then
+    if message == "salutation" then string = "|The flame of purity lights the path to righteousness!|" end
+    if message == "bad sacrifice" then string = "|Barbarian! Thou hast stained My altar with blood! This is an abomination of the highest order!|" end
+    if message == "convert" then string = "" end
+    --any hostile in sight on smite (transforms into a pillar of salt DC 25)
+    if message == "custom one" then string = "|Accursed be those who strike at believers!|" end
+    if message == "custom two" then string = "" end
+    --god pulse (summon fire critters)
+    if message == "custom three" then string = "|Blessed is thee who shares kinship with the spirits of flame!|" end
+    --god pulse event (empowered maximized enlarged Order's Wrath)
+    if message == "custom four" then string = "|Let no unlawful villain lay hands upon my follower!|" end
+    --change water in equipment into blood
+    if message == "custom five" then string = "|I curse thee, wayward follower: let thy sweetest water taste as bitter as a clotted blood of thine enemies!|" end
+    if message == "custom six" then string = "|I curse thee, wayward follower: a plague upon thy fields!|" end
+    --4d50 favor
+    if message == "custom seven" then string = "You feel Immotian is pleased with the community you have built and will not strain it further by enlarging it." end
+    if message == "blessing one" then string = "|Walk in the light of My truth, and no flames shall burn thee!|" end
+    if message == "blessing two" then string = "" end
+    if message == "blessing three" then string = "" end
+    if message == "blessing four" then string = "" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+  end
+  --red
+  if deity == "Khasrach" then
+    if message == "salutation" then string = "" end
+    if message == "convert" then string = "" end
+    if message == "bad sacrifice" then string = "|Thou dares to offer me the blood of mine own people?! SUFFER!|" end
+    --|Thou dares to offer me the blood of our allies?!|
+    --anger, changeLevel(10, math.max(game.level.level + ((self.anger -3)/5)))
+    if message == "custom one" then string = "|Thou hast sinned against my way; now, prove thy loyalty in this trial by ordeal!|" end
+    --god pulse, summon a friendly orc(s)
+    if message == "custom two" then string = "|Know always that our people have strength in numbers!|" end
+    --retribution, summon enemy orc(s)
+    if message == "custom three" then string = "|Destroy the infidel, my children!|" end
+    --elf/dwarf/human/mage level
+    if message == "custom four" then string = "|Thou art an enemy of my people! Suffer, infidel!|" end
+    if message == "blessing one" then string = "|So I bless thee: that thou shalt turn aside all charms and compulsions, and see clearly past the machinations of others to determine thy future!|" end
+    if message == "blessing two" then string = "" end
+    if message == "blessing three" then string = "" end
+    if message == "blessing four" then string = "" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+  end
+  --green
+  if deity == "Kysul" then
+    if message == "salutation" then string = "|Seek now thine antediluvian progenitors that in sunken cities for eons have lain.|" end
+    if message == "aid" then string = "Kysul guides you to safety through the cracks and flaws between dimensions." end
+    if message == "convert" then string = "" end
+    --god pulse, gift
+    if message == "custom one" then string = "An inhuman emanation vaguely imitates language: |This, my child: a relic of civilizations long since engulfed by the flow of eons!|" end
+    --anger, ???
+    if message == "custom two" then string = "You feel profane." end
+    --anger x2, closest enemy gets pseudonatural template
+    if message == "custom three" then string = "You feel you are surely facing the ire of Kysul..." end
+    if message == "blessing one" then string = "" end
+    if message == "blessing two" then string = "" end
+    if message == "blessing three" then string = "" end
+    if message == "blessing four" then string = "" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+  end  
+  --white (gray?)
+  if deity == "Mara" then
+    if message == "salutation" then string = "|May you find beauty in endings.|" end
+    if message == "bad sacrifice" then string = "A solemn voice thunders: |You have stained my altar with conquest-blood! You shall suffer for this grievous misjudgement!|" end
+    if message == "convert" then string = "" end
+    --anger, your body decomposes
+    if message == "custom one" then string = "A solemn voice speaks crossly: |Learn now why death is never to be lightly dispensed!|" end
+    --god pulse, revenant
+    if message == "custom two" then string = "A solemn voice intones: |This soul seeks to make atonement for past misdeeds, and will travel with you to aid you on your quest.|" end
+    --god pulse, self.level >= 5, revenant w/class levels
+    if message == "custom three" then string = "A solemn voice intones: |This soul seeks to find closure lacking in life, and will travel with you to aid you on your quest.|" end
+    if message == "blessing one" then string = "" end
+    if message == "blessing two" then string = "" end
+    if message == "blessing three" then string = "" end
+    if message == "blessing four" then string = "" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+  end  
+  --rainbow/emerald
+  if deity == "Maeve" then
+    if message == "salutation" then string = "|And there shall be laughter and magic and blood, and we shall dance our dance until the end of time...|" end
+    if message == "convert" then string = "" end
+    --god pulse; o.type is either cloak/ring/amulet; must be magical
+    if message == "custom one" then string = "A mellifluous voice titters, |Oh, what a pretty" ..o.type.."! I simply must have it!|" end
+    --god pulse; summon single non-good non-lawful CR player.level+2 monster
+    if message == "custom two" then string = "A mellifluous voice titters, |Now, my precious acolyte, entertain me with your wonderous displays of warcraft!|" end
+    --god pulse; Maeve's Whimsy
+    if message == "custom three" then string = "A mellifluous voice titters, |Now, on this moonless eve, the Faerie Queen works her wiles: so what's fair is foul, and foul's fair!|" end
+    --god pulse x2; closest friendly non-player turns hostile; 
+    --random magic non-cursed item glows with a silvery light and gets a +1 bonus
+    if message == "custom four" then string = "A mellifluous voice titters, |Let discord and misrule reign eternal!|" end
+    
+    if message == "custom five" then string = "A mellifluous voice intones, |Now, my beautiful plaything, drink deeply of my well of ancient fey dweomers!|" end
+    --god pulse; 1 on 1d3, a druidic spell or an arcane spell (player.level+3)/2
+    if message == "custom six" then string = "A mellifluous voice intones, |To you, my loyal knight of the trees, I bequithe this ancient faerie magick!|" end
+    --beautiful/handsome; god pulse - magic non-cursed item
+    if message == "custom seven" then string = "A mellifluous voice intones, |A gift I bequeath to thee, for my most loyal and <hText> of champions!|" end
+    --anger/god pulse; enlarged Othello's irresistible dance
+    if message == "custom eight" then string = "A mellifluous voice titters, |Let there be dance and music and merryment!|" end
+    --retribution; summons hostile elf twilight huntsman
+    if message == "custom nine" then string = "A mellifluous voice howls, |Now, my loyal huntsman, destroy the traitor!|" end
+    if message == "blessing one" then string = "" end
+    if message == "blessing two" then string = "" end
+    if message == "blessing three" then string = "" end
+    if message == "blessing four" then string = "" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+  end  
+  --cyan
+  if deity == "Sabin" then
+    if message == "salutation" then string = "|Life is a whirlwind. Cast free your tethers, dive forward and watch as you soar!|" end
+    if message == "convert" then string = "" end
+    if message == "custom one" then string = "A resonant voice speaks: |Thou hast grown too static -- be changed!|" end
+    if message == "custom two" then string = "You are struck by a bolt of inspiration!" end
+    if message == "blessing one" then string = "" end
+    if message == "blessing two" then string = "" end
+    if message == "blessing three" then string = "" end
+    if message == "blessing four" then string = "" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "|I grant thee the potential for excellence!|" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+  end  
+  --magenta
+  if deity == "Semirath" then
+    if message == "salutation" then string = "|Now, my child, go forth and teach the legions of ignorance that there are many fates worse than death, and some even involve radishes!|" end
+    if message == "convert" then string = "" end
+    --god pulse; hostile non-good humanoid in LOS
+    if message == "custom one" then string = "A boyish voice speaks: |Leave my follower alone, you cretins!|" end
+    --anger; drop armor (clothes)
+    if message == "custom two" then string = "A boyish voice speaks: |Gratuitous nudity is *always* appropriate!|" end
+    if message == "blessing one" then string = "" end
+    if message == "blessing two" then string = "" end
+    if message == "blessing three" then string = "" end
+    if message == "blessing four" then string = "" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+  end
+  --grey
+  if deity == "Xavias" then
+    if message == "salutation" then string = "|And the path of the Golden Lion, the Philosopher's Treasure, the Glory of Transmutation shall soon be lain clear before thee!|" end
+    if message == "convert" then string = "" end
+    if message == "custom one" then string = "An elderly voice speaks sadly, |Forgive me, my child: thou lacks the depth of vision to truly explore the Holy Mysteries.|" end
+    --grant spellbook
+    if message == "custom two" then string = "An elderly voice speaks slowly: |I gift you with Hermetic wisdom!|" end
+    --Int+Wis < 26
+    if message == "custom three" then string = "An elderly voice speaks slowly: |Thy mind is too feeble to be initiated into thine Holy Mysteries.|" end
+    if message == "blessing one" then string = "" end
+    if message == "blessing two" then string = "" end
+    if message == "blessing three" then string = "" end
+    if message == "blessing four" then string = "" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+  end 
+  --dark red
+  if deity == "Xel" then
+    if message == "salutation" then string = "You feel an aching, primordial hunger. |Blood for the blood god!|" end
+    --doesn't really communicate
+  end
+  --red
+  if deity == "Zurvash" then
+    if message == "salutation" then string = "May your hunt be fruitful, and your plunder rich and succulent!" end
+    if message == "convert" then string = "" end
+    --anger; summon several hostile non-good fiendish critters, total CR player.level +2
+    if message == "custom one" then string = "A growling voice hisses: |Destroy the infidel, my beautiful children!|" end
+    if message == "blessing one" then string = "A growling voice speaks: |Only the strong will survive!|" end
+    if message == "blessing two" then string = "A growling voice speaks: |Be you the hunter and not the hunted!|" end
+    if message == "blessing three" then string = "" end
+    if message == "blessing four" then string = "" end
+    if message == "blessing five" then string = "" end
+    if message == "blessing six" then string = "" end
+    if message == "blessing seven" then string = "" end
+    if message == "blessing eight" then string = "" end
+    if message == "blessing nine" then string = "" end
+    if message == "crowned" then string = "" end
+  end  
+
+  if deity == "Multitude" then
+    if message == "salutation" then string = "|killemflayemburnemhurtemmakeemscreammakeemBLEED...|" end
+    if message == "convert" then string = "" end
+    --god pulse, gain 4d50 favor
+    if message == "custom one" then string = "|Goodhordegrownhordebloodyhordeghostspleased...|" end
+    --god pulse, summon several player.level+2 demons
+    if message == "custom two" then string = "|aidhimservehimlovehimkillforhim...|" end
+    --anger; summon several player.level+2 demons but hostile
+    if message == "custom three" then string = "|traitortraitortraitorDIEtraitortraitor...|" end
+    --don't really communicate
+  end
+    
+    if desc then string = string.." about "..desc end
+    game.logPlayer(string)
+end    
+
+function _M:transgress(deity, anger, desc)
+  --Currently only increase for your patron
+  if self:isFollowing(deity) then
+
+  --reduce Wis temporarily by math.max(anger, 10)
+  old_anger = self.anger
+
+  self.anger = old_anger + anger
+  end
+
+
+
+  if self.anger >= 50 then self.anathema = true end
+  if self.anger >= 35 then self.forsaken = true end
+
+  if self.anger >= 5 then self:divineMessage(deity, "very uneasy", desc)
+  else self:divineMessage(deity, "uneasy", desc) end
+
+end  
+
+function _M:isForsaken(deity)
+  if self.forsaken == true then return true
+  else return false end
+end 
+
+function _M:isAnathema(deity)
+  if self.anathema == true then return true
+  else return false end
+end  
 
 
 
