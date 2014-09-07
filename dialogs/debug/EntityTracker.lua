@@ -24,7 +24,7 @@ module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init()
 --	if not config.settings.cheat then return end
-	Dialog.init(self, "NPC List      Map Size: W="..game.level.map.w.." H="..game.level.map.h.."", game.w * 0.8, game.h * 0.8)
+	Dialog.init(self, "NPC List     Map Size: W="..game.level.map.w.." H="..game.level.map.h.."", game.w * 0.8, game.h * 0.8)
 	self:generateList()
 	--local name_width = math.floor(game.w * 0.8-20-100-120-100-75-50-75-50-120-130)
 	--game.log("#ROYAL_BLUE#name_width %s: ", name_width)
@@ -32,6 +32,7 @@ function _M:init()
 		{name="UID", width={100,"fixed"}, display_prop="uid", sort="uid"},
 		{name="Name", width=100, display_prop="name", sort="name"},
 		{name="Unique", width={120,"fixed"}, display_prop="unique", sort="unique"},
+		{name="CR", width={100, "fixed"}, display_prop="challenge", sort="challenge"},
 	--	{name="Rank", width={100,"fixed"}, display_prop="rank", sort="rank"},
 		{name="X", width={50,"fixed"}, display_prop="x", sort="x"},
 		{name="Y", width={50,"fixed"}, display_prop="y", sort="y"},
@@ -64,6 +65,7 @@ function _M:generateList()
 			unique_text = "Player"
 			color_entity = {colors.LIGHT_GREEN.r, colors.LIGHT_GREEN.g, colors.LIGHT_GREEN.b}
 			add_entity = true
+			entity.challenge = entity.level
 		elseif entity.__CLASSNAME == "mod.class.NPC" then
 			if entity.unique then
 				unique_text = "Yes"
@@ -144,8 +146,7 @@ function _M:generateList()
 				name = name.." *DEAD*"
 				row_color = color_error
 			end
-		--	list[#list+1] = { uid=entity.uid, name=name, unique=unique_text, rank=entity.rank, x=entity.x, y=entity.y, oldx=entity.old_x, oldy=entity.old_y, index=index, type=tile and tile[Map.TERRAIN] and tile[Map.TERRAIN].type or "INVALID", allowed=allowed, color=row_color }
-			list[#list+1] = { uid=entity.uid, name=name, unique=unique_text, x=entity.x, y=entity.y, oldx=entity.old_x, oldy=entity.old_y, index=index, type=tile and tile[Map.TERRAIN] and tile[Map.TERRAIN].type or "INVALID", allowed=allowed, color=row_color }
+			list[#list+1] = { uid=entity.uid, name=name, unique=unique_text, challenge=entity:formatCR(), x=entity.x, y=entity.y, oldx=entity.old_x, oldy=entity.old_y, index=index, type=tile and tile[Map.TERRAIN] and tile[Map.TERRAIN].type or "INVALID", allowed=allowed, color=row_color }
 		end
 	end
   if #table > 0 then
