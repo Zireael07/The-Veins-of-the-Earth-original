@@ -739,70 +739,90 @@ function _M:die(src)
 
 	--Divine reactions
 	if killer and killer == player then
-		if player:isFollowing("None") then end
 
-		if player:isFollowing("Asherath") 
-			and self.challenge > player.level then
-			player:incFavorFor("Asherath", 30*self.challenge)
-		end
-
-		if player:isFollowing("Ekliazeh") 
-			and self.subtype == "drow" or self.subtype == "goblinoid" or self.type == "giant" then
-				player:incFavorFor("Ekliazeh", 25*self.challenge)
-		end
-
-		if player:isFollowing("Hesani")
-			and self.type == "undead" then
-		--	and self.alignment == "lawful evil" or self.alignment == "neutral evil" or self.alignment == "chaotic evil"
-				player:incFavorFor("Hesani", 25*(math.max(1, self.challenge)))
-			--TO DO: remove favor for killing living
-		end
-
-		if player:isFollowing("Immotian")
-			and self.type == "undead" or self.type == "aberration" or self.type == "demon" then --or self.type == "devil"
-				player:incFavorFor("Immotian", 10*(math.max(1, self.challenge)))
-			--TO DO: remove favor for killing non-evil fire; or self.type == "dragon"
-		end
-
-		if player:isFollowing("Khasrach")
-			and self.subtype == "human" or self.subtype == "elf" or self.subtype == "dwarf" then
-		--	and has arcane spellcasting
-				player:incFavorFor("Khasrach", 10*(math.max(1, self.challenge)))
-
-			--TO DO: remove favor for killing orcs CR >= 2
-			
-		end
-
-		if player:isFollowing("Kysul") then
-			if self.type == "aberration" then
-		--	if	self.alignment == "lawful evil" or self.alignment == "neutral evil" or self.alignment == "chaotic evil"
-				player:incFavorFor("Kysul", 10*self.challenge)
-			--else remove favor for killing non evil aberrations
-			end
-			if self.type == "outsider" then
-				player:incFavorFor("Kysul", 5*self.challenge)
-			end
-		end
-
-		if player:isFollowing("Mara")
-			and self.type == "undead" then --and incorporeal
-				player:incFavorFor("Mara", 50*self.challenge)
-		end
-
-		if player:isFollowing("Maeve")
-			and self.subtype == "drow" then
-				player:incFavorFor("Maeve", 50*self.challenge)
-		end
-
-		if player:isFollowing("Semirath") then
-		--	TO DO: deduce points for killing normally evil race and self.alignment == "lawful good" or self.alignment == "neutral good" or self.alignment == "chaotic good"
-		-- TO DO: deduce points for killing non-evil non-outsider non-elemental humanoid
-		end
+		self:deathDivineReaction()
 
 	end
 
 	return true
 end
+
+--self refers to the monster which was killed, see above
+function _M:deathDivineReaction()	
+	local player = game.player
+
+	if player:isFollowing("None") then end
+
+	if player:isFollowing("Asherath") 
+		and self.challenge > player.level then
+		player:incFavorFor("Asherath", 30*self.challenge)
+	end
+
+	if player:isFollowing("Ekliazeh") then
+		if self.subtype == "drow" or self.subtype == "goblinoid" or self.type == "giant" then
+			player:incFavorFor("Ekliazeh", 25*self.challenge)
+		end
+		if self.subtype == "dwarf" then --non undead; OR sapient construct
+			player:transgress("Ekliazeh", 1, "killing a dwarf")
+		end	
+	end
+
+	if player:isFollowing("Hesani")
+		and self.type == "undead" then
+	--	and self.alignment == "lawful evil" or self.alignment == "neutral evil" or self.alignment == "chaotic evil"
+			player:incFavorFor("Hesani", 25*(math.max(1, self.challenge)))
+			--TO DO: remove favor for killing living
+	end
+
+	if player:isFollowing("Immotian") then
+		if self.type == "undead" or self.type == "aberration" or self.type == "demon" then --or self.type == "devil"
+			player:incFavorFor("Immotian", 10*(math.max(1, self.challenge)))
+		end
+		if self.type == "dragon" or self.subtype == "fire" then --and self.alignment == "lawful good" or self.alignment == "neutral good" or self.alignment == "chaotic good"
+			--5 if it used to be friendly
+			player:transgress("Immotian", 2, "harming a sacred fire creature")
+		end
+	end
+
+	if player:isFollowing("Khasrach") then
+		if self.subtype == "human" or self.subtype == "elf" or self.subtype == "dwarf" then
+	--	and has arcane spellcasting
+			player:incFavorFor("Khasrach", 10*(math.max(1, self.challenge)))
+		end
+		if self.subtype == "orc" and self.challenge >= 2 then
+			player:transgress("Khasrach", 1, "killing a skillful orc")
+		end
+	end
+
+	if player:isFollowing("Kysul") then
+		if self.type == "aberration" then
+	--	if	self.alignment == "lawful evil" or self.alignment == "neutral evil" or self.alignment == "chaotic evil"
+			player:incFavorFor("Kysul", 10*self.challenge)
+		--else remove favor for killing non evil aberrations
+		end
+		if self.type == "outsider" then
+			player:incFavorFor("Kysul", 5*self.challenge)
+		end
+	end
+
+	if player:isFollowing("Mara")
+		and self.type == "undead" then --and incorporeal
+			player:incFavorFor("Mara", 50*self.challenge)
+	end
+
+	if player:isFollowing("Maeve")
+		and self.subtype == "drow" then
+			player:incFavorFor("Maeve", 50*self.challenge)
+	end
+
+	if player:isFollowing("Semirath") then
+	--	TO DO: deduce points for killing normally evil race and self.alignment == "lawful good" or self.alignment == "neutral good" or self.alignment == "chaotic good"
+	-- TO DO: deduce points for killing non-evil non-outsider non-elemental humanoid
+	end
+
+end
+
+	
 
 function _M:resolveSource()
 	if self.summoner_gain_exp and self.summoner then
