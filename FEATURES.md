@@ -13,6 +13,8 @@ FEATURES
 - 6 prestige classes: shadowdancer, assasin, arcane archer, blackguard, loremaster, archmage
 - 16 races: human, half-elf, half-drow, gnome, halfling, elf, dwarf, half-orc; drow, duergar, deep gnomes; lizardfolk, kobold, orc
 - backgrounds for quicker character creation; basic rules info while creating a character
+- 16 deities for characters to choose from, who react to in-game events 
+- cleric alignment and domain (44 total) choices affected by their deity selection
 - ability to load a character that has already been created
 - attributes can be generated either via rolling or via resettable point buy starting from 10
 - improved starting equipment, now taking both class and race into account; magic items, immunities or resistances as perks
@@ -24,14 +26,13 @@ FEATURES
 - randomized unarmed and weapon damage; archery and reach weapons; two weapon fighting penalties & feats
 - attack roll & AC & critical hits & offhand attack (including double weapons) & iterative attacks
 - death at -10 and detrimental effects both at 0 and in the -1 to -9 range; certain monsters can now poison you, reducing your stats
-- saving throws printed to log; now take the best of two stats (Dex-Int; Con-Str; Wis-Cha)
+- saving throws printed to log; take the best of two stats (Dex-Int; Con-Str; Wis-Cha)
 - inventory (with equipdoll) & encumbrance
 - spellbook now with spell information included and an iconed hotbar for spells [Seb]; some 0, 1st, 2nd, 3rd level spells
 - armor spell failure chance; key stat must be 9 to cast spells; casters gain access to next spell level every 3rd level
 - spell-like abilities for drow & duergar; other spell-likes as random perks at start
 - Spellcraft test required to identify spells cast by others
 - polymorphing & wild shape
-- clerics now pick from 16 deities which limit their alignment and domain choices (44 domains total)
 - skill checks (printed to log) including armor check penalty & racial or feat bonuses; opposed checks
 - stealth & sneak attacks
 - all weapons from SRD; magic armors and shields; magic weapons; light sources; wondrous items; specific magic items
@@ -53,6 +54,7 @@ FEATURES
 - terrain effects
 - rideable mounts
 - resting takes 8 hours, monsters respawn on rest
+- day/night effects with cool colors
 - cure x wounds spells work in a traditional way; heal x wounds spells heal a percentage of total hp
 - stairs have a chance of not changing the dungeon level [Seb]; Sil-style min depth and anti-stairscum measures
 - level feelings and item feelings (warning: these affect only pre-spawned items, not monster loot)
