@@ -15,17 +15,23 @@ CHANGELOG
 * bug fix - getting messages about unseen enemies using spells/skills
 * bug fix - proper tiles for the cavern zone
 * bug fix - domain selection working as intended again (last seen in beta 5)
+* bug fix - player tiles properly displaying dual-wielded weapons
+* bug fix - nixed a debug message for ranger favored enemy
+* bug fix - enabled drag and drop in inventory at last
 
 * new spell: transmute rock to mud
 * new zones: labirynth, xorn lair, town, aberrant lair, arena
 * new tiles: sand, ice; blink dog, barghest, hell hound, yeth hound
 * new curse: of weakness
+* hirelings
+* deity system
+* day/night cycle with exotic colors
+* color code hit and miss messages
+* made character creation screen tabbed
+* implement Zizzo's code allowing for hand-picking egos
+* many improvements to debug screens
 * renamed existing zones: Upperdark -> compound; Middledark -> tunnels
 * change starting zone to tunnels
-* made character creation screen tabbed
-* hirelings
-* day/night cycle with exotic colors
-
 
 0.21.0 - beta 5.7 - 07/08/2014
 
