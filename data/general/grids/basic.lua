@@ -403,6 +403,7 @@ newEntity{
 	image = "tiles/altar.png",
 	display = '&', color=colors.WHITE, back_color=colors.DARK_GREY,
 	always_remember = true,
+	is_altar = true,
 }
 
 --An altar for every deity (can't be resolve'd due to the way T-Engine sees grids)
