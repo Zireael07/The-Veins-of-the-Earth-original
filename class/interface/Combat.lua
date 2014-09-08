@@ -204,20 +204,20 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
 --      game.log(("%s hits the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       local chance = rng.dice(1,3)
       if chance == 1 then
-        game.log(("%s strikes low, hitting the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+        game.log(("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
-        game.log(("%s strikes center, hitting the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else game.log(("%s strikes high, hitting the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+        game.log(("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      else game.log(("%s strikes high, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       end
         
     else
 --        game.log(("%s misses the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
     local chance = rng.dice(1,3)
       if chance == 1 then
-        game.log(("%s strikes low, missing the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+        game.log(("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
-        game.log(("%s strikes center, missing the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else game.log(("%s strikes high, missing the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+        game.log(("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      else game.log(("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       end
 
     end
