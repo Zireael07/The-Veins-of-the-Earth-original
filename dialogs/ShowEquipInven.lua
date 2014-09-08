@@ -61,32 +61,28 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 				end
 			end
 			self.equip_actor:doWear(wear_inven, wear_item, wear_o, self.inven_actor)
-			self.c_inven:generateList()
+			self:generateList()
 		end
 	}
 
 	self.max_h = 0
 
 	self.c_inven = ListColumns.new{width=math.floor(self.iw / 2 - 10), height=self.ih - self.max_h*self.font_h - 10, sortable=true, scrollbar=true, columns={
-		{name="", width={25,"fixed"}, display_prop="char", sort="id"},
+		{name="", width={26,"fixed"}, display_prop="char", sort="id"},
 		{name="", width={24,"fixed"}, display_prop="object", sort="sortname", direct_draw=function(item, x, y) if item.object then item.object:toScreen(nil, x+4, y, 16, 16) end end},
 		{name="Inventory", width=72, display_prop="name", sort="sortname"},
 		{name="Category", width=20, display_prop="cat", sort="cat"},
 		{name="Enc.", width=10, display_prop="encumberance", sort="encumberance"},
-	}, list={}, fct=function(item, sel, button, event) self:use(item, button, event) end, select=function(item, sel) self:select(item) end, on_drag=function(item) if self.on_drag then self.on_drag(item) end end}
+	}, list={},
+	fct=function(item, sel, button, event) self:use(item, button, event) end, 
+	select=function(item, sel) self:select(item) end, 
+	on_drag=function(item) self:onDrag(item) end,
+	on_drag_end=function() self:onDragTakeoff() end,
+
+}
 
 	self:generateList()
---[[	self.c_inven = Inventory.new{actor=inven_actor, inven=inven_actor:getInven("INVEN"), width=self.iw - 20 - self.c_doll.w, height=self.ih - 10, filter=filter,
-		default_last_tabs = "all",
-		fct=function(item, sel, button, event) self:use(item, button, event) end,
-		select=function(item, sel) self:select(item) end,
-		select_tab=function(item) self:select(item) end,
-		on_drag=function(item) self:onDrag(item) end,
-		on_drag_end=function() self:onDragTakeoff() end,
-		special_bg=function(item) if item.object and item.object.__transmo then return colors.GOLD end end,
-	}]]
 	
---	self.c_inven.c_inven.on_focus_change = function(ui_self, status) if status == true then self:select(ui_self.list[ui_self.sel], true) end end
 
 	local uis = {
 		{left=0, top=0, ui=self.c_doll},
