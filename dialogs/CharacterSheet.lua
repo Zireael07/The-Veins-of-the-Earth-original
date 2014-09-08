@@ -250,6 +250,10 @@ end
 
     s:drawColorStringBlended(self.font, "Load penalty: "..(player.load_penalty or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
+    h = h + self.font_h -- Adds an empty row
+
+    s:drawColorStringBlended(self.font, "Speed bonus: +"..(player.movement_speed_bonus or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+
     h = 0
     w = self.w*0.5
     --start on third column
