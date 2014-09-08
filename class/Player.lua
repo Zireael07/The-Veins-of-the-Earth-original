@@ -86,6 +86,8 @@ function _M:init(t, no_default)
   self.lite_counter = 5000
   self.pseudo_id_counter = 10
   self.id_counter = 50
+  self.god_pulse_counter = 35
+  self.god_anger_counter = 35
 
   self.weapon_type = {}
   self.favored_enemy = {}
@@ -109,15 +111,13 @@ function _M:onBirth()
 
   self:giveStartingSpells()
 
---  self:setTile()
---  self:equipAllItems()
-
   savefile_pipe:push(game.player.name, "entity", game.player, "engine.CharacterVaultSave")
 
   -- HACK: This forces PlayerDisplay and HotkeysDisplay to update after birth descriptors are finished.
   game.player.changed = true
   self:resetToFull()
   self:setCountID()
+  self:setGodPulse()
 
 --  game:registerDialog(require"mod.dialogs.Help".new(self.player))
 end
@@ -135,6 +135,7 @@ function _M:onPremadeBirth()
   game.player.changed = true
   self:resetToFull()
   self:setCountID()
+  self:setGodPulse()
 --  game:registerDialog(require"mod.dialogs.Help".new(self.player))
 end 
 
@@ -307,8 +308,17 @@ function _M:act()
     self.id_counter = 50
   end
 
-  -- Clean log flasher
---  game.flash:empty(true)
+  if self.descriptor.deity ~= "None" then
+    self.god_pulse_counter = self.god_pulse_counter - 1
+    --if angered the deity
+  --  self.god_anger_counter = self.god_anger_counter - 1
+
+    if self.god_pulse_counter == 0 then
+      self:godPulse()
+      self:setGodPulse()
+    end
+  end
+
 
   -- Resting ? Running ? Otherwise pause
   if not self:restStep() and not self:runStep() and self.player then
@@ -1469,7 +1479,7 @@ function _M:givePerkArmor()
     else end
 end
 
---God system code
+--Deity system code
 
 function _M:isFollowing(deity)
   return self.descriptor.deity == deity
@@ -1487,17 +1497,20 @@ end
 function _M:getFavorLevel(max_favor)
   local ret = 0
 
+  if max_favor == 0 then ret = 0 end
+  if max_favor < 100 then ret = 0 end
+
   --Incursion's values, streamlined
-  if favor >= 100 then ret = 1 end
-  if favor >= 500 then ret = 2 end
-  if favor >= 1250 then ret = 3 end
-  if favor >= 4500 then ret = 4 end
-  if favor >= 12000 then ret = 5 end
-  if favor >= 24000 then ret = 6 end
-  if favor >= 54000 then ret = 7 end
-  if favor >= 96000 then ret = 8 end
-  if favor >= 102000 then ret = 9 end
-  if favor >= 205000 then ret = 10 end
+  if max_favor >= 100 then ret = 1 end
+  if max_favor >= 500 then ret = 2 end
+  if max_favor >= 1250 then ret = 3 end
+  if max_favor >= 4500 then ret = 4 end
+  if max_favor >= 12000 then ret = 5 end
+  if max_favor >= 24000 then ret = 6 end
+  if max_favor >= 54000 then ret = 7 end
+  if max_favor >= 96000 then ret = 8 end
+  if max_favor >= 102000 then ret = 9 end
+  if max_favor >= 205000 then ret = 10 end
     
     game.log("Favor level:"..ret)
   
@@ -1858,7 +1871,7 @@ function _M:divineMessage(deity, message, desc)
   end
     
     if desc then string = string.." about "..desc end
-    game.logPlayer(string)
+    game.logPlayer(self, string)
 end    
 
 function _M:transgress(deity, anger, desc)
@@ -1891,7 +1904,144 @@ function _M:isAnathema(deity)
   else return false end
 end  
 
+function _M:setGodPulse()
+  local deity = self.descriptor.deity
 
+  if deity == "Aiswin" or deity == "Hesani" or deity == "Immotian" or deity == "Sabin" or deity == "Semirath" or deity == "Xel" or deity == "Zurvash" then self.god_pulse_counter = 10
+  elseif deity == "Ekliazeh" or deity == "Essiah" or deity == "Khasrach" or deity == "Kysul" or deity == "Mara" or deity == "Xavias" then self.god_pulse_counter = 20
+  elseif deity == "Maeve" then self.god_pulse_counter = 25
+  elseif deity == "Erich" then self.god_pulse_counter = 30
+  elseif deity == "Multitude" then self.god_pulse_counter = 7
+  end
+end
+
+function _M:setGodAngerTimer()
+  local deity = self.descriptor.deity
+
+  if deity == "Erich" or deity == "Hesani" or deity == "Kysul" or deity == "Mara" or deity == "Xel" or deity == "Zurvash" then self.god_anger_counter = 10
+  elseif deity == "Immotian" then self.god_anger_counter = 15
+  elseif deity == "Aiswin" or deity == "Essiah" or deity == "Semirath" or deity == "Xavias" then self.god_anger_counter = 20
+  elseif deity == "Ekliazeh" then self.god_anger_counter = 25
+  elseif deity == "Khasrach" or deity == "Sabin" then self.god_anger_counter = 30
+  elseif deity == "Maeve" or deity == "Multitude" then self.god_anger_counter = 7
+  end
+end
+
+
+function _M:godPulse()
+  local deity = self.descriptor.deity
+  if deity == "Aiswin" then 
+    game.logPlayer(self, "Aiswin whispers a secret to you!") 
+    --case one: identify a random item
+    --case two: give Aiswin's Lore spell ("Mystical knowledge of Aiswin's Lore imprints itself on your mind!")
+    --case three: mark random actor in range 30 as seen
+  end
+  if deity == "Ekliazeh" then  
+    --case one: mend random item in inventory
+    --case two: "Your o.name glows with a brilliant silver light!"
+    self:divineMessage("Ekliazeh", "custom three")
+  end
+  if deity == "Erich" then
+    --grant a random arms/weapon
+    self:divineMessage("Erich", "custom three")
+  end
+  if deity == "Essiah" then
+    --ESSIAH_DREAM stuff
+    --after rest, if angry, damage 3d10 CON, the wrath of Essiah
+    --if self:getFavorLevel(max_favor) >= 1d12 then 
+    --"Essiah appears to you in your dreams in the form you find most appealing, and beckons seductively. /n Accept the embrace?"
+    --Y:"You experience a feverish, erotic dream of great intensity. That was certainly a learning experience!"
+    --self:gainExp(10*self.level*(self.getFavorLevel+4))
+    --exercise CHA and CON
+    --N: "The goddess shrugs, smiles warmly without condemnation at you, and vanishes."
+  end
+  if deity == "Hesani" then
+    if game.level.level > 1 and self.level < 12 then
+      if game.level.level > (self.level/2) then
+        self:transgress("Hesani", 1, "lack of patience")
+      end
+    end
+    game.logPlayer(self, "Natural flows replenish you.")
+    --refresh random available spell
+  end
+  if deity == "Immotian" then
+    --if threatened
+    self:divineMessage("Immotian", "custom four")
+    --Empowered+Maximized+Enlarged Order's Wrath centered on player
+    --else if something then
+    --self:incFavorFor("Immotian", 4d50) self:divineMessage("Immotian", "custom seven")
+    --else summon fire critters self:divineMessage("Immotian", "custom three")
+  end
+  if deity == "Khasrach" then
+    --summon orcs
+    --if angry self:divineMessage("Khasrach", "custom three") all orcs e.faction = "enemies"
+    --else self:divineMessage("Khasrach", "custom two") e.faction == "players"
+  end  
+
+  if deity == "Kysul" then
+    if self:getFavorLevel(self.max_favor) < 3 then 
+    else --gift random item
+      self:divineMessage("Kysul", "custom one")
+    end
+  end  
+
+  if deity == "Mara" then
+    if self.favor >= 1500 then
+      --summon revenant
+      self:divineMessage("Mara", "custom two")
+    end
+  end
+
+  if deity == "Maeve" then
+    --if threatened and rng.dice(1,2) == 1 then
+    --Othello's Irresistible Dance on player
+    self:divineMessage("Maeve", "custom eight")
+  end  
+
+  if deity == "Sabin" then
+    --if has allies then self:transgress("Sabin", 1, "relying on others")
+    if self:getFavorLevel(self.max_favor) > 3 then
+      self:divineMessage("Sabin", "custom two")
+      local gain = 10*self.level*self:getFavorLevel(self.max_favor)
+      self:gainExp(gain)
+      --exercise INT
+    end
+  end  
+  if deity == "Semirath" then
+    --fumble a non-good hostile humanoid in player's sight if there's one
+    self:divineMessage("Semirath", "custom one")
+    --game.logSeen("%s collapses in a fit of uncontrollable laughter!")
+  end
+  if deity == "Xavias" then
+    game.logPlayer(self, "Your mind is filled with dreamlike images and cryptic symbolism -- you are enlightened!")
+    --exercise INT & WIS
+    local Intbonus = math.floor((player:getInt()-10)/2)
+    local Wisbonus = math.floor((player:getWis()-10)/2)
+    self:gainExp(math.max(1,(Intbonus+Wisbonus*100)))
+  end
+  if deity == "Xel" then
+    if self.life < self.max_life then
+      game.logPlayer(self, "Stolen vitality heals your injuries!")
+      self:resetToFull()
+    end
+  end
+  if deity == "Zurvash" then
+    --if has a non-animal ally, self:transgress("Zurvash", 1, "relying on others")
+    game.logPlayer(self, "You go berserk! You feel flush with a supernatural endurance!")
+    self:setEffect(self.EFF_RAGE, self:getFavorLevel(self.max_favor), {})
+  end
+
+  if deity == "Multitude" then
+    --if something then
+    --summon several player.level+2 demons for 30+Chamod turns
+    --if angry, e.faction = "enemies", else e.faction = "players"
+    --self:divineMessage("Multitude", "custom three")
+    --else
+    self:incFavorFor("Multitude", rng.dice(4,50))
+    self:divineMessage("Multitude", "custom seven")
+  end  
+
+end
 
 --Moddable tiles code from ToME 4
 --- Return attachement coords
