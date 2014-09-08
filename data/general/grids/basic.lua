@@ -405,6 +405,111 @@ newEntity{
 	always_remember = true,
 }
 
+--An altar for every deity (can't be resolve'd due to the way T-Engine sees grids)
+--Colors match deity message colors
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_AISWIN",
+	name = "altar to Aiswin", 
+	color=colors.BLUE,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_ASHERATH",
+	name = "altar to Asherath", 
+	color=colors.TAN,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_EKLIAZEH",
+	name = "altar to Ekliazeh", 
+	color=colors.SANDY_BROWN,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_ERICH",
+	name = "altar to Erich", 
+	color=colors.PURPLE,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_ESSIAH",
+	name = "altar to Essiah", 
+	color=colors.PINK,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_HESANI",
+	name = "altar to Hesani", 
+	color=colors.YELLOW,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_IMMOTIAN",
+	name = "altar to Immotian", 
+	color=colors.GOLD,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_KHASRACH",
+	name = "altar to Khasrach", 
+	color=colors.OLIVE_DRAB,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_KYSUL",
+	name = "altar to Kysul", 
+	color=colors.LIGHT_GREEN,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_MARA",
+	name = "altar to Mara", 
+	color=colors.ANTIQUE_WHITE,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_MAEVE",
+	name = "altar to Maeve", 
+	color=colors.DARK_GREEN,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_SABIN",
+	name = "altar to Sabin", 
+	color=colors.LIGHT_BLUE,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_SEMIRATH",
+	name = "altar to Semirath", 
+	color=colors.ORCHID,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_XAVIAS",
+	name = "altar to Xavias", 
+	color=colors.DARK_SLATE_GRAY,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_XEL",
+	name = "altar to Xel", 
+	color=colors.DARK_RED,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_ZURVASH",
+	name = "altar to Zurvash", 
+	color=colors.CRIMSON,
+}
+
+newEntity{	base = "ALTAR",
+	define_as = "ALTAR_MULTITUDE",
+	name = "altar to Multitude", 
+	color=colors.SLATE,
+}
+
+
 --Taken from Gatecrashers
 newEntity{
 	define_as = "CHEST",
