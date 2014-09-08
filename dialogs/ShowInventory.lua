@@ -35,7 +35,7 @@ function _M:init(title, inven, filter, action, actor)
 	self.c_inven = Inventory.new{actor=actor, inven=inven, filter=filter, width=math.floor(self.iw / 2 - 10), height=self.ih - 10,
 		fct=function(item, sel, button, event) self:use(item, button, event) end,
 		select=function(item, force) self:select(item, force) end,
-		select_tab=function(item) self:select(item) end,
+	--	select_tab=function(item) self:select(item) end,
 	}
 
 	self.c_inven.c_inven.on_focus_change = function(ui_self, status) if status == true then game.tooltip:erase() end end
