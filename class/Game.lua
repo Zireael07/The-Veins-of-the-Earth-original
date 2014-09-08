@@ -230,7 +230,7 @@ function _M:loaded()
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", trap_class="mod.class.Trap"}
 	--New filters from GameState go here
 
-	self.uiset = (require("mod.class.uiset."..(config.settings.tome.uiset_mode or "Veins"))).new()
+--	self.uiset = (require("mod.class.uiset."..(config.settings.tome.uiset_mode or "Veins"))).new()
 
 	Map:setViewerActor(self.player)
 	self:setupDisplayMode(false, "init")
