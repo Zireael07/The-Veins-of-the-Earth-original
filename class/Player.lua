@@ -311,12 +311,17 @@ function _M:act()
   if self.descriptor.deity ~= "None" then
     self.god_pulse_counter = self.god_pulse_counter - 1
     --if angered the deity
-  --  self.god_anger_counter = self.god_anger_counter - 1
+    self.god_anger_counter = self.god_anger_counter - 1
 
     if self.god_pulse_counter == 0 then
       self:godPulse()
       self:setGodPulse()
     end
+
+    if self.god_anger_counter == 0 then
+      self:godAnger()
+    end
+
   end
 
 
@@ -1874,7 +1879,7 @@ function _M:divineMessage(deity, message, desc)
     game.logPlayer(self, string)
 end    
 
-function _M:transgress(deity, anger, desc)
+function _M:transgress(deity, anger, angered, desc)
   --Currently only increase for your patron
   if self:isFollowing(deity) then
 
@@ -1884,7 +1889,7 @@ function _M:transgress(deity, anger, desc)
   self.anger = old_anger + anger
   end
 
-
+  if angered then self:setGodAngerTimer() end
 
   if self.anger >= 50 then self.anathema = true end
   if self.anger >= 35 then self.forsaken = true end
@@ -1993,9 +1998,11 @@ function _M:godPulse()
   end
 
   if deity == "Maeve" then
+    --exercise LUC
     --if threatened and rng.dice(1,2) == 1 then
     --Othello's Irresistible Dance on player
     self:divineMessage("Maeve", "custom eight")
+    --else self:randomMaeveStuff(false) end
   end  
 
   if deity == "Sabin" then
@@ -2042,6 +2049,184 @@ function _M:godPulse()
   end  
 
 end
+
+function _M:godAnger()
+    local deity = self.descriptor.deity
+
+    if deity == "Aiswin" then
+      --if not afraid then
+    --  self:setEffect(self.EFF_FEAR, 200, {})
+      game:logPlayer(self, "You catch vague glimses of nightmarish, obscene shapes menacing you from the shadows!")
+    end
+
+    if deity == "Ekliazeh" then
+      --pick random good item, destroy it
+    --  game:logPlayer(self, "Your %s dissolves into a pile of gravel!":format(o.name))
+    end
+
+    if deity == "Erich" then
+      --if already has this effect, do nothing
+      --self:setEffect(self.EFF_ERICH_DISFAVOR, 20, {})
+      self:divineMessage("Erich", "custom four")
+    end
+
+    if deity == "Essiah" then
+      --if has ESSIAH_DREAM flag, remove it
+      game.logPlayer(self, "In your dreams, you relive all the suffering you have wrongfully brought to others!")
+      --CON damage 3d10
+    end
+
+    if deity == "Hesani" then
+      --forget random x spells prepared
+      game.logPlayer(self, "Moving against the currents of the world, you feel depleted.")
+    end  
+
+    if deity == "Immotian" then
+      --if has potion in equipment, destroy it and give a potion of blood instead
+      --self:divineMessage("Immotian", "custom five")
+      --else cast insect plague on player
+      self:divineMessage("Immotian", "custom three")
+    end
+
+    if deity == "Khasrach" then
+      if game.level.level > math.min(9, self.level+2) then
+        --retribution
+      end  
+      self:divineMessage("Khasrach", "custom one")
+      game.logPlayer(self, "You are cast down!")
+
+      local change = (10 - game.level.level)
+      
+      if game.level.level >= 10 then game:changeLevel(1) 
+      else 
+        if zone.max_level >= self.level.level + change then
+        game:changeLevel(change) end
+      end 
+    end
+
+    if deity == "Kysul" then
+      --get closest enemy, apply pseudonatural template to it
+      self:divineMessage("Kysul", "custom three")
+    end  
+
+    if deity == "Mara" then
+      if self.type ~= "undead" then
+        self:divineMessage("Mara", "custom one")
+        game.logPlayer(self, "Your body decomposes!")
+      end  
+    end 
+
+    if deity == "Maeve" then
+      self:randomMaeveStuff(true)
+    end
+
+    if deity == "Sabin" then
+      self:divineMessage("Sabin", "custom one")
+      --swap attributes
+    end 
+
+    if deity == "Semirath" then
+      if self.anger >= 15 then
+        self:divineMessage("Semirath", "custom two")
+        --retribution
+      end
+      --take random item and place it in a random place on map
+    end  
+
+    if deity == "Xavias" then
+      game.logPlayer(self, "Your mind is filled with dreamlike images and cryptic symbolism -- you can't comprehend it!")
+      --a harrowing vision from Xavias, confuse for 40 turns
+    end  
+
+    if deity == "Xel" then
+      game.logPlayer(self, "Xel drinks your life!")
+    --  deal xd6 necro damage
+    --if self.life == old life then
+    --game.logPlayer("You feel Xel is angrier now")
+    --self:transgress("Xel", 1, false, "frustrating Xel")
+    end  
+
+    if deity == "Zurvash" then
+      local result = rng.dice(1,3)
+      local duration = rng.dice(3,8)
+      if result == 1 then
+        game.logPlayer(self, "You are stricken with fear!")
+        --self:setEffect(self.EFF_FEAR, duration, {}) 
+      end  
+      if result == 2 then
+        game.logPlayer(self, "You are stricken with weakness")
+        --reduce STR by ?
+      end 
+      if result == 3 then
+        game.logPlayer(self, "You are inexplicably struck blind!")
+        --self:setEffect(self.EFF_BLIND, duration, {})
+      end
+    end  
+
+    if deity == "Multitude" then
+      self:divineMessage("Multitude", "custom four")
+      --summon multiple CR player.level+2 hostile demons
+    end
+end
+
+function _M:randomMaeveStuff(anger)
+  local result = rng.dice(1,8)
+
+  if anger then result = rng.dice(1,4) end
+
+  --BAD stuff
+  if result == 1 then
+    --remove random cloak/ring/amulet
+  --  game.logPlayer(self, "Your %s vanishes!":format(o.name))
+  end
+
+  if result == 2 then
+    --summon single non-good non-lawful hostile CR self.level +2 
+    self:divineMessage("Maeve", "custom two")
+  end
+  
+  if result == 3 then
+    self:divineMessage("Maeve", "custom three")
+    --Maeve's Whimsy
+  end
+
+  if result == 4 then
+    --find closest friendly and turn it hostile
+    self:divineMessage("Maeve", "custom four")
+  end
+
+  --Good stuff
+  if result == 5 then
+    --random magic non-cursed item gets an additional +1
+    self:divineMessage("Maeve", "custom four")
+  --  game.logPlayer("Your %s glows with a silvery light!"):format(o.name))
+  end
+
+  if result == 6 then
+    self:divineMessage("Maeve", "custom six")
+    local result = rng.dice(1,3)
+    if result == 1 then
+      --random druidic spell level (CR+2)/3
+      game.logPlayer(self, "Knowledge of the dweomer %s imprints itself on your mind!"):format(t.name)
+    else 
+      --random arcane spell, level (CR+2)/3
+      game.logPlayer(self, "Knowledge of the dweomer %s imprints itself on your mind!"):format(t.name)
+    end
+  end
+
+  if result == 7 then
+    self:divineMessage("Maeve", "custom seven")
+    --give a random good item
+  end
+
+  if result == 8 then
+    game.logPlayer(self, "You are surronded in a corona of rainbow light!")
+    --for every non-construct hostile in LOS and 12 range
+  --  game.logSeen("%s's heart is forever ensnared!":format(e.name))
+  end
+
+end
+
 
 --Moddable tiles code from ToME 4
 --- Return attachement coords

@@ -763,7 +763,7 @@ function _M:deathDivineReaction()
 			player:incFavorFor("Ekliazeh", 25*self.challenge)
 		end
 		if self.subtype == "dwarf" then --non undead; OR sapient construct
-			player:transgress("Ekliazeh", 1, "killing a dwarf")
+			player:transgress("Ekliazeh", 5, false, "killing a dwarf")
 		end	
 	end
 
@@ -780,7 +780,7 @@ function _M:deathDivineReaction()
 		end
 		if self.type == "dragon" or self.subtype == "fire" then --and self.alignment == "lawful good" or self.alignment == "neutral good" or self.alignment == "chaotic good"
 			--5 if it used to be friendly
-			player:transgress("Immotian", 2, "harming a sacred fire creature")
+			player:transgress("Immotian", 2, false, "harming a sacred fire creature")
 		end
 	end
 
@@ -790,7 +790,7 @@ function _M:deathDivineReaction()
 			player:incFavorFor("Khasrach", 10*(math.max(1, self.challenge)))
 		end
 		if self.subtype == "orc" and self.challenge >= 2 then
-			player:transgress("Khasrach", 1, "killing a skillful orc")
+			player:transgress("Khasrach", 1, false, "killing a skillful orc")
 		end
 	end
 
