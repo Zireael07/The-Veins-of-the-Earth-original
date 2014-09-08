@@ -675,7 +675,20 @@ newBirthDescriptor {
 			--Prevent another game-breaking combo
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
-		}
+		},
+        deity =
+        {
+            --Can only follow Essiah, Hesani, Kysul, Mara, Maeve, Sabin, Xel, Zurvash
+            ['Aiswin'] = "disallow",
+            ['Asherath'] = "disallow",
+            ['Ekliazeh'] = "disallow",
+            ['Erich'] = "disallow",
+            ['Immotian'] = "disallow",
+            ['Khasrach'] = "disallow",
+            ['Multitude'] = "disallow",
+            ['Semirath'] = "disallow",
+            ['Xavias'] = "disallow",
+        },
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Druid"] and actor.descriptor.class == "Druid" then return true end
@@ -874,7 +887,20 @@ newBirthDescriptor {
                         ['Magical thief'] = "disallow",
                         ['Spellcaster'] = "disallow",
                         ['Two weapon fighter'] = 'disallow',
-                }
+                },
+                deity =
+                {
+                    --Can only follow Aiswin, Essiah, Hesani, Immotian, Kysul, Mara, Multitude, Xavias
+                    ['Asherath'] = "disallow",
+                    ['Ekliazeh'] = "disallow",
+                    ['Erich'] = "disallow",
+                    ['Khasrach'] = "disallow",
+                    ['Maeve'] = "disallow",
+                    ['Sabin'] = "disallow",
+                    ['Semirath'] = "disallow",
+                    ['Xel'] = "disallow",
+                    ['Zurvash'] = "disallow",
+                },
         },
         can_level = function(actor)
             if actor.classes and actor.classes["Monk"] and actor.descriptor.class == "Monk" then return true end
@@ -932,7 +958,19 @@ newBirthDescriptor {
                         ['Magical thief'] = "disallow",
                         ['Spellcaster'] = "disallow",
                         ['Two weapon fighter'] = 'disallow',
-                }
+                },
+                deity =
+                {
+                --Can only follow Ekliazeh, Erich, Immotian, Kysul, Mara, Semirath, Xavias
+                ['Aiswin'] = "disallow",
+                ['Asherath'] = "disallow",
+                ['Hesani'] = "disallow",
+                ['Khasrach'] = "disallow",
+                ['Multitude'] = "disallow",
+                ['Sabin'] = "disallow",
+                ['Xel'] = "disallow",
+                ['Zurvash'] = "disallow",
+                },
         },
         can_level = function(actor)
             if actor.classes and actor.classes["Paladin"] and actor.descriptor.class == "Paladin" then return true end
