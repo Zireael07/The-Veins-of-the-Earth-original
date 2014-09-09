@@ -17,7 +17,7 @@ newArcaneDivineSpell{
 	if not self then return nil end
 	d = rng.dice(1,8)
 	self:heal(d) --+ caster_bonus)
-	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
+	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	--end,
 	end,

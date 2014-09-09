@@ -80,7 +80,7 @@ newDivineSpell{
 	if not self then return nil end
 	d = rng.dice(2,8)
 	self:heal(d) --+ caster_bonus)
-	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
+	game.logSeen(self,("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	--end,
 	end,
@@ -107,7 +107,7 @@ newDivineSpell{
 	if not self then return nil end
 	d = rng.dice(3,8)
 	self:heal(d) --+ caster_bonus)
-	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
+	game.logSeen(self,( "%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	--end,
 	end,
@@ -134,7 +134,7 @@ newDivineSpell{
 	if not self then return nil end
 	d = rng.dice(4,8)
 	self:heal(d) --+ caster_bonus)
-	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
+	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	--end,
 	end,
@@ -157,7 +157,7 @@ newDivineSpell{
 	if not self then return nil end
 	d = (self.max_life/10)*1
 	self:heal(d)
-	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
+	game.logSeen(self,("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	end,
 
@@ -180,7 +180,7 @@ newDivineSpell{
 	if not self then return nil end
 	d = (self.max_life/10)*3
 	self:heal(d)
-	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
+	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	end,
 
@@ -203,7 +203,7 @@ newDivineSpell{
 	if not self then return nil end
 	d = (self.max_life/10)*5
 	self:heal(d)
-	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
+	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	end,
 
@@ -226,7 +226,7 @@ newDivineSpell{
 	if not self then return nil end
 	d = (self.max_life/10)*7
 	self:heal(d)
-	game.log(("%s heals %d damage"):format(self.name:capitalize(), d))
+	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	end,
 
