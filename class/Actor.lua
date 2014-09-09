@@ -714,6 +714,23 @@ function _M:die(src)
 	end
 	self.inven = {}
 
+	--drop corpses
+	if not (self.name == "stirge" or name == "will'o'wisp" 
+		or self.type == "outsider" or self.type == "demon" or self.type == "elemental" or self.type == "ooze" or self.type == "construct") then
+		
+		local corpse = game.zone:makeEntity(game.level, "object", {name="fresh corpse", ego_chance=-1000}, 1, true)
+	--	local corpse = game.zone:makeEntityByName(game.level, "object", "FRESH_CORPSE")
+		if corpse then
+			corpse.name = self.name.." corpse"
+			corpse.unided_name = self.name.." corpse"
+			corpse.source = self.type
+			game.zone:addEntity(game.level, corpse, "object", dropx, dropy)
+			game.log("Placed corpse "..self.name..dropx..dropy)
+		end
+	end
+
+
+
 	if self ~= game.player and dropx == game.player.x and dropy == game.player.y then
 		game.log('You feel something roll beneath your feet.')
 	end
