@@ -28,10 +28,10 @@ newEntity{
 	skill_survival = 1,
 	movement_speed_bonus = 0.66,
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 	uncommon_desc = [[Centaurs are skilled horticulturists and often cultivate various plants near their lairs. Despite their calm nature, centaurs are known for becoming rowdy and aggressive under the influence of alcohol.]],
 	common_desc = [[Although sociable among themselves and generally even-headed, centaurs shun outsiders and are almost always armed.]],
 	base_desc = [[This creature, known as a centaur, has the upper body of a humanoid but the lower body of a horse.  It can see in the dark and needs to sleep, eat and breathe.]],
@@ -70,14 +70,14 @@ newEntity{
 	movement_speed_bonus = -0.33,
 	alignment = "chaotic evil",
 	resolvers.equip{
-	full_id=true,
+--	full_id=true,
 		{ name = "studded leather" },
 		{ name = "buckler" },
 		{ name = "bolts" },
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "light crossbow" },
 	},
 }
@@ -113,7 +113,7 @@ newEntity{
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
 	},
 }
 
@@ -145,10 +145,10 @@ newEntity{
 	movement_speed_bonus = 0.33,
 	alignment = "chaotic evil",
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" },
-	},
+	},]]
 }
 
 --Swim 60 ft. instead of fly
@@ -189,10 +189,10 @@ newEntity{
 		{ name = "battleaxe" },
 	},
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" },
-	},
+	},]]
 }
 
 --Swim 60 ft., rake 1d4, blindsense 30 ft, light sensitivity
@@ -230,9 +230,9 @@ newEntity{
 	},
 	--Hack! Monsters drop corpses now
 	resolvers.inventory {
-	full_id=true,
+--	full_id=true,
 	{ name = "heavy crossbow" },
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
 	},
 }
 
@@ -250,10 +250,10 @@ newEntity{
 	infravision = 3,
 	alignment = "chaotic evil",
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 --Improved grab, rake 1d6, rend 2d6, DR 2/bludgeon; Blind-Fight
@@ -326,7 +326,7 @@ newEntity{
 	},
 }
 
---Fly 80 ft., captivating song
+--captivating song
 newEntity{
 	define_as = "BASE_NPC_HARPY",
 	type = "monstrous_humanoid",
@@ -355,6 +355,8 @@ newEntity{
 	skill_listen = 6,
 	skill_spot = 2,
 	alignment = "chaotic evil",
+	fly = true,
+	movement_speed_bonus = 1.33,
 	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_PERSUASIVE]=1
 	},
@@ -363,10 +365,10 @@ newEntity{
 		{ name = "club" },
 	},
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" },
-	},
+	},]]
 }
 
 --Petrifying gaze 3 sq Fort DC 15; poison 1d6 STR pri & 2d6 STR sec Fort DC 14
@@ -407,10 +409,10 @@ newEntity{
 		{ name = "arrows" },
 	},
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 --Powerful charge 4d6
@@ -443,8 +445,8 @@ newEntity{
 		{ name = "greataxe" },
 	},
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }

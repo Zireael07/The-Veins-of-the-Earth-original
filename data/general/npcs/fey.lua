@@ -48,7 +48,8 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+	{ name = "shortbow" },
+--	{ name = "fresh corpse" },
 	},
 }
 
@@ -94,7 +95,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "shorbow" },
-	{ name = "fresh corpse" },
+	{ name = "shortbow" },
+--	{ name = "fresh corpse" },
 	},
 }

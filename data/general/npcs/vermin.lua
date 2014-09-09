@@ -17,10 +17,10 @@ newEntity{
 	skill_hide = 4,
 	skill_spot = 4,
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{
@@ -101,10 +101,10 @@ newEntity{
 	skill_climb = 8,
 	combat_natural = 7,
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{
@@ -158,10 +158,10 @@ newEntity{
 	skill_climb = 10,
 	skill_spot = 4,
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{
@@ -271,10 +271,10 @@ newEntity{
 	infravision = 4,
 	skill_spot = 4,
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{
@@ -360,10 +360,10 @@ newEntity{
 	combat = { dam= {2,4} },
 	infravision = 4,
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{
@@ -391,10 +391,10 @@ newEntity{
 	combat = { dam= {4,6} },
 	infravision = 4,
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{

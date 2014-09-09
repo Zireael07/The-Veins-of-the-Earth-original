@@ -44,10 +44,6 @@ newEntity{ base = "BASE_NPC_ABOLETH",
 	challenge = 6,
 	skill_swim = 8,
 	skill_knowledge = 8,
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }        
 
 --Psionic abilities (hypnotic pattern, illusory wall, mirage arcana, persistent image, programmed image, project image, veil)
@@ -64,10 +60,6 @@ newEntity{ base = "BASE_NPC_ABOLETH",
 	skill_knowledge = 11,
 	skill_swim = 8,
 	stats = { str=26, dex=12, con=20, int=15, wis=17, cha=17, luc=12 },
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }        
 
 --TO DO: Aboleth mage (slap 10 levels of wizard on top of a normal aboleth)
@@ -104,10 +96,6 @@ newEntity{ base = "BASE_NPC_ATHACH",
                 { name = "leather armor" },
                 { name = "morningstar" },
         },
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }        
 
 newEntity{
@@ -134,10 +122,6 @@ newEntity{ base = "BASE_NPC_CHOKER",
 	infravision = 3,
 	skill_climb = 8,
 	skill_hide = 8,
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 	uncommon_desc = [[While not overly dexterous, chokers are unnaturally fast, and thus can perform more actions than a normal creature can.]],
 	common_desc = [[A choker’s hands are covered with spiny pads that allow it to traverse walls and ceilings, where it likes to lay in hiding. When prey passes by, it grabs the creature by the neck with its tentacle-like arms and proceeds to strangle the victim until it dies.]],
 	base_desc = [[This small creature is a choker, a subterranean beast. It can see in the dark.]],
@@ -171,10 +155,6 @@ newEntity{ base = "BASE_NPC_CHUUL",
 	skill_hide = 10,
 	skill_listen = 9,
 	skill_spot = 9,
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }       
 
 newEntity{
@@ -208,10 +188,6 @@ newEntity{ base = "BASE_NPC_CLOAKER",
 	skill_listen = 11,
 	skill_spot = 11,
 	fly = true,
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }       
 
 newEntity{
@@ -256,10 +232,6 @@ newEntity{ base = "BASE_NPC_DRIDER",
                 { name = "shortbow" },
                 { name = "arrows" },
         },
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }       
 
 newEntity{
@@ -285,10 +257,6 @@ newEntity{
 	skill_hide = 4,
 	skill_listen = 2,
 	skill_spot = 4,
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
  
 --Disease, improved grab, scent
@@ -316,10 +284,6 @@ newEntity{
 	infravision = 4,
 	skill_listen = 5,
 	skill_spot = 5,
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }    
 
 --Burrow 10 ft.; Immunity to acid, tremorsense 4 squares, stone shape
@@ -351,10 +315,6 @@ newEntity{
 	skill_movesilently = 16,
 	skill_spot = 18,
 	skill_survival = 12,
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }    
 
 --Blindsight 6 squares; immune to gaze attacks, visual effects, illusions, +4 to saves against sonic effects
@@ -388,14 +348,9 @@ newEntity{
 	alignment = "neutral evil",
 	resolvers.talents{ [Talents.T_DODGE]=1, 	
 	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 --Detect magic, ethereal jaunt
---Neutral alignment
 newEntity{
 	define_as = "BASE_NPC_ETHEREAL_FILCHER",
 	type = "aberration",
@@ -417,11 +372,8 @@ newEntity{
 	skill_pickpocket = 8,
 	skill_spot = 8,
 	movement_speed_bonus = 0.33,
+	alignment = "neutral",
 	resolvers.talents{ [Talents.T_DODGE]=1 },
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }    
 
 --Ethereal jaunt; neutral alignment
@@ -446,11 +398,8 @@ newEntity{
 	skill_listen = 4,
 	skill_movesilently = 4,
 	skill_spot = 4,
-	movement_speed_bonus = 0.33, 	
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
+	movement_speed_bonus = 0.33, 
+	alignment = "neutral",	
 }    
 
 --Swim 20 ft.; gibbering 4 squares spread DC 13 Will or confusion for 1d2 rounds; improved grab, swallow whole; AL N
@@ -478,10 +427,6 @@ newEntity{
 	skill_spot = 4,
 	combat_dr = 5,
 	movement_speed_bonus = -0.66, 	
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }    
 
 --Climb 20 ft., scent
@@ -513,10 +458,6 @@ newEntity{
 	combat_dr = 10,
 	combat_dr_tohit = 1,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }    
 
 --Immunity to acid
@@ -543,10 +484,6 @@ newEntity{
 	skill_spot = 7,
 	movement_speed_bonus = -0.90, 	
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }    
 
 --Alternate form, scent, tremorsense 60 ft.; +4 Fort and Ref
@@ -582,10 +519,6 @@ newEntity{
 	[Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1
 	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 } 
 
 --Rust [item Ref DC 17]
@@ -612,10 +545,6 @@ newEntity{
 	movement_speed_bonus = 0.33,
 	alignment = "neutral",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 } 
 
 --Swim 40 ft.; rake 1d6
@@ -645,10 +574,6 @@ newEntity{
 	movement_speed_bonus = -0.33,
 	alignment = "lawful evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 } 
 
 --Too small to drop corpse; electricity damage; immunity to magic, natural invis
@@ -700,10 +625,6 @@ newEntity{
 	infravision = 4,
 	movement_speed_bonus = 0.33,
 	rarity = 20,
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 --Poison, 2d4 min sleep Fort DC 16; cast spells as Sor7

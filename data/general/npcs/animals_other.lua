@@ -19,10 +19,10 @@ newEntity{
         movement_speed_bonus = 2,
         fly = true,
         --Hack! Monsters drop corpses now
-        resolvers.inventory {
+--[[        resolvers.inventory {
         full_id=true,
         { name = "fresh corpse" }
-        },
+        },]]
 }
 
 newEntity{

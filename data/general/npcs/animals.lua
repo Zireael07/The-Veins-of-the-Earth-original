@@ -36,10 +36,10 @@ newEntity{
 	skill_movesilently = 8,
 	alignment = "neutral",
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{

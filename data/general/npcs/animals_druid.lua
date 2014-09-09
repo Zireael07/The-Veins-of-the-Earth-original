@@ -44,10 +44,10 @@ newEntity{
 	combat_natural = 1,
 	alignment = "neutral",
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{
@@ -81,10 +81,10 @@ newEntity{
 	combat_natural = 4,
 	alignment = "neutral",
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{

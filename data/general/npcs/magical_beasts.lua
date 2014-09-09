@@ -12,10 +12,10 @@ newEntity{
 	combat = { dam= {1,6} },
 	alignment = "neutral",
 	--Hack! Monsters drop corpses now
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{ base = "BASE_NPC_MAGBEAST",

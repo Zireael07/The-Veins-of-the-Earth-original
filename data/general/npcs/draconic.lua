@@ -36,10 +36,10 @@ newEntity{
         skill_swim = 13,
         alignment = "neutral",
         --Hack! Monsters drop corpses now
-        resolvers.inventory {
+--[[        resolvers.inventory {
         full_id=true,
         { name = "fresh corpse" }
-        },
+        },]]
 }
 
 --blindsense 60 ft.; Poison - pri sleep 10 rounds sec sleep 1d3 hours Fort DC 14
@@ -78,10 +78,10 @@ newEntity{
         fly = true,
         movement_speed_bonus = 1,
         --Hack! Monsters drop corpses now
-        resolvers.inventory {
+--[[        resolvers.inventory {
         full_id=true,
         { name = "fresh corpse" }
-        },
+        },]]
 }
 
 --Fly 60 ft; scent, improved grab
@@ -116,8 +116,8 @@ newEntity{
         alignment = "neutral",
         fly = true,
         --Hack! Monsters drop corpses now
-        resolvers.inventory {
+--[[        resolvers.inventory {
         full_id=true,
         { name = "fresh corpse" }
-        },
+        },]]
 }

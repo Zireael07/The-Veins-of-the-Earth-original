@@ -58,7 +58,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "shortbow" },
 	},
 }
@@ -79,7 +79,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
 	{ name = "short spear" },
 	},
 }
@@ -125,7 +125,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "shortbow" },
 	},
 }
@@ -171,10 +171,10 @@ newEntity{
 		{ name = "light wooden shield" },
 		{ name = "morningstar" },
 	},
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 }
 
 newEntity{
@@ -229,7 +229,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
 	{ name = "hand crossbow" },
 	},
 }
@@ -271,7 +271,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "shortbow" },
 	},
 }
@@ -315,7 +315,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "shortbow" },
 	},
 	uncommon_desc = [[ Dwarves come off as gruff or even rude, but they are an extremely determined and honorable people. They look down upon those who flaunt their wealth and usually wear only one or two pieces of finery themselves, although dwarven jewelry tends to be exceedingly beautiful and well-crafted.]],
@@ -343,7 +343,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "light crossbow" },
 	},
 }
@@ -388,10 +388,10 @@ newEntity{
 		{ name = "light wooden shield" },
 		{ name = "morningstar" },
 	},
-	resolvers.inventory {
+--[[	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" }
-	},
+	},]]
 	resolvers.specialnpc(),
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -445,7 +445,7 @@ newEntity{
 	resolvers.inventory {
 	full_id=true,
 	{ name = "shortbow" },
-	{ name = "fresh corpse" }
+--	{ name = "fresh corpse" }
 	},
 }
 
@@ -492,7 +492,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "light crossbow" },
 	},
 }
@@ -524,7 +524,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "light crossbow" },
 	},
 }
@@ -568,7 +568,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "light crossbow" },
 	},
 }
@@ -613,7 +613,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "javelin" },
 	},
 }
@@ -657,7 +657,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "javelin" },
 	},
 }
@@ -697,7 +697,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "longspear" },
 	},
 }
@@ -746,7 +746,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "trident" },
 	},
 }
@@ -789,7 +789,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "javelin" },
 	},
 }
@@ -839,7 +839,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "light crossbow" },
 	},
 }
@@ -889,7 +889,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "fresh corpse" },
+--	{ name = "fresh corpse" },
     { name = "light crossbow" },
 	},
 }
