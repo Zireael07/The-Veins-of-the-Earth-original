@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2014
 
 --Consumables
 newEntity{
@@ -60,7 +60,7 @@ newEntity{
   }, 
 }
 --Remains fresh for 10 turns
-newEntity{
+newEntity{ define_as = "FRESH_CORPSE",
     base = "BASE_FOOD",
     name = "fresh corpse", color=colors.GREEN,
     image = "tiles/newtiles/corpse.png",
@@ -75,7 +75,7 @@ newEntity{
   }, 
 }
 
-newEntity{
+newEntity{ define_as = "CORPSE",
     base = "BASE_FOOD",
     name = "corpse", color=colors.RED,
     image = "tiles/newtiles/corpse.png",
