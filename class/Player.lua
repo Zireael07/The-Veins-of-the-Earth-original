@@ -99,6 +99,8 @@ function _M:init(t, no_default)
   --Divine stuff
   self.favor = 0
   self.anger = 0
+  self.sacrifice_value = self.sacrifice_value or {}
+  self.max_sacrifice_value = self.max_sacrifice_value or {}
 
   --timestamp for saved chars
   self.time = os.time()
@@ -310,8 +312,10 @@ function _M:act()
 
   if self.descriptor.deity ~= "None" then
     self.god_pulse_counter = self.god_pulse_counter - 1
-    --if angered the deity
+
+    if self.anger > 0 then
     self.god_anger_counter = self.god_anger_counter - 1
+    end
 
     if self.god_pulse_counter == 0 then
       self:godPulse()
@@ -2132,8 +2136,8 @@ function _M:godAnger()
       
       if game.level.level >= 10 then game:changeLevel(1) 
       else 
-        if zone.max_level >= self.level.level + change then
-        game:changeLevel(change) end
+--[[        if game.zone.max_level >= self.level.level + change then
+        game:changeLevel(change) end]]
       end 
     end
 
@@ -2259,6 +2263,197 @@ function _M:randomMaeveStuff(anger)
   end
 
 end
+
+--Determines if the sacrifice is neutral, unworthy, angry or abomination
+function _M:getActorSacrificeReaction(deity, actor)
+  local ret
+
+  if deity == "Aiswin" then
+    if actor.type == "humanoid" then
+      ret = "neutral"
+    end
+    --no flag for grave wounding
+    if not actor.aiswin or not actor.aiswin == true then
+      ret = "unworthy"
+    end
+    --if used to be friendly then return "abomination"
+  end
+
+  if deity == "Ekliazeh" then
+    if actor.subtype == "dwarf" then
+      ret = "abomination"
+    end
+    --if was friendly then return "unworthy"
+  end
+
+  if deity == "Erich" then
+    if actor.subtype == "goblinoid" then
+      ret = "abomination"
+    end
+  end
+
+  if deity == "Essiah" then
+    --if non-evil then ret = "angry"
+    --if was friendly then ret = "angry"
+    --or vampire or erinyes or gray nymph
+    if actor.name == "satyr" or actor.name == "nymph" then
+      ret = "neutral"
+    end
+  end  
+
+  if deity == "Khasrach" then
+    if actor.subtype == "goblinoid" then
+      ret = "angry"
+    end
+    if actor.subtype == "orc" then
+      ret = "abomination"
+    end
+    if actor.challenge < self.level then
+      ret = "unworthy"
+    end
+  end  
+
+  if deity == "Kysul" then
+    if actor.type == "aberration" then
+      ret = "neutral"
+      --if not evil then ret = "abomination"
+    end
+  --  if actor.alignment == "lawful good" or actor.alignment == "neutral good" or actor.alignment == "chaotic good"
+  --or was friendly then ret = "abomination"
+  end 
+
+  if deity == "Mara" then
+    --flag damaged by player
+    if actor.mara == true then
+      ret = "abomination"
+    else
+      ret = "neutral"
+    end
+  end
+
+  if deity == "Maeve" then
+    if actor.subtype == "elf" then
+      ret = "abomination"
+    end
+  end
+
+  if deity == "Zurvash" then
+    if actor.challenge < self.level then
+      ret = "unworthy"
+    end
+  end
+
+  return ret
+end
+
+function _M:sacrificeMult(actor)
+  local deity = game.player.descriptor.deity
+
+  if not deity.sacrifice then return end
+
+  if not deity.sacrifice[actor.type] or deity.sacrifice[actor.subtype] then return end
+
+  if actor.type ~= "humanoid"  then
+    return deity.sacrifice[actor.type]
+  else
+    if not deity.sacrifice[humanoid] then
+    return deity.sacrifice[actor.subtype]
+    else return deity.sacrifice[actor.type]
+    end
+  end
+end
+
+
+
+function _M:sacrificeValue(actor)
+  local player = game.player
+  local value = player.sacrifice_value
+  local max_value = player.max_sacrifice_value
+  local mult = 10
+
+  mult = self:sacrificeMult(actor) or 10
+
+--  value = (mult*actor.challenge*(10+player.knowledge_skill))/10
+    --cba to add another skill now
+    player.sacrifice_value = player.sacrifice_value or {}
+    value[actor.type] = value[actor.type] or 0
+    value[actor.type] = (mult*actor.challenge)/10
+
+    player.max_sacrifice_value = player.max_sacrifice_value or {}
+    max_value[actor.type] = max_value[actor.type] or 0
+
+    if value[actor.type] > (max_value[actor.type] or 0) then
+      max_value[actor.type] = value[actor.type]
+      self.impressed_deity = true
+    end
+
+    return value[actor.type]
+
+end
+
+
+--NOTE: actor is the monster that got killed on the altar tile
+function _M:liveSacrifice(actor)
+  local player = game.player
+  --sacrificing only to player's deity for now
+  local deity = self.descriptor.deity
+
+  local sac_val = self:sacrificeValue(actor)
+
+  --No live sacrifices if Hesani worshipper
+  if deity == "Hesani" then return end
+  --..or Immotian
+  if deity == "Immotian" then return end
+
+  if self.forsaken == true then
+    player:divineMessage(deity, "bad prayer")
+    --retribution
+  return end
+
+  --if actor.summoned == true or actor.illusion == true then return end
+
+  --check deity reaction first before doing anything else
+  if self:getActorSacrificeReaction(deity, actor) == "abomination" then
+    player:transgress(deity, 5, true, "offensive sacrifice")
+    player:divineMessage(deity, "bad sacrifice")
+    return end
+  
+  if self:getActorSacrificeReaction(deity, actor) == "angry" then 
+    player:transgress(deity, 1, false, "offensive sacrifice") 
+    player:divineMessage(deity, "bad sacrifice")
+    return end
+  if self:getActorSacrificeReaction(deity, actor) == "unworthy" then
+    player:divineMessage(deity, "insufficient")
+    return end
+  
+
+  player:divineMessage(deity, "sacrifice")
+  
+  self:sacrificeValue(actor)
+
+  --reduce anger
+  if self.anger > 0 then
+    local check_anger = math.max(0, (self.anger-3))
+    if check_anger > 0 then
+      player:divineMessage(deity, "lessened")
+    else
+      player:divineMessage(deity, "mollified")
+    end
+  end
+
+  --message
+  if self.impressed_deity == true then
+    player:divineMessage(deity, "impressed")
+    --exercise WIS
+  else
+    player:divineMessage(deity, "satisfied")
+  end  
+
+  --increase favor by sacrifice value
+  player:incFavorFor(deity, sac_val)
+
+end
+
 
 
 --Moddable tiles code from ToME 4

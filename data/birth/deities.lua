@@ -18,7 +18,10 @@ newBirthDescriptor {
 
   Alignment: Neutral
   Accepts clerics of any alignment]],
-
+  sacrifice = {
+  humanoid = 10,
+  --TO DO: ALL = 2
+},
 }
 
 newBirthDescriptor {
@@ -53,6 +56,12 @@ newBirthDescriptor {
 	      ['Chaotic Evil'] = "forbid",		
 		},
 	},
+	sacrifice = {
+  	drow = 15,
+  	goblinoid = 15,
+  	giant = 15, 
+  	--TO DO - evil = 7
+},
 }
 
 --Note to self: he's LE not LG as flavor description would suggest!!!
@@ -77,6 +86,12 @@ newBirthDescriptor {
 	      ['Neutral Evil'] = "forbid",
 		},
 	},
+	sacrifice = {
+  dragon = 20,
+  --TO DO: evil outsider = 20,
+  magical_beast = 10,
+  --TO DO: evil demihuman
+},
 }
 
 newBirthDescriptor {
@@ -187,6 +202,11 @@ newBirthDescriptor {
 		},
 	   
 	},
+	sacrifice = {
+  outsider = 15,
+  --TO DO: evil aberration = 10,
+  --evil = 10,
+},
 }
 
 newBirthDescriptor {
@@ -213,6 +233,9 @@ newBirthDescriptor {
 		},
 	    
 	},
+	sacrifice = {
+  drow = 10,
+},
 }
 
 newBirthDescriptor {
@@ -274,6 +297,12 @@ newBirthDescriptor {
 		},
 	 
 	},
+	sacrifice = {
+  --flayer = 10,
+  --eye = 10,
+  --evil = 5,
+  --bandit template = 12,
+},
 }
 
 --An excuse to get domains otherwise unavailable
@@ -369,4 +398,8 @@ newBirthDescriptor {
 		},
 	    
 	},
+	sacrifice = {
+  magical_beast = 10,
+  humanoid = 10,
+},
 }

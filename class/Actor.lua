@@ -742,6 +742,12 @@ function _M:die(src)
 
 		self:deathDivineReaction()
 
+		--live sacrifice on altar
+		local t = game.level.map(self.x, self.y, Map.TERRAIN)
+
+		if t.is_altar then
+			player:liveSacrifice(self)
+		end
 	end
 
 	return true
