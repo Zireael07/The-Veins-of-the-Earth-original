@@ -53,13 +53,12 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "short spear" },
-		{ name = "arrows" },
+		{ name = "short spear", not_properties={"cursed"} },
+		{ name = "arrows", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
-    { name = "shortbow" },
+    { name = "shortbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -73,14 +72,13 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "arrows" },
-        { name = "shortbow" },
-        { name = "leather armor"},
+		{ name = "arrows", not_properties={"cursed"}  },
+        { name = "shortbow", not_properties={"cursed"}  },
+        { name = "leather armor", not_properties={"cursed"} },
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
-	{ name = "short spear" },
+	{ name = "short spear", not_properties={"cursed"}  },
 	},
 }
 
@@ -119,14 +117,14 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "studded leather armor" },
-		{ name = "falchion" },
-		{ name = "arrows" },
+		{ name = "studded leather armor", not_properties={"cursed"}  },
+		{ name = "falchion", not_properties={"cursed"}  },
+		{ name = "arrows", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
 --	{ name = "fresh corpse" },
-    { name = "shortbow" },
+    { name = "shortbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -167,9 +165,9 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "leather armor" },
-		{ name = "light wooden shield" },
-		{ name = "morningstar" },
+		{ name = "leather armor", not_properties={"cursed"}  },
+		{ name = "light wooden shield", not_properties={"cursed"}  },
+		{ name = "morningstar", not_properties={"cursed"}  },
 	},
 --[[	resolvers.inventory {
 	full_id=true,
@@ -222,15 +220,15 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "chain shirt" },
-		{ name = "light metal shield" },
-		{ name = "rapier" },
-		{ name = "bolts" },
+		{ name = "chain shirt", not_properties={"cursed"}  },
+		{ name = "light metal shield", not_properties={"cursed"}  },
+		{ name = "rapier", not_properties={"cursed"}  },
+		{ name = "bolts", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
 --	{ name = "fresh corpse" },
-	{ name = "hand crossbow" },
+	{ name = "hand crossbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -264,15 +262,15 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "chain mail" },
-		{ name = "light metal shield" },
-		{ name = "longsword" },
-		{ name = "arrows" },
+		{ name = "chain mail", not_properties={"cursed"}  },
+		{ name = "light metal shield", not_properties={"cursed"}  },
+		{ name = "longsword", not_properties={"cursed"}  },
+		{ name = "arrows", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
 --	{ name = "fresh corpse" },
-    { name = "shortbow" },
+    { name = "shortbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -308,15 +306,14 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "scale mail" },
-		{ name = "heavy metal shield" },
-		{ name = "dwarven waraxe" },
-		{ name = "arrows" },
+		{ name = "scale mail", not_properties={"cursed"}  },
+		{ name = "heavy metal shield", not_properties={"cursed"}  },
+		{ name = "dwarven waraxe", not_properties={"cursed"}  },
+		{ name = "arrows", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
-    { name = "shortbow" },
+    { name = "shortbow", not_properties={"cursed"}  },
 	},
 	uncommon_desc = [[ Dwarves come off as gruff or even rude, but they are an extremely determined and honorable people. They look down upon those who flaunt their wealth and usually wear only one or two pieces of finery themselves, although dwarven jewelry tends to be exceedingly beautiful and well-crafted.]],
 	common_desc = [[Dwarves build their kingdoms underground, carving them straight into the stone of mountainsides. They are naturally adept at working stone, and spend their days mining gems and precious metals from beneath the earth.]],
@@ -336,15 +333,14 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "chain mail" },
-		{ name = "heavy metal shield" },
-		{ name = "warhammer" },
-		{ name = "bolts" },
+		{ name = "chain mail", not_properties={"cursed"}  },
+		{ name = "heavy metal shield", not_properties={"cursed"}  },
+		{ name = "warhammer", not_properties={"cursed"}  },
+		{ name = "bolts", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
-    { name = "light crossbow" },
+    { name = "light crossbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -384,14 +380,10 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "leather armor" },
-		{ name = "light wooden shield" },
-		{ name = "morningstar" },
+		{ name = "leather armor", not_properties={"cursed"}  },
+		{ name = "light wooden shield", not_properties={"cursed"}  },
+		{ name = "morningstar", not_properties={"cursed"}  },
 	},
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 	resolvers.specialnpc(),
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -437,14 +429,14 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "leather armor" },
-		{ name = "heavy steel shield" },
-		{ name = "battleaxe" },
-		{ name = "arrows" },
+		{ name = "leather armor", not_properties={"cursed"}  },
+		{ name = "heavy steel shield", not_properties={"cursed"}  },
+		{ name = "battleaxe", not_properties={"cursed"}  },
+		{ name = "arrows", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "shortbow" },
+	{ name = "shortbow", not_properties={"cursed"}  },
 --	{ name = "fresh corpse" }
 	},
 }
@@ -485,15 +477,15 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1 },
 	resolvers.equip{
 		full_id=true,
-		{ name = "chain shirt" },
-		{ name = "heavy metal shield" },
-		{ name = "longsword" },
-		{ name = "bolts" },
+		{ name = "chain shirt", not_properties={"cursed"}  },
+		{ name = "heavy metal shield", not_properties={"cursed"}  },
+		{ name = "longsword", not_properties={"cursed"}  },
+		{ name = "bolts", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
 --	{ name = "fresh corpse" },
-    { name = "light crossbow" },
+    { name = "light crossbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -517,15 +509,14 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "banded mail" },
-		{ name = "buckler" },
-		{ name = "longsword" },
-		{ name = "bolts" },
+		{ name = "banded mail", not_properties={"cursed"}  },
+		{ name = "buckler", not_properties={"cursed"}  },
+		{ name = "longsword", not_properties={"cursed"}  },
+		{ name = "bolts", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
-    { name = "light crossbow" },
+    { name = "light crossbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -561,15 +552,14 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "studded leather" },
-		{ name = "light metal shield" },
-		{ name = "longsword" },
-		{ name = "bolts" },
+		{ name = "studded leather", not_properties={"cursed"}  },
+		{ name = "light metal shield", not_properties={"cursed"}  },
+		{ name = "longsword", not_properties={"cursed"}  },
+		{ name = "bolts", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
-    { name = "light crossbow" },
+    { name = "light crossbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -607,9 +597,9 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "studded leather" },
-		{ name = "light metal shield" },
-		{ name = "longsword" },
+		{ name = "studded leather", not_properties={"cursed"}  },
+		{ name = "light metal shield", not_properties={"cursed"}  },
+		{ name = "longsword", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -651,14 +641,13 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "studded leather" },
-		{ name = "heavy metal shield" },
-		{ name = "club" },
+		{ name = "studded leather", not_properties={"cursed"}  },
+		{ name = "heavy metal shield", not_properties={"cursed"}  },
+		{ name = "club", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
-    { name = "javelin" },
+    { name = "javelin", not_properties={"cursed"}  },
 	},
 }
 
@@ -692,13 +681,13 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "light crossbow" },
-		{ name = "bolts" },
+		{ name = "light crossbow", not_properties={"cursed"}  },
+		{ name = "bolts", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
 --	{ name = "fresh corpse" },
-    { name = "longspear" },
+    { name = "longspear", not_properties={"cursed"}  },
 	},
 }
 
@@ -740,14 +729,13 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "leather armor" },
-		{ name = "heavy crossbow" },
-		{ name = "bolts" },
+		{ name = "leather armor", not_properties={"cursed"}  },
+		{ name = "heavy crossbow", not_properties={"cursed"}  },
+		{ name = "bolts", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
-    { name = "trident" },
+    { name = "trident", not_properties={"cursed"}  },
 	},
 }
 
@@ -833,14 +821,14 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "studded leather armor" },
-		{ name = "rapier" },
-		{ name = "bolts" },
+		{ name = "studded leather armor", not_properties={"cursed"}  },
+		{ name = "rapier", not_properties={"cursed"}  },
+		{ name = "bolts", not_properties={"cursed"}  },
 	},
 	resolvers.inventory {
 	full_id=true,
 --	{ name = "fresh corpse" },
-    { name = "light crossbow" },
+    { name = "light crossbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -882,15 +870,14 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "scale mail" },
-		{ name = "longsword" },
-		{ name = "heavy metal shield" },
-		{ name = "bolts" },
+		{ name = "scale mail", not_properties={"cursed"} },
+		{ name = "longsword", not_properties={"cursed"} },
+		{ name = "heavy metal shield", not_properties={"cursed"} },
+		{ name = "bolts", not_properties={"cursed"} },
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
-    { name = "light crossbow" },
+    { name = "light crossbow", not_properties={"cursed"} },
 	},
 }
 
