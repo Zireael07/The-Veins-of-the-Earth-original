@@ -181,7 +181,7 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
     self:generateLists()
 
     local lists_top = self.t_general.h + 15 + self.c_name.h + 35
-    local lists_height = self.ih - lists_top - self.c_save.h - 5 
+    local lists_height = self.ih - lists_top - self.c_save.h - 20 
 
     self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
     self.c_class = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
@@ -195,15 +195,15 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
 
     --OPTIONAL TAB
 
-    local lists_height2 = self.ih - self.c_save.h - 5
+    local lists_height_opt = self.ih*0.75
 
     self:generateDeities()
     self.c_deity_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Deity: #LAST#"}
-    self.c_deity = List.new{width=self.iw/6, height = lists_height2, nb_items=#self.list_deity, list=self.list_deity, fct=function(item) self:DeityUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+    self.c_deity = List.new{width=self.iw/6, height = lists_height_opt, nb_items=#self.list_deity, list=self.list_deity, fct=function(item) self:DeityUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
     self:generateBackgrounds()
     self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
-    self.c_background = List.new{width=self.iw/6, height = lists_height2, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+    self.c_background = List.new{width=self.iw/6, height = lists_height_opt, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
     self:updateTab('all')
     self.t_stats:select()
