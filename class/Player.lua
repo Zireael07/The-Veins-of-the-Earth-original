@@ -1584,6 +1584,7 @@ function _M:divineMessage(deity, message, desc)
   
   if deity == "Ekliazeh" then
     color = "#SANDY_BROWN#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|By the forge and the hammer, we stand united!|#LAST#" end
     if message == "anger" then string = "A deep voice thunders, "..color.."|Thou hast broken the ancient Law!|#LAST#" end
     if message == "pleased" then string = "A deep voice thunders, "..color.."|Great riches are these!|#LAST#" end
@@ -1627,6 +1628,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Erich" then
     color = "#PURPLE#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|Let there be zeal in your heart, truth in your words, honor in your deeds and blood upon your sword!|#LAST#" end
     if message == "convert" then string = "" end
     if message == "bad sacrifice" then string = "A proud voice booms, "..color.."|Thou stains my altar with the blood of that trash?! Suffer, churl!|#LAST#" end
@@ -1645,6 +1647,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Essiah" then
     color = "#PINK#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|The horizon awaits...|#LAST#" end
     if message == "convert" then string = "" end
     if message == "blessing one" then string = color.."|I teach thee now to honor the feelings of thy lovers, and the crafts of herbs to control thine own body.|#LAST#" end
@@ -1663,6 +1666,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Hesani" then
     color = "#YELLOW#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|Walk in harmony with the world, and your prosperity shall multiply a thousand-fold. Fight against its tides, and they will tear your life asunder.|#LAST#" end
     if message == "convert" then string = "" end
     --only barbarian levels
@@ -1673,6 +1677,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Immotian" then
     color = "#GOLD#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|The flame of purity lights the path to righteousness!|#LAST#" end
     if message == "bad sacrifice" then string = color.."|Barbarian! Thou hast stained My altar with blood! This is an abomination of the highest order!|#LAST#" end
     if message == "convert" then string = "" end
@@ -1703,6 +1708,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Khasrach" then
     color = "#OLIVE_DRAB#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = "" end
     if message == "convert" then string = "" end
     if message == "bad sacrifice" then string = color.."|Thou dares to offer me the blood of mine own people?! SUFFER!|#LAST#" end
@@ -1730,6 +1736,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Kysul" then
     color = "#LIGHT_GREEN#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|Seek now thine antediluvian progenitors that in sunken cities for eons have lain.|#LAST#" end
     if message == "aid" then string = "Kysul guides you to safety through the cracks and flaws between dimensions." end
     if message == "convert" then string = "" end
@@ -1754,6 +1761,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Mara" then
     color = "#ANTIQUE_WHITE#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|May you find beauty in endings.|#LAST#" end
     if message == "bad sacrifice" then string = "A solemn voice thunders: "..color.."|You have stained my altar with conquest-blood! You shall suffer for this grievous misjudgement!|#LAST#" end
     if message == "convert" then string = "" end
@@ -1778,6 +1786,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Maeve" then
     color = "#DARK_GREEN#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|And there shall be laughter and magic and blood, and we shall dance our dance until the end of time...|#LAST#" end
     if message == "convert" then string = "" end
     --god pulse; o.type is either cloak/ring/amulet; must be magical
@@ -1814,6 +1823,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Sabin" then
     color = "#LIGHT_BLUE#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|Life is a whirlwind. Cast free your tethers, dive forward and watch as you soar!|#LAST#" end
     if message == "convert" then string = "" end
     if message == "custom one" then string = "A resonant voice speaks: "..color.."|Thou hast grown too static -- be changed!|#LAST#" end
@@ -1833,6 +1843,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Semirath" then
     color = "#ORCHID#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|Now, my child, go forth and teach the legions of ignorance that there are many fates worse than death, and some even involve radishes!|#LAST#" end
     if message == "convert" then string = "" end
     --god pulse; hostile non-good humanoid in LOS
@@ -1854,6 +1865,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Xavias" then
     color = "#DARK_SLATE_GRAY#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|And the path of the Golden Lion, the Philosopher's Treasure, the Glory of Transmutation shall soon be lain clear before thee!|#LAST#" end
     if message == "convert" then string = "" end
     if message == "custom one" then string = "An elderly voice speaks sadly, "..color.."|Forgive me, my child: thou lacks the depth of vision to truly explore the Holy Mysteries.|#LAST#" end
@@ -1876,6 +1888,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Xel" then
     color = "#DARK_RED#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = "You feel an aching, primordial hunger. "..color.."|Blood for the blood god!|#LAST#" end
     --doesn't really communicate
   end
@@ -1883,6 +1896,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Zurvash" then
     color = "#CRIMSON#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = "May your hunt be fruitful, and your plunder rich and succulent!" end
     if message == "convert" then string = "" end
     --anger; summon several hostile non-good fiendish critters, total CR player.level +2
@@ -1901,6 +1915,7 @@ function _M:divineMessage(deity, message, desc)
 
   if deity == "Multitude" then
     color = "#SLATE#"
+    if message == "anger" then string = "" end
     if message == "salutation" then string = color.."|killemflayemburnemhurtemmakeemscreammakeemBLEED...|#LAST#" end
     if message == "convert" then string = "" end
     --god pulse, gain 4d50 favor
@@ -1911,6 +1926,8 @@ function _M:divineMessage(deity, message, desc)
     if message == "custom three" then string = color.."|traitortraitortraitorDIEtraitortraitor...|#LAST#" end
     --don't really communicate
   end
+
+
     
     if desc then string = string.." about "..desc end
     game.logPlayer(self, string)
