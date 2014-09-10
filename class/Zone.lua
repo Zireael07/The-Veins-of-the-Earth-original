@@ -268,6 +268,25 @@ function _M:newLevel(level_data, lev, old_lev, game)
     -- Delete the room_map, now useless
     map.room_map = nil
 
+    --Check for spots connectivity again for spots added in post_process
+    for i = 1, #spots do
+        local spot = spots[i]
+        if spot.check_connectivity then
+            local cx, cy
+            if type(spot.check_connectivity) == "string" and spot.check_connectivity == "entrance" then cx, cy = ux, uy
+            elseif type(spot.check_connectivity) == "string" and spot.check_connectivity == "exit" then cx, cy = dx, dy
+            else cx, cy = spot.check_connectivity.x, spot.check_connectivity.y
+            end
+
+            print("[LEVEL GENERATION] checking A*", spot.x, spot.y, "to", cx, cy)
+            if spot.x and spot.y and cx and cy and (spot.x ~= cx or spot.y ~= cy) and not a:calc(spot.x, spot.y, cx, cy) then
+                forceprint("Level unconnected, no way from", spot.x, spot.y, "to", cx, cy)
+                level:removed()
+                return self:newLevel(level_data, lev, old_lev, game)
+            end
+        end
+    end
+
    
     return level
 end
