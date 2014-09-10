@@ -99,6 +99,11 @@ newEffect{
 	status = "detrimental",
 	on_gain = function(self, err) return "#Target# fell!", "+Fell" end,
 	on_lose = function(self, err) return "#Target# got up from the ground.", "-Fell" end,
+	on_merge = function(self, old_eff, new_eff)
+        -- Merging has no effect, to prevent repeated knockdowns from stunlocking
+        -- a creature.
+        return old_eff
+    end,
 	activate = function(self, eff)
 		eff.tmpid = self:addTemporaryValue("never_move", 1)
 	end,
