@@ -725,7 +725,7 @@ function _M:die(src)
 			corpse.unided_name = self.name.." corpse"
 			corpse.source = self.type
 			game.zone:addEntity(game.level, corpse, "object", dropx, dropy)
-			game.log("Placed corpse "..self.name..dropx..dropy)
+		--	game.log("Placed corpse "..self.name..dropx..dropy)
 		end
 	end
 
@@ -1803,6 +1803,86 @@ function _M:giveLevels(name, n)
 	n = n-1
 	end
 end
+
+--Swap weapons functions
+function _M:hasRangedWeapon()
+	local inven = self.inven[self.INVEN_INVEN]
+		for k, o in ipairs(inven) do
+			if  o.ranged == true then
+				return true
+			end
+		end
+		return false
+end
+
+function _M:hasRangedAmmo()
+	local inven = self.inven[self.INVEN_INVEN]
+		for k, o in ipairs(inven) do
+			if  o.ammo == true then
+				return true
+			end
+		end
+		return false
+end
+
+function _M:getRangedAmmo()
+	local inven = self.inven[self.INVEN_INVEN]
+		for k, o in ipairs(inven) do
+			if  o.ammo == true then
+				return o
+			end
+		end
+		return nil
+end
+
+function _M:getRangedWeapon()
+	local inven = self.inven[self.INVEN_INVEN]
+		for k, o in ipairs(inven) do
+			if  o.ranged == true then
+				return o
+			end
+		end
+		return nil
+end
+
+
+function _M:wieldRanged()
+	local weapon = self:getInven("MAIN_HAND")[1]
+    local ammo = self:getInven("QUIVER")[1]
+
+    local mh = self.inven[self.INVEN_MAIN_HAND]
+    local am = self.inven[self.INVEN_QUIVER]
+
+    --Do we have ammo in inventory?
+    if self:hasRangedAmmo() then
+    	--check if types match
+    	if weapon.ranged then 
+    		if not weapon.ammo_type == self:getRangedAmmo().archery_ammo then return end
+    	else 
+    		if not self:getRangedWeapon().ammo_type == self:getRangedAmmo().archery_ammo then return end
+    	end
+    end
+    
+    if self:hasRangedWeapon() then
+
+    	self:removeObject(inven, weapon, true)
+    	
+    	self:addObject(mh, self:getRangedWeapon())
+    end
+
+    if self:hasRangedAmmo() then
+    	self:removeObject(inven, ammo, true)
+
+    	self:addObject(am, self:getRangedAmmo())
+    end
+end
+
+function _M:wieldMelee()
+	local shield = self:getInven("OFF_HAND")[1]
+
+
+end
+
 
 --Encumbrance & auto-ID stuff, Zireael
 function _M:on_pickup_object(o)
