@@ -677,28 +677,14 @@ end
 end
 
 function _M:playerDrop()
---[[    local inven = self:getInven(self.INVEN_INVEN)
-    local d d = self:showInventory("Drop object", inven, nil, function(o, item)
-       self:dropFloor(inven, item, true, true)
-        self:checkEncumbrance()
-        self:sortInven(inven)
-        self:useEnergy()
-        self.changed = true
-        return true
-    end)]]
-
 if self.no_inventory_access then return end
   local inven = self:getInven(self.INVEN_INVEN)
---[[  local titleupdator = self:getEncumberTitleUpdater("Drop object")
-  local d d = self:showInventory(titleupdator(), inven, nil, function(o, item)
-    self:doDrop(inven, item)
-    d:updateTitle(titleupdator())]]
+
     local d d = self:showInventory("Drop object", inven, nil, function(o, item)
       self:doDrop(inven, item)
 
     return true
   end)
-
 
 end 
 
@@ -736,6 +722,16 @@ function _M:doDrop(inven, item, on_done, nb)
     end, "Cancel", "Destroy", true)
     return
   end
+
+  --item sacrifice
+  local t = game.level.map(self.x, self.y, Map.TERRAIN)
+  local o = self:getInven(inven) and self:getInven(inven)[item]
+
+    if t.is_altar then
+
+     self:itemSacrifice(o)
+    end
+
   if nb == nil or nb >= self:getInven(inven)[item]:getNumber() then
     self:dropFloor(inven, item, true, true)
   else
@@ -745,7 +741,7 @@ function _M:doDrop(inven, item, on_done, nb)
   self:sortInven(inven)
   self:useEnergy()
   self.changed = true
-  game:playSound("actions/drop")
+--  game:playSound("actions/drop")
   if on_done then on_done() end
 end
 
@@ -2518,6 +2514,70 @@ function _M:liveSacrifice(actor)
 
 end
 
+
+function _M:itemSacrifice(item)
+  local player = game.player
+  --sacrificing only to player's deity for now
+  local deity = self.descriptor.deity
+
+  local sac_val
+
+  --No live sacrifices if Hesani worshipper
+--[[  if deity == "Hesani" then return end
+  --..or Immotian
+  if deity == "Immotian" then return end]]
+
+  if self.forsaken == true then
+    player:divineMessage(deity, "bad prayer")
+    --retribution
+  return end
+
+  --check deity reaction first before doing anything else
+  if self:getActorSacrificeReaction(deity, actor) == "abomination" then
+    player:transgress(deity, 5, true, "offensive sacrifice")
+    player:divineMessage(deity, "bad sacrifice")
+    return end
+  
+  if self:getActorSacrificeReaction(deity, actor) == "angry" then 
+    player:transgress(deity, 1, false, "offensive sacrifice") 
+    player:divineMessage(deity, "bad sacrifice")
+    return end
+  if self:getActorSacrificeReaction(deity, actor) == "unworthy" then
+    player:divineMessage(deity, "insufficient")
+    return end
+  
+
+  player:divineMessage(deity, "sacrifice")
+  
+
+  if item.subtype == "corpse" then
+    sac_val = self:sacrificeValue(item.victim)
+  else
+    sac_val = self:sacrificeItemValue(item)
+  end
+
+  --reduce anger
+  if self.anger > 0 then
+    local check_anger = math.max(0, (self.anger-3))
+    if check_anger > 0 then
+      player:divineMessage(deity, "lessened")
+    else
+      player:divineMessage(deity, "mollified")
+    end
+  end
+
+  --message
+  if self.impressed_deity == true then
+    player:divineMessage(deity, "impressed")
+    --exercise WIS
+  else
+    player:divineMessage(deity, "satisfied")
+  end  
+
+  --increase favor by sacrifice value
+  player:incFavorFor(deity, sac_val)
+
+end
 
 
 --Moddable tiles code from ToME 4

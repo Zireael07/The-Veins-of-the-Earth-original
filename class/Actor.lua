@@ -723,7 +723,7 @@ function _M:die(src)
 		if corpse then
 			corpse.name = self.name.." corpse"
 			corpse.unided_name = self.name.." corpse"
-			corpse.source = self.type
+			corpse.victim = self
 			game.zone:addEntity(game.level, corpse, "object", dropx, dropy)
 		--	game.log("Placed corpse "..self.name..dropx..dropy)
 		end
