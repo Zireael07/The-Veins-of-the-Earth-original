@@ -82,6 +82,8 @@ function _M:tooltip(x, y)
 	--More info
 	if game.player:hasLOS(x, y) then tstr:add({"color", "CRIMSON"}, "In sight", {"color", "LAST"}, true) end
 	
+	if game.level.map.seens(x, y) then tstr:add({"color", "CRIMSON"}, "Seen", {"color", "LAST"}, true) end
+
 	if game.level.map.lites(x, y) then tstr:add({"color", "YELLOW"}, "Lit", {"color", "LAST"}, true) end
 	if self:check("block_sight", x, y) then tstr:add({"color", "SANDY_BROWN"}, "Blocks sight", {"color", "LAST"}, true) end
 	if self:check("block_move", x, y, game.player) then tstr:add({"color", "SANDY_BROWN"}, "Blocks movement", {"color", "LAST"}, true) end
