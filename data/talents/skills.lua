@@ -1,6 +1,6 @@
 newTalentType{ type="skill/skill", name = "skill", description = "Skills" }
 
-newTalent{
+--[[newTalent{
 	name = "Intuition", image = "talents/intuition.png",
 	type = {"skill/skill",1},
 	mode = "activated",
@@ -24,7 +24,7 @@ newTalent{
 	info = function(self, t )
 		return "Attempt to identify items in your inventory"
 	end,
-}
+}]]
 
 
 local function stealthTest(self)

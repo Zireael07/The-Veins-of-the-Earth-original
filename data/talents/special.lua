@@ -182,3 +182,48 @@ newTalent{
         return ([[Dig a tunnel. It would take %d turns (based on your equipment).]]):format(best.digspeed)
     end,
 }
+
+
+--Prayer
+newTalent{
+    name = "Prayer", image = "talents/prayer.png",
+    type = {"special/special",1},
+    mode = "activated",
+    points = 1,
+    cooldown = 20,
+    range = 0,
+    action = function(self, t)
+        if self == game.player then
+        local player = game.player
+        local deity = player.descriptor.deity
+        if deity == "None" then game.logPlayer(self, "You have no god to pray to") return end
+
+        --if altar give choice of your deity or altar deity
+        --local t = game.level.map(self.x, self.y, Map.TERRAIN) if t.is_altar then
+
+        --if altar to different deity, give convert option
+        --if altar to my deity, give bless items option
+
+        game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the option",{
+               {name="Request aid", desc=""},
+               {name="Seek insight", desc=""},
+             --[[  {name="+3 bonus", desc=""},
+                {name="+4 bonus", desc=""},
+                {name="+5 bonus", desc=""},]] 
+                },
+                function(result)
+                if result == "Request aid" then
+                    player:pray()
+                else 
+                end
+
+                end))
+                    
+
+        return true
+        end
+    end,
+    info = function(self, t )
+        return "Pray to a deity to receive various boons."
+    end,
+}

@@ -52,7 +52,7 @@ newBirthDescriptor{
   },
   talents = {
     [ActorTalents.T_SHOOT]=1,
---    [ActorTalents.T_INTUITION]=1,
+    [ActorTalents.T_PRAYER]=1,
     [ActorTalents.T_POLEARM]=1,
     [ActorTalents.T_STEALTH]=1,
     [ActorTalents.T_DIPLOMACY]=1,
