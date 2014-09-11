@@ -167,6 +167,11 @@ newBirthDescriptor {
 		},
 	    
 	},
+  sacrifice = {
+--  book = 20,
+  wand = 20,
+  staff = 10,
+}
 }
 
 newBirthDescriptor {
@@ -235,6 +240,10 @@ newBirthDescriptor {
 	},
 	sacrifice = {
   drow = 10,
+  cloak = 10,
+  ring = 10, 
+--  gem = 10,
+  amulet = 10,
 },
 }
 
@@ -328,6 +337,10 @@ newBirthDescriptor {
 		},
 	    
 	},
+  sacrifice = {
+  undead = 20,
+  --nonliving = 7,
+}
 }
 
 newBirthDescriptor {

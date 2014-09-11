@@ -728,8 +728,17 @@ function _M:doDrop(inven, item, on_done, nb)
   local o = self:getInven(inven) and self:getInven(inven)[item]
 
     if t.is_altar then
-
-     self:itemSacrifice(o)
+      if o and not o.plot then
+        self:itemSacrifice(o)
+        game.logPlayer(self, "You destroy %s.", o:getName{do_colour=true, do_count=true})
+        self:checkEncumbrance()
+        self:sortInven()
+        self:useEnergy()
+        if on_done then on_done() end
+      elseif o then
+          game.logPlayer(self, "You can not destroy %s.", o:getName{do_colour=true})
+      end
+      return
     end
 
   if nb == nil or nb >= self:getInven(inven)[item]:getNumber() then
@@ -2397,6 +2406,10 @@ function _M:getActorSacrificeReaction(deity, actor)
     end
   end
 
+  if deity == "Multitude" then
+    --if non-good and was friendly then ret = "unworthy"
+  end
+
   if deity == "Zurvash" then
     if actor.challenge < self.level then
       ret = "unworthy"
@@ -2514,6 +2527,44 @@ function _M:liveSacrifice(actor)
 
 end
 
+function _M:sacrificeItemMult(actor)
+  local deity = game.player.descriptor.deity
+
+  if not deity.sacrifice then return end
+
+  if not deity.sacrifice[item.type] or deity.sacrifice[item.subtype] then return end
+
+end
+
+
+
+function _M:sacrificeItemValue(item)
+  local player = game.player
+  local value = player.sacrifice_value
+  local max_value = player.max_sacrifice_value
+  local mult = 10
+
+  mult = self:sacrificeItemMult(item) or 10
+
+--  value = (mult*actor.challenge*(10+player.knowledge_skill))/10
+    --cba to add another skill now
+    player.sacrifice_value = player.sacrifice_value or {}
+    value[item.type] = value[item.type] or 0
+    value[item.type] = (mult*item.cost)/10
+
+    player.max_sacrifice_value = player.max_sacrifice_value or {}
+    max_value[item.type] = max_value[item.type] or 0
+
+
+    --deity is impressed if item.cost > WealthByLevel[self.level / 2] / 20)
+ --[[   if value[item.type] > (max_value[item.type] or 0) then
+      max_value[item.type] = value[item.type]
+      self.impressed_deity = true
+    end]]
+
+    return value[item.type]
+end
+
 
 function _M:itemSacrifice(item)
   local player = game.player
@@ -2522,10 +2573,7 @@ function _M:itemSacrifice(item)
 
   local sac_val
 
-  --No live sacrifices if Hesani worshipper
---[[  if deity == "Hesani" then return end
-  --..or Immotian
-  if deity == "Immotian" then return end]]
+  --Hesani takes only golden items
 
   if self.forsaken == true then
     player:divineMessage(deity, "bad prayer")
@@ -2550,7 +2598,7 @@ function _M:itemSacrifice(item)
   player:divineMessage(deity, "sacrifice")
   
 
-  if item.subtype == "corpse" then
+  if item.subtype == "corpse" and item.victim then
     sac_val = self:sacrificeValue(item.victim)
   else
     sac_val = self:sacrificeItemValue(item)
