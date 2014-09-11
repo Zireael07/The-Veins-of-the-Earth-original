@@ -1985,6 +1985,42 @@ function _M:reactionToward(target)
     return v
 end
 
+--is there a quicker way to do it?
+--From most dangerous to weakest
+function _M:isPoisoned()
+	if self:hasEffect(self.EFF_POISON_EXTRASTRONG_CON) then return EFF_POISON_EXTRASTRONG_CON end
+	if self:hasEffect(self.EFF_POISON_DRAGON_BILE) then return EFF_POISON_DRAGON_BILE end
+	if self:hasEffect(self.EFF_POISON_STRONG_CON) then return EFF_POISON_STRONG_CON end
+	if self:hasEffect(self.EFF_POISON_STRONG_STR) then return EFF_POISON_STRONG_STR end
+	if self:hasEffect(self.EFF_POISON_ARSENIC_SEC) then return EFF_POISON_ARSENIC_SEC end
+	if self:hasEffect(self.EFF_POISON_MEDIUM_STR) then return EFF_POISON_MEDIUM_STR end
+	if self:hasEffect(self.EFF_POISON_MALYSS_PRI) then return EFF_POISON_MALYSS_PRI end
+	if self:hasEffect(self.EFF_POISON_MEDIUM_DEX) then return EFF_POISON_MEDIUM_DEX end
+	if self:hasEffect(self.EFF_POISON_TERINAV_SEC) then return EFF_POISON_TERINAV_SEC end
+	
+	if self:hasEffect(self.EFF_POISON_MALYSS_SEC) then return EFF_POISON_MALYSS_SEC end
+	if self:hasEffect(self.EFF_POISON_MOSS_SEC) then return EFF_POISON_MOSS_SEC end
+	if self:hasEffect(self.EFF_POISON_DARK_REAVER_SEC) then return EFF_POISON_DARK_REAVER_SEC end
+	if self:hasEffect(self.EFF_POISON_INSANITY_MIST_SEC) then return EFF_POISON_INSANITY_MIST_SEC end
+	
+	if self:hasEffect(self.EFF_POISON_MEDIUM_CON) then return EFF_POISON_MEDIUM_CON end
+	if self:hasEffect(self.EFF_POISON_BLOODROOT_SEC) then return EFF_POISON_BLOODROOT_SEC end
+	if self:hasEffect(self.EFF_POISON_WEAK_CON) then return EFF_POISON_WEAK_CON end
+	if self:hasEffect(self.EFF_POISON_GREENBLOOD_SEC) then return EFF_POISON_GREENBLOOD_SEC end
+	if self:hasEffect(self.EFF_POISON_UNGOL_DUST_SEC) then return EFF_POISON_UNGOL_DUST_SEC end
+	if self:hasEffect(self.EFF_POISON_INSANITY_MIST_PRI) then return EFF_POISON_INSANITY_MIST_PRI end
+	if self:hasEffect(self.EFF_POISON_MIDDLING_INT) then return EFF_POISON_MIDDLING_INT end
+	if self:hasEffect(self.EFF_POISON_MIDDLING_STR) then return EFF_POISON_MIDDLING_STR end
+	if self:hasEffect(self.EFF_POISON_UNGOL_DUST_PRI) then return EFF_POISON_UNGOL_DUST_PRI end
+	if self:hasEffect(self.EFF_POISON_SHADOW_ESSENCE_PRI) then return EFF_POISON_SHADOW_ESSENCE_PRI end
+	if self:hasEffect(self.EFF_POISON_SMALL_CENTIPEDE) then return EFF_POISON_SMALL_CENTIPEDE end
+	if self:hasEffect(self.EFF_POISON_TOADSTOOL_SEC) then return EFF_POISON_TOADSTOOL_SEC end
+	if self:hasEffect(self.EFF_POISON_TOADSTOOL_PRI) then return EFF_POISON_TOADSTOOL_PRI end
+
+	return nil
+end	
+
+
 
 --Random feats & immunities code
 function _M:randomFeat()
