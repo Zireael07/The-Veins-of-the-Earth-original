@@ -2627,6 +2627,60 @@ function _M:itemSacrifice(item)
 
 end
 
+--Do only one thing in order of importance
+--Deduce aid costs as favor penalty %
+---if existing favor penalty + aid cost > 100 then player:divineMessage(deity, "out of aid")
+--if favor penalty > 70 & favor penalty + aid cost <= 70 then player:divineMessage(deity, "nearly out")
+function _M:divineAid()
+  local player = game.player
+  local poisoned = player:isPoisoned()
+
+  if self.life < self.max_life*0.7 then 
+    self:resetToFull() 
+    game.logPlayer(self, "Your wounds heal fully!")
+    return end
+  if poisoned then player:removeEffect(self[poisoned]) return end
+  if self.nutrition < 1500 then 
+    self.nutrition = 3500
+    game.logPlayer(self, "You no longer feel hungry.") 
+    return end
+--if petrified then unpetrify "Your afflictions are purified!"
+--if blind then remove the effect "Your afflictions are purified!"
+--if paralysed/held then remove the effect "Divine clarity restores focus to your thoughts!"
+--if afraid then remove the effect "Your afflictions are purified!"
+--if enemy & enemy CR > player.level*2 then teleport "deity carries you to safety!"
+--if diseased/sick then remove the effect "Your afflictions are purified!"
+--if cursed then remove curse ""Your curses are lifted!"
+  if self.nutrition < 2000 then 
+    self.nutrition = 3500
+    game.logPlayer(self, "You no longer feel hungry.")
+    return end
+-- if enemy & enemy CR > player.level then smite
+
+end
+
+
+--For prayer talent
+function _M:pray()
+  game.logPlayer(self, ("You prayed to %s for divine aid"):format(self.descriptor.deity))
+
+  --knowledge:theology check against PRAYER_DC
+  --"You fail to recite the ritual prayers and invocations correctly." if failed
+
+  --if not your deity, divine jealousy
+
+  --if self.anger above tolerance, retribution
+
+  --maybe implement timeout?
+
+  self:divineAid()
+
+end  
+
+
+
+
+
 
 --Moddable tiles code from ToME 4
 --- Return attachement coords
