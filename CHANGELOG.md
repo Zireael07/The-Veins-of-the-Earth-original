@@ -18,6 +18,8 @@ CHANGELOG
 * bug fix - player tiles properly displaying dual-wielded weapons
 * bug fix - nixed a debug message for ranger favored enemy
 * bug fix - enabled drag and drop in inventory at last
+* bug fix - heal log info shown only if you can see source actor
+* bug fix - food items now have proper subtype defined instead of nil
 
 * new spell: transmute rock to mud
 * new zones: labirynth, xorn lair, town, aberrant lair, arena
