@@ -344,7 +344,10 @@ function _M:move(x, y, force)
 	local grids = core.fov.circle_grids(self.x, self.y, 1, true)
 		for x, yy in pairs(grids) do for y, _ in pairs(yy) do
 			local trap = game.level.map(x, y, Map.TRAP)
-			if trap and not trap:knownBy(self) and self:canSee(trap) and self:skillCheck("search", 15) then
+			--Don't search for pseudo-traps
+			if trap and not trap.type == "tutorial"
+				--Do stuff
+				and not trap:knownBy(self) and self:canSee(trap) and self:skillCheck("search", 15) then
 				trap:setKnown(self, true)
 				game.level.map:updateMap(x, y)
 				game.logPlayer(self, "You have found a trap (%s)!", trap:getName())
