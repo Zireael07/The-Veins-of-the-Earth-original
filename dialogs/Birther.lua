@@ -178,6 +178,7 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
 
 
     --Create lists
+    --NOTE: Don't add more columns due to problems with more than 2 columns requiring scrolling
     self:generateLists()
 
     local lists_top = self.t_general.h + 15 + self.c_name.h + 35
@@ -189,13 +190,13 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
     self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
     self.c_race = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
 
-    self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
-    self.c_alignment = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
-
-
     --OPTIONAL TAB
+    --NOTE: No text here requires scrolling. hence 3 columns
 
     local lists_height_opt = self.ih*0.75
+
+    self.c_alignment_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Alignment: #LAST#"}
+    self.c_alignment = List.new{width=self.iw/6, height = lists_height_opt, nb_items=#self.list_alignment, list=self.list_alignment, fct=function(item) self:AlignmentUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
     self:generateDeities()
     self.c_deity_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Deity: #LAST#"}
@@ -294,8 +295,7 @@ function _M:drawDialog(tab)
         {left=0, top=self.c_race_text, ui=self.c_race},
         {left=self.c_race, top=lists_top, ui=self.c_class_text},
         {left=self.c_race, top=self.c_class_text, ui=self.c_class},
-        {left=self.c_class, top=lists_top, ui=self.c_alignment_text},
-        {left=self.c_class, top=self.c_alignment_text, ui=self.c_alignment},
+        
 
         --Instructions and description  
         {right=0, top = self.t_general.h + 15, ui=self.c_legend },
@@ -325,8 +325,10 @@ function _M:drawDialog(tab)
         {left=0, top=self.t_general, ui=self.vs },
 
         --First line (lists)
-        {left=0, top=self.vs, ui=self.c_background_text},
-        {left=0, top=self.c_background_text, ui=self.c_background},
+        {left=0, top=self.vs, ui=self.c_alignment_text},
+        {left=0, top=self.c_alignment_text, ui=self.c_alignment},
+        {left=self.c_alignment, top=self.vs, ui=self.c_background_text},
+        {left=self.c_alignment, top=self.c_background_text, ui=self.c_background},
         {left=self.c_background, top=self.vs, ui=self.c_deity_text},
         {left=self.c_background, top=self.c_deity_text, ui=self.c_deity},
         --Description & legend
