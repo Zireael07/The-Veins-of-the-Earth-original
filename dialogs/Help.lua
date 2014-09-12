@@ -18,6 +18,7 @@ function _M:init()
     Attack by bumping the enemies.
 
     Press #YELLOW#PageUp#LAST# or #YELLOW#PageDown#LAST# to scroll the hotbar pages, should you get so many spells that they don't fit on a single page.
+    #YELLOW#PageUp#LAST# and #YELLOW#PageDown#LAST# also double as scrolling descriptions if you don't have a mousewheel.
 
     Press #YELLOW#'.'#LAST# (dot) to wait for a turn. It might be useful if you cannot move otherwise.
 
