@@ -34,9 +34,7 @@ return {
 	},
 
 	post_process = function(level)
-		--	local x, y = util.findFreeGrid(game.level.default_up.x, game.level.default_up.y, 5, true, {[Map.TERRAIN]=true})
-
-		-- put starting dungeon entrances
+		-- put starting dungeon entrance
 		local l1 = game.zone:makeEntityByName(level, "terrain", "DOWN_TUNNELS")
 
 		if l1 then
@@ -48,7 +46,14 @@ return {
 		print("Tunnels entrance not found")	
 		end
 
-	--	game:placeDungeonEntrance("DOWN_CAVERN")
+		--put other dungeon entrances
+		game:placeDungeonEntrance("DOWN_CAVERN")
+
+		game:placeDungeonEntrance("DOWN_ARENA")
+
+		game:placeDungeonEntrance("DOWN_COMPOUND")
+
+		game:placeDungeonEntrance("DOWN_LABIRYNTH")
 
 
 	--[[	local l2 = game.zone:makeEntityByName(level, "terrain", "DOWN_CAVERN")
@@ -71,27 +76,6 @@ return {
 		else
 			print("Cavern entrance not found")
 		end]]
-
-		local l3 = game.zone:makeEntityByName(level, "terrain", "DOWN_ARENA")
-
-		if l3 then
-			local x, y = rng.range(2, (game.level.map.w/2)-1), rng.range(2, (game.level.map.h/2)-1)
-
-			local tries = 0
-			while (game.level.map:checkEntity(x, y, Map.TERRAIN, "block_move") or game.level.map(x, y, Map.OBJECT) or game.level.map.room_map[x][y].special) and tries < 100 do
-				x, y = rng.range(2, (game.level.map.w/2)-1), rng.range(2, (game.level.map.h/2)-1)
-				tries = tries + 1
-			end
-			if tries < 100 then
-				game.zone:addEntity(level, l3, "terrain", x, y)
-				level.spots[#level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="zone-change", subtype="arena"}
-				print("Placed dungeon entrance", l3.change_zone, x, y)
-			else
-				level.force_recreate = true
-			end
-		else
-			print("Arena entrance not found")
-		end
 
 
 	end,
