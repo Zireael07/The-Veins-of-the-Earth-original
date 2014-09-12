@@ -86,10 +86,13 @@ load_tips = {
   { text = [[Some spellcasters do not have to memorize their spells - they can cast them innately.]]},
   { text = [[If you're lucky when creating your hero, you might get some innate spells or resistances!]]},
   { text = [[Certain races have innate magical abilities due to exposure to magical radiation.]]},
-  { text = [[Remember that being unable to move or act does not mean you're dead (yet).]]},
+  { text = [[Remember that bleeding and being unable to move or act does not mean you're dead (yet).]]},
   { text = [[If you are a spellcaster or a rogue with Use Magic Device skill, you can use wands.]]},
   { text = [[Do not rush into fights if you are wounded. Take your time to rest.]]},
   { text = [[Use your spellbook to prepare your spells. Remember that you have to rest to memorize them.]]},
+  { text = [[A divine patron may aid you in times of need. However, he or she might grow angry and smite you.]]},
+  { text = [[Look out for altars to sacrifice creatures, their corpses and items on.]]},
+  { text = [[You don't need an altar to pray to your divine patron.]]},
 }
 
 background_name = {
