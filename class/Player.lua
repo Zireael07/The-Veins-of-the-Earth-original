@@ -219,6 +219,17 @@ function _M:tooltip()
 
   ts:add({"color", "WHITE"}, ("INT %s "):format(self:colorStats('int'))) ts:add({"color", "WHITE"}, ("WIS %s "):format(self:colorStats('wis'))) ts:add({"color", "WHITE"}, ("CHA %s"):format(self:colorStats('cha')), true)
 
+  --Debugging speed stuff
+  ts:add(("Game turn: %s"):format(game.turn/10), true)
+
+  ts:add(("Global speed: %d"):format(self.global_speed or 1), true)
+
+  ts:add(("Energy remaining: %d"):format(self.energy_value or 1), true)
+
+  ts:add(("Movement speed: %d"):format(self.movement_speed or 1), true)
+
+  ts:add(("Movement speed bonus: %0.1f"):format(self.movement_speed_bonus or 0), true)
+
   return ts
 end
 
