@@ -808,6 +808,49 @@ newFeat{
 	end
 }
 
+--Feats from Incursion to increase survivability
+newFeat{
+    name = "Roll with It",
+    type = {"class/general", 1},
+    is_feat = true,
+    fighter = true,
+    points = 1,
+    mode = "passive",
+    require = {
+        stat = {con = 13},
+    },
+    info = [[This feat reduces the damage increased on a critical hit by a half.]],
+}
+
+newFeat{
+    name = "Ignore Wound",
+    type = {"class/general", 1},
+    is_feat = true,
+    fighter = true,
+    points = 1,
+    mode = "passive",
+    require = {
+        stat = {con = 13},
+        talent = { Talents.T_TOUGHNESS, Talents.T_ROLL_WITH_IT },
+    },
+    info = [[This feat allows you to ignore one wound which would bring your hp below 0 a day.]],
+}
+
+newFeat{
+    name = "Resillient",
+    type = {"class/general", 1},
+    is_feat = true,
+    fighter = true,
+    points = 1,
+    mode = "passive",
+    require = {
+        stat = {con = 13},
+        talent = { Talents.T_TOUGHNESS, Talents.T_ROLL_WITH_IT },
+    },
+    info = [[If your injuries do not exceed (3 + Con mod)* 5% of your hp, you regenerate one point per 3 turns.]],
+}
+
+
 --More stuff from Incursion
 newFeat{
 	name = "Lore of Acid",

@@ -284,9 +284,13 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
       if crit then
         if target:canBe("crit") then
-    --[[        if self == game.player then game.flashLog((game.flash.BAD, "%s makes a critical attack!"):format(self:getLogName():capitalize()))
-            else]] game.log(("%s makes a critical attack!"):format(self:getLogName():capitalize())) --end
-         dam = dam * (weapon and weapon.combat.critical or 2)
+          if target:knowTalent(T_ROLL_WITH_IT) then
+            game.log(("%s makes a critical attack, but the damage is reduced!"):format(self:getLogName():capitalize())) --end
+            dam = dam * (weapon and (weapon.combat.critical/2) or 1)
+          else  
+          game.log(("%s makes a critical attack!"):format(self:getLogName():capitalize())) --end
+          dam = dam * (weapon and weapon.combat.critical or 2)
+          end         
         else game.log("The target's lack of physiology prevents serious injury")
           dam = dam end
       end
@@ -524,3 +528,20 @@ function _M:hasCritical(type)
   if self:knowTalent(ImpCrit[type]) then return true
   else return false end
 end
+
+--Combat speeds code 
+--[[--- Computes movement speed
+function _M:combatMovementSpeed(x, y)
+  local mult = 1
+
+  local movement_speed = self.movement_speed
+  
+  movement_speed = math.max(movement_speed, 0.1)
+  return mult * (self.base_movement_speed or 1) / movement_speed
+end
+
+--- Gets the weapon speed
+function _M:combatSpeed(weapon)
+  weapon = weapon or self.combat or {}
+  return (weapon.physspeed or 1) / math.max(self.combat_physspeed, 0.1)
+end]]

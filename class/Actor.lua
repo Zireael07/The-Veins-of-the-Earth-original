@@ -504,6 +504,15 @@ function _M:tooltip()
 	return ts
 end
 
+--life regeneration (items or feats)
+function _M:regenLife()
+	if self.life_regen and not self:attr("no_life_regen") then
+		local regen = self.life_regen
+
+		self.life = util.bound(self.life + regen, self.die_at, self.max_life)
+	end
+end
+
 --End of desc stuff
 --Death & dying related stuff
 function _M:deathStuff()
@@ -605,6 +614,16 @@ function _M:onTakeHit(value, src)
 
 
 	if (self.life - value) < 0 then 
+		if self == game.player and self:knowTalent(self.T_IGNORE_WOUND) and not self.ignored_wound then
+			--ignore the wound
+			self.life = self.life + value
+			--set the flag
+			self.ignored_wound = true
+			game.logPlayer(self, "You ignore the wound!")
+
+			return value
+		end
+
 		self:removeEffect(self.EFF_DISABLED)
 		self:setEffect(self.EFF_DYING, 1, {})
 		--Monsters bleed out quicker than players and have a smaller chance to stabilize

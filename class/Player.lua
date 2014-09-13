@@ -106,6 +106,106 @@ function _M:init(t, no_default)
   self.time = os.time()
 end
 
+function _M:act()
+  if not mod.class.Actor.act(self) then return end
+
+  -- Funky shader things !
+  self:updateMainShader()
+
+  self.old_life = self.life
+
+  self:spottedMonsterXP()
+
+  self:checkEncumbrance()
+
+  self:playerCounters()
+
+
+  -- Resting ? Running ? Otherwise pause
+  if not self:restStep() and not self:runStep() and self.player then
+    game.paused = true
+  end
+end
+
+function _M:playerCounters()
+
+--Count down lite turns
+  local lite = (self:getInven("LITE") and self:getInven("LITE")[1])
+
+  if lite and not lite.name == "everlasting torch" and self.lite_counter > 0 then --and not lite.name == "a lantern" then
+    self.lite_counter = self.lite_counter - 1
+  end
+
+  if lite and self.lite_counter == 0 then
+    self:removeObject(self:getInven("LITE")[1])
+    --[[Add burnt out torch
+    self:addObject]]
+  end
+
+  --Count down nutrition
+  local nutrition = self.nutrition
+
+ self.nutrition = self.nutrition - 1
+
+ --Cap nutrition
+ --NOTE: start 500, hungry 200, starving 50
+ if self.nutrition == 1 then self.nutrition = 1 end
+
+ --ID counters
+ local inven = game.player:getInven("INVEN")
+ self.id_counter = self.id_counter - 1
+ self.pseudo_id_counter = self.pseudo_id_counter - 1
+
+  if self.pseudo_id_counter == 0 then --and inven > 0 then
+    self:pseudoID()
+    self:setCountID()
+  end
+
+  if self.id_counter == 0 then
+    self:autoID()
+    self.id_counter = 50
+  end
+
+  --Resilient feat
+  if self:knowTalent(self.T_RESILLIENT) then
+
+    local Conbonus = math.floor((player:getCon()-10)/2)
+    if self.life <= self.max_life - ((3 + Conbonus)*0.05) then
+
+      self.resilient_counter = 3
+      self.resilient_counter = self.resilient_counter - 1
+
+      if self.resilient_counter == 0 then
+        self.life = self.life + 1
+      end
+    end
+  
+  end  
+
+  --Deity counters
+  if self.descriptor.deity ~= "None" then
+    self.god_pulse_counter = self.god_pulse_counter - 1
+
+    if self.anger > 0 then
+    self.god_anger_counter = self.god_anger_counter - 1
+    end
+
+    if self.god_pulse_counter == 0 then
+      self:godPulse()
+      self:setGodPulse()
+    end
+
+    if self.god_anger_counter == 0 then
+      self:godAnger()
+    end
+
+  end
+
+end
+
+
+
+--Birth stuff
 function _M:onBirth()
   --Finish the character
   self:levelClass(self.descriptor.class)
@@ -272,79 +372,6 @@ function _M:describeFloor(x, y)
   end
 end
 
-function _M:act()
-  if not mod.class.Actor.act(self) then return end
-
-  -- Funky shader things !
-  self:updateMainShader()
-
-  self.old_life = self.life
-
-  self:spottedMonsterXP()
-
-  self:checkEncumbrance()
-
---Count down lite turns
-  local lite = (self:getInven("LITE") and self:getInven("LITE")[1])
-
-  if lite and not lite.name == "everlasting torch" and self.lite_counter > 0 then --and not lite.name == "a lantern" then
-    self.lite_counter = self.lite_counter - 1
-  end
-
-  if lite and self.lite_counter == 0 then
-    self:removeObject(self:getInven("LITE")[1])
-    --[[Add burnt out torch
-    self:addObject]]
-  end
-
-  --Count down nutrition
-  local nutrition = self.nutrition
-
- self.nutrition = self.nutrition - 1
-
- --Cap nutrition
- --NOTE: start 500, hungry 200, starving 50
- if self.nutrition == 1 then self.nutrition = 1 end
-
- --ID counters
- local inven = game.player:getInven("INVEN")
- self.id_counter = self.id_counter - 1
- self.pseudo_id_counter = self.pseudo_id_counter - 1
-
-  if self.pseudo_id_counter == 0 then --and inven > 0 then
-    self:pseudoID()
-    self:setCountID()
-  end
-
-  if self.id_counter == 0 then
-    self:autoID()
-    self.id_counter = 50
-  end
-
-  if self.descriptor.deity ~= "None" then
-    self.god_pulse_counter = self.god_pulse_counter - 1
-
-    if self.anger > 0 then
-    self.god_anger_counter = self.god_anger_counter - 1
-    end
-
-    if self.god_pulse_counter == 0 then
-      self:godPulse()
-      self:setGodPulse()
-    end
-
-    if self.god_anger_counter == 0 then
-      self:godAnger()
-    end
-
-  end
-
-
-  -- Resting ? Running ? Otherwise pause
-  if not self:restStep() and not self:runStep() and self.player then
-    game.paused = true
-  end
-end
 
 --- Funky shader stuff
 function _M:updateMainShader()
@@ -472,6 +499,9 @@ function _M:restCheck()
     local regen = 1
     self.life = math.min(self.max_life, self.life + regen)
     
+    --reset the ignore wound feat flag
+    self.ignored_wound = false
+
     --Refresh charges
     for _, tid in pairs(self.talents_def) do
       self:setCharges(tid, self:getMaxCharges(tid))
