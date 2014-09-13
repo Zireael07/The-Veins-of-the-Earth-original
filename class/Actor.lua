@@ -464,58 +464,29 @@ function _M:colorFaction()
 end
 
 function _M:tooltip()
-	if self.life >= 0 then
-	return ([[%s #GOLD#%s#LAST# %s %s
-#RED#HP: %d (%d%%)#LAST#
-STR %s DEX %s CON %s 
-INT %s WIS %s CHA %s
-#GOLD#CR %s#LAST#
-#GOLD#XP %d#LAST#
-#WHITE#%s
+	local ts = tstring{}
 
-%s
-]]):format(
-		self:getDisplayString(),
-		self:templateName(), self.name, self:className(),
-		self.life, self.life / self.max_life *100,
-		self:colorStats('str'),
-		self:colorStats('dex'),
-		self:colorStats('con'),
-		self:colorStats('int'),
-		self:colorStats('wis'),
-		self:colorStats('cha'),
-		self:colorCR(),
-		self:worthExp(game.player),
-		self.desc or "",
-		self:colorFaction()
-	)
-		--To stop % getting out of whack when HP are negative, we remove them from the tooltips altogether
-	else
-	return ([[%s%s %s
-#CRIMSON#HP: %d#LAST#
-STR %s DEX %s CON %s 
-INT %s WIS %s CHA %s
-#GOLD#CR %s#LAST#
-#GOLD#XP %d#LAST#
-#WHITE#%s
+	ts:add({"color", "WHITE"}, ("%s"):format(self:getDisplayString()), true)
 
-%s 
-]]):format(
-		self:getDisplayString(),
-		self.name, self:className(),
-		self.life,
-		self:colorStats('str'),
-		self:colorStats('dex'),
-		self:colorStats('con'),
-		self:colorStats('int'),
-		self:colorStats('wis'),
-		self:colorStats('cha'),
-		self:colorCR(),
-		self:worthExp(game.player),
-		self.desc or "",
-		self:colorFaction()
-	)	
-	end	
+	ts:add({"color", "GOLD"}, ("%s "):format(self:templateName()), {"color", "WHITE"}) ts:add(self.name, {"color", "WHITE"}) ts:add((" %s"):format(self:className()), true)
+
+	if self.life < 0 then ts:add({"color", 255, 0, 0}, "HP: unknown", {"color", "WHITE"}, true)
+	else ts:add({"color", 255, 0, 0}, ("HP: %d (%d%%)"):format(self.life, self.life * 100 / self.max_life), {"color", "WHITE"}, true)
+	end
+
+	ts:add({"color", "WHITE"}, ("STR %s "):format(self:colorStats('str'))) ts:add({"color", "WHITE"}, ("DEX %s "):format(self:colorStats('dex'))) ts:add({"color", "WHITE"}, ("CON %s"):format(self:colorStats('con')), true)
+
+	ts:add({"color", "WHITE"}, ("INT %s "):format(self:colorStats('int'))) ts:add({"color", "WHITE"}, ("WIS %s "):format(self:colorStats('wis'))) ts:add({"color", "WHITE"}, ("CHA %s"):format(self:colorStats('cha')), true)
+
+	ts:add({"color", "GOLD"}, ("CR: %s"):format(self:colorCR()), {"color", "WHITE"}, true)
+
+	ts:add({"color", "GOLD"}, ("XP: %d"):format(self:worthExp(game.player)), {"color", "WHITE"}, true)
+
+	ts:add({"color", "WHITE"}, self.desc, {"color", "WHITE"}, true)
+
+	ts:add(("%s"):format(self:colorFaction()), true)
+
+	return ts
 end
 
 --End of desc stuff
@@ -2022,7 +1993,6 @@ function _M:isPoisoned()
 
 	return nil
 end	
-
 
 
 --Random feats & immunities code

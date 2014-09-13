@@ -125,12 +125,12 @@ function _M:tooltip()
 	--Safeguard from weirdness
 	if not str then return end
 
+    str:add(
+        true,
+        ("Killed by you: %s"):format(killed), true,
+        "Target: ", target and target.name or "none"
+    )
+    str:add(true, "UID: "..self.uid, true)
 
-	return str..([[
-Killed by you: %s
-Target: %s
-UID: %d]]):format(
-	killed,
-	target and target.name or "none",
-	self.uid)
+    return str
 end
