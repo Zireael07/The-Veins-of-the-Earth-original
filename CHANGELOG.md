@@ -20,18 +20,22 @@ CHANGELOG
 * bug fix - enabled drag and drop in inventory at last
 * bug fix - heal log info shown only if you can see source actor
 * bug fix - food items now have proper subtype defined instead of nil
+* bug fix - no more searching for pseudo traps [kudos to StarKeep]
 
 * new spell: transmute rock to mud
 * new zones: labirynth, xorn lair, town, aberrant lair, arena
+* new feats: Roll with It, Ignore Wound, Resillient [all from Incursion]
 * new tiles: sand, ice; blink dog, barghest, hell hound, yeth hound
 * new curse: of weakness
 * hirelings
 * deity system
 * day/night cycle with exotic colors
 * color code hit and miss messages
+* add monster type to its tooltip
 * made character creation screen tabbed
 * implement Zizzo's code allowing for hand-picking egos
 * many improvements to debug screens
+* overhaul actor tooltips code
 * renamed existing zones: Upperdark -> compound; Middledark -> tunnels
 * change starting zone to tunnels
 
