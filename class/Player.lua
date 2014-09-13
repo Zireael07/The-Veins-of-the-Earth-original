@@ -205,21 +205,21 @@ function _M:move(x, y, force)
 end
 
 function _M:tooltip()
-  return ([[%s%s
-#RED#HP: %d (%d%%)
-#WHITE#STR %s DEX %s CON %s 
-WIS %s INT %s CHA %s]]):format(
-    self:getDisplayString(),
-    self.name,
-    self.life, self.life * 100 / self.max_life,
-    self:getStat('str'),
-    self:getStat('dex'),
-    self:getStat('con'),
-    self:getStat('int'),
-    self:getStat('wis'),
-    self:getStat('cha'),
-    self.desc or ""
-  )
+ local ts = tstring{}
+
+  ts:add({"color", "WHITE"}, ("%s"):format(self:getDisplayString()), true)
+
+  ts:add(self.name, {"color", "WHITE"}, true)
+
+  if self.life < 0 then ts:add({"color", 255, 0, 0}, "HP: unknown", {"color", "WHITE"}, true)
+  else ts:add({"color", 255, 0, 0}, ("HP: %d (%d%%)"):format(self.life, self.life * 100 / self.max_life), {"color", "WHITE"}, true)
+  end
+
+  ts:add({"color", "WHITE"}, ("STR %s "):format(self:colorStats('str'))) ts:add({"color", "WHITE"}, ("DEX %s "):format(self:colorStats('dex'))) ts:add({"color", "WHITE"}, ("CON %s"):format(self:colorStats('con')), true)
+
+  ts:add({"color", "WHITE"}, ("INT %s "):format(self:colorStats('int'))) ts:add({"color", "WHITE"}, ("WIS %s "):format(self:colorStats('wis'))) ts:add({"color", "WHITE"}, ("CHA %s"):format(self:colorStats('cha')), true)
+
+  return ts
 end
 
 --Character sheet stuff specific to player
