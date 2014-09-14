@@ -2083,7 +2083,7 @@ end
 function _M:godPulse()
   local deity = self.descriptor.deity
   if deity == "Aiswin" then 
-    game.logPlayer(self, "Aiswin whispers a secret to you!") 
+  --  game.logPlayer(self, "Aiswin whispers a secret to you!") 
     --case one: identify a random item
     --case two: give Aiswin's Lore spell ("Mystical knowledge of Aiswin's Lore imprints itself on your mind!")
     --case three: mark random actor in range 30 as seen
@@ -2091,11 +2091,11 @@ function _M:godPulse()
   if deity == "Ekliazeh" then  
     --case one: mend random item in inventory
     --case two: "Your o.name glows with a brilliant silver light!"
-    self:divineMessage("Ekliazeh", "custom three")
+  --  self:divineMessage("Ekliazeh", "custom three")
   end
   if deity == "Erich" then
     --grant a random arms/weapon
-    self:divineMessage("Erich", "custom three")
+  --  self:divineMessage("Erich", "custom three")
   end
   if deity == "Essiah" then
     --ESSIAH_DREAM stuff
@@ -2113,12 +2113,12 @@ function _M:godPulse()
         self:transgress("Hesani", 1, "lack of patience")
       end
     end
-    game.logPlayer(self, "Natural flows replenish you.")
+  --  game.logPlayer(self, "Natural flows replenish you.")
     --refresh random available spell
   end
   if deity == "Immotian" then
     --if threatened
-    self:divineMessage("Immotian", "custom four")
+  --  self:divineMessage("Immotian", "custom four")
     --Empowered+Maximized+Enlarged Order's Wrath centered on player
     --else if something then
     --self:incFavorFor("Immotian", 4d50) self:divineMessage("Immotian", "custom seven")
@@ -2133,14 +2133,14 @@ function _M:godPulse()
   if deity == "Kysul" then
     if self:getFavorLevel(self.max_favor) < 3 then 
     else --gift random item
-      self:divineMessage("Kysul", "custom one")
+  --    self:divineMessage("Kysul", "custom one")
     end
   end  
 
   if deity == "Mara" then
     if self.favor >= 1500 then
       --summon revenant
-      self:divineMessage("Mara", "custom two")
+    --  self:divineMessage("Mara", "custom two")
     end
   end
 
@@ -2148,7 +2148,7 @@ function _M:godPulse()
     --exercise LUC
     --if threatened and rng.dice(1,2) == 1 then
     --Othello's Irresistible Dance on player
-    self:divineMessage("Maeve", "custom eight")
+  --  self:divineMessage("Maeve", "custom eight")
     --else self:randomMaeveStuff(false) end
   end  
 
@@ -2163,7 +2163,7 @@ function _M:godPulse()
   end  
   if deity == "Semirath" then
     --fumble a non-good hostile humanoid in player's sight if there's one
-    self:divineMessage("Semirath", "custom one")
+  --  self:divineMessage("Semirath", "custom one")
     --game.logSeen("%s collapses in a fit of uncontrollable laughter!")
   end
   if deity == "Xavias" then
