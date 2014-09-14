@@ -266,12 +266,12 @@ function _M:equipAllItems()
 end
 
 function _M:giveStartingSpells()
-  if self.descriptor.class == "Cleric" or self.descriptor.class == "Shaman" then
+  if self.descriptor.class == "Cleric" then --or self.descriptor.class == "Shaman" then
     self:setCharges(self.T_CURE_LIGHT_WOUNDS, 2)
 
   end
 
-  if self.descriptor.class == "Wizard" or self.descriptor.class == "Sorcerer" then
+  if self.descriptor.class == "Wizard" then --or self.descriptor.class == "Sorcerer" then
     self:setCharges(self.T_MAGIC_MISSILE, 2)
     self:setCharges(self.T_MAGE_ARMOR, 1)
   end
