@@ -167,7 +167,7 @@ function _M:playerCounters()
   end
 
   --Resilient feat
-  if self:knowTalent(self.T_RESILLIENT) then
+  if self:knowTalent(self.T_RESILLIENT) and not self.resting then
 
     local Conbonus = math.floor((player:getCon()-10)/2)
     if self.life <= self.max_life - ((3 + Conbonus)*0.05) then
@@ -183,7 +183,7 @@ function _M:playerCounters()
   end  
 
   --Deity counters
-  if self.descriptor.deity ~= "None" then
+  if self.descriptor.deity ~= "None" and not self.resting then
     self.god_pulse_counter = self.god_pulse_counter - 1
 
     if self.anger > 0 then
