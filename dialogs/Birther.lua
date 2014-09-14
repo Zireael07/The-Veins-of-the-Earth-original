@@ -230,13 +230,13 @@ function _M:updateTab(tab)
     elseif tab == "general" then
         local c1 = dbt.race and '*' or '_'
         local c2 = dbt.class and '*' or '_'
-        local c3 = dbt.alignment and '*' or '_'
-        self.t_general.title = ('General (%s/%s/%s)'):format(c1, c2, c3)
+        self.t_general.title = ('General (%s/%s)'):format(c1, c2)
         self.t_general:generate()
     elseif tab == "optional" then
-        local c1 = dbt.deity and '*' or '_'
-        local c2 = dbt.background and '*' or '_'
-        self.t_optional.title = ('Optional (%s/%s)'):format(c1, c2)
+        local c1 = dbt.alignment and '*' or '_'
+        local c2 = dbt.deity and '*' or '_'
+        local c3 = dbt.background and '*' or '_'
+        self.t_optional.title = ('Optional (%s/%s/%s)'):format(c1, c2, c3)
         self.t_optional:generate()
     else end
 end 
