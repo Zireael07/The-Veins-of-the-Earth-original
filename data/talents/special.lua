@@ -205,8 +205,8 @@ newTalent{
         --if altar to my deity, give bless items option
 
         game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the option",{
-               {name="Request aid", desc=""},
-               {name="Seek insight", desc=""},
+               {name="Request aid", desc="Ask your deity for help"},
+               {name="Seek insight", desc="Not implemented yet"},
              --[[  {name="+3 bonus", desc=""},
                 {name="+4 bonus", desc=""},
                 {name="+5 bonus", desc=""},]] 
