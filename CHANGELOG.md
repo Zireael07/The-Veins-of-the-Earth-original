@@ -1,5 +1,6 @@
 CHANGELOG
 
+0.22.0 - beta 6 - 14/09/2014
 
 * bug fix - Lua errors in load premade
 * bug fix - no more xorns showing up without a name
@@ -32,6 +33,7 @@ CHANGELOG
 * day/night cycle with exotic colors
 * color code hit and miss messages
 * add monster type to its tooltip
+* spellcasters now get spells at start (except Sorcerers and Shamans)
 * made character creation screen tabbed
 * implement Zizzo's code allowing for hand-picking egos
 * many improvements to debug screens
