@@ -88,5 +88,6 @@ function _M:confirmQuit()
       util.showMainMenu()
     end
   end
-  Dialog:yesnoLongPopup('Quit Permanently?', text, 400, callback, "Don't quit", 'Quit')
+  -- Pass true for escape parameter so that Esc is treated as "Don't quit"
+  Dialog:yesnoLongPopup('Quit Permanently?', text, 400, callback, "Don't quit", 'Quit', false, true)
 end

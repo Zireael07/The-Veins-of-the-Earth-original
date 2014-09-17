@@ -819,7 +819,7 @@ newFeat{
     require = {
         stat = {con = 13},
     },
-    info = [[This feat reduces the damage increased on a critical hit by a half.]],
+    info = [[This feat reduces the extra damage taken from a critical hit by half.]],
 }
 
 newFeat{
@@ -837,7 +837,8 @@ newFeat{
 }
 
 newFeat{
-    name = "Resillient",
+    name = "Resilient",
+    short_name = "RESILLIENT",
     type = {"class/general", 1},
     is_feat = true,
     fighter = true,

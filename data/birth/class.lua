@@ -1467,15 +1467,15 @@ newBirthDescriptor {
 
 			if actor == game.player then
 				game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a specialization",{
-					{name="Generalist", desc="You are the master of everything but nothing. You will be equally good with all spells"},
+					{name="Generalist", desc="You are the master of everything but nothing. You will be equally good with all spells."},
 					{name="Abjuration", desc="Restricts Conjuration"},
 					{name="Conjuration", desc="Restricts Transmutation"},
-					{name="Divination", desc="Restrics Illusion"},
+					{name="Divination", desc="Restricts Illusion"},
 					{name="Enchantment", desc="Restricts Illusion"},
-					{name="Evocation", desc="Restrics Conjuration"},
-					{name="Illusion", desc="Restrics Enchantment"},
+					{name="Evocation", desc="Restricts Conjuration"},
+					{name="Illusion", desc="Restricts Enchantment"},
 					{name="Necromancy", desc="Restricts Divination"},
-					{name="Transmutation", desc="Restrics Conjuration"}
+					{name="Transmutation", desc="Restricts Conjuration"}
 				}, function(result)
 					actor:learnTalentType("abjuration")
 					if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then actor:learnTalentType("conjuration") end
