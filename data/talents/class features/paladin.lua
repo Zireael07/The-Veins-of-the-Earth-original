@@ -125,7 +125,7 @@ newTalent{
 		if self == game.player then 
 		local tg = self:getTalentTarget(t)
 		local x, y =  self:getTarget(tg)
-        if not x or not y then return nil end
+		if not x or not y then return nil end
 
 		local _ _, _, _, x, y = self:canProject(tg, x, y)
 		local blocked = game.level.map(x, y, Map.ACTOR)
