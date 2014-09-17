@@ -8,7 +8,7 @@ newEntity{
 	display = "Δ", color=colors.SLATE,
 	unided_name = "a bag",
 	name = "bag",
-	encumber = 15,
+	encumber = 2,
 	identified = false,
 	desc = [[A container.]],
 	iscontainer = true,
@@ -116,3 +116,68 @@ newEntity{
 		return {used=true}
 	end},
 }]]
+
+--Incursion's backpacks
+newEntity{
+	base = "BASE_CONTAINER",
+	name = "small backpack",
+	unided_name = "a backpack",
+	display = "Δ", color=colors.LIGHT_BROWN,
+	level_range = {1, nil},
+--	rarity = 2,
+	cost = 4,
+	--Based on Baldur's Gate bag of holding
+	body = { INVEN = 20 },
+	use_simple = { name = "put in", use = function(self, who)
+		who:putIn(self)
+		return {used=true}
+	end},
+}
+
+newEntity{
+	base = "BASE_CONTAINER",
+	name = "medium backpack",
+	unided_name = "a backpack",
+	display = "Δ", color=colors.LIGHT_BROWN,
+	level_range = {1, nil},
+--	rarity = 2,
+	cost = 2,
+	--Based on Baldur's Gate bag of holding
+	body = { INVEN = 20 },
+	use_simple = { name = "put in", use = function(self, who)
+		who:putIn(self)
+		return {used=true}
+	end},
+}
+
+newEntity{
+	base = "BASE_CONTAINER",
+	name = "gnomish backpack",
+	unided_name = "a backpack",
+	display = "Δ", color=colors.YELLOW,
+	level_range = {1, nil},
+--	rarity = 2,
+	cost = 12,
+	--Increased by 1/3
+	body = { INVEN = 30 },
+	use_simple = { name = "put in", use = function(self, who)
+		who:putIn(self)
+		return {used=true}
+	end},
+}
+
+newEntity{
+	base = "BASE_CONTAINER",
+	name = "force backpack",
+	unided_name = "a backpack",
+	display = "Δ", color=colors.BLUE,
+	level_range = {1, nil},
+--	rarity = 2,
+	cost = 5000,
+	--Twice as much as a normal pack
+	body = { INVEN = 40 },
+	use_simple = { name = "put in", use = function(self, who)
+		who:putIn(self)
+		return {used=true}
+	end},
+}
