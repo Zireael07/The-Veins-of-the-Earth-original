@@ -382,6 +382,24 @@ function _M:colorHighStats(stat)
 	else return "#WHITE#"..self:getStat(stat).."#LAST#" end
 end
 
+--Helpers to color skills
+--Incursion style
+function _M:colorSkill(skill)
+
+	if self:getSkill(skill) == 0 then return end
+
+
+	if self:getSkill(skill) > 20 then return "#GOLD#"..self:getSkill(skill).."#LAST#"
+	elseif self:getSkill(skill) > 15 then return "#LIGHT_RED#"..self:getSkill(skill).."#LAST#"
+	elseif self:getSkill(skill) > 12 then return "#DARK_RED#"..self:getSkill(skill).."#LAST#"
+	elseif self:getSkill(skill) > 9 then return "#LIGHT_GREEN#"..self:getSkill(skill).."#LAST#"
+	elseif self:getSkill(skill) > 6 then return "#ORCHID#"..self:getSkill(skill).."#LAST#"
+	elseif self:getSkill(skill) > 3 then return "#LIGHT_BLUE#"..self:getSkill(skill).."#LAST#"
+	elseif self:getSkill(skill) > 1 then return "#DARK_BLUE#"..self:getSkill(skill).."#LAST#"
+	else return "#WHITE#"..self:getSkill(skill).."#LAST#"
+	end
+end
+
 
 --Tooltip stuffs
 function _M:templateName()
