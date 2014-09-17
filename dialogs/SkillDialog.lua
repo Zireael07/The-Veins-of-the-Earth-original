@@ -61,13 +61,13 @@ function _M:init(actor)
 	Dialog.init(self, "Skills", game.w*0.5, game.h*0.6)
 	self:generateList()
 	
-	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available skill points: #GOLD#"..self.player.skill_point.. " #LAST#Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."}
-	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
+	self.c_points = Textzone.new{width=self.iw, auto_height=true, text = "Available skill points: #GOLD#"..self.player.skill_point.. " #LAST#Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."}
+	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 	self.c_desc = TextzoneList.new{width=self.iw/2-20, height = 400, text="Hello from description"}
 
 	self:loadUI{
 		{left=0, top=0, ui = self.c_points},
-		{left=0, top=50, ui=self.c_list},
+		{left=0, top=self.c_points.h + 5, ui=self.c_list},
 		{right=0, top=0, ui=self.c_desc}
 	}
 	self:setFocus(self.c_list)
@@ -158,8 +158,20 @@ function _M:generateList()
 
  		local d = "#CHOCOLATE#"..skill:capitalize().."#LAST#\n\n"
  		d = d..description.."\n#WHITE#"
-        if self.player:crossClass(skill) then name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..skill:capitalize()	
-        else name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize()	
+        if self.player:crossClass(skill) then 
+            --show value in gold if it's maxed out
+            if (self.player:attr("skill_"..skill) or 0) == self.player.cross_class_ranks then
+            name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..skill:capitalize()
+            else
+            name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..skill:capitalize()
+            end	
+        else 
+            --show value in gold if it's maxed out
+            if (self.player:attr("skill_"..skill) or 0) == self.player.max_skill_ranks then
+            name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize()
+            else
+            name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST#"..skill:capitalize()	
+            end
         end
         	list[#list+1] = {name=name, skill = skill,	 color = color, desc=d}
     end
