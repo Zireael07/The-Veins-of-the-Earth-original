@@ -263,6 +263,8 @@ function _M:drawDialog(tab)
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.t_general.h + 35, ui=self.c_perk },
         --Instruction
         {right=0, top=self.t_general.h + 15, ui=self.c_tut},
+        {right=0, top=self.t_general.h + 15 + self.c_tut.h, ui=Separator.new{dir="vertical", size=self.iw - ((self.iw/6)*4)-20}},
+        {right=0, top=self.t_general.h + 15 + self.c_tut.h + 15, ui=self.c_desc},
         --Buttons
         {left=0, bottom=0, ui=self.c_cancel},
         {left=self.c_cancel, bottom=0, ui=self.c_premade},
