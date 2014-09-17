@@ -39,7 +39,9 @@ function _M:init(actor)
 		types[#types+1] = {title="Divine", kind="divine"}
 	end
 
-	local wide = math.max(650, self.iw-450)
+    --self.iw-450 lets spell images overlap with text list
+	--local wide = math.max(650, self.iw-450)
+    local wide = 650
 
 	self.c_tabs = Tabs.new{width=wide, tabs=types, on_change=function(kind) self:switchTo(kind) end}
 

@@ -2169,8 +2169,8 @@ function _M:godPulse()
   if deity == "Xavias" then
     game.logPlayer(self, "Your mind is filled with dreamlike images and cryptic symbolism -- you are enlightened!")
     --exercise INT & WIS
-    local Intbonus = math.floor((player:getInt()-10)/2)
-    local Wisbonus = math.floor((player:getWis()-10)/2)
+    local Intbonus = math.floor((game.player:getInt()-10)/2)
+    local Wisbonus = math.floor((game.player:getWis()-10)/2)
     self:gainExp(math.max(1,(Intbonus+Wisbonus*100)))
   end
   if deity == "Xel" then
