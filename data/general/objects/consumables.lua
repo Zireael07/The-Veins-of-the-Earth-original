@@ -70,6 +70,7 @@ newEntity{ define_as = "FRESH_CORPSE",
     type = "food", subtype = "corpse",
     level_range = {1,10},
     cost = 0,
+    encumber = 50,
     desc = [[A fresh corpse of some creature.]],
     use_simple = { name = "eat",
     use = function(self,who)
@@ -87,6 +88,7 @@ newEntity{ define_as = "CORPSE",
     level_range = {1,10},
     cost = 0,
     nutrition = 6,
+    encumber = 50,
     desc == [[A corpse of some creature.]],
     use_simple = { name = "eat",
     use = function(self,who)
@@ -155,6 +157,7 @@ newEntity{
     type = "food", subtype = "corpse",
     level_range = {1,10},
     cost = 0,
+    encumber = 50,
     desc = [[This corpse looks pretty stale.]],
     use_simple = { name = "eat",
     use = function(self,who)
