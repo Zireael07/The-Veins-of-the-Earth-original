@@ -65,6 +65,13 @@ function _M:attackTarget(target, noenergy)
       if not (self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1]) and not weapon.double and not weapon.light then
          twohanded = true
       end
+
+      --No more 'extra-pokey longbows'
+      if weapon and weapon.ranged then
+        game.logPlayer(self, "You can't use a ranged weapon in melee!")
+        return
+      end
+
       
       -- add in modifiers
       local attackmod = 0
@@ -310,7 +317,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
        --Account for magic weapons piercing DR
       if target.combat_dr and target.combat_dr_tohit then
-        if (self.magic_bonus or 0) >= target.combat_dr_tohit then 
+        if (weapon.combat.magic_bonus or 0) >= target.combat_dr_tohit then 
           reduced_dam = dam 
           --Repeat the minimum 1 dmg rule
           dam = math.max(1, dam)
