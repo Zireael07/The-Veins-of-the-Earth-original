@@ -7,12 +7,11 @@ newTalent{
 	points = 1,
 	cooldown = 0,
 	range = 0,
+    no_npc_use = true,
 	action = function(self, t)
-        if self == game.player then
 		local book = require("mod.dialogs.SpellBook").new(self)
 		game:registerDialog(book)
 		return nil
-        end
 	end,
 	info = function(self, t )
 		return "Shows your spellbook. Use it to prepare your spells and then rest to memorize them."
@@ -192,11 +191,11 @@ newTalent{
     points = 1,
     cooldown = 20,
     range = 0,
+    no_npc_use = true,
     action = function(self, t)
-        if self == game.player then
         local player = game.player
         local deity = player.descriptor.deity
-        if deity == "None" then game.logPlayer(self, "You have no god to pray to") return end
+        if deity == "None" then game.logPlayer(self, "You have no god to pray to.") return end
 
         --if altar give choice of your deity or altar deity
         --local t = game.level.map(self.x, self.y, Map.TERRAIN) if t.is_altar then
@@ -204,24 +203,21 @@ newTalent{
         --if altar to different deity, give convert option
         --if altar to my deity, give bless items option
 
-        game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the option",{
-               {name="Request aid", desc="Ask your deity for help"},
-               {name="Seek insight", desc="Not implemented yet"},
-             --[[  {name="+3 bonus", desc=""},
-                {name="+4 bonus", desc=""},
-                {name="+5 bonus", desc=""},]] 
-                },
-                function(result)
-                if result == "Request aid" then
-                    player:pray()
-                else 
-                end
+        local result = self:talentDialog(require('mod.dialogs.GetChoice').new("How do you pray?", {
+            {name="Request aid", desc="Ask your deity for help"},
+            {name="Seek insight", desc="Not implemented yet"},
+        }, function(result)
+            self:talentDialogReturn(result)
+            game:unregisterDialog(self:talentDialogGet())
+        end))
 
-                end))
-                    
+        if result == "Request aid" then
+            player:pray()
+        else 
+            return nil
+        end
 
         return true
-        end
     end,
     info = function(self, t )
         return "Pray to a deity to receive various boons."
