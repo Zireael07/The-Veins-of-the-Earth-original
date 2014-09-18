@@ -8,18 +8,14 @@ newTalent{
 	points = 1,
 	cooldown = 0,
 	range = 1,
-	setCreature = function(t, creature)
-		t.creature = creature
-	end,
+	no_npc_use = true,
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), nolock = true, talent=t}
 	end,
-	makeCreature = function(self, t)
-		if not t.creature then return end
-		
+	makeCreature = function(self, t, creature)
 		local NPC = require "mod.class.NPC"
 
-		if t.creature == "heavy warhorse" then
+		if creature == "heavy warhorse" then
 
 		local m = NPC.new{
 			type = "animal", subtype = "horse",
@@ -60,7 +56,7 @@ newTalent{
 		return m
 		end
 		
-		if t.creature == "war pony" then
+		if creature == "war pony" then
 			local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
@@ -103,26 +99,17 @@ newTalent{
 	end,
 	action = function(self, t)
 		-- Choose creature
-		if self == game.player then 
-			game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired mount",{
-                {name="heavy warhorse", desc=""},
-                {name="war pony", desc=""},
-                },
-			function(result)
-            	
-            	if result == "heavy warhorse" then   
-            		t.creature = "heavy warhorse"
+		local result = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired mount",{
+			{name="heavy warhorse", desc=""},
+			{name="war pony", desc=""},
+			},
+        function(result)
+			self:talentDialogReturn(result)
+			game:unregisterDialog(self:talentDialogGet())
+		end))
 
-            	elseif result == "war pony" then
-            		t.creature = "war pony"
-            	
-            	end
+		if not result then return nil end
 
-            end))
-		end
-		
-
-		if self == game.player then 
 		local tg = self:getTalentTarget(t)
 		local x, y =  self:getTarget(tg)
 		if not x or not y then return nil end
@@ -138,18 +125,12 @@ newTalent{
 			return nil 
 		end
 
-		if t.creature then
-			game.logPlayer(self,("Player summons a %s!"):format(t.creature))
-		else
-			game.logPlayer(self,"Player doesn't summon a mount")
-		end
+		game.logPlayer(self, ("Player summons a %s!"):format(result))
 
-		local creature = t.makeCreature(self, t)
+		local creature = t.makeCreature(self, t, result)
 		game.zone:addEntity(game.level, creature, "actor", x, y)
-		return true
-		end
 
-		
+		return true
 	end,
 	info = function(self, t)
 		return ([[You summon a mount to serve your bidding.]])
