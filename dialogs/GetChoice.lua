@@ -34,7 +34,7 @@ function _M:init(title, choices, func)
 end
 
 function _M:use(item)
-	self.func(item.name)
+	self.func(item.name, item)
 	game:unregisterDialog(self)
 end
 
