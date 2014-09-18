@@ -36,12 +36,10 @@ newEntity{
 	skill_movesilently = 1,
 	hit_die = 4,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
---[[	encounter_escort = {
-	{chance = 80, type="humanoid", name="kobold", number=3, no_subescort = true},
-  	},]]
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+
 }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
@@ -98,13 +96,10 @@ newEntity{
 	skill_spot = 2,
 	hit_die = 1,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
---[[	encounter_escort = {
-	{chance = 50, type="humanoid", name="orc", number=1, no_subescort = true},
-  	},]]
-  	resolvers.class()
+--	resolvers.specialnpc(),
+--	resolvers.templates(),
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--  	resolvers.class()
 }
 
 newEntity{
@@ -123,7 +118,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
     { name = "shortbow", not_properties={"cursed"}  },
 	},
 }
@@ -146,12 +140,10 @@ newEntity{
 	skill_spot = 1,
 	hit_die = 1,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
---[[	encounter_escort = {
-	{chance = 80, type="humanoid", name="kobold", number=2, no_subescort = true},
-  	},]]
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+
 --	resolvers.class()
 }
 
@@ -169,10 +161,6 @@ newEntity{
 		{ name = "light wooden shield", not_properties={"cursed"}  },
 		{ name = "morningstar", not_properties={"cursed"}  },
 	},
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
@@ -200,11 +188,9 @@ newEntity{
 	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
---[[	encounter_escort = {
-	{chance = 80, type="humanoid", name="drow", faction = "enemies", number=3, no_subescort = true},
-  	},]]
-	resolvers.class()
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+
+--	resolvers.class()
 }
 
 newEntity{
@@ -227,7 +213,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
 	{ name = "hand crossbow", not_properties={"cursed"}  },
 	},
 }
@@ -246,10 +231,10 @@ newEntity{
 	lite = 3,
 	hit_die = 1,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-	resolvers.class()
+--	resolvers.specialnpc(),
+--	resolvers.templates(),
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	resolvers.class()
 }
 
 newEntity{
@@ -269,7 +254,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
     { name = "shortbow", not_properties={"cursed"}  },
 	},
 }
@@ -287,10 +271,10 @@ newEntity{
 	combat = { dam= {1,6} },
 	hit_die = 1,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-	resolvers.class()
+--	resolvers.specialnpc(),
+--	resolvers.templates(),
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	resolvers.class()
 }
 
 newEntity{
@@ -384,14 +368,9 @@ newEntity{
 		{ name = "light wooden shield", not_properties={"cursed"}  },
 		{ name = "morningstar", not_properties={"cursed"}  },
 	},
-	resolvers.specialnpc(),
-	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
---[[	encounter_escort = {
-	{chance = 20, type="humanoid", name="bugbear", number=1, no_subescort = true},
-	{chance = 60, type="humanoid", name="goblin", number=2, no_subescort = true},
-  	},
-  ]]	
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},	
 }
 
 newEntity{
@@ -410,9 +389,9 @@ newEntity{
 	skill_spot = 2,
 	hit_die = 2,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -437,7 +416,6 @@ newEntity{
 	resolvers.inventory {
 	full_id=true,
 	{ name = "shortbow", not_properties={"cursed"}  },
---	{ name = "fresh corpse" }
 	},
 }
 
@@ -457,10 +435,10 @@ newEntity{
 	combat = { dam= {1,6} },
 	hit_die = 1,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-	resolvers.class()
+--	resolvers.specialnpc(),
+--	resolvers.templates(),
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	resolvers.class()
 }
 
 newEntity{
@@ -484,7 +462,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
     { name = "light crossbow", not_properties={"cursed"}  },
 	},
 }
@@ -536,10 +513,10 @@ newEntity{
 	combat = { dam= {1,6} },
 	hit_die = 1,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-	resolvers.class()
+--	resolvers.specialnpc(),
+--	resolvers.templates(),
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	resolvers.class()
 }
 
 newEntity{
@@ -577,13 +554,10 @@ newEntity{
 	infravision = 3,
 	hit_die = 1,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
---[[	encounter_escort = {
-	{chance = 80, type="humanoid", name="hobgoblin", number=1},
-  	},
-  ]]
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+
 }
 
 newEntity{
@@ -603,7 +577,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
     { name = "javelin" },
 	},
 }
@@ -623,9 +596,9 @@ newEntity{
 	combat_natural = 5,
 	hit_die = 2,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -686,7 +659,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
     { name = "longspear", not_properties={"cursed"}  },
 	},
 }
@@ -707,9 +679,9 @@ newEntity{
 	movement_speed_bonus = 0.90,
 	hit_die = 2,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -757,8 +729,8 @@ newEntity{
 	hit_die = 2,
 	open_door = true,
 --	resolvers.specialnpc()
-	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	resolvers.templates()
+	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -777,7 +749,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
     { name = "javelin" },
 	},
 }
@@ -799,9 +770,9 @@ newEntity{
 	skill_bluff = 6,
 	skill_hide = 4,
 	open_door = true,
-	resolvers.specialnpc(),
-	resolvers.templates(),
-	resolvers.class()
+--	resolvers.specialnpc(),
+--	resolvers.templates(),
+--	resolvers.class()
 }
 
 newEntity{
@@ -827,7 +798,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
     { name = "light crossbow", not_properties={"cursed"}  },
 	},
 }
@@ -850,9 +820,9 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 2,
 	open_door = true,
-	resolvers.specialnpc(),
+--[[	resolvers.specialnpc(),
 	resolvers.templates(),
-	resolvers.class()
+	resolvers.class()]]
 }
 
 newEntity{

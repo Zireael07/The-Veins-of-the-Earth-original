@@ -5,6 +5,13 @@
 newEntity {
 	name = "celestial ", prefix = true, instant_resolve=true,
 	keywords = {celestial=true},
+
+	max_life = 0,
+	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
+	defense = 0,
+	size = 0,
+	life_rating = 0,
+
 	level_range = {5, nil},
 	rarity = 10,
 	infravision = 3,
@@ -19,6 +26,12 @@ newEntity {
 newEntity {
 	name = "fiendish ", prefix = true, instant_resolve=true,
 	keywords = {fiendish=true},
+	max_life = 0,
+	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
+	defense = 0,
+	size = 0,
+	life_rating = 0,
+
 	level_range = {5, nil},
 	rarity = 10,
 	infravision = 3,
@@ -26,7 +39,7 @@ newEntity {
 	challenge = 2,
 	resist = { [DamageType.FIRE] = 5,
 	[DamageType.COLD] = 5,
-	 }
+	},
 }
  --Stat increases, spell-like abilities
 newEntity {
@@ -34,6 +47,13 @@ newEntity {
 	keywords = {celestial=true},
 	level_range = {5, nil},
 	rarity = 10,
+
+	max_life = 0,
+	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
+	defense = 0,
+	size = 0,
+	life_rating = 0,
+
 	infravision = 3,
 --	spell_resistance = hit_die + 10,
 	combat_natural = 1,
@@ -50,6 +70,13 @@ newEntity {
 	keywords = {fiend=true},
 	level_range = {5, nil},
 	rarity = 10,
+
+	max_life = 0,
+	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
+	defense = 0,
+	size = 0,
+	life_rating = 0,
+
 	infravision = 3,
 --	spell_resistance = hit_die + 10,
 	combat_natural = 1,
@@ -67,6 +94,13 @@ newEntity {
 	keywords = {dragon=true},
 	level_range = {5, nil},
 	rarity = 10,
+
+	max_life = 0,
+	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
+	defense = 0,
+	size = 0,
+	life_rating = 0,
+
 	infravision = 3,
 	combat_natural = 4,
 	challenge = 2,
@@ -82,6 +116,13 @@ newEntity{
 	keywords = {undead=true},
 	level_range = {5, nil},
 	rarity = 5,
+
+	max_life = 0,
+	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
+	defense = 0,
+	size = 0,
+	life_rating = 0,
+
 	infravision = 3,
 	challenge = 1,
 	combat = { dam= {1,6} },
@@ -93,6 +134,13 @@ newEntity{
 	keywords = {undead=true},
 	level_range = {5, nil},
 	rarity = 5,
+
+	max_life = 0,
+	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
+	defense = 0,
+	size = 0,
+	life_rating = 0,
+
 	infravision = 3,
 	challenge = 1,
 	combat = { dam= {1,6} },
