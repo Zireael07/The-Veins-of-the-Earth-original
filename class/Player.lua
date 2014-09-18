@@ -646,31 +646,37 @@ function _M:setCountID()
 end
 
 function _M:pseudoID()
-local list = {}
-        local inven = game.player:getInven("INVEN")
-        i = rng.range(1, #inven)
-        local o = inven[i]
-          --add a check for empty inventory
-          if o and o.pseudo_id == false then
-            local check = self:skillCheck("intuition", 10, true)
-                        if check then 
-                          o.pseudo_id = true 
-                        end        
-          else end
+    local can_id = {}
+    self:inventoryApplyAll(function(inven, item, o)
+        if not o.pseudo_id then
+            can_id[#can_id+1] = o
+        end
+    end)
+
+    if #can_id == 0 then return end
+
+    if self:skillCheck("intuition", 10, true) then
+        local o = rng.table(can_id)
+        o.pseudo_id = true
+        game.logPlayer(self, ("You feel that your %s is %s."):format(o:getUnidentifiedName(), o:getPseudoIdFeeling()))
+    end
 end
 
 function _M:autoID()
-  local list = {}
-        local inven = game.player:getInven("INVEN")
-        i = rng.range(1, #inven)
-        local o = inven[i]
-          if o and o.identified == false and o.pseudo_id == true then
-            local check = self:skillCheck("intuition", 25, true)
-                        if check then 
-                          o.identified = true 
-                          game.logSeen(game.player, "Identified: %s", o.name)
-                        end        
-            else end
+    local can_id = {}
+    self:inventoryApplyAll(function(inven, item, o)
+        if o.pseudo_id and not o.identified then
+            can_id[#can_id+1] = o
+        end
+    end)
+
+    if #can_id == 0 then return end
+
+    if self:skillCheck("intuition", 25, true) then
+        local o = rng.table(can_id)
+        o.identified = true 
+        game.logPlayer(self, "Identified: %s", o.name)
+    end
 end
 
 

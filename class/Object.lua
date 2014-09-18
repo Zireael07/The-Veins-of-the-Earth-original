@@ -121,6 +121,14 @@ function _M:getDisplayColor()
     end
 end
 
+---Gets the pseudo ID feeling of the object
+function _M:getPseudoIdFeeling()
+    if self.cursed then return "cursed"
+    elseif self.egoed and self.greater_ego then return "excellent"
+    elseif self.egoed then return "magical"
+    else return "average"
+    end
+end
 
 --- Gets the full name of the object
 function _M:getName(t)
@@ -132,11 +140,7 @@ function _M:getName(t)
     if self.identified == false and not t.force_id and self:getUnidentifiedName() then name = self:getUnidentifiedName() end
     
     if self.pseudo_id == true and self.identified == false and not t.force_id then --and self:getUnidentifiedName() then
-        if self.cursed then name = name.." {cursed}"
-        elseif self.egoed and self.greater_ego then name = name.." {excellent}"
-        elseif self.egoed then name = name.." {magical}"
-        else name = name.." {average}"
-        end
+        name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
     end
 
 
@@ -288,7 +292,7 @@ function _M:on_prepickup(who, idx)
         end 
     end
     if self.pseudo_id == true and self.cursed then 
-        game.log("You recognize the item as cursed and destroy it")
+        game.log("You recognize the item as cursed and destroy it.")
         game.level.map:removeObject(who.x, who.y, idx) return true 
     end
     
