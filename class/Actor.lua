@@ -2300,3 +2300,6 @@ function _M:defineDisplayCallback()
 		end)
 	end
 end
+
+require 'mod.class.patch.ActorTalentDialog'
+

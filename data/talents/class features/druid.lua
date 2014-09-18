@@ -12,18 +12,17 @@ newTalent{
 	activate = function(self)
 		if not self then return nil end
 
-		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the animal form",{
-                {name="Baboon", desc=""},
-                {name="Crocodile", desc=""},
-                },
-                function(result)
-                if result == "Baboon" then
-                	self:setEffect(self.EFF_WILD_SHAPE_BABOON, 600, {})
-                elseif result == "Crocodile" then
-                	self:setEffect(self.EFF_WILD_SHAPE_CROCODILE, 600, {})
-                end
+		local effect = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the animal form",{
+            {name="Baboon", desc="", effect=self.EFF_WILD_SHAPE_BABOON},
+            {name="Crocodile", desc="", effect=self.EFF_WILD_SHAPE_CROCODILE},
+        }, function(result, item)
+            self:talentDialogReturn(result and item.effect)
+            game:unregisterDialog(self:talentDialogGet())
+        end))
 
-                end))
+        if not effect then return nil end
+
+        self:setEffect(effect, 600, {})
 		return true
 	end,
 	deactivate = function(self)

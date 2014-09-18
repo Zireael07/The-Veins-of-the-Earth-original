@@ -12,7 +12,13 @@ function _M:init(title, choices, func)
 
 	Dialog.init(self, title, 300, 20)
 
-	self.c_choices = List.new{width=self.iw/2, nb_items=#self.list, height = game.h*0.7, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:select(item,sel) end, scrollbar=true}
+    -- Hack: Duplicate of fh logic from engine.ui.List
+    local height = (self.font_h + 6) * #self.list
+
+    local scrollbar = false
+    if height > game.h*0.7 then height = game.h*0.7 scrollbar = true end
+
+	self.c_choices = List.new{width=self.iw/2, nb_items=#self.list, height=height, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:select(item,sel) end, scrollbar=scrollbar}
 	self.c_descriptions = TextzoneList.new{width=self.iw/2-20, height = 400, text="#GOLD#Description#LAST#"}
 
 	self:loadUI{
@@ -28,9 +34,8 @@ function _M:init(title, choices, func)
 end
 
 function _M:use(item)
-	self.func(item.name)
+	self.func(item.name, item)
 	game:unregisterDialog(self)
-	
 end
 
 function _M:select(item, sel)

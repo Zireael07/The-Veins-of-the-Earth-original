@@ -2,7 +2,7 @@ newTalentType{
 	all_limited=true,
 	type="transmutation",
 	name="transmutation",
-	description = "focuses on manipulatting matter and bodies"
+	description = "focuses on manipulating matter and bodies"
 }
 
 newArcaneSpell{
@@ -14,26 +14,21 @@ newArcaneSpell{
 	tactical = { BUFF = 5 },
 	range = 0,
 	requires_target = true,
-	action = function(self)
+	action = function(self, t)
 		if not self then return nil end
 
-		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the humanoid form",{
-                {name="Human", desc=""},
-                {name="Drow", desc=""},
-                {name="Lizardfolk", desc=""},
-                },
-                function(result)
-                if result == "Human" then
-                	self.setEffect(self.EFF_ALTER_SELF_HUMAN, 100, {})
-                elseif result == "Drow" then
-                	self:setEffect(self.EFF_ALTER_SELF_DROW, 100, {})
-                elseif result == "Lizardfolk" then
-                	self:setEffect(self.EFF_ALTER_SELF_LIZARDFOLK, 100, {})
-                end
+		local effect = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the humanoid form",{
+			{name="Human", desc="", effect=self.EFF_ALTER_SELF_HUMAN},
+			{name="Drow", desc="", effect=self.EFF_ALTER_SELF_DROW},
+			{name="Lizardfolk", desc="", effect=self.EFF_ALTER_SELF_LIZARDFOLK},
+		}, function(result, item)
+			self:talentDialogReturn(result and item.effect)
+			game:unregisterDialog(self:talentDialogGet())
+		end))
 
-                end))
+		if not effect then return nil end
 
-
+		self:setEffect(effect, 100, {})
 		return true
 	end,
 	info = function(self, t)
@@ -245,21 +240,19 @@ newArcaneSpell{
 	tactical = { BUFF = 5 },
 	range = 0,
 	requires_target = true,
-	action = function(self)
+	action = function(self, t)
 		if not self then return nil end
 
-		game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the new form",{
-                {name="Cloaker", desc=""},
-                },
-                function(result)
-                if result == "Cloaker" then
-                	self.setEffect(self.EFF_POLYMORPH_SELF_CLOAKER, 100, {})
-    --[[            elseif result == "Drow" then
-                	self:setEffect(self.EFF_ALTER_SELF_DROW, 100, {})]]
-                end
+		local effect = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the new form", {
+			{name="Cloaker", desc="", effect=self.EFF_POLYMORPH_SELF_CLOAKER},
+		}, function(result, item)
+			self:talentDialogReturn(result and item.effect)
+			game:unregisterDialog(self:talentDialogGet())
+		end))
 
-                end))
+		if not effect then return nil end
 
+		self:setEffect(effect, 100, {})
 		return true
 	end,
 	info = function(self, t)

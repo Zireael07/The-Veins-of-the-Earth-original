@@ -86,18 +86,14 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	range = 3,
-	setCreature = function(t, creature)
-		t.creature = creature
-	end,
+	no_npc_use = true,
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), nolock = true, talent=t}
 	end,
-	makeCreature = function(self, t)
-		if not t.creature then return end
-		
+	makeCreature = function(self, t, creature)
 		local NPC = require "mod.class.NPC"
 
-		if t.creature == "light horse" then
+		if creature == "light horse" then
 
 		local m = NPC.new{
 			type = "animal", subtype = "horse",
@@ -138,7 +134,7 @@ newArcaneSpell{
 		return m
 		end
 		
-		if t.creature == "pony" then
+		if creature == "pony" then
 			local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
@@ -177,32 +173,23 @@ newArcaneSpell{
 		}
 		return m
 		end
-
 	end,
 	action = function(self, t)
 		-- Choose creature
-		if self == game.player then 
-			game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired mount",{
-                {name="light horse", desc=""},
-                {name="pony", desc=""},
-                },
-			function(result)
-            	
-            	if result == "light horse" then   
-            		t.creature = "light horse"
-
-            	elseif result == "pony" then
-            		t.creature = "pony"
-            	
-            	end
-
-            end))
-		end
+		local result = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired mount",{
+			{name="light horse", desc=""},
+			{name="pony", desc=""},
+		}, function(result)
+			self:talentDialogReturn(result)
+			game:unregisterDialog(self:talentDialogGet())
+		end))
 		
+		if not result then return nil end
 
-		if self == game.player then 
 		local tg = self:getTalentTarget(t)
 		local x, y =  self:getTarget(tg)
+		if not x or not y then return nil end
+
 		local _ _, _, _, x, y = self:canProject(tg, x, y)
 		local blocked = game.level.map(x, y, Map.ACTOR)
 		if blocked then
@@ -210,30 +197,21 @@ newArcaneSpell{
 			return nil
 		end
 		if not x or not y then
-			game.logPlayer(self, "You cannot summon there") 
+			game.logPlayer(self, "You cannot summon there.") 
 			return nil 
 		end
 
-		if t.creature then
-			game.logPlayer(self,("Player summons a %s!"):format(t.creature))
-		else
-			game.logPlayer(self,"Player doesn't summon a mount")
-		end
+		game.logPlayer(self, ("Player summons a %s!"):format(result))
 
-		local creature = t.makeCreature(self, t)
+		local creature = t.makeCreature(self, t, result)
 		game.zone:addEntity(game.level, creature, "actor", x, y)
-		return true
-		end
 
-		
+		return true
 	end,
 	info = function(self, t)
 		return ([[You summon a mount to serve your bidding.]])
 	end,
 }
-
-
-
 
 newArcaneSpell{
 	name = "Summon Creature I",
@@ -302,6 +280,8 @@ newArcaneSpell{
 
 		local tg = self:getTalentTarget(t)
 		local x, y =  self:getTarget(tg)
+		if not x or not y then return nil end
+
 		local _ _, _, _, x, y = self:canProject(tg, x, y)
 		local blocked = game.level.map(x, y, Map.ACTOR)
 		if blocked then
