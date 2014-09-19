@@ -1804,6 +1804,12 @@ function _M:levelClass(name)
 
 	end
 
+	if d.class_desc and d.class_desc.skill_point then
+		local skill_point = math.max(1, d.class_desc.skill_point + self:getIntMod())
+		if self.level == 1 then skill_point = skill_point * 4 end
+		self:attr('skill_point', skill_point)
+	end
+
 	self.last_class = name
 
 	d.on_level(self, level, d)
