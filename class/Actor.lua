@@ -63,6 +63,9 @@ function _M:init(t, no_default)
 	self.combat_dodge = 0
 	self.combat_untyped = 0
 
+	--Define speed
+	self.movement_speed = 1
+
 	--Some more combat stuff
 	self.more_attacks = 0
 	self.poison = self.poison or nil
