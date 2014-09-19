@@ -658,7 +658,11 @@ function _M:pseudoID()
     if self:skillCheck("intuition", 10, true) then
         local o = rng.table(can_id)
         o.pseudo_id = true
-        game.logPlayer(self, ("You feel that your %s is %s."):format(o:getUnidentifiedName(), o:getPseudoIdFeeling()))
+        if o.combat and o.combat.capacity and o.combat.capacity > 1 then
+            game.logPlayer(self, ("You feel that your %s are %s."):format(o:getUnidentifiedName(), o:getPseudoIdFeeling()))
+        else
+            game.logPlayer(self, ("You feel that your %s is %s."):format(o:getUnidentifiedName(), o:getPseudoIdFeeling()))
+        end
     end
 end
 

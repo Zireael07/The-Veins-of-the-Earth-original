@@ -1446,7 +1446,7 @@ end
 
 --AC, Sebsebeleb & Zireael
 function _M:getAC()
-	local dex_bonus = (self:getDex()-10)/2
+	local dex_bonus = self:getDexMod()
 	--Splitting it up to avoid stuff like stacking rings of protection or bracers of armor + armor
 --	local base = self.combat_base_ac or 10
 	local armor = self.combat_armor_ac or 0
@@ -1471,51 +1471,41 @@ end
 --Saving throws, Sebsebeleb & Zireael
 function _M:reflexSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + math.max((self:getStat("dex")-10)/2, (self:getStat("int")-10)/2)
-	if not roll == 1 and roll == 20 or roll + save > dc then
-		return true
-	else
-		return false
-	end
+	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + math.max(self:getDexMod(), self:getIntMod())
 
 	if self == game.player then
-	local s = ("Reflex save: %d roll + bonus = %d versus DC %d"):format(
+		local s = ("Reflex save: %d roll + bonus = %d versus DC %d"):format(
 			roll, save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
+
+	return roll ~= 1 and (roll == 20 or roll + save > dc)
 end
 
 function _M:fortitudeSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + math.max((self:getStat("con")-10)/2, (self:getStat("str")-10)/2)
-	if not roll == 1 and roll == 20 or roll + save > dc then
-		return true
-	else
-		return false
-	end
+	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + math.max(self:getConMod(), self:getStrMod())
 
 	if self == game.player then
-	local s = ("Fortitude save: %d roll + bonus = %d versus DC %d"):format(
+		local s = ("Fortitude save: %d roll + bonus = %d versus DC %d"):format(
 			roll, save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
+
+	return roll ~= 1 and (roll == 20 or roll + save > dc)
 end
 
 function _M:willSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + math.max((self:getStat("wis")-10)/2, (self:getStat("cha")-10)/2)
-	if not roll == 1 and roll == 20 or roll + save > dc then
-		return true
-	else
-		return false
-	end
+	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + math.max(self:getWisMod(), self:getChaMod())
 
 	if self == game.player then
-	local s = ("Will save: %d roll + bonus = %d versus DC %d"):format(
+		local s = ("Will save: %d roll + bonus = %d versus DC %d"):format(
 			roll, save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
 
+	return roll ~= 1 and (roll == 20 or roll + save > dc)
 end
 
 function _M:saveRoll(DC, type)
