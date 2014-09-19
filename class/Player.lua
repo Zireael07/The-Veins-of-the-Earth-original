@@ -169,8 +169,8 @@ function _M:playerCounters()
   --Resilient feat
   if self:knowTalent(self.T_RESILLIENT) and not self.resting then
 
-    local Conbonus = math.floor((player:getCon()-10)/2)
-    if self.life <= self.max_life - ((3 + Conbonus)*0.05) then
+    local conbonus = self:getConMod()
+    if self.life <= self.max_life - ((3 + conbonus)*0.05) then
 
       self.resilient_counter = 3
       self.resilient_counter = self.resilient_counter - 1
@@ -658,7 +658,11 @@ function _M:pseudoID()
     if self:skillCheck("intuition", 10, true) then
         local o = rng.table(can_id)
         o.pseudo_id = true
-        game.logPlayer(self, ("You feel that your %s is %s."):format(o:getUnidentifiedName(), o:getPseudoIdFeeling()))
+        if o.combat and o.combat.capacity and o.combat.capacity > 1 then
+            game.logPlayer(self, ("You feel that your %s are %s."):format(o:getUnidentifiedName(), o:getPseudoIdFeeling()))
+        else
+            game.logPlayer(self, ("You feel that your %s is %s."):format(o:getUnidentifiedName(), o:getPseudoIdFeeling()))
+        end
     end
 end
 

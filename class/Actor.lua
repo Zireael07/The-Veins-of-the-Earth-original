@@ -1327,13 +1327,11 @@ function _M:skillCheck(skill, dc, silent)
 	local success = false
 
 	local d = rng.dice(1,20)
-	if d == 20 then return true
-	elseif d == 1 then return false
-	end
-
 	local result = d + (self:getSkill(skill) or 0)
 
-	if result > dc then success = true end
+	if d == 20 then success = true
+	elseif d == 1 then success = false
+	else success = result > dc end
 
 	--Limit logging to the player
 	if not silent and self == game.player then
@@ -1446,7 +1444,7 @@ end
 
 --AC, Sebsebeleb & Zireael
 function _M:getAC()
-	local dex_bonus = (self:getDex()-10)/2
+	local dex_bonus = self:getDexMod()
 	--Splitting it up to avoid stuff like stacking rings of protection or bracers of armor + armor
 --	local base = self.combat_base_ac or 10
 	local armor = self.combat_armor_ac or 0
@@ -1471,51 +1469,41 @@ end
 --Saving throws, Sebsebeleb & Zireael
 function _M:reflexSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + math.max((self:getStat("dex")-10)/2, (self:getStat("int")-10)/2)
-	if not roll == 1 and roll == 20 or roll + save > dc then
-		return true
-	else
-		return false
-	end
+	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + math.max(self:getDexMod(), self:getIntMod())
 
 	if self == game.player then
-	local s = ("Reflex save: %d roll + bonus = %d versus DC %d"):format(
+		local s = ("Reflex save: %d roll + bonus = %d versus DC %d"):format(
 			roll, save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
+
+	return roll ~= 1 and (roll == 20 or roll + save > dc)
 end
 
 function _M:fortitudeSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + math.max((self:getStat("con")-10)/2, (self:getStat("str")-10)/2)
-	if not roll == 1 and roll == 20 or roll + save > dc then
-		return true
-	else
-		return false
-	end
+	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + math.max(self:getConMod(), self:getStrMod())
 
 	if self == game.player then
-	local s = ("Fortitude save: %d roll + bonus = %d versus DC %d"):format(
+		local s = ("Fortitude save: %d roll + bonus = %d versus DC %d"):format(
 			roll, save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
+
+	return roll ~= 1 and (roll == 20 or roll + save > dc)
 end
 
 function _M:willSave(dc)
 	local roll = rng.dice(1,20)
-	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + math.max((self:getStat("wis")-10)/2, (self:getStat("cha")-10)/2)
-	if not roll == 1 and roll == 20 or roll + save > dc then
-		return true
-	else
-		return false
-	end
+	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + math.max(self:getWisMod(), self:getChaMod())
 
 	if self == game.player then
-	local s = ("Will save: %d roll + bonus = %d versus DC %d"):format(
+		local s = ("Will save: %d roll + bonus = %d versus DC %d"):format(
 			roll, save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
 
+	return roll ~= 1 and (roll == 20 or roll + save > dc)
 end
 
 function _M:saveRoll(DC, type)
@@ -1814,6 +1802,12 @@ function _M:levelClass(name)
 
 	if level == 1 then --Apply the descriptor... or not?
 
+	end
+
+	if d.class_desc and d.class_desc.skill_point then
+		local skill_point = math.max(1, d.class_desc.skill_point + self:getIntMod())
+		if self.level == 1 then skill_point = skill_point * 4 end
+		self:attr('skill_point', skill_point)
 	end
 
 	self.last_class = name

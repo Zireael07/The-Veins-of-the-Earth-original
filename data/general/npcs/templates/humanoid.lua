@@ -223,5 +223,5 @@ newEntity{
 	life_rating = 0,
 
 	challenge = 2,
-	combat_attack = 2,]]
-}
+	combat_attack = 2,
+}]]

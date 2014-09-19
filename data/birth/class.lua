@@ -11,9 +11,6 @@ newBirthDescriptor {
 	rarity = 2,
 	copy = {
 	},
-	copy_add = {
-		skill_point = 12, --4x skill points at 1st character level
-	},
 	descriptor_choices =
 	{
 		alignment =
@@ -30,6 +27,9 @@ newBirthDescriptor {
 			['Two weapon fighter'] = 'disallow',
 		}
 	},
+	class_desc = {
+		skill_point = 4,
+	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Barbarian"] and actor.descriptor.class == "Barbarian" then return true end
 		
@@ -40,7 +40,6 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor:attr("fortitude_save", 2)
 			actor:attr("combat_bab", 1)
-			actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 
 			actor.movement_speed_bonus = 0.33
 
@@ -66,7 +65,6 @@ newBirthDescriptor {
 		actor:attr("fortitude_save", 1)
 		actor:attr("reflex_save", 0.5)
 		actor:attr("will_save", 0.5)
-		actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 			if actor == game.player then
 				if actor.descriptor.race == "Half-Orc" or actor.descriptor.race == "Orc" then
 			--Favored class bonuses
@@ -86,9 +84,6 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Balance, Bluff, Climb, Concentration, Diplomacy, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	copy = {
 	},
-	copy_add = {
-		skill_point = 18, --4x skill points at 1st level
-	},
 	descriptor_choices =
 	{
 		alignment =
@@ -105,6 +100,9 @@ newBirthDescriptor {
 			['Exotic fighter'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
+	},
+	class_desc = {
+		skill_point = 6,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Bard"] and actor.descriptor.class == "Bard" then return true end
@@ -125,7 +123,6 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor:attr("fortitude_save", 2)
 			actor:attr("reflex_save", 2)
-			actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -170,7 +167,6 @@ newBirthDescriptor {
 		actor:attr("fortitude_save", 1)
 		actor:attr("reflex_save", 1)
 		actor:attr("will_save", 0.5)
-		actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 
 		if actor == game.player then
 			if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
@@ -197,9 +193,6 @@ newBirthDescriptor {
 	rarity = 4,
 	copy = {
 	},
-	copy_add = {
-		skill_point = 6, --4x skill points at 1st level
-	},
 	descriptor_choices = {
 		deity =
     	{
@@ -220,6 +213,9 @@ newBirthDescriptor {
 			['Two weapon fighter'] = 'disallow',
 		}
 	},
+	class_desc = {
+		skill_point = 2,
+	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Cleric"] and actor.descriptor.class == "Cleric" then return true end
 		
@@ -239,7 +235,6 @@ newBirthDescriptor {
 		if level == 1 then
 			actor:attr("fortitude_save", 2)
 			actor:attr("will_save", 2)
-			actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -629,7 +624,6 @@ newBirthDescriptor {
 		actor:attr("fortitude_save", 1)
 		actor:attr("reflex_save", 0.5)
 		actor:attr("combat_bab", 0.75)
-		actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
 		if actor == game.player then
 			if actor:hasDescriptor{race="Drow", sex="Female"} or actor:hasDescriptor{race="Half-Drow"} then
@@ -653,9 +647,6 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#Clerics of nature.\n\n #LIGHT_BLUE# Class skills: Concentration, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Ride, Spot, Swim, Spellcraft, Survival.\n\n  #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 	rarity = 8,
 	copy = {
-	},
-	copy_add = {
-		skill_point = 6, --4x skill points at 1st level
 	},
 	descriptor_choices =
 	{
@@ -690,6 +681,9 @@ newBirthDescriptor {
             ['Xavias'] = "disallow",
         },
 	},
+	class_desc = {
+		skill_point = 2, -- TODO: D20 uses 4. Is this supposed to be different?
+	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Druid"] and actor.descriptor.class == "Druid" then return true end
 		
@@ -709,7 +703,6 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor:attr("fortitude_save", 2)
 			actor:attr("will_save", 2)
-			actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -758,7 +751,6 @@ newBirthDescriptor {
 		actor:attr("fortitude_save", 1)
 		actor:attr("reflex_save", 0.5)
 		actor:attr("combat_bab", 0.75)
-		actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
 		if actor == game.player then
 				if actor:hasDescriptor{race="Lizardfolk"} then
@@ -786,9 +778,6 @@ newBirthDescriptor {
 	rarity = 2,
 	copy = {
 	},
-	copy_add = {
-		skill_point = 6, --4x skill points at 1st level
-	},
 	descriptor_choices =
 	{
 		--Prevent another game-breaking combo; why would anyone want a fighter/spellcaster is beyond me
@@ -798,6 +787,9 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
+	},
+	class_desc = {
+		skill_point = 2,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Fighter"] and actor.descriptor.class == "Fighter" then return true end
@@ -809,7 +801,6 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor:attr("fortitude_save", 2)
 			actor:attr("combat_bab", 1)
-			actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -841,7 +832,6 @@ newBirthDescriptor {
 		actor:attr("fortitude_save", 1)
 		actor:attr("reflex_save", 0.5)
 		actor:attr("will_save", 0.5)
-		actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
 		if actor == game.player then
 			if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
@@ -867,9 +857,6 @@ newBirthDescriptor {
                         { name="chain mail", ego_chance=-1000 },
                 },
         },]]
-        copy_add = {
-                skill_point = 16, --4x skill points at 1st character level
-        },
         descriptor_choices =
         {
                 alignment =
@@ -902,6 +889,9 @@ newBirthDescriptor {
                     ['Zurvash'] = "disallow",
                 },
         },
+        class_desc = {
+            skill_point = 4,
+        },
         can_level = function(actor)
             if actor.classes and actor.classes["Monk"] and actor.descriptor.class == "Monk" then return true end
                 
@@ -913,7 +903,6 @@ newBirthDescriptor {
             actor:attr("fortitude_save", 2)
             actor:attr("reflex_save", 2)
             actor:attr("will_save", 2)
-            actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 			actor:attr("max_life", 8 + (actor:getCon()-10)/2)
             actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
@@ -924,7 +913,6 @@ newBirthDescriptor {
             actor:attr("fortitude_save", 1)
             actor:attr("reflex_save", 1)
             actor:attr("will_save", 1)
-            actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 			actor:attr("max_life", 8 + (actor:getCon()-10)/2)
             end
         end,
@@ -935,9 +923,6 @@ newBirthDescriptor {
         name = 'Paladin',
         desc = help..'#ORANGE#Holy warriors of the deities of good and law.\n\n #LIGHT_BLUE#Class skills: Concentration, Diplomacy, Handle Animal, Heal, Knowledge, Ride, Sense Motive.\n\n #WHITE#10 hit points per level, BAB +1, Fort +2 at first class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
         copy = {
-        },
-        copy_add = {
-                skill_point = 8, --4x skill points at 1st character level
         },
         descriptor_choices =
         {
@@ -972,6 +957,9 @@ newBirthDescriptor {
                 ['Zurvash'] = "disallow",
                 },
         },
+        class_desc = {
+            skill_point = 2,
+        },
         can_level = function(actor)
             if actor.classes and actor.classes["Paladin"] and actor.descriptor.class == "Paladin" then return true end
                 
@@ -991,7 +979,6 @@ newBirthDescriptor {
             if level == 1 then
                 actor:attr("fortitude_save", 2)
                 actor:attr("combat_bab", 1)
-                actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
                 actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
                 actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -1039,7 +1026,6 @@ newBirthDescriptor {
         		actor:attr("fortitude_save", 1)
         		actor:attr("reflex_save", 0.5)
         		actor:attr("will_save", 0.5)
-        		actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 				actor:attr("max_life", 10 + (actor:getCon()-10)/2)
         	end
         end,
@@ -1059,9 +1045,6 @@ newBirthDescriptor {
 		},
 
 	},
-	copy_add = {
-		skill_point = 18, --4x skill points at 1st level
-	},
 	descriptor_choices =
 	{
 		--Prevent another game-breaking combo
@@ -1069,6 +1052,9 @@ newBirthDescriptor {
 		{
 			['Magical thief'] = "disallow",
 		}
+	},
+	class_desc = {
+		skill_point = 6,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Ranger"] and actor.descriptor.class == "Ranger" then return true end
@@ -1090,7 +1076,6 @@ newBirthDescriptor {
 			actor:attr("fortitude_save", 2)
 			actor:attr("combat_bab", 1)
 			actor:attr("reflex_save", 2)
-			actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -1213,7 +1198,6 @@ newBirthDescriptor {
 		actor:attr("fortitude_save", 1)
 		actor:attr("reflex_save", 1)
 		actor:attr("will_save", 0.5)
-		actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 		if actor == game.player then
 			if actor.descriptor.race == "Elf" then
 		--Favored class bonuses
@@ -1245,9 +1229,6 @@ newBirthDescriptor {
 			{ name="iron dagger", ego_chance=-1000},
 		}
 	},
-	copy_add = {
-		skill_point = 24, --4x skill points at 1st level
-	},
 	descriptor_choices =
 	{
 		alignment =
@@ -1265,6 +1246,9 @@ newBirthDescriptor {
 			['Two weapon fighter'] = 'disallow',
 		}
 	},
+	class_desc = {
+		skill_point = 8,
+	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Rogue"] and actor.descriptor.class == "Rogue" then return true end
 		
@@ -1275,7 +1259,6 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor:attr("reflex_save", 2)
 			actor:attr("sneak_attack", 1)
-			actor:attr("skill_point", 8 + (actor:getInt()-10)/2)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -1310,7 +1293,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 		actor:attr("fortitude_save", 0.5)
 
-		actor:attr("skill_point", 8 + (actor:getInt()-10)/2)
 		if actor == game.player then
 			if actor.descriptor.race == "Deep gnome" or actor.descriptor.race == "Kobold" then
 		--Favored class bonuses
@@ -1335,10 +1317,6 @@ newBirthDescriptor {
 			{ name="light crossbow", ego_chance=-1000},
 			{ name="bolts", ego_chance=-1000},
 		}
-
-	},
-	copy_add = {
-		skill_point = 6, --4x skill points at 1st level
 	},
 	talents_types = {
 		["arcane/arcane"] = {true, 0.0},
@@ -1355,6 +1333,9 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
+	},
+	class_desc = {
+		skill_point = 2,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Sorcerer"] and actor.descriptor.class == "Sorcerer" then return true end
@@ -1376,7 +1357,6 @@ newBirthDescriptor {
 			actor:attr("innate_casting_arcane", 1)
 
 			actor:attr("will_save", 2)
-			actor:attr("skill_point", 2)
 
 			actor:learnTalentType("abjuration")
 			actor:learnTalentType("conjuration")
@@ -1398,7 +1378,6 @@ newBirthDescriptor {
 			actor:attr("combat_bab", 0.5)
 			actor:attr("fortitude_save", 0.5)
 			actor:attr("reflex_save", 0.5)
-			actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 		end
 
@@ -1425,9 +1404,6 @@ newBirthDescriptor {
 		}
 
 	},
-	copy_add = {
-		skill_point = 6, --4x skill points at 1st level
-	},
 	descriptor_choices =
 	{
 		--Prevent game-breaking combos due to 1 BAB requirement of some feats
@@ -1440,6 +1416,9 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
+	},
+	class_desc = {
+		skill_point = 2,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Wizard"] and actor.descriptor.class == "Wizard" then return true end
@@ -1463,7 +1442,6 @@ newBirthDescriptor {
 			end
 
 			actor:attr("will_save", 2)
-			actor:attr("skill_point", 2 + (actor:getInt()-10) / 2)
 
 			if actor == game.player then
 				game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a specialization",{
@@ -1530,7 +1508,6 @@ newBirthDescriptor {
 			actor:attr("combat_bab", 0.5)
 			actor:attr("fortitude_save", 0.5)
 			actor:attr("reflex_save", 0.5)
-			actor:attr("skill_point", 2 + ((actor:getInt() - 10) / 2))
 
 			if actor == game.player then
 				if actor:hasDescriptor{race="Drow", sex="Male"} then
@@ -1562,9 +1539,6 @@ newBirthDescriptor {
 	rarity = 10,
 	copy = {
 	},
-	copy_add = {
-		skill_point = 6, --4x skill points at start
-	},
 	descriptor_choices =
 	{
 		--Prevent game-breaking combos due to 1 BAB requirement of some feats
@@ -1578,6 +1552,9 @@ newBirthDescriptor {
 			['Two weapon fighter'] = 'disallow',
 		}
 	},
+	class_desc = {
+		skill_point = 2,
+	},
 	can_level = function(actor)
 	if actor.classes and actor.classes["Warlock"] and actor.descriptor.class == "Warlock" then return true end
 		
@@ -1588,7 +1565,6 @@ newBirthDescriptor {
 		if level == 1 then 
 			actor:attr("will_save", 2)
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
-			actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 		
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -1605,7 +1581,6 @@ newBirthDescriptor {
 		actor:attr("reflex_save", 0.5)
 
 		actor:attr("max_life", 6 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 		end
 	end,
 } 
@@ -1618,9 +1593,6 @@ newBirthDescriptor {
 	desc = help..'#ORANGE#A divine spellcaster who does not need to prepare spells.\n\n #LIGHT_BLUE# Class skills: Concentration, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n #WHITE#8 hit points per level, Fort +2, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +1, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	rarity = 10,
 	copy = {
-	},
-	copy_add = {
-		skill_point = 8, --4x skill points at start
 	},
 	descriptor_choices =
 	{
@@ -1639,6 +1611,9 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
+	},
+	class_desc = {
+		skill_point = 2,
 	},
 	can_level = function(actor)
 	if actor.classes and actor.classes["Shaman"] and actor.descriptor.class == "Shaman" then return true end
@@ -1662,7 +1637,6 @@ newBirthDescriptor {
 
 			actor:attr("will_save", 2)
 			actor:attr("fortitude_save", 2)
-			actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 
 			actor:learnTalentType("divine")
@@ -2034,7 +2008,6 @@ newBirthDescriptor {
 		actor:attr("reflex_save", 0.5)
 
 		actor:attr("max_life", 6 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 2 + (actor:getInt()-10)/2)
 
 		--Gain a caster level every level
 		actor:incCasterLevel("divine", 1)
@@ -2057,6 +2030,9 @@ newBirthDescriptor {
 
 		return false
 	end,
+	class_desc = {
+		skill_point = 6,
+	},
 	on_level = function(actor, level, descriptor)
 		if level == 1 then 
 		actor:attr("reflex_save", 2)
@@ -2065,7 +2041,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 		
 		--Any level higher than 1
 		else
@@ -2089,7 +2064,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 		end
 	end,
 } 
@@ -2101,6 +2075,9 @@ newBirthDescriptor {
 	desc = [[Requires Move Silently 8 ranks and Hide 8 ranks.
 
 	Evil backstabbers who want to kill just for the fun of it.]],
+	class_desc = {
+		skill_point = 6,
+	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Assasin"] and actor.classes["Assasin"] >= 10 then return false end
 	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then	
@@ -2120,7 +2097,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 
 		--Any level higher than 1
 		else
@@ -2138,7 +2114,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 		end
 		
 	end,
@@ -2152,6 +2127,9 @@ newBirthDescriptor {
 	desc = [[Requires BAB +6. Hide 6 ranks, Knowledge 2 ranks.
 
 	Worshippers of evil powers.]],
+	class_desc = {
+		skill_point = 6,
+	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Blackguard"] and actor.classes["Blackguard"] >= 10 then return false end
 	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
@@ -2171,7 +2149,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 
 		--Any level higher than 1
 		else
@@ -2188,7 +2165,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 6 + (actor:getInt()-10)/2)
 		end
 		
 	end,
@@ -2202,6 +2178,9 @@ newBirthDescriptor {
 	desc = [[Requires BAB +6.
 
 	Elven archers who fuel their arrows with magic.]],
+	class_desc = {
+		skill_point = 4,
+	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Arcane archer"] and actor.classes["Arcane archer"] >= 10 then return false end
 	--	if player.descriptor.race == "Elf" or player.descriptor.race == "Half-Elf" then
@@ -2220,7 +2199,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 
 		--Any level higher than 1
 		else
@@ -2236,7 +2214,6 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 		end
 		
 	end,
@@ -2250,6 +2227,9 @@ newBirthDescriptor {
 	desc = [[Requires Knowledge 12 ranks.
 
 	The most knowledgeable mages the world knows.]],
+	class_desc = {
+		skill_point = 4,
+	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Loremaster"] and actor.classes["Loremaster"] >= 10 then return false end
 --		if actor:knowTalent(actor.T_SKILL_FOCUS_KNOWLEDGE)
@@ -2266,7 +2246,6 @@ newBirthDescriptor {
 		actor:attr("reflex_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 
 		--Any level higher than 1
 		else
@@ -2281,7 +2260,6 @@ newBirthDescriptor {
 		actor:attr("fortitude_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 		end
 		
 	end,
@@ -2295,6 +2273,9 @@ newBirthDescriptor {
 	desc = [[Requires Knowledge 15 ranks, Spellcraft 15 ranks.
 
 	The best mages the world knows.]],
+	class_desc = {
+		skill_point = 4,
+	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Archmage"] and actor.classes["Archmage"] >= 5 then return false end
 --		if actor:knowTalent(actor.T_SKILL_FOCUS_SPELLCRAFT)
@@ -2311,7 +2292,6 @@ newBirthDescriptor {
 		actor:attr("reflex_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 
 		--High arcana (from a list)
 
@@ -2326,7 +2306,6 @@ newBirthDescriptor {
 		actor:attr("fortitude_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		actor:attr("skill_point", 4 + (actor:getInt()-10)/2)
 
 		--High arcana (from a list)
 		end

@@ -171,13 +171,20 @@ ActorInventory.equipdolls = {
 
 
 -- Actor stats
-ActorStats:defineStat("Strength",	"str", 0, -5, 30, "Strength measures your character’s muscle and physical power.")
-ActorStats:defineStat("Dexterity",	"dex", 0, -5, 30, "Dexterity measures hand-eye coordination, agility, reflexes, and balance.")
+ActorStats:defineStat("Strength",	    "str", 0, -5, 30, "Strength measures your character’s muscle and physical power.")
+ActorStats:defineStat("Dexterity",	    "dex", 0, -5, 30, "Dexterity measures hand-eye coordination, agility, reflexes, and balance.")
 ActorStats:defineStat("Constitution",	"con", 0, -5, 30, "Constitution represents your character’s health and stamina.")
 ActorStats:defineStat("Intelligence",   "int", 0, -5, 30, "Intelligence determines how well your character learns and reasons.")
 ActorStats:defineStat("Wisdom",         "wis", 0, -5, 30, "Wisdom describes a character’s willpower, common sense, perception, and intuition. While Intelligence represents one’s ability to analyze information, Wisdom represents being in tune with and aware of one’s surroundings.")
 ActorStats:defineStat("Charisma",       "cha", 0, -5, 30, "Charisma measures a character’s force of personality, persuasiveness, personal magnetism, ability to lead, and physical attractiveness. This ability represents actual strength of personality, not merely how one is perceived by others in a social setting.")
 ActorStats:defineStat("Luck",           "luc", 0, -5, 30, "Luck measures your character's good fortune and favor of the gods.")
+
+-- Add D20-style stat modifiers.
+for i, s in ipairs(ActorStats.stats_def) do
+    ActorStats["get"..s.short_name:lower():capitalize().."Mod"] = function(self, scale, raw, no_inc)
+        return math.floor((self:getStat(ActorStats["STAT_"..s.short_name:upper()], scale, raw, no_inc) - 10) / 2)
+    end
+end
 
 --Factions
 dofile("/data/factions.lua")
