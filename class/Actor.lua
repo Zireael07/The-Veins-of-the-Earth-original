@@ -1327,13 +1327,11 @@ function _M:skillCheck(skill, dc, silent)
 	local success = false
 
 	local d = rng.dice(1,20)
-	if d == 20 then return true
-	elseif d == 1 then return false
-	end
-
 	local result = d + (self:getSkill(skill) or 0)
 
-	if result > dc then success = true end
+	if d == 20 then success = true
+	elseif d == 1 then success = false
+	else success = result > dc end
 
 	--Limit logging to the player
 	if not silent and self == game.player then
