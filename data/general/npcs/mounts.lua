@@ -53,7 +53,8 @@ newEntity{
 	hit_die = 3,
 	challenge = 1,
 	infravision = 1,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 0.66,
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
 
@@ -65,7 +66,8 @@ newEntity{
 	hit_die = 3,
 	challenge = 1,
 	infravision = 1,
-	movement_speed_bonus = 1,
+--	movement_speed_bonus = 1,
+	movement_speed = 2,
 	combat = { dam= {1,4} },
 	stats = { str=14, dex=13, con=15, int=2, wis=12, cha=6, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
@@ -79,7 +81,8 @@ newEntity{
 	hit_die = 4,
 	challenge = 2,
 	infravision = 1,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	combat = { dam= {1,4} },
 	combat_natural = 3,
 	stats = { str=18, dex=13, con=17, int=2, wis=13, cha=6, luc=2 },
@@ -94,7 +97,8 @@ newEntity{
 	hit_die = 4,
 	challenge = 1,
 	infravision = 1,
-	movement_speed_bonus = 1,
+--	movement_speed_bonus = 1,
+	movement_speed = 2,
 	combat_natural = 3,
 	stats = { str=16, dex=13, con=17, int=2, wis=13, cha=6, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
@@ -118,11 +122,6 @@ newEntity{
 	skill_swim = 1,
 	combat_natural = 4,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
@@ -133,7 +132,8 @@ newEntity{
 	hit_die = 2,
 	challenge = 1,
 	infravision = 1,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
 
@@ -153,11 +153,6 @@ newEntity{
 	skill_listen = 5,
 	combat_natural = 2,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
@@ -168,7 +163,8 @@ newEntity{
 	hit_die = 2,
 	infravision = 1,
 	challenge = 1/4,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
 
@@ -180,7 +176,8 @@ newEntity{
 	hit_die = 2,
 	infravision = 1,
 	challenge = 1/2,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	stats = { str=15, dex=13, con=14, int=2, wis=11, cha=4, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
@@ -202,11 +199,6 @@ newEntity{
 	skill_climb = 8,
 	combat_natural = 2,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
@@ -217,7 +209,8 @@ newEntity{
 	hit_die = 4,
 	infravision = 6,
 	challenge = 1,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
 
@@ -229,7 +222,8 @@ newEntity{
 	hit_die = 5,
 	infravision = 6,
 	challenge = 2,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	stats = { str=19, dex=13, con=17, int=2, wis=12, cha=6, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
@@ -243,7 +237,8 @@ newEntity{
 	hit_die = 5,
 	infravision = 6,
 	challenge = 2,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	stats = { str=19, dex=13, con=17, int=2, wis=12, cha=6, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }

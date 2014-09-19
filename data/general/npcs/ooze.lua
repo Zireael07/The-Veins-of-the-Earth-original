@@ -28,7 +28,8 @@ newEntity{ base = "BASE_NPC_OOZE",
 	max_life = resolvers.rngavg(110,115),
 	hit_die = 10,
 	challenge = 7,
-	movement_speed_bonus = -0.33,
+--	movement_speed_bonus = -0.33,
+	movement_speed = 0.66,
 	skill_climb = 8,
 }
 
@@ -56,7 +57,8 @@ newEntity{ base = "BASE_NPC_OOZE",
 	max_life = resolvers.rngavg(50,55),
 	hit_die = 4,
 	challenge = 3,
-	movement_speed_bonus = -0.66,
+--	movement_speed_bonus = -0.66,
+	movement_speed = 0.33,
 }
 
 --Immunity to cold and fire; +1d6 acid on hit; improved grab; constrict 1d6
@@ -70,7 +72,8 @@ newEntity{ base = "BASE_NPC_OOZE",
 	max_life = resolvers.rngavg(30,35),
 	hit_die = 3,
 	challenge = 4,
-	movement_speed_bonus = -0.88,
+--	movement_speed_bonus = -0.88,
+	movement_speed = 0.22,
 }
 
 --Climb 10 ft.; +1d4 acid on hit, clone
@@ -87,5 +90,6 @@ newEntity{ base = "BASE_NPC_OOZE",
 	hit_die = 6,
 	challenge = 5,
 	skill_climb = 9,
-	movement_speed_bonus = -0.88,
+--	movement_speed_bonus = -0.88,
+	movement_speed = 0.22,
 }

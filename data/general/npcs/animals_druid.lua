@@ -43,11 +43,6 @@ newEntity{
 	skill_listen = 4,
 	combat_natural = 1,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
@@ -58,7 +53,8 @@ newEntity{
 	hit_die = 1,
 	challenge = 1/2,
 	infravision = 1,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
 
@@ -80,11 +76,6 @@ newEntity{
 	skill_spot = 3,
 	combat_natural = 4,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{

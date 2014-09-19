@@ -123,7 +123,8 @@ newEntity{
 	skill_listen = 7,
 	skill_movesilently = 7,
 	skill_spot = 7,
-	movement_speed_bonus = -0.88,
+--	movement_speed_bonus = -0.88,
+	movement_speed = 0.22,
 }
 
 --Immunity to fire, vulnerability to cold
@@ -141,7 +142,8 @@ newEntity{
 	combat = { dam= {1,4} },
 	infravision = 4,
 	combat_natural = 7,
-	movement_speed_bonus = -0.33,
+--	movement_speed_bonus = -0.33,
+	movement_speed = 0.66,
 	resolvers.equip{
 		full_id=true,
 		{ name = "spear" },

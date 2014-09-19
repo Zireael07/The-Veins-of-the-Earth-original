@@ -31,12 +31,8 @@ newEntity{
 	stats = { str=12, dex=21, con=12, int=10, wis=13, cha=13, luc=12 },
 	combat = { dam= {1,6} },
 	fly = true,
-	movement_speed_bonus = 1,
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
+--	movement_speed_bonus = 1,
+	movement_speed = 2,
 	resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.COLD] = 10,
@@ -166,7 +162,8 @@ newEntity{
 	skill_sensemotive = 10,
 	skill_spellcraft = 10,
 	skill_spot = 10,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_COMBAT_CASTING]=1,
 	},

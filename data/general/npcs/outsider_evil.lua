@@ -118,7 +118,8 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=13, int=6, wis=10, cha=6, luc=10 },
 	combat = { dam= {1,6} },
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	alignment = "lawful evil",
 }
 
@@ -178,7 +179,8 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=17, con=15, int=6, wis=14, cha=8, luc=12 },
 	combat = { dam= {2,8} },
-	movement_speed_bonus = 0.88,
+--	movement_speed_bonus = 0.88,
+	movement_speed = 1.88,
 	alignment = "chaotic evil",
 }
 
@@ -219,7 +221,8 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=19, dex=12, con=18, int=11, wis=15, cha=12, luc=12 },
 	combat = { dam= {2,6} },
-	movement_speed_bonus = -0.66,
+--	movement_speed_bonus = -0.66,
+	movement_speed = 0.33,
 	alignment = "neutral evil",
 }
 
@@ -267,7 +270,8 @@ newEntity{
 	stats = { str=18, dex=15, con=16, int=13, wis=13, cha=12, luc=12 },
 	combat = { dam= {1,8} },
 	infravision = 4,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	alignment = "neutral evil",
 }
 
@@ -335,7 +339,8 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=13, con=12, int=5, wis=12, cha=8, luc=8 },
 	combat = { dam= {1,4} },
-	movement_speed_bonus = -0.66,
+--	movement_speed_bonus = -0.66,
+	movement_speed = 0.33,
 	alignment = "neutral evil",
 }
 
@@ -370,7 +375,8 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=15, con=15, int=6, wis=14, cha=10, luc=10 },
 	combat = { dam= {1,6} },
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	alignment = "neutral evil",
 }
 

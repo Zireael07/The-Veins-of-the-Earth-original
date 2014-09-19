@@ -230,7 +230,8 @@ newEntity{
         skill_listen = 6,
         skill_movesilently = 7,
         skill_spot = 6,
-        movement_speed_bonus = -0.33,
+--        movement_speed_bonus = -0.33,
+        movement_speed = 0.66,
         alignment = "lawful evil",
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }

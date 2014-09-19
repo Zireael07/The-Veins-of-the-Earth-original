@@ -371,7 +371,8 @@ newEntity{
 	skill_listen = 8,
 	skill_pickpocket = 8,
 	skill_spot = 8,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	alignment = "neutral",
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }    
@@ -398,7 +399,8 @@ newEntity{
 	skill_listen = 4,
 	skill_movesilently = 4,
 	skill_spot = 4,
-	movement_speed_bonus = 0.33, 
+--	movement_speed_bonus = 0.33, 
+	movement_speed = 1.33,
 	alignment = "neutral",	
 }    
 
@@ -426,7 +428,8 @@ newEntity{
 	skill_swim = 15,
 	skill_spot = 4,
 	combat_dr = 5,
-	movement_speed_bonus = -0.66, 	
+--	movement_speed_bonus = -0.66, 	
+	movement_speed = 0.33,
 }    
 
 --Climb 20 ft., scent
@@ -482,7 +485,8 @@ newEntity{
 	skill_climb = 5,
 	skill_listen = 7,
 	skill_spot = 7,
-	movement_speed_bonus = -0.90, 	
+--	movement_speed_bonus = -0.90, 	
+	movement_speed = 0.1,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }    
 
@@ -542,7 +546,8 @@ newEntity{
 	combat_natural = 5,
 	skill_listen = 6,
 	skill_spot = 6,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	alignment = "neutral",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 } 
@@ -571,7 +576,8 @@ newEntity{
 	skill_movesilently = 5,
 	skill_spot = 7,
 	skill_swim = 8,
-	movement_speed_bonus = -0.33,
+--	movement_speed_bonus = -0.33,
+	movement_speed = 0.66,
 	alignment = "lawful evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 } 
@@ -604,7 +610,8 @@ newEntity{
 	skill_listen = 14,
 	skill_search = 12,
 	skill_spot = 14,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	fly = true,
 	alignment = "chaotic evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
@@ -623,7 +630,8 @@ newEntity{
 	stats = { str=14, dex=15, con=14, int=16, wis=15, cha=17, luc=12 },
 	combat = { dam= {2,6} },
 	infravision = 4,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	rarity = 20,
 }
 

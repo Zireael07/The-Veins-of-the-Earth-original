@@ -34,7 +34,8 @@ newEntity{
 	skill_search = 11,
 	skill_spot = 11,
 	skill_tumble = 11,
-	movement_speed_bonus = -0.33,
+--	movement_speed_bonus = -0.33,
+	movement_speed = 0.66,
 	specialist_desc = [[A victim of a chaos beast’s touch does not immediately die from the transformation. A shapechange or stoneskin spell can stop the process temporarily, but a restoration, heal, or greater restoration spell is needed to remove the affliction.]],
 	uncommon_desc = [[A chaos beast can cause very little damage. However, its touch is damaging to corporeal creatures, causing them to melt into an amorphous mass, slowing going into shock and eventually becoming a chaos beast themselves. They are completely immune to transmutation.]],
 	common_desc = [[Much like their home plane of Limbo, chaos beasts have no set form. Instead, they constantly shift and alter their bodies, and there’s no telling what one might look like.]],
@@ -55,7 +56,8 @@ newEntity{
 	combat = { dam= {1,4} },
 	skill_climb = 9,
 	skill_movesilently = 8,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.ELECTRIC] = 10,
@@ -179,7 +181,8 @@ newEntity{
 	skill_spellcraft = 25,
 	skill_spot = 25,
 	skill_usemagic = 25,
-	movement_speed_bonus = -0.50,
+--	movement_speed_bonus = -0.50,
+	movement_speed = 0.50,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1,
 	},
@@ -270,7 +273,8 @@ newEntity{
 	skill_sensemotive = 10,
 	skill_spellcraft = 10,
 	skill_spot = 10,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	alignment = "lawful evil",
 }
 
@@ -301,7 +305,8 @@ newEntity{
 	skill_movesilently = 6,
 	skill_survival = 6,
 	skill_spot = 6,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	alignment = "neutral",
 	fly = true,
 }
@@ -333,7 +338,8 @@ newEntity{
 	skill_survival = 7,
 	skill_spot = 7,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	alignment = "neutral evil",
 }
 
@@ -441,7 +447,8 @@ newEntity{
 	skill_sensemotive = 8,
 	skill_spot = 8,
 	skill_tumble = 8,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	alignment = "lawful evil",
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
@@ -494,7 +501,8 @@ newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "air mephit",
 	combat_natural = 4,
-	movement_speed_bonus = 1,
+--	movement_speed_bonus = 1,
+	movement_speed = 2,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
@@ -503,7 +511,8 @@ newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "dust mephit",
 	combat_natural = 4,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
@@ -513,7 +522,8 @@ newEntity{
 	name = "earth mephit",
 	combat_natural = 7,
 	max_life = resolvers.rngavg(17,21),
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	stats = { str=17, dex=8, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
@@ -524,7 +534,8 @@ newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "fire mephit",
 	combat_natural = 5,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	stats = { str=10, dex=13, con=10, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
@@ -536,7 +547,8 @@ newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "ice mephit",
 	combat_natural = 5,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
@@ -547,7 +559,8 @@ newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "magma mephit",
 	combat_natural = 5,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	stats = { str=10, dex=13, con=10, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
@@ -560,7 +573,8 @@ newEntity{
 	combat_natural = 6,
 	max_life = resolvers.rngavg(17,21),
 	skill_swim = 8,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	stats = { str=14, dex=10, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
@@ -572,7 +586,8 @@ newEntity{
 	name = "salt mephit",
 	combat_natural = 7,
 	max_life = resolvers.rngavg(17,21),
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	stats = { str=17, dex=8, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
@@ -583,7 +598,8 @@ newEntity{
 	base = "BASE_NPC_MEPHIT",
 	name = "steam mephit",
 	combat_natural = 5,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
@@ -594,7 +610,8 @@ newEntity{
 	combat_natural = 6,
 	max_life = resolvers.rngavg(17,21),
 	skill_swim = 8,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	stats = { str=14, dex=10, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }

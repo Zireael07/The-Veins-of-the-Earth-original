@@ -82,7 +82,8 @@ newEntity{
 	skill_listen = 14,
 	skill_movesilently = 12,
 	skill_spot = 14,
-	movement_speed_bonus = 0.33,
+--	movement_speed_bonus = 0.33,
+	movement_speed = 1.33,
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_ALERTNESS]=1,
 	[Talents.T_DODGE]=1,
@@ -96,6 +97,5 @@ newEntity{
 	resolvers.inventory {
 	full_id=true,
 	{ name = "shortbow" },
---	{ name = "fresh corpse" },
 	},
 }

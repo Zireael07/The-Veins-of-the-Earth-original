@@ -117,6 +117,7 @@ newEntity{
 	skill_spot = 6,
 	skill_survival = 6,
 	skill_swim = 8,
-	movement_speed_bonus = -0.88,
+--	movement_speed_bonus = -0.88,
+	movement_speed = 0.22,
 	alignment = "neutral good",
 }

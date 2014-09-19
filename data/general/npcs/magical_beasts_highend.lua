@@ -11,11 +11,6 @@ newEntity{
 	stats = { str=10, dex=10, con=10, int=10, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 --Augmented critical, frightful presence DC 36 Will, improved grab, rush, swallow whole
@@ -43,7 +38,8 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_search = 14,
 	skill_spot = 15,
 	skill_survival = 12,
-	movement_speed_bonus = -0.33,
+--	movement_speed_bonus = -0.33,
+	movement_speed = 0.66,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_DODGE]=1,
 	[Talents.T_IRON_WILL]=1,
@@ -81,7 +77,8 @@ newEntity{
 	skill_intimidate = 13,
 	skill_knowledge = 15,
 	skill_survival = 15,
-	movement_speed_bonus = 0.88,
+--	movement_speed_bonus = 0.88,
+	movement_speed = 1.88,
 	alignment = "chaotic good",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1 
@@ -101,7 +98,8 @@ newEntity{
 	combat_natural = 10,
 	skill_intimidate = 8,
 	skill_listen = 10,
-	movement_speed_bonus = 1,
+--	movement_speed_bonus = 1,
+	movement_speed = 2,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1 
 	},
@@ -124,7 +122,8 @@ newEntity{
 	skill_listen = 13,
 	skill_sensemotive = 11,
 	skill_spot = 13,
-	movement_speed_bonus = 1,
+--	movement_speed_bonus = 1,
+	movement_speed = 2,
 	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
 	[Talents.T_IRON_WILL]=1 
 	},
@@ -144,7 +143,8 @@ newEntity{
 	skill_listen = 7,
 	skill_spot = 11,
 	alignment = "chaotic evil",
-	movement_speed_bonus = 2,
+--	movement_speed_bonus = 2,
+	movement_speed = 2,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1 
 	},
@@ -167,7 +167,8 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 6,
 	skill_spot = 6,
 	skill_swim = 8,
-	movement_speed_bonus = -0.66,
+--	movement_speed_bonus = -0.66,
+	movement_speed = 0.33,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1,
 	},
 }

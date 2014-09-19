@@ -290,7 +290,8 @@ newEntity{
 	max_life = resolvers.rngavg(12,14),
 	hit_die = 1,
 	challenge = 1,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 }
 
 newEntity{

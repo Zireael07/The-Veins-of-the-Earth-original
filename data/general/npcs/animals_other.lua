@@ -16,13 +16,9 @@ newEntity{
         combat_natural = 5,
         skill_listen = 9,
         skill_spot = 13,
-        movement_speed_bonus = 2,
+--        movement_speed_bonus = 2,
+        movement_speed = 2,
         fly = true,
-        --Hack! Monsters drop corpses now
---[[        resolvers.inventory {
-        full_id=true,
-        { name = "fresh corpse" }
-        },]]
 }
 
 newEntity{

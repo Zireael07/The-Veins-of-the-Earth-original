@@ -76,12 +76,8 @@ newEntity{
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
         alignment = "neutral good",
         fly = true,
-        movement_speed_bonus = 1,
-        --Hack! Monsters drop corpses now
---[[        resolvers.inventory {
-        full_id=true,
-        { name = "fresh corpse" }
-        },]]
+--        movement_speed_bonus = 1,
+        movement_speed = 2,
 }
 
 --Fly 60 ft; scent, improved grab
@@ -111,13 +107,9 @@ newEntity{
         skill_listen = 12,
         skill_movesilently = 10,
         skill_spot = 15,
-        movement_speed_bonus = -0.33,
+--        movement_speed_bonus = -0.33,
+        movement_speed = 0.66,
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
         alignment = "neutral",
         fly = true,
-        --Hack! Monsters drop corpses now
---[[        resolvers.inventory {
-        full_id=true,
-        { name = "fresh corpse" }
-        },]]
 }

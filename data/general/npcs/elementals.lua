@@ -264,7 +264,8 @@ newEntity{
 	skill_spot = 8,
 	combat_natural = 4,
 	infravision = 4,
-	movement_speed_bonus = 0.66,
+--	movement_speed_bonus = 0.66,
+	movement_speed = 1.66,
 	resolvers.talents{ [Talents.T_FINESSE]=1,
 	[Talents.T_DODGE]=1,
 	},
@@ -391,7 +392,8 @@ newEntity{
 	skill_spot = 8,
 	combat_natural = 8,
 	infravision = 4,
-	movement_speed_bonus = -0.33,
+--	movement_speed_bonus = -0.33,
+	movement_speed = 0.66,
 --	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }
 
