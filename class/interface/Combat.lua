@@ -537,7 +537,7 @@ function _M:hasCritical(type)
 end
 
 --Combat speeds code 
---[[--- Computes movement speed
+--- Computes movement speed
 function _M:combatMovementSpeed(x, y)
   local mult = 1
 
@@ -551,4 +551,4 @@ end
 function _M:combatSpeed(weapon)
   weapon = weapon or self.combat or {}
   return (weapon.physspeed or 1) / math.max(self.combat_physspeed, 0.1)
-end]]
+end
