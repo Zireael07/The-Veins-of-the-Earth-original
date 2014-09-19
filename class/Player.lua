@@ -169,8 +169,8 @@ function _M:playerCounters()
   --Resilient feat
   if self:knowTalent(self.T_RESILLIENT) and not self.resting then
 
-    local Conbonus = math.floor((player:getCon()-10)/2)
-    if self.life <= self.max_life - ((3 + Conbonus)*0.05) then
+    local conbonus = self:getConMod()
+    if self.life <= self.max_life - ((3 + conbonus)*0.05) then
 
       self.resilient_counter = 3
       self.resilient_counter = self.resilient_counter - 1

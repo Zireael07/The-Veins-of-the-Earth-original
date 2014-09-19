@@ -33,33 +33,33 @@ function _M:init(actor)
         {name="Load penalty", width=11, display_prop="load"},
     },
     list={
-        {name="Balance (DEX)", total=player:colorSkill("balance") or "0", ranks=(player.skill_balance or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_balance or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Bluff (CHA)", total=player:colorSkill("bluff") or "0", ranks=(player.skill_bluff or "0"), stat=math.floor((player:getCha()-10)/2), bonus=(player.skill_bonus_bluff or "0") },
-        {name="Climb (STR)", total=player:colorSkill("climb") or "0", ranks=(player.skill_climb or "0"), stat=math.floor((player:getStr()-10)/2), bonus=(player.skill_bonus_climb or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Concentration (INT)", total=player:colorSkill("concentration") or "0", ranks=(player.skill_concentration or "0"), stat=math.floor((player:getInt()-10)/2), bonus=(player.skill_bonus_concentration or "0") },
-        {name="Diplomacy (CHA)", total=player:colorSkill("diplomacy") or "0", ranks=(player.skill_diplomacy or "0"), stat=math.floor((player:getCha()-10)/2), bonus=(player.skill_bonus_diplomacy or "0") },
-        {name="Disable Device (INT)", total=player:colorSkill("disabledevice") or "0", ranks=(player.skill_disabledevice or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_disabledevice or "0") },
-        {name="Escape Artist (DEX)", total=player:colorSkill("escapeartist") or "0", ranks=(player.skill_escapeartist or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_escapeartist or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Handle Animal (WIS)", total=player:colorSkill("handleanimal") or "0", ranks=(player.skill_handleanimal or "0"), stat=math.floor((player:getWis()-10)/2), bonus=(player.skill_bonus_handleanimal or "0") },
-        {name="Heal (WIS)", total=player:colorSkill("heal") or "0", ranks=(player.skill_heal or "0"), stat=math.floor((player:getWis()-10)/2), bonus=(player.skill_bonus_heal or "0") },
-        {name="Hide (DEX)", total=player:colorSkill("hide") or "0", ranks=(player.skill_hide or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_hide or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Intimidate (CHA)", total=player:colorSkill("intimidate") or "0", ranks=(player.skill_intimidate or "0"), stat=math.floor((player:getCha()-10)/2), bonus=(player.skill_bonus_intimidate or "0") },
-        {name="Intuition (INT)", total=player:colorSkill("intuition") or "0", ranks=(player.skill_intuition or "0"), stat=math.floor((player:getInt()-10)/2), bonus=(player.skill_bonus_intuition or "0") },
-        {name="Jump (STR)", total=player:colorSkill("jump") or "0", ranks=(player.skill_jump or "0"), stat=math.floor((player:getStr()-10)/2), bonus=(player.skill_bonus_jump or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Knowledge (INT)", total=player:colorSkill("knowledge") or "0", ranks=(player.skill_knowledge or "0"), stat=math.floor((player:getInt()-10)/2), bonus=(player.skill_bonus_knowledge or "0") },
-        {name="Listen (WIS)", total=player:colorSkill("listen") or "0", ranks=(player.skill_listen or "0"), stat=math.floor((player:getWis()-10)/2), bonus=(player.skill_bonus_listen or "0") },
-        {name="Move Silently (DEX)", total=player:colorSkill("movesilently") or "0", ranks=(player.skill_movesilently or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_movesilently or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Open Lock (DEX)", total=player:colorSkill("openlock") or "0", ranks=(player.skill_openlock or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_openlock or "0") },
-        {name="Pick Pocket (DEX)", total=player:colorSkill("pickpocket") or "0", ranks=(player.skill_pickpocket or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_pickpocket or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Ride (DEX)", total=player:colorSkill("ride") or "0", ranks=(player.skill_ride or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_ride or "0") },
-        {name="Search (INT)", total=player:colorSkill("search") or "0", ranks=(player.skill_search or "0"), stat=math.floor((player:getInt()-10)/2), bonus=(player.skill_bonus_search or "0") },
-        {name="Sense Motive (WIS)", total=player:colorSkill("sensemotive") or "0", ranks=(player.skill_sensemotive or "0"), stat=math.floor((player:getWis()-10)/2), bonus=(player.skill_bonus_sensemotive or "0") },
-        {name="Spot (WIS)", total=player:colorSkill("spot") or "0", ranks=(player.skill_spot or "0"), stat=math.floor((player:getWis()-10)/2), bonus=(player.skill_bonus_spot or "0") },
-        {name="Swim (STR)", total=player:colorSkill("swim") or "0", ranks=(player.skill_swim or "0"), stat=math.floor((player:getStr()-10)/2), bonus=(player.skill_bonus_swim or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Spellcraft (INT)", total=player:colorSkill("spellcraft") or "0", ranks=(player.skill_spellcraft or "0"), stat=math.floor((player:getInt()-10)/2), bonus=(player.skill_bonus_spellcraft or "0") },
-        {name="Survival (WIS)", total=player:colorSkill("survival") or "0", ranks=(player.skill_survival or "0"), stat=math.floor((player:getWis()-10)/2), bonus=(player.skill_bonus_survival or "0") },
-        {name="Tumble (DEX)", total=player:colorSkill("tumble") or "0", ranks=(player.skill_tumble or "0"), stat=math.floor((player:getDex()-10)/2), bonus=(player.skill_bonus_tumble or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Use Magic (INT)", total=player:colorSkill("usemagic") or "0", ranks=(player.skill_usemagic or "0"), stat=math.floor((player:getInt()-10)/2), bonus=(player.skill_bonus_usemagic or "0") },
+        {name="Balance (DEX)", total=player:colorSkill("balance") or "0", ranks=(player.skill_balance or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_balance or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Bluff (CHA)", total=player:colorSkill("bluff") or "0", ranks=(player.skill_bluff or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_bluff or "0") },
+        {name="Climb (STR)", total=player:colorSkill("climb") or "0", ranks=(player.skill_climb or "0"), stat=player:getStrMod(), bonus=(player.skill_bonus_climb or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Concentration (INT)", total=player:colorSkill("concentration") or "0", ranks=(player.skill_concentration or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_concentration or "0") },
+        {name="Diplomacy (CHA)", total=player:colorSkill("diplomacy") or "0", ranks=(player.skill_diplomacy or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_diplomacy or "0") },
+        {name="Disable Device (INT)", total=player:colorSkill("disabledevice") or "0", ranks=(player.skill_disabledevice or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_disabledevice or "0") },
+        {name="Escape Artist (DEX)", total=player:colorSkill("escapeartist") or "0", ranks=(player.skill_escapeartist or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_escapeartist or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Handle Animal (WIS)", total=player:colorSkill("handleanimal") or "0", ranks=(player.skill_handleanimal or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_handleanimal or "0") },
+        {name="Heal (WIS)", total=player:colorSkill("heal") or "0", ranks=(player.skill_heal or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_heal or "0") },
+        {name="Hide (DEX)", total=player:colorSkill("hide") or "0", ranks=(player.skill_hide or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_hide or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Intimidate (CHA)", total=player:colorSkill("intimidate") or "0", ranks=(player.skill_intimidate or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_intimidate or "0") },
+        {name="Intuition (INT)", total=player:colorSkill("intuition") or "0", ranks=(player.skill_intuition or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_intuition or "0") },
+        {name="Jump (STR)", total=player:colorSkill("jump") or "0", ranks=(player.skill_jump or "0"), stat=player:getStrMod(), bonus=(player.skill_bonus_jump or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Knowledge (INT)", total=player:colorSkill("knowledge") or "0", ranks=(player.skill_knowledge or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_knowledge or "0") },
+        {name="Listen (WIS)", total=player:colorSkill("listen") or "0", ranks=(player.skill_listen or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_listen or "0") },
+        {name="Move Silently (DEX)", total=player:colorSkill("movesilently") or "0", ranks=(player.skill_movesilently or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_movesilently or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Open Lock (DEX)", total=player:colorSkill("openlock") or "0", ranks=(player.skill_openlock or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_openlock or "0") },
+        {name="Pick Pocket (DEX)", total=player:colorSkill("pickpocket") or "0", ranks=(player.skill_pickpocket or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_pickpocket or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Ride (DEX)", total=player:colorSkill("ride") or "0", ranks=(player.skill_ride or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_ride or "0") },
+        {name="Search (INT)", total=player:colorSkill("search") or "0", ranks=(player.skill_search or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_search or "0") },
+        {name="Sense Motive (WIS)", total=player:colorSkill("sensemotive") or "0", ranks=(player.skill_sensemotive or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_sensemotive or "0") },
+        {name="Spot (WIS)", total=player:colorSkill("spot") or "0", ranks=(player.skill_spot or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_spot or "0") },
+        {name="Swim (STR)", total=player:colorSkill("swim") or "0", ranks=(player.skill_swim or "0"), stat=player:getStrMod(), bonus=(player.skill_bonus_swim or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Spellcraft (INT)", total=player:colorSkill("spellcraft") or "0", ranks=(player.skill_spellcraft or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_spellcraft or "0") },
+        {name="Survival (WIS)", total=player:colorSkill("survival") or "0", ranks=(player.skill_survival or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_survival or "0") },
+        {name="Tumble (DEX)", total=player:colorSkill("tumble") or "0", ranks=(player.skill_tumble or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_tumble or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
+        {name="Use Magic (INT)", total=player:colorSkill("usemagic") or "0", ranks=(player.skill_usemagic or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_usemagic or "0") },
     },
     fct=function(item) end, select=function(item, sel) end} --self:select(item) end
    
@@ -160,14 +160,6 @@ function _M:drawGeneral()
     h = 40
     w = 0
 
-    local Strbonus = math.floor((player:getStr()-10)/2)
-    local Dexbonus = math.floor((player:getDex()-10)/2)
-    local Conbonus = math.floor((player:getCon()-10)/2)
-    local Intbonus = math.floor((player:getInt()-10)/2)
-    local Wisbonus = math.floor((player:getWis()-10)/2)
-    local Chabonus = math.floor((player:getCha()-10)/2)
-    local Lucbonus = math.floor((player:getLuc()-10)/2)
-
     s:drawColorStringBlended(self.font, "#SLATE#Name : "..(player.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "#SLATE#Race : "..(player.descriptor.race or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
@@ -219,8 +211,8 @@ end
     self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life).."/"..math.floor(player.max_life)), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(player.combat_bab or "0").." + Str bonus: "..Strbonus, w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(player.combat_bab or "0").." + Dex bonus: "..Dexbonus, w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(player.combat_bab or "0").." + Str bonus: "..player:getStrMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(player.combat_bab or "0").." + Dex bonus: "..player:getDexMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
 
@@ -233,13 +225,13 @@ end
     w = self.w * 0.25 
     -- start on second column 
     self:mouseTooltip(self.TOOLTIP_STATS, s:drawColorStringBlended(self.font, "#CHOCOLATE#Stats", w, h, 255, 255, 255, true)) h = h + self.font_h    
-    self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : "..(player:sheetColorStats('str').." #SANDY_BROWN#"..Strbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : "..(player:sheetColorStats('dex').." #SANDY_BROWN#"..Dexbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_CON, s:drawColorStringBlended(self.font, "#SLATE#CON : "..(player:sheetColorStats('con').." #SANDY_BROWN#"..Conbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_INT, s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(player:sheetColorStats('int').." #SANDY_BROWN#"..Intbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_WIS, s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(player:sheetColorStats('wis').." #SANDY_BROWN#"..Wisbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_CHA, s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(player:sheetColorStats('cha').." #SANDY_BROWN#"..Chabonus), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_LUC, s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(player:sheetColorStats('luc').." #SANDY_BROWN#"..Lucbonus), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : "..(player:sheetColorStats('str').." #SANDY_BROWN#"..player:getStrMod()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : "..(player:sheetColorStats('dex').." #SANDY_BROWN#"..player:getDexMod()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_CON, s:drawColorStringBlended(self.font, "#SLATE#CON : "..(player:sheetColorStats('con').." #SANDY_BROWN#"..player:getConMod()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_INT, s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(player:sheetColorStats('int').." #SANDY_BROWN#"..player:getIntMod()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_WIS, s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(player:sheetColorStats('wis').." #SANDY_BROWN#"..player:getWisMod()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_CHA, s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(player:sheetColorStats('cha').." #SANDY_BROWN#"..player:getChaMod()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_LUC, s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(player:sheetColorStats('luc').." #SANDY_BROWN#"..player:getLucMod()), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     h = h + self.font_h -- Adds an empty row
@@ -258,9 +250,9 @@ end
     w = self.w*0.5
     --start on third column
     h = h + self.font_h -- Adds an empty row
-    self:mouseTooltip(self.TOOLTIP_FORTITUDE, s:drawColorStringBlended(self.font, "Fortitude save: #SANDY_BROWN#"..((player.fortitude_save.." + "..math.max(Strbonus, Conbonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_REFLEX, s:drawColorStringBlended(self.font, "Reflex bonus : #SANDY_BROWN#"..((player.reflex_save.." + "..math.max(Dexbonus, Intbonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_WILL, s:drawColorStringBlended(self.font, "Will bonus : #SANDY_BROWN#"..((player.will_save.." + "..math.max(Wisbonus, Chabonus)) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_FORTITUDE, s:drawColorStringBlended(self.font, "Fortitude save: #SANDY_BROWN#"..((player.fortitude_save.." + "..math.max(player:getStrMod(), player:getConMod())) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_REFLEX, s:drawColorStringBlended(self.font, "Reflex bonus : #SANDY_BROWN#"..((player.reflex_save.." + "..math.max(player:getDexMod(), player:getIntMod())) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_WILL, s:drawColorStringBlended(self.font, "Will bonus : #SANDY_BROWN#"..((player.will_save.." + "..math.max(player:getWisMod(), player:getChaMod())) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
