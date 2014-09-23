@@ -82,13 +82,10 @@ function _M:use(item)
 			game.player:incMoney(qty)
 		end), 1)
 	elseif act == "identify-items" then
-		local inven = game.player:getInven("INVEN")
-		for k, o in ipairs(inven) do
-			if o.pseudo_id == false then o.pseudo_id = true end
-			if  o.identified == false then
-				o.identified = true
-			end
-		end
+		game.player:inventoryApplyAll(function(inven, item, o)
+            o.pseudo_id = true
+            o.identified = true
+        end)
 	elseif act == "remove-all" then
 		local l = {}
 		for uid, e in pairs(game.level.entities) do

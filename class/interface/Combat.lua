@@ -298,7 +298,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
           game.log(("%s makes a critical attack!"):format(self:getLogName():capitalize())) --end
           dam = dam * (weapon and weapon.combat.critical or 2)
           end         
-        else game.log("The target's lack of physiology prevents serious injury")
+        else game.log("The target's lack of physiology prevents serious injury.")
           dam = dam end
       end
 
