@@ -1473,7 +1473,13 @@ function _M:getAC()
 	--Shield Focus feat
 	if self.combat_shield and self:knowTalent(self.T_SHIELD_FOCUS) then shield = shield + 2 end
 	
+	if config.settings.veins.defensive_roll == true then
+		local roll = rng.dice(1,20)
+		return math.floor((roll + armor + magic_armor + shield + magic_shield + natural + protection + dodge) + (dex_bonus or 0))
+	else
+
 	return math.floor((10 + armor + magic_armor + shield + magic_shield + natural + protection + dodge) + (dex_bonus or 0))
+	end
 end
 
 --Saving throws, Sebsebeleb & Zireael
