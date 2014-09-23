@@ -366,6 +366,7 @@ newEntity{
 	display = ' ', color=colors.STEEL_BLUE, back_color=colors.STEEL_BLUE,
 	always_remember = true,
 	on_stand = function(self, x, y, who)
+        if who.fly or who:hasEffect(who.EFF_FELL) then return end
 		local save = who:skillCheck("balance", 10)
 		if not save then who:setEffect(who.EFF_FELL, 1, {}) end 
 	end

@@ -248,6 +248,9 @@ function _M:act()
 	-- Cooldown talents
 	self:cooldownTalents()
 
+	-- Check terrain special effects
+	game.level.map:checkEntity(self.x, self.y, Map.TERRAIN, "on_stand", self)
+
 	-- Regen resources
 	self:regenLife()
 	self:regenResources()
@@ -273,9 +276,6 @@ function _M:act()
 	end
 
 	if self:attr("sleep") then self.energy.value = 0 end
-
-	-- Check terrain special effects
-	game.level.map:checkEntity(self.x, self.y, Map.TERRAIN, "on_stand", self)
 
 	--From Startide
 	-- Shrug off effects
