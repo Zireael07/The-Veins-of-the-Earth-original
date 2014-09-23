@@ -46,11 +46,11 @@ newEffect{
 	on_gain = function(self, err) return "#Target# is bleeding to death!", "+Dying" end,
 	on_lose = function(self, err) return "#Target# has become stable.", "-Dying" end,
 	activate = function(self, eff)
-		eff.tmpid = self:addTemporaryValue("never_move", 1)
+		eff.tmpid = self:addTemporaryValue("never_move_but_attack", 1)
 		eff.particle = self:addParticles(Particles.new("bleeding", 1))
 	end,
 	deactivate = function(self, eff)
-		self:removeTemporaryValue("never_move", eff.tmpid)
+		self:removeTemporaryValue("never_move_but_attack", eff.tmpid)
 		self:removeParticles(eff.particle)
 	end,
 }
