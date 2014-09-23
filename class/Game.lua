@@ -185,9 +185,7 @@ function _M:newGame()
 	self.creating_player = true
 
 	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment', 'deity'}, function()
-
---    local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'deity', 'alignment', 'domains', 'domains'}, function()
-        
+      
    	    game:changeLevel(1, "tunnels")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
@@ -199,18 +197,20 @@ function _M:newGame()
         game.player.changed = true
         print("[PLAYER BIRTH] resolved!")
         
-        --Tutorial popup
+        profile.chat:setupOnGame()
+        game.player:onBirth()
+
+        local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
+
+		--Tutorial popup
         Dialog:yesnoPopup("Tutorial", "Go through the tutorial", function(ok) 
 			if ok then game:changeLevel(1, "tutorial")
 			else end
 		end, "Yes", "No")
 
-
-        profile.chat:setupOnGame()
-        game.player:onBirth()
-        local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
-
- 
+   		--Display game options
+        self:registerDialog(require("mod.dialogs.GameOptions").new(true))
+        
         game.creating_player = false
 
         game.player:levelPassives()
@@ -959,7 +959,7 @@ function _M:setupCommands()
 				"highscores",
 				{"Graphic Mode", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GraphicMode").new()) end},
 				"video",
-				{"Game Options", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GameOptions").new()) end},
+				{"Game Options", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GameOptions").new(false)) end},
 				{"#RED#Debug Menu#LAST#", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.debug.DebugMenu").new()) end},
 				"save",
 				"quit"

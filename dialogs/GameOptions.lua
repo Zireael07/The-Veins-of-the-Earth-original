@@ -26,38 +26,28 @@ local GraphicMode = require("mod.dialogs.GraphicMode")
 
 module(..., package.seeall, class.inherit(Dialog))
 
-function _M:init()
+function _M:init(gameplay)
 	Dialog.init(self, "Game Options", game.w * 0.8, game.h * 0.8)
 	self.needs_reboot = false
 	self.c_desc = Textzone.new{width=math.floor(self.iw / 2 - 10), height=self.ih, text=""}
 
-	local tabs = {
-		{title="UI", kind="ui"},
-		{title="Fonts", kind="fonts"},
-	}
+    self.gameplay = gameplay
+
+    local tabs = {
+            {title="UI", kind="ui"},
+            {title="Fonts", kind="fonts"},
+            {title="Gameplay", kind="game"},
+    }
+        
 
 	self.c_tabs = Tabs.new{width=self.iw - 5, tabs=tabs, on_change=function(kind) self:switchTo(kind) end}
-
---[[	self:generateList()
-
-	self.c_list = TreeList.new{width=math.floor(self.iw / 2 - 10), height=self.ih - 10, scrollbar=true, columns={
-		{width=60, display_prop="name"},
-		{width=40, display_prop="status"},
-	}, tree=self.list, fct=function(item) end, select=function(item, sel) self:select(item) end}
-	if self.uis and self.uis[2] then
-		self.c_list.mouse.delegate_offset_x = self.uis[2].ui.mouse.delegate_offset_x
-		self.c_list.mouse.delegate_offset_y = self.uis[2].ui.mouse.delegate_offset_y
-		self.uis[2].ui = self.c_list
-	end]]
 
 	self:loadUI{
 		{left=0, top=0, ui=self.c_tabs},
 		{left=0, top=self.c_tabs.h, ui=self.c_list},
 		{right=0, top=self.c_tabs.h, ui=self.c_desc},
 		{hcenter=0, top=5+self.c_tabs.h, ui=Separator.new{dir="horizontal", size=self.ih - 10}},
-	--[[	{left=0, top=0, ui=self.c_list},
-		{right=0, top=0, ui=self.c_desc},]]
-	
+
 	}
 	self:setFocus(self.c_list)
 	self:setupUI()
@@ -488,3 +478,98 @@ function _M:generateListFonts()
 
 	self.list = list
 end	
+
+function _M:generateListGame()
+    -- Makes up the list
+    local list = {}
+    local i = 0
+
+--[[   local zone = Textzone.new{
+        width = self.c_desc.w,
+        height = self.c_desc.h,
+        text = string.toTString [[Sets the difficulty setting.
+        
+• #YELLOW#Default#WHITE#: standard d20.]]
+--[[    }
+    list[#list+1] = {
+        zone = zone,
+        name = string.toTString"#GOLD##{bold}#Difficulty setting#WHITE##{normal}#",
+        status = function(item)
+            return tostring(config.settings.veins.difficulty or "Default")
+        end, fct=function(item)
+            local difficulty = {{name="Default", difficulty="Default"}, {name="Easy", location="Easy"}, {name="Hard", location="Hard"},}
+            engine.ui.Dialog:listPopup("Difficulty setting", "Select difficulty", difficulty, 100, 200, function(sel)
+                if not sel or not sel.difficulty then return end
+                config.settings.veins.difficulty = sel.difficulty
+                game:saveSettings("veins.difficulty", ("veins.difficulty= %s\n"):format(tostring(config.settings.veins.difficulty)))
+                self.c_list:drawItem(item)
+            end)
+        end,
+    }]]
+
+    local zone = Textzone.new{
+        width = self.c_desc.w,
+        height = self.c_desc.h,
+        text = string.toTString [[Use the defensive roll variant from SRD.
+        
+• #YELLOW#True#WHITE#: defensive roll (roll d20 instead of base AC of 10).
+• #YELLOW#False#WHITE#: base AC of 10]]
+    }
+    list[#list+1] = {
+        zone = zone,
+        name = string.toTString"#GOLD##{bold}#Defensive roll variant#WHITE##{normal}#",
+        status = function(item)
+            return tostring(config.settings.veins.defensive_roll and "enabled" or "disabled")
+        end, fct=function(item)
+            if self.gameplay then
+            config.settings.veins.defensive_roll = not config.settings.veins.defensive_roll
+            game:saveSettings("veins.defensive_roll", ("veins.defensive_roll= %s\n"):format(tostring(config.settings.veins.defensive_roll)))
+            self.c_list:drawItem(item)
+            end
+        end,
+    }
+
+     local zone = Textzone.new{
+        width = self.c_desc.w,
+        height = self.c_desc.h,
+        text = string.toTString [[Use the piecemeal armor variant from SRD. It splits up armor into torso, arm and leg pieces.
+        
+• #YELLOW#True#WHITE#: piecemeal armor.
+• #YELLOW#False#WHITE#: standard d20 armor]]
+    }
+    list[#list+1] = {
+        zone = zone,
+        name = string.toTString"#GOLD##{bold}#Piecemeal armor variant#WHITE##{normal}#",
+        status = function(item)
+            return tostring(config.settings.veins.piecemeal_armor and "enabled" or "disabled")
+        end, fct=function(item)
+            if self.gameplay then
+            config.settings.veins.piecemeal_armor = not config.settings.veins.piecemeal_armor
+            game:saveSettings("veins.piecemeal_armor", ("veins.piecemeal_armor= %s\n"):format(tostring(config.settings.veins.piecemeal_armor)))
+            self.c_list:drawItem(item)
+            end
+        end,
+    }
+
+--[[    local zone = Textzone.new{
+        width = self.c_desc.w,
+        height = self.c_desc.h,
+        text = string.toTString [[Use body parts hitpoints instead of catch-all hit points pool.
+        
+• #YELLOW#True#WHITE#: body parts system used.
+• #YELLOW#False#WHITE#: standard d20, abstract hitpoints total]]
+--[[    }
+    list[#list+1] = {
+        zone = zone,
+        name = string.toTString"#GOLD##{bold}#Body parts variant#WHITE##{normal}#",
+        status = function(item)
+            return tostring(config.settings.veins.body_parts and "enabled" or "disabled")
+        end, fct=function(item)
+           config.settings.veins.body_parts = not config.settings.veins.body_parts
+            game:saveSettings("veins.body_parts", ("veins.body_parts= %s\n"):format(tostring(config.settings.veins.body_parts)))
+            self.c_list:drawItem(item)
+        end,
+    }]]
+
+    self.list = list
+end
