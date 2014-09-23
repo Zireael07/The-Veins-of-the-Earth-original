@@ -8,7 +8,7 @@ FEATURES
 - 32x32 tiles by Daniel E. Gervais & my edits
 - moddable player tiles
 - tiles/ASCII switch
-- controls displayed automatically at game start
+- game rules variants selectable at game start
 - 13 classes: barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, wizard (with specialist schools [Seb]); warlock, shaman
 - 6 prestige classes: shadowdancer, assasin, arcane archer, blackguard, loremaster, archmage
 - 16 races: human, half-elf, half-drow, gnome, halfling, elf, dwarf, half-orc; drow, duergar, deep gnomes; lizardfolk, kobold, orc
