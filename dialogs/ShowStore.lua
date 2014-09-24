@@ -14,15 +14,16 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
+
 
 require "engine.class"
 local Dialog = require "engine.ui.Dialog"
 local Inventory = require "engine.ui.Inventory"
 local Separator = require "engine.ui.Separator"
 local Map = require "engine.Map"
+local Button = require "engine.ui.Button"
+
+--local Store = require "mod.class.Store"
 
 module(..., package.seeall, class.inherit(Dialog))
 
@@ -95,10 +96,15 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 		on_drag_end=function() self:onDragTakeoff("store-sell") end,
 	}
 
+	self.c_buy = Button.new{text="Buy", fct=function() self:onBuy() end}
+
 	self:loadUI{
 		{left=0, top=0, ui=self.c_store},
 		{right=0, top=0, ui=self.c_inven},
-		{hcenter=0, top=5, ui=Separator.new{dir="horizontal", size=self.ih - 10}},
+		{hcenter=0, top=5, ui=Separator.new{dir="horizontal", size=self.ih - 50}},
+	--	{bottom=0, left=(self.iw/2)-5, ui=self.c_buy},
+		{bottom=self.c_buy.h + 10, ui=Separator.new{dir="vertical", size=self.iw - 10}},
+		
 	}
 
 	self.c_inven.c_inven.on_focus_change = function(ui_self, status) if status == true then self:select(ui_self.list[ui_self.sel]) end end
@@ -118,6 +124,7 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 	}
 	self.key:addCommands{
 		[{"_TAB","shift"}] = function() self:moveFocus(1) end,
+--		[{'b','shift'}] = function() self:barter() end,
 	}
 	self.key:addBinds{
 		EXIT = function()
@@ -162,6 +169,12 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 	if self.actor_actor.store_scroll and self.c_store.c_inven.scrollbar then
 		self.c_store.c_inven.scrollbar.pos = util.bound(self.actor_actor.store_scroll, 0, self.c_store.c_inven.scrollbar.max or 0)
 	end
+
+	self.c_store.special_bg = function(item)
+	if item.barter then
+		 return colors.LIGHT_RED
+    end
+	end
 end
 
 function _M:on_register()
@@ -173,6 +186,13 @@ function _M:getStoreTitle()
 end
 
 function _M:updateStore()
+	self.c_store.special_bg = function(item)
+	if item.barter then
+		 return colors.LIGHT_RED
+    end
+	end
+
+
 	self:generateList()
 	self:updateTitle(self:getStoreTitle())
 	if self.actor_actor.inv_scroll and self.c_inven.c_inven.scrollbar then
@@ -194,10 +214,12 @@ function _M:use(item, force)
 	self.actor_actor.store_scroll = self.c_store.c_inven.scrollbar and self.c_store.c_inven.scrollbar.pos or 0
 	if item and item.object then
 		if self.focus_ui and self.focus_ui.ui == self.c_store then
+			--	self:addtoBarterBuy(item)
 			if util.getval(self.allow_buy, item.object, item.item) then
 				self.action("buy", item.object, item.item)
 			end
 		else
+		--		self:addtoBarterSell(item)
 			if util.getval(self.allow_sell, item.object, item.item) then
 				self.action("sell", item.object, item.item)
 			end
@@ -206,6 +228,12 @@ function _M:use(item, force)
 end
 
 function _M:generateList()
+	self.c_store.special_bg = function(item)
+	if item.barter then
+		 return colors.LIGHT_RED
+    end
+	end 
+
 	self.c_inven:generateList()
 	self.c_store:generateList()
 end
@@ -246,4 +274,89 @@ function _M:innerDisplayBack(x, y, nb_keyframes)
 	local w, h = self.title_tex.h + 4, self.title_tex.h + 4
 	local x, y = x + (self.w - self.title_tex.w) / 2 + self.frame.title_x - 5 - w, y + self.frame.title_y
 	self.faction_image[1]:toScreenFull(x, y, w, h, self.faction_image[2] * w / self.faction_image[6], self.faction_image[3] * h / self.faction_image[7])
+end
+
+--Barter stuff
+--[[function _M:barter()
+	--Paranoia checks
+	if #c_inven.list == 0 or c_inven.only_display then return end
+
+    if self.focus_ui and self.focus_ui.ui == self.c_store then
+    	local row = c_store.list[c_store.sel]
+    	if not row then return end
+    	self:addtoBarter(row, true)
+	else
+		local row = c_inven.list[c_inven.sel]
+    	if not row then return end 
+		self:addtoBarter(row, false)
+	end
+
+end]]
+
+function _M:addtoBarterSell(item)
+	self.barter_list_sell = self.barter_list_sell or {}
+
+	local who, o = self.actor, item.object:cloneFull()
+	local list = self.barter_list_sell
+
+	local name = o:getName{do_color=true, no_image=true}
+--    local price = self.obj_price(o)
+	local price = self:getObjectPrice(o, what)
+
+    list[#list+1] = {obj = o, name = name, store_name = self.store_name, price = price, barter = barter }
+
+end
+
+function _M:addtoBarterBuy(item)
+	self.barter_list_buy = self.barter_list_buy or {}
+
+	local who, o = self.actor, item.object:cloneFull()
+	local list = self.barter_list_buy
+
+	local name = o:getName{do_color=true, no_image=true}
+--    local price = self.obj_price(o)
+	local price = self:getObjectPrice(o, what)
+
+    list[#list+1] = {obj = o, name = name, store_name = self.store_name, price = price, barter = barter }
+
+end
+
+
+function _M:onBuy()
+--	if #self.barter_list_ == 0 then return end
+
+	local list_buy = self.barter_list_buy
+	local list_sell = self.barter_list_sell
+
+	local total_buy = 0
+	local total_sell = 0
+
+	--Count the totals
+	for i, item in ipairs(list_buy) do
+		total_buy = total_buy + item.price
+	end
+
+	for i, item in ipairs(list_sell) do
+		total_sell = total_sell + item.price
+	end
+
+	--Do the bartering!
+	if total_buy > total_sell then
+		self:doBarter()
+
+		local diff = total_buy - total_sell
+		player:incMoney(diff)
+	end
+
+	if total_sell < total_buy then
+		 self:doBarter()
+
+		local diff = total_sell - total_buy
+		player:incMoney(diff)
+	end
+
+	if total_sell == total_buy then
+		self:doBarter()
+	end
+
 end

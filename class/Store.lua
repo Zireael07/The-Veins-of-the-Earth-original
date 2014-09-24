@@ -20,6 +20,8 @@
 require "engine.class"
 local Store = require "engine.Store"
 local Dialog = require "engine.ui.Dialog"
+--local ShowStore = require "mod.dialogs.ShowStore"
+local ShowStore = require_first("mod.dialogs.ShowStore", "engine.dialogs.ShowStore")
 
 module(..., package.seeall, class.inherit(Store))
 
@@ -214,5 +216,32 @@ end
 -- @param who the actor who interacts
 function _M:interact(who, name)
 	who:sortInven()
-	Store.interact(self, who, name)
+	
+  	Store.interact(self, who, name)
+
+--[[  local d = game.dialogs[#game.dialogs]
+  d.obj_price = function(o)
+    return self:getObjectPrice(o, 'buy')
+  end]]
+
+end
+
+function _M:doBarter()
+	local list_buy = self.barter_list_buy
+	local list_sell = self.barter_list_sell
+
+	
+	for i, item in ipairs(list_buy) do
+		self:onBuy(who, o, item, nb, true)
+		self:transfer(self, who, item, nb)
+		self:onBuy(who, o, item, nb, false)
+		if store_dialog then store_dialog:updateStore() end
+	end
+
+	for i, item in ipairs(list_sell) do
+		self:onSell(who, o, item, nb, true)
+		self:transfer(self, who, item, nb)
+		self:onSell(who, o, item, nb, false)
+		if store_dialog then store_dialog:updateStore() end
+	end
 end
