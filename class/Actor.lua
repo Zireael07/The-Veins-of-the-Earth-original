@@ -299,6 +299,11 @@ function _M:act()
 
 	if self.never_act then return false end
 
+	-- Fear (chance to run away)
+	if self:hasEffect(self.EFF_FEAR) then
+		self.tempeffect_def[self.EFF_FEAR].do_act(self, self:hasEffect(self.EFF_FEAR))
+	end
+
 	-- Still enough energy to act ?
 	if self.energy.value < game.energy_to_act then return false end
 
