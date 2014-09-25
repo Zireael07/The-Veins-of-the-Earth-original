@@ -22,6 +22,7 @@ local Inventory = require "engine.ui.Inventory"
 local Separator = require "engine.ui.Separator"
 local Map = require "engine.Map"
 local Button = require "engine.ui.Button"
+local Textzone = require "engine.ui.Textzone"
 
 --local Store = require "mod.class.Store"
 
@@ -96,7 +97,10 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 		on_drag_end=function() self:onDragTakeoff("store-sell") end,
 	}
 
-	self.c_buy = Button.new{text="Buy", fct=function() self:onBuy() end}
+	self.c_buy = Button.new{text="Buy/Sell", fct=function() self:onBuy() end}
+
+	self.c_buy_total = Textzone.new{width=self.iw/5, auto_height=true, text = "Total to buy: #GOLD#"..(self.total_buy or 0) }
+	self.c_sell_total = Textzone.new{width=self.iw/5, auto_height=true, text = "Total to sell: #GOLD#"..(self.total_sell or 0) }
 
 	self:loadUI{
 		{left=0, top=0, ui=self.c_store},
@@ -104,6 +108,8 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 		{hcenter=0, top=5, ui=Separator.new{dir="horizontal", size=self.ih - 50}},
 	--	{bottom=0, left=(self.iw/2)-5, ui=self.c_buy},
 		{bottom=self.c_buy.h + 10, ui=Separator.new{dir="vertical", size=self.iw - 10}},
+	--	{left=0, bottom=0, ui=self.c_buy_total},
+	--	{right=0, bottom=0, ui=self.c_sell_total},
 		
 	}
 
@@ -124,7 +130,6 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 	}
 	self.key:addCommands{
 		[{"_TAB","shift"}] = function() self:moveFocus(1) end,
---		[{'b','shift'}] = function() self:barter() end,
 	}
 	self.key:addBinds{
 		EXIT = function()
@@ -214,12 +219,14 @@ function _M:use(item, force)
 	self.actor_actor.store_scroll = self.c_store.c_inven.scrollbar and self.c_store.c_inven.scrollbar.pos or 0
 	if item and item.object then
 		if self.focus_ui and self.focus_ui.ui == self.c_store then
-			--	self:addtoBarterBuy(item)
+		--[[		item.barter = true
+				self:addtoBarterBuy(item, item.item)]]
 			if util.getval(self.allow_buy, item.object, item.item) then
 				self.action("buy", item.object, item.item)
 			end
 		else
-		--		self:addtoBarterSell(item)
+		--[[		item.barter = true
+				self:addtoBarterSell(item, item.item)]]
 			if util.getval(self.allow_sell, item.object, item.item) then
 				self.action("sell", item.object, item.item)
 			end
@@ -277,86 +284,71 @@ function _M:innerDisplayBack(x, y, nb_keyframes)
 end
 
 --Barter stuff
---[[function _M:barter()
-	--Paranoia checks
-	if #c_inven.list == 0 or c_inven.only_display then return end
 
-    if self.focus_ui and self.focus_ui.ui == self.c_store then
-    	local row = c_store.list[c_store.sel]
-    	if not row then return end
-    	self:addtoBarter(row, true)
-	else
-		local row = c_inven.list[c_inven.sel]
-    	if not row then return end 
-		self:addtoBarter(row, false)
-	end
-
-end]]
-
-function _M:addtoBarterSell(item)
+function _M:addtoBarterSell(item, id)
 	self.barter_list_sell = self.barter_list_sell or {}
 
 	local who, o = self.actor, item.object:cloneFull()
+
 	local list = self.barter_list_sell
 
 	local name = o:getName{do_color=true, no_image=true}
---    local price = self.obj_price(o)
-	local price = self:getObjectPrice(o, what)
 
-    list[#list+1] = {obj = o, name = name, store_name = self.store_name, price = price, barter = barter }
+	local item_item = id
+
+	local price = self.descprice("sell", item.object)
+
+    list[#list+1] = {object = o, name = name, item_item = item_item, store_name = self.store_name, price = price, barter = barter }
 
 end
 
-function _M:addtoBarterBuy(item)
+function _M:addtoBarterBuy(item, id)
 	self.barter_list_buy = self.barter_list_buy or {}
 
 	local who, o = self.actor, item.object:cloneFull()
 	local list = self.barter_list_buy
 
 	local name = o:getName{do_color=true, no_image=true}
---    local price = self.obj_price(o)
-	local price = self:getObjectPrice(o, what)
 
-    list[#list+1] = {obj = o, name = name, store_name = self.store_name, price = price, barter = barter }
+	local item_item = id
+
+	local price = self.descprice("sell", item.object)
+
+    list[#list+1] = {object = o, name = name, item_item = item_item, store_name = self.store_name, price = price, barter = barter }
 
 end
 
 
 function _M:onBuy()
---	if #self.barter_list_ == 0 then return end
 
 	local list_buy = self.barter_list_buy
 	local list_sell = self.barter_list_sell
 
-	local total_buy = 0
-	local total_sell = 0
+	local total_buy = self.total_buy or 0
+	local total_sell = self.total_sell or 0
 
 	--Count the totals
-	for i, item in ipairs(list_buy) do
-		total_buy = total_buy + item.price
-	end
+
+	--PROBLEM: Doesn't account for ids changing when sortInven() is called.
 
 	for i, item in ipairs(list_sell) do
 		total_sell = total_sell + item.price
+
+		self.action("sell", item.object, item.item_item)
 	end
 
-	--Do the bartering!
-	if total_buy > total_sell then
-		self:doBarter()
+	for i, item in ipairs(list_buy) do
+		total_buy = total_buy + item.price
 
-		local diff = total_buy - total_sell
-		player:incMoney(diff)
+		self.actor_actor:incMoney(total_buy)
+
+		self.action("buy", item.object, item.item_item)
 	end
 
-	if total_sell < total_buy then
-		 self:doBarter()
-
-		local diff = total_sell - total_buy
-		player:incMoney(diff)
-	end
-
-	if total_sell == total_buy then
-		self:doBarter()
-	end
+	--Clear the lists when done!
+	self.barter_list_buy = {}
+	self.barter_list_sell = {}
+	--Remove added money
+	self.actor_actor:incMoney(-total_buy)
 
 end
