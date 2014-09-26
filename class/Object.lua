@@ -33,6 +33,8 @@ module(..., package.seeall, class.inherit(
     engine.interface.ActorInventory
 ))
 
+_M.flavors_def = {}
+
 function _M:init(t, no_default)
     t.encumber = t.encumber or 0
 
@@ -261,6 +263,16 @@ function _M:on_identify()
     game.logSeen(game.player, "Identified: %s", self.name)
 end
 
+function _M:identify(id)
+    print("[Identify]", self.name, true)
+    
+  self:forAllStack(function(so)
+    so.identified = id
+    if so:isFlavored() then so:learnFlavor() end
+  end)
+  self:check("on_identify")
+end
+
 function _M:getPrice()
     local base = self.cost or 0
     return base
@@ -307,4 +319,55 @@ function _M:on_prepickup(who, idx)
 --[[    local tt = self.subtype
     if who == game.player and tt.destroy then game.level.map:removeObject(who.x, who.y, idx) return true end
     if who == game.player and tt.no_pickup then return true end]]
+end
+
+--Flavor stuff (taken from ToME 2 by Zizzo)
+function _M:learnFlavor()
+  if self:isFlavored() then
+    game.state.flavors_known[self.type][self.subtype][self.name] = true
+  end
+end
+
+function _M:isFlavored()
+  return self.flavors_def[self.type] and self.flavors_def[self.type][self.subtype]
+end
+
+function _M:isFlavorKnown()
+  return self:isFlavored() and game.state.flavors_known[self.type][self.subtype][self.name]
+end
+
+function _M:getFlavorText()
+  return self:isFlavored() and game.state.flavors_assigned[self.type][self.subtype][self.name][1]
+end
+
+function _M:loadFlavors(file)
+  local env = {
+    Object = self,
+    newFlavorSet = function(t) self:newFlavorSet(t) end,
+  }
+  local f, err = util.loadfilemods(file, setmetatable(env, {__index = _G}))
+  if not f and err then error(err) end
+  f()
+end
+
+function _M:newFlavorSet(t)
+  assert(t.type, 'no flavor set type')
+  assert(t.subtype, 'no flavor set subtype')
+  assert(t.values or t.pop_flavor, 'flavor set must have values or pop_flavor method')
+
+  t.pop_flavor = t.pop_flavor or function(type, subtype)
+    local unused = game.state.flavors_unused[type][subtype]
+    if #unused == 0 then return '???' end
+    local idx = unused[1]
+    table.remove(unused, 1)
+    return self.flavors_def[type][subtype].values[idx]
+  end
+
+  local typ, sub = t.type, t.subtype
+  self.flavors_def[typ] = self.flavors_def[typ] or {}
+  if self.flavors_def[typ][sub] then
+    print(('[OBJECT] WARNING:  multiple flavor definitions for %s/%s'):format(typ, sub))
+  else
+    self.flavors_def[typ][sub] = t
+  end
 end

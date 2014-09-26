@@ -53,7 +53,7 @@ newEntity{
     rarity = 5,
     desc = [[A potion.]],
     egos = "/data/general/objects/properties/potions.lua", egos_chance = {suffix=100},
-    resolvers.genericlast(function(e)
+--[[    resolvers.genericlast(function(e)
         game.object_material_types = game.object_material_types or {}
         game.object_material_types["potion"] = game.object_material_types["potion"] or {}
         game.object_material_types["potion"]["potion"] = game.object_material_types["potion"]["potion"] or {}
@@ -61,7 +61,7 @@ newEntity{
             game.object_material_types["potion"]["potion"][e.name] = rng.tableRemove(game.potion_materials)
         end
         e.unided_name = "a "..game.object_material_types["potion"]["potion"][e.name].." "..e.unided_name
-    end),
+    end),]]
 }
 
 --Mushrooms

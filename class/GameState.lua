@@ -22,6 +22,8 @@ local Map = require "engine.Map"
 local NameGenerator = require "engine.NameGenerator"
 local NameGenerator2 = require "engine.NameGenerator2"
 
+local Object = require 'mod.class.Object'
+
 module(..., package.seeall, class.inherit(engine.Entity))
 
 function _M:init(t, no_default)
@@ -32,6 +34,32 @@ function _M:init(t, no_default)
 	self.boss_killed = 0
 	self.stores_restock = 1
 	self.birth = {}
+
+	--Flavor stuff from ToME2 by Zizzo
+	 self.flavors_known = {}
+ 	 self.flavors_assigned = {}
+  	self.flavors_unused = {}
+
+  	-- Prepopulate the various flavor-related state tables.
+  	for type, subtypes in pairs(Object.flavors_def) do
+    	self.flavors_known[type] = self.flavors_known[type] or {}
+    	self.flavors_assigned[type] = self.flavors_assigned[type] or {}
+    	self.flavors_unused[type] = self.flavors_unused[type] or {}
+    	for subtype, def in pairs(subtypes) do
+      		self.flavors_known[type][subtype] = self.flavors_known[type][subtype] or {}
+      		self.flavors_assigned[type][subtype] = self.flavors_assigned[type][subtype] or {}
+      			if def.values then
+					local l = {}
+					for i = 1, #def.values do l[i] = i end
+						table.shuffle(l)
+						self.flavors_unused[type][subtype] = self.flavors_unused[type][subtype] or l
+      				end
+      				if def.assigned then
+						table.merge(self.flavors_assigned[type][subtype], def.assigned)
+      				end
+    			end
+  		end
+--  	end
 end
 
 --Day/night code from ToME
@@ -44,7 +72,7 @@ local function doTint(from, to, amount)
 end
 
 --- Compute a day/night cycle
--- Works by changing the tint of the map gradualy
+-- Works by changing the tint of the map gradually
 function _M:dayNightCycle()
 	local map = game.level.map
 	local shown = map.color_shown
