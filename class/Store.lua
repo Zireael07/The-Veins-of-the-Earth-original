@@ -81,7 +81,7 @@ end
 --- Checks if the given entity is allowed
 function _M:allowStockObject(e)
 	local price = self:getObjectPrice(e, "buy")
-	return price > 0 and not e.cursed
+	return price > 0 and not e.cursed and not e.unique
 end
 
 --- Called on object purchase try
