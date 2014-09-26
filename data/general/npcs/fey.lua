@@ -84,6 +84,7 @@ newEntity{
 	skill_spot = 14,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_ALERTNESS]=1,
 	[Talents.T_DODGE]=1,

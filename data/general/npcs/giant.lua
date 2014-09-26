@@ -29,6 +29,7 @@ newEntity{
 	skill_spot = 10,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
 --	[Talents.T_SUPERIOR_TWF]=1,
 	},
@@ -73,6 +74,7 @@ newEntity{
 	skill_spot = 2,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "chaotic evil",
 	resolvers.equip{
 		full_id=true,
@@ -118,6 +120,7 @@ newEntity{
 	skill_spot = 8,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "lawful evil",
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_SLEEP_INNATE]=1

@@ -22,6 +22,7 @@ newEntity{
 	alignment = "neutral",
 --	movement_speed_bonus = -0.33,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	infravision = 4,
 	combat_dr = 5,
 	resolvers.talents{ [Talents.T_RAGE]=1 },

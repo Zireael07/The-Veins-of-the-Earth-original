@@ -120,6 +120,7 @@ newEntity{
 	combat = { dam= {1,6} },
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "lawful evil",
 }
 
@@ -181,6 +182,7 @@ newEntity{
 	combat = { dam= {2,8} },
 --	movement_speed_bonus = 0.88,
 	movement_speed = 1.88,
+	combat_attackspeed = 1.88,
 	alignment = "chaotic evil",
 }
 
@@ -272,6 +274,7 @@ newEntity{
 	infravision = 4,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "neutral evil",
 }
 
@@ -377,6 +380,7 @@ newEntity{
 	combat = { dam= {1,6} },
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "neutral evil",
 }
 

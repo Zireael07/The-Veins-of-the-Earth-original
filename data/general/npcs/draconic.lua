@@ -78,6 +78,7 @@ newEntity{
         fly = true,
 --        movement_speed_bonus = 1,
         movement_speed = 2,
+        combat_attackspeed = 2,
 }
 
 --Fly 60 ft; scent, improved grab

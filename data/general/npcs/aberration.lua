@@ -373,6 +373,7 @@ newEntity{
 	skill_spot = 8,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "neutral",
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }    
@@ -401,6 +402,7 @@ newEntity{
 	skill_spot = 4,
 --	movement_speed_bonus = 0.33, 
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "neutral",	
 }    
 
@@ -548,6 +550,7 @@ newEntity{
 	skill_spot = 6,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "neutral",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 } 
@@ -612,6 +615,7 @@ newEntity{
 	skill_spot = 14,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	fly = true,
 	alignment = "chaotic evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
@@ -632,6 +636,7 @@ newEntity{
 	infravision = 4,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	rarity = 20,
 }
 

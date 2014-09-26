@@ -79,6 +79,7 @@ newEntity{
 	skill_survival = 15,
 --	movement_speed_bonus = 0.88,
 	movement_speed = 1.88,
+	combat_attackspeed = 1.88,
 	alignment = "chaotic good",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1 
@@ -100,6 +101,7 @@ newEntity{
 	skill_listen = 10,
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
+	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1 
 	},
@@ -124,6 +126,7 @@ newEntity{
 	skill_spot = 13,
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
+	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
 	[Talents.T_IRON_WILL]=1 
 	},
@@ -145,6 +148,7 @@ newEntity{
 	alignment = "chaotic evil",
 --	movement_speed_bonus = 2,
 	movement_speed = 2,
+	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1 
 	},

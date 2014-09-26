@@ -666,6 +666,7 @@ newEntity{
 	infravision = 1,
 --	movement_speed_bonus = 0.90,
 	movement_speed = 1.9,
+	combat_attackspeed = 1.9,
 	hit_die = 2,
 	open_door = true,
 --	resolvers.specialnpc(),

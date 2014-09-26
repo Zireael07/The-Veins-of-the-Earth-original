@@ -38,11 +38,6 @@ newEntity{
 	skill_listen = 3,
 	combat_natural = 2,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
@@ -54,7 +49,8 @@ newEntity{
 	challenge = 1,
 	infravision = 1,
 --	movement_speed_bonus = 0.66,
-	movement_speed = 0.66,
+	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
 
@@ -68,6 +64,7 @@ newEntity{
 	infravision = 1,
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
+	combat_attackspeed = 2,
 	combat = { dam= {1,4} },
 	stats = { str=14, dex=13, con=15, int=2, wis=12, cha=6, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
@@ -83,6 +80,7 @@ newEntity{
 	infravision = 1,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	combat = { dam= {1,4} },
 	combat_natural = 3,
 	stats = { str=18, dex=13, con=17, int=2, wis=13, cha=6, luc=2 },
@@ -99,6 +97,7 @@ newEntity{
 	infravision = 1,
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
+	combat_attackspeed = 2,
 	combat_natural = 3,
 	stats = { str=16, dex=13, con=17, int=2, wis=13, cha=6, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
@@ -134,6 +133,7 @@ newEntity{
 	infravision = 1,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
 
@@ -165,6 +165,7 @@ newEntity{
 	challenge = 1/4,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
 
@@ -178,6 +179,7 @@ newEntity{
 	challenge = 1/2,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	stats = { str=15, dex=13, con=14, int=2, wis=11, cha=4, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
@@ -211,6 +213,7 @@ newEntity{
 	challenge = 1,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
 
@@ -224,6 +227,7 @@ newEntity{
 	challenge = 2,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	stats = { str=19, dex=13, con=17, int=2, wis=12, cha=6, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }
@@ -239,6 +243,7 @@ newEntity{
 	challenge = 2,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	stats = { str=19, dex=13, con=17, int=2, wis=12, cha=6, luc=2 },
 --	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
 }

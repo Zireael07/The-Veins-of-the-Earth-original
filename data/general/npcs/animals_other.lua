@@ -18,6 +18,7 @@ newEntity{
         skill_spot = 13,
 --        movement_speed_bonus = 2,
         movement_speed = 2,
+        combat_attackspeed = 2,
         fly = true,
 }
 

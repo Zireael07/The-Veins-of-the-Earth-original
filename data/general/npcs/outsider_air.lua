@@ -33,6 +33,7 @@ newEntity{
 	fly = true,
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
+	combat_attackspeed = 2,
 	resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.COLD] = 10,
@@ -164,6 +165,7 @@ newEntity{
 	skill_spot = 10,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_COMBAT_CASTING]=1,
 	},

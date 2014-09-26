@@ -266,6 +266,7 @@ newEntity{
 	infravision = 4,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	resolvers.talents{ [Talents.T_FINESSE]=1,
 	[Talents.T_DODGE]=1,
 	},

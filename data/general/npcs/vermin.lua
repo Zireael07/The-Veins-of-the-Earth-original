@@ -16,11 +16,6 @@ newEntity{
 	skill_climb = 8,
 	skill_hide = 4,
 	skill_spot = 4,
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{

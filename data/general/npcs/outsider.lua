@@ -58,6 +58,7 @@ newEntity{
 	skill_movesilently = 8,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	resists = {
                 [DamageType.FIRE] = 10,
                 [DamageType.ELECTRIC] = 10,
@@ -275,6 +276,7 @@ newEntity{
 	skill_spot = 10,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "lawful evil",
 }
 
@@ -307,6 +309,7 @@ newEntity{
 	skill_spot = 6,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	alignment = "neutral",
 	fly = true,
 }
@@ -340,6 +343,7 @@ newEntity{
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	alignment = "neutral evil",
 }
 
@@ -449,6 +453,7 @@ newEntity{
 	skill_tumble = 8,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "lawful evil",
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
@@ -503,6 +508,7 @@ newEntity{
 	combat_natural = 4,
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
+	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
@@ -513,6 +519,7 @@ newEntity{
 	combat_natural = 4,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
@@ -524,6 +531,7 @@ newEntity{
 	max_life = resolvers.rngavg(17,21),
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	stats = { str=17, dex=8, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
@@ -536,6 +544,7 @@ newEntity{
 	combat_natural = 5,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	stats = { str=10, dex=13, con=10, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
@@ -575,6 +584,7 @@ newEntity{
 	skill_swim = 8,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	stats = { str=14, dex=10, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
@@ -588,6 +598,7 @@ newEntity{
 	max_life = resolvers.rngavg(17,21),
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	stats = { str=17, dex=8, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }
@@ -600,6 +611,7 @@ newEntity{
 	combat_natural = 5,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
 
@@ -612,6 +624,7 @@ newEntity{
 	skill_swim = 8,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	stats = { str=14, dex=10, con=13, int=6, wis=11, cha=15, luc=12 },
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
 }

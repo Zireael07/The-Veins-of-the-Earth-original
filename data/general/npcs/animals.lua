@@ -292,6 +292,7 @@ newEntity{
 	challenge = 1,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 }
 
 newEntity{

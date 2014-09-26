@@ -31,6 +31,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_survival = 1,
 --	movement_speed_bonus = 1.66,
 	movement_speed = 2.66,
+	combat_attackspeed = 2.66,
 	fly = true,
 }
 
@@ -305,6 +306,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 5,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 }
 
 --Fly 30 ft.; roar 10 squares fatigue Will DC 15; scent
@@ -331,6 +333,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 10,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	fly = true,
 }
 
@@ -385,6 +388,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 5,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1
 	},
 }
@@ -457,6 +461,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	fly = true,
 --	movement_speed_bonus = 1.33,
 	movement_speed = 2.33,
+	combat_attackspeed = 2.33,
 }
 
 --scent
@@ -479,6 +484,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 7,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	fly = true,
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 }
@@ -509,6 +515,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_movesilently = 4,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 }
 
 --Wisdom drain 1d4; Spring Attack
@@ -537,6 +544,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	alignment = "chaotic evil",
 --	movement_speed_bonus = 0.88,
 	movement_speed = 1.88,
+	combat_attackspeed = 1.88,
 	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1,
 	[Talents.T_IRON_WILL]=1,
@@ -573,6 +581,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	fly = true,
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
+	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1 },
 }
 
@@ -622,6 +631,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 8,
 --	movement_speed_bonus = 1.33,
 	movement_speed = 2.33,
+	combat_attackspeed = 2.33,
 	alignment = "neutral good",
 	fly = true,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
@@ -670,6 +680,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	fly = true,
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
+	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1 },
 }
 
@@ -697,6 +708,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 3,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	poison = "medium_spider",
 }
 
@@ -748,6 +760,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 6,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1 
 	},
@@ -919,6 +932,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_survival = 2,
 --	movement_speed_bonus = 0.88,
 	movement_speed = 1.88,
+	combat_attackspeed = 1.88,
 	alignment = "chaotic good",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
@@ -949,6 +963,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 5,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	alignment = "neutral evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
@@ -975,6 +990,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 4,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	alignment = "neutral evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }

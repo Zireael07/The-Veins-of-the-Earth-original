@@ -28,6 +28,7 @@ newEntity{
 	skill_survival = 1,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 	uncommon_desc = [[Centaurs are skilled horticulturists and often cultivate various plants near their lairs. Despite their calm nature, centaurs are known for becoming rowdy and aggressive under the influence of alcohol.]],
 	common_desc = [[Although sociable among themselves and generally even-headed, centaurs shun outsiders and are almost always armed.]],
 	base_desc = [[This creature, known as a centaur, has the upper body of a humanoid but the lower body of a horse.  It can see in the dark and needs to sleep, eat and breathe.]],
@@ -134,6 +135,7 @@ newEntity{
 	combat_dr_tohit = 1,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	alignment = "chaotic evil",
 }
 
@@ -250,6 +252,7 @@ newEntity{
 	skill_spot = 9,
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
@@ -333,6 +336,7 @@ newEntity{
 	fly = true,
 --	movement_speed_bonus = 1.33,
 	movement_speed = 2.33,
+	combat_attackspeed = 2.33,
 	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_PERSUASIVE]=1
 	},
