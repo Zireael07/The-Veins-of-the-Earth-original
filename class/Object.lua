@@ -292,7 +292,7 @@ function _M:on_prepickup(who, idx)
         end 
     end
     if self.pseudo_id == true and self.cursed then 
-        game.log("You recognize the item as cursed and destroy it.")
+        game.log(("You recognize the %s as cursed and destroy it."):format(self:getUnidentifiedName() or self.name))
         game.level.map:removeObject(who.x, who.y, idx) return true 
     end
     

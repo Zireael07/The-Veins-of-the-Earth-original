@@ -1041,7 +1041,7 @@ newBirthDescriptor {
 			full_id=true,
 			{ name="shortbow", ego_chance=-1000},
 			{ name="arrows", ego_chance=-1000 },
-			{ name="iron dagger", ego_chance=-1000 },
+			{ name="dagger", ego_chance=-1000 },
 		},
 
 	},
@@ -1226,7 +1226,7 @@ newBirthDescriptor {
 		},
 		resolvers.inventory {
 			full_id=true,
-			{ name="iron dagger", ego_chance=-1000},
+			{ name="dagger", ego_chance=-1000},
 		}
 	},
 	descriptor_choices =

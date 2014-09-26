@@ -574,7 +574,7 @@ function _M:changeLevel(lev, zone)
 
 		if max_magic > 2 then item_feeling = "You get goosebumps on your skin. A magic item is radiating power."
 		elseif max_magic > 4 then item_feeling = "The feeling of power threatens to overwhelm you. A powerful magic item must be nearby."
-		else item_feeling = "You get a feeling that there is only junk here"
+		else item_feeling = "You get a feeling that there is only junk here."
 		end
 
 

@@ -912,10 +912,10 @@ end
 --Pick a random egoed item to be given as perk
 function _M:randomItem()
   local chance = rng.dice(1,15)
-  if chance == 1 then self.perk_item = "iron battleaxe" 
+  if chance == 1 then self.perk_item = "battleaxe" 
   elseif chance == 2 then self.perk_item = "rapier" 
   elseif chance == 3 then self.perk_item = "long sword"  
-  elseif chance == 4 then self.perk_item = "iron dagger" 
+  elseif chance == 4 then self.perk_item = "dagger" 
   elseif chance == 5 then self.perk_item = "morningstar" 
   --Ranged weapons
   elseif chance == 6 then self.perk_item = "shortbow" 
@@ -935,10 +935,10 @@ end
 --Add a random ego-ed item
 function _M:giveEgoAxe()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="battleaxe", ego_chance=1000}, 1, true)
       if o then
         while o.cursed == true do
-        o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=1000}, 1, true)
+        o = game.zone:makeEntity(game.level, "object", {name="battleaxe", ego_chance=1000}, 1, true)
         end
 
         game.zone:addEntity(game.level, o, "object")
@@ -977,10 +977,10 @@ end
 
 function _M:giveEgoDagger()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="iron dagger", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="dagger", ego_chance=1000}, 1, true)
       if o then
         while o.cursed == true do
-        o = game.zone:makeEntity(game.level, "object", {name="iron dagger", ego_chance=1000}, 1, true)
+        o = game.zone:makeEntity(game.level, "object", {name="dagger", ego_chance=1000}, 1, true)
         end
       
         game.zone:addEntity(game.level, o, "object")
@@ -1146,7 +1146,7 @@ end
 --Actually give the starting items
 function _M:giveAxe()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="iron battleaxe", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="battleaxe", ego_chance=-1000}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1186,7 +1186,7 @@ end
 
 function _M:giveDagger()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="iron dagger", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="dagger", ego_chance=-1000}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1399,7 +1399,7 @@ function _M:giveStartingEQ()
 --  local item = self:randomItem()
     if class == "Barbarian" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
         then self:givePerkWeapon() end
@@ -1414,7 +1414,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Bard" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
         then self:givePerkWeapon() end
@@ -1431,7 +1431,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Cleric" or class == "Shaman" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
         then self:givePerkWeapon() end
@@ -1444,7 +1444,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Druid" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
         then self:givePerkWeapon() end
@@ -1460,7 +1460,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Fighter" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
           then self:givePerkWeapon() end
@@ -1474,7 +1474,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Monk" then 
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
           then self:givePerkWeapon() end
@@ -1483,7 +1483,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Paladin" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
           then self:givePerkWeapon() end
@@ -1497,7 +1497,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Ranger" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
           then self:givePerkWeapon() end
@@ -1512,7 +1512,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Rogue" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
           then self:givePerkWeapon() end
@@ -1527,7 +1527,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Sorcerer" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
           then self:givePerkWeapon() end
@@ -1538,7 +1538,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Wizard" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
           then self:givePerkWeapon() end
@@ -1551,7 +1551,7 @@ function _M:giveStartingEQ()
 
     elseif class == "Warlock" then
       --Account for perk items
-      if self.perk_item == "iron battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "iron dagger" or self.perk_item == "morningstar"
+      if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
        or self.perk_item == "shortbow" or self.perk_item == "longbow" or self.perk_item == "sling" or self.perk_item == "light crossbow" or self.perk_item == "heavy crossbow"
           then self:givePerkWeapon() end
@@ -1567,10 +1567,10 @@ end
 
 function _M:givePerkWeapon()      
     --Weapon
-    if self.perk_item == "iron battleaxe" then self:giveEgoAxe()      
+    if self.perk_item == "battleaxe" then self:giveEgoAxe()      
     elseif self.perk_item == "rapier" then self:giveEgoRapier()
     elseif self.perk_item == "long sword" then self:giveEgoSword()
-    elseif self.perk_item == "iron dagger" then self:giveEgoDagger()
+    elseif self.perk_item == "dagger" then self:giveEgoDagger()
     elseif self.perk_item == "morningstar" then self:giveEgoMorningstar()
     --Ranged weapons
     elseif self.perk_item == "shortbow" then self:giveEgoShortbow()
