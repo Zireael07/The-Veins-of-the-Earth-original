@@ -135,8 +135,10 @@ function _M:attackTarget(target, noenergy)
    end
 
 -- We use up our own energy
+  local speed = self:combatSpeed()
+
    if not noenergy then
-      self:useEnergy(game.energy_to_act)
+      self:useEnergy(game.energy_to_act * speed)
    end
 end
 
@@ -550,5 +552,6 @@ end
 --- Gets the weapon speed
 function _M:combatSpeed(weapon)
   weapon = weapon or self.combat or {}
-  return (weapon.physspeed or 1) / math.max(self.combat_physspeed, 0.1)
+--  return (weapon.attackspeed or 1) / math.max(self.combat_attackspeed, 0.1)
+  return math.max(self.combat_attackspeed, 0.1)
 end

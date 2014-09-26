@@ -65,6 +65,7 @@ function _M:init(t, no_default)
 
 	--Define speed
 	self.movement_speed = 1
+	self.combat_attackspeed = 1
 
 	--Some more combat stuff
 	self.more_attacks = 0
@@ -524,15 +525,19 @@ function _M:tooltip()
 	ts:add(("%s"):format(self:colorFaction()), true)
 
 	--Debugging speed stuff
---[[	ts:add(("Game turn: %s"):format(game.turn/10), true)
+--	ts:add(("Game turn: %s"):format(game.turn/10), true)
 
-	ts:add(("Global speed: %d"):format(self.global_speed or 1), true)
+--	ts:add(("Global speed: %d"):format(self.global_speed or 1), true)
 
-	ts:add(("Energy remaining: %d"):format(self.energy_value or 1), true)
+	ts:add(("Energy remaining: %d"):format(self.energy.value or 1), true)
 
 	ts:add(("Movement speed: %d"):format(self.movement_speed or 1), true)
 
-	ts:add(("Movement speed bonus: %0.1f"):format(self.movement_speed_bonus or 0), true)]]
+	ts:add(("Attack speed: %d"):format(self.combat_attackspeed or 1), true)
+
+	ts:add(("Attacks per round: %d"):format((self.movement_speed or 1)/(self.combat_attackspeed or 1)))
+
+--	ts:add(("Movement speed bonus: %0.1f"):format(self.movement_speed_bonus or 0), true)
 
 	return ts
 end
