@@ -36,6 +36,9 @@ function _M:init(t, no_default)
 	t.store.sell_percent = t.store.sell_percent or function(self, o) return 120 + 3 * (o.__store_level or 0) end -- Stores prices goes up with item level
 	t.store.nb_fill = t.store.nb_fill or 10
 	t.store.purse = t.store.purse or 20
+	t.store.restock_after = t.store.restock_after or 10000
+
+
 	Store.init(self, t, no_default)
 
 	self.name = self.name .. (" (Max buy %d gold)"):format(self.store.purse)
@@ -71,6 +74,9 @@ end
 -- @param level the level to generate for (instance of type engine.Level)
 -- @param zone the zone to generate for
 function _M:loadup(level, zone, force_nb)
+	if not self:canRestock() then 
+		print("[STORE] stocking up: cannot restock")
+		return end
 
 	if Store.loadup(self, level, zone, self.store.nb_fill) then
 		self.last_filled = game.turn

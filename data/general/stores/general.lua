@@ -5,6 +5,7 @@ newEntity{
 	store = {
 		purse = 10000,
 --		nb_fill = 20,
+		restock_after = 100,
 		empty_before_restock = false,
 		filters = {
 			{type="weapon", subtype="shortsword", id=true },
