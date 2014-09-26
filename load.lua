@@ -37,7 +37,7 @@ local PlayerLore = require "mod.class.interface.PlayerLore"
 
 local UIBase = require "engine.ui.Base"
 
-
+local Object = require 'mod.class.Object'
 local Ego = require "mod.class.Ego"
 
 -- Init settings
@@ -218,6 +218,8 @@ Store:loadStores("/data/general/stores/general.lua")
 
 -- Lore
 PlayerLore:loadDefinition("/data/lore/lore.lua")
+
+Object:loadFlavors('/data/object_flavors.lua')
 
 -- Object egos
 Ego:loadEgos('/data/general/ego/egos.lua')

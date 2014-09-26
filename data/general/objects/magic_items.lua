@@ -52,6 +52,7 @@ newEntity{
     encumber = 0,
     rarity = 5,
     desc = [[A potion.]],
+    resolvers.flavored(),
     egos = "/data/general/objects/properties/potions.lua", egos_chance = {suffix=100},
 --[[    resolvers.genericlast(function(e)
         game.object_material_types = game.object_material_types or {}

@@ -393,6 +393,36 @@ function resolvers.calc.moddable_tile(t, e)
 	if type(r) == "string" then return r else e.moddable_tile_big = true return r[1] end
 end
 
+function resolvers.value(t)
+	return {__resolver="value", }
+end
+
+--10 coppers to a silver, 20 silvers to a gold means 200 coppers to a gold
+function resolvers.calc.value(t, v)
+	local kind = t[1]
+
+	if kind == "silver" then e.money = v*10 end
+	if kind == "gold" then e.money = v*200 end
+
+end
+
+-- Assign a flavor to flavored objects that haven't had a flavor assigned
+-- to them, and adjust a flavored object's color and tile image
+function resolvers.flavored()
+  return { __resolver='flavored' }
+end
+function resolvers.calc.flavored(t, e)
+  local fl_def = e:isFlavored()
+  if fl_def then
+    local used = game.state.flavors_assigned[e.type][e.subtype]
+    if not used[e.name] then
+      used[e.name] = fl_def.pop_flavor(e.type, e.subtype)
+    end
+    local color = used[e.name][2]
+    for k, v in pairs(color) do e['color_'..k] = v end
+    e.image = used[e.name][3]
+  end
+end
 
 
 
