@@ -1,5 +1,32 @@
 CHANGELOG
 
+* bug fix - spell image list no longer overlaps text spell list [Castler]
+* bug fix - no longer able to bypass confirmation of Quit Permanently dialog [Castler]
+* bug fix - fix some misspellings [Castler]
+* bug fix - Lua error on cancelling mount skill [Castler]
+* bug fix - Xavias godpulse causing Lua error [Castler]
+* bug fix - fix corpse and bag weights
+* bug fix - restore stat descriptions in char creation
+* bug fix - DR check not working properly
+* bug fix - no longer able to use ranged weapons in melee
+* bug fix - pseudo-ID and auto-ID now work for worn/equipped items too [Castler]
+* bug fix - saving throws logged properly [Castler]
+* bug fix - skills logged properly on a 1 or a 20 [Castler]
+* bug fix - proper skill points calculation [Castler]
+* bug fix - definite fix for "fall-lock" on ice [Castler]
+* bug fix - give subtypes to neutral NPCs
+* bug fix - no more 'hit for 0 darkness damage' messages spam
+
+* gameplay variant options (defensive roll)
+* you can now attack while dying
+* object flavors, ToME 2/Angband style
+* color-code skills in character sheet Incursion-style
+* color-code max skill ranks in skill dialog, UI improvements
+* humanoid templates now work
+* backport ActorTalentDialog from ToME 1.2.4 [Castler]
+
+
+
 0.22.0 - beta 6 - 14/09/2014
 
 * bug fix - Lua errors in load premade

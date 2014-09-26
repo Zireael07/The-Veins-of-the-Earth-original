@@ -58,6 +58,7 @@ FEATURES
 - cure x wounds spells work in a traditional way; heal x wounds spells heal a percentage of total hp
 - stairs have a chance of not changing the dungeon level [Seb]; Sil-style min depth and anti-stairscum measures
 - level feelings and item feelings (warning: these affect only pre-spawned items, not monster loot)
+- object flavors
 - calendar
 - hunger counter and display
 - integrated most of Marson's Bosses AWOL functions and Marson UI; Marson's Autoexplore fixes
