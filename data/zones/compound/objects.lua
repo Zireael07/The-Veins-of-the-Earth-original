@@ -37,6 +37,8 @@ load("/data/general/objects/poisons.lua")
 
 load("/data/general/objects/pickaxes.lua")
 load("/data/general/objects/money.lua") -- rarity(-luck))
+load("/data/general/objects/lite.lua")
+load("/data/general/objects/tools.lua")
 
 load("/data/general/objects/specific_items.lua")
 
@@ -63,112 +65,4 @@ newEntity{
     encumber = 30,
     name = "bones",
     desc = [[Bones of some dead adventurer.]],
-}
-
---Light sources
-newEntity{
-    define_as = "BASE_LIGHT",
-    slot = "LITE",
-    type = "torch", subtype = "lite",
-    image = "tiles/torch.png",
-    display = "~", color=colors.YELLOW,
-    encumber = 0,
-    rarity = 10,
-    name = "torch",
-    desc = [[A torch.]],
-}
-
---Should last 5000 turns
-newEntity{
-    base = "BASE_LIGHT",
-    name = "torch",
-    level_range = {1,10},
-    cost = 0,
-    wielder = {
-    lite=2
-  }, 
-}
- 
---Unlimited
-newEntity{
-    base = "BASE_LIGHT",
-    name = "everlasting torch",
-    level_range = {10, nil},
-    cost = 5000,
-    wielder = {
-    lite=2
-  }, 
-}
-
---Should last 7500 turns
-newEntity{
-    base = "BASE_LIGHT",
-    name = "lantern",
-    image = "tiles/lantern.png",
-    level_range = {5,nil},
-    cost = 7,
-    wielder = {
-    lite=3
-  }, 
-}
-
---Burnt out torch
-newEntity{
-    base = "BASE_LIGHT",
-    name = "burnt out torch",
-    level_range = {1,10},
-    cost = 0,
-}
-
---Burnt out lantern
-newEntity{
-    base = "BASE_LIGHT",
-    name = "burnt out lantern",
-    image = "tiles/lantern.png",
-    level_range = {5,nil},
-    cost = 0,
-}
-
-
---Tools or kits
-newEntity{
-    define_as = "BASE_TOOL",
-    slot = "TOOL",
-    type = "tool", subtype = "skill",
-    image = "tiles/kit.png",
-    display = "^", color=colors.YELLOW,
-    encumber = 1,
-    rarity = 10,
-    name = "tool kit",
-    desc = [[tool kit.]],
-}
-
-newEntity{
-    base = "BASE_TOOL",
-    name = "healing kit",
-    level_range = {1,10},
-    cost = 100,
-    wielder = {
-    skill_bonus_heal = 2
-  }, 
-}
-
-newEntity{
-    base = "BASE_TOOL",
-    name = "lockpicking kit",
-    level_range = {1,10},
-    cost = 100,
-    wielder = {
-    skill_bonus_openlock = 2
-  }, 
-}
-
-newEntity{
-    base = "BASE_TOOL",
-    name = "survival kit",
-    level_range = {1,10},
-    cost = 100,
-    wielder = {
-    skill_bonus_survival = 2
-  }, 
 }
