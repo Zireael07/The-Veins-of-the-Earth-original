@@ -205,6 +205,8 @@ function _M:getTextualDesc()
         if self.reach then desc:add("This is a reach weapon", true) end
         if self.exotic then desc:add("This is an exotic weapon", true) end
 
+        desc:add(("Price: %s"):format(self.cost))
+
     if self:isIdentified() then
            if self.wielder then
             desc:add({"color","SANDY_BROWN"}, "\nWhen equipped:", {"color", "LAST"}, true)

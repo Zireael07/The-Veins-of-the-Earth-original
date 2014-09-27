@@ -393,17 +393,24 @@ function resolvers.calc.moddable_tile(t, e)
 	if type(r) == "string" then return r else e.moddable_tile_big = true return r[1] end
 end
 
-function resolvers.value(t)
-	return {__resolver="value", }
+function resolvers.value(list)
+	return {__resolver="value", list }
 end
 
 --10 coppers to a silver, 20 silvers to a gold means 200 coppers to a gold
-function resolvers.calc.value(t, v)
-	local kind = t[1]
+--10 gold to a platinum means 2000 coppers to a platinum
+function resolvers.calc.value(t, e)
+	for kind, amt in pairs(t[1]) do
 
-	if kind == "silver" then e.money = v*10 end
-	if kind == "gold" then e.money = v*200 end
+	local value = 0
 
+	if kind == "silver" then value = value + amt*10 end
+	if kind == "gold" then value = value + amt*200 end
+	if kind == "platinum" then value = value + amt*2000 end
+	
+	return value
+	end
+	
 end
 
 -- Assign a flavor to flavored objects that haven't had a flavor assigned
