@@ -66,6 +66,7 @@ newEntity{
 newEntity{ base = "BASE_DIGGER",
 	name = "iron pickaxe",
 	level_range = {1, 20},
-	cost = 3,
+--	cost = 3,
+    cost = resolvers.value{silver=35},
 	digspeed = 20,
 }

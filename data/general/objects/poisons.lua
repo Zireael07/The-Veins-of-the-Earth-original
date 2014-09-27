@@ -21,7 +21,8 @@ newEntity{
     identified = false,
     rarity = 5,
     level_range = {5,10},
-    cost = 120,
+--    cost = 120,
+    cost = resolvers.value{gold=120},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "black_adder"
@@ -37,7 +38,8 @@ newEntity{
     identified = false,
     rarity = 5,
     level_range = {5,10},
-    cost = 180,
+--    cost = 180,
+    cost = resolvers.value{gold=180},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "toadstool"
@@ -53,8 +55,9 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {5,10},
-    cost = 120,
-   use_simple = { name = "apply poison",
+--    cost = 120,
+    cost = resolvers.value{gold=120},
+    use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "arsenic"
         return {used = true, destroy = true}
@@ -69,7 +72,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {5,10},
-    cost = 125,
+--    cost = 125,
+    cost = resolvers.value{gold=125},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "idmoss"
@@ -85,7 +89,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {5,10},
-    cost = 120,
+--    cost = 120,
+    cost = resolvers.value{gold=120},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "blackadder"
@@ -101,7 +106,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {1,10},
-    cost = 90,
+--    cost = 90,
+    cost = resolvers.value{gold=90},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "small_centipede"
@@ -117,7 +123,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {5,10},
-    cost = 100,
+--    cost = 100,
+    cost = resolvers.value{gold=100},
    use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "bloodroot"
@@ -133,7 +140,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {5,10},
-    cost = 100,
+--    cost = 100,
+    cost = resolvers.value{gold=100},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "greenblood"
@@ -149,7 +157,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {5,10},
-    cost = 120,
+--    cost = 120,
+    cost = resolvers.value{gold=120},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "whinnis"
@@ -165,7 +174,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {5,10},
-    cost = 150,
+--    cost = 150,
+    cost = resolvers.value{gold=150},
    use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "medium_spider"
@@ -181,7 +191,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {5,10},
-    cost = 200,
+--    cost = 200,
+    cost = resolvers.value{gold=200},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "large_scorpion"
@@ -197,7 +208,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {5,10},
-    cost = 210,
+--    cost = 210,
+    cost = resolvers.value{gold=210},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "giantwasp"
@@ -216,7 +228,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {10,15},
-    cost = 650,
+--    cost = 650,
+    cost = resolvers.value{gold=650},
    use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "nitharit"
@@ -232,7 +245,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {10,15},
-    cost = 300,
+--    cost = 300,
+    cost = resolvers.value{gold=300},
   use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "sassone"
@@ -248,7 +262,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {10,15},
-    cost = 250,
+--    cost = 250,
+    cost = resolvers.value{gold=250},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "shadowessence"
@@ -264,7 +279,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {10,15},
-    cost = 500,
+--    cost = 500,
+    cost = resolvers.value{gold=500},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "malyss"
@@ -280,7 +296,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {10,15},
-    cost = 750,
+--    cost = 750,
+    cost = resolvers.value{gold=750},
    use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "terinav"
@@ -296,7 +313,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {10,15},
-    cost = 250,
+--    cost = 250,
+    cost = resolvers.value{gold=250},
    use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "lichdust"
@@ -312,7 +330,8 @@ newEntity{
     identified = false,
     level_range = {10,15},
     rarity = 15,
-    cost = 300,
+--    cost = 300,
+    cost = resolvers.value{gold=300},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "darkreaver"
@@ -328,7 +347,8 @@ newEntity{
     identified = false,
     level_range = {10,15},
     rarity = 15,
-    cost = 700,
+--    cost = 700,
+    cost = resolvers.value{gold=700},
    use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "purpleworm"
@@ -347,7 +367,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {30,45},
-    cost = 4500,
+--    cost = 4500,
+    cost = resolvers.value{gold=4500},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "blacklotus"
@@ -363,7 +384,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {15,20},
-    cost = 1500,
+--    cost = 1500,
+    cost = resolvers.value{gold=1500},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "dragon"
@@ -379,7 +401,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {15,20},
-    cost = 1000,
+--    cost = 1000,
+    cost = resolvers.value{gold=1000},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "ungoldust"
@@ -395,7 +418,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {15,20},
-    cost = 1500,
+--    cost = 1500,
+    cost = resolvers.value{gold=1000},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "insanitymist"
@@ -411,7 +435,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {20,25},
-    cost = 2100,
+--    cost = 2100,
+    cost = resolvers.value{gold=2100},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "burnt_othur"
@@ -427,7 +452,8 @@ newEntity{
     identified = false,
     rarity = 15,
     level_range = {20,25},
-    cost = 3000,
+--    cost = 3000,
+    cost = resolvers.value{gold=3000},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "wyvern"
@@ -442,7 +468,8 @@ newEntity{
     unided_name = "a potion",
     identified = false,
     level_range = {20,25},
-    cost = 1800,
+--    cost = 1800,
+    cost = resolvers.value{gold=1800},
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "deathblade"
