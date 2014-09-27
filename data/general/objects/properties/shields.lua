@@ -8,7 +8,8 @@ newEntity {
 	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 2000,
+--	cost = 2000,
+	cost = resolvers.value{platinum=200},
 	wielder = {
 		combat_magic_shield = 1,
 	},
@@ -19,7 +20,8 @@ newEntity {
 	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 8,
-	cost = 4000,
+--	cost = 4000,
+	cost = resolvers.value{platinum=400},
 	wielder = {
 		combat_magic_shield = 2,
 	},
@@ -30,7 +32,8 @@ newEntity {
 	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 8,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		combat_magic_shield = 3,
 	},
@@ -42,7 +45,8 @@ newEntity {
 	level_range = {10, 20},
 	greater_ego = 1,
 	rarity = 10,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
 		combat_magic_shield = 4,
 	},
@@ -54,7 +58,8 @@ newEntity {
 	level_range = {1, 10},
 	greater_ego = 1,
 	rarity = 15,
-	cost = 50000,
+--	cost = 50000,
+	cost = resolvers.value{platinum=5000},
 	wielder = {
 	combat_magic_shield = 5,
 	},
@@ -67,7 +72,8 @@ newEntity {
 	keywords = {mithril=true},
 	level_range = {5, nil},
 	rarity = 7,
-	cost = 1000,
+--	cost = 1000,
+	cost = resolvers.value{platinum=100},
 	wielder = {
 		spell_fail = -10,
 		max_dex_bonus = 2,
@@ -80,7 +86,8 @@ newEntity {
 	keywords = {adamantine=true},
 	level_range = {10, nil},
 	rarity = 5,
-	cost = 1000,
+--	cost = 1000,
+	cost = resolvers.value{platinum=100},
 	wielder = {
 		combat_dr = 1,
 		armor_penalty = -1,
@@ -93,7 +100,8 @@ newEntity {
 	level_range = {20, nil},
 	rarity = 15,
 	greater_ego = 1,
-	cost = 3500,
+--	cost = 3500,
+	cost = resolvers.value{platinum=350},
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 20,
@@ -108,7 +116,8 @@ newEntity {
 	keywords = {fireres=true},
 	level_range = {10, nil},
 	rarity = 10,
-	cost = 18000,
+--	cost = 18000,
+	cost = resolvers.value{platinum=1800},
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 10,
@@ -122,7 +131,8 @@ newEntity {
 	level_range = {15, nil},
 	rarity = 15,
 	greater_ego = 1,
-	cost = 42000,
+--	cost = 42000,
+	cost = resolvers.value{platinum=4200},
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 20,
@@ -136,7 +146,8 @@ newEntity {
 	level_range = {18, nil},
 	rarity = 20,
 	greater_ego = 1,
-	cost = 66000,
+--	cost = 66000,
+	cost = resolvers.value{platinum=6600},
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 30,
@@ -150,7 +161,8 @@ newEntity {
 	keywords = {acidres=true},
 	level_range = {10, nil},
 	rarity = 10,
-	cost = 18000,
+--	cost = 18000,
+	cost = resolvers.value{platinum=1800},
 	wielder = {
 		resists = {
 		[DamageType.ACID] = 10,
@@ -164,7 +176,8 @@ newEntity {
 	level_range = {15, nil},
 	rarity = 15,
 	greater_ego = 1,
-	cost = 42000,
+--	cost = 42000,
+	cost = resolvers.value{platinum=4200},
 	wielder = {
 		resists = {
 		[DamageType.ACID] = 20,
@@ -178,7 +191,8 @@ newEntity {
 	level_range = {18, nil},
 	rarity = 20,
 	greater_ego = 1,
-	cost = 66000,
+--	cost = 66000,
+	cost = resolvers.value{platinum=6600},
 	wielder = {
 		resists = {
 		[DamageType.ACID] = 30,
@@ -191,7 +205,8 @@ newEntity {
 	keywords = {coldres=true},
 	level_range = {10, nil},
 	rarity = 10,
-	cost = 18000,
+--	cost = 18000,
+	cost = resolvers.value{platinum=1800},
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 10,
@@ -205,7 +220,8 @@ newEntity {
 	level_range = {15, nil},
 	rarity = 15,
 	greater_ego = 1,
-	cost = 42000,
+--	cost = 42000,
+	cost = resolvers.value{platinum=4200},
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 20,
@@ -219,7 +235,8 @@ newEntity {
 	level_range = {18, nil},
 	rarity = 20,
 	greater_ego = 1,
-	cost = 66000,
+--	cost = 66000,
+	cost = resolvers.value{platinum=6600},
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 30,
@@ -232,7 +249,8 @@ newEntity {
 	keywords = {electres=true},
 	level_range = {10, nil},
 	rarity = 10,
-	cost = 18000,
+--	cost = 18000,
+	cost = resolvers.value{platinum=1800},
 	wielder = {
 		resists = {
 		[DamageType.ELECTRIC] = 10,
@@ -246,7 +264,8 @@ newEntity {
 	level_range = {15, nil},
 	rarity = 15,
 	greater_ego = 1,
-	cost = 42000,
+--	cost = 42000,
+	cost = resolvers.value{platinum=4200},
 	wielder = {
 		resists = {
 		[DamageType.ELECTRIC] = 20,
@@ -260,7 +279,8 @@ newEntity {
 	level_range = {18, nil},
 	rarity = 20,
 	greater_ego = 1,
-	cost = 66000,
+--	cost = 66000,
+	cost = resolvers.value{platinum=6600},
 	wielder = {
 		resists = {
 		[DamageType.ELECTRIC] = 30,
@@ -273,7 +293,8 @@ newEntity {
 	keywords = {sonicres=true},
 	level_range = {10, nil},
 	rarity = 10,
-	cost = 18000,
+--	cost = 18000,
+	cost = resolvers.value{platinum=1800},
 	wielder = {
 		resists = {
 		[DamageType.SONIC] = 10,
@@ -287,7 +308,8 @@ newEntity {
 	level_range = {15, nil},
 	rarity = 15,
 	greater_ego = 1,
-	cost = 42000,
+--	cost = 42000,
+	cost = resolvers.value{platinum=4200},
 	wielder = {
 		resists = {
 		[DamageType.SONIC] = 20,
@@ -301,7 +323,8 @@ newEntity {
 	level_range = {18, nil},
 	rarity = 20,
 	greater_ego = 1,
-	cost = 66000,
+--	cost = 66000,
+	cost = resolvers.value{platinum=6600},
 	wielder = {
 		resists = {
 		[DamageType.SONIC] = 30,
@@ -315,7 +338,8 @@ newEntity {
 	keywords = {darkwood=true},
 	level_range = {10, nil},
 	rarity = 5,
-	cost = 500,
+--	cost = 500,
+	cost = resolvers.value{gold=500},
 	wielder = {
 		armor_penalty = -2,
 	}
@@ -327,7 +351,8 @@ newEntity {
 	keywords = {spiked=true},
 	level_range = {1, nil},
 	rarity = 5,
-	cost = 10,
+--	cost = 10,
+	cost = resolvers.value{silver=150},
 	encumber = 5,
 	wielder = {
 		on_melee_hit={[DamageType.PHYSICAL] = {1, 6}

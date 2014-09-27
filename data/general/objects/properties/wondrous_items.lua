@@ -10,7 +10,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 2000,
+--	cost = 2000,
+	cost = resolvers.value{platinum=200},
 	wielder = {
 		combat_natural = 1,
 	},
@@ -21,7 +22,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 8000,
+--	cost = 8000,
+	cost = resolvers.value{platinum=800},
 	wielder = {
 		combat_natural = 2,
 	},
@@ -32,7 +34,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		combat_natural = 3,
 	},
@@ -44,7 +47,8 @@ newEntity {
 	level_range = {10, 20},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
 		combat_natural = 4,
 	},
@@ -56,7 +60,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 50000,
+--	cost = 50000,
+	cost = resolvers.value{platinum=5000},
 	wielder = {
 		combat_natural = 5,
 	},
@@ -67,7 +72,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 2000,
+--	cost = 2000,
+	cost = resolvers.value{platinum=200},
 	wielder = {
 		combat_protection = 1,
 	},
@@ -78,7 +84,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 8000,
+--	cost = 8000,
+	cost = resolvers.value{platinum=800},
 	wielder = {
 		combat_protection = 2,
 	},
@@ -89,7 +96,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		combat_protection = 3,
 	},
@@ -101,7 +109,8 @@ newEntity {
 	level_range = {10, 20},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
 		combat_protection = 4,
 	},
@@ -113,7 +122,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 50000,
+--	cost = 50000,
+	cost = resolvers.value{platinum=5000},
 	wielder = {
 		combat_protection = 5,
 	},
@@ -126,7 +136,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 2000,
+--	cost = 2000,
+	cost = resolvers.value{platinum=200},
 	wielder = {
 		combat_armor = 1,
 	},
@@ -137,7 +148,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 8000,
+--	cost = 8000,
+	cost = resolvers.value{platinum=800},
 	wielder = {
 		combat_armor = 2,
 	},
@@ -148,7 +160,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		combat_armor = 3,
 	},
@@ -160,7 +173,8 @@ newEntity {
 	level_range = {10, 20},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
 		combat_armor = 4,
 	},
@@ -172,7 +186,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 50000,
+--	cost = 50000,
+	cost = resolvers.value{platinum=5000},
 	wielder = {
 		combat_armor = 5,
 	},
@@ -182,7 +197,8 @@ newEntity{
 	name = " of resistance +1", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 1000,
+--	cost = 1000,
+	cost = resolvers.value{platinum=100},
 	wielder = {
 		fortitude_save = 1,
 		reflex_save = 1,
@@ -194,7 +210,8 @@ newEntity{
 	name = " of resistance +2", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4000,
+--	cost = 4000,
+	cost = resolvers.value{platinum=400},
 	wielder = {
 		fortitude_save = 2,
 		reflex_save = 2,
@@ -206,7 +223,8 @@ newEntity{
 	name = " of resistance +3", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 9000,
+--	cost = 9000,
+	cost = resolvers.value{platinum=900},
 	wielder = {
 		fortitude_save = 3,
 		reflex_save = 3,
@@ -218,7 +236,8 @@ newEntity{
 	name = " of resistance +4", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	greater_ego = 1,
 	wielder = {
 		fortitude_save = 4,
@@ -231,7 +250,8 @@ newEntity{
 	name = " of resistance +5", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 25000,
+--	cost = 25000,
+	cost = resolvers.value{platinum=2500},
 	greater_ego = 1,
 	wielder = {
 		fortitude_save = 5,
@@ -246,7 +266,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 4000,
+--	cost = 4000,
+	cost = resolvers.value{platinum=400},
 	wielder = {
     inc_stats = { [Stats.STAT_STR] = 2, },
   }, 
@@ -257,7 +278,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
     inc_stats = { [Stats.STAT_STR] = 4, },
   }, 
@@ -269,7 +291,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
     inc_stats = { [Stats.STAT_STR] = 6, },
   }, 
@@ -280,7 +303,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 4000,
+--	cost = 4000,
+	cost = resolvers.value{platinum=400},
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = 2, },
   }, 
@@ -291,7 +315,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = 4, },
   }, 
@@ -303,7 +328,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = 6, },
   }, 
@@ -314,7 +340,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 4000,
+--	cost = 4000,
+	cost = resolvers.value{platinum=400},
 	wielder = {
     inc_stats = { [Stats.STAT_CON] = 2, },
   }, 
@@ -325,7 +352,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
     inc_stats = { [Stats.STAT_CON] = 4, },
   }, 
@@ -337,7 +365,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
     inc_stats = { [Stats.STAT_CON] = 6, },
   }, 
@@ -348,7 +377,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 4000,
+--	cost = 4000,
+	cost = resolvers.value{platinum=400},
 	wielder = {
     inc_stats = { [Stats.STAT_INT] = 2, },
   }, 
@@ -359,7 +389,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
     inc_stats = { [Stats.STAT_INT] = 4, },
   }, 
@@ -371,7 +402,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
     inc_stats = { [Stats.STAT_INT] = 6, },
   }, 
@@ -382,7 +414,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 4000,
+--	cost = 4000,
+	cost = resolvers.value{platinum=400},
 	wielder = {
     inc_stats = { [Stats.STAT_WIS] = 2, },
   }, 
@@ -393,7 +426,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
     inc_stats = { [Stats.STAT_WIS] = 4, },
   }, 
@@ -405,7 +439,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
     inc_stats = { [Stats.STAT_WIS] = 6, },
   }, 
@@ -416,7 +451,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 4000,
+--	cost = 4000,
+	cost = resolvers.value{platinum=400},
 	wielder = {
     inc_stats = { [Stats.STAT_CHA] = 2, },
   }, 
@@ -427,7 +463,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
     inc_stats = { [Stats.STAT_CHA] = 4, },
   }, 
@@ -439,7 +476,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
     inc_stats = { [Stats.STAT_CHA] = 6, },
   }, 
@@ -451,7 +489,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 4000,
+--	cost = 4000,
+	cost = resolvers.value{platinum=400},
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 2, },
   }, 
@@ -462,7 +501,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 4, },
   }, 
@@ -474,7 +514,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 6, },
   }, 
@@ -485,7 +526,8 @@ newEntity{
 	name = " of the Endless Wave", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
 		skill_bonus_swim = 5,
 		--immune to drowning, neutral to water critters
@@ -496,7 +538,8 @@ newEntity{
 	name = " of Detection", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		skill_bonus_search = 5,
 		skill_bonus_survival = 5,
@@ -509,7 +552,8 @@ newEntity{
 	name = " of the Eagle", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		skill_bonus_spot = 5,
 		--double vision range, neutral birds
@@ -520,7 +564,8 @@ newEntity{
 	name = " of the Soul", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		skill_bonus_intimidate = 5,
 		will_save = 5,
@@ -531,7 +576,8 @@ newEntity{
 	name = " of the Mantis", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		skill_bonus_jump = 5,
 		--Mantis Leap feat
@@ -542,7 +588,8 @@ newEntity{
 	name = "of the Spur", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		skill_bonus_handleanimal = 5,
 		--skill_bonus_ride = 5,
@@ -554,7 +601,8 @@ newEntity{
 	name = " of Stability", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		skill_bonus_balance = 5,
 		--immune to polymorph
@@ -565,7 +613,8 @@ newEntity{
 	name = " of Contortion", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 16000,
+--	cost = 16000,
+	cost = resolvers.value{platinum=1600},
 	wielder = {
 		skill_bonus_escapeartist = 5,
 		skill_bonus_tumble = 5,
@@ -577,7 +626,8 @@ newEntity{
 	name = " of Magical Aptitude", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 7500,
+--	cost = 7500,
+	cost = resolvers.value{platinum=750},
 	wielder = {
 		skill_bonus_concentration = 5,
 		skill_bonus_usemagic = 5,
@@ -589,7 +639,8 @@ newEntity {
 --	keywords = {coldres=true},
 	level_range = {10, nil},
 	rarity = 10,
-	cost = 18000,
+--	cost = 18000,
+	cost = resolvers.value{platinum=1800},
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 5,
@@ -602,7 +653,8 @@ newEntity {
 	name = " of the Druid", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 14000,
+--	cost = 14000,
+	cost = resolvers.value{platinum=1400},
 	wielder = {
 		--neutral sylvans, doesn't get stuck in webs, trees
 	},
@@ -613,7 +665,8 @@ newEntity{
 	name = " of arachnida", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 14000,
+--	cost = 14000,
+	cost = resolvers.value{platinum=1400},
 	wielder = {
 		skill_bonus_climb = 10,
 		fortitude_save = 2,
@@ -627,7 +680,8 @@ newEntity{
     display = "♠", color=colors.GREEN,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 2500,
+--	cost = 2500,
+	cost = resolvers.value{platinum=250},
 	wielder = {
 		skill_bonus_hide = 5,
 	},
@@ -637,7 +691,8 @@ newEntity{
 	name = "of the Bat", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 26000,
+--	cost = 26000,
+	cost = resolvers.value{platinum=2600},
 	wielder = {
 		skill_bonus_hide = 5,
 		--polymorph into a bat
@@ -648,7 +703,8 @@ newEntity{
 	name = " of spell resistance 21", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
-	cost = 90000,
+--	cost = 90000,
+	cost = resolvers.value{platinum=9000},
 	wielder = {
 		spell_resistance = 21,
 	},
@@ -661,7 +717,8 @@ newEntity {
 	level_range = {10, 30},
 	greater_ego = 1,
 	rarity = 10,
-	cost = 32000,
+--	cost = 32000,
+	cost = resolvers.value{platinum=3200},
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 1,
     		[Stats.STAT_DEX] = 1,
@@ -677,7 +734,8 @@ newEntity {
 	name = " of identify", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4500,
+--	cost = 4500,
+	cost = resolvers.value{platinum=450},
 	multicharge = 50,
     use_simple = { name = "identify",
     use = function(self, who)
@@ -697,7 +755,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 2000,
+--	cost = 2000,
+	cost = resolvers.value{platinum=200}
 	wielder = {
 		lite = 1,
 	},

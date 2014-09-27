@@ -6,7 +6,8 @@ newEntity {
 --	keywords = {bonus=true},
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 2000,
+--	cost = 2000,
+    cost = resolvers.value{platinum=200},
 	wielder = {
 		lite = 1,
 	},

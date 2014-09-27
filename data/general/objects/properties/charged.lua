@@ -9,7 +9,8 @@ newEntity{
 	name = " of identify", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4500,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
     use_simple = { name = "identify",
     use = function(self, who)
         local inven = game.player:getInven("INVEN")
@@ -27,7 +28,8 @@ newEntity{
 	name = " of magic missile", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4500,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
     use_simple = { name = "magic missile",
     use = function(self, who)
         local tg = {type="bolt", range=5, display={display='*',color=colors.ORCHID}}
@@ -49,7 +51,8 @@ newEntity{
 	name = " of bear endurance", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4500,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
     use_simple = { name = "bear endurance",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
@@ -63,7 +66,8 @@ newEntity{
 	name = " of bull strength", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4500,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
     use_simple = { name = "bull strength",
     use = function(self, who)
        who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
@@ -77,7 +81,8 @@ newEntity{
 	name = " of cat's grace", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4500,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
     use_simple = { name = "cat grace",
     use = function(self, who)
        who:setEffect(who.EFF_CAT_GRACE, 5, {})
@@ -91,7 +96,8 @@ newEntity{
 	name = " of fox cunning", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4500,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
     use_simple = { name = "fox cunning",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
@@ -105,7 +111,8 @@ newEntity{
 	name = " of owl wisdom", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4500,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
     use_simple = { name = "owl wisdom",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
@@ -119,7 +126,8 @@ newEntity{
 	name = " of eagle splendor", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
-	cost = 4500,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
     use_simple = { name = "eagle splendor",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})

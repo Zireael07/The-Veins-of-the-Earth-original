@@ -18,7 +18,8 @@ newEntity{
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     desc = "An ornate sword.\n\n Damage 1d8+2. Threat range 18-20.",
     level_range = {1, 10},
-    cost = 120630,
+--    cost = 120630,
+    cost = resolvers.value{platinum=12060},
     combat = {
         dam = {1,8},
         threat = 2,
@@ -45,7 +46,7 @@ newEntity{
     unique=true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     level_range = {1, 10},
-    cost = 12,
+--    cost = 12,
     combat = {
         dam = {1,8},
         critical = 3,
@@ -76,7 +77,8 @@ newEntity{
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     desc = "A flaming sword.\n\n Damage 1d8+1. Threat range 18-20.",
     level_range = {1, 10},
-    cost = 20715,
+--    cost = 20715,
+    cost = resolvers.value{platinum=2070},
     combat = {
         dam = {1,8},
         threat = 2,
@@ -102,7 +104,8 @@ newEntity{
     name = "Luckblade",
     unided_name = "shortsword",
     level_range = {1, 10},
-    cost = 22010,
+--    cost = 22010,
+    cost = resolvers.value{platinum=2200},
     combat = {
         dam = {1,6},
         threat = 1,
@@ -131,7 +134,8 @@ newEntity{
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     desc = "An ornate sword.\n\n Damage 1d8+2. Threat range 18-20.",
     level_range = {1, 10},
-    cost = 23060,
+--    cost = 23060,
+    cost = resolvers.value{platinum=2300},
     combat = {
         dam = {1,8},
         threat = 2,
@@ -164,7 +168,8 @@ newEntity{
     
     rarity = 50,
     level_range = {1, 10},
-    cost = 25600,
+--    cost = 25600,
+    cost = resolvers.value{platinum=2560},
     combat = {
         dam = {1,8},
         critical = 3,
@@ -189,7 +194,8 @@ newEntity{
     name = "Sunblade",
     unided_name = "shortsword",
     level_range = {1, 10},
-    cost = 50335,
+--    cost = 50335,
+    cost = resolvers.value{platinum=5040},
     combat = {
         dam = {1,6},
         threat = 1,
@@ -221,7 +227,8 @@ newEntity{
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     desc = "An ornate sword.\n\n Damage 1d8+1. Threat range 18-20.",
     level_range = {1, 10},
-    cost = 22315,
+--    cost = 22315,
+    cost = resolvers.value{platinum=2230},
     combat = {
         dam = {1,8},
         threat = 2,
