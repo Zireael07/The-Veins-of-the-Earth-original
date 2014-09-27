@@ -126,9 +126,9 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 		LOCK_TOOLTIP_COMPARE = lock_tooltip,
 		SCREENSHOT = function() if type(game) == "table" and game.key then game.key:triggerVirtual("SCREENSHOT") end end,
 	}
-	if self.equip_actor.inv_scroll and self.c_inven.c_inven.scrollbar then
+--[[	if self.equip_actor.inv_scroll and self.c_inven.c_inven.scrollbar then
 		self.c_inven.c_inven.scrollbar.pos = util.bound(self.equip_actor.inv_scroll, 0, self.c_inven.c_inven.scrollbar.max)
-	end
+	end]]
 end
 
 --[[function _M:firstDisplay()
