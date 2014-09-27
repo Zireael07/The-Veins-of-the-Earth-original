@@ -1,5 +1,6 @@
 -- Veins of the Earth
 -- Copyright (C) 2013-2014 Zireael
+
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
@@ -26,6 +27,9 @@ function _M:init(t, no_default)
 end
 
 function _M:act()
+    local player = game.player
+
+
 	if self.life <= -10 then self:die() end
 
 	-- Do basic actor stuff
@@ -37,12 +41,18 @@ function _M:act()
 	--Morale and fleeing
 	if self.morale_life then --and not self.inactive then
 		if self.life < self.morale_life then
-			if not self.energy.used then self:runAI("flee_dmap") end
+			if not self.energy.used then 
+                self:runAI("flee_dmap") 
+            --    self:setEffect(self.EFF_FEAR, 1, {src=player, range=10})
+            end
 		end
 	end
 
 	if self.life / self.max_life < 0.5 then
-		if not self.energy.used then self:runAI("flee_dmap") end
+		if not self.energy.used then 
+            self:runAI("flee_dmap") 
+        --    self:setEffect(self.EFF_FEAR, 1, {src=player, range=10})
+        end
 	end
 
 	-- Ranged (based on DataQueen)
