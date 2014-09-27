@@ -30,6 +30,7 @@ resolvers -> these govern the equipment, classes or templates the NPC might have
 
 Items
 unided_name -> the name that is displayed before the item is identified
+cost -> the internal value is counted in copper pieces, while resolvers handle higher coinage (most equipment uses resolver.value{silver=x}, where x is the price in silver pieces)
 
 Egos
 Keywords are necessary for the tooltips to work.
@@ -40,7 +41,6 @@ slot = MAIN_HAND, slot_forbid = OFF_HAND -> two-handed weapon
 
 require -> any feats required to use the item
 encumber -> weight in lbs.
-cost -> price in gp
 dam -> the first number is the number of dice rolled, the second one is the number of die sides.
 For example, dam = {1,6} means 1d6
 threat -> by how much do we increase the threat range (when do we crit for those unfamilliar with d20)
@@ -100,23 +100,23 @@ CR 16 - 4800 XP
 CR 17 - 5000 XP
 CR 20 - 6000 XP
 
-The inventory resolver is there to make sure the monsters drop corpses.
 The equipment resolver does what it says - gives the NPC equipment. Make sure the NPC has the correct slots defined in body.
 infravision -> the darkvision the NPC has
 Darkvision 1 - 20 ft. or less or low-light vision
 Darkvision 3 - 30 ft.
 Darkvision 6 - 60 ft.
 
-Basic speed is 30 ft., any additions/substractions is handled via movement_speed_bonus.
-5 ft. = -0.88
-10 ft. = -0.66
-20 ft. = -0.33 
-40 ft. = 0.33
-50 ft. = 0.66
-60 ft. = 1
-70 ft. = 1.33
-80 ft. = 1.66
-90 ft. = 2
+Basic speed is 30 ft., any additions/substractions is handled via movement_speed.
+5 ft. = 0.22
+10 ft. = 0.33
+20 ft. = 0.66 
+30 ft  = 1
+40 ft. = 1.33
+50 ft. = 1.66
+60 ft. = 2
+70 ft. = 2.33
+80 ft. = 2.66
+90 ft. = 3
 
 skill_... -> any bonuses the monster receives (not counting the bonuses from stats and/or feats)
 combat_natural -> the natural armor bonus minus the size bonus (the latter doesn't exist in VotE)
