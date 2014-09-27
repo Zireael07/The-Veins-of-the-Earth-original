@@ -33,7 +33,7 @@ newBirthDescriptor{
 		luc = 0,
     feat_point = 1,
 	--	lite = 3,
-		money = 100,
+		money = 1000,
 		max_life = 10,
 		max_level = 100,
     --Moddable tiles

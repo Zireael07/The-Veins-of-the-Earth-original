@@ -3,7 +3,7 @@ newEntity{
 	name = "general store",
 	display = '2', color=colors.UMBER,
 	store = {
-		purse = 10000,
+		purse = 100000,
 --		nb_fill = 20,
 		restock_after = 100,
 		empty_before_restock = false,
