@@ -21,7 +21,7 @@ newEntity{
     image = "tiles/food.png",
     type = "food", subtype = "food",
     level_range = {1,10},
-    cost = 7,
+    cost = 5,
     desc = [[Food rations, enough for a day or two.]],
     use_simple = { name = "eat",
     use = function(self,who)
@@ -106,7 +106,7 @@ newEntity{
     type = "food", subtype = "water",
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
-    cost = 7,
+    cost = 5,
     desc = [[A flask of water. Good to quench your thirst.]],
     use_simple = { name = "eat",
     use = function(self,who)
@@ -123,7 +123,7 @@ newEntity{
     image = "tiles/food.png",
     type = "food", subtype = "water",
     level_range = {1,10},
-    cost = 7,
+    cost = 2,
     desc = [[Food rations gone stale.]],
     use_simple = { name = "eat",
     use = function(self,who)
@@ -140,7 +140,7 @@ newEntity{
     type = "food", subtype = "water",
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
-    cost = 7,
+    cost = 2,
     desc = [[You'd be better off not drinking this water.]],
     use_simple = { name = "eat",
     use = function(self,who)
