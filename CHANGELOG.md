@@ -16,10 +16,13 @@ CHANGELOG
 * bug fix - definite fix for "fall-lock" on ice [Castler]
 * bug fix - give subtypes to neutral NPCs
 * bug fix - no more 'hit for 0 darkness damage' messages spam
+* bug fix - no more being 2-hitted by some monsters with higher speeds
+* bug fix - rare lock out of inventory bug
 
 * gameplay variant options (defensive roll)
 * you can now attack while dying
 * object flavors, ToME 2/Angband style
+* switch to silver-based economy
 * color-code skills in character sheet Incursion-style
 * color-code max skill ranks in skill dialog, UI improvements
 * humanoid templates now work
