@@ -1936,11 +1936,15 @@ function _M:on_pickup_object(o)
 	
 end
 
---[[function _M:onAddObject(o)
-	
-end]]
+function _M:onAddObject(o)
+	engine.interface.ActorInventory.onAddObject(self, o)
+
+	self:checkEncumbrance()
+end
 
 function _M:onRemoveObject(o)
+	engine.interface.ActorInventory.onRemoveObject(self, o)
+
 	self:checkEncumbrance()
 end	
 
