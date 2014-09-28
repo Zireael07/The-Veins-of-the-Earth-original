@@ -370,7 +370,7 @@ newEntity{ base = "BASE_WEAPON",
     name = "scimitar",
     level_range = {1, 10},
 --    cost = 15,
-    cost = resolvers.value{platinum=1}
+    cost = resolvers.value{platinum=1},
     combat = {
         dam = {1,6},
         threat = 2,
