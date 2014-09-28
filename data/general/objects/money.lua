@@ -24,7 +24,7 @@ newEntity{
 	desc = [[All that glitters is not gold; all that is gold does not glitter.]],
 	on_prepickup = function(self, who, id)
 		who:incMoney(self.money_value)
-		game.logPlayer(who, "You pickup %d gold pieces.", self.money_value)
+		game.logPlayer(who, "You pickup %d silver pieces.", self.money_value)
 		-- Remove from the map
 		game.level.map:removeObject(who.x, who.y, id)
 		return true
@@ -39,7 +39,7 @@ newEntity{
  	color = colors.SANDY_BROWN,
     level_range = {1,20},
     desc = [[A pile of copper coins.]],
-    money_value = rng.range(2, 50),
+    money_value = rng.range(2, 150),
 }
 
 newEntity{
@@ -49,7 +49,7 @@ newEntity{
  	color = colors.SILVER,
     level_range = {7,nil},
     desc = [[A pile of silver coins.]],
-    money_value = rng.range(52, 150),
+    money_value = rng.range(100, 950),
 }
 
 newEntity{
@@ -59,7 +59,7 @@ newEntity{
  	color = colors.GOLD,
     level_range = {10,nil},
     desc = [[A pile of gold coins.]],
-    money_value = rng.range(152, 500),
+    money_value = rng.range(200, 1500),
 }
 
 newEntity{
@@ -69,7 +69,7 @@ newEntity{
     color = colors.STEEL_BLUE,
     level_range = {15,nil},
     desc = [[A pile of platinum coins.]],
-    money_value = rng.range(500, 5000),
+    money_value = rng.range(2000, 15000),
 }
 
 --Based on Angband
@@ -80,7 +80,7 @@ newEntity{
     color = colors.LIGHT_GREEN,
     level_range = {10,nil},
     desc = [[A pile of adamantine coins.]],
-    money_value = rng.range(400, 1500),
+    money_value = rng.range(4000, 15000),
 }
 
 newEntity{
@@ -90,7 +90,7 @@ newEntity{
     color = colors.LIGHT_BLUE,
     level_range = {12,nil},
     desc = [[A pile of mithril coins.]],
-    money_value = rng.range(400, 3500),
+    money_value = rng.range(4000, 35000),
 }
 
 
