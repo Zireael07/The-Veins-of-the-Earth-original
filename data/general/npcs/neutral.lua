@@ -49,7 +49,7 @@ newEntity{ define_as = "BASE_NPC_DROW_SHOP",
     },
     resolvers.inventory {
     full_id=true,
-    { name = "hand crossbow", not_properties={"cursed"}  },
+    { name = "hand crossbow", },
     },
     can_talk = "shop",
 }
@@ -77,7 +77,7 @@ newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
     },
     resolvers.inventory {
     full_id=true,
-    { name = "shortbow", not_properties={"cursed"}  },
+    { name = "shortbow",  },
     },
     can_talk = "shop",
 }

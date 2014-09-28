@@ -133,7 +133,7 @@ function _M:checkFilter(e, filter, type)
         for i = 1, #filter.properties do if not e[filter.properties[i]] then return false end end
     end
     if filter.not_properties then
-        for i = 1, #filter.not_properties do if e[filter.not_properties[i]] then return false end end
+        for i = 1, #filter.not_properties do if e[filter.not_properties[i]] then print("Refused not properties",i) return false end end
     end
     if e.checkFilter and not e:checkFilter(filter) then return false end
     if filter.special and not filter.special(e) then return false end
