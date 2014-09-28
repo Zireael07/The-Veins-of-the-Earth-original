@@ -1948,6 +1948,63 @@ function _M:onRemoveObject(o)
 	self:checkEncumbrance()
 end	
 
+--- Can we wear this item?
+function _M:canWearObject(o, try_slot)
+	local req = rawget(o, "require")
+
+	-- Check prerequisites
+	if req then
+		-- Obviously this requires the ActorStats interface
+		if req.stat then
+			for s, v in pairs(req.stat) do
+				if self:getStat(s) < v then return nil, "not enough stat" end
+			end
+		end
+		if req.level and self.level < req.level then
+			return nil, "not enough levels"
+		end
+		if req.talent then
+			for _, tid in ipairs(req.talent) do
+				if type(tid) == "table" then
+					if self:getTalentLevelRaw(tid[1]) < tid[2] then return nil, "missing dependency" end
+				else
+					if not self:knowTalent(tid) then return nil, "missing proficiency" end
+				end
+			end
+		end
+	end
+
+	-- Check forbidden slot
+	if o.slot_forbid then
+		local inven = self:getInven(o.slot_forbid)
+		-- If the object cant coexist with that inventory slot and it exists and is not empty, refuse wearing
+		if inven and #inven > 0 then
+			return nil, "cannot use currently due to an other worn object"
+		end
+	end
+
+	-- Check that we are not the forbidden slot of any other worn objects
+	for id, inven in pairs(self.inven) do
+		if self.inven_def[id].is_worn and (not self.inven_def[id].infos or not self.inven_def[id].infos.etheral) then
+			for i, wo in ipairs(inven) do
+				print("check other objects: ", o.name, "other object ", wo.name, "forbids", wo.slot_forbid, "our slot ", try_slot or o.slot)
+				if wo.slot_forbid and wo.slot_forbid == (try_slot or o.slot) then
+					print(" impossible => ", o.name, wo.name, "::", wo.slot_forbid, try_slot or o.slot)
+					return nil, "cannot use currently due to an other worn object"
+				end
+			end
+		end
+	end
+
+	-- Any custom checks
+	local err = self:check("canWearObjectCustom", o, try_slot)
+	if err then return nil, err end
+
+	return true
+end
+
+
+
 function _M:getMaxEncumbrance()
 	local add = 0
 	--Streamlined d20's encumbrance
