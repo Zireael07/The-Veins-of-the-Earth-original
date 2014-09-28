@@ -118,6 +118,7 @@ newEntity{
 	keywords = {undead=true},
 	level_range = {5, nil},
 	rarity = 5,
+	type = "undead",
 
 	max_life = 0,
 	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
@@ -136,6 +137,7 @@ newEntity{
 	keywords = {undead=true},
 	level_range = {5, nil},
 	rarity = 5,
+	type = "undead",
 
 	max_life = 0,
 	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
