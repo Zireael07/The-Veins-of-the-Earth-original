@@ -22,6 +22,15 @@ local DamageType = require "engine.DamageType"
 function resolvers.equip(t)
 	return {__resolver="equip", __resolve_last=true, t}
 end
+function resolvers.equipnoncursed(t)
+	for i, filter in ipairs(t) do
+		filter.not_properties = filter.not_properties or {}
+		filter.not_properties[#filter.not_properties+1] = "cursed"
+	end
+	return {__resolver="equip", __resolve_last=true, t}
+end
+
+
 --- Actually resolve the equipment creation
 function resolvers.calc.equip(t, e)
 --	print("Equipment resolver for", e.name)
