@@ -37,8 +37,8 @@ newEntity{
 	hit_die = 4,
 	open_door = true,
 --	resolvers.specialnpc(),
---	resolvers.templates()
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 
 }
 
@@ -98,7 +98,7 @@ newEntity{
 	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates(),
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --  	resolvers.class()
 }
 
@@ -142,7 +142,7 @@ newEntity{
 	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates()
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 
 --	resolvers.class()
 }
@@ -188,7 +188,7 @@ newEntity{
 	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 
 --	resolvers.class()
 }
@@ -204,7 +204,7 @@ newEntity{
 	[Talents.T_DARKNESS_INNATE]=1,
 	[Talents.T_FAERIE_FIRE_INNATE]=1
 	},
-	resolvers.equip{
+	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "chain shirt",  },
 		{ name = "light metal shield",  },
@@ -213,7 +213,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "hand crossbow",  },
+	{ name = "hand crossbow", not_properties={"cursed"}  },
 	},
 }
 
@@ -231,10 +231,10 @@ newEntity{
 	lite = 3,
 	hit_die = 1,
 	open_door = true,
---	resolvers.specialnpc(),
---	resolvers.templates(),
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
---	resolvers.class()
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.class()
 }
 
 newEntity{
@@ -245,7 +245,7 @@ newEntity{
 	max_life = resolvers.rngavg(5,8),
 	challenge = 1,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
+	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "chain mail",  },
 		{ name = "light metal shield",  },
@@ -254,7 +254,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "shortbow", },
+    { name = "shortbow", not_properties={"cursed"} },
 	},
 }
 
@@ -271,9 +271,9 @@ newEntity{
 	combat = { dam= {1,6} },
 	hit_die = 1,
 	open_door = true,
---	resolvers.specialnpc(),
---	resolvers.templates(),
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --	resolvers.class()
 }
 
@@ -369,8 +369,8 @@ newEntity{
 		{ name = "morningstar", not_properties={"cursed"}  },
 	},
 --	resolvers.specialnpc(),
---	resolvers.templates()
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},	
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},	
 }
 
 newEntity{
@@ -391,7 +391,7 @@ newEntity{
 	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates()
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -435,9 +435,9 @@ newEntity{
 	combat = { dam= {1,6} },
 	hit_die = 1,
 	open_door = true,
---	resolvers.specialnpc(),
---	resolvers.templates(),
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --	resolvers.class()
 }
 
@@ -453,7 +453,7 @@ newEntity{
 	skill_listen = 1,
 	skill_spot = 1,
 	resolvers.talents{ [Talents.T_SHOOT]=1 },
-	resolvers.equip{
+	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "chain shirt",  },
 		{ name = "heavy metal shield",   },
@@ -513,10 +513,10 @@ newEntity{
 	combat = { dam= {1,6} },
 	hit_die = 1,
 	open_door = true,
---	resolvers.specialnpc(),
---	resolvers.templates(),
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
---	resolvers.class()
+	resolvers.specialnpc(),
+	resolvers.templates(),
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.class()
 }
 
 newEntity{
@@ -527,7 +527,7 @@ newEntity{
 	max_life = resolvers.rngavg(5,8),
 	challenge = 1/2,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
+	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "studded leather",  },
 		{ name = "light metal shield",  },
@@ -556,7 +556,7 @@ newEntity{
 	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates()
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 
 }
 
@@ -597,8 +597,8 @@ newEntity{
 	hit_die = 2,
 	open_door = true,
 --	resolvers.specialnpc(),
---	resolvers.templates()
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	resolvers.templates()
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -683,7 +683,7 @@ newEntity{
 	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates()
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -732,7 +732,7 @@ newEntity{
 	open_door = true,
 --	resolvers.specialnpc()
 --	resolvers.templates()
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -774,7 +774,7 @@ newEntity{
 	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates(),
---	resolvers.class()
+	resolvers.class()
 }
 
 newEntity{
@@ -792,7 +792,7 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, 
 		[Talents.T_DARKNESS_INNATE]=1,
 	},
-	resolvers.equip{
+	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "studded leather armor",  },
 		{ name = "rapier",  },
@@ -840,7 +840,7 @@ newEntity{
 	[DamageType.COLD] = 5,
 	},
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
+	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "scale mail", },
 		{ name = "long sword", },

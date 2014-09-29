@@ -355,7 +355,7 @@ function resolvers.calc.specialnpc(t, e)
 	
 end
 
---Since egos result in OP, stuff it here
+--Since egos result in random freezes on level gen, make them here
 function resolvers.templates()
 	return {__resolver="templates", __resolve_last=true}
 end
