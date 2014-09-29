@@ -497,13 +497,6 @@ function _M:changeLevel(lev, zone)
 	local old_zone = self.zone
 	if zone then
 		if self.zone then
-			-- TO DO: changing wild_x and wild_y depending on zone left
-			if not old_zone.worldmap then end
-			if old_zone.worldmap then 
-				self.player.wild_x = self.player.x
-				self.player.wild_y = self.player.y
-				print("Worldmap left, x & y ", self.player.wild_x, self.player.wild_y)
-			end
 
 			self.zone:leaveLevel(false, lev, old_lev)
 			self.zone:leave()
@@ -563,9 +556,9 @@ function _M:changeLevel(lev, zone)
 	local max_magic = 0
 
 	--Detect powerful magic items
-	for uid, o in pairs(game.level.entities) do --list[#list+1] = o
-		if o.egoed then magic = 2
-		elseif o.egoed and o.greater_ego then magic = 4
+	for uid, e in pairs(game.level.entities) do --list[#list+1] = e
+		if e.egoed then magic = 2
+		elseif e.egoed and e.greater_ego then magic = 4
 		else end
 
 		if magic > max_magic then max_magic = magic
@@ -905,7 +898,7 @@ function _M:setupCommands()
 				local min_depth = math.max(1, days/3)
 				local level = self.level.level
 				if level + e.change_level < min_depth then
-					game.logPlayer(self.player, "#SANDY_BROWN#You cannot ascend higher")
+					game.logPlayer(self.player, "#SANDY_BROWN#You cannot ascend higher.#LAST#")
 					level = min_depth
 				end
 				if rng.percent(75) then
@@ -913,7 +906,7 @@ function _M:setupCommands()
 					self.player:gainExp(math.floor(level*50))
 				else
 					level = level + 0.001
-					game.logPlayer(self.player, "#SANDY_BROWN#You feel like you have not delved much further")
+					game.logPlayer(self.player, "#SANDY_BROWN#You feel like you have not delved much further.#LAST#")
 
 				end
 				self:changeLevel(e.change_zone and e.change_level or level, e.change_zone)
