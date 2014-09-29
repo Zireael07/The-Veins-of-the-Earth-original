@@ -640,8 +640,8 @@ function _M:onTakeHit(value, src)
 	if (self.life - value) > 0 then self:removeEffect(self.EFF_DISABLED) end
 
 	if (self.life - value) == 0 then 
-		--Undead and constructs now die at 0
-		if self.type ~= "undead" and self.type ~= "construct" then
+		--Undead, constructs and plants now die at 0
+		if self.type ~= "undead" and self.type ~= "construct" and self.type ~= "plant" then
 		self:setEffect(self.EFF_DISABLED, 1, {})
 		self:removeEffect(self.EFF_DYING)
 		else 
@@ -761,11 +761,11 @@ function _M:die(src)
 	self.inven = {}
 
 	--drop corpses
-	if not (self.name == "stirge" or name == "will'o'wisp" 
+	if not (self.name == "stirge" or name == "will'o'wisp" or name = "skeleton"
 		or self.type == "outsider" or self.type == "demon" or self.type == "elemental" or self.type == "ooze" or self.type == "construct") then
 		
 		local corpse = game.zone:makeEntity(game.level, "object", {name="fresh corpse", ego_chance=-1000}, 1, true)
-	--	local corpse = game.zone:makeEntityByName(game.level, "object", "FRESH_CORPSE")
+	
 		if corpse then
 			corpse.name = self.name.." corpse"
 			corpse.unided_name = self.name.." corpse"
@@ -1133,10 +1133,13 @@ function _M:getTalentName(t)
 	if not self:isSpell(t) then return t.name end
 	if self:isSpell(t) then 
 		if self == game.player then return t.name end
-		--If player can see the source but he isn't the source
-		if self ~= game.player and (game.level.map.seens(self.x, self.y) and game.player:canSee(self)) then 
-			local check = game.player:skillCheck("spellcraft", t.level+15)
-			if check then return t.name --end
+		--Has at least 1 rank in spellcraft
+		if game.player.skill_spellcraft > 0 then
+			--If player can see the source but he isn't the source
+			if self ~= game.player and (game.level.map.seens(self.x, self.y) and game.player:canSee(self)) then 
+				local check = game.player:skillCheck("spellcraft", t.level+15)
+				if check then return t.name --end
+				else return "something" end
 			else return "something" end
 		else return "something" end
 	end
