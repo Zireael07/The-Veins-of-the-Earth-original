@@ -1077,8 +1077,27 @@ function _M:postUseTalent(ab, ret)
 		end
 	end
 
+	-- Cancel stealth!
+	if ab.id ~= self.T_STEALTH and ab.id ~= self.T_HIDE_IN_PLAIN_SIGHT and not util.getval(ab.no_break_stealth, self, ab) then self:breakStealth() end
+
 	return true
 end
+
+--- Breaks stealth if active
+function _M:breakStealth()
+	if self:isTalentActive(self.T_STEALTH) then
+--[[		local chance = 0
+		if self:knowTalent(self.T_UNSEEN_ACTIONS) then
+			chance = self:callTalent(self.T_UNSEEN_ACTIONS,"getChance") + (self:getLck() - 50) * 0.2
+		end
+		-- Do not break stealth
+		if rng.percent(chance) then return end]]
+
+		self:forceUseTalent(self.T_STEALTH, {ignore_energy=true})
+		self.changed = true
+	end
+end
+
 
 --- Return the full description of a talent
 -- You may overload it to add more data (like power usage, ...)

@@ -148,6 +148,10 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
    local crit = false
     local attack = (self.combat_bab or 0) + (self.combat_attack or 0)
 
+    --First things first!
+    self:breakStealth()
+
+
    -- Proficiency penalties
     if weapon and weapon.simple and not self:knowTalent(self.T_SIMPLE_WEAPON_PROFICIENCY) then
         attack = (attack -4)
