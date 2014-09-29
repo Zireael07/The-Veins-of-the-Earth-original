@@ -351,6 +351,11 @@ function resolvers.calc.specialnpc(t, e)
 		e.combat_attack = e.combat_attack +1
 		e.challenge = e.challenge +1 
 		e.special = "skilled"
+	--EXPERIENCED: +2 to all attributes, +2 attack/CR
+	elseif rng.chance(10) then
+		e.combat_attack = e.combat_attack +2
+		e.challenge = e.challenge +2
+		e.special = "experienced"
 	end
 	
 end
