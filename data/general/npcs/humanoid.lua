@@ -37,6 +37,7 @@ newEntity{
 	hit_die = 4,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates()
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 
 }
@@ -96,6 +97,7 @@ newEntity{
 	hit_die = 1,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates(),
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --  	resolvers.class()
 }
@@ -139,6 +141,7 @@ newEntity{
 	hit_die = 1,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates()
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 
 --	resolvers.class()
@@ -183,7 +186,8 @@ newEntity{
 	skill_spot = 2,
 	hit_die = 1,
 	open_door = true,
---	resolvers.specialnpc(),
+	resolvers.specialnpc(),
+	resolvers.templates(),
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 
 --	resolvers.class()
@@ -228,6 +232,7 @@ newEntity{
 	hit_die = 1,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates(),
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --	resolvers.class()
 }
@@ -267,6 +272,7 @@ newEntity{
 	hit_die = 1,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates(),
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --	resolvers.class()
 }
@@ -363,6 +369,7 @@ newEntity{
 		{ name = "morningstar", not_properties={"cursed"}  },
 	},
 --	resolvers.specialnpc(),
+--	resolvers.templates()
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},	
 }
 
@@ -383,6 +390,7 @@ newEntity{
 	hit_die = 2,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates()
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
@@ -428,6 +436,7 @@ newEntity{
 	hit_die = 1,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates(),
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --	resolvers.class()
 }
@@ -505,6 +514,7 @@ newEntity{
 	hit_die = 1,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates(),
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --	resolvers.class()
 }
@@ -545,6 +555,7 @@ newEntity{
 	hit_die = 1,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates()
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 
 }
@@ -586,6 +597,7 @@ newEntity{
 	hit_die = 2,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates()
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
@@ -670,6 +682,7 @@ newEntity{
 	hit_die = 2,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates()
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
@@ -718,6 +731,7 @@ newEntity{
 	hit_die = 2,
 	open_door = true,
 --	resolvers.specialnpc()
+--	resolvers.templates()
 	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
@@ -759,6 +773,7 @@ newEntity{
 	skill_hide = 4,
 	open_door = true,
 --	resolvers.specialnpc(),
+--	resolvers.templates(),
 --	resolvers.class()
 }
 
@@ -808,6 +823,7 @@ newEntity{
 	skill_spot = 2,
 	open_door = true,
 --[[	resolvers.specialnpc(),
+	resolvers.templates(),
 	resolvers.class()]]
 }
 
