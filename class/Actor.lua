@@ -761,8 +761,8 @@ function _M:die(src)
 	self.inven = {}
 
 	--drop corpses
-	if not (self.name == "stirge" or name == "will'o'wisp" or name = "skeleton"
-		or self.type == "outsider" or self.type == "demon" or self.type == "elemental" or self.type == "ooze" or self.type == "construct") then
+	if not (self.name == "stirge" or name == "will'o'wisp"
+		or self.type == "outsider" or self.type == "demon" or self.type == "elemental" or self.type == "ooze" or self.type == "construct" or self.type == "undead") then
 		
 		local corpse = game.zone:makeEntity(game.level, "object", {name="fresh corpse", ego_chance=-1000}, 1, true)
 	
