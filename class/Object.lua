@@ -205,7 +205,7 @@ function _M:getTextualDesc()
         if self.reach then desc:add("This is a reach weapon", true) end
         if self.exotic then desc:add("This is an exotic weapon", true) end
 
-        desc:add(("Price: %s"):format(self.cost))
+        if self.cost then desc:add(("Price: %s"):format(self:formatPrice())) end
 
     if self:isIdentified() then
            if self.wielder then
@@ -243,6 +243,33 @@ function _M:getDesc(name_param)
     desc:merge(self:getTextualDesc())
 
     return desc
+end
+
+--Helper to display new prices
+--Note it omits any coppers unless the price is given in coppers
+function _M:formatPrice()
+    local platinum = math.floor(self.cost/2000)
+    local gold = math.floor(self.cost/200)
+    local silver = math.floor(self.cost/10)
+
+    local plat_change = self.cost - (platinum*2000)
+    local gold_change = self.cost - (gold*200)
+    local silver_rest = self.cost - (silver*10)
+
+    local plat_rest = math.floor(plat_change/200)
+    local gold_rest = math.floor(gold_change/10)
+
+    if self.cost > 2000 then
+        if (plat_rest or 0) > 0 then return "#ANTIQUE_WHITE#"..platinum.."#GOLD# "..plat_rest.."#LAST#"
+        else return "#ANTIQUE_WHITE#"..platinum.."#LAST#" end
+    elseif self.cost > 200 then
+        if (gold_rest or 0) > 0 then return "#GOLD#"..gold.."#LAST# "..gold_rest
+        else return "#GOLD#"..gold.."#LAST#" end
+    elseif self.cost > 10 then
+        if (silver_rest or 0) > 0 then return silver.." "..silver_rest
+        else return silver end
+    else return self.cost
+    end
 end
 
 function _M:tooltip(x, y)
