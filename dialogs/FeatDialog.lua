@@ -10,6 +10,8 @@ local Player = require "mod.class.Player"
 local UI = require "engine.ui.Base"
 local List = require "engine.ui.List"
 
+local TreeList = require "engine.ui.TreeList"
+
 
 module(..., package.seeall, class.inherit(Dialog))
 
@@ -36,10 +38,28 @@ function _M:init(actor)
 	self.c_learned_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Learned feats#LAST#"}
 	self.c_learned = SurfaceZone.new{width=250, height=self.ih*0.8,alpha=1.0}
 	self.c_avail_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Available feats#LAST#"}
-	self.c_avail = List.new{width=250, nb_items=#self.list_avail, height = self.ih*0.8, list=self.list_avail, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 	self.c_barred_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Barred feats#LAST#"}
-	self.c_barred = List.new{width=250, nb_items=#self.list_barred, height = self.ih*0.8, list=self.list_barred, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 	self.c_desc = TextzoneList.new{width=self.iw/4-20, height = 400, text="Hello from description"}
+
+
+    self.c_avail = TreeList.new{width=250, height=self.ih*0.8, scrollbar=true, columns={
+        {width=100, display_prop="name"},
+    }, tree=self.all_feats,
+        fct=function(item, sel, v) self:featUse(item, sel, v) end,
+        select=function(item, sel) self:on_select(item) end,
+        on_expand=function(item) end,
+        on_drawitem=function(item) end,
+    }
+
+    self.c_barred = TreeList.new{width=250, height=self.ih*0.8, scrollbar=true, columns={
+        {width=100, display_prop="name"},
+    }, tree=self.barred_feats,
+        fct=function(item, sel, v) end,
+        select=function(item, sel) self:on_select(item) end,
+        on_expand=function(item) end,
+        on_drawitem=function(item) end,
+    }
+
 
 	self.c_bonus = Button.new{text="Bonus feats", fct=function() self:onBonus() end}
 
@@ -90,7 +110,6 @@ function _M:init(actor)
 	}
 
 
-	self:on_select(self.list_avail[1])
 end
 
 function _M:cancel()
@@ -123,6 +142,21 @@ function _M:use(item)
 	end
 end
 
+function _M:featUse(item, sel, v)
+  if not item then return end
+  if item.nodes then
+    for _, other in ipairs(self.c_avail.tree) do
+      if other.shown then self.c_avail:treeExpand(false, other) end
+    end
+    self.c_avail:treeExpand(true, item)
+  elseif item.talent and self.player:canLearnTalent(item.talent) then
+ 
+    self:use(item)
+    end
+
+end
+
+
 function _M:on_select(item,sel)
 	if self.c_desc then self.c_desc:switchItem(item, item.desc) end
 	self.selection = sel	
@@ -133,8 +167,8 @@ function _M:update()
 	self:generateLists() -- Slow! Should just update the one changed and sort again
 	self.c_points.text = "Available feat points: "..self.player.feat_point
 	self.c_points:generate()
-	self.c_avail.list = self.list_avail
-	self.c_barred.list = self.list_barred
+    self.c_avail.tree = self.all_feats
+    self.c_barred.tree = self.barred_feats
 	self.c_avail:generate()
 	self.c_barred:generate()
 	self:drawDialog()
@@ -147,66 +181,123 @@ function _M:generateLists()
 end
 
 function _M:generateAvail()
-	local player = game.player
-    local list = {}
-    for tid, _ in pairs(player.talents_def) do
-		local t = player:getTalentFromId(tid)
-        if t.is_feat and player:canLearnTalent(t) and not player:knowTalent(t) then
-        	--if we haven't learned it, and it is a class feat, dont show it in feat list
-        	local tt = player:getTalentTypeFrom(t.type[1])
-        	if not tt.passive or player:knowTalent(t) then
-	        	local tid
-	        	local color
-	        	if player:knowTalent(t) then color = {255,255,255} i = 1
-	     		elseif player:canLearnTalent(t) then color = {0,187,187} i = 2
-	     		else color = {100, 100, 100} i = 3
-	     		end
-	     		local d = "#GOLD#"..t.name.."#LAST#\n"
-	     		s = player:getTalentReqDesc(t.id):toString()
-	     		d = d..s.."\n#WHITE#"
-	     		if t.acquired then d = d.."#PINK#"..t.acquired.."#LAST#\n\n" end
-	     		d = d..t.info(player,t)
-	            list[#list+1] = {name=t.name, color = color, desc=d, talent=t, i = i}
-	        end
+    local player = game.player
+    local oldtree = {}
+    for i, t in ipairs(self.all_feats or {}) do oldtree[t.id] = t.shown end
+
+    local tree = {}
+    local newsel = nil
+    for i, tt in ipairs(self.actor.talents_types_def) do
+        if self.actor:knowTalentType(tt.type) then
+            local nodes = {}
+
+                for j, t in ipairs(tt.talents) do
+            
+                if t.is_feat and player:canLearnTalent(t) and not player:knowTalent(t) then
+                        local d = "#GOLD#"..t.name.."#LAST#\n"
+                        s = player:getTalentReqDesc(t.id):toString()
+                        d = d..s.."\n#WHITE#"
+            
+                nodes[#nodes+1] = {
+                name = t.name,
+                id = t.name,
+                pid = tt.name,
+                desc = d,
+                talent = t,
+                } 
+                
+                if self.sel_feat and self.sel_feat.id == sd.name then newsel = nodes[#nodes] end
+            
+
+                end
+            end 
+            
+            tree[#tree+1] = {
+                name = tt.name,
+                id = tt.name,
+                shown = oldtree[tt.name],
+                nodes = nodes,
+            }           
+
+            
+
+    end
+                       
+    end
+
+    self.all_feats = tree
+    if self.c_avail then
+        self.c_avail.tree = self.all_feats
+        self.c_avail:generate()
+        if newsel then self:featUse(newsel)
+        else
+            self.sel_feat = nil
         end
     end
-    self.list_avail = list
-    --Sort it alphabetically
-    table.sort(self.list_avail, function (a,b) 
-    		return a.name < b.name
-    end)
-
 end
 
+
+--[[ --Sort it alphabetically
+    table.sort(self.list_avail, function (a,b) 
+    		return a.name < b.name
+    end)]]
+
 function _M:generateBarred()
-	local player = game.player
-    local list = {}
-    for tid, _ in pairs(player.talents_def) do
-		local t = player:getTalentFromId(tid)
-        if t.is_feat and not player:knowTalent(t) and not player:canLearnTalent(t) then
-        	--if we haven't learned it, and it is a class feat, dont show it in feat list
-        	local tt = player:getTalentTypeFrom(t.type[1])
-        	if not tt.passive or player:knowTalent(t) then
-	        	local tid
-	        	local color
-	        	if player:knowTalent(t) then color = {255,255,255} i = 1
-	     		elseif player:canLearnTalent(t) then color = {0,187,187} i = 2
-	     		else color = {100, 100, 100} i = 3
-	     		end
-	     		local d = "#GOLD#"..t.name.."#LAST#\n"
-	     		s = player:getTalentReqDesc(t.id):toString()
-	     		d = d..s.."\n#WHITE#"
-	     		if t.acquired then d = d.."#PINK#"..t.acquired.."#LAST#\n\n" end
-	     		d = d..t.info(player,t)
-	            list[#list+1] = {name=t.name, color = color, desc=d, talent=t, i = i}
-	        end
+        local player = game.player
+    local oldtree = {}
+    for i, t in ipairs(self.barred_feats or {}) do oldtree[t.id] = t.shown end
+
+    local tree = {}
+    local newsel = nil
+    for i, tt in ipairs(self.actor.talents_types_def) do
+        if self.actor:knowTalentType(tt.type) then
+            local nodes = {}
+
+                for j, t in ipairs(tt.talents) do
+            
+                if t.is_feat and not player:canLearnTalent(t) and not player:knowTalent(t) then
+                        local d = "#GOLD#"..t.name.."#LAST#\n"
+                        s = player:getTalentReqDesc(t.id):toString()
+                        d = d..s.."\n#WHITE#"
+                --        local color = {100, 100, 100}
+            
+                nodes[#nodes+1] = {
+                name = t.name,
+                id = t.name,
+                pid = tt.name,
+                desc = d,
+                talent = t,
+            --    color = color,
+                } 
+                
+                if self.sel_barred and self.sel_barred.id == sd.name then newsel = nodes[#nodes] end
+            
+
+                end
+            end 
+            
+            tree[#tree+1] = {
+                name = tt.name,
+                id = tt.name,
+                shown = oldtree[tt.name],
+                nodes = nodes,
+            }           
+
+            
+
+    end
+                       
+    end
+
+    self.barred_feats = tree
+    if self.c_barred then
+        self.c_barred.tree = self.barred_feats
+        self.c_barred:generate()
+        if newsel then self:featUse(newsel)
+        else
+            self.sel_barred = nil
         end
     end
-    self.list_barred = list
-    --Sort it by whetever we have/can/cannot learn it, then alphabetically
-    table.sort(self.list_barred, function (a,b) 
-     		return a.name < b.name
-    end)
 
 end
 
