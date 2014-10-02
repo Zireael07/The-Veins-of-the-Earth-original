@@ -86,7 +86,7 @@ newTalent{
 
 			combat_base_ac = 10, combat_dr = 0, combat_natural = 2,
 			combat = { dam={1,6}, atk=1, },
-			movement_speed_bonus = 0.33,
+			movement_speed = 1.33,
 			mount = true,
 
 			summoner = self, summoner_gain_exp=true,

@@ -257,12 +257,12 @@ newEffect{
 	on_gain = function(self, err) return "#Target# starts floating in air", "+Levitate" end,
 	on_lose = function(self, err) return "#Target# descends to the ground", "-Levitate" end,
 	activate = function(self, eff)
-		eff.speed = self:addTemporaryValue("movement_speed_bonus", -0.33)
+		eff.speed = self:addTemporaryValue("movement_speed", 0.66)
 		self.fly = true
 	end,
 	deactivate = function(self, eff)
 		self.fly = false
-		self:removeTemporaryValue("movement_speed_bonus", eff.speed)
+		self:removeTemporaryValue("movement_speed", eff.speed)
 	end,
 }
 
@@ -274,12 +274,12 @@ newEffect{
 	on_gain = function(self, err) return "#Target# starts flying in the air", "+Fly" end,
 	on_lose = function(self, err) return "#Target# descends gently to the ground", "-Fly" end,
 	activate = function(self, eff)
-		eff.speed = self:addTemporaryValue("movement_speed_bonus", 0.33)
+		eff.speed = self:addTemporaryValue("movement_speed", 1.33)
 		self.fly = true
 	end,
 	deactivate = function(self, eff)
 		self.fly = false
-		self:removeTemporaryValue("movement_speed_bonus", eff.speed)
+		self:removeTemporaryValue("movement_speed", eff.speed)
 	end,
 }
 
@@ -291,13 +291,13 @@ newEffect{
 	on_gain = function(self, err) return "#Target# starts moving quicker", "+Haste" end,
 	on_lose = function(self, err) return "#Target# seems to slow down", "-Haste" end,
 	activate = function(self, eff)
-		eff.speed = self:addTemporaryValue("movement_speed_bonus", 1)
+		eff.speed = self:addTemporaryValue("movement_speed", 2)
 		eff.attack = self:addTemporaryValue("combat_attack", 1)
 		self:effectTemporaryValue(eff, "combat_dodge", 1)
 		self:effectTemporaryValue(eff, "reflex_save", 1)
 	end,
 	deactivate = function(self, eff)
-		self:removeTemporaryValue("movement_speed_bonus", eff.speed)
+		self:removeTemporaryValue("movement_speed", eff.speed)
 		self:removeTemporaryValue("combat_attack", eff.attack)
 	end,		
 }

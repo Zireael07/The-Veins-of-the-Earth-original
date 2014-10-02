@@ -147,7 +147,7 @@ newEntity{
     cost = 5500,
     wielder = {
     skill_jump=5,
-    movement_speed_bonus = 0.33
+    movement_speed = 1.33
   }, 
 }
 
