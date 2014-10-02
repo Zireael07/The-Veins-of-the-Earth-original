@@ -53,7 +53,7 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 			{name="", width={24,"fixed"}, display_prop="object", direct_draw=function(item, x, y) item.object:toScreen(nil, x+4, y, 16, 16) end},
 			{name="Inventory", width=80, display_prop="name", sort="name"},
 			{name="Category", width=20, display_prop="cat", sort="cat"},
-			{name="Price", width={70,"fixed"}, display_prop=function(item) return self.descprice("sell", item.object) end, sort=function(a, b) return descprice("sell", a.object) < descprice("sell", b.object) end},
+			{name="Price", width={80,"fixed"}, display_prop=function(item) return self.descprice("sell", item.object) end, sort=function(a, b) return descprice("sell", a.object) < descprice("sell", b.object) end},
 		},
 		fct=function(item, sel, button, event) self:use(item, button, event) end,
 		select=function(item, sel) self:select(item) end,

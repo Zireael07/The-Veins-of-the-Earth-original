@@ -215,7 +215,8 @@ end
 -- @param o the object
 -- @return a string describing the price
 function _M:descObjectPrice(who, what, o)
-	return self:getObjectPrice(o, what), who.money
+--	return self:getObjectPrice(o, what), who.money
+	return self:formatStorePrice(o, what), who.money
 end
 
 --- Actor interacts with the store
@@ -251,3 +252,30 @@ function _M:doBarter()
 		if store_dialog then store_dialog:updateStore() end
 	end
 end
+
+--Format the price per Object:formatPrice()
+function _M:formatStorePrice(o, what)
+    local platinum = math.floor(self:getObjectPrice(o, what)/2000)
+    local gold = math.floor(self:getObjectPrice(o, what)/200)
+    local silver = math.floor(self:getObjectPrice(o, what)/10)
+
+    local plat_change = self:getObjectPrice(o, what) - (platinum*2000)
+    local gold_change = self:getObjectPrice(o, what) - (gold*200)
+    local silver_rest = self:getObjectPrice(o, what) - (silver*10)
+
+    local plat_rest = math.floor(plat_change/200)
+    local gold_rest = math.floor(gold_change/10)
+
+    if self:getObjectPrice(o, what) > 2000 then
+        if (plat_rest or 0) > 0 then return "#ANTIQUE_WHITE#"..platinum.."#GOLD# "..plat_rest.."#LAST#"
+        else return "#ANTIQUE_WHITE#"..platinum.."#LAST#" end
+    elseif self:getObjectPrice(o, what) > 200 then
+        if (gold_rest or 0) > 0 then return "#GOLD#"..gold.."#LAST# "..gold_rest
+        else return "#GOLD#"..gold.."#LAST#" end
+    elseif self:getObjectPrice(o, what) > 10 then
+        if (silver_rest or 0) > 0 then return silver.." "..silver_rest
+        else return silver end
+    else return self:getObjectPrice(o, what)
+    end
+end
+
