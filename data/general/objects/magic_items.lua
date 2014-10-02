@@ -70,7 +70,7 @@ newEntity{
     define_as = "BASE_MUSHROOM",
     slot = "INVEN",
     type = "potion", subtype = "mushroom",
-    image = "tiles/potion.png",
+--    image = "tiles/potion.png",
     display = ",", color=colors.RED,
     name = "mushroom", --instant_resolve = true,
     unided_name = "mushroom",
