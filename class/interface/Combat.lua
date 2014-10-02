@@ -296,6 +296,12 @@ function _M:dealDamage(target, weapon, crit, sneak)
       if self:isTalentActive(self.T_POWER_ATTACK) then dam = dam + 5 end
 
       if crit then
+        --No crits on players in easy mode!
+        if target == game.player and config.settings.veins.difficulty == "Easy" then
+          dam = dam 
+        return end
+
+
         if target:canBe("crit") then
           if target:knowTalent(T_ROLL_WITH_IT) then
             game.log(("%s makes a critical attack, but the damage is reduced!"):format(self:getLogName():capitalize())) --end

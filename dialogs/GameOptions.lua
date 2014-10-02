@@ -484,20 +484,20 @@ function _M:generateListGame()
     local list = {}
     local i = 0
 
---[[   local zone = Textzone.new{
+   local zone = Textzone.new{
         width = self.c_desc.w,
         height = self.c_desc.h,
         text = string.toTString [[Sets the difficulty setting.
         
 • #YELLOW#Default#WHITE#: standard d20.]]
---[[    }
+    }
     list[#list+1] = {
         zone = zone,
         name = string.toTString"#GOLD##{bold}#Difficulty setting#WHITE##{normal}#",
         status = function(item)
             return tostring(config.settings.veins.difficulty or "Default")
         end, fct=function(item)
-            local difficulty = {{name="Default", difficulty="Default"}, {name="Easy", location="Easy"}, {name="Hard", location="Hard"},}
+            local difficulty = {{name="Default", difficulty="Default"}, {name="Easy", difficulty="Easy"}, {name="Hard", difficulty="Hard"},}
             engine.ui.Dialog:listPopup("Difficulty setting", "Select difficulty", difficulty, 100, 200, function(sel)
                 if not sel or not sel.difficulty then return end
                 config.settings.veins.difficulty = sel.difficulty
@@ -505,7 +505,7 @@ function _M:generateListGame()
                 self.c_list:drawItem(item)
             end)
         end,
-    }]]
+    }
 
     local zone = Textzone.new{
         width = self.c_desc.w,
@@ -529,14 +529,14 @@ function _M:generateListGame()
         end,
     }
 
-     local zone = Textzone.new{
+--[[    local zone = Textzone.new{
         width = self.c_desc.w,
         height = self.c_desc.h,
         text = string.toTString [[Use the piecemeal armor variant from SRD. It splits up armor into torso, arm and leg pieces.
         
 • #YELLOW#True#WHITE#: piecemeal armor.
 • #YELLOW#False#WHITE#: standard d20 armor]]
-    }
+--[[   }
     list[#list+1] = {
         zone = zone,
         name = string.toTString"#GOLD##{bold}#Piecemeal armor variant#WHITE##{normal}#",
@@ -549,7 +549,7 @@ function _M:generateListGame()
             self.c_list:drawItem(item)
             end
         end,
-    }
+    }]] 
 
 --[[    local zone = Textzone.new{
         width = self.c_desc.w,
