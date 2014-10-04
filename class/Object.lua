@@ -141,8 +141,11 @@ function _M:getName(t)
 
     if self.identified == false and not t.force_id and self:getUnidentifiedName() then 
         name = self:getUnidentifiedName() 
-        if self:isFlavored() then name = ("%s %s"):format(self:getFlavorText(), name) end
+        if self:isFlavored() and self:getFlavorText() then name = ("%s %s"):format(self:getFlavorText(), name)
+        else
+            name = self:getUnidentifiedName()
         end
+    end
     
     if self.pseudo_id == true and self.identified == false and not t.force_id then --and self:getUnidentifiedName() then
         name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
