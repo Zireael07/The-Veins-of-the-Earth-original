@@ -71,12 +71,20 @@ end
 load("data/talents/feats/combat.lua")
 load("data/talents/feats/feats.lua")
 load("data/talents/feats/focus.lua")
+load("data/talents/feats/proficiency.lua")
+load("data/talents/feats/combat_passive.lua")
+load("data/talents/feats/two_weapons.lua")
+load("data/talents/feats/skill_enhancers.lua")
+load("data/talents/feats/attribute_enhancers.lua")
+load("data/talents/feats/saves_enhancers.lua")
+
 
 load("data/talents/feats/perks.lua")
 
 load("data/talents/feats/metamagic.lua")
 load("data/talents/feats/item_creation.lua")
 load("data/talents/feats/reserve.lua")
+load("data/talents/feats/spellcasting.lua")
 
 load("data/talents/domains/domains.lua")
 

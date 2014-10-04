@@ -63,6 +63,13 @@ newBirthDescriptor{
     ["special/special"] = {true, 0.0},
     ["class/general"] = {true, 0.0},
     ["class/focus"] = {true, 0.0},
+    ["class/proficiency"] = {true, 0.0},
+    ["class/combat"] = {true, 0.0},
+    ["class/skill"] = {true, 0.0},
+    ["class/attribute"] = {true, 0.0},
+    ["class/twf"] = {true, 0.0},
+    ["class/saves"] = {true, 0.0},
+    ["class/spellcasting"] = {true, 0.0},
     ["arcane/itemcreation"] = {true, 0.0},
     ["combat/general"] = {true, 0.0}
   },
