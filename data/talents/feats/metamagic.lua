@@ -1,4 +1,4 @@
-newTalentType{ type="arcane/metamagic", name = "meta magic", description = "Meta Magic" }
+newTalentType{ type="arcane/metamagic", name = "Metamagic", description = "Metamagic" }
 
 newTalent{
 	name = "Metamagic: Empower", short_name = "EMPOWER",
