@@ -189,6 +189,11 @@ function _M:generateAvail()
     local newsel = nil
     for i, tt in ipairs(self.actor.talents_types_def) do
         if self.actor:knowTalentType(tt.type) then
+            --exclude some categories
+            if tt.type ~= "special/special" and tt.type ~= "arcane/arcane" and tt.type ~= "divine" and tt.type ~= "arcane_divine" 
+                --exclude class skills categories
+                and tt.type ~= "barbarian/barbarian" and tt.type ~= "cleric/cleric" and tt.type ~= "druid/druid" and tt.type ~= "eldritch/eldritch" and tt.type ~= "paladin/paladin" and tt.type ~= "ranger/ranger"
+                then
             local nodes = {}
 
                 for j, t in ipairs(tt.talents) do
@@ -210,7 +215,8 @@ function _M:generateAvail()
             
 
                 end
-            end 
+                end 
+            
             
             tree[#tree+1] = {
                 name = tt.name,
@@ -219,7 +225,7 @@ function _M:generateAvail()
                 nodes = nodes,
             }           
 
-            
+            end
 
     end
                        
@@ -251,6 +257,11 @@ function _M:generateBarred()
     local newsel = nil
     for i, tt in ipairs(self.actor.talents_types_def) do
         if self.actor:knowTalentType(tt.type) then
+             --exclude some categories
+            if tt.type ~= "special/special" and tt.type ~= "arcane/arcane" and tt.type ~= "divine" and tt.type ~= "arcane_divine" 
+                --exclude class skills categories
+                and tt.type ~= "barbarian/barbarian" and tt.type ~= "cleric/cleric" and tt.type ~= "druid/druid" and tt.type ~= "eldritch/eldritch" and tt.type ~= "paladin/paladin" and tt.type ~= "ranger/ranger"
+                then
             local nodes = {}
 
                 for j, t in ipairs(tt.talents) do
@@ -283,7 +294,7 @@ function _M:generateBarred()
                 nodes = nodes,
             }           
 
-            
+            end
 
     end
                        
