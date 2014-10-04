@@ -1,4 +1,4 @@
-newTalentType{ type="combat/general", no_tt_req = true, name = "combat gen", description = "General combat feats" }
+newTalentType{ type="combat/general", no_tt_req = true, name = "Active combat", description = "General combat feats" }
 
 -- Active combat feats
 newFeat{

@@ -62,6 +62,8 @@ newBirthDescriptor{
   talents_types = {
     ["special/special"] = {true, 0.0},
     ["class/general"] = {true, 0.0},
+    ["class/focus"] = {true, 0.0},
+    ["arcane/itemcreation"] = {true, 0.0},
     ["combat/general"] = {true, 0.0}
   },
   descriptor_choices =

@@ -68,11 +68,14 @@ newArcaneDivineSpell = function(t)
 	return newTalent(t)
 end
 
-
-load("data/talents/feats/feats.lua")
-load("data/talents/feats/perks.lua")
-load("data/talents/feats/metamagic.lua")
 load("data/talents/feats/combat.lua")
+load("data/talents/feats/feats.lua")
+load("data/talents/feats/focus.lua")
+
+load("data/talents/feats/perks.lua")
+
+load("data/talents/feats/metamagic.lua")
+load("data/talents/feats/item_creation.lua")
 load("data/talents/feats/reserve.lua")
 
 load("data/talents/domains/domains.lua")

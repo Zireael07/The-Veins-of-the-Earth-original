@@ -1,9 +1,12 @@
 --Veins of the Earth
 --Zireael 2014
 
+newTalentType{ type="arcane/itemcreation", name = "Item Creation", description = "Item Creation" }
+
+
 newFeat{
 	name = "Craft Arms and Armor",
-	type = {"class/general", 1},
+	type = {"arcane/itemcreation", 1},
 	is_feat = true,
 	points = 1,
 	mode = "activated",
@@ -168,7 +171,7 @@ newFeat{
 --These craft new items
 newFeat{
 	name = "Brew Potion",
-	type = {"class/general", 1},
+	type = {"arcane/itemcreation", 1},
 	is_feat = true,
 	points = 1,
 	mode = "activated",
@@ -377,7 +380,7 @@ newFeat{
 
 newFeat{
 	name = "Craft Wand",
-	type = {"class/general", 1},
+	type = {"arcane/itemcreation", 1},
 	is_feat = true,
 	points = 1,
 	mode = "activated",
@@ -586,7 +589,7 @@ newFeat{
 
 newFeat{
 	name = "Scribe Scroll",
-	type = {"class/general", 1},
+	type = {"arcane/itemcreation", 1},
 	is_feat = true,
 	points = 1,
 	mode = "activated",
@@ -795,7 +798,7 @@ newFeat{
 
 --[[newFeat{
     name = "Craft Staff",
-    type = {"class/general", 1},
+    type = {"arcane/itemcreation", 1},
     is_feat = true,
     points = 1,
     mode = "activated",
