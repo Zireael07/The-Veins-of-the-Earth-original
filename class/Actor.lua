@@ -61,6 +61,9 @@ function _M:init(t, no_default)
 	
 	self.combat_protection = 0
 	self.combat_dodge = 0
+	self.combat_parry = 0
+
+	--for various stuff which isn't above
 	self.combat_untyped = 0
 
 	--Define speed
@@ -1497,20 +1500,27 @@ function _M:getAC()
 	local dodge = self.combat_dodge or 0
 	local protection = self.combat_protection or 0
 	local untyped = self.combat_untyped or 0
+	local parry = self.combat_parry or 0
 
 	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end 
 
 	if self.combat_protection then protection = math.min(protection, 5) end
 
+--	if self.combat_parry then if not proficient with the weapon, deduct 4
+
+
 	--Shield Focus feat
 	if self.combat_shield and self:knowTalent(self.T_SHIELD_FOCUS) then shield = shield + 2 end
 	
+	local ac_bonuses = armor + magic_armor + shield + magic_shield + natural + protection + dodge + parry
+
+
 	if config.settings.veins.defensive_roll == true then
 		local roll = rng.dice(1,20)
-		return math.floor((roll + armor + magic_armor + shield + magic_shield + natural + protection + dodge) + (dex_bonus or 0))
+		return math.floor(roll + ac_bonuses + (dex_bonus or 0))
 	else
 
-	return math.floor((10 + armor + magic_armor + shield + magic_shield + natural + protection + dodge) + (dex_bonus or 0))
+	return math.floor(10 + ac_bonuses + (dex_bonus or 0))
 	end
 end
 
