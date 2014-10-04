@@ -40,6 +40,9 @@ newEntity{ base = "BASE_EXOTIC",
         dam = {1,10},
         threat = 1,
     },
+    wielder = {
+        combat_parry = 3,
+    },
 }
 
 newEntity{ base = "BASE_EXOTIC",
@@ -60,6 +63,9 @@ newEntity{ base = "BASE_EXOTIC",
         dam = {1,10},
         critical = 3,
     },
+    wielder = {
+        combat_parry = 2,
+    },
 }
 
 --A reach weapon
@@ -74,13 +80,18 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     rarity = 10,
     reach = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    desc = "A normal spiked chain.\n\n Damage 2d4.",
+    desc = [[A length of chain studded with large, wicked blades, the spiked chain is exceedingly lethal -- both to its victims and to anyone who has not mastered its use fully.
+
+    Damage 2d4.]],
     name = "spiked chain",
     level_range = {1, 10},
 --    cost = 25,
     cost = resolvers.value{silver=410},
     combat = {
         dam = {2,4},
+    },
+    wielder = {
+        combat_parry = 7,
     },
 }
 
@@ -106,6 +117,9 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
         dam = {1,8},
         critical = 3,
     },
+    wielder = {
+        combat_parry = 3,
+    },
 }
 
 newEntity{ base = "BASE_EXOTIC_TWOHANDED",
@@ -128,6 +142,9 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     combat = {
         dam = {1,8},
         threat = 1,
+    },
+    wielder = {
+        combat_parry = 4,
     },
 }
 

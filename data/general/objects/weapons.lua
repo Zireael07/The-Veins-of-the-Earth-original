@@ -35,6 +35,9 @@ newEntity{ base = "BASE_WEAPON",
         dam = {1,4},
         threat = 1,
     },
+    wielder = {
+        combat_parry = 4,
+    },
 
 }
 
@@ -55,6 +58,9 @@ newEntity{ base = "BASE_WEAPON",
         dam = {1,6},
         threat = 1,
     },  
+    wielder = {
+        combat_parry = 3,
+    },
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -75,6 +81,9 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,6},
     },   
+    wielder = {
+        combat_parry = 4,
+    },
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -95,6 +104,9 @@ newEntity{ base = "BASE_WEAPON",
     simple = true,
     combat = {
         dam = {1,8},
+    },
+     wielder = {
+        combat_parry = 3,
     },
 }
 
@@ -118,6 +130,9 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,6},
     },
+    wielder = {
+        combat_parry = 4,
+    },
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -136,6 +151,9 @@ newEntity{ base = "BASE_WEAPON",
     cost = 5,
     combat = {
         dam = {1,6},
+    },
+    wielder = {
+        combat_parry = 1,
     },
 }
 
@@ -170,13 +188,18 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     encumber = 4,
     rarity = 2,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    desc = "A wooden staff.\n\n Damage 1d6.",
+    desc = [[A long stout staff used as a weapon and wielded with one hand in the middle and the other between the middle and the end.
+
+    Damage 1d6.]],
     name = "quarterstaff",
     level_range = {1, 10},
     cost = 6,
     simple = true,
     combat = {
         dam = {1,6},
+    },
+    wielder = {
+        combat_parry = 8,
     },
 }
 
@@ -215,7 +238,9 @@ newEntity{ base = "BASE_WEAPON",
     light = true,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    desc = "A normal handaxe.\n\n Damage 1d6. Critical x3.",
+    desc = [[This short axe can be used as a melee weapon, but its primary purpose is throwing.
+
+    Damage 1d6. Critical x3.]],
     name = "handaxe",
     level_range = {1, 10},
 --    cost = 6,
@@ -223,6 +248,9 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,6},
         critical = 3,
+    },
+    wielder = {
+        combat_parry = 1,
     },
 }
 
@@ -237,7 +265,9 @@ newEntity{ base = "BASE_WEAPON",
     light = true,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    desc = "A curved blade.\n\n Damage 1d4. Threat range 18-20.",
+    desc = [[This weapon hails from exotic Northern lands, and features a blade that slants upward into a large, flat cutting surface. It is often used by assasins.
+
+    Damage 1d4. Threat range 18-20.]],
     name = "kukri",
     level_range = {1, 10},
  --   cost = 8,
@@ -245,6 +275,9 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,4},
         threat = 2,
+    },
+    wielder = {
+        combat_parry = 3,
     },
 }
 
@@ -268,6 +301,9 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,6},
         threat = 1,
+    },
+    wielder = {
+        combat_parry = 4,
     },
 }
 
@@ -312,6 +348,9 @@ newEntity{ base = "BASE_WEAPON",
         dam = {1,8},
         threat = 2,
     },
+    wielder = {
+        combat_parry = 3,
+    },
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -325,12 +364,15 @@ newEntity{ base = "BASE_WEAPON",
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     desc = "A metal flail. Damage 1d8.",
-    name = "flail",
+    name = "light flail",
     level_range = {1, 10},
 --    cost = 8,
     resolvers.value{silver=175},
     combat = {
         dam = {1,8},
+    },
+    wielder = {
+        combat_parry = 5,
     },
 }
 
@@ -344,7 +386,9 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 6,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    desc = "A metal rapier.\n\n Damage 1d6. Threat range 18-20.",
+    desc = [[The weapon of choice for nobles, duelists and swashbucklers, the rapier is a newer sword with a thin, strong blade that focuses on piercing thrusts rather than slashing swings.
+
+    Damage 1d6. Threat range 18-20.]],
     name = "rapier",
     level_range = {1, 10},
 --    cost = 20,
@@ -352,6 +396,9 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,6},
         threat = 2,
+    },
+    wielder = {
+        combat_parry = 6,
     },
 }
 
@@ -375,6 +422,9 @@ newEntity{ base = "BASE_WEAPON",
         dam = {1,6},
         threat = 2,
     },
+    wielder = {
+        combat_parry = 5,
+    },
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -387,7 +437,9 @@ newEntity{ base = "BASE_WEAPON",
     rarity = 5,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    desc = "A metal warhammer.\n\n Damage 1d8. Critical x3.",
+    desc = [[The warhammer is a blunt weapon designed specifically to punch through plate armors. Its blows carry terrible force with them.
+
+    Damage 1d8. Critical x3.]],
     name = "warhammer",
     level_range = {1, 10},
 --    cost = 12,
@@ -395,6 +447,9 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,8},
         critical = 3,
+    },
+    wielder = {
+        combat_parry = 3,
     },
 }
 
@@ -420,6 +475,9 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
         dam = {2,4},
         threat = 2,
     },
+    wielder = {
+        combat_parry = 3,
+    },
 }
 
 
@@ -444,9 +502,12 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
         dam = {1,12},
         critical = 3,
     },
+    wielder = {
+        combat_parry = 2,
+    },
 }
 
-
+--"Large club" in Incursion
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
     define_as = "BASE_GREATCLUB",
     slot = "MAIN_HAND",
@@ -465,6 +526,9 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     cost = resolvers.value{silver=50},
     combat = {
         dam = {1,10},
+    },
+    wielder = {
+        combat_parry = 2,
     },
 }
 
@@ -487,6 +551,9 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     combat = {
         dam = {1,10},
         threat = 1,
+    },
+    wielder = {
+        combat_parry = 5,
     },
 }
 
@@ -511,6 +578,9 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
         dam = {2,6},
         threat = 1,
     },
+    wielder = {
+        combat_parry = 2,
+    },
 }
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
@@ -524,7 +594,9 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     rarity = 10,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    desc = "A metal halberd.\n\n Damage 1d10. Critical x3.",
+    desc = [[The shortest and heaviest common polearm, a halberd is a very effective weapon for a lone fighter, and many specialized styles of combat have developed around it. The halberd has a heavy axe-pike head capable of delivering blows with great force.
+
+    Damage 1d10. Critical x3.]],
     name = "halberd",
     level_range = {1, 10},
 --    cost = 10,
@@ -532,6 +604,9 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     combat = {
         dam = {1,10},
         critical = 3,
+    },
+    wielder = {
+        combat_parry = 4,
     },
 }
 
@@ -546,7 +621,9 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     rarity = 12,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    desc = "A frightening-looking metal scythe.\n\n Damage 2d4. Critical x4.",
+    desc = [[Originally an agricultural implement, the scythe can also be a terrifying instrument of war. It is difficult to use effectively, but devastating in skilled hands. Druids, and those who kill in their service, often favor this weapon.
+
+    Damage 2d4. Critical x4.]],
     name = "scythe",
     level_range = {1, 10},
 --    cost = 18,
@@ -554,5 +631,8 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     combat = {
         dam = {2,4},
         critical = 4,
+    },
+    wielder = {
+        combat_parry = 4,
     },
 }
