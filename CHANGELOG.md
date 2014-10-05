@@ -1,5 +1,7 @@
 CHANGELOG
 
+0.23.0 - beta 6.2 - 05/10/2014
+
 * bug fix - spell image list no longer overlaps text spell list [Castler]
 * bug fix - no longer able to bypass confirmation of Quit Permanently dialog [Castler]
 * bug fix - fix some misspellings [Castler]
@@ -17,15 +19,21 @@ CHANGELOG
 * bug fix - give subtypes to neutral NPCs
 * bug fix - no more 'hit for 0 darkness damage' messages spam
 * bug fix - no more being 2-hitted by some monsters with higher speeds
-* bug fix - rare lock out of inventory bug
+* bug fix - lock out of inventory after shopping bug 
+* bug fix - attacking or using a feat now breaks stealth
+* bug fix - fixed some ASCII letters/colors
 
+* difficulty level selection (easy mode forbids criticals by monsters on player)
 * gameplay variant options (defensive roll)
+* new magic properties: light/moderate/heavy fortification
+* increased CR for some monsters: satyr is now CR 5 (was 3); razor boar is now CR 8 (was 5)
 * you can now attack while dying
+* weapons grant parry bonuses, Incursion-style
 * object flavors, ToME 2/Angband style
 * switch to silver-based economy
 * color-code skills in character sheet Incursion-style
 * color-code max skill ranks in skill dialog, UI improvements
-* humanoid templates now work
+* feat select dialog is now categorized
 * backport ActorTalentDialog from ToME 1.2.4 [Castler]
 
 
