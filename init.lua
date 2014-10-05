@@ -19,10 +19,10 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
-version = {0,22,0}
+version = {0,23,0}
 engine = {1,2,3,"te4"}
 description = [[
-#SANDY_BROWN# BETA 6#LAST#
+#SANDY_BROWN# BETA 6.2#LAST#
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
 You are an adventurer in a world of immense sunless corridors and tunnels. How long can you survive?
 
@@ -86,7 +86,7 @@ load_tips = {
   { text = [[Some spellcasters do not have to memorize their spells - they can cast them innately.]]},
   { text = [[If you're lucky when creating your hero, you might get some innate spells or resistances!]]},
   { text = [[Certain races have innate magical abilities due to exposure to magical radiation.]]},
-  { text = [[Remember that bleeding and being unable to move or act does not mean you're dead (yet).]]},
+  { text = [[Remember that bleeding and being unable to move does not mean you're dead (yet).]]},
   { text = [[If you are a spellcaster or a rogue with Use Magic Device skill, you can use wands.]]},
   { text = [[Do not rush into fights if you are wounded. Take your time to rest.]]},
   { text = [[Use your spellbook to prepare your spells. Remember that you have to rest to memorize them.]]},
