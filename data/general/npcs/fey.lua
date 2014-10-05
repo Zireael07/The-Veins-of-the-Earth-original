@@ -49,7 +49,6 @@ newEntity{
 	resolvers.inventory {
 	full_id=true,
 	{ name = "shortbow" },
---	{ name = "fresh corpse" },
 	},
 }
 
@@ -69,7 +68,8 @@ newEntity{
 	rarity = 15,
 	max_life = resolvers.rngavg(20,25),
 	hit_die = 5,
-	challenge = 2,
+	--bumped due to DR and high AC; 4 in Incursion
+	challenge = 5,
 	alignment = "chaotic neutral",
 	infravision = 1,
 	combat_dr = 5,
