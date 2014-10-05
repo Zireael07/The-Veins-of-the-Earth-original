@@ -505,6 +505,44 @@ newEntity {
 	}
 }
 
+newEntity {
+	name = " of light fortification", suffix = true,
+	keywords = {fortification=true},
+	level_range = {1, nil},
+	rarity = 5,
+--	cost = 1000,
+	cost = resolvers.value{platinum=100},
+	wielder = {
+		fortification = 1,
+	}
+}
+
+newEntity {
+	name = " of moderate fortification", suffix = true,
+	keywords = {fortification=true},
+	level_range = {10, nil},
+	rarity = 10,
+--	cost = 9000,
+	cost = resolvers.value{platinum=9000},
+	wielder = {
+		fortification = 2,
+	}
+}
+
+newEntity {
+	name = " of heavy fortification", suffix = true,
+	keywords = {fortification=true},
+	level_range = {15, nil},
+	rarity = 15,
+	greater_ego = 1,
+--	cost = 25000,
+	cost = resolvers.value{platinum=2500},
+	wielder = {
+		fortification = 3,
+	}
+}
+
+
 --Based on Angband's
 newEntity {
 	name = "dwarven", suffix = false,

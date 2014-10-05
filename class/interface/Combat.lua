@@ -290,6 +290,8 @@ function _M:dealDamage(target, weapon, crit, sneak)
         local sneak_dam = rng.dice(self.sneak_attack, 6)
         game.log(("%s makes a sneak attack!"):format(self:getLogName():capitalize()))
         dam = dam + rng.dice(self.sneak_attack, 6)
+
+        --TO DO: fortification
       end
 
       --Power Attack damage bonus
@@ -301,6 +303,28 @@ function _M:dealDamage(target, weapon, crit, sneak)
           dam = dam 
         return end
 
+        --Fortification
+--[[        if target.fortification > 0 then
+
+          if target.fortification == 1 then
+            local chance = rng.percent(25)
+            if chance then 
+              game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
+              dam = dam 
+            return end
+          end
+          if target.fortification == 3 then
+            local chance = rng.percent(75)
+            if chance then 
+              game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
+              dam = dam 
+            return end
+          end
+          if target.fortification == 5 then
+              game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
+              dam = dam return end
+          end
+        end]]
 
         if target:canBe("crit") then
           if target:knowTalent(T_ROLL_WITH_IT) then
