@@ -145,16 +145,43 @@ function _M:playerCounters()
   --Count down nutrition
   local nutrition = self.nutrition
 
- self.nutrition = self.nutrition - 1
+  if not self.resting then
+    if self:knowTalent(self.T_FASTING) then
+      self.nutrition = self.nutrition - 0.33
+    else
+    self.nutrition = self.nutrition - 1
+    end
+  end
+
+  if self.resting then
+    --1/5th normal rate for elves
+    if self:hasDescriptor{race="Drow"} or self:hasDescriptor{race="Elf"} then
+      if self:knowTalent(self.T_FASTING) then
+        self.nutrition = self.nutrition - 0.06
+      else 
+        self.nutrition = self.nutrition - 0.2
+      end
+    else
+      if self:knowTalent(self.T_FASTING) then
+      self.nutrition = self.nutrition - 0.16
+      else
+      --Halve hunger rate when sleeping
+      self.nutrition = self.nutrition - 0.5
+      end
+    end
+  end
 
  --Cap nutrition
- --NOTE: start 500, hungry 200, starving 50
  if self.nutrition == 1 then self.nutrition = 1 end
 
  --ID counters
  local inven = game.player:getInven("INVEN")
+
+ --Don't count down ID when resting
+ if not self.resting then
  self.id_counter = self.id_counter - 1
  self.pseudo_id_counter = self.pseudo_id_counter - 1
+  end
 
   if self.pseudo_id_counter == 0 then --and inven > 0 then
     self:pseudoID()

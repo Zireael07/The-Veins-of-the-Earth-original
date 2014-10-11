@@ -1,5 +1,16 @@
 newTalentType{ passive=true, type="ranger/ranger", name="ranger", description="Ranger Feats" }
 
+--From Incursion
+newTalent{
+	name = "Fasting",
+	type = {"ranger/ranger", 1},
+	mode = 'passive',
+	points = 1,
+	info = [[You get hungry at 1/3rd the normal rate.]],
+}
+
+
+--Favored enemies
 newTalent{
 	short_name = "FAVORED_ENEMY_ABERRATION",
 	name = "Favored Enemy (aberrations)",

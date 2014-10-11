@@ -1081,6 +1081,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
+            actor:learnTalent(actor.T_FASTING, true)
 
 
 --			actor:learnTalent(actor.T_TWO_WEAPON_FIGHTING, true)
