@@ -672,6 +672,22 @@ function _M:setCountID()
   end
 end
 
+
+function _M:decipherRunesItem(o)
+    local can_rune = {}
+--  o.runic == true if following words in flavor:
+--"rune", "runic", "runed", "inscribed", "written", "symbol", "glyph", "engraved", "ancient", "script", "iconic",
+    if o.runic and not o.pseudo_id then
+
+      if self:skillCheck("decipherscript", 15) then
+        o.pseudo_id = true
+
+        game.logPlayer(self, ("By translating the runes, you discern that this is really %s!"):format(o.name))
+      end
+    end
+
+end
+
 function _M:pseudoID()
     local can_id = {}
     self:inventoryApplyAll(function(inven, item, o)
