@@ -693,6 +693,22 @@ function _M:pseudoID()
     end
 end
 
+function _M:schoolID()
+    local can_id = {}
+    self:inventoryApplyAll(function(inven, item, o)
+        if o.pseudo_id and not o.identified then
+            can_id[#can_id+1] = o
+        end
+    end)
+
+    if #can_id == 0 then return end
+
+    if self:skillCheck("intuition", 15, true) then
+        local o = rng.table(can_id)
+        o.school_id = true
+    end
+end
+
 function _M:autoID()
     local can_id = {}
     self:inventoryApplyAll(function(inven, item, o)

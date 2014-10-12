@@ -128,8 +128,12 @@ function _M:getPseudoIdFeeling()
     if self.cursed then return "cursed"
     elseif self.egoed and self.greater_ego then return "excellent"
     elseif self.egoed then return "magical"
-    else return "average"
+    else return "mundane"
     end
+end
+
+function _M:getSchool()
+    return self.school
 end
 
 --- Gets the full name of the object
@@ -151,6 +155,17 @@ function _M:getName(t)
         name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
     end
 
+    if self.school_id == true and self.identified == false and not t.force_id then
+        if self.schools then
+            name = ("%s {%s}"):format(name, self:getSchool())
+        else
+            if self.pseudo_id == true then
+            name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
+            else
+            name = self:getUnidentifiedName()
+            end
+        end
+    end
 
     --Display ammo capacity correctly
     if self.combat and self.combat.capacity then
