@@ -37,6 +37,8 @@ function _M:init(actor)
         {name="Bluff (CHA)", total=player:colorSkill("bluff") or "0", ranks=(player.skill_bluff or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_bluff or "0") },
         {name="Climb (STR)", total=player:colorSkill("climb") or "0", ranks=(player.skill_climb or "0"), stat=player:getStrMod(), bonus=(player.skill_bonus_climb or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
         {name="Concentration (INT)", total=player:colorSkill("concentration") or "0", ranks=(player.skill_concentration or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_concentration or "0") },
+        {name="Craft (INT)", total=player:colorSkill("craft") or "0", ranks=(player.skill_craft or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_craft or "0") },
+        {name="Decipher Script (INT)", total=player:colorSkill("decipherscript") or "0", ranks=(player.skill_decipherscript or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_decipherscript or "0") },
         {name="Diplomacy (CHA)", total=player:colorSkill("diplomacy") or "0", ranks=(player.skill_diplomacy or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_diplomacy or "0") },
         {name="Disable Device (INT)", total=player:colorSkill("disabledevice") or "0", ranks=(player.skill_disabledevice or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_disabledevice or "0") },
         {name="Escape Artist (DEX)", total=player:colorSkill("escapeartist") or "0", ranks=(player.skill_escapeartist or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_escapeartist or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
