@@ -11,6 +11,7 @@ newEntity { define_as = "EGO_PLUS_ONE",
 	rarity = 5,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
+	school = "abjuration",
 	wielder = {
 		combat_magic_armor = 1,
 	},
@@ -30,6 +31,7 @@ newEntity { define_as = "EGO_PLUS_TWO",
 	rarity = 8,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
+	school = "abjuration",
 	wielder = {
 		combat_magic_armor = 2,
 	},
@@ -42,6 +44,7 @@ newEntity { define_as = "EGO_PLUS_THREE",
 	rarity = 8,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "abjuration",
 	wielder = {
 		combat_magic_armor = 3,
 	},
@@ -53,6 +56,7 @@ newEntity { define_as = "EGO_PLUS_FOUR",
 	level_range = {10, 20},
 	rarity = 10,
 	greater_ego = 1,
+	school = "abjuration",
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	wielder = {
@@ -66,6 +70,7 @@ newEntity { define_as = "EGO_PLUS_FIVE",
 	level_range = {1, 10},
 	greater_ego = 1,
 	rarity = 15,
+	school = "abjuration",
 --	cost = 50000,
 	cost = resolvers.value{platinum=5000},
 	wielder = {
@@ -123,6 +128,7 @@ newEntity { define_as = "EGO_SHADOW",
 	rarity = 8,
 --	cost = 3750,
 	cost = resolvers.value{platinum=375},
+	school = "illusion",
 	wielder = {
 		skill_bonus_hide = 5,
 	}
@@ -136,6 +142,7 @@ newEntity { define_as = "EGO_IMP_SHADOW",
 	rarity = 13,
 --	cost = 15000,
 	cost = resolvers.value{platinum=1500},
+	school = "illusion",
 	wielder = {
 		skill_bonus_hide = 10,
 	}
@@ -149,6 +156,7 @@ newEntity { define_as = "EGO_GREATER_SHADOW",
 	rarity = 18,
 --	cost = 33750,
 	cost = resolvers.value{platinum=3375},
+	school = "illusion",
 	wielder = {
 		skill_bonus_hide = 15,
 	}
@@ -161,6 +169,7 @@ newEntity { define_as = "EGO_SILENT",
 	rarity = 8,
 --	cost = 3750,
 	cost = resolvers.value{platinum=375},
+	school = "illusion",
 	wielder = {
 		skill_bonus_movesilently = 5,
 	}
@@ -174,6 +183,7 @@ newEntity { define_as = "EGO_IMP_SILENT",
 	rarity = 13,
 --	cost = 15000,
 	cost = resolvers.value{platinum=1500},
+	school = "illusion",
 	wielder = {
 		skill_bonus_movesilently = 10,
 	}
@@ -187,6 +197,7 @@ newEntity {
 	rarity = 18,
 --	cost = 33750,
 	cost = resolvers.value{platinum=3375},
+	school = "illusion",
 	wielder = {
 		skill_bonus_movesilently = 15,
 	}
@@ -199,6 +210,7 @@ newEntity {
 	rarity = 8,
 --	cost = 3750,
 	cost = resolvers.value{platinum=375},
+	school = "conjuration",
 	wielder = {
 		skill_bonus_escapeartist = 5,
 	}
@@ -212,6 +224,7 @@ newEntity {
 	rarity = 13,
 --	cost = 15000,
 	cost = resolvers.value{platinum=1500},
+	school = "conjuration",
 	wielder = {
 		skill_bonus_escapeartist = 10,
 	}
@@ -225,6 +238,7 @@ newEntity {
 	rarity = 18,
 --	cost = 33750,
 	cost = resolvers.value{platinum=3375},
+	school = "conjuration",
 	wielder = {
 		skill_bonus_escapeartist = 15,
 	}
@@ -239,6 +253,7 @@ newEntity {
 	rarity = 15,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
+	school = "abjuration",
 	wielder = {
 		spell_resistance = 13
 	}
@@ -252,6 +267,7 @@ newEntity {
 	rarity = 15,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "abjuration",
 	wielder = {
 		spell_resistance = 15
 	}
@@ -265,6 +281,7 @@ newEntity {
 	rarity = 17,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "abjuration",
 	wielder = {
 		spell_resistance = 17
 	}
@@ -291,6 +308,7 @@ newEntity {
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 10,
@@ -306,6 +324,7 @@ newEntity {
 	rarity = 15,
 --	cost = 42000,
 	cost = resolvers.value{platinum=4200},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 20,
@@ -321,6 +340,7 @@ newEntity {
 	rarity = 20,
 --	cost = 66000,
 	cost = resolvers.value{platinum=6600},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 30,
@@ -336,6 +356,7 @@ newEntity {
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.ACID] = 10,
@@ -351,6 +372,7 @@ newEntity {
 	rarity = 15,
 --	cost = 42000,
 	cost = resolvers.value{platinum=4200},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.ACID] = 20,
@@ -366,6 +388,7 @@ newEntity {
 	rarity = 20,
 --	cost = 66000,
 	cost = resolvers.value{platinum=6600},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.ACID] = 30,
@@ -380,6 +403,7 @@ newEntity {
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 10,
@@ -395,6 +419,7 @@ newEntity {
 	rarity = 15,
 --	cost = 42000,
 	cost = resolvers.value{platinum=4200},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 20,
@@ -410,6 +435,7 @@ newEntity {
 	rarity = 20,
 --	cost = 66000,
 	cost = resolvers.value{platinum=6600},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 30,
@@ -424,6 +450,7 @@ newEntity {
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.ELECTRIC] = 10,
@@ -439,6 +466,7 @@ newEntity {
 	rarity = 15,
 --	cost = 42000,
 	cost = resolvers.value{platinum=4200},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.ELECTRIC] = 20,
@@ -454,6 +482,7 @@ newEntity {
 	rarity = 20,
 --	cost = 66000,
 	cost = resolvers.value{platinum=6600},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.ELECTRIC] = 30,
@@ -468,6 +497,7 @@ newEntity {
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.SONIC] = 10,
@@ -483,6 +513,7 @@ newEntity {
 	rarity = 15,
 --	cost = 42000,
 	cost = resolvers.value{platinum=4200},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.SONIC] = 20,
@@ -498,6 +529,7 @@ newEntity {
 	greater_ego = 1,
 --	cost = 66000,
 	cost = resolvers.value{platinum=6600},
+	school = "abjuration",
 	wielder = {
 		resists = {
 		[DamageType.SONIC] = 30,
@@ -512,6 +544,7 @@ newEntity {
 	rarity = 5,
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
+	school = "abjuration",
 	wielder = {
 		fortification = 1,
 	}
@@ -524,6 +557,7 @@ newEntity {
 	rarity = 10,
 --	cost = 9000,
 	cost = resolvers.value{platinum=9000},
+	school = "abjuration",
 	wielder = {
 		fortification = 2,
 	}
@@ -537,6 +571,7 @@ newEntity {
 	greater_ego = 1,
 --	cost = 25000,
 	cost = resolvers.value{platinum=2500},
+	school = "abjuration",
 	wielder = {
 		fortification = 3,
 	}

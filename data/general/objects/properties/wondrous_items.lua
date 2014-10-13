@@ -12,6 +12,7 @@ newEntity {
 	rarity = 5,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
+	school = "transmutation",
 	wielder = {
 		combat_natural = 1,
 	},
@@ -24,6 +25,7 @@ newEntity {
 	rarity = 5,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
+	school = "transmutation",
 	wielder = {
 		combat_natural = 2,
 	},
@@ -36,6 +38,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
 		combat_natural = 3,
 	},
@@ -49,6 +52,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "transmutation",
 	wielder = {
 		combat_natural = 4,
 	},
@@ -62,6 +66,7 @@ newEntity {
 	rarity = 5,
 --	cost = 50000,
 	cost = resolvers.value{platinum=5000},
+	school = "transmutation",
 	wielder = {
 		combat_natural = 5,
 	},
@@ -74,6 +79,7 @@ newEntity {
 	rarity = 5,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
+	school = "abjuration",
 	wielder = {
 		combat_protection = 1,
 	},
@@ -86,6 +92,7 @@ newEntity {
 	rarity = 5,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
+	school = "abjuration",
 	wielder = {
 		combat_protection = 2,
 	},
@@ -98,6 +105,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "abjuration",
 	wielder = {
 		combat_protection = 3,
 	},
@@ -111,6 +119,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "abjuration",
 	wielder = {
 		combat_protection = 4,
 	},
@@ -124,6 +133,7 @@ newEntity {
 	rarity = 5,
 --	cost = 50000,
 	cost = resolvers.value{platinum=5000},
+	school = "abjuration",
 	wielder = {
 		combat_protection = 5,
 	},
@@ -138,6 +148,7 @@ newEntity {
 	rarity = 5,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
+	school = "conjuration",
 	wielder = {
 		combat_armor = 1,
 	},
@@ -150,6 +161,7 @@ newEntity {
 	rarity = 5,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
+	school = "conjuration",
 	wielder = {
 		combat_armor = 2,
 	},
@@ -162,6 +174,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "conjuration",
 	wielder = {
 		combat_armor = 3,
 	},
@@ -175,6 +188,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "conjuration",
 	wielder = {
 		combat_armor = 4,
 	},
@@ -188,6 +202,7 @@ newEntity {
 	rarity = 5,
 --	cost = 50000,
 	cost = resolvers.value{platinum=5000},
+	school = "conjuration",
 	wielder = {
 		combat_armor = 5,
 	},
@@ -199,6 +214,7 @@ newEntity{
 	rarity = 5,
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
+	school = "abjuration",
 	wielder = {
 		fortitude_save = 1,
 		reflex_save = 1,
@@ -212,6 +228,7 @@ newEntity{
 	rarity = 5,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
+	school = "abjuration",
 	wielder = {
 		fortitude_save = 2,
 		reflex_save = 2,
@@ -225,6 +242,7 @@ newEntity{
 	rarity = 5,
 --	cost = 9000,
 	cost = resolvers.value{platinum=900},
+	school = "abjuration",
 	wielder = {
 		fortitude_save = 3,
 		reflex_save = 3,
@@ -238,6 +256,7 @@ newEntity{
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "abjuration",
 	greater_ego = 1,
 	wielder = {
 		fortitude_save = 4,
@@ -252,6 +271,7 @@ newEntity{
 	rarity = 5,
 --	cost = 25000,
 	cost = resolvers.value{platinum=2500},
+	school = "abjuration",
 	greater_ego = 1,
 	wielder = {
 		fortitude_save = 5,
@@ -268,6 +288,7 @@ newEntity {
 	rarity = 5,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_STR] = 2, },
   }, 
@@ -280,6 +301,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_STR] = 4, },
   }, 
@@ -293,6 +315,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_STR] = 6, },
   }, 
@@ -305,6 +328,7 @@ newEntity {
 	rarity = 5,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = 2, },
   }, 
@@ -317,6 +341,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = 4, },
   }, 
@@ -330,6 +355,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = 6, },
   }, 
@@ -342,6 +368,7 @@ newEntity {
 	rarity = 5,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CON] = 2, },
   }, 
@@ -354,6 +381,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CON] = 4, },
   }, 
@@ -367,6 +395,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CON] = 6, },
   }, 
@@ -379,6 +408,7 @@ newEntity {
 	rarity = 5,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_INT] = 2, },
   }, 
@@ -391,6 +421,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_INT] = 4, },
   }, 
@@ -404,6 +435,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_INT] = 6, },
   }, 
@@ -416,6 +448,7 @@ newEntity {
 	rarity = 5,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_WIS] = 2, },
   }, 
@@ -428,6 +461,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_WIS] = 4, },
   }, 
@@ -441,6 +475,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_WIS] = 6, },
   }, 
@@ -453,6 +488,7 @@ newEntity {
 	rarity = 5,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CHA] = 2, },
   }, 
@@ -465,6 +501,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CHA] = 4, },
   }, 
@@ -478,6 +515,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CHA] = 6, },
   }, 
@@ -491,6 +529,7 @@ newEntity {
 	rarity = 5,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
+	school = "evocation",  --per luckstone and Luckblade
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 2, },
   }, 
@@ -503,6 +542,7 @@ newEntity {
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "evocation",  --per luckstone and Luckblade
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 4, },
   }, 
@@ -516,6 +556,7 @@ newEntity {
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "evocation",  --per luckstone and Luckblade
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 6, },
   }, 
@@ -528,6 +569,7 @@ newEntity{
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_swim = 5,
 		--immune to drowning, neutral to water critters
@@ -540,6 +582,7 @@ newEntity{
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_search = 5,
 		skill_bonus_survival = 5,
@@ -554,6 +597,7 @@ newEntity{
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_spot = 5,
 		--double vision range, neutral birds
@@ -566,6 +610,7 @@ newEntity{
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_intimidate = 5,
 		will_save = 5,
@@ -578,6 +623,7 @@ newEntity{
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_jump = 5,
 		--Mantis Leap feat
@@ -590,9 +636,10 @@ newEntity{
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_handleanimal = 5,
-		--skill_bonus_ride = 5,
+		skill_bonus_ride = 5,
 		--Overrun feat
 	},
 }
@@ -603,6 +650,7 @@ newEntity{
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_balance = 5,
 		--immune to polymorph
@@ -615,6 +663,7 @@ newEntity{
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_escapeartist = 5,
 		skill_bonus_tumble = 5,
@@ -628,6 +677,7 @@ newEntity{
 	rarity = 5,
 --	cost = 7500,
 	cost = resolvers.value{platinum=750},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_concentration = 5,
 		skill_bonus_usemagic = 5,
@@ -641,6 +691,7 @@ newEntity {
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
+	school = "transmutation",
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 5,
@@ -655,6 +706,7 @@ newEntity {
 	rarity = 5,
 --	cost = 14000,
 	cost = resolvers.value{platinum=1400},
+	school = "transmutation",
 	wielder = {
 		--neutral sylvans, doesn't get stuck in webs, trees
 	},
@@ -667,6 +719,7 @@ newEntity{
 	rarity = 5,
 --	cost = 14000,
 	cost = resolvers.value{platinum=1400},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_climb = 10,
 		fortitude_save = 2,
@@ -682,6 +735,7 @@ newEntity{
 	rarity = 5,
 --	cost = 2500,
 	cost = resolvers.value{platinum=250},
+	school = "illusion",
 	wielder = {
 		skill_bonus_hide = 5,
 	},
@@ -693,6 +747,7 @@ newEntity{
 	rarity = 5,
 --	cost = 26000,
 	cost = resolvers.value{platinum=2600},
+	school = "transmutation",
 	wielder = {
 		skill_bonus_hide = 5,
 		--polymorph into a bat
@@ -705,6 +760,7 @@ newEntity{
 	rarity = 5,
 --	cost = 90000,
 	cost = resolvers.value{platinum=9000},
+	school = "abjuration",
 	wielder = {
 		spell_resistance = 21,
 	},
@@ -719,6 +775,7 @@ newEntity {
 	rarity = 10,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 1,
     		[Stats.STAT_DEX] = 1,
@@ -736,6 +793,7 @@ newEntity {
 	rarity = 5,
 --	cost = 4500,
 	cost = resolvers.value{platinum=450},
+	school = "divination",
 	multicharge = 50,
     use_simple = { name = "identify",
     use = function(self, who)
@@ -757,6 +815,7 @@ newEntity {
 	rarity = 5,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
+	school = "evocation",
 	wielder = {
 		lite = 1,
 	},
@@ -770,6 +829,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "transmutation",
 	wielder = {
      inc_stats = { [Stats.STAT_DEX] = -4, },
      spell_fail = 20,
@@ -783,6 +843,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "transmutation",
 	wielder = {
      inc_stats = { [Stats.STAT_STR] = -2, },
   }, 
@@ -795,6 +856,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "transmutation",
 	wielder = {
      inc_stats = { [Stats.STAT_STR] = -4, },
   }, 
@@ -807,6 +869,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = -2, },
   }, 
@@ -819,6 +882,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "transmutation",
 	wielder = {
     combat_armor=-1
   }, 
@@ -831,6 +895,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "transmutation",
 	wielder = {
     combat_armor=-2
   }, 
@@ -843,6 +908,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "transmutation",
 	wielder = {
     combat_armor=-3
   }, 
@@ -855,6 +921,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "transmutation",
 	wielder = {
     combat_armor=-4
   }, 
@@ -867,6 +934,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "transmutation",
 	wielder = {
     combat_armor=-5
   }, 
@@ -879,6 +947,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "abjuration",
 	wielder = {
 		--increase cold damage by 50%
 		resists = {
@@ -894,6 +963,7 @@ newEntity{
 	rarity = 8,
 	cursed = true,
 	cost = 0,
+	school = "abjuration",
 	wielder = {
 		--increase fire damage by 25%
 		resists = {

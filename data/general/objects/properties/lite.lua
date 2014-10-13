@@ -8,6 +8,7 @@ newEntity {
 	rarity = 5,
 --	cost = 2000,
     cost = resolvers.value{platinum=200},
+    school = "evocation",
 	wielder = {
 		lite = 1,
 	},

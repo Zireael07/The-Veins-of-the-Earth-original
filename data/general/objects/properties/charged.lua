@@ -11,6 +11,7 @@ newEntity{
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
+    school = "divination",
     use_simple = { name = "identify",
     use = function(self, who)
         local inven = game.player:getInven("INVEN")
@@ -30,6 +31,7 @@ newEntity{
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
+    school = "evocation",
     use_simple = { name = "magic missile",
     use = function(self, who)
         local tg = {type="bolt", range=5, display={display='*',color=colors.ORCHID}}
@@ -53,6 +55,7 @@ newEntity{
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
+    school = "transmutation",
     use_simple = { name = "bear endurance",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
@@ -68,6 +71,7 @@ newEntity{
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
+    school = "transmutation",
     use_simple = { name = "bull strength",
     use = function(self, who)
        who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
@@ -83,6 +87,7 @@ newEntity{
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
+    school = "transmutation",
     use_simple = { name = "cat grace",
     use = function(self, who)
        who:setEffect(who.EFF_CAT_GRACE, 5, {})
@@ -98,6 +103,7 @@ newEntity{
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
+    school = "transmutation",
     use_simple = { name = "fox cunning",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
@@ -113,6 +119,7 @@ newEntity{
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
+    school = "transmutation",
     use_simple = { name = "owl wisdom",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
@@ -128,6 +135,7 @@ newEntity{
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
+    school = "transmutation",
     use_simple = { name = "eagle splendor",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
