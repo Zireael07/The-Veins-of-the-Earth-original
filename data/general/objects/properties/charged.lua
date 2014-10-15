@@ -47,6 +47,51 @@ end
 },
 }
 
+newEntity{
+    name = "of burning hands", suffix = true,
+    level_range = {1, 10},
+    rarity = 5,
+    cost = resolvers.value{platinum=450},
+    school = "evocation",
+    use_simple = { name = "burning",
+    use = function(self, who)
+        local tg = {type="cone", range=0, radius=3, nolock = true, selffire=false, talent=t}
+        local x, y = who:getTarget(tg)
+        local _ _, _, _, x, y = who:canProject(tg, x, y)
+        if not x or not y then return nil end
+
+        local damage = rng.dice(1,4)+1
+
+        self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})    
+        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+end
+},
+}
+
+
+
+--[[newEntity{
+    name = "of sleep", suffix = true,
+    level_range = {1, 10},
+    rarity = 5,
+    cost = resolvers.value{platinum=450},
+    school = "enchantment",
+    use_simple = { name = "sleep",
+    use = function(self, who)
+        local tg = {type="cone", range=0, radius=4, nolock = true, selffire=false, talent=t}
+        local x, y = who:getTarget(tg)
+        local _ _, _, _, x, y = who:canProject(tg, x, y)
+        if not x or not y then return nil end
+
+        local damage = rng.dice(1,4)+1
+
+        who:projectile(tg, x, y, DamageType.FORCE, {dam=damage})    
+        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+end
+},
+}]]
+
+
 
 --Buffs
 newEntity{
@@ -139,6 +184,70 @@ newEntity{
     use_simple = { name = "eagle splendor",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    name = " of mage armor", suffix = true,
+    level_range = {1, 10},
+    rarity = 5,
+--  cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "conjuration",
+    use_simple = { name = "mage armor",
+    use = function(self, who)
+    who:setEffect(who.EFF_MAGE_ARMOR, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    name = " of levitation", suffix = true,
+    level_range = {1, 10},
+    rarity = 15,
+--  cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "levitation",
+    use = function(self, who)
+    who:setEffect(who.EFF_LEVITATE, 6, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    name = " of flying", suffix = true,
+    level_range = {1, 10},
+    rarity = 15,
+--  cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "fly",
+    use = function(self, who)
+    who:setEffect(who.EFF_FLY, 6, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+    name = " of haste", suffix = true,
+    level_range = {1, 10},
+    rarity = 25,
+--  cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "haste",
+    use = function(self, who)
+    who:setEffect(who.EFF_HASTE, 6, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
     return {used = true, destroy = true}
 end
