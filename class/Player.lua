@@ -465,7 +465,7 @@ end
 function _M:onTakeHit(value, src)
   self:runStop("taken damage")
   self:restStop("taken damage")
-  local ret = mod.class.Actor.onTakeHit(self, value, src)
+  local ret = mod.class.Actor.onTakeHit(self, value, src, death_note)
   if self.life < self.max_life * 0.3 then
     local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
     game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, 2, "LOW HEALTH!", {255,0,0}, true)
@@ -473,8 +473,13 @@ function _M:onTakeHit(value, src)
   return ret
 end
 
-function _M:die(src)
-  if self.game_ender then
+function _M:die(src, death_note)
+  if self.runStop then self:runStop("died") end
+  if self.restStop then self:restStop("died") end
+
+  return self:onPartyDeath(src, death_note)
+
+--[[  if self.game_ender then
     engine.interface.ActorLife.die(self, src)
 
     game.paused = true
@@ -484,7 +489,7 @@ function _M:die(src)
     World:boneLevel(game.level.level)
   else
     mod.class.Actor.die(self, src)
-  end
+  end]]
 end
 
 function _M:setName(name)
