@@ -186,6 +186,15 @@ newEntity{
 	dig = "FLOOR",
 }
 
+--Torches
+newEntity{
+	base = "WALL",
+	name = "wall torch",
+	define_as = "WALL_TORCH",
+	display = '#', color=colors.YELLOW, back_color = {r=30, g=30, b=60},
+}
+
+--Doors
 newEntity{
 	define_as = "DOOR",
 	type = "wall", subtype = "floor",
@@ -395,6 +404,20 @@ newEntity{
 	name = "sand", 
 	display = ' ', color=colors.UMBER, back_color=colors.DARK_GREEN,
 	always_remember = true,
+}
+
+newEntity{
+	define_as = "PILLAR",
+	type = "floor", subtype = "furniture",
+	name = "pillar",
+	display = '¤', color=colors.GREY, back_color=colors.DARK_GREY,
+}
+
+newEntity{
+	define_as = "ROCK_PILLAR",
+	type = "floor", subtype = "furniture",
+	name = "rock pillar",
+	display = '¤', color=colors.SANDY_BROWN, back_color=colors.DARK_GREY,
 }
 
 newEntity{
