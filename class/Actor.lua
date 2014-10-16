@@ -614,7 +614,9 @@ end
 
 
 
-function _M:onTakeHit(value, src)
+function _M:onTakeHit(value, src, death_note)
+	src = src or {}
+	if value <=0 then return 0 end
 
 	--if a sleeping target is hit, it will wake up
 	if self:hasEffect(self.EFF_SLEEP) then
@@ -643,7 +645,7 @@ function _M:onTakeHit(value, src)
 		end
 	end
 
-	if self.on_takehit then value = self:check("on_takehit", value, src) end
+	if self.on_takehit then value = self:check("on_takehit", value, src, death_note) end
 
 	--Death & dying related stuff
 	if (self.life - value) > 0 then self:removeEffect(self.EFF_DISABLED) end
@@ -709,8 +711,8 @@ function _M:onTakeHit(value, src)
 	return value
 end
 
-function _M:die(src)
-	engine.interface.ActorLife.die(self, src)
+function _M:die(src, death_note)
+	mod.class.interface.ActorLife.die(self, src, death_note)
 
 	--Remove any particles we have
 	local ps = self:getParticlesList()
