@@ -51,7 +51,7 @@ return {
 			['l'] = "LAVA",
 			['i'] = "ICE",
 			['>'] = { "DOWN", "SHAFT_DOWN" },
-			['%'] = "MARBLE",
+			['%'] = "WALL_MARBLE",
 			['^'] = "WALL_WARDED",
 			['&'] = "ALTAR",
 			['T'] = "CHEST",
