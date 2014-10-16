@@ -14,21 +14,31 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+--Assume "players" faction is for good or neutral players
+--Evil players have their own faction
+
 engine.Faction:add{ name="Neutral", reaction={}, }
 --Shopkeepers shouldn't fight random monsters
 engine.Faction:setInitialReaction("neutral", "enemies", 0, true)
 engine.Faction:setInitialReaction("neutral", "players", 0, true)
+engine.Faction:setInitialReaction("neutral", "players_evil", 0, true)
 
 engine.Faction:add{ name="Allies", reaction={}, }
 engine.Faction:setInitialReaction("allies", "enemies", -100, true)
 engine.Faction:setInitialReaction("allies", "players", 100, true)
+engine.Faction:setInitialReaction("allies", "players_evil", 100, true)
 
 engine.Faction:add{ name="Good", reaction={}, }
 engine.Faction:setInitialReaction("good", "enemies", -100, true)
---Should depend on player alignment
-engine.Faction:setInitialReaction("good", "players", 100, true)
+engine.Faction:setInitialReaction("good", "players", 0, true)
+engine.Faction:setInitialReaction("good", "players_evil", -100, true)
 
 engine.Faction:add{ name="Evil", reaction={}, }
 engine.Faction:setInitialReaction("evil", "enemies", 0, true)
---Should depend on player alignment
 engine.Faction:setInitialReaction("evil", "players", -100, true)
+engine.Faction:setInitialReaction("evil", "players_evil", 0, true)
+
+--Special faction for evil players
+engine.Faction:add{ name="players_evil", reaction={}, }
+engine.Faction:setInitialReaction("players_evil", "enemies", -100, true)
+engine.Faction:setInitialReaction("players_evil", "allies", 100, true)

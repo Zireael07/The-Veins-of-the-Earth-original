@@ -109,6 +109,14 @@ newBirthDescriptor {
   type = 'alignment',
   name = 'Lawful Good',
   desc = [[You are Lawful Good. Lawful spells will not harm you. Good characters will not be hostile.]],
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Evil'] = "disallow",
+      ['Chaos'] = "disallow",
+    }
+  },
 --[[  copy = {
   starting_intro = "outcast",
   }]]
@@ -118,6 +126,13 @@ newBirthDescriptor {
   type = 'alignment',
   name = 'Neutral Good',
   desc = [[You are Neutral Good. Good characters will not be hostile.]],
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Evil'] = "disallow",
+    }
+  },
   --[[  copy = {
     starting_intro = "outcast",
   }]]
@@ -127,6 +142,14 @@ newBirthDescriptor {
   type = 'alignment',
   name = 'Chaotic Good',
   desc = [[You are Neutral Good. Chaotic spells will not harm you. Good characters will not be hostile.]],
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Evil'] = "disallow",
+      ['Law'] = "disallow",
+    }
+  },
   --[[  copy = {
     starting_intro = "outcast",
   }]]
@@ -182,6 +205,9 @@ newBirthDescriptor {
   type = 'alignment',
   name = 'Lawful Evil',
   desc = [[You are Lawful Evil. Lawful spells will not harm you. Evil characters will not be hostile.]],
+  copy = {
+    faction = "players_evil",
+  },
   descriptor_choices =
   {
     domains =
@@ -196,6 +222,9 @@ newBirthDescriptor {
   type = 'alignment',
   name = 'Chaotic Evil',
   desc = [[You are Chaotic Evil. Chaotic spells will not harm you. Evil characters will not be hostile.]],
+  copy = {
+    faction = "players_evil",
+  },
   descriptor_choices =
   {
     domains =
@@ -210,6 +239,9 @@ newBirthDescriptor {
   type = 'alignment',
   name = 'Neutral Evil',
   desc = [[You are Neutral Evil. Evil characters will not be hostile.]],
+  copy = {
+    faction = "players_evil",
+  },
   descriptor_choices =
   {
     domains =
