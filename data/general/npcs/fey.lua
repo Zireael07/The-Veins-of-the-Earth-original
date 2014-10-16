@@ -50,6 +50,7 @@ newEntity{
 	full_id=true,
 	{ name = "shortbow" },
 	},
+	faction = "good",
 }
 
 newEntity{
@@ -99,4 +100,5 @@ newEntity{
 	full_id=true,
 	{ name = "shortbow" },
 	},
+	faction = "good",
 }

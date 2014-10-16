@@ -19,6 +19,7 @@ newEntity{
     combat = { dam= {1,8} },
     rarity = 15,
     infravision = 4,
+    faction = "good",
 }
 
 

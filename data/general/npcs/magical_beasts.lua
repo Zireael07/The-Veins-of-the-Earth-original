@@ -683,6 +683,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	movement_speed = 2,
 	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_IRON_WILL]=1 },
+	faction = "good",
 }
 
 --Climb 20 ft; Poison pri & sec 1d8 CON Fort DC 17, ethereal jaunt
@@ -937,6 +938,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	combat_attackspeed = 1.88,
 	alignment = "chaotic good",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	faction = "good",
 }
 
 --1d6 cold damage, scent, trip; breath weapon 2 sq cone cooldown 2 4d6 cold Ref DC 16 half
