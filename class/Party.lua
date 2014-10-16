@@ -164,3 +164,34 @@ function _M:findMember(filter)
 		if ok then return actor end
 	end
 end
+
+--From ToME 4
+function _M:setDeathTurn(actor, turn)
+	local def = self.members[actor]
+	if not def then return end
+	def.last_death_turn = turn
+end
+
+function _M:findLastDeath()
+	local max_turn = -9999
+	local last = nil
+
+	for i, actor in ipairs(self.m_list) do
+		local def = self.members[actor]
+
+		if def.last_death_turn and def.last_death_turn > max_turn then max_turn = def.last_death_turn; last = actor end
+	end
+	return last or self:findMember{main=true}
+end
+
+function _M:findSuitablePlayer(type)
+	for i, actor in ipairs(self.m_list) do
+		local def = self.members[actor]
+		if def.control == "full" and (not type or def.type == type) and not actor.dead and game.level:hasEntity(actor) then
+			if self:setPlayer(actor, true) then
+				return true
+			end
+		end
+	end
+	return false
+end

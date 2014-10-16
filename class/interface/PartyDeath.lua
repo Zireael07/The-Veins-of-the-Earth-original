@@ -13,13 +13,11 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
 
 require "engine.class"
 local Dialog = require "engine.ui.Dialog"
 local DamageType = require "engine.DamageType"
+local DeathDialog = require "mod.dialogs.DeathDialog"
 
 module(..., package.seeall, class.make)
 
@@ -42,22 +40,23 @@ function _M:onPartyDeath(src, death_note)
 	if game.player ~= self then return end
 
 	-- Check for any survivor that can be controlled
-	local game_ender = not game.party:findSuitablePlayer()
+--	local game_ender = not game.party:findSuitablePlayer()
 
 	-- No more player found! Switch back to main and die
-	if game_ender then
+	if self.game_ender then
 		game.party:setPlayer(game.party:findMember{main=true}, true)
 		game.paused = true
 		game.player.energy.value = game.energy_to_act
 		src = src or {name="unknown"}
 		game.player.killedBy = src
 		game.player.died_times[#game.player.died_times+1] = {name=src.name, level=game.player.level, turn=game.turn}
-		game.player:registerDeath(game.player.killedBy)
-		local dialog = require("mod.dialogs."..(game.player.death_dialog or "DeathDialog")).new(game.player)
+	--	game.player:registerDeath(game.player.killedBy)
+
+		game:registerDialog(DeathDialog.new(self))
+--[[		local dialog = require("mod.dialogs."..(game.player.death_dialog or "DeathDialog")).new(game.player)
 		if not dialog.dont_show then
 			game:registerDialog(dialog)
-		end
-		game.player:saveUUID()
+		end]]
 
 		local death_mean = nil
 		if death_note and death_note.damtype then
@@ -112,7 +111,8 @@ function _M:onPartyDeath(src, death_note)
 			)
 		end
 
-		game:playSound("actions/death")
-		game.delayed_death_message = "#{bold}#"..msg.."#{normal}#"
+--		game:playSound("actions/death")
+		game.log("#{bold}#"..msg.."#{normal}#")
+		game:registerDialog(DeathDialog.new(self))
 	end
 end
