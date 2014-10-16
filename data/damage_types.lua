@@ -17,6 +17,8 @@
 
 -- The basic stuff used to damage a grid
 setDefaultProjector(function(src, x, y, type, dam)
+	if not game.level.map:isBound(x, y) then return 0 end
+
 	local target = game.level.map(x, y, Map.ACTOR)
 	if target then
 	--[[	local flash = game.flash.NEUTRAL
@@ -56,6 +58,7 @@ end)
 
 newDamageType{
 	name = "physical", type = "PHYSICAL",
+	death_message = {"battered", "bludgeoned", "sliced", "maimed", "raked", "impaled", "dissected", "disemboweled", "decapitated", "stabbed", "pierced", "crushed", "shattered", "smashed", "skewered", "squished", "mauled", "splattered", "eviscerated"},
 }
 
 -- Acid destroys potions
@@ -72,6 +75,7 @@ newDamageType{
 			return realdam
 		end
 	end,
+	death_message = {"dissolved", "corroded", "scalded", "melted"},
 }
 
 newDamageType{
@@ -87,6 +91,7 @@ newDamageType{
 			return realdam
 		end
 	end,
+	death_message = {"blasted", "energised", "mana-torn", "dweomered", "imploded"},
 }
 
 newDamageType{
@@ -102,6 +107,7 @@ newDamageType{
 			return realdam
 		end
 	end,
+	death_message = {"burnt", "scorched", "blazed", "roasted", "flamed", "fried", "combusted", "toasted", "slowly cooked", "boiled"},
 }
 
 newDamageType{
@@ -117,6 +123,7 @@ newDamageType{
 			return realdam
 		end
 	end,
+	death_message = {"drowned", "choked on water", "soaked"}
 }
 
 newDamageType{
@@ -132,6 +139,7 @@ newDamageType{
 			return realdam
 		end
 	end,
+	death_message = {"burnt", "scorched", "blazed", "roasted", "flamed", "fried", "combusted", "toasted", "slowly cooked", "boiled"},
 }
 
 
@@ -149,6 +157,7 @@ newDamageType{
 			return realdam
 		end
 	end,
+	death_message = {"frozen", "chilled", "iced", "cooled"},
 }
 
 newDamageType{
@@ -164,6 +173,7 @@ newDamageType{
 			return realdam
 		end
 	end,
+	death_message = {"electrocuted", "shocked", "bolted", "volted", "amped", "zapped"},
 }
 
 newDamageType{
@@ -179,10 +189,11 @@ newDamageType{
 			return realdam
 		end
 	end,
+	death_message = {"shocked", "blasted", "sound-blasted", "busted"}
 }
 
 
---Specials!
+--Not exactly damaging stuff
 newDamageType{
 	name = "grease", type = "GREASE",
 	projector = function(src, x, y, type, dam)
