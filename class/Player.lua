@@ -21,6 +21,7 @@ require "engine.interface.PlayerRun"
 require "engine.interface.PlayerMouse"
 require "engine.interface.PlayerHotkeys"
 require "mod.class.interface.PlayerExplore"
+require "mod.class.interface.PartyDeath"
 local Map = require "engine.Map"
 local Dialog = require "engine.Dialog"
 local DeathDialog = require "mod.dialogs.DeathDialog"
@@ -39,6 +40,7 @@ module(..., package.seeall, class.inherit(mod.class.Actor,
 					  engine.interface.PlayerMouse,
 					  engine.interface.PlayerHotkeys,
             mod.class.interface.PlayerExplore,
+            mod.class.interface.PartyDeath,
             PlayerLore))
 
 local exp_chart = function(level)
@@ -72,6 +74,7 @@ function _M:init(t, no_default)
 
   
   self.descriptor = self.descriptor or {}
+  self.died_times = self.died_times or {}
   self.race = self.descriptor.race
   self.classes = self.classes or {}
   self.max_level = 50
@@ -477,17 +480,21 @@ function _M:die(src, death_note)
   if self.runStop then self:runStop("died") end
   if self.restStop then self:restStop("died") end
 
-  return self:onPartyDeath(src, death_note)
+  if self.game_ender then
 
---[[  if self.game_ender then
-    engine.interface.ActorLife.die(self, src)
+  mod.class.interface.ActorLife.die(self, src, death_note)
+--engine.interface.ActorLife.die(self, src)
 
-    game.paused = true
-    self.energy.value = game.energy_to_act
-    game:registerDialog(DeathDialog.new(self))
+  game.paused = true
+  self.energy.value = game.energy_to_act
+  game:registerDialog(DeathDialog.new(self))
+
     --Mark depth for bones
     World:boneLevel(game.level.level)
-  else
+
+  return self:onPartyDeath(src, death_note) end
+
+--[[else
     mod.class.Actor.die(self, src)
   end]]
 end
