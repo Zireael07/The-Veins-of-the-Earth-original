@@ -852,7 +852,7 @@ newBirthDescriptor {
         desc = help..'#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors.\n\n #LIGHT_BLUE#Class skills: Balance, Climb, Concentration, Craft, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble.\n\n #WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +1, Ref +1, 4 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 --[[        copy = {
                 resolvers.equip {
-                        full_id=true,
+                        id=true,
                         { name="long sword", ego_chance=-1000 },
                         { name="chain mail", ego_chance=-1000 },
                 },
@@ -1038,7 +1038,7 @@ newBirthDescriptor {
 	rarity = 3,
 	copy = {
 		resolvers.inventory {
-			full_id=true,
+			id=true,
 			{ name="shortbow", ego_chance=-1000},
 			{ name="arrows", ego_chance=-1000 },
 			{ name="dagger", ego_chance=-1000 },
@@ -1220,13 +1220,13 @@ newBirthDescriptor {
 	rarity = 3,
 	copy = {
 		resolvers.equip {
-			full_id=true,
+			id=true,
 		--	{ name="light crossbow", ego_chance=-1000 },
 			{ name="bolts", ego_chance=-1000 },
 		--	{ name="studded leather", ego_chance=-1000 },
 		},
 		resolvers.inventory {
-			full_id=true,
+			id=true,
 			{ name="dagger", ego_chance=-1000},
 		}
 	},
@@ -1314,7 +1314,7 @@ newBirthDescriptor {
 	rarity = 6,
 	copy = {
 		resolvers.inventory {
-			full_id=true,
+			id=true,
 			{ name="light crossbow", ego_chance=-1000},
 			{ name="bolts", ego_chance=-1000},
 		}
@@ -1399,7 +1399,7 @@ newBirthDescriptor {
 	rarity = 5,
 	copy = {
 		resolvers.inventory {
-			full_id=true,
+			id=true,
 			{ name="light crossbow", ego_chance=-1000},
 			{ name="bolts", ego_chance=-1000},
 		}

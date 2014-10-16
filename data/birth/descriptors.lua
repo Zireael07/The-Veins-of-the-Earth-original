@@ -44,7 +44,7 @@ newBirthDescriptor{
 		  campaign_name = "Veins",
     },
     resolvers.inventory {
-      full_id=true,
+      id=true,
       { name="food rations" },
       { name="flask of water" },
     },
