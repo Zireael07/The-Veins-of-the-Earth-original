@@ -5,19 +5,19 @@
 newEntity{
     define_as = "BASE_VIAL",
     slot = "INVEN",
-    type = "potion", subtype = "vial",
+    type = "vial", subtype = "vial",
     display = "!", color=colors.SLATE,
     image = "tiles/poison_vial.png",
     encumber = 0,
-    name = "a potion",
-    desc = [[A potion.]],
+    name = "a vial",
+    desc = [[A vial.]],
 }
 
 --Weak poisons
 newEntity{
     base = "BASE_VIAL",
     name = "vial of black adder venom",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 5,
     level_range = {5,10},
@@ -34,7 +34,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of toadstool poison",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 5,
     level_range = {5,10},
@@ -51,7 +51,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of arsenic",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {5,10},
@@ -68,7 +68,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of id moss",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {5,10},
@@ -85,7 +85,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of black adder venom",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {5,10},
@@ -102,7 +102,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of small centipede poison",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {1,10},
@@ -119,7 +119,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of bloodroot",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {5,10},
@@ -136,7 +136,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of greenblood oil",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {5,10},
@@ -153,7 +153,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of blue whinnis",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {5,10},
@@ -170,7 +170,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of medium spider venom",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {5,10},
@@ -187,7 +187,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of large scorpion venom",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {5,10},
@@ -204,7 +204,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of giant wasp poison",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {5,10},
@@ -224,7 +224,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of nitharit",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {10,15},
@@ -241,7 +241,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of sassone",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {10,15},
@@ -258,7 +258,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of shadow essence",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {10,15},
@@ -275,7 +275,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of malyss root paste",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {10,15},
@@ -292,7 +292,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of terinav",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {10,15},
@@ -309,7 +309,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of lich dust",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {10,15},
@@ -326,7 +326,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of dark reaver powder",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     level_range = {10,15},
     rarity = 15,
@@ -343,7 +343,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of purple worm poison",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     level_range = {10,15},
     rarity = 15,
@@ -363,7 +363,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of black lotus extract",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {30,45},
@@ -380,7 +380,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of dragon bile",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {15,20},
@@ -397,7 +397,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of ungol dust",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {15,20},
@@ -414,7 +414,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "a vial of insanity mist",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {15,20},
@@ -431,7 +431,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of burnt othur",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {20,25},
@@ -448,7 +448,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of wyvern poison",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     rarity = 15,
     level_range = {20,25},
@@ -465,7 +465,7 @@ newEntity{
 newEntity{
     base = "BASE_VIAL",
     name = "vial of deathblade",
-    unided_name = "a potion",
+    unided_name = "a vial",
     identified = false,
     level_range = {20,25},
 --    cost = 1800,
