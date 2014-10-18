@@ -519,11 +519,16 @@ function resolvers.calc.flavored(t, e)
   if fl_def then
     local used = game.state.flavors_assigned[e.type][e.subtype]
     if not used[e.name] then
+    	--see Object.lua lines 414
       used[e.name] = fl_def.pop_flavor(e.type, e.subtype)
     end
     local color = used[e.name][2]
-    for k, v in pairs(color) do e['color_'..k] = v end
+    e.color = color
     e.image = used[e.name][3]
+    
+    local flavor_name = used[e.name][1]
+    e.unided_name = flavor_name.." "..e.unided_name
+--    e.unided_name = used[e.name][1]..""..e.unided_name
   end
 end
 

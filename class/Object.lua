@@ -145,10 +145,14 @@ function _M:getName(t)
 
     if self.identified == false and not t.force_id and self:getUnidentifiedName() then 
         name = self:getUnidentifiedName() 
-        if self:isFlavored() and self:getFlavorText() then name = ("%s %s"):format(self:getFlavorText(), name)
-        else
+    --[[    if self:isFlavored() then
+            if self:getFlavorText() then name = ("%s %s"):format(self:getFlavorText(), name)
+            else
             name = self:getUnidentifiedName()
-        end
+            end
+        else
+        name = self:getUnidentifiedName() 
+        end]]
     end
     
     if self.pseudo_id == true and self.identified == false and not t.force_id then --and self:getUnidentifiedName() then
@@ -387,7 +391,9 @@ function _M:isFlavorKnown()
 end
 
 function _M:getFlavorText()
-  return self:isFlavored() and game.state.flavors_assigned[self.type][self.subtype][self.name][1]
+    local used = game.state.flavors_assigned[self.type][self.subtype]
+--    return self:isFlavored() and game.state.flavors_assigned[self.type][self.subtype][self.name][1]
+    return used[self.name][1]
 end
 
 function _M:loadFlavors(file)

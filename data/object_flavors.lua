@@ -47,7 +47,7 @@ newFlavorSet {
   subtype = 'potion',
   values = {
 --    { "Strangely Phosphorescent", colors.C_multi, 'tiles/flavor/pot_m.png' },
-    { "azure", colors.BLUE, 'tiles/flavors/PotionAquamarine.png' },
+    { "Azure", colors.BLUE, 'tiles/flavors/PotionAquamarine.png' },
     { "blue", colors.DARK_BLUE, 'tiles/flavors/PotionTallBlue.png' },
     { "blue speckled", colors.ROYAL_BLUE, 'tiles/flavors/PotionTallBlue.png' },
     { "black", colors.BLACK, 'tiles/flavors/PotionTallGrey.png' },
