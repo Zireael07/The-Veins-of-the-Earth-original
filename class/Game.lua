@@ -97,7 +97,7 @@ function _M:run()
 	veins.saveMarson()
 
 --	self.uiset:activate()
---	self.flash = LogFlasher.new(0, 0, self.w - 20, 20, nil, nil, nil, {255,255,255}, {0,0,0})
+
 	self.logdisplay = LogDisplay.new(0, self.h * 0.5, 600, self.h * 0.2, 5, nil, 14, nil, nil)
 	self.logdisplay:enableFading(7)
 	h = 52
@@ -105,7 +105,6 @@ function _M:run()
 	self.hotkeys_display = HotkeysIconsDisplay.new(nil, 216, game.h - h, game.w - 216, h, {30,30,0}, nil, nil, 48, 48)
 	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
 	self.player_display = PlayerDisplay.new(0, self.h*0.75, 200, 150, {0,0,0}, "/data/font/DroidSansMono.ttf", 14)
---	self.tooltip = Tooltip.new(nil, 13, {255,255,255}, {30,30,30})
 	
 	local flysize = veins.fonts.flying.size or 16
 	self.tooltip = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
@@ -120,10 +119,7 @@ function _M:run()
 	self.log = function(style, ...) self.logdisplay(style, ...) end
 --	self.logSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.log(style, ...) end end
 	self.logPlayer = function(e, style, ...) if e == self.player then self.log(style, ...) end end
-	--Variations for using the flasher
-	self.flashLog = function(style, ...) if type(style) == "number" then self.logdisplay(...) self.flash(style, ...) else self.logdisplay(style, ...) self.flash(self.flash.NEUTRAL, style, ...) end end
-	self.flashSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.flashLog(style, ...) end end
-	self.flashPlayer = function(e, style, ...) if e == self.player then self.flashLog(style, ...) end end
+	
 
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
@@ -645,14 +641,160 @@ function _M:tick()
     if self.paused and not savefile_pipe.saving then return true end
 end
 
---game log stuff
---Fix logSeen from ToME 4
+--Taken from ToME 4
+-- Game Log management functions:
+-- logVisible to determine if a message should be visible to the player
+-- logMessage to add a message to the display
+-- delayedLogMessage to queue an actor-specific message for display at the end of the current game tick
+-- displayDelayedLogMessages() to display the queued messages (before combat damage messages)
+-- delayedLogDamage to queue a combat (damage) message for display at the end of the current game tick
+-- displayDelayedLogDamage to display the queued combat messages
+
 -- output a message to the log based on the visibility of an actor to the player
 function _M.logSeen(e, style, ...) 
---	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end 
-	if e and e.player or (not e.dead and e.x and e.y and game.level and game.player:hasLOS(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end 
+	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end 
 end
 
+-- determine whether an action between 2 actors should produce a message in the log and if the player
+-- can identify them
+-- output: src, srcSeen: source display?, identify?
+-- tgt, tgtSeen: target display?, identify?
+-- output: Visible? and srcSeen (source is identified by the player), tgtSeen(target is identified by the player)
+function _M:logVisible(source, target)
+	-- target should display if it's the player, an actor in a seen tile, or a non-actor without coordinates
+	local tgt = target and (target.player or (target.__is_actor and game.level.map.seens(target.x, target.y)) or (not target.__is_actor and not target.x))
+	local tgtSeen = tgt and (target.player or game.player:canSee(target)) or false
+	local src, srcSeen = false, false
+--	local srcSeen = src and (not source.x or (game.player:canSee(source) and game.player:canSee(target)))
+	-- Special cases
+	if not source.x then -- special case: unpositioned source uses target parameters (for timed effects on target)
+		if tgtSeen then
+			src, srcSeen = tgt, tgtSeen
+		else
+			src, tgt = nil, nil
+		end
+	else -- source should display if it's the player or an actor in a seen tile, or same as target for non-actors
+		src = source.player or (source.__is_actor and game.level.map.seens(source.x, source.y)) or (not source.__is_actor and tgt)
+		srcSeen = src and game.player:canSee(source) or false
+	end	
+	
+	return src or tgt or false, srcSeen, tgtSeen
+end
+
+-- Generate a message (string) for the log with possible source and target,
+-- highlighting the player and taking visibility into account
+-- srcSeen, tgtSeen = can player see(identify) the source, target?
+-- style text message to display, may contain:
+-- #source#|#Source# -> <displayString>..self.name|self.name:capitalize()
+-- #target#|#Target# -> target.name|target.name:capitalize()
+function _M:logMessage(source, srcSeen, target, tgtSeen, style, ...)
+	style = style:format(...)
+	local srcname = "something"
+	local Dstring
+		if source.player then
+			srcname = "#fbd578#"..source.name.."#LAST#"
+		elseif srcSeen then
+			srcname = engine.Entity.check(source, "getName") or source.name or "unknown"
+		end
+		if srcname ~= "something" then Dstring = source.__is_actor and source.getDisplayString and source:getDisplayString() end
+	style = style:gsub("#source#", srcname)
+	style = style:gsub("#Source#", (Dstring or "")..srcname:capitalize())
+	if target then
+		local tgtname = "something"
+			if target.player then
+				tgtname = "#fbd578#"..target.name.."#LAST#"
+			elseif tgtSeen then
+				tgtname = engine.Entity.check(target, "getName") or target.name or "unknown"
+			end
+		style = style:gsub("#target#", tgtname)
+		style = style:gsub("#Target#", tgtname:capitalize())
+	end
+	return style
+end
+
+-- log an entity-specific message for display later with displayDelayedLogDamage
+-- only one message (processed with logMessage) will be logged for each source and label
+-- useful to avoid spamming repeated messages
+-- target is optional and is used only to resolve the msg
+function _M:delayedLogMessage(source, target, label, msg, ...)
+	local visible, srcSeen, tgtSeen = self:logVisible(source, target)
+	if visible then
+		self.delayed_log_messages[source] = self.delayed_log_messages[source] or {}
+		local src = self.delayed_log_messages[source]
+		src[label] = self:logMessage(source, srcSeen, target, tgtSeen, msg, ...)
+	end
+end
+
+-- display the delayed log messages
+function _M:displayDelayedLogMessages()
+	if not self.uiset or not self.uiset.logdisplay then return end
+	for src, msgs in pairs(self.delayed_log_messages) do
+		for label, msg in pairs(msgs) do
+			game.uiset.logdisplay(self:logMessage(src, true, nil, nil, msg))
+		end
+	end
+	self.delayed_log_messages = {}
+end
+
+-- Note: There can be up to a 1 tick delay in displaying log information
+function _M:displayDelayedLogDamage()
+	if not self.uiset or not self.uiset.logdisplay then return end
+	for src, tgts in pairs(self.delayed_log_damage) do
+		for target, dams in pairs(tgts) do
+			if #dams.descs > 1 then
+				game.uiset.logdisplay(self:logMessage(src, dams.srcSeen, target, dams.tgtSeen, "#Source# hits #Target# for %s (%0.0f total damage)%s.", table.concat(dams.descs, ", "), dams.total, dams.healing<0 and (" #LIGHT_GREEN#[%0.0f healing]#LAST#"):format(-dams.healing) or ""))
+			else
+				if dams.healing >= 0 then
+					game.uiset.logdisplay(self:logMessage(src, dams.srcSeen, target, dams.tgtSeen, "#Source# hits #Target# for %s damage.", table.concat(dams.descs, ", ")))
+				elseif src == target then
+					game.uiset.logdisplay(self:logMessage(src, dams.srcSeen, target, dams.tgtSeen, "#Source# receives %s.", table.concat(dams.descs, ", ")))
+				else
+					game.uiset.logdisplay(self:logMessage(src, dams.srcSeen, target, dams.tgtSeen, "#Target# receives %s from #Source#.", table.concat(dams.descs, ", ")))
+				end
+			end
+			local rsrc = src.resolveSource and src:resolveSource() or src
+			local rtarget = target.resolveSource and target:resolveSource() or target
+			local x, y = target.x or -1, target.y or -1
+			local sx, sy = self.level.map:getTileToScreen(x, y)
+			if target.dead then
+				if dams.tgtSeen and (rsrc == self.player or rtarget == self.player or self.party:hasMember(rsrc) or self.party:hasMember(rtarget)) then
+					self.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, rng.float(-2.5, -1.5), ("Kill (%d)!"):format(dams.total), {255,0,255}, true)
+					self:delayedLogMessage(target, nil,  "death", self:logMessage(src, dams.srcSeen, target, dams.tgtSeen, "#{bold}##Source# killed #Target#!#{normal}#"))
+				end
+			elseif dams.total > 0 or dams.healing == 0 then
+				if dams.tgtSeen and (rsrc == self.player or self.party:hasMember(rsrc)) then
+					self.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, rng.float(-3, -2), tostring(-math.ceil(dams.total)), {0,255,dams.is_crit and 200 or 0}, dams.is_crit)
+				elseif dams.tgtSeen and (rtarget == self.player or self.party:hasMember(rtarget)) then
+					self.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -rng.float(-3, -2), tostring(-math.ceil(dams.total)), {255,dams.is_crit and 200 or 0,0}, dams.is_crit)
+				end
+			end
+		end
+	end
+	if self.delayed_death_message then game.log(self.delayed_death_message) end
+	self.delayed_death_message = nil
+	self.delayed_log_damage = {}
+end
+
+-- log and collate combat damage for later display with displayDelayedLogDamage
+function _M:delayedLogDamage(src, target, dam, desc, crit)
+	if not target or not src then return end
+	src = src.__project_source or src -- assign message to indirect damage source if available
+	local visible, srcSeen, tgtSeen = self:logVisible(src, target)
+	if visible then -- only log damage the player is aware of
+		self.delayed_log_damage[src] = self.delayed_log_damage[src] or {}
+		self.delayed_log_damage[src][target] = self.delayed_log_damage[src][target] or {total=0, healing=0, descs={}}
+		local t = self.delayed_log_damage[src][target]
+		t.descs[#t.descs+1] = desc
+		if dam>=0 then
+			t.total = t.total + dam
+		else
+			t.healing = t.healing + dam
+		end
+		t.is_crit = t.is_crit or crit
+		t.srcSeen = srcSeen
+		t.tgtSeen = tgtSeen
+	end
+end
 
 --- Called every game turns
 -- Does nothing, you can override it
