@@ -40,7 +40,7 @@ function _M:init(t, no_default)
  	 self.flavors_assigned = {}
   	self.flavors_unused = {}
 
-  	-- Prepopulate the various flavor-related state tables.
+  	 -- Prepopulate the various flavor-related state tables.
   	for type, subtypes in pairs(Object.flavors_def) do
     	self.flavors_known[type] = self.flavors_known[type] or {}
     	self.flavors_assigned[type] = self.flavors_assigned[type] or {}
@@ -48,18 +48,17 @@ function _M:init(t, no_default)
     	for subtype, def in pairs(subtypes) do
       		self.flavors_known[type][subtype] = self.flavors_known[type][subtype] or {}
       		self.flavors_assigned[type][subtype] = self.flavors_assigned[type][subtype] or {}
-      			if def.values then
-					local l = {}
-					for i = 1, #def.values do l[i] = i end
-						table.shuffle(l)
-						self.flavors_unused[type][subtype] = self.flavors_unused[type][subtype] or l
-      				end
-      				if def.assigned then
-						table.merge(self.flavors_assigned[type][subtype], def.assigned)
-      				end
-    			end
-  		end
---  	end
+      		if def.values then
+			local l = {}
+				for i = 1, #def.values do l[i] = i end
+				table.shuffle(l)
+				self.flavors_unused[type][subtype] = self.flavors_unused[type][subtype] or l
+      		end
+      		if def.assigned then
+				table.merge(self.flavors_assigned[type][subtype], def.assigned)
+    	  	end
+    	end
+  	end
 end
 
 --Day/night code from ToME
@@ -136,10 +135,11 @@ function _M:canEventGridRadius(level, x, y, radius, min)
 	else return list end
 end
 
-function _M:findEventGrid(level)
+function _M:findEventGrid(level, checker)
 	local x, y = rng.range(1, level.map.w - 2), rng.range(1, level.map.h - 2)
 	local tries = 0
-	while not self:canEventGrid(level, x, y) and tries < 100 do
+	local can = checker or self.canEventGrid
+	while not can(self, level, x, y) and tries < 100 do
 		x, y = rng.range(1, level.map.w - 2), rng.range(1, level.map.h - 2)
 		tries = tries + 1
 	end
@@ -158,6 +158,16 @@ function _M:findEventGridRadius(level, radius, min)
 	return self:canEventGridRadius(level, x, y, radius, min)
 end
 
+function _M:eventBaseName(sub, name)
+	local base = "/data"
+	local _, _, addon, rname = name:find("^([^+]+)%+(.+)$")
+	if addon and rname then
+		base = "/data-"..addon
+		name = rname
+	end
+	return base.."/general/events/"..sub..name..".lua"
+end
+
 function _M:startEvents()
 	if not game.zone.events then print("No zone events loaded") return end
 
@@ -174,12 +184,13 @@ function _M:startEvents()
 		for i, e in ipairs(game.zone.events) do
 			if e.name then if e.minor then mevts[#mevts+1] = e else evts[#evts+1] = e end
 			elseif e.group then
-				local f, err = loadfile("/data/general/events/groups/"..e.group..".lua")
+				local f, err = loadfile(self:eventBaseName("groups/", e.group))
 				if not f then error(err) end
 				setfenv(f, setmetatable({level=game.level, zone=game.zone}, {__index=_G}))
 				local list = f()
 				for j, ee in ipairs(list) do
 					if e.percent_factor and ee.percent then ee.percent = math.floor(ee.percent * e.percent_factor) end
+					if e.forbid then ee.forbid = table.append(ee.forbid or {}, e.forbid) end
 					if ee.name then if ee.minor then mevts[#mevts+1] = ee else evts[#evts+1] = ee end end
 				end
 			end
@@ -258,7 +269,7 @@ function _M:startEvents()
 		table.print(game.zone.assigned_events)
 
 		for i, e in ipairs(game.zone.assigned_events[game.level.level] or {}) do
-			local f, err = loadfile("/data/general/events/"..e..".lua")
+			local f, err = loadfile(self:eventBaseName("", e))
 			if not f then error(err) end
 			setfenv(f, setmetatable({level=game.level, zone=game.zone, event_id=e.name, Map=Map}, {__index=_G}))
 			f()
