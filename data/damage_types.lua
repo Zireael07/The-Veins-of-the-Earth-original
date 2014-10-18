@@ -21,12 +21,24 @@ setDefaultProjector(function(src, x, y, type, dam)
 
 	local target = game.level.map(x, y, Map.ACTOR)
 	if target then
-	--[[	local flash = game.flash.NEUTRAL
-		if target == game.player then flash = game.flash.BAD end
-		if src == game.player then flash = game.flash.GOOD end]]
+
 
 		if dam > 0 then
-		game.logSeen(target, "%s hits %s for %s%0.2f %s damage#LAST#.", src.name:capitalize(), target.name, DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
+
+		-- Log damage for later
+		if not DamageType:get(type).hideMessage then
+			local visible, srcSeen, tgtSeen = game:logVisible(src, target)
+			if visible then -- don't log damage that the player doesn't know about
+				local source = src.__project_source or src
+			--[[	if src.turn_procs and src.turn_procs.is_crit then
+					game:delayedLogDamage(source, target, dam, ("#{bold}#%s%d %s#{normal}##LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), true)
+				else]]
+					game:delayedLogDamage(source, target, dam, ("%s%d %s#LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), false)
+			--	end
+			end
+		end
+
+	--	game.logSeen(target, "%s hits %s for %s%0.2f %s damage#LAST#.", src.name:capitalize(), target.name, DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
 		end
 		
 		local sx, sy = game.level.map:getTileToScreen(x, y)

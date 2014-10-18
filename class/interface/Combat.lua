@@ -214,23 +214,23 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
 
    -- log message
     if hit then
---      game.log(("%s hits the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       local chance = rng.dice(1,3)
       if chance == 1 then
-        game.log(("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
-        game.log(("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else game.log(("%s strikes high, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+          self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      else 
+          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       end
         
     else
---        game.log(("%s misses the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
     local chance = rng.dice(1,3)
       if chance == 1 then
-        game.log(("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+          self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
-        game.log(("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else game.log(("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+          self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      else 
+        self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       end
 
     end
@@ -304,37 +304,39 @@ function _M:dealDamage(target, weapon, crit, sneak)
         return end
 
         --Fortification
---[[        if target.fortification > 0 then
+--[[    if target.fortification > 0 then
 
-          if target.fortification == 1 then
-            local chance = rng.percent(25)
-            if chance then 
-              game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
-              dam = dam 
-            return end
-          end
-          if target.fortification == 3 then
-            local chance = rng.percent(75)
-            if chance then 
-              game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
-              dam = dam 
-            return end
-          end
-          if target.fortification == 5 then
+            if target.fortification == 1 then
+              local chance = rng.percent(25)
+              if chance then 
+                  game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
+                  dam = dam 
+                  return end
+            end
+            if target.fortification == 3 then
+              local chance = rng.percent(75)
+              if chance then 
+                  game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
+                  dam = dam 
+              return end
+            end
+            if target.fortification == 5 then
               game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
               dam = dam return end
-          end
+            end
         end]]
 
         if target:canBe("crit") then
           if target:knowTalent(T_ROLL_WITH_IT) then
-            game.log(("%s makes a critical attack, but the damage is reduced!"):format(self:getLogName():capitalize())) --end
+            game.logSeen()
+          --  game.log(("%s makes a critical attack, but the damage is reduced!"):format(self:getLogName():capitalize())) --end
             dam = dam * (weapon and (weapon.combat.critical/2) or 1)
           else  
-          game.log(("%s makes a critical attack!"):format(self:getLogName():capitalize())) --end
+        --  game.log(("%s makes a critical attack!"):format(self:getLogName():capitalize())) --end
           dam = dam * (weapon and weapon.combat.critical or 2)
           end         
-        else game.log("The target's lack of physiology prevents serious injury.")
+        else 
+          --game.log("The target's lack of physiology prevents serious injury.")
           dam = dam end
       end
 
@@ -368,11 +370,13 @@ function _M:dealDamage(target, weapon, crit, sneak)
         if self.poison and not target.dead and target:canBe("poison") then
           local poison = self.poison
           self:applyPoison(poison, target)
+          self:logCombat(target, ("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name:capitalize()))
       --    game.log(("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name:capitalize()))
         end
 
         target:takeHit(dam, self)
-        game.log(("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name:capitalize()))
+        self:logCombat(target, ("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name:capitalize()))
+      --  game.log(("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name:capitalize()))
 end
 
 
@@ -382,9 +386,14 @@ function _M:applyPoison(poison, target)
 
   if not poison then return end
   
-  if not target:canBe("poison") then game.log("Target seems unaffected by poison") end
+  if not target:canBe("poison") then 
+    self:logCombat(target, "Target seems unaffected by poison")
+  --game.log("Target seems unaffected by poison") 
+  end
 
-  if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
+  if target:fortitudeSave(poison_dc[poison]) then 
+    self:logCombat(target, ("Target resists poison, DC %d"):format(poison_dc[poison]))
+  --  game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
   --Failed save, set timer for secondary damage
   else 
     target.poison_timer = 10
@@ -588,4 +597,14 @@ function _M:combatSpeed(weapon)
   weapon = weapon or self.combat or {}
 --  return (weapon.attackspeed or 1) / math.max(self.combat_attackspeed, 0.1)
   return math.max(self.combat_attackspeed, 0.1)
+end
+
+--Taken from ToME 4
+-- Display Combat log messages, highlighting the player and taking LOS and visibility into account
+-- #source#|#Source# -> <displayString> self.name|self.name:capitalize()
+-- #target#|#Target# -> target.name|target.name:capitalize()
+function _M:logCombat(target, style, ...)
+--  if not game.uiset or not game.uiset.logdisplay then return end
+  local visible, srcSeen, tgtSeen = game:logVisible(self, target)  -- should a message be displayed?
+  if visible then game.logdisplay(game:logMessage(self, srcSeen, target, tgtSeen, style, ...)) end
 end
