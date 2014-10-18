@@ -489,11 +489,66 @@ function _M:die(src, death_note)
   self.energy.value = game.energy_to_act
   game:registerDialog(DeathDialog.new(self))
 
+--  self:onPartyDeath(src, death_note)
+
     --Mark depth for bones
     World:boneLevel(game.level.level)
 
-  return self:onPartyDeath(src, death_note) end
+    --Taken from onPartyDeath
+    -- Die
+    death_note = death_note or {}
 
+    src = src or {name="unknown"}
+    game.player.killedBy = src
+    game.player.died_times[#game.player.died_times+1] = {name=src.name, level=game.player.level, turn=game.turn}
+
+    local death_mean = nil
+    if death_note and death_note.damtype then
+      local dt = DamageType:get(death_note.damtype)
+      if dt and dt.death_message then death_mean = rng.table(dt.death_message) end
+    end
+
+    local top_killer = nil
+
+    local msg
+    if not death_note.special_death_msg then
+      msg = "%s the level %d %s %s was %s to death by %s%s%s on level %s of %s."
+      local srcname = src.unique and src.name or src.name:a_an()
+      local killermsg = (src.killer_message and " "..src.killer_message or ""):gsub("#sex#", game.player.female and "her" or "him")
+      if src.name == game.player.name then
+        srcname = game.player.female and "herself" or "himself"
+        killermsg = rng.table{
+          " (the fool)",
+          " in an act of extreme incompetence",
+          " out of supreme humility",
+          ", by accident of course,",
+          " in some sort of fetish experiment gone wrong",
+          ", providing a free meal to the wildlife",
+          " (how embarrassing)",
+        }
+      end
+      msg = msg:format(
+        game.player.name, game.player.level, game.player.descriptor.race:lower(), game.player.descriptor.class:lower(),
+        death_mean or "battered",
+        srcname,
+        src.name == top_killer and " (yet again)" or "",
+        killermsg,
+        game.level.level, game.zone.name
+      )
+    else
+      msg = "%s the level %d %s %s %s on level %s of %s."
+      msg = msg:format(
+        game.player.name, game.player.level, game.player.descriptor.race:lower(), game.player.descriptor.class:lower(),
+        death_note.special_death_msg,
+        game.level.level, game.zone.name
+      )
+    end
+
+    game.log("#{bold}#"..msg.."#{normal}#")
+
+--  return self:onPartyDeath(src, death_note) end
+
+  end
 --[[else
     mod.class.Actor.die(self, src)
   end]]

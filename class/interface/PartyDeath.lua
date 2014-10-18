@@ -113,6 +113,9 @@ function _M:onPartyDeath(src, death_note)
 
 --		game:playSound("actions/death")
 		game.log("#{bold}#"..msg.."#{normal}#")
+
+	--	game.delayed_death_message = "#{bold}#"..msg.."#{normal}#"
+
 		game:registerDialog(DeathDialog.new(self))
 	end
 end
