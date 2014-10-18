@@ -39,6 +39,7 @@ newEntity{
     unided_name = "an amulet",
     name = "an amulet",
     desc = [[A beautiful amulet.]],
+    resolvers.flavored(),
     egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
@@ -56,6 +57,7 @@ newEntity{
     identified = false,
     name = "a ring",
     desc = [[A pretty ring.]],
+    resolvers.flavored(),
     egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
@@ -86,6 +88,7 @@ newEntity{
     name = "bracers",
     unided_name = "bracers",
     desc = [[A set of bracers.]],
+    resolvers.flavored(),
     egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
 
@@ -136,6 +139,7 @@ newEntity{
     rarity = 5,
     name = "boots",
     desc = [[A pair of boots.]],
+    resolvers.flavored(),
 }
 
 newEntity{
