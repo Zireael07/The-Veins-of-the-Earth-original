@@ -527,8 +527,9 @@ function resolvers.calc.flavored(t, e)
     e.image = used[e.name][3]
     
     local flavor_name = used[e.name][1]
+    if e.unided_name then
     e.unided_name = flavor_name.." "..e.unided_name
---    e.unided_name = used[e.name][1]..""..e.unided_name
+	end
   end
 end
 
