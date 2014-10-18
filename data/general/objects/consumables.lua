@@ -17,7 +17,7 @@ newEntity{
 
 newEntity{
     base = "BASE_FOOD",
-    name = "food rations",
+    name = "food ration",
     image = "tiles/food.png",
     type = "food", subtype = "food",
     level_range = {1,10},

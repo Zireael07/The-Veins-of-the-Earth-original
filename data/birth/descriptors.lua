@@ -45,7 +45,11 @@ newBirthDescriptor{
     },
     resolvers.inventory {
       id=true,
-      { name="food rations" },
+      { name="food ration" },
+      { name="food ration" },
+      { name="food ration" },
+      { name="food ration" },
+      { name="flask of water" },
       { name="flask of water" },
     },
     starting_intro = "main",
