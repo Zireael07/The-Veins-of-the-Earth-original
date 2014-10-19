@@ -10,13 +10,25 @@ local function can_auto_id(npc, player)
     end
 end
 
+local id_item = function(npc, player)
+    player:showInventory("Identify which item?", player:getInven("INVEN"), function(o) return not o.lore end, function(o)
+            local price = 1100
+            if price > player.money then require("engine.ui.Dialog"):simplePopup("Not enough money", "This costs 1100 silver, you need more money.") return end
+                player:incMoney(-price)
+                o:identify()
+      
+                game.logPlayer(player, "%s identifies %s", npc.name:capitalize(), o:getName{do_colour=true, no_count=true})
+
+        end)
+    end)
+end
+
+
 newChat{id="start",
     text=[[Welcome! Maybe you need me to identify an item?]]
     answers = {
         {[[Yes, please.]], action = function(npc, player)
-        player:incMoney(-1100)
-        --ID item
-
+        id_item
     end,
     cond=function(npc, player)
             if not can_auto_id then return end
