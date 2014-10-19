@@ -29,6 +29,7 @@ newEntity{
 	stats = { str=9, dex=13, con=10, int=10, wis=9, cha=8, luc=12 },
 	combat = { dam= {1,6} },
 	infravision = 3,
+	alignment = "lawful evil",
 	skill_hide = 4,
 	skill_listen = 1,
 	skill_spot = 1,
@@ -179,6 +180,7 @@ newEntity{
 	stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	infravision = 6,
+	alignment = "chaotic evil",
 	skill_hide = 1,
 	skill_movesilently = 1,
 	skill_listen = 2,
@@ -285,6 +287,7 @@ newEntity{
 	max_life = resolvers.rngavg(5,10),
 	challenge = 1,
 	infravision = 3,
+	alignment = "lawful good",
 	resolvers.talents{ [Talents.T_SHOOT]=1, 
 	[Talents.T_EXOTIC_WEAPON_PROFICIENCY]=1, --stopgap measure for now
 	},
@@ -313,6 +316,7 @@ newEntity{
 	hit_die = 1,
 	challenge = 1,
 	infravision = 5,
+	alignment = "lawful evil",
 	resolvers.talents{ [Talents.T_SHOOT]=1, 
 	},
 	resolvers.equip{
@@ -435,6 +439,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	hit_die = 1,
 	open_door = true,
+	alignment = "neutral good",
 	resolvers.specialnpc(),
 	resolvers.templates(),
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -513,6 +518,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	hit_die = 1,
 	open_door = true,
+	alignment = "chaotic good",
 	resolvers.specialnpc(),
 	resolvers.templates(),
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -552,6 +558,7 @@ newEntity{
 	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=8, luc=10 },
 	combat = { dam= {1,6} },
 	infravision = 3,
+	alignment = "lawful evil",
 	hit_die = 1,
 	open_door = true,
 --	resolvers.specialnpc(),
@@ -596,6 +603,7 @@ newEntity{
 	combat_natural = 5,
 	hit_die = 2,
 	open_door = true,
+	resolvers.class(),
 --	resolvers.specialnpc(),
 	resolvers.templates()
 --	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
@@ -785,6 +793,7 @@ newEntity{
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
 	challenge = 1/2,
+	alignment = "neutral",
 	resist = { [DamageType.FIRE] = 5,
 	[DamageType.ELECTRIC] = 5,
 	[DamageType.COLD] = 5,
@@ -817,14 +826,15 @@ newEntity{
 	stats = { str=13, dex=11, con=12, int=10, wis=11, cha=10, luc=14 },
 	combat = { dam= {1,6} },
 	infravision = 3,
+	alignment = "neutral good",
 	skill_knowledge = 1,
 	skill_heal = 4,
 	skill_listen = 2,
 	skill_spot = 2,
 	open_door = true,
 --[[	resolvers.specialnpc(),
-	resolvers.templates(),
-	resolvers.class()]]
+	resolvers.templates(),]]
+	resolvers.class(),
 }
 
 newEntity{
