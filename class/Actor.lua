@@ -546,10 +546,50 @@ function _M:tooltip()
 
 	ts:add(("Attacks per round: %d"):format((self.movement_speed or 1)/(self.combat_attackspeed or 1)))
 
---	ts:add(("Movement speed bonus: %0.1f"):format(self.movement_speed_bonus or 0), true)
-
 	return ts
 end
+
+--Detect actor alignment
+function _M:isGood()
+	if self.alignment and self.alignment == "lawful good" then return true end
+	if self.alignment and self.alignment == "neutral good" then return true end
+	if self.alignment and self.alignment == "chaotic good" then return true end
+
+	return false
+end
+
+function _M:isNeutral()
+	if self.alignment and self.alignment == "lawful neutral" then return true end
+	if self.alignment and self.alignment == "neutral" then return true end
+	if self.alignment and self.alignment == "chaotic neutral" then return true end
+
+	return false
+end
+
+function _M:isEvil()
+	if self.alignment and self.alignment == "lawful evil" then return true end
+	if self.alignment and self.alignment == "neutral evil" then return true end
+	if self.alignment and self.alignment == "chaotic evil" then return true end
+
+	return false
+end
+
+function _M:isLawful()
+	if self.alignment and self.alignment == "lawful good" then return true end
+	if self.alignment and self.alignment == "lawful neutral" then return true end
+	if self.alignment and self.alignment == "lawful evil" then return true end
+
+	return false
+end
+
+function _M:isChaotic()
+	if self.alignment and self.alignment == "chaotic good" then return true end
+	if self.alignment and self.alignment == "chaotic neutral" then return true end
+	if self.alignment and self.alignment == "chaotic evil" then return true end
+
+	return false
+end
+
 
 --life regeneration (items or feats)
 function _M:regenLife()

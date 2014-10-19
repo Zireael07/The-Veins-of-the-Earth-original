@@ -136,6 +136,13 @@ function _M:getSchool()
     return self.school
 end
 
+function _M:isMagical()
+    if self.egoed and not self.cursed then return true end
+
+    return false
+end    
+
+
 --- Gets the full name of the object
 function _M:getName(t)
     t = t or {}
