@@ -144,6 +144,23 @@ newEffect{
     end,
 }
 
+--Detect spells
+newEffect{
+	name = "DETECT_EVIL",
+	desc = "Detected evil",
+	long_desc = [[The character detects as evil.]],
+	type = "mental",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is evil!", "+DetectEvil" end,
+	on_lose = function(self, err) return "#Target# is no longer outlined.", "-DetectEvil" end,
+	activate = function(self, eff)
+        eff.particle = self:addParticles(Particles.new("evil", 1))
+    end,
+    deactivate = function(self, eff)
+        self:removeParticles(eff.particle)
+    end,
+}
+
 --Buff spells, Zireael
 newEffect{
 	name = "BEAR_ENDURANCE",

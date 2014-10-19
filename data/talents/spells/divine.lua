@@ -389,6 +389,37 @@ newDivineSpell{
 	end,
 }
 
+newDivineSpell{
+	name = "Detect Evil",
+	type = {"divine", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	range = 1,
+	requires_target = true,
+	radius = 5,
+	target = function(self, t)
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = 5
+
+	--	self:project(tg, x, y, DamageType.DETECT_EVIL, damage, {type="evil"})
+		self:project(tg, x, y, DamageType.DETECT_EVIL, damage)
+
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[You detect presence or absence of evil in a 60 ft. cone.]])
+	end,
+}
+
 
 --"Animal buff" spells
 --[[newDivineSpell{

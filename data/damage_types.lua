@@ -30,15 +30,17 @@ setDefaultProjector(function(src, x, y, type, dam)
 			local visible, srcSeen, tgtSeen = game:logVisible(src, target)
 			if visible then -- don't log damage that the player doesn't know about
 				local source = src.__project_source or src
+
+				game.logSeen(target, "%s hits %s for %s%0.2f %s damage#LAST#.", src.name:capitalize(), target.name, DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
+
 			--[[	if src.turn_procs and src.turn_procs.is_crit then
 					game:delayedLogDamage(source, target, dam, ("#{bold}#%s%d %s#{normal}##LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), true)
-				else]]
+				else
 					game:delayedLogDamage(source, target, dam, ("%s%d %s#LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), false)
-			--	end
+			--	end]]
 			end
 		end
 
-	--	game.logSeen(target, "%s hits %s for %s%0.2f %s damage#LAST#.", src.name:capitalize(), target.name, DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
 		end
 		
 		local sx, sy = game.level.map:getTileToScreen(x, y)
@@ -250,13 +252,28 @@ newDamageType{
 	end,
 }
 
---Dummy
+--Dummies
 newDamageType{
-	name = "faerie", type  = "FAERIE",
+	name = "faerie", type = "FAERIE",
 	projector = function(src, x, y, type, dam)
 	local target = game.level.map(x, y, Map.ACTOR)
 	if target then
 		target:setEffect(target.EFF_FAERIE, 1, {})
+	end
+	end,
+}
+
+newDamageType{
+	name = "detect evil", type = "DETECT_EVIL",
+	projector = function(src, x, y, type, dam)
+	local target = game.level.map(x, y, Map.ACTOR)
+	if target then
+		if target:isEvil() then
+		game.log("Target glows red briefly")
+		target:setEffect(target.EFF_DETECT_EVIL, 3, {})
+		else
+		game.log("Target is not evil")	
+		end
 	end
 	end,
 }
