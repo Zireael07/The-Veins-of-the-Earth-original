@@ -18,6 +18,7 @@
 local Talents = require "engine.interface.ActorTalents"
 local DamageType = require "engine.DamageType"
 
+--Taken from ToME
 --- Resolves equipment creation for an actor
 function resolvers.equip(t)
 	return {__resolver="equip", __resolve_last=true, t}
@@ -275,7 +276,7 @@ function resolvers.calc.tactic(t, e)
 	return {}
 end
 
-
+--Originals start here
 function resolvers.classes()
 	return {__resolver="classes", __resolve_last=true}
 end
@@ -332,30 +333,44 @@ end
 
 function resolvers.calc.specialnpc(t, e)
 	local special = e.special
-	--BANDIT: give +2 Str, armor proficiencies, martial weapon proficiency. Power Attack; +2 CR
+	--BANDIT: +2 Str, armor proficiencies, martial weapon proficiency. Power Attack; +2 CR
 	if rng.chance(2) then 
 --		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.MARTIAL_WEAPON_PROFICIENCY, true)
 		e.challenge = e.challenge +2 
 		e.special = "bandit"
-	--CHIEFTAIN: give +4 Str  +4 Con, +2 attack, Power Attack, Cleave, +2 CR
+	--CHIEFTAIN: +4 Str  +4 Con, +2 attack, Power Attack, Cleave, +2 CR
 	elseif rng.chance(8) then 
 --		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.CLEAVE, true)
 		e.combat_attack = e.combat_attack +2
 		e.challenge = e.challenge +2 
 		e.special = "chieftain"
+	--SHAMAN: +4 Wis +2 HD +2 CR; Combat Casting	
+	elseif rng.chance(6) then
+		--e:learnTalent(e.COMBAT_CASTING, true)
+		e.hit_die = e.hit_die +2
+		e.challenge = e.challenge +2
+		e.special = "shaman"
 	--SKILLED: +1 to all attributes, +1 HD, +1 attack, +1 CR
 	elseif rng.chance(4) then 
 		e.hit_die = e.hit_die +1
 		e.combat_attack = e.combat_attack +1
 		e.challenge = e.challenge +1 
 		e.special = "skilled"
-	--EXPERIENCED: +2 to all attributes, +2 attack/CR
+	--EXPERIENCED: +2 to all attributes, +2 attack +2 CR
 	elseif rng.chance(10) then
 		e.combat_attack = e.combat_attack +2
 		e.challenge = e.challenge +2
 		e.special = "experienced"
+	--CURATE: +4 CR; +2 Str +2 Con +4 Int +3 Wis +6; AC +2 attack +3 HD +4; armor proficiencies, Combat Casting, Power Attack, turn undead (Clr5)
+	elseif rng.chance(15) then
+		--feats go here
+		e.challenge = e.challenge + 4
+		e.hit_die = e.hit_die +4
+		e.combat_attack = e.combat_attack + 3
+		e.combat_untyped = e.combat_untyped +2
+		e.special = "curate"
 	end
 	
 end
