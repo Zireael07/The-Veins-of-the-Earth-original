@@ -96,16 +96,8 @@ end
 function _M:run()
 	veins.saveMarson()
 
---	self.uiset:activate()
+	self.uiset:activate()
 
-	self.logdisplay = LogDisplay.new(0, self.h * 0.5, 600, self.h * 0.2, 5, nil, 14, nil, nil)
-	self.logdisplay:enableFading(7)
-	h = 52
-	--self.hotkeys_display = HotkeysIconsDisplay.new(nil, self.w * 0.5, self.h * 0.85, self.w * 0.5, self.h * 0.2, {30,30,0}, nil, nil, 48, 48)
-	self.hotkeys_display = HotkeysIconsDisplay.new(nil, 216, game.h - h, game.w - 216, h, {30,30,0}, nil, nil, 48, 48)
-	self.npcs_display = ActorsSeenDisplay.new(nil, self.w * 0.5, self.h * 0.8, self.w * 0.5, self.h * 0.2, {30,30,0})
-	self.player_display = PlayerDisplay.new(0, self.h*0.75, 200, 150, {0,0,0}, "/data/font/DroidSansMono.ttf", 14)
-	
 	local flysize = veins.fonts.flying.size or 16
 	self.tooltip = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
 	self.tooltip2 = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
@@ -113,13 +105,6 @@ function _M:run()
 
 --	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
-
-	self.minimap_bg, self.minimap_bg_w, self.minimap_bg_h = core.display.loadImage("/data/gfx/ui/minimap.png"):glTexture()
-
-	self.log = function(style, ...) self.logdisplay(style, ...) end
---	self.logSeen = function(e, style, ...) if e and self.level.map.seens(e.x, e.y) then self.log(style, ...) end end
-	self.logPlayer = function(e, style, ...) if e == self.player then self.log(style, ...) end end
-	
 
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
@@ -139,8 +124,11 @@ function _M:run()
 --	if self.level and self.level.data.day_night then self.state:dayNightCycle() end
 	if self.level then self.state:dayNightCycle() end
 
-	self.hotkeys_display.actor = self.player
-	self.npcs_display.actor = self.player
+--	self.hotkeys_display.actor = self.player
+--	self.npcs_display.actor = self.player
+
+	self.uiset.hotkeys_display.actor = self.player
+	self.uiset.npcs_display.actor = self.player
 
 	-- Setup the targetting system
 	engine.interface.GameTargeting.init(self)
@@ -226,7 +214,7 @@ function _M:loaded()
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", trap_class="mod.class.Trap"}
 	--New filters from GameState go here
 
---	self.uiset = (require("mod.class.uiset."..(config.settings.tome.uiset_mode or "Veins"))).new()
+	self.uiset = require("mod.class.uiset.Veins").new()
 
 	Map:setViewerActor(self.player)
 	self:setupDisplayMode(false, "init")
@@ -738,7 +726,7 @@ end
 
 -- Note: There can be up to a 1 tick delay in displaying log information
 function _M:displayDelayedLogDamage()
-	if not self.uiset or not self.uiset.logdisplay then return end
+--	if not self.uiset or not self.uiset.logdisplay then return end
 	for src, tgts in pairs(self.delayed_log_damage) do
 		for target, dams in pairs(tgts) do
 			if #dams.descs > 1 then
@@ -825,11 +813,7 @@ function _M:updateFOV()
 	self.player:playerFOV()
 end
 
-function _M:display(nb_keyframe)
-	
-	-- If switching resolution, blank everything but the dialog
-	if self.change_res_dialog then engine.GameTurnBased.display(self, nb_keyframe) return end
-
+function _M:displayMap(nb_keyframes)
 	-- Now the map, if any
 	if self.level and self.level.map and self.level.map.finished then
 		local map = self.level.map
@@ -841,9 +825,12 @@ function _M:display(nb_keyframe)
 		if self.fbo then
 			self.fbo:use(true)
 				if self.level.data.background then self.level.data.background(self.level, 0, 0, nb_keyframes) end
-				--map:display(0, 0, nb_keyframe)
-				map:display(0, 0, nb_keyframe, true)
-				map._map:drawSeensTexture(0, 0, nb_keyframe)
+				--map:display(0, 0, nb_keyframes)
+				map:display(0, 0, nb_keyframes, true)
+			--	if self.level.data.foreground then self.level.data.foreground(self.level, 0, 0, nb_keyframes) end
+			--	if self.level.data.weather_particle then self.state:displayWeather(self.level, self.level.data.weather_particle, nb_keyframes) end
+			--	if self.level.data.weather_shader then self.state:displayWeatherShader(self.level, self.level.data.weather_shader, map.display_x, map.display_y, nb_keyframes) end
+				map._map:drawSeensTexture(0, 0, nb_keyframes)
 			self.fbo:use(false, self.full_fbo)
 
 			self.fbo:toScreen(0, 0, self.w, self.h, self.fbo_shader.shad)
@@ -852,41 +839,43 @@ function _M:display(nb_keyframe)
 		-- Basic display; no FBOs
 		else
 			if self.level.data.background then self.level.data.background(self.level, map.display_x, map.display_y, nb_keyframes) end
-			--self.level.map:display(nil, nil, nb_keyframe)
-			map:display(nil, nil, nb_keyframe, true)
-			map._map:drawSeensTexture(map.display_x, map.display_y, nb_keyframe)
+			--self.level.map:display(nil, nil, nb_keyframes)
+			map:display(nil, nil, nb_keyframes, true)
+		--[[	if self.level.data.foreground then self.level.data.foreground(self.level, map.display_x, map.display_y, nb_keyframes) end
+			if self.level.data.weather_particle then self.state:displayWeather(self.level, self.level.data.weather_particle, nb_keyframes) end
+			if self.level.data.weather_shader then self.state:displayWeatherShader(self.level, self.level.data.weather_shader, map.display_x, map.display_y, nb_keyframes) end
+		]]--	core.particles.drawAlterings()
+			map._map:drawSeensTexture(map.display_x, map.display_y, nb_keyframes)
 		end
 
+		-- Handle ambient sounds
+	--	if self.level.data.ambient_bg_sounds then self.state:playAmbientSounds(self.level, self.level.data.ambient_bg_sounds, nb_keyframes) end
 
-		-- Display the targetting system if active
-		self.target:display()
+	--	if not self.zone_name_s then self:updateZoneName() end
 
-		-- And the minimap
-	--	self.level.map:minimapDisplay(self.w - 200, 20, util.bound(self.player.x - 25, 0, self.level.map.w - 50), util.bound(self.player.y - 25, 0, self.level.map.h - 50), 50, 50, 0.6)
-		
-		--Taken from ToME
-		self.minimap_bg:toScreen(self.w - 200, 20, 200, 200)
-			if game.player.x then
-				game.minimap_scroll_x, game.minimap_scroll_y = util.bound(game.player.x - 25, 0, map.w - 50), util.bound(game.player.y - 25, 0, map.h - 50)
-			else
-				game.minimap_scroll_x, game.minimap_scroll_y = 0, 0
-			end
-			map:minimapDisplay(self.w - 200, 20, game.minimap_scroll_x, game.minimap_scroll_y, 50, 50, 1)
-
-		self.player_display:toScreen()
+		-- emotes display
+	--	map:displayEmotes(nb_keyframe or 1)
 	end
+end
 
-	-- We display the player's interface
---	self.flash:toScreen(nb_keyframe)
-	self.logdisplay:toScreen()
-	if self.show_npc_list then
-		self.npcs_display:toScreen()
-	else
-		self.hotkeys_display:toScreen()
-	end
+--- Called when screen resolution changes
+function _M:checkResolutionChange(w, h, ow, oh)
+	self:createFBOs()
+
+	return self.uiset:handleResolutionChange(w, h, ow, oh)
+end
+
+function _M:display(nb_keyframes)
+	
+	-- If switching resolution, blank everything but the dialog
+	if self.change_res_dialog then engine.GameTurnBased.display(self, nb_keyframes) return end
+
+	-- Now the ui
+	self.uiset:display(nb_keyframes)
+
 	if self.player then self.player.changed = false end
 
-	engine.GameTurnBased.display(self, nb_keyframe)
+	engine.GameTurnBased.display(self, nb_keyframes)
 	
 	-- Tooltip is displayed over all else
 	local mx, my, button = core.mouse.get()
@@ -1257,10 +1246,13 @@ function _M:setupMouse(reset)
 		if button == "wheeldown" then self.logdisplay:scrollUp(-1) end
 	end, {button=true})]]
 	-- Use hotkeys with mouse
-	self.mouse:registerZone(self.hotkeys_display.display_x, self.hotkeys_display.display_y, self.w, self.h, function(button, mx, my, xrel, yrel, bx, by, event)
+--[[	self.mouse:registerZone(self.hotkeys_display.display_x, self.hotkeys_display.display_y, self.w, self.h, function(button, mx, my, xrel, yrel, bx, by, event)
 		self.hotkeys_display:onMouse(button, mx, my, event == "button", function(text) self.tooltip:displayAtMap(nil, nil, self.w, self.h, tostring(text)) end)
-	end)
-	self.mouse:setCurrent()
+	end)]]
+	
+	self.uiset:setupMouse(self.mouse)
+
+	if not reset then self.mouse:setCurrent() end
 end
 
 --- Right mouse click on the map

@@ -604,7 +604,7 @@ end
 -- #source#|#Source# -> <displayString> self.name|self.name:capitalize()
 -- #target#|#Target# -> target.name|target.name:capitalize()
 function _M:logCombat(target, style, ...)
---  if not game.uiset or not game.uiset.logdisplay then return end
+  if not game.uiset or not game.uiset.logdisplay then return end
   local visible, srcSeen, tgtSeen = game:logVisible(self, target)  -- should a message be displayed?
-  if visible then game.logdisplay(game:logMessage(self, srcSeen, target, tgtSeen, style, ...)) end
+  if visible then game.uiset.logdisplay(game:logMessage(self, srcSeen, target, tgtSeen, style, ...)) end
 end
