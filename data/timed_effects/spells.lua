@@ -161,6 +161,55 @@ newEffect{
     end,
 }
 
+newEffect{
+	name = "DETECT_GOOD",
+	desc = "Detected good",
+	long_desc = [[The character detects as good.]],
+	type = "mental",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is good!", "+DetectGood" end,
+	on_lose = function(self, err) return "#Target# is no longer outlined.", "-DetectGood" end,
+	activate = function(self, eff)
+        eff.particle = self:addParticles(Particles.new("good", 1))
+    end,
+    deactivate = function(self, eff)
+        self:removeParticles(eff.particle)
+    end,
+}
+
+newEffect{
+	name = "DETECT_CHAOS",
+	desc = "Detected chaos",
+	long_desc = [[The character detects as chaotic.]],
+	type = "mental",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is chaotic!", "+DetectChaos" end,
+	on_lose = function(self, err) return "#Target# is no longer outlined.", "-DetectChaos" end,
+	activate = function(self, eff)
+        eff.particle = self:addParticles(Particles.new("chaos", 1))
+    end,
+    deactivate = function(self, eff)
+        self:removeParticles(eff.particle)
+    end,
+}
+
+newEffect{
+	name = "DETECT_LAW",
+	desc = "Detected law",
+	long_desc = [[The character detects as lawful.]],
+	type = "mental",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is lawful!", "+DetectLaw" end,
+	on_lose = function(self, err) return "#Target# is no longer outlined.", "-DetectLaw" end,
+	activate = function(self, eff)
+        eff.particle = self:addParticles(Particles.new("law", 1))
+    end,
+    deactivate = function(self, eff)
+        self:removeParticles(eff.particle)
+    end,
+}
+
+
 --Buff spells, Zireael
 newEffect{
 	name = "BEAR_ENDURANCE",

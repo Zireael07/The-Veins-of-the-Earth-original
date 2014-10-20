@@ -420,6 +420,98 @@ newDivineSpell{
 	end,
 }
 
+newDivineSpell{
+	name = "Detect Good",
+	type = {"divine", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	range = 1,
+	requires_target = true,
+	radius = 5,
+	target = function(self, t)
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = 5
+
+	--	self:project(tg, x, y, DamageType.DETECT_GOOD, damage, {type="good"})
+		self:project(tg, x, y, DamageType.DETECT_GOOD, damage)
+
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[You detect presence or absence of good in a 60 ft. cone.]])
+	end,
+}
+
+newDivineSpell{
+	name = "Detect Chaos",
+	type = {"divine", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	range = 1,
+	requires_target = true,
+	radius = 5,
+	target = function(self, t)
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = 5
+
+	--	self:project(tg, x, y, DamageType.DETECT_CHAOS, damage, {type="chaos"})
+		self:project(tg, x, y, DamageType.DETECT_CHAOS, damage)
+
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[You detect presence or absence of chaos in a 60 ft. cone.]])
+	end,
+}
+
+newDivineSpell{
+	name = "Detect Law",
+	type = {"divine", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	range = 1,
+	requires_target = true,
+	radius = 5,
+	target = function(self, t)
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+        local _ _, x, y, _, _ = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = 5
+
+	--	self:project(tg, x, y, DamageType.DETECT_LAW, damage, {type="evil"})
+		self:project(tg, x, y, DamageType.DETECT_LAW, damage)
+
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[You detect presence or absence of law in a 60 ft. cone.]])
+	end,
+}
 
 --"Animal buff" spells
 --[[newDivineSpell{
