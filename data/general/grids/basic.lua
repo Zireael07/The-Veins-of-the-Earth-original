@@ -194,6 +194,15 @@ newEntity{
 	display = '#', color=colors.YELLOW, back_color = {r=30, g=30, b=60},
 }
 
+newEntity{
+	base = "WALL",
+	name = "faerie lantern",
+	define_as = "FAERIE_TORCH",
+	image = "tiles/newtiles/faerie_lantern.png",
+	display = '#', color=colors.GREEN, back_color = {r=30, g=30, b=60},
+}
+
+
 --Doors
 newEntity{
 	define_as = "DOOR",

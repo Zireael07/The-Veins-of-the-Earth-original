@@ -1,3 +1,3 @@
 Tiles in the /tiles folder are made by Daniel E. Gervais and released under Creative Commons BY-3.0 license.
 Tiles in the /UT folder are taken from UT32 (made by Buzzkill) with contributions by Thapper, Shockbolt, NPPAngband and PowerWyrm.
-Tiles in the /newtiles folder are my recolors/edits.
+Tiles in the /newtiles folder are my recolors/edits. Faerie lantern based on thresh lantern by imrevned from Deviant Art.
