@@ -84,7 +84,7 @@ newEntity{
 	type = "monstrous_humanoid",
 	name = "doppelganger",
 	image = "tiles/doppelganger.png",
-	display = 'h', color=colors.GRAY,
+	display = 'h', color=colors.LIGHT_SLATE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A thin grayish humanoid.]],
 
