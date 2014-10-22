@@ -90,13 +90,7 @@ function _M:generateListUi()
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
-		text = string.toTString [[Sets the transparency of dialog screens. 100 is fully opaque and 0 is fully transparent.
-		
-Default ToME transparencies
-• Metal: 90
-• Simple: 90
-• Stone: 100
-• Steamtech: 100#WHITE#]]
+		text = string.toTString [[Sets the transparency of dialog screens. 100 is fully opaque and 0 is fully transparent.]]
 	}
 	list[#list+1] = {
 		zone = zone,
@@ -127,7 +121,7 @@ Default ToME transparencies
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
-		text = string.toTString [[Sets the transparency of the tooltip. 100 is fully opaque and 0 is fully transparent. (Default ToME transparency is 75.)#WHITE#]]
+		text = string.toTString [[Sets the transparency of the tooltip. 100 is fully opaque and 0 is fully transparent.#WHITE#]]
 	}
 	list[#list+1] = {
 		zone = zone,
@@ -147,7 +141,7 @@ Default ToME transparencies
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
-		text = string.toTString [[Sets the background transparency for chat, log, and NPC list. 100 is fully opaque and 0 is fully transparent. (Default ToME transparency is 0.)#WHITE#]]
+		text = string.toTString [[Sets the background transparency for chat, log, and NPC list. 100 is fully opaque and 0 is fully transparent.#WHITE#]]
 	}
 	list[#list+1] = {
 		zone = zone,
@@ -167,7 +161,7 @@ Default ToME transparencies
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
-		text = string.toTString [[Sets the hotkey bar background transparency. 100 is fully opaque and 0 is fully transparent. (Default ToME transparency is 100.)#WHITE#]]
+		text = string.toTString [[Sets the hotkey bar background transparency. 100 is fully opaque and 0 is fully transparent.#WHITE#]]
 	}
 	list[#list+1] = {
 		zone = zone,
@@ -189,7 +183,7 @@ Default ToME transparencies
 		height = self.c_desc.h,
 		text = string.toTString [[Sets the tooltip location.
 		
-• #YELLOW#Lower-right#WHITE#: standard ToME.
+• #YELLOW#Lower-right#WHITE#: standard.
 • #YELLOW#Opposite#WHITE#: use the opposite corner of the screen from the mouse. #WHITE#
 • #YELLOW#Mouse#WHITE#: tooltip follows the mouse cursor]]
 	}
@@ -214,7 +208,7 @@ Default ToME transparencies
 		height = self.c_desc.h,
 		text = string.toTString [[Sets the tooltip location specifically for the inventory screen.
 		
-• #YELLOW#Original#WHITE# is standard ToME.
+• #YELLOW#Original#WHITE# is standard.
 • #YELLOW#Small Screen#WHITE# moves the tooltip to either side of the screen.
 • #YELLOW#Big Screen#WHITE# uses a dedicated location in the center of the screen. #WHITE#]]
 	}
@@ -237,7 +231,7 @@ Default ToME transparencies
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
-		text = string.toTString [[Sets width of all tooltips. Original size is 300. Previous versions of this addon used 400.]]
+		text = string.toTString [[Sets width of all tooltips. Original size is 300.]]
 	}
 	list[#list+1] = {
 		zone = zone,
@@ -497,10 +491,10 @@ function _M:generateListGame()
         status = function(item)
             return tostring(config.settings.veins.difficulty or "Default")
         end, fct=function(item)
-            local difficulty = {{name="Default", difficulty="Default"}, {name="Easy", difficulty="Easy"}, {name="Hard", difficulty="Hard"},}
+            local difficulty = {{name="Default", setting="Default"}, {name="Easy", setting="Easy"}, {name="Hard", setting="Hard"},}
             engine.ui.Dialog:listPopup("Difficulty setting", "Select difficulty", difficulty, 100, 200, function(sel)
-                if not sel or not sel.difficulty then return end
-                config.settings.veins.difficulty = sel.difficulty
+                if not sel or not sel.setting then return end
+                config.settings.veins.difficulty = sel.setting
                 game:saveSettings("veins.difficulty", ("veins.difficulty= %s\n"):format(tostring(config.settings.veins.difficulty)))
                 self.c_list:drawItem(item)
             end)
