@@ -1091,6 +1091,11 @@ function _M:setupCommands()
 			self:registerDialog(menu)
 		end,
 
+		-- Show time
+		SHOW_TIME = function()
+			self.log(self.calendar:getTimeDate(self.turn))
+		end,
+
 		-- Lua console, you probably want to disable it for releases
 		LUA_CONSOLE = function()
 			if config.settings.cheat then
@@ -1105,10 +1110,18 @@ function _M:setupCommands()
 		end,
 
 		-- Toggle monster list
-		--[[TOGGLE_NPC_LIST = function()
+		TOGGLE_NPC_LIST = function()
 			self.show_npc_list = not self.show_npc_list
 			self.player.changed = true
-		end,]]
+
+			if (self.show_npc_list) then
+				self.log("Displaying creatures.")
+			else
+				self.log("Displaying talents.")
+			end
+		end,
+
+		SCREENSHOT = function() self:saveScreenshot() end,
 
 		TACTICAL_DISPLAY = function()
 			if self.always_target == true then

@@ -23,7 +23,7 @@ local PlayerDisplay = require "mod.class.PlayerDisplay"
 local HotkeysDisplay = require "engine.HotkeysDisplay"
 --local HotkeysIconsDisplay = require "engine.HotkeysIconsDisplay"
 local HotkeysIconsDisplay = require "mod.class.HotkeysIconsDisplay"
-local ActorsSeenDisplay = require "engine.ActorsSeenDisplay"
+local ActorsSeenDisplayMin = require "mod.class.patch.ActorsSeenDisplayMin"
 local LogDisplay = require "engine.LogDisplay"
 local LogFlasher = require "engine.LogFlasher"
 local FlyingText = require "engine.FlyingText"
@@ -74,8 +74,11 @@ function _M:activate()
 --    profile.chat:enableFading(config.settings.tome.log_fade or 3)
     profile.chat:enableDisplayChans(false)
 
-    self.npcs_display = ActorsSeenDisplay.new(nil, 216, game.h - font_mono_h * 4.2, game.w - 216, font_mono_h * 4.2, "/data/gfx/ui/talents-list.png", font_mono, size_mono)
-    self.npcs_display:setColumns(3)
+  
+--    self.npcs_display = ActorsSeenDisplayMin.new(nil, 216, game.h - font_mono_h * 4.2, game.w - 216, font_mono_h * 4.2, "/data/gfx/ui/talents-list.png", font_mono, size_mono)
+    self.npcs_display = ActorsSeenDisplayMin.new(nil, 216, game.h - 70, game.w - 216, font_mono_h*5, "/data/gfx/ui/talents-list.png", font_mono, size_mono)
+    self.npcs_display:enableShadow(1)
+--    self.npcs_display:setColumns(3)
 
     self.minimap_bg, self.minimap_bg_w, self.minimap_bg_h = core.display.loadImage("/data/gfx/ui/minimap.png"):glTexture()
     self:createSeparators()
@@ -141,8 +144,8 @@ local _sep_rightl = {core.display.loadImage("/data/gfx/ui/separator-right_line_e
 
 local _log_icon, _log_icon_w, _log_icon_h = core.display.loadImage("/data/gfx/ui/log-icon.png"):glTexture()
 local _chat_icon, _chat_icon_w, _chat_icon_h = core.display.loadImage("/data/gfx/ui/chat-icon.png"):glTexture()
---local _talents_icon, _talents_icon_w, _talents_icon_h = core.display.loadImage("/data/gfx/ui/talents-icon.png"):glTexture()
---local _actors_icon, _actors_icon_w, _actors_icon_h = core.display.loadImage("/data/gfx/ui/actors-icon.png"):glTexture()
+local _talents_icon, _talents_icon_w, _talents_icon_h = core.display.loadImage("/data/gfx/ui/talents-icon.png"):glTexture()
+local _actors_icon, _actors_icon_w, _actors_icon_h = core.display.loadImage("/data/gfx/ui/actors-icon.png"):glTexture()
 local _main_menu_icon, _main_menu_icon_w, _main_menu_icon_h = core.display.loadImage("/data/gfx/ui/main-menu-icon.png"):glTexture()
 local _inventory_icon, _inventory_icon_w, _inventory_icon_h = core.display.loadImage("/data/gfx/ui/inventory-icon.png"):glTexture()
 local _charsheet_icon, _charsheet_icon_w, _charsheet_icon_h = core.display.loadImage("/data/gfx/ui/charsheet-icon.png"):glTexture()
@@ -160,12 +163,12 @@ function _M:displayUI()
 
     -- Icons
     local x, y = icon_x, icon_y
- --[[   if (not self.show_npc_list) then
+    if (not self.show_npc_list) then
         _talents_icon:toScreenFull(x, y, _talents_icon_w, _talents_icon_h, _talents_icon_w, _talents_icon_h)
     else
         _actors_icon:toScreenFull(x, y, _actors_icon_w, _actors_icon_h, _actors_icon_w, _actors_icon_h)
     end
-    x = x + _talents_icon_w]]
+    x = x + _talents_icon_w
 
     -- This is the old version of what's above. Probably should be deleted?
 --  _talents_icon:toScreenFull(x, y, _talents_icon_w, _talents_icon_h, _talents_icon_w, _talents_icon_h)
@@ -239,9 +242,9 @@ function _M:createSeparators()
 end
 
 function _M:clickIcon(bx, by)
---[[    if bx < _talents_icon_w then
+    if bx < _talents_icon_w then
         game.key:triggerVirtual("TOGGLE_NPC_LIST")
-    else]]if bx < 2*_inventory_icon_w then
+    elseif bx < 2*_inventory_icon_w then
         game.key:triggerVirtual("SHOW_INVENTORY")
     elseif bx < 3*_inventory_icon_w then
         game.key:triggerVirtual("SHOW_CHARACTER_SHEET")
@@ -256,7 +259,7 @@ function _M:mouseIcon(bx, by)
     local virtual
     local key
 
---[[    if bx < _talents_icon_w then
+  if bx < _talents_icon_w then
         virtual = "TOGGLE_NPC_LIST"
         key = game.key.binds_remap[virtual] ~= nil and game.key.binds_remap[virtual][1] or game.key:findBoundKeys(virtual)
         key = (key ~= nil and game.key:formatKeyString(key) or "unbound"):capitalize()
@@ -265,7 +268,7 @@ function _M:mouseIcon(bx, by)
         else
             game:tooltipDisplayAtMap(game.w, game.h, "Displaying creatures (#{bold}##GOLD#"..key.."#LAST##{normal}#)\nToggle for talent display#")
         end
-    else]]if bx < 2*_inventory_icon_w then
+    elseif bx < 2*_inventory_icon_w then
         virtual = "SHOW_INVENTORY"
         key = game.key.binds_remap[virtual] ~= nil and game.key.binds_remap[virtual][1] or game.key:findBoundKeys(virtual)
         key = (key ~= nil and game.key:formatKeyString(key) or "unbound"):capitalize()
