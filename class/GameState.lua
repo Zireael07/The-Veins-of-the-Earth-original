@@ -115,6 +115,346 @@ function _M:dayNightCycle()
 	map._map:setObscure(obscure[1] * (tint.r+0.2), obscure[2] * (tint.g+0.2), obscure[3] * (tint.b+0.2), obscure[4])
 end
 
+--Taken from ToME, to be adjusted
+--------------------------------------------------------------
+-- Loot filters
+--------------------------------------------------------------
+
+local drop_tables = {
+	normal = {
+		[1] = {
+			uniques = 0.5,
+			double_greater = 0,
+			greater_normal = 0,
+			greater = 0,
+			double_ego = 20,
+			ego = 45,
+			basic = 38,
+			money = 7,
+			lore = 2,
+		},
+		[2] = {
+			uniques = 0.7,
+			double_greater = 0,
+			greater_normal = 0,
+			greater = 10,
+			double_ego = 35,
+			ego = 30,
+			basic = 41,
+			money = 8,
+			lore = 2.5,
+		},
+		[3] = {
+			uniques = 1,
+			double_greater = 10,
+			greater_normal = 15,
+			greater = 25,
+			double_ego = 25,
+			ego = 25,
+			basic = 10,
+			money = 8.5,
+			lore = 2.5,
+		},
+		[4] = {
+			uniques = 1.1,
+			double_greater = 15,
+			greater_normal = 35,
+			greater = 25,
+			double_ego = 20,
+			ego = 5,
+			basic = 5,
+			money = 8,
+			lore = 3,
+		},
+		[5] = {
+			uniques = 1.2,
+			double_greater = 35,
+			greater_normal = 30,
+			greater = 20,
+			double_ego = 10,
+			ego = 5,
+			basic = 5,
+			money = 8,
+			lore = 3,
+		},
+	},
+	store = {
+		[1] = {
+			uniques = 0.5,
+			double_greater = 10,
+			greater_normal = 15,
+			greater = 25,
+			double_ego = 45,
+			ego = 10,
+			basic = 0,
+			money = 0,
+			lore = 0,
+		},
+		[2] = {
+			uniques = 0.5,
+			double_greater = 20,
+			greater_normal = 18,
+			greater = 25,
+			double_ego = 35,
+			ego = 8,
+			basic = 0,
+			money = 0,
+			lore = 0,
+		},
+		[3] = {
+			uniques = 0.5,
+			double_greater = 30,
+			greater_normal = 22,
+			greater = 25,
+			double_ego = 25,
+			ego = 6,
+			basic = 0,
+			money = 0,
+			lore = 0,
+		},
+		[4] = {
+			uniques = 0.5,
+			double_greater = 40,
+			greater_normal = 30,
+			greater = 25,
+			double_ego = 20,
+			ego = 4,
+			basic = 0,
+			money = 0,
+			lore = 0,
+		},
+		[5] = {
+			uniques = 0.5,
+			double_greater = 50,
+			greater_normal = 30,
+			greater = 25,
+			double_ego = 10,
+			ego = 0,
+			basic = 0,
+			money = 0,
+			lore = 0,
+		},
+	},
+	boss = {
+		[1] = {
+			uniques = 3,
+			double_greater = 0,
+			greater_normal = 0,
+			greater = 5,
+			double_ego = 45,
+			ego = 45,
+			basic = 0,
+			money = 4,
+			lore = 0,
+		},
+		[2] = {
+			uniques = 4,
+			double_greater = 0,
+			greater_normal = 8,
+			greater = 15,
+			double_ego = 40,
+			ego = 35,
+			basic = 0,
+			money = 4,
+			lore = 0,
+		},
+		[3] = {
+			uniques = 5,
+			double_greater = 10,
+			greater_normal = 22,
+			greater = 25,
+			double_ego = 25,
+			ego = 20,
+			basic = 0,
+			money = 4,
+			lore = 0,
+		},
+		[4] = {
+			uniques = 6,
+			double_greater = 40,
+			greater_normal = 30,
+			greater = 25,
+			double_ego = 20,
+			ego = 0,
+			basic = 0,
+			money = 4,
+			lore = 0,
+		},
+		[5] = {
+			uniques = 7,
+			double_greater = 50,
+			greater_normal = 30,
+			greater = 25,
+			double_ego = 10,
+			ego = 0,
+			basic = 0,
+			money = 4,
+			lore = 0,
+		},
+	},
+}
+
+local loot_mod = {
+	uvault = { -- Uber vault
+		uniques = 40,
+		double_greater = 8,
+		greater_normal = 5,
+		greater = 3,
+		double_ego = 0,
+		ego = 0,
+		basic = 0,
+		money = 0,
+		lore = 0,
+	},
+	gvault = { -- Greater vault
+		uniques = 10,
+		double_greater = 2,
+		greater_normal = 2,
+		greater = 2,
+		double_ego = 1,
+		ego = 0,
+		basic = 0,
+		money = 0,
+		lore = 0,
+	},
+	vault = { -- Default vault
+		uniques = 5,
+		double_greater = 2,
+		greater_normal = 3,
+		greater = 3,
+		double_ego = 2,
+		ego = 0,
+		basic = 0,
+		money = 0,
+		lore = 0,
+	},
+}
+
+local default_drops = function(zone, level, what)
+	if zone.default_drops then return zone.default_drops end
+	local lev = util.bound(math.ceil(zone:level_adjust_level(level, "object") / 10), 1, 5)
+--	print("[TOME ENTITY FILTER] making default loot table for", what, lev)
+	return table.clone(drop_tables[what][lev])
+end
+
+function _M:defaultEntityFilter(zone, level, type)
+	if type ~= "object" then return end
+
+	-- By default we dont apply special filters, but we always provide one so that entityFilter is called
+	return {
+		tome = default_drops(zone, level, "normal"),
+	}
+end
+
+--- Alter any entity filters to process tome specific loot tables
+-- Here be magic! We tweak and convert and turn and create filters! It's magic but it works :)
+function _M:entityFilterAlter(zone, level, type, filter)
+	if type ~= "object" then return filter end
+
+	if filter.force_tome_drops or (not filter.tome and not filter.defined and not filter.special and not filter.unique and not filter.ego_chance and not filter.ego_filter and not filter.no_tome_drops) then
+		filter = table.clone(filter)
+		filter.tome = default_drops(zone, level, filter.tome_drops or "normal")
+	end
+
+	if filter.tome then
+		local t = (filter.tome == true) and default_drops(zone, level, "normal") or filter.tome
+		filter.tome = nil
+
+		if filter.tome_mod then
+			t = table.clone(t)
+			if _G.type(filter.tome_mod) == "string" then filter.tome_mod = loot_mod[filter.tome_mod] end
+			for k, v in pairs(filter.tome_mod) do
+--				print(" ***** LOOT MOD", k, v)
+				t[k] = (t[k] or 0) * v
+			end
+		end
+
+		-- If we request a specific type/subtype, we don't want categories that could make that not happen
+--		if filter.type or filter.subtype or filter.name then t.money = 0 end
+		if filter.type or filter.subtype or filter.name then t.money = 0 t.lore = 0	end
+
+		local u = t.uniques or 0
+		local dg = u + (t.double_greater or 0)
+		local ge = dg + (t.greater_normal or 0)
+		local g = ge + (t.greater or 0)
+		local de = g + (t.double_ego or 0)
+		local e = de + (t.ego or 0)
+		local m = e + (t.money or 0)
+		local l = m + (t.lore or 0)
+		local total = l + (t.basic or 0)
+
+		local r = rng.float(0, total)
+		if r < u then
+			print("[TOME ENTITY FILTER] selected Uniques", r, u)
+			filter.unique = true
+			filter.not_properties = filter.not_properties or {}
+			filter.not_properties[#filter.not_properties+1] = "lore"
+
+		elseif r < dg then
+			print("[TOME ENTITY FILTER] selected Double Greater", r, dg)
+			filter.not_properties = filter.not_properties or {}
+			filter.not_properties[#filter.not_properties+1] = "unique"
+			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source}, {ego_chance=100, properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} } }
+
+		elseif r < ge then
+			print("[TOME ENTITY FILTER] selected Greater + Ego", r, ge)
+			filter.not_properties = filter.not_properties or {}
+			filter.not_properties[#filter.not_properties+1] = "unique"
+			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source}, {ego_chance=100, not_properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} }}
+
+		elseif r < g then
+			print("[TOME ENTITY FILTER] selected Greater", r, g)
+			filter.not_properties = filter.not_properties or {}
+			filter.not_properties[#filter.not_properties+1] = "unique"
+			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} } }
+
+		elseif r < de then
+			print("[TOME ENTITY FILTER] selected Double Ego", r, de)
+			filter.not_properties = filter.not_properties or {}
+			filter.not_properties[#filter.not_properties+1] = "unique"
+			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source}, {ego_chance=100, not_properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} }}
+
+		elseif r < e then
+			print("[TOME ENTITY FILTER] selected Ego", r, e)
+			filter.not_properties = filter.not_properties or {}
+			filter.not_properties[#filter.not_properties+1] = "unique"
+			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} } }
+
+		elseif r < m then
+			print("[TOME ENTITY FILTER] selected Money", r, m)
+			filter.special = function(e) return e.type == "money" or e.type == "gem" end
+
+		elseif r < l then
+--			print("[TOME ENTITY FILTER] selected Lore", r, m)
+			print("[TOME ENTITY FILTER] selected Lore", r, l)
+			filter.special = function(e) return e.lore and true or false end
+
+		else
+			print("[TOME ENTITY FILTER] selected basic", r, total)
+			filter.not_properties = filter.not_properties or {}
+			filter.not_properties[#filter.not_properties+1] = "unique"
+			filter.ego_chance = -1000
+		end
+	end
+
+	if filter.random_object then
+		print("[TOME ENTITY FILTER] random object requested, removing ego chances")
+		filter.ego_chance = -1000
+	end
+
+	-- By default we dont apply special filters, but we always provide one so that entityFilter is called
+	return filter
+end
+
+
+function _M:locationRevealAround(x, y)
+	game.level.map.lites(x, y, true)
+	game.level.map.remembers(x, y, true)
+	for _, c in pairs(util.adjacentCoords(x, y)) do
+		game.level.map.lites(x+c[1], y+c[2], true)
+		game.level.map.remembers(x+c[1], y+c[2], true)
+	end
+end
 
 --Events stuff taken from ToME
 function _M:doneEvent(id)
