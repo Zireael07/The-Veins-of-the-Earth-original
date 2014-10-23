@@ -1215,7 +1215,7 @@ function _M:setupCommands()
 		end,
 
 		SHOW_MESSAGE_LOG = function()
-			self:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, self.logdisplay, profile.chat))
+			self:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, self.uiset.logdisplay, profile.chat))
 		end,
 
 		SHOW_CHAT_CHANNELS = function()
