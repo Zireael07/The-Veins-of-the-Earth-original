@@ -34,7 +34,6 @@ local PlayerDisplay = require "mod.class.PlayerDisplay"
 local HotkeysIconsDisplay = require "mod.class.HotkeysIconsDisplay"
 local ActorsSeenDisplay = require "engine.ActorsSeenDisplay"
 local LogDisplay = require "engine.LogDisplay"
---local LogFlasher = require "engine.LogFlasher"
 local LogFlasher = require "mod.class.patch.LogFlasher"
 local DebugConsole = require "engine.DebugConsole"
 local FlyingText = require "engine.FlyingText"
@@ -123,9 +122,6 @@ function _M:run()
 
 --	if self.level and self.level.data.day_night then self.state:dayNightCycle() end
 	if self.level then self.state:dayNightCycle() end
-
---	self.hotkeys_display.actor = self.player
---	self.npcs_display.actor = self.player
 
 	self.uiset.hotkeys_display.actor = self.player
 	self.uiset.npcs_display.actor = self.player
@@ -348,6 +344,8 @@ function _M:setupDisplayMode(reboot, mode)
 		elseif gfx.tiles == "ascii_full" then
 			Map.tiles.use_images = false
 			Map.tiles.no_moddable_tiles = true
+		elseif gfx.tiles == "default" then
+			Map.tiles.sharp_scaling = true
 		elseif gfx.tiles == "customtiles" then
 			Map.tiles.no_moddable_tiles = not config.settings.veins.gfx.tiles_custom_moddable
 			Map.tiles.nicer_tiles = config.settings.veins.gfx.tiles_custom_adv
@@ -542,26 +540,30 @@ function _M:changeLevel(lev, zone)
 	local max_cr = 0
 	if self.level.special_feeling then
 		feeling = self.level.special_feeling
-	else
+		else
 
-	for uid, e in pairs(game.level.entities) do --list[#list+1] = e 
-	cr = e.challenge
-	if cr > max_cr then max_cr = cr 
-	else end
-	end
+		for uid, e in pairs(game.level.entities) do --list[#list+1] = e 
+			cr = e.challenge
+			if cr > max_cr then max_cr = cr 
+			else end
+		end
 
-	local magic = 0
-	local max_magic = 0
+		local magic = 0
+		local max_magic = 0
 
-	--Detect powerful magic items
-	for uid, e in pairs(game.level.entities) do
-		if e.egoed then magic = 2
-		elseif e.egoed and e.greater_ego then magic = 4
-		else end
+		--Detect powerful magic items
+		for i = 0, game.level.map.w - 1 do for j = 0, game.level.map.h - 1 do
+        	for z = game.level.map:getObjectTotal(i, j), 1, -1 do
+            local e = game.level.map:getObject(i, j, z)
+			
+				if e.egoed then magic = 2
+				elseif e.egoed and e.greater_ego then magic = 4
+				else end
 
-		if magic > max_magic then max_magic = magic
-		else end
-	end
+				if magic > max_magic then max_magic = magic
+				else end
+			end
+		end end
 
 		if max_magic > 2 then item_feeling = "You get goosebumps on your skin. A magic item is radiating power."
 		elseif max_magic > 4 then item_feeling = "The feeling of power threatens to overwhelm you. A powerful magic item must be nearby."
@@ -574,6 +576,7 @@ function _M:changeLevel(lev, zone)
 		else feeling = "You walk cautiously, feeling slightly anxious."	
 		end
 	end
+
 	if feeling then self.log("#TEAL#%s", feeling) end
 	if item_feeling then self.log("#TEAL#%s", item_feeling) end
 
@@ -1109,6 +1112,13 @@ function _M:setupCommands()
 		SHOW_TIME = function()
 			self.log(self.calendar:getTimeDate(self.turn))
 		end,
+
+		--Auto talents
+		--[[
+		TOGGLE_AUTOTALENT = function()
+			self.player.no_automatic_talents = not self.player.no_automatic_talents
+			game.log("#GOLD#Automatic talent usage: %s", not self.player.no_automatic_talents and "#LIGHT_GREEN#enabled" or "#LIGHT_RED#disabled")
+		end,]]
 
 		-- Lua console, you probably want to disable it for releases
 		LUA_CONSOLE = function()
