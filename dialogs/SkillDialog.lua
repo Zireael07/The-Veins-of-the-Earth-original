@@ -26,7 +26,8 @@ local function restore(dest, backup)
 end
 
 local skills = {
-	balance = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed for walking on dangerous terrain.',
+	appraise = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Intelligence#LAST#\n\nUsed for haggling and determining the price for your items.',
+    balance = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Dexterity#LAST#\n\nUsed for walking on dangerous terrain.',
 	bluff = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Charisma#LAST#\n\nUsed when lying to NPCs.',
 	climb = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Strength#LAST#\n\nUsed for climbing over chasms.',
 	concentration = '#TAN#Uses stat:#LAST##SANTIQUE_WHITE# Constitution#LAST#\n\nUsed when spellcasting under duress or while threatened.',
@@ -64,7 +65,7 @@ function _M:init(actor)
 	self:generateList()
 	
 	self.c_points = Textzone.new{width=self.iw, auto_height=true, text = "Available skill points: #GOLD#"..self.player.skill_point.. " #LAST#Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."}
-	self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+	self.c_list = List.new{width=self.iw/2, height=self.ih-self.c_points.h - 10, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 	self.c_desc = TextzoneList.new{width=self.iw/2-20, height = 400, text="Hello from description"}
 
 	self:loadUI{

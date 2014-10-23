@@ -104,6 +104,7 @@ function _M:init(t, no_default)
 	self.fortitude_save = self.fortitude_save or 0
 
 	--Skillz!
+	self.skill_appraise = 0
 	self.skill_balance = 0
 	self.skill_bluff = 0
 	self.skill_climb = 0
@@ -136,6 +137,7 @@ function _M:init(t, no_default)
 	self.skill_usemagic = 0
 
 	--Skill bonuses (feat, kit etc.) to be applied on top of ranks
+	self.skill_bonus_appraise = 0
 	self.skill_bonus_balance = 0
 	self.skill_bonus_bluff = 0
 	self.skill_bonus_climb = 0
@@ -1411,9 +1413,9 @@ end
 
 --Skill checks, Zireael
 function _M:getSkill(skill)
-	local stat_for_skill = { balance = "dex", bluff = "cha", climb = "str", concentration = "int", craft = "int", diplomacy = "cha", disabledevice = "int", decipherscript = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", intuition = "int", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", pickpocket = "dex", ride = "dex", search = "int", sensemotive = "wis", swim = "str", spellcraft = "int", spot = "wis", survival = "wis", tumble = "dex", usemagic = "int" }
+	local stat_for_skill = { appraise = "int", balance = "dex", bluff = "cha", climb = "str", concentration = "int", craft = "int", diplomacy = "cha", disabledevice = "int", decipherscript = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", intuition = "int", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", pickpocket = "dex", ride = "dex", search = "int", sensemotive = "wis", swim = "str", spellcraft = "int", spot = "wis", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
-	local penalty_for_skill = { balance = "yes", bluff = "no", climb = "yes", concentration = "no", craft = "no", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", ride = "no", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
+	local penalty_for_skill = { appraise = "no", balance = "yes", bluff = "no", climb = "yes", concentration = "no", craft = "no", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", ride = "no", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
 
 	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) 
 	

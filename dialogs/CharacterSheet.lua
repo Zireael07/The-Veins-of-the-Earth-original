@@ -33,6 +33,7 @@ function _M:init(actor)
         {name="Load penalty", width=11, display_prop="load"},
     },
     list={
+        {name="Appraise (INT)", total=player:colorSkill("appraise") or "0", ranks=(player.skill_appraise or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_appraise or "0") },
         {name="Balance (DEX)", total=player:colorSkill("balance") or "0", ranks=(player.skill_balance or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_balance or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
         {name="Bluff (CHA)", total=player:colorSkill("bluff") or "0", ranks=(player.skill_bluff or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_bluff or "0") },
         {name="Climb (STR)", total=player:colorSkill("climb") or "0", ranks=(player.skill_climb or "0"), stat=player:getStrMod(), bonus=(player.skill_bonus_climb or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
