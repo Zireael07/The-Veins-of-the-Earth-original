@@ -391,6 +391,10 @@ function _M:resizeMapViewport(w, h)
 	end
 end
 
+function _M:setupMiniMap()
+	if self.level and self.level.map and self.level.map.finished then self.uiset:setupMinimap(self.level) end
+end
+
 
 --Highscore stuff, unused until 1.0.5
 function _M:getPlayer(main)
@@ -520,6 +524,16 @@ function _M:changeLevel(lev, zone)
 		self.zone.on_enter(lev, old_lev, zone)
 	end
 
+	-- Update the minimap
+	self:setupMiniMap()
+
+	-- Tell the map to use path strings to speed up path calculations
+	for uid, e in pairs(self.level.entities) do
+		if e.getPathString then
+			self.level.map:addPathString(e:getPathString())
+		end
+	end
+
 	--Level feeling
 	local player = self.player
 	local feeling
@@ -540,7 +554,7 @@ function _M:changeLevel(lev, zone)
 	local max_magic = 0
 
 	--Detect powerful magic items
-	for uid, e in pairs(game.level.entities) do --list[#list+1] = e
+	for uid, e in pairs(game.level.entities) do
 		if e.egoed then magic = 2
 		elseif e.egoed and e.greater_ego then magic = 4
 		else end

@@ -1,5 +1,5 @@
--- ToME - Tales of Middle-Earth
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Copyright (C) 2013-2014 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,9 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
 
 require "engine.class"
 require "engine.Grid"
@@ -28,6 +25,13 @@ function _M:init(t, no_default)
 end
 
 function _M:block_move(x, y, e, act, couldpass)
+	-- Path strings
+	if not e then e = {}
+	elseif type(e) == "string" then
+		e = loadstring(e)()
+	end
+
+
 	-- Open doors
 	if self.door_opened and act then
 		game.level.map(x, y, engine.Map.TERRAIN, game.zone.grid_list.DOOR_OPEN)
