@@ -37,6 +37,8 @@ _M.flavors_def = {}
 
 function _M:init(t, no_default)
     t.encumber = t.encumber or 0
+    t.appraised = false
+    t.school_id = false
 
     engine.Object.init(self, t, no_default)
     engine.interface.ObjectActivable.init(self, t)
@@ -237,7 +239,8 @@ function _M:getTextualDesc()
         if self.reach then desc:add("This is a reach weapon", true) end
         if self.exotic then desc:add("This is an exotic weapon", true) end
 
-        if self.cost then desc:add(("Price: %s"):format(self:formatPrice())) end
+        if self.cost and self.appraised == true then desc:add(("Price: %s"):format(self:formatPrice())) end
+
 
     if self:isIdentified() then
            if self.wielder then
@@ -367,6 +370,29 @@ function _M:on_prepickup(who, idx)
     if self.pseudo_id == true and self.cursed then 
         game.log(("You recognize the %s as cursed and destroy it."):format(self:getUnidentifiedName() or self.name))
         game.level.map:removeObject(who.x, who.y, idx) return true 
+    end
+
+    --Appraise
+    if who == game.player and self.appraised == false then
+        --more than 5 silver
+        if self.cost > 500 then
+            if self:isMagical() then
+                local check_price = who:skillCheck("appraise", 25, true)
+                if check then
+                    self.appraised = true
+                end
+            else
+            local check_price = who:skillCheck("appraise", 20, true)
+            if check then
+                self.appraised = true
+            end
+            end
+        else --common item
+            local check_price = who:skillCheck("appraise", 12, true)
+            if check then
+                self.appraised = true
+            end
+        end
     end
     
     --Lore
