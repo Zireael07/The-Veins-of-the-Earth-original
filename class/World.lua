@@ -38,6 +38,17 @@ function _M:boneLevel(level)
 	self.bone_levels[level] = true
 end
 
+function _M:seenZone(short_name)
+    self.seen_zones = self.seen_zones or {}
+    self.seen_zones[short_name] = true
+end
+
+function _M:hasSeenZone(short_name)
+    self.seen_zones = self.seen_zones or {}
+    return self.seen_zones[short_name]
+end
+
+
 --- Requests the world to save
 function _M:saveWorld(no_dialog)
 	-- savefile_pipe is created as a global by the engine

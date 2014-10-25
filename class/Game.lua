@@ -76,6 +76,8 @@ function _M:init()
 	-- Same init as when loaded from a savefile
 	self:loaded()
 
+	self.visited_zones = {}
+
 	--Moddable tiles
 	self.tiles_attachements = {}
 end
@@ -493,7 +495,12 @@ function _M:changeLevel(lev, zone)
 			self.zone = zone
 		end
 	end
+
 	self.zone:getLevel(self, lev, old_lev)
+	--mark zone as visited
+	self.visited_zones[self.zone.short_name] = true
+	world:seenZone(self.zone.short_name)
+
 
 	--Actually get the events to work
 	self.state:startEvents()
@@ -1317,6 +1324,16 @@ function _M:saveGame()
 	savefile_pipe:push(self.save_name, "game", self)
 	self.log("Saving game...")
 end
+
+--From ToME 4
+function _M:playSoundNear(who, name)
+	if who and (not who.attr or not who:attr("_forbid_sounds")) and self.level and self.level.map.seens(who.x, who.y) then
+		local pos = {x=0,y=0,z=0}
+		if self.player and self.player.x then pos.x, pos.y = who.x - self.player.x, who.y - self.player.y end
+		self:playSound(name, pos)
+	end
+end
+
 
 --Based on ToME 4
 --- Create a random lore object and place it close to entrance
