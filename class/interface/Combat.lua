@@ -365,6 +365,24 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
         dam = math.max(0, reduced_dam)
 
+        --Player makes Listen checks if s/he can't see it happen
+        local visible, srcSeen, tgtSeen = game:logVisible(self, target)
+        if not visible then
+          local heard_it = false
+          local dist = core.fov.distance(game.player.x, game.player.y, self.x, self.y)
+          if dist < 10 and player.skill_listen > 0 then
+            if not heard_it then
+              if player:skillCheck("listen", 10) then 
+                local dir = game.level.map:compassDirection(self.x - game.player.x, self.y - game.player.y)
+                game.log("You hear the sounds of conflict to the %s!", dir)
+                heard_it = true
+              end
+            end
+          end
+        end
+
+
+
 
         --Poison target
         if self.poison and not target.dead and target:canBe("poison") then
@@ -375,8 +393,12 @@ function _M:dealDamage(target, weapon, crit, sneak)
         end
 
         target:takeHit(dam, self)
-        self:logCombat(target, ("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name:capitalize()))
-      --  game.log(("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name:capitalize()))
+        --add a hint regarding DR
+        if target.combat_dr and target.combat_dr > 0 then
+          self:logCombat(target, ("%s deals %d damage to %s (damage reduction %d)!"):format(self:getLogName():capitalize(), dam, target.name:capitalize(), target.combat_dr))
+        else
+          self:logCombat(target, ("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name:capitalize()))
+        end
 end
 
 
