@@ -35,11 +35,6 @@ newEntity{
 	skill_climb = 10,
 	skill_movesilently = 8,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
@@ -83,11 +78,6 @@ newEntity{
 	skill_listen = 5,
 	skill_spot = 5,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -137,11 +127,6 @@ newEntity{
 	skill_hide = 10,
 	skill_spot = 2,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -172,11 +157,6 @@ newEntity{
 	skill_swim = 8,
 	skill_listen = 2,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -208,11 +188,6 @@ newEntity{
 	skill_listen = 6,
 	fly = true,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -242,11 +217,6 @@ newEntity{
 	skill_listen = 3,
 	fly = true,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -275,11 +245,6 @@ newEntity{
 	skill_movesilently = 1,
 	skill_survival = 5,
 	alignment = "neutral",
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
@@ -319,4 +284,135 @@ newEntity{
 	hit_die = 7,
 	challenge = 2,
 	alignment = "neutral",
+}
+
+--From Incursion
+--Trip
+newEntity{
+	define_as = "BASE_NPC_JACKAL",
+	type = "animal",
+	image = "tiles/UT/wolf.png",
+	display = 'd', color=colors.UMBER,
+	body = { INVEN = 10 },
+	desc = [[Jackals are very vocal creatures. Yipping calls are made when the family gathers and are specific to individual families. Non-members do not recognize or respond to the calls of other families.
+    Additionally, when threatened, these jackals make loud screaming vocalizations. When seriously wounded, the vocalizations change from screams to low croaks.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=12, dex=15, con=12, int=2, wis=12, cha=6, luc=12 },
+	combat = { dam= {1,6} },
+	skill_spot = 2,
+	skill_listen = 2,
+	skill_movesilently = 1,
+	skill_survival = 5,
+	alignment = "neutral",
+}
+
+newEntity{
+	base = "BASE_NPC_JACKAL",
+	name = "jackal", color=colors.UMBER,
+	level_range = {1, 20}, exp_worth = 300,
+	rarity = 10,
+	max_life = resolvers.rngavg(8,12),
+	hit_die = 2,
+	challenge = 1,
+	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
+}
+
+newEntity{
+	define_as = "BASE_NPC_MASTIFF",
+	type = "animal",
+	image = "tiles/UT/wolf.png",
+	display = 'd', color=colors.DARK_UMBER,
+	body = { INVEN = 10 },
+	desc = [[This vicious hunting dog may once have been the companion of a ranger or druid, but now it seems to have gone feral and recognizes no master other then its own hunger and survival instinct.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=15, dex=13, con=14, int=2, wis=11, cha=4, luc=10 },
+	combat = { dam= {1,6} },
+	skill_spot = 2,
+	skill_listen = 2,
+	skill_movesilently = 1,
+	skill_survival = 5,
+	alignment = "neutral",
+}
+
+newEntity{
+	base = "BASE_NPC_MASTIFF",
+	name = "mastiff", color=colors.DARK_UMBER,
+	level_range = {1, 20}, exp_worth = 300,
+	rarity = 10,
+	max_life = resolvers.rngavg(8,12),
+	hit_die = 2,
+	challenge = 1,
+	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
+}
+
+--From Pathfinder
+--Trip
+newEntity{
+	define_as = "BASE_NPC_HYENA",
+	type = "animal",
+	image = "tiles/UT/wolf.png",
+	display = 'd', color=colors.TAN,
+	body = { INVEN = 10 },
+	desc = [[This hyena is covered in shaggy, tan-colored fur with black and brown stripes.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=14, dex=15, con=15, int=2, wis=13, cha=6, luc=10 },
+	combat = { dam= {1,6} },
+	skill_spot = 2,
+	skill_listen = 2,
+	skill_movesilently = 1,
+	skill_survival = 5,
+	skill_hide = 5,
+	alignment = "neutral",
+}
+
+newEntity{
+	base = "BASE_NPC_HYENA",
+	name = "hyena", color=colors.TAN,
+	level_range = {1, 20}, exp_worth = 300,
+	rarity = 10,
+	combat_natural = 2,
+	max_life = resolvers.rngavg(12,15),
+	hit_die = 2,
+	challenge = 1,
+	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
+}
+
+--Called hyaenodon in PF
+--Trip, Weapon Focus (bite)
+newEntity{
+	define_as = "BASE_NPC_HYENA_SHORTFACED",
+	type = "animal",
+	image = "tiles/UT/wolf.png",
+	display = 'd', color=colors.DARK_TAN,
+	body = { INVEN = 10 },
+	desc = [[Slightly larger than a normal hyena, this spotted canine has the same shorter forelimbs of that breed but with a blunt face and larger teeth.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=26, dex=15, con=19, int=2, wis=13, cha=6, luc=10 },
+	combat = { dam= {1,6} },
+	skill_spot = 2,
+	skill_listen = 2,
+	skill_movesilently = 1,
+	skill_survival = 9,
+	skill_hide = 3,
+	alignment = "neutral",
+}
+
+newEntity{
+	base = "BASE_NPC_HYENA_SHORTFACED",
+	name = "short-faced hyena", color=colors.DARK_TAN,
+	level_range = {1, 20}, exp_worth = 1200,
+	rarity = 15,
+	combat_natural = 5,
+	max_life = resolvers.rngavg(45,50),
+	hit_die = 2,
+	challenge = 4,
+	movement_speed = 1.66,
+	combat_attackspeed = 1.66,
 }
