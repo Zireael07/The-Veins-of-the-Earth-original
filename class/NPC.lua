@@ -29,7 +29,6 @@ end
 function _M:act()
     local player = game.player
 
-
 	if self.life <= -10 then self:die() end
 
 	-- Do basic actor stuff
@@ -43,24 +42,35 @@ function _M:act()
 		if self.life < self.morale_life then
 			if not self.energy.used then 
                 self:runAI("flee_dmap") 
-            --    self:setEffect(self.EFF_FEAR, 1, {src=player, range=10})
+            --    self:setEffect(self.EFF_FEAR, 1, {src=self.ai_target.actor, range=10})
             end
 		end
 	end
 
 	if self.life / self.max_life < 0.5 then
 		if not self.energy.used then 
-            self:runAI("flee_dmap") 
-        --    self:setEffect(self.EFF_FEAR, 1, {src=player, range=10})
+            if self.ai_target.actor then
+            local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
+                if self:isNear(tx, ty, 5) then
+                    self:runAI("flee_dmap")
+                --    self.ai = "flee_dmap"
+                else
+                    self:runAI("dumb_talented_simple")
+                end
+            else
+                self:runAI("flee_dmap")
+                self.ai = "flee_dmap"
+            end
+        else
+
         end
 	end
 
 	-- Ranged (based on DataQueen)
-	if self.ranged and self:isNear(game.player.x, game.player.y, self.ranged_limit) then
+	if self.ranged and self:isNear(game.player.x, game.player.y, 10) then
 		self.ai = "flee_dmap"
 	else
 		self.ai = "dumb_talented_simple"
-		if self.tricky then self.ranged = false end -- For ranged enemies
 	end
 
 
