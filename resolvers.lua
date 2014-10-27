@@ -316,8 +316,11 @@ function resolvers.calc.class(t, e)
 	else end
 
 	if class then
---[[	e = e:giveLevels(class, n)
-	return e]]
+	--safety check 
+		if game.zone.max_cr then
+			if e.challenge + n > game.level.level + game.zone.max_cr then return end
+		end
+
 	e:giveLevels(class, n)
 	e.challenge = e.challenge + n
 
@@ -332,47 +335,67 @@ function resolvers.specialnpc()
 end
 
 function resolvers.calc.specialnpc(t, e)
-	local special = e.special
+	local choice
+	local cr_boost
+
+	--pick special template
 	--BANDIT: +2 Str, armor proficiencies, martial weapon proficiency. Power Attack; +2 CR
 	if rng.chance(2) then 
+		choice = "bandit"
+		cr_boost = 2
+	--CHIEFTAIN: +4 Str  +4 Con, +2 attack, Power Attack, Cleave, +2 CR
+	elseif rng.chance(8) then 
+		choice = "chieftain"
+		cr_boost = 2
+	--SHAMAN: +4 Wis +2 HD +2 CR; Combat Casting	
+	elseif rng.chance(6) then
+		choice = "shaman"
+		cr_boost = 2
+	--SKILLED: +1 to all attributes, +1 HD, +1 attack, +1 CR
+	elseif rng.chance(4) then 
+		choice = "skilled"
+		cr_boost = 1
+	--EXPERIENCED: +2 to all attributes, +2 attack +2 CR
+	elseif rng.chance(10) then
+		choice = "experienced"
+		cr_boost = 1
+	end
+
+	--safety check
+	if game.zone.max_cr then
+		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
+			choice = nil
+		end
+	end 
+
+	--apply the templates now
+	if choice == "bandit" then	
 --		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.MARTIAL_WEAPON_PROFICIENCY, true)
 		e.challenge = e.challenge +2 
 		e.special = "bandit"
-	--CHIEFTAIN: +4 Str  +4 Con, +2 attack, Power Attack, Cleave, +2 CR
-	elseif rng.chance(8) then 
+	elseif choice == "chieftain" then
 --		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.CLEAVE, true)
 		e.combat_attack = e.combat_attack +2
 		e.challenge = e.challenge +2 
 		e.special = "chieftain"
-	--SHAMAN: +4 Wis +2 HD +2 CR; Combat Casting	
-	elseif rng.chance(6) then
+	elseif choice == "shaman" then
 		--e:learnTalent(e.COMBAT_CASTING, true)
 		e.hit_die = e.hit_die +2
 		e.challenge = e.challenge +2
 		e.special = "shaman"
-	--SKILLED: +1 to all attributes, +1 HD, +1 attack, +1 CR
-	elseif rng.chance(4) then 
+	elseif choice == "skilled" then
 		e.hit_die = e.hit_die +1
 		e.combat_attack = e.combat_attack +1
 		e.challenge = e.challenge +1 
 		e.special = "skilled"
-	--EXPERIENCED: +2 to all attributes, +2 attack +2 CR
-	elseif rng.chance(10) then
+	elseif choice == "experienced" then
 		e.combat_attack = e.combat_attack +2
 		e.challenge = e.challenge +2
 		e.special = "experienced"
-	--CURATE: +4 CR; +2 Str +2 Con +4 Int +3 Wis +6; AC +2 attack +3 HD +4; armor proficiencies, Combat Casting, Power Attack, turn undead (Clr5)
-	elseif rng.chance(15) then
-		--feats go here
-		e.challenge = e.challenge + 4
-		e.hit_die = e.hit_die +4
-		e.combat_attack = e.combat_attack + 3
-		e.combat_untyped = e.combat_untyped +2
-		e.special = "curate"
 	end
-	
+
 end
 
 --Since egos result in random freezes on level gen, make them here
@@ -456,6 +479,16 @@ function resolvers.calc.templates(t, e)
 
 	end
 end
+
+--[[	--CURATE: +4 CR; +2 Str +2 Con +4 Int +3 Wis +6; AC +2 attack +3 HD +4; armor proficiencies, Combat Casting, Power Attack, turn undead (Clr5)
+	elseif rng.chance(15) then
+		--feats go here
+		e.challenge = e.challenge + 4
+		e.hit_die = e.hit_die +4
+		e.combat_attack = e.combat_attack + 3
+		e.combat_untyped = e.combat_untyped +2
+		e.special = "curate"]]
+
 
 --Moddable tiles, based on ToME's
 function resolvers.moddable_tile(image, values)
