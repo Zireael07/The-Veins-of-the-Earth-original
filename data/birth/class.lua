@@ -81,7 +81,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
-	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	copy = {
 	},
 	descriptor_choices =
@@ -905,6 +905,9 @@ newBirthDescriptor {
             actor:attr("will_save", 2)
 			actor:attr("max_life", 8 + (actor:getCon()-10)/2)
             actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+            --monk specific abilities
+            actor:learnTalent(actor.T_WISDOM_AC_MONK, true)
+            actor:learnTalent(actor.T_STUNNING_FIST, true)
 
             --Any level higher than 1
             else
@@ -1216,7 +1219,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Rogue',
-	desc = help..'#ORANGE#Rogues are masters of tricks.\n\n #LIGHT_BLUE# Class skills: Balance, Bluff, Climb, Craft, Diplomacy, Decipher Script, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic.\n\n  #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.\n\n #GOLD#DEX 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Rogues are masters of tricks.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Craft, Diplomacy, Decipher Script, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic.\n\n  #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.\n\n #GOLD#DEX 13#LAST# to multiclass to this class.',
 	rarity = 3,
 	copy = {
 		resolvers.equip {
