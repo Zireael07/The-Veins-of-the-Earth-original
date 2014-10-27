@@ -339,26 +339,42 @@ function resolvers.calc.specialnpc(t, e)
 	local cr_boost
 
 	--pick special template
-	--BANDIT: +2 Str, armor proficiencies, martial weapon proficiency. Power Attack; +2 CR
 	if rng.chance(2) then 
 		choice = "bandit"
 		cr_boost = 2
-	--CHIEFTAIN: +4 Str  +4 Con, +2 attack, Power Attack, Cleave, +2 CR
+	elseif rng.chance(6) then
+		choice = "outlaw"
+		cr_boost = 1
+	elseif rng.chance(10) then
+		choice = "brigand"
+		cr_boost = 1
 	elseif rng.chance(8) then 
 		choice = "chieftain"
 		cr_boost = 2
-	--SHAMAN: +4 Wis +2 HD +2 CR; Combat Casting	
 	elseif rng.chance(6) then
 		choice = "shaman"
 		cr_boost = 2
-	--SKILLED: +1 to all attributes, +1 HD, +1 attack, +1 CR
 	elseif rng.chance(4) then 
 		choice = "skilled"
 		cr_boost = 1
-	--EXPERIENCED: +2 to all attributes, +2 attack +2 CR
 	elseif rng.chance(10) then
 		choice = "experienced"
-		cr_boost = 1
+		cr_boost = 2
+	elseif rng.chance(15) then
+		choice = "veteran"
+		cr_boost = 4
+	elseif rng.chance(20) then
+		choice = "elite"
+		cr_boost = 5
+	elseif rng.chance(25) then
+		choice = "master"
+		cr_boost = 7
+	elseif rng.chance(30) then
+		choice = "paragon"
+		cr_boost = 9
+	elseif rng.chance(40) then
+		choice = "legendary"
+		cr_boost = 12
 	end
 
 	--safety check
@@ -369,31 +385,82 @@ function resolvers.calc.specialnpc(t, e)
 	end 
 
 	--apply the templates now
+	--BANDIT: +2 Str, -2 Cha; HD +1 armor proficiencies, martial weapon proficiency. Power Attack;
 	if choice == "bandit" then	
 --		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.MARTIAL_WEAPON_PROFICIENCY, true)
-		e.challenge = e.challenge +2 
+		e.challenge = e.challenge +2
+		e.hit_die = e.hit_die +1 
 		e.special = "bandit"
+	--OUTLAW: +2 Dex -2 Cha; HD +1, armor proficiencies; Dodge, Expertise, Deft Opportunist
+	elseif choice == "outlaw" then
+--	e:learnTalent(e.DODGE, true)
+		e.challenge = e.challenge +1
+		e.hit_die = e.hit_die +1
+		e.special = "outlaw"
+	--BRIGAND: +2 Dex -2 Cha +2 HD; armor proficiencies; Power Attack, Endurance
+	elseif choice == "brigand" then
+		e.challenge = e.challenge +1
+		e.hit_die = e.hit_die +2
+		e.special = "brigand"
+	--CHIEFTAIN: +4 Str  +4 Con, +2 attack, Power Attack, Cleave, *2 HD
+	--magic armor and weapons
 	elseif choice == "chieftain" then
 --		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.CLEAVE, true)
+		e.hit_die = e.hit_die*2
 		e.combat_attack = e.combat_attack +2
 		e.challenge = e.challenge +2 
 		e.special = "chieftain"
+	--SHAMAN: +4 Wis +2 HD +2 CR; Combat Casting	
+	-- potions, wands
 	elseif choice == "shaman" then
 		--e:learnTalent(e.COMBAT_CASTING, true)
 		e.hit_die = e.hit_die +2
 		e.challenge = e.challenge +2
 		e.special = "shaman"
+	--SKILLED: +1 to all attributes, +1 HD, +1 attack, +1 CR
 	elseif choice == "skilled" then
 		e.hit_die = e.hit_die +1
 		e.combat_attack = e.combat_attack +1
 		e.challenge = e.challenge +1 
 		e.special = "skilled"
+	--EXPERIENCED: +2 to all attributes, +2 attack +2 HD
 	elseif choice == "experienced" then
 		e.combat_attack = e.combat_attack +2
 		e.challenge = e.challenge +2
+		e.hit_die = e.hit_die +2
 		e.special = "experienced"
+	--VETERAN: +2 Str +3 other attributes, +4 attack +4 HD
+	elseif choice == "veteran" then
+		e.challenge = e.challenge +4
+		e.combat_attack = e.combat_attack +4
+		e.hit_die = e.hit_die +4
+		e.special = "veteran"
+	--ELITE: +2 Str +4 other attributes; +6 attack +8 HD
+	elseif choice == "elite" then
+		e.challenge = e.challenge +5
+		e.combat_attack = e.combat_attack +6
+		e.hit_die = e.hit_die +8
+		e.special = "elite"
+	--MASTER: +2 Str +4 other attributes; +8 attack +12 HD
+	elseif choice == "master" then
+		e.challenge = e.challenge +7
+		e.combat_attack = e.combat_attack +8
+		e.hit_die = e.hit_die +12
+		e.special = "master"
+	--PARAGON: +2 Str +4 other attributes; +10 attack +15 HD
+	elseif choice == "paragon" then
+		e.challenge = e.challenge +9
+		e.combat_attack = e.combat_attack +10
+		e.hit_die = e.hit_die +15
+		e.special = "paragon"
+	--LEGENDARY: +2 Str +4 other attributes; +14 attack +20 HD
+	elseif choice == "legendary" then
+		e.challenge = e.challenge +12
+		e.combat_attack = e.combat_attack +14
+		e.hit_die = e.hit_die +20
+		e.special = "legendary"
 	end
 
 end
@@ -404,26 +471,77 @@ function resolvers.templates()
 end
 
 function resolvers.calc.templates(t, e)
-	local template
+	local choice
+	local cr_boost
 
 	if rng.chance(5) then
+		choice = "zombie"
+		cr_boost = 1
+	elseif rng.chance(5) then
+		choice = "skeleton"
+		cr_boost = 1
+	elseif rng.chance(10) then
+		choice = "celestial"
+		cr_boost = 2
+	elseif rng.chance(10) then
+		choice = "fiendish"
+		cr_boost = 2
+	elseif rng.chance(15) then
+		choice = "half-celestial"
+		cr_boost = 2
+	elseif rng.chance(15) then
+		choice = "half-fiend"
+		cr_boost = 2
+	elseif rng.chance(15) then
+		choice = "half-dragon"
+		cr_boost = 2
+	elseif rng.chance(25) then
+		choice = "half-fey"
+		cr_boost = 2
+	elseif rng.chance(20) then
+		choice = "flame"
+		cr_boost = 2
+	elseif rng.chance(20) then
+		choice = "earthen"
+		cr_boost = 2
+	elseif rng.chance(20) then
+		choice = "gaseous"
+		cr_boost = 2
+	elseif rng.chance(20) then
+		choice = "aqueous"
+		cr_boost = 2
+	elseif rng.chance(25) then
+		choice = "three-eyed"
+		cr_boost = 3
+	elseif rng.chance(30) then
+		choice = "pseudonatural"
+		cr_boost = 4
+	end
+
+	--safety check
+	if game.zone.max_cr then
+		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
+			choice = nil
+		end
+	end 
+
+	--apply the template
+	if choice == "zombie" then
 		e.template = "zombie"
 		e.display = "Z"
 		e.color=colors.WHITE
 		e.infravision = 3
 		e.challenge = e.challenge +1
 		e.combat = { dam= {1,6} }
-
-	elseif rng.chance(5) then
+	elseif choice == "skeleton" then
 		e.template = "skeleton"
 		e.display = "s" 
 		e.color=colors.WHITE
 		e.infravision = 3
 		e.challenge = e.challenge +1
 		e.combat = { dam= {1,6} }
-
 	--DR 5/magic
-	elseif rng.chance(10) then
+	elseif choice == "celestial" then
 		e.template = "celestial"
 		e.infravision = 3
 		e.spell_resistance = e.hit_die + 5
@@ -433,7 +551,7 @@ function resolvers.calc.templates(t, e)
 	[DamageType.ELECTRIC] = 5,
 	 }
 	--DR 5/magic
-	elseif rng.chance(10) then
+	elseif choice == "fiendish" then
 		e.template = "fiendish"
 		e.infravision = 3
 		e.spell_resistance = e.hit_die + 5
@@ -442,7 +560,7 @@ function resolvers.calc.templates(t, e)
 	[DamageType.COLD] = 5,
 	 }
 	--Stat increases, spell-likes, fly speed, 
-	elseif rng.chance(15) then
+	elseif choice == "half-celestial" then
 		e.template = "half-celestial"
 		e.infravision = 3
 		e.spell_resistance = e.hit_die + 10
@@ -454,7 +572,7 @@ function resolvers.calc.templates(t, e)
 	 }
 
 	--Stat increases, spell-likes, fly, bite/claw
-	elseif rng.chance(15) then
+	elseif choice == "half-fiend" then
 		e.template = "half-fiend"
 		e.infravision = 3
 		e.spell_resistance = e.hit_die + 10
@@ -467,7 +585,7 @@ function resolvers.calc.templates(t, e)
 	 }
 
 	--Stat increases, breath weapon; bite/claw
-	elseif rng.chance(15) then
+	elseif choice == "half-dragon" then
 		e.template = "half-dragon"
 		e.combat_natural = e.combat_natural +4
 		e.infravision = 3
@@ -477,8 +595,102 @@ function resolvers.calc.templates(t, e)
 	[DamageType.ELECTRIC] = 10,
 	 }
 
+	 --Str -4, Dex +4, Wis +4, Cha +4; Alertness, Dodge, Mobility, Finesse; Nature Sense
+	 --Spell-likes: faerie fire, sleep, dimension door
+	 elseif choice == "half-fey" then
+	 	e.template = "half-fey"
+	 	e.infravision = 3
+	 	e.type = "fey"
+	 	e.challenge = e.challenge +2
+	 --Fire immunity, 1d10 fire aura
+	 elseif choice == "flame" then
+	 	--change color to red
+	 	e.type = "elemental"
+	 	e.challenge = e.challenge +2
+	 	e.template = "flame"
+	 --Str +4, Dex -2; AC +6; earthmeld, tremorsense 6 tiles
+	 elseif choice == "earthen" then
+	 	--change color to brown
+	 	e.type = "elemental"
+	 	e.challenge = e.challenge +2
+	 	e.template = "earthen"
+	 --Dex +6, flight
+	 elseif choice == "gaseous" then
+	 	--change color to white
+	 	e.type = "elemental"
+	 	e.challenge = e.challenge +2
+	 	e.template = "gaseous" 
+	 --1d4 slam + engulf DC 20
+	 elseif choice == "aqueous" then
+	 	--change color to blue
+	 	e.type = "elemental"
+	 	e.challenge = e.challenge +2
+	 	e.template = "aqueous"
+	 elseif choice == "three-eyed" then
+	 	e.template = "three-eyed"
+	 	e.challenge = e.challenge +3
+	 	--confusion DC 14 gaze
+	 	e.infravision = 3
+	 	e.skill_spot = (e.skill_spot or 0) +6
+	 	e.skill_search = (e.skill_search or 0) +6
+	 	
+	 --Dex +4, Int +8, Wis +6, Cha +4; Tentacles 1d8, devour, evasion,
+	 --spell-likes: "true strike", "distance distortion", "evard's black tentacles", "displacement", "confusion";
+	 elseif choice == "pseudonatural" then
+	 	--change color to pink
+	 	e.template = "pseudonatural"
+	 	e.challenge = e.challenge +4
+	 	e.combat_attack = e.combat_attack +2
+	 	e.hit_die = e.hit_die +3
+	 	e.spell_resistance = 35
+	 --TO DO: ethereal CR +3, incorporeal, only touch attacks
+
 	end
 end
+
+function resolvers.animaltemplates()
+	return {__resolver="animaltemplates", __resolve_last=true}
+end
+
+function resolvers.calc.animaltemplates(t, e)
+	local choice
+	local cr_boost
+
+	--STR +4 DEX + 2 CON +2 AC +3 attack +4 HD +4; immmune to fear
+	if rng.chance(5) then
+		choice = "dire"
+		cr_boost = 3
+	--HD +1 attack +6 dmg +6
+	--Pounce, Rake, Multiattack, Rend
+	elseif rng.chance(15) then
+		choice = "feral"
+		cr_boost = 2
+	end
+
+	--safety check
+	if game.zone.max_cr then
+		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
+			choice = nil
+		end
+	end 
+
+	if choice == "dire" then
+		e.challenge = e.challenge +3
+		e.combat_attack = e.combat_attack +4
+		e.hit_die = e.hit_die +4
+		e.combat_natural = e.combat_natural +3
+		e.template = "dire"
+	elseif choice == "feral" then
+		e.challenge = e.challenge +2
+		e.hit_die = e.hit_die +1
+		e.combat_attack = e.combat_attack +6
+		e.template = "feral"
+	end	
+
+
+end
+
+
 
 --[[	--CURATE: +4 CR; +2 Str +2 Con +4 Int +3 Wis +6; AC +2 attack +3 HD +4; armor proficiencies, Combat Casting, Power Attack, turn undead (Clr5)
 	elseif rng.chance(15) then
