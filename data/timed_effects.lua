@@ -148,6 +148,28 @@ newEffect{
 }
 
 newEffect{
+	name = "STUN",
+	desc = "Stunned",
+	long_desc = [[A stunned character cannot move and takes a -2 penalty to AC in addition to losing the Dex bonus.]],
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is stunned!", "+Stun" end,
+	on_lose = function(self, err) return "#Target# is no longer stunned", "-Stun" end,
+	activate = function(self, eff)
+		local dexmod = self:getDexMod()
+		eff.tmpid = self:addTemporaryValue("never_move", 1)
+		self:effectTemporaryValue(eff, "combat_untyped", -2)
+		self:effectTemporaryValue(eff, "combat_untyped", -dexmod)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("never_move", eff.tmpid)
+	end
+}
+
+
+
+
+newEffect{
 	name = "ACIDBURN",
 	desc = "Burning from acid",
 	type = "physical",
