@@ -52,8 +52,7 @@ function _M:act()
             if self.ai_target.actor then
             local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
                 if self:isNear(tx, ty, 5) then
-                    self:runAI("flee_dmap")
-                --    self.ai = "flee_dmap"
+                    self:runAI("flee_fear")
                 else
                     self:runAI("dumb_talented_simple")
                 end
