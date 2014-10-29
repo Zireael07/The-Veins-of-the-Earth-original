@@ -1210,14 +1210,50 @@ function _M:getTalentName(t)
 	end
 end	
 
+--A chart of EXP worth to prevent typos and errors and mismatches
+local exp_worth_chart = {
+  [1]	= 400,
+  [2]	= 600,
+  [3]	= 900,
+  [4]	= 1200,
+  [5]	= 1500,
+  [6]	= 1800,
+  [7]	= 2100,
+  [8]	= 2500,
+  [9]	= 2700,
+  [10]	= 3000,
+  [11]	= 3300,
+  [12]	= 3600,
+  [13]	= 4000,
+  [14]	= 4200,
+  [15]	= 4500,
+  [16]	= 4800,
+  [17]	= 5000,
+  [18]	= 5400,
+  [19]	= 5700,
+  [20]	= 6000,
+}
 
 --- How much experience is this actor worth
 -- @param target to whom is the exp rewarded
 -- @return the experience rewarded
 function _M:worthExp(target)
+	local cr = self.challenge
 	-- TODO Don't get experience from killing friendlies.
-	if self.challenge < (game.player.level - 4) then return 0
-	else return (self.exp_worth) end
+	if self.challenge < (game.player.level - 4) then return 0 end
+--	return (self.exp_worth) end
+	--CR below 1
+	if self.challenge < 1 then
+		if self.challenge == 1/2 then return 200
+		elseif self.challenge == 1/3 then return 150
+		elseif self.challenge == 1/4 then return 100
+		elseif self.challenge == 1/6 then return 65
+		elseif self.challenge == 1/8 then return 50
+		elseif self.challenge == 1/10 then return 30
+		else end
+	end
+	--standard
+	return exp_worth_chart[cr]
 end
 
 
