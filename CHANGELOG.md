@@ -1,5 +1,48 @@
 CHANGELOG
 
+* bug fix - ID counters don't tick down anymore when resting
+* bug fix - hunger is properly reduced when resting
+* bug fix - typo in zone definitions re: marble wall
+* bug fix - starting mundane items being unidentified
+* bug fix - give poison vials their proper unided name
+* bug fix - no longer logging off-screen combat or damage
+* bug fix - nix all references to default ToME from options
+* bug fix - item level feelings now working as intended
+* bug fix - combat log now hints at damage reduction if present
+* bug fix - anger on hit properly
+* bug fix - templated critters can no longer exceed a zone's max CR cap
+* bug fix - some templates were missing HD bonuses
+* bug fix - fix otyugh, satyr, aranea, chaos beast, janni, arrowhawk, achaierai, barghest, vargouille; orc, kobold, goblin, human, drow, hobgoblin; shocker lizard, basilisk, bulette, giant owl, purple worm XP rewards
+* bug fix - give the inevitables their feats
+* bug fix - change spider eater tile
+
+* update to T-Engine 1.2.4
+* new terrain - torch, faerie lantern, pillar, rock pillar
+* new tiles - doppelganger
+* new spells - detect evil/good/chaos/law
+* new templates - shaman, curate, half-fey; outlaw, brigand; veteran, elite, master, paragon, legendary; feral, dire; flame, earthen, gaseous, aqueous; three-eyed, pseudonatural from Incursion
+* new monsters - jackal, mastiff from Incursion; hyena, short-faced hyena from PF
+* new feat - Stunning Fist
+* angels, fey and unicorn no longer hostile to good or neutral characters
+* implemented Appraise & Listen skills
+* implemented monk class features
+* increased starting food amount
+* increased XP rewards for low CR monsters in line with Pathfinder rewards
+* death messages
+* use ToME log functions
+* add path string, emotes support
+* adapt ToME panic code as an AI
+* use an UIset based on Classic ToME
+* appraise, craft and decipher script skills added
+* add more flavors from Incursion (cloaks, bracers, boots, rings, amulets)
+* add object tracker to debug menu
+* add code for ID'ing item schools, Incursion-style
+* add lesser vaults code
+* add entry chamber and hells entry chamber from Incursion
+* implement fasting for rangers, Incursion-style
+
+
+
 0.23.0 - beta 6.2 - 05/10/2014
 
 * bug fix - spell image list no longer overlaps text spell list [Castler]
