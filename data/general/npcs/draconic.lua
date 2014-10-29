@@ -35,11 +35,6 @@ newEntity{
         skill_survival = 14,
         skill_swim = 13,
         alignment = "neutral",
-        --Hack! Monsters drop corpses now
---[[        resolvers.inventory {
-        full_id=true,
-        { name = "fresh corpse" }
-        },]]
 }
 
 --blindsense 60 ft.; Poison - pri sleep 10 rounds sec sleep 1d3 hours Fort DC 14
@@ -59,7 +54,7 @@ newEntity{
         stats = { str=6, dex=15, con=13, int=10, wis=12, cha=10, luc=14 },
         combat = { dam= {1,3} },
         name = "pseudodragon",
-        level_range = {1, nil}, exp_worth = 300,
+        level_range = {1, nil}, exp_worth = 400,
         rarity = 15,
         max_life = resolvers.rngavg(13,17),
         hit_die = 2,

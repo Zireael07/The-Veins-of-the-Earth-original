@@ -19,7 +19,7 @@ newEntity{
 	stats = { str=14, dex=13, con=13, int=10, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,3} },
 
-	level_range = {1, 5}, exp_worth = 900,
+	level_range = {1, 5}, exp_worth = 2100,
 	rarity = 8,
 	max_life = resolvers.rngavg(40,45),
 	hit_die = 4,
@@ -69,7 +69,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_FORMIAN",
 	name = "formian worker",
-	level_range = {1, 10}, exp_worth = 150,
+	level_range = {1, 10}, exp_worth = 200,
 	rarity = 10,
 	max_life = resolvers.rngavg(3,7),
 	hit_die = 1,
@@ -206,7 +206,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_JANNI",
 	name = "janni",
-	level_range = {5, 25}, exp_worth = 600,
+	level_range = {5, 25}, exp_worth = 1200,
 	rarity = 15,
 	max_life = resolvers.rngavg(30,35),
 	hit_die = 6,

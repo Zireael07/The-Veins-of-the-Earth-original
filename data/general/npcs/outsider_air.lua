@@ -61,7 +61,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_ARROWHAWK",
 	name = "adult arrowhawk", color=colors.LIGHT_BLUE,
-	level_range = {5, 15}, exp_worth = 900,
+	level_range = {5, 15}, exp_worth = 1500,
 	rarity = 10,
 	max_life = resolvers.rngavg(35,40),
 	hit_die = 7,
@@ -81,7 +81,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_ARROWHAWK",
 	name = "elder arrowhawk", color=colors.LIGHT_BLUE,
-	level_range = {5, 15}, exp_worth = 900,
+	level_range = {5, 15}, exp_worth = 2500,
 	rarity = 15,
 	max_life = resolvers.rngavg(110,115),
 	hit_die = 15,

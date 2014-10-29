@@ -83,7 +83,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
     { name = "javelin" },
 	},
 }    
@@ -133,7 +132,6 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
---	{ name = "fresh corpse" },
     { name = "longbow" },
 	},
 }    
@@ -163,8 +161,4 @@ newEntity{
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1,
 	},
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" },
-	},]]
 }    

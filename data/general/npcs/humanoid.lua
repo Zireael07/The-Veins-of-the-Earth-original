@@ -45,7 +45,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_KOBOLD",
 	name = "kobold", color=colors.GREEN,
-	level_range = {1, 4}, exp_worth = 75,
+	level_range = {1, 4}, exp_worth = 200,
 	rarity = 6,
 	max_life = resolvers.rngavg(5,9),
 	challenge = 1/2,
@@ -63,7 +63,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 
 newEntity{ base = "BASE_NPC_KOBOLD",
 	name = "kobold warrior", color=colors.AQUAMARINE,
-	level_range = {6, 10}, exp_worth = 100,
+	level_range = {6, 10}, exp_worth = 400,
 	rarity = 20,
 	max_life = resolvers.rngavg(10,12),
 	hit_die = 6,
@@ -106,7 +106,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_ORC",
 	name = "orc", color=colors.GREEN,
-	level_range = {1, 4}, exp_worth = 150,
+	level_range = {1, 4}, exp_worth = 400,
 	rarity = 8,
 	max_life = resolvers.rngavg(4,7),
 	challenge = 1,
@@ -151,7 +151,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_GOBLIN",
 	name = "goblin", color=colors.OLIVE_DRAB,
-	level_range = {1, 4}, exp_worth = 50,
+	level_range = {1, 4}, exp_worth = 135,
 	rarity = 3,
 	max_life = resolvers.rngavg(4,7),
 	challenge = 1/3,
@@ -198,7 +198,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_DROW",
 	name = "drow", color=colors.BLACK,
-	level_range = {1, nil}, exp_worth = 150,
+	level_range = {1, nil}, exp_worth = 400,
 	rarity = 3,
 	max_life = resolvers.rngavg(3,5),
 	challenge = 1,
@@ -242,7 +242,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_HUMAN",
 	name = "human", color=colors.WHITE,
-	level_range = {1, 5}, exp_worth = 150,
+	level_range = {1, 5}, exp_worth = 400,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,8),
 	challenge = 1,
@@ -282,7 +282,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_DWARF",
 	name = "dwarf", color=colors.WHITE,
-	level_range = {1, 15}, exp_worth = 150,
+	level_range = {1, 15}, exp_worth = 400,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,10),
 	challenge = 1,
@@ -310,7 +310,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_DWARF",
 	name = "duergar", color=colors.DARK_GRAY,
-	level_range = {1, 15}, exp_worth = 150,
+	level_range = {1, 15}, exp_worth = 400,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,10),
 	hit_die = 1,
@@ -449,7 +449,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_GNOME",
 	name = "gnome", color=colors.WHITE,
-	level_range = {1, 15}, exp_worth = 150,
+	level_range = {1, 15}, exp_worth = 200,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,10),
 	challenge = 1/2,
@@ -474,7 +474,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_GNOME",
 	name = "deep gnome", color=colors.WHITE,
-	level_range = {1, 15}, exp_worth = 300,
+	level_range = {1, 15}, exp_worth = 400,
 	rarity = 8,
 	max_life = resolvers.rngavg(5,10),
 	hit_die = 1,
@@ -489,7 +489,7 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 --	[Talents.T_TOUGHNESS]=1
 	},
-	resolvers.equip{
+	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "banded mail",   },
 		{ name = "buckler", },
@@ -528,7 +528,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_HALFLING",
 	name = "halfling",
-	level_range = {1, 5}, exp_worth = 150,
+	level_range = {1, 5}, exp_worth = 200,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,8),
 	challenge = 1/2,
@@ -570,7 +570,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_HOBGOBLIN",
 	name = "hobgoblin",
-	level_range = {1, 5}, exp_worth = 150,
+	level_range = {1, 5}, exp_worth = 200,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,8),
 	challenge = 1/2,
@@ -612,7 +612,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_LIZARDFOLK",
 	name = "lizardfolk",
-	level_range = {1, nil}, exp_worth = 300,
+	level_range = {1, nil}, exp_worth = 400,
 	rarity = 15,
 	max_life = resolvers.rngavg(10,15),
 	challenge = 1,
@@ -651,7 +651,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_LOCATHAH",
 	name = "locathah",
-	level_range = {1, 15}, exp_worth = 150,
+	level_range = {1, 15}, exp_worth = 200,
 	rarity = 15,
 	max_life = resolvers.rngavg(5,10),
 	hit_die = 2,
@@ -697,7 +697,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_MERFOLK",
 	name = "merfolk",
-	level_range = {1, 15}, exp_worth = 150,
+	level_range = {1, 15}, exp_worth = 200,
 	rarity = 15,
 	max_life = resolvers.rngavg(5,10),
 	challenge = 1/2,
@@ -746,7 +746,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_TROG",
 	name = "troglodyte",
-	level_range = {1, nil}, exp_worth = 300,
+	level_range = {1, nil}, exp_worth = 400,
 	rarity = 10,
 	max_life = resolvers.rngavg(10,15),
 	challenge = 1,
@@ -788,7 +788,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_TIEFLING",
 	name = "tiefling", color=colors.RED,
-	level_range = {1, nil}, exp_worth = 150,
+	level_range = {1, nil}, exp_worth = 200,
 	rarity = 10,
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,
@@ -840,7 +840,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_AASIMAR",
 	name = "aasimar",
-	level_range = {1, 10}, exp_worth = 150,
+	level_range = {1, 10}, exp_worth = 200,
 	rarity = 10,
 	max_life = resolvers.rngavg(4,7),
 	hit_die = 1,

@@ -65,7 +65,7 @@ newEntity{
 	stats = { str=10, dex=13, con=12, int=12, wis=13, cha=13, luc=12 },
 	combat = { dam= {1,6} },
 	name = "satyr",
-	level_range = {1, nil}, exp_worth = 600,
+	level_range = {1, nil}, exp_worth = 1500,
 	rarity = 15,
 	max_life = resolvers.rngavg(20,25),
 	hit_die = 5,

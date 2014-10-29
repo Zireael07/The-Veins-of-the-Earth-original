@@ -160,7 +160,7 @@ newEntity{
 	stats = { str=15, dex=13, con=13, int=10, wis=8, cha=6, luc=8 },
 	combat = { dam= {1,4} },
 
-	level_range = {5, nil}, exp_worth = 300,
+	level_range = {5, nil}, exp_worth = 400,
 	rarity = 8,
 	max_life = resolvers.rngavg(10,15),
 	hit_die = 1,

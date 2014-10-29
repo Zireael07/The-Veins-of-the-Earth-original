@@ -36,7 +36,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_ACHAIERAI",
 	name = "achaierai", color=colors.BLACK,
-	level_range = {5, 15}, exp_worth = 900,
+	level_range = {5, 15}, exp_worth = 1500,
 	rarity = 10,
 	max_life = resolvers.rngavg(35,40),
 	hit_die = 6,
@@ -70,17 +70,12 @@ newEntity{
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=15, con=13, int=14, wis=14, cha=14, luc=12 },
 	combat = { dam= {1,6} },
-	--Hack! Monsters drop corpses now
-	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},
 }
 
 newEntity{
 	base = "BASE_NPC_BARGHEST",
 	name = "barghest", color=colors.BLACK,
-	level_range = {5, 15}, exp_worth = 900,
+	level_range = {5, 15}, exp_worth = 1200,
 	rarity = 10,
 	max_life = resolvers.rngavg(30,35),
 	hit_die = 6,
@@ -350,7 +345,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_VARGOUILLE",
 	name = "vargouille",
-	level_range = {1, nil}, exp_worth = 2700,
+	level_range = {1, nil}, exp_worth = 600,
 	rarity = 20,
 	max_life = resolvers.rngavg(3,7),
 	hit_die = 1,

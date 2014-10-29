@@ -275,7 +275,7 @@ newEntity{
 	stats = { str=11, dex=10, con=13, int=5, wis=12, cha=6, luc=8 },
 	combat = { dam= {1,6}, },
 	name = "otyugh",
-	level_range = {5, 14}, exp_worth = 300,
+	level_range = {5, 14}, exp_worth = 1200,
 	rarity = 15,
 	max_life = resolvers.rngavg(35,40),
 	hit_die = 5,

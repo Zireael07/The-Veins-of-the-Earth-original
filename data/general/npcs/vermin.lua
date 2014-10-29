@@ -21,7 +21,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SPIDER",
 	name = "tiny spider",
-	level_range = {1, 4}, exp_worth = 75,
+	level_range = {1, 4}, exp_worth = 100,
 	rarity = 1,
 	max_life = resolvers.rngavg(1,3),
 	hit_die = 1,
@@ -32,7 +32,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SPIDER",
 	name = "small spider",
-	level_range = {1, 4}, exp_worth = 100,
+	level_range = {1, 4}, exp_worth = 135,
 	rarity = 3,
 	max_life = resolvers.rngavg(3,6),
 	hit_die = 1,
@@ -45,7 +45,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SPIDER",
 	name = "medium spider",
-	level_range = {1, 4}, exp_worth = 150,
+	level_range = {1, 4}, exp_worth = 400,
 	rarity = 5,
 	max_life = resolvers.rngavg(3,6),
 	hit_die = 2,
@@ -95,17 +95,12 @@ newEntity{
 	infravision = 4,
 	skill_climb = 8,
 	combat_natural = 7,
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
 	base = "BASE_NPC_ANT",
 	name = "giant ant worker", color=colors.BROWN,
-	level_range = {1, 20}, exp_worth = 150,
+	level_range = {1, 20}, exp_worth = 400,
 	rarity = 4,
 	max_life = resolvers.rngavg(8,11),
 	hit_die = 2,
@@ -116,7 +111,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_ANT",
 	name = "giant ant soldier", color=colors.BROWN,
-	level_range = {5, 20}, exp_worth = 300,
+	level_range = {5, 20}, exp_worth = 600,
 	rarity = 4,
 	max_life = resolvers.rngavg(10,13),
 	hit_die = 2,
@@ -152,11 +147,6 @@ newEntity{
 	infravision = 4,
 	skill_climb = 10,
 	skill_spot = 4,
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
@@ -174,7 +164,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_CENTIPEDE",
 	name = "small centipede", color=colors.BROWN,
-	level_range = {1, 20}, exp_worth = 75,
+	level_range = {1, 20}, exp_worth = 100,
 	rarity = 6,
 	max_life = resolvers.rngavg(1,3),
 	hit_die = 1,
@@ -188,7 +178,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_CENTIPEDE",
 	name = "medium centipede", color=colors.BROWN,
-	level_range = {1, 20}, exp_worth = 150,
+	level_range = {1, 20}, exp_worth = 200,
 	rarity = 8,
 	max_life = resolvers.rngavg(3,5),
 	hit_die = 1,
@@ -202,7 +192,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_CENTIPEDE",
 	name = "large centipede", color=colors.BROWN,
-	level_range = {5, 20}, exp_worth = 300,
+	level_range = {5, 20}, exp_worth = 400,
 	rarity = 6,
 	max_life = resolvers.rngavg(12,14),
 	hit_die = 3,
@@ -265,17 +255,12 @@ newEntity{
 	combat = { dam= {1,2} },
 	infravision = 4,
 	skill_spot = 4,
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
 	base = "BASE_NPC_SCORPION",
 	name = "tiny scorpion",
-	level_range = {1, 20}, exp_worth = 75,
+	level_range = {1, 20}, exp_worth = 100,
 	rarity = 4,
 	max_life = resolvers.rngavg(3,5),
 	hit_die = 1,
@@ -287,7 +272,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SCORPION",
 	name = "small scorpion",
-	level_range = {1, 20}, exp_worth = 150,
+	level_range = {1, 20}, exp_worth = 200,
 	rarity = 6,
 	max_life = resolvers.rngavg(5,7),
 	hit_die = 1,
@@ -302,7 +287,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SCORPION",
 	name = "medium scorpion",
-	level_range = {1, 20}, exp_worth = 300,
+	level_range = {1, 20}, exp_worth = 400,
 	rarity = 6,
 	max_life = resolvers.rngavg(12,14),
 	hit_die = 2,
@@ -346,7 +331,7 @@ newEntity{
 	define_as = "BASE_NPC_FBEETLE",
 	type = "vermin",
 	image = "tiles/beetle.png",
-	display = 'r', color=colors.FIREBRICK,
+	display = 'x', color=colors.FIREBRICK,
 	body = { INVEN = 10 },
 	desc = [[A giant fire beetle.]],
 
@@ -354,17 +339,12 @@ newEntity{
 	stats = { str=10, dex=10, con=11, int=1, wis=10, cha=7, luc=12 },
 	combat = { dam= {2,4} },
 	infravision = 4,
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{
 	base = "BASE_NPC_FBEETLE",
 	name = "giant fire beetle", color=colors.FIREBRICK,
-	level_range = {1, 20}, exp_worth = 100,
+	level_range = {1, 20}, exp_worth = 135,
 	rarity = 4,
 	max_life = resolvers.rngavg(3,5),
 	resist = { [DamageType.FIRE] = 5, },
@@ -377,7 +357,7 @@ newEntity{
 	define_as = "BASE_NPC_SBEETLE",
 	type = "vermin",
 	image = "tiles/beetle.png",
-	display = 'r', color=colors.DARK_GREEN,
+	display = 'x', color=colors.DARK_GREEN,
 	body = { INVEN = 10 },
 	desc = [[A giant stag beetle.]],
 
@@ -385,11 +365,6 @@ newEntity{
 	stats = { str=23, dex=10, con=17, int=1, wis=10, cha=9, luc=12 },
 	combat = { dam= {4,6} },
 	infravision = 4,
-	--Hack! Monsters drop corpses now
---[[	resolvers.inventory {
-	full_id=true,
-	{ name = "fresh corpse" }
-	},]]
 }
 
 newEntity{

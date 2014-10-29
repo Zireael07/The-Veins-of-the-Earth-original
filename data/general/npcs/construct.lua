@@ -115,7 +115,7 @@ newEntity{
 	stats = { str=8, dex=15, con=1, int=10, wis=12, cha=6, luc=12 },
 	combat = { dam= {1,4} },
 	name = "homunculus",
-	level_range = {1, 25}, exp_worth = 300,
+	level_range = {1, 25}, exp_worth = 400,
 	rarity = 15,
 	max_life = resolvers.rngavg(9,13),
 	hit_die = 2,
@@ -130,7 +130,7 @@ newEntity{
 	movement_speed = 0.66,
 }
 
---Fast healing 5, vampiric touch, Alertness, Combat Casting
+--Fast healing 5, vampiric touch,
 newEntity{
 	define_as = "BASE_NPC_INEVITABLE",
 	type = "construct",
@@ -147,6 +147,9 @@ newEntity{
 	infravision = 4,
 	combat_dr = 10,
 	spell_resistance = 22,
+	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
+		[Talents.T_ALERTNESS]=1,
+	 },
 }
 
 --Spell-likes: At will—discern lies (DC 17), disguise self, fear (DC 17), hold person (DC 16), invisibility, locate creature, suggestion (DC 16); 1/day—hold monster (DC 17), mark of justice; 1/week— geas/quest. 
@@ -163,7 +166,7 @@ newEntity{
 	skill_search = 5,
 	skill_sensemotive = 9,
 	skill_spot = 8,
-	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1, },
+--	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "banded mail" },
@@ -190,9 +193,9 @@ newEntity{
 	skill_search = 9,
 	skill_sensemotive = 9,
 	skill_spot = 13,
-	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
+--	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
 --	[Talents.T_POWER_ATTACK]=1
-	},
+--	},
 	resolvers.equip{
 		full_id=true,
 		{ name = "full plate" },

@@ -41,7 +41,7 @@ newEntity{
 	base = "BASE_NPC_RAT",
 	name = "dire rat", color=colors.WHITE,
 	image = "tiles/dire_rat.png",
-	level_range = {1, 4}, exp_worth = 100,
+	level_range = {1, 4}, exp_worth = 135,
 	rarity = 4,
 	max_life = resolvers.rngavg(3,7),
 	hit_die = 1,
@@ -83,7 +83,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SNAKE",
 	name = "tiny snake", color=colors.GREEN,
-	level_range = {1, 4}, exp_worth = 75,
+	level_range = {1, 4}, exp_worth = 100,
 	rarity = 1,
 	max_life = resolvers.rngavg(1,3),
 	hit_die = 1,
@@ -93,7 +93,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SNAKE",
 	name = "small snake", color=colors.GREEN,
-	level_range = {1, 4}, exp_worth = 100,
+	level_range = {1, 4}, exp_worth = 135,
 	rarity = 3,
 	max_life = resolvers.rngavg(2,5),
 	hit_die = 1,
@@ -103,7 +103,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_SNAKE",
 	name = "medium snake", color=colors.GREEN,
-	level_range = {1, 4}, exp_worth = 150,
+	level_range = {1, 4}, exp_worth = 400,
 	rarity = 5,
 	max_life = resolvers.rngavg(7,10),
 	hit_die = 2,
@@ -114,7 +114,7 @@ newEntity{
 	define_as = "BASE_NPC_LIZARD",
 	type = "animal",
 	image = "tiles/lizard.png",
-	display = 'q', color=colors.GREEN,
+	display = 'R', color=colors.GREEN,
 
 	body = { INVEN = 10 },
 	desc = [[A small lizard.]],
@@ -132,7 +132,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_LIZARD",
 	name = "medium lizard", color=colors.GREEN,
-	level_range = {1, 20}, exp_worth = 50,
+	level_range = {1, 20}, exp_worth = 65,
 	rarity = 5,
 	max_life = resolvers.rngavg(1,3),
 	hit_die = 1,
@@ -143,7 +143,7 @@ newEntity{
 	define_as = "BASE_NPC_MONLIZARD",
 	type = "animal",
 	image = "tiles/lizard.png",
-	display = 'q', color=colors.DARK_GREEN,
+	display = 'R', color=colors.DARK_GREEN,
 	body = { INVEN = 10 },
 	desc = [[A large lizard.]],
 
@@ -222,7 +222,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_RAVEN",
 	name = "raven", color=colors.SLATE,
-	level_range = {1, 20}, exp_worth = 50,
+	level_range = {1, 20}, exp_worth = 65,
 	rarity = 2,
 	max_life = resolvers.rngavg(1,2),
 	hit_die = 1,
@@ -250,7 +250,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_WOLF",
 	name = "wolf", color=colors.BLACK,
-	level_range = {1, 20}, exp_worth = 300,
+	level_range = {1, 20}, exp_worth = 400,
 	rarity = 8,
 	max_life = resolvers.rngavg(12,14),
 	hit_die = 1,
@@ -278,7 +278,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_TORTOISE",
 	name = "giant tortoise", color=colors.BLACK,
-	level_range = {10, 20}, exp_worth = 300,
+	level_range = {10, 20}, exp_worth = 600,
 	rarity = 10,
 	max_life = resolvers.rngavg(65,72),
 	hit_die = 7,
@@ -310,7 +310,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_JACKAL",
 	name = "jackal", color=colors.UMBER,
-	level_range = {1, 20}, exp_worth = 300,
+	level_range = {1, 20}, exp_worth = 400,
 	rarity = 10,
 	max_life = resolvers.rngavg(8,12),
 	hit_die = 2,
@@ -340,7 +340,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_MASTIFF",
 	name = "mastiff", color=colors.DARK_UMBER,
-	level_range = {1, 20}, exp_worth = 300,
+	level_range = {1, 20}, exp_worth = 400,
 	rarity = 10,
 	max_life = resolvers.rngavg(8,12),
 	hit_die = 2,
@@ -373,7 +373,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_HYENA",
 	name = "hyena", color=colors.TAN,
-	level_range = {1, 20}, exp_worth = 300,
+	level_range = {1, 20}, exp_worth = 400,
 	rarity = 10,
 	combat_natural = 2,
 	max_life = resolvers.rngavg(12,15),
