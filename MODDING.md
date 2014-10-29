@@ -76,12 +76,12 @@ hit_die -> the HD of the monster. Necessary for some spells to work.
 challenge -> the CR of the monster (in other words, how hard it is to defeat)
 exp_worth -> how much XP is the monster worth.
 CR 1/10 - 30 XP
-CR 1/8 - 40 XP
-CR 1/6 - 50 XP
-CR 1/4 - 75 XP
-CR 1/3 - 100 XP
-CR 1/2 - 150 XP
-CR 1 - 300 XP
+CR 1/8 - 50 XP
+CR 1/6 - 65 XP
+CR 1/4 - 100 XP
+CR 1/3 - 135 XP
+CR 1/2 - 200 XP
+CR 1 - 400 XP
 CR 2 - 600 XP
 CR 3 - 900 XP
 CR 4 - 1200 XP
