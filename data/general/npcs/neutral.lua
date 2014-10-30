@@ -88,6 +88,7 @@ newEntity{
     display = "@", color=colors.HONEYDEW,
     image = "tiles/newtiles/human_fighter.png",
     name = "human hireling",
+    max_life = resolvers.rngavg(15,18),
     can_talk = "hireling",
 }
 
@@ -96,5 +97,6 @@ newEntity{
     display = "@", color=colors.BLACK,
     image = "tiles/npc/drow_fighter.png",
     name = "drow hireling",
+    max_life = resolvers.rngavg(15,18),
     can_talk = "hireling",
 }
