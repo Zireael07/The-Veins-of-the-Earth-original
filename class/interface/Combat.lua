@@ -295,7 +295,15 @@ function _M:dealDamage(target, weapon, crit, sneak)
       end
 
       --Power Attack damage bonus
-      if self:isTalentActive(self.T_POWER_ATTACK) then dam = dam + 5 end
+      if self:isTalentActive(self.T_POWER_ATTACK) then 
+        if self.combat_bab < 4 then dam = dam + 2
+        elseif self.combat_bab > 4 then dam = dam + 4 
+        elseif self.combat_bab > 8 then dam = dam + 6
+        elseif self.combat_bab > 12 then dam = dam + 8 end
+        elseif self.combat_bab > 16 then dam = dam + 10 end
+ 
+      --  dam = dam + 5 
+      end
 
       if crit then
         --No crits on players in easy mode!
