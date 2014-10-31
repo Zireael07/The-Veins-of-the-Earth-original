@@ -22,7 +22,9 @@ newEntity{
 	image = "tiles/eagle.png",
 	display = 'e', color=colors.LIGHT_BLUE,
 	body = { INVEN = 10 },
-	desc = [[A bird with shimmering feathers.]],
+	desc = [[A bird with shimmering feathers. By twisting its body and varying the cadence of its wingbeats, an arrowhawk can fly at top speed in any direction. 
+	A juvenile arrowhawk (1 to 10 years old) is about 5 feet long from beak to tail, with the body accounting for about one-third of that length. Its wingspan is about 7 feet, and it weighs about 20 pounds.]],
+
 	uncommon_desc = [[Arrowhawks are extremely territorial creatures, and though intelligent will usually attack any creature that encrouches upon its territory with little thought, much like predatory animals from the material plane. In combat they prefer to rely on their ability to unleash a ray of electricity fired from their tails whilst in flight. Arrowhawks speak Auran, but they are not usually talkative creatures.]],
 	common_desc = [[An arrowhawk is at home on the wing, eating, sleeping and mating without ever touching the ground. As such they are expert flyers, with manoeuvrability matched only by air elementals and other such creatures. Even the eggs of these creature have an innate levitation abuility, and older examples of this creature regularly perfect the art of the flyby attack. Most examples of these creature range in size from a large brid of prey to a fully grown pegasus, though there are rare cases of the eldest of arrowhawks reaching the size of an adult roc.]],
 	base_desc = [[This strange bird-like creature is an arrowhawk, an extraplanar predator and scavenger from the elemental plane of air. It can see in the dark and cannot be brought back to life by normal means.]],
