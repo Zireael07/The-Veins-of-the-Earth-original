@@ -416,3 +416,71 @@ newEntity{
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
 }
+
+--From Incursion
+--Scent, pounce, rake; cold resistance
+newEntity{
+	define_as = "BASE_NPC_CAVE_LION",
+	type = "animal",
+--	image = "tiles/UT/wolf.png",
+	display = 'c', color=colors.SANDY_BROWN,
+	body = { INVEN = 10 },
+	desc = [[This believed-extinct member of the cat family was a third larger in overall dimensions compared to the modern lion, and weighed perhaps half again as much.
+	They also hunted in prides, much like the modern lion.  Cave lions were well-adapted to cold climates, with a warm coat and larger body mass to preserve heat.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=24, dex=16, con=17, int=2, wis=12, cha=6, luc=10 },
+	combat = { dam= {1,6} },
+	skill_movesilently = 4,
+	skill_hide = 4,
+	alignment = "neutral",
+}
+
+newEntity{
+	base = "BASE_NPC_CAVE_LION",
+	name = "cave lion", color=colors.SANDY_BROWN,
+	level_range = {1, 20}, exp_worth = 1200,
+	rarity = 15,
+	combat_natural = 4,
+	max_life = resolvers.rngavg(55,65),
+	hit_die = 7,
+	challenge = 6,
+	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
+}
+
+--Scent; Run feat
+newEntity{
+	define_as = "BASE_NPC_HUGE_VIPER",
+	type = "animal",
+--	image = "tiles/snake.png",
+	display = 'R', color=colors.LIGHT_GREEN,
+	body = { INVEN = 10 },
+	desc = [[TGenerally considered a slow moving, somewhat placid animal, vipers are not considered aggressive unless provoked or hungry. If tampered with, it will generally puff up and give an extremely loud hiss.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	stats = { str=16, dex=15, con=13, int=1, wis=12, cha=2, luc=10 },
+	combat = { dam= {1,6} },
+	skill_balance = 8,
+	skill_climb = 8,
+	skill_hide = 4,
+	skill_listen = 4,
+	skill_spot = 4,
+	alignment = "neutral",
+}
+
+newEntity{
+	base = "BASE_NPC_HUGE_VIPER",
+	name = "huge viper", color=colors.LIGHT_GREEN,
+	level_range = {1, 20}, exp_worth = 1200,
+	rarity = 15,
+	combat_natural = 4,
+	max_life = resolvers.rngavg(50,55),
+	hit_die = 6,
+	challenge = 4,
+	movement_speed = 0.66,
+	combat_attackspeed = 0.66,
+	--poison = "viper venom"
+}
+

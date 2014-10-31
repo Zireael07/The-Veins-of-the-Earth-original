@@ -1026,3 +1026,99 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	movement_speed = 0.66,
 	alignment = "neutral",
 }
+
+--From Incursion
+newEntity{ base = "BASE_NPC_MAGBEAST",
+	define_as = "BASE_NPC_PIRANHABIRD",
+	--image = 
+	display = 'b', color=colors.LIGHT_GREEN,
+	desc = [[A magical hybrid of a piranha and a parrot, piranha birds are avian creatures with colorful plumes and bodies that resemble those of piranhas. They are sometimes encountered alone, but are most dangerous when they attack in swarms.]],
+	
+	stats = { str=7, dex=12, con=14, int=2, wis=16, cha=11, luc=10 },
+	combat = { dam= {1,8} },
+	name = "piranha bird",
+	level_range = {1, nil}, exp_worth = 400,
+	rarity = 15,
+	max_life = resolvers.rngavg(8,10),
+	hit_die = 1,
+	challenge = 1,
+	combat_natural = 2,
+	skill_listen = 5,
+	skill_spot = 5,
+	alignment = "neutral",
+}
+
+--Scent, rend; brachiation feat; Bull strength, enlarge, cause fear spell-likes
+newEntity{ base = "BASE_NPC_MAGBEAST",
+	define_as = "BASE_NPC_BLOOD_APE",
+	--image = 
+	display = 'Y', color=colors.DARK_RED,
+	desc = [[A blood red large ape.]],
+	
+	stats = { str=21, dex=12, con=14, int=2, wis=12, cha=7, luc=10 },
+	combat = { dam= {1,8} },
+	name = "blood ape",
+	level_range = {1, nil}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(18,20),
+	hit_die = 4,
+	challenge = 3,
+	combat_natural = 2,
+	infravision = 3,
+	skill_climb = 8,
+	skill_listen = 5,
+	skill_intimidate = 5,
+	alignment = "neutral",
+}
+
+--Ethereal phase, fear DC 13
+newEntity{ base = "BASE_NPC_MAGBEAST",
+	define_as = "BASE_NPC_SPECTRAL_PANTHER",
+	--image = 
+	display = 'c', color=colors.GREY,
+	desc = [[Spectral panthers are mysterious creatures that feed on both the fear and the flesh of their prey.]],
+	
+	stats = { str=18, dex=13, con=16, int=13, wis=14, cha=15, luc=12 },
+	combat = { dam= {1,8} },
+	name = "spectral panther",
+	level_range = {1, nil}, exp_worth = 900,
+	rarity = 15,
+	max_life = resolvers.rngavg(18,20),
+	hit_die = 3,
+	challenge = 3,
+	combat_natural = 2,
+	infravision = 6,
+	skill_hide = 8,
+	skill_movesilently = 5,
+	alignment = "neutral evil",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
+}
+
+--Multi-attack feat
+--Spell-likes: detect evil, faerie fire, protection from evil, cat's grace, spook, phantasmal force;
+newEntity{ base = "BASE_NPC_MAGBEAST",
+	define_as = "BASE_NPC_ELVEN_CAT",
+	--image = "tiles/cat.png",
+	display = 'c', color=colors.LIGHT_SLATE,
+	desc = [[This unnaturally sleek cat has silvery fur.]],
+	
+	stats = { str=5, dex=26, con=12, int=5, wis=14, cha=16, luc=14 },
+	combat = { dam= {1,3} },
+	name = "elven cat",
+	level_range = {1, nil}, exp_worth = 400,
+	rarity = 15,
+	max_life = resolvers.rngavg(18,20),
+	hit_die = 1,
+	challenge = 1,
+	combat_natural = 2,
+	infravision = 2,
+	skill_movesilently = 10,
+	skill_jump = 10,
+	skill_hide = 6,
+	alignment = "chaotic good",
+	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	movement_speed = 1.33,
+	combat_attackspeed = 1.33,
+}
