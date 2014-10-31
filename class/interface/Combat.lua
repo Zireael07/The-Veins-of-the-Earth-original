@@ -299,7 +299,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
         if self.combat_bab < 4 then dam = dam + 2
         elseif self.combat_bab > 4 then dam = dam + 4 
         elseif self.combat_bab > 8 then dam = dam + 6
-        elseif self.combat_bab > 12 then dam = dam + 8 end
+        elseif self.combat_bab > 12 then dam = dam + 8
         elseif self.combat_bab > 16 then dam = dam + 10 end
  
       --  dam = dam + 5 
