@@ -7,7 +7,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_XORN",
 	type = "outsider", subtype = "earth",
-	image = "tiles/elemental.png",
+	image = "tiles/xorn.png",
 	display = 'O', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10 },
 	desc = [[An earthen creature.]],

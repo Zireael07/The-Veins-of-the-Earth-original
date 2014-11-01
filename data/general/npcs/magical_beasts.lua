@@ -312,7 +312,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --Fly 30 ft.; roar 10 squares fatigue Will DC 15; scent
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_DRAGONNE",
-	image = "tiles/lizard.png",
+	image = "tiles/dragonne.png",
 	display = 'D', color=colors.LIGHT_BROWN,
 	desc = [[A scaled lion.]],
 	uncommon_desc = [[Although draconic in appearance, a dragonne lacks a breath weapon and its wings are useful for only short flights. In combat, it relies on its powerful pounce and exhausting roar to take down prey.]],

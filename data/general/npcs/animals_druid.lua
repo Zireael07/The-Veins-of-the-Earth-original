@@ -147,7 +147,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_CHEETAH",
 	name = "cheetah",
---	image = "tiles/ape.png",
+	image = "tiles/UT/tiger.png",
 	display = 'c', color=colors.YELLOW,
 	body = { INVEN = 10 },
 	desc = [[Cheetahs are swift feline predators of the plains. A cheetah is 3 to 5 feet long and weighs 110 to 130 pounds.]],
@@ -202,7 +202,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_TIGER",
 	name = "tiger",
---	image = "tiles/cat.png",
+	image = "tiles/UT/tiger.png",
 	display = 'c', color=colors.ORANGE,
 	body = { INVEN = 10 },
 	desc = [[This powerful feline predator moves with a deadly grace, its reddish-orange fur slashed with black stripes.]],
@@ -231,7 +231,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_BOA",
 	name = "boa constrictor",
---	image = "tiles/snake.png",
+	image = "tiles/constrictor.png",
 	display = 'R', color=colors.RED,
 	body = { INVEN = 10 },
 	desc = [[A large, coiled snake up to ten feet long, the boa constrictor is a carnivore that kills its prey by coiling around it and then crushing it to death.]],
@@ -258,7 +258,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_BOA",
 	name = "giant constrictor",
---	image = "tiles/snake.png",
+	image = "tiles/constrictor.png",
 	display = 'R', color=colors.DARK_RED,
 	body = { INVEN = 10 },
 	desc = [[A large, coiled snake up to twenty feet long, the boa constrictor is a carnivore that kills its prey by coiling around it and then crushing it to death.]],
