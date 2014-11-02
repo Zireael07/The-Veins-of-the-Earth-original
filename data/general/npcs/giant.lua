@@ -141,6 +141,7 @@ newEntity{
 	define_as = "BASE_NPC_TROLL",
 	type = "giant",
 	display = "T", color=colors.GREEN,
+	image = "tiles/troll.png",
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A regenerating ugly brute.]],
 
