@@ -37,6 +37,11 @@ function _M:act()
 	-- Compute FOV, if needed
 		self:doFOV()
 
+    --Pick up objects
+    if not self:isThreatened() and self:getObjectonFloor(self.x, self.y) then
+        self:pickupObject()
+    end    
+
 	--Morale and fleeing
 	if self.morale_life then --and not self.inactive then
 		if self.life < self.morale_life then

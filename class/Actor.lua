@@ -1030,7 +1030,56 @@ end
         return false
     end
 end
+
+--Ways for NPCs to spot enemies
+function _M:spotEnemies()
+  local seen = false
+  -- Check for visible monsters, only see LOS actors, so telepathy wont prevent resting
+  core.fov.calc_circle(self.x, self.y, game.level.map.w, game.level.map.h, 8, function(_, x, y) return game.level.map:opaque(x, y) end, function(_, x, y)
+  local actor = game.level.map(x, y, game.level.map.ACTOR)
+  if actor and self:reactionToward(actor) < 0 and self:canSee(actor) and game.level.map.seens(x, y) then seen = true end
+end, nil)
+return seen
+end
 	
+function _M:isThreatened()
+  local seen = false
+  -- Check for visible monsters, only see LOS actors, so telepathy wont prevent resting
+  core.fov.calc_circle(self.x, self.y, game.level.map.w, game.level.map.h, 3, function(_, x, y) return game.level.map:opaque(x, y) end, function(_, x, y)
+  local actor = game.level.map(x, y, game.level.map.ACTOR)
+  if actor and self:reactionToward(actor) < 0 and self:canSee(actor) and game.level.map.seens(x, y) then seen = true end
+end, nil)
+return seen
+end    
+
+--Make NPCs aware of objects on floor
+function _M:getObjectonFloor(x, y)
+    local z = game.level.map:getObjectTotal(x, y)
+
+    if z > 1 then  return true end
+--[[        local o = game.level.map:getObject(x, y, z)
+        return o 
+    end]]
+
+    return nil
+end
+
+function _M:pickupObject()
+    --Taken from Player.lua
+    -- Auto-pickup stuff from floor.
+  local i = 1
+  local obj = game.level.map:getObject(x, y, i)
+  while obj do
+    self:pickupFloor(i, true)
+ --[[   if obj.auto_pickup and self:pickupFloor(i, true) then
+      -- Nothing to do.
+    else
+      i = i + 1
+    end]]
+    obj = game.level.map:getObject(x, y, i)
+  end
+
+end
 
 --- Called before a talent is used
 -- Check the actor can cast it
@@ -1991,6 +2040,16 @@ function _M:hasRangedWeapon()
 		return false
 end
 
+function _M:hasMeleeWeapon()
+    local inven = self.inven[self.INVEN_INVEN]
+        for k, o in ipairs(inven) do
+            if  o.ranged == false then
+                return true
+            end
+        end
+        return false
+end
+
 function _M:hasRangedAmmo()
 	local inven = self.inven[self.INVEN_INVEN]
 		for k, o in ipairs(inven) do
@@ -2019,6 +2078,16 @@ function _M:getRangedWeapon()
 			end
 		end
 		return nil
+end
+
+function _M:getMeleeWeapon()
+    local inven = self.inven[self.INVEN_INVEN]
+        for k, o in ipairs(inven) do
+            if  o.ranged == false then
+                return o
+            end
+        end
+        return nil
 end
 
 
@@ -2055,7 +2124,16 @@ end
 
 function _M:wieldMelee()
 	local shield = self:getInven("OFF_HAND")[1]
+    local weapon = self:getInven("MAIN_HAND")[1]
 
+    local mh = self.inven[self.INVEN_MAIN_HAND]
+    local oh = self.inven[self.INVEN_OFF_HAND]
+
+    if self:hasMeleeWeapon() then
+        self:removeObject(inven, weapon, true)
+
+        self:addObject(oh, self:getMeleeWeapon())
+    end
 
 end
 
