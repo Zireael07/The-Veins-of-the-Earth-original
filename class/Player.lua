@@ -255,7 +255,13 @@ function _M:onBirth()
 end
 
 function _M:onPremadeBirth()
---  self:setTile()
+    --Fixes for UI issues
+ --   game.player = self
+ --   Map:setViewerActor(self)
+    game.uiset.hotkeys_display.actor = self
+    game.uiset.npcs_display.actor = self
+--    game.uiset:setupMinimap(game.level)
+
   --Add the basic talents
   self:learnTalent(self.T_SHOOT, true)
   self:learnTalent(self.T_POLEARM, true)
