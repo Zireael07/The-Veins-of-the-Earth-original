@@ -9,6 +9,10 @@ As opposed to ToME 4, the main hand slot has an *underscore* in the name! It's M
 Classes
 If you add a prestige class, it must be added to the section in base descriptor which disallows them at birth. Also, it needs to have prestige = true.
 
+"Good" saves come out as a +2 bonus at 1st level and a +0.5 bonus every level.
+"Poor" saves come out as no bonus at 1st level and a +0.33 bonus every level.
+This is identical to a variant known as "fractional saves".
+
 Skills
 If you add a skill, it must be set in Actor.lua, including the skillCheck and the class skills listing. It must also be added to the lists in SkillDialog.lua so that it can be taken and in character sheet so that it will be displayed.
 
