@@ -7,7 +7,7 @@ local help = '#GOLD#BAB#SANDY_BROWN# = Base Attack Bonus, required by some feats
 newBirthDescriptor {
 	type = 'class',
 	name = 'Barbarian',
-	desc = help..'#ORANGE#Raging warriors of the wilds.\n\n #LIGHT_BLUE#Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Swim, Survival.\n\n #WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 4 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Raging warriors of the wilds.\n\n #LIGHT_BLUE#Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Swim, Survival.\n\n #WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.33, Ref +0.33, 4 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	rarity = 2,
 	copy = {
 	},
@@ -62,9 +62,9 @@ newBirthDescriptor {
 		else
 
 		actor:attr("combat_bab", 1)
-		actor:attr("fortitude_save", 1)
-		actor:attr("reflex_save", 0.5)
-		actor:attr("will_save", 0.5)
+		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.33)
+		actor:attr("will_save", 0.33)
 			if actor == game.player then
 				if actor.descriptor.race == "Half-Orc" or actor.descriptor.race == "Orc" then
 			--Favored class bonuses
@@ -81,7 +81,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
-	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +1, Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +0.5, Fort +0.5, Will +0.33, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	copy = {
 	},
 	descriptor_choices =
@@ -164,9 +164,9 @@ newBirthDescriptor {
 		end
 		
 		actor:attr("combat_bab", 0.75)
-		actor:attr("fortitude_save", 1)
-		actor:attr("reflex_save", 1)
-		actor:attr("will_save", 0.5)
+		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.5)
+		actor:attr("will_save", 0.33)
 
 		if actor == game.player then
 			if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
@@ -189,7 +189,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Cleric',
-	desc = help..'#ORANGE#Clerics are masters of healing.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n  #WHITE#8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Clerics are masters of healing.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n  #WHITE#8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 	rarity = 4,
 	copy = {
 	},
@@ -620,9 +620,9 @@ newBirthDescriptor {
 			descriptor.learn_all_spells_of_level(actor, spell_level)
 		end
 
-		actor:attr("will_save", 1)
-		actor:attr("fortitude_save", 1)
-		actor:attr("reflex_save", 0.5)
+		actor:attr("will_save", 0.5)
+		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.33)
 		actor:attr("combat_bab", 0.75)
 
 		if actor == game.player then
@@ -644,7 +644,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Druid',
-	desc = help..'#ORANGE#Clerics of nature.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Ride, Spot, Swim, Spellcraft, Survival.\n\n  #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +1, Fort +1, Ref +0.5,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Clerics of nature.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Ride, Spot, Swim, Spellcraft, Survival.\n\n  #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 	rarity = 8,
 	copy = {
 	},
@@ -747,9 +747,9 @@ newBirthDescriptor {
 			end
 		end
 
-		actor:attr("will_save", 1)
-		actor:attr("fortitude_save", 1)
-		actor:attr("reflex_save", 0.5)
+		actor:attr("will_save", 0.5)
+		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.33)
 		actor:attr("combat_bab", 0.75)
 
 		if actor == game.player then
@@ -774,7 +774,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Fighter',
-	desc = help..'#ORANGE#Simple fighters, they hack away with their trusty weapon.\n\n #LIGHT_BLUE# Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Ride, Swim.\n\n  #WHITE#10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Ref +0.5, Will +0.5, 2 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Simple fighters, they hack away with their trusty weapon.\n\n #LIGHT_BLUE# Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Ride, Swim.\n\n  #WHITE#10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Ref +0.33, Will +0.33, 2 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	rarity = 2,
 	copy = {
 	},
@@ -829,9 +829,9 @@ newBirthDescriptor {
 
 
 		actor:attr("combat_bab", 1)
-		actor:attr("fortitude_save", 1)
-		actor:attr("reflex_save", 0.5)
-		actor:attr("will_save", 0.5)
+		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.33)
+		actor:attr("will_save", 0.33)
 
 		if actor == game.player then
 			if actor.descriptor.race == "Dwarf" or actor.descriptor.race == "Duergar" then
@@ -849,7 +849,7 @@ newBirthDescriptor {
 newBirthDescriptor {
         type = 'class',
         name = 'Monk',
-        desc = help..'#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors.\n\n #LIGHT_BLUE#Class skills: Balance, Climb, Concentration, Craft, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble.\n\n #WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +1, Ref +1, 4 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+        desc = help..'#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors.\n\n #LIGHT_BLUE#Class skills: Balance, Climb, Concentration, Craft, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble.\n\n #WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.5, Ref +0.5, 4 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 --[[        copy = {
                 resolvers.equip {
                         id=true,
@@ -913,9 +913,9 @@ newBirthDescriptor {
             else
 
             actor:attr("combat_bab", 1)
-            actor:attr("fortitude_save", 1)
-            actor:attr("reflex_save", 1)
-            actor:attr("will_save", 1)
+            actor:attr("fortitude_save", 0.5)
+            actor:attr("reflex_save", 0.5)
+            actor:attr("will_save", 0.5)
 			actor:attr("max_life", 8 + (actor:getCon()-10)/2)
             end
         end,
@@ -924,7 +924,7 @@ newBirthDescriptor {
 newBirthDescriptor {
         type = 'class',
         name = 'Paladin',
-        desc = help..'#ORANGE#Holy warriors of the deities of good and law.\n\n #LIGHT_BLUE#Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Knowledge, Ride, Sense Motive.\n\n #WHITE#10 hit points per level, BAB +1, Fort +2 at first class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +1, Will +0.5, Ref +0.5, 2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+        desc = help..'#ORANGE#Holy warriors of the deities of good and law.\n\n #LIGHT_BLUE#Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Knowledge, Ride, Sense Motive.\n\n #WHITE#10 hit points per level, BAB +1, Fort +2 at first class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.33, Ref +0.33, 2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
         copy = {
         },
         descriptor_choices =
@@ -1026,9 +1026,9 @@ newBirthDescriptor {
 			
             --Level >1, generic bonuses
 				actor:attr("combat_bab",1)
-        		actor:attr("fortitude_save", 1)
-        		actor:attr("reflex_save", 0.5)
-        		actor:attr("will_save", 0.5)
+        		actor:attr("fortitude_save", 0.5)
+        		actor:attr("reflex_save", 0.33)
+        		actor:attr("will_save", 0.33)
 				actor:attr("max_life", 10 + (actor:getCon()-10)/2)
         	end
         end,
@@ -1037,7 +1037,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Ranger',
-	desc = help..'#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n #LIGHT_BLUE# Class skills: Climb, Concentration, Craft, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Ride, Search, Spot, Swim, Survival.\n\n  #WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +1, Ref +1, Will +0.5, 6 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n #LIGHT_BLUE# Class skills: Climb, Concentration, Craft, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Ride, Search, Spot, Swim, Survival.\n\n  #WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +0.5, Ref +0.5, Will +0.33, 6 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	rarity = 3,
 	copy = {
 		resolvers.inventory {
@@ -1199,9 +1199,9 @@ newBirthDescriptor {
 
 		--Level >1, generic bonuses
 		actor:attr("combat_bab", 1)
-		actor:attr("fortitude_save", 1)
-		actor:attr("reflex_save", 1)
-		actor:attr("will_save", 0.5)
+		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.5)
+		actor:attr("will_save", 0.33)
 		if actor == game.player then
 			if actor.descriptor.race == "Elf" then
 		--Favored class bonuses
@@ -1219,7 +1219,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Rogue',
-	desc = help..'#ORANGE#Rogues are masters of tricks.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Craft, Diplomacy, Decipher Script, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic.\n\n  #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +1, Fort +0.5, Will +0.5, 8 skill points per level.\n\n #GOLD#DEX 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Rogues are masters of tricks.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Craft, Diplomacy, Decipher Script, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic.\n\n  #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +0.5, Fort +0.33, Will +0.33, 8 skill points per level.\n\n #GOLD#DEX 13#LAST# to multiclass to this class.',
 	rarity = 3,
 	copy = {
 		resolvers.equip {
@@ -1292,10 +1292,10 @@ newBirthDescriptor {
 		if level == 19 then actor:attr("sneak_attack", 1) end
 
 		--Level >1, generic bonuses
-		actor:attr("reflex_save", 1)
+		actor:attr("reflex_save", 0.5)
 		actor:attr("combat_bab", 0.75)
-		actor:attr("will_save", 0.5)
-		actor:attr("fortitude_save", 0.5)
+		actor:attr("will_save", 0.33)
+		actor:attr("fortitude_save", 0.33)
 
 		if actor == game.player then
 			if actor.descriptor.race == "Deep gnome" or actor.descriptor.race == "Kobold" then
@@ -1313,7 +1313,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Sorcerer',
-	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Bluff, Concentration, Craft, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 16#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Bluff, Concentration, Craft, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#CHA 16#LAST# to multiclass to this class.',
 	rarity = 6,
 	copy = {
 		resolvers.inventory {
@@ -1378,10 +1378,10 @@ newBirthDescriptor {
 			descriptor.learn_all_spells_of_level(actor, 1)
 		else
 			--Level >1, generic bonuses
-			actor:attr("will_save", 1)
+			actor:attr("will_save", 0.5)
 			actor:attr("combat_bab", 0.5)
-			actor:attr("fortitude_save", 0.5)
-			actor:attr("reflex_save", 0.5)
+			actor:attr("fortitude_save", 0.33)
+			actor:attr("reflex_save", 0.33)
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 		end
 
@@ -1398,7 +1398,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Wizard',
-	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.\n\n #GOLD#INT 16#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#INT 16#LAST# to multiclass to this class.',
 	rarity = 5,
 	copy = {
 		resolvers.inventory {
@@ -1508,10 +1508,10 @@ newBirthDescriptor {
 			end
 		else
 			--Level >1, generic bonuses
-			actor:attr("will_save", 1)
+			actor:attr("will_save", 0.5)
 			actor:attr("combat_bab", 0.5)
-			actor:attr("fortitude_save", 0.5)
-			actor:attr("reflex_save", 0.5)
+			actor:attr("fortitude_save", 0.33)
+			actor:attr("reflex_save", 0.33)
 
 			if actor == game.player then
 				if actor:hasDescriptor{race="Drow", sex="Male"} then
@@ -1539,7 +1539,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Warlock',
-	desc = help..'#ORANGE#A spellcaster who needs no weapon.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n #WHITE#6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#A spellcaster who needs no weapon.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n #WHITE#6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	rarity = 10,
 	copy = {
 	},
@@ -1579,10 +1579,10 @@ newBirthDescriptor {
 		else
 
 		--Level >1, generic bonuses
-		actor:attr("will_save", 1)
+		actor:attr("will_save", 0.5)
 		actor:attr("combat_bab", 0.5)
-		actor:attr("fortitude_save", 0.5)
-		actor:attr("reflex_save", 0.5)
+		actor:attr("fortitude_save", 0.33)
+		actor:attr("reflex_save", 0.33)
 
 		actor:attr("max_life", 6 + (actor:getCon()-10)/2)
 		end
@@ -1594,7 +1594,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Shaman',
-	desc = help..'#ORANGE#A divine spellcaster who does not need to prepare spells.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n #WHITE#8 hit points per level, Fort +2, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +1, Ref +0.5, Fort +1, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#A divine spellcaster who does not need to prepare spells.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n #WHITE#8 hit points per level, Fort +2, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	rarity = 10,
 	copy = {
 	},
@@ -2006,10 +2006,10 @@ newBirthDescriptor {
 		end
 
 		--Level >1, generic bonuses
-		actor:attr("will_save", 1)
+		actor:attr("will_save", 0.5)
 		actor:attr("combat_bab", 0.5)
-		actor:attr("fortitude_save", 1)
-		actor:attr("reflex_save", 0.5)
+		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.33)
 
 		actor:attr("max_life", 6 + (actor:getCon()-10)/2)
 
@@ -2041,8 +2041,8 @@ newBirthDescriptor {
 		if level == 1 then 
 		actor:attr("reflex_save", 2)
 		actor:attr("combat_bab", 0.5)
-		actor:attr("fortitude_save", 0.5)
-		actor:attr("will_save", 0.5)
+	--	actor:attr("fortitude_save", 0.5)
+	--	actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		
@@ -2062,10 +2062,10 @@ newBirthDescriptor {
 		
 
 		--Level >1, generic bonuses
-		actor:attr("reflex_save", 1)
+		actor:attr("reflex_save", 0.5)
 		actor:attr("combat_bab", 0.5)
-		actor:attr("fortitude_save", 0.5)
-		actor:attr("will_save", 0.5)
+		actor:attr("fortitude_save", 0.33)
+		actor:attr("will_save", 0.33)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
@@ -2097,8 +2097,8 @@ newBirthDescriptor {
 			actor:attr("sneak_attack", 1)
 
 		actor:attr("combat_bab", 0.5)
-		actor:attr("fortitude_save", 0.5)
-		actor:attr("will_save", 0.5)
+	--	actor:attr("fortitude_save", 0.5)
+	--	actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 
@@ -2112,10 +2112,10 @@ newBirthDescriptor {
 		if level == 9 then actor:attr("sneak_attack", 1)end
 
 		--Level >1, generic bonuses
-		actor:attr("reflex_save", 1)
+		actor:attr("reflex_save", 0.5)
 		actor:attr("combat_bab", 0.5)
-		actor:attr("fortitude_save", 0.5)
-		actor:attr("will_save", 0.5)
+		actor:attr("fortitude_save", 0.33)
+		actor:attr("will_save", 0.33)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
@@ -2149,8 +2149,8 @@ newBirthDescriptor {
 			actor:attr("sneak_attack", 1)
 
 		actor:attr("combat_bab", 0.5)
-		actor:attr("reflex_save", 0.5)
-		actor:attr("will_save", 0.5)
+	--	actor:attr("reflex_save", 0.5)
+	--	actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 
@@ -2163,10 +2163,10 @@ newBirthDescriptor {
 		if level == 10 then actor:attr("sneak_attack", 1) end
 
 		--Level >1, generic bonuses
-		actor:attr("fortitude_save", 1)
+		actor:attr("fortitude_save", 0.5)
 		actor:attr("combat_bab", 0.5)
-		actor:attr("reflex_save", 0.5)
-		actor:attr("will_save", 0.5)
+		actor:attr("reflex_save", 0.33)
+		actor:attr("will_save", 0.33)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
@@ -2200,7 +2200,7 @@ newBirthDescriptor {
 		actor:attr("reflex_save", 2)
 
 		actor:attr("combat_bab", 1)
-		actor:attr("will_save", 0.5)
+	--	actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 
@@ -2211,11 +2211,11 @@ newBirthDescriptor {
 		--Enhance arrow 1,3,5,7,9
 
 		--Level >1, generic bonuses
-		actor:attr("fortitude_save", 1)
-		actor:attr("reflex_save", 1)
+		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.5)
 		actor:attr("combat_bab", 1)
 		
-		actor:attr("will_save", 0.5)
+		actor:attr("will_save", 0.33)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
@@ -2246,8 +2246,8 @@ newBirthDescriptor {
 		if level == 1 then 
 		actor:attr("actor.will_save", 2)
 		actor:attr("combat_bab", 0.5)
-		actor:attr("will_save", 0.5)
-		actor:attr("reflex_save", 0.5)
+	--	actor:attr("will_save", 0.5)
+	--	actor:attr("reflex_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 
@@ -2258,10 +2258,10 @@ newBirthDescriptor {
 		--Secret 1,3,5,7,9
 
 		--Level >1, generic bonuses
-		actor:attr("will_save", 1)
+		actor:attr("will_save", 0.5)
 		actor:attr("combat_bab", 0.5)
-		actor:attr("reflex_save", 0.5)
-		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.33)
+		actor:attr("fortitude_save", 0.33)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
@@ -2292,8 +2292,8 @@ newBirthDescriptor {
 		if level == 1 then 
 		actor:attr("will_save", 2)
 		actor:attr("combat_bab", 0.5)
-		actor:attr("will_save", 0.5)
-		actor:attr("reflex_save", 0.5)
+	--	actor:attr("will_save", 0.5)
+	--	actor:attr("reflex_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 
@@ -2303,11 +2303,11 @@ newBirthDescriptor {
 		else
 
 		--Level >1, generic bonuses
-		actor:attr("will_save", 1)
+		actor:attr("will_save", 0.5)
 		
 		actor:attr("combat_bab", 0.5)
-		actor:attr("reflex_save", 0.5)
-		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.33)
+		actor:attr("fortitude_save", 0.33)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 
