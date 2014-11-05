@@ -81,7 +81,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
-	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Fort +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Ref +0.5, Fort +0.5, Will +0.33, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Will +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Fort +0.33, Ref +0.5,  Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	copy = {
 	},
 	descriptor_choices =
@@ -121,7 +121,7 @@ newBirthDescriptor {
 	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then 
-			actor:attr("fortitude_save", 2)
+			actor:attr("will_save", 2)
 			actor:attr("reflex_save", 2)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
@@ -164,9 +164,9 @@ newBirthDescriptor {
 		end
 		
 		actor:attr("combat_bab", 0.75)
-		actor:attr("fortitude_save", 0.5)
+		actor:attr("fortitude_save", 0.33)
 		actor:attr("reflex_save", 0.5)
-		actor:attr("will_save", 0.33)
+		actor:attr("will_save", 0.5)
 
 		if actor == game.player then
 			if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
