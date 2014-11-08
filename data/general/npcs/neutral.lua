@@ -82,6 +82,43 @@ newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
     can_talk = "shop",
 }
 
+newEntity{
+    define_as = "BASE_NPC_DWARF_SHOP",
+    base = "BASE_NPC_NEUTRAL",
+    name = "dwarf shopkeeper",
+    display = 'h', color=colors.SANDY_BROWN,
+    subtype = "dwarf",
+    image = "tiles/npc/dwarf_fighter.png",
+    desc = [[A lost dwarf.]],
+    stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
+    
+    level_range = {1, 15}, exp_worth = 400,
+    rarity = 5,
+    max_life = resolvers.rngavg(5,10),
+    hit_die = 1,
+    challenge = 1,
+    infravision = 3,
+    alignment = "lawful good",
+    resolvers.talents{ [Talents.T_SHOOT]=1, 
+    [Talents.T_EXOTIC_WEAPON_PROFICIENCY]=1, --stopgap measure for now
+    },
+    resolvers.equip{
+        full_id=true,
+        { name = "scale mail",  },
+        { name = "heavy metal shield",  },
+        { name = "dwarven waraxe", },
+        { name = "arrows",  },
+    },
+    resolvers.inventory {
+    full_id=true,
+    { name = "shortbow", },
+    },
+    uncommon_desc = [[ Dwarves come off as gruff or even rude, but they are an extremely determined and honorable people. They look down upon those who flaunt their wealth and usually wear only one or two pieces of finery themselves, although dwarven jewelry tends to be exceedingly beautiful and well-crafted.]],
+    common_desc = [[Dwarves build their kingdoms underground, carving them straight into the stone of mountainsides. They are naturally adept at working stone, and spend their days mining gems and precious metals from beneath the earth.]],
+    base_desc = [[This short, stocky humanoid is a dwarf. It can see in the dark.]],
+    can_talk = "shop",
+}
+
 --Mercenaries
 newEntity{
     base = "BASE_NPC_HUMAN_SHOP",
@@ -97,6 +134,15 @@ newEntity{
     display = "@", color=colors.BLACK,
     image = "tiles/npc/drow_fighter.png",
     name = "drow hireling",
+    max_life = resolvers.rngavg(15,18),
+    can_talk = "hireling",
+}
+
+newEntity{
+    base = "BASE_NPC_DWARF_SHOP",
+    display = "@", color=colors.SANDY_BROWN,
+    image = "tiles/npc/dwarf_fighter.png",
+    name = "dwarf hireling",
     max_life = resolvers.rngavg(15,18),
     can_talk = "hireling",
 }
