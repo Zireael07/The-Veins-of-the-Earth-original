@@ -1081,6 +1081,24 @@ function _M:pickupObject()
 
 end
 
+--Helper function for caster classes
+--DOESN'T WORK YET!!!
+function _M:getStatForSpell(class)
+    if self.classes and self.classes[class] then
+        if class == "Wizard" then return self:getInt() end
+        if class == "Ranger" then return self:getWis() end
+        if class == "Cleric" then return self:getWis() end
+        if class == "Bard" then return self:getCha() end
+        if class == "Shaman" then return self:getCha() end
+        if class == "Sorcerer" then return self:getCha() end
+        return nil
+    end
+    return nil
+end
+
+
+
+
 --- Called before a talent is used
 -- Check the actor can cast it
 -- @param ab the talent (not the id, the table)
@@ -1090,20 +1108,24 @@ function _M:preUseTalent(ab, silent)
 	if tt_def.all_limited then --all_limited talenttypes all have talents that are daily limited 
 		
 		--No casting spells if your key stat is <= 9
+    --    if self:getStatForSpell("Wizard") <= 9 then
 		if self.classes and self.classes["Wizard"] and self:getInt() <= 9 then
 			if not silent then game.logPlayer(self, "Your Intelligence is too low!") end
 		return false
 		end
+    --    if self:getStatForSpell("Ranger") <= 9 then
 		if self.classes and self.classes["Ranger"] and self:getWis() <= 9 then 
 			if not silent then game.logPlayer(self, "Your Wisdom is too low!") end
 		return false
 		end
+    --    if self:getStatForSpell("Cleric") <= 9 then
 		if self.classes and self.classes["Cleric"] and self:getWis() <= 9 then 
 			if not silent then game.logPlayer(self, "Your Wisdom is too low!") end
 		return false
 		end
 		
 		if self.classes and self.classes["Bard"] and self:getCha() <= 9 then 
+    --    if self:getStatForSpell("Bard") <= 9 then
 			if not silent then game.logPlayer(self, "Your Charisma is too low!") end
 		return false
 		end	
@@ -1717,7 +1739,7 @@ function _M:saveRoll(DC, type)
 end
 
 
---Metamagic & spellbook stuff, Sebsebeleb
+--Metamagic stuff, Sebsebeleb
 function useMetamagic(self, t)
 	local metaMod = {}
 	for tid, _ in pairs(self.talents) do
@@ -1732,17 +1754,137 @@ function useMetamagic(self, t)
 	return metaMod
 end 
 
-
+--Spells & spellbook stuff, Sebsebeleb & DG & Zireael
 --- The max charge worth you can have in a given spell level
 function _M:getMaxMaxCharges(spell_list)
 	local t = {}
+
+    --Bonus spells tables
+    --12-13
+    local stat_bonus_one = {[1] = 1, [2] = 0, [3] = 0, [4] = 0, [5] = 0, [6] = 0, [7] = 0, [8] = 0, [9] = 0 }
+    --14-15
+    local stat_bonus_two = {[1] = 1, [2] = 1, [3] = 0, [4] = 0, [5] = 0, [6] = 0, [7] = 0, [8] = 0, [9] = 0 }
+    --16-17
+    local stat_bonus_three = {[1] = 1, [2] = 1, [3] = 1, [4] = 0, [5] = 0, [6] = 0, [7] = 0, [8] = 0, [9] = 0 }
+    --18-19
+    local stat_bonus_four = {[1] = 1, [2] = 1, [3] = 1, [4] = 1, [5] = 0, [6] = 0, [7] = 0, [8] = 0, [9] = 0 }
+    --20-21
+    local stat_bonus_five = {[1] = 2, [2] = 1, [3] = 1, [4] = 1, [5] = 1, [6] = 0, [7] = 0, [8] = 0, [9] = 0 }
+    --22-23
+    local stat_bonus_six = {[1] = 2, [2] = 2, [3] = 1, [4] = 1, [5] = 1, [6] = 1, [7] = 0, [8] = 0, [9] = 0 }
+    --24-25
+    local stat_bonus_seven = {[1] = 2, [2] = 2, [3] = 2, [4] = 1, [5] = 1, [6] = 1, [7] = 1, [8] = 0, [9] = 0 }
+    --26-27
+    local stat_bonus_eight = {[1] = 2, [2] = 2, [3] = 2, [4] = 2, [5] = 1, [6] = 1, [7] = 1, [8] = 1, [9] = 0 }
+    --28-29
+    local stat_bonus_nine = {[1] = 3, [2] = 2, [3] = 2, [4] = 2, [5] = 2, [6] = 1, [7] = 1, [8] = 1, [9] = 1 }
+    --30-31
+    local stat_bonus_ten = {[1] = 3, [2] = 3, [3] = 2, [4] = 2, [5] = 2, [6] = 2, [7] = 1, [8] = 1, [9] = 1 }
+
 	local l = self.level + 5
 	while l > 5 do
-		t[#t+1] = math.min(8, l)
+        local spells = math.min(8, l)
+
+		t[#t+1] = spells
+        local spell_level = #t+1
 		--We gain a new spell level every 3 character levels.
 		l = l - 2
+
+        --Account for bonus spells here, Zireael
+        if (self.classes and self.classes["Wizard"] and self:getInt() >= 12) 
+        or (self.classes and self.classes["Ranger"] and self:getWis() >= 12)
+        or (self.classes and self.classes["Cleric"] and self:getWis() >= 12)
+        or (self.classes and self.classes["Bard"] and self:getCha() >= 12)
+        then
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() < 14) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() < 14)
+            or (self.classes and self.classes["Cleric"] and self:getWis() < 14)
+            or (self.classes and self.classes["Bard"] and self:getCha() < 14)
+            then
+                spells = spells + stat_bonus_one[spell_level]
+            end
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 14 and self:getInt() < 16) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() > 14 and self:getWis() < 16)
+            or (self.classes and self.classes["Cleric"] and self:getWis() > 14 and self:getWis() < 16)
+            or (self.classes and self.classes["Bard"] and self:getCha() > 14 and self:getCha() < 16)
+            then
+                spells = spells + stat_bonus_two[spell_level]
+            end
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 16 and self:getInt() < 18) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() > 16 and self:getWis() < 18)
+            or (self.classes and self.classes["Cleric"] and self:getWis() > 16 and self:getWis() < 18)
+            or (self.classes and self.classes["Bard"] and self:getCha() > 16 and self:getCha() < 18)
+            then
+                spells = spells + stat_bonus_three[spell_level]
+            end
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 18 and self:getInt() < 20) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() > 18 and self:getWis() < 20)
+            or (self.classes and self.classes["Cleric"] and self:getWis() > 18 and self:getWis() < 20)
+            or (self.classes and self.classes["Bard"] and self:getCha() > 18 and self:getCha() < 20)
+            then
+                spells = spells + stat_bonus_four[spell_level]
+            end
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 20 and self:getInt() < 22) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() > 20 and self:getWis() < 22)
+            or (self.classes and self.classes["Cleric"] and self:getWis() > 20 and self:getWis() < 22)
+            or (self.classes and self.classes["Bard"] and self:getCha() > 20 and self:getCha() < 22)
+            then
+                spells = spells + stat_bonus_five[spell_level]
+            end
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 22 and self:getInt() < 24) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() > 22 and self:getWis() < 24)
+            or (self.classes and self.classes["Cleric"] and self:getWis() > 22 and self:getWis() < 24)
+            or (self.classes and self.classes["Bard"] and self:getCha() > 22 and self:getCha() < 24)
+            then
+                spells = spells + stat_bonus_six[spell_level]
+            end
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 24 and self:getInt() < 26) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() > 24 and self:getWis() < 26)
+            or (self.classes and self.classes["Cleric"] and self:getWis() > 24 and self:getWis() < 26)
+            or (self.classes and self.classes["Bard"] and self:getCha() > 24 and self:getCha() < 26)
+            then
+                spells = spells + stat_bonus_seven[spell_level]
+            end
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 26 and self:getInt() < 28) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() > 26 and self:getWis() < 28)
+            or (self.classes and self.classes["Cleric"] and self:getWis() > 26 and self:getWis() < 28)
+            or (self.classes and self.classes["Bard"] and self:getCha() > 26 and self:getCha() < 28)
+            then
+                spells = spells + stat_bonus_eight[spell_level]
+            end
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 28 and self:getInt() < 30) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() > 28 and self:getWis() < 30)
+            or (self.classes and self.classes["Cleric"] and self:getWis() > 28 and self:getWis() < 30)
+            or (self.classes and self.classes["Bard"] and self:getCha() > 28 and self:getCha() < 30)
+            then
+                spells = spells + stat_bonus_nine[spell_level]
+            end
+
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 30 and self:getInt() < 32) 
+            or (self.classes and self.classes["Ranger"] and self:getWis() > 30 and self:getWis() < 32)
+            or (self.classes and self.classes["Cleric"] and self:getWis() > 30 and self:getWis() < 32)
+            or (self.classes and self.classes["Bard"] and self:getCha() > 30 and self:getCha() < 32)
+            then
+                spells = spells + stat_bonus_ten[spell_level]
+            end
+
+        end
+
+        --if class = cleric and spell_list = divine then set 1 additional spell (domain spell)
 	end
-	return t
+	
+
+	
+    return t
 end
 
 function _M:getMaxCharges(tid)
