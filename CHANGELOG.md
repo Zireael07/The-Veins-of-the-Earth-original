@@ -14,16 +14,20 @@ CHANGELOG
 * bug fix - some templates were missing HD bonuses
 * bug fix - fix otyugh, satyr, aranea, chaos beast, janni, arrowhawk, achaierai, barghest, vargouille; orc, kobold, goblin, human, drow, hobgoblin; shocker lizard, basilisk, bulette, giant owl, purple worm XP rewards
 * bug fix - give the inevitables their feats
-* bug fix - change spider eater tile
+* bug fix - change spider eater, dragonne, goblin tile
+* bug fix - UI issues upon loading premade chars (except minimap dot wrong color)
+* bug fix - bring save formulas in line with expected d20 values
+* bug fix - Bard has Will as a good save now, as intended
 
 * update to T-Engine 1.2.4
 * new terrain - torch, faerie lantern, pillar, rock pillar
-* new tiles - doppelganger
+* new tiles - doppelganger, tiger, cobra, constrictor, xorn, troll
 * new spells - detect evil/good/chaos/law
 * new templates - shaman, curate, half-fey; outlaw, brigand; veteran, elite, master, paragon, legendary; feral, dire; flame, earthen, gaseous, aqueous; three-eyed, pseudonatural from Incursion
 * new monsters - jackal, mastiff from Incursion; hyena, short-faced hyena from PF
 * new feat - Stunning Fist
 * angels, fey and unicorn no longer hostile to good or neutral characters
+* implemented bonus spells for high stats
 * implemented Appraise & Listen skills
 * implemented monk class features
 * increased starting food amount
