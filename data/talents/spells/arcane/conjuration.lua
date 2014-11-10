@@ -338,3 +338,41 @@ newArcaneSpell{
 		return ([[An invisible but tangible field of force surrounds the target, providing a +4 armor bonus to AC.]])
 	end,
 }
+
+newArcaneSpell{	
+	name = "Dimension Door",
+	type = {"conjuration", 1},
+	mode = 'activated',
+	level = 4,
+	points = 1,
+	cooldown = 0,
+	tactical = { BUFF = 2 },
+	range = 20,
+	requires_target = true,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local target = self
+
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+	--	local _ _, x, y = self:canProject(tg, x, y)
+
+		if not x then return nil end
+
+	--	game.level.map:particleEmitter(target.x, target.y, 1, "teleport")
+		target:teleportRandom(x, y, 2)
+	--	game.level.map:particleEmitter(target.x, target.y, 1, "teleport")
+
+
+	--	local x, y = self.x, self.y
+		
+		return true
+	end,
+	info = function(self, t)
+
+		return ([[Allows you to teleport ding a +4 armor bonus to AC.]])
+	end,
+}

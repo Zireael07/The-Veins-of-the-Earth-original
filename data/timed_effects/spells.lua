@@ -209,6 +209,20 @@ newEffect{
     end,
 }
 
+newEffect{
+	name = "EXPEDITIOUS_RETREAT",
+	desc = "Boost speed",
+	type = "mental",
+	status = "beneficial",
+	activate = function(self, eff)
+		eff.speed = self:addTemporaryValue("movement_speed", 1)
+		--never attack but move? uh...
+	--	eff.tmpid = self:addTemporaryValue("never_move", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("movement_speed", eff.speed)
+	end,
+}
 
 --Buff spells, Zireael
 newEffect{

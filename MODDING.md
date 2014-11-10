@@ -155,6 +155,7 @@ target {type="ball"} -> a circle around the target. Requires radius.
 
 range 3 - close range
 range 5 - medium range
+range 20 - long range
 
 duration 10 - 1 minute
 duration 100 - 10 minutes

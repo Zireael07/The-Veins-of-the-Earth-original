@@ -6,6 +6,26 @@ newTalentType{
 }
 
 newArcaneSpell{
+	name = "Expeditious Retreat",
+	type = {"transmutation", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	action = function(self)
+	if not self then return nil end
+		self:setEffect(self.EFF_EXPEDITIOUS_RETREAT, 5, {})
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[You double your speed temporarily.]])
+	end,	
+}
+
+
+newArcaneSpell{
 	name = "Alter Self",
 	type = {"transmutation", 1},
 	mode = 'activated',

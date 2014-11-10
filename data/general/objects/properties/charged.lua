@@ -253,3 +253,19 @@ newEntity{
 end
 },
 }
+
+newEntity{
+    name = " of expeditious retreat", suffix = true,
+    level_range = {1, 10},
+    rarity = 15,
+--  cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "expeditious retreat",
+    use = function(self, who)
+    who:setEffect(who.EFF_EXPEDITIOUS_RETREAT, 6, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
