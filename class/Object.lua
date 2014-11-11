@@ -375,7 +375,7 @@ function _M:on_prepickup(who, idx)
     --Appraise
     if who == game.player and self.appraised == false then
         --more than 5 silver
-        if self.cost > 500 then
+        if (self.cost or 0) > 500 then
             if self:isMagical() then
                 local check_price = who:skillCheck("appraise", 25, true)
                 if check then
