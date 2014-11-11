@@ -1043,13 +1043,24 @@ return seen
 end
 	
 function _M:isThreatened()
-  local seen = false
+	if not self.x then return nil end
+	for i, act in ipairs(self.fov.actors_dist) do
+        dist = core.fov.distance(self.x, self.y, act.x, act.y)
+        if act ~= self and act:reactionToward(self) < 0 and not act.dead then
+        	if dist <= 3 then return true
+        	else return false end
+    	end
+    end
+
+    return false
+
+--[[  local seen = false
   -- Check for visible monsters, only see LOS actors, so telepathy wont prevent resting
   core.fov.calc_circle(self.x, self.y, game.level.map.w, game.level.map.h, 3, function(_, x, y) return game.level.map:opaque(x, y) end, function(_, x, y)
   local actor = game.level.map(x, y, game.level.map.ACTOR)
   if actor and self:reactionToward(actor) < 0 and self:canSee(actor) and game.level.map.seens(x, y) then seen = true end
 end, nil)
-return seen
+return seen]]
 end    
 
 --Make NPCs aware of objects on floor
