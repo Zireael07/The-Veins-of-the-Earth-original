@@ -1281,14 +1281,26 @@ newBirthDescriptor {
 		else
 
 		--Level-specific bonuses
-		if level == 3 then actor:attr("sneak_attack", 1) end
+		if level == 3 then 
+            actor:attr("sneak_attack", 1) 
+            actor:attr("trap_sense", 1)
+        end
 		if level == 5 then actor:attr("sneak_attack", 1) end
+        if level == 6 then actor:attr("trap_sense", 1) end
 		if level == 7 then actor:attr("sneak_attack", 1) end
-		if level == 9 then actor:attr("sneak_attack", 1) end
+		if level == 9 then 
+            actor:attr("sneak_attack", 1) 
+            actor:attr("trap_sense", 1)
+        end
 		if level == 11 then actor:attr("sneak_attack", 1) end
+        if level == 12 then actor:attr("trap_sense", 1) end
 		if level == 13 then actor:attr("sneak_attack", 1) end
-		if level == 15 then actor:attr("sneak_attack", 1) end
+		if level == 15 then 
+            actor:attr("sneak_attack", 1) 
+            actor:attr("trap_sense", 1)
+        end
 		if level == 17 then actor:attr("sneak_attack", 1) end
+        if level == 18 then actor:attr("trap_sense", 1) end
 		if level == 19 then actor:attr("sneak_attack", 1) end
 
 		--Level >1, generic bonuses
