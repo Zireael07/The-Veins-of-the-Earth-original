@@ -88,6 +88,10 @@ newBirthDescriptor {
 		skill_listen = 2,
 		skill_spot = 2,
 		skill_search = 2,
+		talents = {
+    	[ActorTalents.T_LONGBOW_PROFICIENCY]=1,
+    	[ActorTalents.T_SHORTBOW_PROFICIENCY]=1,
+	}
 	},
 	copy = {
 		starting_intro = "main",
@@ -196,8 +200,10 @@ newBirthDescriptor {
 		spell_resistance = 12,
 		ecl = 2,
 		talents = {
-    [ActorTalents.T_DARKNESS_INNATE]=1,
-    [ActorTalents.T_FAERIE_FIRE_INNATE]=1,
+    	[ActorTalents.T_DARKNESS_INNATE]=1,
+    	[ActorTalents.T_FAERIE_FIRE_INNATE]=1,
+    	[ActorTalents.T_HAND_CROSSBOW_PROFICIENCY]=1,
+    	[ActorTalents.T_SHORTSWORD_PROFICIENCY]=1,
 --    [ActorTalents.T_LEVITATE_INNATE]=1,
 	}
 	},
@@ -271,6 +277,7 @@ newBirthDescriptor{
 	}
 }
 
+--Decide on proficiencies (light & heavy pick in SRD versus whip and bolas in Inc)
 newBirthDescriptor{
 	type = 'race',
 	name = "Kobold",

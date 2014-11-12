@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael 2013-2014
 
+local Talents = require "engine.interface.ActorTalents"
+
 --Ranged weapons
 newEntity{
     define_as = "BASE_RANGED",
@@ -44,7 +46,7 @@ newEntity{ base = "BASE_RANGED",
     type = "weapon", subtype="crossbow",
     image = "tiles/crossbow_light.png",
     display = "}", color=colors.SLATE,
-    moddable_tile = resolvers.moddable_tile("bow"),
+    moddable_tile = resolvers.moddable_tile("crossbow"),
     encumber = 8,
     rarity = 6,
     simple = true,
@@ -91,6 +93,7 @@ newEntity{ base = "BASE_RANGED",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
     type = "weapon", subtype="bow",
+    require = { talent = { Talents.T_LONGBOW_PROFICIENCY }, },
     display = "}", color=colors.UMBER,
     encumber = 3,
     martial = true,
@@ -133,6 +136,7 @@ newEntity{ base = "BASE_RANGED",
     slot = "MAIN_HAND",
     slot_forbid = "OFF_HAND",
     type = "weapon", subtype="bow",
+    require = { talent = { Talents.T_SHORTBOW_PROFICIENCY }, },
     display = "}", color=colors.UMBER,
     encumber = 2,
     martial = true,

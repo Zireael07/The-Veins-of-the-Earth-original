@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael 2013-2014
 
+local Talents = require "engine.interface.ActorTalents"
+
 --Simple weapons
 newEntity{
     define_as = "BASE_WEAPON",
@@ -285,6 +287,7 @@ newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SHORTSWORD",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="shortsword",
+    require = { talent = { Talents.T_SHORT_SWORD_PROFICIENCY }, },
     image = "tiles/dagger.png",
     display = "|", color=colors.SLATE,
     moddable_tile = resolvers.moddable_tile("sword"),
@@ -332,6 +335,7 @@ newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_SWORD",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="sword",
+    require = { talent = { Talents.T_LONG_SWORD_PROFICIENCY }, },
     image = "tiles/longsword.png",
     display = "|", color=colors.SLATE,
     moddable_tile = resolvers.moddable_tile("sword"),
@@ -380,6 +384,7 @@ newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_RAPIER",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon", subtype="rapier",
+    require = { talent = { Talents.T_RAPIER_PROFICIENCY }, },
     image = "tiles/rapier.png",
     display = "|", color=colors.SLATE,
     encumber = 2,
