@@ -122,7 +122,7 @@ newTalent{
     mode = "passive",
     info = [[This feat makes you proficient in all weapons from the heavy blades group.]],
     on_learn = function(self, t)
-        self:learnTalent(self.T_LONGSWORD_PROFICIENCY)
+        self:learnTalent(self.T_LONG_SWORD_PROFICIENCY, true)
     end
 }
 
@@ -133,8 +133,8 @@ newTalent{
     mode = "passive",
     info = [[This feat makes you proficient in all weapons from the light blades group.]],
     on_learn = function(self, t)
-        self:learnTalent(self.T_SHORTSWORD_PROFICIENCY)
-        self:learnTalent(self.T_RAPIER_PROFICIENCY)
+        self:learnTalent(self.T_SHORTSWORD_PROFICIENCY, true)
+        self:learnTalent(self.T_RAPIER_PROFICIENCY, true)
     end
 }
 
@@ -145,8 +145,8 @@ newTalent{
     mode = "passive",
     info = [[This feat makes you proficient in all weapons from the bows group.]],
     on_learn = function(self, t)
-        self:learnTalent(self.T_LONGBOW_PROFICIENCY)
-        self:learnTalent(self.T_SHORTBOW_PROFICIENCY)
+        self:learnTalent(self.T_LONGBOW_PROFICIENCY, true)
+        self:learnTalent(self.T_SHORTBOW_PROFICIENCY, true)
     end
 }
 
