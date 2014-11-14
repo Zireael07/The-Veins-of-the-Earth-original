@@ -197,6 +197,10 @@ function _M:drawGeneral()
 end
 
     h = h + self.font_h -- Adds an empty row
+
+    s:drawColorStringBlended(self.font, "#LIGHT_GREEN#"..(player:levelTitles() or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+
+
     h = h + self.font_h -- Adds an empty row
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_LEVEL, s:drawColorStringBlended(self.font, "Character level: "..(player.level or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h

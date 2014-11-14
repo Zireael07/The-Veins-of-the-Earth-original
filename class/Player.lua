@@ -1040,6 +1040,114 @@ function _M:takeOut(bag)
   end)
 end
 
+--Level titles stuff
+function _M:dominantClass()
+  local Birther = require "engine.Birther"
+
+    local list = {}
+    local player = game.player
+
+  for i, d in ipairs(Birther.birth_descriptor_def.class) do
+    
+    local level = player.classes[d.name] or 0
+        if level > 0 then
+        local name = ""
+       name = "#WHITE#"..d.name.." #SANDY_BROWN#"..level.."#LAST#"
+
+        table.insert(list, {name = name, desc = desc, level = level, real_name = d.name})
+        end
+    end
+   
+    self.list = list
+
+    table.sort(self.list, function (a,b)
+        if a.level == b.level then 
+            return a.name < b.name
+        else 
+            return a.level > b.level
+        end
+    end)
+
+    return list[1].real_name
+
+end
+
+function _M:dominantClassLevel()
+  local player = game.player
+  return player.classes[player:dominantClass()]
+end
+
+function _M:levelTitles()
+  local player = game.player
+
+  --Low tier titles
+  if player:dominantClassLevel() <= 5 then
+    if player:dominantClass() == "Barbarian" then return "Looter" end
+    if player:dominantClass() == "Bard" then return "Singer" end
+    if player:dominantClass() == "Cleric" then return "Novice" end
+    if player:dominantClass() == "Druid" then return "Aspirant" end
+    if player:dominantClass() == "Fighter" then return "Soldier" end
+    if player:dominantClass() == "Monk" then return "Brother" end
+    if player:dominantClass() == "Paladin" then return "Gallant" end
+    if player:dominantClass() == "Ranger" then return "Runner" end
+    if player:dominantClass() == "Rogue" then return "Footpad" end
+    if player:dominantClass() == "Sorcerer" then return "Channeler" end
+    if player:dominantClass() == "Wizard" then return "Channeler" end
+    if player:dominantClass() == "Warlock" then return "Channeler" end
+    if player:dominantClass() == "Shaman" then return "Channeler" end
+  --Heroic tier titles / name level in OD&D
+  elseif player:dominantClassLevel() <= 10 then
+    if player:dominantClass() == "Barbarian" then return "Raider" end
+    if player:dominantClass() == "Bard" then return "Bard" end
+    if player:dominantClass() == "Cleric" then return "Priest" end
+    if player:dominantClass() == "Druid" then return "Druid" end
+    if player:dominantClass() == "Fighter" then return "Weaponmaster" end
+    if player:dominantClass() == "Monk" then return "Disciple" end
+    if player:dominantClass() == "Paladin" then return "Protector" end
+    if player:dominantClass() == "Ranger" then return "Scout" end
+    if player:dominantClass() == "Rogue" then return "Cutpurse" end
+    if player:dominantClass() == "Sorcerer" then return "Sorcerer" end
+    if player:dominantClass() == "Wizard" then return "Wizard" end
+    if player:dominantClass() == "Warlock" then return "Warlock" end
+    if player:dominantClass() == "Shaman" then return "Shaman" end
+  --Conqueror tier titles
+  elseif player:dominantClassLevel() <= 15 then
+    if player:dominantClass() == "Barbarian" then return "Chieftain" end
+    if player:dominantClass() == "Bard" then return "Trickster" end
+    if player:dominantClass() == "Cleric" then return "High Priest" end
+    if player:dominantClass() == "Druid" then return "High Druid" end
+    if player:dominantClass() == "Fighter" then return "Captain" end
+    if player:dominantClass() == "Monk" then return "Master" end
+    if player:dominantClass() == "Paladin" then return "Justiciar" end
+    if player:dominantClass() == "Ranger" then return "Tracker" end
+    if player:dominantClass() == "Rogue" then return "Burglar" end
+    if player:dominantClass() == "Sorcerer" then return "Summoner" end
+    if player:dominantClass() == "Wizard" then return "Summoner" end
+    if player:dominantClass() == "Warlock" then return "Summoner" end
+    if player:dominantClass() == "Shaman" then return "High Shaman" end
+  --Paragon tier titles
+  elseif player:dominantClassLevel() <= 20 then
+    if player:dominantClass() == "Barbarian" then return "Warmaster" end
+    if player:dominantClass() == "Bard" then return "Master Trickster" end
+    if player:dominantClass() == "Cleric" then return "Archpriest" end
+    if player:dominantClass() == "Druid" then return "Archdruid" end
+    if player:dominantClass() == "Fighter" then return "Warlord" end
+    if player:dominantClass() == "Monk" then return "Master of Dragons" end
+    if player:dominantClass() == "Paladin" then return "Champion" end
+    if player:dominantClass() == "Ranger" then return "Ranger Knight" end
+    if player:dominantClass() == "Rogue" then return "Sharper" end
+    if player:dominantClass() == "Sorcerer" then return "Magister" end
+    if player:dominantClass() == "Wizard" then return "Magister" end
+    if player:dominantClass() == "Warlock" then return "Magister" end
+    if player:dominantClass() == "Shaman" then return "Head Shaman" end
+  --Epic tier titles
+  --else
+  end
+
+end
+
+
+
 --Player-specific perks stuff
 --Pick a random egoed item to be given as perk
 function _M:randomItem()
