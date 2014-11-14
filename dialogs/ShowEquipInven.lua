@@ -129,6 +129,16 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 --[[	if self.equip_actor.inv_scroll and self.c_inven.c_inven.scrollbar then
 		self.c_inven.c_inven.scrollbar.pos = util.bound(self.equip_actor.inv_scroll, 0, self.c_inven.c_inven.scrollbar.max)
 	end]]
+
+	self.c_inven.special_bg = function(item)
+			if not self:canWearObject(item.object) then
+				return colors.LIGHT_RED
+			end
+
+			if not item.object:canUseObject() then
+		 		return colors.LIGHT_BLUE
+    		end
+	end
 end
 
 --[[function _M:firstDisplay()
@@ -247,6 +257,16 @@ function _M:generateList(no_update)
 	list.chars = chars
 
 	if not no_update then
+		self.c_inven.special_bg = function(item)
+			if not self:canWearObject(item.object) then
+				return colors.LIGHT_RED
+			end
+
+			if not item.object:canUseObject() then
+		 		return colors.LIGHT_BLUE
+    		end
+		end
+
 		self.c_inven:setList(self.inven_list)
 	--	self.c_equip:setList(self.equip_list)
 	end
