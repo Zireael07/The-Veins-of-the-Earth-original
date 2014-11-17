@@ -879,8 +879,12 @@ function _M:displayMap(nb_keyframes)
 
 	--	if not self.zone_name_s then self:updateZoneName() end
 
+		-- Display the targetting system if active
+		self.target:display()
+
+
 		-- emotes display
-	--	map:displayEmotes(nb_keyframe or 1)
+		map:displayEmotes(nb_keyframe or 1)
 	end
 end
 

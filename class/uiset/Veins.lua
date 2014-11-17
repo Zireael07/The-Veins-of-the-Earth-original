@@ -303,6 +303,9 @@ function _M:display(nb_keyframes)
     -- Now the map, if any
     game:displayMap(nb_keyframes)
 
+    -- Display the targetting system if active
+--    game.target:display()
+
     -- Minimap display
     if game.level and game.level.map and not self.no_minimap then
         local map = game.level.map
