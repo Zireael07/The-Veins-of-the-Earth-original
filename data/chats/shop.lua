@@ -31,7 +31,7 @@ newChat{ id="shop",
     local shop = game:getStore("GENERAL")
     shop:loadup(game.level, game.zone)
     shop:interact(game.player, "General shop wares")
-    shop = nil
+--    shop = nil
     end
     },
     },
