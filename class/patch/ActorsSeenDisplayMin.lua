@@ -137,11 +137,12 @@ function _M:display()
 	local x, y = 0 + self.scrollbar.w, 0
 	for i, a in ipairs(self.dlist) do
     if i > self.scrollbar.pos and i <= self.max_display + self.scrollbar.pos then
-      local _, name_color = a.actor:TextRank()      
+--      local _, name_color = a.actor:TextRank()      
+    local name_color = a.actor:TextColor()
       if self.shadow then
         self.surface:drawColorStringBlended(self.font, ("%s L %d, D %s, E %d"):format(a.actor.name, a.actor.level, a.dist, a.actor.energy.value), x + self.font_h + 2, y+2, 0,0,0)
       end
-      local text = ("%s%s%s L %d, #YELLOW_GREEN#D %s, #LIGHT_UMBER#E %d"):format(name_color, a.actor.name, a.color, a.actor.level, a.dist, a.actor.energy.value)
+      local text = ("%s%s%s CR %d L %d, #YELLOW_GREEN#D %s, #LIGHT_UMBER#E %d"):format(name_color, a.actor.name, a.color, a.actor.challenge, a.actor.level, a.dist, a.actor.energy.value)
       local w, h = self.font:size(text)
       a.w = w + self.font_h
       self.surface:drawColorStringBlended(self.font, text, x + self.font_h, y)

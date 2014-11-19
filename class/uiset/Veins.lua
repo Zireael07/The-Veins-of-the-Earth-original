@@ -76,7 +76,8 @@ function _M:activate()
 
   
 --    self.npcs_display = ActorsSeenDisplayMin.new(nil, 216, game.h - font_mono_h * 4.2, game.w - 216, font_mono_h * 4.2, "/data/gfx/ui/talents-list.png", font_mono, size_mono)
-    self.npcs_display = ActorsSeenDisplayMin.new(nil, 216, game.h - 70, game.w - 216, font_mono_h*5, "/data/gfx/ui/talents-list.png", font_mono, size_mono)
+    self.npcs_display = ActorsSeenDisplayMin.new(nil, 216 + (game.w - 216) / 2, self.map_h_stop - font_h * 8 -16, (game.w - 216) / 2, font_mono_h*5, nil, font_mono, size_mono)
+    self.npcs_display.resizeToLines = function () self.npcs_display:resize(216, self.map_h_stop - font_h * 5 -16, (game.w - 216) / 2, font_h * 5) end
     self.npcs_display:enableShadow(1)
 --    self.npcs_display:setColumns(3)
 
@@ -114,6 +115,7 @@ function _M:resizeIconsHotkeysToolbar()
         game:resizeMapViewport(game.w - 216, self.map_h_stop - 16)
         self.logdisplay.display_y = self.logdisplay.display_y + self.map_h_stop - oldstop
         profile.chat.display_y = profile.chat.display_y + self.map_h_stop - oldstop
+        self.npcs_display_y = self.npcs_display_y + self.map_h_stop - oldstop
         game:setupMouse()
     end
 
@@ -340,12 +342,16 @@ function _M:display(nb_keyframes)
     profile.chat:toScreen()
     self.logdisplay:toScreen()
 
+    self.hotkeys_display_icons:toScreen()
+
+    self.npcs_display:toScreen()
+
     self.player_display:toScreen(nb_keyframes)
-    if self.show_npc_list then
+--[[    if self.show_npc_list then
         self.npcs_display:toScreen()
     else
         self.hotkeys_display:toScreen()
-    end
+    end]]
 
     -- UI
     self:displayUI()
@@ -358,7 +364,7 @@ function _M:setupMouse(mouse)
     end)
     -- Use hotkeys with mouse
     mouse:registerZone(self.hotkeys_display.display_x, self.hotkeys_display.display_y, game.w, game.h, function(button, mx, my, xrel, yrel, bx, by, event)
-        if self.show_npc_list then return end
+    --    if self.show_npc_list then return end
         if event == "out" then self.hotkeys_display.cur_sel = nil return end
         if event == "button" and button == "left" and ((game.zone and game.zone.wilderness) or (game.key ~= game.normal_key)) then return end
         self.hotkeys_display:onMouse(button, mx, my, event == "button",

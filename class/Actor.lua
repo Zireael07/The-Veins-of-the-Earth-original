@@ -407,6 +407,17 @@ function _M:getLogName()
     end
 end
 
+--Helper to color actors in Actor Display
+function _M:TextColor()
+	local factlevel = Faction:factionReaction(self.faction, game.player.faction)
+	if self.faction and Faction.factions[self.faction] then
+		if factlevel == 0 then return "#WHITE#"
+		elseif factlevel < 0 then return "#LIGHT_RED#"
+		elseif factlevel > 0 then return "#LIGHT_GREEN#"
+		end
+	else end
+end
+
 --Helper function to color high & low stats in birther
 function _M:birthColorStats(stat)
 	if self:getStat(stat) <= 6 then return "#RED#"..self:getStat(stat).."#LAST"
