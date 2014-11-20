@@ -35,7 +35,7 @@ function _M:generateOne(distance)
 		-- Slight Hack(TM):  If distance_from_player is specified, grids within
     -- that distance of the player are forbidden.
     	local player, distance = game.player, distance
-		while (not m:canMove(x, y) or (self.map.room_map[x][y] and self.map.room_map[x][y].special)) 
+		while (not m:canMove(x, y) or (self.map.room_map[x][y] and self.map.room_map[x][y].special) 
 			or (distance and core.fov.distance(player.x, player.y, x, y) <= distance)) 
 		--	or (distance and core.fov.distance(self.level.default_up.x, self.level.default))
 			and tries < 100 do
