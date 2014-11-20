@@ -12,7 +12,7 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---Zireael
+
 
 require 'engine.class'
 local ActorRandom = require 'engine.generator.actor.Random'
@@ -25,7 +25,32 @@ function _M:init(zone, map, level, spots)
   self.data = level.data.generator.actor
 end
 
-function _M:generateOne()
+function _M:generateOne(distance)
+	local f = nil
+	if self.filters then f = self.filters[rng.range(1, #self.filters)] end
+	local m = self.zone:makeEntity(self.level, "actor", f, nil, true)
+	if m then
+		local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
+		local tries = 0
+		-- Slight Hack(TM):  If distance_from_player is specified, grids within
+    -- that distance of the player are forbidden.
+    	local player, distance = game.player, distance
+		while (not m:canMove(x, y) or (self.map.room_map[x][y] and self.map.room_map[x][y].special)) 
+			or (distance and core.fov.distance(player.x, player.y, x, y) <= distance)) 
+		--	or (distance and core.fov.distance(self.level.default_up.x, self.level.default))
+			and tries < 100 do
+			x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
+			tries = tries + 1
+		end
+		if tries < 100 then
+			self.zone:addEntity(self.level, m, "actor", x, y)
+			if self.post_generation then self.post_generation(m) end
+		end
+	end
+end
+
+
+--[[function _M:generateOne()
 	local f = nil
 	if self.filters then f = self.filters[rng.range(1, #self.filters)] end
 	local m = self.zone:makeEntity(self.level, "actor", f, nil, true)
@@ -88,4 +113,4 @@ function _M:generateOne()
 		end
 	end
 	end
-end
+end]]
