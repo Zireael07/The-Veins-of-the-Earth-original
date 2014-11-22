@@ -42,3 +42,39 @@ engine.Faction:setInitialReaction("evil", "players_evil", 0, true)
 engine.Faction:add{ name="players_evil", reaction={}, }
 engine.Faction:setInitialReaction("players_evil", "enemies", -100, true)
 engine.Faction:setInitialReaction("players_evil", "allies", 100, true)
+
+--Drow houses
+engine.Faction:add { name="House Baenre", reaction={}, }
+engine.Faction:setInitialReaction("House Baenre", "players", 0, true)
+engine.Faction:setInitialReaction("House Baenre", "players_evil", 0, true)
+engine.Faction:setInitialReaction("House Baenre", "enemies", -100, true)
+
+engine.Faction:add { name="House Armgo", reaction={}, }
+engine.Faction:setInitialReaction("House Armgo", "players", 0, true)
+engine.Faction:setInitialReaction("House Armgo", "players_evil", 0, true)
+engine.Faction:setInitialReaction("House Armgo", "enemies", -100, true)
+
+engine.Faction:add { name="House Tlabbar", reaction={}, }
+engine.Faction:setInitialReaction("House Tlabbar", "players", 0, true)
+engine.Faction:setInitialReaction("House Tlabbar", "players_evil", 0, true)
+engine.Faction:setInitialReaction("House Tlabbar", "enemies", -100, true)
+
+engine.Faction:add { name="House Mizzrym", reaction={}, }
+engine.Faction:setInitialReaction("House Mizzrym", "players", 0, true)
+engine.Faction:setInitialReaction("House Mizzrym", "players_evil", 0, true)
+engine.Faction:setInitialReaction("House Mizzrym", "enemies", -100, true)
+
+engine.Faction:add { name="House Nasadra", reaction={}, }
+engine.Faction:setInitialReaction("House Nasadra", "players", 0, true)
+engine.Faction:setInitialReaction("House Nasadra", "players_evil", 0, true)
+engine.Faction:setInitialReaction("House Nasadra", "enemies", -100, true)
+
+engine.Faction:add { name="House Auvryndar", reaction={}, }
+engine.Faction:setInitialReaction("House Auvryndar", "players", 0, true)
+engine.Faction:setInitialReaction("House Auvryndar", "players_evil", 0, true)
+engine.Faction:setInitialReaction("House Auvryndar", "enemies", -100, true)
+
+engine.Faction:add { name="House Aleanrahel", reaction={}, }
+engine.Faction:setInitialReaction("House Aleanrahel", "players", 0, true)
+engine.Faction:setInitialReaction("House Aleanrahel", "players_evil", 0, true)
+engine.Faction:setInitialReaction("House Aleanrahel", "enemies", -100, true)
