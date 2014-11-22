@@ -55,6 +55,10 @@ return {
 
 		game:placeDungeonEntrance("DOWN_LABIRYNTH")
 
+        game:placeDungeonEntrance("DOWN_DROWCITY")
+
+        game:placeDungeonEntrance("DOWN_RUINS")
+
 
 	--[[	local l2 = game.zone:makeEntityByName(level, "terrain", "DOWN_CAVERN")
 

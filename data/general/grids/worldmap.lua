@@ -67,6 +67,23 @@ newEntity{
 	change_level = 1,
 }
 
+newEntity{
+	base = "DOWN",
+	define_as = "DOWN_RUINS",
+	change_zone = "town",
+	spot = "town",
+	change_level = 1,
+}
+
+newEntity{
+	base = "DOWN",
+	define_as = "DOWN_DROWCITY",
+	display = '>', color=colors.VIOLET, back_color=colors.DARK_GREY,
+	image = "tiles/newtiles/town.png",
+	change_zone = "drow city",
+	spot = "drow_city",
+	change_level = 1,
+}
 
 --Other grids
 newEntity{
