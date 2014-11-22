@@ -178,13 +178,27 @@ function resolvers.calc.drops(t, e)
 	return nil
 end
 
+--New store resolver
+function resolvers.store(def)
+	return {__resolver="store", def}
+end
+
+function resolvers.calc.store(t, e)
+	t = t[1]
+
+	e.store = game:getStore(t)
+	print("[STORE] created for entity", t, e, e.name)
+
+	-- Delete the origin field
+	return nil
+end
 
 --- Resolves drops creation for an actor
-function resolvers.store(def, faction, door, sign)
-	return {__resolver="store", def, faction, door, sign}
+function resolvers.static_store(def, faction, door, sign)
+	return {__resolver="static_store", def, faction, door, sign}
 end
 --- Actually resolve the drops creation
-function resolvers.calc.store(t, e)
+function resolvers.calc.static_store(t, e)
 	if t[3] then
 		e.image = t[3]
 		if t[4] then e.add_mos = {{display_x=0.6, image=t[4]}} end

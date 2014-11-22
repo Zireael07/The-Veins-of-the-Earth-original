@@ -52,6 +52,7 @@ newEntity{ define_as = "BASE_NPC_DROW_SHOP",
     { name = "hand crossbow", },
     },
     can_talk = "shop",
+    resolvers.store("GENERAL"),
 }
 
 newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
@@ -80,6 +81,7 @@ newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
     { name = "shortbow",  },
     },
     can_talk = "shop",
+    resolvers.store("GENERAL"),
 }
 
 newEntity{
@@ -117,6 +119,7 @@ newEntity{
     common_desc = [[Dwarves build their kingdoms underground, carving them straight into the stone of mountainsides. They are naturally adept at working stone, and spend their days mining gems and precious metals from beneath the earth.]],
     base_desc = [[This short, stocky humanoid is a dwarf. It can see in the dark.]],
     can_talk = "shop",
+    resolvers.store("GENERAL"),
 }
 
 --Mercenaries
