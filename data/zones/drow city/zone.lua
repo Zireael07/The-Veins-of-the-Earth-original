@@ -30,19 +30,16 @@ return {
 			floor = "FLOOR",
 			external_floor = "FLOOR",
 			wall = "WALL",
-			up = {"UP", "SHAFT_UP"},
-			down = { "DOWN", "SHAFT_DOWN" },
+			up = "UP",
+			down = "DOWN",
 			door = "DOOR",
 
 			nb_rooms = false,
 			rooms = false,
 		},
 		actor = {
-		--	class = "mod.class.generator.actor.EncounterRandom",
-		--[[	class = "mod.class.generator.actor.Random",
-			nb_npc = {10, 20},]]
 			class = "mod.class.generator.actor.OnSpots",
-				nb_spots = 5, on_spot_chance = 75,
+			nb_spots = 5, on_spot_chance = 75,
 		},
 		object = {
             class = "engine.generator.object.Random",
