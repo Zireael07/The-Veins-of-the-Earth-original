@@ -105,6 +105,18 @@ function _M:init(t, no_default)
   self.sacrifice_value = self.sacrifice_value or {}
   self.max_sacrifice_value = self.max_sacrifice_value or {}
 
+  --Exercise stuff
+  self.train_str = 0
+  self.train_dex = 0
+  self.train_con = 0
+  self.train_int = 0
+  self.train_wis = 0
+  self.train_cha = 0
+  self.train_luc = 0
+
+  self.stat_increased = self.stat_increased or {}
+  self.number_increased = self.number_increased or {}
+
   --timestamp for saved chars
   self.time = os.time()
 end
@@ -229,6 +241,33 @@ function _M:playerCounters()
       self:godAnger()
     end
 
+  end
+
+  --Random stuff
+  --50% chance because Idk
+  if rng.range(1,30) <= 15 then
+    --Exercise CON because hungry
+    if self.nutrition < 2500 then
+      if self:knowTalent(self.T_FASTING) then
+        self:exerciseStat("con", rng.dice(1,4), "con_hunger", 45)
+      else
+        if rng.range(1,4) < 2 then self:exerciseStat("con", 1, "con_hunger", 30) end
+      end
+    end
+
+    --Exercise STR because load
+    if self:hasEffect(self.EFF_HEAVY_LOAD) then
+      self:exerciseStat("str", 2, "str_burden", 40)
+    end
+
+    --Exercise STR & CON because heavy armor
+    --if wearing heavy armor then
+    --self:exerciseStat("str", rng.dice(1,3), "str_armor", 50)
+    --self:exerciseStat("con", 1, "con_armor", 35)
+    --abuse DEX by 1
+
+    --Exercise LUC by being deep in dungeon 
+    --Inc compares depth to our CR
   end
 
 end
@@ -1831,6 +1870,49 @@ function _M:givePerkArmor()
     else end
 end
 
+--Exercising attributes
+function _M:exerciseStat(stat, d, reason, cap)
+  local required
+  local stat_increased
+
+  --Prevent errors
+  local stat_increased = self.stat_increased[stat]
+  self.stat_increased[stat] = 0
+--  self.number_increased[stat] = 0
+  --assume every stat has a different reason
+  self.number_increased[reason] = 0
+
+  --Respect caps
+  if (self.stat_increased[stat] or 0) > 5 then return end -- plus inherent potential 
+
+  if d > 0 then 
+    if (self.number_increased[reason] or 0) > cap then return end
+  end
+
+  --Do the increasing!
+  self:attr("train_"..stat, d)
+  self.number_increased[reason] = d
+
+  --Skills reduce number of points required
+  if stat == "str" then required = 100 end -- minus math.max(0, self.skill_athletics)
+  if stat == "dex" then required = 100 end -- minus math.max(0, self.skill_athletics)
+  if stat == "con" then required = 100 end -- minus math.max(0, self.skill_athletics)
+  if stat == "int" then required = 100 - math.max(0, self.skill_knowledge) end
+  if stat == "wis" then required = 100 - math.max(0, self.skill_concentration) end
+  if stat == "cha" then required = 100 end -- minus math.max(0, self.skill_perform)
+  if stat == "luc" then required = 100 end
+
+  --Increase stat if exercising/training puts us above the cap
+  if self:attr("train_"..stat) > required then 
+    self.actor:incStat(stat, 1)
+    self.stat_increased[stat] = self.stat_increased[stat] + 1
+  end
+
+
+end
+
+
+
 --Deity system code
 
 function _M:isFollowing(deity)
@@ -2355,6 +2437,8 @@ function _M:godPulse()
     --Y:"You experience a feverish, erotic dream of great intensity. That was certainly a learning experience!"
     --self:gainExp(10*self.level*(self.getFavorLevel+4))
     --exercise CHA and CON
+    --self:exercise("cha", rng.dice(5,12), "cha_Essiah", 70)
+    --self:exercise("con", rng.dice(5,12), "con_Essiah", 70)
     --N: "The goddess shrugs, smiles warmly without condemnation at you, and vanishes."
   end
   if deity == "Hesani" then
@@ -2396,6 +2480,7 @@ function _M:godPulse()
 
   if deity == "Maeve" then
     --exercise LUC
+    self:exerciseStat("luc", rng.dice(4,12), "luc_Maeve", 80)
     --if threatened and rng.dice(1,2) == 1 then
     --Othello's Irresistible Dance on player
   --  self:divineMessage("Maeve", "custom eight")
@@ -2409,6 +2494,7 @@ function _M:godPulse()
       local gain = 10*self.level*self:getFavorLevel(self.max_favor)
       self:gainExp(gain)
       --exercise INT
+      self:exerciseStat("int", rng.dice(5,12), "int_Sabine", 70)
     end
   end  
   if deity == "Semirath" then
@@ -2419,6 +2505,9 @@ function _M:godPulse()
   if deity == "Xavias" then
     game.logPlayer(self, "Your mind is filled with dreamlike images and cryptic symbolism -- you are enlightened!")
     --exercise INT & WIS
+    self:exerciseStat("int", rng.dice(5,12), "int_Xavias", 70)
+    self:exerciseStat("wis", rng.dice(5,12), "wis_Xavias", 70)
+
     local Intbonus = math.floor((game.player:getInt()-10)/2)
     local Wisbonus = math.floor((game.player:getWis()-10)/2)
     self:gainExp(math.max(1,(Intbonus+Wisbonus*100)))

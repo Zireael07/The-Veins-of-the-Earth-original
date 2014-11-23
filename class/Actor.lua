@@ -1726,6 +1726,22 @@ function _M:reflexSave(dc)
 		game.log(s)
 	end
 
+	--Train stats
+	if self == game.player then
+		if self:getDexMod() >= self:getIntMod() then
+			--if dc > 11
+			local die = (dc-10)*2
+			--poison, disease, traps = cap 30
+			--disintegration & anything killing = die*3 
+
+			self:exerciseStat("dex", rng.dice(1,die), "dex_save", 60)
+		else 
+			local die = (dc-10)*2
+			self:exerciseStat("int", rng.dice(1, die), "int_save", 60)
+		end
+	end
+
+
 	return roll ~= 1 and (roll == 20 or roll + save > dc)
 end
 
@@ -1739,6 +1755,21 @@ function _M:fortitudeSave(dc)
 		game.log(s)
 	end
 
+	--Train stats
+	if self == game.player then
+		if self:getConMod() >= self:getStrMod() then
+			--if dc > 11
+			local die = (dc-10)*2
+			--poison, disease, traps = cap 30
+			--disintegration & anything killing = die*3 
+
+			self:exerciseStat("con", rng.dice(1,die), "con_save", 60)
+		else 
+			local die = (dc-10)*2
+			self:exerciseStat("str", rng.dice(1, die), "str_save", 60)
+		end
+	end
+
 	return roll ~= 1 and (roll == 20 or roll + save > dc)
 end
 
@@ -1750,6 +1781,21 @@ function _M:willSave(dc)
 		local s = ("Will save: %d roll + bonus = %d versus DC %d"):format(
 			roll, save, dc)--, success and "success" or "failure")
 		game.log(s)
+	end
+
+	--Train stats
+	if self == game.player then
+		if self:getWisMod() >= self:getChaMod() then
+			--if dc > 11
+			local die = (dc-10)*2
+			--poison, disease, traps = cap 30
+			--disintegration & anything killing = die*3 
+
+			self:exerciseStat("wis", rng.dice(1,die), "wis_save", 60)
+		else 
+			local die = (dc-10)*2
+			self:exerciseStat("cha", rng.dice(1, die), "cha_save", 60)
+		end
 	end
 
 	return roll ~= 1 and (roll == 20 or roll + save > dc)
