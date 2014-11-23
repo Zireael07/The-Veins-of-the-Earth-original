@@ -1411,3 +1411,29 @@ function _M:placeDungeonEntrance(define)
 		self.level.force_recreate = true
 	end
 end
+
+function _M:placeTerrainMulti(define, n)
+	while n > 0 do
+		self:placeTerrain(define)
+		n = n - 1
+	end
+end
+
+
+function _M:placeTerrain(define)
+	if type(define) == "table" then define = rng.table(define) end
+	local l = self.zone:makeEntityByName(self.level, "terrain", define)
+
+	if not l then return end
+
+	local x, y = rng.range(0, self.level.map.w-1), rng.range(0, self.level.map.h-1)
+
+	local tries = 0
+	while (self.level.map:checkEntity(x, y, Map.TERRAIN, "block_move") or self.level.map(x, y, Map.OBJECT) or self.level.map.room_map[x][y].special) and tries < 100 do
+		x, y = rng.range(0, self.level.map.w-1), rng.range(0, self.level.map.h-1)
+		tries = tries + 1
+	end
+	if tries < 100 then
+		self.zone:addEntity(self.level, l, "terrain", x, y)
+	end
+end

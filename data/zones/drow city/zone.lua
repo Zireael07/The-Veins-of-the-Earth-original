@@ -67,5 +67,9 @@ return {
 		-- Put lore near the up stairs
 		game:placeRandomLoreObject("NOTE"..level.level)
 
+		game:placeTerrainMulti("FAERIE_TORCH", 10)
+
+--		game:placeTerrain("FAERIE_TORCH")
+
 	end,
 }
