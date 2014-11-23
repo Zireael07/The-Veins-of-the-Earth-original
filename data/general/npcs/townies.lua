@@ -15,10 +15,10 @@ newEntity{
 
 newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
     base = "BASE_NPC_NEUTRAL_T",
-    name = "drow noble", 
+    name = "female drow noble", 
     display = 'h', color=colors.BLACK,
     subtype = "drow",
-    image = "tiles/newtiles/drow_shop.png",
+    image = "tiles/newtiles/drow_noble_female.png",
     level_range = {1, nil}, exp_worth = 400,
     rarity = 3,
     max_life = resolvers.rngavg(13,15),
@@ -49,5 +49,12 @@ newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
     full_id=true,
     { name = "hand crossbow", },
     },
+    resolvers.class()
 --    can_talk = "shop",
+}
+
+newEntity{
+    base = "BASE_NPC_DROW_NOBLE",
+    name = "male drow noble",
+    image = "tiles/newtiles/drow_noble_male.png",
 }
