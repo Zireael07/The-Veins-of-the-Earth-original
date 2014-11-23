@@ -23,6 +23,7 @@ FEATURES
 - Effective Character Level
 - XP for killing monsters, descending deeper, disarming traps, seeing first 4 monsters of a kind
 - multiclassing (with ability score requirements) & prestige classes & favored classes & bonus feats granted by class
+- training attributes Incursion-style
 - complete, colored character sheet with tooltips displaying rules info
 - randomized unarmed and weapon damage; archery and reach weapons; two weapon fighting penalties & feats
 - attack roll & AC & critical hits & offhand attack (including double weapons) & iterative attacks
