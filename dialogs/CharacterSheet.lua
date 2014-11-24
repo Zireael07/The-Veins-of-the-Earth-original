@@ -4,6 +4,7 @@ require "mod.class.interface.TooltipsData"
 local Dialog = require "engine.ui.Dialog"
 local Talents = require "engine.interface.ActorTalents"
 local SurfaceZone = require "engine.ui.SurfaceZone"
+local Separator = require "engine.ui.Separator"
 local Stats = require "engine.interface.ActorStats"
 local Textzone = require "engine.ui.Textzone"
 local Tab = require 'engine.ui.Tab'
@@ -20,7 +21,40 @@ function _M:init(actor)
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Character Sheet: "..self.actor.name, math.max(game.w * 0.7, 950), math.max(game.h*0.6, 550), nil, nil, font)
     
-    self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
+    --Let's show game stats!
+    game.total_playtime = (game.total_playtime or 0) + (os.time() - (game.last_update or game.real_starttime))
+    game.last_update = os.time()
+
+    local playtime = ""
+    local days = math.floor(game.total_playtime/86400)
+    local hours = math.floor(game.total_playtime/3600) % 24
+    local minutes = math.floor(game.total_playtime/60) % 60
+    local seconds = game.total_playtime % 60
+
+    if days > 0 then
+        playtime = ("%i day%s %i hour%s %i minute%s %s second%s"):format(days, days > 1 and "s" or "", hours, hours > 1 and "s" or "", minutes, minutes > 1 and "s" or "", seconds, seconds > 1 and "s" or "")
+    elseif hours > 0 then
+        playtime = ("%i hour%s %i minute%s %s second%s"):format(hours, hours > 1 and "s" or "", minutes, minutes > 1 and "s" or "", seconds, seconds > 1 and "s" or "")
+    elseif minutes > 0 then
+        playtime = ("%i minute%s %s second%s"):format(minutes, minutes > 1 and "s" or "", seconds, seconds > 1 and "s" or "")
+    else
+        playtime = ("%s second%s"):format(seconds, seconds > 1 and "s" or "")
+    end
+
+--    local all_kills_kind = self.actor.all_kills_kind or {}
+    local playtimetext = ([[#GOLD#Days adventuring / current month:#LAST# %d / %s
+#GOLD#Time playing:#LAST# %s
+]]):format(
+        game.turn / game.calendar.DAY,
+        game.calendar:getMonthName(game.calendar:getDayOfYear(game.turn)),
+        playtime
+    )
+
+    self.c_playtime = Textzone.new{width=self.iw * 0.4, auto_height=true, no_color_bleed=true, font = self.font, text=playtimetext}
+
+    self.vs = Separator.new{dir="vertical", size=self.iw}
+
+    self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih-self.c_playtime.h-15,alpha=0}
     self.c_kills = Button.new{text="Kills", fct=function() self:onKill() end}
 
     self.c_list = ListColumns.new{width=self.iw, height=self.ih - 50, scrollbar=true, columns={
@@ -107,8 +141,11 @@ function _M:drawDialog(tab)
     self:loadUI{
         {left=0, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_skill},
-        {left=0, top=t_general, ui=self.c_desc},
+        {left=0, top=self.t_general.h, ui=self.vs},
+        {left=0, top=self.t_general.h+5+self.vs.h, ui=self.c_playtime},
+        {left=0, top=self.t_general.h+5+self.vs.h+self.c_playtime.h, ui=self.c_desc},
         {left=0, bottom=0, ui=self.c_kills},
+        {left=0, bottom=self.c_kills.h, ui=self.vs}
     }
     
     self:setupUI()
@@ -135,7 +172,7 @@ function _M:mouseZones(t, no_new)
         for i, z in ipairs(t) do
             if not z.norestrict then
                 z.x = z.x + self.display_x + 5
-                z.y = z.y + self.display_y + 20 + 3
+                z.y = z.y + self.display_y + 110 + 3
             end
         end
     end
@@ -160,7 +197,7 @@ function _M:drawGeneral()
     local h = 0
     local w = 0
 
-    h = 40
+    h = 0
     w = 0
 
     s:drawColorStringBlended(self.font, "#SLATE#Name : "..(player.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
@@ -200,8 +237,6 @@ end
 
     s:drawColorStringBlended(self.font, "#LIGHT_GREEN#"..(player:levelTitles() or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
-
-    h = h + self.font_h -- Adds an empty row
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_LEVEL, s:drawColorStringBlended(self.font, "Character level: "..(player.level or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_EXP, s:drawColorStringBlended(self.font, "EXP : "..(player.exp.."/"..player:getExpChart(player.level+1)), w, h, 255, 255, 255, true)) h = h + self.font_h
@@ -221,13 +256,7 @@ end
     self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(player.combat_bab or "0").." + Str bonus: "..player:getStrMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(player.combat_bab or "0").." + Dex bonus: "..player:getDexMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
 
-    h = h + self.font_h -- Adds an empty row
-
-    --Display deity and favor
-    s:drawColorStringBlended(self.font, "Deity : "..(player.descriptor.deity or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Favor : "..(player.favor or 0), w, h, 255, 255, 255, true) h = h + self.font_h
-
-
+    
     h = 0
     w = self.w * 0.25 
     -- start on second column 
@@ -253,6 +282,7 @@ end
 
     s:drawColorStringBlended(self.font, "Speed bonus: +"..(player.movement_speed_bonus or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
+
     h = 0
     w = self.w*0.5
     --start on third column
@@ -264,6 +294,13 @@ end
     h = h + self.font_h -- Adds an empty row
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Darkvision : "..(player.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+
+    h = h + self.font_h -- Adds an empty row
+
+    --Display deity and favor
+    s:drawColorStringBlended(self.font, "Deity : "..(player.descriptor.deity or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Favor : "..(player.favor or 0), w, h, 255, 255, 255, true) h = h + self.font_h
+
 
     h = 0
     w = self.w * 0.75 
