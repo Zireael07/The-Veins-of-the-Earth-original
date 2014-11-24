@@ -74,3 +74,22 @@ newEntity{
     image = "tiles/newtiles/moss.png",
     display = '¤', color_r=52, color_g=222, color_b=137, back_color=colors.GREY,
 }
+
+--Building entrances
+newEntity{
+    base = "EXIT",
+    define_as = "NOBLE_ENTRANCE",
+    name = "building entrance",
+    image = "tiles/stairs_up.png",
+    change_level = 1,
+    change_zone = "noble compound",
+}
+
+newEntity{
+    base = "EXIT",
+    define_as = "EXIT_TOWN",
+    name = "exit to town",
+    image = "tiles/stairs_up.png",
+    change_level = 1,
+    change_zone = "drow city",
+}

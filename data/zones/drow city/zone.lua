@@ -20,7 +20,7 @@ return {
 	max_level = 1,
 --	decay = {300, 800},
 	width = 70, height = 70,
---	persistent = "zone",
+	persistent = "zone",
 	generator =  {
 		map = {
 			class = "engine.generator.map.Town",
@@ -69,7 +69,9 @@ return {
 
 		game:placeTerrainMulti("FAERIE_TORCH", 10)
 
---		game:placeTerrain("FAERIE_TORCH")
+		local spot = game.level:pickSpot{type="building", subtype="building"}
+		local g = game.zone:makeEntityByName(game.level, "terrain", "NOBLE_ENTRANCE")
+		game.zone:addEntity(game.level, g, "terrain", spot.x, spot.y)
 
 	end,
 }
