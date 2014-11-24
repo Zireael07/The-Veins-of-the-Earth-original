@@ -20,7 +20,7 @@ return {
 	max_level = 1,
 --	decay = {300, 800},
 	width = 70, height = 70,
---	persistent = "zone",
+	persistent = "zone",
 	generator =  {
 		map = {
 			class = "engine.generator.map.Building",
@@ -39,11 +39,12 @@ return {
 		},
 		actor = {
 			class = "mod.class.generator.actor.OnSpots",
+			nb_npc = {20, 30},
 			nb_spots = 5, on_spot_chance = 75,
 		},
 		object = {
             class = "engine.generator.object.Random",
-            nb_object = {20, 30},
+            nb_object = {10, 20},
         },
 	},
 	levels =

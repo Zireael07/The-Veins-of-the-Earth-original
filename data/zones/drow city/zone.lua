@@ -39,6 +39,7 @@ return {
 		},
 		actor = {
 			class = "mod.class.generator.actor.OnSpots",
+			nb_npc = {20, 30},
 			nb_spots = 5, on_spot_chance = 75,
 		},
 		object = {
