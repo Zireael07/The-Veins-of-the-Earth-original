@@ -60,6 +60,12 @@ function _M:act()
     self:useEnergy()
 end
 
+--- Setup minimap color for this entity
+-- You may overload this method to customize your minimap
+function _M:setupMinimapInfo(mo, map)
+    mo:minimap(0xC0, 0x00, 0xAF)
+end
+
 function _M:canUseObject()
     return engine.interface.ObjectActivable.canUseObject(self)
 end    
