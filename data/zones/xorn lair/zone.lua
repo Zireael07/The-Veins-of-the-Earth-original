@@ -83,8 +83,8 @@ return {
 		level.ordered_spots = spots
 		level.default_up = {x=spots[1].x, y=spots[1].y}
 		level.default_down = {x=spots[#spots].x, y=spots[#spots].y}
-		level.map(level.default_up.x, level.default_up.y, engine.Map.TERRAIN, game.zone.grid_list.SAND_LADDER_UP_WILDERNESS)
-		level.map(level.default_down.x, level.default_down.y, engine.Map.TERRAIN, game.zone.grid_list.SAND_LADDER_DOWN)
+	--	level.map(level.default_up.x, level.default_up.y, engine.Map.TERRAIN, game.zone.grid_list.SAND_LADDER_UP_WILDERNESS)
+	--	level.map(level.default_down.x, level.default_down.y, engine.Map.TERRAIN, game.zone.grid_list.SAND_LADDER_DOWN)
 
 		local tx, ty = util.findFreeGrid(level.default_up.x+2, level.default_up.y, 5, true, {[engine.Map.ACTOR]=true})
 		if not tx then level.force_recreate = true return end
