@@ -437,14 +437,21 @@ end
 
 
 function _M:save()
-	self.time_stamp = os.time()
-	return class.save(self, self:defaultSavedFields{party=true, time_stamp=true}, true)
+	self.time_stamp = os.date("%Y-%m-%d %H:%M:%S")
+
+	self.total_playtime = (self.total_playtime or 0) + (os.time() - (self.last_update or self.real_starttime))
+	self.last_update = os.time()
+
+	return class.save(self, self:defaultSavedFields{party=true, time_stamp=true, total_playtime=true, always_target=true}, true)
 end
 
 function _M:getSaveDescription()
 	return {
 		name = self.player.name,
-		description = ([[Exploring level %d of %s.]]):format(self.level.level, self.zone.name),
+		description = ([[Exploring level %d of %s.
+			Last played on %s]]):format(self.level.level, self.zone.name,
+			self.time_stamp
+			),
 	}
 end
 
