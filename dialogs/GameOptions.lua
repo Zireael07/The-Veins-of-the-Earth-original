@@ -489,9 +489,9 @@ function _M:generateListGame()
         zone = zone,
         name = string.toTString"#GOLD##{bold}#Difficulty setting#WHITE##{normal}#",
         status = function(item)
-            return tostring(config.settings.veins.difficulty or "Default")
+            return tostring(config.settings.veins.difficulty or "Normal")
         end, fct=function(item)
-            local difficulty = {{name="Default", setting="Default"}, {name="Easy", setting="Easy"}, {name="Hard", setting="Hard"},}
+            local difficulty = {{name="Normal", setting="Normal"}, {name="Easy", setting="Easy"}, {name="Hard", setting="Hard"},}
             engine.ui.Dialog:listPopup("Difficulty setting", "Select difficulty", difficulty, 100, 200, function(sel)
                 if not sel or not sel.setting then return end
                 config.settings.veins.difficulty = sel.setting
