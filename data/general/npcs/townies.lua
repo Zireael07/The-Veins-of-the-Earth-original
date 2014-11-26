@@ -85,24 +85,26 @@ newEntity{
 
 newEntity{
     base = "BASE_NPC_DROW_T",
-    name = "drow female hooker",
+    name = "drow female courtesan",
     rarity = 5,
     stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
     resolvers.equipnoncursed{
         full_id=true,
         { name = "dagger",  },
     },
+    can_talk = "female_courtesan",
 }
 
 newEntity{
     base = "BASE_NPC_DROW_T",
-    name = "drow male hooker",
+    name = "drow male courtesan",
     rarity = 5,
     stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
     resolvers.equipnoncursed{
         full_id=true,
         { name = "dagger",  },
     },
+    can_talk = "male_courtesan",
 }
 
 newEntity{
