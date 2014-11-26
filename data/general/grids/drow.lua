@@ -87,6 +87,15 @@ newEntity{
 
 newEntity{
     base = "EXIT",
+    define_as = "BROTHEL_ENTRANCE",
+    name = "building entrance",
+    image = "tiles/stairs_up.png",
+    change_level = 1,
+    change_zone = "brothel",
+}
+
+newEntity{
+    base = "EXIT",
     define_as = "EXIT_TOWN",
     name = "exit to town",
     image = "tiles/stairs_up.png",
