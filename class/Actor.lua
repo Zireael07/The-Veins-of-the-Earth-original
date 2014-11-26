@@ -574,6 +574,39 @@ function _M:tooltip()
 	return ts
 end
 
+--Detect player alignment
+function _M:isPlayerGood()
+	if game.player.descriptor.alignment == "Lawful Good" then return true end
+	if game.player.descriptor.alignment == "Neutral Good" then return true end
+	if game.player.descriptor.alignment == "Chaotic Good" then return true end
+end
+
+--Only the Good-Evil axis
+function _M:isPlayerNeutral()
+	if game.player.descriptor.alignment == "Lawful Neutral" then return true end
+	if game.player.descriptor.alignment == "Neutral" then return true end
+	if game.player.descriptor.alignment == "Chaotic Neutral" then return true end 
+end
+
+function _M:isPlayerEvil()
+	if game.player.descriptor.alignment == "Lawful Evil" then return true end
+	if game.player.descriptor.alignment == "Neutral Evil" then return true end
+	if game.player.descriptor.alignment == "Chaotic Evil" then return true end
+end
+
+function _M:isPlayerLawful()
+	if game.player.descriptor.alignment == "Lawful Good" then return true end
+	if game.player.descriptor.alignment == "Lawful Neutral" then return true end
+	if game.player.descriptor.alignment == "Lawful Evil" then return true end
+end
+
+function _M:isPlayerChaotic()
+	if game.player.descriptor.alignment == "Chaotic Good" then return true end
+	if game.player.descriptor.alignment == "Chaotic Neutral" then return true end
+	if game.player.descriptor.alignment == "Chaotic Evil" then return true end
+end
+
+
 --Detect actor alignment
 function _M:isGood()
 	if self.alignment and self.alignment == "lawful good" then return true end
