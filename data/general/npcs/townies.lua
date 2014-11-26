@@ -3,6 +3,7 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
+--Basics
 newEntity{
     define_as = "BASE_NPC_NEUTRAL_T",
     type = "humanoid",
@@ -13,16 +14,17 @@ newEntity{
     open_door = true,
 }
 
-newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
+--Drow
+newEntity{ define_as = "BASE_NPC_DROW_T",
     base = "BASE_NPC_NEUTRAL_T",
-    name = "female drow noble", 
+    name = "drow townie",
     display = 'h', color=colors.BLACK,
     subtype = "drow",
-    image = "tiles/newtiles/drow_noble_female.png",
+    image = "tiles/newtiles/drow_rogue.png",
+
     level_range = {1, nil}, exp_worth = 400,
-    rarity = 3,
-    max_life = resolvers.rngavg(13,15),
-    stats = { str=13, dex=15, con=9, int=12, wis=13, cha=12, luc=10 },
+    max_life = resolvers.rngavg(3,5),
+    stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
     hit_die = 1,
     challenge = 1,
     desc = [[A dark silhouette.]],
@@ -37,6 +39,17 @@ newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
     skill_listen = 2,
     skill_search = 3,
     skill_spot = 2,
+}
+
+
+newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
+    base = "BASE_NPC_DROW_T",
+    name = "female drow noble", 
+    image = "tiles/newtiles/drow_noble_female.png",
+    rarity = 3,
+    max_life = resolvers.rngavg(13,15),
+    stats = { str=13, dex=15, con=9, int=12, wis=13, cha=12, luc=10 },
+
     resolvers.talents{ [Talents.T_SHOOT]=1, },
     resolvers.equip{
         full_id=true,
@@ -49,6 +62,7 @@ newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
     full_id=true,
     { name = "hand crossbow", },
     },
+
     resolvers.class()
 --    can_talk = "shop",
 }
@@ -57,4 +71,55 @@ newEntity{
     base = "BASE_NPC_DROW_NOBLE",
     name = "male drow noble",
     image = "tiles/newtiles/drow_noble_male.png",
+}
+
+newEntity{
+    base = "BASE_NPC_DROW_T",
+    name = "drow commoner",
+    rarity = 2,
+    resolvers.equipnoncursed{
+        full_id=true,
+        { name = "dagger",  },
+    },
+}
+
+newEntity{
+    base = "BASE_NPC_DROW_T",
+    name = "drow female hooker",
+    rarity = 5,
+    stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
+    resolvers.equipnoncursed{
+        full_id=true,
+        { name = "dagger",  },
+    },
+}
+
+newEntity{
+    base = "BASE_NPC_DROW_T",
+    name = "drow male hooker",
+    rarity = 5,
+    stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
+    resolvers.equipnoncursed{
+        full_id=true,
+        { name = "dagger",  },
+    },
+}
+
+newEntity{
+    base = "BASE_NPC_DROW_T",
+    name = "drow guard",
+    rarity = 4,
+
+    resolvers.talents{ [Talents.T_SHOOT]=1, },
+    resolvers.equip{
+        full_id=true,
+        { name = "chain shirt", not_properties={"cursed"}  },
+        { name = "light metal shield", not_properties={"cursed"}  },
+        { name = "rapier", not_properties={"cursed"}  },
+        { name = "bolts", not_properties={"cursed"}  },
+    },
+    resolvers.inventory {
+    full_id=true,
+    { name = "hand crossbow", },
+    },
 }
