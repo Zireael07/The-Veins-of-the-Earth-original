@@ -1904,7 +1904,7 @@ function _M:exerciseStat(stat, d, reason, cap)
 
   --Increase stat if exercising/training puts us above the cap
   if self:attr("train_"..stat) > required then 
-    self.actor:incStat(stat, 1)
+    self:incStat(stat, 1)
     self.stat_increased[stat] = self.stat_increased[stat] + 1
   end
 
