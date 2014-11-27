@@ -14,20 +14,19 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-setStatusAll{marble=true}
+setStatusAll{ritual=true}
 
 defineTile('.', "FLOOR")
 defineTile('#', "WALL")
-defineTile('%', "WALL_MARBLE")
+defineTile('^', "WALL_WARDED")
 defineTile('!', "DOOR")
 
-
 return {
-[[#!!#%!!#%%###%]],
-[[#............#]],
-[[%............%]],
-[[#............#]],
-[[%............%]],
-[[#............#]],
-[[#!!#%%!!###%##]],
+[[^^!^^!^^]],
+[[^......^]],
+[[^......^]],
+[[^......^]],
+[[^......^]],
+[[^......^]],
+[[^^!^^^!^]],
 }

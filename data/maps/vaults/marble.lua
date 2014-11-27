@@ -14,7 +14,7 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-setStatusAll{no_teleport=true, vault_only_door_open=true}
+setStatusAll{marble=true}
 
 defineTile('.', "FLOOR")
 defineTile('#', "WALL")

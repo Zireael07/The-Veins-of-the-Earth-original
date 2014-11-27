@@ -14,20 +14,23 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-setStatusAll{marble=true}
+setStatusAll{big_moss=true}
 
 defineTile('.', "FLOOR")
 defineTile('#', "WALL")
-defineTile('%', "WALL_MARBLE")
+defineTile('m', "MOSS")
 defineTile('!', "DOOR")
 
-
 return {
-[[#!!#%!!#%%###%]],
-[[#............#]],
-[[%............%]],
-[[#............#]],
-[[%............%]],
-[[#............#]],
-[[#!!#%%!!###%##]],
+[[#!!!!!#!!!!!#]],
+[[!...........!]],
+[[!..m..m...m.!]],
+[[!.m.........!]],
+[[!...m.m.m...!]],
+[[#mm..mmm..mm#]],
+[[!...m.m.m...!]],
+[[!.m....m....!]],
+[[!.....m...m.!]],
+[[!...m.......!]],
+[[#!!!!!#!!!!!#]],
 }
