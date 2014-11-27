@@ -164,6 +164,7 @@ function _M:roomPlace(room, id, x, y)
 	else
 		for i = 1, room.w do
 			for j = 1, room.h do
+
 				self.map.room_map[i-1+x][j-1+y].room = id
 				local c = room[i][j]
 				if c == '!' then
@@ -182,6 +183,10 @@ function _M:roomPlace(room, id, x, y)
 					self.map(i-1+x, j-1+y, Map.TERRAIN, self:resolve(c))
 				end
 				if is_lit then self.map.lites(i-1+x, j-1+y, true) end
+				--mark every grid as belonging to the room
+				local room_name = room.name
+				self.map.attrs(i-1+x, j-1+y, "room_name", true)
+				print("Mark grid as belonging to", room_name)
 			end
 		end
 	end
