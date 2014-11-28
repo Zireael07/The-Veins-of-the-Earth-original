@@ -185,7 +185,7 @@ function _M:roomPlace(room, id, x, y)
 				if is_lit then self.map.lites(i-1+x, j-1+y, true) end
 				--mark every grid as belonging to the room
 				local room_name = room.name
-				self.map.attrs(i-1+x, j-1+y, "room_name", true)
+				self.map.attrs(i-1+x, j-1+y, room_name, true)
 				print("Mark grid as belonging to", room_name)
 			end
 		end
