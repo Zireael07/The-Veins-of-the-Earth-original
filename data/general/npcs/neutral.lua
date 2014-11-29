@@ -13,16 +13,14 @@ newEntity{
     open_door = true,
 }
 
-
---Shopkeepers
-newEntity{ define_as = "BASE_NPC_DROW_SHOP",
+--Bases
+newEntity{ define_as = "BASE_NPC_DROW_NEUTRAL",
     base = "BASE_NPC_NEUTRAL",
-    name = "drow shopkeeper", 
-    display = 'h', color=colors.BLACK,
+    name = "neutral drow",
     subtype = "drow",
-    image = "tiles/newtiles/drow_shop.png",
+    display = 'h', color=colors.BLACK,
+    image = "tiles/newtiles/drow_fighter.png",
     level_range = {1, nil}, exp_worth = 400,
-    rarity = 3,
     max_life = resolvers.rngavg(3,5),
     stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
     hit_die = 1,
@@ -34,6 +32,7 @@ newEntity{ define_as = "BASE_NPC_DROW_SHOP",
     base_desc = [[This lithe, ebon-skinned humanoid is a dark elf, also known as a drow. These suberttanean elves speak both Elven and Undercommon, and typically also speak Common. Some drow also learn oher racial languages or a form of sign language known only to them.]],
 
     infravision = 6,
+    alignment = "chaotic evil",
     skill_hide = 1,
     skill_movesilently = 1,
     skill_listen = 2,
@@ -50,23 +49,20 @@ newEntity{ define_as = "BASE_NPC_DROW_SHOP",
     resolvers.inventory {
     full_id=true,
     { name = "hand crossbow", },
-    },
-    can_talk = "shop",
-    resolvers.store("GENERAL"),
+    },    
 }
 
-newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
+newEntity{ define_as = "BASE_NPC_HUMAN_NEUTRAL",
     base = "BASE_NPC_NEUTRAL",
-    name = "human shopkeeper", 
+    name = "neutral human",
     display = 'h', color=colors.WHITE,
     subtype = "human",
-    image = "tiles/newtiles/human_shop.png",
     level_range = {1, 5}, exp_worth = 400,
-    rarity = 5,
     max_life = resolvers.rngavg(5,8),
     stats = { str=11, dex=11, con=12, int=11, wis=9, cha=9, luc=10 },
     lite = 3,
     hit_die = 1,
+    alignment = "neutral good",
     challenge = 1,
     resolvers.talents{ [Talents.T_SHOOT]=1, },
     resolvers.equip{
@@ -80,13 +76,11 @@ newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
     full_id=true,
     { name = "shortbow",  },
     },
-    can_talk = "shop",
-    resolvers.store("GENERAL"),
 }
 
-newEntity{
-    define_as = "BASE_NPC_DWARF_SHOP",
+newEntity{ define_as = "BASE_NPC_DWARF_NEUTRAL",
     base = "BASE_NPC_NEUTRAL",
+    name = "neutral dwarf",
     name = "dwarf shopkeeper",
     display = 'h', color=colors.SANDY_BROWN,
     subtype = "dwarf",
@@ -95,7 +89,6 @@ newEntity{
     stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
     
     level_range = {1, 15}, exp_worth = 400,
-    rarity = 5,
     max_life = resolvers.rngavg(5,10),
     hit_die = 1,
     challenge = 1,
@@ -118,13 +111,59 @@ newEntity{
     uncommon_desc = [[ Dwarves come off as gruff or even rude, but they are an extremely determined and honorable people. They look down upon those who flaunt their wealth and usually wear only one or two pieces of finery themselves, although dwarven jewelry tends to be exceedingly beautiful and well-crafted.]],
     common_desc = [[Dwarves build their kingdoms underground, carving them straight into the stone of mountainsides. They are naturally adept at working stone, and spend their days mining gems and precious metals from beneath the earth.]],
     base_desc = [[This short, stocky humanoid is a dwarf. It can see in the dark.]],
+}
+
+--Shopkeepers
+newEntity{ define_as = "BASE_NPC_DROW_SHOP",
+    base = "BASE_NPC_DROW_NEUTRAL",
+    name = "drow shopkeeper", 
+    image = "tiles/newtiles/drow_shop.png",
+    rarity = 3,
     can_talk = "shop",
     resolvers.store("GENERAL"),
 }
 
+newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
+    base = "BASE_NPC_HUMAN_NEUTRAL",
+    name = "human shopkeeper", 
+    image = "tiles/newtiles/human_shop.png",
+    rarity = 5,
+    can_talk = "shop",
+    resolvers.store("GENERAL"),
+}
+
+newEntity{
+    define_as = "BASE_NPC_DWARF_SHOP",
+    base = "BASE_NPC_DWARF_NEUTRAL",
+    rarity = 5,
+    can_talk = "shop",
+    resolvers.store("GENERAL"),
+}
+
+--Sages
+newEntity{
+    define_as = "BASE_NPC_DROW_SAGE",
+    base = "BASE_NPC_DROW_NEUTRAL",
+    name = "drow sage",
+    image = "tiles/npc/drow_mage.png",
+    rarity = 5,
+    can_talk = "sage",
+}
+
+
+newEntity{
+    define_as = "BASE_NPC_HUMAN_SAGE",
+    base = "BASE_NPC_HUMAN_NEUTRAL",
+    name = "human sage",
+    image = "tiles/newtiles/human_mage.png",
+    rarity = 5,
+    can_talk = "sage",
+}
+
+
 --Mercenaries
 newEntity{
-    base = "BASE_NPC_HUMAN_SHOP",
+    base = "BASE_NPC_HUMAN_NEUTRAL",
     display = "@", color=colors.HONEYDEW,
     image = "tiles/newtiles/human_fighter.png",
     name = "human hireling",
@@ -133,7 +172,7 @@ newEntity{
 }
 
 newEntity{
-    base = "BASE_NPC_DROW_SHOP",
+    base = "BASE_NPC_DROW_NEUTRAL",
     display = "@", color=colors.BLACK,
     image = "tiles/npc/drow_fighter.png",
     name = "drow hireling",
@@ -142,7 +181,7 @@ newEntity{
 }
 
 newEntity{
-    base = "BASE_NPC_DWARF_SHOP",
+    base = "BASE_NPC_DWARF_NEUTRAL",
     display = "@", color=colors.SANDY_BROWN,
     image = "tiles/npc/dwarf_fighter.png",
     name = "dwarf hireling",
