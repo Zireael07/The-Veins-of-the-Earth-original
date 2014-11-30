@@ -293,6 +293,14 @@ newEntity{
 }
 
 newEntity{
+	define_as = "SHALLOW_WATER",
+	type = "floor", subtype = "water",
+	name = "water", image = "tiles/UT/shallow_water.png",
+	display = '~', color=colors.LIGHT_BLUE, back_color=colors.CYAN,
+	always_remember = true,
+}
+
+newEntity{
 	define_as = "WATER",
 	type = "floor", subtype = "water",
 	name = "water", image = "tiles/water.png",
