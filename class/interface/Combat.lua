@@ -396,16 +396,16 @@ function _M:dealDamage(target, weapon, crit, sneak)
         if self.poison and not target.dead and target:canBe("poison") then
           local poison = self.poison
           self:applyPoison(poison, target)
-          self:logCombat(target, ("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name:capitalize()))
+          self:logCombat(target, ("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name))
       --    game.log(("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name:capitalize()))
         end
 
         target:takeHit(dam, self)
         --add a hint regarding DR
         if target.combat_dr and target.combat_dr > 0 then
-          self:logCombat(target, ("%s deals %d damage to %s (damage reduction %d)!"):format(self:getLogName():capitalize(), dam, target.name:capitalize(), target.combat_dr))
+          self:logCombat(target, ("%s deals %d damage to %s (damage reduction %d)!"):format(self:getLogName():capitalize(), dam, target.name, target.combat_dr))
         else
-          self:logCombat(target, ("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name:capitalize()))
+          self:logCombat(target, ("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name))
         end
 end
 
