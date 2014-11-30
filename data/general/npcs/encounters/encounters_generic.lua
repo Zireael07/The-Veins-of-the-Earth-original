@@ -7,7 +7,35 @@ newEntity{
 	display = "!", color=colors.WHITE,
 }
 
---Generic encounters
+--Typed generic encounters
+newEntity{
+    base = "BASE_NPC_ENCOUNTER",
+    name = "mixed vermin 1/4",
+    challenge = 1,
+    encounter_escort = {
+    { challenge = 1/4, type="vermin", number = 4 },
+    }
+}
+
+newEntity{
+	base = "BASE_NPC_ENCOUNTER",
+	name = "mixed vermin 1/2",
+	challenge = 1,
+	encounter_escort = {
+    { challenge = 1/2, type="vermin", number = 2 },
+    }
+}
+
+newEntity{
+	base = "BASE_NPC_ENCOUNTER",
+	name = "more mixed vermin 1/2",
+	challenge = 2,
+	encounter_escort = {
+    { challenge = 1/2, type="vermin", number = 4 },
+    }
+}
+
+--Totally generic encounters
 newEntity{ base = "BASE_NPC_ENCOUNTER",
 	name = "random CR 1/3 monster",
 	challenge = 1,
