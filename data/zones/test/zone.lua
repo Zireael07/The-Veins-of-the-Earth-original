@@ -23,7 +23,7 @@ return {
 --	persistent = "zone",
 	generator =  {
 		map = {
-			class = "mod.class.generator.map.SeededRoomer",
+			class = "mod.class.generator.map.Roomer",
 			nb_rooms = 10,
 			rooms = { 
 			--Nothing special
@@ -58,15 +58,14 @@ return {
 			['$'] = {"GOLD_VEIN", "DIAMOND_VEIN", "MITHRIL_VEIN", "ADAMANT_VEIN", "TREASURE_VEIN"},
 		},
 		actor = {
-		--	class = "mod.class.generator.actor.EncounterRandom",
-			class = "mod.class.generator.actor.Random",
 			nb_npc = {10, 20},
-		--[[	class = "mod.class.generator.actor.OnSpots",
-				nb_spots = 2, on_spot_chance = 75,]]
-		
+			class = "mod.class.generator.actor.OnSpots",
+			nb_spots = 8, on_spot_chance = 75,
+			filters = { {type="encounter"} }
 		},
 		object = {
-            class = "engine.generator.object.Random",
+            class = "engine.generator.object.OnSpots",
+            nb_spots = 8, on_spot_chance = 80,
             nb_object = {20, 30},
         },
 	},
