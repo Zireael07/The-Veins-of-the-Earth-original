@@ -27,6 +27,25 @@ newArcaneSpell{
 	end,
 }
 
+newArcaneSpell{
+	name = "Magic Mapping",
+	type = {"divination", 1},
+	mode = 'activated',
+	level = 3,
+	points = 1,
+	cooldown = 0,
+	tactical = { BUFF = 2 },
+	range = 0,
+	requires_target = false,
+	no_npc_use = true,
+	action = function(self, t)
+		self:magicMap(6)
+	end,
+	info = function(self, t)
+		return ([[Reveals some of your surroundings.]])
+	end,
+}
+
 --Seb's original identify, renamed and shuffled to a higher level
 newArcaneSpell{	
 	name = "Improved Identify",

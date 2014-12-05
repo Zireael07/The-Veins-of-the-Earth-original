@@ -396,6 +396,23 @@ function _M:getPathString()
 	return ps
 end
 
+--- Reveals location surrounding the actor
+function _M:magicMap(radius, x, y, checker)
+	x = x or self.x
+	y = y or self.y
+	radius = math.floor(radius)
+
+	local ox, oy
+
+	self.x, self.y, ox, oy = x, y, self.x, self.y
+	self:computeFOV(radius, "block_sense", function(x, y)
+		if not checker or checker(x, y) then
+			game.level.map.remembers(x, y, true)
+		end
+	end, true, true, true)
+
+	self.x, self.y = ox, oy
+end
 
 --Descriptive stuff
 --From Qi Daozei
