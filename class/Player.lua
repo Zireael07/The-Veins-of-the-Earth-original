@@ -478,6 +478,34 @@ end
 function _M:playerFOV()
   -- Clean FOV before computing it
   game.level.map:cleanFOV()
+
+--[[  -- Compute ESP FOV, using cache
+  if (self.esp_all and self.esp_all > 0) or next(self.esp) then
+    self:computeFOV(self.esp_range or 10, "block_esp", function(x, y) game.level.map:applyESP(x, y, 0.6) end, true, true, true)
+  end]]
+
+  -- Handle detect spells, a simple FOV, using cache. Note that this means some terrain features can be made to block sensing
+  if self:attr("detect_range") then
+    self:computeFOV(self:attr("detect_range"), "block_sense", function(x, y)
+      local ok = false
+      if self:attr("detect_actor") and game.level.map(x, y, game.level.map.ACTOR) then ok = true end
+      if self:attr("detect_object") and game.level.map(x, y, game.level.map.OBJECT) then ok = true end
+      if self:attr("detect_trap") and game.level.map(x, y, game.level.map.TRAP) then
+        game.level.map(x, y, game.level.map.TRAP):setKnown(self, true)
+        game.level.map:updateMap(x, y)
+        ok = true
+      end
+
+      if ok then
+        if self.detect_function then self.detect_function(self, x, y) end
+        game.level.map.seens(x, y, 0.6)
+      end
+    end, true, true, true)
+  end
+
+--if not self:attr("blind") then
+  --normal stuff
+  --else (so that npcs may still target us while blind)
   -- Compute both the normal and the lite FOV, using cache
   self:computeFOV(self.sight or 10, "block_sight", function(x, y, dx, dy, sqdist)
     game.level.map:apply(x, y, fovdist[sqdist])
