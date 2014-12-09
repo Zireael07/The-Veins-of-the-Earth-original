@@ -494,8 +494,9 @@ function _M:generateListGame()
             local difficulty = {{name="Normal", setting="Normal"}, {name="Easy", setting="Easy"}, {name="Hard", setting="Hard"},}
             engine.ui.Dialog:listPopup("Difficulty setting", "Select difficulty", difficulty, 100, 200, function(sel)
                 if not sel or not sel.setting then return end
-                config.settings.veins.difficulty = sel.setting
+
                 game:saveSettings("veins.difficulty", ("veins.difficulty= %s\n"):format(tostring(config.settings.veins.difficulty)))
+                config.settings.veins.difficulty = sel.setting
                 self.c_list:drawItem(item)
             end)
         end,
