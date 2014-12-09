@@ -60,12 +60,13 @@ return {
 		actor = {
 			nb_npc = {10, 20},
 			class = "mod.class.generator.actor.OnSpots",
-			nb_spots = 8, on_spot_chance = 75,
-			filters = { {type="encounter"} }
+			nb_spots = 7, on_spot_chance = 75,
+			spot_filters = { type="room"},
+			filters = { type="encounter" }
 		},
 		object = {
             class = "engine.generator.object.OnSpots",
-            nb_spots = 8, on_spot_chance = 80,
+            nb_spots = 7, on_spot_chance = 80,
             nb_object = {20, 30},
         },
 	},
