@@ -179,14 +179,26 @@ function _M:roomPlace(room, id, x, y)
 					for x, yy in pairs(grids) do for y, _ in pairs(yy) do
 						self.map.lites(x, y, true)
 					end end
+
+					local room_name = room.name
+
+					self.map.attrs(i, j, room_name, true)
+					print("Mark grid as belonging to", room_name)
 				else
 					self.map(i-1+x, j-1+y, Map.TERRAIN, self:resolve(c))
+
+					local room_name = room.name
+					self.map.attrs(i, j, room_name, true)
+					print("Mark grid as belonging to", room_name)
 				end
 				if is_lit then self.map.lites(i-1+x, j-1+y, true) end
+				
 				--mark every grid as belonging to the room
 				local room_name = room.name
-				self.map.attrs(i-1+x, j-1+y, room_name, true)
-				print("Mark grid as belonging to", room_name)
+
+			--	self.map.attrs(i-1+x, j-1+y, "room_id", room_name)
+			--	self.map.attrs(i-1+x, j-1+y, room_name, true)
+			--	print("Mark grid as belonging to", room_name)
 			end
 		end
 	end

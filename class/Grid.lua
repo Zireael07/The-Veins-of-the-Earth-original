@@ -144,14 +144,19 @@ function _M:tooltip(x, y)
 
 --[[    for i, v in pairs({'no_teleport', 
     	'big_moss1', 'big_moss2', 'chasm1', 'chasm2', 'chasm3', 'chasm4', 'circle', 'circle2', 'circle3', 'ice_patch', 'ice_patch2', 'ice_patch3', 'icefilled', 'lake', 'lake2', 'marble', 'marble2', 'moss_patch1', 'moss_patch2', 'moss_pilar1', 'moss_pilar2', 'moss_pilar3', 'pilar', 'pilar2', 'pilar3', 'pilar4', 'pilar_stairs', 'pilar_stairs2', 'pilar_stairs3', 'rhomboid', 'rhomboid2', 'ritual', 'ritual2', 'simple', 'temple', 'treasure_room', 'veins', 'waterfilled', 'waterfilled2', 'waterfilled3', 'waterfilled4', 'waterfilled_half', 'waterfilled_half2', 'waterfilled_pilar',
-    	'forest_clearing', }) do
+    	'forest_clearing'}) do
         if game.level.map.attrs(x, y, v) then tstr:add({"color", "VIOLET"}, v, {"color", "LAST"}, true) end
+	end
+
+    tstr:add({"color", "VIOLET"}, "Corridor", {"color", "LAST"})
     end]]
 
-    self:roomName()
+   self:roomName()
+
+--	if game.level.map.attrs(x, y, "room_id", v) then tstr:add({"color", "VIOLET"}, v, {"color", "LAST"}, true)
+--	else tstr:add({"color", "VIOLET"}, "Corridor", {"color", "LAST"}) end
 
 	return tstr
-
 end
 
 --Overloads to show exits on minimap:
