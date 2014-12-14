@@ -210,6 +210,20 @@ newEffect{
 }
 
 newEffect{
+	name = "KNOW_ALIGNMENT",
+	desc = "knows alignment",
+	type = "mental",
+	status = "beneficial",
+	activate = function(self, eff)
+--		eff.particle = self:addParticles(Particles.new("law", 1))
+	end,
+	 deactivate = function(self, eff)
+--        self:removeParticles(eff.particle)
+    end,
+}
+
+
+newEffect{
 	name = "EXPEDITIOUS_RETREAT",
 	desc = "Boost speed",
 	type = "mental",

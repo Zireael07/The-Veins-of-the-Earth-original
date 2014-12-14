@@ -74,6 +74,27 @@ newArcaneSpell{
 }
 
 newArcaneSpell{
+	name = "Know Alignment",
+	type = {"divination", 1},
+	mode = 'activated',
+	level = 2,
+	points = 1,
+	cooldown = 0,
+	tactical = { BUFF = 2 },
+	range = 0,
+	requires_target = false,
+	no_npc_use = true,
+	action = function(self, t)
+		self:setEffect(self.EFF_KNOW_ALIGNMENT, 10, {})
+		return true
+	end,
+	info = function(self, t)
+		return ([[Reveals the monsters' alignment to the caster.]])
+	end,
+}
+
+
+newArcaneSpell{
 	name = "Magic Mapping",
 	type = {"divination", 1},
 	mode = 'activated',
