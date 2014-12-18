@@ -6,6 +6,7 @@ newEntity{
 	define_as = "BASE_NPC_ENCOUNTER",
 	type = "encounter",
 	display = "!", color=colors.WHITE,
+	level_range = {1, 4},
 }
 
 --Specific encounters

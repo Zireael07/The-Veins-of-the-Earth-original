@@ -4,6 +4,7 @@
 newEntity{
 	define_as = "BASE_NPC_ENCOUNTER",
 	type = "encounter",
+	level_range = {1, 4},
 	display = "!", color=colors.WHITE,
 }
 
