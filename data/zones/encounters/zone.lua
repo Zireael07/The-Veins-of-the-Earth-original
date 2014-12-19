@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013
+-- Zireael 2014
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 return {
-	name = "test",
+	name = "Encounters test",
 	level_range = {1, 1},
 	max_level = 1000,
 	decay = {300, 800},
