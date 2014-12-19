@@ -3141,11 +3141,11 @@ function _M:updateModdableTile()
   self:removeAllMOs()
 
 
---    local base = "tiles/player/"..self.moddable_tile.."/"
-
     local base = "default/tiles/player/default/"
+    --Use racial dolls
+    local doll = "default/tiles/player/racial_dolls/"    
 
-	self.image = base..(self.moddable_tile_base or "human_m.png")
+	  self.image = doll..(self.moddable_tile_base or "human_m.png")
   	self.add_mos = {}
   	local add = self.add_mos
   	local i
