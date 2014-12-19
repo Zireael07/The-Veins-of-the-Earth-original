@@ -95,6 +95,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		moddable_tile_base = "elf_m.png",
 		resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -160,6 +161,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		moddable_tile_base = "halfling_m.png",
 		resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -178,6 +180,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		moddable_tile_base = "dwarf_m.png",
 		resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -208,6 +211,7 @@ newBirthDescriptor {
 	}
 	},
 	copy = {
+	moddable_tile_base = "drow_m.png",
 	starting_intro = "dark",
 	
 	}
@@ -227,6 +231,7 @@ newBirthDescriptor {
 	},
 	copy = {
 	starting_intro = "dark",
+	moddable_tile_base = "duergar_m.png",
 	talents = {
     [ActorTalents.T_INVISIBILITY_INNATE]=1,
 	}
@@ -270,6 +275,7 @@ newBirthDescriptor{
 	},
 	copy = {
 	starting_intro = "main",
+	moddable_tile_base = "lizardfolk_m.png",
 	resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -293,6 +299,7 @@ newBirthDescriptor{
 		--skill_craft = 2,
 	},
 	copy = {
+	moddable_tile_base = "kobold_m.png",
 	starting_intro = "dark",
 	}
 }
@@ -308,6 +315,7 @@ newBirthDescriptor{
 		--to do: orc blood
 	},
 	copy = {
+	moddable_tile_base = "orc_m.png",
 	starting_intro = "dark",
 	}
 }
