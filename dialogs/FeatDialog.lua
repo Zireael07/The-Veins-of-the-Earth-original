@@ -202,6 +202,7 @@ function _M:generateAvail()
                         local d = "#GOLD#"..t.name.."#LAST#\n"
                         s = player:getTalentReqDesc(t.id):toString()
                         d = d..s.."\n#WHITE#"
+                        d = d..t.info(player,t)
             
                 nodes[#nodes+1] = {
                 name = t.name,
