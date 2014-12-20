@@ -78,7 +78,7 @@ function _M:activate()
 --    self.npcs_display = ActorsSeenDisplayMin.new(nil, 216, game.h - font_mono_h * 4.2, game.w - 216, font_mono_h * 4.2, "/data/gfx/ui/talents-list.png", font_mono, size_mono)
     self.npcs_display = ActorsSeenDisplayMin.new(nil, 216 + (game.w - 216) / 2, self.map_h_stop - font_h * 8 -16, (game.w - 216) / 2, font_mono_h*5, nil, font_mono, size_mono)
     self.npcs_display.resizeToLines = function () self.npcs_display:resize(216, self.map_h_stop - font_h * 5 -16, (game.w - 216) / 2, font_h * 5) end
-    self.npcs_display:enableShadow(1)
+--    self.npcs_display:enableShadow(1)
 --    self.npcs_display:setColumns(3)
 
     self.minimap_bg, self.minimap_bg_w, self.minimap_bg_h = core.display.loadImage("/data/gfx/ui/minimap.png"):glTexture()
@@ -350,7 +350,7 @@ function _M:display(nb_keyframes)
 --[[    if self.show_npc_list then
         self.npcs_display:toScreen()
     else
-        self.hotkeys_display:toScreen()
+--        self.hotkeys_display:toScreen()
     end]]
 
     -- UI
