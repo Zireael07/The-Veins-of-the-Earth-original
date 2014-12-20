@@ -134,6 +134,8 @@ function _M:run()
 	-- Ok everything is good to go, activate the game in the engine!
 	self:setCurrent()
 
+	self.inited = true
+
 --	if self.level then self:setupDisplayMode() end
 end
 
@@ -285,6 +287,7 @@ end
 --Taken from ToME 4
 
 function _M:getMapSize()
+--	return self.uiset:getMapSize()
 	local w, h = core.display.size()
 	return 0, 0, w, h
 end
@@ -325,6 +328,8 @@ function _M:setupDisplayMode(reboot, mode)
 		local fsize = math.floor( pot_th/th*(0.7 * th + 5) )
 
 		local map_x, map_y, map_w, map_h = self:getMapSize()
+	--	local map_x, map_y, map_w, map_h = self.uiset:getMapSize()
+		
 		if th <= 20 then
 			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/DroidSansFallback.ttf", pot_th, do_bg)
 		else
@@ -360,13 +365,51 @@ function _M:setupDisplayMode(reboot, mode)
 			end
 			engine.interface.GameTargeting.init(self)
 		end
+		self:setupMiniMap()
 
-		-- Create the framebuffer
+		self:createFBOs()
+
+--[[		-- Create the framebuffer
 		self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
 		if self.fbo then self.fbo_shader = Shader.new("main_fbo") if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end end
-		if self.player then self.player:updateMainShader() end
+		if self.player then self.player:updateMainShader() end]]
 
 	end
+end
+
+--Taken from ToME
+function _M:createFBOs()
+	print("[GAME] Creating FBOs")
+
+	-- Create the framebuffer
+	self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
+	if self.fbo then
+		self.fbo_shader = Shader.new("main_fbo")
+	--[[	self.posteffects = {
+			wobbling = Shader.new("main_fbo/wobbling"),
+			underwater = Shader.new("main_fbo/underwater"),
+			motionblur = Shader.new("main_fbo/motionblur"),
+			blur = Shader.new("main_fbo/blur"),
+		}
+		self.posteffects_use = { self.fbo_shader.shad }]]
+		if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end 
+		self.fbo2 = core.display.newFBO(Map.viewport.width, Map.viewport.height)
+	end
+	
+	if self.player then self.player:updateMainShader() end
+
+	self.full_fbo = core.display.newFBO(self.w, self.h)
+	if self.full_fbo then self.full_fbo_shader = Shader.new("full_fbo") if not self.full_fbo_shader.shad then self.full_fbo = nil self.full_fbo_shader = nil end end
+
+	if self.fbo and self.fbo2 then core.particles.defineFramebuffer(self.fbo)
+	else core.particles.defineFramebuffer(nil) end
+
+	if self.target then self.target:enableFBORenderer("ui/targetshader.png", "target_fbo") end
+
+	Map:enableFBORenderer("target_fbo")
+
+--	self.mm_fbo = core.display.newFBO(200, 200)
+--	if self.mm_fbo then self.mm_fbo_shader = Shader.new("mm_fbo") if not self.mm_fbo_shader.shad then self.mm_fbo = nil self.mm_fbo_shader = nil end end
 end
 
 --Taken from ToME
@@ -907,6 +950,11 @@ function _M:display(nb_keyframes)
 	-- If switching resolution, blank everything but the dialog
 	if self.change_res_dialog then engine.GameTurnBased.display(self, nb_keyframes) return end
 
+	-- Reset gamma setting, something somewhere is disrupting it, this is a stop gap solution
+	if self.support_shader_gamma and self.full_fbo_shader and self.full_fbo_shader.shad then self.full_fbo_shader.shad:uniGamma(config.settings.gamma_correction / 100) end
+
+	if self.full_fbo then self.full_fbo:use(true) end
+
 	-- Now the ui
 	self.uiset:display(nb_keyframes)
 
@@ -943,6 +991,11 @@ function _M:display(nb_keyframes)
 		self:targetDisplayTooltip(Map.display_x, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
 	else
 		self:targetDisplayTooltip(self.w, self.h, self.old_ctrl_state~=self.ctrl_state, nb_keyframes )
+	end
+
+	if self.full_fbo then
+		self.full_fbo:use(false)
+		self.full_fbo:toScreen(0, 0, self.w, self.h, self.full_fbo_shader.shad)
 	end
 
 end
@@ -1283,7 +1336,8 @@ function _M:setupCommands()
 end
 
 function _M:setupMouse(reset)
-	if reset then self.mouse:reset() end
+	if reset == nil or reset then self.mouse:reset() end
+
 	self.mouse:registerZone(Map.display_x, Map.display_y, Map.viewport.width, Map.viewport.height, function(button, mx, my, xrel, yrel, bx, by, event, extra)
 		-- Handle targeting
 		if self:targetMouse(button, mx, my, xrel, yrel, event) then return end
