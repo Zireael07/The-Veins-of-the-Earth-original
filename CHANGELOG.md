@@ -1,5 +1,34 @@
 CHANGELOG
 
+0.25.0 - beta 6.5 - 22/12/2014
+
+* bug fix - fix the isThreatened() function
+* bug fix - add "or 0" to item price appraisal
+* bug fix - drow and elves now receive racial proficiencies properly
+* bug fix - restore targeting display
+* bug fix - stores for wandering shopkeepers now work as intended (no more insta-restocking)
+* bug fix - no longer capitalizing target names in log
+* bug fix - restore feat descriptions in feat select dialog
+
+* new tiles: drow noble female, drow noble male
+* new spells: expeditious retreat, dimension door, magic mapping, detect monsters, detect objects, know alignment
+* new terrain: shallow water
+* new zone: drow city, drow noble compound, tavern, brothel
+* new NPC: drow sage; drow noble female/male, drow commoner, drow guard, drow courtesan
+* implement class titles
+* implement stats training
+* implement trap sense for rogues
+* display seen NPCs in a list on-screen
+* implement racial dolls
+* add towns to worldmap
+* saves are now timestamped and time played is tracked
+* good player characters of traditionally evil races have a special intro text
+* randomize notes drop
+* implement a level spots tracker debug functionality
+* testing encounter-based generator
+
+0.24.0 - beta 6.4 - 09/11/2014
+
 * bug fix - ID counters don't tick down anymore when resting
 * bug fix - hunger is properly reduced when resting
 * bug fix - typo in zone definitions re: marble wall
