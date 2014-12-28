@@ -131,6 +131,8 @@ UIBase.font = core.display.newFont("/data/font/DroidSansFallback.ttf", size)
 
 --Resolvers
 dofile('/mod/resolvers.lua')
+--Ported utility functions from ToME 
+dofile('/mod/util.lua')
 
 -- Achievements
 WorldAchievements:loadDefinition("/data/achievements/")
