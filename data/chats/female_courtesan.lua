@@ -19,7 +19,14 @@ newChat{id="start",
             return true
         end
     },
-        {[[No, I have no need of your services.]]},
+        {[[No, I have no need of your services.]], cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end},
+        {[[I no want you.]], cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end}
     },
 }
 
@@ -27,7 +34,14 @@ newChat{id="start",
 newChat{id="welcome",
     text = [[Oh girl, I think you might be more interested in one of the guys...]],
     answers = {
-        {[[I suppose so.]]},
+        {[[I suppose so.]], cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end},
+        {[[Yeah.]], cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end}
     },
 }
 

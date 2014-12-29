@@ -27,7 +27,14 @@ end
 newChat{id="start",
     text=[[Welcome! Maybe you need me to identify an item?]],
     answers = {
-        {[[No, I have no need of your services.]]},
+        {[[No, I have no need of your services.]], cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end},
+        {[[Me no need identify.]], cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end},
         {[[Yes, please.]], action = function(npc, player)
          player:showInventory("Identify which item?", player:getInven("INVEN"), function(o) return not o.lore end, function(o)
             local price = 1100

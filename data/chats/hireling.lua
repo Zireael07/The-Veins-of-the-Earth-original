@@ -12,7 +12,16 @@ newChat{ id="start",
     return "company"
     end
     },
-        {[[No, I prefer adventuring alone.]]},
+        {[[No, I no like company.]], cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end
+        },
+        {[[No, I prefer adventuring alone.]], cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end
+        },
     },
 }
 
@@ -20,15 +29,54 @@ newChat{ id="company",
     text = [[I'm sorry, but my company will cost you money.]],
     answers = {
         {[[How much does it cost?]], jump="cost"},
-        {[[I don't have any money.]], jump="again"},
-        {[[I have coin to pay.]], jump="hire"},
+        {[[How much it cost?]], jump="cost", cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end
+        },
+        {[[I don't have any money.]], jump="again", cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end
+    },
+        {[[I no have money.]], jump="again", cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end
+    },
+        {[[I have coin to pay.]], jump="hire", cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end},
+        {[[Me can pay.]], jump="hire", cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end
+    },
     },
 }
 
 newChat{ id="cost",
     text = [[It costs 3 gp per day.]],
     answers = {
-        {[[That's too costly.]], jump="again"},
+        {[[That's too costly.]], jump="again", cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end},
+        {[[That too much.]], jump="again", cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+        end
+        },
+        {[[We go.]], action = function(npc, player)
+        if player:skillCheck("diplomacy", 15) then return "hire" end
+        --   cost = 3
+        return "sorry" end,
+        cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+        end
+        },
         {[[Fine. Let's head out.]], action = function(npc, player)
         if player:skillCheck("diplomacy", 15) then return "hire" end
         --   cost = 3
@@ -48,8 +96,22 @@ newChat{ id="again",
 newChat{ id="sorry",
     text = [[Sorry, I'm not interested. Maybe if you paid me more?]],
     answers = {
-        {[[What if I paid you double?]], jump="double"},
-        {[[That's too bad. I'll manage on my own.]]},
+        {[[What if I paid you double?]], jump="double", cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end},
+        {[[Me pay double.]], jump="double", cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end},
+        {[[That's too bad. I'll manage on my own.]], cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end},
+        {[[Me manage myself.]], cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end},
     }
     
 }
@@ -80,7 +142,14 @@ newChat{ id="hire",
         end,
 
         }, --cond = function(npc, player) player.level > 6 end
-        {[[I changed my mind.]], jump="again"},
+        {[[I changed my mind.]], jump="again", cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end},
+        {[[I no want your company.]], jump="again", cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end},
     }
     
 }
@@ -98,7 +167,14 @@ newChat{ id="hire2",
         end,
 
         }, --cond = function(npc, player) player.level > 6 end
-        {[[I changed my mind.]], jump="again"},
+        {[[I changed my mind.]], jump="again", cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end},
+        {[[I no want your company.]], jump="again", cond=function(npc, player) 
+        if player:getInt() > 10 then return end
+        return true
+    end},
     }
     
 }
