@@ -187,6 +187,12 @@ function _M:roomFrom(id, x, y, is_lit, room)
                 self.map(i-1+x, j-1+y, Map.TERRAIN, self:resolve('#'))
             else
                 self.map(i-1+x, j-1+y, Map.TERRAIN, self:resolve(c))
+                --Try to mark them at last
+                local room_name = room.name
+
+                self.level.map.attrs(i-1+x, j-1+y, "room_id", room_name)
+                self.level.map.attrs(i-1+x, j-1+y, room_name, true)
+                print("Mark grid as belonging to", room_name)
             end
             if room.special then self.map.room_map[i-1+x][j-1+y].special = true end
             if is_lit then self.map.lites(i-1+x, j-1+y, true) end
@@ -225,9 +231,29 @@ function _M:roomPlace(room, id, x, y)
                     self.map.room_map[i-1+x][j-1+y].room = nil
                     self.map.room_map[i-1+x][j-1+y].can_open = true
                     self.map(i-1+x, j-1+y, Map.TERRAIN, self:resolve('#'))
+                -- Special case (moss) - Zireael
+                elseif c == 'm' then
+                    -- Lite up around them in a 1 radius
+                    self.map(i, j, Map.TERRAIN, self:resolve('m'))
+                    local grids = core.fov.circle_grids(i, j, 2, true)
+                    for x, yy in pairs(grids) do for y, _ in pairs(yy) do
+                        self.map.lites(x, y, true)
+                    end end
+
+                    local room_name = room.name
+
+                    self.level.map.attrs(i, j, room_name, true)
+                    print("Mark grid as belonging to", room_name)
                 else
                     self.map(i-1+x, j-1+y, Map.TERRAIN, self:resolve(c))
+                    --Try to mark them at last
+                    local room_name = room.name
+
+                    self.level.map.attrs(i-1+x, j-1+y, "room_id", room_name)
+                    self.level.map.attrs(i-1+x, j-1+y, room_name, true)
+                    print("Mark grid as belonging to", room_name)
                 end
+
                 if is_lit then self.map.lites(i-1+x, j-1+y, true) end
             end
         end

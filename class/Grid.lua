@@ -59,52 +59,6 @@ function _M:on_move(x, y, who, forced)
 	end
 end
 
---Helper to display rooms
-function _M:roomName()
-	if game.level.map.attrs(x, y, "big_moss1") then tstr:add({"color", "VIOLET"}, "Big moss", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "big_moss2") then tstr:add({"color", "VIOLET"}, "Big moss", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "chasm1") then tstr:add({"color", "VIOLET"}, "Chasm", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "chasm2") then tstr:add({"color", "VIOLET"}, "Chasm", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "chasm3") then tstr:add({"color", "VIOLET"}, "Chasm", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "chasm4") then tstr:add({"color", "VIOLET"}, "Chasm", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "circle") then tstr:add({"color", "VIOLET"}, "Circle", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "circle2") then tstr:add({"color", "VIOLET"}, "Circle", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "icefilled") then tstr:add({"color", "VIOLET"}, "Ice filled", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "ice_patch1") then tstr:add({"color", "VIOLET"}, "Ice", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "ice_patch2") then tstr:add({"color", "VIOLET"}, "Ice", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "ice_patch3") then tstr:add({"color", "VIOLET"}, "Ice", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "lake") then tstr:add({"color", "VIOLET"}, "Lake", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "lake2") then tstr:add({"color", "VIOLET"}, "Lake", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "marble") then tstr:add({"color", "VIOLET"}, "Marble", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "marble2") then tstr:add({"color", "VIOLET"}, "Marble", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "moss_patch1") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "moss_patch2") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "moss_pilar1") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "moss_pilar2") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "moss_pilar3") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "pilar") then tstr:add({"color", "VIOLET"}, "Pillar", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "pilar2") then tstr:add({"color", "VIOLET"}, "Pillar", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "pilar3") then tstr:add({"color", "VIOLET"}, "Pillar", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "rhomboid") then tstr:add({"color", "VIOLET"}, "Rhomboid", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "rhomboid2") then tstr:add({"color", "VIOLET"}, "Rhomboid", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "ritual") then tstr:add({"color", "VIOLET"}, "Ritual", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "ritual2") then tstr:add({"color", "VIOLET"}, "Ritual", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "simple") then tstr:add({"color", "VIOLET"}, "Simple", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "temple") then tstr:add({"color", "VIOLET"}, "Temple", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "treasure_room") then tstr:add({"color", "VIOLET"}, "Treasure room", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "waterfilled") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "waterfilled2") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "waterfilled3") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "waterfilled4") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "waterfilled_half") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "waterfilled_half2") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
-	if game.level.map.attrs(x, y, "waterfilled_pilar") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
-
-
-	if game.level.map.attrs(x, y, "forest_clearing") then tstr:add({"color", "VIOLET"}, "Clearing", {"color", "LAST"}, true) end
-end
-
-
 --Make it more informative!!!
 function _M:tooltip(x, y)
 	if not x or not y then return tstring("") end
@@ -151,10 +105,51 @@ function _M:tooltip(x, y)
     tstr:add({"color", "VIOLET"}, "Corridor", {"color", "LAST"})
     end]]
 
-   self:roomName()
+--[[	if game.level.map.attrs(x, y, "room_id", v) then tstr:add({"color", "VIOLET"}, v, {"color", "LAST"}, true)
+	else tstr:add({"color", "VIOLET"}, "Corridor", {"color", "LAST"}) end]]
 
---	if game.level.map.attrs(x, y, "room_id", v) then tstr:add({"color", "VIOLET"}, v, {"color", "LAST"}, true)
---	else tstr:add({"color", "VIOLET"}, "Corridor", {"color", "LAST"}) end
+	if game.level.map.attrs(x, y, "big_moss1") then tstr:add({"color", "VIOLET"}, "Big moss", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "big_moss2") then tstr:add({"color", "VIOLET"}, "Big moss", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "chasm1") then tstr:add({"color", "VIOLET"}, "Chasm", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "chasm2") then tstr:add({"color", "VIOLET"}, "Chasm", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "chasm3") then tstr:add({"color", "VIOLET"}, "Chasm", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "chasm4") then tstr:add({"color", "VIOLET"}, "Chasm", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "circle") then tstr:add({"color", "VIOLET"}, "Circle", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "circle2") then tstr:add({"color", "VIOLET"}, "Circle", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "icefilled") then tstr:add({"color", "VIOLET"}, "Ice filled", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "ice_patch1") then tstr:add({"color", "VIOLET"}, "Ice", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "ice_patch2") then tstr:add({"color", "VIOLET"}, "Ice", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "ice_patch3") then tstr:add({"color", "VIOLET"}, "Ice", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "lake") then tstr:add({"color", "VIOLET"}, "Lake", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "lake2") then tstr:add({"color", "VIOLET"}, "Lake", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "marble") then tstr:add({"color", "VIOLET"}, "Marble", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "marble2") then tstr:add({"color", "VIOLET"}, "Marble", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "moss_patch1") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "moss_patch2") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "moss_pilar1") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "moss_pilar2") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "moss_pilar3") then tstr:add({"color", "VIOLET"}, "Moss patch", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "pilar") then tstr:add({"color", "VIOLET"}, "Pillar", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "pilar2") then tstr:add({"color", "VIOLET"}, "Pillar", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "pilar3") then tstr:add({"color", "VIOLET"}, "Pillar", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "rhomboid") then tstr:add({"color", "VIOLET"}, "Rhomboid", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "rhomboid2") then tstr:add({"color", "VIOLET"}, "Rhomboid", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "ritual") then tstr:add({"color", "VIOLET"}, "Ritual", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "ritual2") then tstr:add({"color", "VIOLET"}, "Ritual", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "simple") then tstr:add({"color", "VIOLET"}, "Simple", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "temple") then tstr:add({"color", "VIOLET"}, "Temple", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "treasure_room") then tstr:add({"color", "VIOLET"}, "Treasure room", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "waterfilled") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "waterfilled2") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "waterfilled3") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "waterfilled4") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "waterfilled_half") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "waterfilled_half2") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
+	if game.level.map.attrs(x, y, "waterfilled_pilar") then tstr:add({"color", "VIOLET"}, "Waterfilled", {"color", "LAST"}, true) end
+
+
+	if game.level.map.attrs(x, y, "forest_clearing") then tstr:add({"color", "VIOLET"}, "Clearing", {"color", "LAST"}, true) end
+
 
 	return tstr
 end
