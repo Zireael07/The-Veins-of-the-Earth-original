@@ -37,11 +37,11 @@ newTalent{
             if not silent then game.log(("You need a ranged weapon to shoot")) end return nil end
         if not weapon or not weapon.ranged then 
             if not silent then game.log("You need a ranged weapon to shoot with!") end return nil end
-        if weapon.ammo_type and not ammo then 
+        if weapon and weapon.ammo_type and not ammo then 
             if not silent then game.log("Your weapon requires ammo!") end return nil end
-        if not weapon.ammo_type == ammo.archery_ammo then 
+        if weapon and not weapon.ammo_type == ammo.archery_ammo then 
             if not silent then game.log("You have the wrong ammo type equipped!") end return nil end
-        if ammo.combat.capacity <= 0 then 
+        if ammo and ammo.combat.capacity <= 0 then 
             if not silent then game.log("You're out of ammo!") end return nil end
 
         return true
@@ -57,7 +57,14 @@ newTalent{
 
         if target then
             --Use the ammo up!
+            if ammo and weapon.ammo_type and ammo.combat.capacity then
             ammo.combat.capacity = ammo.combat.capacity - 1
+            end
+
+            --if thrown then remove the item
+            if not weapon.ammo_type then
+                self:removeObject(self:getInven("MAIN_HAND"), weapon)
+            end
 
             --do we hit?
             local hit, crit = self:attackRoll(target, weapon)
