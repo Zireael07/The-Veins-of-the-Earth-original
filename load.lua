@@ -49,7 +49,10 @@ if not config.settings.veins.gfx then
 end
 
 --Variants
-if not config.settings.veins.difficulty then config.settings.veins.difficulty = "Normal" end
+if not config.settings.veins.difficulty or 
+	(not config.settings.veins.difficulty == "Easy" or not config.settings.veins.difficulty == "Normal" or not config.settings.veins.difficulty == "Hard")
+	then 
+	config.settings.veins.difficulty = "Normal" end
 if not config.settings.veins.body_parts then config.settings.veins.body_parts = false end
 if not config.settings.veins.piecemeal_armor then config.settings.veins.piecemeal_armor = false end
 if not config.settings.veins.defensive_roll then config.settings.veins.defensive_roll = false end
