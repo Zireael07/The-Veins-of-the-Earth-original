@@ -29,7 +29,6 @@ newChat{ id="start",
     end
     },
         {[[Show them or I will kill you!]], action = function(npc, player)
-        }
     if player:skillCheck("intimidate", 10) then return "shop" 
     else return "sorry" end
     end,
@@ -39,7 +38,6 @@ newChat{ id="start",
     end
     },
         {[[You give stuff or me kill you!]], , action = function(npc, player)
-        }
     if player:skillCheck("intimidate", 10) then return "shop" 
     else return "sorry" end
     end,
