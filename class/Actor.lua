@@ -1384,10 +1384,14 @@ local exp_worth_chart = {
 -- @param target to whom is the exp rewarded
 -- @return the experience rewarded
 function _M:worthExp(target)
+	--	return (self.exp_worth) end
+
+
 	local cr = self.challenge
 	-- TODO Don't get experience from killing friendlies.
 	if self.challenge < (game.player.level - 4) then return 0 end
---	return (self.exp_worth) end
+
+
 	--CR below 1
 	if self.challenge < 1 then
 		if self.challenge == 1/2 then return 200
@@ -1398,8 +1402,17 @@ function _M:worthExp(target)
 		elseif self.challenge == 1/10 then return 30
 		else end
 	end
-	--standard
+
+	--Round up for 1 1/2 CR and the like
+    
+	if not exp_worth_chart[cr] then 
+        local new_cr = math.ceil(cr)
+        return exp_worth_chart[new_cr] 
+    
+    --standard
+    else 	
 	return exp_worth_chart[cr]
+    end
 end
 
 
