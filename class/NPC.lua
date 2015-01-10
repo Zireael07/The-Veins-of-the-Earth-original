@@ -335,7 +335,8 @@ function _M:aiCanPass(x, y)
 
     --Stop walking into lava/fire/chasm etc.
     local terrain = game.level.map(x, y, Map.TERRAIN)
-    if terrain.on_stand and not terrain.on_stand_safe then return false end
+    --prevent weird off-map AI errors
+    if terrain and terrain.on_stand and not terrain.on_stand_safe then return false end
 
     return engine.interface.ActorAI.aiCanPass(self, x, y)
 end
