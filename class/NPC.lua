@@ -17,6 +17,8 @@
 require "engine.class"
 local ActorAI = require "engine.interface.ActorAI"
 local Faction = require "engine.Faction"
+
+local Map = require "engine.Map"
 require "mod.class.Actor"
 
 module(..., package.seeall, class.inherit(mod.class.Actor, engine.interface.ActorAI))
@@ -293,6 +295,7 @@ end
 end]]
 
 function _M:aiCanPass(x, y)
+    --From ToME 4
     -- If there is a friendly actor, add shove_pressure to it
 --[[    local target = game.level.map(x, y, engine.Map.ACTOR)
     if target and target ~= game.player and self:reactionToward(target) > 0 and not target:attr("never_move") and target.x then
@@ -330,6 +333,9 @@ function _M:aiCanPass(x, y)
         end
     end]]
 
+    --Stop walking into lava/fire/chasm etc.
+    local terrain = game.level.map(x, y, Map.TERRAIN)
+    if terrain.on_stand and not terrain.on_stand_safe then return false end
 
     return engine.interface.ActorAI.aiCanPass(self, x, y)
 end
