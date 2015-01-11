@@ -14,8 +14,13 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+local houses = { "House Baenre", "House Armgo", "House Tlabbar", "House Mizzrym", "House Nasadra", "House Auvryndar", "House Aleanrahel" }
+local pick = rng.tableRemove(houses)
+
 return {
-	name = "Drow Noble House",
+--	name = "Drow Noble House",	
+
+	name = pick.." Compound",
 	level_range = {1, 1},
 	max_level = 1,
 --	decay = {300, 800},
@@ -71,6 +76,8 @@ return {
 		game:placeTerrainMulti("FAERIE_TORCH", 10)
 
 --		game:placeTerrain("FAERIE_TORCH")
+
+	--	for uid, e in pairs(level.entities) do e.faction = pick end
 
 	end,
 }

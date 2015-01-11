@@ -86,7 +86,8 @@ return {
 	entry_point = function(_, _, from_zone)
 		if not from_zone then
       		return nil
-    	elseif from_zone.name == "Drow Noble House" then 
+    --	elseif from_zone.name == "Drow Noble House" then 
+    	elseif from_zone.name:find("House Compound$") then
       		return game.level:pickSpot{ type="zone-change", subtype="noble house" }
       	elseif from_zone.name == "Brothel" then
       		return game.level:pickSpot{ type="zone-change", subtype="brothel" }
