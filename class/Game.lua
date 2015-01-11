@@ -169,7 +169,11 @@ function _M:newGame()
 	self.creating_player = true
 
 	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment', 'deity'}, function()
-      
+     	
+--[[     	--Display game options
+        self:registerDialog(require("mod.dialogs.GameOptions").new(true))]]
+
+
    	    game:changeLevel(1, "tunnels")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
@@ -192,8 +196,7 @@ function _M:newGame()
 			else end
 		end, "Yes", "No")
 
-   		--Display game options
-        self:registerDialog(require("mod.dialogs.GameOptions").new(true))
+   		
         
         game.creating_player = false
 

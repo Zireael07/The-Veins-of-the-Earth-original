@@ -419,11 +419,18 @@ end
 
 --To do at end/on finish
 function _M:atEnd()
+    self:checkNew(function() 
+
     game:unregisterDialog(self)
     self.actor:setName(self.c_name.text)
     self:apply()
     self.at_end()
     print("[BIRTHER] Finished!")
+
+    --Display game options
+    game:registerDialog(require("mod.dialogs.GameOptions").new(true))
+ 
+end)
 end
 
 function _M:cancel()
