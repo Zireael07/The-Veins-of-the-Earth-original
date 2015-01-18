@@ -783,6 +783,7 @@ function resolvers.calc.value(t, e)
 	
 end
 
+--From ToME 2 port
 -- Assign a flavor to flavored objects that haven't had a flavor assigned
 -- to them, and adjust a flavored object's color and tile image
 function resolvers.flavored()
@@ -798,6 +799,9 @@ function resolvers.calc.flavored(t, e)
     end
     local color = used[e.name][2]
     e.color = color
+
+    --TO DO: if no file exists, use parent object image
+    
     e.image = used[e.name][3]
     
     local flavor_name = used[e.name][1]
