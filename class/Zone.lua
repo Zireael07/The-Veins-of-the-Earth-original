@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2014 Zireael
+-- Copyright (C) 2013-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ local Map = require "engine.Map"
 
 local Astar = require "engine.Astar"
 local forceprint = print
-local print = function() end
+--local print = function() end
 
 module(..., package.seeall, class.inherit(Zone))
 
@@ -150,6 +150,222 @@ function _M:checkFilter(e, filter, type)
 
     return true
 end
+
+--Backported from ToME git
+--Necessary to avoid Lua'ing
+local pick_ego = function(self, level, e, eegos, egos_list, type, picked_etype, etype, ego_filter)
+    picked_etype[etype] = true
+    if _G.type(etype) == "number" then etype = "" end
+
+    local egos = e.egos and level:getEntitiesList(type.."/"..e.egos..":"..etype)
+
+    if not egos then egos = self:generateEgoEntities(level, type, etype, eegos, e.__CLASSNAME) end
+
+    if self.ego_filter then ego_filter = self.ego_filter(self, level, type, etype, e, ego_filter, egos_list, picked_etype) end
+
+    -- Filter the egos if needed
+    if ego_filter then
+        local list = {}
+        for z = 1, #egos do list[#list+1] = egos[z].e end
+        egos = self:computeRarities(type, list, level, function(e) return self:checkFilter(e, ego_filter) end, ego_filter.add_levels, ego_filter.special_rarity)
+    end
+    egos_list[#egos_list+1] = self:pickEntity(egos)
+
+    if egos_list[#egos_list] then print("Picked ego", type.."/"..eegos..":"..etype, ":=>", egos_list[#egos_list].name) else print("Picked ego", type.."/"..eegos..":"..etype, ":=>", #egos_list) end
+end
+
+
+-- Applies a single ego to a (pre-resolved) entity
+-- May be in need to resolve afterwards
+function _M:applyEgo(e, ego, type, no_name_change)
+    if not e.__original then e.__original = e:clone() end
+    print("ego", ego.__CLASSNAME, ego.name, getmetatable(ego))
+    local orig_ego = ego
+    ego = ego:clone()
+    local newname = e.name
+    if not no_name_change then
+        local display = ego.display_string or ego.name
+        if ego.prefix or ego.display_prefix then newname = display .. e.name
+        else newname = e.name .. display end
+    end
+    print("applying ego", ego.name, "to ", e.name, "::", newname, "///", e.unided_name, ego.unided_name)
+    ego.unided_name = nil
+    ego.__CLASSNAME = nil
+    ego.__ATOMIC = nil
+    -- The ego requested instant resolving before merge ?
+    if ego.instant_resolve then ego:resolve(nil, nil, e) end
+    if ego.instant_resolve == "last" then ego:resolve(nil, true, e) end
+    ego.instant_resolve = nil
+    -- Void the uid, we dont want to erase the base entity's one
+    ego.uid = nil
+    ego.rarity = nil
+    ego.level_range = nil
+    -- Merge according to Object's ego rules.
+    table.ruleMergeAppendAdd(e, ego, self.ego_rules[type] or {})
+    
+    e.name = newname
+    if not ego.fake_ego then
+        e.egoed = true
+    end
+    e.ego_list = e.ego_list or {}
+    e.ego_list[#e.ego_list + 1] = {orig_ego, type, no_name_change}
+end
+
+-- WARNING the thing may be in need of re-identifying after this
+local function reapplyEgos(self, e)
+    if not e.__original then return e end
+    local brandNew = e.__original -- it will be cloned upon first ego application
+    if e.ego_list and #e.ego_list > 0 then
+        for _, ego_args in ipairs(e.ego_list) do
+            self:applyEgo(brandNew, unpack(ego_args))
+        end
+    end
+    e:replaceWith(brandNew)
+end
+
+-- Remove an ego
+function _M:removeEgo(e, ego)
+    local idx = nil
+    for i, v in ipairs(e.ego_list or {}) do
+        if v[1] == ego then
+            idx = i
+        end
+    end
+    if not idx then return end
+    table.remove(e.ego_list, idx)
+    reapplyEgos(self, e)
+    return ego
+end
+
+function _M:getEgoByName(e, ego_name)
+    for i, v in ipairs(e.ego_list or {}) do
+        if v[1].name == ego_name then return v[1] end
+    end
+end
+
+function _M:removeEgoByName(e, ego_name)
+    for i, v in ipairs(e.ego_list or {}) do
+        if v[1].name == ego_name then return self:removeEgo(e, v[1]) end
+    end
+end
+
+function _M:setEntityEgoList(e, list)
+    e.ego_list = table.clone(list)
+    reapplyEgos(self, e)
+    return e
+end
+
+--new FinishEntity backported from ToME git
+--- Finishes generating an entity
+function _M:finishEntity(level, type, e, ego_filter)
+    e = e:clone()
+    e:resolve()
+
+    -- Add "addon" properties, always
+    if not e.unique and e.addons then
+        local egos_list = {}
+
+        pick_ego(self, level, e, e.addons, egos_list, type, {}, "addon", nil)
+
+        if #egos_list > 0 then
+            for ie, ego in ipairs(egos_list) do
+                self:applyEgo(e, ego, type)
+            end
+            -- Re-resolve with the (possibly) new resolvers
+            e:resolve()
+        end
+        e.addons = nil
+    end
+
+    -- Add "ego" properties, sometimes
+    if not e.unique and e.egos and (e.force_ego or e.egos_chance) then
+        local egos_list = {}
+
+        local ego_chance = 0
+        if _G.type(ego_filter) == "number" then ego_chance = ego_filter; ego_filter = nil
+        elseif _G.type(ego_filter) == "table" then ego_chance = ego_filter.ego_chance or 0
+        else ego_filter = nil
+        end
+
+        if not e.force_ego then
+            if _G.type(e.egos_chance) == "number" then e.egos_chance = {e.egos_chance} end
+
+            if not ego_filter or not ego_filter.tries then
+                --------------------------------------
+                -- Natural ego
+                --------------------------------------
+
+                -- Pick an ego, then an other and so until we get no more
+                local chance_decay = 1
+                local picked_etype = {}
+                local etype = e.ego_first_type and e.ego_first_type or rng.tableIndex(e.egos_chance, picked_etype)
+                local echance = etype and e.egos_chance[etype]
+                while etype and rng.percent(util.bound(echance / chance_decay + (ego_chance or 0), 0, 100)) do
+                    pick_ego(self, level, e, e.egos, egos_list, type, picked_etype, etype, ego_filter)
+
+                    etype = rng.tableIndex(e.egos_chance, picked_etype)
+                    echance = e.egos_chance[etype]
+                    if e.egos_chance_decay then chance_decay = chance_decay * e.egos_chance_decay end
+                end
+
+            else
+                --------------------------------------
+                -- Semi Natural ego
+                --------------------------------------
+
+                -- Pick an ego, then an other and so until we get no more
+                local picked_etype = {}
+                for i = 1, #ego_filter.tries do
+                    local try = ego_filter.tries[i]
+
+                    local etype = (i == 1 and e.ego_first_type and e.ego_first_type) or rng.tableIndex(e.egos_chance, picked_etype)
+--                  forceprint("EGO TRY", i, ":", etype, echance, try)
+                    if not etype then break end
+                    local echance = etype and try[etype]
+
+                    pick_ego(self, level, e, e.egos, egos_list, type, picked_etype, etype, try)
+                end
+            end
+        else
+            --------------------------------------
+            -- Forced ego
+            --------------------------------------
+
+            local name = e.force_ego
+            if _G.type(name) == "table" then name = rng.table(name) end
+            print("Forcing ego", name)
+            local egos = level:getEntitiesList(type.."/base/"..e.egos..":")
+            egos_list = {egos[name]}
+            e.force_ego = nil
+        end
+
+        if #egos_list > 0 then
+            for ie, ego in ipairs(egos_list) do
+                self:applyEgo(e, ego, type)
+            end
+            -- Re-resolve with the (possibly) new resolvers
+            e:resolve()
+        end
+        if not ego_filter or not ego_filter.keep_egos then
+            e.egos = nil e.egos_chance = nil e.force_ego = nil
+        end
+    end
+
+    -- Generate a stack ?
+    if e.generate_stack then
+        local s = {}
+        while e.generate_stack > 0 do
+            s[#s+1] = e:clone()
+            e.generate_stack = e.generate_stack - 1
+        end
+        for i = 1, #s do e:stack(s[i], true) end
+    end
+
+    e:resolve(nil, true)
+    e:check("finish", e, self, level)
+    return e
+end
+
 
 --move the connectivity check earlier compared to T-Engine 1.2.3 to save on log clutter & load times
 function _M:newLevel(level_data, lev, old_lev, game)
