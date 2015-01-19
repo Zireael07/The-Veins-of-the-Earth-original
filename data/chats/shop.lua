@@ -47,7 +47,6 @@ newChat{ id="start",
     end
     },
         {[[Back away.]]},
-        }
     },
 }
 
