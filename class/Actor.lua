@@ -1324,7 +1324,8 @@ function _M:postUseTalent(ab, ret)
 			end
 		else
 			if ab.mana then
-			self:incMana(-util.getval(ab.mana, self, ab))
+		--	self:incMana(-util.getval(ab.mana, self, ab))
+			self:incMana(-util.getval(self:getSpellPoints(ab), self, ab))
 			end
 		end
 	end
@@ -1396,6 +1397,28 @@ function _M:getTalentName(t)
 		else return "something" end
 	end
 end	
+
+--A chart of spell points to prevent typos
+local spell_points_chart = {
+	[1] = 1,
+	[2] = 3,
+	[3] = 5,
+	[4] = 7,
+	[5] = 9,
+	[6] = 11,
+	[7] = 13,
+	[8] = 15,
+	[9] = 17,
+}
+
+
+--Spell points
+function _M:getSpellPoints(t)
+	if t.mana then 
+		return spell_points_chart[t.level]
+	end
+end
+
 
 --A chart of EXP worth to prevent typos and errors and mismatches
 local exp_worth_chart = {

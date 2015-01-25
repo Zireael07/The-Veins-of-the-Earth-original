@@ -47,6 +47,7 @@ end
 newArcaneSpell = function(t)
 	if not t.points then t.points = 1 end
 	if not t.is_spell then t.is_spell = true end
+	if not t.mana then t.mana = 1 end
 	t.spell_kind = {arcane=true}
 	t.show_in_spellbook = true
 	return newTalent(t)
@@ -55,6 +56,7 @@ end
 newDivineSpell = function(t)
 	if not t.points then t.points = 1 end
 	if not t.is_spell then t.is_spell = true end
+	if not t.mana then t.mana = 1 end
 	t.spell_kind = {divine=true}
 	t.show_in_spellbook = true
 	return newTalent(t)
@@ -63,6 +65,7 @@ end
 newArcaneDivineSpell = function(t)
 	if not t.points then t.points = 1 end
 	if not t.is_spell then t.is_spell = true end
+	if not t.mana then t.mana = 1 end
 	t.spell_kind = {divine=true, arcane=true}
 	t.show_in_spellbook = true
 	return newTalent(t)
