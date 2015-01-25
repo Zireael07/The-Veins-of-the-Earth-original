@@ -174,6 +174,14 @@ function _M:init(t, no_default)
 	t.can_pass = t.can_pass or {}
 	t.on_melee_hit = t.on_melee_hit or {}
 
+	--Default sight & lite ranges
+	t.sight = t.sight or 10
+	t.lite = t.lite or 0
+
+	--Resources (don't regen)
+	t.spell_regen = t.spell_regen or 0
+	t.psi_regen = t.psi_regen or 0
+
 	--Actually initiate some basic engine stuff
 	engine.Actor.init(self, t, no_default)
 	engine.interface.ActorTemporaryEffects.init(self, t)
@@ -214,6 +222,8 @@ function _M:init(t, no_default)
 	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
 	if weapon then dam = weapon.combat.dam
 	end
+
+	self:resetCanSeeCache()
 end
 
 --Taken from Qi Daozei
@@ -256,6 +266,19 @@ function _M:act()
 	if not engine.Actor.act(self) then return end
 
 	self.changed = true
+
+	--From ToME
+	-- If resources are too low, disable sustains
+	if (self.mana or 0) < 1 or (self.psi or 0) < 1 then
+		for tid, _ in pairs(self.sustain_talents) do
+			local t = self:getTalentFromId(tid)
+			if (t.sustain_mana and self.mana < 1) then
+				self:forceUseTalent(tid, {ignore_energy=true})
+			elseif (t.sustain_psi and self.psi < 1) and t.remove_on_zero then
+				self:forceUseTalent(tid, {ignore_energy=true})
+			end
+		end
+	end
 
 	-- Cooldown talents
 	self:cooldownTalents()
@@ -1217,6 +1240,20 @@ function _M:preUseTalent(ab, silent)
 	end
 	
 
+	--only for Sorcerer & Shaman
+	if self.classes and (self.classes["Sorcerer"] or self.classes["Shaman"]) then
+		--Check for mana/psi
+		if ab.mana and self:getMana() < util.getval(ab.mana, self, ab) then
+			if not silent then game.logPlayer(self, "You do not have enough spell points to cast %s.", ab.name) end
+			return false
+		end
+
+		if ab.psi and self:getPsi() < util.getval(ab.psi, self, ab) then
+			if not silent then game.logPlayer(self, "You do not have enough spell points to cast %s.", ab.name) end
+			return false
+		end
+	end
+
 	if not self:enoughEnergy() then return false end
 
 	if ab.mode == "sustained" then
@@ -1272,19 +1309,23 @@ function _M:postUseTalent(ab, ret)
 	
 	self:useEnergy()
 
-	if ab.mode == "sustained" then
-		if not self:isTalentActive(ab.id) then
-			if ab.sustain_power then
-				self.max_power = self.max_power - ab.sustain_power
+	--If Sorcerer/Shaman, use spell points
+	if self.classes and (self.classes["Sorcerer"] or self.classes["Shaman"]) then
+
+		if ab.mode == "sustained" then
+			if not self:isTalentActive(ab.id) then
+				if ab.sustain_mana then
+					self.max_mana = self.max_mana - ab.sustain_mana
+				end
+			else
+				if ab.sustain_psi then
+					self.max_psi = self.max_psi + ab.sustain_psi
+				end
 			end
 		else
-			if ab.sustain_power then
-				self.max_power = self.max_power + ab.sustain_power
+			if ab.mana then
+			self:incMana(-util.getval(ab.mana, self, ab))
 			end
-		end
-	else
-		if ab.power then
-			self:incPower(-ab.power)
 		end
 	end
 
