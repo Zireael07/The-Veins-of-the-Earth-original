@@ -112,7 +112,7 @@ function _M:resizeIconsHotkeysToolbar()
     self.hotkeys_display_icons:enableShadow(0.6)
 
     if game.inited then
-        game:resizeMapViewport(game.w - 216, self.map_h_stop - 16)
+        game:resizeMapViewport(game.w - 216, self.map_h_stop - 16, 216, 0)
         self.logdisplay.display_y = self.logdisplay.display_y + self.map_h_stop - oldstop
         profile.chat.display_y = profile.chat.display_y + self.map_h_stop - oldstop
         self.npcs_display_y = self.npcs_display_y + self.map_h_stop - oldstop

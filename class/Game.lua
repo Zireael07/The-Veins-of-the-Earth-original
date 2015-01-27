@@ -107,16 +107,12 @@ function _M:run()
 --	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
 
+	-- Ok everything is good to go, activate the game in the engine!
+	self:setCurrent()
+
 	self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
 
 	self.log("Welcome to #SANDY_BROWN#the Veins of the Earth! #WHITE#You can press F1 or h to open the help screen.")
-
-	-- Setup inputs
-	self:setupCommands()
-	self:setupMouse()
-
-	-- Starting from here we create a new game
-	if not self.player then self:newGame() end
 
 	-- Start time
 	self.real_starttime = os.time()
@@ -125,14 +121,20 @@ function _M:run()
 --	if self.level and self.level.data.day_night then self.state:dayNightCycle() end
 	if self.level then self.state:dayNightCycle() end
 
+	-- Setup inputs
+	self:setupCommands()
+	self:setupMouse()
+
+	-- Starting from here we create a new game
+	if not self.player then self:newGame() end
+
+
 	self.uiset.hotkeys_display.actor = self.player
 	self.uiset.npcs_display.actor = self.player
 
 	-- Setup the targetting system
 	engine.interface.GameTargeting.init(self)
 
-	-- Ok everything is good to go, activate the game in the engine!
-	self:setCurrent()
 
 	self.inited = true
 
@@ -415,10 +417,15 @@ function _M:createFBOs()
 --	if self.mm_fbo then self.mm_fbo_shader = Shader.new("mm_fbo") if not self.mm_fbo_shader.shad then self.mm_fbo = nil self.mm_fbo_shader = nil end end
 end
 
---Taken from ToME
-function _M:resizeMapViewport(w, h)
+--Taken from ToME git
+function _M:resizeMapViewport(w, h, x, y)
+	x = x and math.floor(x) or Map.display_x
+	y = y and math.floor(y) or Map.display_y
 	w = math.floor(w)
 	h = math.floor(h)
+
+	Map.display_x = x
+	Map.display_y = y
 
 	Map.viewport.width = w
 	Map.viewport.height = h
