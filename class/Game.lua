@@ -911,8 +911,8 @@ function _M:displayMap(nb_keyframes)
 		if self.fbo then
 			self.fbo:use(true)
 				if self.level.data.background then self.level.data.background(self.level, 0, 0, nb_keyframes) end
-				--map:display(0, 0, nb_keyframes)
-				map:display(0, 0, nb_keyframes, true)
+			--	map:display(0, 0, nb_keyframes, false, self.fbo)
+				map:display(0, 0, nb_keyframes, true, self.fbo)
 			--	if self.level.data.foreground then self.level.data.foreground(self.level, 0, 0, nb_keyframes) end
 			--	if self.level.data.weather_particle then self.state:displayWeather(self.level, self.level.data.weather_particle, nb_keyframes) end
 			--	if self.level.data.weather_shader then self.state:displayWeatherShader(self.level, self.level.data.weather_shader, map.display_x, map.display_y, nb_keyframes) end
