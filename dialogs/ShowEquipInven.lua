@@ -61,25 +61,29 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 				end
 			end
 			self.equip_actor:doWear(wear_inven, wear_item, wear_o, self.inven_actor)
-			self:generateList()
+		--	self:generateList()
+			self.c_inven:generateList()
 		end
 	}
 
 	self.max_h = 0
 
-	self.c_inven = ListColumns.new{width=math.floor(self.iw / 2 - 10), height=self.ih - self.max_h*self.font_h - 10, sortable=true, scrollbar=true, columns={
-		{name="", width={26,"fixed"}, display_prop="char", sort="id"},
-		{name="", width={24,"fixed"}, display_prop="object", sort="sortname", direct_draw=function(item, x, y) if item.object then item.object:toScreen(nil, x+4, y, 16, 16) end end},
-		{name="Inventory", width=72, display_prop="name", sort="sortname"},
-		{name="Category", width=20, display_prop="cat", sort="cat"},
-		{name="Enc.", width=10, display_prop="encumberance", sort="encumberance"},
-	}, list={},
-	fct=function(item, sel, button, event) self:use(item, button, event) end, 
-	select=function(item, sel) self:select(item) end, 
-	on_drag=function(item) self:onDrag(item) end,
-	on_drag_end=function() self:onDragTakeoff() end,
+	self.c_inven = Inventory.new{actor=inven_actor, inven=inven_actor:getInven("INVEN"), width=self.iw - 20 - self.c_doll.w, height=self.ih - 10, filter=filter,
+		fct=function(item, sel, button, event) self:use(item, button, event) end,
+		select=function(item, sel) self:select(item) end,
+		select_tab=function(item) self:select(item) end,
+		on_drag=function(item) self:onDrag(item) end,
+		on_drag_end=function() self:onDragTakeoff() end,
+		special_bg = function(item)
+			if item.object then 
+				local ok, err = self.inven_actor:canWearObject(item.object)
+				if not ok then return colors.DARK_RED end
 
-}
+				if not ok and not item.object:canUseObject() then return colors.LIGHT_BLUE end
+			end
+		end,
+	}
+
 
 	self:generateList()
 	
@@ -130,16 +134,6 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 		self.c_inven.c_inven.scrollbar.pos = util.bound(self.equip_actor.inv_scroll, 0, self.c_inven.c_inven.scrollbar.max)
 	end]]
 
-	self.c_inven.special_bg = function(item)
-			if not self.inven_actor:canWearObject(item.object) then
-				return colors.LIGHT_RED
-			end
-
-			if not item.object:canUseObject() then
-		 		return colors.LIGHT_BLUE
-    		end
-	end
-	self:generateList()
 end
 
 --[[function _M:firstDisplay()
@@ -237,38 +231,6 @@ function _M:drawFrame(x, y, r, g, b, a)
 	core.display.drawQuad(x + self.frame.title_x, y + self.frame.title_y, self.title_fill, self.frame.title_h, self.title_fill_color.r, self.title_fill_color.g, self.title_fill_color.b, 60)
 end
 
-function _M:generateList(no_update)
-	-- Makes up the list
-	self.inven_list = {}
-	local list = self.inven_list
-	local chars = {}
-	local i = 1
-	for item, o in ipairs(self.inven_actor:getInven("INVEN") or {}) do
-		if not self.filter or self.filter(o) then
-			local char = self:makeKeyChar(i)
-
-			local enc = 0
-			o:forAllStack(function(o) enc=enc+o.encumber end)
-
-			list[#list+1] = { id=#list+1, char=char, name=o:getName(), sortname=o:getName():toString():removeColorCodes(), color=o:getDisplayColor(), object=o, inven=self.inven_actor.INVEN_INVEN, item=item, cat=o.subtype, encumberance=enc, desc=o:getDesc() }
-			chars[char] = #list
-			i = i + 1
-		end
-	end
-	list.chars = chars
-
-	if not no_update then
-		self.c_inven.special_bg = function(item)
-			if not self.inven_actor:canWearObject(item.object) then
-				return colors.LIGHT_RED
-			end
-
-			if not item.object:canUseObject() then
-		 		return colors.LIGHT_BLUE
-    		end
-		end
-
-		self.c_inven:setList(self.inven_list)
-	--	self.c_equip:setList(self.equip_list)
-	end
+function _M:generateList()
+	self.c_inven:generateList()
 end
