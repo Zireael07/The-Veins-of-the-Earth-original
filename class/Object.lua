@@ -250,7 +250,7 @@ function _M:getTextualDesc()
 
     if self:isIdentified() then
            if self.wielder then
-            desc:add({"color","SANDY_BROWN"}, "\nWhen equipped:", {"color", "LAST"}, true)
+        --    desc:add({"color","SANDY_BROWN"}, "\nWhen equipped:", {"color", "LAST"}, true)
 
         local desc_wielder = function(w)
             if w.skill_bonus_hide then desc:add(("#GOLD#This armor grants a +%d bonus to Hide skill."):format(w.skill_bonus_hide or 0), true) end

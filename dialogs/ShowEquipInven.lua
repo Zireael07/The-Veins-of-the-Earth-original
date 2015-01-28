@@ -131,7 +131,7 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 	end]]
 
 	self.c_inven.special_bg = function(item)
-			if not self:canWearObject(item.object) then
+			if not self.inven_actor:canWearObject(item.object) then
 				return colors.LIGHT_RED
 			end
 
@@ -139,6 +139,7 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 		 		return colors.LIGHT_BLUE
     		end
 	end
+	self:generateList()
 end
 
 --[[function _M:firstDisplay()
@@ -258,7 +259,7 @@ function _M:generateList(no_update)
 
 	if not no_update then
 		self.c_inven.special_bg = function(item)
-			if not self:canWearObject(item.object) then
+			if not self.inven_actor:canWearObject(item.object) then
 				return colors.LIGHT_RED
 			end
 
