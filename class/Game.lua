@@ -65,8 +65,7 @@ module(..., package.seeall, class.inherit(engine.GameTurnBased, engine.interface
 support_shader_gamma = true
 
 function _M:init()
-
-	self.level_random_seed = self.level_random_seed or nil
+--	self.level_random_seed = self.level_random_seed or nil
 
 	engine.GameTurnBased.init(self, engine.KeyBind.new(), 1000, 100)
 
@@ -104,7 +103,6 @@ function _M:run()
 	self.tooltip2 = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
 	self.flyers = FlyingText.new(veins.fonts.flying.style, flysize, veins.fonts.flying.style, flysize + 3)
 
---	self.flyers = FlyingText.new()
 	self:setFlyingText(self.flyers)
 
 	-- Ok everything is good to go, activate the game in the engine!
@@ -231,6 +229,7 @@ function _M:loaded()
 --	selfppp = engine.KeyBind.new()
 	self.key = engine.KeyBind.new()
 
+	--if self.zone and self.zone.on_loaded then self.zone.on_loaded(self.level.level) end
 end
 
 --Taken from ToME 4
@@ -295,6 +294,7 @@ function _M:getMapSize()
 --	return self.uiset:getMapSize()
 	local w, h = core.display.size()
 	return 0, 0, w, h
+--	return 216, 0, w - 216, h
 end
 
 function _M:setupDisplayMode(reboot, mode)
@@ -374,6 +374,8 @@ function _M:setupDisplayMode(reboot, mode)
 
 		self:createFBOs()
 
+--		self:resizeMapViewport(self.w - 216, self.h - 16, 216, 0)
+
 --[[		-- Create the framebuffer
 		self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
 		if self.fbo then self.fbo_shader = Shader.new("main_fbo") if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end end
@@ -381,6 +383,19 @@ function _M:setupDisplayMode(reboot, mode)
 
 	end
 end
+
+--Grid lines option from git
+--[[function _M:createMapGridLines()
+	if not config.settings.tome.show_grid_lines then
+		Map:setupGridLines(0, 0, 0, 0, 0)
+	elseif self.posteffects and self.posteffects.line_grids and self.posteffects.line_grids.shad then
+		Map:setupGridLines(6, unpack(colors.hex1alpha"d5990880"))
+	else
+		Map:setupGridLines(2, unpack(colors.hex1alpha"d5990880"))
+	end
+	if self.level and self.level.map then self.level.map:regenGridLines() end
+end]]
+
 
 --Taken from ToME
 function _M:createFBOs()
@@ -406,7 +421,8 @@ function _M:createFBOs()
 	self.full_fbo = core.display.newFBO(self.w, self.h)
 	if self.full_fbo then self.full_fbo_shader = Shader.new("full_fbo") if not self.full_fbo_shader.shad then self.full_fbo = nil self.full_fbo_shader = nil end end
 
-	if self.fbo and self.fbo2 then core.particles.defineFramebuffer(self.fbo)
+	if self.fbo and self.fbo2 
+		then core.particles.defineFramebuffer(self.fbo)
 	else core.particles.defineFramebuffer(nil) end
 
 --	if self.target then self.target:enableFBORenderer("ui/targetshader.png", "target_fbo") end
@@ -424,6 +440,11 @@ function _M:resizeMapViewport(w, h, x, y)
 	w = math.floor(w)
 	h = math.floor(h)
 
+	-- convert from older faulty versions
+--[[	if game.level.map and rawget(game.level.map, "display_x") == Map.display_x and rawget(game.level.map, "display_y") == Map.display_y then
+		game.level.map.display_x, game.level.map.display_y = nil, nil
+	end]]
+
 	Map.display_x = x
 	Map.display_y = y
 
@@ -439,7 +460,7 @@ function _M:resizeMapViewport(w, h, x, y)
 		self.level.map:redisplay()
 		if self.player then
 			self.player:updateMainShader()
-			self.level.map:moveViewSurround(self.player.x, self.player.y, config.settings.tome.scroll_dist, config.settings.tome.scroll_dist)
+			self.level.map:moveViewSurround(self.player.x, self.player.y, 8, 8)
 		end
 	end
 end
@@ -448,6 +469,15 @@ function _M:setupMiniMap()
 	if self.level and self.level.map and self.level.map.finished then self.uiset:setupMinimap(self.level) end
 end
 
+--From ToME 4
+--- Sets up a text flyers
+function _M:setFlyingText(fl)
+	self.flyers = fl
+	function self.flyers:add(x, y, duration, xvel, yvel, str, color, bigfont)
+		local slowness = 20/10
+		return FlyingText.add(fl, x, y, duration*slowness, xvel/slowness, yvel/slowness, str, color, bigfont)
+	end
+end
 
 --Highscore stuff, unused until 1.0.5
 function _M:getPlayer(main)
@@ -1226,6 +1256,7 @@ function _M:setupCommands()
 			else
 				self.log("Displaying talents.")
 			end
+	--		if self.uiset.resizeIconsHotkeysToolbar then self.uiset:resizeIconsHotkeysToolbar() end
 		end,
 
 		SCREENSHOT = function() self:saveScreenshot() end,

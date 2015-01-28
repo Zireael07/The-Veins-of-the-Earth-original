@@ -116,7 +116,7 @@ function _M:resizeIconsHotkeysToolbar()
         self.logdisplay.display_y = self.logdisplay.display_y + self.map_h_stop - oldstop
         profile.chat.display_y = profile.chat.display_y + self.map_h_stop - oldstop
         self.npcs_display_y = self.npcs_display_y + self.map_h_stop - oldstop
-        game:setupMouse()
+        game:setupMouse(true)
     end
 
     self.hotkeys_display = self.hotkeys_display_icons
