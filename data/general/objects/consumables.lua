@@ -23,6 +23,7 @@ newEntity{
     level_range = {1,10},
     cost = 5,
     desc = [[Food rations, enough for a day or two.]],
+    stacking = true,
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 200
@@ -107,6 +108,7 @@ newEntity{
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 5,
+    stacking = true,
     desc = [[A flask of water. Good to quench your thirst.]],
     use_simple = { name = "eat",
     use = function(self,who)
@@ -124,6 +126,7 @@ newEntity{
     type = "food", subtype = "water",
     level_range = {1,10},
     cost = 2,
+    stacking = true,
     desc = [[Food rations gone stale.]],
     use_simple = { name = "eat",
     use = function(self,who)
@@ -141,6 +144,7 @@ newEntity{
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
     cost = 2,
+    stacking = true,
     desc = [[You'd be better off not drinking this water.]],
     use_simple = { name = "eat",
     use = function(self,who)
