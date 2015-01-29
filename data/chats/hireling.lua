@@ -134,7 +134,13 @@ newChat{ id="hire",
     answers = {
         {[[Let's go!]], action = function(npc, player) 
         --That's where the hireling should join the party
-        npc.faction = player.faction 
+    --    npc.faction = player.faction 
+        game.party:addMember(npc, {
+                control="order",
+                type="hireling",
+                title="Hireling",
+                orders = {target=true, leash=true, anchor=true, talents=true},
+            })
         --Deduce the gold
         player.money = player.money - 3
         --Prevent further talks
