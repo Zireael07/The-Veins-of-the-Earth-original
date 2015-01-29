@@ -64,6 +64,7 @@ function _M:use(item)
 
     if act == "move_to" then game.player:mouseMove(self.tmx, self.tmy, true)
     elseif act == "target-player" then item.actor:setTarget(game.player)
+    elseif act == "order" then game.party:giveOrders(item.actor)
     elseif act == "change_level" then game.key:triggerVirtual("CHANGE_LEVEL")
     elseif act == "pickup" then game.key:triggerVirtual("PICKUP_FLOOR")
     elseif act == "monster_info" then game:registerDialog(require("mod.dialogs.MonsterInfo").new(item.actor))
@@ -96,6 +97,7 @@ function _M:generateList()
     if g and g.change_level and self.on_player then list[#list+1] = {name="Change level", action="change_level", color=colors.simple(colors.VIOLET)} end
     if o and self.on_player then list[#list+1] = {name="Pick up item", action="pickup", color=colors.simple(colors.ANTIQUE_WHITE)} end
     if g and not self.on_player then list[#list+1] = {name="Move to", action="move_to", color=colors.simple(colors.ANTIQUE_WHITE)} end
+    if a and not self.on_player and game.party:canOrder(a, false) then list[#list+1] = {name="Give order", action="order", color=colors.simple(colors.TEAL), actor=a} end
     if a and not self.on_player and config.settings.cheat then list[#list+1] = {name="Target player", action="target-player", color=colors.simple(colors.RED), actor=a} end
 --    if a and config.settings.cheat then list[#list+1] = {name="Lua inspect", action="debug-inspect", color=colors.simple(colors.LIGHT_BLUE), actor=a} end
     if self.on_player then list[#list+1] = {name="Rest a while", action="rest", color=colors.simple(colors.ANTIQUE_WHITE)} end

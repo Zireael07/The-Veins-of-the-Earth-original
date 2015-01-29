@@ -195,3 +195,91 @@ function _M:findSuitablePlayer(type)
 	end
 	return false
 end
+
+function _M:canOrder(actor, order, vocal)
+	if not actor then return false end
+	if actor == game.player then return false end
+
+	if not self.members[actor] then
+		print("[PARTY] error trying to order, not a member of party: ", actor.uid, actor.name)
+		return false
+	end
+	if (self.members[actor].control ~= "full" and self.members[actor].control ~= "order") or not self.members[actor].orders then
+		print("[PARTY] error trying to order, not controlable: ", actor.uid, actor.name)
+		return false
+	end
+	if actor.dead or (game.level and not game.level:hasEntity(actor)) then
+		if vocal then game.logPlayer(game.player, "Can not give orders to this creature.") end
+		return false
+	end
+	if actor.on_can_order and not actor:on_can_order(vocal) then
+		print("[PARTY] error trying to order, can order forbade")
+		return false
+	end
+	if order and not self.members[actor].orders[order] then
+		print("[PARTY] error trying to order, unknown order: ", actor.uid, actor.name)
+		return false
+	end
+	return true
+end
+
+function _M:giveOrders(actor)
+	if type(actor) == "number" then actor = self.m_list[actor] end
+
+	local ok, err = self:canOrder(actor, nil, true)
+	if not ok then return nil, err end
+
+	local def = self.members[actor]
+
+	game:registerDialog(PartyOrder.new(actor, def))
+
+	return true
+end
+
+function _M:giveOrder(actor, order)
+	if type(actor) == "number" then actor = self.m_list[actor] end
+
+	local ok, err = self:canOrder(actor, order, true)
+	if not ok then return nil, err end
+
+	local def = self.members[actor]
+
+	if order == "leash" then
+		game:registerDialog(GetQuantity.new("Set action radius: "..actor.name, "Set the maximum distance this creature can go from the party master", actor.ai_state.tactic_leash, actor.ai_state.tactic_leash_max or 100, function(qty)
+			actor.ai_state.tactic_leash = util.bound(qty, 1, actor.ai_state.tactic_leash_max or 100)
+			game.logPlayer(game.player, "%s maximum action radius set to %d.", actor.name:capitalize(), actor.ai_state.tactic_leash)
+		end), 1)
+	elseif order == "anchor" then
+		local co = coroutine.create(function()
+			local x, y, act = game.player:getTarget({type="hit", range=10, nowarning=true})
+			local anchor
+			if x and y then
+				if act then
+					anchor = act
+				else
+					anchor = {x=x, y=y, name="that location"}
+				end
+				actor.ai_state.tactic_leash_anchor = anchor
+				game.logPlayer(game.player, "%s will stay near %s.", actor.name:capitalize(), anchor.name)
+			end
+		end)
+		local ok, err = coroutine.resume(co)
+		if not ok and err then print(debug.traceback(co)) error(err) end
+	elseif order == "target" then
+		local co = coroutine.create(function()
+			local x, y, act = game.player:getTarget({type="hit", range=10})
+			if act then
+				actor:setTarget(act)
+				game.player:logCombat(act, "%s targets #Target#.", actor.name:capitalize())
+			end
+		end)
+		local ok, err = coroutine.resume(co)
+		if not ok and err then print(debug.traceback(co)) error(err) end
+	elseif order == "behavior" then
+		game:registerDialog(require("mod.dialogs.orders."..order:capitalize()).new(actor, def))
+	elseif order == "talents" then
+		game:registerDialog(require("mod.dialogs.orders."..order:capitalize()).new(actor, def))
+	end
+
+	return true
+end
