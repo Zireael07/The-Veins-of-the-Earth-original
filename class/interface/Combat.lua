@@ -378,9 +378,10 @@ function _M:dealDamage(target, weapon, crit, sneak)
         if not visible then
           local heard_it = false
           local dist = core.fov.distance(game.player.x, game.player.y, self.x, self.y)
-          if dist < 10 and player.skill_listen > 0 then
+          local player = game.player
+          if dist < 10 and game.player.skill_listen > 0 then
             if not heard_it then
-              if player:skillCheck("listen", 10) then 
+              if game.player:skillCheck("listen", 10) then 
                 local dir = game.level.map:compassDirection(self.x - game.player.x, self.y - game.player.y)
                 game.log("You hear the sounds of conflict to the %s!", dir)
                 heard_it = true
