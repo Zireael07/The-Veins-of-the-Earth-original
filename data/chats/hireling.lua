@@ -13,7 +13,7 @@ newChat{ id="start",
     end
     },
         {[[No, I no like company.]], cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end
         },
@@ -28,9 +28,13 @@ newChat{ id="start",
 newChat{ id="company",
     text = [[I'm sorry, but my company will cost you money.]],
     answers = {
-        {[[How much does it cost?]], jump="cost"},
+        {[[How much does it cost?]], jump="cost", cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+    end
+        },
         {[[How much it cost?]], jump="cost", cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end
         },
@@ -40,7 +44,7 @@ newChat{ id="company",
     end
     },
         {[[I no have money.]], jump="again", cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end
     },
@@ -49,7 +53,7 @@ newChat{ id="company",
         return true
     end},
         {[[Me can pay.]], jump="hire", cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end
     },
@@ -64,7 +68,7 @@ newChat{ id="cost",
         return true
     end},
         {[[That too much.]], jump="again", cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
         end
         },
@@ -73,7 +77,7 @@ newChat{ id="cost",
         --   cost = 3
         return "sorry" end,
         cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
         end
         },
@@ -81,6 +85,10 @@ newChat{ id="cost",
         if player:skillCheck("diplomacy", 15) then return "hire" end
         --   cost = 3
         return "sorry" end,
+        cond=function(npc, player) 
+        if player:getInt() < 10 then return end
+        return true
+        end
         },
         
     },
@@ -101,7 +109,7 @@ newChat{ id="sorry",
         return true
     end},
         {[[Me pay double.]], jump="double", cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end},
         {[[That's too bad. I'll manage on my own.]], cond=function(npc, player) 
@@ -109,7 +117,7 @@ newChat{ id="sorry",
         return true
     end},
         {[[Me manage myself.]], cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end},
     }
@@ -139,7 +147,7 @@ newChat{ id="hire",
                 control="order",
                 type="hireling",
                 title="Hireling",
-                orders = {target=true, leash=true, anchor=true, talents=true},
+                orders = {target=true, leash=true, anchor=true},
             })
         --Deduce the gold
         player.money = player.money - 3
@@ -153,7 +161,7 @@ newChat{ id="hire",
         return true
     end},
         {[[I no want your company.]], jump="again", cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end},
     }
@@ -165,7 +173,13 @@ newChat{ id="hire2",
     answers = {
         {[[Let's go!]], action = function(npc, player) 
         --That's where the hireling should join the party
-        npc.faction = player.faction 
+    --    npc.faction = player.faction 
+        game.party:addMember(npc, {
+                control="order",
+                type="hireling",
+                title="Hireling",
+                orders = {target=true, leash=true, anchor=true},
+            })
         --Deduce the gold
         player.money = player.money - 6
         --Prevent further talks
@@ -178,7 +192,7 @@ newChat{ id="hire2",
         return true
     end},
         {[[I no want your company.]], jump="again", cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end},
     }
