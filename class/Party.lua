@@ -29,9 +29,9 @@ function _M:addMember(actor, def)
 	self.m_list[#self.m_list+1] = actor
 	def.index = #self.m_list
 
-	if #self.m_list >= 6 then
+--[[	if #self.m_list >= 6 then
 		game:getPlayer(true):attr("huge_party", 1)
-	end
+	end]]
 
 	actor.ai_state = actor.ai_state or {}
 	actor.ai_state.tactic_leash_anchor = actor.ai_state.tactic_leash_anchor or game.player
@@ -42,8 +42,8 @@ function _M:addMember(actor, def)
 	 	return game.party.m_list[1] -- Make the sure party is always consecutive in the level entities list
 	 end
 
-	-- Turn NPCs into party members
---[[]]	if not actor.no_party_class then
+	-- Turn NPCs into party members --[[]]
+	if not actor.no_party_class then
 	 	local uid = actor.uid
 	 	actor.replacedWith = false
 	 	actor:replaceWith(require("mod.class.PartyMember").new(actor))

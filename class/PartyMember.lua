@@ -40,7 +40,7 @@ function _M:tooltip(x, y, seen_by)
 	str:add(
 		true,
 		{"color", "TEAL"},
-		("Behavior: %s"):format(self.ai_tactic.type or "default"), true,
+	--	("Behavior: %s"):format(self.ai_tactic.type or "default"), true,
 		("Action radius: %d"):format(self.ai_state.tactic_leash),
 		{"color", "WHITE"}
 	)
