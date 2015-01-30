@@ -32,7 +32,7 @@ newChat{id="start",
         return true
     end},
         {[[Me no need identify.]], cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end},
         {[[Yes, please.]], action = function(npc, player)

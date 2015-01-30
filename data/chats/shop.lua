@@ -24,7 +24,7 @@ newChat{ id="start",
     else return "sorry" end
     end,
     cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end
     },
@@ -42,7 +42,7 @@ newChat{ id="start",
     else return "sorry" end
     end,
     cond=function(npc, player) 
-        if player:getInt() > 10 then return end
+        if player:getInt() >= 10 then return end
         return true
     end
     },
