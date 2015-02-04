@@ -124,6 +124,13 @@ function _M:display()
 
     h = h + self.font_h
 
+    --Display spell points if any
+    if player:knowTalent(player.T_SPELL_POINTS_POOL) then
+        self:makeTextureBar("#DARK_BLUE#Spell pts:", nil, player:getMana(), player.max_mana, nil, x, h, 255, 255, 255, colors.LIGHT_BLUE, colors.DARK_BLUE) h = h + self.font_h
+    end
+
+
+
     --Display hunger
     --   1   -> 2    -->     3   ->     4     ->   5    -->  6      -->  7    --> 8      -->9
     --Bloated -> Satiated -> Content -> Peckish -> Hungry -> Famished -> Weak -> Fainting -> Starved
