@@ -2369,6 +2369,15 @@ function _M:giveLevels(name, n)
 	end
 end
 
+--Archery functions
+function _M:getShootRange()
+	if self:knowTalent(self.T_FAR_SHOT) then
+		return (self:getInven("MAIN_HAND")[1].combat.range)*1.5 end
+
+	return self:getInven("MAIN_HAND")[1].combat.range
+end
+
+
 --Swap weapons functions
 function _M:hasRangedWeapon()
 	local inven = self.inven[self.INVEN_INVEN]

@@ -46,7 +46,7 @@ newTalent{
 
         return true
     end,
-    target = function(self, t) return  {type="bolt", range=self:getInven("MAIN_HAND")[1].combat.range, talent=t} end,
+    target = function(self, t) return  {type="bolt", range=self:getShootRange(), talent=t} end,
     archery_hit = function(tx, ty, tg, self, tmp) --This is called when the projectile hits
         local DamageType = require "engine.DamageType"
         local damtype = DamageType.PHYSICAL
@@ -56,6 +56,8 @@ newTalent{
         local ammo = self:getInven("QUIVER")[1]
 
         if target then
+            local attackmod = 0
+
             --Use the ammo up!
             if ammo and weapon.ammo_type and ammo.combat.capacity then
             ammo.combat.capacity = ammo.combat.capacity - 1
@@ -66,11 +68,18 @@ newTalent{
                 self:removeObject(self:getInven("MAIN_HAND"), weapon)
             end
 
+            --Check range for shooting opponents in melee range
+            if self:isNear(tx, ty, 1) and not self:knowTalent(self.T_PRECISE_SHOT)  then
+                attackmod = -4
+            end
+
             --do we hit?
-            local hit, crit = self:attackRoll(target, weapon)
+            local hit, crit = self:attackRoll(target, weapon, attackmod)
             if hit then
                 local damage = rng.dice(weapon.combat.dam[1], weapon.combat.dam[2])
-                if crit then damage = damage * 1.5 end --TODO: make it use crit damage
+                if crit then 
+                    damage = damage * (weapon and weapon.combat.critical or 2) end
+             --   damage = damage * 1.5 end --TODO: make it use crit damage
                 
                 DamageType:get(damtype).projector(self, target.x, target.y, damtype, math.max(0, damage), tmp)
             end
