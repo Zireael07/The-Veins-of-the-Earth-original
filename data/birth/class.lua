@@ -1384,6 +1384,9 @@ newBirthDescriptor {
 			actor:learnTalentType("necromancy")
 			actor:learnTalentType("arcane_divine", true)
 
+            --Get the spell points
+            actor:learnTalent(actor.T_SPELL_POINTS_POOL, true)
+
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
@@ -1660,6 +1663,9 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+
+            --Get the spell points
+            actor:learnTalent(actor.T_SPELL_POINTS_POOL, true)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)

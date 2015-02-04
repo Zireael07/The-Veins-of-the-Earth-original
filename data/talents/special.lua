@@ -239,3 +239,22 @@ newTalent{
         return "Pray to a deity to receive various boons."
     end,
 }
+
+--Resource pools
+newTalent{
+    name = "Spell Points Pool",
+    type = {"special/special", 1},
+    info = "Allows you to have a spell points pool. They are used to cast spells.",
+    mode = "passive",
+    hide = "always",
+    no_unlearn_last = true,
+}
+
+newTalent{
+    name = "Psi Pool",
+    type = {"special/special", 1},
+    info = "Allows you to have a psi power pool. They are used with psionic powers.",
+    mode = "passive",
+    hide = "always",
+    no_unlearn_last = true,
+}
