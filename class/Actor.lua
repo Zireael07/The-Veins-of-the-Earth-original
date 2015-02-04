@@ -1412,10 +1412,47 @@ local spell_points_chart = {
 }
 
 
---Spell points
+--Spell points [Incursion/Ernir's Vancian to Psionic conversion]
 function _M:getSpellPoints(t)
 	if t.mana then 
 		return spell_points_chart[t.level]
+	end
+end
+
+local spell_pts_per_level = {
+	[1] = 3,
+	[2] = 7,
+	[3] = 13,
+	[4] = 21,
+	[5] = 31,
+	[6] = 43,
+	[7] = 57,
+	[8] = 73,
+	[9] = 91,
+	[10] = 111,
+	[11] = 133,
+	[12] = 157,
+	[13] = 183,
+	[14] = 211,
+	[15] = 241,
+	[16] = 273,
+	[17] = 301,
+	[18] = 343,
+	[19] = 381,
+	[20] = 421,
+}
+
+function _M:getMaxSpellPts(level)
+	return spell_pts_per_level[level]
+end
+
+function _M:getMaxMana()
+	if not self.classes or not self.classes["Shaman"] or not self.classes["Sorcerer"] then return 0 end
+	if self.classes and self.classes["Sorcerer"] then
+		return self:getMaxSpellPts(self.classes["Sorcerer"])
+	end
+	if self.classes and self.classes["Shaman"] then
+		return self:getMaxSpellPts(self.classes["Shaman"])
 	end
 end
 

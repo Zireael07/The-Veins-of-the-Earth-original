@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -191,8 +191,8 @@ ActorInventory.equipdolls = {
 }
 
 --Actor resources
-ActorResource:defineResource("Spell points", "mana", ActorTalents.T_SPELL_POINTS_POOL, "spell_regen", "Spell points represent your reserve of magical energies. Each spell cast consumes spell points and each sustained spell reduces your maximum spell points.")
-ActorResource:defineResource("Psionic power", "psi", ActorTalents.T_PSI_POINTS_POOL, "psi_regen", "Psionic power represents your reserve of psionic energies. Each power used consumes psionic power and each sustained power reduces your maximum psionic power.")
+ActorResource:defineResource("Mana", "mana", ActorTalents.T_SPELL_POINTS_POOL, "spell_regen", "Spell points represent your reserve of magical energies. Each spell cast consumes spell points and each sustained spell reduces your maximum spell points.", 0, 500)
+ActorResource:defineResource("Psi", "psi", ActorTalents.T_PSI_POOL, "psi_regen", "Psionic power represents your reserve of psionic energies. Each power used consumes psionic power and each sustained power reduces your maximum psionic power.", 0, 500)
 
 -- Actor stats
 ActorStats:defineStat("Strength",	    "str", 0, -5, 30, "Strength measures your character’s muscle and physical power.")
