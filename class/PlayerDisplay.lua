@@ -126,7 +126,7 @@ function _M:display()
 
     --Display spell points if any
     if player:knowTalent(player.T_SPELL_POINTS_POOL) then
-        self:makeTextureBar("#DARK_BLUE#Spell pts:", nil, player:getMana(), player.max_mana, nil, x, h, 255, 255, 255, colors.LIGHT_BLUE, colors.DARK_BLUE) h = h + self.font_h
+        self:makeTextureBar("#LIGHT_BLUE#Spell:", nil, player:getMana(), player.max_mana, nil, x, h, 255, 255, 255, colors.LIGHT_BLUE, colors.DARK_BLUE) h = h + self.font_h
     end
 
 
