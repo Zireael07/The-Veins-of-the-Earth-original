@@ -1370,7 +1370,7 @@ newBirthDescriptor {
 	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then 
-			actor:attr("innate_casting_arcane", 1)
+		--	actor:attr("innate_casting_arcane", 1)
 
 			actor:attr("will_save", 2)
 
@@ -1652,7 +1652,7 @@ newBirthDescriptor {
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
 			
-			actor:attr("innate_casting_divine", 1)
+		--	actor:attr("innate_casting_divine", 1)
 
 			actor:attr("will_save", 2)
 			actor:attr("fortitude_save", 2)
