@@ -1056,6 +1056,8 @@ end
 function _M:resetToFull()
 	if self.dead then return end
 	self.life = self.max_life
+	self.mana = self:setMaxSpellPts()
+	self.max_mana = self:setMaxSpellPts()
 end
 
 function _M:levelupMsg()
@@ -1226,11 +1228,21 @@ function _M:preUseTalent(ab, silent)
     --    if self:getStatForSpell("Bard") <= 9 then
 			if not silent then game.logPlayer(self, "Your Charisma is too low!") end
 		return false
-		end	
+		end
 
-		if  self:getCharges(ab) <= 0 then
-			if not silent then game.logPlayer(self, "You have to prepare this spell") end
-			return false 
+		--only for Sorcerer & arcane or Shaman & divine
+		if self.classes and ((self.classes["Sorcerer"] and self:spellIsKind(ab, "arcane"))
+			or (self.classes["Shaman"] and self:spellIsKind(ab, "divine"))) then
+			--Check for mana/psi
+			if ab.mana and self:getMana() < util.getval(ab.mana, self, ab) then
+				if not silent then game.logPlayer(self, "You do not have enough spell points to cast %s.", ab.name) end
+				return false
+			end
+		else
+			if self:getCharges(ab) <= 0 then
+				if not silent then game.logPlayer(self, "You have to prepare this spell") end
+				return false
+			end
 		end
 	end
 
@@ -1238,22 +1250,13 @@ function _M:preUseTalent(ab, silent)
 	if ab.on_pre_use and not ab.on_pre_use(self, ab, silent) then 
 		return nil
 	end
-	
 
-	--only for Sorcerer & Shaman
-	if self.classes and (self.classes["Sorcerer"] or self.classes["Shaman"]) then
-		--Check for mana/psi
-		if ab.mana and self:getMana() < util.getval(ab.mana, self, ab) then
-			if not silent then game.logPlayer(self, "You do not have enough spell points to cast %s.", ab.name) end
-			return false
-		end
-
-		if ab.psi and self:getPsi() < util.getval(ab.psi, self, ab) then
-			if not silent then game.logPlayer(self, "You do not have enough spell points to cast %s.", ab.name) end
-			return false
-		end
+	--Check for psionics
+	if ab.psi and self:getPsi() < util.getval(ab.psi, self, ab) then
+		if not silent then game.logPlayer(self, "You do not have enough psionic power to cast %s.", ab.name) end
+		return false
 	end
-
+	
 	if not self:enoughEnergy() then return false end
 
 	if ab.mode == "sustained" then
@@ -1446,14 +1449,15 @@ function _M:getMaxSpellPts(level)
 	return spell_pts_per_level[level]
 end
 
-function _M:getMaxMana()
-	if not self.classes or not self.classes["Shaman"] or not self.classes["Sorcerer"] then return 0 end
+function _M:setMaxSpellPts()
+	if not self.classes then return 0 end
 	if self.classes and self.classes["Sorcerer"] then
 		return self:getMaxSpellPts(self.classes["Sorcerer"])
 	end
 	if self.classes and self.classes["Shaman"] then
 		return self:getMaxSpellPts(self.classes["Shaman"])
 	end
+	return 0
 end
 
 
