@@ -32,6 +32,7 @@ FEATURES
 - inventory (with equipdoll) & encumbrance
 - spellbook now with spell information included and an iconed hotbar for spells [Seb]; some 0, 1st, 2nd, 3rd level spells
 - armor spell failure chance; key stat must be 9 to cast spells; casters gain access to next spell level every 3rd level
+- sorcerer and shaman classes using a spell points system instead of Vancian spontaneous casting
 - spell-like abilities for drow & duergar; other spell-likes as random perks at start
 - Spellcraft test required to identify spells cast by others
 - polymorphing & wild shape
