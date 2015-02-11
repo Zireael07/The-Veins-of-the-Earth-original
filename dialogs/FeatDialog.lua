@@ -191,6 +191,9 @@ function _M:generateAvail()
         if self.actor:knowTalentType(tt.type) then
             --exclude some categories
             if tt.type ~= "special/special" and tt.type ~= "arcane/arcane" and tt.type ~= "divine" and tt.type ~= "arcane_divine" 
+                --exclude spells
+                if tt.type ~= "abjuration/abjuration" and tt.type ~= "conjuration/conjuration" and tt.type ~= "divination/divination" and tt.type ~= "enchantment/enchantment" and tt.type ~= "evocation/evocation" and tt.type ~= "illusion/illusion" and tt.type ~= "necromancy/necromancy" and tt.type ~= "transmutation/transmutation"
+
                 --exclude class skills categories
                 and tt.type ~= "barbarian/barbarian" and tt.type ~= "cleric/cleric" and tt.type ~= "druid/druid" and tt.type ~= "eldritch/eldritch" and tt.type ~= "paladin/paladin" and tt.type ~= "ranger/ranger"
                 then
