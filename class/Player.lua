@@ -536,12 +536,6 @@ function _M:playerFOV()
 
 --if not self:attr("blind") then
   --normal stuff
-  --else (so that npcs may still target us while blind)
-  -- Compute both the normal and the lite FOV, using cache
-  self:computeFOV(self.sight or 10, "block_sight", function(x, y, dx, dy, sqdist)
-    game.level.map:apply(x, y, fovdist[sqdist])
-  end, true, false, true)
-
   -- Apply lite from NPCs
   local uid, e = next(game.level.entities)
   while uid do
@@ -566,6 +560,13 @@ function _M:playerFOV()
       game.level.map.remembers(x, y, true)
     end, true, true, true)
   end
+
+  --else (so that npcs may still target us while blind)
+--[[  -- Compute both the normal and the lite FOV, using cache
+  self:computeFOV(self.sight or 10, "block_sight", function(x, y, dx, dy, sqdist)
+    game.level.map:apply(x, y, fovdist[sqdist])
+  end, true, false, true)]]
+
 end
 
 --- Called before taking a hit, overload mod.class.Actor:onTakeHit() to stop resting and running
