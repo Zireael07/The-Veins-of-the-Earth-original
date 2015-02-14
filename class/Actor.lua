@@ -1811,7 +1811,7 @@ function _M:crossClass(skill)
 	if self.last_class and self.last_class == "Warlock" and c_warlock[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Shaman" and c_cleric[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Shadowdancer" and c_rogue[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Assasin" and c_rogue[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Assassin" and c_rogue[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Loremaster" and c_wizard[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Archmage" and c_wizard[skill] == "no" then return true end
 	if self.last_class and self.last_class == "Blackguard" and c_paladin[skill] == "no" then return true end

@@ -2093,7 +2093,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	prestige = true,
-	name = 'Assasin',
+	name = 'Assassin',
 	desc = [[Requires Move Silently 8 ranks and Hide 8 ranks.
 
 	Evil backstabbers who want to kill just for the fun of it.]],
@@ -2101,7 +2101,7 @@ newBirthDescriptor {
 		skill_point = 6,
 	},
 	can_level = function(actor)
-		if actor.classes and actor.classes["Assasin"] and actor.classes["Assasin"] >= 10 then return false end
+		if actor.classes and actor.classes["Assassin"] and actor.classes["Assassin"] >= 10 then return false end
 	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then	
 
 		if actor.skill_movesilently >= 8 and actor.skill_hide >= 8 then return true end

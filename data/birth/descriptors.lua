@@ -87,7 +87,7 @@ newBirthDescriptor{
     class = 
     {
      ['Shadowdancer'] = "disallow",
-     ['Assasin'] = "disallow",
+     ['Assassin'] = "disallow",
      ['Blackguard'] = "disallow",
      ['Arcane archer'] = "disallow",
      ['Loremaster'] = "disallow",
@@ -121,9 +121,6 @@ newBirthDescriptor {
       ['Chaos'] = "disallow",
     }
   },
---[[  copy = {
-  starting_intro = "outcast",
-  }]]
 }
 
 newBirthDescriptor {
@@ -137,9 +134,6 @@ newBirthDescriptor {
       ['Evil'] = "disallow",
     }
   },
-  --[[  copy = {
-    starting_intro = "outcast",
-  }]]
 }
 
 newBirthDescriptor {
@@ -154,9 +148,6 @@ newBirthDescriptor {
       ['Law'] = "disallow",
     }
   },
-  --[[  copy = {
-    starting_intro = "outcast",
-  }]]
 }
 
 newBirthDescriptor {

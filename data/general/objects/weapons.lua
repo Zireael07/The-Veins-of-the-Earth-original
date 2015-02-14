@@ -267,7 +267,7 @@ newEntity{ base = "BASE_WEAPON",
     light = true,
     martial = true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    desc = [[This weapon hails from exotic Northern lands, and features a blade that slants upward into a large, flat cutting surface. It is often used by assasins.
+    desc = [[This weapon hails from exotic Northern lands, and features a blade that slants upward into a large, flat cutting surface. It is often used by assassins.
 
     Damage 1d4. Threat range 18-20.]],
     name = "kukri",

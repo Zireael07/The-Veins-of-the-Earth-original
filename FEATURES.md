@@ -11,7 +11,7 @@ FEATURES
 - game rules variants selectable at game start
 - silver-based coinage and economy
 - 13 classes: barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, wizard (with specialist schools [Seb]); warlock, shaman
-- 6 prestige classes: shadowdancer, assasin, arcane archer, blackguard, loremaster, archmage
+- 6 prestige classes: shadowdancer, assassin, arcane archer, blackguard, loremaster, archmage
 - 16 races: human, half-elf, half-drow, gnome, halfling, elf, dwarf, half-orc; drow, duergar, deep gnomes; lizardfolk, kobold, orc
 - backgrounds for quicker character creation; basic rules info while creating a character
 - 16 deities for characters to choose from, who react to in-game events 
