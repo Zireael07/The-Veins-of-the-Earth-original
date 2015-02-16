@@ -41,7 +41,9 @@ function _M:init(actor)
 
 	--self.iw-450 lets spell images overlap with text list
 	--local wide = math.max(650, self.iw-450)
-	local wide = 650
+	local wide = 530
+
+--	local wide = 650
 
 	self.c_tabs = Tabs.new{width=wide, tabs=types, on_change=function(kind) self:switchTo(kind) end}
 
@@ -68,8 +70,18 @@ function _M:init(actor)
 		scrollbar=true}
 	self.c_info = TextzoneList.new{ scrollbar = true, width=200, height = self.ih }
 
-	--Tabsception!
+	--Better way of displaying spell level tabs
+	local spell_tabs = {}
+	spell_tabs[#spell_tabs+1]= {title="Levels 1-2", kind="leveltwo"}
 
+
+	if (self.actor:getMaxMaxCharges()[3] or 0) > 0 then 
+		spell_tabs[#spell_tabs+1]= {title="Levels 3-4", kind="levelfour"}
+	end
+
+--	self.c_spelllevels = Tabs.new{width=wide, tabs=spell_tabs, on_change=function(kind) self:switchLevels(kind) end}
+
+	--Tabsception!
 	self.t_leveltwo = Tab.new {
     title = 'Levels 1-2',
     default = true,
@@ -86,6 +98,8 @@ function _M:init(actor)
 	self:generateList(types[1].kind)
 
 	self.t_leveltwo:select()
+--	self:switchLevels(spell_tabs[1].kind)
+--	self:switchLevels("leveltwo")
 
 	self.key:addBinds{
 		EXIT = function() self:onEnd("decline") end,
@@ -108,11 +122,13 @@ function _M:drawDialog(tab)
 		{left=0, bottom=0, ui=self.c_accept},
 		{left=self.c_accept, bottom=0, ui=self.c_decline},
 		{right=0, bottom=0, ui=self.c_reset},
+	--	{top=self.c_tabs, ui=self.c_spelllevels},
 		{top=self.c_tabs, ui=self.t_leveltwo},
 		{left=self.t_leveltwo, top=self.c_tabs, ui=self.t_levelfour},
 		{top=self.t_leveltwo, ui=self.c_desc},
+	--	{top=self.c_spelllevels, ui=self.c_desc},
 		{top=self.c_desc,ui=self.spells[1]},
-		{top=self.spells[1].h+100,ui=self.spells[2]},
+		{top=self.spells[1].h+110,ui=self.spells[2]},
 		{top=self.c_desc,ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
 		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info}, 
@@ -129,11 +145,13 @@ function _M:drawDialog(tab)
 		{left=0, bottom=0, ui=self.c_accept},
 		{left=self.c_accept, bottom=0, ui=self.c_decline},
 		{right=0, bottom=0, ui=self.c_reset},
+	--	{top=self.c_tabs, ui=self.c_spelllevels},
 		{top=self.c_tabs, ui=self.t_leveltwo},
 		{left=self.t_leveltwo, top=self.c_tabs, ui=self.t_levelfour},
 		{top=self.t_leveltwo, ui=self.c_desc},
+	--	{top=self.c_spelllevels, ui=self.c_desc},
 		{top=self.c_desc,ui=self.spells[3]},
-		{top=self.spells[3].h+100,ui=self.spells[4]},
+		{top=self.spells[3].h+110,ui=self.spells[4]},
 		{top=self.c_desc,ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
 		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info}, 
@@ -200,7 +218,7 @@ function _M:drawGeneral(tab)
 			c:drawColorString(font, str, ww, hh, 255, 255, 255, true)
 			ww = ww + self.spells[i].tile_w + self.spells[i].padding 
 		end  
-		h = h + 110 
+		h = h + 80 
 
 		end
 	end
@@ -261,6 +279,7 @@ function _M:generateList(kind)
 			self.spells[i].list = list[i]
 		end
 		self:drawDialog()
+--		self:drawDialog("leveltwo")
 	end
 	self.list = list
 end
