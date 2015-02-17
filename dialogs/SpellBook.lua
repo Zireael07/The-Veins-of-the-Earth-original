@@ -41,6 +41,8 @@ function _M:init(actor)
 
 	--self.iw-450 lets spell images overlap with text list
 	--local wide = math.max(650, self.iw-450)
+
+	--48+5 = 53 is the space one spell takes up; use multiplies of 53 to avoid spells/charges misalignment
 	local wide = 530
 
 --	local wide = 650
@@ -217,8 +219,15 @@ function _M:drawGeneral(tab)
 			local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
 			c:drawColorString(font, str, ww, hh, 255, 255, 255, true)
 			ww = ww + self.spells[i].tile_w + self.spells[i].padding 
+
+			--start drawing in the next line if spells wrap over
+			--530 -> wide
+			if ww >= 530 then
+				ww = w
+				hh = hh + self.spells[i].tile_h + self.spells[i].padding
+			end
 		end  
-		h = h + 80 
+		h = h + 80
 
 		end
 	end
