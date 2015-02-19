@@ -13,6 +13,10 @@ newArcaneSpell{
 	level = 1,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 5,
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -22,7 +26,7 @@ newArcaneSpell{
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
-		local duration = 5
+		local duration = t.getDuration(self, t)
 
 		--if target.type ~= "humanoid" then return nil end
 
@@ -45,6 +49,10 @@ newArcaneSpell{
 	level = 1,
 	points = 1,
 	cooldown = 0,
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	radius = 4,
 	target = function(self, t)
@@ -86,7 +94,7 @@ newArcaneSpell{
 			end
 		end
 
-		local duration = 5
+		local duration = t.getDuration(self, t)
 		-- Apply sleep
 		for i, target in ipairs(final_targets) do
 			if not target:willSave(30) then -- @todo: do real dc  

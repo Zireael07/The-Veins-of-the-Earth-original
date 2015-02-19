@@ -13,6 +13,10 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 5,
 	requires_target = false,
 	radius = 3,
@@ -26,7 +30,7 @@ newArcaneSpell{
         local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local duration = 5
+		local duration = t.getDuration(self, t)
 
 		game.level.map:addEffect(self,
 			x, y, duration,
@@ -56,6 +60,11 @@ newArcaneSpell{
 	proj_speed = 3,
 	num_targets = function(self, t)
 		return 1 + math.min(math.floor(self:casterLevel(t) / 2, 5))
+	end,
+	getDamage = function(self, t)
+		if self:isTalentActive(who.T_MAXIMIZE) then return 5
+		elseif self:isTalentActive(who.T_EMPOWER) then return math.max((rng.dice(1,4)+1)*1.5)
+		else return rng.dice(1,4)+1 end
 	end,
 	target = function(self, t)
 		local tg = {type="bolt", range=self:getTalentRange(t), talent=t, display={display='*',color=colors.ORCHID}}
@@ -99,12 +108,26 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
-	range = 0,
-	requires_target = true,
-	radius = 3,
 	num_dice = function(self, t)
 		return math.min(self:casterLevel(t) or 1, 5)
 	end,
+	getDamage = function(self, t)
+		--dice per caster level
+		local level = t.num_dice(self,t)
+		local damage = 0
+		for i=1, level do
+			damage = damage + rng.dice(1,4)
+		end
+
+		if self:isTalentActive(who.T_MAXIMIZE) then return level*4
+		elseif self:isTalentActive(who.T_EMPOWER) then return math.max(damage*1.5)
+		else return damage end
+
+	end,
+	range = 0,
+	requires_target = true,
+	radius = 3,
+	
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
@@ -138,6 +161,10 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 5,
 	requires_target = false,
 	radius = 1.5,
@@ -151,7 +178,7 @@ newArcaneSpell{
         local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local duration = 5
+		local duration = t.getDuration(self, t)
 
 		game.level.map:addEffect(self,
 			x, y, duration,
@@ -178,6 +205,11 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
+	getDamage = function(self, t)
+		if self:isTalentActive(who.T_MAXIMIZE) then return 18
+		elseif self:isTalentActive(who.T_EMPOWER) then return math.max(rng.dice(3,6)*1.5)
+		else return rng.dice(3,6) end
+	end,
 	range = 5,
 	requires_target = true,
 	target = function(self, t)
@@ -192,7 +224,7 @@ newArcaneSpell{
 		local level = t.num_dice(self,t)
 		local damage = rng.dice(3,6)
 
-		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})
+		self:project(tg, x, y, DamageType.FIRE, {dam=t.getDamage(self, t), save=true, save_dc = 15})
 		return true
 	end,
 	info = function(self, t)
@@ -210,6 +242,11 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 20,
 --	tactical = { BUFF = 2 },
+	getDamage = function(self, t)
+		if self:isTalentActive(who.T_MAXIMIZE) then return 18
+		elseif self:isTalentActive(who.T_EMPOWER) then return math.max(rng.dice(3,6)*1.5)
+		else return rng.dice(3,6) end
+	end,
 	range = 0,
 	radius = function(self, t)
 		return 3
@@ -224,7 +261,7 @@ newArcaneSpell{
 		if not x or not y then return nil end
 
 		local damage = rng.dice(3,6)
-		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})
+		self:project(tg, x, y, DamageType.FIRE, {dam=t.getDamage(self, t), save=true, save_dc = 15})
 		return true
 	end,
 

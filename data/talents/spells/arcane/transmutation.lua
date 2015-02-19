@@ -12,10 +12,14 @@ newArcaneSpell{
 	level = 1,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-		self:setEffect(self.EFF_EXPEDITIOUS_RETREAT, 5, {})
+		self:setEffect(self.EFF_EXPEDITIOUS_RETREAT, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -32,6 +36,10 @@ newArcaneSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 5 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 150 
+		else return 100 end
+	end,
 	range = 0,
 	requires_target = true,
 	action = function(self, t)
@@ -48,7 +56,7 @@ newArcaneSpell{
 
 		if not effect then return nil end
 
-		self:setEffect(effect, 100, {})
+		self:setEffect(effect, t.getDuration(self, t), {})
 		return true
 	end,
 	info = function(self, t)
@@ -71,10 +79,14 @@ newArcaneSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-	self:setEffect(self.EFF_BEAR_ENDURANCE, 5, {})
+	self:setEffect(self.EFF_BEAR_ENDURANCE, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -92,10 +104,14 @@ newArcaneSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-	self:setEffect(self.EFF_BULL_STRENGTH, 5, {})
+	self:setEffect(self.EFF_BULL_STRENGTH, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -113,10 +129,14 @@ newArcaneSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-	self:setEffect(self.EFF_EAGLE_SPLENDOR, 5, {})
+	self:setEffect(self.EFF_EAGLE_SPLENDOR, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -134,10 +154,14 @@ newArcaneSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-	self:setEffect(self.EFF_OWL_WISDOM, 5, {})
+	self:setEffect(self.EFF_OWL_WISDOM, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -155,10 +179,14 @@ newArcaneSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	action = function(self)
-	if not self then return nil end
-	self:setEffect(self.EFF_CAT_GRACE, 5, {})
+		if not self then return nil end
+		self:setEffect(self.EFF_CAT_GRACE, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -176,10 +204,14 @@ newArcaneSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-	self:setEffect(self.EFF_FOX_CUNNING, 5, {})
+	self:setEffect(self.EFF_FOX_CUNNING, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -197,10 +229,14 @@ newArcaneSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 15 
+		else return 10 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-		self:setEffect(self.EFF_LEVITATE, 10, {})
+		self:setEffect(self.EFF_LEVITATE, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -217,10 +253,14 @@ newArcaneSpell{
 	level = 3,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 15 
+		else return 10 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-		self:setEffect(self.EFF_FLY, 10, {})
+		self:setEffect(self.EFF_FLY, t.getDuration(self,t), {})
 		return true
 	end,
 
@@ -238,10 +278,14 @@ newArcaneSpell{
 	level = 3,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-	self:setEffect(self.EFF_HASTE, 5, {})
+	self:setEffect(self.EFF_HASTE, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -258,6 +302,10 @@ newArcaneSpell{
 	level = 4,
 	points = 1,
 	tactical = { BUFF = 5 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 150 
+		else return 100 end
+	end,
 	range = 0,
 	requires_target = true,
 	action = function(self, t)
@@ -272,7 +320,7 @@ newArcaneSpell{
 
 		if not effect then return nil end
 
-		self:setEffect(effect, 100, {})
+		self:setEffect(effect, t.getDuration(self, t), {})
 		return true
 	end,
 	info = function(self, t)

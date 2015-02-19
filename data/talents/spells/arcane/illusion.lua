@@ -14,10 +14,14 @@ newArcaneSpell{
 	level = 1,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
 	action = function(self)
 	if not self then return nil end
-		self:setEffect(self.EFF_INVISIBLE, 5, {})
+		self:setEffect(self.EFF_INVISIBLE, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -33,6 +37,10 @@ newArcaneSpell{
 	level = 1,
 	points = 1,
 	cooldown = 0,
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 4,
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -56,11 +64,11 @@ newArcaneSpell{
 
 		if choice == "Blindness" then
 			if target:canBe("blind") then
-				target:setEffect(target.EFF_BLIND, 5, {})
+				target:setEffect(target.EFF_BLIND, t.getDuration(self, t), {})
 			end
 		elseif choice == "Deafness" then
 			if target:canBe("deaf") then
-
+				--target:setEffect(target.EFF_DEAF, t.getDuration(self, t), {})
 			end
 		else
 			return nil

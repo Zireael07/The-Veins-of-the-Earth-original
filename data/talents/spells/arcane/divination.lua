@@ -35,11 +35,15 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 15 
+		else return 10 end
+	end,
 	range = 0,
 	requires_target = false,
 	no_npc_use = true,
 	action = function(self, t)
-		self:setEffect(self.EFF_SENSE, 10, {
+		self:setEffect(self.EFF_SENSE, t.getDuration(self, t), {
 			range = 10,
 			object = 1,
 		})
@@ -58,11 +62,15 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 15 
+		else return 10 end
+	end,
 	range = 0,
 	requires_target = false,
 	no_npc_use = true,
 	action = function(self, t)
-		self:setEffect(self.EFF_SENSE, 10, {
+		self:setEffect(self.EFF_SENSE, t.getDuration(self, t), {
 			range = 10,
 			actor = 1,
 		})
@@ -81,11 +89,15 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 15 
+		else return 10 end
+	end,
 	range = 0,
 	requires_target = false,
 	no_npc_use = true,
 	action = function(self, t)
-		self:setEffect(self.EFF_KNOW_ALIGNMENT, 10, {})
+		self:setEffect(self.EFF_KNOW_ALIGNMENT, t.getDuration(self, t), {})
 		return true
 	end,
 	info = function(self, t)

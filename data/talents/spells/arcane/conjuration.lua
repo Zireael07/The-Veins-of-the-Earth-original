@@ -13,6 +13,11 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 8,
 	tactical = { BUFF = 2 },
+	getDamage = function(self, t)
+		if self:isTalentActive(who.T_MAXIMIZE) then return 3 
+		elseif self:isTalentActive(who.T_EMPOWER) then return math.max(rng.dice(1,3)*1.5)
+		else return rng.dice(1,3) end
+	end,
 	range = 5,
 	requires_target = true,
 	target = function(self, t)
@@ -44,6 +49,10 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 5,
 	requires_target = false,
 	radius = 1.5,
@@ -57,7 +66,7 @@ newArcaneSpell{
         	local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local duration = 5
+		local duration = t.getDuration(self, t)
 
 		game.level.map:addEffect(self,
 			x, y, duration,
@@ -318,6 +327,10 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 15 
+		else return 10 end
+	end,
 	range = 1,
 	requires_target = true,
 	target = function(self, t)
@@ -329,7 +342,7 @@ newArcaneSpell{
 		if not x or not y or not target then return nil end
 	--	if core.fov.distance(self.x, self.y, x, y) > 1 then return nil end
 
-		target:setEffect(self.EFF_MAGE_ARMOR, 10, {})
+		target:setEffect(self.EFF_MAGE_ARMOR, t.getDuration(self, t), {})
 		
 		return true
 	end,
@@ -373,6 +386,6 @@ newArcaneSpell{
 	end,
 	info = function(self, t)
 
-		return ([[Allows you to teleport ding a +4 armor bonus to AC.]])
+		return ([[Allows you to teleport.]])
 	end,
 }

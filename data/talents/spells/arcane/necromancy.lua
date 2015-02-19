@@ -13,6 +13,10 @@ newArcaneSpell{
 	level = 2,
 	points = 1,
 	cooldown = 0,
+	getDuration = function(self, t)  
+		if self:isTalentActive(who.T_EXTEND) then return 6 
+		else return 4 end --1d6+2
+	end, 
 	range = 4,
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -22,7 +26,7 @@ newArcaneSpell{
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
-		local duration = 4 --1d6+2
+		local duration = t.getDuration(self, t)
 
 		if target:fortitudeSave(15) then game.log("Target resists the spell!")
 		else 
