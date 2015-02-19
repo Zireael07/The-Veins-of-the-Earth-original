@@ -4,7 +4,6 @@ newTalentType{ type="class/spellcasting", name = "Spellcasting", description = "
 newFeat{
     name = "Lore of Acid",
     type = {"class/spellcasting", 1},
-    is_feat = true,
     points = 1,
     mode = "passive",
     is_feat = true,
@@ -20,7 +19,6 @@ newFeat{
 newFeat{
     name = "Lore of Flames",
     type = {"class/spellcasting", 1},
-    is_feat = true,
     points = 1,
     mode = "passive",
     is_feat = true,
@@ -36,7 +34,6 @@ newFeat{
 newFeat{
     name = "Lore of Rime",
     type = {"class/spellcasting", 1},
-    is_feat = true,
     points = 1,
     mode = "passive",
     is_feat = true,
@@ -52,7 +49,6 @@ newFeat{
 newFeat{
     name = "Lore of Storms",
     type = {"class/spellcasting", 1},
-    is_feat = true,
     points = 1,
     mode = "passive",
     is_feat = true,
