@@ -10,16 +10,20 @@ newArcaneDivineSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	range = 0,
+	getDamage = function(self, t)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 8
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(1,8)*1.5)
+		else return rng.dice(1,8) end
+	end,
 	--caster_bonus = function(self)
 	--	return math.min(self.level or 1, 5)
 	--end,
-	action = function(self)
-	if not self then return nil end
-	d = rng.dice(1,8)
-	self:heal(d) --+ caster_bonus)
-	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
-	return true
-	--end,
+	action = function(self, t)
+		if not self then return nil end
+		d = t.getDamage(self, t)
+		self:heal(d) --+ caster_bonus)
+		game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
+		return true
 	end,
 
 	info = function(self, t)
@@ -37,10 +41,14 @@ newArcaneDivineSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
-	action = function(self)
-	if not self then return nil end
-	self:setEffect(self.EFF_BEAR_ENDURANCE, 5, {})
+	action = function(self, t)
+		if not self then return nil end
+		self:setEffect(self.EFF_BEAR_ENDURANCE, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -57,10 +65,14 @@ newArcaneDivineSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
-	action = function(self)
-	if not self then return nil end
-	self:setEffect(self.EFF_BULL_STRENGTH, 5, {})
+	action = function(self, t)
+		if not self then return nil end
+		self:setEffect(self.EFF_BULL_STRENGTH, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -77,10 +89,14 @@ newArcaneDivineSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
-	action = function(self)
-	if not self then return nil end
-	self:setEffect(self.EFF_EAGLE_SPLENDOR, 5, {})
+	action = function(self, t)
+		if not self then return nil end
+		self:setEffect(self.EFF_EAGLE_SPLENDOR, t.getDuration(self, t), {})
 		return true
 	end,
 
@@ -97,10 +113,14 @@ newArcaneDivineSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 0,
-	action = function(self)
-	if not self then return nil end
-	self:setEffect(self.EFF_OWL_WISDOM, 5, {})
+	action = function(self, t)
+		if not self then return nil end
+		self:setEffect(self.EFF_OWL_WISDOM, t.getDuration(self, t), {})
 		return true
 	end,
 

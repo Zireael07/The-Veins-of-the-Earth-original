@@ -10,9 +10,9 @@ newDivineSpell{
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
-	if not self then return nil end
-	local food = game.zone:makeEntity(game.level, "object", {name="food rations", ego_chance=-1000}, 1, true)
-	local water = game.zone:makeEntity(game.level, "object", {name="flask of water", ego_chance=-1000}, 1, true)
+		if not self then return nil end
+		local food = game.zone:makeEntity(game.level, "object", {name="food rations", ego_chance=-1000}, 1, true)
+		local water = game.zone:makeEntity(game.level, "object", {name="flask of water", ego_chance=-1000}, 1, true)
 
 	if food then
 		game.zone:addEntity(game.level, food, "object")
@@ -26,7 +26,7 @@ newDivineSpell{
 		water.pseudo_id = true
 	end
 
-	return true
+		return true
 	end,
 	info = function(self, t)
 		return ([[You create some food and drink for yourself.]])
@@ -72,17 +72,21 @@ newDivineSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDamage = function(self, t)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 16
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(2,8)*1.5)
+		else return rng.dice(2,8) end
+	end,
 	range = 0,
 	--caster_bonus = function(self)
 	--	return math.min(self.level or 1, 5)
 	--end,
 	action = function(self)
-	if not self then return nil end
-	d = rng.dice(2,8)
-	self:heal(d) --+ caster_bonus)
-	game.logSeen(self,("%s heals %d damage"):format(self.name:capitalize(), d))
-	return true
-	--end,
+		if not self then return nil end
+		d = t.getDamage(self, t)
+		self:heal(d) --+ caster_bonus)
+		game.logSeen(self,("%s heals %d damage"):format(self.name:capitalize(), d))
+		return true
 	end,
 
 	info = function(self, t)
@@ -99,17 +103,21 @@ newDivineSpell{
 	level = 3,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDamage = function(self, t)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 24
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(3,8)*1.5)
+		else return rng.dice(3,8) end
+	end,
 	range = 0,
 	--caster_bonus = function(self)
 	--	return math.min(self.level or 1, 5)
 	--end,
-	action = function(self)
-	if not self then return nil end
-	d = rng.dice(3,8)
-	self:heal(d) --+ caster_bonus)
-	game.logSeen(self,( "%s heals %d damage"):format(self.name:capitalize(), d))
-	return true
-	--end,
+	action = function(self, t)
+		if not self then return nil end
+		d = t.getDamage(self, t)
+		self:heal(d) --+ caster_bonus)
+		game.logSeen(self,( "%s heals %d damage"):format(self.name:capitalize(), d))
+		return true
 	end,
 
 	info = function(self, t)
@@ -126,17 +134,21 @@ newDivineSpell{
 	level = 4,
 	points = 1,
 	tactical = { BUFF = 2 },
+	getDamage = function(self, t)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 32
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(4,8)*1.5)
+		else return rng.dice(4,8) end
+	end,
 	range = 0,
 	--caster_bonus = function(self)
 	--	return math.min(self.level or 1, 5)
 	--end,
-	action = function(self)
-	if not self then return nil end
-	d = rng.dice(4,8)
-	self:heal(d) --+ caster_bonus)
-	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
-	return true
-	--end,
+	action = function(self, t)
+		if not self then return nil end
+		d = t.getDamage(self, t)
+		self:heal(d) --+ caster_bonus)
+		game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
+		return true
 	end,
 
 	info = function(self, t)
@@ -144,6 +156,7 @@ newDivineSpell{
 	end,	
 }
 
+--Empower & Maximize don't apply!
 newDivineSpell{
 	name = "Heal Light Wounds",
 	type = {"divine", 1},
@@ -153,11 +166,11 @@ newDivineSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	range = 0,
-	action = function(self)
-	if not self then return nil end
-	d = (self.max_life/10)*1
-	self:heal(d)
-	game.logSeen(self,("%s heals %d damage"):format(self.name:capitalize(), d))
+	action = function(self, t)
+		if not self then return nil end
+		d = (self.max_life/10)*1
+		self:heal(d)
+		game.logSeen(self,("%s heals %d damage"):format(self.name:capitalize(), d))
 	return true
 	end,
 
@@ -176,12 +189,12 @@ newDivineSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	range = 0,
-	action = function(self)
-	if not self then return nil end
-	d = (self.max_life/10)*3
-	self:heal(d)
-	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
-	return true
+	action = function(self, t)
+		if not self then return nil end
+		d = (self.max_life/10)*3
+		self:heal(d)
+		game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
+		return true
 	end,
 
 	info = function(self, t)
@@ -199,12 +212,12 @@ newDivineSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	range = 0,
-	action = function(self)
-	if not self then return nil end
-	d = (self.max_life/10)*5
-	self:heal(d)
-	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
-	return true
+	action = function(self, t)
+		if not self then return nil end
+		d = (self.max_life/10)*5
+		self:heal(d)
+		game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
+		return true
 	end,
 
 	info = function(self, t)
@@ -222,12 +235,12 @@ newDivineSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	range = 0,
-	action = function(self)
-	if not self then return nil end
-	d = (self.max_life/10)*7
-	self:heal(d)
-	game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
-	return true
+	action = function(self, t)
+		if not self then return nil end
+		d = (self.max_life/10)*7
+		self:heal(d)
+		game.logSeen(self, ("%s heals %d damage"):format(self.name:capitalize(), d))
+		return true
 	end,
 
 	info = function(self, t)
@@ -244,6 +257,11 @@ newDivineSpell{
 	level = 1,
 	points = 1,
 	cooldown = 0,
+	getDamage = function(self, t)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 8
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(1,8)*1.5)
+		else return rng.dice(1,8) end
+	end,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -256,7 +274,7 @@ newDivineSpell{
 		local _ _, _, _, x, y = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local damage = rng.dice(1,8)
+		local damage = t.getDamage(self, t)
 
 		self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 		return true
@@ -275,6 +293,11 @@ newDivineSpell{
 	level = 2,
 	points = 1,
 	cooldown = 0,
+	getDamage = function(self, t)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 16
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(2,8)*1.5)
+		else return rng.dice(2,8) end
+	end,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -287,7 +310,7 @@ newDivineSpell{
 		local _ _, _, _, x, y = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local damage = rng.dice(2,8)
+		local damage = t.getDamage(self, t)
 
 		self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 		return true
@@ -306,6 +329,11 @@ newDivineSpell{
 	level = 3,
 	points = 1,
 	cooldown = 0,
+	getDamage = function(self, t)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 24
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(3,8)*1.5)
+		else return rng.dice(3,8) end
+	end,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -318,7 +346,7 @@ newDivineSpell{
 		local _ _, _, _, x, y = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local damage = rng.dice(3,8)
+		local damage = t.getDamage(self, t)
 
 		self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 		return true
@@ -337,6 +365,11 @@ newDivineSpell{
 	level = 4,
 	points = 1,
 	cooldown = 0,
+	getDamage = function(self, t)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 32
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(4,8)*1.5)
+		else return rng.dice(4,8) end
+	end,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -349,7 +382,7 @@ newDivineSpell{
 		local _ _, _, _, x, y = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local damage = rng.dice(4,8)
+		local damage = t.getDamage(self, t)
 
 		self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 		return true
@@ -365,6 +398,10 @@ newDivineSpell{
 	mode = 'activated',
 	level = 1,
 	points = 1,
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	range = 10,
 	radius = 1.5,
 	target = function(self, t)
@@ -377,7 +414,7 @@ newDivineSpell{
         local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local duration = 5
+		local duration = t.getDuration(self, t)
 
 		self:project(tg, x, y, DamageType.FAERIE, damage, {type="faerie"})
 
@@ -398,6 +435,10 @@ newDivineSpell{
 	range = 1,
 	requires_target = true,
 	radius = 5,
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
@@ -407,7 +448,7 @@ newDivineSpell{
         local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local duration = 5
+		local duration = t,getDuration(self, t)
 
 	--	self:project(tg, x, y, DamageType.DETECT_EVIL, damage, {type="evil"})
 		self:project(tg, x, y, DamageType.DETECT_EVIL, damage)
@@ -429,6 +470,10 @@ newDivineSpell{
 	range = 1,
 	requires_target = true,
 	radius = 5,
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
@@ -438,7 +483,7 @@ newDivineSpell{
         local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local duration = 5
+		local duration = t.getDuration(self, t)
 
 	--	self:project(tg, x, y, DamageType.DETECT_GOOD, damage, {type="good"})
 		self:project(tg, x, y, DamageType.DETECT_GOOD, damage)
@@ -460,6 +505,10 @@ newDivineSpell{
 	range = 1,
 	requires_target = true,
 	radius = 5,
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
@@ -469,7 +518,7 @@ newDivineSpell{
         local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local duration = 5
+		local duration = t.getDuration(self, t)
 
 	--	self:project(tg, x, y, DamageType.DETECT_CHAOS, damage, {type="chaos"})
 		self:project(tg, x, y, DamageType.DETECT_CHAOS, damage)
@@ -491,6 +540,10 @@ newDivineSpell{
 	range = 1,
 	requires_target = true,
 	radius = 5,
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
@@ -500,7 +553,7 @@ newDivineSpell{
         local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local duration = 5
+		local duration = t.getDuration(self, t)
 
 	--	self:project(tg, x, y, DamageType.DETECT_LAW, damage, {type="evil"})
 		self:project(tg, x, y, DamageType.DETECT_LAW, damage)
