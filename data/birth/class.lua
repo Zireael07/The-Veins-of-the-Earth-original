@@ -193,6 +193,12 @@ newBirthDescriptor {
 	rarity = 4,
 	copy = {
 	},
+    talents_types = {
+    ["class/spellcasting"] = {true, 0.0},
+    ["arcane/itemcreation"] = {true, 0.0},
+    ["arcane/metamagic"] = {true, 0.0},
+    ["arcane/reserve"] = {true, 0.0},
+    },
 	descriptor_choices = {
 		deity =
     	{
@@ -648,6 +654,12 @@ newBirthDescriptor {
 	rarity = 8,
 	copy = {
 	},
+    talents_types = {
+    ["class/spellcasting"] = {true, 0.0},
+    ["arcane/itemcreation"] = {true, 0.0},
+    ["arcane/metamagic"] = {true, 0.0},
+    ["arcane/reserve"] = {true, 0.0},
+    },
 	descriptor_choices =
 	{
 		alignment =
@@ -1334,9 +1346,15 @@ newBirthDescriptor {
 			{ name="bolts", ego_chance=-1000},
 		}
 	},
-	talents_types = {
+    talents_types = {
+    ["class/spellcasting"] = {true, 0.0},
+    ["arcane/itemcreation"] = {true, 0.0},
+    ["arcane/metamagic"] = {true, 0.0},
+    ["arcane/reserve"] = {true, 0.0},
+    },
+--[[	talents_types = {
 		["arcane/arcane"] = {true, 0.0},
-	},
+	},]]
 	descriptor_choices =
 	{
 		--Prevent game-breaking combos due to 1 BAB requirement of some feats
@@ -1423,6 +1441,12 @@ newBirthDescriptor {
 		}
 
 	},
+    talents_types = {
+    ["class/spellcasting"] = {true, 0.0},
+    ["arcane/itemcreation"] = {true, 0.0},
+    ["arcane/metamagic"] = {true, 0.0},
+    ["arcane/reserve"] = {true, 0.0},
+    },
 	descriptor_choices =
 	{
 		--Prevent game-breaking combos due to 1 BAB requirement of some feats
@@ -1613,6 +1637,12 @@ newBirthDescriptor {
 	rarity = 10,
 	copy = {
 	},
+    talents_types = {
+    ["class/spellcasting"] = {true, 0.0},
+    ["arcane/itemcreation"] = {true, 0.0},
+    ["arcane/metamagic"] = {true, 0.0},
+    ["arcane/reserve"] = {true, 0.0},
+    },
 	descriptor_choices =
 	{
 		deity =

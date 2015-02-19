@@ -73,8 +73,6 @@ newBirthDescriptor{
     ["class/attribute"] = {true, 0.0},
     ["class/twf"] = {true, 0.0},
     ["class/saves"] = {true, 0.0},
-    ["class/spellcasting"] = {true, 0.0},
-    ["arcane/itemcreation"] = {true, 0.0},
     ["combat/general"] = {true, 0.0}
   },
   descriptor_choices =
