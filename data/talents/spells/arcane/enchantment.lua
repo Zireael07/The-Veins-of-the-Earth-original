@@ -14,7 +14,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 5,
@@ -50,7 +50,7 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 0,

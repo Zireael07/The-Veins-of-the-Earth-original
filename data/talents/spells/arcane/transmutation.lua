@@ -13,7 +13,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 0,
@@ -37,7 +37,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 5 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 150 
+		if self:isTalentActive(self.T_EXTEND) then return 150 
 		else return 100 end
 	end,
 	range = 0,
@@ -80,7 +80,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 0,
@@ -105,7 +105,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 0,
@@ -130,7 +130,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 0,
@@ -155,7 +155,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 0,
@@ -180,7 +180,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 0,
@@ -205,7 +205,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 0,
@@ -230,7 +230,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 15 
+		if self:isTalentActive(self.T_EXTEND) then return 15 
 		else return 10 end
 	end,
 	range = 0,
@@ -254,7 +254,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 15 
+		if self:isTalentActive(self.T_EXTEND) then return 15 
 		else return 10 end
 	end,
 	range = 0,
@@ -279,7 +279,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 0,
@@ -303,7 +303,7 @@ newArcaneSpell{
 	points = 1,
 	tactical = { BUFF = 5 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 150 
+		if self:isTalentActive(self.T_EXTEND) then return 150 
 		else return 100 end
 	end,
 	range = 0,
@@ -354,6 +354,6 @@ newArcaneSpell{
 	return true
 	end,
 	info = function (self, t)
-		return ([[Transmute stone to mud, effectively digging]])
+		return ([[Transmute stone to mud, effectively digging.]])
 	end,
 }

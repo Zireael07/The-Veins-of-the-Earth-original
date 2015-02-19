@@ -14,7 +14,7 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 6 
+		if self:isTalentActive(self.T_EXTEND) then return 6 
 		else return 4 end --1d6+2
 	end, 
 	range = 4,

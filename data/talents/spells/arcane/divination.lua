@@ -36,7 +36,7 @@ newArcaneSpell{
 	cooldown = 0,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 15 
+		if self:isTalentActive(self.T_EXTEND) then return 15 
 		else return 10 end
 	end,
 	range = 0,
@@ -63,7 +63,7 @@ newArcaneSpell{
 	cooldown = 0,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 15 
+		if self:isTalentActive(self.T_EXTEND) then return 15 
 		else return 10 end
 	end,
 	range = 0,
@@ -90,7 +90,7 @@ newArcaneSpell{
 	cooldown = 0,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 15 
+		if self:isTalentActive(self.T_EXTEND) then return 15 
 		else return 10 end
 	end,
 	range = 0,

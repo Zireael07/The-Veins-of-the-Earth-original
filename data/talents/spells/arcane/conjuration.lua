@@ -14,8 +14,8 @@ newArcaneSpell{
 	cooldown = 8,
 	tactical = { BUFF = 2 },
 	getDamage = function(self, t)
-		if self:isTalentActive(who.T_MAXIMIZE) then return 3 
-		elseif self:isTalentActive(who.T_EMPOWER) then return math.max(rng.dice(1,3)*1.5)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 3 
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(1,3)*1.5)
 		else return rng.dice(1,3) end
 	end,
 	range = 5,
@@ -30,7 +30,7 @@ newArcaneSpell{
 		local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local damage = rng.dice(1,3)
+		local damage = t.getDamage(self, t)
 
 		self:projectile(tg, x, y, DamageType.ACID, {dam=damage})
 
@@ -50,7 +50,7 @@ newArcaneSpell{
 	cooldown = 0,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 5,
@@ -328,7 +328,7 @@ newArcaneSpell{
 	cooldown = 0,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 15 
+		if self:isTalentActive(self.T_EXTEND) then return 15 
 		else return 10 end
 	end,
 	range = 1,

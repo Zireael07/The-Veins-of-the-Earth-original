@@ -14,7 +14,7 @@ newArcaneSpell{
 	cooldown = 0,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 5,
@@ -62,8 +62,8 @@ newArcaneSpell{
 		return 1 + math.min(math.floor(self:casterLevel(t) / 2, 5))
 	end,
 	getDamage = function(self, t)
-		if self:isTalentActive(who.T_MAXIMIZE) then return 5
-		elseif self:isTalentActive(who.T_EMPOWER) then return math.max((rng.dice(1,4)+1)*1.5)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 5
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max((rng.dice(1,4)+1)*1.5)
 		else return rng.dice(1,4)+1 end
 	end,
 	target = function(self, t)
@@ -84,7 +84,7 @@ newArcaneSpell{
 
 		for i,v in ipairs(targets) do
 			x, y, tg = unpack(v)
-			local damage = rng.dice(1,4)+1
+			local damage = t.getDamage(self, t)
 			if x and y and tg then
 				self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
 			end
@@ -119,8 +119,8 @@ newArcaneSpell{
 			damage = damage + rng.dice(1,4)
 		end
 
-		if self:isTalentActive(who.T_MAXIMIZE) then return level*4
-		elseif self:isTalentActive(who.T_EMPOWER) then return math.max(damage*1.5)
+		if self:isTalentActive(self.T_MAXIMIZE) then return level*4
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(damage*1.5)
 		else return damage end
 
 	end,
@@ -162,7 +162,7 @@ newArcaneSpell{
 	cooldown = 0,
 	tactical = { BUFF = 2 },
 	getDuration = function(self, t)  
-		if self:isTalentActive(who.T_EXTEND) then return 8 
+		if self:isTalentActive(self.T_EXTEND) then return 8 
 		else return 5 end
 	end,
 	range = 5,
@@ -206,8 +206,8 @@ newArcaneSpell{
 	cooldown = 0,
 	tactical = { BUFF = 2 },
 	getDamage = function(self, t)
-		if self:isTalentActive(who.T_MAXIMIZE) then return 18
-		elseif self:isTalentActive(who.T_EMPOWER) then return math.max(rng.dice(3,6)*1.5)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 18
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(3,6)*1.5)
 		else return rng.dice(3,6) end
 	end,
 	range = 5,
@@ -243,8 +243,8 @@ newArcaneSpell{
 	cooldown = 20,
 --	tactical = { BUFF = 2 },
 	getDamage = function(self, t)
-		if self:isTalentActive(who.T_MAXIMIZE) then return 18
-		elseif self:isTalentActive(who.T_EMPOWER) then return math.max(rng.dice(3,6)*1.5)
+		if self:isTalentActive(self.T_MAXIMIZE) then return 18
+		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(3,6)*1.5)
 		else return rng.dice(3,6) end
 	end,
 	range = 0,
