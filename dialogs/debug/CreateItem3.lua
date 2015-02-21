@@ -27,8 +27,8 @@ function _M:init()
 
     Dialog.init(self, "Create Object", 600, 400)
 
-    self.c_list_items = List.new{width=400, height=400, list=self.list_items, fct=function(item) self:use(item) end}
-    self.c_list_egos = List.new{width=400, height=400, list={}, fct=function(item) self:use(item) end}
+    self.c_list_items = List.new{width=300, height=400, list=self.list_items, fct=function(item) self:use(item) end}
+    self.c_list_egos = List.new{width=400, height=400, list=self.list_egos or {}, fct=function(item) self:use(item) end}
 
     self:loadUI{
         {left=0, top=0, ui=self.c_list_items},
@@ -127,18 +127,50 @@ end
 
 function _M:generateEgoLists(item)
     self.c_list_egos.list = {}
+    self.list_egos = {}
+
 
     local list = {}
 
-    if item then
-        --Do it the randart way!
+    if item and item.egos then
+    
+    local legos = {}
+        game.zone:getEntities(game.level, "object") -- make sure ego definitions are loaded
+        table.insert(legos, game.level:getEntitiesList("object/"..item.egos..":prefix") or {})
+        table.insert(legos, game.level:getEntitiesList("object/"..item.egos..":suffix") or {})
+        table.insert(legos, game.level:getEntitiesList("object/"..item.egos..":") or {})
+
+        print(" * loaded ", #legos, "ego definitions from ", item.egos)
+
+        for i, e in ipairs(legos) do
+        --    game.log("Legos reached")
+            list[#list+1] = {e=e}
+
+        
+        --[[   if e.name then
+                game.log(e.name)
+            --    local affix = e.suffix and suffix or e.prefix and prefix
+                list[#list+1] = {name=e.name, e=e}
+            end]]
+        end
+
+    end
+
+
+    --[[    --Do it the randart way!
         local base = game.zone:makeEntity(game.level, "object", {name = item.name, ego_chance=-1000}, nil, true)
         local o = base:cloneFull()
 
+        if not base then print ("No base") end
+        if not o then print ("Clone failed") end
+
         local legos = {}
-        table.insert(legos, game.level:getEntitiesList("object/"..o.egos..":prefix"))
-        table.insert(legos, game.level:getEntitiesList("object/"..o.egos..":suffix"))
-        table.insert(legos, game.level:getEntitiesList("object/"..o.egos..":"))
+        game.zone:getEntities(game.level, "object") -- make sure ego definitions are loaded
+        table.insert(legos, game.level:getEntitiesList("object/"..o.egos..":prefix") or {})
+        table.insert(legos, game.level:getEntitiesList("object/"..o.egos..":suffix") or {})
+        table.insert(legos, game.level:getEntitiesList("object/"..o.egos..":") or {})
+
+        print(" * loaded ", #legos, "ego definitions from ", o.egos)
 
         for i, e in ipairs(legos) do
             if e.name then
@@ -147,7 +179,8 @@ function _M:generateEgoLists(item)
             end
         end
 
-    end
+    end]]
 
-    self.c_list_egos.list = list
+--    self.c_list_egos.list = list
+    self.list_egos = list
 end
