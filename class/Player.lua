@@ -1964,6 +1964,8 @@ function _M:exerciseStat(stat, d, reason, cap)
 
   --Increase stat if exercising/training puts us above the cap
   if self:attr("train_"..stat) > required then 
+    --zero the points!!!
+    self:attr("train_"..stat, 0, true)
     self:incStat(stat, 1)
     self.stat_increased[stat] = self.stat_increased[stat] + 1
   end
@@ -2570,7 +2572,7 @@ function _M:godPulse()
 
     local Intbonus = math.floor((game.player:getInt()-10)/2)
     local Wisbonus = math.floor((game.player:getWis()-10)/2)
-    self:gainExp(math.max(1,(Intbonus+Wisbonus*100)))
+    self:gainExp(math.max(1,((Intbonus+Wisbonus)*100)))
   end
   if deity == "Xel" then
     if self.life < self.max_life then
