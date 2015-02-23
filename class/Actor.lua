@@ -1592,6 +1592,12 @@ end
 --- Is the target concealed for us?
 -- Returns false if it isn't, or a number (50%/20% concealment) if it is
 function _M:isConcealed(actor)
+	--check for entropic shield first
+	local weapon = (self:getInven("MAIN_HAND") and self:getInven("MAIN_HAND")[1])
+
+	if actor:hasEffect(self.EFF_ENTROPIC_SHIELD) and weapon and weapon.ranged then return 20 end
+
+	--check for blind/darkness
 	if self:hasEffect(self.EFF_BLIND) then return 50 end
 	if self:hasEffect(self.EFF_DARKNESS) then return 20 end
 	if self:hasEffect(self.EFF_FAERIE) then return false end

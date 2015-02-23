@@ -566,6 +566,53 @@ newDivineSpell{
 	end,
 }
 
+newDivineSpell{
+	name = "Divine Favor",
+	type = {"divine", 1},
+	mode = 'activated',
+	level = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
+	action = function(self, t)
+		if not self then return nil end
+		self:setEffect(self.EFF_DIVINE_FAVOR, t.getDuration(self, t), {})
+
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[You gain a +1 bonus to attack and damage per 3 caster levels (minimum 1).]])
+	end,
+}
+
+newDivineSpell{
+	name = "Entropic Shield",
+	type = {"divine", 1},
+	mode = 'activated',
+	level = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	getDuration = function(self, t)  
+		if self:isTalentActive(self.T_EXTEND) then return 8 
+		else return 5 end
+	end,
+	action = function(self, t)
+		if not self then return nil end
+		self:setEffect(self.EFF_ENTROPIC_SHIELD, t.getDuration(self, t), {})
+
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[All ranged attacks, including magical effects such as magic missiles and acid arrows, have a 20% miss chance.]])
+	end,
+}
+
+
 --"Animal buff" spells
 --[[newDivineSpell{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE",

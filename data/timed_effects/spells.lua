@@ -144,6 +144,13 @@ newEffect{
     end,
 }
 
+newEffect{
+	name = "ENTROPIC_SHIELD",
+	desc = "Entropic Shield",
+	type = "magical",
+	status = "beneficial",
+}
+
 --Detect spells
 newEffect{
 	name = "DETECT_EVIL",
@@ -339,6 +346,21 @@ newEffect{
 	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
 	activate = function(self, eff)
 		self:effectTemporaryValue(eff, "combat_armor_ac", 4)
+	end,
+}
+
+newEffect{
+	name = "DIVINE_FAVOR",
+	desc = "Divine Favor",
+	type = "magical",
+	status = "beneficial",
+--	on_gain = function(self, err) return "A field seems to surround #Target#", "+Mage Armor" end,
+--	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
+	activate = function(self, eff)
+		eff.attack = self:addTemporaryValue(eff, "combat_attack", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("combat_attack", eff.attack)
 	end,
 }
 
