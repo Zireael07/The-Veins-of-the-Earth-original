@@ -42,20 +42,20 @@ function _M:act()
     --Pick up objects
     if not self:isThreatened() and self:getObjectonFloor(self.x, self.y) then
         self:pickupObject()
-    end    
+    end
 
 	--Morale and fleeing
 	if self.morale_life then --and not self.inactive then
 		if self.life < self.morale_life then
-			if not self.energy.used then 
-                self:runAI("flee_dmap") 
+			if not self.energy.used then
+                self:runAI("flee_dmap")
             --    self:setEffect(self.EFF_FEAR, 1, {src=self.ai_target.actor, range=10})
             end
 		end
 	end
 
 	if self.life / self.max_life < 0.5 then
-		if not self.energy.used then 
+		if not self.energy.used then
             if self.ai_target.actor then
             local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
                 if self:isNear(tx, ty, 5) then
@@ -107,22 +107,22 @@ function _M:doFOV()
  --   game.level.map:apply(x, y, fovdist[sqdist])
   end, true, false, true)
   -- Calculate our own FOV
-  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist) 
+  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist)
  --     game.level.map:applyLite(x, y)
- --     game.level.map.remembers(x, y, true) -- Remember the tile 
+ --     game.level.map.remembers(x, y, true) -- Remember the tile
     end, true, true, true)
 
   --If our darkvision is better than our lite, check it.
   if (self:attr("infravision") or 0) > self.lite then
     self:computeFOV(self:attr("infravision"), "block_sight", function(x, y, dx, dy, sqdist)
-      if not game.level.map.seens(x, y) then 
+      if not game.level.map.seens(x, y) then
         game.level.map.seens(x, y, 0.75) -- If we only see due to darkvision, it looks dark
       end
  --     game.level.map.remembers(x, y, true)
     end, true, true, true)
   end
 
-end	
+end
 
 --Taken from ToME 4
 --- Give target to others
@@ -138,6 +138,8 @@ function _M:seen_by(who)
     if self:reactionToward(who) <= 0 then return end
     -- Check if we can actually see the ally (range and obstacles)
     if not who.x or not self:hasLOS(who.x, who.y) then return end
+	-- Check if it's actually a being of cold machinery and not of blood and flesh
+ 	if not who.aiSeeTargetPos then return end
     if self.ai_target.actor then
         -- Pass last seen coordinates
         if self.ai_target.actor == who.ai_target.actor then
@@ -160,7 +162,7 @@ function _M:seen_by(who)
         -- Don't believe allies if they saw the target far, far away
         if who.ai_state.target_last_seen.x and who.ai_state.target_last_seen.y and core.fov.distance(self.x, self.y, who.ai_state.target_last_seen.x, who.ai_state.target_last_seen.y) > self.sight then return end
         -- Don't believe allies if they saw the target over 10 turns ago
-        if (game.turn - (who.ai_state.target_last_seen.turn or game.turn)) / (game.energy_to_act / game.energy_per_tick) > 10 then return end 
+        if (game.turn - (who.ai_state.target_last_seen.turn or game.turn)) / (game.energy_to_act / game.energy_per_tick) > 10 then return end
     end
     -- And only trust the ally if they can actually see the target
     if not who:canSee(who.ai_target.actor) then return end
