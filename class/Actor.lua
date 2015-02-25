@@ -58,7 +58,7 @@ function _M:init(t, no_default)
 	self.combat_shield = 0
 	self.combat_magic_shield = 0
 	self.combat_natural = 0
-	
+
 	self.combat_protection = 0
 	self.combat_dodge = 0
 	self.combat_parry = 0
@@ -78,7 +78,7 @@ function _M:init(t, no_default)
 	--Perks
 	self.perk = self.perk or ""
 	self.perk_item = self.perk_item or ""
-	
+
 
 	--Challenge Rating & ECL set to 0 & 1
 	self.challenge = 0
@@ -197,7 +197,7 @@ function _M:init(t, no_default)
 	-- Short-ciruit the engine's initial forced level-up mechanism, which
 	-- doesn't work quite the way we want.
 	self.start_level = self.level
-	
+
 	-- Charges for spells
 	self.charges = {}
 	self.max_charges = {}
@@ -242,7 +242,7 @@ end
 function _M:onStatChange(stat, v)
 	if stat == "str" then self:checkEncumbrance() end
 	if stat == self.STAT_CON then self.max_life = self.max_life + v*2 end
-end 
+end
 
 function _M:zeroStats()
 	if self:getStat('str') == 0 and not self.dead then self:die() end --should be helpless
@@ -317,9 +317,9 @@ function _M:act()
 	for eff_id, params in pairs(self.tmp) do
 		local DC = params.DC_ongoing or 10
 		local eff = self.tempeffect_def[eff_id]
-		if eff.decrease == 0 then 
+		if eff.decrease == 0 then
 			if self:saveRoll(DC, eff.type) then
-				params.dur = 0 
+				params.dur = 0
 			end
 		end
 	end
@@ -495,13 +495,13 @@ end
 function _M:templateName()
 	if self == game.player then end
 	if not self.special and not self.template then return "" end
-	
-	
+
+
 	if self.special ~= nil then
 		if game.player.special_known[self.uid] then return self.special
 		else return "" end
 
-		--return self.special		
+		--return self.special
 	else return "" end
 	if self.template ~= nil then
 		if game.player.special_known[self.uid] then return self.template
@@ -514,7 +514,7 @@ end
 function _M:className()
 	if self == game.player then end
 	if self.classes and self.classes["Fighter"] then return "#LIGHT_BLUE#fighter#LAST#"
-	elseif self.classes and self.classes["Cleric"] then return "#LIGHT_BLUE#cleric#LAST#" 
+	elseif self.classes and self.classes["Cleric"] then return "#LIGHT_BLUE#cleric#LAST#"
 	elseif self.classes and self.classes["Barbarian"] then return "#LIGHT_BLUE#barbarian#LAST#"
 	elseif self.classes and self.classes["Rogue"] then return "#LIGHT_BLUE#rogue#LAST#"
 	elseif self.classes and self.classes["Ranger"] then return "#LIGHT_BLUE#ranger#LAST#"
@@ -527,7 +527,7 @@ end
 
 function _M:colorStats(stat)
 	local player = game.player
-	
+
 
 	if (self:getStat(stat)-10)/2 > (player:getStat(stat)-10)/2 then return "#RED#"..self:getStat(stat).."#LAST#"
 	elseif (self:getStat(stat)-10)/2 < (player:getStat(stat)-10)/2 then return "#GREEN#"..self:getStat(stat).."#LAST#"
@@ -558,12 +558,12 @@ function _M:colorCR()
 	elseif self.challenge < (player.level - 4) then return "#LIGHT_GREEN#"..self:formatCR().."#LAST#"
 	elseif self.challenge < player.level then return "#DARK_GREEN#"..self:formatCR().."#LAST#"
 	else return "#GOLD#"..self:formatCR().."#LAST#" end
-end	
+end
 
 function _M:colorFaction()
 	local player = game.player
 	local factlevel = Faction:factionReaction(self.faction, game.player.faction)
-	if self.faction and Faction.factions[self.faction] then 
+	if self.faction and Faction.factions[self.faction] then
 		if factlevel == 0 then return "#WHITE#neutral#LAST#"
 		elseif factlevel < 0 then return "#LIGHT_RED#hostile#LAST#"
 		elseif factlevel > 0 then return "#LIGHT_GREEN#friendly#LAST#"
@@ -627,7 +627,7 @@ end
 function _M:isPlayerNeutral()
 	if game.player.descriptor.alignment == "Lawful Neutral" then return true end
 	if game.player.descriptor.alignment == "Neutral" then return true end
-	if game.player.descriptor.alignment == "Chaotic Neutral" then return true end 
+	if game.player.descriptor.alignment == "Chaotic Neutral" then return true end
 end
 
 function _M:isPlayerEvil()
@@ -705,19 +705,19 @@ end
 function _M:deathStuff()
 	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
 
-	if self.life == 0 then 
+	if self.life == 0 then
 		--Undead and constructs now die at 0
 		if self.type ~= "undead" and self.type ~= "construct" then
 		self:setEffect(self.EFF_DISABLED, 1, {})
 		self:removeEffect(self.EFF_DYING)
-		else 
+		else
 			if self:hasEffect(self.EFF_DYING) then self:removeEffect(self.EFF_DYING) end
-		self:die() 
+		self:die()
 		end
-	end	
+	end
 
 
-	if self.life < 0 then 
+	if self.life < 0 then
 		self:removeEffect(self.EFF_DISABLED)
 		self:setEffect(self.EFF_DYING, 1, {})
 		--Monsters bleed out quicker than players and have a smaller chance to stabilize
@@ -725,25 +725,25 @@ function _M:deathStuff()
 			--Raging characters are considered stable as long as they are raging
 			if self:hasEffect(self.EFF_RAGE) then self.life = 0 end
 			if rng.percent(10) then self.life = 0
-			else self.life = self.life - 1 end	
+			else self.life = self.life - 1 end
 		else
 			if rng.percent(2) then self.life = 0
 			else self.life = self.life - 3 end
-		end		
-	end	
+		end
+	end
 
 	--Ensure they can actually die due to bleeding out
-	if not self == game.player and self.life <= -10 and not self.dead then 
-		self:removeEffect(self.EFF_DYING, true, true) 
+	if not self == game.player and self.life <= -10 and not self.dead then
+		self:removeEffect(self.EFF_DYING, true, true)
 
 		--Remove any particles we have
 		local ps = self:getParticlesList()
 		for i, p in ipairs(ps) do self:removeParticles(p) end
 
-		self:die(game.player) 
+		self:die(game.player)
 	end
-	if self.life <= -10 and not self.dead then 
-		self:removeEffect(self.EFF_DYING, true, true) 
+	if self.life <= -10 and not self.dead then
+		self:removeEffect(self.EFF_DYING, true, true)
 
 		--Remove any particles we have
 		local ps = self:getParticlesList()
@@ -790,19 +790,19 @@ function _M:onTakeHit(value, src, death_note)
 	--Death & dying related stuff
 	if (self.life - value) > 0 then self:removeEffect(self.EFF_DISABLED) end
 
-	if (self.life - value) == 0 then 
+	if (self.life - value) == 0 then
 		--Undead, constructs and plants now die at 0
 		if self.type ~= "undead" and self.type ~= "construct" and self.type ~= "plant" then
 		self:setEffect(self.EFF_DISABLED, 1, {})
 		self:removeEffect(self.EFF_DYING)
-		else 
+		else
 			if self:hasEffect(self.EFF_DYING) then self:removeEffect(self.EFF_DYING, true, true) end
-		self:die(src) 
+		self:die(src)
 		end
-	end	
+	end
 
 
-	if (self.life - value) < 0 then 
+	if (self.life - value) < 0 then
 		if self == game.player and self:knowTalent(self.T_IGNORE_WOUND) and not self.ignored_wound then
 			--ignore the wound
 			self.life = self.life + value
@@ -820,34 +820,34 @@ function _M:onTakeHit(value, src, death_note)
 			--Raging characters are considered stable as long as they are raging
 			if self:hasEffect(self.EFF_RAGE) then self.life = 0 end
 			if rng.percent(10) then self.life = 0
-			else self.life = self.life - 1 end	
+			else self.life = self.life - 1 end
 		else
 			if rng.percent(2) then self.life = 0
 			else self.life = self.life - 3 end
-		end		
-	end	
+		end
+	end
 
 	--Ensure they can actually die due to bleeding out
-	if not self == game.player and (self.life - value) <= -10 and not self.dead then 
-		self:removeEffect(self.EFF_DYING, true, true) 
-		
-		--Remove any particles we have
-		local ps = self:getParticlesList()
-		for i, p in ipairs(ps) do self:removeParticles(p) end
-		
-		self:die(game.player) 
-
-	end
-	if (self.life - value) <= -10 and not self.dead then 
-		self:removeEffect(self.EFF_DYING, true, true) 
+	if not self == game.player and (self.life - value) <= -10 and not self.dead then
+		self:removeEffect(self.EFF_DYING, true, true)
 
 		--Remove any particles we have
 		local ps = self:getParticlesList()
 		for i, p in ipairs(ps) do self:removeParticles(p) end
 
-		self:die(src) 
+		self:die(game.player)
+
 	end
-	
+	if (self.life - value) <= -10 and not self.dead then
+		self:removeEffect(self.EFF_DYING, true, true)
+
+		--Remove any particles we have
+		local ps = self:getParticlesList()
+		for i, p in ipairs(ps) do self:removeParticles(p) end
+
+		self:die(src)
+	end
+
 	return value
 end
 
@@ -915,9 +915,9 @@ function _M:die(src, death_note)
 	if not (self.name == "stirge" or name == "will'o'wisp"
 		or self.type == "outsider" or self.type == "demon" or self.type == "elemental" or self.type == "ooze" or self.type == "construct" or self.type == "undead"
 		or self.type == "encounter") then
-		
+
 		local corpse = game.zone:makeEntity(game.level, "object", {name="fresh corpse", ego_chance=-1000}, 1, true)
-	
+
 		if corpse then
 			corpse.name = self.name.." corpse"
 			corpse.unided_name = self.name.." corpse"
@@ -935,9 +935,9 @@ function _M:die(src, death_note)
 
 	-- Register kills for hiscores
 	if killer and killer == game.player then
-		if self.challenge < (game.player.level - 4) then 
+		if self.challenge < (game.player.level - 4) then
 			killer.kills = killer.kills
-		else 
+		else
 		killer.kills = killer.kills + 1 end
 	else end
 
@@ -945,12 +945,12 @@ function _M:die(src, death_note)
 
 	-- Record kills for kill count
 	local player = game.player
-	
-	if killer and killer == player then 
+
+	if killer and killer == player then
 		player.all_kills = player.all_kills or {}
 		player.all_kills[self.name] = player.all_kills[self.name] or 0
 		player.all_kills[self.name] = player.all_kills[self.name] + 1
-	end	
+	end
 
 	--Divine reactions
 	if killer and killer == player then
@@ -969,12 +969,12 @@ function _M:die(src, death_note)
 end
 
 --self refers to the monster which was killed, see above
-function _M:deathDivineReaction()	
+function _M:deathDivineReaction()
 	local player = game.player
 
 	if player:isFollowing("None") then end
 
-	if player:isFollowing("Asherath") 
+	if player:isFollowing("Asherath")
 		and self.challenge > player.level then
 		player:incFavorFor("Asherath", 30*self.challenge)
 	end
@@ -985,7 +985,7 @@ function _M:deathDivineReaction()
 		end
 		if self.subtype == "dwarf" then --non undead; OR sapient construct
 			player:transgress("Ekliazeh", 5, false, "killing a dwarf")
-		end	
+		end
 	end
 
 	if player:isFollowing("Hesani")
@@ -1043,7 +1043,7 @@ function _M:deathDivineReaction()
 
 end
 
-	
+
 
 function _M:resolveSource()
 	if self.summoner_gain_exp and self.summoner then
@@ -1059,6 +1059,23 @@ function _M:resetToFull()
 	self.mana = self:setMaxSpellPts()
 	self.max_mana = self:setMaxSpellPts()
 end
+
+function _M:gainExp(value)
+	self.changed = true
+	self.exp = math.max(0, self.exp + value)
+	while self:getExpChart(self.level + 1) and self.exp >= self:getExpChart(self.level + 1) and (not self.actors_max_level or self.level < self.actors_max_level) do
+		-- At max level, if any
+		if self.actors_max_level and self.level >= self.actors_max_level then return end
+		if self.max_level and self.level >= self.max_level then return end
+
+		self.level = self.level + 1
+		self.exp = self.exp - self:getExpChart(self.level)
+		self:levelup()
+	end
+
+	if self == game.player then game.log("Gained "..value.." XP.") end
+end
+
 
 function _M:levelupMsg()
   -- Subclasses handle the actual mechanics of leveling up; here we just
@@ -1098,12 +1115,12 @@ function _M:getArmor()
 	local ac = self.ac
 	local dex_bonus = (self.getDex()-10)/2
 
-	if self:hasEffect(self.EFF_BLIND) then 
+	if self:hasEffect(self.EFF_BLIND) then
 		ac = ac - 2
 		dex_bonus = math.min(dex_bonus, 0) --negate dex bonus, if any
 	end
 
-	ac = self.ac + dex_bonus 
+	ac = self.ac + dex_bonus
 
 	return ac
 end
@@ -1114,7 +1131,7 @@ end
     local y = target.y*2 - self.y
     local z = game.level.map (x, y, MAP.ACTOR)
     if (z and self:reactionToward(z) < 0) then --- should also check if z is 'threatening'
-        return true    
+        return true
     else
         return false
     end
@@ -1130,7 +1147,7 @@ function _M:spotEnemies()
 end, nil)
 return seen
 end
-	
+
 function _M:isThreatened()
 	if not self.x then return nil end
 	for i, act in ipairs(self.fov.actors_dist) do
@@ -1150,7 +1167,7 @@ function _M:isThreatened()
   if actor and self:reactionToward(actor) < 0 and self:canSee(actor) and game.level.map.seens(x, y) then seen = true end
 end, nil)
 return seen]]
-end    
+end
 
 --Make NPCs aware of objects on floor
 function _M:getObjectonFloor(x, y)
@@ -1158,7 +1175,7 @@ function _M:getObjectonFloor(x, y)
 
     if z > 1 then  return true end
 --[[        local o = game.level.map:getObject(x, y, z)
-        return o 
+        return o
     end]]
 
     return nil
@@ -1205,8 +1222,8 @@ end
 -- @return true to continue, false to stop
 function _M:preUseTalent(ab, silent)
 	local tt_def = self:getTalentTypeFrom(ab.type[1])
-	if tt_def.all_limited then --all_limited talenttypes all have talents that are daily limited 
-		
+	if tt_def.all_limited then --all_limited talenttypes all have talents that are daily limited
+
 		--No casting spells if your key stat is <= 9
     --    if self:getStatForSpell("Wizard") <= 9 then
 		if self.classes and self.classes["Wizard"] and self:getInt() <= 9 then
@@ -1214,17 +1231,17 @@ function _M:preUseTalent(ab, silent)
 		return false
 		end
     --    if self:getStatForSpell("Ranger") <= 9 then
-		if self.classes and self.classes["Ranger"] and self:getWis() <= 9 then 
+		if self.classes and self.classes["Ranger"] and self:getWis() <= 9 then
 			if not silent then game.logPlayer(self, "Your Wisdom is too low!") end
 		return false
 		end
     --    if self:getStatForSpell("Cleric") <= 9 then
-		if self.classes and self.classes["Cleric"] and self:getWis() <= 9 then 
+		if self.classes and self.classes["Cleric"] and self:getWis() <= 9 then
 			if not silent then game.logPlayer(self, "Your Wisdom is too low!") end
 		return false
 		end
-		
-		if self.classes and self.classes["Bard"] and self:getCha() <= 9 then 
+
+		if self.classes and self.classes["Bard"] and self:getCha() <= 9 then
     --    if self:getStatForSpell("Bard") <= 9 then
 			if not silent then game.logPlayer(self, "Your Charisma is too low!") end
 		return false
@@ -1247,7 +1264,7 @@ function _M:preUseTalent(ab, silent)
 	end
 
 	-- Check for special prequisites
-	if ab.on_pre_use and not ab.on_pre_use(self, ab, silent) then 
+	if ab.on_pre_use and not ab.on_pre_use(self, ab, silent) then
 		return nil
 	end
 
@@ -1256,7 +1273,7 @@ function _M:preUseTalent(ab, silent)
 		if not silent then game.logPlayer(self, "You do not have enough psionic power to cast %s.", ab.name) end
 		return false
 	end
-	
+
 	if not self:enoughEnergy() then return false end
 
 	if ab.mode == "sustained" then
@@ -1309,7 +1326,7 @@ function _M:postUseTalent(ab, ret)
 		if self.classes and self.classes["Sorcerer"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!") return false end
 		if self.classes and self.classes["Bard"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!") return false end
 	end
-	
+
 	self:useEnergy()
 
 	--If Sorcerer/Shaman, use spell points
@@ -1381,25 +1398,25 @@ function _M:isSpell(t)
 	if tt_def.all_limited then return true end
 	if t.type[1] == "innate/innate" or t.type[1] == "shaman/shaman" or t.type == "sorcerer/sorcerer" then return true end
 
-	return false 
+	return false
 
 end
 
 function _M:getTalentName(t)
 	if not self:isSpell(t) then return t.name end
-	if self:isSpell(t) then 
+	if self:isSpell(t) then
 		if self == game.player then return t.name end
 		--Has at least 1 rank in spellcraft
 		if game.player.skill_spellcraft > 0 then
 			--If player can see the source but he isn't the source
-			if self ~= game.player and (game.level.map.seens(self.x, self.y) and game.player:canSee(self)) then 
+			if self ~= game.player and (game.level.map.seens(self.x, self.y) and game.player:canSee(self)) then
 				local check = game.player:skillCheck("spellcraft", t.level+15)
 				if check then return t.name --end
 				else return "something" end
 			else return "something" end
 		else return "something" end
 	end
-end	
+end
 
 --A chart of spell points to prevent typos
 local spell_points_chart = {
@@ -1417,7 +1434,7 @@ local spell_points_chart = {
 
 --Spell points [Incursion/Ernir's Vancian to Psionic conversion]
 function _M:getSpellPoints(t)
-	if t.mana then 
+	if t.mana then
 		return spell_points_chart[t.level]
 	end
 end
@@ -1509,13 +1526,13 @@ function _M:worthExp(target)
 	end
 
 	--Round up for 1 1/2 CR and the like
-    
-	if not exp_worth_chart[cr] then 
+
+	if not exp_worth_chart[cr] then
         local new_cr = math.ceil(cr)
-        return exp_worth_chart[new_cr] 
-    
+        return exp_worth_chart[new_cr]
+
     --standard
-    else 	
+    else
 	return exp_worth_chart[cr]
     end
 end
@@ -1535,10 +1552,10 @@ function _M:canSeeNoCache(actor, def, def_pct)
 
 	if actor ~= self and actor.attr and actor:attr("stealth") then
 		local check = self:opposedCheck("spot", actor, "hide")
-		if not check then 
+		if not check then
 			local check2 = self:opposedCheck("listen", actor, "movesilently")
 			if check2 then return false, 100 end --we know where target is thanks to hearing
-			return false, 0 
+			return false, 0
 		end
 	end
 
@@ -1633,14 +1650,14 @@ function _M:canBe(what)
 	if what == "acid" and self.subtype == "angel" then return false end
 	if what == "cold" and self.subtype == "angel" then return false end
 	if what == "electricity" and self.subtype == "archon" then return false end
-	
+
 	return true
 end
 
 function _M:addedToLevel(level, x, y)
 --Warning: got a loop once
 --Safeguards against overly high CR monsters
-if game.level.level == 1 then 
+if game.level.level == 1 then
 	if self.challenge > (game.level.level + 3) then
 
 		--Create new actor
@@ -1657,10 +1674,10 @@ if game.level.level == 1 then
 		game.level:removeEntity(self, true)
 	end
 else
-	if self.challenge > (game.level.level + 5) then		
+	if self.challenge > (game.level.level + 5) then
 		--Create new actor
 		local m = game.zone:makeEntity(game.level, "actor", f, nil, true)
-		
+
 		-- Find space
         local x, y = util.findFreeGrid(self.x, self.y, 10, true, {[Map.ACTOR]=true})
         if not x then end
@@ -1677,30 +1694,30 @@ end
 if self.encounter_escort then
                 for _, filter in ipairs(self.encounter_escort) do
                         for i = 1, filter.number do
-                               
+
                                 if not filter.chance or rng.percent(filter.chance) then
                                         -- Find space
                                         local x, y = util.findFreeGrid(self.x, self.y, 10, true, {[Map.ACTOR]=true})
                                         if not x then break end
- 
+
                                         -- Find an actor with that filter
                                         local m = game.zone:makeEntity(game.level, "actor", filter, nil, true)
- 
+
                                         if m and m:canMove(x, y) then
- 
+
                                                 if filter.no_subescort then m.encounter_escort = nil end
                                                 if self._empty_drops_escort then m:emptyDrops() end
- 
+
                                                 --Hack?
                                                 if filter.challenge then
                                                 		--Thanks Seb!
                                                         while m.challenge ~= filter.challenge do
                                                             m = game.zone:makeEntity(game.level, "actor", filter, nil, true)
-                                                        end                                                        
+                                                        end
                                                 end
                                                 game.zone:addEntity(game.level, m, "actor", x,y)
                                         end
- 
+
                                 --      game.zone:addEntity(game.level, m, "actor", x, y)
                                         if filter.post then filter.post(self, m) end
                                 elseif m then m:removed() end
@@ -1723,11 +1740,11 @@ function _M:getSkill(skill)
 	if (not skill) then return 0 end
 	local penalty_for_skill = { appraise = "no", balance = "yes", bluff = "no", climb = "yes", concentration = "no", craft = "no", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", ride = "no", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
 
-	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2) 
-	
+	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2)
+
 	if penalty_for_skill[skill] == "no" then return check end
 
-	if penalty_for_skill[skill] == "yes" then 
+	if penalty_for_skill[skill] == "yes" then
 		if self:knowTalent(self.T_ARMOR_OPTIMISATION) and self:attr("armor_penalty") then
 			return check - (self:attr("armor_penalty")/3 or 0) - (self:attr("load_penalty") or 0) --end
 		else
@@ -1773,21 +1790,21 @@ function _M:opposedCheck(skill1, target, skill2)
 		local s = ("Opposed check: dice roll %d + bonus %d versus DC %d -> %s"):format(
 			d, my_skill or 0, enemy_total, success and "#GREEN#success#LAST#" or "#RED#failure#LAST#")
 		game.log(s)
-	end 
+	end
 	if target == game.player then
 		local player_success = true
 		if success then player_success = false end
 		local s = ("Opposed check for the monster: %d versus DC %d -> player %s"):format(
 			my_total, enemy_total, player_success and "#GREEN#success#LAST#" or "#RED#failure#LAST#")
 		game.log(s)
-	end 
+	end
 
 	return success
 end
 
 --Cross-class skills, Zireael
 function _M:crossClass(skill)
-	--List class skills for every class 
+	--List class skills for every class
 	local c_barbarian = { appraise = "no", balance = "no", bluff = "no", climb = "yes", concentration = "no", craft = "yes", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "yes", heal = "no", hide = "no", intimidate = "yes", intuition = "no", jump = "yes", knowledge = "no", listen = "yes", movesilently = "no", openlock = "no", pickpocket = "no", ride = "yes", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "yes", tumble = "no", usemagic = "no" }
 	local c_bard = { appraise = "yes", balance = "yes", bluff = "yes", climb = "yes", concentration = "yes", craft = "yes", diplomacy = "yes", disabledevice = "no", decipherscript = "yes", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "no", pickpocket = "yes", ride = "no", search = "no", sensemotive = "yes", spot = "no", swim = "yes", spellcraft = "yes", survival = "yes", tumble = "yes", usemagic = "yes" }
 	local c_cleric = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "no", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "no", search = "no", sensemotive = "no", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
@@ -1800,7 +1817,7 @@ function _M:crossClass(skill)
 	local c_sorcerer = { appraise = "no", balance = "no", bluff = "yes", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
 	local c_wizard = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
 	local c_warlock = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
-	
+
 	if (not skill) then return false end
 
 	if self.last_class and self.last_class == "Barbarian" and c_barbarian[skill] == "no" then return true end
@@ -1870,7 +1887,7 @@ function _M:getAC()
 	local untyped = self.combat_untyped or 0
 	local parry = self.combat_parry or 0
 
-	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end 
+	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end
 
 	if self.combat_protection then protection = math.min(protection, 5) end
 
@@ -1879,7 +1896,7 @@ function _M:getAC()
 
 	--Shield Focus feat
 	if self.combat_shield and self:knowTalent(self.T_SHIELD_FOCUS) then shield = shield + 2 end
-	
+
 	local ac_bonuses = armor + magic_armor + shield + magic_shield + natural + protection + dodge + parry
 
 
@@ -1909,10 +1926,10 @@ function _M:reflexSave(dc)
 			--if dc > 11
 			local die = (dc-10)*2
 			--poison, disease, traps = cap 30
-			--disintegration & anything killing = die*3 
+			--disintegration & anything killing = die*3
 
 			self:exerciseStat("dex", rng.dice(1,die), "dex_save", 60)
-		else 
+		else
 			local die = (dc-10)*2
 			self:exerciseStat("int", rng.dice(1, die), "int_save", 60)
 		end
@@ -1938,10 +1955,10 @@ function _M:fortitudeSave(dc)
 			--if dc > 11
 			local die = (dc-10)*2
 			--poison, disease, traps = cap 30
-			--disintegration & anything killing = die*3 
+			--disintegration & anything killing = die*3
 
 			self:exerciseStat("con", rng.dice(1,die), "con_save", 60)
-		else 
+		else
 			local die = (dc-10)*2
 			self:exerciseStat("str", rng.dice(1, die), "str_save", 60)
 		end
@@ -1966,10 +1983,10 @@ function _M:willSave(dc)
 			--if dc > 11
 			local die = (dc-10)*2
 			--poison, disease, traps = cap 30
-			--disintegration & anything killing = die*3 
+			--disintegration & anything killing = die*3
 
 			self:exerciseStat("wis", rng.dice(1,die), "wis_save", 60)
-		else 
+		else
 			local die = (dc-10)*2
 			self:exerciseStat("cha", rng.dice(1, die), "cha_save", 60)
 		end
@@ -1997,7 +2014,7 @@ function useMetamagic(self, t)
 		end
 	end
 	return metaMod
-end 
+end
 
 --Spells & spellbook stuff, Sebsebeleb & DG & Zireael
 --- The max charge worth you can have in a given spell level
@@ -2036,13 +2053,13 @@ function _M:getMaxMaxCharges(spell_list)
 		l = l - 2
 
         --Account for bonus spells here, Zireael
-        if (self.classes and self.classes["Wizard"] and self:getInt() >= 12) 
+        if (self.classes and self.classes["Wizard"] and self:getInt() >= 12)
         or (self.classes and self.classes["Ranger"] and self:getWis() >= 12)
         or (self.classes and self.classes["Cleric"] and self:getWis() >= 12)
         or (self.classes and self.classes["Bard"] and self:getCha() >= 12)
         then
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() < 14) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() < 14)
             or (self.classes and self.classes["Ranger"] and self:getWis() < 14)
             or (self.classes and self.classes["Cleric"] and self:getWis() < 14)
             or (self.classes and self.classes["Bard"] and self:getCha() < 14)
@@ -2050,7 +2067,7 @@ function _M:getMaxMaxCharges(spell_list)
                 spells = spells + stat_bonus_one[spell_level]
             end
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() > 14 and self:getInt() < 16) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 14 and self:getInt() < 16)
             or (self.classes and self.classes["Ranger"] and self:getWis() > 14 and self:getWis() < 16)
             or (self.classes and self.classes["Cleric"] and self:getWis() > 14 and self:getWis() < 16)
             or (self.classes and self.classes["Bard"] and self:getCha() > 14 and self:getCha() < 16)
@@ -2058,7 +2075,7 @@ function _M:getMaxMaxCharges(spell_list)
                 spells = spells + stat_bonus_two[spell_level]
             end
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() > 16 and self:getInt() < 18) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 16 and self:getInt() < 18)
             or (self.classes and self.classes["Ranger"] and self:getWis() > 16 and self:getWis() < 18)
             or (self.classes and self.classes["Cleric"] and self:getWis() > 16 and self:getWis() < 18)
             or (self.classes and self.classes["Bard"] and self:getCha() > 16 and self:getCha() < 18)
@@ -2066,7 +2083,7 @@ function _M:getMaxMaxCharges(spell_list)
                 spells = spells + stat_bonus_three[spell_level]
             end
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() > 18 and self:getInt() < 20) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 18 and self:getInt() < 20)
             or (self.classes and self.classes["Ranger"] and self:getWis() > 18 and self:getWis() < 20)
             or (self.classes and self.classes["Cleric"] and self:getWis() > 18 and self:getWis() < 20)
             or (self.classes and self.classes["Bard"] and self:getCha() > 18 and self:getCha() < 20)
@@ -2074,7 +2091,7 @@ function _M:getMaxMaxCharges(spell_list)
                 spells = spells + stat_bonus_four[spell_level]
             end
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() > 20 and self:getInt() < 22) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 20 and self:getInt() < 22)
             or (self.classes and self.classes["Ranger"] and self:getWis() > 20 and self:getWis() < 22)
             or (self.classes and self.classes["Cleric"] and self:getWis() > 20 and self:getWis() < 22)
             or (self.classes and self.classes["Bard"] and self:getCha() > 20 and self:getCha() < 22)
@@ -2082,7 +2099,7 @@ function _M:getMaxMaxCharges(spell_list)
                 spells = spells + stat_bonus_five[spell_level]
             end
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() > 22 and self:getInt() < 24) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 22 and self:getInt() < 24)
             or (self.classes and self.classes["Ranger"] and self:getWis() > 22 and self:getWis() < 24)
             or (self.classes and self.classes["Cleric"] and self:getWis() > 22 and self:getWis() < 24)
             or (self.classes and self.classes["Bard"] and self:getCha() > 22 and self:getCha() < 24)
@@ -2090,7 +2107,7 @@ function _M:getMaxMaxCharges(spell_list)
                 spells = spells + stat_bonus_six[spell_level]
             end
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() > 24 and self:getInt() < 26) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 24 and self:getInt() < 26)
             or (self.classes and self.classes["Ranger"] and self:getWis() > 24 and self:getWis() < 26)
             or (self.classes and self.classes["Cleric"] and self:getWis() > 24 and self:getWis() < 26)
             or (self.classes and self.classes["Bard"] and self:getCha() > 24 and self:getCha() < 26)
@@ -2098,7 +2115,7 @@ function _M:getMaxMaxCharges(spell_list)
                 spells = spells + stat_bonus_seven[spell_level]
             end
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() > 26 and self:getInt() < 28) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 26 and self:getInt() < 28)
             or (self.classes and self.classes["Ranger"] and self:getWis() > 26 and self:getWis() < 28)
             or (self.classes and self.classes["Cleric"] and self:getWis() > 26 and self:getWis() < 28)
             or (self.classes and self.classes["Bard"] and self:getCha() > 26 and self:getCha() < 28)
@@ -2106,7 +2123,7 @@ function _M:getMaxMaxCharges(spell_list)
                 spells = spells + stat_bonus_eight[spell_level]
             end
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() > 28 and self:getInt() < 30) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 28 and self:getInt() < 30)
             or (self.classes and self.classes["Ranger"] and self:getWis() > 28 and self:getWis() < 30)
             or (self.classes and self.classes["Cleric"] and self:getWis() > 28 and self:getWis() < 30)
             or (self.classes and self.classes["Bard"] and self:getCha() > 28 and self:getCha() < 30)
@@ -2114,7 +2131,7 @@ function _M:getMaxMaxCharges(spell_list)
                 spells = spells + stat_bonus_nine[spell_level]
             end
 
-            if (self.classes and self.classes["Wizard"] and self:getInt() > 30 and self:getInt() < 32) 
+            if (self.classes and self.classes["Wizard"] and self:getInt() > 30 and self:getInt() < 32)
             or (self.classes and self.classes["Ranger"] and self:getWis() > 30 and self:getWis() < 32)
             or (self.classes and self.classes["Cleric"] and self:getWis() > 30 and self:getWis() < 32)
             or (self.classes and self.classes["Bard"] and self:getCha() > 30 and self:getCha() < 32)
@@ -2126,9 +2143,9 @@ function _M:getMaxMaxCharges(spell_list)
 
         --if class = cleric and spell_list = divine then set 1 additional spell (domain spell)
 	end
-	
 
-	
+
+
     return t
 end
 
@@ -2162,7 +2179,7 @@ function _M:incMaxCharges(tid, v, spell_list)
 	if type(tid) == "table" then
 		t = tid
 		tt = tid.type[1]
-		tid = tid.id 
+		tid = tid.id
 	else
 		t = self:getTalentFromId(tid)
 		tt = self:getTalentFromId(tid).type[1]
@@ -2188,7 +2205,7 @@ function _M:setMaxCharges(tid, spell_list, v)
 	local t
 	if type(tid) == "table" then
 		t = tid
-		tid = tid.id 
+		tid = tid.id
 	else
 		t = self:getTalentFromId(tid)
 	end
@@ -2331,7 +2348,7 @@ function _M:levelup()
 
 		--feat points given every 3 levels. Classes may give additional feat points.
 		if self.level % 3 == 0 then self.feat_point = (self.feat_point or 0) + 1 end
-		
+
 		--stat point gained every 4 levels
 		if self.level % 4 == 0 then self.stat_point = (self.stat_point or 0) + 1 end
 
@@ -2349,7 +2366,7 @@ function _M:levelup()
 	--NPC only stuff
 	if self ~= game.player then
 
-	end	
+	end
 
 
 
@@ -2357,7 +2374,7 @@ function _M:levelup()
 	if self.level == 40 and self == game.player then
 		Dialog:simpleLongPopup("Level 40!", "You have achieved #GOLD#level 40#WHITE#, congratulations!\n\nThis means you are now an #GOLD#EPIC#LAST# hero!", 400)
 	end
-	
+
 	--Notify on party levelups
 	if self.x and self.y and game.party:hasMember(self) and not self.silent_levelup then
 		local x, y = game.level.map:getTileToScreen(self.x, self.y)
@@ -2409,7 +2426,7 @@ end
 
 function _M:giveLevels(name, n)
 	if not name or not n then end
-	
+
 	while n > 0 do
 	self:levelClass(name)
 	n = n-1
@@ -2497,17 +2514,17 @@ function _M:wieldRanged()
     --Do we have ammo in inventory?
     if self:hasRangedAmmo() then
     	--check if types match
-    	if weapon.ranged then 
+    	if weapon.ranged then
     		if not weapon.ammo_type == self:getRangedAmmo().archery_ammo then return end
-    	else 
+    	else
     		if not self:getRangedWeapon().ammo_type == self:getRangedAmmo().archery_ammo then return end
     	end
     end
-    
+
     if self:hasRangedWeapon() then
 
     	self:removeObject(inven, weapon, true)
-    	
+
     	self:addObject(mh, self:getRangedWeapon())
     end
 
@@ -2537,7 +2554,7 @@ end
 --Encumbrance & auto-ID stuff, Zireael
 function _M:on_pickup_object(o)
 --	self:checkEncumbrance()
-	
+
 end
 
 function _M:onAddObject(o)
@@ -2550,7 +2567,7 @@ function _M:onRemoveObject(o)
 	engine.interface.ActorInventory.onRemoveObject(self, o)
 
 	self:checkEncumbrance()
-end	
+end
 
 --- Can we wear this item?
 function _M:canWearObject(o, try_slot)
@@ -2627,13 +2644,13 @@ function _M:getEncumbrance()
 				o:forAllStack(fct)
 		end
 	end
-	
+
 	return math.floor(enc)
 end
 
 function _M:checkEncumbrance()
 	-- Compute encumbrance
-	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()	
+	local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()
 
 	--Light load
 	if enc < max * 0.33 then
@@ -2657,15 +2674,15 @@ function _M:checkEncumbrance()
 		end
 	end
 
-	
+
 	--Medium load
 	if enc > max * 0.33 and not self:knowTalent(self.T_LOADBEARER) and not self:hasEffect(self.EFF_MEDIUM_LOAD) then
 		--remove heavy load first
 		if self:hasEffect(self.EFF_HEAVY_LOAD) then self:removeEffect(self.EFF_HEAVY_LOAD, true) end
 		self:setEffect(self.EFF_MEDIUM_LOAD, 2, {}, true)
-	
+
 	end
-	
+
 	-- We are pinned to the ground if we carry too much
 	if not self.encumbered and enc > max then
 		game.logPlayer(self, "#FF0000#You carry too much--you are encumbered!")
@@ -2708,12 +2725,12 @@ function _M:isPoisoned()
 	if self:hasEffect(self.EFF_POISON_MALYSS_PRI) then return EFF_POISON_MALYSS_PRI end
 	if self:hasEffect(self.EFF_POISON_MEDIUM_DEX) then return EFF_POISON_MEDIUM_DEX end
 	if self:hasEffect(self.EFF_POISON_TERINAV_SEC) then return EFF_POISON_TERINAV_SEC end
-	
+
 	if self:hasEffect(self.EFF_POISON_MALYSS_SEC) then return EFF_POISON_MALYSS_SEC end
 	if self:hasEffect(self.EFF_POISON_MOSS_SEC) then return EFF_POISON_MOSS_SEC end
 	if self:hasEffect(self.EFF_POISON_DARK_REAVER_SEC) then return EFF_POISON_DARK_REAVER_SEC end
 	if self:hasEffect(self.EFF_POISON_INSANITY_MIST_SEC) then return EFF_POISON_INSANITY_MIST_SEC end
-	
+
 	if self:hasEffect(self.EFF_POISON_MEDIUM_CON) then return EFF_POISON_MEDIUM_CON end
 	if self:hasEffect(self.EFF_POISON_BLOODROOT_SEC) then return EFF_POISON_BLOODROOT_SEC end
 	if self:hasEffect(self.EFF_POISON_WEAK_CON) then return EFF_POISON_WEAK_CON end
@@ -2729,24 +2746,24 @@ function _M:isPoisoned()
 	if self:hasEffect(self.EFF_POISON_TOADSTOOL_PRI) then return EFF_POISON_TOADSTOOL_PRI end
 
 	return nil
-end	
+end
 
 
 --Random feats & immunities code
 function _M:randomFeat()
 	local chance = rng.dice(1,29)
-	
+
 	if chance == 1 then self:learnTalent(self.T_DODGE, true)
-	elseif chance == 2 then self:learnTalent(self.T_FINESSE, true) 
+	elseif chance == 2 then self:learnTalent(self.T_FINESSE, true)
 	elseif chance == 3 then self:learnTalent(self.T_TOUGHNESS, true)
 	elseif chance == 4 then self:learnTalent(self.T_ACROBATIC, true)
 	elseif chance == 5 then self:learnTalent(self.T_AGILE, true)
-	elseif chance == 6 then self:learnTalent(self.T_ALERTNESS, true) 
+	elseif chance == 6 then self:learnTalent(self.T_ALERTNESS, true)
 	elseif chance == 7 then self:learnTalent(self.T_ANIMAL_AFFINITY, true)
-	elseif chance == 8 then self:learnTalent(self.T_ARTIST, true) 
+	elseif chance == 8 then self:learnTalent(self.T_ARTIST, true)
 	elseif chance == 9 then self:learnTalent(self.T_ATHLETIC, true)
 	elseif chance == 10 then self:learnTalent(self.T_COMBAT_CASTING, true)
-	elseif chance == 11 then self:learnTalent(self.T_DEFT_HANDS, true) 
+	elseif chance == 11 then self:learnTalent(self.T_DEFT_HANDS, true)
 	elseif chance == 12 then self:learnTalent(self.T_INVESTIGATOR, true)
 	elseif chance == 13 then self:learnTalent(self.T_MAGICAL_APTITUDE, true)
 	elseif chance == 14 then self:learnTalent(self.T_MAGICAL_TALENT, true)
@@ -2754,8 +2771,8 @@ function _M:randomFeat()
 	elseif chance == 16 then self:learnTalent(self.T_NIMBLE_FINGERS, true)
 	elseif chance == 17 then self:learnTalent(self.T_PERSUASIVE, true)
 	elseif chance == 18 then self:learnTalent(self.T_SILVER_PALM, true)
-	elseif chance == 19 then self:learnTalent(self.T_STEALTHY, true) 
-	elseif chance == 20 then self:learnTalent(self.T_THUG, true) 
+	elseif chance == 19 then self:learnTalent(self.T_STEALTHY, true)
+	elseif chance == 20 then self:learnTalent(self.T_THUG, true)
 	elseif chance == 21 then self:learnTalent(self.T_TWO_WEAPON_FIGHTING, true)
 	elseif chance == 22 then self:randomFocus()
 	elseif chance == 23 then self:randomFocus()
@@ -2766,9 +2783,9 @@ function _M:randomFeat()
 	elseif chance == 28 then self:randomImmunity()
 		--[[Commented out due to the problems with on_pre_use
 		if chance == 1 then self:learnTalent(self.T_POWER_ATTACK, true)]]
-	
-	else self:learnTalent(self.T_IRON_WILL, true) 
-	--	self.perk = "Iron Will" 
+
+	else self:learnTalent(self.T_IRON_WILL, true)
+	--	self.perk = "Iron Will"
 	end
 
 end
@@ -2785,15 +2802,15 @@ function _M:randomFocus()
 	elseif chance == 7 then self:learnTalent(self.T_WEAPON_FOCUS_FALCHION, true)
 	elseif chance == 8 then self:learnTalent(self.T_WEAPON_FOCUS_FLAIL, true)
 	elseif chance == 9 then self:learnTalent(self.T_WEAPON_FOCUS_HALBERD, true)
-	elseif chance == 10 then self:learnTalent(self.T_WEAPON_FOCUS_HAMMER, true) 
-	elseif chance == 11 then self:learnTalent(self.T_WEAPON_FOCUS_HANDAXE, true) 
+	elseif chance == 10 then self:learnTalent(self.T_WEAPON_FOCUS_HAMMER, true)
+	elseif chance == 11 then self:learnTalent(self.T_WEAPON_FOCUS_HANDAXE, true)
 	elseif chance == 12 then self:learnTalent(self.T_WEAPON_FOCUS_JAVELIN, true)
-	elseif chance == 13 then self:learnTalent(self.T_WEAPON_FOCUS_KUKRI, true) 
+	elseif chance == 13 then self:learnTalent(self.T_WEAPON_FOCUS_KUKRI, true)
 	elseif chance == 14 then self:learnTalent(self.T_WEAPON_FOCUS_MACE, true)
 	elseif chance == 15 then self:learnTalent(self.T_WEAPON_FOCUS_MORNINGSTAR, true)
 	elseif chance == 16 then self:learnTalent(self.T_WEAPON_FOCUS_RAPIER, true)
 	elseif chance == 17 then self:learnTalent(self.T_WEAPON_FOCUS_SCIMITAR, true)
-	elseif chance == 18 then self:learnTalent(self.T_WEAPON_FOCUS_SCYTHE, true) 
+	elseif chance == 18 then self:learnTalent(self.T_WEAPON_FOCUS_SCYTHE, true)
 	elseif chance == 19 then self:learnTalent(self.T_WEAPON_FOCUS_SHORTSWORD, true)
 	elseif chance == 20 then self:learnTalent(self.T_WEAPON_FOCUS_SPEAR, true)
 	elseif chance == 21 then self:learnTalent(self.T_WEAPON_FOCUS_SLING, true)
@@ -2829,7 +2846,7 @@ function _M:randomFavEnemy()
 	elseif chance == 20 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_PLANETOUCHED, true)
 	elseif chance == 21 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_AQUATIC, true)
 	elseif chance == 22 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_GOBLINOID, true)
-	elseif chance == 23 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_REPTILIAN, true) 
+	elseif chance == 23 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_REPTILIAN, true)
 	elseif chance == 24 then self:learnTalent(self.T_FAVORED_ENEMY_HUMANOID_ORC, true)
 	elseif chance == 25 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_AIR, true)
 	elseif chance == 26 then self:learnTalent(self.T_FAVORED_ENEMY_OUTSIDER_EARTH, true)
@@ -2845,25 +2862,25 @@ function _M:randomImmunity()
 	local chance = rng.dice(1,10)
 	if chance == 1 then self:learnTalent(self.T_POISON_IMMUNITY, true)
 	elseif chance == 2 then self:learnTalent(self.T_DISEASE_IMMUNITY, true)
-	elseif chance == 3 then self:learnTalent(self.T_SLEEP_IMMUNITY, true) 
+	elseif chance == 3 then self:learnTalent(self.T_SLEEP_IMMUNITY, true)
 	elseif chance == 4 then self:learnTalent(self.T_PARALYSIS_IMMUNITY, true)
 	elseif chance == 5 then self:learnTalent(self.T_FIRE_RESISTANCE, true)
 	elseif chance == 6 then	self:learnTalent(self.T_ACID_RESISTANCE, true)
 	elseif chance == 7 then self:learnTalent(self.T_COLD_RESISTANCE, true)
 	elseif chance == 8 then self:learnTalent(self.T_ELECTRICITY_RESISTANCE, true)
-	elseif chance == 9 then self:learnTalent(self.T_SONIC_RESISTANCE, true) 	
+	elseif chance == 9 then self:learnTalent(self.T_SONIC_RESISTANCE, true)
 	else self:learnTalent(self.T_CONFUSION_IMMUNITY, true)
 	end
-end	
+end
 
 function _M:randomSpell()
 	local chance = rng.dice(1,4)
 	if chance == 1 then self:learnTalent(self.T_ACID_SPLASH_INNATE, true)
 	elseif chance == 2 then self:learnTalent(self.T_GREASE_INNATE, true)
 	elseif chance == 3 then self:learnTalent(self.T_HLW_INNATE, true)
-	else self:learnTalent(self.T_CLW_INNATE, true)  
+	else self:learnTalent(self.T_CLW_INNATE, true)
 	end
-end	
+end
 
 --- Setup minimap color for this entity
 -- You may overload this method to customize your minimap
@@ -2996,4 +3013,3 @@ function _M:defineDisplayCallback()
 end
 
 require 'mod.class.patch.ActorTalentDialog'
-
