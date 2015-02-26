@@ -109,7 +109,7 @@ newEffect{
 newEffect{
 	name = "BLIND",
 	desc = "Blinded",
-	long_desc = [[The character cannot see. He takes a -2 penalty to Armor Class and loses his Dexterity bonus to AC (if any). 
+	long_desc = [[The character cannot see. He takes a -2 penalty to Armor Class and loses his Dexterity bonus to AC (if any).
 		All opponents are considered to have total concealment (50% miss chance) to the blinded character.]],
 	type = "physical",
 	status = "detrimental",
@@ -358,9 +358,11 @@ newEffect{
 --	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
 	activate = function(self, eff)
 		eff.attack = self:addTemporaryValue(eff, "combat_attack", 1)
+		eff.damage = self:addTemporaryValue("combat_damage", 1)
 	end,
 	deactivate = function(self, eff)
 		self:removeTemporaryValue("combat_attack", eff.attack)
+		self:removeTemporaryValue("combat_damage", eff.damage)
 	end,
 }
 
@@ -415,7 +417,29 @@ newEffect{
 	deactivate = function(self, eff)
 		self:removeTemporaryValue("movement_speed", eff.speed)
 		self:removeTemporaryValue("combat_attack", eff.attack)
-	end,		
+	end,
+}
+
+-- -2 to skill checks
+newEffect{
+	name = "SHAKEN",
+	desc = "Shaken",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# looks shaken", "+Shaken" end,
+	on_lose = function(self, err) return "#Target# seems to regain his senses", "-Shaken" end,
+	activate = function(self, eff)
+		eff.attack = self:addTemporaryValue("combat_attack", -2)
+		eff.fort = self:addTemporaryValue("fortitude_save", -2)
+		eff.reflex = self:addTemporaryValue("reflex_save", -2)
+		eff.will = self:addTemporaryValue("will_save", -2)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("combat_attack", eff.attack)
+		self:removeTemporaryValue("fortitude_save", eff.fort)
+		self:removeTemporaryValue("reflex_save", eff.reflex)
+		self:removeTemporaryValue("will_save", eff.will)
+	end,
 }
 
 
@@ -443,7 +467,7 @@ newEffect{
 			eff.timer = rng.float(0, 100)
 		end
 		if self:willSave(15) then
-			eff.timer = eff.timer 
+			eff.timer = eff.timer
 			game.logSeen(self, "%s struggles against the panic.", self.name:capitalize())
 		else
 			eff.timer = eff.timer + rng.float(0, 100)

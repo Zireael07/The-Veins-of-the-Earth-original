@@ -51,6 +51,7 @@ function _M:init(t, no_default)
 	self.combat_bab = 0
 	self.combat_attack = 0
 	self.hit_die = 4
+	self.combat_damage = 0
 
 	--Define AC types
 	self.combat_armor_ac = 0

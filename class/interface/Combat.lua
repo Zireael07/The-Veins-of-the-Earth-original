@@ -72,30 +72,30 @@ function _M:attackTarget(target, noenergy)
         return
       end
 
-      
+
       -- add in modifiers
       local attackmod = 0
       local strmod = 1
 
       --if wielding two-handed, apply 1.5*Str mod
       if twohanded then strmod = 1.5 end
-      
+
       if weapon and weapon.slot_forbid == "OFF_HAND" and not self:knowTalent(self.T_MONKEY_GRIP) then strmod = 1.5 end
-      
+
       --Monkey grip feat
     --  if self:knowTalent(self.T_MONKEY_GRIP) and weapon and weapon.slot_forbid == "OFF_HAND" then
-          
-      
+
+
       --[[Combat Expertise & Power Attack penalties (Zi)
-      if self:isTalentActive(self.T_COMBAT_EXPERTISE) then 
+      if self:isTalentActive(self.T_COMBAT_EXPERTISE) then
         local d = rng.dice(1,5)
         attackmod = attackmod -d
       end
-      
+
       if self:isTalentActive(self.T_POWER_ATTACK) then
         attackmod = attackmod - 5
       end ]]
-      
+
       --Dual-wielding
       if offweapon then
          attackmod = attackmod -6
@@ -115,7 +115,7 @@ function _M:attackTarget(target, noenergy)
       if self.combat_bab >=16 then
          self:attackRoll(target, weapon, attackmod - 15, strmod, true)
       end
-      
+
       -- offhand/double weapon attacks
       if offweapon then
          strmod = 0.5
@@ -219,17 +219,17 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
           self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
           self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else 
+      else
           self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       end
-        
+
     else
     local chance = rng.dice(1,3)
       if chance == 1 then
           self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
           self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else 
+      else
         self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       end
 
@@ -238,7 +238,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
 
     -- Crit check
     local threat = 0 + (weapon and weapon.combat.threat or 0)
-    
+
     --Improved Critical
     if weapon and weapon.subtype and self:hasCritical(weapon.subtype) then combat.weapon.threat = (combat.weapon.threat or 0) + 2 end
 
@@ -248,13 +248,13 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
          crit = true
       end
    end
-   
+
    if hit then
     --reactive damage (spikes, fire shield etc.)
     for typ, dam in pairs(target.on_melee_hit) do
       if type(dam) == "number" then if dam > 0 then DamageType:get(typ).projector(target, self.x, self.y, typ, dam) end
     --account for randomly determined damage
-      elseif type(dam) == "table" then 
+      elseif type(dam) == "table" then
       local actual_dam = rng.dice(dam[1], dam[2])
         if actual_dam > 0 then DamageType:get(typ).projector(target, self.x, self.y, typ, actual_dam) end
       elseif dam.dam and dam.dam > 0 then DamageType:get(typ).projector(target, self.x, self.y, typ, dam)
@@ -271,7 +271,9 @@ end
 
 
 function _M:dealDamage(target, weapon, crit, sneak)
-  local dam = rng.dice(weapon.combat.dam[1], weapon.combat.dam[2])
+    local dam = rng.dice(weapon.combat.dam[1], weapon.combat.dam[2])
+
+    dam = dam + self.combat_damage
 
       -- magic damage bonus
       dam = dam + (weapon and weapon.combat.magic_bonus or 0)
@@ -295,20 +297,20 @@ function _M:dealDamage(target, weapon, crit, sneak)
       end
 
       --Power Attack damage bonus
-      if self:isTalentActive(self.T_POWER_ATTACK) then 
+      if self:isTalentActive(self.T_POWER_ATTACK) then
         if self.combat_bab < 4 then dam = dam + 2
-        elseif self.combat_bab > 4 then dam = dam + 4 
+        elseif self.combat_bab > 4 then dam = dam + 4
         elseif self.combat_bab > 8 then dam = dam + 6
         elseif self.combat_bab > 12 then dam = dam + 8
         elseif self.combat_bab > 16 then dam = dam + 10 end
- 
-      --  dam = dam + 5 
+
+      --  dam = dam + 5
       end
 
       if crit then
         --No crits on players in easy mode!
         if target == game.player and config.settings.veins.difficulty == "Easy" then
-          dam = dam 
+          dam = dam
         return end
 
         --Fortification
@@ -316,16 +318,16 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
             if target.fortification == 1 then
               local chance = rng.percent(25)
-              if chance then 
+              if chance then
                   game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
-                  dam = dam 
+                  dam = dam
                   return end
             end
             if target.fortification == 3 then
               local chance = rng.percent(75)
-              if chance then 
+              if chance then
                   game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
-                  dam = dam 
+                  dam = dam
               return end
             end
             if target.fortification == 5 then
@@ -339,11 +341,11 @@ function _M:dealDamage(target, weapon, crit, sneak)
             game.logSeen()
           --  game.log(("%s makes a critical attack, but the damage is reduced!"):format(self:getLogName():capitalize())) --end
             dam = dam * (weapon and (weapon.combat.critical/2) or 1)
-          else  
+          else
         --  game.log(("%s makes a critical attack!"):format(self:getLogName():capitalize())) --end
           dam = dam * (weapon and weapon.combat.critical or 2)
-          end         
-        else 
+          end
+        else
           --game.log("The target's lack of physiology prevents serious injury.")
           dam = dam end
       end
@@ -351,7 +353,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
       --Favored enemy bonus
       if self:favoredEnemy(target) then dam = dam + 2 end
 
-      
+
 
         --Minimum 1 point of damage unless Damage Reduction works
         dam = math.max(1, dam)
@@ -363,11 +365,11 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
        --Account for magic weapons piercing DR
       if target.combat_dr and target.combat_dr_tohit then
-        if (weapon.combat.magic_bonus or 0) >= target.combat_dr_tohit then 
-          reduced_dam = dam 
+        if (weapon.combat.magic_bonus or 0) >= target.combat_dr_tohit then
+          reduced_dam = dam
           --Repeat the minimum 1 dmg rule
           dam = math.max(1, dam)
-        end       
+        end
       end
 
 
@@ -381,7 +383,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
           local player = game.player
           if dist < 10 and game.player.skill_listen > 0 then
             if not heard_it then
-              if game.player:skillCheck("listen", 10) then 
+              if game.player:skillCheck("listen", 10) then
                 local dir = game.level.map:compassDirection(self.x - game.player.x, self.y - game.player.y)
                 game.log("You hear the sounds of conflict to the %s!", dir)
                 heard_it = true
@@ -416,17 +418,17 @@ function _M:applyPoison(poison, target)
   local poison_dc = { small_centipede = 11, medium_spider = 14, large_scorpion = 18, nitharit = 13, sassone = 16, malyss = 16, terinav = 16, blacklotus = 20, dragon = 26, toadstool = 11, arsenic = 13, idmoss = 14, lichdust = 17, darkreaver = 18, ungoldust = 15, insanitymist = 15, burnt_othur = 18, blackadder = 11, bloodroot = 12, greenblood = 13, whinnis = 14, shadowessence = 17, wyvern = 17, giantwasp = 18, deathblade = 20, purpleworm = 24 }
 
   if not poison then return end
-  
-  if not target:canBe("poison") then 
+
+  if not target:canBe("poison") then
     self:logCombat(target, "Target seems unaffected by poison")
-  --game.log("Target seems unaffected by poison") 
+  --game.log("Target seems unaffected by poison")
   end
 
-  if target:fortitudeSave(poison_dc[poison]) then 
+  if target:fortitudeSave(poison_dc[poison]) then
     self:logCombat(target, ("Target resists poison, DC %d"):format(poison_dc[poison]))
   --  game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
   --Failed save, set timer for secondary damage
-  else 
+  else
     target.poison_timer = 10
     if target == game.player then --game.flashLog(game.flash.BAD, "You are poisoned!")
       game.log("You are poisoned!")
@@ -460,10 +462,10 @@ function _M:applyPoison(poison, target)
       if poison == "purpleworm" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 10, {}, true) end
   end
 
-  if target.poison_timer == 0 then 
+  if target.poison_timer == 0 then
     --Timer's up!
     if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
-    else 
+    else
      if target == game.player then --game.flashLog(game.flash.BAD, "You are poisoned!")
         game.log("You are poisoned!")
       else game.log("Target is poisoned!") end
@@ -493,8 +495,8 @@ function _M:applyPoison(poison, target)
       if poison == "wyvern" then target:setEffect(target.EFF_POISON_STRONG_CON, 10, {}, true) end
       if poison == "giantwasp" then target:setEffect(target.EFF_POISON_MEDIUM_DEX, 10, {}, true) end
       if poison == "deathblade" then target:setEffect(target.EFF_POISON_STRONG_CON, 10, {}, true) end
-      if poison == "purpleworm" then target:setEffect(target.EFF_POISON_STRONG_STR, 10, {}, true) end 
-      
+      if poison == "purpleworm" then target:setEffect(target.EFF_POISON_STRONG_STR, 10, {}, true) end
+
     end
   end
 
@@ -612,13 +614,13 @@ function _M:hasCritical(type)
   else return false end
 end
 
---Combat speeds code 
+--Combat speeds code
 --- Computes movement speed
 function _M:combatMovementSpeed(x, y)
   local mult = 1
 
   local movement_speed = self.movement_speed
-  
+
   movement_speed = math.max(movement_speed, 0.1)
   return mult * (self.base_movement_speed or 1) / movement_speed
 end
