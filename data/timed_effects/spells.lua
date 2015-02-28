@@ -420,30 +420,6 @@ newEffect{
 	end,
 }
 
--- -2 to skill checks
-newEffect{
-	name = "SHAKEN",
-	desc = "Shaken",
-	type = "physical",
-	status = "detrimental",
-	on_gain = function(self, err) return "#Target# looks shaken", "+Shaken" end,
-	on_lose = function(self, err) return "#Target# seems to regain his senses", "-Shaken" end,
-	activate = function(self, eff)
-		eff.attack = self:addTemporaryValue("combat_attack", -2)
-		eff.fort = self:addTemporaryValue("fortitude_save", -2)
-		eff.reflex = self:addTemporaryValue("reflex_save", -2)
-		eff.will = self:addTemporaryValue("will_save", -2)
-	end,
-	deactivate = function(self, eff)
-		self:removeTemporaryValue("combat_attack", eff.attack)
-		self:removeTemporaryValue("fortitude_save", eff.fort)
-		self:removeTemporaryValue("reflex_save", eff.reflex)
-		self:removeTemporaryValue("will_save", eff.will)
-	end,
-}
-
-
-
 --Modified ToME 4 code
 newEffect{
 	name = "FEAR",
