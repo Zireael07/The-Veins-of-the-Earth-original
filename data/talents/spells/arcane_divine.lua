@@ -28,7 +28,41 @@ newArcaneDivineSpell{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 1d8 + 1 per caster level (max 5).]])
-	end,	
+	end,
+}
+
+newArcaneDivineSpell{
+	name = "Cause Fear", short_name = "CAUSE_FEAR",
+	type = {"divine", 1},
+	mode = "activated",
+	display = { image = "cause_fear.png"},
+	level = 1,
+	getDuration = function(self, t)
+		local dice = rng.dice(1,4)
+		if self:isTalentActive(self.T_EXTEND) then return dice*1.5
+		else return dice end
+	end,
+	range = 3,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function (self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		local duration = t.getDuration(self, t)
+
+		if target:willSave(15) then
+			game.log("Target resists the spell!")
+			target:setEffect(target.EFF_SHAKEN, 1, {})
+		else target:setEffect(target.EFF_FEAR, duration, {}) end
+
+		return true
+	end,
+	info = function(self, t)
+		return ([[Target flees for 1d4 rounds or is shaken for 1 round, depending on the save.]])
+	end,
 }
 
 
@@ -41,8 +75,8 @@ newArcaneDivineSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 0,
@@ -54,7 +88,7 @@ newArcaneDivineSpell{
 
 	info = function(self, t)
 		return ([[You increase your Constitution by +4.]])
-	end,	
+	end,
 }
 
 newArcaneDivineSpell{
@@ -65,8 +99,8 @@ newArcaneDivineSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 0,
@@ -78,7 +112,7 @@ newArcaneDivineSpell{
 
 	info = function(self, t)
 		return ([[You increase your Strength by +4.]])
-	end,	
+	end,
 }
 
 newArcaneDivineSpell{
@@ -89,8 +123,8 @@ newArcaneDivineSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 0,
@@ -102,7 +136,7 @@ newArcaneDivineSpell{
 
 	info = function(self, t)
 		return ([[You increase your Charisma by +4.]])
-	end,	
+	end,
 }
 
 newArcaneDivineSpell{
@@ -113,8 +147,8 @@ newArcaneDivineSpell{
 	level = 2,
 	points = 1,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 0,
@@ -126,5 +160,5 @@ newArcaneDivineSpell{
 
 	info = function(self, t)
 		return ([[You increase your Wisdom by +4.]])
-	end,	
+	end,
 }

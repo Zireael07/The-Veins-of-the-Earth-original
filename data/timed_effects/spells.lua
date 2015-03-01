@@ -147,7 +147,7 @@ newEffect{
 newEffect{
 	name = "ENTROPIC_SHIELD",
 	desc = "Entropic Shield",
-	type = "magical",
+	type = "mental",
 	status = "beneficial",
 }
 
@@ -340,7 +340,7 @@ newEffect{
 newEffect{
 	name = "MAGE_ARMOR",
 	desc = "Mage Armor",
-	type = "magical",
+	type = "mental",
 	status = "beneficial",
 	on_gain = function(self, err) return "A field seems to surround #Target#", "+Mage Armor" end,
 	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
@@ -352,7 +352,7 @@ newEffect{
 newEffect{
 	name = "DIVINE_FAVOR",
 	desc = "Divine Favor",
-	type = "magical",
+	type = "mental",
 	status = "beneficial",
 --	on_gain = function(self, err) return "A field seems to surround #Target#", "+Mage Armor" end,
 --	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
@@ -366,11 +366,27 @@ newEffect{
 	end,
 }
 
+newEffect{
+	name = "SHIELD_OF_FAITH",
+	desc = "Shield of Faith",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# is protected by a shield!", "+ShieldFaith" end,
+	on_lose = function(self, err) return "#Target# is no longer protected.", "-ShieldFaith" end,
+	activate = function(self, eff)
+		eff.deflection = self:addTemporaryValue(eff, "combat_protection", 2)
+    end,
+    deactivate = function(self, eff)
+		self:removeTemporaryValue("combat_protection", eff.deflection)
+    end,
+}
+
+
 --Flying, Zireael
 newEffect{
 	name = "LEVITATE",
 	desc = "Levitating",
-	type = "magical",
+	type = "mental",
 	status = "beneficial",
 	on_gain = function(self, err) return "#Target# starts floating in air", "+Levitate" end,
 	on_lose = function(self, err) return "#Target# descends to the ground", "-Levitate" end,

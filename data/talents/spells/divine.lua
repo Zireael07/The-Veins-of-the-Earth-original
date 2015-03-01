@@ -31,7 +31,7 @@ newDivineSpell{
 	info = function(self, t)
 		return ([[You create some food and drink for yourself.]])
 	end,
-	
+
 }
 
 
@@ -60,7 +60,7 @@ newDivineSpell{
 
 	info = function(self, t)]]
 --		return ([[You heal yourself - the amount of damage healed is equal to 1d8 + 1 per caster level (max 5).]])
---	end,	
+--	end,
 --}
 
 newDivineSpell{
@@ -91,7 +91,7 @@ newDivineSpell{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 2d8 + 1 per caster level (max 5).]])
-	end,	
+	end,
 }
 
 newDivineSpell{
@@ -122,7 +122,7 @@ newDivineSpell{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 3d8 + 1 per caster level (max 5).]])
-	end,	
+	end,
 }
 
 newDivineSpell{
@@ -153,7 +153,7 @@ newDivineSpell{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 4d8 + 1 per caster level (max 5).]])
-	end,	
+	end,
 }
 
 --Empower & Maximize don't apply!
@@ -176,7 +176,7 @@ newDivineSpell{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 10% of your max health.]])
-	end,	
+	end,
 }
 
 newDivineSpell{
@@ -199,7 +199,7 @@ newDivineSpell{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 30% of your max health.]])
-	end,	
+	end,
 }
 
 newDivineSpell{
@@ -222,7 +222,7 @@ newDivineSpell{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 50% of your max health.]])
-	end,	
+	end,
 }
 
 newDivineSpell{
@@ -245,7 +245,7 @@ newDivineSpell{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 70% of your max health.]])
-	end,	
+	end,
 }
 
 --Inflict spells
@@ -281,7 +281,7 @@ newDivineSpell{
 	end,
 	info = function(self, t)
 		return ([[You deal 1d8 damage to a single target within range.]])
-	end,	 
+	end,
 }
 
 newDivineSpell{
@@ -317,7 +317,7 @@ newDivineSpell{
 	end,
 	info = function(self, t)
 		return ([[You deal 2d8 damage to a single target within range.]])
-	end,	 
+	end,
 }
 
 newDivineSpell{
@@ -353,7 +353,7 @@ newDivineSpell{
 	end,
 	info = function(self, t)
 		return ([[You deal 3d8 damage to a single target within range.]])
-	end,	 
+	end,
 }
 
 newDivineSpell{
@@ -389,7 +389,7 @@ newDivineSpell{
 	end,
 	info = function(self, t)
 		return ([[You deal 4d8 damage to a single target within range.]])
-	end,	 
+	end,
 }
 
 newDivineSpell{
@@ -398,8 +398,8 @@ newDivineSpell{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 10,
@@ -435,8 +435,8 @@ newDivineSpell{
 	range = 1,
 	requires_target = true,
 	radius = 5,
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	target = function(self, t)
@@ -470,8 +470,8 @@ newDivineSpell{
 	range = 1,
 	requires_target = true,
 	radius = 5,
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	target = function(self, t)
@@ -505,8 +505,8 @@ newDivineSpell{
 	range = 1,
 	requires_target = true,
 	radius = 5,
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	target = function(self, t)
@@ -540,8 +540,8 @@ newDivineSpell{
 	range = 1,
 	requires_target = true,
 	radius = 5,
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	target = function(self, t)
@@ -573,8 +573,8 @@ newDivineSpell{
 	level = 1,
 	tactical = { BUFF = 2 },
 	range = 0,
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	action = function(self, t)
@@ -596,8 +596,8 @@ newDivineSpell{
 	level = 1,
 	tactical = { BUFF = 2 },
 	range = 0,
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	action = function(self, t)
@@ -609,6 +609,61 @@ newDivineSpell{
 
 	info = function(self, t)
 		return ([[All ranged attacks, including magical effects such as magic missiles and acid arrows, have a 20% miss chance.]])
+	end,
+}
+
+newDivineSpell{
+	name = "Doom",
+	type = {"divine", 1},
+	mode = "activated",
+	level = 1,
+	range = 5,
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
+		else return 5 end
+	end,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		local duration = t.getDuration(self, t)
+
+		if target:willSave(15) then game.log("Target resists the spell!")
+		else target:setEffect(target.EFF_SHAKEN, duration, {})
+		end
+
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[The target is afflicted with a feeling of doom, having a -2 penalty on attacks, saving throws and checks.]])
+	end,
+}
+
+newDivineSpell{
+	name = "Shield of Faith",
+	type = {"divine", 1},
+	mode = "activated",
+	level = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
+		else return 5 end
+	end,
+	action = function(self, t)
+		if not self then return nil end
+		self:setEffect(self.EFF_SHIELD_OF_FAITH, t.getDuration(self, t), {})
+
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[You gain a +2 deflection bonus to AC.]])
 	end,
 }
 
@@ -631,7 +686,7 @@ newDivineSpell{
 
 	info = function(self, t)]]
 --		return ([[You increase your Constitution by +4.]])
---	end,	
+--	end,
 --}
 
 --[[newDivineSpell{
@@ -651,7 +706,7 @@ newDivineSpell{
 
 	info = function(self, t)]]
 --		return ([[You increase your Strength by +4.]])
---	end,	
+--	end,
 --}
 
 --[[newDivineSpell{
@@ -671,7 +726,7 @@ newDivineSpell{
 
 	info = function(self, t)]]
 --		return ([[You increase your Charisma by +4.]])
---	end,	
+--	end,
 --}
 
 --[[newDivineSpell{
@@ -691,5 +746,5 @@ newDivineSpell{
 
 	info = function(self, t)]]
 --		return ([[You increase your Wisdom by +4.]])
---	end,	
+--	end,
 --}
