@@ -49,13 +49,14 @@ newEntity{ define_as = "BASE_NPC_DROW_NEUTRAL",
     resolvers.inventory {
     full_id=true,
     { name = "hand crossbow", },
-    },    
+    },
 }
 
 newEntity{ define_as = "BASE_NPC_HUMAN_NEUTRAL",
     base = "BASE_NPC_NEUTRAL",
     name = "neutral human",
     display = 'h', color=colors.WHITE,
+    image = "tiles/newtiles/human_fighter.png",
     subtype = "human",
     level_range = {1, 5}, exp_worth = 400,
     max_life = resolvers.rngavg(5,8),
@@ -87,14 +88,14 @@ newEntity{ define_as = "BASE_NPC_DWARF_NEUTRAL",
     image = "tiles/npc/dwarf_fighter.png",
     desc = [[A lost dwarf.]],
     stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
-    
+
     level_range = {1, 15}, exp_worth = 400,
     max_life = resolvers.rngavg(5,10),
     hit_die = 1,
     challenge = 1,
     infravision = 3,
     alignment = "lawful good",
-    resolvers.talents{ [Talents.T_SHOOT]=1, 
+    resolvers.talents{ [Talents.T_SHOOT]=1,
     [Talents.T_EXOTIC_WEAPON_PROFICIENCY]=1, --stopgap measure for now
     },
     resolvers.equip{
@@ -116,7 +117,7 @@ newEntity{ define_as = "BASE_NPC_DWARF_NEUTRAL",
 --Shopkeepers
 newEntity{ define_as = "BASE_NPC_DROW_SHOP",
     base = "BASE_NPC_DROW_NEUTRAL",
-    name = "drow shopkeeper", 
+    name = "drow shopkeeper",
     image = "tiles/newtiles/drow_shop.png",
     rarity = 3,
     can_talk = "shop",
@@ -125,7 +126,7 @@ newEntity{ define_as = "BASE_NPC_DROW_SHOP",
 
 newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
     base = "BASE_NPC_HUMAN_NEUTRAL",
-    name = "human shopkeeper", 
+    name = "human shopkeeper",
     image = "tiles/newtiles/human_shop.png",
     rarity = 5,
     can_talk = "shop",
@@ -160,6 +161,30 @@ newEntity{
     can_talk = "sage",
 }
 
+--Healers
+newEntity{
+    base = "BASE_NPC_HUMAN_NEUTRAL",
+    name = "human healer",
+    rarity = 5,
+    can_talk = "healer",
+    resolvers.classes{cleric=2}
+}
+
+newEntity{
+    base = "BASE_NPC_DROW_NEUTRAL",
+    name = "drow healer",
+    rarity = 10,
+    can_talk = "healer",
+    resolvers.classes{cleric=3}
+}
+
+newEntity{
+    base = "BASE_NPC_DWARF_NEUTRAL",
+    name = "dwarf healer",
+    rarity = 5,
+    can_talk = "healer",
+    resolvers.classes{cleric=4}
+}
 
 --Mercenaries
 newEntity{

@@ -291,20 +291,27 @@ function resolvers.calc.tactic(t, e)
 end
 
 --Originals start here
-function resolvers.classes()
-	return {__resolver="classes", __resolve_last=true}
+function resolvers.classes(list)
+	return {__resolver="classes", list }
 end
 
 function resolvers.calc.classes(t, e)
 	local Birther = require("engine.Birther")
-	local class = {}
-
+--	local class = {}
 	local class_list = Birther.birth_descriptor_def.class
 
 	for class, n in ipairs(t[1]) do
-		e = e:giveLevels(class, n)
-		return e
+		print("[Classes] number of levels "..n)
+		if not n then print("[Classes] No number of levels") end
+		if n <= 0 then print ("[Classes] Number of levels cannot be negative") end
+
+		local level = n
+		e:giveLevels(class, n)
+
+		e.challenge = e.challenge + level
+		e.life = e.max_life
 	end
+
 end
 
 function resolvers.class()
@@ -326,11 +333,11 @@ function resolvers.calc.class(t, e)
 	elseif rng.chance(5) then class = "Wizard"
  	elseif rng.chance(6) then class = "Sorcerer"
 	elseif rng.chance(8) then class = "Druid" --end
-	elseif rng.chance(10) then class = "Warlock" 
+	elseif rng.chance(10) then class = "Warlock"
 	else end
 
 	if class then
-	--safety check 
+	--safety check
 		if game.zone.max_cr then
 			if e.challenge + n > game.level.level + game.zone.max_cr then return end
 		end
@@ -353,7 +360,7 @@ function resolvers.calc.specialnpc(t, e)
 	local cr_boost
 
 	--pick special template
-	if rng.chance(2) then 
+	if rng.chance(2) then
 		choice = "bandit"
 		cr_boost = 2
 	elseif rng.chance(6) then
@@ -362,13 +369,13 @@ function resolvers.calc.specialnpc(t, e)
 	elseif rng.chance(10) then
 		choice = "brigand"
 		cr_boost = 1
-	elseif rng.chance(8) then 
+	elseif rng.chance(8) then
 		choice = "chieftain"
 		cr_boost = 2
 	elseif rng.chance(6) then
 		choice = "shaman"
 		cr_boost = 2
-	elseif rng.chance(4) then 
+	elseif rng.chance(4) then
 		choice = "skilled"
 		cr_boost = 1
 	elseif rng.chance(10) then
@@ -396,15 +403,15 @@ function resolvers.calc.specialnpc(t, e)
 		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
 			choice = nil
 		end
-	end 
+	end
 
 	--apply the templates now
 	--BANDIT: +2 Str, -2 Cha; HD +1 armor proficiencies, martial weapon proficiency. Power Attack;
-	if choice == "bandit" then	
+	if choice == "bandit" then
 --		e:learnTalent(e.POWER_ATTACK, true)
 --		e:learnTalent(e.MARTIAL_WEAPON_PROFICIENCY, true)
 		e.challenge = e.challenge +2
-		e.hit_die = e.hit_die +1 
+		e.hit_die = e.hit_die +1
 		e.special = "bandit"
 	--OUTLAW: +2 Dex -2 Cha; HD +1, armor proficiencies; Dodge, Expertise, Deft Opportunist
 	elseif choice == "outlaw" then
@@ -424,9 +431,9 @@ function resolvers.calc.specialnpc(t, e)
 --		e:learnTalent(e.CLEAVE, true)
 		e.hit_die = e.hit_die*2
 		e.combat_attack = e.combat_attack +2
-		e.challenge = e.challenge +2 
+		e.challenge = e.challenge +2
 		e.special = "chieftain"
-	--SHAMAN: +4 Wis +2 HD +2 CR; Combat Casting	
+	--SHAMAN: +4 Wis +2 HD +2 CR; Combat Casting
 	-- potions, wands
 	elseif choice == "shaman" then
 		--e:learnTalent(e.COMBAT_CASTING, true)
@@ -437,7 +444,7 @@ function resolvers.calc.specialnpc(t, e)
 	elseif choice == "skilled" then
 		e.hit_die = e.hit_die +1
 		e.combat_attack = e.combat_attack +1
-		e.challenge = e.challenge +1 
+		e.challenge = e.challenge +1
 		e.special = "skilled"
 	--EXPERIENCED: +2 to all attributes, +2 attack +2 HD
 	elseif choice == "experienced" then
@@ -537,7 +544,7 @@ function resolvers.calc.templates(t, e)
 		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
 			choice = nil
 		end
-	end 
+	end
 
 	--apply the template
 	if choice == "zombie" then
@@ -549,7 +556,7 @@ function resolvers.calc.templates(t, e)
 		e.combat = { dam= {1,6} }
 	elseif choice == "skeleton" then
 		e.template = "skeleton"
-		e.display = "s" 
+		e.display = "s"
 		e.color=colors.WHITE
 		e.infravision = 3
 		e.challenge = e.challenge +1
@@ -573,7 +580,7 @@ function resolvers.calc.templates(t, e)
 		e.resist = { [DamageType.FIRE] = 5,
 	[DamageType.COLD] = 5,
 	 }
-	--Stat increases, spell-likes, fly speed, 
+	--Stat increases, spell-likes, fly speed,
 	elseif choice == "half-celestial" then
 		e.template = "half-celestial"
 		e.infravision = 3
@@ -633,7 +640,7 @@ function resolvers.calc.templates(t, e)
 	 	--change color to white
 	 	e.type = "elemental"
 	 	e.challenge = e.challenge +2
-	 	e.template = "gaseous" 
+	 	e.template = "gaseous"
 	 --1d4 slam + engulf DC 20
 	 elseif choice == "aqueous" then
 	 	--change color to blue
@@ -647,7 +654,7 @@ function resolvers.calc.templates(t, e)
 	 	e.infravision = 3
 	 	e.skill_spot = (e.skill_spot or 0) +6
 	 	e.skill_search = (e.skill_search or 0) +6
-	 	
+
 	 --Dex +4, Int +8, Wis +6, Cha +4; Tentacles 1d8, devour, evasion,
 	 --spell-likes: "true strike", "distance distortion", "evard's black tentacles", "displacement", "confusion";
 	 elseif choice == "pseudonatural" then
@@ -686,7 +693,7 @@ function resolvers.calc.animaltemplates(t, e)
 		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
 			choice = nil
 		end
-	end 
+	end
 
 	if choice == "dire" then
 		e.challenge = e.challenge +3
@@ -699,7 +706,7 @@ function resolvers.calc.animaltemplates(t, e)
 		e.hit_die = e.hit_die +1
 		e.combat_attack = e.combat_attack +6
 		e.template = "feral"
-	end	
+	end
 
 
 end
@@ -752,7 +759,7 @@ function resolvers.calc.moddable_tile(t, e)
 	elseif slot == "helm" then r = {"helm_plume"}
 	elseif slot == "leather_cap" then r = {"cap_black1"}
 	end
-	
+
 	r = rng.table(r)
 --	r = r[util.bound(ml, 1, #r)]
 	if r2 then
@@ -777,10 +784,10 @@ function resolvers.calc.value(t, e)
 	if kind == "silver" then value = value + amt*10 end
 	if kind == "gold" then value = value + amt*200 end
 	if kind == "platinum" then value = value + amt*2000 end
-	
+
 	return value
 	end
-	
+
 end
 
 --From ToME 2 port
@@ -801,9 +808,9 @@ function resolvers.calc.flavored(t, e)
     e.color = color
 
     --TO DO: if no file exists, use parent object image
-    
+
     e.image = used[e.name][3]
-    
+
     local flavor_name = used[e.name][1]
     if e.unided_name then
     e.unided_name = flavor_name.." "..e.unided_name
@@ -840,7 +847,7 @@ function resolvers.calc.startingeq(t, e)
 	end
 
 	for i, race in ipairs(t[1]) do
-	
+
 		if e.descriptor.race == race then
 	--	print("Equipment resolver for", e.name)
 		-- Iterate of object requests, try to create them and equip them
