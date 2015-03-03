@@ -1,7 +1,5 @@
 local Dialog = require "engine.ui.Dialog"
 local Talents = require "engine.interface.ActorTalents"
-local SurfaceZone = require "engine.ui.SurfaceZone"
-local Stats = require "engine.interface.ActorStats"
 local TextzoneList = require "engine.ui.TextzoneList"
 local Textzone = require "engine.ui.Textzone"
 local Button = require "engine.ui.Button"
@@ -36,11 +34,15 @@ function _M:init(actor)
 
 	self.c_points = Textzone.new{width=self.iw, height = 30, text = "Available feat points: "..self.player.feat_point}
 	self.c_learned_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Learned feats#LAST#"}
-	self.c_learned = SurfaceZone.new{width=250, height=self.ih*0.8,alpha=1.0}
 	self.c_avail_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Available feats#LAST#"}
 	self.c_barred_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Barred feats#LAST#"}
 	self.c_desc = TextzoneList.new{width=self.iw/4-20, height = 400, text="Hello from description"}
 
+	self.c_learned = List.new{width=250, height=self.ih*0.8, scrollbar=true,
+		list=self.learned_feats,
+		fct=function() end,
+		select=function(item, sel) self:on_select(item) end,
+	}
 
 	self.c_avail = TreeList.new{width=250, height=self.ih*0.8, scrollbar=true, columns={
 		{width=100, display_prop="name"},
@@ -80,7 +82,6 @@ function _M:init(actor)
 	self:setFocus(self.c_avail)
 --	self:setupUI(false, true)
 	self:setupUI()
-	self:drawDialog()
 
 	self:hideButton()
 
@@ -167,13 +168,23 @@ function _M:update()
 	self.c_barred.tree = self.barred_feats
 	self.c_avail:generate()
 	self.c_barred:generate()
-	self:drawDialog()
 --	if sel then self.c_list:select(sel) end
 end
 
 function _M:generateLists()
+	self:generateLearned()
 	self:generateAvail()
 	self:generateBarred()
+end
+
+function _M:talentTextBlock(t)
+	local player = self.actor
+	local d = "#GOLD#"..t.name.."#LAST#\n"
+	-- Workaround for double newline bug in T-Engine's getTalentReqDesc
+	local s = player:getTalentReqDesc(t.id):toString():gsub('\n\n', '\n')
+	d = d..s.."\n#WHITE#"
+	d = d..t.info(player,t)
+	return d
 end
 
 function _M:generateAvail()
@@ -198,17 +209,11 @@ function _M:generateAvail()
 
 				for j, t in ipairs(tt.talents) do
 					if t.is_feat and player:canLearnTalent(t) and not player:knowTalent(t) then
-						local d = "#GOLD#"..t.name.."#LAST#\n"
-						-- Workaround for double newline bug in T-Engine's getTalentReqDesc
-						s = player:getTalentReqDesc(t.id):toString():gsub('\n\n', '\n')
-						d = d..s.."\n#WHITE#"
-						d = d..t.info(player,t)
-
 						nodes[#nodes+1] = {
 							name = t.name,
 							id = t.name,
 							pid = tt.name,
-							desc = d,
+							desc = self:talentTextBlock(t),
 							talent = t,
 						}
 
@@ -219,9 +224,9 @@ function _M:generateAvail()
 				if #nodes > 0 then
 					tree[#tree+1] = {
 						name = tt.name,
-	                    id = tt.name,
-	                    shown = oldtree[tt.name],
-	                    nodes = nodes,
+						id = tt.name,
+						shown = oldtree[tt.name],
+						nodes = nodes,
 					}
 				end
 			end
@@ -268,18 +273,11 @@ function _M:generateBarred()
 
 				for j, t in ipairs(tt.talents) do
 					if t.is_feat and not player:canLearnTalent(t) and not player:knowTalent(t) then
-						local d = "#GOLD#"..t.name.."#LAST#\n"
-						-- Workaround for double newline bug in T-Engine's getTalentReqDesc
-						s = player:getTalentReqDesc(t.id):toString():gsub('\n\n', '\n')
-						d = d..s.."\n#WHITE#"
-						d = d..t.info(player,t)
-						--local color = {100, 100, 100}
-
 						nodes[#nodes+1] = {
 							name = t.name,
 							id = t.name,
 							pid = tt.name,
-							desc = d,
+							desc = self:talentTextBlock(t),
 							talent = t,
 						--	color = color,
 						}
@@ -358,42 +356,22 @@ function _M:mouseTooltip(text, _, _, _, w, h, x, y)
 	}, true)
 end
 
-function _M:drawDialog()
+function _M:generateLearned()
 	local player = self.actor
-	local s = self.c_learned.s
-
-	s:erase(0,0,0,0)
-
-	local h = 0
-	local w = 0
-
-	h = 0
-	w = 0
-
 	local list = {}
+	for j, t in pairs(player.talents_def) do
+		if player:knowTalent(t.id) and t.is_feat then
+			if player:classFeat(t.id) then name = "#GOLD#"..t.name
+			else name = ("%s"):format(t.name) end
 
-		for j, t in pairs(player.talents_def) do
-		  if player:knowTalent(t.id) and t.is_feat then
-				if player:classFeat(t.id) then name = "#GOLD#"..t.name
-				else name = ("%s"):format(t.name) end
-
-
-				list[#list+1] = {
-					name = name,
-				--	name = ("%s"):format(t.name),
-				--	desc = player:getTalentFullDescription(t):toString(),
-					desc = ("%s"):format(t.info(player,t)),
-				}
-			end
+			list[#list+1] = {
+				name = name,
+				desc = self:talentTextBlock(t),
+			}
 		end
+	end
 
-		table.sort(list, function(a,b) return a.name < b.name end)
+	table.sort(list, function(a,b) return a.name < b.name end)
 
-		for i, t in ipairs(list) do
-	  --	  self:mouseTooltip(t.desc, s:drawColorStringBlended(self.font, ("%s"):format(t.name), w, h, 255, 255, 255, true)) h = h + self.font_h
-	  		s:drawColorStringBlended(self.font, ("%s"):format(t.name), w, h, 255, 255, 255, true) h = h + self.font_h
-		end
-
-	self.c_learned:generate()
-	self.changed = false
+	self.learned_feats = list
 end
