@@ -1,5 +1,38 @@
 CHANGELOG
 
+* bug fix - FBO lua error on save load
+* bug fix - Lua error & nil exp for creatures with CR in-between table values
+* bug fix - character creation screen now does check if a character save already exists
+* bug fix - flavored amulets spelling
+* bug fix - incorporate the engine fixes for ActorSeenDisplay, making the switch work
+* bug fix - shooting not using the weapon's designated crit damage
+* bug fix - flyers showing for critters outside lite range
+* bug fix - assassin name typo
+* bug fix - charges being displayed off or not displayed at all for multiple lines of spells in a spellbook
+* bug fix - training stat tracker values are now properly zeroed when increasing stat
+* bug fix - no more Lua errors on right clicking talents
+
+* new spells - divine favor, entropic shield, doom, shield of faith
+* new NPC: human/dwarf/drow healer
+* sorcerers and shamans now use a spell points system instead of Vancian spellcasting
+* implement room descriptions
+* hirelings now use party member code from ToME
+* implement metamagic feats - Extend, Empower and Maximize Spell
+* implement Precise Shot and Far Shot feats
+* implement spell points & psionic power
+* consumables now stack
+* unwearable items are highlighted in red; unusable ones in blue
+* drow noble house is now named after the House that inhabits it
+* can now throw thrown weapons
+* low Int characters get separate answers now
+* log message is shown when player gains EXP
+* UI improvements and bugfixes for feat select screen
+* AI no longer walks into chasms/lava/water
+* game options screen displayed before the first level is generated
+* implement talent configuration from ToME
+* backport room generator improvements from ToME git
+* backport ego improvements from ToME git
+
 0.25.0 - beta 6.5 - 22/12/2014
 
 * bug fix - fix the isThreatened() function
@@ -95,7 +128,7 @@ CHANGELOG
 * bug fix - give subtypes to neutral NPCs
 * bug fix - no more 'hit for 0 darkness damage' messages spam
 * bug fix - no more being 2-hitted by some monsters with higher speeds
-* bug fix - lock out of inventory after shopping bug 
+* bug fix - lock out of inventory after shopping bug
 * bug fix - attacking or using a feat now breaks stealth
 * bug fix - fixed some ASCII letters/colors
 
@@ -168,7 +201,7 @@ CHANGELOG
 * humanoids now use A* pathing
 * add ranged AI code inspired by DataQueen
 * new monsters: babau, dretch, quasit
-* new items: throwing axe, throwing knives; mushrooms, rods; enabled tattoos; mithril coins, emeralds, sapphires; 
+* new items: throwing axe, throwing knives; mushrooms, rods; enabled tattoos; mithril coins, emeralds, sapphires;
 * new egos: dwarven, elven; of the Winterland, of the Druid, of the Hin; of brightness
 * reduced the CR cap for dungeon level 1 to player level +1 and to player level +2 for dlvl 2-5
 * tiles/ASCII switch finally works!
@@ -466,9 +499,9 @@ CHANGELOG
 * bug fix: no more freezes when trying to exit to Menu in some cases
 * bug fix: no more lua errors with some spells
 * bug fix: bard skill points
-* bug fix: assasin and shadowdancer not giving level-up bonuses
+* bug fix: assassin and shadowdancer not giving level-up bonuses
 
-* new monsters: aboleth, athach, choker, chuul, cloaker, drider, ettercap, otyugh; ankheg, aranea, arrowhawk, assasin vine, barghest
+* new monsters: aboleth, athach, choker, chuul, cloaker, drider, ettercap, otyugh; ankheg, aranea, arrowhawk, assassin vine, barghest
 * survival kit, healing kit, lockpicking kit added - grant a +2 bonus to skill
 * all characters now receive a single feat when rolling stats as a perk
 * level-up screen now displays class points, feat points, skill points
@@ -552,7 +585,7 @@ CHANGELOG
 
 0.5.0 beta 2.8 - 16/09/2013
 * tooltips for character sheet, containing the info that used to be in the Help screen
-* Help screen now shows controls 
+* Help screen now shows controls
 * luminescent moss is luminescent again; typo fix; some tweaks to level generation
 * new magic items: belts of Strength, boots of dodging
 * random name generator, taking into account your class and race
@@ -600,7 +633,7 @@ CHANGELOG
 * resting takes longer
 * saving throws take the better of two stats (Dex-Int for Ref; Con-Str for Fort; Wis-Cha for Will)
 * changed map generator back due to performance issues
-* new prestige classes: assasin, shadowdancer
+* new prestige classes: assassin, shadowdancer
 * barbarian speed bonus implemented
 * terrain effects implemented
 * added tips to stat generator screen
@@ -684,7 +717,7 @@ ALPHA
 * saving throws implemented
 * some 0 and 1st level spells implemented [Sebsebeleb]
 * attributes rolled before character generation
-* enemies: kobolds 
+* enemies: kobolds
 
 0.0.2 - 26/06/2013
 * bugfixes
