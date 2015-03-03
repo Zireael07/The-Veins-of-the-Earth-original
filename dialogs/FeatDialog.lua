@@ -197,10 +197,10 @@ function _M:generateAvail()
 				local nodes = {}
 
 				for j, t in ipairs(tt.talents) do
-
 					if t.is_feat and player:canLearnTalent(t) and not player:knowTalent(t) then
 						local d = "#GOLD#"..t.name.."#LAST#\n"
-						s = player:getTalentReqDesc(t.id):toString()
+						-- Workaround for double newline bug in T-Engine's getTalentReqDesc
+						s = player:getTalentReqDesc(t.id):toString():gsub('\n\n', '\n')
 						d = d..s.."\n#WHITE#"
 						d = d..t.info(player,t)
 
@@ -216,13 +216,14 @@ function _M:generateAvail()
 					end
 				end
 
-				tree[#tree+1] = {
-					name = tt.name,
-					id = tt.name,
-					shown = oldtree[tt.name],
-					nodes = nodes,
-				}
-
+				if #nodes > 0 then
+					tree[#tree+1] = {
+						name = tt.name,
+	                    id = tt.name,
+	                    shown = oldtree[tt.name],
+	                    nodes = nodes,
+					}
+				end
 			end
 		end
 	end
@@ -266,11 +267,12 @@ function _M:generateBarred()
 				local nodes = {}
 
 				for j, t in ipairs(tt.talents) do
-
 					if t.is_feat and not player:canLearnTalent(t) and not player:knowTalent(t) then
 						local d = "#GOLD#"..t.name.."#LAST#\n"
-						s = player:getTalentReqDesc(t.id):toString()
+						-- Workaround for double newline bug in T-Engine's getTalentReqDesc
+						s = player:getTalentReqDesc(t.id):toString():gsub('\n\n', '\n')
 						d = d..s.."\n#WHITE#"
+						d = d..t.info(player,t)
 						--local color = {100, 100, 100}
 
 						nodes[#nodes+1] = {
@@ -286,12 +288,14 @@ function _M:generateBarred()
 					end
 				end
 
-				tree[#tree+1] = {
-					name = tt.name,
-					id = tt.name,
-					shown = oldtree[tt.name],
-					nodes = nodes,
-				}
+				if #nodes > 0 then
+					tree[#tree+1] = {
+						name = tt.name,
+						id = tt.name,
+						shown = oldtree[tt.name],
+						nodes = nodes,
+					}
+				end
 			end
 		end
 	end
