@@ -5,6 +5,7 @@
 
 require 'engine.class'
 local Entity = require 'engine.Entity'
+local Zone = require 'engine.Zone'
 
 module(..., package.seeall, class.inherit(Entity))
 
@@ -112,21 +113,32 @@ function _M:tryAddEgos(o, good, pass2)
 
 end
 
-function _M:placeForcedEgos(o)
-  if not o.force_ego then return end
-  if type(o.force_ego) == 'string' then o.force_ego = { o.force_ego } end
-  for _, id in ipairs(o.force_ego) do
-    local e = self.egos_def[id]
-    if e then
-      o.ego_names = o.ego_names or {}
-      local which = e.prefix and 'prefix' or 'suffix'
-      o.ego_names[which] = id
-      print(("[EGO] forcing %s ego '%s'"):format(which, e.name))
+function _M:placeForcedEgos(e)
+    if not e.force_ego then return end
+    if type(e.force_ego) == 'string' then e.force_ego = { e.force_ego } end
 
-    else
-      print('[EGO] no such ego '..id)
+    -- Duplicated from Zone:finishEntity
+    for ie, ego in ipairs(e.force_ego) do
+        ego = self.egos_def[ego]
+        ego = ego:clone()
+        local newname
+        if ego.prefix then newname = ego.name .. e.name
+        else newname = e.name .. ego.name end
+        print("applying ego", ego.name, "to ", e.name, "::", newname, "///", e.unided_name, ego.unided_name)
+        ego.unided_name = nil
+        ego.__CLASSNAME = nil
+        -- The ego requested instant resolving before merge ?
+        if ego.instant_resolve then ego:resolve(nil, nil, e) end
+        ego.instant_resolve = nil
+        -- Void the uid, we dont want to erase the base entity's one
+        ego.uid = nil
+        -- Merge according to Object's ego rules.
+        table.ruleMergeAppendAdd(e, ego, Zone.ego_rules[type] or {})
+        e.name = newname
+        e.egoed = true
     end
-  end
+    -- Re-resolve with the (possibly) new resolvers
+    e:resolve()
 end
 
 -- Static.

@@ -23,7 +23,7 @@ function _M:init()
   self.c_items = List.new {
     width = 400,
     nb_items = 10,
---    display_prop = 'display',
+    display_prop = 'display',
     list = self.list,
     scrollbar = true,
     fct = function(item) self:selectItem(item) end,
@@ -98,7 +98,8 @@ function _M:setDisplayText(item, which)
     sel = (item.id and item.id == self.ego_names[which]) or
       (not item.id and not self.ego_names[which])
   end
-  item.display = sel and '#{bold}#'..item.name..'#{normal}#' or item.name
+  local name = item.base_display or item.name
+  item.display = sel and '#{bold}#'..name..'#{normal}#' or name
 end
 
 function _M:selectItem(item)
@@ -188,11 +189,9 @@ function _M:generateList()
 
     for i, e in ipairs(game.zone.object_list) do
         if e.name and e.rarity then
-            local color
-            if e.unique then color = {255, 215, 0}
-            else color = {255, 255, 255} end
+            local display = (e.unique and '#ffd700#' or '#ffffff#') .. e.name .. '#LAST#'
 
-            list[#list+1] = {name=e.name, unique=e.unique, e=e}
+            list[#list+1] = {name=e.name, display=display, base_display=display, unique=e.unique, e=e}
         end
     end
     table.sort(list, function(a,b)
