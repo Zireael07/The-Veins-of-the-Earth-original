@@ -1,4 +1,4 @@
-newTalentType{ type="arcane/reserve", no_tt_req = true, name = "reserve", description = "Reserve feats" }
+newTalentType{ type="arcane/reserve", no_tt_req = true, name = "Reserve", description = "Reserve feats" }
 
 newFeat{
 	name = "Force Bolt",
@@ -27,6 +27,6 @@ newFeat{
 	info = function(self, t)
 		local t = self:highestSpellDescriptor("force")
 		return ([[As long as you have a force spell available to cast, you can create a bolt of force at range 5 that
-		deals 1d4 damage per level of the highest force spell available (currently %dd6)]]):format(t and t.level or 0)
+		deals 1d4 damage per level of the highest force spell available (currently %dd4)]]):format(t and t.level or 0)
 	end,
 }
