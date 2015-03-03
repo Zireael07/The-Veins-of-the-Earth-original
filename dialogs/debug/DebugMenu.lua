@@ -113,6 +113,8 @@ function _M:use(item)
 		end
 	elseif act == "lua-console" then
 		game:registerDialog(DebugConsole.new())
+    elseif act == "reload-ui" then
+        self:reloadUI()
 	else
 		self:triggerHook{"DebugMain:use", act=act}
 	end
@@ -140,6 +142,7 @@ function _M:generateList()
 	list[#list+1] = {name="Create Terrain", dialog="CreateTerrain"}
 	list[#list+1] = {name="Remove all creatures", action="remove-all"}
 	list[#list+1] = {name="Lua Console", action="lua-console"}
+	list[#list+1] = {name="Reload UI", action="reload-ui"}
 
 	self:triggerHook{"DebugMain:generate", menu=list}
 
@@ -152,3 +155,17 @@ function _M:generateList()
 
 	self.list = list
 end
+
+--- Reload what we can of the UI, to test changes without reloading the whole
+--- game.
+---
+--- For now, this reloads custom dialogs (only).  That should be safe.
+function _M:reloadUI()
+    for k, v in pairs(package.loaded) do
+		if k:sub(1, string.len("mod.dialogs.")) == "mod.dialogs." then
+            print(("reloading %s"):format(k))
+            package.loaded[k] = nil
+        end
+    end
+end
+

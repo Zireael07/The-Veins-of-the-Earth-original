@@ -25,6 +25,13 @@ defineAction{
 	name = "Show message log",
 }
 
+defineAction{
+    default = { "sym:_d:true:false:false:false" },
+    type = "DEBUG_MODE",
+    group = "debug",
+    name = "Debug Mode",
+    only_on_cheat = true,
+}
 --From Marson's AWOL addon
 defineAction{
 	default = { "sym:_b:true:false:false:false" },
