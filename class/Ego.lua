@@ -44,7 +44,7 @@ function _M:allowedEgosFor(o, good, side)
     end]]
 
 	if not o.egos then return {} end
-	self.egos_def = self:loadList(o.egos)
+	self.egos_def = self:loadList(o.egos, true)
 
     for _, e in ipairs(self.egos_def) do
     local ok = true
