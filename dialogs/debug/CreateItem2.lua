@@ -21,16 +21,16 @@ function _M:init()
   self:generateList()
 
   self.c_items = List.new {
-    width = 400,
-    nb_items = 10,
---    display_prop = 'display',
+    width = 350,
+    nb_items = 20,
+    display_prop = 'display',
     list = self.list,
     scrollbar = true,
     fct = function(item) self:selectItem(item) end,
   }
   self.c_pfx_egos = List.new {
     width = 200,
-    nb_items = 10,
+    nb_items = 15,
     display_prop = 'display',
     list = {},
     scrollbar = true,
@@ -38,7 +38,7 @@ function _M:init()
   }
   self.c_sfx_egos = List.new {
     width = 200,
-    nb_items = 10,
+    nb_items = 15,
     display_prop = 'display',
     list = {},
     scrollbar = true,
@@ -56,8 +56,8 @@ function _M:init()
     text = 'Create',
     fct = function() self:createItem() end,
   }
-  self.c_cancel = Button.new {
-    text = 'Cancel',
+  self.c_close = Button.new {
+    text = 'Close',
     fct = function() self.key:triggerVirtual('EXIT') end,
   }
 
@@ -67,8 +67,8 @@ function _M:init()
     { left=0, top=self.c_items.h, ui=self.c_nitems },
     { right=0, top=0, ui=self.c_sfx_egos },
     { right=self.c_sfx_egos.w, top=0, ui=self.c_pfx_egos },
-    { right=0, bottom=0, ui=self.c_cancel },
-    { right=self.c_cancel.w, bottom=0, ui=self.c_create },
+    { right=0, bottom=0, ui=self.c_close },
+    { right=self.c_close.w, bottom=0, ui=self.c_create },
   }
 
   self:setupUI()
@@ -98,7 +98,8 @@ function _M:setDisplayText(item, which)
     sel = (item.id and item.id == self.ego_names[which]) or
       (not item.id and not self.ego_names[which])
   end
-  item.display = sel and '#{bold}#'..item.name..'#{normal}#' or item.name
+  local name = item.base_display or item.name
+  item.display = sel and '#{bold}#'..name..'#{normal}#' or name
 end
 
 function _M:selectItem(item)
@@ -132,14 +133,11 @@ function _M:setupEgoLists()
   local pfx_egos = { { name = 'No prefix ego' } }
   local sfx_egos = { { name = 'No suffix ego' } }
 
-  for _, ego in ipairs(Ego:allowedEgosFor(self.sel_item.e)) do
-    if ego.define_as then
+  for id, ego in ipairs(Ego:allowedEgosFor(self.sel_item.e)) do
     local dst = ego.prefix and pfx_egos or ego.suffix and sfx_egos
-    local item = { name = ego.name, id = ego.define_as }
-    dst[item.id] = item
+    local item = { name = ego.name, id = id }
     table.insert(dst, item)
     game.log("Inserted ego: "..item.name)
-    end
   end
   self.ego_names = {}
   for _, item in ipairs(pfx_egos) do self:setDisplayText(item, 'prefix') end
@@ -163,9 +161,6 @@ end
 
 function _M:createItem()
   if not self:readyToCreate() then return end
-  game:unregisterDialog(self)
-
-    
 
     local qty = self.c_nitems.number
   --  local o = game.zone:finishEntity(game.level, 'object', self.sel_item.e)
@@ -180,6 +175,7 @@ function _M:createItem()
     Ego:placeForcedEgos(o)
 
     game.zone:addEntity(game.level, o, 'object', game.player.x, game.player.y)
+	game.log('Created '..o.name)
 end
 
 --Generate item list
@@ -188,11 +184,9 @@ function _M:generateList()
 
     for i, e in ipairs(game.zone.object_list) do
         if e.name and e.rarity then
-            local color
-            if e.unique then color = {255, 215, 0}
-            else color = {255, 255, 255} end
+            local display = (e.unique and '#ffd700#' or '#ffffff#') .. e.name .. '#LAST#'
 
-            list[#list+1] = {name=e.name, unique=e.unique, e=e}
+            list[#list+1] = {name=e.name, display=display, base_display=display, unique=e.unique, e=e}
         end
     end
     table.sort(list, function(a,b)

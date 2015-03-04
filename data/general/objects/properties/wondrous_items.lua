@@ -631,7 +631,7 @@ newEntity{
 }
 
 newEntity{
-	name = "of the Spur", suffix = true,
+	name = " of the Spur", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
 --	cost = 16000,
@@ -742,7 +742,7 @@ newEntity{
 }
 
 newEntity{
-	name = "of the Bat", suffix = true,
+	name = " of the Bat", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
 --	cost = 26000,

@@ -48,7 +48,7 @@ end
 }
 
 newEntity{
-    name = "of burning hands", suffix = true,
+    name = " of burning hands", suffix = true,
     level_range = {1, 10},
     rarity = 5,
     cost = resolvers.value{platinum=450},
@@ -71,7 +71,7 @@ end
 
 
 --[[newEntity{
-    name = "of sleep", suffix = true,
+    name = " of sleep", suffix = true,
     level_range = {1, 10},
     rarity = 5,
     cost = resolvers.value{platinum=450},

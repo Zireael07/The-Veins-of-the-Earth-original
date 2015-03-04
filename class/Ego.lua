@@ -5,20 +5,11 @@
 
 require 'engine.class'
 local Entity = require 'engine.Entity'
+local Zone = require 'mod.class.Zone'
 
 module(..., package.seeall, class.inherit(Entity))
 
 _M.egos_def = {}
-
--- Static
-function _M:loadEgos(f)
-  self.egos_def = self:loadList(f)
-end
-
--- Static
-function _M:get(id)
-  return egos_def[id]
-end
 
 -- - 'good' can be true for only good egos, false for only cursed egos, or
 --   nil for both.
@@ -52,7 +43,8 @@ function _M:allowedEgosFor(o, good, side)
         end
     end]]
 
-
+	if not o.egos then return {} end
+	self.egos_def = self:loadList(o.egos, true)
 
     for _, e in ipairs(self.egos_def) do
     local ok = true
@@ -112,21 +104,15 @@ function _M:tryAddEgos(o, good, pass2)
 
 end
 
-function _M:placeForcedEgos(o)
-  if not o.force_ego then return end
-  if type(o.force_ego) == 'string' then o.force_ego = { o.force_ego } end
-  for _, id in ipairs(o.force_ego) do
-    local e = self.egos_def[id]
-    if e then
-      o.ego_names = o.ego_names or {}
-      local which = e.prefix and 'prefix' or 'suffix'
-      o.ego_names[which] = id
-      print(("[EGO] forcing %s ego '%s'"):format(which, e.name))
+function _M:placeForcedEgos(e)
+    if not e.force_ego then return end
+    if type(e.force_ego) == 'string' then e.force_ego = { e.force_ego } end
 
-    else
-      print('[EGO] no such ego '..id)
+    for ie, ego in ipairs(e.force_ego) do
+        Zone:applyEgo(e, self.egos_def[ego])
     end
-  end
+    -- Re-resolve with the (possibly) new resolvers
+    e:resolve()
 end
 
 -- Static.
