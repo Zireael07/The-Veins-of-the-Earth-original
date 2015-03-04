@@ -163,7 +163,7 @@ newEntity { define_as = "EGO_GREATER_SHADOW",
 }
 
 newEntity { define_as = "EGO_SILENT",
-	name = " of silent moves ", suffix = true,
+	name = " of silent moves", suffix = true,
 	keywords = {silent=true},
 	level_range = {5, nil},
 	rarity = 8,
@@ -580,7 +580,7 @@ newEntity {
 
 --Based on Angband's
 newEntity {
-	name = "dwarven", suffix = false,
+	name = "dwarven", prefix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
 	rarity = 15,

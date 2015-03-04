@@ -11,16 +11,6 @@ module(..., package.seeall, class.inherit(Entity))
 
 _M.egos_def = {}
 
--- Static
-function _M:loadEgos(f)
-  self.egos_def = self:loadList(f)
-end
-
--- Static
-function _M:get(id)
-  return egos_def[id]
-end
-
 -- - 'good' can be true for only good egos, false for only cursed egos, or
 --   nil for both.
 -- - 'side' can be 'prefix' or 'suffix' for only the corresponding egos, or
@@ -53,7 +43,8 @@ function _M:allowedEgosFor(o, good, side)
         end
     end]]
 
-
+	if not o.egos then return {} end
+	self.egos_def = self:loadList(o.egos)
 
     for _, e in ipairs(self.egos_def) do
     local ok = true

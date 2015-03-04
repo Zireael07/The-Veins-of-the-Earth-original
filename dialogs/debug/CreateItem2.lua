@@ -21,7 +21,7 @@ function _M:init()
   self:generateList()
 
   self.c_items = List.new {
-    width = 400,
+    width = 350,
     nb_items = 10,
     display_prop = 'display',
     list = self.list,
@@ -133,14 +133,11 @@ function _M:setupEgoLists()
   local pfx_egos = { { name = 'No prefix ego' } }
   local sfx_egos = { { name = 'No suffix ego' } }
 
-  for _, ego in ipairs(Ego:allowedEgosFor(self.sel_item.e)) do
-    if ego.define_as then
+  for id, ego in ipairs(Ego:allowedEgosFor(self.sel_item.e)) do
     local dst = ego.prefix and pfx_egos or ego.suffix and sfx_egos
-    local item = { name = ego.name, id = ego.define_as }
-    dst[item.id] = item
+    local item = { name = ego.name, id = id }
     table.insert(dst, item)
     game.log("Inserted ego: "..item.name)
-    end
   end
   self.ego_names = {}
   for _, item in ipairs(pfx_egos) do self:setDisplayText(item, 'prefix') end
