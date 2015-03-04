@@ -22,7 +22,7 @@ function _M:init()
 
   self.c_items = List.new {
     width = 350,
-    nb_items = 10,
+    nb_items = 20,
     display_prop = 'display',
     list = self.list,
     scrollbar = true,
@@ -30,7 +30,7 @@ function _M:init()
   }
   self.c_pfx_egos = List.new {
     width = 200,
-    nb_items = 10,
+    nb_items = 15,
     display_prop = 'display',
     list = {},
     scrollbar = true,
@@ -38,7 +38,7 @@ function _M:init()
   }
   self.c_sfx_egos = List.new {
     width = 200,
-    nb_items = 10,
+    nb_items = 15,
     display_prop = 'display',
     list = {},
     scrollbar = true,
@@ -56,8 +56,8 @@ function _M:init()
     text = 'Create',
     fct = function() self:createItem() end,
   }
-  self.c_cancel = Button.new {
-    text = 'Cancel',
+  self.c_close = Button.new {
+    text = 'Close',
     fct = function() self.key:triggerVirtual('EXIT') end,
   }
 
@@ -67,8 +67,8 @@ function _M:init()
     { left=0, top=self.c_items.h, ui=self.c_nitems },
     { right=0, top=0, ui=self.c_sfx_egos },
     { right=self.c_sfx_egos.w, top=0, ui=self.c_pfx_egos },
-    { right=0, bottom=0, ui=self.c_cancel },
-    { right=self.c_cancel.w, bottom=0, ui=self.c_create },
+    { right=0, bottom=0, ui=self.c_close },
+    { right=self.c_close.w, bottom=0, ui=self.c_create },
   }
 
   self:setupUI()
@@ -161,9 +161,6 @@ end
 
 function _M:createItem()
   if not self:readyToCreate() then return end
-  game:unregisterDialog(self)
-
-    
 
     local qty = self.c_nitems.number
   --  local o = game.zone:finishEntity(game.level, 'object', self.sel_item.e)
@@ -178,6 +175,7 @@ function _M:createItem()
     Ego:placeForcedEgos(o)
 
     game.zone:addEntity(game.level, o, 'object', game.player.x, game.player.y)
+	game.log('Created '..o.name)
 end
 
 --Generate item list
