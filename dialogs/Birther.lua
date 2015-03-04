@@ -484,6 +484,20 @@ function _M:on_select(item,sel)
     self.selection = sel    
 end
 
+function _M:regenerateList(c_list)
+	if c_list.max ~= #c_list.list then
+		-- List length has changed: regenerate
+		local sel = c_list.sel
+		c_list:generate()
+		if sel then c_list:select(sel) end
+	else
+		-- List length is the same: redraw, but don't regenerate from scratch
+		for i, item in ipairs(c_list.list) do
+			c_list:drawItem(item)
+		end
+    end
+end
+
 function _M:update()
     local sel = self.selection
     self:generateLists() -- Slow! Should just update the one changed and sort again
@@ -491,10 +505,10 @@ function _M:update()
     self.c_race.list = self.list_race
     self.c_alignment.list = self.list_alignment
     self.c_background.list = self.list_background
-    self.c_class:generate()
-    self.c_race:generate()
-    self.c_alignment:generate()
-    self.c_background:generate()
+    self:regenerateList(self.c_class)
+    self:regenerateList(self.c_race)
+    self:regenerateList(self.c_alignment)
+    self:regenerateList(self.c_background)
     self:updateTab('all')
 end
 
@@ -502,7 +516,7 @@ function _M:updateRaces()
     local sel = self.selection
     self:generateRaces()
     self.c_race.list = self.list_race
-    self.c_race:generate()
+    self:regenerateList(self.c_race)
     self:updateTab('general')
 end
 
@@ -510,7 +524,7 @@ function _M:updateClasses()
     local sel = self.selection
     self:generateClasses()
     self.c_class.list = self.list_class
-    self.c_class:generate()
+    self:regenerateList(self.c_class)
     self:updateTab('general')
 end
 
@@ -518,7 +532,7 @@ function _M:updateAlignment()
     local sel = self.selection
     self:generateAlignment()
     self.c_alignment.list = self.list_alignment
-    self.c_alignment:generate()
+    self:regenerateList(self.c_alignment)
     self:updateTab("general")
 end
 
@@ -867,7 +881,7 @@ function _M:updateBackgrounds()
     local sel = self.selection
     self:generateBackgrounds()
     self.c_background.list = self.list_background
-    self.c_background:generate()
+    self:regenerateList(self.c_background)
     self:updateTab("optional")
 end
 
@@ -897,7 +911,7 @@ function _M:updateDeity()
     local sel = self.selection
     self:generateDeities()
     self.c_deity.list = self.list_deity
-    self.c_deity:generate()
+    self:regenerateList(self.c_deity)
     self:updateTab("optional")
 end
 
