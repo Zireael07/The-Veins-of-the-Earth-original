@@ -44,7 +44,7 @@ module(..., package.seeall, class.inherit(mod.class.Actor,
             PlayerLore))
 
 local exp_chart = function(level)
-if level==1 then return 1000 
+if level==1 then return 1000
 else return 500*level*(level+1)/2 end
 end
 
@@ -72,7 +72,7 @@ function _M:init(t, no_default)
   self.sight = 10
   self.ecl = 1
 
-  
+
   self.descriptor = self.descriptor or {}
   self.died_times = self.died_times or {}
   self.race = self.descriptor.race
@@ -83,7 +83,7 @@ function _M:init(t, no_default)
   self.speed = 0
   self.move_others = true
   self.class_points = 1 -- Spent on leveling classes, its 1 because it "spends" one when you birth
-  
+
   --Timers :D
   self.nutrition = 3000
   self.lite_counter = 5000
@@ -173,7 +173,7 @@ function _M:playerCounters()
     if self:hasDescriptor{race="Drow"} or self:hasDescriptor{race="Elf"} then
       if self:knowTalent(self.T_FASTING) then
         self.nutrition = self.nutrition - 0.06
-      else 
+      else
         self.nutrition = self.nutrition - 0.2
       end
     else
@@ -221,8 +221,8 @@ function _M:playerCounters()
         self.life = self.life + 1
       end
     end
-  
-  end  
+
+  end
 
   --Deity counters
   if self.descriptor.deity ~= "None" and not self.resting then
@@ -266,7 +266,7 @@ function _M:playerCounters()
     --self:exerciseStat("con", 1, "con_armor", 35)
     --abuse DEX by 1
 
-    --Exercise LUC by being deep in dungeon 
+    --Exercise LUC by being deep in dungeon
     --Inc compares depth to our CR
   end
 
@@ -314,7 +314,7 @@ function _M:onPremadeBirth()
   self:setCountID()
   self:setGodPulse()
 --  game:registerDialog(require"mod.dialogs.Help".new(self.player))
-end 
+end
 
 --From Qi Daozei
 --- Sorts hotkeys in the order in which their corresponding talents are defined.
@@ -355,7 +355,7 @@ local d = rng.dice(1,6)
   elseif d == 3 then self:randomFeat()
   elseif d == 4 then self:randomSpell()
   elseif d == 5 then self:randomItem()
-  else self:randomItem() end 
+  else self:randomItem() end
 end
 
 function _M:equipAllItems()
@@ -364,11 +364,11 @@ function _M:equipAllItems()
       local o = inven[i]
       if o.slot ~= "INVEN" then
       self:removeObject(inven, o)
-      self:wearObject(o, false, false)  
+      self:wearObject(o, false, false)
       self:removeObject(inven, o)
       end
     end
-    self:sortInven()  
+    self:sortInven()
 end
 
 function _M:giveStartingSpells()
@@ -441,10 +441,10 @@ end
 
 --Character sheet stuff specific to player
 function _M:sheetColorStats(stat)
---Basic value without increases  
+--Basic value without increases
 local basestat = self:getStat(stat, nil, nil, true)
 
-  --Case 1: stat temporarily increased by spells 
+  --Case 1: stat temporarily increased by spells
   if self:attr("stat_increase_"..stat) then return "#LIGHT_GREEN#"..self:getStat(stat).."#LAST#"
   --Case 2: stat temporarily decreased (poisons etc.)
   elseif self:attr("stat_decrease_"..stat) then return "#RED#"..self:getStat(stat).."#LAST#"
@@ -546,15 +546,15 @@ function _M:playerFOV()
   end
 
   -- Calculate our own FOV
-  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist) 
+  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist)
       game.level.map:applyLite(x, y)
-      game.level.map.remembers(x, y, true) -- Remember the tile 
+      game.level.map.remembers(x, y, true) -- Remember the tile
     end, true, true, true)
 
   --If our darkvision is better than our lite, check it.
   if (self:attr("infravision") or 0) > self.lite then
     self:computeFOV(self:attr("infravision"), "block_sight", function(x, y, dx, dy, sqdist)
-      if not game.level.map.seens(x, y) then 
+      if not game.level.map.seens(x, y) then
         game.level.map.seens(x, y, 0.75) -- If we only see due to darkvision, it looks dark
       end
       game.level.map.remembers(x, y, true)
@@ -689,15 +689,28 @@ end
 -- We can rest if no hostiles are in sight, and if we need life/mana/stamina (and their regen rates allows them to fully regen)
 function _M:restCheck()
   --Implemented Light Sleeper feat; EVIL!
-  if self:knowTalent(self.T_LIGHT_SLEEPER) and spotHostiles(self) then return false, "hostile spotted" 
+  if self:knowTalent(self.T_LIGHT_SLEEPER) and spotHostiles(self) then return false, "hostile spotted"
     elseif rng.percent(50) and spotHostiles(self) then return false, "hostile spotted" end
 
 
-  -- Regen health at a rate of 1 hp per turn after having rested for 20 turns already 
+  --Start healing after having rested for 20 turns
   if self.resting.cnt > 20 then
-    local regen = 1
-    self.life = math.min(self.max_life, self.life + regen)
-    
+
+--[[    local regen = 1
+    self.life = math.min(self.max_life, self.life + regen)]]
+
+	--normal healing
+	--use Wis instead of Con if have Mind over Body feat
+	local con = self:getCon()
+	local heal = ((self.level +3)*con)/5
+
+	--Heal skill
+	if (self.skill_heal or 0) > 0 then
+	 heal = ((self.level + self.skill_heal +3)*con)/5
+	end
+
+	self.life = math.min(self.max_life, self.life + heal)
+
     --reset the ignore wound feat flag
     self.ignored_wound = false
 
@@ -707,7 +720,10 @@ function _M:restCheck()
     end
   end
 
-  if self.life < self.max_life then return true end
+--  if self.life < self.max_life then return true end
+
+	--quit resting after 30 turns total
+	if self.resting.cnt < 30 then return true end
 
 
   self.resting.wait_cooldowns = true
@@ -736,13 +752,13 @@ function _M:onRestStop()
   -- Remove any repeating action.
   self.repeat_action = nil
 
-  if self.resting.cnt > 20 then 
-    --Passage of time 
+  if self.resting.cnt > 20 then
+    --Passage of time
     game.turn = game.turn + game.calendar.HOUR * 8
     --Spawn monsters
     local m = game.zone:makeEntity(game.level, "actor", {max_ood=2}, nil, true)
     if m then game.zone:addEntity(game.level, m, "actor", x, y) end
-    --Passage of time 
+    --Passage of time
   elseif self.resting.cnt == 0 then game.turn = game.turn
   else game.turn = game.turn + game.calendar.HOUR * 4 end
 
@@ -783,7 +799,7 @@ function _M:runCheck(ignore_memory)
     end
   end)
   if noticed then return false, noticed end
-  
+
   self:playerFOV()
 
   return engine.interface.PlayerRun.runCheck(self)
@@ -815,8 +831,8 @@ function _M:spottedMonsterXP()
       if act and self:reactionToward(act) < 0 and self:canReallySee(act) and not act.seen
         then self.all_seen = self.all_seen or {}
         self.all_seen[act.name] = self.all_seen[act.name] or 0
-        self.all_seen[act.name] = self.all_seen[act.name] + 1 
-         
+        self.all_seen[act.name] = self.all_seen[act.name] + 1
+
 
 
         --Plugged in: a silent Knowledge check to determine whether you know the specials
@@ -909,7 +925,7 @@ function _M:autoID()
 
     if self:skillCheck("intuition", 25, true) then
         local o = rng.table(can_id)
-        o.identified = true 
+        o.identified = true
         game.logPlayer(self, "Identified: %s", o.name)
     end
 end
@@ -968,11 +984,11 @@ if self.no_inventory_access then return end
     return true
   end)
 
-end 
+end
 
 function _M:doDrop(inven, item, on_done, nb)
     if self.no_inventory_access then return end
-    
+
     local o = self:getInven(inven) and self:getInven(inven)[item]
   if o and o.plot then
     game.logPlayer(self, "You can not drop %s (plot item).", o:getName{do_colour=true})
@@ -1097,7 +1113,7 @@ function _M:playerUseItem(object, item, inven)
         end,
         use_fct
     )
-end 
+end
 
 --Container stuff, adapted from Gatecrashers
 function _M:putIn(bag)
@@ -1123,12 +1139,12 @@ function _M:putIn(bag)
     end
     --return true
   end)
-end 
+end
 
 function _M:takeOut(bag)
   local inven = bag:getInven(bag.INVEN_INVEN)
   local d d = bag:showInventory("Take out", inven, nil, function(o, item)
-    if self:addObject(self.INVEN_INVEN, o) then 
+    if self:addObject(self.INVEN_INVEN, o) then
       bag:removeObject(inven, item, true)
       self:sortInven(inven)
       bag:sortInven(inven)
@@ -1147,7 +1163,7 @@ function _M:dominantClass()
     local player = game.player
 
   for i, d in ipairs(Birther.birth_descriptor_def.class) do
-    
+
     local level = player.classes[d.name] or 0
         if level > 0 then
         local name = ""
@@ -1156,13 +1172,13 @@ function _M:dominantClass()
         table.insert(list, {name = name, desc = desc, level = level, real_name = d.name})
         end
     end
-   
+
     self.list = list
 
     table.sort(self.list, function (a,b)
-        if a.level == b.level then 
+        if a.level == b.level then
             return a.name < b.name
-        else 
+        else
             return a.level > b.level
         end
     end)
@@ -1251,22 +1267,22 @@ end
 --Pick a random egoed item to be given as perk
 function _M:randomItem()
   local chance = rng.dice(1,15)
-  if chance == 1 then self.perk_item = "battleaxe" 
-  elseif chance == 2 then self.perk_item = "rapier" 
-  elseif chance == 3 then self.perk_item = "long sword"  
-  elseif chance == 4 then self.perk_item = "dagger" 
-  elseif chance == 5 then self.perk_item = "morningstar" 
+  if chance == 1 then self.perk_item = "battleaxe"
+  elseif chance == 2 then self.perk_item = "rapier"
+  elseif chance == 3 then self.perk_item = "long sword"
+  elseif chance == 4 then self.perk_item = "dagger"
+  elseif chance == 5 then self.perk_item = "morningstar"
   --Ranged weapons
-  elseif chance == 6 then self.perk_item = "shortbow" 
+  elseif chance == 6 then self.perk_item = "shortbow"
   elseif chance == 7 then self.perk_item = "longbow"
-  elseif chance == 8 then self.perk_item = "sling" 
-  elseif chance == 9 then self.perk_item = "light crossbow" 
-  elseif chance == 10 then self.perk_item ="heavy crossbow" 
-  --Armor 
-  elseif chance == 11 then self.perk_item = "chain mail"  
+  elseif chance == 8 then self.perk_item = "sling"
+  elseif chance == 9 then self.perk_item = "light crossbow"
+  elseif chance == 10 then self.perk_item ="heavy crossbow"
+  --Armor
+  elseif chance == 11 then self.perk_item = "chain mail"
   elseif chance == 12 then self.perk_item = "chain shirt"
   elseif chance == 13 then self.perk_item = "studded leather"
-  elseif chance == 14 then self.perk_item = "breastplate" 
+  elseif chance == 14 then self.perk_item = "breastplate"
   else self.perk_item = "plate armor"   end
   self.perk = "magical "..self.perk_item
 end
@@ -1293,7 +1309,7 @@ function _M:giveEgoRapier()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
@@ -1307,7 +1323,7 @@ function _M:giveEgoSword()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
@@ -1321,7 +1337,7 @@ function _M:giveEgoDagger()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="dagger", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
@@ -1335,7 +1351,7 @@ function _M:giveEgoMorningstar()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
@@ -1349,7 +1365,7 @@ function _M:giveEgoShortbow()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
@@ -1377,7 +1393,7 @@ function _M:giveEgoSling()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
@@ -1391,7 +1407,7 @@ function _M:giveEgoLCrossbow()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
@@ -1405,7 +1421,7 @@ function _M:giveEgoHCrossbow()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
@@ -1419,7 +1435,7 @@ function _M:giveEgoChainmail()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
         o.pseudo_id = true
@@ -1433,7 +1449,7 @@ function _M:giveEgoChainShirt()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
         o.pseudo_id = true
@@ -1447,7 +1463,7 @@ function _M:giveEgoLeather()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
         o.pseudo_id = true
@@ -1461,7 +1477,7 @@ function _M:giveEgoBreastplate()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=1000}, nil, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
         o.pseudo_id = true
@@ -1475,7 +1491,7 @@ function _M:giveEgoPlate()
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=1000}, 1, true)
         end
-      
+
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
         o.pseudo_id = true
@@ -1581,7 +1597,7 @@ function _M:giveStaff()
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
       end
-end 
+end
 
 function _M:giveHammer()
   local inven = game.player:getInven("MAIN_HAND")
@@ -1591,7 +1607,7 @@ function _M:giveHammer()
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
         o.pseudo_id = true
       end
-end 
+end
 
 function _M:giveSpear()
   local inven = game.player:getInven("MAIN_HAND")
@@ -1679,7 +1695,7 @@ function _M:giveChainmail()
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
         o.pseudo_id = true
-      end 
+      end
 end
 
 function _M:giveChainShirt()
@@ -1747,8 +1763,8 @@ function _M:giveStartingEQ()
       elseif race == "Drow" then self:giveScimitar()
       else self:giveAxe() end
       --Account for perk items
-      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
-        then self:givePerkArmor() 
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
+        then self:givePerkArmor()
       else self:giveChainmail() end
 
     elseif class == "Bard" then
@@ -1765,7 +1781,7 @@ function _M:giveStartingEQ()
       elseif race == "Dwarf" or race == "Duergar" then self:giveLMace() end
       --Account for perk items
       if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
-        then self:givePerkArmor() 
+        then self:givePerkArmor()
       else self:giveChainShirt() end
 
     elseif class == "Cleric" or class == "Shaman" then
@@ -1778,7 +1794,7 @@ function _M:giveStartingEQ()
       else self:giveHMace() end
       --Account for perk items
       if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
-        then self:givePerkArmor() 
+        then self:givePerkArmor()
       else self:giveChainmail() end
 
     elseif class == "Druid" then
@@ -1793,8 +1809,8 @@ function _M:giveStartingEQ()
       elseif race == "Dwarf" or race == "Duergar" then self:giveScythe()
       else self:giveScimitar() end
       --Account for perk items
-      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
-        then self:givePerkArmor() 
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
+        then self:givePerkArmor()
       else self:givePadded() end
 
     elseif class == "Fighter" then
@@ -1807,11 +1823,11 @@ function _M:giveStartingEQ()
       elseif race == "Drow" then self:giveScimitar()
       elseif race == "Half-Orc" then self:giveAxe()
       else self:giveSword() end
-      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
-        then self:givePerkArmor() 
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
+        then self:givePerkArmor()
       else self:giveChainmail() end
 
-    elseif class == "Monk" then 
+    elseif class == "Monk" then
       --Account for perk items
       if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons
@@ -1830,7 +1846,7 @@ function _M:giveStartingEQ()
       elseif race == "Dwarf" then self:giveHammer()
       --TO DO: give lance once mounts are in
       else self:giveSword() end
-      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
         then self:givePerkArmor()
       else self:giveChainmail() end
 
@@ -1845,7 +1861,7 @@ function _M:giveStartingEQ()
       elseif race == "Drow" then self:giveScimitar()
       elseif race == "Dwarf" or race == "Duergar" then self:giveHammer()
       else self:giveSword() end
-      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
         then self:givePerkArmor()
       else self:giveLeather() end
 
@@ -1860,7 +1876,7 @@ function _M:giveStartingEQ()
       elseif race == "Drow" then self:giveHandCrossbow()
       elseif race == "Elf" then self:giveLongbow()
       else self:giveShortbow() end
-      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
         then self:givePerkArmor()
       else self:giveLeather() end
 
@@ -1872,7 +1888,7 @@ function _M:giveStartingEQ()
           then self:givePerkWeapon() end
       self:giveDagger()
       --Account for perk items
-      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
         then self:givePerkArmor() end
 
     elseif class == "Wizard" then
@@ -1896,7 +1912,7 @@ function _M:giveStartingEQ()
           then self:givePerkWeapon() end
       self:giveSword()
       --Account for perk items
-      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor" 
+      if self.perk_item == "chain mail" or self.perk_item == "chain shirt" or self.perk_item == "studded leather" or self.perk_item == "breastplate" or self.perk_item == "plate armor"
         then self:givePerkArmor() end
       self:giveChainShirt()
 
@@ -1904,9 +1920,9 @@ function _M:giveStartingEQ()
 end
 
 
-function _M:givePerkWeapon()      
+function _M:givePerkWeapon()
     --Weapon
-    if self.perk_item == "battleaxe" then self:giveEgoAxe()      
+    if self.perk_item == "battleaxe" then self:giveEgoAxe()
     elseif self.perk_item == "rapier" then self:giveEgoRapier()
     elseif self.perk_item == "long sword" then self:giveEgoSword()
     elseif self.perk_item == "dagger" then self:giveEgoDagger()
@@ -1915,7 +1931,7 @@ function _M:givePerkWeapon()
     elseif self.perk_item == "shortbow" then self:giveEgoShortbow()
     elseif self.perk_item == "longbow" then self:giveEgoLongbow()
     elseif self.perk_item == "sling" then self:giveEgoSling()
-    elseif self.perk_item == "light crossbow" then self:giveEgoLCrossbow()  
+    elseif self.perk_item == "light crossbow" then self:giveEgoLCrossbow()
     elseif self.perk_item == "heavy crossbow" then self:giveEgoHCrossbow()
     else end
 end
@@ -1943,9 +1959,9 @@ function _M:exerciseStat(stat, d, reason, cap)
   self.number_increased[reason] = 0
 
   --Respect caps
-  if (self.stat_increased[stat] or 0) > 5 then return end -- plus inherent potential 
+  if (self.stat_increased[stat] or 0) > 5 then return end -- plus inherent potential
 
-  if d > 0 then 
+  if d > 0 then
     if (self.number_increased[reason] or 0) > cap then return end
   end
 
@@ -1963,7 +1979,7 @@ function _M:exerciseStat(stat, d, reason, cap)
   if stat == "luc" then required = 100 end
 
   --Increase stat if exercising/training puts us above the cap
-  if self:attr("train_"..stat) > required then 
+  if self:attr("train_"..stat) > required then
     --zero the points!!!
     self:attr("train_"..stat, 0, true)
     self:incStat(stat, 1)
@@ -2007,9 +2023,9 @@ function _M:getFavorLevel(max_favor)
   if max_favor >= 96000 then ret = 8 end
   if max_favor >= 102000 then ret = 9 end
   if max_favor >= 205000 then ret = 10 end
-    
+
     game.log("Favor level:"..ret)
-  
+
   return ret
 end
 
@@ -2042,8 +2058,8 @@ function _M:divineMessage(deity, message, desc)
     if message == "offer raise" then string = color.."|I offer to you a chance to avenge yourself from beyond death!|#LAST#" end
     if message == "salutation" then string = color.."|Blessed be those who walk the path of shadows!|#LAST#" end
     if message == "convert" then string = "" end
-  end 
-  
+  end
+
 
   if deity == "Asherath" then
     color = "#TAN#"
@@ -2068,7 +2084,7 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing nine" then string = "Your training in the Ways of Asherath brings you closer to mental and physical perfection.  You also improve your knowledge of the arts of Divination and Evocation." end
     if message == "crowned" then string = color.."|I crown you the Psyche of War!|#LAST#" end
   end
-  
+
   if deity == "Ekliazeh" then
     color = "#SANDY_BROWN#"
     if message == "anger" then string = "" end
@@ -2110,8 +2126,8 @@ function _M:divineMessage(deity, message, desc)
     --Elf/Lizardfolk
     if message == "custom two" then string = color.."|Your people are too distant from the Earth to follow my ways.|#LAST#" end
     if message == "custom three" then string = color.."|I bless thy workings of the earth!|#LAST#" end
-  end  
-  
+  end
+
 
   if deity == "Erich" then
     color = "#PURPLE#"
@@ -2129,8 +2145,8 @@ function _M:divineMessage(deity, message, desc)
     if message == "custom four" then string = "A proud voice scorns, "..color.."|Vile cur, suffer for thy cowardice!|#LAST#" end
     --Goblinoid
     if message == "custom five" then string = "An angry voice declares, "..color.."|I deal not with filth and base creatures!|#LAST#" end
-  end  
-  
+  end
+
 
   if deity == "Essiah" then
     color = "#PINK#"
@@ -2149,7 +2165,7 @@ function _M:divineMessage(deity, message, desc)
     if message == "crowned" then string = "" end
 
   end
-  
+
 
   if deity == "Hesani" then
     color = "#YELLOW#"
@@ -2159,8 +2175,8 @@ function _M:divineMessage(deity, message, desc)
     --only barbarian levels
     if message == "custom one" then string = color.."|To embrace the path of harmony, one must first turn away from barbarism.|#LAST#" end
 
-  end  
-  
+  end
+
 
   if deity == "Immotian" then
     color = "#GOLD#"
@@ -2191,7 +2207,7 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing nine" then string = "" end
     if message == "crowned" then string = "" end
   end
-  
+
 
   if deity == "Khasrach" then
     color = "#OLIVE_DRAB#"
@@ -2219,7 +2235,7 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing nine" then string = "" end
     if message == "crowned" then string = "" end
   end
-  
+
 
   if deity == "Kysul" then
     color = "#LIGHT_GREEN#"
@@ -2243,8 +2259,8 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing eight" then string = "" end
     if message == "blessing nine" then string = "" end
     if message == "crowned" then string = "" end
-  end  
-  
+  end
+
 
   if deity == "Mara" then
     color = "#ANTIQUE_WHITE#"
@@ -2268,8 +2284,8 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing eight" then string = "" end
     if message == "blessing nine" then string = "" end
     if message == "crowned" then string = "" end
-  end  
-  
+  end
+
 
   if deity == "Maeve" then
     color = "#DARK_GREEN#"
@@ -2282,10 +2298,10 @@ function _M:divineMessage(deity, message, desc)
     if message == "custom two" then string = "A mellifluous voice titters, "..color.."|Now, my precious acolyte, entertain me with your wonderous displays of warcraft!|#LAST#" end
     --god pulse; Maeve's Whimsy
     if message == "custom three" then string = "A mellifluous voice titters, "..color.."|Now, on this moonless eve, the Faerie Queen works her wiles: so what's fair is foul, and foul's fair!|#LAST#" end
-    --god pulse x2; closest friendly non-player turns hostile; 
+    --god pulse x2; closest friendly non-player turns hostile;
     --random magic non-cursed item glows with a silvery light and gets a +1 bonus
     if message == "custom four" then string = "A mellifluous voice titters, "..color.."|Let discord and misrule reign eternal!|#LAST#" end
-    
+
     if message == "custom five" then string = "A mellifluous voice intones, "..color.."|Now, my beautiful plaything, drink deeply of my well of ancient fey dweomers!|#LAST#" end
     --god pulse; 1 on 1d3, a druidic spell or an arcane spell (player.level+3)/2
     if message == "custom six" then string = "A mellifluous voice intones, "..color.."|To you, my loyal knight of the trees, I bequithe this ancient faerie magick!|#LAST#" end
@@ -2305,8 +2321,8 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing eight" then string = "" end
     if message == "blessing nine" then string = "" end
     if message == "crowned" then string = "" end
-  end  
-  
+  end
+
 
   if deity == "Sabin" then
     color = "#LIGHT_BLUE#"
@@ -2325,8 +2341,8 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing eight" then string = "" end
     if message == "blessing nine" then string = "" end
     if message == "crowned" then string = "" end
-  end  
-  
+  end
+
 
   if deity == "Semirath" then
     color = "#ORCHID#"
@@ -2348,7 +2364,7 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing nine" then string = "" end
     if message == "crowned" then string = "" end
   end
-  
+
 
   if deity == "Xavias" then
     color = "#DARK_SLATE_GRAY#"
@@ -2370,8 +2386,8 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing eight" then string = "" end
     if message == "blessing nine" then string = "" end
     if message == "crowned" then string = "" end
-  end 
-  
+  end
+
 
   if deity == "Xel" then
     color = "#DARK_RED#"
@@ -2379,7 +2395,7 @@ function _M:divineMessage(deity, message, desc)
     if message == "salutation" then string = "You feel an aching, primordial hunger. "..color.."|Blood for the blood god!|#LAST#" end
     --doesn't really communicate
   end
-  
+
 
   if deity == "Zurvash" then
     color = "#CRIMSON#"
@@ -2398,7 +2414,7 @@ function _M:divineMessage(deity, message, desc)
     if message == "blessing eight" then string = "" end
     if message == "blessing nine" then string = "" end
     if message == "crowned" then string = "" end
-  end  
+  end
 
   if deity == "Multitude" then
     color = "#SLATE#"
@@ -2415,10 +2431,10 @@ function _M:divineMessage(deity, message, desc)
   end
 
 
-    
+
     if desc then string = string.." about "..desc end
     game.logPlayer(self, string)
-end    
+end
 
 function _M:transgress(deity, anger, angered, desc)
   --Currently only increase for your patron
@@ -2438,17 +2454,17 @@ function _M:transgress(deity, anger, angered, desc)
   if self.anger >= 5 then self:divineMessage(deity, "very uneasy", desc)
   else self:divineMessage(deity, "uneasy", desc) end
 
-end  
+end
 
 function _M:isForsaken(deity)
   if self.forsaken == true then return true
   else return false end
-end 
+end
 
 function _M:isAnathema(deity)
   if self.anathema == true then return true
   else return false end
-end  
+end
 
 function _M:setGodPulse()
   local deity = self.descriptor.deity
@@ -2476,13 +2492,13 @@ end
 
 function _M:godPulse()
   local deity = self.descriptor.deity
-  if deity == "Aiswin" then 
-  --  game.logPlayer(self, "Aiswin whispers a secret to you!") 
+  if deity == "Aiswin" then
+  --  game.logPlayer(self, "Aiswin whispers a secret to you!")
     --case one: identify a random item
     --case two: give Aiswin's Lore spell ("Mystical knowledge of Aiswin's Lore imprints itself on your mind!")
     --case three: mark random actor in range 30 as seen
   end
-  if deity == "Ekliazeh" then  
+  if deity == "Ekliazeh" then
     --case one: mend random item in inventory
     --case two: "Your o.name glows with a brilliant silver light!"
   --  self:divineMessage("Ekliazeh", "custom three")
@@ -2494,7 +2510,7 @@ function _M:godPulse()
   if deity == "Essiah" then
     --ESSIAH_DREAM stuff
     --after rest, if angry, damage 3d10 CON, the wrath of Essiah
-    --if self:getFavorLevel(max_favor) >= 1d12 then 
+    --if self:getFavorLevel(max_favor) >= 1d12 then
     --"Essiah appears to you in your dreams in the form you find most appealing, and beckons seductively. /n Accept the embrace?"
     --Y:"You experience a feverish, erotic dream of great intensity. That was certainly a learning experience!"
     --self:gainExp(10*self.level*(self.getFavorLevel+4))
@@ -2524,14 +2540,14 @@ function _M:godPulse()
     --summon orcs
     --if angry self:divineMessage("Khasrach", "custom three") all orcs e.faction = "enemies"
     --else self:divineMessage("Khasrach", "custom two") e.faction == "players"
-  end  
+  end
 
   if deity == "Kysul" then
-    if self:getFavorLevel(self.max_favor) < 3 then 
+    if self:getFavorLevel(self.max_favor) < 3 then
     else --gift random item
   --    self:divineMessage("Kysul", "custom one")
     end
-  end  
+  end
 
   if deity == "Mara" then
     if self.favor >= 1500 then
@@ -2547,7 +2563,7 @@ function _M:godPulse()
     --Othello's Irresistible Dance on player
   --  self:divineMessage("Maeve", "custom eight")
     --else self:randomMaeveStuff(false) end
-  end  
+  end
 
   if deity == "Sabin" then
     --if has allies then self:transgress("Sabin", 1, "relying on others")
@@ -2558,7 +2574,7 @@ function _M:godPulse()
       --exercise INT
       self:exerciseStat("int", rng.dice(5,12), "int_Sabine", 70)
     end
-  end  
+  end
   if deity == "Semirath" then
     --fumble a non-good hostile humanoid in player's sight if there's one
   --  self:divineMessage("Semirath", "custom one")
@@ -2594,7 +2610,7 @@ function _M:godPulse()
     --else
     self:incFavorFor("Multitude", rng.dice(4,50))
     self:divineMessage("Multitude", "custom seven")
-  end  
+  end
 
 end
 
@@ -2627,7 +2643,7 @@ function _M:godAnger()
     if deity == "Hesani" then
       --forget random x spells prepared
       game.logPlayer(self, "Moving against the currents of the world, you feel depleted.")
-    end  
+    end
 
     if deity == "Immotian" then
       --if has potion in equipment, destroy it and give a potion of blood instead
@@ -2639,30 +2655,30 @@ function _M:godAnger()
     if deity == "Khasrach" then
       if game.level.level > math.min(9, self.level+2) then
         --retribution
-      end  
+      end
       self:divineMessage("Khasrach", "custom one")
       game.logPlayer(self, "You are cast down!")
 
       local change = (10 - game.level.level)
-      
-      if game.level.level >= 10 then game:changeLevel(1) 
-      else 
+
+      if game.level.level >= 10 then game:changeLevel(1)
+      else
 --[[        if game.zone.max_level >= self.level.level + change then
         game:changeLevel(change) end]]
-      end 
+      end
     end
 
     if deity == "Kysul" then
       --get closest enemy, apply pseudonatural template to it
       self:divineMessage("Kysul", "custom three")
-    end  
+    end
 
     if deity == "Mara" then
       if self.type ~= "undead" then
         self:divineMessage("Mara", "custom one")
         game.logPlayer(self, "Your body decomposes!")
-      end  
-    end 
+      end
+    end
 
     if deity == "Maeve" then
       self:randomMaeveStuff(true)
@@ -2671,7 +2687,7 @@ function _M:godAnger()
     if deity == "Sabin" then
       self:divineMessage("Sabin", "custom one")
       --swap attributes
-    end 
+    end
 
     if deity == "Semirath" then
       if self.anger >= 15 then
@@ -2679,12 +2695,12 @@ function _M:godAnger()
         --retribution
       end
       --take random item and place it in a random place on map
-    end  
+    end
 
     if deity == "Xavias" then
       game.logPlayer(self, "Your mind is filled with dreamlike images and cryptic symbolism -- you can't comprehend it!")
       --a harrowing vision from Xavias, confuse for 40 turns
-    end  
+    end
 
     if deity == "Xel" then
       game.logPlayer(self, "Xel drinks your life!")
@@ -2692,24 +2708,24 @@ function _M:godAnger()
     --if self.life == old life then
     --game.logPlayer("You feel Xel is angrier now")
     --self:transgress("Xel", 1, false, "frustrating Xel")
-    end  
+    end
 
     if deity == "Zurvash" then
       local result = rng.dice(1,3)
       local duration = rng.dice(3,8)
       if result == 1 then
         game.logPlayer(self, "You are stricken with fear!")
-        --self:setEffect(self.EFF_FEAR, duration, {}) 
-      end  
+        --self:setEffect(self.EFF_FEAR, duration, {})
+      end
       if result == 2 then
         game.logPlayer(self, "You are stricken with weakness")
         --reduce STR by ?
-      end 
+      end
       if result == 3 then
         game.logPlayer(self, "You are inexplicably struck blind!")
         --self:setEffect(self.EFF_BLIND, duration, {})
       end
-    end  
+    end
 
     if deity == "Multitude" then
       self:divineMessage("Multitude", "custom four")
@@ -2729,10 +2745,10 @@ function _M:randomMaeveStuff(anger)
   end
 
   if result == 2 then
-    --summon single non-good non-lawful hostile CR self.level +2 
+    --summon single non-good non-lawful hostile CR self.level +2
     self:divineMessage("Maeve", "custom two")
   end
-  
+
   if result == 3 then
     self:divineMessage("Maeve", "custom three")
     --Maeve's Whimsy
@@ -2756,7 +2772,7 @@ function _M:randomMaeveStuff(anger)
     if result == 1 then
       --random druidic spell level (CR+2)/3
       game.logPlayer(self, "Knowledge of the dweomer %s imprints itself on your mind!"):format(t.name)
-    else 
+    else
       --random arcane spell, level (CR+2)/3
       game.logPlayer(self, "Knowledge of the dweomer %s imprints itself on your mind!"):format(t.name)
     end
@@ -2810,7 +2826,7 @@ function _M:getActorSacrificeReaction(deity, actor)
     if actor.name == "satyr" or actor.name == "nymph" then
       ret = "neutral"
     end
-  end  
+  end
 
   if deity == "Khasrach" then
     if actor.subtype == "goblinoid" then
@@ -2822,7 +2838,7 @@ function _M:getActorSacrificeReaction(deity, actor)
     if actor.challenge < self.level then
       ret = "unworthy"
     end
-  end  
+  end
 
   if deity == "Kysul" then
     if actor.type == "aberration" then
@@ -2831,7 +2847,7 @@ function _M:getActorSacrificeReaction(deity, actor)
     end
   --  if actor.alignment == "lawful good" or actor.alignment == "neutral good" or actor.alignment == "chaotic good"
   --or was friendly then ret = "abomination"
-  end 
+  end
 
   if deity == "Mara" then
     --flag damaged by player
@@ -2932,18 +2948,18 @@ function _M:liveSacrifice(actor)
     player:transgress(deity, 5, true, "offensive sacrifice")
     player:divineMessage(deity, "bad sacrifice")
     return end
-  
-  if self:getActorSacrificeReaction(deity, actor) == "angry" then 
-    player:transgress(deity, 1, false, "offensive sacrifice") 
+
+  if self:getActorSacrificeReaction(deity, actor) == "angry" then
+    player:transgress(deity, 1, false, "offensive sacrifice")
     player:divineMessage(deity, "bad sacrifice")
     return end
   if self:getActorSacrificeReaction(deity, actor) == "unworthy" then
     player:divineMessage(deity, "insufficient")
     return end
-  
+
 
   player:divineMessage(deity, "sacrifice")
-  
+
   self:sacrificeValue(actor)
 
   --reduce anger
@@ -2962,7 +2978,7 @@ function _M:liveSacrifice(actor)
     --exercise WIS
   else
     player:divineMessage(deity, "satisfied")
-  end  
+  end
 
   --increase favor by sacrifice value
   player:incFavorFor(deity, sac_val)
@@ -3027,18 +3043,18 @@ function _M:itemSacrifice(item)
     player:transgress(deity, 5, true, "offensive sacrifice")
     player:divineMessage(deity, "bad sacrifice")
     return end
-  
-  if self:getActorSacrificeReaction(deity, actor) == "angry" then 
-    player:transgress(deity, 1, false, "offensive sacrifice") 
+
+  if self:getActorSacrificeReaction(deity, actor) == "angry" then
+    player:transgress(deity, 1, false, "offensive sacrifice")
     player:divineMessage(deity, "bad sacrifice")
     return end
   if self:getActorSacrificeReaction(deity, actor) == "unworthy" then
     player:divineMessage(deity, "insufficient")
     return end
-  
+
 
   player:divineMessage(deity, "sacrifice")
-  
+
 
   if item.subtype == "corpse" and item.victim then
     sac_val = self:sacrificeValue(item.victim)
@@ -3062,7 +3078,7 @@ function _M:itemSacrifice(item)
     --exercise WIS
   else
     player:divineMessage(deity, "satisfied")
-  end  
+  end
 
   --increase favor by sacrifice value
   player:incFavorFor(deity, sac_val)
@@ -3077,14 +3093,14 @@ function _M:divineAid()
   local player = game.player
   local poisoned = player:isPoisoned()
 
-  if self.life < self.max_life*0.7 then 
-    self:resetToFull() 
+  if self.life < self.max_life*0.7 then
+    self:resetToFull()
     game.logPlayer(self, "Your wounds heal fully!")
     return end
   if poisoned then player:removeEffect(self[poisoned]) return end
-  if self.nutrition < 1500 then 
+  if self.nutrition < 1500 then
     self.nutrition = 3500
-    game.logPlayer(self, "You no longer feel hungry.") 
+    game.logPlayer(self, "You no longer feel hungry.")
     return end
 --if petrified then unpetrify "Your afflictions are purified!"
 --if blind then remove the effect "Your afflictions are purified!"
@@ -3093,7 +3109,7 @@ function _M:divineAid()
 --if enemy & enemy CR > player.level*2 then teleport "deity carries you to safety!"
 --if diseased/sick then remove the effect "Your afflictions are purified!"
 --if cursed then remove curse ""Your curses are lifted!"
-  if self.nutrition < 2000 then 
+  if self.nutrition < 2000 then
     self.nutrition = 3500
     game.logPlayer(self, "You no longer feel hungry.")
     return end
@@ -3117,7 +3133,7 @@ function _M:pray()
 
   self:divineAid()
 
-end  
+end
 
 
 
@@ -3177,7 +3193,7 @@ function _M:updateModdableTile()
 
     local base = "default/tiles/player/default/"
     --Use racial dolls
-    local doll = "default/tiles/player/racial_dolls/"    
+    local doll = "default/tiles/player/racial_dolls/"
 
 	  self.image = doll..(self.moddable_tile_base or "human_m.png")
   	self.add_mos = {}
