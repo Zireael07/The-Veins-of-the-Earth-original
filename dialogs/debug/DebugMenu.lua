@@ -123,7 +123,7 @@ end
 function _M:generateList()
 	local list = {}
 	list[#list+1] = {name="Entities list", dialog="EntityTracker"}
-	list[#list+1] = {name="Kill off clones", action="kill-clones"} 
+	list[#list+1] = {name="Kill off clones", action="kill-clones"}
 	list[#list+1] = {name="Object list", dialog="ObjectTracker"}
 	list[#list+1] = {name="Change Zone", dialog="ChangeZone"}
 	list[#list+1] = {name="Change Level", action="change_level"}
@@ -136,7 +136,6 @@ function _M:generateList()
 	list[#list+1] = {name="Summon Creature", dialog="SummonCreature"}
 	list[#list+1] = {name="Create Item", dialog="CreateItem2"}
 --	list[#list+1] = {name="Create Item", dialog="CreateItem"}
---	list[#list+1] = {name="Create Item", dialog="CreateItem3"}
 --	list[#list+1] = {name="Alter Faction", dialog="AlterFaction"}
 	list[#list+1] = {name="Create Trap", dialog="CreateTrap"}
 	list[#list+1] = {name="Create Terrain", dialog="CreateTerrain"}
@@ -168,4 +167,3 @@ function _M:reloadUI()
         end
     end
 end
-
