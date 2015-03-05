@@ -62,12 +62,12 @@ newFeat{
 	--	talent = { Talents.T_POINT_BLANK_SHOT, Talents.T_RAPID_SHOT },
         talent = { Talents.T_PRECISE_SHOT, Talents.T_RAPID_SHOT },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 6
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 6 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 6",		 
+			desc = "Base attack bonus 6",
 		}
 	},
 	points = 1,
@@ -94,7 +94,7 @@ newFeat{
 	name = "Loadbearer",
 	type = {"class/general", 1},
 	require = {
-		stat = { str = 13 } 
+		stat = { str = 13 }
 	},
 	is_feat = true,
 	points = 1,
@@ -160,4 +160,32 @@ newFeat{
         talent = { Talents.T_TOUGHNESS, Talents.T_ROLL_WITH_IT },
     },
     info = [[If your injuries do not exceed (3 + Con mod)* 5% of your hp, you regenerate one point per 3 turns.]],
+}
+
+newFeat{
+    name = "Master Craftsman",
+    type = {"class/general", 1},
+    is_feat = true,
+    points = 1,
+    mode = "passive",
+    require = {
+            special = {
+            fct = function(self, t, offset)
+            --Base attack bonus 1
+            if self:attr("skill_craft") and self:attr("skill_craft") >= 5 then return true
+            else return false end
+            end,
+            desc = "5 ranks in Craft skill",
+            },
+        },
+    on_learn = function(self, t)
+        self:learnTalentType("arcane/itemcreation", true)
+        self.skill_bonus_craft = (self.skill_bonus_craft or 0) + 2
+    end,
+    on_unlearn = function(self, t)
+    --    if not caster then lose access to craft feats
+        self:unlearnTalentType("arcane/itemcreation", true)
+        self.skill_bonus_craft = self.skill_bonus_craft - 2
+    end,
+    info = [[You receive a +2 bonus to the Craft skill. You can use the skill to craft magic armor or weapons as though you were a spellcaster.]],
 }
