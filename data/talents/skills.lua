@@ -16,8 +16,8 @@ newTalentType{ type="skill/skill", name = "skill", description = "Skills" }
 				local check = self:skillCheck("intuition", 10)
 				if check then
 					o.identified = true
-				end	
-			else 
+				end
+			else
 				game.log("You pick an item which has already been identified") end
 			 return true
 	end,
@@ -67,18 +67,18 @@ newTalent{
 	points = 1,
 	cooldown = 20,
 	on_pre_use = function(self, t, silent)
-	if self:isTalentActive(t.id) then 
+	if self:isTalentActive(t.id) then
 			return true end
-	--[[		if stealthTest(self) then return true 
+	--[[		if stealthTest(self) then return true
 			else return nil end
 		end]]
 
 		if not self.x or not self.y or not game.level then return end
-		
+
 		if canHide(self) then return true
-		else 
+		else
 			if not silent then game.logPlayer(self, "You cannot hide in plain sight") end
-			return nil 
+			return nil
 		end
 	end,
 --[[	on_post_use = function(self, t, silent)
@@ -86,25 +86,25 @@ newTalent{
 	else return nil end
 	end,]]
 	activate = function(self, t)
-		local res = { 
+		local res = {
 		stealth_slow = self:addTemporaryValue("movement_speed_bonus", -0.50),
 		stealth = self:addTemporaryValue("stealth", 1),
 		lite = self:addTemporaryValue("lite", -1000),
 		}
 		self:resetCanSeeCacheOf()
-		
+
 		--Account for Underdark races
 		if self.infravision < 3 then infra = self:addTemporaryValue("infravision", 3) end
-		
-		return res 
+
+		return res
 	end,
-		
+
 	deactivate = function(self, t, p)
 	self:removeTemporaryValue("stealth", p.stealth)
 	self:removeTemporaryValue("lite", p.lite)
 	self:removeTemporaryValue("stealth_slow", p.stealth_slow)
 	if p.infra then self:removeTemporaryValue("infravision", p.infra) end
-	
+
 	self:resetCanSeeCacheOf()
 	return true
 	end,
@@ -174,7 +174,7 @@ newTalent{
 			-- Reset NPC's target.  Otherwise, it may follow the player around like a puppy dog.
 			if target.setTarget then target:setTarget(nil) end
 		else game.log("The target resists your attempts to influence it") end
-		
+
 		return true
 	end,
 	info = function(self, t)
@@ -196,7 +196,7 @@ newTalent{
 		local ride = self.skill_ride
 
 		if ride > 0 then return true
-		else 
+		else
 			if not silent then
                 game.log("You need at least 1 rank in Ride to use this")
             end
@@ -221,7 +221,7 @@ newTalent{
 			horse = target:clone()
 			game.player.horse = horse
 
-			--Despawn the mount 
+			--Despawn the mount
 			target:disappear()
 
         	return res
@@ -247,4 +247,45 @@ newTalent{
 	info = function(self, t)
 		return "Ride on your mount"
 	end,
+}
+
+
+newTalent{
+    name = "Jump", image = "talents/jump.png",
+	type = {"skill/skill",1},
+	mode = "activated",
+	points = 1,
+	cooldown = 0,
+	range = 5,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+    action = function(self, t)
+		local tg = self:getTalentTarget(t)
+	--	local x, y, target = self:getTarget(tg)
+        local x, y = self:getTarget(tg)
+		if not x or not y then return nil end --or not target then return nil end
+
+        dist = core.fov.distance(self.x, self.y, x, y)
+
+        if dist == 1 then
+            if self:skillCheck("jump", 10) then self:teleportRandom(x, y, 0) end
+        elseif dist == 2 then
+            if self:skillCheck("jump", 17) then self:teleportRandom(x, y, 0) end
+        elseif dist == 3 then
+            if self:skillCheck("jump", 23) then self:teleportRandom(x, y, 0) end
+        elseif dist == 4 then
+            if self:skillCheck("jump", 30) then self:teleportRandom(x, y, 0) end
+        else
+            if self:skillCheck("jump", 37) then self:teleportRandom(x, y, 0) end
+        end
+
+        return true
+	end,
+
+	info = function(self, t)
+		return "Jump over an obstacle - a trap or an enemy!"
+	end,
+
+
 }

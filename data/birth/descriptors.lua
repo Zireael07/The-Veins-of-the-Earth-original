@@ -59,6 +59,7 @@ newBirthDescriptor{
     [ActorTalents.T_PRAYER]=1,
     [ActorTalents.T_POLEARM]=1,
     [ActorTalents.T_STEALTH]=1,
+	[ActorTalents.T_JUMP]=1,
     [ActorTalents.T_DIPLOMACY]=1,
     [ActorTalents.T_ANIMAL_EMPATHY]=1,
     [ActorTalents.T_MOUNT]=1,
@@ -82,7 +83,7 @@ newBirthDescriptor{
       __ALL__ = "disallow",
     },
     --Disallows prestige classes at birth
-    class = 
+    class =
     {
      ['Shadowdancer'] = "disallow",
      ['Assassin'] = "disallow",
@@ -156,7 +157,7 @@ newBirthDescriptor {
   {
     domains =
     {
-      ['Good'] = "disallow", 
+      ['Good'] = "disallow",
       ['Evil'] = "disallow",
       ['Chaos'] = "disallow",
     }
@@ -171,7 +172,7 @@ newBirthDescriptor {
   {
     domains =
     {
-      ['Good'] = "disallow", 
+      ['Good'] = "disallow",
       ['Evil'] = "disallow",
       ['Chaos'] = "disallow",
       ['Law'] = "disallow",
@@ -187,7 +188,7 @@ newBirthDescriptor {
   {
     domains =
     {
-      ['Good'] = "disallow", 
+      ['Good'] = "disallow",
       ['Evil'] = "disallow",
       ['Law'] = "disallow",
     }
@@ -205,7 +206,7 @@ newBirthDescriptor {
   {
     domains =
     {
-      ['Good'] = "disallow", 
+      ['Good'] = "disallow",
       ['Chaos'] = "disallow",
     }
   },
@@ -222,7 +223,7 @@ newBirthDescriptor {
   {
     domains =
     {
-      ['Good'] = "disallow", 
+      ['Good'] = "disallow",
       ['Law'] = "disallow",
     }
   },
@@ -239,7 +240,7 @@ newBirthDescriptor {
   {
     domains =
     {
-      ['Good'] = "disallow", 
+      ['Good'] = "disallow",
       ['Law'] = "disallow",
       ['Chaos'] = "disallow",
     }
