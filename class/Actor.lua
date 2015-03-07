@@ -299,10 +299,6 @@ function _M:act()
 	--Poison timer
 	if self.poison_timer then self.poison_timer = self.poison_timer - 1 end
 
-
-	--Death & dying related stuff
-	self:deathStuff()
-
 	-- check passive stuff. This should be in actbase I think but I cant get it to work
 	if self:knowTalent(self.T_BLOOD_VENGANCE) then
 		--Bloodied!
@@ -703,22 +699,22 @@ end
 
 --End of desc stuff
 --Death & dying related stuff
-function _M:deathStuff()
-	if self.life > 0 then self:removeEffect(self.EFF_DISABLED) end
+function _M:deathStuff(value, src)
+	if (self.life - (value or 0)) > 0 then self:removeEffect(self.EFF_DISABLED) end
 
-	if self.life == 0 then
+	if (self.life - (value or 0)) == 0 then
 		--Undead and constructs now die at 0
 		if self.type ~= "undead" and self.type ~= "construct" then
-		self:setEffect(self.EFF_DISABLED, 1, {})
-		self:removeEffect(self.EFF_DYING)
+			self:setEffect(self.EFF_DISABLED, 1, {})
+			self:removeEffect(self.EFF_DYING)
 		else
 			if self:hasEffect(self.EFF_DYING) then self:removeEffect(self.EFF_DYING) end
-		self:die()
+			self:die()
 		end
 	end
 
 
-	if self.life < 0 then
+	if (self.life - (value or 0)) < 0 then
 		self:removeEffect(self.EFF_DISABLED)
 		self:setEffect(self.EFF_DYING, 1, {})
 		--Monsters bleed out quicker than players and have a smaller chance to stabilize
@@ -734,7 +730,7 @@ function _M:deathStuff()
 	end
 
 	--Ensure they can actually die due to bleeding out
-	if not self == game.player and self.life <= -10 and not self.dead then
+	if not self == game.player and (self.life - (value or 0)) <= -10 and not self.dead then
 		self:removeEffect(self.EFF_DYING, true, true)
 
 		--Remove any particles we have
@@ -750,7 +746,7 @@ function _M:deathStuff()
 		local ps = self:getParticlesList()
 		for i, p in ipairs(ps) do self:removeParticles(p) end
 
-		self:die() end
+		self:die(src) end
 end
 
 
@@ -789,65 +785,7 @@ function _M:onTakeHit(value, src, death_note)
 	if self.on_takehit then value = self:check("on_takehit", value, src, death_note) end
 
 	--Death & dying related stuff
-	if (self.life - value) > 0 then self:removeEffect(self.EFF_DISABLED) end
-
-	if (self.life - value) == 0 then
-		--Undead, constructs and plants now die at 0
-		if self.type ~= "undead" and self.type ~= "construct" and self.type ~= "plant" then
-		self:setEffect(self.EFF_DISABLED, 1, {})
-		self:removeEffect(self.EFF_DYING)
-		else
-			if self:hasEffect(self.EFF_DYING) then self:removeEffect(self.EFF_DYING, true, true) end
-		self:die(src)
-		end
-	end
-
-
-	if (self.life - value) < 0 then
-		if self == game.player and self:knowTalent(self.T_IGNORE_WOUND) and not self.ignored_wound then
-			--ignore the wound
-			self.life = self.life + value
-			--set the flag
-			self.ignored_wound = true
-			game.logPlayer(self, "You ignore the wound!")
-
-			return value
-		end
-
-		self:removeEffect(self.EFF_DISABLED)
-		self:setEffect(self.EFF_DYING, 1, {})
-		--Monsters bleed out quicker than players and have a smaller chance to stabilize
-		if self == game.player then
-			--Raging characters are considered stable as long as they are raging
-			if self:hasEffect(self.EFF_RAGE) then self.life = 0 end
-			if rng.percent(10) then self.life = 0
-			else self.life = self.life - 1 end
-		else
-			if rng.percent(2) then self.life = 0
-			else self.life = self.life - 3 end
-		end
-	end
-
-	--Ensure they can actually die due to bleeding out
-	if not self == game.player and (self.life - value) <= -10 and not self.dead then
-		self:removeEffect(self.EFF_DYING, true, true)
-
-		--Remove any particles we have
-		local ps = self:getParticlesList()
-		for i, p in ipairs(ps) do self:removeParticles(p) end
-
-		self:die(game.player)
-
-	end
-	if (self.life - value) <= -10 and not self.dead then
-		self:removeEffect(self.EFF_DYING, true, true)
-
-		--Remove any particles we have
-		local ps = self:getParticlesList()
-		for i, p in ipairs(ps) do self:removeParticles(p) end
-
-		self:die(src)
-	end
+	self:deathStuff(value, src)
 
 	return value
 end
