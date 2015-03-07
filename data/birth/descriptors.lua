@@ -60,6 +60,7 @@ newBirthDescriptor{
     [ActorTalents.T_POLEARM]=1,
     [ActorTalents.T_STEALTH]=1,
 	[ActorTalents.T_JUMP]=1,
+	[ActorTalents.T_INTIMIDATE]=1,
     [ActorTalents.T_DIPLOMACY]=1,
     [ActorTalents.T_ANIMAL_EMPATHY]=1,
     [ActorTalents.T_MOUNT]=1,
