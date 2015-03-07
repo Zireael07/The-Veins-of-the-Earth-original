@@ -1,11 +1,11 @@
-newTalentType{ 
+newTalentType{
 	all_limited=true,
 	type="evocation",
 	name="evocation",
 	description = "the evocation school harnesses the elements, using them to cause great damage"
 }
 
-newArcaneSpell{	
+newArcaneSpell{
 	name = "Light",
 	type = {"evocation", 1},
 	mode = 'activated',
@@ -13,8 +13,8 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 5,
@@ -50,7 +50,7 @@ newArcaneSpell{
 }
 
 
-newArcaneSpell{	
+newArcaneSpell{
 	name = "Magic Missile", --image="talents/magic_missile.png",
 	type = {"evocation", 1}, descriptors = {force=true},
 	mode = 'activated',
@@ -100,7 +100,7 @@ newArcaneSpell{
 	end,
 }
 
-newArcaneSpell{	
+newArcaneSpell{
 	name = "Burning Hands",
 	type = {"evocation", 1}, descriptors = {fire=true},
 	mode = 'activated',
@@ -127,7 +127,7 @@ newArcaneSpell{
 	range = 0,
 	requires_target = true,
 	radius = 3,
-	
+
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
@@ -146,14 +146,14 @@ newArcaneSpell{
 		return true
 	end,
 	info = function(self, t)
-		local dice = t.num_dice(self, t) 
+		local dice = t.num_dice(self, t)
 		return ([[A cone of searing flame shoots from your fingertips. Any creature in the area of the flames takes %dd4 points of fire damage.
 
 		The damage is equal to 1d4 per caster level (maximum 5d4).]]):format(dice)
 	end,
 }
 
-newArcaneSpell{	
+newArcaneSpell{
 	name = "Darkness",
 	type = {"evocation", 1},
 	mode = 'activated',
@@ -161,8 +161,8 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 5,
@@ -197,7 +197,7 @@ newArcaneSpell{
 	end,
 }
 
-newArcaneSpell{	
+newArcaneSpell{
 	name = "Ignizarr's fire", short_name = "IGNIZZAR_FIRE",
 	type = {"evocation", 1},
 	mode = 'activated',
@@ -240,19 +240,16 @@ newArcaneSpell{
 	mode = 'activated',
 	level = 3,
 	points = 1,
-	cooldown = 20,
 --	tactical = { BUFF = 2 },
 	getDamage = function(self, t)
 		if self:isTalentActive(self.T_MAXIMIZE) then return 18
 		elseif self:isTalentActive(self.T_EMPOWER) then return math.max(rng.dice(3,6)*1.5)
 		else return rng.dice(3,6) end
 	end,
-	range = 0,
-	radius = function(self, t)
-		return 3
-	end,
+	range = 5,
+	radius = 3,
 	target = function(self, t)
-		return {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t)}
+		return {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t), talent = t}
 	end,
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
@@ -267,5 +264,5 @@ newArcaneSpell{
 
 	info = function(self, t)
 		return ([[You cause a fireball to erupt around the target - the amount of damage is 3d6.]])
-	end,	
+	end,
 }
