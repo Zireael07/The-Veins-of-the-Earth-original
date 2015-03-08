@@ -1,20 +1,26 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
 --Elementals do not drop corpses!
 
---Fly 100 ft.; whirlwind
 newEntity{
-	define_as = "BASE_NPC_ELEMENTAL_AIR",
+	define_as = "BASE_NPC_ELEMENTAL",
 	type = "elemental",
+	body = { INVEN = 10 },
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	resolvers.wounds()
+}
+
+
+--Fly 100 ft.; whirlwind
+newEntity{ base = "BASE_NPC_ELEMENTAL",
+	define_as = "BASE_NPC_ELEMENTAL_AIR",
 	image = "tiles/elemental_air.png",
 	display = 'E', color=colors.WHITE,
-	body = { INVEN = 10 },
 	desc = [[An air elemental.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=17, con=10, int=4, wis=11, cha=11, luc=10 },
 	combat = { dam= {1,4} },
 	skill_listen = 2,
@@ -22,6 +28,7 @@ newEntity{
 	combat_natural = 3,
 	infravision = 4,
 	resolvers.talents{ [Talents.T_FINESSE]=1, },
+	fly = true,
 }
 
 newEntity{
@@ -80,7 +87,7 @@ newEntity{
 	skill_listen = 10,
 	skill_spot = 15,
 	combat_dr = 5,
-	resolvers.talents{ [Talents.T_DODGE]=1, 
+	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1,
 	},
 }
@@ -100,7 +107,7 @@ newEntity{
 	skill_listen = 12,
 	skill_spot = 16,
 	combat_dr = 10,
-	resolvers.talents{ [Talents.T_DODGE]=1, 
+	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1,
 --	[Talents.T_POWER_ATTACK]=1,
 	[Talents.T_IRON_WILL]=1,
@@ -122,7 +129,7 @@ newEntity{
 	skill_listen = 29,
 	skill_spot = 29,
 	combat_dr = 10,
-	resolvers.talents{ [Talents.T_DODGE]=1, 
+	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1,
 --	[Talents.T_POWER_ATTACK]=1,
 	[Talents.T_IRON_WILL]=1,
@@ -130,15 +137,12 @@ newEntity{
 }
 
 --Earth glide, push
-newEntity{
+newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_ELEMENTAL_EARTH",
-	type = "elemental",
 	image = "tiles/elemental_earth.png",
 	display = 'E', color=colors.BROWN,
-	body = { INVEN = 10 },
 	desc = [[An earth elemental.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=8, con=13, int=4, wis=11, cha=11, luc=10 },
 	combat = { dam= {1,6} },
 	skill_listen = 2,
@@ -243,21 +247,18 @@ newEntity{
 	skill_listen = 29,
 	skill_spot = 29,
 	combat_dr = 10,
-	resolvers.talents{ [Talents.T_ALERTNESS]=1, 
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1,
 	},
 }
 
 --Immunity to fire, vulnerability to cold, fire damage on hit
-newEntity{
+newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_ELEMENTAL_FIRE",
-	type = "elemental",
 	image = "tiles/elemental_fire.png",
 	display = 'E', color=colors.RED,
-	body = { INVEN = 10 },
 	desc = [[A fire elemental.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=13, con=10, int=4, wis=11, cha=11, luc=10 },
 	combat = { dam= {1,4} },
 	skill_listen = 2,
@@ -328,7 +329,7 @@ newEntity{
 	skill_listen = 10,
 	skill_spot = 15,
 	combat_dr = 5,
-	resolvers.talents{ [Talents.T_DODGE]=1, 
+	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1,
 	[Talents.T_ALERTNESS]=1,
 	},
@@ -349,7 +350,7 @@ newEntity{
 	skill_listen = 12,
 	skill_spot = 16,
 	combat_dr = 10,
-	resolvers.talents{ [Talents.T_DODGE]=1, 
+	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1,
 	[Talents.T_ALERTNESS]=1,
 	},
@@ -370,7 +371,7 @@ newEntity{
 	skill_listen = 29,
 	skill_spot = 29,
 	combat_dr = 10,
-	resolvers.talents{ [Talents.T_DODGE]=1, 
+	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1,
 	[Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1,
@@ -378,15 +379,12 @@ newEntity{
 }
 
 --Swim 90 ft.; drench, vortex
-newEntity{
+newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_ELEMENTAL_WATER",
-	type = "elemental",
 	image = "tiles/elemental_water.png",
 	display = 'E', color=colors.BLUE,
-	body = { INVEN = 10 },
 	desc = [[A water elemental.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=10, con=13, int=4, wis=11, cha=11, luc=10 },
 	combat = { dam= {1,6} },
 	skill_listen = 2,
@@ -493,7 +491,7 @@ newEntity{
 	skill_listen = 29,
 	skill_spot = 29,
 	combat_dr = 10,
-	resolvers.talents{ [Talents.T_ALERTNESS]=1, 
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1,
 	},
 }
@@ -526,15 +524,13 @@ newEntity{
 }]]
 
 --Immunity to fire, vulnerability to cold, melt weapons, combustion 1d8 fire for 1d4+2 rounds
-newEntity{
+newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_MAGMIN",
-	type = "elemental", subtype = "fire",
+	subtype = "fire",
 	image = "tiles/elemental_fire.png",
 	display = "E", color=colors.DARK_RED,
-	body = { INVEN = 10 },
 	desc = [[A small fiery being.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=11, con=13, int=8, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,3}, },
 	name = "magmin",

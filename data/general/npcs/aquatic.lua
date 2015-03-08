@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -36,6 +36,7 @@ newEntity{
 	skill_spot = 25,
 	skill_swim  = 8,
 	skill_usemagic = 11,
+	resolvers.wounds(),
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1
 	},

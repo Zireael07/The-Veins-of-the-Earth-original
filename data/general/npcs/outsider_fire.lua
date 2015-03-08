@@ -1,14 +1,21 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
 --Outsiders do not drop corpses
 
---Immunity to fire, vulnerability to cold
 newEntity{
+	define_as = "BASE_NPC_FIRE",
+	type = "outsider", subtype = "fire",
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	combat = { dam= {1,6} },
+	resolvers.wounds()
+}
+
+--Immunity to fire, vulnerability to cold
+newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_AZER",
-	type = "outsider",
 	image = "tiles/npc/dwarf_fighter.png",
 	display = 'h', color=colors.FIREBRICK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
@@ -18,9 +25,8 @@ newEntity{
 	common_desc = [[Though not an elemental, azers share some traits with their firey cousins. As well as an invulnerability to fire and a vulnerability to cold, all natural attacks it make, as well as those with metalic weapons deal extra fire damage when they hit. Azers speak Ignan and Common.]],
 	base_desc = [[This flaming dwarf-like creature is an azer, a creature native to the Elemental Plane of Fire. It can see in the dark and needs to eat and sleep.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=13, int=12, wis=12, cha=9, luc=10 },
-	combat = { dam= {1,6} },
+	alignment = "lawful neutral",
 }
 
 newEntity{
@@ -51,10 +57,9 @@ newEntity{
 }
 
 --1d6 fire damage on hit; immunity to fire, vulnerability to cold, plane shift, change shape
---Spell-likes: At will—detect magic, produce flame, pyrotechnics (DC 14), scorching ray (1 ray only); 3/day—invisibility, wall of fire (DC 16); 1/day—grant up to three wishes (to nongenies only), gaseous form, permanent image (DC 18). 
-newEntity{
+--Spell-likes: At will—detect magic, produce flame, pyrotechnics (DC 14), scorching ray (1 ray only); 3/day—invisibility, wall of fire (DC 16); 1/day—grant up to three wishes (to nongenies only), gaseous form, permanent image (DC 18).
+newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_EFREET",
-	type = "outsider",
 	image = "tiles/djinn.png",
 	display = 'O', color=colors.ORANGE,
 	body = { INVEN = 10 },
@@ -62,12 +67,10 @@ newEntity{
 	specialist_desc = [[An efreeti has numerous spell-like abilities it can call upon. At will, it can detect magic or produce flames in a number of different lesser ways. Three times per day, it can polymorph itself, use gaseous form or invisibility, and produce a permanent image or wall of fire.]],
 	uncommon_desc = [[The malevolent efreet particularly enjoy befuddling their foes. Twice per day, an efreeti can magically enlarge or shrink itself or any humanoid. An efreeti’s body is so hot it burns to the touch.]],
 	common_desc = [[Genies are clever entities who prefer to outwit opponents. If trapped, they try to bargain their way out, offering to use their magical abilities as boons. In fact, however, most genies lack the power to grant wishes. As a genie, an efreeti can plane shift itself and up to eight other creatures between the Material Plane, the Astral Plane, and any of the elemental planes.]],
-	base_desc = [[This fiery, devilish-looking giant is an efreeti, a type of genie. Genies are renowned for their ability to grant wishes. 
+	base_desc = [[This fiery, devilish-looking giant is an efreeti, a type of genie. Genies are renowned for their ability to grant wishes.
 	It can see in the dark and cannot be brought back to life by normal means.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=23, dex=17, con=13, int=12, wis=12, cha=9, luc=10 },
-	combat = { dam= {1,6} },
 }
 
 newEntity{
@@ -92,19 +95,18 @@ newEntity{
 	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_COMBAT_CASTING]=1,
 	},
+	alignment = "lawful evil",
 }
 
 --Fly 60 ft.; paralysis 3 sq 1d6 rounds Fort DC 13; improved grab, blood drain
 --Immunity to fire, vulnerability to cold
-newEntity{
+newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_RAST",
-	type = "outsider",
 	image = "tiles/elemental_fire.png",
 	display = 'O', color=colors.RED,
 	body = { INVEN = 10 },
 	desc = [[A large creature of fire.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=12, con=13, int=3, wis=13, cha=12, luc=10 },
 	combat = { dam= {1,8} },
 }
@@ -125,19 +127,18 @@ newEntity{
 	skill_spot = 7,
 --	movement_speed_bonus = -0.88,
 	movement_speed = 0.22,
+	fly = true,
 }
 
 --Immunity to fire, vulnerability to cold
 --Constrict 1d4 + 1d6 fire, improved grab
-newEntity{
+newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_SALAMANDER",
-	type = "outsider",
 	image = "tiles/salamander.png",
 	display = 'O', color=colors.LIGHT_RED,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A large creature of fire.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=12, dex=13, con=14, int=14, wis=15, cha=13, luc=10 },
 	combat = { dam= {1,4} },
 	infravision = 4,

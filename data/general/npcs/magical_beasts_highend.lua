@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -11,6 +11,7 @@ newEntity{
 	stats = { str=10, dex=10, con=10, int=10, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	alignment = "neutral",
+	resolvers.wounds()
 }
 
 --Augmented critical, frightful presence DC 36 Will, improved grab, rush, swallow whole
@@ -82,7 +83,7 @@ newEntity{
 	combat_attackspeed = 1.88,
 	alignment = "chaotic good",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
---	[Talents.T_POWER_ATTACK]=1 
+--	[Talents.T_POWER_ATTACK]=1
 	},
 }
 
@@ -103,11 +104,11 @@ newEntity{
 	movement_speed = 2,
 	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
---	[Talents.T_POWER_ATTACK]=1 
+--	[Talents.T_POWER_ATTACK]=1
 	},
 }
 
---rake 1d6; spell-likes: 3/day—clairaudience/clairvoyance, detect magic, read magic, see invisibility; 1/day—comprehend languages, locate object, dispel magic, remove curse (DC 18), legend lore. 
+--rake 1d6; spell-likes: 3/day—clairaudience/clairvoyance, detect magic, read magic, see invisibility; 1/day—comprehend languages, locate object, dispel magic, remove curse (DC 18), legend lore.
 newEntity{
 	base = "BASE_NPC_SPHINX",
 	name = "gynosphinx",
@@ -128,11 +129,11 @@ newEntity{
 	movement_speed = 2,
 	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
-	[Talents.T_IRON_WILL]=1 
+	[Talents.T_IRON_WILL]=1
 	},
 }
 
---rake 1d6; Cleave feat 
+--rake 1d6; Cleave feat
 newEntity{
 	base = "BASE_NPC_SPHINX",
 	name = "hieracosphinx",
@@ -150,7 +151,7 @@ newEntity{
 	movement_speed = 2,
 	combat_attackspeed = 2,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
---	[Talents.T_POWER_ATTACK]=1 
+--	[Talents.T_POWER_ATTACK]=1
 	},
 }
 

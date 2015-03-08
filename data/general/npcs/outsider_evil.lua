@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
@@ -18,16 +18,22 @@ local Talents = require("engine.interface.ActorTalents")
 --Outsiders drop no corpses (except barghests)
 
 newEntity{
-	define_as = "BASE_NPC_ACHAIERAI",
+	define_as = "BASE_NPC_OUTSIDER_EVIL",
 	type = "outsider",
-	display = 'ǒ', color=colors.BLACK,
 	body = { INVEN = 10 },
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	alignment = "neutral evil",
+	resolvers.wounds()
+}
+
+newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
+	define_as = "BASE_NPC_ACHAIERAI",
+	display = 'ǒ', color=colors.BLACK,
 	desc = [[A large bird-like creature.]],
 	uncommon_desc = [[Achaierais can release a choking, toxic cloud that damages all those it touches and can cause short term insanity.]],
 	common_desc = [[An achaierai's strength lies in its formidable natural attacks of claws and beak, coupled with its speed and mobility in combat. Achaierais speak Infernal.]],
 	base_desc = [[This creature is an achaierai, a vicious predator from the Infernal Battlefield of Acheron. It can see in the dark and cannot be brought back to life by normal means.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=19, dex=13, con=14, int=11, wis=14, cha=16, luc=12 },
 	combat = { dam= {2,6} },
 }
@@ -55,19 +61,17 @@ newEntity{
 	skill_spot = 9,
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_BARGHEST",
-	type = "outsider",
 	display = 'd', color=colors.BLACK,
 	image = "tiles/barghest.png",
-	body = { INVEN = 10 },
+	subtype = "shapechanger",
 	desc = [[A large bluish-reddish wolf.]],
 	specialist_desc = [[When a barghest slays a humanoid opponent, it feasts on both the body and soul, making it extremely difficult to bring the creature back to life even with powerful spells such as true resurrection, miracle, or wish. Those that consume enough corpses grow into powerful versions called greater barghests.]],
 	uncommon_desc = [[Barghests can use the following as spell-like abilities: blink, charm monster, crushing despair, dimension door, levitate, misdirection, and rage.]],
 	common_desc = [[A barghest can change its shape, turning into either a goblin or a wolf. It has damage reduction, but it is vulnerable to magic weapons.]],
 	base_desc = [[This lupine fiend is a barghest, a hybrid between goblin and wolf. It can see in the dark and needs to eat, sleep and breathe.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=15, con=13, int=14, wis=14, cha=14, luc=12 },
 	combat = { dam= {1,6} },
 }
@@ -99,9 +103,9 @@ newEntity{
 
 --Breath weapon 2d6 fire cone 2 sq Ref DC 13 half, cooldown 5 turns
 --1d6 fire on hit; immunity to fire, vulnerability to cold
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_HELL_HOUND",
-	type = "outsider",
+	subtype = "fire",
 	display = 'd', color=colors.RED,
 	image = "tiles/UT/hell_hound.png",
 	body = { INVEN = 10, BODY = 1 },
@@ -110,7 +114,6 @@ newEntity{
 	common_desc = [[Hell hounds are consummate trackers and often employ pack tactics. The bite of a hell hound deals additional fire damage and they can breathe fire every few rounds.]],
 	base_desc = [[This infernal-looking canine is a hell hound. It can see in the dark and cannot be brought back to life by normal means.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=13, int=6, wis=10, cha=6, luc=10 },
 	combat = { dam= {1,6} },
 --	movement_speed_bonus = 0.33,
@@ -165,14 +168,11 @@ newEntity{
 }
 
 --Quill DC 16 Ref or -1 to attacks, saves and checks
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_HOWLER",
-	type = "outsider",
 	display = 'O', color=colors.BLACK,
-	body = { INVEN = 10 },
 	desc = [[A large creature with a ring of spikes around its neck.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=17, con=15, int=6, wis=14, cha=8, luc=12 },
 	combat = { dam= {2,8} },
 --	movement_speed_bonus = 0.88,
@@ -203,11 +203,9 @@ newEntity{
 --Immunity to fire, cold, charm, sleep and fear
 --Demon fever bite Fort DC 18, 1d6 Con; change shape
 --Spell-likes: At will—detect chaos, detect evil, detect good, detect law, detect magic, ray of enfeeblement.
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_NIGHT_HAG",
-	type = "outsider",
 	display = 'O', color=colors.BLACK,
-	body = { INVEN = 10 },
 	desc = [[A female creature dressed in dark colors.]],
 	specialist_desc = [[Night hags can haunt the dreams of chaotic or evil mortals, draining their health. A night hag has numerous spell-like abilities she can use at will, including etherealness, magic missile, ray of enfeeblement, sleep, and the ability to polymorph herself and detect magic and alignments.]],
 	uncommon_desc = [[Night hags resist spells and their iron-hard skin deflects most weapon blows, though magic weapions forged of cold iron can still pierce their defenses. A night hag’s bite carries a dangerous disease called demon fever.]],
@@ -215,7 +213,6 @@ newEntity{
 	base_desc = [[This midnight-hued crone is a type of fiend called a night hag. Some scholars believe night hags are the ultimate stage of truly ancient and powerful mortal hags (such as green hags).
 	It can see in the dark and cannot be brought back to life by normal means. ]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=19, dex=12, con=18, int=11, wis=15, cha=12, luc=12 },
 	combat = { dam= {2,6} },
 --	movement_speed_bonus = -0.66,
@@ -252,18 +249,16 @@ newEntity{
 
 --Fly 90 ft.; 1d4 fire on hit
 --Astral projection, etherealness; Run feat
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_NIGHTMARE",
-	type = "outsider",
+	subtype = "fire",
 	display = 'O', color=colors.FIREBRICK,
-	body = { INVEN = 10 },
 	desc = [[A horse made of smoke, with flaming hooves.]],
 	specialist_desc = [[Nightmares, at will, can use astral projection and etherealness, as the spells.]],
 	uncommon_desc = [[Nightmares can fly and often serve as companions and steeds for powerful, evil individuals. Nightmares produce a thick, black smoke when enraged, granting it concealment, as well as blinding and choking opponents.]],
 	common_desc = [[The powerful hooves of a nightmare are sheathed in flame and a blow from them sets combustible objects alight.]],
 	base_desc = [[This ebon-skinned, flame-covered steed is a nightmare. It can see in the dark and cannot be brought back to life by usual means.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=18, dex=15, con=16, int=13, wis=13, cha=12, luc=12 },
 	combat = { dam= {1,8} },
 	infravision = 4,
@@ -271,6 +266,7 @@ newEntity{
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
 	alignment = "neutral evil",
+	fly = true,
 }
 
 newEntity{
@@ -326,20 +322,18 @@ newEntity{
 --Fly 30 ft.; shriek 5 sq Fort DC 12 or paralyzed for 2d4 rounds
 newEntity{
 	define_as = "BASE_NPC_VARGOUILLE",
-	type = "outsider",
 	display = 'O', color=colors.UMBER,
-	body = { INVEN = 10 },
 	desc = [[A creature roughly the size of a human head.]],
 	uncommon_desc = [[Vargouilles can emit a terrible shriek that causes paralysis in its victims. The "kiss" of a vargouille on a paralyzed victim can cause a terrible transformation that slowly changes it into another vargouille. This transformation is slowed by sunlight or the daylight spell, but can only be reversed with remove disease.]],
 	common_desc = [[The bite of a vargouille contains a poison that cannot be healed except through the use of neutralize poison or heal.]],
 	base_desc = [[This is a vargouille, a hideous outsider from the deepest pits of Carceri. It can see in the dark and cannot be brought back to life by normal means.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=13, con=12, int=5, wis=12, cha=8, luc=8 },
 	combat = { dam= {1,4} },
 --	movement_speed_bonus = -0.66,
 	movement_speed = 0.33,
 	alignment = "neutral evil",
+	fly = true,
 }
 
 newEntity{
@@ -362,21 +356,19 @@ newEntity{
 }
 
 --Fly 60 ft.; scent; bay 20 sq except evil outsiders (Will DC 13 or panicked for 2d4 rounds), trip
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_YETH_HOUND",
-	type = "outsider",
 	display = 'd', color=colors.DARK_GRAY,
 	image = "tiles/yeth_hound.png",
-	body = { INVEN = 10 },
 	desc = [[A large black shadowy canine.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=15, con=15, int=6, wis=14, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
 	alignment = "neutral evil",
+	fly = true,
 }
 
 newEntity{

@@ -22,22 +22,27 @@ local animal_desc = [[It has low Intelligence and is always neutral. It needs to
 --Possible mounts
 --These will not spawn by themselves in the dungeon
 
---Scent; Endurance, Run feats
 newEntity{
-	define_as = "BASE_NPC_HORSE",
+	define_as = "BASE_NPC_MOUNT",
 	type = "animal",
+	body = { INVEN = 10 },
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	combat = { dam= {1,6} },
+	alignment = "neutral",
+	resolvers.wounds()
+}
+
+
+--Scent; Endurance, Run feats
+newEntity{ base = "BASE_NPC_MOUNT",
+	define_as = "BASE_NPC_HORSE",
 	image = "tiles/horse_brown.png",
 	display = 'q', color=colors.TAN,
-	body = { INVEN = 10 },
 	desc = [[A large hoofed quadruped, often used as a mount.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=16, dex=13, con=15, int=2, wis=12, cha=6, luc=2 },
-	combat = { dam= {1,6} },
 	skill_spot = 3,
 	skill_listen = 3,
 	combat_natural = 2,
-	alignment = "neutral",
 }
 
 newEntity{
@@ -104,23 +109,18 @@ newEntity{
 }
 
 --Scent
-newEntity{
+newEntity{ base = "BASE_NPC_MOUNT",
 	define_as = "BASE_NPC_RIDING_DOG",
-	type = "animal",
 	image = "tiles/dog.png",
 	display = 'q', color=colors.SANDY_BROWN,
-	body = { INVEN = 10 },
-	desc = [[A large hoofed quadruped, often used as a mount.]],
+	desc = [[A dog big enough to be used as a mount.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=15, con=15, int=2, wis=12, cha=6, luc=5 },
-	combat = { dam= {1,6} },
 	skill_spot = 4,
 	skill_listen = 4,
 	skill_jump = 6,
 	skill_swim = 1,
 	combat_natural = 4,
-	alignment = "neutral",
 }
 
 newEntity{
@@ -138,21 +138,17 @@ newEntity{
 }
 
 --Scent, Endurance feat
-newEntity{
+newEntity{ base = "BASE_NPC_MOUNT",
 	define_as = "BASE_NPC_PONY",
-	type = "animal",
 	image = "tiles/horse_spotted.png",
 	display = 'q', color=colors.DARK_TAN,
-	body = { INVEN = 10 },
 	desc = [[A small horse, under 5 feet tall at the shoulder, often used as a mount.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=13, con=12, int=2, wis=11, cha=4, luc=2 },
 	combat = { dam= {1,3} },
 	skill_spot = 5,
 	skill_listen = 5,
 	combat_natural = 2,
-	alignment = "neutral",
 }
 
 newEntity{
@@ -185,12 +181,10 @@ newEntity{
 }
 
 --From Incursion
-newEntity{
+newEntity{ base = "BASE_NPC_MOUNT",
 	define_as = "BASE_NPC_RIDING_LIZARD",
-	type = "animal",
 	image = "tiles/lizard.png",
 	display = 'R', color=colors.DARK_GREEN,
-	body = { INVEN = 10 },
 	desc = [[A gecko the size of a horse, often used as a mount by the deep-dwelling races.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
@@ -200,7 +194,6 @@ newEntity{
 	skill_listen = 5,
 	skill_climb = 8,
 	combat_natural = 2,
-	alignment = "neutral",
 }
 
 newEntity{

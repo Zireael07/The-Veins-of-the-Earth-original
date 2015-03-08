@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 --Oozes do not leave corpses
 
@@ -15,6 +15,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	rarity = 15,
 	alignment = "neutral",
+	resolvers.wounds()
 }
 
 --Climb 20 ft.; +2d6 acid on hit, constrict 2d6 + acid, clone

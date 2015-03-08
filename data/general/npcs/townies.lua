@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -12,6 +12,7 @@ newEntity{
     combat = { dam= {1,6} },
     faction = "neutral",
     open_door = true,
+    resolvers.wounds()
 }
 
 --Drow
@@ -44,7 +45,7 @@ newEntity{ define_as = "BASE_NPC_DROW_T",
 
 newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
     base = "BASE_NPC_DROW_T",
-    name = "female drow noble", 
+    name = "female drow noble",
     image = "tiles/newtiles/drow_noble_female.png",
     rarity = 3,
     max_life = resolvers.rngavg(13,15),

@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -14,10 +14,18 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
+	define_as = "BASE_NPC_ABERRATION",
+	type = "aberration",
+	body = { INVEN = 10 },
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	combat = { dam= {1,6} },
+	resolvers.wounds()
+}
+
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_ABOLETH",
 	type = "aberration", subtype = "aboleth",
 	image = "tiles/aboleth2.png",
@@ -28,9 +36,8 @@ newEntity{
     common_desc = [[An aboleth's attacks can cause a terrible affliction where the victim's skin becomes a clear, slimey membrane that must remain moistened with cool, fresh water. They also surround themselves with a viscous cloud of mucus that can cause victims to temporarily lose the ability to breath air. Aboleths speak their own language, as well as Undercommon and Aquan. The mucus that aboleths exude can be used to great effect in the creation of potions of water breathing.]],
     base_desc = [[This creature is an aboleth, an intelligent, aquatic aberration. This intelligent race make natural arcane casters, and the most powerful of their kind are usually competent wizards. It can see in the dark and needs to eat, sleep and breathe.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=8, dex=10, con=7, int=14, wis=12, cha=12, luc=12 },
-	combat = { dam= {1,6} },
+
 }
 
 -- Mind blast
@@ -44,7 +51,7 @@ newEntity{ base = "BASE_NPC_ABOLETH",
 	challenge = 6,
 	skill_swim = 8,
 	skill_knowledge = 8,
-}        
+}
 
 --Psionic abilities (hypnotic pattern, illusory wall, mirage arcana, persistent image, programmed image, project image, veil)
 --enslave (dominate person range 6 3/day)
@@ -60,22 +67,21 @@ newEntity{ base = "BASE_NPC_ABOLETH",
 	skill_knowledge = 11,
 	skill_swim = 8,
 	stats = { str=26, dex=12, con=20, int=15, wis=17, cha=17, luc=12 },
-}        
+}
 
 --TO DO: Aboleth mage (slap 10 levels of wizard on top of a normal aboleth)
 
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_ATHACH",
 	type = "aberration", subtype = "athach",
 	image = "tiles/athach.png",
 	display = "X", color=colors.BLACK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A hulking deformed creature.]],
-    uncommon_desc = [[Though having no sense of personal hygene, athachs do have a love for the finery of gems, crystals and jewellery - a passion only matched by their love of food and violence. Though fearful of most giantkin, athachs hate hill giants with a passion and will usually attack them on sight.]],
+    uncommon_desc = [[Though having no sense of personal hygiene, athachs do have a love for the finery of gems, crystals and jewellery - a passion only matched by their love of food and violence. Though fearful of most giantkin, athachs hate hill giants with a passion and will usually attack them on sight.]],
     common_desc = [[As well as being superb melee combatants, athachs can hurl rocks as skillfully as most giants, and have a nasty poisonous bite that can drain the strength of its victims. Athachs speak a crude dialect of giant.]],
     base_desc = [[This huge, portly giant-like creature is in fact an athach, identifiable by its third arm and its unbelievable stench. It can see in the dark and needs to eat, sleep and breathe.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=26, dex=13, con=21, int=7, wis=12, cha=6, luc=8 },
 	combat = { dam= {2,8} },
 }
@@ -88,17 +94,17 @@ newEntity{ base = "BASE_NPC_ATHACH",
 	hit_die = 14,
 	challenge = 8,
 	combat_natural = 6,
-	resolvers.talents{ [Talents.T_ALERTNESS]=1, 
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_POWER_ATTACK] = 1
 	},
 	resolvers.equip{
-                full_id=true,
-                { name = "leather armor" },
-                { name = "morningstar" },
-        },
-}        
+        full_id=true,
+        { name = "leather armor" },
+        { name = "morningstar" },
+    },
+}
 
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_CHOKER",
 	type = "aberration", subtype = "choker",
 	image = "tiles/ettercap.png",
@@ -106,7 +112,6 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A small creature.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=16, dex=14, con=13, int=4, wis=13, cha=7, luc=8 },
 	combat = { dam= {1,3} },
 }
@@ -125,19 +130,18 @@ newEntity{ base = "BASE_NPC_CHOKER",
 	uncommon_desc = [[While not overly dexterous, chokers are unnaturally fast, and thus can perform more actions than a normal creature can.]],
 	common_desc = [[A choker’s hands are covered with spiny pads that allow it to traverse walls and ceilings, where it likes to lay in hiding. When prey passes by, it grabs the creature by the neck with its tentacle-like arms and proceeds to strangle the victim until it dies.]],
 	base_desc = [[This small creature is a choker, a subterranean beast. It can see in the dark.]],
-}        
+}
 
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_CHUUL",
 	type = "aberration", subtype = "chuul",
 	display = "X", color=colors.BLUE,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+
     desc = [[A large serpent-like squid.]],
     uncommon_desc = [[Although unable to use many items, chuuls enjoy taking trophies from their kills, particularly lizardfolk, so they take victims’ equipment back to their lairs. If a victim should happen to own no interesting items, a chuul will take its skull or other symbol of the kill.]],
     common_desc = [[A chuul fights primarily with its two large, powerful pincers. However, it can also paralyze victims with its tentacles. Despite their amphibious nature, chuuls prefer to stay on land or in shallow water during combat.]],
     base_desc = [[This amphibious creature is a chuul. It can see in the dark.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=20, dex=16, con=18, int=10, wis=14, cha=5, luc=8 },
 	combat = { dam= {2,6} },
 }
@@ -155,23 +159,20 @@ newEntity{ base = "BASE_NPC_CHUUL",
 	skill_hide = 10,
 	skill_listen = 9,
 	skill_spot = 9,
-}       
+}
 
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_CLOAKER",
 	type = "aberration", subtype = "cloaker",
 	image = "tiles/newtiles/cloaker.png",
 	display = "X", color=colors.BLACK,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[It looks like a cloak.]],
     specialist_desc = [[A cloaker can manipulate the shadows, producing several effects that mimic the following spells -- obscure vision, dancing images, and silent image.]],
     uncommon_desc = [[Cloakers can produce a dangerous subsonic moan that causes shakiness, fear, nausea, or stupor in its victims.]],
     common_desc = [[When at rest cloakers closely resemble large black cloaks, which aids their disguise. They can fly, and they can also unfurl and completely engulf a Medium creature.]],
     base_desc = [[This creature is a cloaker, a foul creature that prowls the vast caverns beneath the earth. It can see in the dark and needs to eat, sleep and breathe.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=17, con=17, int=14, wis=15, cha=15, luc=8 },
-	combat = { dam= {1,6} },
 }
 
 newEntity{ base = "BASE_NPC_CLOAKER",
@@ -188,9 +189,9 @@ newEntity{ base = "BASE_NPC_CLOAKER",
 	skill_listen = 11,
 	skill_spot = 11,
 	fly = true,
-}       
+}
 
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_DRIDER",
 	type = "aberration", subtype = "drider",
 	image = "tiles/newtiles/drider.png",
@@ -202,7 +203,6 @@ newEntity{
     base_desc = [[This arachnoid creature is a drider. It can see in the dark and needs to eat, sleep and breathe.
     Driders were once dark elves who failed some test of their goddess, and were transformed as punishment. Drow and driders hate each other passionately. Driders are outcasts from drow society.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=15, con=16, int=15, wis=16, cha=16, luc=8 },
 	combat = { dam= {1,4} },
 }
@@ -228,13 +228,13 @@ newEntity{ base = "BASE_NPC_DRIDER",
 	[Talents.T_FAERIE_FIRE_INNATE]=1
 	},
 	resolvers.equip{
-                full_id=true,
-                { name = "shortbow" },
-                { name = "arrows" },
+        full_id=true,
+        { name = "shortbow" },
+    	{ name = "arrows" },
         },
-}       
+}
 
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_ETTERCAP",
 	type = "aberration", subtype = "ettercap",
 	image = "tiles/ettercap.png",
@@ -242,7 +242,6 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A small twisted creature.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=17, con=13, int=6, wis=15, cha=8, luc=8 },
 	combat = { dam= {1,8}, },
 	name = "ettercap",
@@ -258,22 +257,19 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 4,
 }
- 
+
 --Disease, improved grab, scent
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_OTYUGH",
 	type = "aberration", subtype = "otyugh",
 	image = "tiles/newtiles/otyugh.png",
 	display = "X", color=colors.UMBER,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A small dirty twisted creature.]],
     uncommon_desc = [[Intelligent subterranean creatures sometimes coexist with otyughs, using them as living garbage disposals.]],
     common_desc = [[Otyughs live in heaps of refuse, scavenging almost anything for food. They have powerful tentacles to grasp prey. The bite of an otyugh is filled with the filth fever disease.]],
     base_desc = [[This disgusting creature is an otyugh. It can see in the dark.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=11, dex=10, con=13, int=5, wis=12, cha=6, luc=8 },
-	combat = { dam= {1,6}, },
 	name = "otyugh",
 	level_range = {5, 14}, exp_worth = 1200,
 	rarity = 15,
@@ -284,24 +280,21 @@ newEntity{
 	infravision = 4,
 	skill_listen = 5,
 	skill_spot = 5,
-}    
+}
 
 --Burrow 10 ft.; Immunity to acid, tremorsense 4 squares, stone shape
 --Toughness, Power Attack
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_DELVER",
-	type = "aberration",
+	subtype = "delver",
 	image = "tiles/newtiles/otyugh.png",
 	display = "X", color=colors.LIGHT_BROWN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A huge slimy burrowing creature.]],
     uncommon_desc = [[ Most delvers are shy and inoffensive creatures, but like with nearly all species, there are exceptions to this rule. Delvers can also become addicted to metal which acts like an intoxicating drug to them. Such addicted specimens can also act very unlike most of their kin.]],
     common_desc = [[The slime that covers a delver is corrosive to most objects, highly corrosive to metallic objects or creatures, and devastating against stone objects or creatures. A delver can also alter the effect of its slime so that instead of disolving stone, it can soften it instead, much like using the spell stone shape. Most delvers speak Terran and Undercommon.]],
     base_desc = [[This huge creature is a delver, an intelligent subterranean dweller that feeds on the rocks that it disolved with a corrosive slime that covers its body. It can see in the dark.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=27, dex=13, con=21, int=14, wis=14, cha=12, luc=8 },
-	combat = { dam= {1,6}, },
 	name = "delver",
 	level_range = {5, 14}, exp_worth = 2700,
 	rarity = 15,
@@ -315,13 +308,13 @@ newEntity{
 	skill_movesilently = 16,
 	skill_spot = 18,
 	skill_survival = 12,
-}    
+}
 
 --Blindsight 6 squares; immune to gaze attacks, visual effects, illusions, +4 to saves against sonic effects
 --Disruptive harmonics: 4d6 Reflex DC 15
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_DESTRACHAN",
-	type = "aberration",
+	subtype = "destrachan",
 	image = "tiles/destrachan.png",
 	display = "X", color=colors.ORANGE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
@@ -330,9 +323,7 @@ newEntity{
     common_desc = [[Destrachan are sightless creatures, and rely on their acute sense of hearing to interact with their surroundings. They use sonics to interpret their environment and are immune to effects that target the eyes of the victim such as visual illusions and gaze attacks. Destrachan do not usually communicate through language, but most understand Common.]],
     base_desc = [[This creature, though looking like a simple reptilian beast is in fact a destrachan, a malevolent and craftily sadistic subterranean creature.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=18, dex=12, con=16, int=12, wis=18, cha=12, luc=8 },
-	combat = { dam= {1,6}, },
 	name = "destrachan",
 	level_range = {10, nil}, exp_worth = 2400,
 	rarity = 15,
@@ -346,19 +337,17 @@ newEntity{
 	skill_spot = 18,
 	skill_survival = 5,
 	alignment = "neutral evil",
-	resolvers.talents{ [Talents.T_DODGE]=1, 	
+	resolvers.talents{ [Talents.T_DODGE]=1,
 	},
 }
 
 --Detect magic, ethereal jaunt
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_ETHEREAL_FILCHER",
-	type = "aberration",
+	subtype = "ethereal",
 	display = "X", color=colors.LIGHT_BLUE,
-	body = { INVEN = 10 },
     desc = [[A bizarre looking creature with long fingers.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=18, con=11, int=7, wis=12, cha=10, luc=12 },
 	combat = { dam= {1,4}, },
 	name = "ethereal filcher",
@@ -376,19 +365,16 @@ newEntity{
 	combat_attackspeed = 1.33,
 	alignment = "neutral",
 	resolvers.talents{ [Talents.T_DODGE]=1 },
-}    
+}
 
---Ethereal jaunt; neutral alignment
-newEntity{
+--Ethereal jaunt;
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_ETHEREAL_MARAUDER",
-	type = "aberration",
+	subtype = "ethereal",
 	display = "X", color=colors.DARK_BLUE,
-	body = { INVEN = 10 },
     desc = [[A small bizarre looking creature with a bluish tint.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=12, con=11, int=7, wis=12, cha=10, luc=12 },
-	combat = { dam= {1,6}, },
 	name = "ethereal marauder",
 	level_range = {5, nil}, exp_worth = 900,
 	rarity = 15,
@@ -400,22 +386,20 @@ newEntity{
 	skill_listen = 4,
 	skill_movesilently = 4,
 	skill_spot = 4,
---	movement_speed_bonus = 0.33, 
+--	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	alignment = "neutral",	
-}    
+	alignment = "neutral",
+}
 
 --Swim 20 ft.; gibbering 4 squares spread DC 13 Will or confusion for 1d2 rounds; improved grab, swallow whole; AL N
 --Immune to critical hits & flanking
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_GIBBERING_MOUTHER",
-	type = "aberration",
+	subtype = "gibbering",
 	display = "X", color=colors.DARK_RED,
-	body = { INVEN = 10 },
     desc = [[A small bizarre looking creature with multiple mouths.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=13, con=22, int=4, wis=13, cha=13, luc=10 },
 	combat = { dam= {1,1}, },
 	name = "gibbering mouther",
@@ -430,14 +414,14 @@ newEntity{
 	skill_swim = 15,
 	skill_spot = 4,
 	combat_dr = 5,
---	movement_speed_bonus = -0.66, 	
+--	movement_speed_bonus = -0.66,
 	movement_speed = 0.33,
-}    
+}
 
 --Climb 20 ft., scent
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_GRICK",
-	type = "aberration",
+	subtype = "grick",
 	display = "X", color=colors.BLUE,
 	body = { INVEN = 10 },
     desc = [[A small tentacled creature.]],
@@ -445,7 +429,6 @@ newEntity{
     common_desc = [[Gricks resist normal weapons. They infest dungeons, caves, and other underground places, although they sometimes haunt open spaces when food is scarce.]],
     base_desc = [[This wormlike creature is a grick. It can see in the dark.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=14, con=11, int=3, wis=14, cha=5, luc=10 },
 	combat = { dam= {1,4}, },
 	name = "grick",
@@ -463,17 +446,16 @@ newEntity{
 	combat_dr = 10,
 	combat_dr_tohit = 1,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-}    
+}
 
 --Immunity to acid
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_MIMIC",
-	type = "aberration",
+	subtype = "shapechanger",
 	display = "m", color=colors.BROWN,
 	body = { INVEN = 10 },
     desc = [[A stash of items.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=19, dex=12, con=17, int=10, wis=13, cha=10, luc=10 },
 	combat = { dam= {1,8}, },
 	name = "mimic",
@@ -487,21 +469,19 @@ newEntity{
 	skill_climb = 5,
 	skill_listen = 7,
 	skill_spot = 7,
---	movement_speed_bonus = -0.90, 	
+--	movement_speed_bonus = -0.90,
 	movement_speed = 0.1,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-}    
+}
 
 --Alternate form, scent, tremorsense 60 ft.; +4 Fort and Ref
 --Immune to poison, sleep, paralysis, polymorph, stunning
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_PHASM",
-	type = "aberration",
+	subtype = "shapechanger",
 	display = "X", color=colors.DARK_GREEN,
-	body = { INVEN = 10 },
     desc = [[An amorphous creature.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=12, dex=15, con=15, int=16, wis=13, cha=14, luc=12 },
 	combat = { dam= {1,3}, },
 	name = "phasm",
@@ -519,23 +499,21 @@ newEntity{
 	skill_knowledge = 15,
 	skill_listen = 10,
 	skill_spot = 10,
-	skill_survival = 6,	
+	skill_survival = 6,
 	alignment = "chaotic neutral",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_DODGE]=1,
 	[Talents.T_MOBILITY]=1
 	},
-} 
+}
 
 --Rust [item Ref DC 17]
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_RUST_MONSTER",
-	type = "aberration",
+	subtype = "rust",
 	display = "X", color=colors.DARK_UMBER,
-	body = { INVEN = 10 },
     desc = [[A small tan brownish creature.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=17, con=13, int=2, wis=13, cha=8, luc=12 },
 	combat = { dam= {1,3}, },
 	name = "rust monster",
@@ -553,17 +531,15 @@ newEntity{
 	combat_attackspeed = 1.33,
 	alignment = "neutral",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-} 
+}
 
 --Swim 40 ft.; rake 1d6
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_SKUM",
-	type = "aberration",
+	subtype = "aquatic",
 	display = "X", color=colors.AQUA,
-	body = { INVEN = 10 },
     desc = [[A humanoid with joined fingers and fins.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=19, dex=13, con=13, int=10, wis=10, cha=6, luc=10 },
 	combat = { dam= {2,6}, },
 	name = "skum",
@@ -583,20 +559,19 @@ newEntity{
 	movement_speed = 0.66,
 	alignment = "lawful evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-} 
+}
 
---Too small to drop corpse; electricity damage; immunity to magic, natural invis
-newEntity{
+--Too small to drop a corpse;
+--electricity damage; immunity to magic, natural invis
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_WISP",
-	type = "aberration",
+	subtype = "wisp",
 	display = "X", color=colors.LIGHT_YELLOW,
-	body = { INVEN = 10 },
     desc = [[A colorful group of lights, similar to a lantern.]],
     uncommon_desc = [[When startled or frightened, a will-o'-wisp can extinguish its glow, effectively turning it invisible. Although immune to most spells or spell-like effects, they are affected by magic missile and maze.]],
     common_desc = [[Will-o'-wisps can fly with remarkable agility. They are completely immune to most spells or spell-like effects, and they attack by inflicting powerful electrical shocks.]],
     base_desc = [[This floating, glowing orb is actually a creature called a will-o'-wisp. It can see in the dark and fly.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=1, dex=29, con=10, int=15, wis=16, cha=12, luc=12 },
 	combat = { dam= {2,6}, },
 	name = "will'o'wisp",
@@ -620,17 +595,16 @@ newEntity{
 	alignment = "chaotic evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_DODGE]=1 },
-} 
+}
 
-newEntity{
+newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_NAGA",
-	type = "aberration", subtype = "naga",
+	subtype = "naga",
 	image = "tiles/naga.png",
 	display = "n", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A monster with a snakelike body and a human head.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=15, con=14, int=16, wis=15, cha=17, luc=12 },
 	combat = { dam= {2,6} },
 	infravision = 4,
@@ -667,7 +641,7 @@ newEntity{ base = "BASE_NPC_NAGA",
 	uncommon_desc = [[A dark naga’s fangs and the stinger in its tail both deliver a debilitating venom that can plunge its victim into a nightmare-wracked coma for several minutes.]],
 	common_desc = [[A dark naga is a talented innate sorcerous spellcaster. They often form alliances with other foul creatures for their mutual gain.]],
 	base_desc = [[This slithering eel-like creature with the vaguely human-like face is a scheming creature called a dark naga. It can see in the dark.]],
-}      
+}
 
 --Poison pri & sec 1d10 Con; Fort DC 19; spells as Sor9 + Good & Law domains
 newEntity{ base = "BASE_NPC_NAGA",
@@ -690,7 +664,7 @@ newEntity{ base = "BASE_NPC_NAGA",
 	[Talents.T_DODGE]=1,
 	[Talents.T_COMBAT_CASTING]=1
 	},
-}  
+}
 
 --Charming gaze 3 squares hit charm person Will DC 19; poison pri & sec 1d8 CON Fort DC 18; cast as Sor7
 newEntity{ base = "BASE_NPC_NAGA",
@@ -714,7 +688,7 @@ newEntity{ base = "BASE_NPC_NAGA",
 	uncommon_desc = [[A spirit naga can charm people simply by meeting their gaze, and its bite carries a deadly poison.]],
 	common_desc = [[Spirit nagas possess significant innate sorcererous ability. Their name comes from their habit of lairing in spiritually unclean areas.]],
 	base_desc = [[This large serpent with black-and-crimson bands and a humanlike head is a spirit naga. It can see in the dark. Most spirit nagas speak Abyssal and Common.]],
-}      
+}
 
 --Swim 50 ft.; poison pri & sec 1d8 CON Fort DC 17
 newEntity{ base = "BASE_NPC_NAGA",
@@ -734,4 +708,4 @@ newEntity{ base = "BASE_NPC_NAGA",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_COMBAT_CASTING]=1
 	},
-}      
+}

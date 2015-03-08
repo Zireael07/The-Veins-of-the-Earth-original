@@ -35,6 +35,7 @@ newEntity{
         skill_survival = 14,
         skill_swim = 13,
         alignment = "neutral",
+        resolvers.wounds()
 }
 
 --blindsense 60 ft.; Poison - pri sleep 10 rounds sec sleep 1d3 hours Fort DC 14
@@ -74,6 +75,7 @@ newEntity{
 --        movement_speed_bonus = 1,
         movement_speed = 2,
         combat_attackspeed = 2,
+        resolvers.wounds()
 }
 
 --Fly 60 ft; scent, improved grab
@@ -108,4 +110,5 @@ newEntity{
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
         alignment = "neutral",
         fly = true,
+        resolvers.wounds()
 }

@@ -1,25 +1,31 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
 local plant_desc = [[It is immune to mind-affecting effects such as charms, compulsions, phantasms. It is immune to critical hits, poison, sleep effects, paralysis, polymorph and stunning. It breathes and eats, but does not sleep.]]
 
---Constrict, entangle; camouflage, immunity to electricity
 newEntity{
-	define_as = "BASE_NPC_ASSAVINE",
+	define_as = "BASE_NPC_PLANT",
 	type = "plant",
-	display = 'P', color=colors.DARK_GREEN,
 	body = { INVEN = 10 },
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	combat = { dam= {1,6} },
+	resolvers.wounds()
+}
+
+
+--Constrict, entangle; camouflage, immunity to electricity
+newEntity{ base = "BASE_NPC_PLANT",
+	define_as = "BASE_NPC_ASSAVINE",
+	display = 'P', color=colors.DARK_GREEN,
 	desc = [[A crawling vine.]],
 	specialist_desc = [[Though lacking visual organs, assassin vines can detect nearby foes by sound, scent and vibration. As they look like normal plants when at rest, they can be difficult to spot before they attack. Subterranean versions of these creatures are known to exist, looking much like mineral deposits to the untrained eye.]],
 	uncommon_desc = [[Perhaps the most dangerous aspect of the assassin vine is its ability to animate all nearby plants. These plants entangle and trap victims within their range, allowing the assassin vine the luxury of finishing off one foe before having to deal with others. These creatures are also very resilient to extremes of temperature.]],
 	common_desc = [[Though unable to move at any great speed, these plants have a large reach and are dangerous enemies. As well as being capable of dealing nasty blows with the trunk of their vine, the construction of these vines allow them to grab and strangle their victims with ease.]],
 	base_desc = "This creature is an assassin vine, a semimobile plant that collects its own grisly fertilizer."..plant_desc.."",
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=20, dex=10, con=16, int=1, wis=13, cha=9, luc=10 },
-	combat = { dam= {1,6} },
 	name = "assasin vine",
 	level_range = {5, 15}, exp_worth = 900,
 	rarity = 20,
@@ -30,19 +36,15 @@ newEntity{
 --	movement_speed_bonus = -0.88,
 	movement_speed = 0.22,
 	resists = {
-                [DamageType.FIRE] = 10,
-                [DamageType.COLD] = 10,
+        [DamageType.FIRE] = 10,
+        [DamageType.COLD] = 10,
     },
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_PLANT",
 	define_as = "BASE_NPC_FUNGI",
-	type = "plant",
 	display = 'F', color=colors.WHITE,
-	body = { INVEN = 10 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=1, dex=1, con=13, int=1, wis=2, cha=1, luc=10 },
-	combat = { dam= {1,6} },
 	level_range = {1, nil}, exp_worth = 900,
 	combat_natural = 4,
 --	movement_speed_bonus = -0.33,
@@ -109,14 +111,11 @@ newEntity{ base = "BASE_NPC_FUNGI",
 }
 
 --Swim 20 ft.; improved grab, constrict 2d6, immunity to electricity; Weapon Focus
-newEntity{
+newEntity{ base = "BASE_NPC_PLANT",
 	define_as = "BASE_NPC_SHAMBLING_MOUND",
-	type = "plant",
 	display = 'P', color=colors.UMBER,
-	body = { INVEN = 10 },
 	desc = [[A shambling mass of rotting vegetation.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=21, dex=10, con=17, int=7, wis=10, cha=9, luc=10 },
 	combat = { dam= {2,6} },
 	name = "shambling mound",
@@ -143,14 +142,11 @@ newEntity{
 }
 
 --Regeneration 10; improved grab, swallow whole
-newEntity{
+newEntity{ base = "BASE_NPC_PLANT",
 	define_as = "BASE_NPC_TENDRICULOS",
-	type = "plant",
 	display = 'P', color=colors.VIOLET,
-	body = { INVEN = 10 },
 	desc = [[A shambling mass of rotting vegetation.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=28, dex=9, con=22, int=3, wis=8, cha=3, luc=10 },
 	combat = { dam= {2,8} },
 	name = "tendriculos",

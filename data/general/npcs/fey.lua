@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -51,6 +51,7 @@ newEntity{
 	{ name = "shortbow" },
 	},
 	faction = "good",
+	resolvers.wounds()
 }
 
 newEntity{
@@ -101,4 +102,5 @@ newEntity{
 	{ name = "shortbow" },
 	},
 	faction = "good",
+	resolvers.wounds()
 }

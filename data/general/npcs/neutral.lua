@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -11,6 +11,7 @@ newEntity{
     combat = { dam= {1,6} },
     faction = "neutral",
     open_door = true,
+    resolvers.wounds()
 }
 
 --Bases

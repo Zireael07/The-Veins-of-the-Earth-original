@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -18,16 +18,24 @@
 local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
+	define_as = "BASE_NPC_HUMANOID",
+	type = "humanoid",
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
+	combat = { dam= {1,6} },
+	open_door = true,
+	resolvers.wounds(),
+	--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+}
+
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_KOBOLD",
-	type = "humanoid", subtype = "reptilian",
+	subtype = "reptilian",
 	image = "tiles/kobold.png",
 	display = "k", color=colors.WHITE,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
     desc = [[Ugly and green!]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=9, dex=13, con=10, int=10, wis=9, cha=8, luc=12 },
-	combat = { dam= {1,6} },
 	infravision = 3,
 	alignment = "lawful evil",
 	skill_hide = 4,
@@ -36,11 +44,8 @@ newEntity{
 	skill_search = 1,
 	skill_movesilently = 1,
 	hit_die = 4,
-	open_door = true,
 --	resolvers.specialnpc(),
 	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-
 }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
@@ -81,26 +86,21 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_ORC",
-	type = "humanoid", subtype = "orc",
+	subtype = "orc",
 	image = "tiles/orc.png",
 	display = 'o', color=colors.GREEN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[An ugly orc.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=17, dex=11, con=12, int=8, wis=7, cha=6, luc=10 },
-	combat = { dam= {1,4} },
 	infravision = 2,
 	alignment = "chaotic evil",
 	skill_listen = 2,
 	skill_spot = 2,
 	hit_die = 1,
-	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --  	resolvers.class()
 }
 
@@ -124,17 +124,14 @@ newEntity{
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_GOBLIN",
-	type = "humanoid", subtype = "goblinoid",
+	subtype = "goblinoid",
 	image = "tiles/goblin.png",
 	display = 'g', color=colors.GREEN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A dirty goblin.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=6, luc=8 },
-	combat = { dam= {1,6} },
 	infravision = 3,
 	alignment = "chaotic evil",
 	skill_hide = 4,
@@ -142,11 +139,8 @@ newEntity{
 	skill_listen = 2,
 	skill_spot = 1,
 	hit_die = 1,
-	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-
 --	resolvers.class()
 }
 
@@ -166,12 +160,12 @@ newEntity{
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_DROW",
-	type = "humanoid", subtype = "drow",
+	subtype = "drow",
 	image = "tiles/drow.png",
 	display = 'h', color=colors.BLACK,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+
 	desc = [[A dark silhouette.]],
 	specialist_desc = [[Drow do not sleep or dream, and are immune to sleep effects. Instead, they refresh themselves by entering a meditative reverie for a few hours a night. Drow are resistant to magic, but once per day they can use spell-like abilities to create dancing lights, darkness, and faerie fire, which they use to disorient their foes.]],
 	uncommon_desc = [[A drow’s sharp senses are attuned to life underground. Drow can see so well in the dark that sudden exposure to bright light can blind them.]],
@@ -180,7 +174,6 @@ newEntity{
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
 	stats = { str=13, dex=13, con=10, int=12, wis=9, cha=10, luc=10 },
-	combat = { dam= {1,6} },
 	infravision = 6,
 	alignment = "chaotic evil",
 	skill_hide = 1,
@@ -189,11 +182,8 @@ newEntity{
 	skill_search = 3,
 	skill_spot = 2,
 	hit_die = 1,
-	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-
 --	resolvers.class()
 }
 
@@ -221,12 +211,11 @@ newEntity{
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_HUMAN",
-	type = "humanoid", subtype = "human",
+	subtype = "human",
 	image = "tiles/human.png",
 	display = 'h', color=colors.WHITE,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost human.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
@@ -235,10 +224,8 @@ newEntity{
 	lite = 3,
 	hit_die = 1,
 	alignment = "neutral good",
-	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
 
@@ -263,22 +250,18 @@ newEntity{
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_DWARF",
-	type = "humanoid", subtype = "dwarf",
+	subtype = "dwarf",
 	image = "tiles/npc/dwarf_fighter.png",
 	display = 'h', color=colors.BROWN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost dwarf.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
 	stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
-	combat = { dam= {1,6} },
 	hit_die = 1,
-	open_door = true,
 	resolvers.specialnpc(),
 	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --	resolvers.class()
 }
 
@@ -291,7 +274,7 @@ newEntity{
 	challenge = 1,
 	infravision = 3,
 	alignment = "lawful good",
-	resolvers.talents{ [Talents.T_SHOOT]=1, 
+	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_EXOTIC_WEAPON_PROFICIENCY]=1, --stopgap measure for now
 	},
 	resolvers.equip{
@@ -320,7 +303,7 @@ newEntity{
 	challenge = 1,
 	infravision = 5,
 	alignment = "lawful evil",
-	resolvers.talents{ [Talents.T_SHOOT]=1, 
+	resolvers.talents{ [Talents.T_SHOOT]=1,
 	},
 	resolvers.equip{
 		full_id=true,
@@ -336,17 +319,14 @@ newEntity{
 }
 
 --Scent
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_BUGBEAR",
-	type = "humanoid", subtype = "goblinoid",
+	subtype = "goblinoid",
 	image = "tiles/goblin.png",
 	display = 'g', color=colors.BROWN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A dirty hairy bugbear.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=15, dex=12, con=13, int=10, wis=10, cha=9, luc=8 },
-	combat = { dam= {1,6} },
 	infravision = 3,
 	alignment = "chaotic evil",
 	skill_climb = 1,
@@ -354,7 +334,6 @@ newEntity{
 	skill_movesilently = 5,
 	skill_listen = 4,
 	skill_spot = 4,
-	open_door = true,
 	uncommon_desc = [[Bugbears tend to live in small tribal units, with the biggest and meanest of them the tribal leader by default. They tend to have but two goals in life: food and treasure, and a group of adventures would be considered a great source of both.]],
 	common_desc = [[As well as being considerably stronger, healthier and more light footed than the average human, bugbears have an affinity for moving quietly despite their bulk. Combined with their natural darkvision, these qualities add up to a creature very well suited for raids on camp sites in the dead of night.]],
 	base_desc = [[This muscular humanoid is a bugbear, the biggest and strongest of the common goblinoids. Bugbears speak Goblin and Common. It is proficient in simple weapons and needs to eat, breathe and sleep.]],
@@ -378,28 +357,22 @@ newEntity{
 	},
 --	resolvers.specialnpc(),
 	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},	
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_GNOLL",
-	type = "humanoid", subtype = "gnoll",
+	subtype = "gnoll",
 	image = "tiles/gnoll.png",
 	display = 'h', color=colors.BROWN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A dog-headed humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=15, dex=10, con=13, int=8, wis=11, cha=8, luc=8 },
-	combat = { dam= {1,6} },
 	infravision = 3,
 	skill_listen = 3,
 	skill_spot = 2,
 	hit_die = 2,
-	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -411,7 +384,7 @@ newEntity{
 	challenge = 2,
 	infravision = 3,
 	alignment = "chaotic evil",
-	resolvers.talents{ [Talents.T_SHOOT]=1, 
+	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_POWER_ATTACK]= 1
 	},
 	resolvers.equip{
@@ -427,12 +400,11 @@ newEntity{
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_GNOME",
-	type = "humanoid", subtype = "gnome",
+	subtype = "gnome",
 	image = "tiles/npc/gnome_fighter.png",
 	display = 'h', color=colors.BROWN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost gnome.]],
 	uncommon_desc = [[Gnomes are renowned for two traits: their sense of humor and their innate talents for arcane illusions. As a spell-like ability, any gnome can speak with burrowing mammals, and talented gnomes can produce dancing lights, ghost sound, and prestidigitation as well.]],
 	common_desc = [[Gnomes can see well in dim light and have sharp ears. They have a particular dislike for the more bestial “smallfolk,” such as goblins and kobolds, and are well-versed at evading the ponderous attacks of giants.]],
@@ -440,13 +412,10 @@ newEntity{
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
 	stats = { str=11, dex=11, con=14, int=10, wis=9, cha=8, luc=10 },
-	combat = { dam= {1,6} },
 	hit_die = 1,
-	open_door = true,
 	alignment = "neutral good",
 	resolvers.specialnpc(),
 	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 --	resolvers.class()
 }
 
@@ -506,12 +475,11 @@ newEntity{
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_HALFLING",
-	type = "humanoid", subtype = "halfling",
+	subtype = "halfling",
 	image = "tiles/npc/halfling_fighter.png",
 	display = 'h', color=colors.LIGHT_BROWN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A lost halfling.]],
 	uncommon_desc = [[Desipite their small stature, halflings are generally brave and good-natured. These nomadic smallfolk are widely traveled.]],
 	common_desc = [[Halflings use their small size and nimble physique to escape notice, evade the ponderous attacks of larger creatures, and slip into places where they are not necessarily invited.]],
@@ -519,13 +487,10 @@ newEntity{
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=8, luc=12 },
-	combat = { dam= {1,6} },
 	hit_die = 1,
-	open_door = true,
 	alignment = "chaotic good",
 	resolvers.specialnpc(),
 	resolvers.templates(),
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 	resolvers.class()
 }
 
@@ -552,23 +517,17 @@ newEntity{
 
 newEntity{
 	define_as = "BASE_NPC_HOBGOBLIN",
-	type = "humanoid", subtype = "goblinoid",
+	subtype = "goblinoid",
 	image = "tiles/goblin.png",
 	display = 'g', color=colors.RED,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A brutish goblinoid garbed in red, with reddish skin and dark hair.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=8, luc=10 },
-	combat = { dam= {1,6} },
 	infravision = 3,
 	alignment = "lawful evil",
 	hit_die = 1,
-	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-
 }
 
 newEntity{
@@ -592,21 +551,18 @@ newEntity{
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_LIZARDFOLK",
-	type = "humanoid", subtype = "reptilian",
+	subtype = "reptilian",
 	image = "tiles/lizardfolk.png",
 	display = 'h', color=colors.DARK_GREEN,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly reptilian humanoid.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
 	stats = { str=13, dex=10, con=13, int=9, wis=10, cha=10, luc=10 },
-	combat = { dam= {1,6} },
 	infravision = 3,
 	combat_natural = 5,
 	hit_die = 2,
-	open_door = true,
 	resolvers.class(),
 --	resolvers.specialnpc(),
 	resolvers.templates()
@@ -645,7 +601,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly fish-like humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, ai_move = "move_astar", },
 	stats = { str=10, dex=12, con=10, int=13, wis=13, cha=11, luc=10 },
 	combat = { dam= {1,6} },
 	infravision = 3,
@@ -676,17 +632,14 @@ newEntity{
 }
 
 --Swim 50 ft.
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_MERFOLK",
-	type = "humanoid", subtype = "humanoid_aquatic",
+	subtype = "humanoid_aquatic",
 	image = "tiles/merfolk.png",
 	display = 'h', color=colors.DARK_BLUE,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly fish-like humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=10, luc=10 },
-	combat = { dam= {1,6} },
 	infravision = 1,
 --	movement_speed_bonus = 0.90,
 	movement_speed = 1.9,
@@ -695,7 +648,6 @@ newEntity{
 	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -726,25 +678,21 @@ newEntity{
 }
 
 --stench 3 sq Fort DC 13 or sickened; Multiattack, Weapon Focus
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_TROG",
-	type = "humanoid", subtype = "reptilian",
+	subtype = "reptilian",
 	image = "tiles/goblin.png",
 	display = 'h', color=colors.DARK_UMBER,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly reptilian humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_astar", },
 	stats = { str=10, dex=9, con=14, int=8, wis=10, cha=10, luc=6 },
 	combat = { dam= {1,4} },
 	infravision = 5,
 	combat_natural = 6,
 	alignment = "chaotic evil",
 	hit_die = 2,
-	open_door = true,
 --	resolvers.specialnpc()
 --	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -769,21 +717,18 @@ newEntity{
 
 
 --Planetouched
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_TIEFLING",
-	type = "humanoid", subtype = "planetouched",
+	subtype = "planetouched",
 	image = "tiles/human.png",
 	display = 'h', color=colors.RED,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A horned tiefling.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
 	stats = { str=13, dex=13, con=12, int=12, wis=9, cha=6, luc=14 },
-	combat = { dam= {1,6} },
 	infravision = 3,
 	skill_bluff = 6,
 	skill_hide = 4,
-	open_door = true,
 --	resolvers.specialnpc(),
 --	resolvers.templates(),
 	resolvers.class()
@@ -802,7 +747,7 @@ newEntity{
 	[DamageType.ELECTRIC] = 5,
 	[DamageType.COLD] = 5,
 	},
-	resolvers.talents{ [Talents.T_SHOOT]=1, 
+	resolvers.talents{ [Talents.T_SHOOT]=1,
 		[Talents.T_DARKNESS_INNATE]=1,
 	},
 	resolvers.equipnoncursed{
@@ -818,24 +763,21 @@ newEntity{
 }
 
 --Daylight
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_AASIMAR",
-	type = "humanoid", subtype = "planetouched",
+	subtype = "planetouched",
 	image = "tiles/human.png",
 	display = 'h', color=colors.GOLD,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A beautiful humanoid.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
 	stats = { str=13, dex=11, con=12, int=10, wis=11, cha=10, luc=14 },
-	combat = { dam= {1,6} },
 	infravision = 3,
 	alignment = "neutral good",
 	skill_knowledge = 1,
 	skill_heal = 4,
 	skill_listen = 2,
 	skill_spot = 2,
-	open_door = true,
 --[[	resolvers.specialnpc(),
 	resolvers.templates(),]]
 	resolvers.class(),
@@ -866,5 +808,3 @@ newEntity{
     { name = "light crossbow", },
 	},
 }
-
-

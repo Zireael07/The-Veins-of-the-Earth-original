@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2014-2015
 
 newEntity{
         define_as = "BASE_NPC_ROC",
@@ -20,6 +20,7 @@ newEntity{
         movement_speed = 2,
         combat_attackspeed = 2,
         fly = true,
+        resolvers.wounds()
 }
 
 newEntity{

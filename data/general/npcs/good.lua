@@ -12,6 +12,7 @@ newEntity{
     combat = { dam= {1,6} },
     alignment = "neutral good",
     faction = "good",
+    resolvers.wounds()
 }
 
 --Magic circle against evil; immunity to poison, charm, and compulsion; scent, wild empathy
@@ -71,7 +72,7 @@ newEntity{ base = "BASE_NPC_GOOD",
 }
 
 --Fly 60 ft.; magic circle against evil; pounce, rake 1d6, spells as Clr7; Blind-Fight
---Spell-likes: 2/day—greater invisibility (self only); 1/day—dimension door. 
+--Spell-likes: 2/day—greater invisibility (self only); 1/day—dimension door.
 newEntity{ base = "BASE_NPC_GOOD",
     define_as = "BASE_NPC_LAMMASU",
     image = "tiles/cat.png",
@@ -151,7 +152,7 @@ newEntity{ base = "BASE_NPC_GOOD",
     combat_attackspeed = 2.33,
 }
 
---Fly 70 ft; 
+--Fly 70 ft;
 newEntity{ base = "BASE_NPC_GOOD",
     define_as = "BASE_NPC_OWL_GIANT",
     image = "tiles/owl.png",

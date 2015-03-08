@@ -1,21 +1,26 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 --Outsiders (except janni) do not drop corpses
 
 local Talents = require("engine.interface.ActorTalents")
 
---Corporeal instability DC 15 Fort
 newEntity{
-	define_as = "BASE_NPC_CHAOS_BEAST",
+	define_as = "BASE_NPC_OUTSIDER",
 	type = "outsider",
+	body = { INVEN = 10 },
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	resolvers.wounds()
+}
+
+--Corporeal instability DC 15 Fort
+newEntity{ base = "BASE_NPC_OUTSIDER",
+	define_as = "BASE_NPC_CHAOS_BEAST",
 	name = "chaos beast",
 	image = "tiles/chaos_beast.png",
 	display = 'O', color=colors.RED,
-	body = { INVEN = 10 },
 	desc = [[A shapechanging beast.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=13, con=13, int=10, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,3} },
 
@@ -36,6 +41,7 @@ newEntity{
 	skill_tumble = 11,
 --	movement_speed_bonus = -0.33,
 	movement_speed = 0.66,
+	alignment = "chaotic neutral",
 	specialist_desc = [[A victim of a chaos beast’s touch does not immediately die from the transformation. A shapechange or stoneskin spell can stop the process temporarily, but a restoration, heal, or greater restoration spell is needed to remove the affliction.]],
 	uncommon_desc = [[A chaos beast can cause very little damage. However, its touch is damaging to corporeal creatures, causing them to melt into an amorphous mass, slowing going into shock and eventually becoming a chaos beast themselves. They are completely immune to transmutation.]],
 	common_desc = [[Much like their home plane of Limbo, chaos beasts have no set form. Instead, they constantly shift and alter their bodies, and there’s no telling what one might look like.]],
@@ -43,15 +49,12 @@ newEntity{
 }
 
 --Immunity to poison, petrification & cold
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_FORMIAN",
-	type = "animal",
 	image = "tiles/ant.png",
 	display = 'O', color=colors.BROWN,
-	body = { INVEN = 10 },
 	desc = [[It looks like a cross between an ant and a centaur.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=14, con=13, int=6, wis=10, cha=9, luc=10 },
 	combat = { dam= {1,4} },
 	skill_climb = 9,
@@ -60,10 +63,11 @@ newEntity{
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
 	resists = {
-                [DamageType.FIRE] = 10,
-                [DamageType.ELECTRIC] = 10,
-                [DamageType.SONIC] = 10,
+        [DamageType.FIRE] = 10,
+        [DamageType.ELECTRIC] = 10,
+        [DamageType.SONIC] = 10,
     },
+	alignment = "neutral",
 }
 
 newEntity{
@@ -128,7 +132,7 @@ newEntity{
 }
 
 --Poison 2d6 DEX primary & sec DC 20, fast healing 2
---Spell-likes: At will—charm monster (DC 17), clairaudience/clairvoyance, detect chaos, detect thoughts (DC 15), magic circle against chaos, greater teleport; 1/day—dictum (DC 20), order’s wrath (DC 17). 
+--Spell-likes: At will—charm monster (DC 17), clairaudience/clairvoyance, detect chaos, detect thoughts (DC 15), magic circle against chaos, greater teleport; 1/day—dictum (DC 20), order’s wrath (DC 17).
 newEntity{
 	base = "BASE_NPC_FORMIAN",
 	name = "formian myrmarch",
@@ -189,16 +193,14 @@ newEntity{
 	},
 }
 
---plane shift; spell-likes: 3/day—invisibility (self only), speak with animals. Caster level 12th. 1/day - create food and water (caster level 7th), ethereal jaunt (caster level 12th) for 1 hour. 
-newEntity{
+--plane shift; spell-likes: 3/day—invisibility (self only), speak with animals. Caster level 12th. 1/day - create food and water (caster level 7th), ethereal jaunt (caster level 12th) for 1 hour.
+newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_JANNI",
-	type = "outsider",
 	image = "tiles/djinn.png",
 	display = 'J', color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A large humanoid clothed in gray and seemingly hovering in air.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=16, dex=15, con=12, int=14, wis=15, cha=13, luc=12 },
 	combat = { dam= {1,6} },
 }
@@ -240,13 +242,13 @@ newEntity{
 }
 
 --Change shape, cast spells as Sor7
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_RAKSHASA",
-	type = "outsider",
+	subtype = "shapechanger",
 	name = "rakshasa",
 	image = "tiles/rakshasa.png",
 	display = 'O', color=colors.LIGHT_RED,
-	body = { INVEN = 10 },
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A humanoid with inverted hands.]],
 	specialist_desc = [[Not only are rakshasas strong, intelligent, and charming, they can transform themselves to assume any humanoid form. True seeing can still reveal the fiend’s true appearance. Rakshasas feed on human flesh.]],
 	uncommon_desc = [[A rakshasa can read minds and is a talented innate sorcerous spellcaster. Their king is Ravana, a mountainous demon lord with ten heads. Ravana is more powerful than he is clever.]],
@@ -254,7 +256,6 @@ newEntity{
 	base_desc = [[This malevolent tiger-headed humanoid is actually a fiend called a rakshasa.  They may have been extremely wicked humans in previous incarnations.
 	It can see in the dark and cannot be brought back to life by normal means.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=12, dex=14, con=16, int=13, wis=13, cha=17, luc=12 },
 	combat = { dam= {1,4} },
 
@@ -281,16 +282,13 @@ newEntity{
 }
 
 --immunity to fire; 2d10 damage to undead on hit
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_RAVID",
-	type = "outsider",
+	subtype = "fire",
 	name = "ravid",
 	image = "tiles/ravid.png",
 	display = 'O', color=colors.YELLOW,
-	body = { INVEN = 10 },
 	desc = [[A bizarre creature of light energy.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=13, dex=10, con=13, int=7, wis=12, cha=14, luc=12 },
 	combat = { dam= {1,6} },
 
@@ -315,16 +313,12 @@ newEntity{
 }
 
 --Bay (Will DC 13 or panicked for 2d4 rounds, once per creature), trip, shadow blend
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_SHADOW_MASTIFF",
-	type = "outsider",
 	name = "shadow mastiff",
 	image = "tiles/wolf.png",
 	display = 'd', color=colors.DARK_GRAY,
-	body = { INVEN = 10 },
 	desc = [[A big dog made of shadow.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=17, dex=13, con=17, int=4, wis=12, cha=13, luc=10 },
 	combat = { dam= {1,6} },
 
@@ -348,21 +342,18 @@ newEntity{
 }
 
 --Burrow 20 ft; +2d6 fire on hit; tremorsense 4 squares; immunity to fire, vulnerability to cold
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_THOQQUA",
-	type = "outsider",
+	subtype = "fire",
 	name = "thoqqua",
 	image = "tiles/elemental_earth.png",
 	display = 'O', color=colors.DARK_BROWN,
-	body = { INVEN = 10 },
 	desc = [[A creature of fire and earth.]],
 	common_desc = [[ese creatures are generally summoned from the Elemental Plane of Fire or, more rarely, the Elemental Plane of Earth. A thoqqua is so hot that its mere touch can ignite almost any material.]],
 	base_desc = [[This rocky, red-hot worm is a thoqqua. It can see in the dark and cannot be brought back by normal means. It burrows through earth and rock. It resists fire and takes double damage from cold.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=13, con=13, int=6, wis=12, cha=10, luc=10 },
 	combat = { dam= {1,6} },
-
 	level_range = {1, nil}, exp_worth = 600,
 	rarity = 10,
 	max_life = resolvers.rngavg(15,20),
@@ -380,13 +371,12 @@ newEntity{
 --wields +3 adamantine warhammer; Change shape
 --Awesome Blow, Blind-Fight, Cleave, Improved Bull Rush, Improved Sunder,
 --Spell-likes: At will—chain lightning (DC 23), charm monster (DC 21), cure critical wounds (DC 21), fire storm (DC 24), greater dispel magic, hold monster (DC 22), invisibility, invisibility purge, levitate, persistent image (DC 22); 3/day—etherealness, word of chaos (DC 22), summon nature’s ally IX; 1/day—gate, maze, meteor swarm (DC 26).
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_TITAN",
-	type = "outsider",
 	name = "titan",
 	image = "tiles/titan.png",
 	display = 'H', color=colors.GOLD,
-	body = { INVEN = 10 },
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[An immense humanoid-shaped creature.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
@@ -421,16 +411,14 @@ newEntity{
 }
 
 --Improved grab, paralysis Fort DC 14; Multiattack, Multiweapon Fighting
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_XILL",
-	type = "outsider",
 	name = "xill",
 	image = "tiles/xill.png",
 	display = 'O', color=colors.BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A four-armed ethereal beast.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=15, dex=16, con=15, int=12, wis=12, cha=11, luc=10 },
 	combat = { dam= {1,4} },
 
@@ -470,15 +458,13 @@ newEntity{
 
 
 --Fast healing 2 (in certain conditions), summon mephit, breath weapon 3 sq cone cooldown 3
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_MEPHIT",
-	type = "outsider",
+	subtype = "mephit",
 	image = "tiles/mephit.png",
 	display = 'M', color=colors.WHITE,
-	body = { INVEN = 10 },
 	desc = [[A small winged creature.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=10, dex=17, con=10, int=6, wis=11, cha=15, luc=12 },
 	combat = { dam= {1,3} },
 	level_range = {5, 25}, exp_worth = 900,

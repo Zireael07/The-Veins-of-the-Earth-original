@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -15,10 +15,11 @@ newEntity{
   body = { INVEN = 10 },
   ai = "dumb_talented_simple", ai_state = { talent_in=3, },
   alignment = "chaotic evil",
-  resists = { [DamageType.ACID] = 10, 
+  resists = { [DamageType.ACID] = 10,
               [DamageType.COLD] = 10,
               [DamageType.FIRE] = 10,
   },
+  resolvers.wounds()
 }
 
 --Protective slime 1d8 acid
@@ -66,7 +67,7 @@ newEntity{ base = "BASE_NPC_DEMON",
 	infravision = 6,
 }
 
---Poison, alternate form, fast healing 2, 
+--Poison, alternate form, fast healing 2,
 newEntity{ base = "BASE_NPC_DEMON",
 	define_as = "BASE_NPC_QUASIT",
 	display = 'u', color=colors.BLACK,

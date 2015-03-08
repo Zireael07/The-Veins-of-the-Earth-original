@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 --Undead don't drop corpses
 
@@ -7,19 +7,38 @@ local Talents = require("engine.interface.ActorTalents")
 
 local undead_desc = "It is immune to critical hits, poison, sleep effects, paralysis, stunning and disease. It is immune to mind-affecting effects such as charms, compulsions, phantasms."
 
---incorporeal, 1d4 Wisdom drain, hypnotism DC 16 in 4 tiles
 newEntity{
+    define_as = "BASE_NPC_UNDEAD",
+    type = "undead",
+    ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+    resolvers.wounds()
+}
+
+newEntity{ base = "BASE_NPC_UNDEAD",
+    define_as = "BASE_NPC_UNDEAD_INCORPO",
+    subtype = "incorporeal",
+    display = 'N',
+    body = { INVEN = 10 },
+    desc = [[An incorporeal undead.]],
+}
+
+newEntity{ base = "BASE_NPC_UNDEAD",
+    define_as = "BASE_NPC_UNDEAD_CORPO",
+    subtype = "corporeal",
+    display = 'U',
+    body = { INVEN = 10 },
+}
+
+
+--1d4 Wisdom drain, hypnotism DC 16 in 4 tiles
+newEntity{ base = "BASE_NPC_UNDEAD_INCORPO",
         define_as = "BASE_NPC_ALLIP",
-        type = "undead", subtype = "allip",
         image = "tiles/allip.png",
         display = 'N', color=colors.BLACK,
-        body = { INVEN = 10 },
-        desc = [[An incorporeal undead.]],
         uncommon_desc = [[It is dangerous to try to connect metally with an allip, be that through thought detection, mind control or telepathy as an allip's mind is so tortured as to damage any other mind that touches it.]],
         common_desc = [[Though it can cause no physical harm, an allip's touch can drain away a victim's willpower. Also, an allip babbles incoherently to itself, and those who hear this babble can become hypnotised. Allips cannot, however, speak intelligibly.]],
         base_desc = "This creature is an allip, the spectral remains of someone driven to suicide by madness"..undead_desc.."",
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=1, dex=12, con=1, int=11, wis=11, cha=18, luc=6 },
         combat = { dam= {2,6} },
         name = "allip",
@@ -39,18 +58,15 @@ newEntity{
 }
 
 --death gaze 3 squares Fort DC 15; immunity to electricity
-newEntity{
+newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         define_as = "BASE_NPC_BODAK",
-        type = "undead",
         image = "tiles/bodak.png",
         display = 'U', color=colors.DARK_GRAY,
-        body = { INVEN = 10 },
         desc = [[A thin, emaciated creature.]],
         uncommon_desc = [[Though resilient to physical blows, bodaks are vulnerable to cold iron weapons. They also loathe sunlight, for its merest touch burns their impure flesh.]],
         common_desc = [[These creatures are not particularly dangerous in a physical sense, but are deadly nonetheless, due to a gaze attack they can use to slay living creatures instantly. They also have immunity to electrical attacks and resistance to acid and fire. Bodaks retain fleeting memories of their previous lives and can typically communicate in any language they once knew.]],
         base_desc = "This creature is a bodak, the undead remnant of a humanoid destroyed by the touch of absolute evil."..undead_desc.."",
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=13, dex=15, con=1, int=6, wis=12, cha=12, luc=6 },
         combat = { dam= {1,8} },
         name = "bodak",
@@ -65,19 +81,18 @@ newEntity{
         skill_movesilently = 8,
         skill_spot = 10,
         resists = {
-                [DamageType.ACID] = 10,
-                [DamageType.COLD] = 10,
+            [DamageType.ACID] = 10,
+            [DamageType.COLD] = 10,
         },
 }
 
 --Energy drain, trap essence, spell deflection (nothing or placing the spell-likes on cooldown) [banishment, chaos hammer, confusion, crushing despair, detect thoughts, dispel evil, dominate person, fear, geas/quest, holy word, hypnotism, imprisonment, magic jar, maze, suggestion, trap the soul, or any form of charm or compulsion.]
---Spell-likes:: confusion (DC 17), control undead (DC 20), ghoul touch (DC 15), lesser planar ally, ray of enfeeblement, spectral hand, suggestion (DC 16), true seeing. 
-newEntity{
+--Spell-likes:: confusion (DC 17), control undead (DC 20), ghoul touch (DC 15), lesser planar ally, ray of enfeeblement, spectral hand, suggestion (DC 16), true seeing.
+newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         define_as = "BASE_NPC_DEVOURER",
-        type = "undead",
         image = "tiles/devourer.png",
         display = 'U', color=colors.LIGHT_BLUE,
-        body = { INVEN = 10 },
+
         desc = [[A terrible bony creature.]],
         specialist_desc = [[A devourer's touch drains the life energy of its victim, inflicting a negative level with ever touch. It can even do this through the use of its spectral hand spell-like ability. Devourers are also resilient to magical attacks.
         As well as providing sustenance to the devourer, a trapped essence can also be used to power an array of spell-like abilities that the devourer has access to. Using the essence in this way diminishes its power and can eventually destroy it. As well as this, the devourer can also use the trapped essence to be the victim of certain spells that make it past its spell resistance, including all charms and compulsions, making these spells effectively useless against these creatures.]],
@@ -107,20 +122,17 @@ newEntity{
         skill_spot = 15,
 }
 
---Paralysis on hit DC 15 1d4 rounds; ghoul fever; AL CE
-newEntity{
+--Paralysis on hit DC 15 1d4 rounds; ghoul fever;
+newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         define_as = "BASE_NPC_GHOUL",
-        type = "undead",
         image = "tiles/ghoul.png",
         display = 'U', color=colors.GRAY,
-        body = { INVEN = 10 },
         desc = [[A shuffling bloated creature.]],
         specialist_desc = [[There are other variations of ghouls, including the aquatic lacedon and the more powerful ghast.]],
         uncommon_desc = [[The bite or touch of a ghoul causes paralysis in its victim.]],
         common_desc = [[The bite of a ghoul infects the victim with a horrible disease called ghoul fever. Those who die from this disease rise again to become a ghoul themselves.]],
         base_desc = "Ghouls are undead who feast upon corpses and carrion. They are tough and intelligent creatures."..undead_desc.."",
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=13, dex=15, con=1, int=13, wis=14, cha=12, luc=8 },
         combat = { dam= {1,6} },
         skill_balance = 4,
@@ -129,6 +141,7 @@ newEntity{
         skill_jump = 4,
         skill_movesilently = 4,
         skill_spot = 5,
+        alignment = "chaotic evil",
 }
 
 newEntity{
@@ -139,7 +152,6 @@ newEntity{
         max_life = resolvers.rngavg(10,15),
         hit_die = 2,
         challenge = 1,
-
 }
 
 --Swim 30 ft.
@@ -169,15 +181,12 @@ newEntity{
 }
 
 --Improved grab, paralysing touch Fort DC 17 1d4x10 rounds
-newEntity{
+newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         define_as = "BASE_NPC_MOHRG",
-        type = "undead",
         image = "tiles/UT/mohrg.png",
         display = 'U', color=colors.BLACK,
-        body = { INVEN = 10 },
         desc = [[A terrible undead creature.]],
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=21, dex=19, con=1, int=11, wis=10, cha=10, luc=6 },
         combat = { dam= {1,6} },
         name = "mohrg",
@@ -202,19 +211,16 @@ newEntity{
 
 --Mummy rot Fort DC 16 1d6 CON & 1d6 CHA; fear for 1d4 rounds in LOS Will DC 16
 --Toughness
-newEntity{
+newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         define_as = "BASE_NPC_MUMMY",
-        type = "undead",
         image = "tiles/mummy.png",
         display = 'U', color=colors.GOLD,
-        body = { INVEN = 10 },
         desc = [[An undead mummy swathed in bandages.]],
         specialist_desc = [[The touch of a mummy inflicts a horrible disease known as mummy rot. This incredibly fast-acting disease is not natural and is cured only by casting break enchantment or remove curse. This disease is highly resistant, though not immune, to healing spells. Sometimes, powerful individuals are preserved as greater mummies, retaining some of their skills and abilities that they had in life.]],
         uncommon_desc = [[The mere sight of a mummy invokes tremendous despair, which can paralyze its victims. Mummies are resistant to most weapons, but they are vulnerable to fire damage.]],
         common_desc = [[Mummies are used as guardians for great tombs or temple complexes, hunting down and destroying grave robbers. They never retreat.]],
         base_desc = "This withered and desiccated corpse, which is wrapped in funerary bandages, is a mummy. "..undead_desc.."",
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=24, dex=10, con=1, int=6, wis=14, cha=15, luc=6 },
         combat = { dam= {1,6} },
         name = "mummy",
@@ -236,16 +242,14 @@ newEntity{
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
---Incorporeal; 1d6 STR damage; +2 turn resistance
-newEntity{
+--1d6 STR damage; +2 turn resistance
+newEntity{ base = "BASE_NPC_UNDEAD_INCORPO",
         define_as = "BASE_NPC_SHADOW",
-        type = "undead", subtype = "shadow",
+        subtype = "shadow",
         image = "tiles/shadow.png",
         display = 'N', color=colors.WHITE,
-        body = { INVEN = 10 },
         desc = [[An incorporeal shadow.]],
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=1, dex=14, con=1, int=6, wis=12, cha=13, luc=6 },
         combat = { dam= {1,1} },
         name = "shadow",
@@ -262,7 +266,7 @@ newEntity{
         skill_spot = 6,
         alignment = "chaotic evil",
         resolvers.talents{ [Talents.T_ALERTNESS]=1,
-        [Talents.T_DODGE]=1 
+        [Talents.T_DODGE]=1
         },
 }
 
@@ -288,18 +292,16 @@ newEntity{
 }
 
 --Blind-Fight; energy drain Fort DC 14
-newEntity{
+newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         define_as = "BASE_NPC_WIGHT",
-        type = "undead", subtype = "wight",
+        subtype = "wight",
         image = "tiles/wight.png",
         display = 'U', color=colors.BLUE,
-        body = { INVEN = 10 },
         desc = [[A twisted shadow of a once-living creature.]],
         uncommon_desc = [[Although undead, wights are intelligent and can even speak.]],
         common_desc = [[The mere touch of a wight drains energy from living creatures. A humanoid slain by a wight becomes one themselves soon after, enslaved to the wight that spawned it. Wights are incredibly stealthy and easily can sneak up on most creatures.]],
         base_desc = "This walking corpse with malevolently burning eyes is a wight. "..undead_desc.."",
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=12, dex=12, con=1, int=11, wis=13, cha=15, luc=6 },
         combat = { dam= {1,4} },
         name = "wight",
@@ -318,20 +320,18 @@ newEntity{
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
---Fly 60 ft.; CON drain ; +2 turn res; unnatural aura; Blind-Fight feat
-newEntity{
+--Fly 60 ft.; CON drain ; +2 turn res; unnatural aura; Blind-Fight
+newEntity{ base = "BASE_NPC_UNDEAD_INCORPO",
         define_as = "BASE_NPC_WRAITH",
-        type = "undead", subtype = "wraith",
+        subtype = "wraith",
         image = "tiles/wraith.png",
         display = 'N', color=colors.YELLOW,
-        body = { INVEN = 10 },
         desc = [[An incorporeal wraith.]],
         specialist_desc = [[Wraiths are powerless in sunlight and flee from it. When exposed to sunlight, they cannot attack and can barely move. Larger and far more powerful versions, called dread wraiths, are sometimes seen.]],
         uncommon_desc = [[The mere touch of a wraith drains the target's Constitution, granting the wraith additional unlife. A humanoid slain by a wraith becomes one itself soon after death. Wraiths are resistant to turning attempts.]],
         common_desc = [[Animals balk at the presence of a wraith and flee if they come within 30 feet of one. They are highly intelligent and speak both Common and Infernal.]],
         base_desc = "This sinister incorporeal creature is a wraith. "..undead_desc.."",
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=1, dex=16, con=1, int=14, wis=14, cha=15, luc=6 },
         combat = { dam= {1,4} },
         name = "wraith",
@@ -351,6 +351,7 @@ newEntity{
         skill_spot = 10,
         alignment = "lawful evil",
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+        fly = true,
 }
 
 --Blind-Fight, Spring Attack
@@ -379,14 +380,12 @@ newEntity {
 
 --immunity to cold
 --Summon undead  The undead arrive in 1d10 rounds and serve for 1 hour
---Spell-likes: At will—contagion (DC 18), deeper darkness, detect magic, greater dispel magic, haste, see invisibility, and unholy blight (DC 18); 
-newEntity{
+--Spell-likes: At will—contagion (DC 18), deeper darkness, detect magic, greater dispel magic, haste, see invisibility, and unholy blight (DC 18);
+newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         define_as = "BASE_NPC_NIGHTSHADE",
-        type = "undead",
+        subtype = "nightshade",
         image = "tiles/nightshade.png",
         display = 'U', color=colors.DARK_BLUE,
-        body = { INVEN = 10 },
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
         stats = { str=48, dex=10, con=1, int=20, wis=20, cha=18, luc=6 },
         combat = { dam= {4,6} },
         rarity = 35,
@@ -397,16 +396,16 @@ newEntity{
         alignment = "chaotic evil",
 }
 
---Burrow 60 ft; tremorsense 6 squares; 
+--Burrow 60 ft; tremorsense 6 squares;
 --Poison pri & sec 2d6 STR Fort DC 22; improved grab; swallow whole, energy drain; Blind-Fight, Imp Crit x2
 -- 9-16 shadows, 3-6 greater shadows, or 2-4 dread wraiths.
---Spell-likes: 3/day—confusion (DC 18), hold monster (DC 19), invisibility; 1/day—cone of cold (DC 19), finger of death (DC 21), plane shift (DC 21). 
+--Spell-likes: 3/day—confusion (DC 18), hold monster (DC 19), invisibility; 1/day—cone of cold (DC 19), finger of death (DC 21), plane shift (DC 21).
 newEntity{
         define_as = "BASE_NPC_NIGHTSHADE",
         color=colors.DARK_BLUE,
         desc = [[An undead horror the color of night with a stinging tail.]],
         name = "nightcrawler",
-        exp_worth = 5500,        
+        exp_worth = 5500,
         max_life = resolvers.rngavg(210,215),
         hit_die = 25,
         challenge = 18,
@@ -430,7 +429,7 @@ newEntity{
 --Fly 20 ft; immunity to cold; fear 4 squares Will DC 24
 --Cleave, Imp Disarm, Quicken Spell-like (unholy blight)
 --Summon undead -  7-12 shadows, 2-5 greater shadows, or 1-2 dread wraiths.
---Spell-likes: 3/day—confusion (DC 18), hold monster (DC 19), invisibility; 1/day—cone of cold (DC 19), finger of death (DC 21), plane shift (DC 21). 
+--Spell-likes: 3/day—confusion (DC 18), hold monster (DC 19), invisibility; 1/day—cone of cold (DC 19), finger of death (DC 21), plane shift (DC 21).
 newEntity{
         define_as = "BASE_NPC_NIGHTSHADE",
         display = 'U', color=colors.BLUE,
@@ -455,12 +454,12 @@ newEntity{
         skill_spot = 25,
 --[[       resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
         [Talents.T_COMBAT_EXPERTISE]=1
-        },]] 
+        },]]
 }
 
 --Fly 60 ft; immunity to cold; magic drain [item] Fort DC 22
 --Imp Crit, Combat Reflexes
---Summon undead -  5-12 shadows, 2-4 greater shadows, or 1 dread wraith. 
+--Summon undead -  5-12 shadows, 2-4 greater shadows, or 1 dread wraith.
 --Spell-likes: at will- invisibility; 3/day—cone of cold (DC 19), confusion (DC 18), hold monster (DC 19); 1/day—finger of death (DC 21), mass hold monster (DC 23), plane shift (DC 21).
 newEntity{
         define_as = "BASE_NPC_NIGHTSHADE",

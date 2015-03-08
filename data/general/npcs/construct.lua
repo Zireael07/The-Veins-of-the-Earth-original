@@ -25,6 +25,7 @@ newEntity{
 	combat_attackspeed = 1.66,
 	infravision = 4,
 	combat_dr = 5,
+	resolvers.wounds(),
 	resolvers.talents{ [Talents.T_RAGE]=1 },
 }
 
@@ -128,6 +129,7 @@ newEntity{
 	alignment = "neutral",
 --	movement_speed_bonus = -0.33,
 	movement_speed = 0.66,
+	resolvers.wounds()
 }
 
 --Fast healing 5, vampiric touch,
@@ -147,12 +149,13 @@ newEntity{
 	infravision = 4,
 	combat_dr = 10,
 	spell_resistance = 22,
+	resolvers.wounds(),
 	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
 		[Talents.T_ALERTNESS]=1,
 	 },
 }
 
---Spell-likes: At will—discern lies (DC 17), disguise self, fear (DC 17), hold person (DC 16), invisibility, locate creature, suggestion (DC 16); 1/day—hold monster (DC 17), mark of justice; 1/week— geas/quest. 
+--Spell-likes: At will—discern lies (DC 17), disguise self, fear (DC 17), hold person (DC 16), invisibility, locate creature, suggestion (DC 16); 1/day—hold monster (DC 17), mark of justice; 1/week— geas/quest.
 newEntity{
 	base = "BASE_NPC_INEVITABLE",
 	name = "kolyarut",
@@ -249,4 +252,5 @@ newEntity{
 	infravision = 4,
 	combat_natural = 14,
 	alignment = "neutral",
+	resolvers.wounds()
 }

@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2014-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -11,6 +11,7 @@ newEntity{
 	stats = { str=10, dex=10, con=10, int=10, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	alignment = "neutral",
+	resolvers.wounds()
 }
 
 newEntity{ base = "BASE_NPC_MAGBEAST",
@@ -54,7 +55,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_spot = 2,
 	uncommon_desc = [[These natural tunnellers can see in most conditions, and have a extra sense that allows them to detect the slightest of movements through the earth.]],
 	common_desc = [[As well as its lethal bite with which it can latch on to its victims, an ankheg has a natural acidic vemon which coats its mandibles and can be spit over short distances. Once an ankheg spits however, it takes a number of hours for it to build up its acid once more.]],
-	base_desc = [[This creature is an ankheg, a huge, burrowing insect with a dangerous bite and a tenacity matched only by its hunger. It can see in the dark. 
+	base_desc = [[This creature is an ankheg, a huge, burrowing insect with a dangerous bite and a tenacity matched only by its hunger. It can see in the dark.
 	The tough, chitinous carapace of an ankheg can be used in the crafting of certain exotic heavy armours. Though a tricky material to work with, a skilled smith might find relatively undamaged specimens useful.]],
 }
 
@@ -315,7 +316,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	fly = true,
 }
 
---Burrow 10 ft.; immunity to cold, vulnerability to cold; 
+--Burrow 10 ft.; immunity to cold, vulnerability to cold;
 --Weapon Focus, Improved Natural Attack; 1d8 cold on hit; 3 sq cone 15d6 cold Ref DC 22 half once per hour
 --An explosion upon death: 12d6 cold & 8d6 physical in 10 sq ball Ref DC 22
 newEntity{ base = "BASE_NPC_MAGBEAST",
@@ -394,7 +395,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	},
 }
 
---scent; improved grab, rend 2d6; Cleave, Imp Bull Rush; 
+--scent; improved grab, rend 2d6; Cleave, Imp Bull Rush;
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_GRAY_RENDER",
 	image = "tiles/gorilla.png",
@@ -471,7 +472,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 }
 
 --Wisdom drain 1d4; Spring Attack
---Spell-likes: At will—disguise self, ventriloquism; 3/day—charm monster (DC 15), major image (DC 14), mirror image, suggestion (DC 14); 1/day—deep slumber (DC 14). 
+--Spell-likes: At will—disguise self, ventriloquism; 3/day—charm monster (DC 15), major image (DC 14), mirror image, suggestion (DC 14); 1/day—deep slumber (DC 14).
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_LAMIA",
 	image = "tiles/cat.png",
@@ -627,7 +628,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
---	[Talents.T_POWER_ATTACK]=1 
+--	[Talents.T_POWER_ATTACK]=1
 	},
 }
 
@@ -712,13 +713,13 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --	movement_speed_bonus = -0.88,
 	movement_speed = 0.22,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_IRON_WILL]=1 
+	[Talents.T_IRON_WILL]=1
 	},
 }
 
 --Fly 40 ft., blood drain 1d4 CON when grappling
 --TOO SMALL to drop corpse
-newEntity{ 
+newEntity{
 	define_as = "BASE_NPC_STIRGE",
 	type = "magical_beast",
 	image = "tiles/stirge.png",
@@ -745,7 +746,7 @@ newEntity{
 --	movement_speed_bonus = -0.88,
 	fly = true,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_FINESSE]=1 
+	[Talents.T_FINESSE]=1
 	},
 	alignment = "neutral",
 }
@@ -769,7 +770,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 9,
 	skill_spot = 10,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_DODGE]=1 
+	[Talents.T_DODGE]=1
 	},
 }
 
@@ -862,10 +863,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --From Incursion
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_PIRANHABIRD",
-	--image = 
+	--image =
 	display = 'b', color=colors.LIGHT_GREEN,
 	desc = [[A magical hybrid of a piranha and a parrot, piranha birds are avian creatures with colorful plumes and bodies that resemble those of piranhas. They are sometimes encountered alone, but are most dangerous when they attack in swarms.]],
-	
+
 	stats = { str=7, dex=12, con=14, int=2, wis=16, cha=11, luc=10 },
 	combat = { dam= {1,8} },
 	name = "piranha bird",
@@ -883,10 +884,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --Scent, rend; brachiation feat; Bull strength, enlarge, cause fear spell-likes
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_BLOOD_APE",
-	--image = 
+	--image =
 	display = 'Y', color=colors.DARK_RED,
 	desc = [[A blood red large ape.]],
-	
+
 	stats = { str=21, dex=12, con=14, int=2, wis=12, cha=7, luc=10 },
 	combat = { dam= {1,8} },
 	name = "blood ape",
@@ -906,10 +907,10 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --Ethereal phase, fear DC 13
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_SPECTRAL_PANTHER",
-	--image = 
+	--image =
 	display = 'c', color=colors.GREY,
 	desc = [[Spectral panthers are mysterious creatures that feed on both the fear and the flesh of their prey.]],
-	
+
 	stats = { str=18, dex=13, con=16, int=13, wis=14, cha=15, luc=12 },
 	combat = { dam= {1,8} },
 	name = "spectral panther",
@@ -935,7 +936,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	--image = "tiles/cat.png",
 	display = 'c', color=colors.LIGHT_SLATE,
 	desc = [[This unnaturally sleek cat has silvery fur.]],
-	
+
 	stats = { str=5, dex=26, con=12, int=5, wis=14, cha=16, luc=14 },
 	combat = { dam= {1,3} },
 	name = "elven cat",

@@ -1,19 +1,26 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
+newEntity{
+	define_as = "BASE_NPC_WATER",
+	type = "outsider", subtype = "water",
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	alignment = "neutral",
+	resolvers.wounds()
+}
+
 --Improved grab, ink cloud, no flanking bonuses for enemies; immunity to acid and cold
 --Blind-Fight feat
-newEntity{
+newEntity{ base = "BASE_NPC_WATER",
 	define_as = "BASE_NPC_TOJANIDA",
-	type = "outsider", subtype = "water",
 	image = "tiles/UT/tojanida.png",
 	display = 'O', color=colors.LIGHT_BLUE,
 	body = { INVEN = 10 },
 	desc = [[A creature with seven stalks extending from the shell.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=14, dex=13, con=15, int=10, wis=12, cha=9, luc=10 },
 	combat = { dam= {2,6} },
 	rarity = 15,
@@ -22,11 +29,10 @@ newEntity{
 	skill_hide = 10,
 	skill_knowledge = 6,
 	skill_swim = 8,
-	alignment = "neutral",
 	resolvers.talents{ [Talents.T_DODGE]=1 },
 	resists = {
-                [DamageType.FIRE] = 10,
-                [DamageType.ELECTRIC] = 10,
+        [DamageType.FIRE] = 10,
+        [DamageType.ELECTRIC] = 10,
     },
 }
 
@@ -88,16 +94,13 @@ newEntity{
 
 
 --Swim 60 ft. Spell-like: 1/day—summon nature’s ally IV.
-newEntity{
+newEntity{ base = "BASE_NPC_WATER",
 	define_as = "BASE_NPC_TRITON",
-	type = "outsider", subtype = "water",
 	name = "triton",
 	image = "tiles/triton.png",
 	display = 'O', color=colors.DARK_BLUE,
-	body = { INVEN = 10 },
 	desc = [[A humanoid with a fish tail instead of legs and covered in silvery scales.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=12, dex=10, con=12, int=13, wis=13, cha=11, luc=10 },
 	combat = { dam= {1,6} },
 
