@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -66,7 +66,8 @@ function _M:makeTextureBar(text, nfmt, val, max, reg, x, y, r, g, b, bar_col, ba
     s:erase(bar_col.r, bar_col.g, bar_col.b, 255, self.bars_x, h, self.bars_w * val / max, self.font_h)
 
     s:drawColorStringBlended(self.font, text, 0, 0, r, g, b, true)
-    s:drawColorStringBlended(self.font, (nfmt or "%d/%d"):format(val, max), self.bars_x + 5, 0, r, g, b)
+    local text_w = self.font:size(text)
+    s:drawColorStringBlended(self.font, (nfmt or "%d/%d"):format(val, max), self.bars_x + text_w*0.75, 0, r, g, b)
     if reg and reg ~= 0 then
         local reg_txt = (" (%s%.2f)"):format((reg > 0 and "+") or "",reg)
         local reg_txt_w = self.font:size(reg_txt)
@@ -101,7 +102,7 @@ function _M:display()
     self:makeTexture(("Lvl: #GOLD#%2d"):format(player.level), x, h, 255, 255, 255) h = h + self.font_h
     local cur_exp, max_exp = player.exp, player:getExpChart(player.level+1)
     local exp = cur_exp / max_exp * 100
-    
+
     h = h + self.font_h
 
     if (player.class_points or 0) > 0 or (player.feat_point or 0) > 0 or (player.stat_point or 0) > 0 then
@@ -109,18 +110,22 @@ function _M:display()
     --    local glow = (1+math.sin(core.game.getTime() / 500)) / 2 * 100 + 120
     --    pf_levelup[1]:toScreenFull(50, 800, pf_levelup[6], pf_levelup[7], pf_levelup[2], pf_levelup[3], 1, 1, 1, glow / 255)
     --    pf_levelup[1]:toScreenFull(70, 800, pf_levelup[6], pf_levelup[7], pf_levelup[2], pf_levelup[3])
-    
+
     else end
 
     h = h + self.font_h
 
     self:makeTextureBar("Exp:", "%d%%", exp, 100, nil, x, h, 255, 255, 255, { r=0, g=100, b=0 }, { r=0, g=50, b=0 }) h = h + self.font_h
 
-    h = h + self.font_h 
+    h = h + self.font_h
 
     if player.life < player.max_life*0.3 then self:makeTextureBar("#FIREBRICK#Life:", nil, player.life, player.max_life, nil, x, h, 255, 255, 255, colors.FIREBRICK, colors.VERY_DARK_RED) h = h + self.font_h
     elseif player.life < player.max_life*0.5 then self:makeTextureBar("#DARK_RED#Life:", nil, player.life, player.max_life, nil, x, h, 255, 255, 255, colors.DARK_RED, colors.VERY_DARK_RED) h = h + self.font_h
     else self:makeTextureBar("#CRIMSON#Life:", nil, player.life, player.max_life, nil, x, h, 255, 255, 255, colors.CRIMSON, colors.VERY_DARK_RED) h = h + self.font_h end
+
+    h = h + self.font_h
+
+    self:makeTextureBar("#CRIMSON#Wounds:", nil, player.wounds, player.max_wounds, nil, x, h, 255, 255, 255, colors.LIGHT_RED, colors.DARK_RED) h = h + self.font_h
 
     h = h + self.font_h
 
@@ -138,11 +143,11 @@ function _M:display()
     elseif player.nutrition < 1000 then self:makeTexture("#DARK_RED#Fainting", x, h, 255, 255, 255)
     elseif player.nutrition < 1500 then self:makeTexture("#DARK_RED#Weak", x, h, 255, 255, 255)
     elseif player.nutrition < 2000 then self:makeTexture("#LIGHT_RED#Famished", x, h, 255, 255, 255)
-    elseif player.nutrition < 2500 then self:makeTexture("#YELLOW#Hungry", x, h, 255, 255, 255)    
+    elseif player.nutrition < 2500 then self:makeTexture("#YELLOW#Hungry", x, h, 255, 255, 255)
     --Don't display anything if content
-    elseif player.nutrition < 3000 then --self:makeTexture("#DARK_RED#Fainting", x, h, 255, 255, 255)    
+    elseif player.nutrition < 3000 then --self:makeTexture("#DARK_RED#Fainting", x, h, 255, 255, 255)
     elseif player.nutrition < 3500 then self:makeTexture("#LIGHT_GREEN#Satiated", x, h, 255, 255, 255)
-    elseif player.nutrition < 4000 then self:makeTexture("#DARK_GREEN#Bloated", x, h, 255, 255, 255)    
+    elseif player.nutrition < 4000 then self:makeTexture("#DARK_GREEN#Bloated", x, h, 255, 255, 255)
     else end
 
     h = h + self.font_h
@@ -155,7 +160,7 @@ function _M:display()
 
     if savefile_pipe.saving then
         h = h + self.font_h
-        self:makeTextureBar("Saving:", "%d%%", 100 * savefile_pipe.current_nb / savefile_pipe.total_nb, 100, nil, x, h, colors.YELLOW.r, colors.YELLOW.g, colors.YELLOW.b, 
+        self:makeTextureBar("Saving:", "%d%%", 100 * savefile_pipe.current_nb / savefile_pipe.total_nb, 100, nil, x, h, colors.YELLOW.r, colors.YELLOW.g, colors.YELLOW.b,
         {r=49, g=54,b=42},{r=17, g=19, b=0})
 
         h = h + self.font_h
@@ -164,9 +169,9 @@ end
 
 function _M:toScreen(nb_keyframes)
     self:display()
-    
+
     core.display.drawQuad(self.display_x, self.display_y, self.w, self.h, 0, 0, 0, 0)
-    
+
     for i = 1, #self.items do
         local item = self.items[i]
         if type(item) == "table" then
@@ -182,4 +187,3 @@ function _M:toScreen(nb_keyframes)
     end
 
 end
-
