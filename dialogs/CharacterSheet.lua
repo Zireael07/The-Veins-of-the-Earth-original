@@ -15,12 +15,12 @@ module(..., package.seeall, class.inherit(Dialog, mod.class.interface.TooltipsDa
 
 function _M:init(actor)
     self.actor = actor
-    
+
     local player = game.player
-   
+
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Character Sheet: "..self.actor.name, math.max(game.w * 0.7, 950), math.max(game.h*0.6, 550), nil, nil, font)
-    
+
     --Let's show game stats!
     game.total_playtime = (game.total_playtime or 0) + (os.time() - (game.last_update or game.real_starttime))
     game.last_update = os.time()
@@ -99,7 +99,7 @@ function _M:init(actor)
         {name="Use Magic (INT)", total=player:colorSkill("usemagic") or "0", ranks=(player.skill_usemagic or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_usemagic or "0") },
     },
     fct=function(item) end, select=function(item, sel) end} --self:select(item) end
-   
+
 
     self.t_general = Tab.new {
     title = 'General',
@@ -147,7 +147,7 @@ function _M:drawDialog(tab)
         {left=0, bottom=0, ui=self.c_kills},
         {left=0, bottom=self.c_kills.h, ui=self.vs}
     }
-    
+
     self:setupUI()
     self:drawGeneral()
     end
@@ -159,11 +159,11 @@ function _M:drawDialog(tab)
         {left=self.t_general, top=0, ui=self.t_skill},
         {left=0, top=50, ui=self.c_list},
     }
-    
+
     self:setupUI()
     game.tooltip:erase()
     end
-    
+
 end
 
 function _M:mouseZones(t, no_new)
@@ -209,7 +209,7 @@ function _M:drawGeneral()
     local list = {}
     local player = game.player
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
-    
+
     local level = player.classes[d.name] or 0
         if level > 0 then
         local name = ""
@@ -218,13 +218,13 @@ function _M:drawGeneral()
         table.insert(list, {name = name, desc = desc, level = level, real_name = d.name})
         end
     end
-   
+
     self.list = list
 
     table.sort(self.list, function (a,b)
-        if a.level == b.level then 
+        if a.level == b.level then
             return a.name < b.name
-        else 
+        else
             return a.level > b.level
         end
     end)
@@ -248,19 +248,20 @@ end
 
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(player:getAC() or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
-    
+
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life).."/"..math.floor(player.max_life)), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_WOUNDS, s:drawColorStringBlended(self.font, "Wounds : #DARK_RED#"..player.wounds.."/"..player.max_wounds, w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(player.combat_bab or "0").." + Str bonus: "..player:getStrMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(player.combat_bab or "0").." + Dex bonus: "..player:getDexMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
 
-    
+
     h = 0
-    w = self.w * 0.25 
-    -- start on second column 
-    self:mouseTooltip(self.TOOLTIP_STATS, s:drawColorStringBlended(self.font, "#CHOCOLATE#Stats", w, h, 255, 255, 255, true)) h = h + self.font_h    
+    w = self.w * 0.25
+    -- start on second column
+    self:mouseTooltip(self.TOOLTIP_STATS, s:drawColorStringBlended(self.font, "#CHOCOLATE#Stats", w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(player:sheetColorStats('str').." #SANDY_BROWN#"..player:getStrMod().." #YELLOW#/"..player.train_str.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(player:sheetColorStats('dex').." #SANDY_BROWN#"..player:getDexMod().." #YELLOW#/"..player.train_dex.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_CON, s:drawColorStringBlended(self.font, "#SLATE#CON : #YELLOW#"..(player:sheetColorStats('con').." #SANDY_BROWN#"..player:getConMod().." #YELLOW#/"..player.train_con.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
@@ -303,11 +304,11 @@ end
 
 
     h = 0
-    w = self.w * 0.75 
+    w = self.w * 0.75
     -- start on last column (feats)
     self:mouseTooltip(self.TOOLTIP_FEAT, s:drawColorStringBlended(self.font, "#CHOCOLATE#Feats", w, h, 255, 255, 255, true)) h = h + self.font_h
     local list = {}
-  
+
         for j, t in pairs(player.talents_def) do
           if player:knowTalent(t.id) and t.is_feat then
                 if player:classFeat(t.id) then name = "#GOLD#"..t.name
