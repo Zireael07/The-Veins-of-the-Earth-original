@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2014 Zireael
+-- Copyright (C) 2013-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -290,9 +290,91 @@ function resolvers.calc.tactic(t, e)
 	return {}
 end
 
+--Moddable tiles, based on ToME's
+function resolvers.moddable_tile(image, values)
+	return {__resolver="moddable_tile", image}
+end
+function resolvers.calc.moddable_tile(t, e)
+	local slot = t[1]
+	local r, r2
+	if slot == "cloak" then r = {"cloak_green"}
+	elseif slot == "heavy" then
+		r = {"plate","half_plate","half_plate2","half_plate3"}
+		r2 = {"leg_armor01","leg_armor02","leg_armor03","leg_armor04"}
+	elseif slot == "light" then
+		r = {"chainmail","chainmail3","leather_armour","leather_armour2","leather_armour3"}
+	--	r2 = {"lower_body_03","lower_body_04","lower_body_05","lower_body_06","lower_body_06",}
+	elseif slot == "robe" then r = {"monk_black","monk_blue","robe_green","robe_green_gold","robe_yellow"}
+	elseif slot == "shield" then r = {"shield_kite2","shield_round1","shield_round2","shield_round3"}
+	elseif slot == "staff" then r = {"staff_plain", "staff_mage"}
+	elseif slot == "leather_boots" then r = {"middle_brown","middle_brown2","middle_brown3",}
+	elseif slot == "heavy_boots" then r = {"middle_gold"}
+	elseif slot == "gauntlets" then r = {"gauntlet_blue",}
+	elseif slot == "gloves" then r = {"glove_red", "glove_brown"}
+	elseif slot == "sword" then r = {"short_sword_%s", "long_sword_%s"}
+	elseif slot == "greatsword" then r = {"great_sword"}
+	elseif slot == "trident" then r = {"trident"}
+	elseif slot == "whip" then r = {"whip_%s"}
+	elseif slot == "mace" then r = {"mace_%s", "mace2_%s", "mace3_%s"}
+	elseif slot == "handaxe" then r = {"hand_axe_%s"}
+	elseif slot == "axe" then r = {"war_axe_%s"}
+	elseif slot == "greataxe" then r = {"greataxe"}
+	elseif slot == "bow" then r = {"bow"}
+	elseif slot == "crossbow" then r = {"crossbow"}
+	elseif slot == "sling" then r = {"sling"}
+	elseif slot == "dagger" then r = {"dagger_%s"}
+	elseif slot == "helm" then r = {"helm_plume"}
+	elseif slot == "leather_cap" then r = {"cap_black1"}
+	end
+
+	r = rng.table(r)
+--	r = r[util.bound(ml, 1, #r)]
+	if r2 then
+--		r2 = r2[util.bound(ml, 1, #r2)]
+		r2 = rng.table(r2)
+		e.moddable_tile2 = r2
+	end
+	if type(r) == "string" then return r else e.moddable_tile_big = true return r[1] end
+end
+
+
 --Originals start here
+function resolvers.value(list)
+	return {__resolver="value", list }
+end
+
+--10 coppers to a silver, 20 silvers to a gold means 200 coppers to a gold
+--10 gold to a platinum means 2000 coppers to a platinum
+function resolvers.calc.value(t, e)
+	for kind, amt in pairs(t[1]) do
+
+	local value = 0
+
+	if kind == "silver" then value = value + amt*10 end
+	if kind == "gold" then value = value + amt*200 end
+	if kind == "platinum" then value = value + amt*2000 end
+
+	return value
+	end
+
+end
+
+--Wound system
+function resolvers.wounds()
+	return {__resolver="wounds", list,  __resolve_last=true }
+end
+
+function resolvers.calc.wounds(t, e)
+	e.max_wounds = e:getCon()*2
+	e.wounds = e.max_wounds
+end
+
+
+
+
+--NPC-related resolvers
 function resolvers.classes(list)
-	return {__resolver="classes", list }
+	return {__resolver="classes", list, __resolve_last=true }
 end
 
 function resolvers.calc.classes(t, e)
@@ -722,73 +804,6 @@ end
 		e.combat_untyped = e.combat_untyped +2
 		e.special = "curate"]]
 
-
---Moddable tiles, based on ToME's
-function resolvers.moddable_tile(image, values)
-	return {__resolver="moddable_tile", image}
-end
-function resolvers.calc.moddable_tile(t, e)
-	local slot = t[1]
-	local r, r2
-	if slot == "cloak" then r = {"cloak_green"}
-	elseif slot == "heavy" then
-		r = {"plate","half_plate","half_plate2","half_plate3"}
-		r2 = {"leg_armor01","leg_armor02","leg_armor03","leg_armor04"}
-	elseif slot == "light" then
-		r = {"chainmail","chainmail3","leather_armour","leather_armour2","leather_armour3"}
-	--	r2 = {"lower_body_03","lower_body_04","lower_body_05","lower_body_06","lower_body_06",}
-	elseif slot == "robe" then r = {"monk_black","monk_blue","robe_green","robe_green_gold","robe_yellow"}
-	elseif slot == "shield" then r = {"shield_kite2","shield_round1","shield_round2","shield_round3"}
-	elseif slot == "staff" then r = {"staff_plain", "staff_mage"}
-	elseif slot == "leather_boots" then r = {"middle_brown","middle_brown2","middle_brown3",}
-	elseif slot == "heavy_boots" then r = {"middle_gold"}
-	elseif slot == "gauntlets" then r = {"gauntlet_blue",}
-	elseif slot == "gloves" then r = {"glove_red", "glove_brown"}
-	elseif slot == "sword" then r = {"short_sword_%s", "long_sword_%s"}
-	elseif slot == "greatsword" then r = {"great_sword"}
-	elseif slot == "trident" then r = {"trident"}
-	elseif slot == "whip" then r = {"whip_%s"}
-	elseif slot == "mace" then r = {"mace_%s", "mace2_%s", "mace3_%s"}
-	elseif slot == "handaxe" then r = {"hand_axe_%s"}
-	elseif slot == "axe" then r = {"war_axe_%s"}
-	elseif slot == "greataxe" then r = {"greataxe"}
-	elseif slot == "bow" then r = {"bow"}
-	elseif slot == "crossbow" then r = {"crossbow"}
-	elseif slot == "sling" then r = {"sling"}
-	elseif slot == "dagger" then r = {"dagger_%s"}
-	elseif slot == "helm" then r = {"helm_plume"}
-	elseif slot == "leather_cap" then r = {"cap_black1"}
-	end
-
-	r = rng.table(r)
---	r = r[util.bound(ml, 1, #r)]
-	if r2 then
---		r2 = r2[util.bound(ml, 1, #r2)]
-		r2 = rng.table(r2)
-		e.moddable_tile2 = r2
-	end
-	if type(r) == "string" then return r else e.moddable_tile_big = true return r[1] end
-end
-
-function resolvers.value(list)
-	return {__resolver="value", list }
-end
-
---10 coppers to a silver, 20 silvers to a gold means 200 coppers to a gold
---10 gold to a platinum means 2000 coppers to a platinum
-function resolvers.calc.value(t, e)
-	for kind, amt in pairs(t[1]) do
-
-	local value = 0
-
-	if kind == "silver" then value = value + amt*10 end
-	if kind == "gold" then value = value + amt*200 end
-	if kind == "platinum" then value = value + amt*2000 end
-
-	return value
-	end
-
-end
 
 --From ToME 2 port
 -- Assign a flavor to flavored objects that haven't had a flavor assigned

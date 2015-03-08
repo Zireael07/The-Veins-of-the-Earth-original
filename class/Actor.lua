@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -215,7 +215,11 @@ function _M:init(t, no_default)
 	self.lite = 0 --Temporary test
 	self.infravision = 0
 
+	--Life stuff
 	self.life = t.max_life or self.life
+	--Wounds system
+	t.wounds = t.max_wounds or self.wounds or 1
+	t.max_wounds = t.max_wounds or 1
 
 	self.last_attacker = nil
 

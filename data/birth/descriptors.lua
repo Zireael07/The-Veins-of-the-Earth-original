@@ -39,6 +39,8 @@ newBirthDescriptor{
     	--Moddable tiles
     	moddable_tile = "default",
     	moddable_tile_base = "human_m.png",
+		--Wounds
+		resolvers.wounds(),
 
 		game_state = {
 		  campaign_name = "Veins",
