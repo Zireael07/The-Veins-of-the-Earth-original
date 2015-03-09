@@ -515,7 +515,7 @@ newEntity{
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_HOBGOBLIN",
 	subtype = "goblinoid",
 	image = "tiles/goblin.png",
