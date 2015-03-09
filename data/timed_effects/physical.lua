@@ -73,6 +73,21 @@ newEffect{
 	end,
 }
 
+--Dummy so that encumbrance can be removed on death temporarily
+newEffect{
+	name = "ENCUMBERED",
+	desc = "Encumbered",
+	type = "physical",
+	status = "detrimental",
+	activate = function(self, eff)
+		self.encumbered = self:addTemporaryValue("never_move", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("never_move", self.encumbered)
+	end,
+}
+
+
 -- Basic Conditions
 
 newEffect{

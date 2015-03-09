@@ -743,8 +743,8 @@ if ((self.life or 0) - (value or 0) < 0) then
 	--if out of wounds, we're dead
 	if (self.wounds == 0 or (self.wounds - (value_remaining or 0)) == 0) and not self.dead then
 		--remove effects
-		if self:hasEffect(self.EFF_DISABLED) then self:removeEffect(self.EFF_DISABLED) end
-		if self:hasEffect(self.EFF_FATIGUE) then self:removeEffect(self.EFF_FATIGUE) end
+		if self:hasEffect(self.EFF_DISABLED) then self:removeEffect(self.EFF_DISABLED, true) end
+		if self:hasEffect(self.EFF_FATIGUE) then self:removeEffect(self.EFF_FATIGUE, true) end
 		--Remove any particles we have
 		local ps = self:getParticlesList()
 		for i, p in ipairs(ps) do self:removeParticles(p) end
@@ -1296,6 +1296,28 @@ function _M:preUseTalent(ab, silent)
 				game.logSeen(self, "%s uses %s.", self:getLogName():capitalize(), self:getTalentName(ab))
 		end
 	end
+
+	--Spell failure!
+	if tt_def.all_limited then
+
+		if self.classes and self.classes["Wizard"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then
+			game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!")
+			self:useEnergy()
+			return false
+		end
+		if self.classes and self.classes["Sorcerer"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then
+			game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!")
+			self:useEnergy()
+			return false
+		end
+		if self.classes and self.classes["Bard"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then
+			game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!")
+			self:useEnergy()
+			return false
+		end
+	end
+
+
 	return true
 end
 
@@ -1311,14 +1333,6 @@ function _M:postUseTalent(ab, ret)
 
 	--remove charge
 	if tt_def.all_limited then self:incCharges(ab, -1) end
-
-	--Spell failure!
-	if tt_def.all_limited then
-
-		if self.classes and self.classes["Wizard"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!") return false end
-		if self.classes and self.classes["Sorcerer"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!") return false end
-		if self.classes and self.classes["Bard"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!") return false end
-	end
 
 	self:useEnergy()
 
@@ -2677,19 +2691,18 @@ function _M:checkEncumbrance()
 	end
 
 	-- We are pinned to the ground if we carry too much
-	if not self.encumbered and enc > max then
+	if not self:hasEffect(self.EFF_ENCUMBERED) and enc > max then
 		game.logPlayer(self, "#FF0000#You carry too much--you are encumbered!")
 		game.logPlayer(self, "#FF0000#Drop some of your items.")
-		self.encumbered = self:addTemporaryValue("never_move", 1)
+		self:setEffect(self.EFF_ENCUMBERED, 100000, {})
 
 	if self.x and self.y then
 		local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
 		game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, rng.float(-2.5, -1.5), "+ENCUMBERED!", {255,0,0}, true)
 	end
-	elseif self.encumbered and enc <= max then
-		self:removeTemporaryValue("never_move", self.encumbered)
-		self.encumbered = nil
+	elseif self:hasEffect(self.EFF_ENCUMBERED) and enc <= max then
 		game.logPlayer(self, "#00FF00#You are no longer encumbered.")
+		self:removeEffect(self.EFF_ENCUMBERED)
 
 		if self.x and self.y then
 			local sx, sy = game.level.map:getTileToScreen(self.x, self.y)

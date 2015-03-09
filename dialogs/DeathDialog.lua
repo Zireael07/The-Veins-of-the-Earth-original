@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ function _M:init(actor)
 	self.c_stat = Textzone.new{width=self.iw, auto_height=true, text=self.text}
 
 	self.c_desc = Textzone.new{width=self.iw, auto_height=true, text=[[You have #LIGHT_RED#died#LAST#!
-Death in #SANDY_BROWN#the Veins of the Earth#LAST# is usually permanent. 
+Death in #SANDY_BROWN#the Veins of the Earth#LAST# is usually permanent.
 Luckily, you can review your character sheet and try once again to survive in the wilds!
 ]]}
 	self.c_list = List.new{width=self.iw, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end}
@@ -103,6 +103,10 @@ end
 function _M:resurrectBasic()
 	self.actor.dead = false
 	self.actor.died = (self.actor.died or 0) + 1
+
+	if self.actor.encumbered then
+		self.actor:removeEffect(EFF_ENCUMBERED, true)
+	end
 
 	local x, y = util.findFreeGrid(self.actor.x, self.actor.y, 20, true, {[Map.ACTOR]=true})
 	if not x then x, y = self.actor.x, self.actor.y end
