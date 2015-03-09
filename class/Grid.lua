@@ -83,9 +83,14 @@ function _M:tooltip(x, y)
 		tstr:add(true)
 	end
 
+	--Overmap tiles tell you where they lead if you've visited at least once
+	if self.change_zone and game.visited_zones[self.change_zone] then
+		tstr:add(true, {"font","bold"}, {"color","GOLD"}, self.change_zone, {"color", "LAST"}, {"font","normal"}, true)
+	end
+
 	--More info
 	if game.player:hasLOS(x, y) then tstr:add({"color", "CRIMSON"}, "In sight", {"color", "LAST"}, true) end
-	
+
 	if game.level.map.seens(x, y) then tstr:add({"color", "CRIMSON"}, "Seen", {"color", "LAST"}, true) end
 
 	if game.level.map.lites(x, y) then tstr:add({"color", "YELLOW"}, "Lit", {"color", "LAST"}, true) end
@@ -96,17 +101,13 @@ function _M:tooltip(x, y)
 --	if game.level.map.attrs(x, y, "no_teleport") then tstr:add({"color", "VIOLET"}, "Cannot teleport to this place", {"color", "LAST"}, true) end
 
 
---[[    for i, v in pairs({'no_teleport', 
-    	'big_moss1', 'big_moss2', 'chasm1', 'chasm2', 'chasm3', 'chasm4', 'circle', 'circle2', 'circle3', 'ice_patch', 'ice_patch2', 'ice_patch3', 'icefilled', 'lake', 'lake2', 'marble', 'marble2', 'moss_patch1', 'moss_patch2', 'moss_pilar1', 'moss_pilar2', 'moss_pilar3', 'pilar', 'pilar2', 'pilar3', 'pilar4', 'pilar_stairs', 'pilar_stairs2', 'pilar_stairs3', 'rhomboid', 'rhomboid2', 'ritual', 'ritual2', 'simple', 'temple', 'treasure_room', 'veins', 'waterfilled', 'waterfilled2', 'waterfilled3', 'waterfilled4', 'waterfilled_half', 'waterfilled_half2', 'waterfilled_pilar',
-    	'forest_clearing'}) do
-        if game.level.map.attrs(x, y, v) then tstr:add({"color", "VIOLET"}, v, {"color", "LAST"}, true) end
-	end
-
-    tstr:add({"color", "VIOLET"}, "Corridor", {"color", "LAST"})
+--[[tstr:add({"color", "VIOLET"}, "Corridor", {"color", "LAST"})
     end]]
 
 --[[	if game.level.map.attrs(x, y, "room_id", v) then tstr:add({"color", "VIOLET"}, v, {"color", "LAST"}, true)
 	else tstr:add({"color", "VIOLET"}, "Corridor", {"color", "LAST"}) end]]
+
+	--Room descriptions go here
 
 	if game.level.map.attrs(x, y, "big_moss1") then tstr:add({"color", "VIOLET"}, "Big moss", {"color", "LAST"}, true) end
 	if game.level.map.attrs(x, y, "big_moss2") then tstr:add({"color", "VIOLET"}, "Big moss", {"color", "LAST"}, true) end
