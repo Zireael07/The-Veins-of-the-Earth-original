@@ -169,7 +169,7 @@ function _M:newGame()
 	self.creating_player = true
 
 	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment', 'deity'}, function()
-     	
+
 --[[     	--Display game options
         self:registerDialog(require("mod.dialogs.GameOptions").new(true))]]
 
@@ -184,20 +184,20 @@ function _M:newGame()
         game.paused = true
         game.player.changed = true
         print("[PLAYER BIRTH] resolved!")
-        
+
         profile.chat:setupOnGame()
         game.player:onBirth()
 
         local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
 
 		--Tutorial popup
-        Dialog:yesnoPopup("Tutorial", "Go through the tutorial", function(ok) 
+        Dialog:yesnoPopup("Tutorial", "Go through the tutorial", function(ok)
 			if ok then game:changeLevel(1, "tutorial")
 			else end
 		end, "Yes", "No")
 
-   		
-        
+
+
         game.creating_player = false
 
         game.player:levelPassives()
@@ -273,7 +273,7 @@ function _M:computeAttachementSpots()
 			setfenv(f, t)
 			local ok, err = pcall(f)
 			if not ok then print("Loading tileset attachements error", err) end
-		end		
+		end
 	end
 	for _, file in ipairs(fs.list(Tiles.prefix)) do if file:find("^attachements%-.+.lua$") then
 		print("Loading tileset attachements from ", Tiles.prefix..file)
@@ -283,7 +283,7 @@ function _M:computeAttachementSpots()
 			setfenv(f, t)
 			local ok, err = pcall(f)
 			if not ok then print("Loading tileset attachements error", err) end
-		end		
+		end
 	end end
 	self:computeAttachementSpotsFromTable(t)
 end
@@ -334,7 +334,7 @@ function _M:setupDisplayMode(reboot, mode)
 
 		local map_x, map_y, map_w, map_h = self:getMapSize()
 	--	local map_x, map_y, map_w, map_h = self.uiset:getMapSize()
-		
+
 		if th <= 20 then
 			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/DroidSansFallback.ttf", pot_th, do_bg)
 		else
@@ -344,7 +344,7 @@ function _M:setupDisplayMode(reboot, mode)
 		-- Show a count for stacked objects
 		Map.object_stack_count = true
 
-		if self.level and self.player then 
+		if self.level and self.player then
 		self.calendar = Calendar.new("/data/calendar.lua", "#GOLD#Today is the %s %s of %s DR. \nThe time is %02d:%02d.", 1371, 1, 11)
  		end
 
@@ -412,16 +412,16 @@ function _M:createFBOs()
 			blur = Shader.new("main_fbo/blur"),
 		}
 		self.posteffects_use = { self.fbo_shader.shad }]]
-		if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end 
+		if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end
 		self.fbo2 = core.display.newFBO(Map.viewport.width, Map.viewport.height)
 	end
-	
+
 	if self.player then self.player:updateMainShader() end
 
 	self.full_fbo = core.display.newFBO(self.w, self.h)
 	if self.full_fbo then self.full_fbo_shader = Shader.new("full_fbo") if not self.full_fbo_shader.shad then self.full_fbo = nil self.full_fbo_shader = nil end end
 
-	if self.fbo and self.fbo2 
+	if self.fbo and self.fbo2
 		then core.particles.defineFramebuffer(self.fbo)
 	else core.particles.defineFramebuffer(nil) end
 
@@ -525,7 +525,7 @@ function _M:save()
 	self.total_playtime = (self.total_playtime or 0) + (os.time() - (self.last_update or self.real_starttime))
 	self.last_update = os.time()
 
-	return class.save(self, self:defaultSavedFields{party=true, time_stamp=true, total_playtime=true, always_target=true}, true)
+	return class.save(self, self:defaultSavedFields{party=true, time_stamp=true, total_playtime=true, always_target=true, visited_zones=true, }, true)
 end
 
 function _M:getSaveDescription()
@@ -547,7 +547,7 @@ function _M:getVaultDescription(e)
 STR %s DEX %s CON %s INT %s WIS %s CHA %s LUC %s
 Perk: %s
 Deity: %s]]):format(
-		e.name, e.descriptor.sex, e.descriptor.race, e.descriptor.class, e.descriptor.alignment, 
+		e.name, e.descriptor.sex, e.descriptor.race, e.descriptor.class, e.descriptor.alignment,
 		e:colorHighStats('str'), e:colorHighStats('dex'), e:colorHighStats('con'), e:colorHighStats('int'), e:colorHighStats('wis'), e:colorHighStats('cha'), e:colorHighStats('luc'),
 		e.perk,
 		e.descriptor.deity
@@ -641,9 +641,9 @@ function _M:changeLevel(lev, zone)
 		feeling = self.level.special_feeling
 		else
 
-		for uid, e in pairs(game.level.entities) do --list[#list+1] = e 
+		for uid, e in pairs(game.level.entities) do --list[#list+1] = e
 			cr = e.challenge
-			if cr > max_cr then max_cr = cr 
+			if cr > max_cr then max_cr = cr
 			else end
 		end
 
@@ -654,7 +654,7 @@ function _M:changeLevel(lev, zone)
 		for i = 0, game.level.map.w - 1 do for j = 0, game.level.map.h - 1 do
         	for z = game.level.map:getObjectTotal(i, j), 1, -1 do
             local e = game.level.map:getObject(i, j, z)
-			
+
 				if e.egoed then magic = 2
 				elseif e.egoed and e.greater_ego then magic = 4
 				else end
@@ -672,7 +672,7 @@ function _M:changeLevel(lev, zone)
 
 		if max_cr > player.level + 4 then feeling = "You get the feeling that there is a powerful enemy here."
 		elseif max_cr < player.level -4 then feeling = "You feel very confident in your power."
-		else feeling = "You walk cautiously, feeling slightly anxious."	
+		else feeling = "You walk cautiously, feeling slightly anxious."
 		end
 	end
 
@@ -755,8 +755,8 @@ end
 -- displayDelayedLogDamage to display the queued combat messages
 
 -- output a message to the log based on the visibility of an actor to the player
-function _M.logSeen(e, style, ...) 
-	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end 
+function _M.logSeen(e, style, ...)
+	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end
 end
 
 -- determine whether an action between 2 actors should produce a message in the log and if the player
@@ -780,8 +780,8 @@ function _M:logVisible(source, target)
 	else -- source should display if it's the player or an actor in a seen tile, or same as target for non-actors
 		src = source.player or (source.__is_actor and game.level.map.seens(source.x, source.y)) or (not source.__is_actor and tgt)
 		srcSeen = src and game.player:canSee(source) or false
-	end	
-	
+	end
+
 	return src or tgt or false, srcSeen, tgtSeen
 end
 
@@ -986,7 +986,7 @@ function _M:checkResolutionChange(w, h, ow, oh)
 end
 
 function _M:display(nb_keyframes)
-	
+
 	-- If switching resolution, blank everything but the dialog
 	if self.change_res_dialog then engine.GameTurnBased.display(self, nb_keyframes) return end
 
@@ -1001,7 +1001,7 @@ function _M:display(nb_keyframes)
 	if self.player then self.player.changed = false end
 
 	engine.GameTurnBased.display(self, nb_keyframes)
-	
+
 	-- Tooltip is displayed over all else
 	local mx, my, button = core.mouse.get()
 	  if self.target and self.target.target and self.target.target.x and self.target.target.y and self.level and self.level.map then
@@ -1195,7 +1195,7 @@ function _M:setupCommands()
 		SHOW_CHARACTER_SHEET = function()
 			self:registerDialog(require("mod.dialogs.CharacterSheet").new(self.player))
 		end,
-		
+
 		-- Exit the game
 		QUIT_GAME = function()
 			self:onQuit()
@@ -1280,7 +1280,7 @@ function _M:setupCommands()
 		LOOK_AROUND = function()
 		--	self.flash:empty(true)
 			self.log("Looking around... (direction keys to select interesting things, shift+direction keys to move freely)")
-			local co = coroutine.create(function() self.player:getTarget{type="hit", no_restrict=true, range=2000} 
+			local co = coroutine.create(function() self.player:getTarget{type="hit", no_restrict=true, range=2000}
 				if x and y then
                     local tmx, tmy = self.level.map:getTileToScreen(x, y)
                     self:registerDialog(MapMenu.new(tmx, tmy, x, y))
@@ -1289,7 +1289,7 @@ function _M:setupCommands()
 			local ok, err = coroutine.resume(co)
 			if not ok and err then print(debug.traceback(co)) error(err) end
 		end,
-		
+
 		--Inventory
 		PICKUP_FLOOR = function()
     		if self.player.no_inventory_access then return end
@@ -1298,7 +1298,7 @@ function _M:setupCommands()
 		DROP_FLOOR = function()
     		if self.player.no_inventory_access then return end
     		self.player:playerDrop()
-		end, 
+		end,
 
 		SHOW_INVENTORY = function()
     		if self.player.no_inventory_access then return end
@@ -1316,11 +1316,11 @@ function _M:setupCommands()
 
     	--New functions
     	OPEN_SPELLBOOK = function()
-    		if self.player.knowTalent and self.player:knowTalent(self.player.T_SHOW_SPELLBOOK) then 
+    		if self.player.knowTalent and self.player:knowTalent(self.player.T_SHOW_SPELLBOOK) then
     			self.player:useTalent(self.player.T_SHOW_SPELLBOOK)
     		else
     			game.logPlayer("Sorry, you do not have a spellbook")
-    		end 
+    		end
 		end,
 
 		--Helpful stuff
@@ -1368,7 +1368,7 @@ function _M:setupCommands()
 		end,
 
 
-	 
+
 	}
 	engine.interface.PlayerHotkeys:bindAllHotkeys(self.key, function(i) self.player:activateHotkey(i) end)
 
@@ -1401,7 +1401,7 @@ function _M:setupMouse(reset)
 --[[	self.mouse:registerZone(self.hotkeys_display.display_x, self.hotkeys_display.display_y, self.w, self.h, function(button, mx, my, xrel, yrel, bx, by, event)
 		self.hotkeys_display:onMouse(button, mx, my, event == "button", function(text) self.tooltip:displayAtMap(nil, nil, self.w, self.h, tostring(text)) end)
 	end)]]
-	
+
 	self.uiset:setupMouse(self.mouse)
 
 	if not reset then self.mouse:setCurrent() end
