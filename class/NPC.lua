@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2014 Zireael
+-- Copyright (C) 2013-2015 Zireael
 
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -44,7 +44,44 @@ function _M:act()
         self:pickupObject()
     end
 
-	--Morale and fleeing
+	if self.life == 0 and self.wounds < self.max_wounds then
+
+		if self.wounds < self.max_wounds/2 then
+			if not self.energy.used then
+				if self.ai_target.actor then
+	            	local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
+	                if self:isNear(tx, ty, 5) then
+	                    self:runAI("flee_fear")
+	                else
+	                    self:runAI("dumb_talented_simple")
+	                end
+	            else
+	                self:runAI("flee_dmap")
+	                self.ai = "flee_dmap"
+	            end
+			end
+		else
+
+		local chance = rng.percent(50)
+				if chance then
+					if not self.energy.used then
+						if self.ai_target.actor then
+			            	local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
+			                if self:isNear(tx, ty, 5) then
+			                    self:runAI("flee_fear")
+			                else
+			                    self:runAI("dumb_talented_simple")
+			                end
+			            else
+			                self:runAI("flee_dmap")
+			                self.ai = "flee_dmap"
+			            end
+					end
+				end
+		end
+	end
+
+--[[	--Morale and fleeing
 	if self.morale_life then --and not self.inactive then
 		if self.life < self.morale_life then
 			if not self.energy.used then
@@ -70,7 +107,7 @@ function _M:act()
         else
 
         end
-	end
+	end]]
 
 	-- Ranged (based on DataQueen)
 	if self.ranged and self:isNear(game.player.x, game.player.y, 10) then
