@@ -218,7 +218,7 @@ function _M:init(t, no_default)
 	--Life stuff
 	self.life = t.max_life or self.life
 	--Wounds system
-	t.wounds = t.max_wounds or self.wounds or 1
+	self.wounds = self.wounds or 1
 	t.max_wounds = t.max_wounds or 1
 
 	self.last_attacker = nil
@@ -299,6 +299,8 @@ function _M:act()
 
 	--Check if stats aren't 0
 	self:zeroStats()
+	--Death
+	self:deathStuff()
 
 	--Poison timer
 	if self.poison_timer then self.poison_timer = self.poison_timer - 1 end
@@ -587,6 +589,8 @@ function _M:tooltip()
 	else ts:add({"color", 255, 0, 0}, ("HP: %d (%d%%)"):format(self.life, self.life * 100 / self.max_life), {"color", "WHITE"}, true)
 	end
 
+	ts:add({"color", 255, 0, 0}, ("Wounds: %d/%d"):format(self.wounds, self.max_wounds), {"color", "WHITE"}, true)
+
 	if game.player:hasEffect(game.player.EFF_KNOW_ALIGNMENT) then ts:add({"color", "WHITE"}, ("%s"):format(self.alignment), true) end
 
 	ts:add({"color", "WHITE"}, ("STR %s "):format(self:colorStats('str'))) ts:add({"color", "WHITE"}, ("DEX %s "):format(self:colorStats('dex'))) ts:add({"color", "WHITE"}, ("CON %s"):format(self:colorStats('con')), true)
@@ -704,7 +708,53 @@ end
 --End of desc stuff
 --Death & dying related stuff
 function _M:deathStuff(value, src)
-	if (self.life - (value or 0)) > 0 then self:removeEffect(self.EFF_DISABLED) end
+--Wounds system (a combination of SRD & PF)
+if (self.life - (value or 0)) >= 0 then return end
+
+--Out of life (vitality points)
+if ((self.life or 0) - (value or 0) < 0) then
+	local value_remaining = 0
+
+	--only leftover value goes into wounds
+	if (value or 0) > 0 then
+		value_remaining = math.max((value or 0) - (self.life or 0))
+	end
+
+	--don't change vitality
+	self.life = 0
+
+
+	self.wounds = self.wounds - (value_remaining or 0)
+	game.log("Wounds:"..self.wounds.." Hit taken:"..value_remaining)
+	--we're tired
+	self:setEffect(self.EFF_FATIGUE, 1, {})
+
+	--if we're healed, remove disabled status
+	if self.wounds > self.max_wounds/2 and self:hasEffect(self.EFF_DISABLED) then
+		self:removeEffect(self.EFF_DISABLED)
+	end
+
+	--if below threshold, we're disabled
+	if self.wounds <= self.max_wounds/2 then self:setEffect(self.EFF_DISABLED, 1, {}) end
+
+	--wounds can't go negative
+	if (self.wounds - (value_remaining or 0)) < 0 then self.wounds = 0 end
+
+	--if out of wounds, we're dead
+	if (self.wounds == 0 or (self.wounds - (value_remaining or 0)) == 0) and not self.dead then
+		--remove effects
+		if self:hasEffect(self.EFF_DISABLED) then self:removeEffect(self.EFF_DISABLED) end
+		if self:hasEffect(self.EFF_FATIGUE) then self:removeEffect(self.EFF_FATIGUE) end
+		--Remove any particles we have
+		local ps = self:getParticlesList()
+		for i, p in ipairs(ps) do self:removeParticles(p) end
+
+		self:die(src)
+	end
+end
+
+--Standard d20 rules follow
+--[[	if (self.life - (value or 0)) > 0 then self:removeEffect(self.EFF_DISABLED) end
 
 	if (self.life - (value or 0)) == 0 then
 		--Undead and constructs now die at 0
@@ -750,7 +800,7 @@ function _M:deathStuff(value, src)
 		local ps = self:getParticlesList()
 		for i, p in ipairs(ps) do self:removeParticles(p) end
 
-		self:die(src) end
+		self:die(src) end]]
 end
 
 
