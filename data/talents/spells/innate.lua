@@ -1,7 +1,7 @@
 newTalentType{ type="innate/innate", name = "innate", description = "Spell-like abilities" }
 
 --Racial spell-likes
-newTalent{	
+newTalent{
 	name = "Darkness", short_name = "DARKNESS_INNATE",
 	type = {"innate/innate", 1},
 	image = "talents/darkness.png",
@@ -9,7 +9,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = false,
@@ -51,7 +51,7 @@ newTalent{
 	display = { image = "talents/faerie_fire.png"},
 	level = 1,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	range = 10,
 	radius = 1.5,
 	target = function(self, t)
@@ -84,7 +84,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -95,7 +95,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You turn invisible.]])
-	end,	
+	end,
 }
 
 --Feat-enabled racial spell-like
@@ -106,6 +106,7 @@ newTalent{
 	mode = "activated",
 	level = 2,
 	points = 1,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -129,7 +130,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = true,
@@ -154,7 +155,7 @@ newTalent{
 	end,
 }
 
-newTalent{	
+newTalent{
 	name = "Grease", short_name = "GREASE_INNATE",
 	type = {"innate/innate", 1},
 	image = "talents/grease.png",
@@ -162,7 +163,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = false,
@@ -195,7 +196,7 @@ newTalent{
 	end,
 }
 
-newTalent{	
+newTalent{
 	name = "Magic Missile", short_name = "MM_INNATE",
 	type = {"innate/innate", 1},
 	image = "talents/magic_missile.png",
@@ -203,7 +204,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 5,
 	requires_target = true,
@@ -244,7 +245,7 @@ newTalent{
 	end,
 }
 
-newTalent{	
+newTalent{
 	name = "Burning Hands", short_name = "BURNING_HANDS_INNATE",
 	type = {"innate/innate", 1},
 	image = "talents/burning_hands.png",
@@ -278,7 +279,7 @@ newTalent{
 		return true
 	end,
 	info = function(self, t)
-		local dice = t.num_dice(self, t) 
+		local dice = t.num_dice(self, t)
 		return ([[A cone of searing flame shoots from your fingertips. Any creature in the area of the flames takes %dd4 points of fire damage.
 
 		The damage is equal to 1d4 per caster level (maximum 5d4).]]):format(dice)
@@ -293,7 +294,7 @@ newTalent{
 	mode = "activated",
 	level = 1,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	range = 0,
 	radius = 4,
 	target = function(self, t)
@@ -338,7 +339,7 @@ newTalent{
 		local duration = 5
 		-- Apply sleep
 		for i, target in ipairs(final_targets) do
-			if not target:willSave(30) then -- @todo: do real dc  
+			if not target:willSave(15) then -- @todo: do real dc
 				target:setEffect(target.EFF_SLEEP, duration, {})
 			else
 				game.logSeen(target, "%s resist the sleep!", target.name)
@@ -364,12 +365,10 @@ newTalent{
 	--require = ,
 	level = 3,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 --	tactical = { BUFF = 2 },
-	range = 0,
-	radius = function(self, t)
-		return 4
-	end,
+	range = 5,
+	radius = 3,
 	target = function(self, t)
 		return {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t)}
 	end,
@@ -388,7 +387,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You cause a fireball to erupt around the target - the amount of damage is 3d6.]])
-	end,	
+	end,
 }
 
 --innate versions of buff spells
@@ -400,7 +399,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -411,7 +410,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You increase your Constitution by +4.]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -422,7 +421,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -433,7 +432,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You increase your Strength by +4.]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -444,7 +443,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -455,7 +454,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You increase your Charisma by +4.]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -466,7 +465,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -477,7 +476,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You increase your Wisdom by +4.]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -488,7 +487,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -499,7 +498,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You increase your Dexterity by +4.]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -510,7 +509,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -521,7 +520,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You increase your Intelligence by +4.]])
-	end,	
+	end,
 }
 
 --Divine innate spell-likes
@@ -533,7 +532,7 @@ newTalent{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	--caster_bonus = function(self)
@@ -549,7 +548,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 1d8 + 1 per caster level (max 5).]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -560,7 +559,7 @@ newTalent{
 	mode = 'activated',
 	level = 2,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	--caster_bonus = function(self)
@@ -577,7 +576,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 2d8 + 1 per caster level (max 5).]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -588,7 +587,7 @@ newTalent{
 	mode = 'activated',
 	level = 3,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	--caster_bonus = function(self)
@@ -604,7 +603,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 3d8 + 1 per caster level (max 5).]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -615,7 +614,7 @@ newTalent{
 	mode = 'activated',
 	level = 4,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	--caster_bonus = function(self)
@@ -631,7 +630,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 4d8 + 1 per caster level (max 5).]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -642,7 +641,7 @@ newTalent{
 	mode = 'activated',
 	level = 4,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -655,7 +654,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 10% of your max health.]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -666,7 +665,7 @@ newTalent{
 	mode = 'activated',
 	level = 5,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -679,7 +678,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 30% of your max health.]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -690,7 +689,7 @@ newTalent{
 	mode = 'activated',
 	level = 6,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -703,7 +702,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 50% of your max health.]])
-	end,	
+	end,
 }
 
 newTalent{
@@ -714,7 +713,7 @@ newTalent{
 	mode = 'activated',
 	level = 7,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
 	action = function(self)
@@ -727,7 +726,7 @@ newTalent{
 
 	info = function(self, t)
 		return ([[You heal yourself - the amount of damage healed is equal to 70% of your max health.]])
-	end,	
+	end,
 }
 
 --Inflict spells
@@ -739,7 +738,7 @@ newTalent{
 	mode = "activated",
 	level = 1,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -759,7 +758,7 @@ newTalent{
 	end,
 	info = function(self, t)
 		return ([[You deal 1d8 damage to a single target within range.]])
-	end,	 
+	end,
 }
 
 newTalent{
@@ -770,7 +769,7 @@ newTalent{
 	mode = "activated",
 	level = 2,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -790,7 +789,7 @@ newTalent{
 	end,
 	info = function(self, t)
 		return ([[You deal 2d8 damage to a single target within range.]])
-	end,	 
+	end,
 }
 
 newTalent{
@@ -801,7 +800,7 @@ newTalent{
 	mode = "activated",
 	level = 3,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -821,7 +820,7 @@ newTalent{
 	end,
 	info = function(self, t)
 		return ([[You deal 3d8 damage to a single target within range.]])
-	end,	 
+	end,
 }
 
 newTalent{
@@ -832,7 +831,7 @@ newTalent{
 	mode = "activated",
 	level = 4,
 	points = 1,
-	cooldown = 5,
+	cooldown = 15,
 	range = 4,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
@@ -852,5 +851,5 @@ newTalent{
 	end,
 	info = function(self, t)
 		return ([[You deal 4d8 damage to a single target within range.]])
-	end,	 
+	end,
 }
