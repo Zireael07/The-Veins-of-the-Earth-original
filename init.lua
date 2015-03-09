@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2014 Zireael
+-- Copyright (C) 2013-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -18,16 +18,16 @@ name = "VotE"
 long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
-homepage = "https://github.com/Zireael07/The-Veins-of-the-Earth"
+homepage = "http://veins-of-the-earth.wikidot.com/"
 version = {0,26,0}
 engine = {1,2,5,"te4"}
 description = [[
-#SANDY_BROWN# BETA 6.6#LAST#
+#SANDY_BROWN# BETA 7#LAST#
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
 You are an adventurer in a world of immense sunless corridors and tunnels. How long can you survive?
 
 ***
-Please use either the built-in #LIGHT_RED#report error function#LAST# (remember to fill in "what I was doing" field) or report any bugs on ToME 4 forums. 
+Please use either the built-in #LIGHT_RED#report error function#LAST# (remember to fill in "what I was doing" field) or report any bugs on ToME 4 forums.
 
 Liked it? Disliked? Wished for a feature? Let me know - there are multiple ways to contact me, including GitHub, ModDB, Roguetemple forums, Bay12 forums and others.
 
@@ -96,5 +96,5 @@ load_tips = {
 }
 
 background_name = {
-    "Veins" 
+    "Veins"
 }
