@@ -48,9 +48,9 @@ if not config.settings.veins.gfx then
 end
 
 --Variants
-if not config.settings.veins.difficulty or 
+if not config.settings.veins.difficulty or
 	(not config.settings.veins.difficulty == "Easy" or not config.settings.veins.difficulty == "Normal" or not config.settings.veins.difficulty == "Hard")
-	then 
+	then
 	config.settings.veins.difficulty = "Normal" end
 if not config.settings.veins.body_parts then config.settings.veins.body_parts = false end
 if not config.settings.veins.piecemeal_armor then config.settings.veins.piecemeal_armor = false end
@@ -82,7 +82,7 @@ require("engine.ui.Base").ui_conf = {
 	frame_oy2 =  42,
 	title_bar = {x=0, y=-18, w=4, h=25},
 	},
-	
+
 	stone = {
 	frame_shadow = {x=15, y=15, a=0.5},
 	frame_alpha = 1,
@@ -133,7 +133,7 @@ UIBase.font = core.display.newFont("/data/font/DroidSansFallback.ttf", size)
 
 --Resolvers
 dofile('/mod/resolvers.lua')
---Ported utility functions from ToME 
+--Ported utility functions from ToME
 dofile('/mod/util.lua')
 
 -- Achievements
@@ -194,13 +194,13 @@ ActorResource:defineResource("Mana", "mana", ActorTalents.T_SPELL_POINTS_POOL, "
 ActorResource:defineResource("Psi", "psi", ActorTalents.T_PSI_POOL, "psi_regen", "Psionic power represents your reserve of psionic energies. Each power used consumes psionic power and each sustained power reduces your maximum psionic power.", 0, 500)
 
 -- Actor stats
-ActorStats:defineStat("Strength",	    "str", 0, -5, 30, "Strength measures your character’s muscle and physical power.")
-ActorStats:defineStat("Dexterity",	    "dex", 0, -5, 30, "Dexterity measures hand-eye coordination, agility, reflexes, and balance.")
-ActorStats:defineStat("Constitution",	"con", 0, -5, 30, "Constitution represents your character’s health and stamina.")
-ActorStats:defineStat("Intelligence",   "int", 0, -5, 30, "Intelligence determines how well your character learns and reasons.")
-ActorStats:defineStat("Wisdom",         "wis", 0, -5, 30, "Wisdom describes a character’s willpower, common sense, perception, and intuition. While Intelligence represents one’s ability to analyze information, Wisdom represents being in tune with and aware of one’s surroundings.")
-ActorStats:defineStat("Charisma",       "cha", 0, -5, 30, "Charisma measures a character’s force of personality, persuasiveness, personal magnetism, ability to lead, and physical attractiveness. This ability represents actual strength of personality, not merely how one is perceived by others in a social setting.")
-ActorStats:defineStat("Luck",           "luc", 0, -5, 30, "Luck measures your character's good fortune and favor of the gods.")
+ActorStats:defineStat("Strength",	    "str", 0, 0, 30, "Strength measures your character's muscle and physical power.")
+ActorStats:defineStat("Dexterity",	    "dex", 0, 0, 30, "Dexterity measures hand-eye coordination, agility, reflexes, and balance.")
+ActorStats:defineStat("Constitution",	"con", 0, 0, 30, "Constitution represents your character's health and stamina.")
+ActorStats:defineStat("Intelligence",   "int", 0, 0, 30, "Intelligence determines how well your character learns and reasons.")
+ActorStats:defineStat("Wisdom",         "wis", 0, 0, 30, "Wisdom describes a character's willpower, common sense, perception, and intuition. While Intelligence represents one's ability to analyze information, Wisdom represents being in tune with and aware of one's surroundings.")
+ActorStats:defineStat("Charisma",       "cha", 0, 0, 30, "Charisma measures a character's force of personality, persuasiveness, personal magnetism, ability to lead, and physical attractiveness. This ability represents actual strength of personality, not merely how one is perceived by others in a social setting.")
+ActorStats:defineStat("Luck",           "luc", 0, 0, 30, "Luck measures your character's good fortune and favor of the gods.")
 
 -- Add D20-style stat modifiers.
 for i, s in ipairs(ActorStats.stats_def) do
@@ -274,7 +274,7 @@ local Slider = require "engine.ui.Slider"
 			veins.parseTable("veins.", k, v)
 		end
 		game:saveSettings("veins", table.concat(veins.lines, "\n"))
-		veins.fonts.assign()	
+		veins.fonts.assign()
 	end
 
 	if type(config.settings.veins.tooltip_location) == "nil" or config.settings.veins.tooltip_location == "Lower-right" then
@@ -282,21 +282,21 @@ local Slider = require "engine.ui.Slider"
   end
 	if type(config.settings.veins.inventory_tooltip) == "nil" then
 		config.settings.veins.inventory_tooltip = "Original"
-	end	
-	if type(config.settings.veins.play_ambient_sounds) == "nil" then 
+	end
+	if type(config.settings.veins.play_ambient_sounds) == "nil" then
 		config.settings.veins.play_ambient_sounds = true
-	end	
-	if type(config.settings.veins.dialog_alpha) ~= "number" then 
+	end
+	if type(config.settings.veins.dialog_alpha) ~= "number" then
 		config.settings.veins.dialog_alpha = 1
 	end
-	if type(config.settings.veins.tooltip_alpha) ~= "number" then 
+	if type(config.settings.veins.tooltip_alpha) ~= "number" then
 		config.settings.veins.tooltip_alpha = 0.75
-	end	
+	end
 	if type(config.settings.veins.explore_behavior) == "nil" then
 		config.settings.veins.explore_behavior = "Original"
 	end
 
-	config.settings.veins.fonts = config.settings.veins.fonts or {}	
+	config.settings.veins.fonts = config.settings.veins.fonts or {}
 	veins.fonts = {}
 	veins.fonts.available_list = {
 		-- ToME fonts
@@ -339,43 +339,43 @@ local Slider = require "engine.ui.Slider"
 		veins.fonts.dialog = {}
 		veins.fonts.dialog.key = config.settings.veins.fonts.dialogstyle or "DroidSansFallback"
 		veins.fonts.dialog.size = config.settings.veins.fonts.dialogsize or 14
-		
+
 		veins.fonts.hud = {}
 		veins.fonts.hud.key = config.settings.veins.fonts.hudstyle or
 			veins.fonts.dialog.key
 		veins.fonts.hud.size = config.settings.veins.fonts.hudsize or
 			veins.fonts.dialog.size
-		
+
 		veins.fonts.tooltip = {}
 		veins.fonts.tooltip.key = config.settings.veins.fonts.tooltipstyle or "VeraMono"
 		veins.fonts.tooltip.size = config.settings.veins.fonts.tooltipsize or
 			veins.fonts.dialog.size
-		
+
 		veins.fonts.chat = {}
 		veins.fonts.chat.key = config.settings.veins.fonts.chatstyle or
 			veins.fonts.dialog.key
 		veins.fonts.chat.size = config.settings.veins.fonts.chatsize or
 			veins.fonts.dialog.size
-		
+
 		veins.fonts.flying = {}
 		veins.fonts.flying.key = config.settings.veins.fonts.flyingstyle or
 			veins.fonts.dialog.key
 		veins.fonts.flying.size = config.settings.veins.fonts.flyingsize or
 			veins.fonts.dialog.size
-		
+
 		veins.fonts.lore = {}
 		veins.fonts.lore.key = config.settings.veins.fonts.lorestyle or
 			veins.fonts.dialog.key
 		veins.fonts.lore.size = config.settings.veins.fonts.loresize or
 			veins.fonts.dialog.size
-			
+
 		veins.fonts.dialog.style = "/data/font/"..veins.fonts.available_list[veins.fonts.dialog.key].file..".ttf"
 		veins.fonts.hud.style = "/data/font/"..veins.fonts.available_list[veins.fonts.hud.key].file..".ttf"
 		veins.fonts.tooltip.style = "/data/font/"..veins.fonts.available_list[veins.fonts.tooltip.key].file..".ttf"
 		veins.fonts.chat.style = "/data/font/"..veins.fonts.available_list[veins.fonts.chat.key].file..".ttf"
 		veins.fonts.flying.style = "/data/font/"..veins.fonts.available_list[veins.fonts.flying.key].file..".ttf"
 		veins.fonts.lore.style = "/data/font/"..veins.fonts.available_list[veins.fonts.lore.key].file..".ttf"
-		
+
     veins.fonts.hud.font = core.display.newFont(veins.fonts.hud.style, veins.fonts.hud.size, true)
     veins.fonts.hud.h = veins.fonts.hud.font:lineSkip()
     veins.fonts.chat.font = core.display.newFont(veins.fonts.chat.style, veins.fonts.chat.size, true)
@@ -390,12 +390,12 @@ local Slider = require "engine.ui.Slider"
 		Base.font_mono = core.display.newFont(veins.fonts.tooltip.style, veins.fonts.tooltip.size, true)
 		Base.font_mono_w = Base.font_mono:size(" ")
 		Base.font_mono_h = Base.font_mono:lineSkip()+2
-		
+
 		veins.dialog_scale = veins.fonts.dialog.size / 14
 		Base.ui_conf.metal.title_bar.h = 32
 	end
 
-	veins.fonts.assign()	
+	veins.fonts.assign()
 --end)
 
 --New functions
@@ -412,7 +412,7 @@ function engine.ui.Dialog:fontSelect(rawlist, fct)
 		table.insert(list, v)
 	end
     table.sort(list, function(x,y) return x.name < y.name end)
-	
+
 	local d = engine.ui.Dialog.new("Available Fonts", 1, 1)
 	local l = FontList.new{width=(w/4)-3, height=h-16, list=list, fct=function() d.key:triggerVirtual("ACCEPT") end}
 	local vsep = Separator.new{dir="horizontal", size=h-6}
