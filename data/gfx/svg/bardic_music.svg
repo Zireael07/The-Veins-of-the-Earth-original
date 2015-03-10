@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 512 512"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="100%"
+   height="100%"
+   sodipodi:docname="bardic_music.svg">
+  <metadata
+     id="metadata38">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs36" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="1002"
+     id="namedview34"
+     showgrid="false"
+     inkscape:zoom="0.4609375"
+     inkscape:cx="256"
+     inkscape:cy="256"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g6" />
+  <path
+     d="m0,0h512v512h-512z"
+     id="path4" />
+  <g
+     transform="matrix(18.68858,0,0,18.68858,-911.82167,-32002.8)"
+     id="g6"
+     style="fill:#ffcc00">
+    <path
+       d="m 72.8702,1722.6875 c -5.2838,-5.218 -1.6365,-7.4979 1.4988,-4.8412 0.2939,-2.9445 -2.4366,-4.2301 -4.3425,-4.1588 -3.1765,0.1188 -5.1468,3.1864 0.0625,10.7187 4.257,6.1554 -1.528,9.75 -7.685,9.75 -6.157,0 -11.9421,-3.5946 -7.685,-9.75 5.2093,-7.5323 3.239,-10.5999 0.0625,-10.7187 -1.9059,-0.071 -4.6364,1.2143 -4.3425,4.1588 3.1353,-2.6567 6.7825,-0.3768 1.4988,4.8412 -6.5377,6.4563 -0.7809,16.5313 10.4663,16.5313 11.2472,0 17.004,-10.075 10.4663,-16.5313 z"
+       id="path8"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00;stroke:#000000" />
+    <path
+       d="m 58.9449,1717.2698 v 17.5059"
+       id="path10"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00;stroke:#ffdd55" />
+    <path
+       d="m 65.9784,1717.2698 v 17.5059"
+       id="path12"
+       inkscape:connector-curvature="0"
+       style="fill:#ffd42a;stroke:#ffdd55" />
+    <path
+       d="m 61.3017,1717.2698 v 17.5059"
+       id="path14"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00;stroke:#ffdd55" />
+    <path
+       d="m 63.6345,1717.2698 v 17.5059"
+       id="path16"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00;stroke:#ffdd55" />
+    <path
+       d="m 56.5878,1714.799 c 4.0133,2.717 8.0266,2.3247 12.04,0 v 1.8436 c -4.0133,1.6212 -8.0266,2.0048 -12.04,0 z"
+       id="path18"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00" />
+    <path
+       d="m 54.4808,1718.7743 c 0,1.0182 -0.8254,1.8436 -1.8436,1.8436 -1.0182,0 -1.8436,-0.8254 -1.8436,-1.8436 0,-1.0182 0.8254,-1.8436 1.8436,-1.8436 1.0182,0 1.8436,0.8254 1.8436,1.8436 z"
+       transform="matrix(0.89796,1.2820274e-8,-1.2820274e-8,0.89796,25.02457,173.93846)"
+       id="path20"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00" />
+    <path
+       d="m 54.4808,1718.7743 c 0,1.0182 -0.8254,1.8436 -1.8436,1.8436 -1.0182,0 -1.8436,-0.8254 -1.8436,-1.8436 0,-1.0182 0.8254,-1.8436 1.8436,-1.8436 1.0182,0 1.8436,0.8254 1.8436,1.8436 z"
+       transform="matrix(-1.19379,0,0,1.19379,115.7336,-333.936)"
+       id="path22"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00" />
+    <path
+       d="m 54.4808,1718.7743 c 0,1.0182 -0.8254,1.8436 -1.8436,1.8436 -1.0182,0 -1.8436,-0.8254 -1.8436,-1.8436 0,-1.0182 0.8254,-1.8436 1.8436,-1.8436 1.0182,0 1.8436,0.8254 1.8436,1.8436 z"
+       transform="matrix(-0.89796,1.2820274e-8,1.2820274e-8,0.89796,99.84274,173.93846)"
+       id="path24"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00" />
+    <path
+       d="m 70.2048,1717.96 c -0.6091,-2.273 2.2425,-3.0425 2.8529,-0.7644"
+       id="path26"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00;stroke:#000000" />
+    <path
+       d="m 69.1522,1716.8472 c 0.821,-3.0371 4.6687,-2.0224 3.8458,1.0215"
+       id="path28"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00;stroke:#ffffff" />
+    <path
+       d="m 54.6397,1717.96 c 0.6091,-2.273 -2.2425,-3.0425 -2.8529,-0.7644"
+       id="path30"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00;stroke:#000000" />
+    <path
+       d="m 55.6923,1716.8472 c -0.821,-3.0371 -4.6687,-2.0224 -3.8458,1.0215"
+       id="path32"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc00;stroke:#ffffff" />
+  </g>
+</svg>

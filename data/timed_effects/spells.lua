@@ -77,7 +77,6 @@ newEffect{
 	end,
 }
 
-
 newEffect{
 	name = "INVISIBLE",
 	desc = "Invisible",
@@ -102,6 +101,42 @@ newEffect{
 			game.level.map:updateMap(self.x, self.y)
 		end]]
 		self:removeTemporaryValue("stealth", eff.invis)
+	end,
+}
+
+--Bard skills
+newEffect{
+	name = "FASCINATE",
+	desc = "Fascinated",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# is fascinated!", "+Fascinate" end,
+	on_lose = function(self, err) return "#Target# is no longer fascinated.", "-Fascinate" end,
+	activate = function(self, eff)
+		eff.listen = self:addTemporaryValue("skill_bonus_listen", -4)
+		eff.spot = self:addTemporaryValue("skill_bonus_spot", -4)
+    end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("skill_bonus_listen", eff.listen)
+		self:removeTemporaryValue("skill_bonus_spot", eff.spot)
+	end,
+}
+
+--+1 bonus on charm and fear effects
+newEffect{
+	name = "INSPIRE_COURAGE_I",
+	desc = "Inspired",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# is inspired!", "+Inspire" end,
+	on_lose = function(self, err) return "#Target# is no longer inspired.", "-Inspire" end,
+	activate = function(self, eff)
+		eff.attack = self:addTemporaryValue("combat_attack", 1)
+		eff.dmg = self:addTemporaryValue("combat_damage", 1)
+    end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("combat_attack", eff.attack)
+		self:removeTemporaryValue("combat_damage", eff.dmg)
 	end,
 }
 

@@ -32,12 +32,12 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Barbarian"] and actor.descriptor.class == "Barbarian" then return true end
-		
+
 		if actor:getStr() >= 13 then return true end
 		return false
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 			actor:attr("fortitude_save", 2)
 			actor:attr("combat_bab", 1)
 
@@ -76,7 +76,7 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2 end
 		end
 	end,
-} 
+}
 
 newBirthDescriptor {
 	type = 'class',
@@ -106,7 +106,7 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Bard"] and actor.descriptor.class == "Bard" then return true end
-		
+
 		if actor:getCha() >= 13 then return true end
 		return false
 	end,
@@ -120,13 +120,15 @@ newBirthDescriptor {
 		end
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 			actor:attr("will_save", 2)
 			actor:attr("reflex_save", 2)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+			actor:learnTalent(actor.T_BARDIC_MUSIC, true)
+			actor:learnTalent(actor.T_BARDIC_KNOWLEDGE, true)
 
 			--Don't give spellbook to NPCs
 			if actor == game.player then
@@ -142,7 +144,7 @@ newBirthDescriptor {
 			actor:learnTalentType("evocation")
 			actor:learnTalentType("necromancy")
 			actor:learnTalentType("arcane_divine")
-			
+
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
 
@@ -153,7 +155,7 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 			else
 			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
-		
+
 		--Any level higher than 1
 		else
 
@@ -162,7 +164,7 @@ newBirthDescriptor {
 			local spell_level = (level / 3) + 1
 			descriptor.learn_all_spells_of_level(actor, spell_level)
 		end
-		
+
 		actor:attr("combat_bab", 0.75)
 		actor:attr("fortitude_save", 0.33)
 		actor:attr("reflex_save", 0.5)
@@ -175,7 +177,7 @@ newBirthDescriptor {
 				actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 			else
 			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
-		
+
 		else
 		actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 		end
@@ -183,7 +185,7 @@ newBirthDescriptor {
 		--Gain a caster level every level
 		actor:incCasterLevel("arcane", 1)
 	end,
-} 
+}
 
 
 newBirthDescriptor {
@@ -224,7 +226,7 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Cleric"] and actor.descriptor.class == "Cleric" then return true end
-		
+
 		if actor:getWis() >= 13 then return true end
 		return false
 	end,
@@ -258,7 +260,7 @@ newBirthDescriptor {
 
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
-			
+
 
 			actor:learnTalent(actor.T_LAY_ON_HANDS, true)
 			actor:learnTalent(actor.T_TURN_UNDEAD, true)
@@ -272,7 +274,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Aiswin"} then
                 game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
-                {name="Knowledge", desc=""}, 
+                {name="Knowledge", desc=""},
                 {name="Night", desc=""},
                 {name="Planning", desc=""},
                 {name="Retribution", desc=""},
@@ -292,7 +294,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Asherath"} then
                  game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
-                {name="Knowledge", desc=""}, 
+                {name="Knowledge", desc=""},
                 {name="Night", desc=""},
                 {name="Planning", desc=""},
                 {name="Retribution", desc=""},
@@ -312,7 +314,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Ekliazeh"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
-                {name="Community", desc=""}, 
+                {name="Community", desc=""},
                 {name="Earth", desc=""},
                 {name="Law", desc=""},
                 {name="Strength", desc=""},
@@ -332,7 +334,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Erich"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Domination", desc=""},
-                {name="Guardian", desc=""}, 
+                {name="Guardian", desc=""},
                 {name="Law", desc=""},
                 {name="Nobility", desc=""},
                 {name="Protection", desc=""},
@@ -352,7 +354,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Essiah"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
-                {name="Good", desc=""}, 
+                {name="Good", desc=""},
                 {name="Liberation", desc=""},
                 {name="Luck", desc=""},
                 {name="Passion", desc=""},
@@ -372,7 +374,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Hesani"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
-                {name="Healing", desc=""}, 
+                {name="Healing", desc=""},
                 {name="Magic", desc=""},
                 {name="Succor", desc=""},
                 {name="Sun", desc=""},
@@ -391,7 +393,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Immotian"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
-                {name="Fire", desc=""}, 
+                {name="Fire", desc=""},
                 {name="Knowledge", desc=""},
                 {name="Law", desc=""},
                 {name="Protection", desc=""},
@@ -411,7 +413,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Khasrach"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Destruction", desc=""},
-                {name="Hatred", desc=""}, 
+                {name="Hatred", desc=""},
                 {name="Mysticism", desc=""},
                 {name="Strength", desc=""},
                 {name="Pain", desc=""},
@@ -431,7 +433,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Kysul"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
-                {name="Good", desc=""}, 
+                {name="Good", desc=""},
                 {name="Mysticism", desc=""},
                 {name="Planning", desc=""},
                 {name="Slime", desc=""},
@@ -451,7 +453,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Maeve"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
-                {name="Chaos", desc=""}, 
+                {name="Chaos", desc=""},
                 {name="Domination", desc=""},
                 {name="Magic", desc=""},
                 {name="Moon", desc=""},
@@ -471,7 +473,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Mara"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
-                {name="Death", desc=""}, 
+                {name="Death", desc=""},
                 {name="Good", desc=""},
                 {name="Healing", desc=""},
                 {name="Night", desc=""},
@@ -491,7 +493,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Sabin"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Air", desc=""},
-                {name="Chaos", desc=""}, 
+                {name="Chaos", desc=""},
                 {name="Destruction", desc=""},
                 {name="Luck", desc=""},
                 {name="Time", desc=""},
@@ -511,7 +513,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Semirath"} then
                 game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Chaos", desc=""},
-                {name="Good", desc=""}, 
+                {name="Good", desc=""},
                 {name="Liberation", desc=""},
                 {name="Luck", desc=""},
                 {name="Retribution", desc=""},
@@ -531,7 +533,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Multitude"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Blood", desc=""},
-                {name="Chaos", desc=""}, 
+                {name="Chaos", desc=""},
                 {name="Destruction", desc=""},
                 {name="Death", desc=""},
                 {name="Evil", desc=""},
@@ -552,7 +554,7 @@ newBirthDescriptor {
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Fate", desc=""},
-                {name="Knowledge", desc=""}, 
+                {name="Knowledge", desc=""},
                 {name="Magic", desc=""},
                 {name="Mysticism", desc=""},
                 {name="Planning", desc=""},
@@ -566,12 +568,12 @@ newBirthDescriptor {
                     if result == "Planning" then end
                 end))
 
-                end    
+                end
 
                 if actor:hasDescriptor{deity="Xel"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
-                {name="Death", desc=""}, 
+                {name="Death", desc=""},
                 {name="Evil", desc=""},
                 {name="Pain", desc=""},
                 {name="Nature", desc=""},
@@ -590,7 +592,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Zurvash"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Animal", desc=""},
-                {name="Domination", desc=""}, 
+                {name="Domination", desc=""},
                 {name="Night", desc=""},
                 {name="Passion", desc=""},
                 {name="Pain", desc=""},
@@ -608,16 +610,16 @@ newBirthDescriptor {
                 end
 
             end
-        
+
 			if actor == game.player then
 				if actor:hasDescriptor{race="Drow", sex="Female"} or actor:hasDescriptor{race="Half-Drow"} then
 			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 			else
-			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end	
-		
-		--Any level higher than 1	
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
+
+		--Any level higher than 1
 		else
 
 		--Learn a new spell tier every 3rd level
@@ -637,7 +639,7 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 		else
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
-		
+
 		else
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 		end
@@ -698,7 +700,7 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Druid"] and actor.descriptor.class == "Druid" then return true end
-		
+
 		if actor:getWis() >= 13 then return true end
 		return false
 	end,
@@ -712,7 +714,7 @@ newBirthDescriptor {
 		end
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 			actor:attr("fortitude_save", 2)
 			actor:attr("will_save", 2)
 
@@ -735,19 +737,19 @@ newBirthDescriptor {
 				--Favored class bonuses
 				actor.combat_attack = (actor.combat_attack or 0) + 1
 				actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
-			else		 
+			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
-		
-		else		 
-		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 
+
+		else
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 		end
-		
+
 		--Any level higher than 1
 		else
 
-		if level == 4 then 
+		if level == 4 then
 			actor:learnTalent(actor.T_WILD_SHAPE, true)
-		end	
+		end
 		--Learn a new spell tier every 3rd level
 		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
@@ -769,10 +771,10 @@ newBirthDescriptor {
 				--Favored class bonuses
 				actor.combat_attack = (actor.combat_attack or 0) + 1
 				actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
-			else		 
+			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
-		
-		else		 
+
+		else
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 	end
 
@@ -780,7 +782,7 @@ newBirthDescriptor {
 		actor:incCasterLevel("divine", 1)
 
 	end,
-}   
+}
 
 
 newBirthDescriptor {
@@ -805,12 +807,12 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Fighter"] and actor.descriptor.class == "Fighter" then return true end
-		
+
 		if actor:getStr() >= 13 then return true end
 		return false
 	end,
 	on_level = function(actor, level)
-		if level == 1 then 
+		if level == 1 then
 			actor:attr("fortitude_save", 2)
 			actor:attr("combat_bab", 1)
 
@@ -830,7 +832,7 @@ newBirthDescriptor {
 			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2
 			else
 			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
-			else 
+			else
 			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
 
 		--Any level higher than 1
@@ -853,7 +855,7 @@ newBirthDescriptor {
 		else
 		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
 		else
-		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end	
+		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2 end
 		end
 	end,
 }
@@ -906,7 +908,7 @@ newBirthDescriptor {
         },
         can_level = function(actor)
             if actor.classes and actor.classes["Monk"] and actor.descriptor.class == "Monk" then return true end
-                
+
             if actor:getWis() >= 13 then return true end
             return false
         end,
@@ -977,7 +979,7 @@ newBirthDescriptor {
         },
         can_level = function(actor)
             if actor.classes and actor.classes["Paladin"] and actor.descriptor.class == "Paladin" then return true end
-                
+
             if actor:getWis() >= 13 then return true end
             return false
         end,
@@ -1007,16 +1009,16 @@ newBirthDescriptor {
 
             --Any level higher than 1
             else
-                     
+
             --Learn a new spell tier every 3rd level starting from lvl 5
 			if level >= 5 and level % 3 == 0 then
 				local spell_level = ((level-5) / 3) + 1
 				descriptor.learn_all_spells_of_level(actor, spell_level)
-			end   
+			end
 
 			--Level-specific bonuses
             if level == 4 then actor:learnTalent(actor.T_TURN_UNDEAD, true) end
-            if level == 5 then 
+            if level == 5 then
             	--Don't give spellbook to NPCs
 				if actor == game.player then
             	--Get spellbook
@@ -1035,7 +1037,7 @@ newBirthDescriptor {
 				--Gain a caster level every level
 				actor:incCasterLevel("divine", 1)
 			end
-			
+
             --Level >1, generic bonuses
 				actor:attr("combat_bab",1)
         		actor:attr("fortitude_save", 0.5)
@@ -1073,7 +1075,7 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Ranger"] and actor.descriptor.class == "Ranger" then return true end
-		
+
 		if actor:getStr() >= 13 then return true end
 		return false
 	end,
@@ -1087,7 +1089,7 @@ newBirthDescriptor {
 		end
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 			actor:attr("fortitude_save", 2)
 			actor:attr("combat_bab", 1)
 			actor:attr("reflex_save", 2)
@@ -1175,12 +1177,12 @@ newBirthDescriptor {
 			if actor == game.player then
 				if actor.descriptor.race == "Elf" then
 			--Favored class bonuses
-			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2	
+			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
-		
+
 		--Any level higher than 1
 		else
 
@@ -1191,7 +1193,7 @@ newBirthDescriptor {
 		end
 
 
-		if level == 5 then 
+		if level == 5 then
 			--Don't give spellbook to NPCs
 			if actor == game.player then
 			--Get spellbook
@@ -1221,7 +1223,7 @@ newBirthDescriptor {
 		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
-		
+
 		else
 		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
 		end
@@ -1267,12 +1269,12 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Rogue"] and actor.descriptor.class == "Rogue" then return true end
-		
+
 		if actor:getDex() >= 13 then return true end
 		return false
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 			actor:attr("reflex_save", 2)
 			actor:attr("sneak_attack", 1)
 
@@ -1288,27 +1290,27 @@ newBirthDescriptor {
 				actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
 			else
 			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
-		
+
 		--Any level higher than 1
 		else
 
 		--Level-specific bonuses
-		if level == 3 then 
-            actor:attr("sneak_attack", 1) 
+		if level == 3 then
+            actor:attr("sneak_attack", 1)
             actor:attr("trap_sense", 1)
         end
 		if level == 5 then actor:attr("sneak_attack", 1) end
         if level == 6 then actor:attr("trap_sense", 1) end
 		if level == 7 then actor:attr("sneak_attack", 1) end
-		if level == 9 then 
-            actor:attr("sneak_attack", 1) 
+		if level == 9 then
+            actor:attr("sneak_attack", 1)
             actor:attr("trap_sense", 1)
         end
 		if level == 11 then actor:attr("sneak_attack", 1) end
         if level == 12 then actor:attr("trap_sense", 1) end
 		if level == 13 then actor:attr("sneak_attack", 1) end
-		if level == 15 then 
-            actor:attr("sneak_attack", 1) 
+		if level == 15 then
+            actor:attr("sneak_attack", 1)
             actor:attr("trap_sense", 1)
         end
 		if level == 17 then actor:attr("sneak_attack", 1) end
@@ -1373,7 +1375,7 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Sorcerer"] and actor.descriptor.class == "Sorcerer" then return true end
-		
+
 		if actor:getCha() >= 16 then return true end
 		return false
 	end,
@@ -1387,7 +1389,7 @@ newBirthDescriptor {
 		end
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 		--	actor:attr("innate_casting_arcane", 1)
 
 			actor:attr("will_save", 2)
@@ -1600,15 +1602,15 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 	if actor.classes and actor.classes["Warlock"] and actor.descriptor.class == "Warlock" then return true end
-		
+
 		if actor:getCha() >= 13 then return true end
 		return false
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 			actor:attr("will_save", 2)
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
-		
+
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
@@ -1626,7 +1628,7 @@ newBirthDescriptor {
 		actor:attr("max_life", 6 + (actor:getCon()-10)/2)
 		end
 	end,
-} 
+}
 
 
 --Non-standard class
@@ -1666,7 +1668,7 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 	if actor.classes and actor.classes["Shaman"] and actor.descriptor.class == "Shaman" then return true end
-		
+
 		if actor:getCha() >= 13 then return true end
 		return false
 	end,
@@ -1681,7 +1683,7 @@ newBirthDescriptor {
 	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
-			
+
 		--	actor:attr("innate_casting_divine", 1)
 
 			actor:attr("will_save", 2)
@@ -1706,7 +1708,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Aiswin"} then
                 game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
-                {name="Knowledge", desc=""}, 
+                {name="Knowledge", desc=""},
                 {name="Night", desc=""},
                 {name="Planning", desc=""},
                 {name="Retribution", desc=""},
@@ -1726,7 +1728,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Asherath"} then
                  game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
-                {name="Knowledge", desc=""}, 
+                {name="Knowledge", desc=""},
                 {name="Night", desc=""},
                 {name="Planning", desc=""},
                 {name="Retribution", desc=""},
@@ -1746,7 +1748,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Ekliazeh"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
-                {name="Community", desc=""}, 
+                {name="Community", desc=""},
                 {name="Earth", desc=""},
                 {name="Law", desc=""},
                 {name="Strength", desc=""},
@@ -1766,7 +1768,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Erich"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Domination", desc=""},
-                {name="Guardian", desc=""}, 
+                {name="Guardian", desc=""},
                 {name="Law", desc=""},
                 {name="Nobility", desc=""},
                 {name="Protection", desc=""},
@@ -1786,7 +1788,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Essiah"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
-                {name="Good", desc=""}, 
+                {name="Good", desc=""},
                 {name="Liberation", desc=""},
                 {name="Luck", desc=""},
                 {name="Passion", desc=""},
@@ -1806,7 +1808,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Hesani"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
-                {name="Healing", desc=""}, 
+                {name="Healing", desc=""},
                 {name="Magic", desc=""},
                 {name="Succor", desc=""},
                 {name="Sun", desc=""},
@@ -1825,7 +1827,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Immotian"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
-                {name="Fire", desc=""}, 
+                {name="Fire", desc=""},
                 {name="Knowledge", desc=""},
                 {name="Law", desc=""},
                 {name="Protection", desc=""},
@@ -1845,7 +1847,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Khasrach"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Destruction", desc=""},
-                {name="Hatred", desc=""}, 
+                {name="Hatred", desc=""},
                 {name="Mysticism", desc=""},
                 {name="Strength", desc=""},
                 {name="Pain", desc=""},
@@ -1865,7 +1867,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Kysul"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Fate", desc=""},
-                {name="Good", desc=""}, 
+                {name="Good", desc=""},
                 {name="Mysticism", desc=""},
                 {name="Planning", desc=""},
                 {name="Slime", desc=""},
@@ -1885,7 +1887,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Maeve"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
-                {name="Chaos", desc=""}, 
+                {name="Chaos", desc=""},
                 {name="Domination", desc=""},
                 {name="Magic", desc=""},
                 {name="Moon", desc=""},
@@ -1905,7 +1907,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Mara"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Beauty", desc=""},
-                {name="Death", desc=""}, 
+                {name="Death", desc=""},
                 {name="Good", desc=""},
                 {name="Healing", desc=""},
                 {name="Night", desc=""},
@@ -1925,7 +1927,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Sabin"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Air", desc=""},
-                {name="Chaos", desc=""}, 
+                {name="Chaos", desc=""},
                 {name="Destruction", desc=""},
                 {name="Luck", desc=""},
                 {name="Time", desc=""},
@@ -1945,7 +1947,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Semirath"} then
                 game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Chaos", desc=""},
-                {name="Good", desc=""}, 
+                {name="Good", desc=""},
                 {name="Liberation", desc=""},
                 {name="Luck", desc=""},
                 {name="Retribution", desc=""},
@@ -1965,7 +1967,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Multitude"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Blood", desc=""},
-                {name="Chaos", desc=""}, 
+                {name="Chaos", desc=""},
                 {name="Destruction", desc=""},
                 {name="Death", desc=""},
                 {name="Evil", desc=""},
@@ -1986,7 +1988,7 @@ newBirthDescriptor {
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Craft", desc=""},
                 {name="Fate", desc=""},
-                {name="Knowledge", desc=""}, 
+                {name="Knowledge", desc=""},
                 {name="Magic", desc=""},
                 {name="Mysticism", desc=""},
                 {name="Planning", desc=""},
@@ -2000,12 +2002,12 @@ newBirthDescriptor {
                     if result == "Planning" then end
                 end))
 
-                end    
+                end
 
                 if actor:hasDescriptor{deity="Xel"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Community", desc=""},
-                {name="Death", desc=""}, 
+                {name="Death", desc=""},
                 {name="Evil", desc=""},
                 {name="Pain", desc=""},
                 {name="Nature", desc=""},
@@ -2024,7 +2026,7 @@ newBirthDescriptor {
                 if actor:hasDescriptor{deity="Zurvash"} then
                     game:registerDialog(require('mod.dialogs.GetChoice').new("Choose your domains",{
                 {name="Animal", desc=""},
-                {name="Domination", desc=""}, 
+                {name="Domination", desc=""},
                 {name="Night", desc=""},
                 {name="Passion", desc=""},
                 {name="Pain", desc=""},
@@ -2065,7 +2067,7 @@ newBirthDescriptor {
 		actor:incCasterLevel("divine", 1)
 		end
 	end,
-} 
+}
 
 
 --Prestige classes!
@@ -2086,14 +2088,14 @@ newBirthDescriptor {
 		skill_point = 6,
 	},
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 		actor:attr("reflex_save", 2)
 		actor:attr("combat_bab", 0.5)
 	--	actor:attr("fortitude_save", 0.5)
 	--	actor:attr("will_save", 0.5)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
-		
+
 		--Any level higher than 1
 		else
 
@@ -2107,7 +2109,7 @@ newBirthDescriptor {
 				actor.infravision = 3
 			end
 		end
-		
+
 
 		--Level >1, generic bonuses
 		actor:attr("reflex_save", 0.5)
@@ -2118,7 +2120,7 @@ newBirthDescriptor {
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
 	end,
-} 
+}
 
 newBirthDescriptor {
 	type = 'class',
@@ -2132,15 +2134,15 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Assassin"] and actor.classes["Assassin"] >= 10 then return false end
-	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then	
+	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
 
 		if actor.skill_movesilently >= 8 and actor.skill_hide >= 8 then return true end
 
 		return false
-	
+
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 			actor:attr("reflex_save", 2)
 			actor:attr("sneak_attack", 1)
 
@@ -2167,9 +2169,9 @@ newBirthDescriptor {
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
-		
+
 	end,
-} 
+}
 
 newBirthDescriptor {
 	type = 'class',
@@ -2189,10 +2191,10 @@ newBirthDescriptor {
 		if actor.skill_movesilently >= 6 and actor.skill_knowledge >= 2 and actor.combat_bab >= 6 then return true end
 
 		return false
-	
+
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 			actor:attr("fortitude_save", 2)
 			actor:attr("sneak_attack", 1)
 
@@ -2218,9 +2220,9 @@ newBirthDescriptor {
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
-		
+
 	end,
-} 
+}
 
 newBirthDescriptor {
 	type = 'class',
@@ -2240,10 +2242,10 @@ newBirthDescriptor {
 		if actor.combat_bab >= 6 then return true end
 
 		return false
-	
+
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 		actor:attr("fortitude_save", 2)
 		actor:attr("reflex_save", 2)
 
@@ -2262,14 +2264,14 @@ newBirthDescriptor {
 		actor:attr("fortitude_save", 0.5)
 		actor:attr("reflex_save", 0.5)
 		actor:attr("combat_bab", 1)
-		
+
 		actor:attr("will_save", 0.33)
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
-		
+
 	end,
-} 
+}
 
 newBirthDescriptor {
 	type = 'class',
@@ -2288,10 +2290,10 @@ newBirthDescriptor {
 		if actor.skill_knowledge >= 12 then return true end
 
 		return false
-	
+
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 		actor:attr("actor.will_save", 2)
 		actor:attr("combat_bab", 0.5)
 	--	actor:attr("will_save", 0.5)
@@ -2313,9 +2315,9 @@ newBirthDescriptor {
 
 		actor:attr("max_life", 8 + (actor:getCon()-10)/2)
 		end
-		
+
 	end,
-} 
+}
 
 newBirthDescriptor {
 	type = 'class',
@@ -2334,10 +2336,10 @@ newBirthDescriptor {
 		if actor.skill_knowledge >= 15 and actor.skill_spellcraft >= 15 then return true end
 
 		return false
-	
+
 	end,
 	on_level = function(actor, level, descriptor)
-		if level == 1 then 
+		if level == 1 then
 		actor:attr("will_save", 2)
 		actor:attr("combat_bab", 0.5)
 	--	actor:attr("will_save", 0.5)
@@ -2352,7 +2354,7 @@ newBirthDescriptor {
 
 		--Level >1, generic bonuses
 		actor:attr("will_save", 0.5)
-		
+
 		actor:attr("combat_bab", 0.5)
 		actor:attr("reflex_save", 0.33)
 		actor:attr("fortitude_save", 0.33)
@@ -2361,6 +2363,6 @@ newBirthDescriptor {
 
 		--High arcana (from a list)
 		end
-		
+
 	end,
-} 
+}

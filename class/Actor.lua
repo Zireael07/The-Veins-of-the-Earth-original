@@ -812,7 +812,13 @@ function _M:onTakeHit(value, src, death_note)
 	--if a sleeping target is hit, it will wake up
 	if self:hasEffect(self.EFF_SLEEP) then
 		self:removeEffect(self.EFF_SLEEP)
-		game.logSeen(self, "%s wakes up from being hit!", self.name)
+		game.logSeen(self, "%s wakes up from being hit!", self:getLogName())
+	end
+
+	--stop being fascinated
+	if self:hasEffect(self.EFF_FASCINATE) then
+		self:removeEffect(self.EFF_FASCINATE)
+		game.logSeen(self, "%s is no longer fascinated!", self:getLogName())
 	end
 
 	-- Split ?
