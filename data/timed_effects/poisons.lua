@@ -4,7 +4,7 @@ local Particles = require "engine.Particles"
 
 --Poisons, Zireael
 --1 is WEAK, 1d4 is MIDDLING, 1d6 damage is MEDIUM, 2d6 is STRONG, 3d6 is EXTRASTRONG because numbers are EVIL!!
---Oil of taggit and drow poison are missing because I have no idea for unconsciousness now
+--Oil of taggit and drow poison simply apply EFF_UNCONSCIOUS instead of having their own entries here
 
 --Nitharit secondary effect; black lotus primary and secondary; othur fumes secondary
 newEffect{
@@ -13,7 +13,7 @@ newEffect{
 	type = "physical",
 	status = "detrimental",
 	parameters = {},
-	activate = function(self, eff) 
+	activate = function(self, eff)
 		local stat = { [Stats.STAT_CON]=-rng.dice(3,6)}
 		self:effectTemporaryValue(eff, "inc_stats", stat)
 		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
