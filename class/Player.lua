@@ -693,32 +693,44 @@ function _M:restCheck()
     elseif rng.percent(50) and spotHostiles(self) then return false, "hostile spotted" end
 
 
-  --Start healing after having rested for 20 turns
-  if self.resting.cnt > 20 then
+  	--Start healing after having rested for 20 turns
+	if self.resting.cnt > 20 then
+		--regen spell points
+	    local regen = 1
+	    self.mana = math.min(self.max_mana, self.mana + regen)
 
---[[    local regen = 1
-    self.life = math.min(self.max_life, self.life + regen)]]
 
-	--normal healing
-	--use Wis instead of Con if have Mind over Body feat
-	local con = self:getCon()
-	local heal = ((self.level +3)*con)/5
 
-	--Heal skill
-	if (self.skill_heal or 0) > 0 then
-	 heal = ((self.level + self.skill_heal +3)*con)/5
 	end
 
-	self.life = math.min(self.max_life, self.life + heal)
+	--Only do the stuff once
+  	if self.resting.cnt == 21 then
 
-    --reset the ignore wound feat flag
-    self.ignored_wound = false
+		--normal healing
+		--use Wis instead of Con if have Mind over Body feat
+		local con = self:getCon()
+		local heal = ((self.level +3)*con)/5
 
-    --Refresh charges
-    for _, tid in pairs(self.talents_def) do
-      self:setCharges(tid, self:getMaxCharges(tid))
-    end
-  end
+		--Heal skill
+		if (self.skill_heal or 0) > 0 then
+	 		heal = ((self.level + self.skill_heal +3)*con)/5
+		end
+
+		self.life = math.min(self.max_life, self.life + heal)
+
+		--heal one wound
+		if self.wounds < self.max_wounds then
+			self.wounds = self.wounds + 1
+		end
+
+    	--reset the ignore wound feat flag
+    	self.ignored_wound = false
+
+    	--Refresh charges
+    	for _, tid in pairs(self.talents_def) do
+      		self:setCharges(tid, self:getMaxCharges(tid))
+    	end
+  	end
 
 --  if self.life < self.max_life then return true end
 
