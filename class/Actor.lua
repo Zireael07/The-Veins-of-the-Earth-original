@@ -589,7 +589,9 @@ function _M:tooltip()
 	else ts:add({"color", 255, 0, 0}, ("HP: %d (%d%%)"):format(self.life, self.life * 100 / self.max_life), {"color", "WHITE"}, true)
 	end
 
+	if self.wounds and self.max_wounds then
 	ts:add({"color", 255, 0, 0}, ("Wounds: %d/%d"):format(self.wounds, self.max_wounds), {"color", "WHITE"}, true)
+	end
 
 	if game.player:hasEffect(game.player.EFF_KNOW_ALIGNMENT) then ts:add({"color", "WHITE"}, ("%s"):format(self.alignment), true) end
 
