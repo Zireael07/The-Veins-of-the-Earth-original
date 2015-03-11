@@ -25,7 +25,7 @@ module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init(actor)
 	self.actor = actor
-	
+
 	self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
 	Dialog.init(self, "Spellbook: "..self.actor.name, math.max(game.w * 0.8, 700), math.max(game.h*0.6, 500), nil, nil, font)
 
@@ -77,7 +77,7 @@ function _M:init(actor)
 	spell_tabs[#spell_tabs+1]= {title="Levels 1-2", kind="leveltwo"}
 
 
-	if (self.actor:getMaxMaxCharges()[3] or 0) > 0 then 
+	if (self.actor:getMaxMaxCharges()[3] or 0) > 0 then
 		spell_tabs[#spell_tabs+1]= {title="Levels 3-4", kind="levelfour"}
 	end
 
@@ -130,12 +130,12 @@ function _M:drawDialog(tab)
 		{top=self.t_leveltwo, ui=self.c_desc},
 	--	{top=self.c_spelllevels, ui=self.c_desc},
 		{top=self.c_desc,ui=self.spells[1]},
-		{top=self.spells[1].h+110,ui=self.spells[2]},
+		{top=self.spells[1].h+170,ui=self.spells[2]},
 		{top=self.c_desc,ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
-		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info}, 
+		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info},
     }
-    
+
     self:setupUI()
     self:drawGeneral(tab)
     end
@@ -153,16 +153,16 @@ function _M:drawDialog(tab)
 		{top=self.t_leveltwo, ui=self.c_desc},
 	--	{top=self.c_spelllevels, ui=self.c_desc},
 		{top=self.c_desc,ui=self.spells[3]},
-		{top=self.spells[3].h+110,ui=self.spells[4]},
+		{top=self.spells[3].h+170,ui=self.spells[4]},
 		{top=self.c_desc,ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
-		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info}, 
+		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info},
     }
-    
+
     self:setupUI()
     self:drawGeneral(tab)
     end
-    
+
 end
 
 function _M:drawGeneral(tab)
@@ -182,7 +182,7 @@ function _M:drawGeneral(tab)
 		local y = self.spell_frame[2] or 50
 		s:drawFrame(i_frame, x, y, 1,1,1, 1)
 	end
-	
+
 
 	local max_charges = game.player:getMaxMaxCharges()
 
@@ -218,7 +218,7 @@ function _M:drawGeneral(tab)
 			local max = p:getMaxCharges(t) or 0
 			local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
 			c:drawColorString(font, str, ww, hh, 255, 255, 255, true)
-			ww = ww + self.spells[i].tile_w + self.spells[i].padding 
+			ww = ww + self.spells[i].tile_w + self.spells[i].padding
 
 			--start drawing in the next line if spells wrap over
 			--530 -> wide
@@ -226,8 +226,9 @@ function _M:drawGeneral(tab)
 				ww = w
 				hh = hh + self.spells[i].tile_h + self.spells[i].padding
 			end
-		end  
-		h = h + 80
+		end
+		--height to start drawing a new level
+		h = h + 140
 
 		end
 	end
@@ -254,8 +255,8 @@ function _M:onSpell(item, button)
 		v = -1
 	end
 	local p = game.player
-	if item then 
-		p:incMaxCharges(item.data, v, self.spell_list) 
+	if item then
+		p:incMaxCharges(item.data, v, self.spell_list)
 --        self.c_info.text = item.desc
 	end
 	self:drawGeneral("leveltwo")
@@ -317,7 +318,7 @@ end
 
 function _M:on_select(item, sel)
 	if self.c_info then self.c_info:switchItem(item, item.desc) end
-	self.selection = sel    
+	self.selection = sel
 
 	--Taken from ToME 4's show lore
 	if item.image then
@@ -339,7 +340,7 @@ end
 	print("on select reached! description", item)
 	if item then self.c_info:switchItem(item, item.desc) end
 --    if item then self.c_info.text = item.desc end
-	self.selection = sel    
+	self.selection = sel
 end]]
 
 --From ToME 4's Show Lore
