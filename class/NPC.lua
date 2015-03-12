@@ -44,7 +44,7 @@ function _M:act()
         self:pickupObject()
     end
 
-	if self.life == 0 and self.wounds < self.max_wounds then
+	if self.life == 0 and self.wounds and self.max_wounds and self.wounds < self.max_wounds then
 
 		if self.wounds < self.max_wounds/2 then
 			if not self.energy.used then

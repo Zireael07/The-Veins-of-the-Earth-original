@@ -606,6 +606,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	infravision = 3,
 	combat_natural = 3,
+	resolvers.wounds()
 }
 
 newEntity{
