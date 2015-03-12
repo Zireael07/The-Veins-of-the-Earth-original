@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -293,7 +293,8 @@ end
 function _M:getMapSize()
 --	return self.uiset:getMapSize()
 	local w, h = core.display.size()
-	return 0, 0, w, h
+	return 200, 0, w - 200, h
+--	return 0, 0, w, h
 --	return 216, 0, w - 216, h
 end
 
@@ -949,7 +950,9 @@ function _M:displayMap(nb_keyframes)
 				map._map:drawSeensTexture(0, 0, nb_keyframes)
 			self.fbo:use(false, self.full_fbo)
 
-			self.fbo:toScreen(0, 0, self.w, self.h, self.fbo_shader.shad)
+	--		self.fbo:toScreen(0, 0, self.w, self.h, self.fbo_shader.shad)
+		-- NOTE: this sets screen size if/when fbos are in use, not map size
+			self.fbo:toScreen(map.display_x, map.display_y, self.w - map.display_x, self.h - map.display_y, self.fbo_shader.shad)
 
 
 		-- Basic display; no FBOs
