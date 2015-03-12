@@ -601,7 +601,7 @@ function _M:tooltip()
 
 	ts:add({"color", "GOLD"}, ("CR: %s"):format(self:colorCR()), {"color", "WHITE"}, true)
 
-	ts:add({"color", "GOLD"}, ("XP: %d"):format(self:worthExp(game.player)), {"color", "WHITE"}, true)
+    if self:worthExp(game.player) then ts:add({"color", "GOLD"}, ("XP: %d"):format(self:worthExp(game.player)), {"color", "WHITE"}, true) end
 
 	ts:add({"color", "WHITE"}, self.desc, {"color", "WHITE"}, true)
 
@@ -1221,7 +1221,7 @@ end
 -- Check the actor can cast it
 -- @param ab the talent (not the id, the table)
 -- @return true to continue, false to stop
-function _M:preUseTalent(ab, silent)
+function _M:preUseTalent(ab, silent, fake)
 	local tt_def = self:getTalentTypeFrom(ab.type[1])
 	if tt_def.all_limited then --all_limited talenttypes all have talents that are daily limited
 
@@ -1306,7 +1306,7 @@ function _M:preUseTalent(ab, silent)
 	end
 
 	--Spell failure!
-	if tt_def.all_limited then
+	if tt_def.all_limited and not fake then
 
 		if self.classes and self.classes["Wizard"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then
 			game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!")
