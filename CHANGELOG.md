@@ -11,14 +11,26 @@ CHANGELOG
 * bug fix - charges being displayed off or not displayed at all for multiple lines of spells in a spellbook
 * bug fix - training stat tracker values are now properly zeroed when increasing stat
 * bug fix - no more Lua errors on right clicking talents
+* bug fix - no longer having to drop the fireball on yourself
+* bug fix - visited zones not being saved leading to Lua errors when changing level
+* bug fix - spell failure not canceling spells properly
+* bug fix - cheat resurrect no longer throws errors if you happened to die while encumbered
+* bug fix - Summon Monster I works as intended
+* bug fix - used up arrows and/or thrown weapons are now properly removed
+* bug fix - summons' tooltips no longer throws an error [Castler]
+* bug fix - mage armor spell no longer warns you when you use it on yourself [Castler]
+* bug fix - map no longer going under UI on left-hand side [kudos to Castler for pointing out the fix]
 
-* new spells - divine favor, entropic shield, doom, shield of faith
+* new spells - divine favor, entropic shield, doom, shield of faith, summon monster II
+* new feats - Master Craftsman
 * new NPC: human/dwarf/drow healer
 * sorcerers and shamans now use a spell points system instead of Vancian spellcasting
 * implement room descriptions
 * hirelings now use party member code from ToME
+* implement vitality/wounds system
 * implement metamagic feats - Extend, Empower and Maximize Spell
 * implement Precise Shot and Far Shot feats
+* implement Jump, Intimidate, Heal skills
 * implement spell points & psionic power
 * consumables now stack
 * unwearable items are highlighted in red; unusable ones in blue
@@ -26,10 +38,12 @@ CHANGELOG
 * can now throw thrown weapons
 * low Int characters get separate answers now
 * log message is shown when player gains EXP
-* UI improvements and bugfixes for feat select screen
+* UI improvements and bugfixes for feat select screen [Castler]
+* stair tooltips show where they lead to if you've been there at least once
 * AI no longer walks into chasms/lava/water
 * game options screen displayed before the first level is generated
 * implement talent configuration from ToME
+* item creation debug screen now allows hand-picking egos to be generated
 * backport room generator improvements from ToME git
 * backport ego improvements from ToME git
 
