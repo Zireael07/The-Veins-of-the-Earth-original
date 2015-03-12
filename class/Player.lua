@@ -101,6 +101,7 @@ function _M:init(t, no_default)
 
   --Divine stuff
   self.favor = 0
+  self.max_favor = 0
   self.anger = 0
   self.sacrifice_value = self.sacrifice_value or {}
   self.max_sacrifice_value = self.max_sacrifice_value or {}

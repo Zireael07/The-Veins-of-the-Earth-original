@@ -19,7 +19,7 @@ newArcaneSpell{
 		else return 5 end
 	end,
 	range = 0,
-	action = function(self)
+	action = function(self, t)
 	if not self then return nil end
 		self:setEffect(self.EFF_INVISIBLE, t.getDuration(self, t), {})
 		return true
