@@ -208,6 +208,7 @@ newEntity{
 	resolvers.inventory {
 	full_id=true,
 	{ name = "hand crossbow", not_properties={"cursed"}  },
+	{ name = "spider bread"},
 	},
 }
 
@@ -221,7 +222,7 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
 	stats = { str=11, dex=11, con=12, int=11, wis=9, cha=9, luc=10 },
 	combat = { dam= {1,6} },
-	lite = 3,
+--	lite = 3,
 	hit_die = 1,
 	alignment = "neutral good",
 	resolvers.specialnpc(),
@@ -243,6 +244,7 @@ newEntity{
 		{ name = "light metal shield",  },
 		{ name = "long sword",  },
 		{ name = "arrows",  },
+		{ name = "torch"},
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -277,7 +279,7 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_EXOTIC_WEAPON_PROFICIENCY]=1, --stopgap measure for now
 	},
-	resolvers.equip{
+	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "scale mail",  },
 		{ name = "heavy metal shield",  },
@@ -286,7 +288,8 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "shortbow", },
+    { name = "shortbow", not_properties={"cursed"} },
+	{ name = "food ration" },
 	},
 	uncommon_desc = [[ Dwarves come off as gruff or even rude, but they are an extremely determined and honorable people. They look down upon those who flaunt their wealth and usually wear only one or two pieces of finery themselves, although dwarven jewelry tends to be exceedingly beautiful and well-crafted.]],
 	common_desc = [[Dwarves build their kingdoms underground, carving them straight into the stone of mountainsides. They are naturally adept at working stone, and spend their days mining gems and precious metals from beneath the earth.]],
@@ -314,7 +317,8 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow",  },
+    { name = "light crossbow", not_properties={"cursed"} },
+	{ name = "food ration" },
 	},
 }
 
@@ -437,10 +441,12 @@ newEntity{
 		{ name = "heavy metal shield",   },
 		{ name = "long sword", },
 		{ name = "bolts", },
+		{ name = "torch" },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow", },
+    { name = "light crossbow", not_properties={"cursed"} },
+	{ name = "food ration" },
 	},
 }
 
@@ -471,7 +477,8 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow",  },
+    { name = "light crossbow", not_properties={"cursed"}  },
+	{ name = "food ration" },
 	},
 }
 
@@ -508,10 +515,12 @@ newEntity{
 		{ name = "light metal shield",  },
 		{ name = "long sword",  },
 		{ name = "bolts",  },
+		{ name = "torch" },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow",  },
+    { name = "light crossbow", not_properties={"cursed"}  },
+	{ name = "food ration" },
 	},
 }
 
@@ -589,6 +598,7 @@ newEntity{
 	resolvers.inventory {
 	full_id=true,
     { name = "javelin",  },
+	{ name = "food ration" },
 	},
 }
 
@@ -760,6 +770,7 @@ newEntity{
 	resolvers.inventory {
 	full_id=true,
     { name = "light crossbow",  },
+	{ name = "food ration" },
 	},
 }
 
@@ -806,6 +817,7 @@ newEntity{
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow", },
+    { name = "light crossbow", not_properties={"cursed"} },
+	{ name = "food ration" },
 	},
 }
