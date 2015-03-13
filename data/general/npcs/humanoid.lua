@@ -28,138 +28,7 @@ newEntity{
 	--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
-newEntity{ base = "BASE_NPC_HUMANOID",
-	define_as = "BASE_NPC_KOBOLD",
-	subtype = "reptilian",
-	image = "tiles/kobold.png",
-	display = "k", color=colors.WHITE,
-    desc = [[Ugly and green!]],
-
-	stats = { str=9, dex=13, con=10, int=10, wis=9, cha=8, luc=12 },
-	infravision = 3,
-	alignment = "lawful evil",
-	skill_hide = 4,
-	skill_listen = 1,
-	skill_spot = 1,
-	skill_search = 1,
-	skill_movesilently = 1,
-	hit_die = 4,
---	resolvers.specialnpc(),
-	resolvers.templates()
-}
-
-newEntity{ base = "BASE_NPC_KOBOLD",
-	name = "kobold", color=colors.GREEN,
-	level_range = {1, 4}, exp_worth = 200,
-	rarity = 6,
-	max_life = resolvers.rngavg(5,9),
-	challenge = 1/2,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
-		full_id=true,
-		{ name = "short spear", },
-		{ name = "arrows",  },
-	},
-	resolvers.inventory {
-	full_id=true,
-    { name = "shortbow",  },
-	},
-}
-
-newEntity{ base = "BASE_NPC_KOBOLD",
-	name = "kobold warrior", color=colors.AQUAMARINE,
-	level_range = {6, 10}, exp_worth = 400,
-	rarity = 20,
-	max_life = resolvers.rngavg(10,12),
-	hit_die = 6,
-	challenge = 1,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
-		full_id=true,
-		{ name = "arrows", },
-        { name = "shortbow",  },
-        { name = "leather armor", },
-	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "short spear",  },
-	},
-}
-
-newEntity{ base = "BASE_NPC_HUMANOID",
-	define_as = "BASE_NPC_ORC",
-	subtype = "orc",
-	image = "tiles/orc.png",
-	display = 'o', color=colors.GREEN,
-	desc = [[An ugly orc.]],
-
-	stats = { str=17, dex=11, con=12, int=8, wis=7, cha=6, luc=10 },
-	infravision = 2,
-	alignment = "chaotic evil",
-	skill_listen = 2,
-	skill_spot = 2,
-	hit_die = 1,
---	resolvers.specialnpc(),
---	resolvers.templates(),
---  	resolvers.class()
-}
-
-newEntity{
-	base = "BASE_NPC_ORC",
-	name = "orc", color=colors.GREEN,
-	level_range = {1, 4}, exp_worth = 400,
-	rarity = 8,
-	max_life = resolvers.rngavg(4,7),
-	challenge = 1,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
-		full_id=true,
-		{ name = "studded leather armor",  },
-		{ name = "falchion", },
-		{ name = "arrows",  },
-	},
-	resolvers.inventory {
-	full_id=true,
-    { name = "shortbow",  },
-	},
-}
-
-newEntity{ base = "BASE_NPC_HUMANOID",
-	define_as = "BASE_NPC_GOBLIN",
-	subtype = "goblinoid",
-	image = "tiles/goblin.png",
-	display = 'g', color=colors.GREEN,
-	desc = [[A dirty goblin.]],
-
-	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=6, luc=8 },
-	infravision = 3,
-	alignment = "chaotic evil",
-	skill_hide = 4,
-	skill_movesilently = 4,
-	skill_listen = 2,
-	skill_spot = 1,
-	hit_die = 1,
---	resolvers.specialnpc(),
---	resolvers.templates()
---	resolvers.class()
-}
-
-newEntity{
-	base = "BASE_NPC_GOBLIN",
-	name = "goblin", color=colors.OLIVE_DRAB,
-	level_range = {1, 4}, exp_worth = 135,
-	rarity = 3,
-	max_life = resolvers.rngavg(4,7),
-	challenge = 1/3,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
-		full_id=true,
-		{ name = "leather armor",  },
-		{ name = "light wooden shield",  },
-		{ name = "morningstar",  },
-	},
-}
-
+--Playable races
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_DROW",
 	subtype = "drow",
@@ -322,88 +191,6 @@ newEntity{
 	},
 }
 
---Scent
-newEntity{ base = "BASE_NPC_HUMANOID",
-	define_as = "BASE_NPC_BUGBEAR",
-	subtype = "goblinoid",
-	image = "tiles/goblin.png",
-	display = 'g', color=colors.BROWN,
-	desc = [[A dirty hairy bugbear.]],
-
-	stats = { str=15, dex=12, con=13, int=10, wis=10, cha=9, luc=8 },
-	infravision = 3,
-	alignment = "chaotic evil",
-	skill_climb = 1,
-	skill_hide = 3,
-	skill_movesilently = 5,
-	skill_listen = 4,
-	skill_spot = 4,
-	uncommon_desc = [[Bugbears tend to live in small tribal units, with the biggest and meanest of them the tribal leader by default. They tend to have but two goals in life: food and treasure, and a group of adventures would be considered a great source of both.]],
-	common_desc = [[As well as being considerably stronger, healthier and more light footed than the average human, bugbears have an affinity for moving quietly despite their bulk. Combined with their natural darkvision, these qualities add up to a creature very well suited for raids on camp sites in the dead of night.]],
-	base_desc = [[This muscular humanoid is a bugbear, the biggest and strongest of the common goblinoids. Bugbears speak Goblin and Common. It is proficient in simple weapons and needs to eat, breathe and sleep.]],
-}
-
-newEntity{
-	base = "BASE_NPC_BUGBEAR",
-	name = "bugbear",
-	level_range = {1, 10}, exp_worth = 600,
-	rarity = 5,
-	max_life = resolvers.rngavg(15,20),
-	hit_die = 3,
-	challenge = 2,
-	infravision = 3,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
-		full_id=true,
-		{ name = "leather armor", not_properties={"cursed"}  },
-		{ name = "light wooden shield", not_properties={"cursed"}  },
-		{ name = "morningstar", not_properties={"cursed"}  },
-	},
---	resolvers.specialnpc(),
-	resolvers.templates()
-}
-
-newEntity{ base = "BASE_NPC_HUMANOID",
-	define_as = "BASE_NPC_GNOLL",
-	subtype = "gnoll",
-	image = "tiles/gnoll.png",
-	display = 'h', color=colors.BROWN,
-	desc = [[A dog-headed humanoid.]],
-
-	stats = { str=15, dex=10, con=13, int=8, wis=11, cha=8, luc=8 },
-	infravision = 3,
-	skill_listen = 3,
-	skill_spot = 2,
-	hit_die = 2,
---	resolvers.specialnpc(),
---	resolvers.templates()
-}
-
-newEntity{
-	base = "BASE_NPC_GNOLL",
-	name = "gnoll",
-	level_range = {1, 10}, exp_worth = 600,
-	rarity = 5,
-	max_life = resolvers.rngavg(10,15),
-	challenge = 2,
-	infravision = 3,
-	alignment = "chaotic evil",
-	resolvers.talents{ [Talents.T_SHOOT]=1,
-	[Talents.T_POWER_ATTACK]= 1
-	},
-	resolvers.equip{
-		full_id=true,
-		{ name = "leather armor",  },
-		{ name = "heavy steel shield",  },
-		{ name = "battleaxe",  },
-		{ name = "arrows",  },
-	},
-	resolvers.inventory {
-	full_id=true,
-	{ name = "shortbow",  },
-	},
-}
-
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_GNOME",
 	subtype = "gnome",
@@ -524,42 +311,8 @@ newEntity{
 	},
 }
 
-newEntity{ base = "BASE_NPC_HUMANOID",
-	define_as = "BASE_NPC_HOBGOBLIN",
-	subtype = "goblinoid",
-	image = "tiles/goblin.png",
-	display = 'g', color=colors.RED,
-	desc = [[A brutish goblinoid garbed in red, with reddish skin and dark hair.]],
 
-	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=8, luc=10 },
-	infravision = 3,
-	alignment = "lawful evil",
-	hit_die = 1,
---	resolvers.specialnpc(),
---	resolvers.templates()
-}
-
-newEntity{
-	base = "BASE_NPC_HOBGOBLIN",
-	name = "hobgoblin",
-	level_range = {1, 5}, exp_worth = 200,
-	rarity = 5,
-	max_life = resolvers.rngavg(5,8),
-	challenge = 1/2,
-	skill_movesilently = 4,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
-		full_id=true,
-		{ name = "studded leather",  },
-		{ name = "light metal shield",  },
-		{ name = "long sword", },
-	},
-	resolvers.inventory {
-	full_id=true,
-    { name = "javelin" },
-	},
-}
-
+--On the fence
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_LIZARDFOLK",
 	subtype = "reptilian",
@@ -602,130 +355,101 @@ newEntity{
 	},
 }
 
---Swim 60 ft.
-newEntity{
-	define_as = "BASE_NPC_LOCATHAH",
-	type = "humanoid", subtype = "humanoid_aquatic",
-	image = "tiles/triton.png",
-	display = 'h', color=colors.DARK_BLUE,
-	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
-	desc = [[A scaly fish-like humanoid.]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, ai_move = "move_astar", },
-	stats = { str=10, dex=12, con=10, int=13, wis=13, cha=11, luc=10 },
-	combat = { dam= {1,6} },
-	infravision = 3,
-	combat_natural = 3,
-	resolvers.wounds()
-}
-
-newEntity{
-	base = "BASE_NPC_LOCATHAH",
-	name = "locathah",
-	level_range = {1, 15}, exp_worth = 200,
-	rarity = 15,
-	max_life = resolvers.rngavg(5,10),
-	hit_die = 2,
-	challenge = 1/2,
-	skill_listen = 5,
-	skill_spot = 5,
-	skill_swim = 8,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
-	resolvers.equip{
-		full_id=true,
-		{ name = "light crossbow",  },
-		{ name = "bolts",  },
-	},
-	resolvers.inventory {
-	full_id=true,
-    { name = "long spear",  },
-	},
-}
-
---Swim 50 ft.
 newEntity{ base = "BASE_NPC_HUMANOID",
-	define_as = "BASE_NPC_MERFOLK",
-	subtype = "humanoid_aquatic",
-	image = "tiles/merfolk.png",
-	display = 'h', color=colors.DARK_BLUE,
-	desc = [[A scaly fish-like humanoid.]],
-
-	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=10, luc=10 },
-	infravision = 1,
---	movement_speed_bonus = 0.90,
-	movement_speed = 1.9,
-	combat_attackspeed = 1.9,
-	hit_die = 2,
-	open_door = true,
---	resolvers.specialnpc(),
---	resolvers.templates()
-}
-
-newEntity{
-	base = "BASE_NPC_MERFOLK",
-	name = "merfolk",
-	level_range = {1, 15}, exp_worth = 200,
-	rarity = 15,
-	max_life = resolvers.rngavg(5,10),
-	challenge = 1/2,
-	skill_listen = 5,
-	skill_spot = 5,
-	skill_swim = 8,
-
-	resolvers.talents{ [Talents.T_SHOOT]=1,
-	[Talents.T_POLEARM]=1,
-	[Talents.T_ALERTNESS]=1,
-	},
-	resolvers.equip{
-		full_id=true,
-		{ name = "leather armor",   },
-		{ name = "heavy crossbow", },
-		{ name = "bolts",  },
-	},
-	resolvers.inventory {
-	full_id=true,
-    { name = "trident", },
-	},
-}
-
---stench 3 sq Fort DC 13 or sickened; Multiattack, Weapon Focus
-newEntity{ base = "BASE_NPC_HUMANOID",
-	define_as = "BASE_NPC_TROG",
+	define_as = "BASE_NPC_KOBOLD",
 	subtype = "reptilian",
-	image = "tiles/goblin.png",
-	display = 'h', color=colors.DARK_UMBER,
-	desc = [[A scaly reptilian humanoid.]],
+	image = "tiles/kobold.png",
+	display = "k", color=colors.WHITE,
+    desc = [[Ugly and green!]],
 
-	stats = { str=10, dex=9, con=14, int=8, wis=10, cha=10, luc=6 },
-	combat = { dam= {1,4} },
-	infravision = 5,
-	combat_natural = 6,
-	alignment = "chaotic evil",
-	hit_die = 2,
---	resolvers.specialnpc()
---	resolvers.templates()
+	stats = { str=9, dex=13, con=10, int=10, wis=9, cha=8, luc=12 },
+	infravision = 3,
+	alignment = "lawful evil",
+	skill_hide = 4,
+	skill_listen = 1,
+	skill_spot = 1,
+	skill_search = 1,
+	skill_movesilently = 1,
+	hit_die = 4,
+--	resolvers.specialnpc(),
+	resolvers.templates()
 }
 
-newEntity{
-	base = "BASE_NPC_TROG",
-	name = "troglodyte",
-	level_range = {1, nil}, exp_worth = 400,
-	rarity = 10,
-	max_life = resolvers.rngavg(10,15),
-	challenge = 1,
-	skill_hide = 6,
-	skill_listen = 3,
+newEntity{ base = "BASE_NPC_KOBOLD",
+	name = "kobold", color=colors.GREEN,
+	level_range = {1, 4}, exp_worth = 200,
+	rarity = 6,
+	max_life = resolvers.rngavg(5,9),
+	challenge = 1/2,
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "club" },
+		{ name = "short spear", },
+		{ name = "arrows",  },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "javelin" },
+    { name = "shortbow",  },
 	},
 }
 
+newEntity{ base = "BASE_NPC_KOBOLD",
+	name = "kobold warrior", color=colors.AQUAMARINE,
+	level_range = {6, 10}, exp_worth = 400,
+	rarity = 20,
+	max_life = resolvers.rngavg(10,12),
+	hit_die = 6,
+	challenge = 1,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "arrows", },
+        { name = "shortbow",  },
+        { name = "leather armor", },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "short spear",  },
+	},
+}
+
+newEntity{ base = "BASE_NPC_HUMANOID",
+	define_as = "BASE_NPC_ORC",
+	subtype = "orc",
+	image = "tiles/orc.png",
+	display = 'o', color=colors.GREEN,
+	desc = [[An ugly orc.]],
+
+	stats = { str=17, dex=11, con=12, int=8, wis=7, cha=6, luc=10 },
+	infravision = 2,
+	alignment = "chaotic evil",
+	skill_listen = 2,
+	skill_spot = 2,
+	hit_die = 1,
+--	resolvers.specialnpc(),
+--	resolvers.templates(),
+--  	resolvers.class()
+}
+
+newEntity{
+	base = "BASE_NPC_ORC",
+	name = "orc", color=colors.GREEN,
+	level_range = {1, 4}, exp_worth = 400,
+	rarity = 8,
+	max_life = resolvers.rngavg(4,7),
+	challenge = 1,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "studded leather armor",  },
+		{ name = "falchion", },
+		{ name = "arrows",  },
+	},
+	resolvers.inventory {
+	full_id=true,
+    { name = "shortbow",  },
+	},
+}
 
 --Planetouched
 newEntity{ base = "BASE_NPC_HUMANOID",
@@ -819,5 +543,288 @@ newEntity{
 	full_id=true,
     { name = "light crossbow", not_properties={"cursed"} },
 	{ name = "food ration" },
+	},
+}
+
+
+--Clearly enemies
+newEntity{ base = "BASE_NPC_HUMANOID",
+	define_as = "BASE_NPC_GOBLIN",
+	subtype = "goblinoid",
+	image = "tiles/goblin.png",
+	display = 'g', color=colors.GREEN,
+	desc = [[A dirty goblin.]],
+
+	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=6, luc=8 },
+	infravision = 3,
+	alignment = "chaotic evil",
+	skill_hide = 4,
+	skill_movesilently = 4,
+	skill_listen = 2,
+	skill_spot = 1,
+	hit_die = 1,
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+--	resolvers.class()
+}
+
+newEntity{
+	base = "BASE_NPC_GOBLIN",
+	name = "goblin", color=colors.OLIVE_DRAB,
+	level_range = {1, 4}, exp_worth = 135,
+	rarity = 3,
+	max_life = resolvers.rngavg(4,7),
+	challenge = 1/3,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "leather armor",  },
+		{ name = "light wooden shield",  },
+		{ name = "morningstar",  },
+	},
+}
+
+
+--Scent
+newEntity{ base = "BASE_NPC_HUMANOID",
+	define_as = "BASE_NPC_BUGBEAR",
+	subtype = "goblinoid",
+	image = "tiles/goblin.png",
+	display = 'g', color=colors.BROWN,
+	desc = [[A dirty hairy bugbear.]],
+
+	stats = { str=15, dex=12, con=13, int=10, wis=10, cha=9, luc=8 },
+	infravision = 3,
+	alignment = "chaotic evil",
+	skill_climb = 1,
+	skill_hide = 3,
+	skill_movesilently = 5,
+	skill_listen = 4,
+	skill_spot = 4,
+	uncommon_desc = [[Bugbears tend to live in small tribal units, with the biggest and meanest of them the tribal leader by default. They tend to have but two goals in life: food and treasure, and a group of adventures would be considered a great source of both.]],
+	common_desc = [[As well as being considerably stronger, healthier and more light footed than the average human, bugbears have an affinity for moving quietly despite their bulk. Combined with their natural darkvision, these qualities add up to a creature very well suited for raids on camp sites in the dead of night.]],
+	base_desc = [[This muscular humanoid is a bugbear, the biggest and strongest of the common goblinoids. Bugbears speak Goblin and Common. It is proficient in simple weapons and needs to eat, breathe and sleep.]],
+}
+
+newEntity{
+	base = "BASE_NPC_BUGBEAR",
+	name = "bugbear",
+	level_range = {1, 10}, exp_worth = 600,
+	rarity = 5,
+	max_life = resolvers.rngavg(15,20),
+	hit_die = 3,
+	challenge = 2,
+	infravision = 3,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "leather armor", not_properties={"cursed"}  },
+		{ name = "light wooden shield", not_properties={"cursed"}  },
+		{ name = "morningstar", not_properties={"cursed"}  },
+	},
+--	resolvers.specialnpc(),
+	resolvers.templates()
+}
+
+newEntity{ base = "BASE_NPC_HUMANOID",
+	define_as = "BASE_NPC_GNOLL",
+	subtype = "gnoll",
+	image = "tiles/gnoll.png",
+	display = 'h', color=colors.BROWN,
+	desc = [[A dog-headed humanoid.]],
+
+	stats = { str=15, dex=10, con=13, int=8, wis=11, cha=8, luc=8 },
+	infravision = 3,
+	skill_listen = 3,
+	skill_spot = 2,
+	hit_die = 2,
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+}
+
+newEntity{
+	base = "BASE_NPC_GNOLL",
+	name = "gnoll",
+	level_range = {1, 10}, exp_worth = 600,
+	rarity = 5,
+	max_life = resolvers.rngavg(10,15),
+	challenge = 2,
+	infravision = 3,
+	alignment = "chaotic evil",
+	resolvers.talents{ [Talents.T_SHOOT]=1,
+	[Talents.T_POWER_ATTACK]= 1
+	},
+	resolvers.equip{
+		full_id=true,
+		{ name = "leather armor",  },
+		{ name = "heavy steel shield",  },
+		{ name = "battleaxe",  },
+		{ name = "arrows",  },
+	},
+	resolvers.inventory {
+	full_id=true,
+	{ name = "shortbow",  },
+	},
+}
+
+newEntity{ base = "BASE_NPC_HUMANOID",
+	define_as = "BASE_NPC_HOBGOBLIN",
+	subtype = "goblinoid",
+	image = "tiles/goblin.png",
+	display = 'g', color=colors.RED,
+	desc = [[A brutish goblinoid garbed in red, with reddish skin and dark hair.]],
+
+	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=8, luc=10 },
+	infravision = 3,
+	alignment = "lawful evil",
+	hit_die = 1,
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+}
+
+newEntity{
+	base = "BASE_NPC_HOBGOBLIN",
+	name = "hobgoblin",
+	level_range = {1, 5}, exp_worth = 200,
+	rarity = 5,
+	max_life = resolvers.rngavg(5,8),
+	challenge = 1/2,
+	skill_movesilently = 4,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "studded leather",  },
+		{ name = "light metal shield",  },
+		{ name = "long sword", },
+	},
+	resolvers.inventory {
+	full_id=true,
+    { name = "javelin" },
+	},
+}
+
+--stench 3 sq Fort DC 13 or sickened; Multiattack, Weapon Focus
+newEntity{ base = "BASE_NPC_HUMANOID",
+	define_as = "BASE_NPC_TROG",
+	subtype = "reptilian",
+	image = "tiles/goblin.png",
+	display = 'h', color=colors.DARK_UMBER,
+	desc = [[A scaly reptilian humanoid.]],
+
+	stats = { str=10, dex=9, con=14, int=8, wis=10, cha=10, luc=6 },
+	combat = { dam= {1,4} },
+	infravision = 5,
+	combat_natural = 6,
+	alignment = "chaotic evil",
+	hit_die = 2,
+--	resolvers.specialnpc()
+--	resolvers.templates()
+}
+
+newEntity{
+	base = "BASE_NPC_TROG",
+	name = "troglodyte",
+	level_range = {1, nil}, exp_worth = 400,
+	rarity = 10,
+	max_life = resolvers.rngavg(10,15),
+	challenge = 1,
+	skill_hide = 6,
+	skill_listen = 3,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "club" },
+	},
+	resolvers.inventory {
+	full_id=true,
+    { name = "javelin" },
+	},
+}
+
+
+--Aquatic humanoids
+--Swim 60 ft.
+newEntity{
+	define_as = "BASE_NPC_LOCATHAH",
+	type = "humanoid", subtype = "humanoid_aquatic",
+	image = "tiles/triton.png",
+	display = 'h', color=colors.DARK_BLUE,
+	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	desc = [[A scaly fish-like humanoid.]],
+
+	ai = "dumb_talented_simple", ai_state = { talent_in=3, ai_move = "move_astar", },
+	stats = { str=10, dex=12, con=10, int=13, wis=13, cha=11, luc=10 },
+	combat = { dam= {1,6} },
+	infravision = 3,
+	combat_natural = 3,
+	resolvers.wounds()
+}
+
+newEntity{
+	base = "BASE_NPC_LOCATHAH",
+	name = "locathah",
+	level_range = {1, 15}, exp_worth = 200,
+	rarity = 15,
+	max_life = resolvers.rngavg(5,10),
+	hit_die = 2,
+	challenge = 1/2,
+	skill_listen = 5,
+	skill_spot = 5,
+	skill_swim = 8,
+	resolvers.talents{ [Talents.T_SHOOT]=1, },
+	resolvers.equip{
+		full_id=true,
+		{ name = "light crossbow",  },
+		{ name = "bolts",  },
+	},
+	resolvers.inventory {
+	full_id=true,
+    { name = "long spear",  },
+	},
+}
+
+--Swim 50 ft.
+newEntity{ base = "BASE_NPC_HUMANOID",
+	define_as = "BASE_NPC_MERFOLK",
+	subtype = "humanoid_aquatic",
+	image = "tiles/merfolk.png",
+	display = 'h', color=colors.DARK_BLUE,
+	desc = [[A scaly fish-like humanoid.]],
+
+	stats = { str=13, dex=13, con=14, int=10, wis=9, cha=10, luc=10 },
+	infravision = 1,
+--	movement_speed_bonus = 0.90,
+	movement_speed = 1.9,
+	combat_attackspeed = 1.9,
+	hit_die = 2,
+	open_door = true,
+--	resolvers.specialnpc(),
+--	resolvers.templates()
+}
+
+newEntity{
+	base = "BASE_NPC_MERFOLK",
+	name = "merfolk",
+	level_range = {1, 15}, exp_worth = 200,
+	rarity = 15,
+	max_life = resolvers.rngavg(5,10),
+	challenge = 1/2,
+	skill_listen = 5,
+	skill_spot = 5,
+	skill_swim = 8,
+
+	resolvers.talents{ [Talents.T_SHOOT]=1,
+	[Talents.T_POLEARM]=1,
+	[Talents.T_ALERTNESS]=1,
+	},
+	resolvers.equip{
+		full_id=true,
+		{ name = "leather armor",   },
+		{ name = "heavy crossbow", },
+		{ name = "bolts",  },
+	},
+	resolvers.inventory {
+	full_id=true,
+    { name = "trident", },
 	},
 }
