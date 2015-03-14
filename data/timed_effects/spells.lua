@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 local Stats = require "engine.interface.ActorStats"
 local Particles = require "engine.Particles"
@@ -251,9 +251,23 @@ newEffect{
     end,
 }
 
+--Dummies again
 newEffect{
 	name = "KNOW_ALIGNMENT",
 	desc = "knows alignment",
+	type = "mental",
+	status = "beneficial",
+	activate = function(self, eff)
+--		eff.particle = self:addParticles(Particles.new("law", 1))
+	end,
+	 deactivate = function(self, eff)
+--        self:removeParticles(eff.particle)
+    end,
+}
+
+newEffect{
+	name = "DEATHWATCH",
+	desc = "death watch",
 	type = "mental",
 	status = "beneficial",
 	activate = function(self, eff)

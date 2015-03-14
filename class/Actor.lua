@@ -589,8 +589,10 @@ function _M:tooltip()
 	else ts:add({"color", 255, 0, 0}, ("HP: %d (%d%%)"):format(self.life, self.life * 100 / self.max_life), {"color", "WHITE"}, true)
 	end
 
-	if self.wounds and self.max_wounds then
-	ts:add({"color", 255, 0, 0}, ("Wounds: %d/%d"):format(self.wounds, self.max_wounds), {"color", "WHITE"}, true)
+	if game.player:hasEffect(game.player.EFF_DEATHWATCH) then
+		if self.wounds and self.max_wounds then
+			ts:add({"color", 255, 0, 0}, ("Wounds: %d/%d"):format(self.wounds, self.max_wounds), {"color", "WHITE"}, true)
+		end
 	end
 
 	if game.player:hasEffect(game.player.EFF_KNOW_ALIGNMENT) then ts:add({"color", "WHITE"}, ("%s"):format(self.alignment), true) end
@@ -725,9 +727,9 @@ if ((self.life or 0) - (value or 0) < 0) then
 	--don't change vitality
 	self.life = 0
 
-
 	self.wounds = self.wounds - (value_remaining or 0)
-	game.log("Wounds:"..self.wounds.." Hit taken:"..value_remaining)
+--	game.logSeen("Wounds:"..self.wounds.." Hit taken:"..value_remaining)
+
 	--we're tired
 	self:setEffect(self.EFF_FATIGUE, 1, {})
 
