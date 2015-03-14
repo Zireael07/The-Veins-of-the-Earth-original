@@ -21,77 +21,79 @@ newEntity{ base = "BASE_HOLY_SYMBOL",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Ekliazeh",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+
+newEntity{
+    base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Erich",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Essiah",
     rarity = 15,
 }
-    
-base = "BASE_HOLY_SYMBOL",
+
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Hesani",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Immotian",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Khasrach",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Kysul",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Maeve",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Mara",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Sabin",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Semirath",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of the Multitude",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Xavias",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Xel",
     rarity = 15,
 }
 
-base = "BASE_HOLY_SYMBOL",
+newEntity{ base = "BASE_HOLY_SYMBOL",
     name = "holy symbol of Zurvash",
     rarity = 15,
 }
