@@ -31,7 +31,8 @@ newEntity{
     rarity = 2,
     resolvers.equipnoncursed{
         full_id=true,
+        { name = "chain shirt" },
         { name = "long sword",  },
     },
---    can_talk = "tavern",
+    can_talk = "tavernkeeper",
 }

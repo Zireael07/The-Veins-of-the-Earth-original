@@ -781,6 +781,27 @@ function _M:onRestStop()
   game.state:dayNightCycle()
 end
 
+function _M:cityRest()
+	--Passage of time
+	game.turn = game.turn + game.calendar.HOUR * 8
+
+	--Calendar
+	game.log(game.calendar:getTimeDate(game.turn))
+	--Refresh day/nite effects
+	game.state:dayNightCycle()
+
+	--give full spell points
+	self.mana = self.max_mana
+
+	--Refresh charges
+	for _, tid in pairs(self.talents_def) do
+		self:setCharges(tid, self:getMaxCharges(tid))
+	end
+
+	--reset the ignore wound feat flag
+	self.ignored_wound = false
+end
+
 --- Can we continue running?
 -- We can run if no hostiles are in sight, and if we no interesting terrains are next to us
 -- 'ignore_memory' is only used when checking for paths around traps.  This ensures we don't remember items "obj_seen" that we aren't supposed to
