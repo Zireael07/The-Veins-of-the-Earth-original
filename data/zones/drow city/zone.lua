@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2014
+-- Zireael 2014-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -50,14 +50,14 @@ return {
 	levels =
 	{
 	--Place exit to worldmap on level 1
-		[1] = { 
-		generator = { map = { 
+		[1] = {
+		generator = { map = {
 		up = "EXIT",
 		},},
 	},
 	--No shaft up on level 2
-		[2] = { 
-		generator = { map = { 
+		[2] = {
+		generator = { map = {
 		up = "UP",
 		},},
 	},
@@ -80,17 +80,24 @@ return {
 		game.zone:addEntity(game.level, g, "terrain", spot.x, spot.y)
 		level.spots[#level.spots+1] = {x=spot.x, y=spot.y, type="zone-change", subtype="brothel"}
 
+		local spot = game.level:pickSpot{type="building", subtype="building"}
+		local g = game.zone:makeEntityByName(game.level, "terrain", "TAVERN_ENTRANCE")
+		game.zone:addEntity(game.level, g, "terrain", spot.x, spot.y)
+		level.spots[#level.spots+1] = {x=spot.x, y=spot.y, type="zone-change", subtype="tavern"}
+
 	end,
 
 	--Exiting buildings should now work
 	entry_point = function(_, _, from_zone)
 		if not from_zone then
       		return nil
-    --	elseif from_zone.name == "Drow Noble House" then 
+    --	elseif from_zone.name == "Drow Noble House" then
     	elseif from_zone.name:find("House Compound$") then
       		return game.level:pickSpot{ type="zone-change", subtype="noble house" }
       	elseif from_zone.name == "Brothel" then
       		return game.level:pickSpot{ type="zone-change", subtype="brothel" }
+		elseif from_zone.name == "Tavern" then
+			return game.level:pickSpot{ type="zone-change", subtype="tavern" }
       	else
       		return nil
       	end

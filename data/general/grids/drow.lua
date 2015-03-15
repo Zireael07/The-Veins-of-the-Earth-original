@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
 --Drow city/outpost tiles
 
@@ -92,6 +92,15 @@ newEntity{
     image = "tiles/stairs_up.png",
     change_level = 1,
     change_zone = "brothel",
+}
+
+newEntity{
+    base = "EXIT",
+    define_as = "TAVERN_ENTRANCE",
+    name = "building entrance",
+    image = "tiles/stairs_up.png",
+    change_level = 1,
+    change_zone = "tavern",
 }
 
 newEntity{
