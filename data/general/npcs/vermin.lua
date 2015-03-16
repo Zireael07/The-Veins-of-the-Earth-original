@@ -6,7 +6,6 @@ newEntity{
 	type = "vermin",
 	body = { INVEN = 10 },
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	faction = "vermin",
 	resolvers.wounds()
 }
 
