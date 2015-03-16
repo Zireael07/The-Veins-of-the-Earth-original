@@ -43,12 +43,6 @@ engine.Faction:add{ name="players_evil", reaction={}, }
 engine.Faction:setInitialReaction("players_evil", "enemies", -100, true)
 engine.Faction:setInitialReaction("players_evil", "allies", 100, true)
 
---To make vermin friendship ego easier
-engine.Faction:add {name="Vermin", reaction={}, }
-engine.Faction:setInitialReaction("vermin", "enemies", 0, true)
-engine.Faction:setInitialReaction("vermin", "players", -100, true)
-engine.Faction:setInitialReaction("vermin", "players_evil", -100, true)
-
 --Drow houses
 engine.Faction:add { name="House Baenre", reaction={}, }
 engine.Faction:setInitialReaction("House Baenre", "players", 0, true)
