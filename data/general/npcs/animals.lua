@@ -122,6 +122,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_balance = 8,
 	skill_hide = 10,
 	skill_spot = 2,
+	faction = "neutral",
 }
 
 newEntity{
@@ -175,6 +176,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_spot = 6,
 	skill_listen = 6,
 	fly = true,
+	faction = "neutral",
 }
 
 newEntity{
@@ -200,6 +202,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_spot = 4,
 	skill_listen = 3,
 	fly = true,
+	faction = "neutral",
 }
 
 newEntity{
@@ -241,6 +244,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_TORTOISE",
+	subtype = "aquatic",
 	image = "tiles/tortoise.png",
 	display = 'B', color=colors.DARK_GREEN,
 	desc = [[A large tortoise.]],
@@ -251,6 +255,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_spot = 2,
 	skill_swim = 8,
 	skill_listen = 2,
+	faction = "neutral",
 }
 
 newEntity{
@@ -420,6 +425,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_hide = 4,
 	skill_listen = 4,
 	skill_spot = 4,
+	faction = "neutral",
 }
 
 newEntity{
