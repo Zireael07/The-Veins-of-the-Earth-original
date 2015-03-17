@@ -100,6 +100,7 @@ function _M:init(actor)
     },
     fct=function(item) end, select=function(item, sel) end} --self:select(item) end
 
+    self.c_eff = SurfaceZone.new{width=self.iw, height=self.ih-15,alpha=0}
 
     self.t_general = Tab.new {
     title = 'General',
@@ -113,6 +114,13 @@ function _M:init(actor)
     fct = function() end,
     on_change = function(s) if s then self:switchTo('skill') end end,
   }
+    self.t_effect = Tab.new{
+        title = "Effects",
+        default = false,
+        fct = function() end,
+        on_change = function(s) if s then self:switchTo('effect') end end,
+    }
+
 
 --[[    self.t_feats = Tab.new {
     title = 'Feats',
@@ -129,6 +137,7 @@ end
 function _M:switchTo(tab)
     self.t_general.selected = tab == 'general'
     self.t_skill.selected = tab == 'skill'
+    self.t_effect.selected = tab == 'effect'
 --    self.t_feats.selected = tab == 'feats'
 
     self:drawDialog(tab)
@@ -141,6 +150,7 @@ function _M:drawDialog(tab)
     self:loadUI{
         {left=0, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_skill},
+--        {left=self.t_skill, top=0, ui=self.t_effect},
         {left=0, top=self.t_general.h, ui=self.vs},
         {left=0, top=self.t_general.h+5+self.vs.h, ui=self.c_playtime},
         {left=0, top=self.t_general.h+5+self.vs.h+self.c_playtime.h, ui=self.c_desc},
@@ -157,6 +167,7 @@ function _M:drawDialog(tab)
     self:loadUI{
         {left=0, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_skill},
+--        {left=self.t_skill, top=0, ui=self.t_effect},
         {left=0, top=50, ui=self.c_list},
     }
 
@@ -164,6 +175,18 @@ function _M:drawDialog(tab)
     game.tooltip:erase()
     end
 
+    if tab == "effect" then
+    self:loadUI{
+        {left=0, top=0, ui=self.t_general},
+        {left=self.t_general, top=0, ui=self.t_skill},
+        {left=self.t_skill, top=0, ui=self.t_effect},
+--        {left=0, top=50, ui=self.c_list_eff},
+        {left=0, top=50, ui=self.c_eff}
+    }
+
+    self:setupUI()
+    self:drawEffect()
+    end
 end
 
 function _M:mouseZones(t, no_new)
@@ -188,6 +211,7 @@ function _M:mouseTooltip(text, _, _, _, w, h, x, y)
     }, true)
 end
 
+--General tab
 function _M:drawGeneral()
     local player = self.actor
     local s = self.c_desc.s
@@ -337,6 +361,66 @@ end
 
     self.c_desc:generate()
     self.changed = false
+end
+
+function _M:drawEffect()
+    local player = self.actor
+    local s = self.c_desc.s
+
+    s:erase(0,0,0,0)
+
+    local h = 0
+    local w = 0
+
+    h = 0
+    w = 0
+
+    s:drawStringBlended(self.font, "#CHOCOLATE#Effects : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+
+    --draw effect list
+--    local good_e, bad_e = {}, {}
+	for eff_id, p in pairs(player.tmp) do
+		local e = player.tempeffect_def[eff_id]
+
+
+        local list = {}
+    --    local eff_subtype = table.concat(table.keys(e.subtype), "/")
+        local desc = nil
+        local dur = p.dur + 1
+        local name = e.desc
+
+        if e.long_desc then
+            desc = ("#{bold}##GOLD#%s\n(%s)#WHITE##{normal}#\n"):format(name, e.type)..e.long_desc(player, p)
+        else
+            desc = ("#{bold}##GOLD#%s\n(%s)#WHITE##{normal}#\n"):format(name, e.type)
+        end
+
+
+--[[        if e.status == "detrimental" then name = "#LIGHT_RED#"..e.desc
+        else name = ("%s"):format(e.desc) end]]
+
+        list[#list+1] = {
+            name = name,
+            dur = dur,
+            desc = desc,
+        }
+
+	--	if e.status == "detrimental" then bad_e[eff_id] = p else good_e[eff_id] = p end
+	end
+
+--    table.sort(list, function(a,b) return a.name < b.name end)
+
+    for i, t in ipairs(list) do
+        if e.status == "detrimental" then
+            self:mouseTooltip(desc, s:drawColorStringBlended(self.font, (e.decrease > 0) and ("#LIGHT_RED#%s(%d)"):format(name, dur) or ("#LIGHT_RED#%s"):format(name), w, h, 255, 255, 255, true)) h = h + self.font_h
+        else
+            self:mouseTooltip(desc, s:drawColorStringBlended(self.font, (e.decrease > 0) and ("#LIGHT_GREEN#%s(%d)"):format(name, dur) or ("#LIGHT_GREEN#%s"):format(name), w, h, 255, 255, 255, true)) h = h + self.font_h
+        end
+    end
+
+self.c_eff:generate()
+self.changed = false
+
 end
 
 function _M:onKill()
