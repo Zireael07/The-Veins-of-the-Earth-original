@@ -20,7 +20,7 @@ short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "http://veins-of-the-earth.wikidot.com/"
 version = {0,26,0}
-engine = {1,2,5,"te4"}
+engine = {1,3,0,"te4"}
 description = [[
 #SANDY_BROWN# BETA 7#LAST#
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
@@ -81,12 +81,12 @@ loading_wait_ticks = 140
 
 load_tips = {
   { text = [[If you are a spellcaster, you should prepare your spells in your spellbook and rest ASAP to gain them.]] },
-  { text = [[If a monster has negative hp, you can simply wait until it bleeds out.]] },
+  { text = [[If a monster is wounded, it will flee. Unless it can heal, you do not have to worry.]] },
   { text = [[Remember to wear your armor.]]},
   { text = [[Some spellcasters do not have to memorize their spells - they can cast them innately.]]},
   { text = [[If you're lucky when creating your hero, you might get some innate spells or resistances!]]},
   { text = [[Certain races have innate magical abilities due to exposure to magical radiation.]]},
-  { text = [[Remember that bleeding and being unable to move does not mean you're dead (yet).]]},
+  { text = [[Remember that being unable to move does not mean you're dead (yet).]]},
   { text = [[If you are a spellcaster or a rogue with Use Magic Device skill, you can use wands.]]},
   { text = [[Do not rush into fights if you are wounded. Take your time to rest.]]},
   { text = [[Use your spellbook to prepare your spells. Remember that you have to rest to memorize them.]]},
