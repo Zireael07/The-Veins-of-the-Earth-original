@@ -749,6 +749,7 @@ newEntity{
 	[Talents.T_FINESSE]=1
 	},
 	alignment = "neutral",
+	resolvers.wounds()
 }
 
 --Fly 60 ft; scent; freedom of movement; implant, poison pri none sec paralysis 1d8+5 weeks

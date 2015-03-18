@@ -320,7 +320,7 @@ newEntity{
 }
 
 --Fly 30 ft.; shriek 5 sq Fort DC 12 or paralyzed for 2d4 rounds
-newEntity{
+newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_VARGOUILLE",
 	display = 'O', color=colors.UMBER,
 	desc = [[A creature roughly the size of a human head.]],
