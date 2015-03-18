@@ -190,26 +190,7 @@ function _M:playerCounters()
  --Cap nutrition
  if self.nutrition == 1 then self.nutrition = 1 end
 
- --ID counters
- local inven = game.player:getInven("INVEN")
-
- --Don't count down ID when resting
- if not self.resting then
- self.id_counter = self.id_counter - 1
- self.pseudo_id_counter = self.pseudo_id_counter - 1
-  end
-
-  if self.pseudo_id_counter == 0 then --and inven > 0 then
-    self:pseudoID()
-    self:setCountID()
-  end
-
-  if self.id_counter == 0 then
-    self:autoID()
-    self.id_counter = 50
-  end
-
-  --Resilient feat
+   --Resilient feat
   if self:knowTalent(self.T_RESILLIENT) and not self.resting then
 
     local conbonus = self:getConMod()
@@ -225,21 +206,23 @@ function _M:playerCounters()
 
   end
 
+--Maybe do it every five turns only?
+--	if game.turn % 5 == 0 then
+	--ID counters
+	 local inven = game.player:getInven("INVEN")
+
+	 --Don't count down ID when resting
+	 if not self.resting then
+	 self.id_counter = self.id_counter - 1
+	 self.pseudo_id_counter = self.pseudo_id_counter - 1
+	  end
+
   --Deity counters
   if self.descriptor.deity ~= "None" and not self.resting then
     self.god_pulse_counter = self.god_pulse_counter - 1
 
     if self.anger > 0 then
     self.god_anger_counter = self.god_anger_counter - 1
-    end
-
-    if self.god_pulse_counter == 0 then
-      self:godPulse()
-      self:setGodPulse()
-    end
-
-    if self.god_anger_counter == 0 then
-      self:godAnger()
     end
 
   end
@@ -269,7 +252,29 @@ function _M:playerCounters()
 
     --Exercise LUC by being deep in dungeon
     --Inc compares depth to our CR
-  end
+  	end
+--	end
+
+	--Stuff every turn
+	if self.pseudo_id_counter == 0 then --and inven > 0 then
+	self:pseudoID()
+	self:setCountID()
+	end
+
+	if self.id_counter == 0 then
+	self:autoID()
+	self.id_counter = 50
+	end
+
+
+	if self.god_pulse_counter == 0 then
+      self:godPulse()
+      self:setGodPulse()
+    end
+
+    if self.god_anger_counter == 0 then
+      self:godAnger()
+    end
 
 end
 
