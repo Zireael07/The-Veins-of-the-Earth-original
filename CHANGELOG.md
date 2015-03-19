@@ -20,10 +20,13 @@ CHANGELOG
 * bug fix - summons' tooltips no longer throws an error [Castler]
 * bug fix - mage armor spell no longer warns you when you use it on yourself [Castler]
 * bug fix - map no longer going under UI on left-hand side [kudos to Castler for pointing out the fix]
+* bug fix - level up achievements now achievable
 
-* new spells - divine favor, entropic shield, doom, shield of faith, summon monster II
+* update to T-Engine 1.3.0
+* enable sound capabilities
+* new spells - divine favor, entropic shield, doom, shield of faith, deathwatch, summon monster II,
 * new feats - Master Craftsman
-* new NPC: human/dwarf/drow healer
+* new NPC: human/dwarf/drow healer, drow tavernkeeper
 * sorcerers and shamans now use a spell points system instead of Vancian spellcasting
 * implement room descriptions
 * hirelings now use party member code from ToME
@@ -33,6 +36,8 @@ CHANGELOG
 * implement Jump, Intimidate, Heal skills
 * implement spell points & psionic power
 * consumables now stack
+* humanoid NPCs now carry food & light sources
+* some animals are now neutral and vermin now constitute their own faction
 * unwearable items are highlighted in red; unusable ones in blue
 * drow noble house is now named after the House that inhabits it
 * can now throw thrown weapons
@@ -46,6 +51,7 @@ CHANGELOG
 * item creation debug screen now allows hand-picking egos to be generated
 * backport room generator improvements from ToME git
 * backport ego improvements from ToME git
+* fixes and improvements to magic item generation
 
 0.25.0 - beta 6.5 - 22/12/2014
 

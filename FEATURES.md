@@ -3,6 +3,8 @@ FEATURES
 ======
 
 - random worldmap different for every character
+- multiple dungeons, some of them persistent
+- towns and buildings
 - brand-new start-up screen and menu [standalone version only]
 - new old gold and black UI skin
 - 32x32 tiles by Daniel E. Gervais & my edits
@@ -14,22 +16,25 @@ FEATURES
 - 6 prestige classes: shadowdancer, assassin, arcane archer, blackguard, loremaster, archmage
 - 16 races: human, half-elf, half-drow, gnome, halfling, elf, dwarf, half-orc; drow, duergar, deep gnomes; lizardfolk, kobold, orc
 - backgrounds for quicker character creation; basic rules info while creating a character
-- 16 deities for characters to choose from, who react to in-game events 
+- 16 deities for characters to choose from, who react to in-game events
 - cleric alignment and domain (44 total) choices affected by their deity selection
 - ability to load a character that has already been created
 - attributes can be generated either via rolling or via resettable point buy starting from 10
-- improved starting equipment, now taking both class and race into account; magic items, immunities or resistances as perks
+- improved starting equipment, now taking both class and race into account;
+- magic items, immunities or resistances as perks
 - random name generator taking into account your character's race and sex, now with an option to type the name yourself
 - Effective Character Level
 - XP for killing monsters, descending deeper, disarming traps, seeing first 4 monsters of a kind
 - multiclassing (with ability score requirements) & prestige classes & favored classes & bonus feats granted by class
 - training attributes Incursion-style
 - complete, colored character sheet with tooltips displaying rules info
-- randomized unarmed and weapon damage; archery and reach weapons; two weapon fighting penalties & feats
+- randomized unarmed and weapon damage;
+- archery, thrown weapons and reach weapons; two weapon fighting penalties & feats
 - attack roll & AC & critical hits & offhand attack (including double weapons) & iterative attacks
-- death at -10 and detrimental effects both at 0 and in the -1 to -9 range; certain monsters can now poison you, reducing your stats
+- wounds and vitality system, with detrimental effects caused by wounds
 - saving throws printed to log; take the best of two stats (Dex-Int; Con-Str; Wis-Cha)
 - inventory (with equipdoll) & encumbrance
+- inventory screen highlighting un-wearable or un-usable items
 - spellbook now with spell information included and an iconed hotbar for spells [Seb]; some 0, 1st, 2nd, 3rd level spells
 - armor spell failure chance; key stat must be 9 to cast spells; casters gain access to next spell level every 3rd level
 - sorcerer and shaman classes using a spell points system instead of Vancian spontaneous casting
@@ -39,7 +44,7 @@ FEATURES
 - skill checks (printed to log) including armor check penalty & racial or feat bonuses; opposed checks
 - stealth & sneak attacks
 - all weapons from SRD; magic armors and shields; magic weapons; light sources; wondrous items; specific magic items
-- all feats from SRD except archery feats and unarmed combat feats
+- all feats from SRD except and unarmed combat feats
 - working item creation feats (Craft Magic Arms and Armor, Scribe Scroll, Brew Potion)
 - most monsters from the SRD (missing: demons, devils, dragons, lycanthropes, swarms, most animals which don't fit the dungeon theme)
 - monsters can now have templates
