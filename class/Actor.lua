@@ -2388,8 +2388,8 @@ function _M:levelup()
 
 
 	--Notify player on epic level
-	if self.level == 40 and self == game.player then
-		Dialog:simpleLongPopup("Level 40!", "You have achieved #GOLD#level 40#WHITE#, congratulations!\n\nThis means you are now an #GOLD#EPIC#LAST# hero!", 400)
+	if self.level == 20 and self == game.player then
+		Dialog:simpleLongPopup("Level 20!", "You have achieved #GOLD#level 20#WHITE#, congratulations!\n\nThis means you are now an #GOLD#EPIC#LAST# hero!", 400)
 	end
 
 	--Notify on party levelups
@@ -2402,12 +2402,11 @@ function _M:levelup()
 
 	--Level up achievements
 	if self == game.player then
---[[		if self.level == 10 then world:gainAchievement("LEVEL_10", self) end
+		if self.level == 10 then world:gainAchievement("LEVEL_10", self) end
 		if self.level == 20 then world:gainAchievement("LEVEL_20", self) end
-		if self.level == 30 then world:gainAchievement("LEVEL_30", self) end
+	--[[	if self.level == 30 then world:gainAchievement("LEVEL_30", self) end
 		if self.level == 40 then world:gainAchievement("LEVEL_40", self) end
-		if self.level == 50 then world:gainAchievement("LEVEL_50", self) end
-]]
+		if self.level == 50 then world:gainAchievement("LEVEL_50", self) end]]
 	end
 
 	if self == game.player and game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
