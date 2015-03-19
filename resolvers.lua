@@ -822,9 +822,12 @@ function resolvers.calc.flavored(t, e)
     local color = used[e.name][2]
     e.color = color
 
-    --TO DO: if no file exists, use parent object image
-
+    --TODO: if specified but no file exists, use parent object image
+	if not used[e.name][3] then
+		e.image = e.image
+	else
     e.image = used[e.name][3]
+	end
 
     local flavor_name = used[e.name][1]
     if e.unided_name then

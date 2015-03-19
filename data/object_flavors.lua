@@ -399,10 +399,10 @@ newFlavorSet{
     { "Turquoise", colors.BLUE, 'tiles/flavor/ring_B.png' },
     { "Wire", colors.LIGHT_UMBER, 'tiles/flavors/ring_u.png' },
     { "wooden", colors.LIGHT_BROWN, 'tiles/flavors/ring_u.png' },
-    { "woven wine", colors.DARK_GREEN, 'tiles/flavors/ring_G.png' },  
+    { "woven wine", colors.DARK_GREEN, 'tiles/flavors/ring_G.png' },
     { "Zircon", colors.LIGHT_UMBER, 'tiles/flavors/ring_U.png' },
 
---    { "Wedding", colors.YELLOW, 'tiles/flavor/ring_y.png' },   
+--    { "Wedding", colors.YELLOW, 'tiles/flavor/ring_y.png' },
 --    { "Engagement", colors.YELLOW, 'tiles/flavors/ring_y.png' },
 --    { "Adamantite", colors.VIOLET, 'tiles/flavors/ring_v.png' },
 
@@ -436,7 +436,7 @@ newFlavorSet{
     { "cracked", colors.GREEN, 'tiles/flavors/amulet_g.png' },
     { "Crystal", colors.BLUE, 'tiles/flavors/amulet_B.png' },
     { "Dragon Tooth", colors.WHITE, 'tiles/flavor/amulet_W.png' },
-    { "Driftwood", colors.LIGHT_UMBER, 'tiles/flavors/amulet_U.png' }, 
+    { "Driftwood", colors.LIGHT_UMBER, 'tiles/flavors/amulet_U.png' },
     { "emerald", colors.GREEN, 'tiles/flavors/amulet_g.png' },
     { "Flint Stone", colors.LIGHT_SLATE, 'tiles/flavors/amulet_s.png' },
     { "fragile", colors.YELLOW, 'tiles/flavors/amulet_y.png' },
@@ -483,11 +483,11 @@ newFlavorSet{
     { "zircon", colors.ORANGE, 'tiles/flavors/amulet_o.png' },
 }
 }
-    
-    
-        
-    
-    
+
+
+
+
+
 
 
 
@@ -524,36 +524,36 @@ newFlavorSet{
     type = "bracer",
     subtype = "bracer",
     values = {
-    { "adamant-gilded", colors.DARK_SLATE, 'tiles/flavors/cloak_s.png' },
-    { "banded", colors.WHITE, 'tiles/flavors/cloak_W.png' },
-    { "chipped", colors.GREEN, 'tiles/flavors/cloak_g.png' },
-    { "cloth", colors.LIGHT_BROWN, 'tiles/flavors/cloak_v.png' },
-    { "copper-gilded", colors.ORANGE, 'tiles/flavors/cloak_y.png' },
-    { "firm", colors.DARK_SLATE, 'tiles/flavors/cloak_D.png' },
-    { "gold-gilded", colors.YELLOW, 'tiles/flavors/cloak_r.png' },
-    { "heavy", colors.GREEN, 'tiles/flavors/cloak_g.png' },
-    { "inscribed", colors.GREEN, 'tiles/flavors/cloak_g.png' },
-    { "jeweled", colors.DARK_BLUE, 'tiles/flavors/cloak_B.png' },
-    { "leather", colors.DARK_SLATE, 'tiles/flavors/cloak_s.png' },
-    { "light", colors.WHITE, 'tiles/flavors/cloak_W.png' },
-    { "loose", colors.GREEN, 'tiles/flavors/cloak_g.png' },
-    { "mithril-gilded", colors.BLUE, 'tiles/flavors/cloak_v.png' },
-    { "fur-trimmed", colors.LIGHT_BROWN, 'tiles/flavors/cloak_U.png' },
-    { "ornate", colors.DARK_SLATE, 'tiles/flavors/cloak_s.png' },
-    { "ornately carved", colors.WHITE, 'tiles/flavors/cloak_W.png' },
-    { "plate", colors.DARK_SLATE, 'tiles/flavors/cloak_s.png' },
-    { "pliant", colors.VIOLET, 'tiles/flavors/cloak_v.png' },
-    { "polished", colors.YELLOW, 'tiles/flavors/cloak_y.png' },
-    { "rune-covered", colors.YELLOW, 'tiles/flavors/cloak_y.png' },
-    { "rusted", colors.DARK_SLATE, 'tiles/flavors/cloak_s.png' },
-    { "sharp-edged", colors.WHITE, 'tiles/flavors/cloak_W.png' },
-    { "silver-gilded", colors.WHITE, 'tiles/flavors/cloak_W.png' },
-    { "spiked", colors.BLACK, 'tiles/flavors/cloak_D.png' },
-    { "stained", colors.YELLOW, 'tiles/flavors/cloak_y.png' },
-    { "steel-gilded", colors.DARK_SLATE, 'tiles/flavors/cloak_D.png' },
-    { "sturdy", colors.RED, 'tiles/flavors/cloak_r.png' },
-    { "tight-fitting", colors.GREEN, 'tiles/flavors/cloak_g.png' },
-    { "well-worn", colors.VIOLET, 'tiles/flavors/cloak_v.png' },
+    { "adamant-gilded", colors.DARK_SLATE, },
+    { "banded", colors.WHITE, },
+    { "chipped", colors.GREEN, },
+    { "cloth", colors.LIGHT_BROWN, },
+    { "copper-gilded", colors.ORANGE, },
+    { "firm", colors.DARK_SLATE, },
+    { "gold-gilded", colors.YELLOW, },
+    { "heavy", colors.GREEN,  },
+    { "inscribed", colors.GREEN,  },
+    { "jeweled", colors.DARK_BLUE,  },
+    { "leather", colors.DARK_SLATE, },
+    { "light", colors.WHITE,  },
+    { "loose", colors.GREEN, },
+    { "mithril-gilded", colors.BLUE,  },
+    { "fur-trimmed", colors.LIGHT_BROWN,  },
+    { "ornate", colors.DARK_SLATE, },
+    { "ornately carved", colors.WHITE, },
+    { "plate", colors.DARK_SLATE, },
+    { "pliant", colors.VIOLET, },
+    { "polished", colors.YELLOW, },
+    { "rune-covered", colors.YELLOW, },
+    { "rusted", colors.DARK_SLATE,  },
+    { "sharp-edged", colors.WHITE, },
+    { "silver-gilded", colors.WHITE, },
+    { "spiked", colors.BLACK, },
+    { "stained", colors.YELLOW, },
+    { "steel-gilded", colors.DARK_SLATE, },
+    { "sturdy", colors.RED, },
+    { "tight-fitting", colors.GREEN, },
+    { "well-worn", colors.VIOLET, },
 }
 }
 
@@ -561,19 +561,19 @@ newFlavorSet{
     type = "boots",
     subtype = "boots",
     values = {
-    { "leather", colors.DARK_SLATE, 'tiles/flavors/cloak_s.png' },
-    { "steel-toed", colors.DARK_SLATE, 'tiles/flavors/cloak_W.png' },
-    { "sturdy", colors.GREEN, 'tiles/flavors/cloak_g.png' },
-    { "decorative", colors.VIOLET, 'tiles/flavors/cloak_v.png' },
-    { "soft-solved", colors.YELLOW, 'tiles/flavors/cloak_y.png' },
-    { "tanned", colors.DARK_SLATE, 'tiles/flavors/cloak_D.png' },
-    { "primitive", colors.RED, 'tiles/flavors/cloak_r.png' },
-    { "tall", colors.GREEN, 'tiles/flavors/cloak_g.png' },
-    { "deerskin", colors.VIOLET, 'tiles/flavors/cloak_v.png' },
-    { "well-worn", colors.DARK_BLUE, 'tiles/flavors/cloak_B.png' },
-    { "rune-covered", colors.GREEN, 'tiles/flavors/cloak_g.png' },
-    { "ankle-high", colors.WHITE, 'tiles/flavors/cloak_W.png' },
-    { "work", colors.LIGHT_BROWN, 'tiles/flavors/cloak_g.png' },
-    { "finely crafted", colors.GREEN, 'tiles/flavors/cloak_v.png' },
+    { "leather", colors.DARK_SLATE, },
+    { "steel-toed", colors.DARK_SLATE, },
+    { "sturdy", colors.GREEN, },
+    { "decorative", colors.VIOLET, },
+    { "soft-solved", colors.YELLOW, },
+    { "tanned", colors.DARK_SLATE,  },
+    { "primitive", colors.RED, },
+    { "tall", colors.GREEN, },
+    { "deerskin", colors.VIOLET, },
+    { "well-worn", colors.DARK_BLUE, },
+    { "rune-covered", colors.GREEN, },
+    { "ankle-high", colors.WHITE, },
+    { "work", colors.LIGHT_BROWN,  },
+    { "finely crafted", colors.GREEN, },
 }
 }
