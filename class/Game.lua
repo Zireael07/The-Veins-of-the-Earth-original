@@ -17,6 +17,7 @@
 require "engine.class"
 require "engine.GameTurnBased"
 require "engine.interface.GameTargeting"
+require "engine.interface.GameSound"
 require "engine.KeyBind"
 local Savefile = require "engine.Savefile"
 local DamageType = require "engine.DamageType"
@@ -59,7 +60,7 @@ local Dialog = require "engine.ui.Dialog"
 
 local GameState = require "mod.class.GameState"
 
-module(..., package.seeall, class.inherit(engine.GameTurnBased, engine.interface.GameTargeting))
+module(..., package.seeall, class.inherit(engine.GameTurnBased, engine.interface.GameSound, engine.interface.GameTargeting))
 
 -- Tell the engine that we have a fullscreen shader that supports gamma correction
 support_shader_gamma = true
@@ -68,6 +69,7 @@ function _M:init()
 --	self.level_random_seed = self.level_random_seed or nil
 
 	engine.GameTurnBased.init(self, engine.KeyBind.new(), 1000, 100)
+	engine.interface.GameSound.init(self)
 
 	-- Pause at birth
 	self.paused = true
