@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ newEntity{
 
 
 --Amulets
-newEntity{ 
+newEntity{
     define_as = "BASE_AMULET",
     slot = "AMULET",
     type = "amulet", subtype = "amulet",
@@ -55,7 +55,8 @@ newEntity{
     rarity = 10,
     level_range = {1,nil},
     identified = false,
-    name = "a ring",
+    unided_name = "ring",
+    name = "ring",
     desc = [[A pretty ring.]],
     resolvers.flavored(),
     egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
@@ -71,7 +72,7 @@ newEntity{
     cost = 8000,
     wielder = {
     infravision=2
-  }, 
+  },
 }]]
 
 --Bracers
@@ -102,17 +103,14 @@ newEntity{
     moddable_tile = resolvers.moddable_tile("cloak"),
     encumber = 0,
     rarity = 10,
-    name = "a cloak",
-    desc = [[A beautiful cloak.]],
-}
-
-newEntity{
-    base = "BASE_CLOAK",
-    unided_name = "a cloak",
     identified = false,
     level_range = {1,nil},
+    name = "cloak",
+    unided_name = "cloak",
+    desc = [[A beautiful cloak.]],
     egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
+
 
 --[[newEntity{
     base = "BASE_CLOAK",
@@ -125,11 +123,11 @@ newEntity{
     cost = 2500,
     wielder = {
     skill_hide=5
-  }, 
+  },
 }]]
 
 --Boots
-newEntity{ 
+newEntity{
     define_as = "BASE_BOOTS",
     slot = "BOOTS",
     type = "boots", subtype = "boots",
@@ -137,22 +135,13 @@ newEntity{
     display = "ω", color=colors.RED,
     encumber = 1,
     rarity = 5,
+    identified = false,
+    level_range = {1,nil},
     name = "boots",
+    unided_name = "boots",
     desc = [[A pair of boots.]],
     resolvers.flavored(),
-}
-
-newEntity{
-    base = "BASE_BOOTS",
-    name = "boots of striding and springing",
-    unided_name = "boots",
-    identified = false,
-    level_range = {5,15},
-    cost = 5500,
-    wielder = {
-    skill_jump=5,
-    movement_speed = 1.33
-  }, 
+    egos = "/data/general/objects/properties/boots.lua", egos_chance = { prefix=0, suffix=100},
 }
 
 --[[newEntity{
@@ -164,23 +153,8 @@ newEntity{
     cost = 2500,
     wielder = {
     skill_movesilently=5
-  }, 
+  },
 }]]
-
-newEntity{
-    base = "BASE_BOOTS",
-    name = "boots of dodging",
-    unided_name = "boots",
-    identified = false,
-    level_range = {10,20},
-    cost = 5500,
-    wielder = {
-    learn_talent = { 
-    [Talents.T_DODGE] = 1,
-    [Talents.T_MOBILITY] = 1,
-    },
-  }, 
-}
 
 --Belts
 newEntity{
@@ -193,8 +167,8 @@ newEntity{
     rarity = 15,
     identified = false,
     level_range = {1,nil},
-    name = "a belt",
-    unided_name = "a belt",
+    name = "belt",
+    unided_name = "belt",
     desc = [[A sturdy belt.]],
     egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
