@@ -1,5 +1,7 @@
 CHANGELOG
 
+0.26.0 - beta 7 - 21/03/2015
+
 * bug fix - FBO lua error on save load
 * bug fix - Lua error & nil exp for creatures with CR in-between table values
 * bug fix - character creation screen now does check if a character save already exists
@@ -23,6 +25,7 @@ CHANGELOG
 * bug fix - level up achievements now achievable
 
 * update to T-Engine 1.3.0
+* make use of engine updates, including room generator & ego functions
 * enable sound capabilities
 * new spells - divine favor, entropic shield, doom, shield of faith, deathwatch, summon monster II,
 * new feats - Master Craftsman
@@ -49,8 +52,6 @@ CHANGELOG
 * game options screen displayed before the first level is generated
 * implement talent configuration from ToME
 * item creation debug screen now allows hand-picking egos to be generated
-* backport room generator improvements from ToME git
-* backport ego improvements from ToME git
 * fixes and improvements to magic item generation
 
 0.25.0 - beta 6.5 - 22/12/2014
