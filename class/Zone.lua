@@ -20,7 +20,7 @@ local Map = require "engine.Map"
 
 local Astar = require "engine.Astar"
 local forceprint = print
---local print = function() end
+local print = function() end
 
 module(..., package.seeall, class.inherit(Zone))
 
@@ -202,7 +202,7 @@ function _M:applyEgo(e, ego, type, no_name_change)
     ego.level_range = nil
     -- Merge according to Object's ego rules.
     table.ruleMergeAppendAdd(e, ego, self.ego_rules[type] or {})
-    
+
     e.name = newname
     if not ego.fake_ego then
         e.egoed = true
@@ -503,6 +503,6 @@ function _M:newLevel(level_data, lev, old_lev, game)
         end
     end
 
-   
+
     return level
 end
