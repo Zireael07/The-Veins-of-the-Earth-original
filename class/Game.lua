@@ -218,6 +218,12 @@ function _M:loaded()
 	engine.GameTurnBased.loaded(self)
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", trap_class="mod.class.Trap"}
 	--New filters from GameState go here
+	Zone.check_filter = function(...) return self.state:entityFilter(...) end
+	Zone.default_prob_filter = true
+	Zone.default_filter = function(...) return self.state:defaultEntityFilter(...) end
+	Zone.alter_filter = function(...) return self.state:entityFilterAlter(...) end
+--	Zone.post_filter = function(...) return self.state:entityFilterPost(...) end
+--	Zone.ego_filter = function(...) return self.state:egoFilter(...) end
 
 	self.uiset = require("mod.class.uiset.Veins").new()
 
