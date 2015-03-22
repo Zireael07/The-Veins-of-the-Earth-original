@@ -403,11 +403,21 @@ local loot_mod = {
 	},
 }
 
-local default_drops = function(zone, level, what)
+--[[local default_drops = function(zone, level, what)
 	if zone.default_drops then return zone.default_drops end
 	local lev = util.bound(math.ceil(zone:level_adjust_level(level, "object") / 10), 1, 5)
 --	print("[TOME ENTITY FILTER] making default loot table for", what, lev)
 	return table.clone(drop_tables[what][lev])
+end]]
+local wealth = function(zone, level, what)
+	if zone.default_drops then return zone.default_drops end
+	local lev = game.level.level
+--	if what == "monster" then lev = e.challenge end
+--	if what == "npc" then lev = e.challenge end
+--	if what == "boss" then lev = level end
+	print("[VEINS ENTITY FILTER] making wealth table for", what, lev)
+--	return table.clone(wealth_by_level[what][lev])
+	return wealth_by_level[what][lev]
 end
 
 function _M:defaultEntityFilter(zone, level, type)
@@ -415,35 +425,47 @@ function _M:defaultEntityFilter(zone, level, type)
 
 	-- By default we dont apply special filters, but we always provide one so that entityFilter is called
 	return {
-		tome = default_drops(zone, level, "normal"),
+		veins = wealth(zone, level, "boss"),
 	}
 end
 
---- Alter any entity filters to process tome specific loot tables
+--- Alter any entity filters to process our specific loot tables
 -- Here be magic! We tweak and convert and turn and create filters! It's magic but it works :)
 function _M:entityFilterAlter(zone, level, type, filter)
 	if type ~= "object" then return filter end
 
-	if filter.force_tome_drops or (not filter.tome and not filter.defined and not filter.special and not filter.unique and not filter.ego_chance and not filter.ego_filter and not filter.no_tome_drops) then
+	if filter.force_veins_drops or (not filter.veins and not filter.defined and not filter.special and not filter.unique and not filter.ego_chance and not filter.ego_filter and not filter.no_tome_drops) then
 		filter = table.clone(filter)
-		filter.tome = default_drops(zone, level, filter.tome_drops or "normal")
+		filter.veins = wealth(zone, filter.veins_level or level, filter.veins_drops or "boss")
 	end
 
-	if filter.tome then
-		local t = (filter.tome == true) and default_drops(zone, level, "normal") or filter.tome
-		filter.tome = nil
+	if filter.veins then
+--		local t = (filter.veins == true) and default_drops(zone, level, "boss") or filter.veins
+		local cost = (filter.veins == true) and wealth(zone, level, "boss") or filter.veins
+		filter.veins = nil
 
-		if filter.tome_mod then
+		if filter.veins_mod then
 			t = table.clone(t)
-			if _G.type(filter.tome_mod) == "string" then filter.tome_mod = loot_mod[filter.tome_mod] end
-			for k, v in pairs(filter.tome_mod) do
+			if _G.type(filter.veins_mod) == "string" then filter.veins_mod = loot_mod[filter.veins_mod] end
+			for k, v in pairs(filter.veins_mod) do
 --				print(" ***** LOOT MOD", k, v)
 				t[k] = (t[k] or 0) * v
 			end
 		end
 
-		-- If we request a specific type/subtype, we don't want categories that could make that not happen
---		if filter.type or filter.subtype or filter.name then t.money = 0 end
+		if cost then
+			if cost < 20000 then
+				--no unique items
+				print("[VEINS ENTITY FILTER] rejecting unique because of cost")
+				filter.not_properties = filter.not_properties or {}
+				filter.not_properties[#filter.not_properties+1] = "unique"
+			end
+
+			--no single item on a level/in a NPC inventory should cost more than 1/2 total WBL
+	--		filter.cost = cost/2
+		end
+
+--[[		-- If we request a specific type/subtype, we don't want categories that could make that not happen
 		if filter.type or filter.subtype or filter.name then t.money = 0 t.lore = 0	end
 
 		local u = t.uniques or 0
@@ -467,38 +489,37 @@ function _M:entityFilterAlter(zone, level, type, filter)
 			print("[TOME ENTITY FILTER] selected Double Greater", r, dg)
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source}, {ego_chance=100, properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} } }
+			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, properties={"greater_ego"} } } }
 
 		elseif r < ge then
 			print("[TOME ENTITY FILTER] selected Greater + Ego", r, ge)
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source}, {ego_chance=100, not_properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} }}
+			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
 
 		elseif r < g then
 			print("[TOME ENTITY FILTER] selected Greater", r, g)
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} } }
+			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
 
 		elseif r < de then
 			print("[TOME ENTITY FILTER] selected Double Ego", r, de)
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source}, {ego_chance=100, not_properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} }}
+			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
 
 		elseif r < e then
 			print("[TOME ENTITY FILTER] selected Ego", r, e)
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, power_source=filter.power_source, forbid_power_source=filter.forbid_power_source} } }
+			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, } } }
 
 		elseif r < m then
 			print("[TOME ENTITY FILTER] selected Money", r, m)
 			filter.special = function(e) return e.type == "money" or e.type == "gem" end
 
 		elseif r < l then
---			print("[TOME ENTITY FILTER] selected Lore", r, m)
 			print("[TOME ENTITY FILTER] selected Lore", r, l)
 			filter.special = function(e) return e.lore and true or false end
 
@@ -507,7 +528,7 @@ function _M:entityFilterAlter(zone, level, type, filter)
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			filter.ego_chance = -1000
-		end
+		end]]
 	end
 
 	if filter.random_object then
@@ -517,6 +538,18 @@ function _M:entityFilterAlter(zone, level, type, filter)
 
 	-- By default we dont apply special filters, but we always provide one so that entityFilter is called
 	return filter
+end
+
+function _M:entityFilter(zone, e, filter, type)
+	if type == "object" then
+		if filter.cost then
+			if e.cost > filter.cost then return false end
+		end
+
+	return true
+	else
+		return true
+	end
 end
 
 
