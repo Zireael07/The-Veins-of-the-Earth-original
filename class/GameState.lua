@@ -465,55 +465,46 @@ function _M:entityFilterAlter(zone, level, type, filter)
 	--		filter.cost = cost/2
 		end
 
---[[		-- If we request a specific type/subtype, we don't want categories that could make that not happen
-		if filter.type or filter.subtype or filter.name then t.money = 0 t.lore = 0	end
-
-		local u = t.uniques or 0
-		local dg = u + (t.double_greater or 0)
-		local ge = dg + (t.greater_normal or 0)
-		local g = ge + (t.greater or 0)
-		local de = g + (t.double_ego or 0)
-		local e = de + (t.ego or 0)
-		local m = e + (t.money or 0)
-		local l = m + (t.lore or 0)
-		local total = l + (t.basic or 0)
-
-		local r = rng.float(0, total)
-		if r < u then
-			print("[TOME ENTITY FILTER] selected Uniques", r, u)
+		local chance = rng.float(0, 100)
+		if chance < 5 then --see Incursion
+			print("[VEINS ENTITY FILTER] selected unique")
 			filter.unique = true
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "lore"
-
-		elseif r < dg then
-			print("[TOME ENTITY FILTER] selected Double Greater", r, dg)
+		elseif chance < 15 then --10% chance for great
+			print("[VEINS ENTITY FILTER] selected Double Greater")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, properties={"greater_ego"} } } }
-
-		elseif r < ge then
-			print("[TOME ENTITY FILTER] selected Greater + Ego", r, ge)
+		elseif chance < 25 then --10% chance for excellent
+			print("[VEINS ENTITY FILTER] selected Greater + Ego")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
-
-		elseif r < g then
-			print("[TOME ENTITY FILTER] selected Greater", r, g)
+		elseif chance < 40 then --15% chance for rare
+			print("[VEINS ENTITY FILTER] selected Greater")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
-
-		elseif r < de then
-			print("[TOME ENTITY FILTER] selected Double Ego", r, de)
+		elseif chance < 60 then --20% chance for good
+			print("[VEINS ENTITY FILTER] selected Double Ego")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
-
-		elseif r < e then
-			print("[TOME ENTITY FILTER] selected Ego", r, e)
+		elseif chance < 95 then --35% chance for magical
+			print("[VEINS ENTITY FILTER] selected Ego")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, } } }
+		else --mundane 5% of the time
+			print("[VEINS ENTITY FILTER] selected basic")
+			filter.not_properties = filter.not_properties or {}
+			filter.not_properties[#filter.not_properties+1] = "unique"
+			filter.ego_chance = -1000
+		end
+
+--[[		-- If we request a specific type/subtype, we don't want categories that could make that not happen
+		if filter.type or filter.subtype or filter.name then t.money = 0 t.lore = 0	end
 
 		elseif r < m then
 			print("[TOME ENTITY FILTER] selected Money", r, m)
@@ -521,14 +512,7 @@ function _M:entityFilterAlter(zone, level, type, filter)
 
 		elseif r < l then
 			print("[TOME ENTITY FILTER] selected Lore", r, l)
-			filter.special = function(e) return e.lore and true or false end
-
-		else
-			print("[TOME ENTITY FILTER] selected basic", r, total)
-			filter.not_properties = filter.not_properties or {}
-			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance = -1000
-		end]]
+			filter.special = function(e) return e.lore and true or false end]]
 	end
 
 	if filter.random_object then
