@@ -412,11 +412,7 @@ end]]
 local wealth = function(zone, level, what)
 	if zone.default_drops then return zone.default_drops end
 	local lev = game.level.level
---	if what == "monster" then lev = e.challenge end
---	if what == "npc" then lev = e.challenge end
---	if what == "boss" then lev = level end
 	print("[VEINS ENTITY FILTER] making wealth table for", what, lev)
---	return table.clone(wealth_by_level[what][lev])
 	return wealth_by_level[what][lev]
 end
 
@@ -453,49 +449,59 @@ function _M:entityFilterAlter(zone, level, type, filter)
 			end
 		end
 
-		if cost then
-			if cost < 20000 then
-				--no unique items
-				print("[VEINS ENTITY FILTER] rejecting unique because of cost")
+		--no single item on a level/in a NPC inventory should cost more than 1/2 total WBL
+--		filter.cost = cost/2
+
+		--handle tier rarities first and WBL calculations second
+		local chance = rng.float(0, 100)
+		if chance < 5 then --see Incursion
+			if cost and cost > 20000 or not cost then
+				print("[VEINS ENTITY FILTER] selected unique")
+				filter.unique = true
+				filter.not_properties = filter.not_properties or {}
+				filter.not_properties[#filter.not_properties+1] = "lore"
+			else
+				print("[VEINS ENTITY FILTER] rejecting unique due to cost")
 				filter.not_properties = filter.not_properties or {}
 				filter.not_properties[#filter.not_properties+1] = "unique"
 			end
-
-			--no single item on a level/in a NPC inventory should cost more than 1/2 total WBL
-	--		filter.cost = cost/2
-		end
-
-		local chance = rng.float(0, 100)
-		if chance < 5 then --see Incursion
-			print("[VEINS ENTITY FILTER] selected unique")
-			filter.unique = true
-			filter.not_properties = filter.not_properties or {}
-			filter.not_properties[#filter.not_properties+1] = "lore"
 		elseif chance < 15 then --10% chance for great
 			print("[VEINS ENTITY FILTER] selected Double Greater")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, properties={"greater_ego"} } } }
+			if cost and cost > 20000 or not cost then
+				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, properties={"greater_ego"} } } }
+			end
 		elseif chance < 25 then --10% chance for excellent
 			print("[VEINS ENTITY FILTER] selected Greater + Ego")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
+			if cost and cost > 15000 or not cost then
+				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
+			end
 		elseif chance < 40 then --15% chance for rare
 			print("[VEINS ENTITY FILTER] selected Greater")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
+			if cost and cost > 10000 or not cost then
+				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
+			end
 		elseif chance < 60 then --20% chance for good
 			print("[VEINS ENTITY FILTER] selected Double Ego")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
+			if cost and cost > 15000 or not cost then
+				filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
+			end
 		elseif chance < 95 then --35% chance for magical
 			print("[VEINS ENTITY FILTER] selected Ego")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
-			filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, } } }
+			if cost and cost > 750 then
+				filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, } } }
+			else
+				filter.ego_chance = -1000
+			end
 		else --mundane 5% of the time
 			print("[VEINS ENTITY FILTER] selected basic")
 			filter.not_properties = filter.not_properties or {}
