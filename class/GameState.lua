@@ -409,9 +409,35 @@ local loot_mod = {
 --	print("[TOME ENTITY FILTER] making default loot table for", what, lev)
 	return table.clone(drop_tables[what][lev])
 end]]
-local wealth = function(zone, level, what)
+local wealth = function(zone, level, lev, what)
 	if zone.default_drops then return zone.default_drops end
-	local lev = game.level.level
+	local lev = lev or game.level.level
+
+	--account for Luck
+	if game.player:getLuc() < 9 then
+		if rng.percent(80) then
+			local minlvl = math.min(1, game.level.level)
+			local lucmod = game.player:getLucMod()
+			local lvl = math.max(lucmod, minlvl)
+			print("[VEINS ENTITY FILTER] Low Luck effect", lvl)
+			lev = lvl
+		else
+			lev = game.level.level
+		end
+	end
+	--NOTE: 9 Luck does nothing
+	if game.player:getLuc() > 9 then
+		if rng.percent(20) then
+			local lucmod = game.player:getLucMod()
+			local lucroll = rng.dice(1,lucmod)
+			local lvl = game.level.level + lucroll
+			print("[VEINS ENTITY FILTER] High Luck effect", lvl)
+			lev = lvl
+		else
+			lev = game.level.level
+		end
+	end
+
 	print("[VEINS ENTITY FILTER] making wealth table for", what, lev)
 	return wealth_by_level[what][lev]
 end
@@ -421,23 +447,26 @@ function _M:defaultEntityFilter(zone, level, type)
 
 	-- By default we dont apply special filters, but we always provide one so that entityFilter is called
 	return {
-		veins = wealth(zone, level, "boss"),
+		veins = wealth(zone, level, game.level.level, "boss"),
 	}
 end
 
 --- Alter any entity filters to process our specific loot tables
 -- Here be magic! We tweak and convert and turn and create filters! It's magic but it works :)
+--NOTE: Level is not item level nor game.level.level but a table
 function _M:entityFilterAlter(zone, level, type, filter)
 	if type ~= "object" then return filter end
 
-	if filter.force_veins_drops or (not filter.veins and not filter.defined and not filter.special and not filter.unique and not filter.ego_chance and not filter.ego_filter and not filter.no_tome_drops) then
+	if filter.force_veins_drops or (not filter.veins and not filter.defined and not filter.special and not filter.unique and not filter.ego_chance and not filter.ego_filter and not filter.no_veins_drops) then
 		filter = table.clone(filter)
-		filter.veins = wealth(zone, filter.veins_level or level, filter.veins_drops or "boss")
+		filter.veins = wealth(zone, level, filter.veins_level or game.level.level, filter.veins_drops or "boss")
 	end
 
 	if filter.veins then
 --		local t = (filter.veins == true) and default_drops(zone, level, "boss") or filter.veins
+
 		local cost = (filter.veins == true) and wealth(zone, level, "boss") or filter.veins
+
 		filter.veins = nil
 
 		if filter.veins_mod then
