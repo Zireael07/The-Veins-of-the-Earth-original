@@ -1,5 +1,10 @@
 CHANGELOG
 
+* bug fix - no more artifacts dropping on dlvl 1
+
+* implemented the Luck stat
+* improved the loot generator
+
 0.26.0 - beta 7 - 21/03/2015
 
 * bug fix - FBO lua error on save load

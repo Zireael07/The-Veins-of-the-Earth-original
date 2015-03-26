@@ -22,6 +22,7 @@ FEATURES
 - attributes can be generated either via rolling or via resettable point buy starting from 10
 - improved starting equipment, now taking both class and race into account;
 - magic items, immunities or resistances as perks
+- Luck stat affecting loot generation
 - random name generator taking into account your character's race and sex, now with an option to type the name yourself
 - Effective Character Level
 - XP for killing monsters, descending deeper, disarming traps, seeing first 4 monsters of a kind
