@@ -472,12 +472,13 @@ function _M:entityFilterAlter(zone, level, type, filter)
 			if cost and cost > 20000 or not cost then
 				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, properties={"greater_ego"} } } }
 			end
+		--no excellent items are cursed
 		elseif chance < 25 then --10% chance for excellent
 			print("[VEINS ENTITY FILTER] selected Greater + Ego")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			if cost and cost > 15000 or not cost then
-				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
+				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego", "cursed"}, } }}
 			end
 		elseif chance < 40 then --15% chance for rare
 			print("[VEINS ENTITY FILTER] selected Greater")
@@ -486,19 +487,32 @@ function _M:entityFilterAlter(zone, level, type, filter)
 			if cost and cost > 10000 or not cost then
 				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
 			end
+
+		--assume no greater egos are curses
+		--20% chance for ego item to be cursed
 		elseif chance < 60 then --20% chance for good
 			print("[VEINS ENTITY FILTER] selected Double Ego")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			if cost and cost > 15000 or not cost then
-				filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
+				if not filter.noncursed and rng.percent(20) or filter.cursed_chance and rng.percent(filter.cursed_chance) then
+					print("[VEINS ENTITY FILTER] cursed ego item")
+					filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego"}, } }}
+				else
+					filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego", "cursed"}, }, {ego_chance=100, not_properties={"greater_ego", "cursed"}, } }}
+				end
 			end
 		elseif chance < 95 then --35% chance for magical
 			print("[VEINS ENTITY FILTER] selected Ego")
 			filter.not_properties = filter.not_properties or {}
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			if cost and cost > 750 then
-				filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, } } }
+				if not filter.noncursed and rng.percent(20) or filter.cursed_chance and rng.percent(filter.cursed_chance) then
+					print("[VEINS ENTITY FILTER] cursed ego item")
+					filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego"}, } } }
+				else
+					filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego", "cursed"}, } } }
+				end
 			else
 				filter.ego_chance = -1000
 			end
