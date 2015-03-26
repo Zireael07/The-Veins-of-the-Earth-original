@@ -41,7 +41,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.at_end = at_end
 
     self.reroll = false
-    
+
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Character Creation", math.max(game.w * 0.7, 950), game.h*0.8, nil, nil, font)
 
@@ -66,7 +66,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
      if button == "right" then self:randomName() end
     end,
   }
-    
+
     --Tabs
     self.t_stats = Tab.new {
     title = 'Stats',
@@ -90,7 +90,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     self.vs = Separator.new { dir='vertical', size=self.iw }
 
-     
+
     --COMMON STUFF
     self.c_legend = Textzone.new{width=self.iw/4, auto_height=true, text=[[
     List legend:
@@ -161,7 +161,7 @@ Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
 Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to try assigning them manually again.
 ]], scrollbar = true}
 
-    
+
     --GENERAL TAB
     --Make UI work
     self:setDescriptor("base", "base")
@@ -182,7 +182,7 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
     self:generateLists()
 
     local lists_top = self.t_general.h + 15 + self.c_name.h + 35
-    local lists_height = self.ih - lists_top - self.c_save.h - 20 
+    local lists_height = self.ih - lists_top - self.c_save.h - 20
 
     self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
     self.c_class = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
@@ -239,12 +239,12 @@ function _M:updateTab(tab)
         self.t_optional.title = ('Optional (%s/%s/%s)'):format(c1, c2, c3)
         self.t_optional:generate()
     else end
-end 
+end
 
 function _M:drawDialog(tab)
     --Helpers for GENERAL tab
     local lists_top = self.t_general.h + 15 + self.c_name.h + 35
-    
+
 
     if tab == 'stats' then
     self:loadUI{
@@ -297,9 +297,9 @@ function _M:drawDialog(tab)
         {left=0, top=self.c_race_text, ui=self.c_race},
         {left=self.c_race, top=lists_top, ui=self.c_class_text},
         {left=self.c_race, top=self.c_class_text, ui=self.c_class},
-        
 
-        --Instructions and description  
+
+        --Instructions and description
         {right=0, top = self.t_general.h + 15, ui=self.c_legend },
         {right=0, top=self.c_name.h + self.c_legend.h + 5, ui=Separator.new{dir="vertical", size=self.iw - ((self.iw/6)*4)-20}},
         {right=0, top=self.c_name.h + self.c_legend.h + 15, ui=self.c_desc},
@@ -317,7 +317,7 @@ function _M:drawDialog(tab)
     self:setupUI()
 
 --    self.key:addBind("EXIT", function() game:unregisterDialog(self) end)
-    
+
     elseif tab == "optional" then
         self:loadUI{
         --Top line
@@ -345,7 +345,7 @@ function _M:drawDialog(tab)
     }
 
     self:setFocus(self.c_background)
-    
+
     self:updateUI()
     self:setupUI()
     end
@@ -358,11 +358,11 @@ function _M:updateDescriptors()
     table.insert(self.descriptors, self.birth_descriptor_def.base[self.descriptors_by_type.base])
     table.insert(self.descriptors, self.birth_descriptor_def.sex[self.descriptors_by_type.sex])
     table.insert(self.descriptors, self.birth_descriptor_def.race[self.descriptors_by_type.race])
-    table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])  
+    table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])
     table.insert(self.descriptors, self.birth_descriptor_def.alignment[self.descriptors_by_type.alignment])
     --Tab 2
-    table.insert(self.descriptors, self.birth_descriptor_def.background[self.descriptors_by_type.background]) 
-    table.insert(self.descriptors, self.birth_descriptor_def.deity[self.descriptors_by_type.deity]) 
+    table.insert(self.descriptors, self.birth_descriptor_def.background[self.descriptors_by_type.background])
+    table.insert(self.descriptors, self.birth_descriptor_def.deity[self.descriptors_by_type.deity])
 end
 
 function _M:setDescriptor(key, val)
@@ -372,7 +372,7 @@ function _M:setDescriptor(key, val)
     end
     self:updateDescriptors()
 
-    self:updateUI()  
+    self:updateUI()
 end
 
 function _M:updateUI()
@@ -419,7 +419,7 @@ end
 
 --To do at end/on finish
 function _M:atEnd()
-    self:checkNew(function() 
+    self:checkNew(function()
 
     game:unregisterDialog(self)
     self.actor:setName(self.c_name.text)
@@ -429,7 +429,7 @@ function _M:atEnd()
 
     --Display game options
     game:registerDialog(require("mod.dialogs.GameOptions").new(true))
- 
+
 end)
 end
 
@@ -437,7 +437,7 @@ function _M:cancel()
     util.showMainMenu()
 end
 
---Name stuffs 
+--Name stuffs
 function _M:checkNew(fct)
     local savename = self.c_name.text:gsub("[^a-zA-Z0-9_-.]", "_")
     if fs.exists(("/save/%s/game.teag"):format(savename)) then
@@ -481,7 +481,7 @@ end]]
 function _M:on_select(item,sel)
 --    if self.c_desc then self.updateDesc(item) end
     if self.c_desc then self.c_desc:switchItem(item, item.desc) end
-    self.selection = sel    
+    self.selection = sel
 end
 
 function _M:regenerateList(c_list)
@@ -594,7 +594,7 @@ function _M:isSuggestedClass(d)
     if self.actor:getCha() >= 14 and d.name == "Shaman" then return true end
 
     return false
-end  
+end
 
 function _M:isSuggestedBackground(d)
     self:updateDescriptors()
@@ -636,7 +636,7 @@ function _M:generateRaces()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.race) do
         if self:isDescriptorAllowed(d) then
-          local color 
+          local color
           if self.sel_race and self.sel_race.name == d.name then color = {255, 215, 0}
           else color = {255, 255, 255} end
 
@@ -644,7 +644,7 @@ function _M:generateRaces()
         end
     end
     self.list_race = list
-end 
+end
 
 function _M:generateClasses()
     local list = {}
@@ -662,13 +662,13 @@ function _M:generateClasses()
         end
     end
     self.list_class = list
-end 
+end
 
 function _M:generateAlignment()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.alignment) do
         if self:isDescriptorAllowed(d) then
-          local color 
+          local color
           if self.sel_alignment and self.sel_alignment.name == d.name then color = {255, 215, 0}
           else color = {255, 255, 255} end
 
@@ -676,7 +676,7 @@ function _M:generateAlignment()
         end
     end
     self.list_alignment = list
-end   
+end
 
 function _M:RaceUse(item, sel)
     if not item then return end
@@ -736,7 +736,7 @@ end
 function _M:generateStats()
     local list = {}
 
-    list = 
+    list =
     {
             {name="STR", val=self.actor:birthColorStats('str'), stat_id=self.actor.STAT_STR, desc="#GOLD#Strength (STR)#LAST# is important for melee fighting."},
             {name="DEX", val=self.actor:birthColorStats('dex'), stat_id=self.actor.STAT_DEX, desc="You'll want to increase #GOLD#Dexterity (DEX)#LAST# if you want to play a ranger or a rogue. It's less important for fighters, who wear heavy armor."},
@@ -744,7 +744,7 @@ function _M:generateStats()
             {name="INT", val=self.actor:birthColorStats('int'), stat_id=self.actor.STAT_INT, desc="#GOLD#Intelligence (INT)#LAST# is a key attribute for wizards, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a wizard."},
             {name="WIS", val=self.actor:birthColorStats('wis'), stat_id=self.actor.STAT_WIS, desc="#GOLD#Wisdom (WIS)#LAST# is a key attribute for clerics and rangers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells if you're a divine spellcaster."},
             {name="CHA", val=self.actor:birthColorStats('cha'), stat_id=self.actor.STAT_CHA, desc="#GOLD#Charisma (CHA)#LAST# is a key attribute for shamans or sorcerers, since it affects their spellcasting. If it's lower than #LIGHT_RED#9#LAST#, you won't be able to cast spells."},
-            {name="#SLATE#LUC#LAST#", val=self.actor:birthColorStats('luc'), stat_id=self.actor.STAT_LUC, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It's not implemented yet."},
+            {name="LUC", val=self.actor:birthColorStats('luc'), stat_id=self.actor.STAT_LUC, desc="#GOLD#Luck (LUC)#LAST# is special stat introduced in #TAN#Incursion#LAST# and borrowed by #SANDY_BROWN#the Veins of the Earth.#LAST# It affects the quality of loot drops."},
         }
 
     self.list_stats = list
@@ -827,15 +827,15 @@ function _M:onRoll()
     end
 
     self.reroll = true
-    
+
     --Make sure that the highest stat is not <= than 13 and that the sum of all modifiers isn't <= 0
     local player = self.actor
-    local mod_sum = player:getStrMod() + player:getDexMod() + player:getConMod() + player:getIntMod() + player:getWisMod() + player:getChaMod() 
+    local mod_sum = player:getStrMod() + player:getDexMod() + player:getConMod() + player:getIntMod() + player:getWisMod() + player:getChaMod()
     if mod_sum <= 0 or table.max{player:getStr(), player:getDex(), player:getCon(), player:getInt(), player:getWis(), player:getCha()} <= 13 then self:onRoll()
-    else 
+    else
         self:generateStats()
         self.c_stats.list = self.list_stats
-        self.c_stats:generate() 
+        self.c_stats:generate()
         self:updateClasses()
         --update perks display
         self.c_perk_note.text = _perks_text:format(self.actor.perk)
@@ -866,7 +866,7 @@ function _M:generateBackgrounds()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.background) do
         if self:isDescriptorAllowed(d) then
-          local color 
+          local color
           if self.sel_background and self.sel_background.name == d.name then color = {255, 215, 0}
           elseif self.sel_class and self:isSuggestedBackground(d) then color = {81, 221, 255}
           else color = {255, 255, 255} end
@@ -897,7 +897,7 @@ function _M:generateDeities()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.deity) do
         if self:isDescriptorAllowed(d) then
-          local color 
+          local color
           if self.sel_deity and self.sel_deity.name == d.name then color = {255, 215, 0}
           else color = {255, 255, 255} end
 
@@ -905,7 +905,7 @@ function _M:generateDeities()
         end
     end
     self.list_deity = list
-end 
+end
 
 function _M:updateDeity()
     local sel = self.selection
@@ -972,7 +972,7 @@ function _M:loadPremade(pm)
 
     -- Do nothing
     if fallback then
-        local ok = 0    
+        local ok = 0
     end
 end
 
@@ -1049,13 +1049,13 @@ function _M:loadedPremade()
     game.player.changed = true
     game.player.energy.value = game.energy_to_act
     game.paused = true
-        
+
     print("[PLAYER BIRTH] resolved!")]]
 
 
     game.player:onPremadeBirth()
     local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
---self.player:playerLevelup() 
+--self.player:playerLevelup()
     game.creating_player = false
 
     game.player:levelPassives()
@@ -1108,14 +1108,14 @@ local random_name = {
   rules = "$s $m$e",
   },
 
-  drow_male = { 
+  drow_male = {
   syllablesStart ="Alak, Drizzt, Ilmryn, Khalazza, Merinid, Mourn, Nym, Pharaun, Rizzen, Solaufein, Sorn, Veldrin, Tebryn, Zaknafein, Dhauntel, Gomur'ss, Sornrak, Sszerin, Adinirahc, Belgos, Antatlab, Calimar, Duagloth, Elkantar, Filraen, Gelroos, Houndaer, Ilphrin, Kelnozz, Krondorl, Nalfein, Nilonim, Ryltar, Olgoloth, Quevven, Ryld, Sabrar, Nadal, Tarlyn, Tsabrak, Urlryn, Valas, Vorn, Vuzlyn, Zakfienal",
   syllablesMiddle = "",
   syllablesEnd ="Abaeir, Aleanrahel, Arabani, Arkhenneld, Auvryndar, Baenre, Coloara, Despana, Freth, Glannath, Helviiryn, Hune, Illistyn, Jaelre, Kilsek, Khalazza, Noquar, Pharn, Seerear, Vrinn, Xiltyn, Zauvirr, Zuavirr, Drannor, Alerae, Aleanana, Barriund, Eilsarn, Eilsath, Freana, Hlath, Hunath, Hlarae, Maeund, Melrae, Maearn, Maeani, Melath, Melund, Melth, Oussani, Oussvirr, Orlyth, Torana, Zauneld, Argith, Blundyth, Cormrael, Dhuunyl, Elpragh, Gellaer, Ghaun, Hyluan, Jhalavar, Olonrae, Philliom, Quavein, Ssambra, Tilntarn, Uloavae, Zolond, Zaphresz",
   rules = "$s $m$e",
   },
 
-  drow_female = { 
+  drow_female = {
   syllablesStart ="Akordia, Chalithra, Chalinthra, Eclavdra, Faere, Nedylene, Phaere, Qilue, SiNafay, Waerva, Umrae, Yasraena, Viconia, Veldrin, Vlondril, Akorae, Ilmiira, Ilphyrr, Inala, Luavrae, Nullynrae, Talthrae, Yasril, Aunrae, Burryna, Charinida, Chessintra, Dhaunae, Dilynrae, Drisinil, Drisnil, Elvraema, Faeryl, Ginafae, Haelra, Halisstra, Imrae, Inidil, Irae, Iymril, Jhaelryna, Minolin, Molvayas, Nathrae, Olorae, Quave, Sabrae, Shi'nayne, Ssapriina, Talabrina, Wuyondra, Xullrae, Xune, Zesstra",
   syllablesMiddle = "",
   syllablesEnd ="Abaeir, Aleanrahel, Arabani, Arkhenneld, Auvryndar, Baenre, Coloara, Despana, Freth, Glannath, Helviiryn, Hune, Illistyn, Jaelre, Kilsek, Khalazza, Noquar, Pharn, Seerear, Vrinn, Xiltyn, Zauvirr, Zuavirr, Drannor, Alerae, Aleanana, Barriund, Eilsarn, Eilsath, Freana, Hlath, Hunath, Hlarae, Maeund, Melrae, Maearn, Maeani, Melath, Melund, Melth, Oussani, Oussvirr, Orlyth, Torana, Zauneld, Argith, Blundyth, Cormrael, Dhuunyl, Elpragh, Gellaer, Ghaun, Hyluan, Jhalavar, Olonrae, Philliom, Quavein, Ssambra, Tilntarn, Uloavae, Zolond, Zaphresz",
@@ -1137,13 +1137,13 @@ local random_name = {
   },
 
   --Names taken from Incursion
-  kobold_male = { 
+  kobold_male = {
   syllablesStart = "Izi, Vucha, Tizzit, Zik, Zzas, Olik, Szissrit, Viska, Kissi, Wixel, Zichna, Ezzan, Kitz, Quizzit, Zazel, Igniz, Zigrat, Gizgaz, Rozrim, Zorbin, Aztan, Uzi, Ognin",
   syllablesEnd = "",
   rules = "$s $e",
   },
 
-  kobold_female = { 
+  kobold_female = {
   syllablesStart = "Izi, Vucha, Tizzit, Zik, Zzas, Olik, Szissrit, Viska, Kissi, Wixel, Zichna, Ezzan, Kitz, Quizzit, Zazel, Igniz, Zigrat, Gizgaz, Rozrim, Zorbin, Aztan, Uzi, Ognin",
   syllablesEnd = "",
   rules = "$s $e",
@@ -1209,83 +1209,83 @@ local random_name = {
   syllablesEnd = "foot, dragon, dale, mar, hap, gather, bother, barrel, bottle, hill, valley, topple, gallow, cobble, bough, crest, son, glide, field, hearth, buck, spirit, wine, top",
   rules = "$s $m$e",
   }
-} 
+}
 
   local player = game.player
   self:updateDescriptors()
 
-    if not self.sel_race then 
+    if not self.sel_race then
         self:simplePopup("No race selected", "You can't pick a name without a race selected!")
         return end
 
     if self.sel_race.name == "Human" then
-      if self.c_female.checked then 
-      local ng = NameGenerator.new(random_name.human_female) 
-      self.c_name:setText(ng:generate()) 
+      if self.c_female.checked then
+      local ng = NameGenerator.new(random_name.human_female)
+      self.c_name:setText(ng:generate())
       else local ng = NameGenerator.new(random_name.human_male)
         self.c_name:setText(ng:generate()) end
-    elseif self.sel_race.name == "Half-Elf" or self.sel_race.name == "Half-Drow" then 
+    elseif self.sel_race.name == "Half-Elf" or self.sel_race.name == "Half-Drow" then
       if self.c_female.checked then
         local ng = NameGenerator.new(random_name.halfelf_female)
-        self.c_name:setText(ng:generate()) 
+        self.c_name:setText(ng:generate())
       else
-      local ng = NameGenerator.new(random_name.halfelf_male) 
+      local ng = NameGenerator.new(random_name.halfelf_male)
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Elf" then
       if self.c_female.checked then
       local ng = NameGenerator.new(random_name.elf_female)
-      self.c_name:setText(ng:generate()) 
-      else 
+      self.c_name:setText(ng:generate())
+      else
       local ng = NameGenerator.new(random_name.elf_male)
       self.c_name:setText(ng:generate()) end
-    elseif self.sel_race.name == "Half-Orc" or self.sel_race.name == "Orc" or self.sel_race.name == "Lizardfolk" then 
+    elseif self.sel_race.name == "Half-Orc" or self.sel_race.name == "Orc" or self.sel_race.name == "Lizardfolk" then
       if self.c_female.checked then
         local ng = NameGenerator.new(random_name.halforc_female)
         self.c_name:setText(ng:generate())
       else
       local ng = NameGenerator.new(random_name.halforc_male)
       self.c_name:setText(ng:generate()) end
-    elseif self.sel_race.name == "Dwarf" then 
+    elseif self.sel_race.name == "Dwarf" then
       if self.c_female.checked then
         local ng = NameGenerator.new(random_name.dwarf_female)
-        self.c_name:setText(ng:generate()) 
-      else 
-      local ng = NameGenerator.new(random_name.dwarf_male) 
+        self.c_name:setText(ng:generate())
+      else
+      local ng = NameGenerator.new(random_name.dwarf_male)
       self.c_name:setText(ng:generate()) end
-    elseif self.sel_race.name == "Drow" then 
+    elseif self.sel_race.name == "Drow" then
       if self.c_female.checked then
         local ng = NameGenerator.new(random_name.drow_female)
-        self.c_name:setText(ng:generate()) 
+        self.c_name:setText(ng:generate())
       else
       local ng = NameGenerator.new(random_name.drow_male)
       self.c_name:setText(ng:generate()) end
-    elseif self.sel_race.name == "Duergar" then 
+    elseif self.sel_race.name == "Duergar" then
       if self.c_female.checked then
         local ng = NameGenerator.new(random_name.duergar_female)
         self.c_name:setText(ng:generate())
       else
-      local ng = NameGenerator.new(random_name.duergar_male) 
+      local ng = NameGenerator.new(random_name.duergar_male)
       self.c_name:setText(ng:generate()) end
-    elseif self.sel_race == "Deep gnome" or self.sel_race.name == "Gnome" then 
+    elseif self.sel_race == "Deep gnome" or self.sel_race.name == "Gnome" then
       if self.c_female.checked then
         local ng = NameGenerator.new(random_name.gnome_female)
-        self.c_name:setText(ng:generate()) 
+        self.c_name:setText(ng:generate())
       else
-      local ng = NameGenerator.new(random_name.gnome_male) 
+      local ng = NameGenerator.new(random_name.gnome_male)
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Halfling" then
       if self.c_female.checked then
         local ng = NameGenerator.new(random_name.halfling_female)
-        self.c_name:setText(ng:generate()) 
+        self.c_name:setText(ng:generate())
       else
-      local ng = NameGenerator.new(random_name.halfling_male) 
+      local ng = NameGenerator.new(random_name.halfling_male)
       self.c_name:setText(ng:generate()) end
     elseif self.sel_race.name == "Kobold" then
       if self.c_female.checked then
         local ng = NameGenerator.new(random_name.kobold_female)
-        self.c_name:setText(ng:generate()) 
+        self.c_name:setText(ng:generate())
       else--if self.c_male.checked then
-      local ng = NameGenerator.new(random_name.kobold_male) 
+      local ng = NameGenerator.new(random_name.kobold_male)
       self.c_name:setText(ng:generate()) end
     end
 
