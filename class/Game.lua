@@ -216,6 +216,8 @@ end
 
 function _M:loaded()
 	engine.GameTurnBased.loaded(self)
+	engine.interface.GameSound.loaded(self)
+	
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", trap_class="mod.class.Trap"}
 	--New filters from GameState go here
 	Zone.check_filter = function(...) return self.state:entityFilter(...) end
