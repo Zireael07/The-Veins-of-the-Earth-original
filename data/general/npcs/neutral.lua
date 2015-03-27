@@ -11,6 +11,10 @@ newEntity{
     combat = { dam= {1,6} },
     faction = "neutral",
     open_door = true,
+    resolvers.talents{ [Talents.T_SHOOT]=1,
+    --give the simple weapon proficiency warrior/fighter/wizard class all have
+    [Talents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
+    },
     resolvers.wounds()
 }
 
@@ -39,7 +43,6 @@ newEntity{ define_as = "BASE_NPC_DROW_NEUTRAL",
     skill_listen = 2,
     skill_search = 3,
     skill_spot = 2,
-    resolvers.talents{ [Talents.T_SHOOT]=1, },
     resolvers.equip{
         full_id=true,
         { name = "chain shirt", not_properties={"cursed"}  },
@@ -67,7 +70,6 @@ newEntity{ define_as = "BASE_NPC_HUMAN_NEUTRAL",
     hit_die = 1,
     alignment = "neutral good",
     challenge = 1,
-    resolvers.talents{ [Talents.T_SHOOT]=1, },
     resolvers.equip{
         full_id=true,
         { name = "chainmail", not_properties={"cursed"}  },
@@ -126,6 +128,7 @@ newEntity{ define_as = "BASE_NPC_DROW_SHOP",
     image = "tiles/newtiles/drow_shop.png",
     rarity = 3,
     can_talk = "shop",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1 },
     resolvers.store("GENERAL"),
 }
 
@@ -135,6 +138,7 @@ newEntity{ define_as = "BASE_NPC_HUMAN_SHOP",
     image = "tiles/newtiles/human_shop.png",
     rarity = 5,
     can_talk = "shop",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1 },
     resolvers.store("GENERAL"),
 }
 
@@ -143,10 +147,11 @@ newEntity{
     base = "BASE_NPC_DWARF_NEUTRAL",
     rarity = 5,
     can_talk = "shop",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1 },
     resolvers.store("GENERAL"),
 }
 
---Sages
+--Sages (assume they are wizards - do not have martial weapon proficiency)
 newEntity{
     define_as = "BASE_NPC_DROW_SAGE",
     base = "BASE_NPC_DROW_NEUTRAL",
@@ -172,6 +177,7 @@ newEntity{
     name = "human healer",
     rarity = 5,
     can_talk = "healer",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1 },
     resolvers.classes{cleric=2}
 }
 
@@ -181,6 +187,7 @@ newEntity{
     image = "tiles/npc/drow_priest.png",
     rarity = 10,
     can_talk = "healer",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1  },
     resolvers.classes{cleric=3}
 }
 
@@ -189,6 +196,7 @@ newEntity{
     name = "dwarf healer",
     rarity = 5,
     can_talk = "healer",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1  },
     resolvers.classes{cleric=4}
 }
 
@@ -198,6 +206,7 @@ newEntity{
     display = "@", color=colors.HONEYDEW,
     image = "tiles/newtiles/human_fighter.png",
     name = "human hireling",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1  },
     max_life = resolvers.rngavg(15,18),
     can_talk = "hireling",
 }
@@ -207,6 +216,7 @@ newEntity{
     display = "@", color=colors.BLACK,
     image = "tiles/npc/drow_fighter.png",
     name = "drow hireling",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1  },
     max_life = resolvers.rngavg(15,18),
     can_talk = "hireling",
 }
@@ -216,6 +226,7 @@ newEntity{
     display = "@", color=colors.SANDY_BROWN,
     image = "tiles/npc/dwarf_fighter.png",
     name = "dwarf hireling",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1  },
     max_life = resolvers.rngavg(15,18),
     can_talk = "hireling",
 }

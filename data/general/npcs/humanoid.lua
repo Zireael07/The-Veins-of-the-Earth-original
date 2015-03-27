@@ -25,6 +25,11 @@ newEntity{
 	combat = { dam= {1,6} },
 	open_door = true,
 	resolvers.wounds(),
+	resolvers.talents{ [Talents.T_SHOOT]=1,
+	--assume all humanoids have at least warrior NPC class if not better
+	[Talents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
+	[Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
+	},
 	--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
@@ -106,7 +111,6 @@ newEntity{
 	rarity = 5,
 	max_life = resolvers.rngavg(5,8),
 	challenge = 1,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "chain mail",  },
@@ -175,8 +179,6 @@ newEntity{
 	challenge = 1,
 	infravision = 5,
 	alignment = "lawful evil",
-	resolvers.talents{ [Talents.T_SHOOT]=1,
-	},
 	resolvers.equip{
 		full_id=true,
 		{ name = "chain mail",  },
@@ -221,7 +223,6 @@ newEntity{
 	skill_hide = 3,
 	skill_listen = 1,
 	skill_spot = 1,
-	resolvers.talents{ [Talents.T_SHOOT]=1 },
 	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "chain shirt",  },
@@ -252,9 +253,6 @@ newEntity{
 	skill_listen = 1,
 	skill_spot = 1,
 	stats = { str=11, dex=13, con=12, int=10, wis=11, cha=4, luc=10 },
-	resolvers.talents{ [Talents.T_SHOOT]=1,
---	[Talents.T_TOUGHNESS]=1
-	},
 	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "banded mail",   },
@@ -295,7 +293,6 @@ newEntity{
 	rarity = 5,
 	max_life = resolvers.rngavg(5,8),
 	challenge = 1/2,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "studded leather",  },
@@ -341,7 +338,6 @@ newEntity{
 	skill_balance = 4,
 	skill_jump = 4,
 	skill_swim = 1,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "studded leather",   },
@@ -381,7 +377,6 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	rarity = 6,
 	max_life = resolvers.rngavg(5,9),
 	challenge = 1/2,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "short spear", },
@@ -400,7 +395,6 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	max_life = resolvers.rngavg(10,12),
 	hit_die = 6,
 	challenge = 1,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "arrows", },
@@ -438,7 +432,6 @@ newEntity{
 	rarity = 8,
 	max_life = resolvers.rngavg(4,7),
 	challenge = 1,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "studded leather armor",  },
@@ -531,7 +524,6 @@ newEntity{
 	[DamageType.ELECTRIC] = 5,
 	[DamageType.COLD] = 5,
 	},
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equipnoncursed{
 		full_id=true,
 		{ name = "scale mail", },
@@ -575,7 +567,6 @@ newEntity{
 	rarity = 3,
 	max_life = resolvers.rngavg(4,7),
 	challenge = 1/3,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "leather armor",  },
@@ -615,7 +606,6 @@ newEntity{
 	hit_die = 3,
 	challenge = 2,
 	infravision = 3,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "leather armor", not_properties={"cursed"}  },
@@ -690,7 +680,6 @@ newEntity{
 	max_life = resolvers.rngavg(5,8),
 	challenge = 1/2,
 	skill_movesilently = 4,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "studded leather",  },
@@ -730,7 +719,6 @@ newEntity{
 	challenge = 1,
 	skill_hide = 6,
 	skill_listen = 3,
-	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
 		{ name = "club" },
@@ -812,7 +800,6 @@ newEntity{
 	skill_listen = 5,
 	skill_spot = 5,
 	skill_swim = 8,
-
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_POLEARM]=1,
 	[Talents.T_ALERTNESS]=1,

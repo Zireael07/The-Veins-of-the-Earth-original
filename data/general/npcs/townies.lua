@@ -12,6 +12,10 @@ newEntity{
     combat = { dam= {1,6} },
     faction = "neutral",
     open_door = true,
+    resolvers.talents{ [Talents.T_SHOOT]=1,
+    --give the simple weapon proficiency warrior/fighter/wizard class all have
+    [Talents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
+    },
     resolvers.wounds()
 }
 
@@ -51,7 +55,6 @@ newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
     max_life = resolvers.rngavg(13,15),
     stats = { str=13, dex=15, con=9, int=12, wis=13, cha=12, luc=10 },
 
-    resolvers.talents{ [Talents.T_SHOOT]=1, },
     resolvers.equip{
         full_id=true,
         { name = "chain shirt", not_properties={"cursed"}  },
@@ -113,7 +116,6 @@ newEntity{
     name = "drow guard",
     rarity = 4,
 
-    resolvers.talents{ [Talents.T_SHOOT]=1, },
     resolvers.equip{
         full_id=true,
         { name = "chain shirt", not_properties={"cursed"}  },
