@@ -110,34 +110,34 @@ function _M:attackTarget(target, noenergy)
          if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 2 attacklog = attacklog.." TWF" end
       end
 
-      self:attackRoll(target, weapon, attackmod, strmod, false)
+      self:attackRoll(target, weapon, attackmod, strmod, attacklog, damagelog, false)
 
       --extra attacks for high BAB, at lower bonuses
       if self.combat_bab >=6 then
-         self:attackRoll(target, weapon, attackmod - 5, strmod, true)
+         self:attackRoll(target, weapon, attackmod - 5, strmod, attacklog, damagelog, true)
       end
       if self.combat_bab >=11 then
-         self:attackRoll(target, weapon, attackmod - 10, strmod, true)
+         self:attackRoll(target, weapon, attackmod - 10, strmod, attacklog, damagelog, true)
       end
       if self.combat_bab >=16 then
-         self:attackRoll(target, weapon, attackmod - 15, strmod, true)
+         self:attackRoll(target, weapon, attackmod - 15, strmod, attacklog, damagelog, true)
       end
 
       -- offhand/double weapon attacks
       if offweapon then
          strmod = 0.5
          attackmod = -10
-         attacklog = attacklog.." dual-wielding"
-         if offweapon.light or weapon.double then attackmod = attackmod + 2 attacklog = attacklog.." dual-wielding light" end
-         if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 6 attacklog = attacklog.." TWF" end
+         attacklog = " dual-wielding offhand"
+         if offweapon.light or weapon.double then attackmod = attackmod + 2 attacklog = " dual-wielding light offhand" end
+         if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 6 attacklog = " TWF offhand" end
 
-         self:attackRoll(target, offweapon, attackmod, strmod, true)
+         self:attackRoll(target, offweapon, attackmod, strmod, attacklog, damagelog, true)
 
          if self:knowTalent(self.T_IMPROVED_TWO_WEAPON_FIGHTING) then
-            self:attackRoll(target, offweapon, attackmod - 5, strmod, true)
+            self:attackRoll(target, offweapon, attackmod - 5, strmod, attacklog, damagelog, true)
          end
          if self:knowTalent(self.T_GREATER_TWO_WEAPON_FIGHTING) then
-            self:attackRoll(target, offweapon, attackmod - 10, strmod, true)
+            self:attackRoll(target, offweapon, attackmod - 10, strmod, attacklog, damagelog, true)
          end
       end
    end
@@ -150,15 +150,15 @@ function _M:attackTarget(target, noenergy)
    end
 end
 
-function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
+function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_sneak)
    local d = rng.range(1,20)
    local hit = true
    local crit = false
     local attack = (self.combat_bab or 0) + (self.combat_attack or 0)
 
     --log
-    local attacklog = ""
-    local damagelog = ""
+    local attacklog = attacklog or ""
+    local damagelog = damagelog or ""
 
     --First things first!
     self:breakStealth()
@@ -234,26 +234,26 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
 
    -- log message
     if hit then
-        self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-    --[[  local chance = rng.dice(1,3)
+
+    local chance = rng.dice(1,3)
       if chance == 1 then
-          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
-          self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+          self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       else
-          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      end]]
+          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      end
 
     else
-        self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-    --[[local chance = rng.dice(1,3)
+
+    local chance = rng.dice(1,3)
       if chance == 1 then
-          self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+          self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
-          self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+          self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       else
-        self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      end]]
+        self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      end
 
     end
 
@@ -268,6 +268,8 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
       -- threatened critical hit confirmation roll
       if not (rng.range(1,20) + attack < ac) then
          crit = true
+      else
+          self:logCombat(target, "Critical confirmation roll failed")
       end
    end
 
