@@ -54,6 +54,10 @@ end
 --Lukep's combat patch
 function _M:attackTarget(target, noenergy)
    if self.combat then
+       --log text
+       local attacklog = ""
+       local damagelog = ""
+
       -- returns your weapon if you are armed, or unarmed combat.
       local weapon = (self:getInven("MAIN_HAND") and self:getInven("MAIN_HAND")[1]) or self
       -- returns your offhand weapon (not shield) or your weapon again if it is double
@@ -78,13 +82,15 @@ function _M:attackTarget(target, noenergy)
       local strmod = 1
 
       --if wielding two-handed, apply 1.5*Str mod
-      if twohanded then strmod = 1.5 end
+      if twohanded then strmod = 1.5 damagelog = damagelog.."two-handed" end
 
-      if weapon and weapon.slot_forbid == "OFF_HAND" and not self:knowTalent(self.T_MONKEY_GRIP) then strmod = 1.5 end
+      if weapon and weapon.slot_forbid == "OFF_HAND" and not self:knowTalent(self.T_MONKEY_GRIP) then
+          strmod = 1.5 damagelog = damagelog.."two-handed"
+      end
 
       --Monkey grip feat
-    --  if self:knowTalent(self.T_MONKEY_GRIP) and weapon and weapon.slot_forbid == "OFF_HAND" then
-
+    --[[  if self:knowTalent(self.T_MONKEY_GRIP) and weapon and weapon.slot_forbid == "OFF_HAND" then
+        weapon.slot_forbid = nil]]
 
       --[[Combat Expertise & Power Attack penalties (Zi)
       if self:isTalentActive(self.T_COMBAT_EXPERTISE) then
@@ -96,11 +102,12 @@ function _M:attackTarget(target, noenergy)
         attackmod = attackmod - 5
       end ]]
 
-      --Dual-wielding
+      --Dual-wielding (main hand)
       if offweapon then
          attackmod = attackmod -6
-         if offweapon.light or weapon.double then attackmod = attackmod + 2 end
-         if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 2 end
+         attacklog = attacklog.." dual-wielding"
+         if offweapon.light or weapon.double then attackmod = attackmod + 2 attacklog=attacklog.." dual-wielding light" end
+         if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 2 attacklog = attacklog.." TWF" end
       end
 
       self:attackRoll(target, weapon, attackmod, strmod, false)
@@ -120,8 +127,9 @@ function _M:attackTarget(target, noenergy)
       if offweapon then
          strmod = 0.5
          attackmod = -10
-         if offweapon.light or weapon.double then attackmod = attackmod + 2 end
-         if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 6 end
+         attacklog = attacklog.." dual-wielding"
+         if offweapon.light or weapon.double then attackmod = attackmod + 2 attacklog = attacklog.." dual-wielding light" end
+         if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 6 attacklog = attacklog.." TWF" end
 
          self:attackRoll(target, offweapon, attackmod, strmod, true)
 
@@ -148,6 +156,10 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
    local crit = false
     local attack = (self.combat_bab or 0) + (self.combat_attack or 0)
 
+    --log
+    local attacklog = ""
+    local damagelog = ""
+
     --First things first!
     self:breakStealth()
 
@@ -155,14 +167,19 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
    -- Proficiency penalties
     if weapon and weapon.simple and not self:knowTalent(self.T_SIMPLE_WEAPON_PROFICIENCY) then
         attack = (attack -4)
+        attacklog = attacklog.."-4 not proficient in simple weapons"
     end
 
    if weapon and weapon.martial and not self:knowTalent(self.T_MARTIAL_WEAPON_PROFICIENCY) then
       attack = (attack -4)
+      attacklog = attacklog.."-4 not proficient in martial weapons"
    end
 
    -- Feat bonuses
-   if weapon and weapon.subtype and self:hasFocus(weapon.subtype) then attack = (attack + 1) end
+   if weapon and weapon.subtype and self:hasFocus(weapon.subtype) then
+       attack = (attack + 1)
+       attacklog = attacklog.."+1 weapon focus"
+   end
 
    -- Stat bonuses
    local stat_used = "str"
@@ -197,6 +214,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
         end
 
         if success then
+            damagelog = damagelog.." Finesse"
             stat_used = "dex"
         end
    end
@@ -206,7 +224,9 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
    local ac = target:getAC()
 
    -- Hit check
-    if self:isConcealed(target) and rng.chance(self:isConcealed(target)) then hit = false
+    if self:isConcealed(target) and rng.chance(self:isConcealed(target)) then
+        self:logCombat(target, ("%s misses the target wildly!"):format(self:getLogName():capitalize()))
+        hit = false
     elseif d == 1 then hit = false
     elseif d == 20 then hit = true
     elseif d + attack < ac then hit = false
@@ -214,24 +234,26 @@ function _M:attackRoll(target, weapon, atkmod, strmod, no_sneak)
 
    -- log message
     if hit then
-      local chance = rng.dice(1,3)
+        self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+    --[[  local chance = rng.dice(1,3)
       if chance == 1 then
           self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
           self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       else
           self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      end
+      end]]
 
     else
-    local chance = rng.dice(1,3)
+        self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d"..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+    --[[local chance = rng.dice(1,3)
       if chance == 1 then
           self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       elseif chance == 2 then
           self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
       else
         self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d"):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      end
+      end]]
 
     end
 
