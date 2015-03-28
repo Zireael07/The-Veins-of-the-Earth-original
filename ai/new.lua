@@ -38,3 +38,81 @@ newAI("flee_fear", function(self)
         end
     end
 end)
+
+--NOTE: really new AI code
+newAI("flee_if_wounded", function(self)
+    if self.life == 0 and self.wounds and self.max_wounds and self.wounds < self.max_wounds then
+
+		if self.wounds < self.max_wounds/2 then
+			if not self.energy.used then
+				if self.ai_target.actor then
+	            	local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
+	                if self:isNear(tx, ty, 5) then
+	                    self:runAI("flee_fear")
+	                else
+	                    self:runAI("dumb_talented_simple")
+	                end
+	            else
+	                self:runAI("flee_dmap")
+	            --    self.ai = "flee_dmap"
+	            end
+			end
+		else
+
+		local chance = rng.percent(50)
+				if chance then
+					if not self.energy.used then
+						if self.ai_target.actor then
+			            	local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
+			                if self:isNear(tx, ty, 5) then
+			                    self:runAI("flee_fear")
+			                else
+			                    self:runAI("dumb_talented_simple")
+			                end
+			            else
+			                self:runAI("flee_dmap")
+			            --    self.ai = "flee_dmap"
+			            end
+					end
+				end
+		end
+	end
+
+	-- Ranged (based on DataQueen)
+	if self.ranged and self:isNear(game.player.x, game.player.y, 10) then
+        self:runAI("flee_dmap")
+	--	self.ai = "flee_dmap"
+	else
+        self:runAI("dumb_talented_simple")
+	--	self.ai = "dumb_talented_simple"
+	end
+
+--    self:runAI("dumb_talented_simple")
+end)
+
+newAI("pickup_items", function(self)
+    if self:getInven(self.INVEN_INVEN) then
+    	if not self:isThreatened() and self:getObjectonFloor(self.x, self.y) then
+        	self:pickupObject(self.x, self.y)
+    	end
+    end
+end)
+
+
+--NOTE: three AI levels corresponding to Intelligence
+--"humanoid_level" is humanoid and Int 3+
+--"animal_level" is Int <3; human_level Int >3 but not humanoid;
+
+newAI("animal_level", function(self)
+    self:runAI("flee_if_wounded")
+end)
+
+newAI("human_level", function(self)
+    self:runAI("flee_if_wounded")
+end)
+
+newAI("humanoid_level", function(self)
+    self:runAI("pickup_items")
+
+    self:runAI("flee_if_wounded")
+end)

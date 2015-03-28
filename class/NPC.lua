@@ -40,13 +40,13 @@ function _M:act()
 		self:doFOV()
 
     --Pick up objects
-    if self:getInven(self.INVEN_INVEN) then
+--[[    if self:getInven(self.INVEN_INVEN) then
 		if not self:isThreatened() and self:getObjectonFloor(self.x, self.y) then
         	self:pickupObject(self.x, self.y)
 		end
-    end
+    end]]
 
-	if self.life == 0 and self.wounds and self.max_wounds and self.wounds < self.max_wounds then
+--[[	if self.life == 0 and self.wounds and self.max_wounds and self.wounds < self.max_wounds then
 
 		if self.wounds < self.max_wounds/2 then
 			if not self.energy.used then
@@ -88,7 +88,7 @@ function _M:act()
 		self.ai = "flee_dmap"
 	else
 		self.ai = "dumb_talented_simple"
-	end
+	end]]
 
 
 	-- Let the AI think .... beware of Shub !
