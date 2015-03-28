@@ -362,7 +362,7 @@ function _M:move(x, y, force)
 
 	 -- Never move, but allow attacking (from Qi Daozei)
         if not force and self:attr("never_move_but_attack") then
-            -- Copied from ToME - this asks the collision code to check for attacking
+            -- NOTE: this asks the collision code to check for attacking - taken from ToME
             if not game.level.map:checkAllEntities(x, y, "block_move", self, true) then
                 game.logPlayer(self, "You are unable to move!")
             end
@@ -420,6 +420,23 @@ function _M:getPathString()
 	ps = ps.."}}"
 --	print("[PATH STRING] for", self.name, " :=: ", ps)
 	return ps
+end
+
+--Taken from ToME 1.3.0
+function _M:displace(target)
+	-- Displace
+	-- Check we can both walk in the tile we will end up in
+	local blocks = game.level.map:checkAllEntitiesLayersNoStop(target.x, target.y, "block_move", self)
+	for kind, v in pairs(blocks) do if kind[1] ~= Map.ACTOR and v then return end end
+	blocks = game.level.map:checkAllEntitiesLayersNoStop(self.x, self.y, "block_move", target)
+	for kind, v in pairs(blocks) do if kind[1] ~= Map.ACTOR and v then return end end
+
+	-- Displace
+	local tx, ty, sx, sy = target.x, target.y, self.x, self.y
+	target:move(sx, sy, true)
+	self:move(tx, ty, true)
+	if target.describeFloor then target:describeFloor(target.x, target.y, true) end
+	if self.describeFloor then self:describeFloor(self.x, self.y, true) end
 end
 
 --- Reveals location surrounding the actor
