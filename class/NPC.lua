@@ -41,7 +41,7 @@ function _M:act()
 
     --Pick up objects
     if not self:isThreatened() and self:getObjectonFloor(self.x, self.y) then
-        self:pickupObject()
+        self:pickupObject(self.x, self.y)
     end
 
 	if self.life == 0 and self.wounds and self.max_wounds and self.wounds < self.max_wounds then
@@ -374,29 +374,35 @@ end
 function _M:getObjectonFloor(x, y)
     local z = game.level.map:getObjectTotal(x, y)
 
-    if z > 1 then  return true end
---[[        local o = game.level.map:getObject(x, y, z)
-        return o
-    end]]
-
+    if z >= 1 then game.log("AI spotted object on floor: %d, %d", x, y ) return true end
     return nil
 end
 
-function _M:pickupObject()
+function _M:pickupObject(x, y)
     --Taken from Player.lua
     -- Auto-pickup stuff from floor.
-  local i = 1
-  local obj = game.level.map:getObject(x, y, i)
-  while obj do
-    self:pickupFloor(i, true)
- --[[   if obj.auto_pickup and self:pickupFloor(i, true) then
-      -- Nothing to do.
-    else
-      i = i + 1
-    end]]
-    obj = game.level.map:getObject(x, y, i)
-  end
+	--Check for inventory first
+	if self:getInven(self.INVEN_INVEN) then
+  		local i = 1
+  		local obj = game.level.map:getObject(x, y, i)
+  		while obj do
+   			if self:pickupFloor(i, true) then
+				local o_name = obj.name
+				game.log("AI tried to pick up object: %s", o_name)
+      		-- Nothing to do.
+    		else
+      		i = i + 1
+    		end
+    	obj = game.level.map:getObject(x, y, i)
+		end
 
+--[[		if i == 2 then
+			game.log('On floor:  %s', game.level.map:getObject(x, y, 1):getName())
+		elseif i > 2 then
+			game.log('There are %d objects here.', i - 1)
+		end]]
+  end
+	game.log("AI has no inventory")
 end
 
 --Swap weapons functions
