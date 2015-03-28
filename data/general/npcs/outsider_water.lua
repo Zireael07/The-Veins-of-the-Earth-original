@@ -7,7 +7,7 @@ newEntity{
 	define_as = "BASE_NPC_WATER",
 	type = "outsider", subtype = "water",
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "human_level", ai_state = { talent_in=3, },
 	alignment = "neutral",
 	resolvers.wounds()
 }

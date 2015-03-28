@@ -16,7 +16,7 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[A hand-crafted servile creature.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "animal_level", ai_state = { talent_in=3, },
 	stats = { str=25, dex=9, con=1, int=1, wis=11, cha=1, luc=10 },
 	combat = { dam= {1,6} },
 	alignment = "neutral",
@@ -112,7 +112,7 @@ newEntity{
 	common_desc = [[Homunculi are usually created by arcane spellcasters, who primarily use them as spies. Although it is not a fearsome combatant, a homunculus can inject sleep-inducing venom with its bite.]],
 	base_desc = "This misshapen little bat-winged creature is a homunculus, a magical creation. "..construct_desc.."",
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "animal_level", ai_state = { talent_in=3, },
 	stats = { str=8, dex=15, con=1, int=10, wis=12, cha=6, luc=12 },
 	combat = { dam= {1,4} },
 	name = "homunculus",
@@ -141,7 +141,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A metal humanoid.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "animal_level", ai_state = { talent_in=3, },
 	stats = { str=14, dex=13, con=1, int=10, wis=17, cha=16, luc=10 },
 	combat = { dam= {1,6} },
 	alignment = "lawful neutral",
@@ -240,7 +240,7 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[A wizard's miniature servant.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "animal_level", ai_state = { talent_in=3, },
 	stats = { str=22, dex=10, con=1, int=1, wis=10, cha=1, luc=10 },
 	combat = { dam= {1,8} },
 	name = "shield guardian",

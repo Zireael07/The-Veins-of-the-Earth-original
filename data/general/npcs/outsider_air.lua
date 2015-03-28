@@ -20,7 +20,7 @@ newEntity{
 	define_as = "BASE_NPC_AIR",
 	type = "outsider",
 	body = { INVEN = 10 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, ai_move = "move_astar", },
+	ai = "human_level", ai_state = { talent_in=3, ai_move = "move_astar", },
 	combat = { dam= {1,6} },
 	fly = true,
 	resolvers.wounds()

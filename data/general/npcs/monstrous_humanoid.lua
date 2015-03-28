@@ -7,7 +7,7 @@ newEntity{
 	define_as = "BASE_NPC_MON_HUMANOID",
 	type = "monstrous_humanoid",
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "humanoid_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6} },
 	resolvers.wounds()
 }

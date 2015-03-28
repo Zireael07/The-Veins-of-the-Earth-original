@@ -14,7 +14,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A beautiful nymph.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "humanoid_level", ai_state = { talent_in=3, },
 	stats = { str=10, dex=17, con=12, int=16, wis=17, cha=19, luc=10 },
 	combat = { dam= {2,8} },
 	name = "nymph",
@@ -62,7 +62,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A humanoid with hooves for feet.]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "humanoid_level", ai_state = { talent_in=3, },
 	stats = { str=10, dex=13, con=12, int=12, wis=13, cha=13, luc=12 },
 	combat = { dam= {1,6} },
 	name = "satyr",

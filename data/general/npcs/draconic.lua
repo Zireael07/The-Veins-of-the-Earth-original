@@ -14,7 +14,7 @@ newEntity{
         body = { INVEN = 10 },
         desc = [[An immense turtle.]],
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        ai = "human_level", ai_state = { talent_in=3, },
         stats = { str=27, dex=10, con=21, int=12, wis=13, cha=12, luc=10 },
         combat = { dam= {4,6} },
         name = "dragon turtle",
@@ -51,7 +51,7 @@ newEntity{
         common_desc = [[Pseudodragons are playful, mischievous members of the dragon family. Powerful individuals prize them as companions, and sorcerers and wizards covet them as familiars.]],
         base_desc = "This tiny reptilian creature with butterfly-like wings is a pseudodragon."..dragon_desc.."",
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        ai = "human_level", ai_state = { talent_in=3, },
         stats = { str=6, dex=15, con=13, int=10, wis=12, cha=10, luc=14 },
         combat = { dam= {1,3} },
         name = "pseudodragon",
@@ -90,7 +90,7 @@ newEntity{
         common_desc = [[Wyverns are clumsy fliers. They have stingers on the end of their tails that deal poison damage and are proficient at grabbing prey.]],
         base_desc = "This large reptilian creature resembles a dragon, but it is in fact a wyvern. "..dragon_desc.."",
 
-        ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+        ai = "human_level", ai_state = { talent_in=3, },
         stats = { str=19, dex=12, con=15, int=6, wis=12, cha=9, luc=10 },
         combat = { dam= {1,6} },
         name = "wyvern",

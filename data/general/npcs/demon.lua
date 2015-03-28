@@ -13,7 +13,7 @@ newEntity{
   display = 'u', color=colors.UMBER,
   rarity = 15,
   body = { INVEN = 10 },
-  ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+  ai = "human_level", ai_state = { talent_in=3, },
   alignment = "chaotic evil",
   resists = { [DamageType.ACID] = 10,
               [DamageType.COLD] = 10,

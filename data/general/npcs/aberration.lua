@@ -20,7 +20,7 @@ newEntity{
 	define_as = "BASE_NPC_ABERRATION",
 	type = "aberration",
 	body = { INVEN = 10 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "human_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6} },
 	resolvers.wounds()
 }

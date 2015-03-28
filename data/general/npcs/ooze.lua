@@ -10,7 +10,7 @@ newEntity{
 	image = "tiles/newtiles/ooze.png",
 	display = 'j', color=colors.WHITE,
 	body = { INVEN = 10 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "animal_level", ai_state = { talent_in=3, },
 	stats = { str=17, dex=1, con=22, int=1, wis=1, cha=1, luc=10 },
 	combat = { dam= {1,6} },
 	rarity = 15,

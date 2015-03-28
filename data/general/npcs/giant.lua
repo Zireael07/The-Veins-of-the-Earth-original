@@ -10,7 +10,7 @@ newEntity{
 	type = "giant",
 	display = "H",
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "humanoid_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6}, },
 	alignment = "chaotic evil",
 	resolvers.wounds()

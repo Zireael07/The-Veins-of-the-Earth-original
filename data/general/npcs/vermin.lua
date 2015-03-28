@@ -5,7 +5,7 @@ newEntity{
 	define_as = "BASE_NPC_VERMIN",
 	type = "vermin",
 	body = { INVEN = 10 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "animal_level", ai_state = { talent_in=3, },
 	faction = "vermin",
 	resolvers.wounds()
 }

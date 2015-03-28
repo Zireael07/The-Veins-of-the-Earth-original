@@ -8,7 +8,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_FIRE",
 	type = "outsider", subtype = "fire",
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "human_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6} },
 	resolvers.wounds()
 }

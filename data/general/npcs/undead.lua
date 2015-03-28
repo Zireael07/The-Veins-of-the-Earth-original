@@ -10,7 +10,7 @@ local undead_desc = "It is immune to critical hits, poison, sleep effects, paral
 newEntity{
     define_as = "BASE_NPC_UNDEAD",
     type = "undead",
-    ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+    ai = "animal_level", ai_state = { talent_in=3, },
     resolvers.wounds()
 }
 

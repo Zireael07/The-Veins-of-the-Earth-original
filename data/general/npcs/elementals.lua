@@ -9,7 +9,7 @@ newEntity{
 	define_as = "BASE_NPC_ELEMENTAL",
 	type = "elemental",
 	body = { INVEN = 10 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "human_level", ai_state = { talent_in=3, },
 	resolvers.wounds()
 }
 

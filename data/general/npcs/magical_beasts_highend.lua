@@ -7,7 +7,7 @@ newEntity{
 	define_as = "BASE_NPC_MAGBEAST",
 	type = "magical_beast",
 	body = { INVEN = 10 },
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+	ai = "human_level", ai_state = { talent_in=3, },
 	stats = { str=10, dex=10, con=10, int=10, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	alignment = "neutral",
