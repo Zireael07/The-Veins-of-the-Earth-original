@@ -40,8 +40,10 @@ function _M:act()
 		self:doFOV()
 
     --Pick up objects
-    if not self:isThreatened() and self:getObjectonFloor(self.x, self.y) then
-        self:pickupObject(self.x, self.y)
+    if self:getInven(self.INVEN_INVEN) then
+		if not self:isThreatened() and self:getObjectonFloor(self.x, self.y) then
+        	self:pickupObject(self.x, self.y)
+		end
     end
 
 	if self.life == 0 and self.wounds and self.max_wounds and self.wounds < self.max_wounds then
@@ -374,7 +376,7 @@ end
 function _M:getObjectonFloor(x, y)
     local z = game.level.map:getObjectTotal(x, y)
 
-    if z >= 1 then game.log("AI spotted object on floor: %d, %d", x, y ) return true end
+    if z >= 1 then game.log("AI spotted object on floor: %d, %d", x, y) return true end
     return nil
 end
 
@@ -385,7 +387,10 @@ function _M:pickupObject(x, y)
 	if self:getInven(self.INVEN_INVEN) then
   		local i = 1
   		local obj = game.level.map:getObject(x, y, i)
-  		while obj do
+  		while obj
+			--let's ignore money and corpses
+			and obj.type ~= "money" and obj.subtype ~= "corpse"
+		do
    			if self:pickupFloor(i, true) then
 				local o_name = obj.name
 				game.log("AI tried to pick up object: %s", o_name)
@@ -401,8 +406,10 @@ function _M:pickupObject(x, y)
 		elseif i > 2 then
 			game.log('There are %d objects here.', i - 1)
 		end]]
-  end
-	game.log("AI has no inventory")
+	else
+		game.log("AI has no inventory")
+	end
+
 end
 
 --Swap weapons functions
