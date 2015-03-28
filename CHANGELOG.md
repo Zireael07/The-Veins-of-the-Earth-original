@@ -1,9 +1,17 @@
 CHANGELOG
 
 * bug fix - no more artifacts dropping on dlvl 1
+* bug fix - init sound on loading game from a save
+* bug fix - give humanoid NPCs weapon proficiencies
+* bug fix - no more errors on log in healer chat
+* bug fix - damage logged now includes all increases
+* bug fix - effects outside sight range are now forced to be silent
 
 * implemented the Luck stat
 * improved the loot generator
+* AI can now pick up items from the floor
+* improved combat messages
+* neutral NPCs can now be told to move aside/swap places with you
 
 0.26.0 - beta 7 - 21/03/2015
 

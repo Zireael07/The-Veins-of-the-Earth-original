@@ -69,7 +69,7 @@ combat_natural -> the AC bonus granted by amulets of natural armor
 combat_protection -> the AC bonus granted by rings of protection
 
 NPCs
-ai -> do NOT change this line!
+ai -> one of three: either "animal_level" for dumb critters with Int <3, "human_level" for most critters with Int 3+ or "humanoid_level" for critters with Int 3+ which are capable of picking up stuff
 type -> what it says on the tin; used to track some immunities
 subtype -> enter the name of the monster. It is used to track favored enemies and some immunities
 body -> this line defines which slots the creature will have
@@ -113,7 +113,7 @@ Darkvision 6 - 60 ft.
 Basic speed is 30 ft., any additions/substractions is handled via movement_speed.
 5 ft. = 0.22
 10 ft. = 0.33
-20 ft. = 0.66 
+20 ft. = 0.66
 30 ft  = 1
 40 ft. = 1.33
 50 ft. = 1.66
