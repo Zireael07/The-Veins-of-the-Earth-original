@@ -55,6 +55,85 @@ newBirthDescriptor{
       	{ name="flask of water" },
     	},
     	starting_intro = "main",
+		--NOTE: attempt to use the starting equipment resolver
+		resolvers.startingeq{
+			["Barbarian"] = {
+				["Drow"] = "scimitar", --"chain mail"
+				["Halfling"] = "long sword", --"chain mail"
+				["Gnome"] = "long sword", --"chain mail"
+				["Elf"] = "long sword", --"chain mail"
+				["Half-Elf"] = "long sword", --"chain mail"
+				["general"] = "battleaxe", --"chain mail",
+			},
+			["Bard"] = {
+				["Halfling"] = "dagger", --"chain shirt"
+				["Gnome"] = "dagger",
+				["Elf"] = "long sword",
+				["Drow"] = "scimitar",
+				["Human"] = "rapier",
+				["Half-Elf"] = "rapier",
+				["Dwarf"] = "light mace",
+				["Duergar"] = "light mace",
+			},
+			["Cleric"] = {
+				["Halfling"] = "light mace", --"chain mail"
+				["Gnome"] = "light mace",
+				["general"] = "heavy mace",
+			},
+			["Shaman"] = {
+				["Halfling"] = "light mace", --"chain mail"
+				["Gnome"] = "light mace",
+				["general"] = "heavy mace",
+			},
+			["Druid"] = {
+				["Halfling"] = "sickle", --"padded armor"
+				["Gnome"] = "sickle",
+				["Human"] = "quarterstaff",
+				["Half-Elf"] = "quarterstaff",
+				["Dwarf"] = "scythe",
+				["Duergar"] = "scythe",
+				["general"] = "scimitar",
+			},
+			["Fighter"] = {
+				["Drow"] = { id=true, {name = "scimitar"}, {name = "chain mail"}, },
+				["Half-Orc"] = { id=true, {name = "battleaxe"}, {name = "chain mail"}, },
+				["general"] = { id=true, {name = "longsword"}, },
+			},
+			["Monk"] = {},
+			["Paladin"] = {
+				["Halfling"] = "short sword", --"chain mail"
+				["Gnome"] = "short sword",
+				["Dwarf"] = "warhammer",
+				["general"] = "long sword" --lance when mounts are in
+			},
+			["Ranger"] = {
+				["Halfling"] = "short spear", --"leather armor"
+				["Gnome"] = "short spear",
+				["Half-Orc"] = "short spear",
+				["Drow"] = "scimitar",
+				["Dwarf"] = "warhammer",
+				["Duergar"] = "warhammer",
+				["general"] = "long sword",
+			},
+			["Rogue"] = {
+				["Halfling"] = "light crossbow",
+				["Gnome"] = "light crossbow",
+				["Drow"] = "hand crossbow",
+				["Elf"] = "longbow",
+				["general"] = "shortbow",
+			},
+			["Sorcerer"] = {
+				["general"] = "dagger",
+			},
+			["Wizard"] = {
+				["Halfling"] = "dagger",
+				["Gnome"] = "dagger",
+				["general"] = "quarterstaff",
+			},
+			["Warlock"] = {
+				["general"] = "long sword" --chain shirt
+			},
+		},
   	},
   	talents = {
     	[ActorTalents.T_SHOOT]=1,

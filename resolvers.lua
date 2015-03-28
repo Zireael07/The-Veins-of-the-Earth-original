@@ -839,12 +839,22 @@ function resolvers.startingeq(t)
 end
 --- Actually resolve the equipment creation
 function resolvers.calc.startingeq(t, e)
+	local class = e.descriptor.class
 	local race = e.descriptor.race
-	local racetable = t[race]
---	for i, race in ipairs(t) do
+	local classtable = t[class]
+	
+	--TODO: Why the *bleep* is this still empty?
+	local racetable = {} --= t[class]["general"]
 
---		if e.descriptor.race == race then
-	--		local racetable = t.t
+	if t[class] then
+
+	 	if classtable[race] then
+			racetable = t[class][race]
+		else
+			racetable = classtable["general"]
+		end
+	end
+
 			for i, filter in ipairs(racetable) do
 				filter.not_properties = filter.not_properties or {}
 				filter.not_properties[#filter.not_properties+1] = "cursed"
@@ -856,6 +866,5 @@ function resolvers.calc.startingeq(t, e)
 			--	racetable[#racetable+1] = { defined=e:randomItem(), ego=chance=1000, not_properties = "cursed" }
 			end
 			return {__resolver="equip", __resolve_last=true, racetable}
---		end
---	end
+
 end
