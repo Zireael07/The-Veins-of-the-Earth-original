@@ -53,12 +53,6 @@ function resolvers.calc.equip(t, e)
 		if o then
 --			print("Zone made us an equipment according to filter!", o:getName())
 
-			-- curse (done here to ensure object attributes get applied correctly)
-			if e:knowTalent(e.T_DEFILING_TOUCH) then
-				local t = e:getTalentFromId(e.T_DEFILING_TOUCH)
-				t.curseItem(e, t, o)
-			end
-
 			-- Auto alloc some stats to be able to wear it
 			if filter.autoreq and rawget(o, "require") and rawget(o, "require").stat then
 --				print("Autorequire stats")
@@ -839,66 +833,29 @@ end
 
 
 --Starting equipment resolver
---- Resolves equipment creation for an actor
+--- Resolves equipment creation for a player
 function resolvers.startingeq(t)
-	return {__resolver="equip", __resolve_last=true, t}
+	return {__resolver="startingeq", __resolve_last=true, t}
 end
 --- Actually resolve the equipment creation
 function resolvers.calc.startingeq(t, e)
-	if e.perk ~= "" then
-		local o = game.zone:makeEntity(game.level, "object", {name=e:randomItem(), ego_chance=1000}, nil, true)
+	local race = e.descriptor.race
+	local racetable = t[race]
+--	for i, race in ipairs(t) do
 
-		if o then
-
-			while o.cursed == true do
-				o = game.zone:makeEntity(game.level, "object", {name=e:randomItem(), ego_chance=1000}, nil, true)
+--		if e.descriptor.race == race then
+	--		local racetable = t.t
+			for i, filter in ipairs(racetable) do
+				filter.not_properties = filter.not_properties or {}
+				filter.not_properties[#filter.not_properties+1] = "cursed"
 			end
 
-			if e:wearObject(o, true, false) == false then
-				e:addObject(e.INVEN_INVEN, o)
+			--Don't forget perks
+			if e.perk ~= "" then
+				-- TODO: add one more entry in racetable
+			--	racetable[#racetable+1] = { defined=e:randomItem(), ego=chance=1000, not_properties = "cursed" }
 			end
-
-			game.zone:addEntity(game.level, o, "object")
-
-			if t[1].id then o:identify(t[1].id) end
-		end
-	end
-
-	for i, race in ipairs(t[1]) do
-
-		if e.descriptor.race == race then
-	--	print("Equipment resolver for", e.name)
-		-- Iterate of object requests, try to create them and equip them
-			for i, filter in ipairs(race.t[1]) do
---			print("Equipment resolver", e.name, filter.type, filter.subtype, filter.defined)
-			local o
-			if not filter.defined then
-				o = game.zone:makeEntity(game.level, "object", filter, nil, true)
-			else
-				local forced
-				o, forced = game.zone:makeEntityByName(game.level, "object", filter.defined, filter.random_art_replace and true or false)
-				-- If we forced the generation this means it was already found
-				if forced then
---					print("Serving unique "..o.name.." but forcing replacement drop")
-					filter.random_art_replace.chance = 100
-				end
-			end
-			if o then
-	--			print("Zone made us an equipment according to filter!", o:getName())
-
-				if e:wearObject(o, true, false) == false then
-					e:addObject(e.INVEN_INVEN, o)
-				end
-
-				game.zone:addEntity(game.level, o, "object")
-
-				if t[1].id then o:identify(t[1].id) end
-
-			end
-			end
-		end
-	end
-
-	-- Delete the origin field
-	return nil
+			return {__resolver="equip", __resolve_last=true, racetable}
+--		end
+--	end
 end
