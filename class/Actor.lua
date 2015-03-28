@@ -1201,35 +1201,6 @@ end, nil)
 return seen]]
 end
 
---Make NPCs aware of objects on floor
-function _M:getObjectonFloor(x, y)
-    local z = game.level.map:getObjectTotal(x, y)
-
-    if z > 1 then  return true end
---[[        local o = game.level.map:getObject(x, y, z)
-        return o
-    end]]
-
-    return nil
-end
-
-function _M:pickupObject()
-    --Taken from Player.lua
-    -- Auto-pickup stuff from floor.
-  local i = 1
-  local obj = game.level.map:getObject(x, y, i)
-  while obj do
-    self:pickupFloor(i, true)
- --[[   if obj.auto_pickup and self:pickupFloor(i, true) then
-      -- Nothing to do.
-    else
-      i = i + 1
-    end]]
-    obj = game.level.map:getObject(x, y, i)
-  end
-
-end
-
 --Helper function for caster classes
 --DOESN'T WORK YET!!!
 function _M:getStatForSpell(class)
@@ -1244,9 +1215,6 @@ function _M:getStatForSpell(class)
     end
     return nil
 end
-
-
-
 
 --- Called before a talent is used
 -- Check the actor can cast it
@@ -2484,115 +2452,6 @@ function _M:getShootRange()
 		return (self:getInven("MAIN_HAND")[1].combat.range)*1.5 end
 
 	return self:getInven("MAIN_HAND")[1].combat.range
-end
-
-
---Swap weapons functions
-function _M:hasRangedWeapon()
-	local inven = self.inven[self.INVEN_INVEN]
-		for k, o in ipairs(inven) do
-			if  o.ranged == true then
-				return true
-			end
-		end
-		return false
-end
-
-function _M:hasMeleeWeapon()
-    local inven = self.inven[self.INVEN_INVEN]
-        for k, o in ipairs(inven) do
-            if  o.ranged == false then
-                return true
-            end
-        end
-        return false
-end
-
-function _M:hasRangedAmmo()
-	local inven = self.inven[self.INVEN_INVEN]
-		for k, o in ipairs(inven) do
-			if  o.ammo == true then
-				return true
-			end
-		end
-		return false
-end
-
-function _M:getRangedAmmo()
-	local inven = self.inven[self.INVEN_INVEN]
-		for k, o in ipairs(inven) do
-			if  o.ammo == true then
-				return o
-			end
-		end
-		return nil
-end
-
-function _M:getRangedWeapon()
-	local inven = self.inven[self.INVEN_INVEN]
-		for k, o in ipairs(inven) do
-			if  o.ranged == true then
-				return o
-			end
-		end
-		return nil
-end
-
-function _M:getMeleeWeapon()
-    local inven = self.inven[self.INVEN_INVEN]
-        for k, o in ipairs(inven) do
-            if  o.ranged == false then
-                return o
-            end
-        end
-        return nil
-end
-
-
-function _M:wieldRanged()
-	local weapon = self:getInven("MAIN_HAND")[1]
-    local ammo = self:getInven("QUIVER")[1]
-
-    local mh = self.inven[self.INVEN_MAIN_HAND]
-    local am = self.inven[self.INVEN_QUIVER]
-
-    --Do we have ammo in inventory?
-    if self:hasRangedAmmo() then
-    	--check if types match
-    	if weapon.ranged then
-    		if not weapon.ammo_type == self:getRangedAmmo().archery_ammo then return end
-    	else
-    		if not self:getRangedWeapon().ammo_type == self:getRangedAmmo().archery_ammo then return end
-    	end
-    end
-
-    if self:hasRangedWeapon() then
-
-    	self:removeObject(inven, weapon, true)
-
-    	self:addObject(mh, self:getRangedWeapon())
-    end
-
-    if self:hasRangedAmmo() then
-    	self:removeObject(inven, ammo, true)
-
-    	self:addObject(am, self:getRangedAmmo())
-    end
-end
-
-function _M:wieldMelee()
-	local shield = self:getInven("OFF_HAND")[1]
-    local weapon = self:getInven("MAIN_HAND")[1]
-
-    local mh = self.inven[self.INVEN_MAIN_HAND]
-    local oh = self.inven[self.INVEN_OFF_HAND]
-
-    if self:hasMeleeWeapon() then
-        self:removeObject(inven, weapon, true)
-
-        self:addObject(oh, self:getMeleeWeapon())
-    end
-
 end
 
 
