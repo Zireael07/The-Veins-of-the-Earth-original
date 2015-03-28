@@ -439,6 +439,18 @@ function _M:displace(target)
 	if self.describeFloor then self:describeFloor(self.x, self.y, true) end
 end
 
+--NOTE: Monkey patch for log+flyer problems
+function _M:setEffect(eff_id, dur, p, silent)
+	local visible, srcSeen = game:logVisible(self)  -- should a message be displayed?
+
+	if visible then
+    	engine.interface.ActorTemporaryEffects.setEffect(self, eff_id, dur, p, silent)
+	else
+		engine.interface.ActorTemporaryEffects.setEffect(self, eff_id, dur, p, true)
+	end
+end
+
+
 --- Reveals location surrounding the actor
 function _M:magicMap(radius, x, y, checker)
 	x = x or self.x
