@@ -89,7 +89,7 @@ newAI("flee_simple", function(self)
             end
             for _, side in ipairs(check_order) do
                 local check_dir = sides[side]
-                local sx, sy = util.coordAddDir(self.x, self.y, check_dir)  
+                local sx, sy = util.coordAddDir(self.x, self.y, check_dir)
                 if self:canMove(sx, sy) then
                     dir = check_dir
                     break
@@ -107,7 +107,7 @@ newAI("flee_dmap", function(self)
 
         local c = a:distanceMap(self.x, self.y)
         local dir = 5
-        
+
         if c and ax == a.x and ay == a.y then
             for _, i in ipairs(util.adjacentDirs()) do
                 local sx, sy = util.coordAddDir(self.x, self.y, i)
@@ -125,44 +125,6 @@ newAI("flee_dmap", function(self)
             return self:moveDirection(util.coordAddDir(self.x, self.y, dir))
         end
 
-    end
-end)
-
---Based on fear code
-newAI("flee_fear", function(self)
-    if self.ai_target.actor then
-        local a = self.ai_target.actor
-        local ax, ay = self:aiSeeTargetPos(a)
-
-        local distance = core.fov.distance(self.x, self.y, ax, ay)
-        if distance <= 5 then
-
-            local bestX, bestY
-            local bestDistance = 0
-            local start = rng.range(0, 8)
-            for i = start, start + 8 do
-                local x = self.x + (i % 3) - 1
-                local y = self.y + math.floor((i % 9) / 3) - 1
-
-                if x ~= self.x or y ~= self.y then
-                    local distance = core.fov.distance(x, y, ax, ay)
-                    if distance > bestDistance
-                        and game.level.map:isBound(x, y)
-                        and not game.level.map:checkAllEntities(x, y, "block_move", self)
-                        and not game.level.map(x, y, Map.ACTOR) then
-                            bestDistance = distance
-                            bestX = x
-                            bestY = y
-                    end
-                end
-            end
-
-            if bestX then
-                self:move(bestX, bestY, false)
-            else
-                 self:useEnergy(game.energy_to_act * self:combatMovementSpeed(bestX, bestY))
-            end
-        end
     end
 end)
 
@@ -227,7 +189,7 @@ newAI("move_complex", function(self)
     if self.ai_target.actor and self.x and self.y then
         local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
         local moved
-        
+
         -- Can we use A* due to damage?
         if not moved and self.ai_state.damaged_turns and self.ai_state.damaged_turns > 0 then
             moved = self:runAI("move_astar")
@@ -244,7 +206,7 @@ newAI("move_complex", function(self)
         end
 
         -- Check blocking
-        if not moved and self:hasLOS(tx, ty) then 
+        if not moved and self:hasLOS(tx, ty) then
             -- Make sure that we are indeed blocked
             moved = self:runAI("move_simple")
             if not moved then
@@ -275,7 +237,7 @@ end)
 
 -- Find an hostile target
 -- this requires the ActorFOV interface, or an interface that provides self.fov.actors*
-newAI("target_simple", function(self)
+--[[newAI("target_simple", function(self)
     if self.ai_target.actor and not self.ai_target.actor.dead and rng.percent(90) then return true end
 
     -- Find closer enemy and target it
@@ -292,7 +254,7 @@ newAI("target_simple", function(self)
             return true
         end
     end
-end)
+end)]]
 
 newAI("target_player", function(self)
     self:setTarget(game.player)
