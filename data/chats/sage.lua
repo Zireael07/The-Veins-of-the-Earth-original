@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
 -- Check for unidentified stuff
 local function can_auto_id(npc, player)
@@ -16,7 +16,7 @@ local id_item = function(npc, player)
             if price > player.money then require("engine.ui.Dialog"):simplePopup("Not enough money", "This costs 1100 silver, you need more money.") return end
                 player:incMoney(-price)
                 o:identify()
-      
+
                 game.logPlayer(player, "%s identifies %s", npc.name:capitalize(), o:getName{do_colour=true, no_count=true})
 
         end)
@@ -27,11 +27,11 @@ end
 newChat{id="start",
     text=[[Welcome! Maybe you need me to identify an item?]],
     answers = {
-        {[[No, I have no need of your services.]], cond=function(npc, player) 
+        {[[No, I have no need of your services.]], cond=function(npc, player)
         if player:getInt() < 10 then return end
         return true
     end},
-        {[[Me no need identify.]], cond=function(npc, player) 
+        {[[Me no need identify.]], cond=function(npc, player)
         if player:getInt() >= 10 then return end
         return true
     end},
@@ -41,7 +41,7 @@ newChat{id="start",
             if price > player.money then require("engine.ui.Dialog"):simplePopup("Not enough money", "This costs 1100 silver, you need more money.") return end
                 player:incMoney(-price)
                 o:identify()
-      
+
                 game.logPlayer(player, "%s identifies %s", npc.name:capitalize(), o:getName{do_colour=true, no_count=true})
 
         end)
@@ -53,7 +53,7 @@ newChat{id="start",
             return true
         end
     },
-        
+    {[[Back away.]], action = function(npc, player) player:displace(npc) end    },
     },
 }
 

@@ -129,6 +129,7 @@ newChat{id="start",
         end
         },
     },
+    {[[Back away.]], action = function(npc, player) player:displace(npc) end    },
 }
 
 return "start"

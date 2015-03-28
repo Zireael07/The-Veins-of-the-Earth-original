@@ -19,7 +19,7 @@ newChat{id="start",
             player:incMoney(-price)
             local d = rng.dice(1,8)
             player:heal(d)
-            game.log("%s casts a spell and heals you of %d damage"):format(self.name:capitalize(), d)
+            game.log("%s casts a spell and heals you of %d damage"):format(npc.name:capitalize(), d)
             --end
         end, cond=function(npc, player)
             if player.money < 100 then return end
@@ -33,7 +33,7 @@ newChat{id="start",
             player:incMoney(-price)
             local d = rng.dice(2,8)
             player:heal(d)
-            game.log("%s casts a spell and heals you of %d damage"):format(self.name:capitalize(), d)
+            game.log("%s casts a spell and heals you of %d damage"):format(npc.name:capitalize(), d)
         end, cond=function(npc, player)
             if player.money < 600 then return end
             return true
@@ -46,12 +46,13 @@ newChat{id="start",
             player:incMoney(-price)
             local d = rng.dice(2,8)
             player:heal(d)
-            game.log("%s casts a spell and heals you of %d damage"):format(self.name:capitalize(), d)
+            game.log("%s casts a spell and heals you of %d damage"):format(npc.name:capitalize(), d)
         end, cond=function(npc, player)
             if player.money < 2800 then return end
             return true
         end
         },
+        {[[Back away.]], action = function(npc, player) player:displace(npc) end    },
     },
 }
 
