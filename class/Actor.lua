@@ -1668,6 +1668,20 @@ function _M:canBe(what)
 	return true
 end
 
+function _M:doWear(inven, item, o)
+    self:removeObject(inven, item, true)
+    local ro = self:wearObject(o, true, true)
+    if ro then
+        if type(ro) == "table" then self:addObject(inven, ro) end
+    elseif not ro then
+        self:addObject(inven, o)
+    end
+    self:sortInven()
+    self:useEnergy()
+    self.changed = true
+end
+
+
 function _M:addedToLevel(level, x, y)
 --Warning: got a loop once
 --Safeguards against overly high CR monsters
