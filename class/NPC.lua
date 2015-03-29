@@ -83,6 +83,10 @@ function _M:doFOV()
 
 end
 
+function _M:onTalentLuaError(ab, err)
+	self:useEnergy()  -- prevent infinitely long erroring out turns
+end
+
 --Taken from ToME 4
 --- Give target to others
 function _M:seen_by(who)
@@ -361,95 +365,33 @@ function _M:pickupObject(x, y)
 end
 
 --Swap weapons functions
-function _M:hasRangedWeapon()
-	local inven = self.inven[self.INVEN_INVEN]
-		for k, o in ipairs(inven) do
-			if  o.ranged == true then
-				return true
-			end
-		end
-		return false
-end
-
-function _M:hasMeleeWeapon()
-    local inven = self.inven[self.INVEN_INVEN]
-        for k, o in ipairs(inven) do
-            if  o.ranged == false then
-                return true
-            end
-        end
-        return false
-end
-
-function _M:hasRangedAmmo()
-	local inven = self.inven[self.INVEN_INVEN]
-		for k, o in ipairs(inven) do
-			if  o.ammo == true then
-				return true
-			end
-		end
-		return false
-end
-
-function _M:getRangedAmmo()
-	local inven = self.inven[self.INVEN_INVEN]
-		for k, o in ipairs(inven) do
-			if  o.ammo == true then
-				return o
-			end
-		end
-		return nil
-end
-
-function _M:getRangedWeapon()
-	local inven = self.inven[self.INVEN_INVEN]
-		for k, o in ipairs(inven) do
-			if  o.ranged == true then
-				return o
-			end
-		end
-		return nil
-end
-
-function _M:getMeleeWeapon()
-    local inven = self.inven[self.INVEN_INVEN]
-        for k, o in ipairs(inven) do
-            if  o.ranged == false then
-                return o
-            end
-        end
-        return nil
-end
-
-
 function _M:wieldRanged()
 	local weapon = self:getInven("MAIN_HAND")[1]
     local ammo = self:getInven("QUIVER")[1]
 
     local mh = self.inven[self.INVEN_MAIN_HAND]
     local am = self.inven[self.INVEN_QUIVER]
+	local inven = self:getInven("INVEN")
+
+	local weapon_inven, index = self:findInInventoryBy(inven, "ranged", true)
+	local ammo, item = self:findInInventoryBy(inven, "ammo", true)
 
     --Do we have ammo in inventory?
-    if self:hasRangedAmmo() then
+    if ammo then
     	--check if types match
-    	if weapon.ranged then
-    		if not weapon.ammo_type == self:getRangedAmmo().archery_ammo then return end
-    	else
-    		if not self:getRangedWeapon().ammo_type == self:getRangedAmmo().archery_ammo then return end
-    	end
+    	if weapon and weapon.ranged then
+    		if not weapon.ammo_type == ammo.archery_ammo then return end
+    	elseif weapon_inven then
+    		if not weapon_inven.ammo_type == ammo.archery_ammo then return end
+    	else end
     end
 
-    if self:hasRangedWeapon() then
-
-    	self:removeObject(inven, weapon, true)
-
-    	self:addObject(mh, self:getRangedWeapon())
+    if weapon_inven then
+		self:doWear(inven, index, weapon_inven)
     end
 
-    if self:hasRangedAmmo() then
-    	self:removeObject(inven, ammo, true)
-
-    	self:addObject(am, self:getRangedAmmo())
+    if ammo then
+		self:doWear(inven, item, ammo)
     end
 end
 
@@ -460,10 +402,11 @@ function _M:wieldMelee()
     local mh = self.inven[self.INVEN_MAIN_HAND]
     local oh = self.inven[self.INVEN_OFF_HAND]
 
-    if self:hasMeleeWeapon() then
-        self:removeObject(inven, weapon, true)
+	local inven = self:getInven("INVEN")
+	local weapon_inven, index = self:findInInventoryBy(inven, ranged, false)
 
-        self:addObject(oh, self:getMeleeWeapon())
+    if weapon_inven then
+		self:doWear(inven, index, weapon_inven)
     end
 
 end
