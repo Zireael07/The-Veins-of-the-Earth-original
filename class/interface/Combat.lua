@@ -664,13 +664,14 @@ end
 
 --Attacks of opportunity
 --All opponents in range get an AoO
-function _M:provokeAoO()
+function _M:provokeAoO(x, y)
     if not self.x then end
     if self.dead then end
 	for i, act in ipairs(self.fov.actors_dist) do
-        dist = core.fov.distance(self.x, self.y, act.x, act.y)
+    --    dist = core.fov.distance(self.x, self.y, act.x, act.y)
         if act ~= self and act:reactionToward(self) < 0 and not act.dead then
-        	if dist <= 1 then --TODO: or 2 and wielding a polearm
+            if act:isNear(x,y, 1) then
+    --    	if dist <= 1 then --TODO: or 2 and wielding a polearm
                 self:logCombat(self, "%s makes an attack of opportunity!", act:getLogName():capitalize())
                 act:attack(self)
         	else end

@@ -123,12 +123,12 @@ function _M:init(t, no_default)
 	self.skill_jump = 0
 	self.skill_knowledge = 0
 	self.skill_listen = 0
-	--Note: maybe mining skill from Incursion?
+	--NOTE: maybe mining skill from Incursion?
 	self.skill_movesilently = 0
 	self.skill_openlock = 0
 	self.skill_ride = 0
 	self.skill_search = 0
-	--TO DO: Seneschal skill for high-tier stuff (owning land, fortresses etc.)
+	--TODO: Seneschal skill for high-tier stuff (owning land, fortresses etc.)
 	self.skill_sensemotive = 0
 	self.skill_swim = 0
 	self.skill_pickpocket = 0 --what is called sleight of hand in 3.5
@@ -369,7 +369,24 @@ function _M:move(x, y, force)
             return false
         end
 
+		--Attacks of opportunity
+		--NOTE: why the heck does it double attacks and doesProvokeAoO nearly never triggers?
+		--[[		if not force then
+				--if we're not attacking sb
+				if not game.level.map:checkAllEntities(x, y, "block_move", self, true) then
+					--logging
+					if self == game.player then
+					if ox and oy and x and y then
+					game.log("Checking for AoO: ox %d, oy %d, x %d, y %d", ox, oy, x, y)
+					end
+					end
+
+					if self:doesProvokeAoO(ox, oy) then self:provokeAoO(ox, oy) end
+				end
+				end]]
+
 	if force or self:enoughEnergy() then
+
 		-- Check for confusion or random movement flag.
 		local rand_prob = self.ai_state and self.ai_state.random_move or 0
 		local rand_move = self:hasEffect(self.EFF_CONFUSED) or rng.range(1,100) <= rand_prob
@@ -379,6 +396,9 @@ function _M:move(x, y, force)
 
 		moved = engine.Actor.move(self, x, y, force)
 
+
+		--if not force and moved and (self.x ~= ox or self.y ~= oy) then
+
 		if not force and moved and (self.x ~= ox or self.y ~= oy) and not self.did_energy then
 				local speed = self:combatMovementSpeed(x, y)
 			local use_energy = true
@@ -386,9 +406,6 @@ function _M:move(x, y, force)
 			if use_energy then
 					self:useEnergy(game.energy_to_act * speed)
 			end
-
-		--	local speed = 1.0 - (1.0 * (self.movement_speed_bonus or 0))
-		--	self:useEnergy(game.energy_to_act * speed)
 		end
 	end
 	self.did_energy = nil
@@ -955,7 +972,6 @@ function _M:die(src, death_note)
 			corpse.unided_name = self.name.." corpse"
 			corpse.victim = self
 			game.zone:addEntity(game.level, corpse, "object", dropx, dropy)
-		--	game.log("Placed corpse "..self.name..dropx..dropy)
 		end
 	end
 
@@ -1024,7 +1040,7 @@ function _M:deathDivineReaction()
 		and self.type == "undead" then
 	--	and self.alignment == "lawful evil" or self.alignment == "neutral evil" or self.alignment == "chaotic evil"
 			player:incFavorFor("Hesani", 25*(math.max(1, self.challenge)))
-			--TO DO: remove favor for killing living
+			--TODO: remove favor for killing living
 	end
 
 	if player:isFollowing("Immotian") then
@@ -1069,8 +1085,8 @@ function _M:deathDivineReaction()
 	end
 
 	if player:isFollowing("Semirath") then
-	--	TO DO: deduce points for killing normally evil race and self.alignment == "lawful good" or self.alignment == "neutral good" or self.alignment == "chaotic good"
-	-- TO DO: deduce points for killing non-evil non-outsider non-elemental humanoid
+	--	TODO: deduce points for killing normally evil race and self.alignment == "lawful good" or self.alignment == "neutral good" or self.alignment == "chaotic good"
+	-- TODO: deduce points for killing non-evil non-outsider non-elemental humanoid
 	end
 
 end
@@ -1169,7 +1185,7 @@ end
     end
 end
 
---Ways for NPCs to spot enemies
+--Ways for actors to spot enemies
 function _M:spotEnemies()
   local seen = false
   -- Check for visible monsters, only see LOS actors, so telepathy wont prevent resting
@@ -1191,14 +1207,23 @@ function _M:isThreatened()
     end
 
     return false
+end
 
---[[  local seen = false
-  -- Check for visible monsters, only see LOS actors, so telepathy wont prevent resting
-  core.fov.calc_circle(self.x, self.y, game.level.map.w, game.level.map.h, 3, function(_, x, y) return game.level.map:opaque(x, y) end, function(_, x, y)
-  local actor = game.level.map(x, y, game.level.map.ACTOR)
-  if actor and self:reactionToward(actor) < 0 and self:canSee(actor) and game.level.map.seens(x, y) then seen = true end
-end, nil)
-return seen]]
+function _M:doesProvokeAoO(x, y)
+	if not self.x then return nil end
+	if self.dead then return nil end
+
+	for i, act in ipairs(self.fov.actors_dist) do
+	--	dist = core.fov.distance(x, y, act.x, act.y)
+    --    dist = core.fov.distance(self.x, self.y, act.x, act.y)
+        if act ~= self and act:reactionToward(self) < 0 and not act.dead then
+        	if act:isNear(x,y, 1) --dist <= 1--TODO: or 2 and wielding a polearm
+			then game.log("provoked AoO") return true
+        	else return false end
+    	end
+    end
+
+    return false
 end
 
 --Helper function for caster classes
