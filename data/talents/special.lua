@@ -39,7 +39,7 @@ newTalent{
             if not silent then game.log("You need a ranged weapon to shoot with!") end return nil end
         if weapon and weapon.ammo_type and not ammo then
             if not silent then game.log("Your weapon requires ammo!") end return nil end
-        if weapon and not weapon.ammo_type == ammo.archery_ammo then
+        if weapon and ammo and not weapon.ammo_type == ammo.archery_ammo then
             if not silent then game.log("You have the wrong ammo type equipped!") end return nil end
         if ammo and ammo.combat.capacity <= 0 then
             if not silent then game.log("You're out of ammo!") end return nil end
