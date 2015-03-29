@@ -665,7 +665,8 @@ end
 --Attacks of opportunity
 --All opponents in range get an AoO
 function _M:provokeAoO(x, y)
-    if not self.x then end
+    game.log("we've provoked an AoO")
+--    if not self.x then end
     if self.dead then end
 	for i, act in ipairs(self.fov.actors_dist) do
     --    dist = core.fov.distance(self.x, self.y, act.x, act.y)

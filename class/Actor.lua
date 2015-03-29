@@ -369,7 +369,6 @@ function _M:move(x, y, force)
             return false
         end
 
-		--Attacks of opportunity
 		--NOTE: why the heck does it double attacks and doesProvokeAoO nearly never triggers?
 		--[[		if not force then
 				--if we're not attacking sb
@@ -396,8 +395,18 @@ function _M:move(x, y, force)
 
 		moved = engine.Actor.move(self, x, y, force)
 
+		--Attacks of opportunity
+		--NOTE: no more doubling but only provokes on a kill? wha?
+	--[[	if not force and moved and (self.x ~= ox or self.y ~= oy) then
+			--logging
+			if self == game.player then
+				if ox and oy and x and y then
+					game.log("Checking for AoO: ox %d, oy %d, x %d, y %d", ox, oy, x, y)
+				end
+			end
 
-		--if not force and moved and (self.x ~= ox or self.y ~= oy) then
+			if self:doesProvokeAoO(ox, oy) then self:provokeAoO(ox, oy) end
+		end]]
 
 		if not force and moved and (self.x ~= ox or self.y ~= oy) and not self.did_energy then
 				local speed = self:combatMovementSpeed(x, y)
@@ -1210,7 +1219,7 @@ function _M:isThreatened()
 end
 
 function _M:doesProvokeAoO(x, y)
-	if not self.x then return nil end
+--	if not self.x then return nil end
 	if self.dead then return nil end
 
 	for i, act in ipairs(self.fov.actors_dist) do
