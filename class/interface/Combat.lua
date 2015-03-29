@@ -661,3 +661,27 @@ function _M:logCombat(target, style, ...)
   local visible, srcSeen, tgtSeen = game:logVisible(self, target)  -- should a message be displayed?
   if visible then game.uiset.logdisplay(game:logMessage(self, srcSeen, target, tgtSeen, style, ...)) end
 end
+
+--Attacks of opportunity
+--All opponents in range get an AoO
+function _M:provokeAoO()
+    if not self.x then end
+    if self.dead then end
+	for i, act in ipairs(self.fov.actors_dist) do
+        dist = core.fov.distance(self.x, self.y, act.x, act.y)
+        if act ~= self and act:reactionToward(self) < 0 and not act.dead then
+        	if dist <= 1 then --TODO: or 2 and wielding a polearm
+                self:logCombat(self, "%s makes an attack of opportunity!", act:getLogName():capitalize())
+                act:attack(self)
+        	else end
+    	end
+    end
+end
+
+--For (future) bull rush or grappling
+function _M:provokeSingleAoO(target)
+    if not self.x then end
+    if self.dead then end
+
+    target:attack(self)
+end
