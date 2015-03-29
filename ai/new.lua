@@ -98,6 +98,21 @@ newAI("pickup_items", function(self)
     end
 end)
 
+newAI("swap_weapons", function(self)
+    if self:getInven(self.INVEN_INVEN) then
+        if self.ai_target.actor then
+            local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
+            if self:isNear(tx, ty, 3) then
+                game.log("Trying to wield melee weapon")
+                self:wieldMelee()
+            else
+                game.log("Trying to wield ranged weapon")
+                self:wieldRanged()
+            end
+        end
+    end
+end)
+
 
 --NOTE: three AI levels corresponding to Intelligence
 --"humanoid_level" is humanoid and Int 3+
@@ -113,6 +128,8 @@ end)
 
 newAI("humanoid_level", function(self)
     self:runAI("pickup_items")
+
+    self:runAI("swap_weapons")
 
     self:runAI("flee_if_wounded")
 end)
