@@ -420,7 +420,6 @@ function _M:dealDamage(target, weapon, crit, sneak)
           local poison = self.poison
           self:applyPoison(poison, target)
           self:logCombat(target, ("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name))
-      --    game.log(("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name:capitalize()))
         end
 
         target:takeHit(dam, self)
@@ -441,16 +440,15 @@ function _M:applyPoison(poison, target)
 
   if not target:canBe("poison") then
     self:logCombat(target, "Target seems unaffected by poison")
-  --game.log("Target seems unaffected by poison")
   end
 
   if target:fortitudeSave(poison_dc[poison]) then
     self:logCombat(target, ("Target resists poison, DC %d"):format(poison_dc[poison]))
-  --  game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
+
   --Failed save, set timer for secondary damage
   else
     target.poison_timer = 10
-    if target == game.player then --game.flashLog(game.flash.BAD, "You are poisoned!")
+    if target == game.player then
       game.log("You are poisoned!")
     else game.log("Target is poisoned!") end
       --Failed save, time for primary poison damage
@@ -665,16 +663,16 @@ end
 --Attacks of opportunity
 --All opponents in range get an AoO
 function _M:provokeAoO(x, y)
-    game.log("we've provoked an AoO")
 --    if not self.x then end
     if self.dead then end
 	for i, act in ipairs(self.fov.actors_dist) do
-    --    dist = core.fov.distance(self.x, self.y, act.x, act.y)
-        if act ~= self and act:reactionToward(self) < 0 and not act.dead then
-            if act:isNear(x,y, 1) then
-    --    	if dist <= 1 then --TODO: or 2 and wielding a polearm
-                self:logCombat(self, "%s makes an attack of opportunity!", act:getLogName():capitalize())
-                act:attack(self)
+        dist = core.fov.distance(x, y, act.x, act.y)
+        if act ~= self and act:reactionToward(self) < 0 and not act.dead and not self.dead then
+            --NOTE: needs to be 2 to trigger even though it doesn't seem logical
+        	if dist <= 2 then --TODO: or 3 and wielding a polearm
+            --    game.log(("%s makes an attack of opportunity!"):format(act:getLogName():capitalize()))
+                act:logCombat(self, ("%s makes an attack of opportunity!"):format(act:getLogName():capitalize()))
+                act:attack(self, true)
         	else end
     	end
     end
@@ -685,5 +683,5 @@ function _M:provokeSingleAoO(target)
     if not self.x then end
     if self.dead then end
 
-    target:attack(self)
+    target:attack(self, true)
 end

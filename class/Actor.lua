@@ -369,21 +369,6 @@ function _M:move(x, y, force)
             return false
         end
 
-		--NOTE: why the heck does it double attacks and doesProvokeAoO nearly never triggers?
-		--[[		if not force then
-				--if we're not attacking sb
-				if not game.level.map:checkAllEntities(x, y, "block_move", self, true) then
-					--logging
-					if self == game.player then
-					if ox and oy and x and y then
-					game.log("Checking for AoO: ox %d, oy %d, x %d, y %d", ox, oy, x, y)
-					end
-					end
-
-					if self:doesProvokeAoO(ox, oy) then self:provokeAoO(ox, oy) end
-				end
-				end]]
-
 	if force or self:enoughEnergy() then
 
 		-- Check for confusion or random movement flag.
@@ -396,17 +381,14 @@ function _M:move(x, y, force)
 		moved = engine.Actor.move(self, x, y, force)
 
 		--Attacks of opportunity
-		--NOTE: no more doubling but only provokes on a kill? wha?
-	--[[	if not force and moved and (self.x ~= ox or self.y ~= oy) then
+		if not force and moved and (self.x ~= ox or self.y ~= oy) then
 			--logging
-			if self == game.player then
-				if ox and oy and x and y then
-					game.log("Checking for AoO: ox %d, oy %d, x %d, y %d", ox, oy, x, y)
-				end
-			end
+		--[[	if self == game.player then
+				game.log("Checking for AoO: ox %d, oy %d, x %d, y %d", ox, oy, x, y)
+			end]]
 
 			if self:doesProvokeAoO(ox, oy) then self:provokeAoO(ox, oy) end
-		end]]
+		end
 
 		if not force and moved and (self.x ~= ox or self.y ~= oy) and not self.did_energy then
 				local speed = self:combatMovementSpeed(x, y)
@@ -1223,11 +1205,11 @@ function _M:doesProvokeAoO(x, y)
 	if self.dead then return nil end
 
 	for i, act in ipairs(self.fov.actors_dist) do
-	--	dist = core.fov.distance(x, y, act.x, act.y)
-    --    dist = core.fov.distance(self.x, self.y, act.x, act.y)
+		dist = core.fov.distance(x, y, act.x, act.y)
         if act ~= self and act:reactionToward(self) < 0 and not act.dead then
-        	if act:isNear(x,y, 1) --dist <= 1--TODO: or 2 and wielding a polearm
-			then game.log("provoked AoO") return true
+			--NOTE: needs to be 2 to trigger even though it doesn't seem logical
+			if dist <= 2 --TODO: or 3 and wielding a polearm
+			then return true
         	else return false end
     	end
     end
