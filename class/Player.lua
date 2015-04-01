@@ -692,6 +692,11 @@ end, nil)
 return seen
 end
 
+function _M:onChat()
+	self:runStop("chat started")
+	self:restStop("chat started")
+end
+
 --- Can we continue resting ?
 -- We can rest if no hostiles are in sight, and if we need life/mana/stamina (and their regen rates allows them to fully regen)
 function _M:restCheck()
@@ -845,11 +850,23 @@ function _M:runCheck(ignore_memory)
   return engine.interface.PlayerRun.runCheck(self)
 end
 
+--- Called after running a step
+function _M:runMoved()
+	self:playerFOV()
+--[[	if self.running and self.running.explore then
+		game.level.map:particleEmitter(self.x, self.y, 1, "dust_trail")
+	end]]
+end
+
+
 --Castler's fix for still lit tiles
 function _M:runStopped()
     game.level.map.clean_fov = true
     self:playerFOV()
 
+	-- if you stop at an object (such as on a trap), then mark it as seen
+	local obj = game.level.map:getObject(x, y, 1)
+	if obj then game.level.map.attrs(x, y, "obj_seen", true) end
 end
 
 --- Activates a hotkey with a type "inventory" (taken from ToME 4)
