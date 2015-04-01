@@ -587,6 +587,18 @@ function _M:onTakeHit(value, src)
   return ret
 end
 
+--From ToME (stop resting on nasty stuff)
+function _M:on_set_temporary_effect(eff_id, e, p)
+	local ret = mod.class.Actor.on_set_temporary_effect(self, eff_id, e, p)
+
+	if e.status == "detrimental" and not e.no_stop_resting and p.dur > 0 then
+		self:runStop("detrimental status effect")
+		self:restStop("detrimental status effect")
+	end
+
+	return ret
+end
+
 function _M:die(src, death_note)
   if self.runStop then self:runStop("died") end
   if self.restStop then self:restStop("died") end
