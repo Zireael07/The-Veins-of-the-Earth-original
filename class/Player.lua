@@ -490,7 +490,7 @@ function _M:updateMainShader()
   if game.fbo_shader then
   -- Set shader HP warning
     if self.life ~= self.old_life then
-      if self.life < (self.max_life*0.5) then game.fbo_shader:setUniform("hp_warning", 1 - (self.life / self.max_life))
+      if self.life < (self.max_life*0.2) then game.fbo_shader:setUniform("hp_warning", 1 - (self.life / self.max_life))
       else game.fbo_shader:setUniform("hp_warning", 0) end
     end
 
@@ -664,6 +664,7 @@ function _M:die(src, death_note)
     mod.class.Actor.die(self, src)
   end]]
 end
+
 
 function _M:setName(name)
   self.name = name
@@ -848,8 +849,43 @@ end
 function _M:runStopped()
     game.level.map.clean_fov = true
     self:playerFOV()
+
 end
 
+--- Activates a hotkey with a type "inventory" (taken from ToME 4)
+function _M:hotkeyInventory(name)
+	local find = function(name)
+		local os = {}
+		-- Sort invens, use worn first
+		local invens = {}
+		for inven_id, inven in pairs(self.inven) do
+			invens[#invens+1] = {inven_id, inven}
+		end
+		table.sort(invens, function(a,b) return (a[2].worn and 1 or 0) > (b[2].worn and 1 or 0) end)
+		for i = 1, #invens do
+			local inven_id, inven = unpack(invens[i])
+			local o, item = self:findInInventory(inven, name, {no_count=true, force_id=true, no_add_name=true})
+			if o and item then os[#os+1] = {o, item, inven_id, inven} end
+		end
+		if #os == 0 then return end
+		table.sort(os, function(a, b) return (a[4].use_speed or 1) < (b[4].use_speed or 1) end)
+		return os[1][1], os[1][2], os[1][3]
+	end
+
+	local o, item, inven = find(name)
+	if not o then
+		Dialog:simplePopup("Item not found", "You do not have any "..name..".")
+	else
+		-- Wear it ??
+		if o:wornInven() and not o.wielded and inven == self.INVEN_INVEN then
+			if not o.use_no_wear then
+				self:doWear(inven, item, o)
+				return
+			end
+		end
+		self:playerUseItem(o, item, inven)
+	end
+end
 
 --- Move with the mouse
 -- We just feed our spotHostile to the interface mouseMove
@@ -999,11 +1035,14 @@ end
   function _M:playerPickup()
     -- If 2 or more objects, display a pickup dialog, otherwise just picks up
     if game.level.map:getObject(self.x, self.y, 2) then
-        local d d = self:showPickupFloor("Pickup", nil, function(o, item)
-            self:pickupFloor(item, true)
-            self.changed = true
-            d:used()
-        end)
+		local titleupdator = self:getEncumberTitleUpdater("Pickup")
+		local d d = self:showPickupFloor(titleupdator(), nil, function(o, item)
+			local o = self:pickupFloor(item, true)
+			if o and type(o) == "table" then o.__new_pickup = true end
+			self.changed = true
+			d:updateTitle(titleupdator())
+			d:used()
+		end)
     else
         if self:pickupFloor(1, true) then
             self:sortInven()
@@ -1014,16 +1053,82 @@ end
 end
 
 function _M:playerDrop()
-if self.no_inventory_access then return end
-  local inven = self:getInven(self.INVEN_INVEN)
-
-    local d d = self:showInventory("Drop object", inven, nil, function(o, item)
-      self:doDrop(inven, item)
-
-    return true
-  end)
-
+	if self.no_inventory_access then return end
+	local inven = self:getInven(self.INVEN_INVEN)
+	local titleupdator = self:getEncumberTitleUpdater("Drop object")
+	local d d = self:showInventory(titleupdator(), inven, nil, function(o, item)
+		self:doDrop(inven, item, function() d:updateList() end)
+		d:updateTitle(titleupdator())
+		return true
+	end)
 end
+
+--Taken from ToME
+function _M:playerWear()
+	if self.no_inventory_access then return end
+	local inven = self:getInven(self.INVEN_INVEN)
+	local titleupdator = self:getEncumberTitleUpdater("Wield/wear object")
+	local d d = self:showInventory(titleupdator(), inven, function(o)
+		return o:wornInven() and self:getInven(o:wornInven()) and true or false
+	end, function(o, item)
+		self:doWear(inven, item, o)
+		d:updateTitle(titleupdator())
+		return true
+	end)
+end
+
+function _M:playerTakeoff()
+	if self.no_inventory_access then return end
+	local titleupdator = self:getEncumberTitleUpdater("Take off object")
+	local d d = self:showEquipment(titleupdator(), nil, function(o, inven, item)
+		self:doTakeoff(inven, item, o)
+		d:updateTitle(titleupdator())
+		return true
+	end)
+end
+
+--Usable items
+function _M:playerUseItem(object, item, inven)
+    local use_fct = function(o, inven, item)
+        if not o then return end
+        local co = coroutine.create(function()
+            self.changed = true
+
+            local ret = o:use(self, nil, inven, item) or {}
+            if not ret.used then return end
+			if ret.id then
+				o:identify(true)
+			end
+            if ret.destroy then
+                if o.multicharge and o.multicharge > 1 then
+                    o.multicharge = o.multicharge - 1
+                else
+                    local _, del = self:removeObject(self:getInven(inven), item)
+                    if del then
+                        game.log("You have no more %s.", o:getName{no_count=true, do_color=true})
+                    else
+                        game.log("You have %s.", o:getName{do_color=true})
+                    end
+                    self:sortInven(self:getInven(inven))
+                end
+            end
+        end)
+        local ok, ret = coroutine.resume(co)
+        if not ok and ret then print(debug.traceback(co)) error(ret) end
+        return true
+    end
+
+    if object and item then return use_fct(object, inven, item) end
+
+    local titleupdator = self:getEncumberTitleUpdater("Use object")
+    self:showEquipInven(titleupdator(),
+        function(o)
+            return o:canUseObject()
+        end,
+        use_fct
+    )
+end
+
 
 function _M:doDrop(inven, item, on_done, nb)
     if self.no_inventory_access then return end
@@ -1115,45 +1220,6 @@ function _M:doTakeoff(inven, item, o)
     self.changed = true
 end
 
---Usable items
-function _M:playerUseItem(object, item, inven)
-    local use_fct = function(o, inven, item)
-        if not o then return end
-        local co = coroutine.create(function()
-            self.changed = true
-
-            local ret = o:use(self, nil, inven, item) or {}
-            if not ret.used then return end
-            if ret.destroy then
-                if o.multicharge and o.multicharge > 1 then
-                    o.multicharge = o.multicharge - 1
-                else
-                    local _, del = self:removeObject(self:getInven(inven), item)
-                    if del then
-                        game.log("You have no more %s.", o:getName{no_count=true, do_color=true})
-                    else
-                        game.log("You have %s.", o:getName{do_color=true})
-                    end
-                    self:sortInven(self:getInven(inven))
-                end
-            end
-        end)
-        local ok, ret = coroutine.resume(co)
-        if not ok and ret then print(debug.traceback(co)) error(ret) end
-        return true
-    end
-
-    if object and item then return use_fct(object, inven, item) end
-
-    local titleupdator = self:getEncumberTitleUpdator("Use object")
-    self:showEquipInven(titleupdator(),
-        function(o)
-            return o:canUseObject()
-        end,
-        use_fct
-    )
-end
-
 --Container stuff, adapted from Gatecrashers
 function _M:putIn(bag)
   local inven = self:getInven(self.INVEN_INVEN)
@@ -1193,6 +1259,40 @@ function _M:takeOut(bag)
     return true
   end)
 end
+
+--Taken from ToME
+--- Call when an object is added
+function _M:onAddObject(o)
+	mod.class.Actor.onAddObject(self, o)
+	if self.hotkey and o:attr("auto_hotkey") and config.settings.tome.auto_hotkey_object then
+		local position
+		local name = o:getName{no_count=true, force_id=true, no_add_name=true}
+
+		if self.player then
+			if self == game:getPlayer(true) then
+				position = self:findQuickHotkey("Player: Specific", "inventory", name)
+				if not position then
+					local global_hotkeys = engine.interface.PlayerHotkeys.quickhotkeys["Player: Global"]
+					if global_hotkeys and global_hotkeys["inventory"] then position = global_hotkeys["inventory"][name] end
+				end
+			else
+				position = self:findQuickHotkey(self.name, "inventory", name)
+			end
+		end
+
+		if position and not self.hotkey[position] then
+			self.hotkey[position] = {"inventory", name}
+		else
+			for i = 1, 12 * (self.nb_hotkey_pages or 5) do
+				if not self.hotkey[i] then
+					self.hotkey[i] = {"inventory", name}
+					break
+				end
+			end
+		end
+	end
+end
+
 
 --Level titles stuff
 function _M:dominantClass()
