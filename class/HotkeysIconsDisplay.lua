@@ -239,11 +239,11 @@ function _M:display()
 			end
 
 			local ctxt = nil
-			if charge_mx > 0 then
+			if charge_mx and charge_mx > 0 then
 				local charge_text = charge_nb.."/"..charge_mx
 				ctxt = self.fontmedium:draw(charge_text, w, 100, 220, 240, true)[1]
 				ctxt.fw, ctxt.fh = self.fontbig:size(charge_text)
-			end 
+			end
 
 			self.items[#self.items+1] = {i=i, x=x, y=y, e=display_entity or self.default_entity, color=color, angle=angle, key=key, gtxt=gtxt, ctxt=ctxt, frame=frame, pagesel=lpage==spage}
 			self.clics[i] = {x,y,w,h}
