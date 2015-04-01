@@ -1684,6 +1684,64 @@ function _M:canBe(what)
 	return true
 end
 
+-- Tells on_set_temporary_effect() what save to use for a given effect type
+--[[local save_for_effects = {
+	magical = "combatSpellResist",
+	mental = "combatMentalResist",
+	physical = "combatPhysicalResist",
+}]]
+
+--- Adjust temporary effects (adjusted from ToME)
+function _M:on_set_temporary_effect(eff_id, e, p)
+	p.getName = self.tempeffect_def[eff_id].getName
+	p.resolveSource = self.tempeffect_def[eff_id].resolveSource
+	if p.apply_power and (save_for_effects[e.type] or p.apply_save) then
+		local save = 0
+		p.maximum = p.dur
+		p.minimum = p.min_dur or 0 --Default minimum duration is 0. Can specify something else by putting min_dur=foo in p when calling setEffect()
+		save = self[p.apply_save or save_for_effects[e.type]](self)
+
+--[[		local percentage = 1 - ((save - p.apply_power)/20)
+		local desired = p.maximum * percentage
+		local fraction = desired % 1
+		desired = math.floor(desired) + (rng.percent(100*fraction) and 1 or 0)
+		local duration = math.min(p.maximum, desired)
+		p.dur = util.bound(duration, p.minimum or 0, p.maximum)
+		p.amount_decreased = p.maximum - p.dur
+		local save_type = nil
+
+		if p.apply_save then save_type = p.apply_save else save_type = save_for_effects[e.type] end
+		if save_type == "combatPhysicalResist" then p.save_string = "Physical save"
+		elseif save_type == "combatMentalResist" then p.save_string = "Mental save"
+		elseif save_type == "combatSpellResist" then p.save_string = "Spell save"
+		end]]
+
+		p.total_dur = p.dur
+
+		if p.dur > 0 and e.status == "detrimental" then
+		--NOTE: do the saves here
+	--[[		local saved = self:checkHit(save, p.apply_power, 0, 95)
+			local hd = {"Actor:effectSave", saved = saved, save_type = save_type, eff_id = eff_id, e = e, p = p,}
+			self:triggerHook(hd)
+			self:fireTalentCheck("callbackOnEffectSave", hd)
+			saved, eff_id, e, p = hd.saved, hd.eff_id, hd.e, hd.p
+			if saved then
+				game.logSeen(self, "#ORANGE#%s shrugs off the effect '%s'!", self.name:capitalize(), e.desc)
+				return true
+			end]]
+		end
+	end
+
+	--NOTE: Specific stuff goes here (specific interactions)
+
+--	self:fireTalentCheck("callbackOnTemporaryEffect", eff_id, e, p)
+
+	if self.player and not self.tmp[eff_id] then
+		p.__set_time = core.game.getTime()
+	end
+end
+
+--Make it available to all actors
 function _M:doWear(inven, item, o)
     self:removeObject(inven, item, true)
     local ro = self:wearObject(o, true, true)
