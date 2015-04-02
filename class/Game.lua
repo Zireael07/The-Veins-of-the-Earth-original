@@ -217,7 +217,7 @@ end
 function _M:loaded()
 	engine.GameTurnBased.loaded(self)
 	engine.interface.GameSound.loaded(self)
-	
+
 	Zone:setup{npc_class="mod.class.NPC", grid_class="mod.class.Grid", object_class="mod.class.Object", trap_class="mod.class.Trap"}
 	--New filters from GameState go here
 	Zone.check_filter = function(...) return self.state:entityFilter(...) end
@@ -1072,6 +1072,10 @@ function _M:setupCommands()
 	self.normal_key = self.key
 	self:targetSetupKey()
 
+	-- Helper function to not allow some actions on the wilderness map
+	local not_world = function(f, bypass) return function(...) if self.zone and (not self.zone.worldmap or (bypass and bypass())) then f(...) else self.logPlayer(self.player, "You cannot do that on the world map.") end end end
+
+
 	-- One key handled for normal function
 	self.key:unicodeInput(true)
 	self.key:addBinds
@@ -1312,19 +1316,35 @@ function _M:setupCommands()
     		if self.player.no_inventory_access then return end
     		self.player:playerDrop()
 		end,
+		--Taken from ToME
+		SHOW_EQUIPMENT = "SHOW_INVENTORY",
+		WEAR_ITEM = function()
+			if self.player.no_inventory_access then return end
+			self.player:playerWear()
+		end,
+		TAKEOFF_ITEM = function()
+			if self.player.no_inventory_access then return end
+			self.player:playerTakeoff()
+		end,
+		USE_ITEM = not_world(function()
+			if self.player.no_inventory_access then return end
+			self.player:playerUseItem()
+		end),
 
 		SHOW_INVENTORY = function()
     		if self.player.no_inventory_access then return end
     		local d
-    		d = self.player:showEquipInven("Inventory", nil, function(o, inven, item, button, event)
-	        	if not o then return end
-	    		local ud = require("mod.dialogs.UseItemDialog").new(event == "button", self.player, o, item, inven, function(_, _, _, stop)
-		        	d:generate()
-		        	d:generateList()
-		        	if stop then self:unregisterDialog(d) end
-	        	end)
-	        	self:registerDialog(ud)
-	    	end)
+			local titleupdator = self.player:getEncumberTitleUpdater("Inventory")
+			d = self.player:showEquipInven(titleupdator(), nil, function(o, inven, item, button, event)
+				if not o then return end
+				local ud = require("mod.dialogs.UseItemDialog").new(event == "button", self.player, o, item, inven, function(_, _, _, stop)
+					d:generate()
+					d:generateList()
+					d:updateTitle(titleupdator())
+					if stop then self:unregisterDialog(d) end
+				end)
+				self:registerDialog(ud)
+			end)
 		end,
 
     	--New functions
