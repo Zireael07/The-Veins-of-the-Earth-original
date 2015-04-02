@@ -9,12 +9,15 @@ newEntity{
     type = "weapon",
     ranged = true,
     ammo_type = "arrow",
+    slot = "MAIN_HAND",
+    offslot = "SHOULDER",
     egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_RANGED",
     define_as = "BASE_HXBOW",
     slot = "MAIN_HAND",
+--    offslot = "SHOULDER",
     slot_forbid = "OFF_HAND",
     image = "tiles/crossbow.png",
     type = "weapon", subtype="crossbow",
@@ -35,7 +38,7 @@ newEntity{ base = "BASE_RANGED",
         dam = {1,10},
         threat = 1,
         range = 12,
-    }, 
+    },
 }
 
 --Range 80 ft.
@@ -51,7 +54,7 @@ newEntity{ base = "BASE_RANGED",
     rarity = 6,
     simple = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
-    
+
     desc = "A normal trusty light crossbow.\n\n Damage 1d8. Threat range 19-20. Range 8.",
     name = "light crossbow",
     level_range = {1, 10},
@@ -75,7 +78,7 @@ newEntity{ base = "BASE_RANGED",
     encumber = 1,
     rarity = 6,
     combat = { sound = "actions/sling", sound_miss = "actions/sling", },
-    
+
     desc = "A normal unremarkable sling.\n\n Damage 1d4. Range 4",
     name = "sling",
     level_range = {1, 10},
@@ -214,7 +217,7 @@ newEntity{ base = "BASE_RANGED",
     combat = {
         capacity = 10,
     },
-} 
+}
 
 newEntity{ base = "BASE_RANGED",
     define_as = "BASE_BULLET",
@@ -233,4 +236,4 @@ newEntity{ base = "BASE_RANGED",
     combat = {
         capacity = 10,
     },
-} 
+}
