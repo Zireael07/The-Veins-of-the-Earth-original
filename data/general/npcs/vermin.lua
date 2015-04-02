@@ -90,8 +90,8 @@ newEntity{
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_ANT",
 	image = "tiles/ant.png",
-	display = 'a', color=colors.BROWN,
-	desc = [[A giant ant.]],
+	display = 'a', color=colors.BLACK,
+	desc = [[This ant has a glossy black carapace, a stinger dripping with acid and razor-sharp pincers. It is about the size of a man.]],
 
 	stats = { str=10, dex=10, con=10, int=1, wis=11, cha=9, luc=10 },
 	combat = { dam= {1,6} },
@@ -113,9 +113,9 @@ newEntity{
 --Acid sting 1d4
 newEntity{
 	base = "BASE_NPC_ANT",
-	name = "giant ant soldier", color=colors.BROWN,
+	name = "giant ant soldier", color=colors.BLACK,
 	level_range = {5, 20}, exp_worth = 600,
-	rarity = 4,
+	rarity = 8,
 	max_life = resolvers.rngavg(10,13),
 	hit_die = 2,
 	challenge = 2,
@@ -123,17 +123,20 @@ newEntity{
 	combat = { dam= {2,4} },
 }
 
+--Bump up CR and stats, reduce damage per PF
+--1d2 STR poison
 newEntity{
 	base = "BASE_NPC_ANT",
 	image = "tiles/ant_queen.png",
-	name = "giant ant queen", color=colors.BROWN,
-	level_range = {5, 20}, exp_worth = 300,
-	rarity = 4,
-	max_life = resolvers.rngavg(10,13),
+	name = "giant ant queen", color=colors.DARK_BLUE, --let's make her stand out
+	level_range = {5, 20}, exp_worth = 1500,
+	rarity = 14,
+	max_life = resolvers.rngavg(20,30),
 	hit_die = 4,
-	challenge = 2,
-	stats = { str=16, dex=9, con=13, int=1, wis=13, cha=11, luc=10 },
-	combat = { dam= {2,6} },
+	challenge = 5,
+	combat_natural = 9,
+	stats = { str=22, dex=9, con=25, int=1, wis=17, cha=15, luc=10 },
+	combat = { dam= {1,8} },
 }
 
 newEntity{ base = "BASE_NPC_VERMIN",
@@ -177,7 +180,7 @@ newEntity{
 
 newEntity{
 	base = "BASE_NPC_CENTIPEDE",
-	name = "medium centipede", color=colors.BROWN,
+	name = "medium centipede", color=colors.RED,
 	level_range = {1, 20}, exp_worth = 200,
 	rarity = 8,
 	max_life = resolvers.rngavg(3,5),
@@ -186,20 +189,22 @@ newEntity{
 	skill_hide = 8,
 	stats = { str=9, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,6} },
+	desc = [[This centipede is about the size of a hunting dog. It has a shiny maroon carapice.]],
 	poison = "small_centipede"
 }
 
 newEntity{
 	base = "BASE_NPC_CENTIPEDE",
-	name = "large centipede", color=colors.BROWN,
+	name = "large centipede", color=colors.LIGHT_RED,
 	level_range = {5, 20}, exp_worth = 400,
-	rarity = 6,
+	rarity = 10,
 	max_life = resolvers.rngavg(12,14),
 	hit_die = 3,
 	challenge = 1,
 	skill_hide = 4,
 	stats = { str=13, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,8} },
+	desc = [[This centipede is larger than a human. It attacks by rearing back part of its body and darting forward with its mouth. Surprisingly, it can do this quite rapidly. It has a bright maroon carapace.]],
 	poison = "small_centipede"
 }
 
@@ -207,7 +212,7 @@ newEntity{
 	base = "BASE_NPC_CENTIPEDE",
 	name = "huge centipede", color=colors.BROWN,
 	level_range = {8, 20}, exp_worth = 600,
-	rarity = 10,
+	rarity = 20,
 	max_life = resolvers.rngavg(32,35),
 	hit_die = 6,
 	challenge = 2,
@@ -220,7 +225,7 @@ newEntity{
 	base = "BASE_NPC_CENTIPEDE",
 	name = "gargantuan centipede", color=colors.BROWN,
 	level_range = {10, 20}, exp_worth = 1800,
-	rarity = 15,
+	rarity = 25,
 	max_life = resolvers.rngavg(64,68),
 	hit_die = 12,
 	challenge = 6,
@@ -233,7 +238,7 @@ newEntity{
 	base = "BASE_NPC_CENTIPEDE",
 	name = "colossal centipede", color=colors.BROWN,
 	level_range = {15, 20}, exp_worth = 2700,
-	rarity = 15,
+	rarity = 35,
 	max_life = resolvers.rngavg(130,135),
 	hit_die = 24,
 	challenge = 9,
