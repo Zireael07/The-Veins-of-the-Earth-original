@@ -1347,6 +1347,11 @@ function _M:setupCommands()
 			end)
 		end,
 
+		QUICK_SWITCH_WEAPON = function()
+			if self.player.no_inventory_access then return end
+			self.player:quickSwitchWeapons()
+		end,
+
     	--New functions
     	OPEN_SPELLBOOK = function()
     		if self.player.knowTalent and self.player:knowTalent(self.player.T_SHOW_SPELLBOOK) then

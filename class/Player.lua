@@ -1235,7 +1235,7 @@ function _M:doDrop(inven, item, on_done, nb)
   if on_done then on_done() end
 end
 
-function _M:doWear(inven, item, o)
+--[[function _M:doWear(inven, item, o)
     self:removeObject(inven, item, true)
     local ro = self:wearObject(o, true, true)
     if ro then
@@ -1246,7 +1246,7 @@ function _M:doWear(inven, item, o)
     self:sortInven()
     self:useEnergy()
     self.changed = true
-end
+end]]
 
 function _M:doTakeoff(inven, item, o)
     if self:addObject(self.INVEN_INVEN, o) then
@@ -3441,4 +3441,31 @@ function _M:onTakeoff(o, inven_id)
     engine.interface.ActorInventory.onTakeoff(self, o, inven_id)
 
     self:updateModdableTile()
+end
+
+-- Quick Switch Weapons
+function _M:quickSwitchWeapons(free_swap, message, silent)
+	if self.no_inventory_access then return end
+
+	-- Check for Quick Draw
+	local free_swap = free_swap or false
+	if self:knowTalent(self.T_QUICK_DRAW) then free_swap = true end
+
+	local weapon = self:getInven("MAIN_HAND")[1]
+	local ranged = self:getInven("SHOULDER")[1]
+	local mh = self:getInven("MAIN_HAND")
+	local sh = self:getInven("SHOULDER")
+
+	if ranged and ranged.ranged then
+		self:doWear(mh, 1, ranged)
+		self:doWear(sh, 1, weapon, self, sh, 1)
+		game.logPlayer("You swap your weapons")
+		return end
+
+	if ranged and not ranged.ranged then
+		self:doWear(mh, 1, weapon)
+		self:doWear(sh, 1, ranged)
+		game.logPlayer("You swap your weapons")
+		return end
+
 end
