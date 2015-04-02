@@ -103,11 +103,25 @@ newAI("swap_weapons", function(self)
         if self.ai_target.actor then
             local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
             if self:isNear(tx, ty, 3) then
-                game.log("Trying to wield melee weapon")
-                self:wieldMelee()
+                if self:getInven("MAIN_HAND") then
+                    local weapon = self:getInven("MAIN_HAND")[1]
+                --[[    if not self:getInven("MAIN_HAND")[1] then
+                        game.log("Trying to wield melee weapon")
+                        self:wieldMelee()
+                    end]]
+                    if weapon and weapon.ranged then
+                        game.log("Trying to wield melee weapon")
+                        self:wieldMelee()
+                    end
+                end
             else
-                game.log("Trying to wield ranged weapon")
-                self:wieldRanged()
+                if self:getInven("QUIVER") and self:getInven("MAIN_HAND") then
+                    local weapon = self:getInven("MAIN_HAND")[1]
+                    if weapon and not weapon.ranged then
+                        game.log("Trying to wield ranged weapon")
+                        self:wieldRanged()
+                    end
+                end
             end
         end
     end
