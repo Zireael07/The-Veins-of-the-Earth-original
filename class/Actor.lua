@@ -1742,13 +1742,21 @@ function _M:on_set_temporary_effect(eff_id, e, p)
 end
 
 --Make it available to all actors
-function _M:doWear(inven, item, o)
+--- wear an object from an inventory
+--	@param inven = inventory id to take object from
+--	@param item = inventory slot to take from
+--	@param o = object to wear
+--	@param dst = actor holding object to be worn <self>
+--  @param force_inven = force wear to this inventory
+--  @param force_item = force wear to this inventory slot #
+function _M:doWear(inven, item, o, dst, force_inven, force_item)
     self:removeObject(inven, item, true)
-    local ro = self:wearObject(o, true, true)
+    local ro = self:wearObject(o, true, true, force_inven, force_item)
+--	local ro = self:wearObject(o, true, true)
     if ro then
-        if type(ro) == "table" then self:addObject(inven, ro) end
+        if type(ro) == "table" then self:addObject(inven, ro, true) end
     elseif not ro then
-        self:addObject(inven, o)
+        self:addObject(inven, o, true)
     end
     self:sortInven()
     self:useEnergy()
