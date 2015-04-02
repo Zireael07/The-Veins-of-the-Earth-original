@@ -86,6 +86,27 @@ function _M:use(item)
 	if not dont_end then game:unregisterDialog(self) end
 end
 
+function _M:updateList()
+	self.c_inven:generateList()
+	self:select(self.c_inven.c_inven.list[self.c_inven.c_inven.sel])
+end
+
+function _M:updateTitle(title)
+	Dialog.updateTitle(self, title)
+
+	local green = colors.LIGHT_GREEN
+	local red = colors.LIGHT_RED
+
+	local enc, max = self.actor:getEncumbrance(), self.actor:getMaxEncumbrance()
+	local v = math.min(enc, max) / max
+	self.title_fill = self.iw * v
+	self.title_fill_color = {
+		r = util.lerp(green.r, red.r, v),
+		g = util.lerp(green.g, red.g, v),
+		b = util.lerp(green.b, red.b, v),
+	}
+end
+
 function _M:drawFrame(x, y, r, g, b, a)
 	Dialog.drawFrame(self, x, y, r, g, b, a)
 	if r == 0 then return end -- Drawing the shadow
