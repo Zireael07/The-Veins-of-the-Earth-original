@@ -165,6 +165,8 @@ ActorInventory:defineInventory("RING", "On fingers", true, "Rings are worn on fi
 ActorInventory:defineInventory("AMULET", "Around neck", true, "Amulets are worn around the neck.", nil, {equipdoll_back="ui/equipdoll/amulet_inv.png"})
 ActorInventory:defineInventory("LITE", "Light source", true, "A light source allows you to see in the dark places of the world.", nil, {equipdoll_back="ui/equipdoll/light_inv.png"})
 ActorInventory:defineInventory("TOOL", "Tool", true, "This is your readied tool, usually a shovel.", nil, {equipdoll_back="ui/equipdoll/tool_inv.png"})
+--For swapping weapons
+ActorInventory:defineInventory("SHOULDER", "Shouldered weapon", true, "This is your readied weapon, usually a ranged one.", nil, {equipdoll_back="ui/equipdoll/shoulder_inv.png"})
 --For piecemeal armor
 ActorInventory:defineInventory("LEGS", "Legs armor", true, "This is the kind of armor you wear on your legs", nil, {equipdoll_back="ui/equipdoll/legs_inv.png"})
 ActorInventory:defineInventory("ARMS", "Arms armor", true, "This is the kind of armor you wear on your arms", nil, {equipdoll_back="ui/equipdoll/arms_inv.png"})
@@ -184,8 +186,9 @@ ActorInventory.equipdolls = {
 		CLOAK = {{weight=12, x=264, y=120}},
 		AMULET = {{weight=13, x=192, y=48, text="topright"}},
 		HELM = {{weight=14, x=120, y=48, text="topleft"}},
-		LEGS = {{weight=15, x=48, y=48}},
-		ARMS = {{weight=16, x=264, y=48}},
+		SHOULDER = {{weight=15, x=120, y=120, text="bottom"}},
+		LEGS = {{weight=16, x=48, y=48}},
+		ARMS = {{weight=17, x=264, y=48}},
 	}},
 }
 
