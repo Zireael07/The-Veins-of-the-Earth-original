@@ -42,6 +42,7 @@ Keywords are necessary for the tooltips to work.
 Weapons
 slot = MAIN_HAND, offslot = OFF_HAND -> one-handed weapon
 slot = MAIN_HAND, slot_forbid = OFF_HAND -> two-handed weapon
+slot = MAIN_HAND, offslot = SHOULDER -> ranged weapon
 
 require -> any feats required to use the item
 encumber -> weight in lbs.
