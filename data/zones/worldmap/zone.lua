@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2014
+-- Zireael 2014-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ return {
 	all_lited = true,
 	persistent = "zone",
 	worldmap = true,
+	worldmap_see_radius = 4,
 	generator =  {
 		map = {
 			class = "mod.class.generator.map.RandomWorldmap",
@@ -43,7 +44,7 @@ return {
 			level.spots[#level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="zone-change", subtype="tunnels"}
 			print("Placed dungeon entrance", l1.change_zone, x, y)
 		else
-		print("Tunnels entrance not found")	
+		print("Tunnels entrance not found")
 		end
 
 		--put other dungeon entrances
@@ -88,7 +89,7 @@ return {
 	entry_point = function(_, _, from_zone)
     if not from_zone then
       return nil
-    elseif from_zone.name == "Tunnels" then 
+    elseif from_zone.name == "Tunnels" then
       return game.level:pickSpot{ type="zone-change", subtype="tunnels" }
     elseif from_zone.name == "Cavern" then
       return game.level:pickSpot{ type="zone-change", subtype="cavern" }

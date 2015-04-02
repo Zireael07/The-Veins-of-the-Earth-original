@@ -511,10 +511,20 @@ local fovdist = {}
 for i = 0, 30 * 30 do
   fovdist[i] = math.max((20 - math.sqrt(i)) / 14, 0.6)
 end
+local wild_fovdist = {}
+for i = 0, 10 * 10 do
+	wild_fovdist[i] = math.max((5 - math.sqrt(i)) / 1.4, 0.6)
+end
 
 function _M:playerFOV()
   -- Clean FOV before computing it
   game.level.map:cleanFOV()
+
+-- Do wilderness stuff, nothing else
+if game.zone.worldmap then
+	self:computeFOV(game.zone.worldmap_see_radius, "block_sight", function(x, y, dx, dy, sqdist) game.level.map:applyLite(x, y, wild_fovdist[sqdist]) end, true, true, true)
+	return
+end
 
 --[[  -- Compute ESP FOV, using cache
   if (self.esp_all and self.esp_all > 0) or next(self.esp) then
