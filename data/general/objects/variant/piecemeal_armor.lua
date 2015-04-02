@@ -96,7 +96,7 @@ newEntity{
     define_as = "BASE_HEAVY_ARMOR_BODY",
     slot = "BODY",
     type = "armor", subtype="medium",
-    moddable_tile = resolvers.moddable_tile("heavy")
+    moddable_tile = resolvers.moddable_tile("heavy"),
     require = { talent = { Talents.T_HEAVY_ARMOR_PROFICIENCY }, },
     encumber = 25,
     rarity = 8,
