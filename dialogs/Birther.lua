@@ -111,7 +111,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     --STATS TAB
     self:onSetupPB()
 
-    self.starting_unused_stats = 20
+    self.starting_unused_stats = 32
     self.unused_stats = self.unused_stats or self.starting_unused_stats
     self.c_points = Textzone.new{width=self.iw/6, height=15, no_color_bleed=true, text=_points_text:format(self.unused_stats)}
 
@@ -139,6 +139,8 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     self.c_reroll = Button.new{text="Reroll", width=45, fct=function() self:onRoll() end}
     self.c_reset = Button.new{text="Reset",  width=45, fct=function() self:onReset() end}
+    self.c_default = Button.new{text="Default", width=55, fct=function() self:makeDefault() end}
+    self.c_random = Button.new{text="Random", width=55, fct=function() self:randomHero() end}
 
     self:generatePerkText()
     self.c_perk_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#STARTING PERK: #LAST#"}
@@ -307,6 +309,8 @@ function _M:drawDialog(tab)
         --Buttons
         {left=0, bottom=0, ui=self.c_cancel},
         {left=self.c_cancel, bottom=0, ui=self.c_premade},
+        {left=self.c_premade, bottom=0, ui=self.c_default},
+        {left=self.c_default, bottom=0, ui=self.c_random},
         {right=0, bottom=0, ui=self.c_save},
         {left=0, bottom=self.c_save.h + 5, ui=Separator.new{dir="vertical", size=self.iw - 10}},
 
@@ -340,6 +344,8 @@ function _M:drawDialog(tab)
         --Buttons
         {left=0, bottom=0, ui=self.c_cancel},
         {left=self.c_cancel, bottom=0, ui=self.c_premade},
+        {left=self.c_premade, bottom=0, ui=self.c_default},
+        {left=self.c_default, bottom=0, ui=self.c_random},
         {right=0, bottom=0, ui=self.c_save},
         {left=0, bottom=self.c_save.h + 5, ui=Separator.new{dir="vertical", size=self.iw - 10}},
     }
@@ -432,6 +438,50 @@ function _M:atEnd()
 
 end)
 end
+
+--LG tough guy human fighter is the default
+function _M:makeDefault()
+    self:setDescriptor("sex", "Male")
+    self:setDescriptor("race", "Human")
+    self:setDescriptor("class", "Fighter")
+    self:setDescriptor("alignment", "Lawful Good")
+    self:setDescriptor("deity", "Asherath")
+    self:setDescriptor("background", "Tough guy")
+
+    self:randomName()
+--    self:atEnd()
+end
+
+function _M:randomHero()
+    -- Random sex
+    local sex = rng.percent(50)
+    self.c_male.checked = sex
+    self.c_female.checked = not sex
+    self:setDescriptor("sex", sex and "Male" or "Female")
+
+    --nil all descriptors you might have
+    self.descriptors_by_type.race = nil
+    self.descriptors_by_type.class = nil
+    self.descriptors_by_type.alignment = nil
+    self.descriptors_by_type.deity = nil
+    self.descriptors_by_type.background = nil
+
+    --randomize them
+    local race = rng.table(self.list_race)
+    self:RaceUse(race)
+    local class = rng.table(self.list_class)
+    self:ClassUse(class)
+    local alignment = rng.table(self.list_alignment)
+    self:AlignmentUse(alignment)
+    local deity = rng.table(self.list_deity)
+    self:DeityUse(deity)
+    local background = rng.table(self.list_background)
+    self:BackgroundUse(background)
+
+    self:randomName()
+    self:atEnd()
+end
+
 
 function _M:cancel()
     util.showMainMenu()
