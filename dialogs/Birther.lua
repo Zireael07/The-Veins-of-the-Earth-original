@@ -143,18 +143,21 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     self.c_random = Button.new{text="Random", width=55, fct=function() self:randomHero() end}
 
     self:generatePerkText()
+    self:generatePerkList()
     self.c_perk_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#STARTING PERK: #LAST#"}
     self.c_perk_note = Textzone.new{auto_width=true, auto_height=true, text=_perks_text:format(self.actor.perk)}
-    self.c_perk = List.new{
-        width=self.iw/6,
-        height=100,
-        nb_items=#self.list_perk,
-        list=self.list_perk,
+    self.c_perk = List.new{width=self.iw/6, height=100, nb_items=#self.list_perk_text, list=self.list_perk_text,
         fct=function() end,
         select=function(item, sel)
             self:updateDesc(item)
         end
     }
+    local list_height = self.ih - self.t_general.h + 60 - self.c_default.h - 20
+    self.c_perk_list = List.new{width=self.iw/6, height=list_height, nb_items=#self.list_perk, list=self.list_perk,
+    fct=function() end,
+    select=function(item, sel)
+        self:updateDesc(item)
+    end, scrollbar = true}
 
     self.c_tut = Textzone.new{width=self.iw - ((self.iw/6)*4)-20, auto_height=true, text=[[
 Press #00FF00#Reroll#FFFFFF# to determine stats randomly.
@@ -263,6 +266,7 @@ function _M:drawDialog(tab)
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.t_general.h + 15, ui=self.c_perk_text },
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.t_general.h + 35, ui=self.c_perk_note },
         {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.t_general.h + 35, ui=self.c_perk },
+--        {left=self.c_stats.w + 5 + self.c_reroll.w + 20, top = self.t_general.h + 60, ui=self.c_perk_list},
         --Instruction
         {right=0, top=self.t_general.h + 15, ui=self.c_tut},
         {right=0, top=self.t_general.h + 15 + self.c_tut.h, ui=Separator.new{dir="vertical", size=self.iw - ((self.iw/6)*4)-20}},
@@ -767,7 +771,7 @@ function _M:onSetupPB()
 end
 
 --Display random perk
---Warning: ONLY WORKS FOR PERKS that are talents!
+--NOTE: ONLY WORKS FOR PERKS that are talents!
 function _M:generatePerkText()
     local list = {}
     for j, t in pairs(self.actor.talents_def) do
@@ -778,6 +782,23 @@ function _M:generatePerkText()
             --    desc = player:getTalentFullDescription(t):toString(),
                 desc = ("%s"):format(t.info(self.actor,t)),
                 }
+        end
+    end
+    self.list_perk_text = list
+end
+
+
+function _M:generatePerkList()
+    local list = {}
+    for j, t in pairs(self.actor.talents_def) do
+      if t.is_perk then
+
+            list[#list+1] = {
+            --    name = t.name,
+                name = ("%s"):format(t.name),
+            --    desc = player:getTalentFullDescription(t):toString(),
+                desc = ("%s"):format(t.info(player,t)),
+            }
         end
     end
     self.list_perk = list
@@ -846,6 +867,10 @@ function _M:incStat(v, id)
     self.c_points:generate()
     self:StatUpdate()
     self:updateClasses()
+    --show perks list
+    self:generatePerkList()
+    self.c_perk_list.list = self.list_perk
+    self.c_perk_list:generate()
 end
 
 function _M:StatUpdate()
@@ -891,7 +916,7 @@ function _M:onRoll()
         self.c_perk_note.text = _perks_text:format(self.actor.perk)
         self.c_perk_note:generate()
         self:generatePerkText()
-        self.c_perk.list = self.list_perk
+        self.c_perk.list = self.list_perk_text
         self.c_perk:generate()
         --Stop pb shenanigans
         self.unused_stats = 0
