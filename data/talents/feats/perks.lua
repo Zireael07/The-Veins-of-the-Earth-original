@@ -1,12 +1,12 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
---NOT defined as feats so that they don't show up in feat choice screen
+--NOTE: NOT defined as feats so that they don't show up in feat choice screen
 
 newTalent{
 	name = "Born Hero",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[This feat increases all your saves by +2 and AC by 1.]],
@@ -21,7 +21,7 @@ newTalent{
 newTalent{
 	name = "Poison Immunity",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you immune to poison.]],
@@ -32,7 +32,7 @@ newTalent{
 newTalent{
 	name = "Disease Immunity",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you immune to disease.]],
@@ -43,7 +43,7 @@ newTalent{
 newTalent{
 	name = "Sleep Immunity",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you immune to magical sleep effects.]],
@@ -54,7 +54,7 @@ newTalent{
 newTalent{
 	name = "Paralysis Immunity",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you immune to paralysis.]],
@@ -65,7 +65,7 @@ newTalent{
 newTalent{
 	name = "Confusion Immunity",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you immune to confusion.]],
@@ -76,64 +76,64 @@ newTalent{
 newTalent{
 	name = "Fire Resistance",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you resistant to fire.]],
-	on_learn = function(self, t) 
+	on_learn = function(self, t)
 	self.resists[DamageType.FIRE] = (self.resists[DamageType.FIRE] or 0) + 10 end,
-	on_unlearn = function(self, t) 
+	on_unlearn = function(self, t)
 	self.resists[DamageType.FIRE] = (self.resists[DamageType.FIRE] or 0) - 10 end,
 }
 
 newTalent{
 	name = "Acid Resistance",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you resistant to acid.]],
-	on_learn = function(self, t) 
+	on_learn = function(self, t)
 	self.resists[DamageType.ACID] = (self.resists[DamageType.ACID] or 0) + 10 end,
-	on_unlearn = function(self, t) 
+	on_unlearn = function(self, t)
 	self.resists[DamageType.ACID] = (self.resists[DamageType.ACID] or 0) - 10 end,
 }
 
 newTalent{
 	name = "Cold Resistance",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you resistant to cold.]],
-	on_learn = function(self, t) 
+	on_learn = function(self, t)
 	self.resists[DamageType.COLD] = (self.resists[DamageType.COLD] or 0) + 10 end,
-	on_unlearn = function(self, t) 
+	on_unlearn = function(self, t)
 	self.resists[DamageType.COLD] = (self.resists[DamageType.COLD] or 0) - 10 end,
 }
 
 newTalent{
 	name = "Electricity Resistance",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you resistant to electricity.]],
-	on_learn = function(self, t) 
+	on_learn = function(self, t)
 	self.resists[DamageType.ELECTRIC] = (self.resists[DamageType.ELECTRIC] or 0) + 10 end,
-	on_unlearn = function(self, t) 
+	on_unlearn = function(self, t)
 	self.resists[DamageType.ELECTRIC] = (self.resists[DamageType.ELECTRIC] or 0) - 10 end,
 }
 
 newTalent{
 	name = "Sonic Resistance",
 	type = {"class/general", 1},
---	is_feat = true,
+	is_perk = true,
 	points = 1,
 	mode = "passive",
 	info = [[Makes you resistant to sound.]],
-	on_learn = function(self, t) 
+	on_learn = function(self, t)
 	self.resists[DamageType.SONIC] = (self.resists[DamageType.SONIC] or 0) + 10 end,
-	on_unlearn = function(self, t) 
+	on_unlearn = function(self, t)
 	self.resists[DamageType.SONIC] = (self.resists[DamageType.SONIC] or 0) - 10 end,
 }

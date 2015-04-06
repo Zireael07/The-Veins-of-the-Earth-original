@@ -6,7 +6,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -14,7 +14,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -27,7 +27,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -35,7 +35,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -48,7 +48,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -56,7 +56,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -69,7 +69,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -77,7 +77,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -90,7 +90,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -98,8 +98,9 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
+
 	points = 1,
 	mode = "passive",
 	info = [[You gain a +1 bonus to attacks made with crossbows.]],
@@ -111,7 +112,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -119,7 +120,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -132,7 +133,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -140,7 +141,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -153,7 +154,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -161,7 +162,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -174,7 +175,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -182,7 +183,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -195,7 +196,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -203,7 +204,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -216,7 +217,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -224,7 +225,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -237,7 +238,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -245,7 +246,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -258,7 +259,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -266,7 +267,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -279,7 +280,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -287,7 +288,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -300,7 +301,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -308,7 +309,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -321,7 +322,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -329,7 +330,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -342,7 +343,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -350,7 +351,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -363,7 +364,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -371,7 +372,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -384,7 +385,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -392,7 +393,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -405,7 +406,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -413,7 +414,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -426,7 +427,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -434,7 +435,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -447,7 +448,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -455,7 +456,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -468,7 +469,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -476,7 +477,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -489,7 +490,7 @@ newFeat{
 	type = {"class/focus", 1},
 	require = {
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 1
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
 			else return false end
@@ -497,7 +498,7 @@ newFeat{
 			desc = "Base attack bonus 1",
 		}
 	},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	mode = "passive",
@@ -517,12 +518,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_AXE },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your axes' critical range by 2.]],
@@ -539,12 +540,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_BATTLEAXE },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your battleaxes' critical range by 2.]],
@@ -561,12 +562,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_BOW },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your bows' critical range by 2.]],
@@ -583,12 +584,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_CLUB },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your clubs' critical range by 2.]],
@@ -605,12 +606,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_CROSSBOW },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your crossbows' critical range by 2.]],
@@ -627,12 +628,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_DAGGER },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your daggers' critical range by 2.]],
@@ -649,12 +650,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_FALCHION },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your falchions' critical range by 2.]],
@@ -671,12 +672,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_FLAIL },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your flails' critical range by 2.]],
@@ -693,12 +694,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_HALBERD },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your halberds' critical range by 2.]],
@@ -715,12 +716,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_HAMMER },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your hammers' critical range by 2.]],
@@ -737,12 +738,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_HANDAXE },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your handaxes' critical range by 2.]],
@@ -759,12 +760,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_JAVELIN },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your javelins' critical range by 2.]],
@@ -781,12 +782,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_KUKRI },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your kukris' critical range by 2.]],
@@ -803,12 +804,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_MACE },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your maces' critical range by 2.]],
@@ -825,12 +826,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_MORNINGSTAR },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your morningstars' critical range by 2.]],
@@ -847,12 +848,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_RAPIER },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your rapiers' critical range by 2.]],
@@ -869,12 +870,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_SCIMITAR },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your scimitars' critical range by 2.]],
@@ -891,12 +892,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_SCYTHE },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your scythes' critical range by 2.]],
@@ -913,12 +914,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_SHORTSWORD },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your short swords' critical range by 2.]],
@@ -935,12 +936,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_SLING },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your slings' critical range by 2.]],
@@ -957,12 +958,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_SPEAR },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your spears' critical range by 2.]],
@@ -979,12 +980,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_STAFF },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your staves' critical range by 2.]],
@@ -1001,12 +1002,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_SWORD },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your swords' critical range by 2.]],
@@ -1023,12 +1024,12 @@ newFeat{
 	require = {
 		talent = { Talents.T_WEAPON_FOCUS_TRIDENT },
 		special = {
-			fct = function(self, t, offset) 
+			fct = function(self, t, offset)
 			--Base attack bonus 8
 			if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
 			else return false end
 			end,
-			desc = "Base attack bonus 8",		 
+			desc = "Base attack bonus 8",
 		}
 	},
 	info = [[This feat increases your tridents' critical range by 2.]],

@@ -5,7 +5,7 @@ newFeat{
     type = {"class/combat", 1},
     require = {
         special = {
-            fct = function(self, t, offset) 
+            fct = function(self, t, offset)
             --Base attack bonus 1
             if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
             else return false end
@@ -13,7 +13,7 @@ newFeat{
             desc = "Base attack bonus 1",
         }
     },
-    is_feat = true,
+    is_perk = true,
     fighter = true,
     points = 1,
     mode = "passive",
@@ -27,15 +27,14 @@ newFeat{
     mode = "passive",
     require = {
         special = {
-            fct = function(self, t, offset) 
+            fct = function(self, t, offset)
             --Base attack bonus 1
             if self:attr("combat_bab") and self:attr("combat_bab") >= 1 then return true
             else return false end
             end,
-            desc = "Base attack bonus 1",        
+            desc = "Base attack bonus 1",
         }
     },
-    is_feat = true,
     fighter = true,
     info = [[This feat allows you to wield a two-handed weapon in one hand, albeit at a -2 penalty.]],
 }
@@ -49,7 +48,6 @@ newFeat{
     },
     points = 1,
     mode = "passive",
-    is_feat = true,
     fighter = true,
     info = [[When wielding a shield, you gain a +2 bonus to AC in addition to the shield's bonus.]],
 }
@@ -62,7 +60,6 @@ newFeat{
     },
     points = 1,
     mode = "passive",
-    is_feat = true,
     fighter = true,
     info = [[Your armor check penalty is reduced by 1/3.]],
 }

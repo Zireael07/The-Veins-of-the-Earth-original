@@ -105,7 +105,7 @@ newFeat{
 newFeat{
 	name = "Mobility",
 	type = {"class/general", 1},
-	is_feat = true,
+	is_perk = true,
 	fighter = true,
 	points = 1,
 	require = { talent = { Talents.T_DODGE }, },

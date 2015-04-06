@@ -132,6 +132,7 @@ newTalent{
 	points = 1,
 	cooldown = 15,
 	tactical = { BUFF = 2 },
+	is_perk = true,
 	range = 5,
 	requires_target = true,
 	target = function(self, t)
@@ -168,6 +169,7 @@ newTalent{
 	range = 5,
 	requires_target = false,
 	radius = 1.5,
+	is_perk = true,
 	target = function(self, t)
 		local tg = {type="ball", range=self:getTalentRange(t), nolock = true, radius=self:getTalentRadius(t), talent=t}
 		return tg
@@ -207,6 +209,7 @@ newTalent{
 	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 5,
+--	is_perk = true,
 	requires_target = true,
 	proj_speed = 3,
 	num_targets = function(self, t)
@@ -258,6 +261,7 @@ newTalent{
 	range = 0,
 	requires_target = true,
 	radius = 3,
+--	is_perk = true,
 	num_dice = function(self, t)
 		return math.min(self.level or 1, 5)
 	end,
@@ -297,6 +301,7 @@ newTalent{
 	cooldown = 15,
 	range = 0,
 	radius = 4,
+	is_perk = true,
 	target = function(self, t)
 		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
 	end,
@@ -535,6 +540,7 @@ newTalent{
 	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
+	is_perk = true,
 	--caster_bonus = function(self)
 	--	return math.min(self.level or 1, 5)
 	--end,
@@ -644,6 +650,7 @@ newTalent{
 	cooldown = 15,
 	tactical = { BUFF = 2 },
 	range = 0,
+	is_perk = true,
 	action = function(self)
 	if not self then return nil end
 	d = (self.max_life/10)*1
@@ -740,6 +747,7 @@ newTalent{
 	points = 1,
 	cooldown = 15,
 	range = 4,
+	is_perk = true,
 	target = function(self, t)
 		local tg = {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
 		return tg
