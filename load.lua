@@ -16,6 +16,11 @@
 
 
 -- This file loads the game module, and loads data
+
+-- Entities that are ASCII are outline
+local Entity = require "engine.Entity"
+Entity.ascii_outline = {x=2, y=2, r=0, g=0, b=0, a=0.8}
+
 local Map = require 'engine.Map'
 -- Dodgy Hack(TM):  This modifies Map functions in place.
 local MapEffects = require 'mod.class.MapEffects'
