@@ -172,3 +172,33 @@ newEntity{
     desc = [[A sturdy belt.]],
     egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
 }
+
+newEntity{ base = "BASE_BELT",
+    name = "girdle",
+    unided_name = "girdle",
+    display = "ℸ", color=colors.RED,
+}
+
+newEntity{ base = "BASE_MAGITEM",
+    define_as = "BASE_HELM",
+    slot = "HELM",
+    type = "helm", subtype = "helm",
+    image = "tiles/helm.png",
+    display = "₵", color=colors.RED,
+    encumber = 1,
+    rarity = 10,
+    name = "helm",
+    unided_name = "helm",
+    desc = [[A helmet.]],
+    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
+}
+
+newEntity{ base = "BASE_HELM",
+    subtype = "ioun",
+    image = "tiles/newtiles/ioun_stone.png",
+    display = "ϴ", color=colors.RED,
+    rarity = 20,
+    name = "ioun stone",
+    unided_name = "stone",
+    desc = [[A small oblong stone.]],
+}

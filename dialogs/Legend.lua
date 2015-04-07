@@ -12,8 +12,8 @@ module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init()
     Dialog.init(self, "Legend", game.w * 0.5, game.h * 0.5)
-    
-    self.text=[[    
+
+    self.text=[[
     The legend applies only to ASCII mode.
 
 
@@ -21,7 +21,7 @@ function _M:init()
     Monsters
     a  animal
     b bat / bird
-    c 
+    c
     d dog
     e eye creature
     f faerie creature
@@ -44,7 +44,7 @@ function _M:init()
     x
     y snake-men
     z snake
-    
+
 
     A celestial
     B beast
@@ -88,6 +88,9 @@ function _M:init()
     ? a scroll
     ! a potion
     ~ torch
+    ℸ girdle
+    ₵ helm
+    ϴ stone
 
     $ money
     % food or corpse
@@ -109,15 +112,15 @@ function _M:init()
 
 
 ]]
-        
+
     self.c_desc = Textzone.new{width=self.iw, height=self.ih, scrollbar=true, text = self.text}
-    
+
 
     self:loadUI{
         {left=0, top=0, ui=self.c_desc},
     }
     self:setupUI(false, true)
-    
+
     self:setFocus(self.c_desc)
     self.key:addBinds{
         EXIT = function() game:unregisterDialog(self) end,
