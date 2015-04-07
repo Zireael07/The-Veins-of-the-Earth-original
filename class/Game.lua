@@ -347,9 +347,11 @@ function _M:setupDisplayMode(reboot, mode)
 	--	local map_x, map_y, map_w, map_h = self.uiset:getMapSize()
 
 		if th <= 20 then
-			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/DroidSansFallback.ttf", pot_th, do_bg)
+--			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/DroidSansFallback.ttf", pot_th, do_bg)
+			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/Symbola.ttf", pot_th, do_bg)
 		else
-			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, nil, fsize, do_bg)
+		--	Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, nil, fsize, do_bg)
+			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/Symbola.ttf", pot_th, do_bg)
 		end
 
 		-- Show a count for stacked objects
