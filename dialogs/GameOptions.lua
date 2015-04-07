@@ -38,7 +38,7 @@ function _M:init(gameplay)
             {title="Fonts", kind="fonts"},
             {title="Gameplay", kind="game"},
     }
-        
+
 
 	self.c_tabs = Tabs.new{width=self.iw - 5, tabs=tabs, on_change=function(kind) self:switchTo(kind) end}
 
@@ -55,7 +55,7 @@ function _M:init(gameplay)
 	self.key:addBinds{
 		EXIT = function()
 			if self.needs_reboot then game:setupDisplayMode(true) end
-			game:unregisterDialog(self) 
+			game:unregisterDialog(self)
 		end,
 	}
 end
@@ -95,7 +95,7 @@ function _M:generateListUi()
 	list[#list+1] = {
 		zone = zone,
 		name = string.toTString"#GOLD##{bold}#Dialog transparency#WHITE##{normal}#",
-		status = function(item)			
+		status = function(item)
 			return tostring((config.settings.veins.dialog_alpha or 1) * 100)
 		end, fct=function(item)
 			game:registerDialog(GetQuantity.new("Transparency amount", "From 0 to 100", (config.settings.veins.dialog_alpha or 1) * 100, 100, function(qty)
@@ -117,7 +117,7 @@ function _M:generateListUi()
 			end, 0))
 		end,
 	}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -126,7 +126,7 @@ function _M:generateListUi()
 	list[#list+1] = {
 		zone = zone,
 		name = string.toTString"#GOLD##{bold}#Tooltip transparency#WHITE##{normal}#",
-		status = function(item)			
+		status = function(item)
 			return tostring((config.settings.veins.tooltip_alpha or 1) * 100)
 		end, fct=function(item)
 			game:registerDialog(GetQuantity.new("Transparency amount", "From 0 to 100", (config.settings.veins.tooltip_alpha or 1) * 100, 100, function(qty)
@@ -137,7 +137,7 @@ function _M:generateListUi()
 			end, 0))
 		end,
 	}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -146,7 +146,7 @@ function _M:generateListUi()
 	list[#list+1] = {
 		zone = zone,
 		name = string.toTString"#GOLD##{bold}#Chat/log/list background transparency#WHITE##{normal}#",
-		status = function(item)			
+		status = function(item)
 			return tostring(config.settings.veins.chat_alpha or 0)
 		end, fct=function(item)
 			game:registerDialog(GetQuantity.new("Transparency amount", "From 0 to 100", (config.settings.veins.chat_alpha or 0), 100, function(qty)
@@ -157,7 +157,7 @@ function _M:generateListUi()
 			end, 0))
 		end,
 	}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -166,7 +166,7 @@ function _M:generateListUi()
 	list[#list+1] = {
 		zone = zone,
 		name = string.toTString"#GOLD##{bold}#Hotkey bar background transparency#WHITE##{normal}#",
-		status = function(item)			
+		status = function(item)
 			return tostring(config.settings.veins.hotkeys_alpha or 1) * 100
 		end, fct=function(item)
 			game:registerDialog(GetQuantity.new("Transparency amount", "From 0 to 100", (config.settings.veins.hotkeys_alpha or 1) * 100, 100, function(qty)
@@ -177,12 +177,12 @@ function _M:generateListUi()
 			end, 0))
 		end,
 	}
-  
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
 		text = string.toTString [[Sets the tooltip location.
-		
+
 • #YELLOW#Lower-right#WHITE#: standard.
 • #YELLOW#Opposite#WHITE#: use the opposite corner of the screen from the mouse. #WHITE#
 • #YELLOW#Mouse#WHITE#: tooltip follows the mouse cursor]]
@@ -202,12 +202,12 @@ function _M:generateListUi()
 			end)
 		end,
 	}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
 		text = string.toTString [[Sets the tooltip location specifically for the inventory screen.
-		
+
 • #YELLOW#Original#WHITE# is standard.
 • #YELLOW#Small Screen#WHITE# moves the tooltip to either side of the screen.
 • #YELLOW#Big Screen#WHITE# uses a dedicated location in the center of the screen. #WHITE#]]
@@ -227,7 +227,7 @@ function _M:generateListUi()
 			end)
 		end,
 	}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -257,7 +257,7 @@ function _M:generateListFonts()
 	-- Makes up the list
 	local list = {}
 	local i = 0
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -291,7 +291,7 @@ function _M:generateListFonts()
 			self.needs_reboot = true
 		end, 8))
 	end,}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -333,7 +333,7 @@ function _M:generateListFonts()
 			end)
 		end,
 	}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -367,7 +367,7 @@ function _M:generateListFonts()
 			self.needs_reboot = true
 		end, 8))
 	end,}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -401,7 +401,7 @@ function _M:generateListFonts()
 			self.needs_reboot = true
 		end, 8))
 	end,}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -435,7 +435,7 @@ function _M:generateListFonts()
 			self.needs_reboot = true
 		end, 8))
 	end,}
-	
+
 	local zone = Textzone.new{
 		width = self.c_desc.w,
 		height = self.c_desc.h,
@@ -471,7 +471,7 @@ function _M:generateListFonts()
 	end,}
 
 	self.list = list
-end	
+end
 
 function _M:generateListGame()
     -- Makes up the list
@@ -482,22 +482,25 @@ function _M:generateListGame()
         width = self.c_desc.w,
         height = self.c_desc.h,
         text = string.toTString [[Sets the difficulty setting.
-        
-• #YELLOW#Default#WHITE#: standard d20.]]
+
+• #YELLOW#Normal#WHITE#: standard d20.
+• #YELLOW#Easy#WHITE#: enemies can't critical hit you.
+• #YELLOW#Hard#WHITE#: not implemented yet.
+]]
     }
     list[#list+1] = {
         zone = zone,
         name = string.toTString"#GOLD##{bold}#Difficulty setting#WHITE##{normal}#",
         status = function(item)
-            return tostring(config.settings.veins.difficulty or "Normal")
+            return tostring((config.settings.veins.difficulty or "Normal"))
         end, fct=function(item)
             local difficulty = {{name="Normal", setting="Normal"}, {name="Easy", setting="Easy"}, {name="Hard", setting="Hard"},}
             engine.ui.Dialog:listPopup("Difficulty setting", "Select difficulty", difficulty, 100, 200, function(sel)
                 if not sel or not sel.setting then return end
-				
+				game:saveSettings("veins.difficulty", ("veins.difficulty= %q\n"):format(sel.setting))
 				config.settings.veins.difficulty = sel.setting
-                game:saveSettings("veins.difficulty", ("veins.difficulty= %s\n"):format(tostring(sel.setting)))
-                
+    --            game:saveSettings("veins.difficulty", ("veins.difficulty= %s\n"):format(tostring(sel.setting)))
+
                 self.c_list:drawItem(item)
             end)
         end,
@@ -507,7 +510,7 @@ function _M:generateListGame()
         width = self.c_desc.w,
         height = self.c_desc.h,
         text = string.toTString [[Use the defensive roll variant from SRD.
-        
+
 • #YELLOW#True#WHITE#: defensive roll (roll d20 instead of base AC of 10).
 • #YELLOW#False#WHITE#: base AC of 10]]
     }
@@ -529,7 +532,7 @@ function _M:generateListGame()
         width = self.c_desc.w,
         height = self.c_desc.h,
         text = string.toTString [[Use the piecemeal armor variant from SRD. It splits up armor into torso, arm and leg pieces.
-        
+
 • #YELLOW#True#WHITE#: piecemeal armor.
 • #YELLOW#False#WHITE#: standard d20 armor]]
 --[[   }
@@ -545,13 +548,13 @@ function _M:generateListGame()
             self.c_list:drawItem(item)
             end
         end,
-    }]] 
+    }]]
 
 --[[    local zone = Textzone.new{
         width = self.c_desc.w,
         height = self.c_desc.h,
         text = string.toTString [[Use body parts hitpoints instead of catch-all hit points pool.
-        
+
 • #YELLOW#True#WHITE#: body parts system used.
 • #YELLOW#False#WHITE#: standard d20, abstract hitpoints total]]
 --[[    }
