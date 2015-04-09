@@ -81,7 +81,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 2,
 	encounter_escort = {
 	{ type="vermin", name="medium spider", number=2},
-},	
+},
 }
 
 
@@ -100,7 +100,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 4,
 	encounter_escort = {
 	{ type="vermin", name="small spider", number=7},
-},	
+},
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
@@ -109,7 +109,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 4,
 	encounter_escort = {
 	{ type="vermin", name="small spider", number=9},
-},	
+},
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
@@ -118,7 +118,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 4,
 	encounter_escort = {
 	{ type="vermin", name="large spider", number=2},
-},	
+},
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
@@ -127,7 +127,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 5,
 	encounter_escort = {
 	{ type="vermin", name="small spider", number=11},
-},	
+},
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
@@ -136,7 +136,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 5,
 	encounter_escort = {
 	{ type="vermin", name="medium spider", number=5},
-},	
+},
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
@@ -145,7 +145,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 7,
 	encounter_escort = {
 	{ type="vermin", name="large spider", number=5},
-},	
+},
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
@@ -154,7 +154,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 7,
 	encounter_escort = {
 	{ type="vermin", name="huge spider", number=2},
-},	
+},
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
@@ -163,8 +163,8 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 10,
 	encounter_escort = {
 	{ type="vermin", name="huge spider", number=5},
-},	
-	
+},
+
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
@@ -186,11 +186,142 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
-	name = "small plague of dire rats",
+	name = "large plague of dire rats",
 	rarity = 10,
 	challenge = 5,
 	encounter_escort = {
 	{ type="vermin", name="dire rat", number=20},
+},
+}
+
+--Giant ants
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "pair of ant workers",
+	rarity = 10,
+	challenge = 2,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=2},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "gang of ant workers",
+	rarity = 10,
+	challenge = 4,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=4},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "large gang of ant workers",
+	rarity = 10,
+	challenge = 6,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=6},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "small crew of ant workers",
+	rarity = 10,
+	challenge = 6,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=6},
+	{ type="vermin", name="giant ant soldier", number=1},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "medium crew of ant workers",
+	rarity = 15,
+	challenge = 7,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=8},
+	{ type="vermin", name="giant ant soldier", number=1},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "large crew of ant workers",
+	rarity = 10,
+	challenge = 8, --bump
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=10},
+	{ type="vermin", name="giant ant soldier", number=1},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "pair of ant soldiers",
+	rarity = 10,
+	challenge = 4,
+	encounter_escort = {
+		{ type="vermin", name="giant ant soldier", number=2},
+	},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "gang of ant soldiers",
+	rarity = 10,
+	challenge = 6,
+	encounter_escort = {
+		{ type="vermin", name="giant ant soldier", number=4},
+	},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "small hive",
+	rarity = 30,
+	challenge = 9,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=10},
+	{ type="vermin", name="giant ant soldier", number=5},
+	{ type="vermin", name="giant ant queen", number=1},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "smallish hive",
+	rarity = 30,
+	challenge = 10,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=20},
+	{ type="vermin", name="giant ant soldier", number=5},
+	{ type="vermin", name="giant ant queen", number=1},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "medium hive",
+	rarity = 30,
+	challenge = 11,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=20},
+	{ type="vermin", name="giant ant soldier", number=10},
+	{ type="vermin", name="giant ant queen", number=1},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "largish hive",
+	rarity = 30,
+	challenge = 12,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=20},
+	{ type="vermin", name="giant ant soldier", number=15},
+	{ type="vermin", name="giant ant queen", number=1},
+},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "large hive",
+	rarity = 30,
+	challenge = 11,
+	encounter_escort = {
+	{ type="vermin", name="giant ant worker", number=20},
+	{ type="vermin", name="giant ant soldier", number=20},
+	{ type="vermin", name="giant ant queen", number=1},
 },
 }
 
@@ -201,7 +332,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 5,
 	encounter_escort = {
 	{ type="outsider", name="yeth hound", number=2},
-},	
+},
 }
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
@@ -210,7 +341,7 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 6,
 	encounter_escort = {
 	{ type="outsider", name="barghest", number=2},
-},	
+},
 }
 
 --Magical beasts
@@ -220,5 +351,5 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 	challenge = 10,
 	encounter_escort = {
 	{ type="magical_beast", name="behir", number=2},
-},	
+},
 }
