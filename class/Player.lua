@@ -69,7 +69,7 @@ function _M:init(t, no_default)
   PlayerLore.init(self, t)
 
   self.lite = 0 --stealth test
-  self.sight = 10
+  self.sight = 5
   self.ecl = 1
 
 
