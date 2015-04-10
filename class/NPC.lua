@@ -328,7 +328,7 @@ end
 function _M:getObjectonFloor(x, y)
     local z = game.level.map:getObjectTotal(x, y)
 
-    if z >= 1 then game.log("AI spotted object on floor: %d, %d", x, y) return true end
+    if z >= 1 then return true end --game.log("AI spotted object on floor: %d, %d", x, y)
     return nil
 end
 
@@ -345,19 +345,13 @@ function _M:pickupObject(x, y)
 		do
    			if self:pickupFloor(i, true) then
 				local o_name = obj.name
-				game.log("AI tried to pick up object: %s", o_name)
+		--		game.log("AI tried to pick up object: %s", o_name)
       		-- Nothing to do.
     		else
       		i = i + 1
     		end
     	obj = game.level.map:getObject(x, y, i)
 		end
-
---[[		if i == 2 then
-			game.log('On floor:  %s', game.level.map:getObject(x, y, 1):getName())
-		elseif i > 2 then
-			game.log('There are %d objects here.', i - 1)
-		end]]
 	else
 		game.log("AI has no inventory")
 	end
