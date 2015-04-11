@@ -155,17 +155,18 @@ newEntity{
     name = "Oathbow",
     unided_name = "longbow",
     slot = "MAIN_HAND",
-    slot_forbid = "OFF_HAND",
+    offslot = "SHOULDER",
     type = "weapon", subtype="bow",
     display = "}", color=colors.UMBER,
     image = "tiles/longbow.png",
     encumber = 3,
     martial = true,
+    ranged = true,
     unique=true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
 
     desc = "A white curved longbow.\n\n Damage 1d10+2. Critical x3. Range 11",
-    
+
     rarity = 50,
     level_range = {1, 10},
 --    cost = 25600,
