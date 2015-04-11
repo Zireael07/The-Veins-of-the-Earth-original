@@ -6,12 +6,31 @@ CHANGELOG
 * bug fix - no more errors on log in healer chat
 * bug fix - damage logged now includes all increases
 * bug fix - effects outside sight range are now forced to be silent
+* bug fix - shoot no longer throws a Lua error if you have a shooter but not ammo
+* bug fix - can now drag items to hotbar without errors
+* bug fix - hotbar will not burp errors when there are no charges at all
+* bug fix - increase rarities of large+ vermin
+* bug fix - amulet ASCII symbol not showing up
+* bug fix - difficulty selection not being saved/displayed properly
+* bug fix - Oathbow not counting as ranged weapon
+* bug fix - personal reaction not used at all, leading to attacked neutrals not turning hostile
 
+* added Symbola font and used it on map
+* new zones: temple, drow temple
+* added outline to ASCII entities
 * implemented the Luck stat
+* random and default buttons in character creation screen
 * improved the loot generator
-* AI can now pick up items from the floor
+* AI can now pick up items from the floor and swap weapons
+* players can keep a ranged weapon in the shoulder slot and swap weapons with a keypress
+* you can now wield, take off or use items with a keypress giving you a list of all applicable items
 * improved combat messages
 * neutral NPCs can now be told to move aside/swap places with you
+* add more skill kits/update their descriptions
+* giant ant queen CR bumped up and brought closer to PF version; changed ASCII colors of some vermin
+* the player will now stop running automatically in some cases (chats, nasty stuff happening)
+* worldmap now uses its own sight range
+* code attacks of opportunity
 
 0.26.0 - beta 7 - 21/03/2015
 
