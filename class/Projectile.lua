@@ -46,3 +46,11 @@ function _M:tooltip(x, y)
 	end
 	return tstr
 end
+
+function _M:resolveSource()
+	if self.src then
+		return self.src:resolveSource()
+	else
+		return self
+	end
+end

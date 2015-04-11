@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2014 Zireael
+-- Copyright (C) 2013-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -17,6 +17,25 @@
 
 local Stats = require "engine.interface.ActorStats"
 local Particles = require "engine.Particles"
+
+local resolveSource = function(self)
+	if self.src and self.src.resolveSource then
+		return self.src:resolveSource()
+	else
+		return self
+	end
+end
+
+--gets the full name of the effect
+local getName = function(self)
+	local name = self.effect_id and mod.class.Actor.tempeffect_def[self.effect_id].desc or "effect"
+	if self.src and self.src.name then
+		return name .." from "..self.src.name:capitalize()
+	else
+		return name
+	end
+end
+
 
 load("/data/timed_effects/physical.lua")
 load("/data/timed_effects/poisons.lua")

@@ -68,11 +68,11 @@ end
 
 function _M:canUseObject()
     return engine.interface.ObjectActivable.canUseObject(self)
-end    
+end
 
 function _M:use(who, typ, inven, item)
     inven = who:getInven(inven)
-    if self:wornInven() and not self.lost == "INVEN" and not self.wielded and not self.use_no_wear then
+    if self:wornInven() and not self.slot == "INVEN" and not self.wielded and not self.use_no_wear then
         game.logPlayer(who, "You must wear this object to use it!")
         return
     end
@@ -90,7 +90,7 @@ function _M:use(who, typ, inven, item)
         end
         return unpack(ret)
     end
-end 
+end
 
 function _M:descAttribute(attr)
     if attr == "STATBONUS" then
@@ -106,10 +106,10 @@ function _M:descAttribute(attr)
 end
 
 --- Gets the color in which to display the object in lists
-function _M:getDisplayColor()  
+function _M:getDisplayColor()
     if self.pseudo_id == true then
         if self.cursed then return {201, 0, 0}, "#RED#" end
-    
+
         if self.lore then return {142, 69, 0}, "#UMBER#" end
         --[[    if self.rare then
         return {250, 128, 114}, "#SALMON#"]]
@@ -119,7 +119,7 @@ function _M:getDisplayColor()
         --[[    if self.greater_ego > 1 then
                 return {0x8d, 0x55, 0xff}, "#8d55ff#"
             else]]
-                
+
         --    end
             else
             return {81, 221, 255}, "#LIGHT_BLUE#"
@@ -148,7 +148,17 @@ function _M:isMagical()
     if self.egoed and not self.cursed then return true end
 
     return false
-end    
+end
+
+function _M:resolveSource()
+	if self.summoner_gain_exp and self.summoner then
+		return self.summoner:resolveSource()
+	elseif self.summoner_gain_exp and self.src then
+		return self.src:resolveSource()
+	else
+		return self
+	end
+end
 
 
 --- Gets the full name of the object
@@ -158,18 +168,18 @@ function _M:getName(t)
     local name = self.name
 
 
-    if self.identified == false and not t.force_id and self:getUnidentifiedName() then 
-        name = self:getUnidentifiedName() 
+    if self.identified == false and not t.force_id and self:getUnidentifiedName() then
+        name = self:getUnidentifiedName()
     --[[    if self:isFlavored() then
             if self:getFlavorText() then name = ("%s %s"):format(self:getFlavorText(), name)
             else
             name = self:getUnidentifiedName()
             end
         else
-        name = self:getUnidentifiedName() 
+        name = self:getUnidentifiedName()
         end]]
     end
-    
+
     if self.pseudo_id == true and self.identified == false and not t.force_id then --and self:getUnidentifiedName() then
         name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
     end
@@ -215,8 +225,8 @@ function _M:getName(t)
     end
 end
 
---[[ 
-    --Describing special materials    
+--[[
+    --Describing special materials
     if self.keywords then
     if self.keywords and self.keywords.mithril and self.identified == true then str = str.."\n#GOLD#This armor is made of mithril, reducing the armor check penalty by 3 and spell failure chance by 10% and increasing max Dex bonus to AC by 2." end
     if self.keywords and self.keywords.adamantine and self.identified == true then str = str.."\n#GOLD#This armor is made of adamantine, reducing damage taken by 1 and armor check penalty by 1." end
@@ -231,13 +241,13 @@ function _M:getTextualDesc()
 
     desc:add(true)
 
-    
-   
+
+
     if self.multicharge and self:isIdentified() then desc:add(("%d charges remaining."):format(self.multicharge or 0), true) end
-        
+
         --General stuff to be shown always
         if self.desc then desc:add(self.desc) end
-        
+
         if self.slot_forbid == "OFFHAND" then desc:add("You must wield this weapon with two hands.", true) end
         if self.light then desc:add("This is a light weapon", true) end
         if self.martial then desc:add("This is a martial weapon", true) end
@@ -262,14 +272,14 @@ function _M:getTextualDesc()
             if w.combat_natural then desc:add(("#GOLD#This item grants a +%d natural armor bonus to AC."):format(w.combat_natural or 0), true) end
             if w.combat_protection then desc:add(("#GOLD#This item grants a +%d protection bonus to AC."):format(w.combat_protection or 0), true) end
         end
-        
+
         desc_wielder(self.wielder)
         end
     else
 
         desc:add("\nUnidentified.")
     end
-    
+
     return desc
 end
 
@@ -320,7 +330,7 @@ function _M:tooltip(x, y)
     if nb == 2 then str:add(true, "---", true, "You see one more object.")
     elseif nb > 2 then str:add(true, "---", true, "You see "..(nb-1).." more objects.")
     end
-    
+
     return str
 end
 
@@ -335,7 +345,7 @@ end
 
 function _M:identify(id)
     print("[Identify]", self.name, true)
-    
+
   self:forAllStack(function(so)
     so.identified = id
     if so:isFlavored() then so:learnFlavor() end
@@ -371,11 +381,11 @@ function _M:on_prepickup(who, idx)
         local check = who:skillCheck("intuition", 10)
         if check then
             self.pseudo_id = true
-        end 
+        end
     end
-    if self.pseudo_id == true and self.cursed then 
+    if self.pseudo_id == true and self.cursed then
         game.log(("You recognize the %s as cursed and destroy it."):format(self:getUnidentifiedName() or self.name))
-        game.level.map:removeObject(who.x, who.y, idx) return true 
+        game.level.map:removeObject(who.x, who.y, idx) return true
     end
 
     --Appraise
@@ -400,7 +410,7 @@ function _M:on_prepickup(who, idx)
             end
         end
     end
-    
+
     --Lore
     if who.player and self.lore then
         game.level.map:removeObject(who.x, who.y, idx)

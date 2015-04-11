@@ -22,6 +22,14 @@ function _M:init(t, no_default)
 	engine.interface.ActorProject.init(self, t)
 end
 
+function _M:resolveSource()
+	if self.summoner_gain_exp and self.summoner then
+		return self.summoner:resolveSource()
+	else
+		return self
+	end
+end
+
 --- Gets the full name of the object
 function _M:getName()
 	local name = self.name
@@ -41,7 +49,7 @@ function _M:tooltip()
 			elseif factlevel > 0 then factcolor, factstate = "#LIGHT_GREEN#", "friendly"
 			end
 			if Faction.factions[self.store_faction] then res:add(true, "Faction: ") res:merge(factcolor:toTString()) res:add(("%s (%s, %d)"):format(Faction.factions[self.store_faction].name, factstate, factlevel), {"color", "WHITE"}, true) end
-		end		
+		end
 
 		if config.settings.cheat then
 			res:add(true, "UID: "..self.uid, true, "Detect: "..self.detect_power, true, "Disarm: "..self.disarm_power)
