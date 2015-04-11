@@ -611,6 +611,16 @@ function _M:colorFaction()
 	else end
 end
 
+function _M:colorPersonalReaction()
+	local player = game.player
+	local pfactlevel = self:reactionToward(game.player)
+	if pfactlevel == 0 then return "#WHITE#neutral#LAST#"
+	elseif pfactlevel < 0 then return "#LIGHT_RED#hostile#LAST#"
+	elseif pfactlevel > 0 then return "#LIGHT_GREEN#friendly#LAST#"
+	end
+end
+
+
 function _M:tooltip()
 	local ts = tstring{}
 
@@ -644,7 +654,9 @@ function _M:tooltip()
 
 	ts:add({"color", "WHITE"}, self.desc, {"color", "WHITE"}, true)
 
-	ts:add(("%s"):format(self:colorFaction()), true)
+	ts:add(("Faction reaction: %s"):format(self:colorFaction()), true)
+
+	ts:add(("Personal reaction: %s"):format(self:colorPersonalReaction()), true)
 
 	--Debugging speed stuff
 --	ts:add(("Game turn: %s"):format(game.turn/10), true)
@@ -1416,7 +1428,7 @@ function _M:getTalentFullDescription(t)
 	if self:getTalentRange(t) > 1 then d[#d+1] = "#6fff83#Range: #FFFFFF#"..self:getTalentRange(t)
 	else d[#d+1] = "#6fff83#Range: #FFFFFF#melee/personal"
 	end
-	if t.cooldown then d[#d+1] = "#6fff83#Cooldown: #FFFFFF#"..t.cooldown end
+	if t.cooldown > 0 then d[#d+1] = "#6fff83#Cooldown: #FFFFFF#"..t.cooldown end
 
 	return table.concat(d, "\n").."\n#6fff83#Description: #FFFFFF#"..t.info(self, t)
 end
@@ -2569,6 +2581,18 @@ function _M:onRemoveObject(o)
 	self:checkEncumbrance()
 end
 
+--- Checks if the given item should respect its slot_forbid value
+-- @param o the item to check
+-- @param in_inven the inventory id in which the item is worn or tries to be worn
+function _M:slotForbidCheck(o, in_inven_id)
+	in_inven_id = self:getInven(in_inven_id).id
+	if self:knowTalent(self.T_MONKEY_GRIP) and in_inven_id == self.INVEN_MAINHAND and o.slot_forbid == "OFFHAND" then
+		return false
+	end
+	return true
+end
+
+
 --- Can we wear this item?
 function _M:canWearObject(o, try_slot)
 	local req = rawget(o, "require")
@@ -2705,7 +2729,14 @@ function _M:checkEncumbrance()
 end
 
 function _M:reactionToward(target)
+	local rsrc, rtarget = self, target
+	while rsrc.summoner do rsrc = rsrc.summoner end
+	while rtarget.summoner do rtarget = rtarget.summoner end
+
     local v = engine.Actor.reactionToward(self, target)
+
+	--NOTE:actually use the personal reaction
+	if rsrc.reaction_actor and rsrc.reaction_actor[rtarget.unique or rtarget.name] then v = v + rsrc.reaction_actor[rtarget.unique or rtarget.name] end
 
     if self:hasEffect(self.EFF_CHARM) then v = math.max(v, 100) end
 
@@ -2937,8 +2968,9 @@ function _M:defineDisplayCallback()
 					f_neutral = game.level.map.tilesTactic:get(nil, 0,0,0, 0,0,0, map.faction_neutral)
 				end
 
+				
 				if self.faction then
-					local friend
+					local friend = -100
 					if not map.actor_player then friend = Faction:factionReaction(map.view_faction, self.faction)
 					else friend = map.actor_player:reactionToward(self) end
 
