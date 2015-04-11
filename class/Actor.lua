@@ -1428,7 +1428,7 @@ function _M:getTalentFullDescription(t)
 	if self:getTalentRange(t) > 1 then d[#d+1] = "#6fff83#Range: #FFFFFF#"..self:getTalentRange(t)
 	else d[#d+1] = "#6fff83#Range: #FFFFFF#melee/personal"
 	end
-	if t.cooldown > 0 then d[#d+1] = "#6fff83#Cooldown: #FFFFFF#"..t.cooldown end
+	if t.cooldown and t.cooldown > 0 then d[#d+1] = "#6fff83#Cooldown: #FFFFFF#"..t.cooldown end
 
 	return table.concat(d, "\n").."\n#6fff83#Description: #FFFFFF#"..t.info(self, t)
 end
@@ -2968,7 +2968,7 @@ function _M:defineDisplayCallback()
 					f_neutral = game.level.map.tilesTactic:get(nil, 0,0,0, 0,0,0, map.faction_neutral)
 				end
 
-				
+
 				if self.faction then
 					local friend = -100
 					if not map.actor_player then friend = Faction:factionReaction(map.view_faction, self.faction)
