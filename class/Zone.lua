@@ -17,7 +17,7 @@
 require "engine.class"
 local Zone = require "engine.Zone"
 local Map = require "engine.Map"
-
+local Dialog = require "engine.ui.Dialog"
 local Astar = require "engine.Astar"
 local forceprint = print
 local print = function() end
@@ -31,7 +31,120 @@ function _M:onLoadZoneFile(basedir)
 		local f = loadfile(basedir.."events.lua")
 		setfenv(f, setmetatable({self=self}, {__index=_G}))
 		self.events = f()
+
+		self:triggerHook{"Zone:loadEvents", zone=self.short_name, events=self.events}
+	else
+		local evts = {}
+		self:triggerHook{"Zone:loadEvents", zone=self.short_name, events=evts}
+		if next(evts) then self.events = evts end
 	end
+end
+
+function _M:getLoadTips()
+	if self.load_tips then
+		local l = rng.table(self.load_tips)
+		return l.text
+	else
+		return ""
+	end
+end
+
+--- Asks the zone to generate a level of level "lev"
+-- @param lev the level (from 1 to zone.max_level)
+-- @return a Level object
+function _M:getLevel(game, lev, old_lev, no_close)
+	self:leaveLevel(no_close, lev, old_lev)
+
+	local level_data = self:getLevelData(lev)
+
+	local levelid = self.short_name.."-"..lev
+	local level
+	local new_level = false
+
+
+	-- Load persistent level?
+	if type(level_data.persistent) == "string" and level_data.persistent == "zone_temporary" then
+		forceprint("Loading zone temporary level", self.short_name, lev)
+		local popup = Dialog:simpleWaiter("Loading level", "Please wait while loading the level... \n"..self:getLoadTips(), nil, 10000)
+		core.display.forceRedraw()
+
+		self.temp_memory_levels = self.temp_memory_levels or {}
+		level = self.temp_memory_levels[lev]
+
+		if level then
+			-- Setup the level in the game
+			game:setLevel(level)
+			-- Recreate the map because it could have been saved with a different tileset or whatever
+			-- This is not needed in case of a direct to file persistance becuase the map IS recreated each time anyway
+			level.map:recreate()
+		end
+		popup:done()
+	elseif type(level_data.persistent) == "string" and level_data.persistent == "zone" and not self.save_per_level then
+		forceprint("Loading zone persistance level", self.short_name, lev)
+		local popup = Dialog:simpleWaiter("Loading level", "Please wait while loading the level... "..self:getLoadTips(), nil, 10000)
+		core.display.forceRedraw()
+
+		self.memory_levels = self.memory_levels or {}
+		level = self.memory_levels[lev]
+
+		if level then
+			-- Setup the level in the game
+			game:setLevel(level)
+			-- Recreate the map because it could have been saved with a different tileset or whatever
+			-- This is not needed in case of a direct to file persistance becuase the map IS recreated each time anyway
+			level.map:recreate()
+		end
+		popup:done()
+	elseif type(level_data.persistent) == "string" and level_data.persistent == "memory" then
+		forceprint("Loading memory persistance level", self.short_name, lev)
+		local popup = Dialog:simpleWaiter("Loading level", "Please wait while loading the level... "..self:getLoadTips(), nil, 10000)
+		core.display.forceRedraw()
+
+		game.memory_levels = game.memory_levels or {}
+		level = game.memory_levels[levelid]
+
+		if level then
+			-- Setup the level in the game
+			game:setLevel(level)
+			-- Recreate the map because it could have been saved with a different tileset or whatever
+			-- This is not needed in case of a direct to file persistance becuase the map IS recreated each time anyway
+			level.map:recreate()
+		end
+		popup:done()
+	elseif level_data.persistent then
+		forceprint("Loading level persistance level", self.short_name, lev)
+		local popup = Dialog:simpleWaiter("Loading level", "Please wait while loading the level..."..self:getLoadTips(), nil, 10000)
+		core.display.forceRedraw()
+
+		-- Try to load from a savefile
+		level = savefile_pipe:doLoad(game.save_name, "level", nil, self.short_name, lev)
+
+		if level then
+			-- Setup the level in the game
+			game:setLevel(level)
+		end
+		popup:done()
+	end
+
+	-- In any cases, make one if none was found
+	if not level then
+		forceprint("Creating level", self.short_name, lev)
+		local popup = Dialog:simpleWaiter("Generating level", "Please wait while generating the level... "..self:getLoadTips(), nil, 10000)
+		core.display.forceRedraw()
+
+		level = self:newLevel(level_data, lev, old_lev, game)
+		new_level = true
+
+		popup:done()
+	end
+
+	-- Clean up things
+	collectgarbage("collect")
+
+	-- Re-open the level if needed (the method does the check itself)
+	level.map:reopen()
+
+	return level, new_level
 end
 
 

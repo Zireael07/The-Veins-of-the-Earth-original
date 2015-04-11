@@ -21,13 +21,24 @@ return {
 --	decay = {300, 800},
 	width = 100, height = 100,
 --	persistent = "zone",
+	load_tips = {
+{ text = [[Do not go in too deep.]] },
+{ text = [[There is a world beyond these tunnels.]] },
+{ text = [[Remember to wear your armor.]]},
+{ text = [[Some spellcasters do not have to memorize their spells - they can cast them innately.]]},
+{ text = [[If you're lucky when creating your hero, you might get some innate spells or resistances!]]},
+{ text = [[Certain races have innate magical abilities due to exposure to magical radiation.]]},
+{ text = [[Remember that being unable to move does not mean you're dead (yet).]]},
+{ text = [[If you are a spellcaster or a rogue with Use Magic Device skill, you can use wands.]]},
+{ text = [[Do not rush into fights if you are wounded. Take your time to rest.]]},
+},
 	generator =  {
 		map = {
 			class = "mod.class.generator.map.Roomer",
 			nb_rooms = 10,
-			rooms = { 
+			rooms = {
 			--Nothing special
-			{"simple", 5}, {"circle", 5}, {"circle2", 5}, {"circle3", 5}, {"pilar", 10}, {"pilar2", 10}, {"pilar3", 10}, {"pilar4", 10}, {"rhomboid", 3}, {"rhomboid2", 3}, 
+			{"simple", 5}, {"circle", 5}, {"circle2", 5}, {"circle3", 5}, {"pilar", 10}, {"pilar2", 10}, {"pilar3", 10}, {"pilar4", 10}, {"rhomboid", 3}, {"rhomboid2", 3},
 			--Special rooms
 			{"chasm1", 2}, {"chasm2", 2}, {"chasm3", 2}, {"big_moss1", 20}, {"big_moss2", 20}, {"ice_patch", 10}, {"icefilled", 4}, {"marble", 10}, {"moss_patch1", 30}, {"moss_patch2", 30}, {"moss_pilar1", 40}, {"moss_pilar2", 40}, {"moss_pilar3", 40}, {"lavafilled_pilar", 2}, {"ritual", 5}, {"temple", 5}, {"treasure_room", 20}, {"veins", 20}, {"waterfilled_pilar", 7}, {"waterfilled", 1}, {"waterfilled2", 1}, {"waterfilled3", 1}, {"waterfilled4", 1}, {"waterfilled_half", 5}, {"waterfilled_half2", 5},
 			--Additional stairs
@@ -66,7 +77,7 @@ return {
 			filters = {{max_cr=3}},
 		--[[	class = "mod.class.generator.actor.OnSpots",
 				nb_spots = 2, on_spot_chance = 75,]]
-		
+
 		},
 		object = {
             class = "engine.generator.object.Random",
@@ -76,14 +87,14 @@ return {
 	levels =
 	{
 	--Place exit to worldmap on level 1
-		[1] = { 
-		generator = { map = { 
+		[1] = {
+		generator = { map = {
 		up = "EXIT",
 		},},
 	},
 	--No shaft up on level 2
-		[2] = { 
-		generator = { map = { 
+		[2] = {
+		generator = { map = {
 		up = "UP",
 		},},
 	},
