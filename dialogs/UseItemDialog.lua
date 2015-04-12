@@ -74,7 +74,7 @@ function _M:use(item)
         self.on_use(self.inven, self.item, self.object, false)
   elseif item.action == "takeout" then
         self.actor:takeOut(self.object)
-        self.on_use(self.inven, self.item, self.object, false)  
+        self.on_use(self.inven, self.item, self.object, false)
   elseif item.action == 'drop' then
     local on_use_cb = function()
       self.on_use(self.inven, self.item, self.object, false)
@@ -88,12 +88,12 @@ function _M:generateList()
 --Container stuff
   if self.object.iscontainer then list[#list+1] = {name="Put In", action="use"} end
   if self.object.iscontainer then list[#list+1] = {name="Take Out", action="takeout"} end
-  
+
   if self.object.use_simple then
     list[#list+1] = { name='Use', action='use' }
   end
-  
-  if self.inven == self.actor.INVEN_INVEN and self.object.slot then
+
+  if self.inven == self.actor.INVEN_INVEN and self.object.slot ~= "INVEN" then
     list[#list+1] = { name='Wear/wield', action='wear' }
   end
  if self.inven ~= self.actor.INVEN_INVEN then
