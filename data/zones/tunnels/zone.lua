@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -25,11 +25,10 @@ return {
 { text = [[Do not go in too deep.]] },
 { text = [[There is a world beyond these tunnels.]] },
 { text = [[Remember to wear your armor.]]},
-{ text = [[Some spellcasters do not have to memorize their spells - they can cast them innately.]]},
-{ text = [[If you're lucky when creating your hero, you might get some innate spells or resistances!]]},
-{ text = [[Certain races have innate magical abilities due to exposure to magical radiation.]]},
+{ text = [[Some spellcasters can cast spells innately.]]},
+{ text = [[If you're lucky at start, you might get some innate spells or resistances!]]},
+{ text = [[Certain races have innate magical abilities.]]},
 { text = [[Remember that being unable to move does not mean you're dead (yet).]]},
-{ text = [[If you are a spellcaster or a rogue with Use Magic Device skill, you can use wands.]]},
 { text = [[Do not rush into fights if you are wounded. Take your time to rest.]]},
 },
 	generator =  {
