@@ -410,6 +410,12 @@ function _M:move(x, y, force)
     self:describeFloor(self.x, self.y)
   end
 
+	--Worldmap passage of time
+	if game.zone.worldmap and not force then
+		-- Cheat with time
+		game.turn = game.turn + 1000
+	end
+
   -- Remember not to describe this grid again.
   self.old_x, self.old_y = self.x, self.y
 
