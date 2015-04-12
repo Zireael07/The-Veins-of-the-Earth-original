@@ -6,9 +6,28 @@ newChat{id="start",
     text=[[Hello pretty! Are you interested?]],
     answers = {
         {[[Oh yeah!]], action = function(npc, player)
-        --Deduce the gold
-        player.money = player.money - 10
+        --Deduce the silver
+        player:incMoney(-10)
         --rest
+        player:cityRest()
+        --normal healing
+        --use Wis instead of Con if have Mind over Body feat
+        local con = player:getCon()
+        local heal = ((player.level +3)*con)/5
+
+        --Heal skill
+        if (player.skill_heal or 0) > 0 then
+             heal = ((player.level + player.skill_heal +3)*con)/5
+        end
+
+        player.life = math.min(player.max_life, player.life + heal)
+
+        --heal one wound
+        if player.wounds < player.max_wounds then
+            player.wounds = player.wounds + 1
+        end
+
+        --chance to have a kid
         if rng.dice(1,20) + player:getConMod() > 18 then
             player.kid = true
             player.kid_date = game.calendar:getDayOfYear(self.turn)
