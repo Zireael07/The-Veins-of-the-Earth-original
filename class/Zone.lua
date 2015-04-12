@@ -65,7 +65,7 @@ function _M:getLevel(game, lev, old_lev, no_close)
 	-- Load persistent level?
 	if type(level_data.persistent) == "string" and level_data.persistent == "zone_temporary" then
 		forceprint("Loading zone temporary level", self.short_name, lev)
-		local popup = Dialog:simpleWaiter("Loading level", "Please wait while loading the level... \n"..self:getLoadTips(), nil, 10000)
+		local popup = Dialog:simpleWaiter("Loading level", "Please wait while loading the level... "..self:getLoadTips(), nil, 10000)
 		core.display.forceRedraw()
 
 		self.temp_memory_levels = self.temp_memory_levels or {}
