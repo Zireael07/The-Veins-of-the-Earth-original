@@ -10,8 +10,8 @@ module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init()
     Dialog.init(self, "Controls", game.w * 0.6, game.h * 0.6)
-    
-    self.text=[[    
+
+    self.text=[[
     CONTROLS
     Use #YELLOW#arrow keys#LAST# or mouse to move. Press #YELLOW#Shift + direction#LAST# to run. The mouse wheel scrolls the log.
     Click on a spell or skill in the hotbar to use it. Alternately, you can use the hotkeys (displayed on the bar). Use the mouse to target skills or ranged attacks.
@@ -30,7 +30,9 @@ function _M:init()
     Press #YELLOW#'i'#LAST# to display inventory screen.
     Press #YELLOW#'g'#LAST# to pick up items.
     Press #YELLOW#'d'#LAST# to drop items.
-    Press #YELLOW#'b'#LAST# to diplay your spellbook, if you have it.
+    Press #YELLOW#'t'#LAST# to take off items.
+    Press #YELLOW#'b'#LAST# to display your spellbook, if you have it.
+    Press #YELLOW#'q'#LAST# to switch your weapons.
 
     Press #YELLOW#'z'#LAST# to autoexplore.
 
@@ -39,12 +41,12 @@ function _M:init()
 
     Press #YELLOW#'Space'#LAST# to bring up the chatbox.
     Press #YELLOW#'Tab'#LAST# to choose the chat channels.
- 
+
     To use debug functions, press #YELLOW#Shift + b#LAST# to see a list of all entities on a level.
     If you happen to run into an unkillable monster, press #YELLOW#Ctrl + c#LAST# to run a script which kills all such entities.
     To flush the te4_log.txt file, press #YELLOW#Shift + f#LAST#.
 ]]
-        
+
     self.c_desc = Textzone.new{width=self.iw, height=self.ih, scrollbar=true, text = self.text}
     self.c_legend = Button.new{text="ASCII legend", fct=function() self:onLegend() end}
     self.c_rules = Button.new{text="Rules", fct=function() self:onRules() end}
@@ -52,10 +54,10 @@ function _M:init()
     self:loadUI{
              {left=0, top=0, ui=self.c_desc},
              {left=0, bottom=0, ui=self.c_legend},
-             {left=100, bottom=0, ui=self.c_rules},
+             {left=self.c_legend.w + 5, bottom=0, ui=self.c_rules},
     }
     self:setupUI(false, true)
-    
+
     self:setFocus(self.c_desc)
     self.key:addBinds{
         EXIT = function() game:unregisterDialog(self) end,
