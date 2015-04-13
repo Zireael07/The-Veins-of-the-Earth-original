@@ -43,7 +43,7 @@ newEffect{
 	name = "HEAVY_LOAD",
 	desc = "Encumbered",
 	type = "physical",
-	status = "detrimental",
+	status = "neutral",
 	on_gain = function(self, err) return end, --"#Target# is encumbered!", "+Load" end,
 	on_lose = function(self, err) return end, --"#Target# is no longer encumbered.", "-Load" end,
 	activate = function(self, eff)
@@ -60,7 +60,7 @@ newEffect{
 	name = "MEDIUM_LOAD",
 	desc = "Encumbered",
 	type = "physical",
-	status = "detrimental",
+	status = "neutral",
 	on_gain = function(self, err) return end, --"#Target# is encumbered!", "+Load" end,
 	on_lose = function(self, err) return end, --"#Target# is no longer encumbered.", "-Load" end,
 	activate = function(self, eff)
@@ -78,12 +78,12 @@ newEffect{
 	name = "ENCUMBERED",
 	desc = "Encumbered",
 	type = "physical",
-	status = "detrimental",
+	status = "neutral",
 	activate = function(self, eff)
-		self.encumbered = self:addTemporaryValue("never_move", 1)
+		self.encumbered = self:addTemporaryValue("never_move_but_attack", 1)
 	end,
 	deactivate = function(self, eff)
-		self:removeTemporaryValue("never_move", self.encumbered)
+		self:removeTemporaryValue("never_move_but_attack", self.encumbered)
 	end,
 }
 
