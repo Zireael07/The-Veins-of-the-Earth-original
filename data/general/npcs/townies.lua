@@ -44,6 +44,7 @@ newEntity{ define_as = "BASE_NPC_DROW_T",
     skill_listen = 2,
     skill_search = 3,
     skill_spot = 2,
+    alignment = "neutral evil",
 }
 
 
@@ -90,6 +91,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow female courtesan",
+    max_life = resolvers.rngavg(5,10),
     rarity = 5,
     stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
     resolvers.equipnoncursed{
@@ -102,6 +104,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow male courtesan",
+    max_life = resolvers.rngavg(5,10),
     rarity = 5,
     stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
     resolvers.equipnoncursed{
@@ -114,6 +117,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow guard",
+    max_life = resolvers.rngavg(15,20),
     rarity = 4,
 
     resolvers.equip{
