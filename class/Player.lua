@@ -118,6 +118,9 @@ function _M:init(t, no_default)
   self.stat_increased = self.stat_increased or {}
   self.number_increased = self.number_increased or {}
 
+  --kids
+  self.kids = {}
+
   --timestamp for saved chars
   self.time = os.time()
 end
@@ -3476,6 +3479,7 @@ function _M:quickSwitchWeapons(free_swap, message, silent)
 
 end
 
+--Offspring stuff
 function _M:generateKid(npc)
 	--nothing happens if those races aren't cross-fertile
 	if self.descriptor.race == "Dwarf" and not npc.subtype == "dwarf" then return end
@@ -3507,4 +3511,13 @@ function _M:generateKid(npc)
 	kid:resolve() kid:resolve(nil, true)
 
 	return kid
+end
+
+function _M:addKid(actor)
+	self.kids[#self.kids+1] = actor
+--	game.log("Added the kid to list")
+end
+
+function _M:getKids()
+	return self.kids
 end

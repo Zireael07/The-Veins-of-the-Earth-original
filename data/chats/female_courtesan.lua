@@ -32,8 +32,11 @@ newChat{id="start",
             npc.pregnant = true
             kid = player:generateKid(npc)
             player.kid_date = game.calendar:getDayOfYear(game.turn)
+
             local x, y = util.findFreeGrid(player.x, player.y, 1, true, {[engine.Map.ACTOR]=true})
             game.zone:addEntity(game.level, kid, "actor", x, y)
+            player:addKid(kid)
+
         end
     end,
     cond=function(npc, player)
