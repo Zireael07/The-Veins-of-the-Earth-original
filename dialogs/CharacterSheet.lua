@@ -102,6 +102,8 @@ function _M:init(actor)
 
     self.c_eff = SurfaceZone.new{width=self.iw, height=self.ih-15,alpha=0}
 
+    self.c_cosmetic = SurfaceZone.new{width=self.iw, height=self.ih-15,alpha=0}
+
     self.t_general = Tab.new {
     title = 'General',
     default = true,
@@ -121,6 +123,12 @@ function _M:init(actor)
         on_change = function(s) if s then self:switchTo('effect') end end,
     }
 
+    self.t_cosmetic = Tab.new{
+        title = "Cosmetic",
+        default = false,
+        fct = function() end,
+        on_change = function(s) if s then self:switchTo('cosmetic') end end,
+    }
 
 --[[    self.t_feats = Tab.new {
     title = 'Feats',
@@ -138,6 +146,7 @@ function _M:switchTo(tab)
     self.t_general.selected = tab == 'general'
     self.t_skill.selected = tab == 'skill'
     self.t_effect.selected = tab == 'effect'
+    self.t_cosmetic.selected = tab == 'cosmetic'
 --    self.t_feats.selected = tab == 'feats'
 
     self:drawDialog(tab)
@@ -150,6 +159,7 @@ function _M:drawDialog(tab)
     self:loadUI{
         {left=0, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_skill},
+        {left=self.t_skill, top=0, ui=self.t_cosmetic},
 --        {left=self.t_skill, top=0, ui=self.t_effect},
         {left=0, top=self.t_general.h, ui=self.vs},
         {left=0, top=self.t_general.h+5+self.vs.h, ui=self.c_playtime},
@@ -167,12 +177,26 @@ function _M:drawDialog(tab)
     self:loadUI{
         {left=0, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_skill},
+        {left=self.t_skill, top=0, ui=self.t_cosmetic},
 --        {left=self.t_skill, top=0, ui=self.t_effect},
         {left=0, top=50, ui=self.c_list},
     }
 
     self:setupUI()
     game.tooltip:erase()
+    end
+
+    if tab == "cosmetic" then
+        self:loadUI{
+            {left=0, top=0, ui=self.t_general},
+            {left=self.t_general, top=0, ui=self.t_skill},
+            {left=self.t_skill, top=0, ui=self.t_cosmetic},
+            {left=0, top=50, ui=self.c_cosmetic}
+        }
+
+    self:setupUI()
+    self:drawKid()
+
     end
 
     if tab == "effect" then
@@ -365,7 +389,7 @@ end
 
 function _M:drawEffect()
     local player = self.actor
-    local s = self.c_desc.s
+    local s = self.c_eff.s
 
     s:erase(0,0,0,0)
 
@@ -375,7 +399,7 @@ function _M:drawEffect()
     h = 0
     w = 0
 
-    s:drawStringBlended(self.font, "#CHOCOLATE#Effects : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#CHOCOLATE#Effects : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
 
     --draw effect list
 --    local good_e, bad_e = {}, {}
@@ -408,7 +432,7 @@ function _M:drawEffect()
 	--	if e.status == "detrimental" then bad_e[eff_id] = p else good_e[eff_id] = p end
 	end
 
---    table.sort(list, function(a,b) return a.name < b.name end)
+    table.sort(list, function(a,b) return a.name < b.name end)
 
     for i, t in ipairs(list) do
         if e.status == "detrimental" then
@@ -422,6 +446,51 @@ self.c_eff:generate()
 self.changed = false
 
 end
+
+function _M:drawKid()
+    local player = self.actor
+    local s = self.c_cosmetic.s
+
+    s:erase(0,0,0,0)
+
+    local h = 0
+    local w = 0
+
+    h = 0
+    w = 0
+
+    s:drawColorStringBlended(self.font, "#CHOCOLATE#Kids : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+
+    	local list = {}
+
+    	for i, e in pairs(player.kids) do
+
+    		list[#list+1] = {
+    			name = e.name,
+    			race = e.subtype,
+    			alignment = e.alignment,
+    			str = e:getStr(),
+                dex = e:getDex(),
+                con = e:getCon(),
+                int = e:getInt(),
+                wis = e:getWis(),
+                cha = e:getCha(),
+                luc = e:getLuc()
+    		}
+    	end
+
+    	table.sort(list, function(a,b) return a.name < b.name end)
+
+        for i, t in ipairs(list) do
+            s:drawColorStringBlended(self.font, t.name.." the "..t.alignment.. " "..t.race, w, h, 255, 255, 255, true) h = h + self.font_h
+            s:drawColorStringBlended(self.font, "STR "..t.str.." DEX "..t.dex.." CON "..t.con.." INT "..t.int.." WIS "..t.wis.." CHA "..t.cha.." LUC "..t.luc, w, h, 255, 255, 255, true) h = h + self.font_h
+        end
+
+self.c_cosmetic:generate()
+self.changed = false
+
+end
+
 
 function _M:onKill()
     game:unregisterDialog(self)
