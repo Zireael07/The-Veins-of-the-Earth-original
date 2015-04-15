@@ -867,11 +867,82 @@ function resolvers.calc.startingeq(t, e)
 				filter.not_properties[#filter.not_properties+1] = "cursed"
 			end
 
-			--Don't forget perks
-			if e.perk ~= "" then
-				-- TODO: add one more entry in racetable
-			--	racetable[#racetable+1] = { defined=e:randomItem(), ego=chance=1000, not_properties = "cursed" }
-			end
 			return {__resolver="equip", __resolve_last=true, racetable}
+
+end
+
+function resolvers.perks()
+	return {__resolver="perks", __resolve_last=true, }
+end
+
+function resolvers.calc.perks(t, e)
+	if e.perk ~= "" then
+		t = { defined=e:randomItem(), ego_chance=1000, not_properties="cursed"}
+	end
+	return {__resolver="equip", __resolve_last=true, t}
+end
+
+
+--Special stuff
+function resolvers.kid_race(player, npc)
+	return {__resolver="kid_race", player, npc }
+end
+
+function resolvers.calc.kid_race(t, e)
+	local player = t[1]
+	local npc = t[2]
+	if not player or not npc then return end
+
+	local race
+
+	--Standard half-X races
+	if player == "Human" and npc == "drow" then race = "half-drow" end
+	if player == "Human" and npc == "elf" then race = "half-elf" end
+	if player == "Human" and npc == "orc" then race = "half-orc" end
+	if player == "Elf" and npc == "human" then race = "half-elf" end
+	if player == "Drow" and npc == "human" then race = "half-drow" end
+	if player == "Orc" and npc == "human" then race = "half-orc" end
+
+	--Drow/elves crossbreed is always one of the parent races
+	if (player == "Elf" and npc == "drow") or (player == "Drow" and npc == "elf") then
+		if rng.dice(1,6) < 4 then race = "drow"
+		else race = "elf" end
+	end
+
+	return race
+end
+
+function resolvers.kid_alignment(player, npc)
+	return {__resolver="kid_alignment", player, npc }
+end
+
+function resolvers.calc.kid_alignment(t, e)
+	local player = t[1]
+	local npc = t[2]
+
+--	if npc == "neutral evil" and pla
+	if npc:isEvil() and player:isPlayerEvil() then
+		if rng.dice(1,3) == 1 then return "lawful evil" end
+		if rng.dice(1,3) == 2 then return "neutral evil" end
+		if rng.dice(1,3) == 3 then return "chaotic evil" end
+	end
+
+	if npc:isEvil() and not player:isPlayerEvil() then
+		if npc:isLawful() and player:isPlayerLawful() then
+			if rng.dice(1,6) == 1 then return "lawful neutral"
+			else return "lawful evil" end
+
+		elseif npc:isChaotic() and player:isPlayerChaotic() then
+			if rng.dice(1,4) == 1 then return "chaotic neutral"
+			else return "chaotic evil" end
+
+		else
+			if rng.dice(1,6) < 4 then return "neutral evil"
+			else return "neutral" end
+		end
+
+	else
+		--something
+	end
 
 end

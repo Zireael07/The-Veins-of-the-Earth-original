@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -3474,4 +3474,37 @@ function _M:quickSwitchWeapons(free_swap, message, silent)
 		game.logPlayer("You swap your weapons")
 		return end
 
+end
+
+function _M:generateKid(npc)
+	--nothing happens if those races aren't cross-fertile
+	if self.descriptor.race == "Dwarf" and not npc.subtype == "dwarf" then return end
+	if self.descriptor.race == "Halfling" and not npc.subtype == "halfling" then return end
+	if self.descriptor.race == "Lizardfolk" and not npc.subtype == "lizardfolk" then return end
+	if self.descriptor.race == "Kobold" and not npc.subtype == "kobold" then return end
+
+	--make the kid
+	local NPC = require "mod.class.NPC"
+	kid = NPC.new{
+		name = "kid",
+		type = "humanoid",
+		subtype = resolvers.kid_race(self.descriptor.race, npc.subtype),
+		stats = { str=rng.dice(3,6), dex=rng.dice(3,6), con=rng.dice(3,6), int=rng.dice(3,6), wis=rng.dice(3,6), cha=rng.dice(3,6), luc=rng.dice(3,6)},
+		display = "h", color=colors.GOLD,
+		max_life = resolvers.rngavg(5,10),
+		challenge = 1,
+		hit_die = 1,
+		alignment = resolvers.kid_alignment(self, npc),
+--		resolvers.talents{ [Talents.T_SHOOT]=1, },
+		body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+	    ai = "humanoid_level", ai_state = { talent_in=3, ai_move="move_astar", },
+		combat = { dam= {1,6} },
+	    faction = "neutral",
+	    open_door = true,
+		resolvers.wounds()
+	}
+
+	kid:resolve() kid:resolve(nil, true)
+
+	return kid
 end
