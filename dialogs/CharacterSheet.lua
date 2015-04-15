@@ -159,8 +159,8 @@ function _M:drawDialog(tab)
     self:loadUI{
         {left=0, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_skill},
-        {left=self.t_skill, top=0, ui=self.t_cosmetic},
---        {left=self.t_skill, top=0, ui=self.t_effect},
+        {left=self.t_skill, top=0, ui=self.t_effect},
+        {left=self.t_effect, top=0, ui=self.t_cosmetic},
         {left=0, top=self.t_general.h, ui=self.vs},
         {left=0, top=self.t_general.h+5+self.vs.h, ui=self.c_playtime},
         {left=0, top=self.t_general.h+5+self.vs.h+self.c_playtime.h, ui=self.c_desc},
@@ -177,8 +177,8 @@ function _M:drawDialog(tab)
     self:loadUI{
         {left=0, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_skill},
-        {left=self.t_skill, top=0, ui=self.t_cosmetic},
---        {left=self.t_skill, top=0, ui=self.t_effect},
+        {left=self.t_skill, top=0, ui=self.t_effect},
+        {left=self.t_effect, top=0, ui=self.t_cosmetic},
         {left=0, top=50, ui=self.c_list},
     }
 
@@ -186,11 +186,25 @@ function _M:drawDialog(tab)
     game.tooltip:erase()
     end
 
+    if tab == "effect" then
+    self:loadUI{
+        {left=0, top=0, ui=self.t_general},
+        {left=self.t_general, top=0, ui=self.t_skill},
+        {left=self.t_skill, top=0, ui=self.t_effect},
+        {left=self.t_effect, top=0, ui=self.t_cosmetic},
+        {left=0, top=50, ui=self.c_eff}
+    }
+
+    self:setupUI()
+    self:drawEffect()
+    end
+
     if tab == "cosmetic" then
         self:loadUI{
             {left=0, top=0, ui=self.t_general},
             {left=self.t_general, top=0, ui=self.t_skill},
-            {left=self.t_skill, top=0, ui=self.t_cosmetic},
+            {left=self.t_skill, top=0, ui=self.t_effect},
+            {left=self.t_effect, top=0, ui=self.t_cosmetic},
             {left=0, top=50, ui=self.c_cosmetic}
         }
 
@@ -199,18 +213,6 @@ function _M:drawDialog(tab)
 
     end
 
-    if tab == "effect" then
-    self:loadUI{
-        {left=0, top=0, ui=self.t_general},
-        {left=self.t_general, top=0, ui=self.t_skill},
-        {left=self.t_skill, top=0, ui=self.t_effect},
---        {left=0, top=50, ui=self.c_list_eff},
-        {left=0, top=50, ui=self.c_eff}
-    }
-
-    self:setupUI()
-    self:drawEffect()
-    end
 end
 
 function _M:mouseZones(t, no_new)
@@ -402,43 +404,43 @@ function _M:drawEffect()
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Effects : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
 
     --draw effect list
---    local good_e, bad_e = {}, {}
+    local list = {}
+
 	for eff_id, p in pairs(player.tmp) do
 		local e = player.tempeffect_def[eff_id]
 
 
-        local list = {}
     --    local eff_subtype = table.concat(table.keys(e.subtype), "/")
         local desc = nil
         local dur = p.dur + 1
         local name = e.desc
 
         if e.long_desc then
-            desc = ("#{bold}##GOLD#%s\n(%s)#WHITE##{normal}#\n"):format(name, e.type)..e.long_desc(player, p)
+            desc = ("#{bold}##GOLD#%s\n(%s)#WHITE##{normal}#\n"):format(name, e.type)..e.long_desc
+        --    desc = name.." "..e.type..e.long_desc(player, p)
         else
+        --    desc = name.." "..e.type
             desc = ("#{bold}##GOLD#%s\n(%s)#WHITE##{normal}#\n"):format(name, e.type)
         end
-
-
---[[        if e.status == "detrimental" then name = "#LIGHT_RED#"..e.desc
-        else name = ("%s"):format(e.desc) end]]
 
         list[#list+1] = {
             name = name,
             dur = dur,
             desc = desc,
+            status = e.status,
+            decrease = e.decrease,
         }
-
-	--	if e.status == "detrimental" then bad_e[eff_id] = p else good_e[eff_id] = p end
 	end
 
     table.sort(list, function(a,b) return a.name < b.name end)
 
     for i, t in ipairs(list) do
-        if e.status == "detrimental" then
-            self:mouseTooltip(desc, s:drawColorStringBlended(self.font, (e.decrease > 0) and ("#LIGHT_RED#%s(%d)"):format(name, dur) or ("#LIGHT_RED#%s"):format(name), w, h, 255, 255, 255, true)) h = h + self.font_h
+        if t.status == "detrimental" then
+            self:mouseTooltip(desc, s:drawColorStringBlended(self.font, (t.decrease > 0) and ("#LIGHT_RED#%s(%d)"):format(t.name, t.dur) or ("#LIGHT_RED#%s"):format(t.name), w, h, 255, 255, 255, true)) h = h + self.font_h
+        elseif t.status == "neutral" then
+            self:mouseTooltip(desc, s:drawColorStringBlended(self.font, (t.decrease > 0) and ("%s(%d)"):format(t.name, t.dur) or ("%s"):format(t.name), w, h, 255, 255, 255, true)) h = h + self.font_h
         else
-            self:mouseTooltip(desc, s:drawColorStringBlended(self.font, (e.decrease > 0) and ("#LIGHT_GREEN#%s(%d)"):format(name, dur) or ("#LIGHT_GREEN#%s"):format(name), w, h, 255, 255, 255, true)) h = h + self.font_h
+            self:mouseTooltip(desc, s:drawColorStringBlended(self.font, (t.decrease > 0) and ("#LIGHT_GREEN#%s(%d)"):format(t.name, t.dur) or ("#LIGHT_GREEN#%s"):format(t.name), w, h, 255, 255, 255, true)) h = h + self.font_h
         end
     end
 
