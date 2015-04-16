@@ -3502,6 +3502,12 @@ function _M:generateKid(npc)
 --		resolvers.talents{ [Talents.T_SHOOT]=1, },
 		body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	    ai = "humanoid_level", ai_state = { talent_in=3, ai_move="move_astar", },
+		resolvers.inventory {
+		full_id=true,
+		{ name = "torch", },
+		{ name = "food rations"},
+		{ name = "flask of water"},
+		},
 		combat = { dam= {1,6} },
 	    faction = "neutral",
 	    open_door = true,
@@ -3520,4 +3526,77 @@ end
 
 function _M:getKids()
 	return self.kids
+end
+
+function _M:hasKids()
+	for i, e in pairs(self.kids) do
+		return true
+	end
+
+	return false
+end
+
+function _M:generateRandomClassTable()
+	local Birther = require "engine.Birther"
+	local list = {}
+
+	for i, d in ipairs(Birther.birth_descriptor_def.class) do
+		if not d.prestige then
+			list[#list+1] = {name=d.name, desc=d.desc, d = d}
+		end
+	end
+
+	self.list_random_class = list
+end
+
+function _M:kidTakeover(actor)
+
+	-- Convert the class to always be a player
+	if actor.__CLASSNAME ~= "mod.class.Player" then
+		actor.__PREVIOUS_CLASSNAME = actor.__CLASSNAME
+		local uid = actor.uid
+		actor.replacedWith = false
+		actor:replaceWith(mod.class.Player.new(actor))
+		actor.replacedWith = nil
+		actor.uid = uid
+		__uids[uid] = actor
+		actor.changed = true
+	end
+
+	self:generateRandomClassTable()
+
+	--set descriptors
+	actor.descriptor.race = actor.subtype:capitalize()
+--	actor.descriptor.alignment = actor.alignment
+
+	local class = rng.table(self.list_random_class)
+	actor.descriptor.class = class
+	actor:levelClass(class.name)
+
+
+	--adjust some stuff
+	actor.body = { MAIN_HAND=1, OFF_HAND=1, SHOULDER=1, BODY=1, CLOAK=1, BELT=1, QUIVER=1, GLOVES=1, BOOTS=1, HELM=1, RING=2, AMULET=1, LITE=1, TOOL=1, INVEN=30 }
+	actor:learnTalent(actor.T_SHOOT, true)
+    actor:learnTalent(actor.T_PRAYER, true)
+    actor:learnTalent(actor.T_POLEARM, true)
+    actor:learnTalent(actor.T_STEALTH, true)
+	actor:learnTalent(actor.T_JUMP, true)
+	actor:learnTalent(actor.T_INTIMIDATE, true)
+    actor:learnTalent(actor.T_DIPLOMACY, true)
+    actor:learnTalent(actor.T_ANIMAL_EMPATHY, true)
+    actor:learnTalent(actor.T_MOUNT, true)
+
+	-- Setup as the current player
+	actor.player = true
+	game.paused = actor:enoughEnergy()
+	game.player = actor
+	game.uiset.hotkeys_display.actor = actor
+	Map:setViewerActor(actor)
+	if game.target then game.target.source_actor = actor end
+	if game.level and actor.x and actor.y then game.level.map:moveViewSurround(actor.x, actor.y, 8, 8) end
+	actor._move_others = actor.move_others
+	actor.move_others = true
+
+	if not actor.hotkeys_sorted then actor:sortHotkeys() end
+
 end

@@ -118,6 +118,16 @@ function _M:resurrectBasic()
 	game.level.map:redisplay()
 end
 
+function _M:placeNew(actor)
+	local x, y = util.findFreeGrid(self.actor.x, self.actor.y, 20, true, {[Map.ACTOR]=true})
+	if not x then x, y = self.actor.x, self.actor.y end
+	self.actor.x, self.actor.y = nil, nil
+
+	actor:move(x, y, true)
+	game.level:addEntity(actor)
+	game.level.map:redisplay()
+end
+
 function _M:use(item)
 	if not item then return end
 	local act = item.action
@@ -129,6 +139,16 @@ function _M:use(item)
 		util.showMainMenu()
 	elseif act == "dump" then
 		game:registerDialog(require("mod.dialogs.CharacterSheet").new(self.actor))
+	elseif act == "log" then
+		game:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, game.uiset.logdisplay, profile.chat))
+	elseif act:find("^kid") then
+		local actor = item.actor
+
+		game:unregisterDialog(self)
+		self:placeNew(actor)
+		game.player:kidTakeover(actor)
+
+
 	elseif act == "cheat" then
 		game.logPlayer(self.actor, "#LIGHT_BLUE#You resurrect! CHEATER !")
 
@@ -141,6 +161,22 @@ end
 function _M:generateList()
 	local list = {}
 
+	-- Pause the game
+	game:onTickEnd(function()
+		game.paused = true
+		game.player.energy.value = game.energy_to_act
+	end)
+
+	if self.actor.kids and self.actor:hasKids() then
+		for i, e in ipairs(self.actor.kids) do
+			list[#list+1] = {name= "Take over as ".. e.name.." the "..e.alignment.." "..e.subtype.." STR "..e:getStr().." DEX "..e:getDex().." CON "..e:getCon().." INT "..e:getInt().." WIS "..e:getWis().." CHA "..e:getCha().." LUC "..e:getLuc(),
+			 action="kid "..e.name, actor = e }
+		end
+	end
+
+
+
+	list[#list+1] = {name=(not profile.auth and "Message Log" or "Message/Chat log (allows to talk)"), action="log"}
 	list[#list+1] = {name="Resurrect by cheating", action="cheat"}
 	list[#list+1] = {name="Character dump", action="dump"}
 	list[#list+1] = {name="Exit to main menu", action="exit"}
