@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2014 Zireael
+-- Copyright (C) 2014-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -21,7 +21,9 @@ A basic tactic is to never get surrounded, do not hesitate to backtrack a bit to
 #GOLD#Always control the fight.#WHITE#
 
 After the combat you will probably be low on health, you can rest for a while to regain lost health and resources.
-'R' rests. You will rest until fully restored or until a creature disturbs you.
+If you lose all your health, you'll start suffering hits to your wounds, and running out of wounds will kill you.
+
+'R' rests. You will rest for a period of time or until a creature disturbs you. Resting allows you to regain lost health and one wound.
 
 Now take a few steps back so you only have to fight one spider at a time, and you should survive.
 Remember to use all your abilities to win the fight.

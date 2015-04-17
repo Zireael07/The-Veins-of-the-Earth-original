@@ -22,5 +22,4 @@ During this tutorial some creatures were adjusted to the need of the teachings.
 If you need a reminder of which key does what, you can access the game menu by pressing #GOLD#Escape#WHITE# and checking the key binds (you can also adjust them to your needs).
 
 Now go boldly and remember: #GOLD#Have fun!#WHITE#
-Press Escape, save & exit and create a new character!
 ]]
