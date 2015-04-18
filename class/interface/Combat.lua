@@ -84,20 +84,6 @@ function _M:attackTarget(target, noenergy)
           strmod = 1.5 damagelog = damagelog.."two-handed"
       end
 
-      --Monkey grip feat
-    --[[  if self:knowTalent(self.T_MONKEY_GRIP) and weapon and weapon.slot_forbid == "OFF_HAND" then
-        weapon.slot_forbid = nil]]
-
-      --[[Combat Expertise & Power Attack penalties (Zi)
-      if self:isTalentActive(self.T_COMBAT_EXPERTISE) then
-        local d = rng.dice(1,5)
-        attackmod = attackmod -d
-      end
-
-      if self:isTalentActive(self.T_POWER_ATTACK) then
-        attackmod = attackmod - 5
-      end ]]
-
       --Dual-wielding (main hand)
       if offweapon then
          attackmod = attackmod -6
@@ -316,7 +302,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
         --TO DO: fortification
       end
 
-      --Power Attack damage bonus
+      --Power Attack damage bonus PF style
       if self:isTalentActive(self.T_POWER_ATTACK) then
         if self.combat_bab < 4 then dam = dam + 2
         elseif self.combat_bab > 4 then dam = dam + 4

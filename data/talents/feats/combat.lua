@@ -25,9 +25,16 @@ newFeat{
             return false
         end
     end,
-    activate = function(self, t) 
+    activate = function(self, t)
+		local penalty = 1
+		if self.combat_bab < 4 then penalty = penalty
+        elseif self.combat_bab > 4 then penalty = penalty + 1
+        elseif self.combat_bab > 8 then penalty = penalty + 2
+        elseif self.combat_bab > 12 then penalty = penalty + 8
+        elseif self.combat_bab > 16 then penalty = penalty + 10 end
+
     local res = {
-        attack = self:addTemporaryValue("combat_attack", -5)
+        attack = self:addTemporaryValue("combat_attack", penalty)
 }
         return res
     end,
@@ -35,7 +42,7 @@ newFeat{
         self:removeTemporaryValue("combat_attack", p.attack)
         return true
     end,
-	info = [[You can substract a number from your base attack bonus and add it to damage bonus.]],
+	info = [[A number is substracted from your attack and twice as much is added to damage. It starts at 1 and starting at BAB +4 (and every 4 points of BAB after) it is increased by 1.]],
 }
 
 newFeat{
@@ -68,7 +75,7 @@ newFeat{
         ac = self:addTemporaryValue("combat_untyped", d),
         attack = self:addTemporaryValue("combat_attack", -d)
     }
-    
+
         return res
     end,
     deactivate = function(self, t, p)
@@ -89,7 +96,7 @@ newTalent{
     require = {
         stat = { int = 13, wis = 13 },
         special = {
-            fct = function(self, t, offset) 
+            fct = function(self, t, offset)
             --Base attack bonus 1
             if self:attr("combat_bab") and self:attr("combat_bab") >= 8 then return true
             else return false end
@@ -111,7 +118,7 @@ newTalent{
         if weapon then
             game.logSeen(self, "You need to be unarmed for stunning fist to work.")
             return nil end
-        
+
         local tg = self:getTalentTarget(t)
         local x, y, target = self:getTarget(tg)
         if not x or not y or not target then return nil end
@@ -127,5 +134,5 @@ newTalent{
         end,
     info = function(self, t)
         return ([[You can stun enemies for a round.]])
-    end,    
+    end,
 }
