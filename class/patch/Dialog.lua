@@ -29,9 +29,23 @@ module(..., package.seeall, class.inherit(Base))
 function _M:simpleWaiter(title, text, width, count, max)
 	local d = new(title, 1, 1)
 	width = width or 400
-  -- Some titles are wider than the content
+  -- Port over git improvements
+	local _, th = self.font:size(title)
+	local d = new(title, 1, 1)
+	local max_h = 9999
+	local textzone = require("engine.ui.Textzone").new{width=width+10, auto_height=true, scrollbar=true, text=text}
+	if textzone.h > max_h then textzone.h = max_h
+	else textzone.scrollbar = nil
+	end
+	local wait = require("engine.ui.Waiter").new{size=width, known_max=max}
+
+	d:loadUI{
+	{left = 3, top = 3, ui=textzone},
+	{left = 3, bottom = 3, ui=wait},
+}
+
   -- Using "WWWW" to determine horizontal whitespace buffer for any font size - Marson
-  self.font_bold:setStyle("bold")
+--[[  self.font_bold:setStyle("bold")
 	local title_w, _ = self.font_bold:size(title.."WWWW")
   self.font:setStyle("normal")
 	local w, h = self.font:size(text.."WWWW")
@@ -39,6 +53,38 @@ function _M:simpleWaiter(title, text, width, count, max)
 	local wait = require("engine.ui.Waiter").new{size=width, known_max=max}
 	d:loadUI{
 		{left = 3, top = 3, ui=require("engine.ui.Textzone").new{width=w, height=h+5, text=text}},
+		{left = 3, bottom = 3, ui=wait},
+	}]]
+	d:setupUI(true, true)
+
+	d.done = function(self) game:unregisterDialog(self) end
+	d.timeout = function(self, secs, cb) wait:setTimeout(secs, function() cb() local done = self.done self.done = function()end done(self) end) end
+	d.manual = function(self, ...) wait:manual(...) end
+	d.manualStep = function(self, ...) wait:manualStep(...) end
+
+	game:registerDialog(d)
+
+	core.wait.enable(count, wait:getWaitDisplay(d))
+
+	return d
+end
+
+--Port over git improvements
+function _M:simpleWaiterTip(title, text, tip, width, count, max)
+	if not tip then return self:simpleWaiter(title, text, width, count, max) end
+
+	width = width or 400
+
+	local _, th = self.font:size(title)
+	local d = new(title, 1, 1)
+	local wait = require("engine.ui.Waiter").new{size=width, known_max=max}
+	local textzone = require("engine.ui.Textzone").new{width=wait.w, auto_height=true, scrollbar=false, text=text}
+	local tipzone = require("engine.ui.Textzone").new{width=wait.w, auto_height=true, scrollbar=false, text=tip}
+	local split = require("engine.ui.Separator").new{dir="vertical", size=wait.w - 12}
+	d:loadUI{
+		{left = 3, top = 3, ui=textzone},
+		{left = 3+6, top = 3+textzone.h, ui=split},
+		{left = 3, top = 3+textzone.h+split.h, ui=tipzone},
 		{left = 3, bottom = 3, ui=wait},
 	}
 	d:setupUI(true, true)
@@ -55,7 +101,6 @@ function _M:simpleWaiter(title, text, width, count, max)
 	return d
 end
 
-
 --- Requests a simple, press any key, dialog
 function _M:listPopup(title, text, list, w, h, fct)
 	local d = new(title, 1, 1)
@@ -71,7 +116,7 @@ function _M:listPopup(title, text, list, w, h, fct)
   self.font:setStyle("normal")
 	w = util.bound(w, title_w + 2 * 5, game.w * 0.9)
 	h = util.bound(h, h, game.h * 0.7)
-	
+
 	local desc = require("engine.ui.Textzone").new{width=w, auto_height=true, text=text, scrollbar=true}
 	local l = require("engine.ui.List").new{width=w, height=h-16 - desc.h, list=list, fct=function() d.key:triggerVirtual("ACCEPT") end}
 	d:loadUI{
@@ -180,7 +225,7 @@ function _M:yesnoLongPopup(title, text, w, fct, yes_text, no_text, no_leave, esc
 
 	local ok = require("engine.ui.Button").new{text=yes_text or "Yes", fct=function() game:unregisterDialog(d) fct(true) end}
 	local cancel = require("engine.ui.Button").new{text=no_text or "No", fct=function() game:unregisterDialog(d) fct(false) end}
-	
+
 	w = math.max(w + 20, ok.w + cancel.w + 10)
 
 	d = new(title, w + 6, 1)
@@ -297,7 +342,7 @@ function _M:init(title, w, h, x, y, alpha, font, showup, skin)
 		min_w = math.max(w, title_w + 2 * 5)
 	end
   self.font:setStyle("normal")
-  
+
 	w = util.bound(w * veins.dialog_scale, min_w, game.w * 0.9)
 	h = util.bound(h * veins.dialog_scale, h, game.h * 0.85)
 	if title and string.sub(title, 1, 18) == "Character Creation" then
