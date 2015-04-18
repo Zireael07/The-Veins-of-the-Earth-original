@@ -162,8 +162,8 @@ function _M:drawDialog(tab)
         {left=self.t_skill, top=0, ui=self.t_effect},
         {left=self.t_effect, top=0, ui=self.t_cosmetic},
         {left=0, top=self.t_general.h, ui=self.vs},
-        {left=0, top=self.t_general.h+5+self.vs.h, ui=self.c_playtime},
-        {left=0, top=self.t_general.h+5+self.vs.h+self.c_playtime.h, ui=self.c_desc},
+    --    {left=0, top=self.t_general.h+5+self.vs.h, ui=self.c_playtime},
+        {left=0, top=self.t_general.h+5+self.vs.h, ui=self.c_desc},
         {left=0, bottom=0, ui=self.c_kills},
         {left=0, bottom=self.c_kills.h, ui=self.vs}
     }
@@ -179,6 +179,7 @@ function _M:drawDialog(tab)
         {left=self.t_general, top=0, ui=self.t_skill},
         {left=self.t_skill, top=0, ui=self.t_effect},
         {left=self.t_effect, top=0, ui=self.t_cosmetic},
+        {left=0, top=self.t_general.h, ui=self.vs},
         {left=0, top=50, ui=self.c_list},
     }
 
@@ -192,6 +193,7 @@ function _M:drawDialog(tab)
         {left=self.t_general, top=0, ui=self.t_skill},
         {left=self.t_skill, top=0, ui=self.t_effect},
         {left=self.t_effect, top=0, ui=self.t_cosmetic},
+        {left=0, top=self.t_general.h, ui=self.vs},
         {left=0, top=50, ui=self.c_eff}
     }
 
@@ -205,7 +207,9 @@ function _M:drawDialog(tab)
             {left=self.t_general, top=0, ui=self.t_skill},
             {left=self.t_skill, top=0, ui=self.t_effect},
             {left=self.t_effect, top=0, ui=self.t_cosmetic},
-            {left=0, top=50, ui=self.c_cosmetic}
+            {left=0, top=self.t_general.h, ui=self.vs},
+            {left=0, top=self.t_general.h+5+self.vs.h, ui=self.c_playtime},
+            {left=0, top=self.t_general.h+5+self.vs.h+self.c_playtime.h, ui=self.c_cosmetic}
         }
 
     self:setupUI()
@@ -251,6 +255,7 @@ function _M:drawGeneral()
     w = 0
 
     s:drawColorStringBlended(self.font, "#SLATE#Name : "..(player.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#Sex : "..(player.descriptor.sex or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "#SLATE#Race : "..(player.descriptor.race or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     --Automatically print out classes
@@ -401,7 +406,7 @@ function _M:drawEffect()
     h = 0
     w = 0
 
-    s:drawColorStringBlended(self.font, "#CHOCOLATE#Effects : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#CHOCOLATE#Current effects : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
 
     --draw effect list
     local list = {}
@@ -461,7 +466,7 @@ function _M:drawKid()
     h = 0
     w = 0
 
-    s:drawColorStringBlended(self.font, "#CHOCOLATE#Kids : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#CHOCOLATE#Offspring : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
 
     	local list = {}
 
