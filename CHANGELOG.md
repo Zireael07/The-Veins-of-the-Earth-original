@@ -14,12 +14,26 @@ CHANGELOG
 * bug fix - difficulty selection not being saved/displayed properly
 * bug fix - Oathbow not counting as ranged weapon
 * bug fix - personal reaction not used at all, leading to attacked neutrals not turning hostile
+* bug fix - don't show talent cooldown if it's 0
+* bug fix - no more option to wear things with INVEN slot
+* bug fix - adjust food rarities and add a message on eating
+* bug fix - spending a night with a courtesan counts now as resting
+* bug fix - buttons overlapping in Help screen
+* bug fix - encumbrance no longer considered detrimental
+* bug fix - update the tutorial to mention wounds
+* bug fix - add sex to character screen
+* bug fix - wrap up Power Attack rework and update description
 
 * added Symbola font and used it on map
 * new zones: temple, drow temple
-* added outline to ASCII entities
+* added tips on loading zone level
 * implemented the Luck stat
+* implemented Monkey Grip feat
 * random and default buttons in character creation screen
+* some bags now limit what can be put in them (so an ammo belt will accept only ammo)
+* the character screen now has a tab listing all effects you have
+* the player character can now have children of his/her own
+* if you die but have a child(ren), you can keep playing as one of the kids
 * improved the loot generator
 * AI can now pick up items from the floor and swap weapons
 * players can keep a ranged weapon in the shoulder slot and swap weapons with a keypress
@@ -31,6 +45,7 @@ CHANGELOG
 * the player will now stop running automatically in some cases (chats, nasty stuff happening)
 * worldmap now uses its own sight range
 * code attacks of opportunity
+* added outline to ASCII entities
 
 0.26.0 - beta 7 - 21/03/2015
 
