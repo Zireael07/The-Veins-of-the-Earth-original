@@ -669,10 +669,13 @@ function _M:provokeAoO(x, y)
         dist = core.fov.distance(x, y, act.x, act.y)
         if act ~= self and act:reactionToward(self) < 0 and not act.dead and not self.dead then
             --NOTE: needs to be 2 to trigger even though it doesn't seem logical
-        	if dist <= 2 then --TODO: or 3 and wielding a polearm
-            --    game.log(("%s makes an attack of opportunity!"):format(act:getLogName():capitalize()))
-                act:logCombat(self, ("%s makes an attack of opportunity!"):format(act:getLogName():capitalize()))
-                act:attack(self, true)
+        	if dist <= 2 and not act.madeAoO then --TODO: or 3 and wielding a polearm
+                local weapon = (act:getInven("MAIN_HAND") and act:getInven("MAIN_HAND")[1]) or self
+                if not weapon.ranged then
+                    act:logCombat(self, ("%s makes an attack of opportunity!"):format(act:getLogName():capitalize()))
+                    act:attack(self, true)
+                    act.madeAoO = true
+                end
         	else end
     	end
     end

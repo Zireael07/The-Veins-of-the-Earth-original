@@ -285,6 +285,9 @@ function _M:act()
 		end
 	end
 
+	--reset AoO flag
+	self.madeAoO = false
+
 	-- Cooldown talents
 	self:cooldownTalents()
 
