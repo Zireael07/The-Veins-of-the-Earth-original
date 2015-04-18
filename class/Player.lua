@@ -1068,17 +1068,6 @@ function _M:getEncumberTitleUpdater(title)
     end
 end
 
-function _M:showEquipInven(title, filter, action, on_select, inven)
-    return engine.interface.ActorInventory.showEquipInven(self,
-        self:getEncumberTitleUpdater(title)(), filter, action, on_select, inven)
-end
-
-function _M:showInventory(title, inven, filter, action)
-    return engine.interface.ActorInventory.showInventory(self,
-        self:getEncumberTitleUpdater(title)(), inven, filter, action)
-end
-
-
   --Inventory
   function _M:playerPickup()
     -- If 2 or more objects, display a pickup dialog, otherwise just picks up
@@ -1269,18 +1258,20 @@ function _M:doTakeoff(inven, item, o)
 end
 
 --Container stuff, adapted from Gatecrashers
-function _M:putIn(bag)
+function _M:putIn(bag, filter)
   local inven = self:getInven(self.INVEN_INVEN)
   local d d = self:showInventory("Put in", inven, nil, function(o, item)
     if not o.iscontainer then
       if bag:addObject(self.INVEN_INVEN, o) then
-        self:removeObject(inven, item, true)
-        self:sortInven(inven)
-        bag:sortInven(inven)
-        self:useEnergy()
-        --print("PUT IN:"..tostring(item))
-        --"Item" = # of inventory slot
-        self.changed = true
+		if (filter and o.type == filter or o.subtype == filter) or not filter then
+        	self:removeObject(inven, item, true)
+        	self:sortInven(inven)
+        	bag:sortInven(inven)
+        	self:useEnergy()
+        	self.changed = true
+		else
+			game.logSeen(self, "You can't put %s in this container", o:getName({no_count=true}))
+		end
       else
         game.logSeen(self, "No more room in container.")
         --return true

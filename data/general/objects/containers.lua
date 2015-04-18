@@ -6,7 +6,7 @@ newEntity{
 	type = "container", subtype = "container",
 	image = "tiles/newtiles/bag.png",
 	display = "Δ", color=colors.SLATE,
-	unided_name = "a bag",
+	unided_name = "bag",
 	name = "bag",
 	encumber = 2,
 	identified = false,
@@ -17,7 +17,7 @@ newEntity{
 newEntity{
 	base = "BASE_CONTAINER",
 	name = "bag of holding",
-	unided_name = "a bag",
+	unided_name = "bag",
 	level_range = {1, nil},
 	rarity = 2,
 --	cost = 2500,
@@ -33,15 +33,16 @@ newEntity{
 newEntity{
 	base = "BASE_CONTAINER",
 	name = "ammo belt",
-	unided_name = "a bag",
+	unided_name = "bag",
 	level_range = {1, nil},
 	rarity = 2,
+	filter = "ammo",
 --	cost = 1500,
 	cost = resolvers.value{platinum=1500},
 	--Based on Baldur's Gate bag of holding
 	body = { INVEN = 20 },
 	use_simple = { name = "put in", use = function(self, who)
-		who:putIn(self)
+		who:putIn(self, self.filter)
 		return {used=true}
 	end},
 }
@@ -49,7 +50,7 @@ newEntity{
 newEntity{
 	base = "BASE_CONTAINER",
 	name = "gem pouch",
-	unided_name = "a pouch",
+	unided_name = "pouch",
 	level_range = {1, nil},
 	rarity = 2,
 --	cost = 1500,
@@ -57,7 +58,7 @@ newEntity{
 	--Based on Baldur's Gate bag of holding
 	body = { INVEN = 20 },
 	use_simple = { name = "put in", use = function(self, who)
-		who:putIn(self)
+		who:putIn(self, self.filter)
 		return {used=true}
 	end},
 }
@@ -65,15 +66,16 @@ newEntity{
 newEntity{
 	base = "BASE_CONTAINER",
 	name = "potion case",
-	unided_name = "a bag",
+	unided_name = "bag",
 	level_range = {1, nil},
 	rarity = 2,
+	filter = "potion",
 --	cost = 1500,
 	cost = resolvers.value{platinum=1500},
 	--Based on Baldur's Gate bag of holding
 	body = { INVEN = 20 },
 	use_simple = { name = "put in", use = function(self, who)
-		who:putIn(self)
+		who:putIn(self, self.filter)
 		return {used=true}
 	end},
 }
@@ -81,15 +83,16 @@ newEntity{
 newEntity{
 	base = "BASE_CONTAINER",
 	name = "scroll case",
-	unided_name = "a bag",
+	unided_name = "bag",
 	level_range = {1, nil},
 	rarity = 2,
+	filter = "scroll",
 --	cost = 1500,
 	cost = resolvers.value{platinum=1500},
 	--Based on Baldur's Gate bag of holding
 	body = { INVEN = 20 },
 	use_simple = { name = "put in", use = function(self, who)
-		who:putIn(self)
+		who:putIn(self, self.filter)
 		return {used=true}
 	end},
 }

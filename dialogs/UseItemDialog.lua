@@ -70,7 +70,7 @@ function _M:use(item)
     self.on_use(self.inven, self.item, self.object, true)
   --Container stuff
   elseif item.action == "putin" then
-        self.actor:putIn(self.object)
+        self.actor:putIn(self.object, (self.object.filter or nil) )
         self.on_use(self.inven, self.item, self.object, false)
   elseif item.action == "takeout" then
         self.actor:takeOut(self.object)
