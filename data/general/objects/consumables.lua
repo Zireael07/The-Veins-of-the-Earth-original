@@ -27,7 +27,7 @@ newEntity{
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 200
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName())
+        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
         return {used = true, destroy = true}
   end
   },
@@ -45,7 +45,7 @@ newEntity{
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 150
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName())
+        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
         return {used = true, destroy = true}
   end
   },
@@ -63,7 +63,7 @@ newEntity{
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 150
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName())
+        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
         return {used = true, destroy = true}
   end
   },
@@ -82,7 +82,7 @@ newEntity{ define_as = "FRESH_CORPSE",
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 100
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName())
+        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
         return {used = true, destroy = true}
   end
   },
@@ -102,7 +102,7 @@ newEntity{ define_as = "CORPSE",
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 60
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName())
+        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
         return {used = true, destroy = true}
   end
   },
@@ -123,7 +123,7 @@ newEntity{
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 100
-        game.logPlayer(who, "%s drinks %s!", who.name:capitalize(), self:getName())
+        game.logPlayer(who, "%s drinks %s!", who.name:capitalize(), self:getName{no_count=true})
         return {used = true, destroy = true}
   end
   },
@@ -143,7 +143,7 @@ newEntity{
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 0
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName())
+        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
         return {used = true, destroy = true}
   end
   },
@@ -163,7 +163,7 @@ newEntity{
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 0
-        game.logPlayer(who, "%s drinks %s!", who.name:capitalize(), self:getName())
+        game.logPlayer(who, "%s drinks %s!", who.name:capitalize(), self:getName{no_count=true})
         return {used = true, destroy = true}
   end
   },
@@ -182,7 +182,7 @@ newEntity{
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 0
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName())
+        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
         return {used = true, destroy = true}
   end
   },
