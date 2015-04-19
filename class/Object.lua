@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -180,22 +180,23 @@ function _M:getName(t)
         end]]
     end
 
-    if self.pseudo_id == true and self.identified == false and not t.force_id then --and self:getUnidentifiedName() then
-        name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
-    end
-
-    if self.school_id == true and self.identified == false and not t.force_id then
-        if self.schools then
-            name = ("%s {%s}"):format(name, self:getSchool())
-        else
-            if self.pseudo_id == true then
+    if not t.no_add_pseudo then
+        if self.pseudo_id == true and self.identified == false and not t.force_id then --and self:getUnidentifiedName() then
             name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
+        end
+
+        if self.school_id == true and self.identified == false and not t.force_id then
+            if self.schools then
+                name = ("%s {%s}"):format(name, self:getSchool())
             else
-            name = self:getUnidentifiedName()
+                if self.pseudo_id == true then
+                    name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
+                else
+                    name = self:getUnidentifiedName()
+                end
             end
         end
     end
-
 
     --Does this even work?
     name = name:gsub("~", ""):gsub("&", "a"):gsub("#([^#]+)#", function(attr)
@@ -229,6 +230,36 @@ end
     if self.keywords and self.keywords.darkwood and self.identified == true then str = str.."\n#GOLD#This shield is made of darkwood, reducing armor check penalty by 2" end
   ]]
 
+  --- Gets the short name of the object
+  function _M:getShortName(t)
+  	if not self.short_name then return self:getName({no_add_pseudo=true}) end
+
+  	t = t or {}
+  	local qty = self:getNumber()
+  	local name = self.short_name
+
+    if self.identified == false and not t.force_id and self:getUnidentifiedName() then
+        name = self:getUnidentifiedName()
+    end
+
+    if not t.no_add_name and self.add_name then --and self:isIdentified() then
+    name = name .. self.add_name:gsub("#([^#]+)#", function(attr)
+            return self:descAttribute(attr)
+        end)
+    end
+
+    if not t.do_color then
+        if qty == 1 or t.no_count then return name
+        else return qty.." "..name
+        end
+    else
+        local _, c = self:getDisplayColor()
+        if qty == 1 or t.no_count then return c..name.."#LAST#"
+        else return c..qty.." "..name.."#LAST#"
+        end
+    end
+
+end
 
 --- Gets the full textual desc of the object without the name and requirements
 function _M:getTextualDesc()
