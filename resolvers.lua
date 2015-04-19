@@ -338,6 +338,16 @@ function resolvers.calc.moddable_tile(t, e)
 	if type(r) == "string" then return r else e.moddable_tile_big = true return r[1] end
 end
 
+--Reworked T-Engine to round down
+--- Average random
+function resolvers.rngavg(x, y)
+	return {__resolver="rngavg", x, y}
+end
+function resolvers.calc.rngavg(t)
+	return math.min(rng.avg(t[1], t[2]))
+end
+
+
 
 --Originals start here
 function resolvers.value(list)
@@ -569,7 +579,7 @@ function resolvers.calc.specialnpc(t, e)
 
 end
 
---Since egos result in random freezes on level gen, make them here
+--NOTE: Since egos result in random freezes on level gen, make them here
 function resolvers.templates()
 	return {__resolver="templates", __resolve_last=true}
 end
@@ -883,7 +893,7 @@ function resolvers.calc.perks(t, e)
 end
 
 
---Special stuff
+--Offspring stuff
 function resolvers.kid_race(player, npc)
 	return {__resolver="kid_race", player, npc }
 end

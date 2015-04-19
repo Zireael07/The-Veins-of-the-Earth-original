@@ -196,18 +196,13 @@ function _M:getName(t)
         end
     end
 
-    --Display ammo capacity correctly
-    if self.combat and self.combat.capacity then
-        name = name.." ("..self.combat.capacity..")"
-    end
-
 
     --Does this even work?
     name = name:gsub("~", ""):gsub("&", "a"):gsub("#([^#]+)#", function(attr)
         return self:descAttribute(attr)
     end)
 
-    if not t.no_add_name and self.add_name and self:isIdentified() then
+    if not t.no_add_name and self.add_name then --and self:isIdentified() then
     name = name .. self.add_name:gsub("#([^#]+)#", function(attr)
             return self:descAttribute(attr)
         end)
