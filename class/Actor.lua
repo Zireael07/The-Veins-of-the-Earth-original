@@ -28,11 +28,15 @@ require "engine.interface.ActorResource"
 require "engine.interface.ActorFOV"
 require 'engine.interface.ActorQuest'
 require "mod.class.interface.Combat"
+
+require 'mod.class.interface.ActorSkills'
+
 local Map = require "engine.Map"
 local Faction = require "engine.Faction"
 local DamageType = require "engine.DamageType"
 
 module(..., package.seeall, class.inherit(engine.Actor,
+	mod.class.interface.ActorSkills,
 	engine.interface.ActorTemporaryEffects,
 	mod.class.interface.ActorLife,
 	engine.interface.ActorProject,
@@ -104,70 +108,6 @@ function _M:init(t, no_default)
 	self.reflex_save = self.reflex_save or 0
 	self.fortitude_save = self.fortitude_save or 0
 
-	--Skillz!
-	self.skill_appraise = 0
-	self.skill_balance = 0
-	self.skill_bluff = 0
-	self.skill_climb = 0
-	self.skill_concentration = 0
-	self.skill_craft = 0
-	self.skill_diplomacy = 0
-	self.skill_disabledevice = 0
-	self.skill_decipherscript = 0
-	self.skill_escapeartist = 0
-	self.skill_handleanimal = 0 --what is called Animal Empathy in Incursion
-	self.skill_heal = 0
-	self.skill_hide = 0
-	self.skill_intimidate = 0
-	self.skill_intuition = 0
-	self.skill_jump = 0
-	self.skill_knowledge = 0
-	self.skill_listen = 0
-	--NOTE: maybe mining skill from Incursion?
-	self.skill_movesilently = 0
-	self.skill_openlock = 0
-	self.skill_ride = 0
-	self.skill_search = 0
-	--TODO: Seneschal skill for high-tier stuff (owning land, fortresses etc.)
-	self.skill_sensemotive = 0
-	self.skill_swim = 0
-	self.skill_pickpocket = 0 --what is called sleight of hand in 3.5
-	self.skill_spellcraft = 0
-	self.skill_survival = 0
-	self.skill_tumble = 0
-	self.skill_usemagic = 0
-
-	--Skill bonuses (feat, kit etc.) to be applied on top of ranks
-	self.skill_bonus_appraise = 0
-	self.skill_bonus_balance = 0
-	self.skill_bonus_bluff = 0
-	self.skill_bonus_climb = 0
-	self.skill_bonus_concentration = 0
-	self.skill_bonus_craft = 0
-	self.skill_bonus_diplomacy = 0
-	self.skill_bonus_disabledevice = 0
-	self.skill_bonus_decipherscript = 0
-	self.skill_bonus_escapeartist = 0
-	self.skill_bonus_handleanimal = 0 --what is called Animal Empathy in Incursion
-	self.skill_bonus_heal = 0
-	self.skill_bonus_hide = 0
-	self.skill_bonus_intimidate = 0
-	self.skill_bonus_intuition = 0
-	self.skill_bonus_jump = 0
-	self.skill_bonus_knowledge = 0
-	self.skill_bonus_listen = 0
-	self.skill_bonus_movesilently = 0
-	self.skill_bonus_openlock = 0
-	self.skill_bonus_ride = 0
-	self.skill_bonus_search = 0
-	self.skill_bonus_sensemotive = 0
-	self.skill_bonus_swim = 0
-	self.skill_bonus_pickpocket = 0 --what is called sleight of hand in 3.5
-	self.skill_bonus_spellcraft = 0
-	self.skill_bonus_survival = 0
-	self.skill_bonus_tumble = 0
-	self.skill_bonus_usemagic = 0
-
 	--Make resists and projectiles work
 	t.resists = t.resists or {}
 	t.melee_project = t.melee_project or {}
@@ -186,6 +126,7 @@ function _M:init(t, no_default)
 	--Actually initiate some basic engine stuff
 	engine.Actor.init(self, t, no_default)
 	engine.interface.ActorTemporaryEffects.init(self, t)
+	mod.class.interface.ActorSkills.init(self, t)
 	mod.class.interface.ActorLife.init(self, t)
 	engine.interface.ActorProject.init(self, t)
 	engine.interface.ActorTalents.init(self, t)
