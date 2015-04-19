@@ -43,6 +43,7 @@ local PlayerLore = require "mod.class.interface.PlayerLore"
 local UIBase = require "engine.ui.Base"
 
 local Object = require 'mod.class.Object'
+local ActorSkills = require 'mod.class.interface.ActorSkills'
 
 -- Init settings
 config.settings.veins = config.settings.veins or {}
@@ -236,6 +237,9 @@ Store:loadStores("/data/general/stores/general.lua")
 PlayerLore:loadDefinition("/data/lore/lore.lua")
 
 Object:loadFlavors('/data/object_flavors.lua')
+
+--Un-hardcoded skills
+ActorSkills:loadDefinition('/data/skills.lua')
 
 --More shenanigans
 
