@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 local help = '#GOLD#BAB#SANDY_BROWN# = Base Attack Bonus, required by some feats\n #GOLD#Fort#LAST#, #GOLD#Ref#LAST# and #GOLD#Will#LAST# are saving throws, used to protect you from danger (spells, terrain effects). The type of the saving throw used depends on the spell or effect involved.\n\n'
 
@@ -222,7 +222,7 @@ newBirthDescriptor {
 		}
 	},
 	class_desc = {
-		skill_point = 2,
+		skill_point = 4,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Cleric"] and actor.descriptor.class == "Cleric" then return true end
@@ -696,7 +696,7 @@ newBirthDescriptor {
         },
 	},
 	class_desc = {
-		skill_point = 2, -- TODO: D20 uses 4. Is this supposed to be different?
+		skill_point = 4,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Druid"] and actor.descriptor.class == "Druid" then return true end
@@ -1463,7 +1463,7 @@ newBirthDescriptor {
 		}
 	},
 	class_desc = {
-		skill_point = 2,
+		skill_point = 4,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Wizard"] and actor.descriptor.class == "Wizard" then return true end
@@ -1664,7 +1664,7 @@ newBirthDescriptor {
 		}
 	},
 	class_desc = {
-		skill_point = 2,
+		skill_point = 4,
 	},
 	can_level = function(actor)
 	if actor.classes and actor.classes["Shaman"] and actor.descriptor.class == "Shaman" then return true end
