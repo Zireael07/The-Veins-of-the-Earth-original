@@ -39,15 +39,14 @@ end
 
 --Skill checks, Zireael
 function _M:getSkill(skill)
-	local stat_for_skill = { appraise = "int", balance = "dex", bluff = "cha", climb = "str", concentration = "int", craft = "int", diplomacy = "cha", disabledevice = "int", decipherscript = "int", escapeartist = "dex", handleanimal = "wis", heal = "wis", hide = "dex", intimidate = "cha", intuition = "int", jump = "str", knowledge = "wis", listen = "wis", movesilently = "dex", openlock = "dex", pickpocket = "dex", ride = "dex", search = "int", sensemotive = "wis", swim = "str", spellcraft = "int", spot = "wis", survival = "wis", tumble = "dex", usemagic = "int" }
 	if (not skill) then return 0 end
 	local penalty_for_skill = { appraise = "no", balance = "yes", bluff = "no", climb = "yes", concentration = "no", craft = "no", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", ride = "no", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
 
-	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + math.floor((self:getStat(stat_for_skill[skill])-10)/2)
+	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + self:getSkillMod(skill)
 
-	if penalty_for_skill[skill] == "no" then return check end
+	if not self:isSkillPenalty(skill) then return check end
 
-	if penalty_for_skill[skill] == "yes" then
+	if self:isSkillPenalty(skill) then
 		if self:knowTalent(self.T_ARMOR_OPTIMISATION) and self:attr("armor_penalty") then
 			return check - (self:attr("armor_penalty")/3 or 0) - (self:attr("load_penalty") or 0) --end
 		else
@@ -103,4 +102,22 @@ function _M:opposedCheck(skill1, target, skill2)
 	end
 
 	return success
+end
+
+function _M:getSkillMod(skill)
+	local stat_for_skill = {}
+	for i, s in ipairs(_M.skill_defs) do
+		stat_for_skill[s.id] = s.stat
+	end
+
+	return math.floor((self:getStat(stat_for_skill[skill])-10)/2)
+end
+
+function _M:isSkillPenalty(skill)
+	local penalty_for_skill = {}
+	for i, s in ipairs(_M.skill_defs) do
+		penalty_for_skill[s.id] = s.penalty
+	end
+
+	return penalty_for_skill[skill] == "yes" and true or false
 end

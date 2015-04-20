@@ -11,6 +11,8 @@ local Tab = require 'engine.ui.Tab'
 local ListColumns = require "engine.ui.ListColumns"
 local Button = require "engine.ui.Button"
 
+local ActorSkills = require 'mod.class.interface.ActorSkills'
+
 module(..., package.seeall, class.inherit(Dialog, mod.class.interface.TooltipsData))
 
 function _M:init(actor)
@@ -57,6 +59,7 @@ function _M:init(actor)
     self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih-self.c_playtime.h-15,alpha=0}
     self.c_kills = Button.new{text="Kills", fct=function() self:onKill() end}
 
+    self:generateList()
     self.c_list = ListColumns.new{width=self.iw, height=self.ih - 50, scrollbar=true, columns={
         {name="Name", width=20, display_prop="name"},
         {name="Total", width=10, display_prop="total"},
@@ -66,38 +69,7 @@ function _M:init(actor)
         {name="Armor penalty", width=14, display_prop="acp"},
         {name="Load penalty", width=11, display_prop="load"},
     },
-    list={
-        {name="Appraise (INT)", total=player:colorSkill("appraise") or "0", ranks=(player.skill_appraise or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_appraise or "0") },
-        {name="Balance (DEX)", total=player:colorSkill("balance") or "0", ranks=(player.skill_balance or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_balance or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Bluff (CHA)", total=player:colorSkill("bluff") or "0", ranks=(player.skill_bluff or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_bluff or "0") },
-        {name="Climb (STR)", total=player:colorSkill("climb") or "0", ranks=(player.skill_climb or "0"), stat=player:getStrMod(), bonus=(player.skill_bonus_climb or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Concentration (INT)", total=player:colorSkill("concentration") or "0", ranks=(player.skill_concentration or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_concentration or "0") },
-        {name="Craft (INT)", total=player:colorSkill("craft") or "0", ranks=(player.skill_craft or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_craft or "0") },
-        {name="Decipher Script (INT)", total=player:colorSkill("decipherscript") or "0", ranks=(player.skill_decipherscript or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_decipherscript or "0") },
-        {name="Diplomacy (CHA)", total=player:colorSkill("diplomacy") or "0", ranks=(player.skill_diplomacy or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_diplomacy or "0") },
-        {name="Disable Device (INT)", total=player:colorSkill("disabledevice") or "0", ranks=(player.skill_disabledevice or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_disabledevice or "0") },
-        {name="Escape Artist (DEX)", total=player:colorSkill("escapeartist") or "0", ranks=(player.skill_escapeartist or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_escapeartist or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Handle Animal (WIS)", total=player:colorSkill("handleanimal") or "0", ranks=(player.skill_handleanimal or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_handleanimal or "0") },
-        {name="Heal (WIS)", total=player:colorSkill("heal") or "0", ranks=(player.skill_heal or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_heal or "0") },
-        {name="Hide (DEX)", total=player:colorSkill("hide") or "0", ranks=(player.skill_hide or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_hide or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Intimidate (CHA)", total=player:colorSkill("intimidate") or "0", ranks=(player.skill_intimidate or "0"), stat=player:getChaMod(), bonus=(player.skill_bonus_intimidate or "0") },
-        {name="Intuition (INT)", total=player:colorSkill("intuition") or "0", ranks=(player.skill_intuition or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_intuition or "0") },
-        {name="Jump (STR)", total=player:colorSkill("jump") or "0", ranks=(player.skill_jump or "0"), stat=player:getStrMod(), bonus=(player.skill_bonus_jump or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Knowledge (INT)", total=player:colorSkill("knowledge") or "0", ranks=(player.skill_knowledge or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_knowledge or "0") },
-        {name="Listen (WIS)", total=player:colorSkill("listen") or "0", ranks=(player.skill_listen or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_listen or "0") },
-        {name="Move Silently (DEX)", total=player:colorSkill("movesilently") or "0", ranks=(player.skill_movesilently or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_movesilently or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Open Lock (DEX)", total=player:colorSkill("openlock") or "0", ranks=(player.skill_openlock or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_openlock or "0") },
-        {name="Pick Pocket (DEX)", total=player:colorSkill("pickpocket") or "0", ranks=(player.skill_pickpocket or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_pickpocket or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Ride (DEX)", total=player:colorSkill("ride") or "0", ranks=(player.skill_ride or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_ride or "0") },
-        {name="Search (INT)", total=player:colorSkill("search") or "0", ranks=(player.skill_search or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_search or "0") },
-        {name="Sense Motive (WIS)", total=player:colorSkill("sensemotive") or "0", ranks=(player.skill_sensemotive or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_sensemotive or "0") },
-        {name="Spot (WIS)", total=player:colorSkill("spot") or "0", ranks=(player.skill_spot or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_spot or "0") },
-        {name="Swim (STR)", total=player:colorSkill("swim") or "0", ranks=(player.skill_swim or "0"), stat=player:getStrMod(), bonus=(player.skill_bonus_swim or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Spellcraft (INT)", total=player:colorSkill("spellcraft") or "0", ranks=(player.skill_spellcraft or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_spellcraft or "0") },
-        {name="Survival (WIS)", total=player:colorSkill("survival") or "0", ranks=(player.skill_survival or "0"), stat=player:getWisMod(), bonus=(player.skill_bonus_survival or "0") },
-        {name="Tumble (DEX)", total=player:colorSkill("tumble") or "0", ranks=(player.skill_tumble or "0"), stat=player:getDexMod(), bonus=(player.skill_bonus_tumble or "0"), acp=(player.armor_penalty or "0"), load=(player.load_penalty or "0") },
-        {name="Use Magic (INT)", total=player:colorSkill("usemagic") or "0", ranks=(player.skill_usemagic or "0"), stat=player:getIntMod(), bonus=(player.skill_bonus_usemagic or "0") },
-    },
+    list = self.list_skills,
     fct=function(item) end, select=function(item, sel) end} --self:select(item) end
 
     self.c_eff = SurfaceZone.new{width=self.iw, height=self.ih-15,alpha=0}
@@ -392,6 +364,25 @@ end
 
     self.c_desc:generate()
     self.changed = false
+end
+
+function _M:generateList()
+    local list = {}
+
+    for i, s in ipairs(ActorSkills.skill_defs) do
+        local player = game.player
+        local name = s.name:capitalize().." ("..s.stat:upper()..")"
+        local total = player:colorSkill(s.id) or "0"
+        local ranks = player:attr("skill_"..s.id) or "0"
+        local bonus = player:attr("skill_bonus_"..s.id) or "0"
+        local stat = player:getSkillMod(s.id)
+        local acp = player:isSkillPenalty(s.id) and player:attr("armor_penalty") or "N/A"
+        local load = player:isSkillPenalty(s.id) and player:attr("load_penalty") or "N/A"
+
+        list[#list+1] = {name=name, total=total, ranks=ranks, bonus=bonus, stat=stat, acp=acp, load=load}
+    end
+
+    self.list_skills = list
 end
 
 function _M:drawEffect()
