@@ -185,7 +185,7 @@ newSkill{
 
 newSkill{
     name = "spot",
-    desc = "",
+    desc = "Used to spot traps or hiding enemies.",
     stat = "wis",
     penalty = "no",
 }
