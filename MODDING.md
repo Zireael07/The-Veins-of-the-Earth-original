@@ -14,7 +14,9 @@ If you add a prestige class, it must be added to the section in base descriptor 
 This is identical to a variant known as "fractional saves".
 
 Skills
-If you add a skill, it must be set in Actor.lua, including the skillCheck and the class skills listing. It must also be added to the lists in SkillDialog.lua so that it can be taken and in character sheet so that it will be displayed.
+Skills are added in the data/skills.lua file. You need to define name, description, skill and penalty.
+
+If you add a skill, it must be listed in the class skills listing in Actor.lua.
 
 Effects (spells, poisons, class abilities, etc.)
 DO NOT ever use numbers in effect names, EVER!!

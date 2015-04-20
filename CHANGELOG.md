@@ -23,6 +23,7 @@ CHANGELOG
 * bug fix - update the tutorial to mention wounds
 * bug fix - add sex to character screen
 * bug fix - wrap up Power Attack rework and update description
+* bug fix - don't display pseudo ID tags on paperdoll
 
 * added Symbola font and used it on map
 * new zones: temple, drow temple
@@ -30,11 +31,14 @@ CHANGELOG
 * implemented the Luck stat
 * implemented Monkey Grip feat
 * random and default buttons in character creation screen
+* increase spellcaster classes skill points allotment to 4
+* ammo capacity is now randomized
 * some bags now limit what can be put in them (so an ammo belt will accept only ammo)
 * the character screen now has a tab listing all effects you have
 * the player character can now have children of his/her own
 * if you die but have a child(ren), you can keep playing as one of the kids
 * improved the loot generator
+* skills are no longer hardcoded
 * AI can now pick up items from the floor and swap weapons
 * players can keep a ranged weapon in the shoulder slot and swap weapons with a keypress
 * you can now wield, take off or use items with a keypress giving you a list of all applicable items
