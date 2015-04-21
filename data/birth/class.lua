@@ -1527,7 +1527,7 @@ newBirthDescriptor {
 					{name="Weasel", desc="Master gains a +2 bonus on Reflex saves."}
 				}, function(result)
 					if result == "Bat" then actor:attr("skill_listen", 3) end
-					if result == "Cat" then actor:attr("skill_movesilently", 3) end
+					if result == "Cat" then actor:attr("skill_move_silently", 3) end
 					if result == "Hawk" then actor:attr("skill_spot", 3) end
 					if result == "Lizard" then actor:attr("skill_climb", 3) end
 					if result == "Owl" then actor:attr("skill_spot", 3) end
@@ -2080,7 +2080,7 @@ newBirthDescriptor {
 	Skilled rogues who can summon shades and hide in plain sight.]],
 	can_level = function(actor)
 		if actor.classes and actor.classes["Shadowdancer"] and actor.classes["Shadowdancer"] >= 10 then return false end
-		if actor.skill_movesilently >= 8 and actor.skill_hide >= 10 then return true end
+		if actor.skill_move_silently >= 8 and actor.skill_hide >= 10 then return true end
 
 		return false
 	end,
@@ -2136,7 +2136,7 @@ newBirthDescriptor {
 		if actor.classes and actor.classes["Assassin"] and actor.classes["Assassin"] >= 10 then return false end
 	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
 
-		if actor.skill_movesilently >= 8 and actor.skill_hide >= 8 then return true end
+		if actor.skill_move_silently >= 8 and actor.skill_hide >= 8 then return true end
 
 		return false
 
@@ -2188,7 +2188,7 @@ newBirthDescriptor {
 		if actor.classes and actor.classes["Blackguard"] and actor.classes["Blackguard"] >= 10 then return false end
 	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
 	-- 	if actor:knowTalent(actor.T_POWER_ATTACK) then
-		if actor.skill_movesilently >= 6 and actor.skill_knowledge >= 2 and actor.combat_bab >= 6 then return true end
+		if actor.skill_move_silently >= 6 and actor.skill_knowledge >= 2 and actor.combat_bab >= 6 then return true end
 
 		return false
 
