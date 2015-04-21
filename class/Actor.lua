@@ -1193,6 +1193,11 @@ end
 -- @param ab the talent (not the id, the table)
 -- @return true to continue, false to stop
 function _M:preUseTalent(ab, silent, fake)
+	--NOTE: first things first
+	if self.dead then return false end
+	if not self:enoughEnergy() then return false end
+
+
 	local tt_def = self:getTalentTypeFrom(ab.type[1])
 	if tt_def.all_limited then --all_limited talenttypes all have talents that are daily limited
 
@@ -1246,8 +1251,6 @@ function _M:preUseTalent(ab, silent, fake)
 		return false
 	end
 
-	if not self:enoughEnergy() then return false end
-
 	if ab.mode == "sustained" then
 		if ab.sustain_power and self.max_power < ab.sustain_power and not self:isTalentActive(ab.id) then
 			game.logPlayer(self, "You do not have enough power to activate %s.", ab.name)
@@ -1266,13 +1269,12 @@ function _M:preUseTalent(ab, silent, fake)
 			if ab.message then
 				game.logSeen(self, "%s", self:useTalentMessage(ab))
 			end
-			elseif ab.mode == "sustained" and not self:isTalentActive(ab.id) then
-				game.logSeen(self, "%s activates %s.", self:getLogName():capitalize(), ab.name)
-			elseif ab.mode == "sustained" and self:isTalentActive(ab.id) then
-				game.logSeen(self, "%s deactivates %s.", self:getLogName():capitalize(), ab.name)
-			else
-			--	game.logSeen(self, "%s uses %s.", self:getLogName():capitalize(), ab.name)
-				game.logSeen(self, "%s uses %s.", self:getLogName():capitalize(), self:getTalentName(ab))
+		elseif ab.mode == "sustained" and not self:isTalentActive(ab.id) then
+			game.logSeen(self, "%s activates %s.", self:getLogName():capitalize(), self:getTalentName(ab))
+		elseif ab.mode == "sustained" and self:isTalentActive(ab.id) then
+			game.logSeen(self, "%s deactivates %s.", self:getLogName():capitalize(), self:getTalentName(ab))
+		else
+			game.logSeen(self, "%s uses %s.", self:getLogName():capitalize(), self:getTalentName(ab))
 		end
 	end
 
@@ -1395,7 +1397,7 @@ function _M:getTalentName(t)
 		--Has at least 1 rank in spellcraft
 		if game.player.skill_spellcraft > 0 then
 			--If player can see the source but he isn't the source
-			if self ~= game.player and (game.level.map.seens(self.x, self.y) and game.player:canSee(self)) then
+			if self ~= game.player and (game.level.map.seens(self.x, self.y) and game.player:canReallySee(self)) then
 				local check = game.player:skillCheck("spellcraft", t.level+15)
 				if check then return t.name --end
 				else return "something" end
