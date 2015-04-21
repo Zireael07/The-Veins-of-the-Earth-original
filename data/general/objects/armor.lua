@@ -18,7 +18,7 @@ newEntity{
     encumber = 10,
     rarity = 5,
     name = "light armor",
-    desc = "A simple padded armor. Does not offer much protection.\n\n Light armor. AC +1. Max Dex bonus to AC 8. Spell failure chance 5%.",
+    desc = "A simple padded armor. Does not offer much protection.\n\n Light armor.",
     egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
     }
 
@@ -27,7 +27,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     image = "tiles/leather_armor.png",
     level_range = {1, 10},
     cost = 5,
-    desc = "Simple cord twined around your body. Offers little protection.\n\n Light armor. AC +1. Max Dex bonus to AC 7. Spell failure chance 5%.",
+    desc = "Simple cord twined around your body. Offers little protection.\n\n Light armor.",
     wielder = {
         combat_armor_ac = 1,
         max_dex_bonus = 7,
@@ -56,7 +56,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     level_range = {1, 10},
 --    cost = 10,
     cost = resolvers.value{silver=150},
-    desc = "A set of leather armor.\n\n Light armor. AC +2. Max Dex bonus to AC 6. Spell failure chance 10%.",
+    desc = "A set of leather armor.\n\n Light armor.",
     wielder = {
 		combat_armor_ac = 2,
 		max_dex_bonus = 6,
@@ -85,7 +85,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     level_range = {1, 10},
 --    cost = 100,
     cost = resolvers.value{silver=1250},
-    desc = "A set of chain links which covers the torso only.\n\n Light armor. AC +5. Max Dex bonus to AC 4. Spell failure chance 20%. Armor check penalty -2.",
+    desc = "A set of chain links which covers the torso only.\n\n Light armor.",
     wielder = {
 		combat_armor_ac = 4,
 		max_dex_bonus = 4,
@@ -104,7 +104,7 @@ newEntity{
     encumber = 40,
     rarity = 2,
     name = "medium armor",
-    desc = "A suit of armour made of mail.\n\n Medium armor. AC +5. Max Dex bonus to AC 2. Spell failure chance 30%. Armor check penalty -5.",
+    desc = "A suit of armour made of mail.\n\n Medium armor.",
     egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 
@@ -128,7 +128,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     level_range = {1, 10},
 --    cost = 50,
     cost = resolvers.value{silver=1700},
-    desc = "A suit of armour made of scale.\n\n Medium armor. AC +4. Max Dex bonus to AC 3. Spell failure chance 25%. Armor check penalty -4.",
+    desc = "A suit of armour made of scale.\n\n Medium armor.",
     wielder = {
 		combat_armor_ac = 4,
 		max_dex_bonus = 3,
@@ -143,12 +143,12 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     level_range = {1, 10},
 --    cost = 200,
     cost = resolvers.value{silver=4500},
-    desc = "This armor only covers the torso.\n\n Medium armor. AC +5. Max Dex bonus to AC 3. Spell failure chance 25%. Armor check penalty -4.",
+    desc = "This armor only covers the torso.\n\n Medium armor.",
     wielder = {
 		combat_armor_ac = 5,
 		max_dex_bonus = 3,
 		spell_fail = 25,
-		armor_penalty = 4 
+		armor_penalty = 4
 	},
 }
 
@@ -162,7 +162,7 @@ newEntity{
     encumber = 50,
     rarity = 8,
     name = "heavy armor",
-    desc = "A suit of armour made of plate.\n\n Heavy armor. AC +7. Max Dex bonus to AC 0. Spell failure chance 40%. Armor check penalty -7.",
+    desc = "A suit of armour made of plate.\n\n Heavy armor.",
     egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 
@@ -186,7 +186,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     level_range = {1, 10},
 --    cost = 1500,
     cost = resolvers.value{silver=9000},
-    desc = "A suit of full plate armour.\n\n Heavy armor. AC +8. Max Dex bonus to AC 1. Spell failure chance 35%. Armor check penalty -6.",
+    desc = "A suit of full plate armour.\n\n Heavy armor.",
     wielder = {
         combat_armor_ac = 8,
         max_dex_bonus = 1,
@@ -202,7 +202,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     level_range = {1, 10},
 --    cost = 250,
     cost = resolvers.value{platinum=8},
-    desc = "A suit of banded mail.\n\n Heavy armor. AC +7. Max Dex bonus to AC 0. Spell failure chance 35%. Armor check penalty -6.",
+    desc = "A suit of banded mail.\n\n Heavy armor.",
     wielder = {
         combat_armor_ac = 7,
         max_dex_bonus = 0,
