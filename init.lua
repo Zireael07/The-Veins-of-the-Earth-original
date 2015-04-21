@@ -22,7 +22,7 @@ homepage = "http://veins-of-the-earth.wikidot.com/"
 version = {0,27,0}
 engine = {1,3,0,"te4"}
 description = [[
-#SANDY_BROWN# BETA 7.1#LAST#
+#SANDY_BROWN# BETA 7.5#LAST#
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
 You are an adventurer in a world of immense sunless corridors and tunnels. How long can you survive?
 
