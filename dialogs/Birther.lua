@@ -447,13 +447,19 @@ end
 function _M:makeDefault()
     self:setDescriptor("sex", "Male")
     self:setDescriptor("race", "Human")
+--    self:RaceUse(1)
+    self:updateRaces()
     self:setDescriptor("class", "Fighter")
+    self:updateClasses()
     self:setDescriptor("alignment", "Lawful Good")
+    self:updateAlignment()
     self:setDescriptor("deity", "Asherath")
+    self:updateDeity()
     self:setDescriptor("background", "Tough guy")
+    self:updateBackgrounds()
 
-    self:randomName()
---    self:atEnd()
+--    self:randomName()
+    self:atEnd()
 end
 
 function _M:randomHero()
