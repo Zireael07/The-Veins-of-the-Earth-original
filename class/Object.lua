@@ -267,25 +267,41 @@ function _M:getTextualDesc()
 
     desc:add(true)
 
+    --General stuff to be shown always
+    if self.desc then desc:add(self.desc) end
 
+    --Requirements
+    self:getRequirementDesc(game.player)
 
-    if self.multicharge and self:isIdentified() then desc:add(("%d charges remaining."):format(self.multicharge or 0), true) end
+    --Weapons
+    if self.slot_forbid == "OFFHAND" then desc:add("You must wield this weapon with two hands.", true) end
+    if self.light then desc:add("This is a light weapon", true) end
+    if self.martial then desc:add("This is a martial weapon", true) end
+    if self.simple then desc:add("This is a simple weapon", true) end
+    if self.reach then desc:add("This is a reach weapon", true) end
+    if self.exotic then desc:add("This is an exotic weapon", true) end
 
-        --General stuff to be shown always
-        if self.desc then desc:add(self.desc) end
+    if self.combat and self.combat.dam and type(self.combat.dam) == "table" then
+        desc:add(("Damage: %dd%d"):format(self.combat.dam[1], self.combat.dam[2]), true)
+        desc:add(("Threatens a critical on a roll of: %s"):format(self:formatThreat()), true)
+    end
 
-        if self.slot_forbid == "OFFHAND" then desc:add("You must wield this weapon with two hands.", true) end
-        if self.light then desc:add("This is a light weapon", true) end
-        if self.martial then desc:add("This is a martial weapon", true) end
-        if self.simple then desc:add("This is a simple weapon", true) end
-        if self.reach then desc:add("This is a reach weapon", true) end
-        if self.exotic then desc:add("This is an exotic weapon", true) end
+    local desc_worn = function(w)
+        --Armors
+        if w.combat_armor_ac then desc:add(("AC: +%d"):format(w.combat_armor_ac), true) end
+        if w.max_dex_bonus then desc:add(("Max Dex bonus to AC: %d"):format(w.max_dex_bonus), true) end
+        if w.spell_fail then desc:add(("Spell failure chance: %d"):format(w.spell_fail), true) end
 
-        if self.cost and self.appraised == true then desc:add(("Price: %s"):format(self:formatPrice())) end
+        --Weapons
+        if w.combat_parry then desc:add(("Parry bonus to AC: %d"):format(w.combat_parry), true) end
+    end
+    if self.wielder then desc_worn(self.wielder) end
+
+    if self.cost and self.appraised == true then desc:add(("Price: %s"):format(self:formatPrice())) end
 
 
     if self:isIdentified() then
-           if self.wielder then
+        if self.wielder then
         --    desc:add({"color","SANDY_BROWN"}, "\nWhen equipped:", {"color", "LAST"}, true)
 
         local desc_wielder = function(w)
@@ -301,8 +317,10 @@ function _M:getTextualDesc()
 
         desc_wielder(self.wielder)
         end
-    else
 
+        --wands
+        if self.multicharge then desc:add(("%d charges remaining."):format(self.multicharge or 0), true) end
+    else
         desc:add("\nUnidentified.")
     end
 
@@ -347,6 +365,13 @@ function _M:formatPrice()
         else return silver end
     else return self.cost
     end
+end
+
+function _M:formatThreat()
+    local threat = "20"
+    if self.combat.threat then threat = (20-self.combat.threat).."-20" end
+
+    return threat
 end
 
 function _M:tooltip(x, y)
