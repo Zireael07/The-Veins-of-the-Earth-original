@@ -281,16 +281,25 @@ function _M:getTextualDesc()
     if self.reach then desc:add("This is a reach weapon", true) end
     if self.exotic then desc:add("This is an exotic weapon", true) end
 
+
+    local combat_desc = function(c)
+        if c.critical then desc:add(("Critical: x%d"):format(c.critical), true) end
+        if c.range then desc:add(("Range: %d"):format(c.range), true) end
+    end
+
     if self.combat and self.combat.dam and type(self.combat.dam) == "table" then
         desc:add(("Damage: %dd%d"):format(self.combat.dam[1], self.combat.dam[2]), true)
         desc:add(("Threatens a critical on a roll of: %s"):format(self:formatThreat()), true)
     end
+
+    if self.combat then combat_desc(self.combat) end
 
     local desc_worn = function(w)
         --Armors
         if w.combat_armor_ac then desc:add(("AC: +%d"):format(w.combat_armor_ac), true) end
         if w.max_dex_bonus then desc:add(("Max Dex bonus to AC: %d"):format(w.max_dex_bonus), true) end
         if w.spell_fail then desc:add(("Spell failure chance: %d"):format(w.spell_fail), true) end
+        if w.armor_penalty then desc:add(("Armor check penalty: %d"):format(w.armor_penalty), true) end
 
         --Weapons
         if w.combat_parry then desc:add(("Parry bonus to AC: %d"):format(w.combat_parry), true) end
