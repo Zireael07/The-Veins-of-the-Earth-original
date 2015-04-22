@@ -3483,7 +3483,7 @@ function _M:generateKid(npc)
 	kid = NPC.new{
 		name = "kid",
 		type = "humanoid",
-		subtype = resolvers.kid_race(self.descriptor.race, npc.subtype),
+		subtype = resolvers.kid_race(self.descriptor.race, npc.subtype:capitalize()),
 		stats = { str=rng.dice(3,6), dex=rng.dice(3,6), con=rng.dice(3,6), int=rng.dice(3,6), wis=rng.dice(3,6), cha=rng.dice(3,6), luc=rng.dice(3,6)},
 		display = "h", color=colors.GOLD,
 		max_life = resolvers.rngavg(5,10),
@@ -3540,6 +3540,42 @@ function _M:generateRandomClassTable()
 	self.list_random_class = list
 end
 
+function _M:kidApplyRace(actor)
+	--apply race effects
+	local Birther = require "engine.Birther"
+	for i, d in ipairs(Birther.birth_descriptor_def.race) do
+		if d.name == actor.descriptor.race then
+			if d.copy then
+				local copy = table.clone(d.copy, true)
+	            -- Append array part
+	            while #copy > 0 do
+	                local f = table.remove(copy)
+	                table.insert(actor, f)
+	            end
+	            -- Copy normal data
+	            table.merge(actor, copy, true)
+	        end
+	        if d.copy_add then
+	            local copy = table.clone(d.copy_add, true)
+	            -- Append array part
+	            while #copy > 0 do
+	                local f = table.remove(copy)
+	                table.insert(actor, f)
+	            end
+	            -- Copy normal data
+	            table.mergeAdd(actor, copy, true)
+	        end
+			if d.talents then
+	            for tid, lev in pairs(d.talents) do
+	                for i = 1, lev do
+	                    actor:learnTalent(tid, true)
+	                end
+	            end
+	        end
+		end
+	end
+end
+
 function _M:kidTakeover(actor)
 
 	-- Convert the class to always be a player
@@ -3554,10 +3590,17 @@ function _M:kidTakeover(actor)
 		actor.changed = true
 	end
 
+	--give it player body
+	actor.body = { MAIN_HAND=1, OFF_HAND=1, SHOULDER=1, BODY=1, CLOAK=1, BELT=1, QUIVER=1, GLOVES=1, BOOTS=1, HELM=1, RING=2, AMULET=1, LITE=1, TOOL=1, INVEN=30 }
+	actor:initBody()
+
+
 	self:generateRandomClassTable()
 
 	--set descriptors
+	actor.descriptor.sex = resolvers.kid_sex()
 	actor.descriptor.race = actor.subtype:capitalize()
+	self:kidApplyRace(actor)
 --	actor.descriptor.alignment = actor.alignment
 
 	local class = rng.table(self.list_random_class)
@@ -3565,8 +3608,24 @@ function _M:kidTakeover(actor)
 	actor:levelClass(class.name)
 
 
+
+
+	--re-add inventory since initBody deletes it
+	actor.resolvers.inventory {
+	full_id=true,
+	{ name = "torch", },
+	{ name = "food rations"},
+	{ name = "flask of water"},
+	}
+
+	actor:resolve() actor:resolve(nil, true)
+
+
 	--adjust some stuff
-	actor.body = { MAIN_HAND=1, OFF_HAND=1, SHOULDER=1, BODY=1, CLOAK=1, BELT=1, QUIVER=1, GLOVES=1, BOOTS=1, HELM=1, RING=2, AMULET=1, LITE=1, TOOL=1, INVEN=30 }
+	actor.money = 500
+	actor.faction = "players"
+
+	--give player skills
 	actor:learnTalent(actor.T_SHOOT, true)
     actor:learnTalent(actor.T_PRAYER, true)
     actor:learnTalent(actor.T_POLEARM, true)

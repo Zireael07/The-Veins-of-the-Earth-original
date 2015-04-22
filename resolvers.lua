@@ -894,6 +894,15 @@ end
 
 
 --Offspring stuff
+function resolvers.kid_sex()
+	return {__resolver="kid_sex",  }
+end
+
+function resolvers.calc.kid_sex()
+	if rng.chance(50) then return "Male"
+	else return "Female" end
+end
+
 function resolvers.kid_race(player, npc)
 	return {__resolver="kid_race", player, npc }
 end
@@ -906,18 +915,23 @@ function resolvers.calc.kid_race(t, e)
 	local race
 
 	--Standard half-X races
-	if player == "Human" and npc == "drow" then race = "half-drow" end
-	if player == "Human" and npc == "elf" then race = "half-elf" end
-	if player == "Human" and npc == "orc" then race = "half-orc" end
-	if player == "Elf" and npc == "human" then race = "half-elf" end
-	if player == "Drow" and npc == "human" then race = "half-drow" end
-	if player == "Orc" and npc == "human" then race = "half-orc" end
+	if player == "Human" and npc == "Drow" then race = "half-drow" end
+	if player == "Human" and npc == "Elf" then race = "half-elf" end
+	if player == "Human" and npc == "Orc" then race = "half-orc" end
+	if player == "Elf" and npc == "Human" then race = "half-elf" end
+	if player == "Drow" and npc == "Human" then race = "half-drow" end
+	if player == "Orc" and npc == "Human" then race = "half-orc" end
 
 	--Drow/elves crossbreed is always one of the parent races
-	if (player == "Elf" and npc == "drow") or (player == "Drow" and npc == "elf") then
+	if (player == "Elf" and npc == "Drow") or (player == "Drow" and npc == "Elf") then
 		if rng.dice(1,6) < 4 then race = "drow"
 		else race = "elf" end
 	end
+
+	--Purebreed
+	if player == npc then race = player end
+--[[	if player == "Human" and npc == "Human" then race = "Human" end
+	if player == "Drow" and npc == "Drow" then race = "Drow" end]]
 
 	return race
 end
