@@ -65,13 +65,13 @@ newEntity{
     end),]]
 }
 
---Mushrooms
+--Mushrooms (should give nutrition in addition to potion effects)
 newEntity{
     define_as = "BASE_MUSHROOM",
     slot = "INVEN",
     type = "potion", subtype = "mushroom",
---    image = "tiles/potion.png",
-    display = ",", color=colors.RED,
+    image = "tiles/mushroom_yellow.png",
+    display = ",", color=colors.YELLOW,
     name = "mushroom", --instant_resolve = true,
     unided_name = "mushroom",
     identified = false,
@@ -79,7 +79,8 @@ newEntity{
     level_range = {1,10},
     encumber = 0,
     rarity = 10,
-    desc = [[A mushroom.]],
+    desc = [[An edible mushroom.]],
+    egos = "/data/general/objects/properties/potions.lua", egos_chance = {suffix=100},
 }
 
 --Tattoos
@@ -101,14 +102,14 @@ newEntity{
 --Rods
 newEntity{
     define_as = "BASE_ROD",
-    slot = "INVEN", 
+    slot = "INVEN",
     name = "rod",
     unided_name = "rod",
     identified = false,
     cost = 0,
     level_range = {1,10},
     rarity = 10,
-    slot = "INVEN", 
+    slot = "INVEN",
     type = "wand", subtype = "rod",
     image = "tiles/wand.png",
     display = "-", color=colors.GREEN,
@@ -127,7 +128,7 @@ newEntity{
     level_range = {1,10},
     cost = 10,
     rarity = 2,
-    slot = "INVEN", 
+    slot = "INVEN",
     type = "wand", subtype = "wand",
     image = "tiles/wand.png",
     display = "-", color=colors.RED,
@@ -147,7 +148,7 @@ newEntity{
     level_range = {1, 10},
     rarity = 2,
     cost = 50,
-    slot = "INVEN", 
+    slot = "INVEN",
     type = "scroll", subtype = "scroll",
     image = "tiles/scroll.png",
     display = "?", color=colors.WHITE,
@@ -166,4 +167,3 @@ newEntity{
         e.unided_name = e.unided_name.." labeled "..game.object_material_types["scroll"]["scroll"][e.name]
     end),
 }
-
