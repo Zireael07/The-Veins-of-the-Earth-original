@@ -138,7 +138,8 @@ end
 -- @param src the angerer
 -- @param set true if value is the finite value, false if it is an increment
 -- @param value the value to add/subtract
-function _M:checkAngered(src, set, value)
+-- @param turns how many turns to delay reaction decay
+function _M:checkAngered(src, set, value, turns)
     if not src.resolveSource then return end
     if not src.faction then return end
     if self.never_anger then return end
@@ -160,7 +161,10 @@ function _M:checkAngered(src, set, value)
         self.reaction_actor[rid] = util.bound(value, -200, 200)
     end
 
+	if turns then self.reaction_actor.turns = math.max(self.reaction_actor.turns or 0, turns) end
+
     if not was_hostile and self:reactionToward(src) < 0 then
+		self.reaction_actor.turns = math.max(self.reaction_actor.turns or 0, 5)
         if self.anger_emote then
             self:doEmote(self.anger_emote:gsub("@himher@", src.female and "her" or "him"), 30)
         end
@@ -172,6 +176,26 @@ function _M:timedEffects(filter)
     self._in_timed_effects = true
     mod.class.Actor.timedEffects(self, filter)
     self._in_timed_effects = nil
+
+	--decay personal reaction towards 0 (from NPC Forgiveness addon)
+	local Ractor = self.reaction_actor --NPF
+	if Ractor and not self:attr("no_timeflow") then
+		if Ractor.turns then
+			Ractor.turns = Ractor.turns > 1 and Ractor.turns - 1 or nil
+		else
+			for rid, val in pairs(Ractor) do
+				val = math.ceil(val * 0.9)
+				if val == 0 then
+					val = nil
+					--eventually clear friendly ai targets
+					if self.ai_target.actor and (self.ai_target.actor.name == rid or (rid == "player" and self.ai_target.actor.player)) and self:reactionToward(self.ai_target.actor) >=0 then
+						self:setTarget()
+					end
+				end
+				Ractor[rid] = val
+			end
+		end
+	end
 end
 
 --- Called by ActorLife interface
@@ -191,20 +215,32 @@ function _M:onTakeHit(value, src)
     end
 
     -- Get angry if attacked by a friend
-    if src and src ~= self and src.resolveSource and src.faction and self:reactionToward(src) >= 0 and value > 0 then
-        self:checkAngered(src, false, -50)
+		if src and src ~= self and src.resolveSource and src.faction and value > 0 and engine.Faction:factionReaction(self.faction, src.faction) >= 0 then
+--    if src and src ~= self and src.resolveSource and src.faction and self:reactionToward(src) >= 0 and value > 0 then
+		local react = -math.min(100, 500*value/self.max_life)  -- NPC reaction depends on hit
+		self:checkAngered(src, false, react)
+	--	self:checkAngered(src, false, -50)
 
         -- Call for help if we become hostile
         for i = 1, #self.fov.actors_dist do
             local act = self.fov.actors_dist[i]
             if act and act ~= self and self:reactionToward(act) > 0 and not act.dead and act.checkAngered then
-                act:checkAngered(src, false, -50)
+				act:checkAngered(src, false, react)
+			--    act:checkAngered(src, false, -50)
             end
         end
     end
 
 
     return mod.class.Actor.onTakeHit(self, value, src)
+end
+
+--Detrimental status effects reduce reaction (from NPC Forgiveness)
+function _M:on_set_temporary_effect(eff_id, e, p)
+	mod.class.Actor.on_set_temporary_effect(self, eff_id, e, p)
+	if p.src and e.status == "detrimental" and p.dur > 0 then --and not exclude_effects[eff_id] then
+		self:checkAngered(p.src, false, -25)
+	end
 end
 
 
@@ -322,6 +358,25 @@ function _M:aiSeeTargetPos(target)
     end]]
     return ActorAI.aiSeeTargetPos(self, target)
 end
+
+--- Responsible for clearing ai target if needed
+-- Pass target to summoner if any
+function _M:clearAITarget()
+	if self.ai_target.actor and (self.ai_target.actor.dead or not game.level:hasEntity(self.ai_target.actor)) and self.ai_target.actor.summoner then
+		self.ai_target.actor = self.ai_target.actor.summoner
+		-- You think you can cheat with summons ? let's cheat back !
+		-- yeah it's logical because .. hum .. yeah because the npc saw were the summon came from!
+		local tx, ty = self:aiSeeTargetPos(self.ai_target.actor)
+		self.ai_state.target_last_seen = {x=tx, y=ty, turn=game.turn}
+	end
+
+--if self.ai_target.actor and self.ai_target.actor.dead then self.ai_target.actor = nil end
+	--clear friendly ai targets
+	if self.ai_target.actor and (self.ai_target.actor.dead or self:reactionToward(self.ai_target.actor) >= 0) then self.ai_target.actor = nil end
+
+end
+
+
 
 --NPC specific stuff the player will never use
 --Make NPCs aware of objects on floor
