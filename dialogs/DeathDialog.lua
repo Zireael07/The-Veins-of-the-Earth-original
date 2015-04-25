@@ -30,7 +30,7 @@ function _M:init(actor)
 --	self.ui = "deathbox"
 	self.ui = "tombstone"
 
-	Dialog.init(self, "Death!", 500, 300)
+	Dialog.init(self, "Death!", 600, 300)
 
 	self:generateList()
 
@@ -167,17 +167,17 @@ function _M:generateList()
 		game.player.energy.value = game.energy_to_act
 	end)
 
+	--keep playing
 	if self.actor.kids and self.actor:hasKids() then
 		for i, e in ipairs(self.actor.kids) do
-			list[#list+1] = {name= "Take over as ".. e.name.." the "..e.alignment.." "..e.subtype.." STR "..e:getStr().." DEX "..e:getDex().." CON "..e:getCon().." INT "..e:getInt().." WIS "..e:getWis().." CHA "..e:getCha().." LUC "..e:getLuc(),
+			list[#list+1] = {name= "#LIGHT_BLUETake over as ".. e.name.." the "..e.alignment.." "..e.subtype.." STR "..e:getStr().." DEX "..e:getDex().." CON "..e:getCon().." INT "..e:getInt().." WIS "..e:getWis().." CHA "..e:getCha().." LUC "..e:getLuc().."#WHITE#",
 			 action="kid "..e.name, actor = e }
 		end
 	end
 
-
-
+	list[#list+1] = {name="#LIGHT_BLUE#Resurrect by cheating#WHITE#", action="cheat"}
+	--normal stuff
 	list[#list+1] = {name=(not profile.auth and "Message Log" or "Message/Chat log (allows to talk)"), action="log"}
-	list[#list+1] = {name="Resurrect by cheating", action="cheat"}
 	list[#list+1] = {name="Character dump", action="dump"}
 	list[#list+1] = {name="Exit to main menu", action="exit"}
 

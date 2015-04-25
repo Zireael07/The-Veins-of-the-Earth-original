@@ -37,7 +37,7 @@ list = {
 	end
       },
       {
-	name = 'Save and continue playing',
+	name = '#GREEN#Save and continue playing#LAST#',
 	fct = function(_)
 	  game:unregisterDialog(self)
 	  game.quit_dialog = false
@@ -45,7 +45,7 @@ list = {
 	end
       },
       {
-	name = 'Save and quit',
+	name = '#GREEN#Save and quit#LAST#',
 	fct = function(_)
 	  game:unregisterDialog(self)
 	  savefile_pipe:push(game.save_name, "game", game)
