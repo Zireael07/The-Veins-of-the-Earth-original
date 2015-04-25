@@ -159,6 +159,7 @@ newEntity{
     image = "tiles/npc/drow_mage.png",
     rarity = 5,
     can_talk = "sage",
+    resolvers.classes{wizard=3},
 }
 
 
@@ -169,6 +170,7 @@ newEntity{
     image = "tiles/newtiles/human_mage.png",
     rarity = 5,
     can_talk = "sage",
+    resolvers.classes{wizard=2},
 }
 
 --Healers

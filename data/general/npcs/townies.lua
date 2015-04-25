@@ -99,6 +99,7 @@ newEntity{
         { name = "dagger",  },
     },
     can_talk = "female_courtesan",
+    resolvers.classes{Rogue=1},
 }
 
 newEntity{
@@ -112,6 +113,7 @@ newEntity{
         { name = "dagger",  },
     },
     can_talk = "male_courtesan",
+    resolvers.classes{Rogue=1},
 }
 
 newEntity{
@@ -131,4 +133,5 @@ newEntity{
     full_id=true,
     { name = "hand crossbow", },
     },
+    resolvers.classes{Fighter=2},
 }
