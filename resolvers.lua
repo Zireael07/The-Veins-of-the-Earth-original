@@ -393,7 +393,8 @@ function resolvers.calc.classes(t, e)
 --	local class = {}
 	local class_list = Birther.birth_descriptor_def.class
 
-	for class, n in ipairs(t[1]) do
+	for class, n in pairs(t[1]) do
+		local class = class:capitalize()
 		print("[Classes] ".. class)
 		if not n then print("[Classes] No number of levels") end
 		if n <= 0 then print ("[Classes] Number of levels cannot be negative") end
@@ -404,6 +405,7 @@ function resolvers.calc.classes(t, e)
 		e:giveLevels(class, n)
 
 		e.challenge = e.challenge + level
+		e.max_life = e.max_life
 		e.life = e.max_life
 	end
 
@@ -440,6 +442,7 @@ function resolvers.calc.class(t, e)
 	e:giveLevels(class, n)
 	e.challenge = e.challenge + n
 
+	e.max_life = e.max_life
 	e.life = e.max_life
 
 	end
