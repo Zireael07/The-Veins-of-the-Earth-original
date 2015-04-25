@@ -281,42 +281,40 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
     dam = dam + self.combat_damage
 
-      -- magic damage bonus
-      dam = dam + (weapon and weapon.combat.magic_bonus or 0)
+    -- magic damage bonus
+    dam = dam + (weapon and weapon.combat.magic_bonus or 0)
 
-      -- Stat damage bonus
-      if weapon and weapon.ranged then
-         strmod = strmod or 0
-      else
-         strmod = strmod or 1
-      end
+    -- Stat damage bonus
+    if weapon and weapon.ranged then
+        strmod = strmod or 0
+    else
+        strmod = strmod or 1
+    end
 
-      dam = dam + strmod * (self:getStr()-10)/2
+    dam = dam + strmod * (self:getStr()-10)/2
 
-      --Sneak attack!
-      if sneak and self:isTalentActive(self.T_STEALTH) and self.sneak_attack then
+    --Sneak attack!
+    if sneak and self:isTalentActive(self.T_STEALTH) and self.sneak_attack then
         local sneak_dam = rng.dice(self.sneak_attack, 6)
         game.log(("%s makes a sneak attack!"):format(self:getLogName():capitalize()))
         dam = dam + rng.dice(self.sneak_attack, 6)
 
         --TO DO: fortification
-      end
+    end
 
-      --Power Attack damage bonus PF style
-      if self:isTalentActive(self.T_POWER_ATTACK) then
+    --Power Attack damage bonus PF style
+    if self:isTalentActive(self.T_POWER_ATTACK) then
         if self.combat_bab < 4 then dam = dam + 2
         elseif self.combat_bab > 4 then dam = dam + 4
         elseif self.combat_bab > 8 then dam = dam + 6
         elseif self.combat_bab > 12 then dam = dam + 8
         elseif self.combat_bab > 16 then dam = dam + 10 end
+    end
 
-      --  dam = dam + 5
-      end
-
-      if crit then
+    if crit then
         --No crits on players in easy mode!
         if target == game.player and config.settings.veins.difficulty == "Easy" then
-          dam = dam
+            dam = dam
         return end
 
         --Fortification
@@ -354,67 +352,70 @@ function _M:dealDamage(target, weapon, crit, sneak)
         else
           --game.log("The target's lack of physiology prevents serious injury.")
           dam = dam end
-      end
+      end --end crit stuff
 
       --Favored enemy bonus
       if self:favoredEnemy(target) then dam = dam + 2 end
 
+      --Bane weapons
+      if weapon and self:isBane(weapon, target) then
+          weapon.combat.magic_bonus = (weapon.combat.magic_bonus or 0) + 2
+          dam = dam + 2
+          dam = dam + rng.dice(2,6)
+      end
 
+    --Minimum 1 point of damage unless Damage Reduction works
+    dam = math.max(1, dam)
 
-        --Minimum 1 point of damage unless Damage Reduction works
-        dam = math.max(1, dam)
+    --No negative damage with DR/-
+    local reduced_dam = dam - (target.combat_dr or 0)
 
-
-
-        --No negative damage with DR/-
-        local reduced_dam = dam - (target.combat_dr or 0)
-
-       --Account for magic weapons piercing DR
-      if target.combat_dr and target.combat_dr_tohit then
+    --Account for magic weapons piercing DR
+    if target.combat_dr and target.combat_dr_tohit then
         if (weapon.combat.magic_bonus or 0) >= target.combat_dr_tohit then
           reduced_dam = dam
           --Repeat the minimum 1 dmg rule
           dam = math.max(1, dam)
         end
-      end
+    end
 
 
-        dam = math.max(0, reduced_dam)
+    dam = math.max(0, reduced_dam)
 
-        --Player makes Listen checks if s/he can't see it happen
-        local visible, srcSeen, tgtSeen = game:logVisible(self, target)
-        if not visible then
-          local heard_it = false
-          local dist = core.fov.distance(game.player.x, game.player.y, self.x, self.y)
-          local player = game.player
-          if dist < 10 and game.player.skill_listen > 0 then
+    --Player makes Listen checks if s/he can't see it happen
+    local visible, srcSeen, tgtSeen = game:logVisible(self, target)
+    if not visible then
+    local heard_it = false
+    local dist = core.fov.distance(game.player.x, game.player.y, self.x, self.y)
+    local player = game.player
+        if dist < 10 and game.player.skill_listen > 0 then
             if not heard_it then
-              if game.player:skillCheck("listen", 10) then
+                if game.player:skillCheck("listen", 10) then
                 local dir = game.level.map:compassDirection(self.x - game.player.x, self.y - game.player.y)
                 game.log("You hear the sounds of conflict to the %s!", dir)
                 heard_it = true
-              end
+                end
             end
-          end
         end
+    end
 
 
 
 
-        --Poison target
-        if self.poison and not target.dead and target:canBe("poison") then
-          local poison = self.poison
-          self:applyPoison(poison, target)
-          self:logCombat(target, ("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name))
-        end
+    --Poison target
+    if self.poison and not target.dead and target:canBe("poison") then
+      local poison = self.poison
+      self:applyPoison(poison, target)
+      self:logCombat(target, ("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name))
+    end
 
-        target:takeHit(dam, self)
-        --add a hint regarding DR
-        if target.combat_dr and target.combat_dr > 0 then
-          self:logCombat(target, ("%s deals %d damage to %s (damage reduction %d)!"):format(self:getLogName():capitalize(), dam, target.name, target.combat_dr))
-        else
-          self:logCombat(target, ("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name))
-        end
+    target:takeHit(dam, self)
+    --add a hint regarding DR
+    if target.combat_dr and target.combat_dr > 0 then
+      self:logCombat(target, ("%s deals %d damage to %s (damage reduction %d)!"):format(self:getLogName():capitalize(), dam, target.name, target.combat_dr))
+    else
+      self:logCombat(target, ("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name))
+    end
 end
 
 
@@ -542,13 +543,13 @@ _M.fav_enemies = {
 }
 
 function _M:favoredEnemy(target)
-  if target.type ~= "humanoid" and target.type ~= "outsider" then
-                if self:knowTalent(fav_enemies[target.type]) then return true
-                else return false end
-  else
-                if self:knowTalent(fav_enemies[target.subtype]) then return true
-                else return false end
-  end
+    if target.type ~= "humanoid" and target.type ~= "outsider" then
+        if self:knowTalent(fav_enemies[target.type]) then return true
+        else return false end
+    else
+        if self:knowTalent(fav_enemies[target.subtype]) then return true
+        else return false end
+    end
 end
 
 _M.focuses = {
@@ -617,6 +618,17 @@ function _M:hasCritical(type)
   if self:knowTalent(ImpCrit[type]) then return true
   else return false end
 end
+
+function _M:isBane(weapon, target)
+    if target.type ~= "humanoid" and target.type ~= "outsider" then
+        if weapon.combat["bane_"..target.type] then return true
+        else return false end
+    else
+        if weapon.combat["bane_"..target.subtype] then return true
+        else return false end
+    end
+end
+
 
 --Combat speeds code
 --- Computes movement speed
