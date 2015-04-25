@@ -653,9 +653,17 @@ end
 
 --Detect actor alignment
 function _M:isGood()
-	if self.alignment and self.alignment == "lawful good" then return true end
+	local what
+	if self ~= game.player then what = self.alignment
+	else what = self.descriptor.alignment end
+
+	if what == "Lawful Good" then return true end
+	if what == "Neutral Good" then return true end
+	if what == "Chaotic Good" then return true end
+
+--[[	if self.alignment and self.alignment == "lawful good" then return true end
 	if self.alignment and self.alignment == "neutral good" then return true end
-	if self.alignment and self.alignment == "chaotic good" then return true end
+	if self.alignment and self.alignment == "chaotic good" then return true end]]
 
 	return false
 end
@@ -669,25 +677,48 @@ function _M:isNeutral()
 end
 
 function _M:isEvil()
-	if self.alignment and self.alignment == "lawful evil" then return true end
+	local what
+	if self ~= game.player then what = self.alignment
+	else what = self.descriptor.alignment end
+
+	if what == "Lawful Evil" then return true end
+	if what == "Neutral Evil" then return true end
+	if what == "Chaotic Evil" then return true end
+
+--[[	if self.alignment and self.alignment == "lawful evil" then return true end
 	if self.alignment and self.alignment == "neutral evil" then return true end
-	if self.alignment and self.alignment == "chaotic evil" then return true end
+	if self.alignment and self.alignment == "chaotic evil" then return true end]]
 
 	return false
 end
 
 function _M:isLawful()
-	if self.alignment and self.alignment == "lawful good" then return true end
+	local what
+	if self ~= game.player then what = self.alignment
+	else what = self.descriptor.alignment end
+
+	if what == "Lawful Good" then return true end
+	if what == "Lawful Neutral" then return true end
+	if what == "Lawful Evil" then return true end
+
+--[[	if self.alignment and self.alignment == "lawful good" then return true end
 	if self.alignment and self.alignment == "lawful neutral" then return true end
-	if self.alignment and self.alignment == "lawful evil" then return true end
+	if self.alignment and self.alignment == "lawful evil" then return true end]]
 
 	return false
 end
 
 function _M:isChaotic()
-	if self.alignment and self.alignment == "chaotic good" then return true end
+	local what
+	if self ~= game.player then what = self.alignment
+	else what = self.descriptor.alignment end
+
+	if what == "Chaotic Good" then return true end
+	if what == "Chaotic Neutral" then return true end
+	if what == "Chaotic Evil" then return true end
+--[[	if self.alignment and self.alignment == "chaotic good" then return true end
 	if self.alignment and self.alignment == "chaotic neutral" then return true end
-	if self.alignment and self.alignment == "chaotic evil" then return true end
+	if self.alignment and self.alignment == "chaotic evil" then return true end]]
 
 	return false
 end
