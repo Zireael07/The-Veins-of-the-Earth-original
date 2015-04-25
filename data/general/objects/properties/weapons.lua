@@ -68,6 +68,55 @@ newEntity {
 	},
 }
 
+--Aligned
+newEntity{
+	name = "anarchic ", prefix = true,
+	keywords = {aligned=true},
+	level_range = {1, 10},
+	rarity = 5,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		aligned_anarchic = true,
+	}
+}
+
+newEntity{
+	name = "axiomatic ", prefix = true,
+	keywords = {aligned=true},
+	level_range = {1, 10},
+	rarity = 5,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		aligned_axiomatic = true,
+	}
+}
+
+newEntity{
+	name = "holy ", prefix = true,
+	keywords = {aligned=true},
+	level_range = {1, 10},
+	rarity = 5,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		aligned_holy = true,
+	}
+}
+
+newEntity{
+	name = "unholy ", prefix = true,
+	keywords = {aligned=true},
+	level_range = {1, 10},
+	rarity = 5,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		aligned_unholy = true,
+	}
+}
+
 --Banes
 --Humanoid banes
 newEntity{

@@ -364,6 +364,11 @@ function _M:dealDamage(target, weapon, crit, sneak)
           dam = dam + rng.dice(2,6)
       end
 
+      --Aligned weapons
+      if weapon and self:isAlignedExtra(weapon, target) then
+          dam = dam + rng.dice(2,6)
+      end
+
     --Minimum 1 point of damage unless Damage Reduction works
     dam = math.max(1, dam)
 
@@ -629,6 +634,15 @@ function _M:isBane(weapon, target)
     end
 end
 
+
+function _M:isAlignedExtra(weapon, target)
+    if target:isLawful() and weapon.combat.aligned_anarchic then return true end
+    if target:isChaotic() and weapon.combat.aligned_axiomatic then return true end
+    if target:isEvil() and weapon.combat.aligned_holy then return true end
+    if target:isGood() and weapon.combat.aligned_unholy then return true end
+
+    return false
+end
 
 --Combat speeds code
 --- Computes movement speed
