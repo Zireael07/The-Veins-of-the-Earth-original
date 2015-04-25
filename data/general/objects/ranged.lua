@@ -195,7 +195,7 @@ newEntity{ base = "BASE_RANGED",
 --    cost = 1,
     cost = resolvers.value{silver=1},
     combat = {
-        capacity = resolvers.rngavg(2,20),
+        capacity = resolvers.rngavground(2,20),
     },
 }
 
@@ -217,7 +217,7 @@ newEntity{ base = "BASE_RANGED",
 --    cost = 1,
     cost = resolvers.value{silver=2},
     combat = {
-        capacity = resolvers.rngavg(2,20),
+        capacity = resolvers.rngavground(2,20),
     },
 }
 
@@ -237,6 +237,6 @@ newEntity{ base = "BASE_RANGED",
     level_range = {1, 10},
     cost = 5,
     combat = {
-        capacity = resolvers.rngavg(2,20),
+        capacity = resolvers.rngavground(2,20),
     },
 }

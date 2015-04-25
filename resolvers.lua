@@ -340,11 +340,11 @@ end
 
 --Reworked T-Engine to round down
 --- Average random
-function resolvers.rngavg(x, y)
-	return {__resolver="rngavg", x, y}
+function resolvers.rngavground(x, y)
+	return {__resolver="rngavground", x, y}
 end
-function resolvers.calc.rngavg(t)
-	return math.min(rng.avg(t[1], t[2]))
+function resolvers.calc.rngavground(t)
+	return math.round(rng.avg(t[1], t[2]))
 end
 
 
@@ -394,9 +394,11 @@ function resolvers.calc.classes(t, e)
 	local class_list = Birther.birth_descriptor_def.class
 
 	for class, n in ipairs(t[1]) do
-		print("[Classes] number of levels "..n)
+		print("[Classes] ".. class)
 		if not n then print("[Classes] No number of levels") end
 		if n <= 0 then print ("[Classes] Number of levels cannot be negative") end
+
+		print("[Classes] number of levels "..n)
 
 		local level = n
 		e:giveLevels(class, n)
