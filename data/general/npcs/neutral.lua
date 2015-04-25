@@ -9,7 +9,7 @@ newEntity{
     body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
     ai = "humanoid_level", ai_state = { talent_in=1, ai_move="move_astar", },
     combat = { dam= {1,6} },
-    faction = "Neutral",
+    faction = "neutral",
     open_door = true,
     resolvers.talents{ [Talents.T_SHOOT]=1,
     --give the simple weapon proficiency warrior/fighter/wizard class all have
