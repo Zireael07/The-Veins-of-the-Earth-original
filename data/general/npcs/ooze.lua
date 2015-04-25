@@ -14,7 +14,7 @@ newEntity{
 	stats = { str=17, dex=1, con=22, int=1, wis=1, cha=1, luc=10 },
 	combat = { dam= {1,6} },
 	rarity = 15,
-	alignment = "neutral",
+	alignment = "Neutral",
 	resolvers.wounds()
 }
 

@@ -7,7 +7,7 @@ newEntity{
 	define_as = "BASE_NPC_EARTH",
 	body = { INVEN = 10 },
 	ai = "human_level", ai_state = { talent_in=3, },
-	alignment = "neutral",
+	alignment = "Neutral",
 	resolvers.wounds()
 }
 

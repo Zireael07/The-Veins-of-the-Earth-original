@@ -8,7 +8,7 @@ newEntity{
 	type = "outsider", subtype = "water",
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	ai = "human_level", ai_state = { talent_in=3, },
-	alignment = "neutral",
+	alignment = "Neutral",
 	resolvers.wounds()
 }
 
@@ -122,5 +122,5 @@ newEntity{ base = "BASE_NPC_WATER",
 	skill_swim = 8,
 --	movement_speed_bonus = -0.88,
 	movement_speed = 0.22,
-	alignment = "neutral good",
+	alignment = "Neutral Good",
 }

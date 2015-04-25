@@ -19,7 +19,7 @@ newEntity{
 	ai = "animal_level", ai_state = { talent_in=3, },
 	stats = { str=25, dex=9, con=1, int=1, wis=11, cha=1, luc=10 },
 	combat = { dam= {1,6} },
-	alignment = "neutral",
+	alignment = "Neutral",
 --	movement_speed_bonus = -0.33,
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
@@ -126,7 +126,7 @@ newEntity{
 	skill_hide = 12,
 	skill_listen = 3,
 	skill_spot = 3,
-	alignment = "neutral",
+	alignment = "Neutral",
 --	movement_speed_bonus = -0.33,
 	movement_speed = 0.66,
 	resolvers.wounds()
@@ -144,7 +144,7 @@ newEntity{
 	ai = "animal_level", ai_state = { talent_in=3, },
 	stats = { str=14, dex=13, con=1, int=10, wis=17, cha=16, luc=10 },
 	combat = { dam= {1,6} },
-	alignment = "lawful neutral",
+	alignment = "Lawful Neutral",
 	rarity = 20,
 	infravision = 4,
 	combat_dr = 10,
@@ -251,6 +251,6 @@ newEntity{
 	challenge = 8,
 	infravision = 4,
 	combat_natural = 14,
-	alignment = "neutral",
+	alignment = "Neutral",
 	resolvers.wounds()
 }

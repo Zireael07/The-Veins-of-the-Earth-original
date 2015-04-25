@@ -14,7 +14,7 @@ newEntity{
   rarity = 15,
   body = { INVEN = 10 },
   ai = "human_level", ai_state = { talent_in=3, },
-  alignment = "chaotic evil",
+  alignment = "Chaotic Evil",
   resists = { [DamageType.ACID] = 10,
               [DamageType.COLD] = 10,
               [DamageType.FIRE] = 10,

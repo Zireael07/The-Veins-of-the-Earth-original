@@ -42,7 +42,7 @@ newEntity{
 	skill_movesilently = 4,
 	skill_listen = 4,
 	combat_natural = 1,
-	alignment = "neutral",
+	alignment = "Neutral",
 }
 
 newEntity{
@@ -75,7 +75,7 @@ newEntity{
 	skill_listen = 3,
 	skill_spot = 3,
 	combat_natural = 4,
-	alignment = "neutral",
+	alignment = "Neutral",
 }
 
 newEntity{
@@ -106,7 +106,7 @@ newEntity{
 	skill_spot = 4,
 	skill_listen = 4,
 	combat_natural = 1,
-	alignment = "neutral",
+	alignment = "Neutral",
 
 	level_range = {1, 4}, exp_worth = 600,
 	max_life = resolvers.rngavg(7,10),
@@ -133,7 +133,7 @@ newEntity{
 	skill_balance = 4,
 	skill_hide = 6,
 	combat_natural = 1,
-	alignment = "neutral",
+	alignment = "Neutral",
 
 	level_range = {1, 4}, exp_worth = 100,
 	max_life = resolvers.rngavg(3,7),
@@ -161,7 +161,7 @@ newEntity{
 	skill_movesilently = 6,
 	combat_natural = 1,
 	infravision = 3,
-	alignment = "neutral",
+	alignment = "Neutral",
 
 	level_range = {1, 4}, exp_worth = 900,
 	max_life = resolvers.rngavg(17,20),
@@ -190,7 +190,7 @@ newEntity{
 	skill_climb = 6,
 	combat_natural = 1,
 	infravision = 1,
-	alignment = "neutral",
+	alignment = "Neutral",
 
 	level_range = {1, 4}, exp_worth = 900,
 	max_life = resolvers.rngavg(17,20),
@@ -217,7 +217,7 @@ newEntity{
 	skill_swim = 2,
 	combat_natural = 2,
 	infravision = 1,
-	alignment = "neutral",
+	alignment = "Neutral",
 
 	level_range = {1, 4}, exp_worth = 1200,
 	max_life = resolvers.rngavg(42,46),
@@ -245,7 +245,7 @@ newEntity{
 	skill_balance = 8,
 	skill_spot = 2,
 	combat_natural = 2,
-	alignment = "neutral",
+	alignment = "Neutral",
 
 	level_range = {1, 4}, exp_worth = 600,
 	max_life = resolvers.rngavg(20,25),
@@ -272,7 +272,7 @@ newEntity{
 	skill_balance = 8,
 	skill_spot = 2,
 	combat_natural = 3,
-	alignment = "neutral",
+	alignment = "Neutral",
 
 	level_range = {1, 20}, exp_worth = 1800,
 	max_life = resolvers.rngavg(55,60),

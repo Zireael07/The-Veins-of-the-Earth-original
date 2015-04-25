@@ -10,7 +10,7 @@ newEntity{
     body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
     ai = "humanoid_level", ai_state = { talent_in=3, ai_move="move_astar", },
     combat = { dam= {1,6} },
-    faction = "neutral",
+    faction = "Neutral",
     open_door = true,
     resolvers.talents{ [Talents.T_SHOOT]=1,
     --give the simple weapon proficiency warrior/fighter/wizard class all have
@@ -44,7 +44,7 @@ newEntity{ define_as = "BASE_NPC_DROW_T",
     skill_listen = 2,
     skill_search = 3,
     skill_spot = 2,
-    alignment = "neutral evil",
+    alignment = "Neutral Evil",
 }
 
 

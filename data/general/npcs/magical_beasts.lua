@@ -10,7 +10,7 @@ newEntity{
 	ai = "animal_level", ai_state = { talent_in=3, },
 	stats = { str=10, dex=10, con=10, int=10, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,6} },
-	alignment = "neutral",
+	alignment = "Neutral",
 	resolvers.wounds()
 }
 
@@ -494,7 +494,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_hide = 8,
 	skill_intimidate = 2,
 	skill_spot = 9,
-	alignment = "chaotic evil",
+	alignment = "Chaotic Evil",
 --	movement_speed_bonus = 0.88,
 	movement_speed = 1.88,
 	combat_attackspeed = 1.88,
@@ -526,7 +526,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	combat_natural = 5,
 	skill_listen = 4,
 	skill_spot = 8,
-	alignment = "lawful evil",
+	alignment = "Lawful Evil",
 }
 
 --Scent, improved grab
@@ -748,7 +748,7 @@ newEntity{
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_FINESSE]=1
 	},
-	alignment = "neutral",
+	alignment = "Neutral",
 	resolvers.wounds()
 }
 
@@ -802,7 +802,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
@@ -829,7 +829,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
@@ -858,7 +858,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_movesilently = 8,
 --	movement_speed_bonus = -0.33,
 	movement_speed = 0.66,
-	alignment = "neutral",
+	alignment = "Neutral",
 }
 
 --From Incursion
@@ -879,7 +879,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	combat_natural = 2,
 	skill_listen = 5,
 	skill_spot = 5,
-	alignment = "neutral",
+	alignment = "Neutral",
 }
 
 --Scent, rend; brachiation feat; Bull strength, enlarge, cause fear spell-likes
@@ -902,7 +902,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_climb = 8,
 	skill_listen = 5,
 	skill_intimidate = 5,
-	alignment = "neutral",
+	alignment = "Neutral",
 }
 
 --Ethereal phase, fear DC 13
@@ -924,7 +924,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	infravision = 6,
 	skill_hide = 8,
 	skill_movesilently = 5,
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
@@ -951,7 +951,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_movesilently = 10,
 	skill_jump = 10,
 	skill_hide = 6,
-	alignment = "chaotic good",
+	alignment = "Chaotic Good",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,

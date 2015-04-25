@@ -28,7 +28,7 @@ newEntity{
 	body = { INVEN = 10 },
 	ai = "animal_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6} },
-	alignment = "neutral",
+	alignment = "Neutral",
 	resolvers.wounds()
 }
 

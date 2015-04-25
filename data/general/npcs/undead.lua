@@ -141,7 +141,7 @@ newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         skill_jump = 4,
         skill_movesilently = 4,
         skill_spot = 5,
-        alignment = "chaotic evil",
+        alignment = "Chaotic Evil",
 }
 
 newEntity{
@@ -203,7 +203,7 @@ newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         skill_movesilently = 17,
         skill_swim = 3,
         skill_spot = 15,
-        alignment = "chaotic evil",
+        alignment = "Chaotic Evil",
         resolvers.talents{ [Talents.T_DODGE]=1,
         [Talents.T_MOBILITY]=1,
         [Talents.T_ALERTNESS]=1 },
@@ -238,7 +238,7 @@ newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         skill_spot = 6,
 --        movement_speed_bonus = -0.33,
         movement_speed = 0.66,
-        alignment = "lawful evil",
+        alignment = "Lawful Evil",
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
@@ -264,7 +264,7 @@ newEntity{ base = "BASE_NPC_UNDEAD_INCORPO",
         skill_listen = 6,
         skill_search = 3,
         skill_spot = 6,
-        alignment = "chaotic evil",
+        alignment = "Chaotic Evil",
         resolvers.talents{ [Talents.T_ALERTNESS]=1,
         [Talents.T_DODGE]=1
         },
@@ -316,7 +316,7 @@ newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         skill_listen = 9,
         skill_movesilently = 15,
         skill_spot = 9,
-        alignment = "lawful evil",
+        alignment = "Lawful Evil",
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
@@ -349,7 +349,7 @@ newEntity{ base = "BASE_NPC_UNDEAD_INCORPO",
         skill_search = 8,
         skill_sensemotive = 6,
         skill_spot = 10,
-        alignment = "lawful evil",
+        alignment = "Lawful Evil",
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
         fly = true,
 }
@@ -393,7 +393,7 @@ newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         infravision = 4,
         combat_dr = 15,
         skill_diplomacy = 2,
-        alignment = "chaotic evil",
+        alignment = "Chaotic Evil",
 }
 
 --Burrow 60 ft; tremorsense 6 squares;

@@ -26,7 +26,7 @@ newEntity{ base = "BASE_NPC_FIRE",
 	base_desc = [[This flaming dwarf-like creature is an azer, a creature native to the Elemental Plane of Fire. It can see in the dark and needs to eat and sleep.]],
 
 	stats = { str=13, dex=13, con=13, int=12, wis=12, cha=9, luc=10 },
-	alignment = "lawful neutral",
+	alignment = "Lawful Neutral",
 }
 
 newEntity{
@@ -95,7 +95,7 @@ newEntity{
 	resolvers.talents{ [Talents.T_DODGE]=1,
 	[Talents.T_COMBAT_CASTING]=1,
 	},
-	alignment = "lawful evil",
+	alignment = "Lawful Evil",
 }
 
 --Fly 60 ft.; paralysis 3 sq 1d6 rounds Fort DC 13; improved grab, blood drain

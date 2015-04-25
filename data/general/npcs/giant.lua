@@ -12,7 +12,7 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
 	ai = "humanoid_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6}, },
-	alignment = "chaotic evil",
+	alignment = "Chaotic Evil",
 	resolvers.wounds()
 }
 
@@ -78,7 +78,7 @@ newEntity{ base = "BASE_NPC_GIANT",
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	alignment = "chaotic evil",
+	alignment = "Chaotic Evil",
 	resolvers.equip{
 		full_id=true,
 		{ name = "hide armor" },
@@ -119,7 +119,7 @@ newEntity{ base = "BASE_NPC_GIANT",
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	alignment = "lawful evil",
+	alignment = "Lawful Evil",
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_SLEEP_INNATE]=1
 	},

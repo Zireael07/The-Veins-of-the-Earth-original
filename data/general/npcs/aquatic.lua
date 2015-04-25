@@ -23,7 +23,7 @@ newEntity{
 	max_life = resolvers.rngavg(285,290),
 	hit_die = 20,
 	challenge = 12,
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 	infravision = 4,
 	combat_natural = 10,
 	skill_concentration = 15,

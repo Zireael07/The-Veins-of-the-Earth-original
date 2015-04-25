@@ -545,5 +545,5 @@ newEntity{ base = "BASE_NPC_ELEMENTAL",
 	infravision = 4,
 	skill_climb = 1,
 	skill_spot = 3,
-	alignment = "chaotic neutral",
+	alignment = "Chaotic Neutral",
 }

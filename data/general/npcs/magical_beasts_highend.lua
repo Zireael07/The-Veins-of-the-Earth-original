@@ -10,7 +10,7 @@ newEntity{
 	ai = "human_level", ai_state = { talent_in=3, },
 	stats = { str=10, dex=10, con=10, int=10, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,6} },
-	alignment = "neutral",
+	alignment = "Neutral",
 	resolvers.wounds()
 }
 
@@ -60,7 +60,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	infravision = 4,
 	skill_listen = 15,
 	skill_spot = 15,
-	alignment = "neutral",
+	alignment = "Neutral",
 	fly = true,
 }
 
@@ -81,7 +81,7 @@ newEntity{
 --	movement_speed_bonus = 0.88,
 	movement_speed = 1.88,
 	combat_attackspeed = 1.88,
-	alignment = "chaotic good",
+	alignment = "Chaotic Good",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 --	[Talents.T_POWER_ATTACK]=1
 	},
@@ -146,7 +146,7 @@ newEntity{
 	combat_natural = 7,
 	skill_listen = 7,
 	skill_spot = 11,
-	alignment = "chaotic evil",
+	alignment = "Chaotic Evil",
 --	movement_speed_bonus = 2,
 	movement_speed = 2,
 	combat_attackspeed = 2,

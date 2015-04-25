@@ -65,7 +65,7 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	skill_movesilently = 4,
 --	movement_speed_bonus = -0.33,
 	movement_speed = 0.66,
-	alignment = "chaotic evil",
+	alignment = "Chaotic Evil",
 	resolvers.equip{
 		{ name = "studded leather" },
 		{ name = "buckler" },
@@ -100,7 +100,7 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	skill_listen = 4,
 	skill_sensemotive = 4,
 	skill_spot = 4,
-	alignment = "neutral",
+	alignment = "Neutral",
 }
 
 --Fly 60 ft.; Toughness
@@ -127,7 +127,7 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	alignment = "chaotic evil",
+	alignment = "Chaotic Evil",
 }
 
 --Swim 60 ft. instead of fly
@@ -189,7 +189,7 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_RAGE]=1
 	},
-	alignment = "lawful evil",
+	alignment = "Lawful Evil",
 	resolvers.equip{
 	full_id=true,
 		{ name = "trident" },
@@ -209,7 +209,7 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	desc = [[A twisted crone bent in two.]],
 	stats = { str=25, dex=12, con=14, int=13, wis=13, cha=10, luc=8 },
 	infravision = 3,
-	alignment = "chaotic evil",
+	alignment = "Chaotic Evil",
 }
 
 --Improved grab, rake 1d6, rend 2d6, DR 2/bludgeon; Blind-Fight
@@ -308,7 +308,7 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	skill_intimidate = 4,
 	skill_listen = 6,
 	skill_spot = 2,
-	alignment = "chaotic evil",
+	alignment = "Chaotic Evil",
 	fly = true,
 --	movement_speed_bonus = 1.33,
 	movement_speed = 2.33,

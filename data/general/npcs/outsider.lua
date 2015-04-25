@@ -41,7 +41,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	skill_tumble = 11,
 --	movement_speed_bonus = -0.33,
 	movement_speed = 0.66,
-	alignment = "chaotic neutral",
+	alignment = "Chaotic Neutral",
 	specialist_desc = [[A victim of a chaos beast’s touch does not immediately die from the transformation. A shapechange or stoneskin spell can stop the process temporarily, but a restoration, heal, or greater restoration spell is needed to remove the affliction.]],
 	uncommon_desc = [[A chaos beast can cause very little damage. However, its touch is damaging to corporeal creatures, causing them to melt into an amorphous mass, slowing going into shock and eventually becoming a chaos beast themselves. They are completely immune to transmutation.]],
 	common_desc = [[Much like their home plane of Limbo, chaos beasts have no set form. Instead, they constantly shift and alter their bodies, and there’s no telling what one might look like.]],
@@ -67,7 +67,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
         [DamageType.ELECTRIC] = 10,
         [DamageType.SONIC] = 10,
     },
-	alignment = "neutral",
+	alignment = "Neutral",
 }
 
 newEntity{
@@ -278,7 +278,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	alignment = "lawful evil",
+	alignment = "Lawful Evil",
 }
 
 --immunity to fire; 2d10 damage to undead on hit
@@ -308,7 +308,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
-	alignment = "neutral",
+	alignment = "Neutral",
 	fly = true,
 }
 
@@ -338,7 +338,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 }
 
 --Burrow 20 ft; +2d6 fire on hit; tremorsense 4 squares; immunity to fire, vulnerability to cold
@@ -365,7 +365,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	skill_movesilently = 2,
 	skill_survival = 2,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-	alignment = "neutral",
+	alignment = "Neutral",
 }
 
 --wields +3 adamantine warhammer; Change shape
@@ -407,7 +407,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	skill_spellcraft = 11,
 	skill_spot = 23,
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
-	alignment = "neutral",
+	alignment = "Neutral",
 }
 
 --Improved grab, paralysis Fort DC 14; Multiattack, Multiweapon Fighting
@@ -442,7 +442,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	alignment = "lawful evil",
+	alignment = "Lawful Evil",
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
@@ -483,7 +483,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	skill_listen = 6,
 	skill_movesilently = 6,
 	skill_spot = 6,
-	alignment = "neutral",
+	alignment = "Neutral",
 	fly = true,
 }
 

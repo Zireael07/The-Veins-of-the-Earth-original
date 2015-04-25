@@ -23,7 +23,7 @@ newEntity{
 	max_life = resolvers.rngavg(25,30),
 	hit_die = 6,
 	challenge = 7,
-	alignment = "chaotic good",
+	alignment = "Chaotic Good",
 	infravision = 1,
 	combat_dr = 10,
 	combat_protection = 4,
@@ -72,7 +72,7 @@ newEntity{
 	hit_die = 5,
 	--bumped due to DR and high AC; 4 in Incursion
 	challenge = 5,
-	alignment = "chaotic neutral",
+	alignment = "Chaotic Neutral",
 	infravision = 1,
 	combat_dr = 5,
 	combat_natural = 4,

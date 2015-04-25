@@ -34,7 +34,7 @@ newEntity{
         skill_spot = 14,
         skill_survival = 14,
         skill_swim = 13,
-        alignment = "neutral",
+        alignment = "Neutral",
         resolvers.wounds()
 }
 
@@ -70,7 +70,7 @@ newEntity{
         skill_sensemotive = 6,
         skill_spot = 8,
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-        alignment = "neutral good",
+        alignment = "Neutral Good",
         fly = true,
 --        movement_speed_bonus = 1,
         movement_speed = 2,
@@ -108,7 +108,7 @@ newEntity{
 --        movement_speed_bonus = -0.33,
         movement_speed = 0.66,
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
-        alignment = "neutral",
+        alignment = "Neutral",
         fly = true,
         resolvers.wounds()
 }

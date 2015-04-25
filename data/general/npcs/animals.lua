@@ -23,7 +23,7 @@ newEntity{
 	type = "animal",
 	body = { INVEN = 10 },
 	ai = "animal_level", ai_state = { talent_in=3, },
-	alignment = "neutral",
+	alignment = "Neutral",
 	resolvers.wounds()
 }
 
@@ -122,7 +122,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_balance = 8,
 	skill_hide = 10,
 	skill_spot = 2,
-	faction = "neutral",
+	faction = "Neutral",
 }
 
 newEntity{
@@ -176,7 +176,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_spot = 6,
 	skill_listen = 6,
 	fly = true,
-	faction = "neutral",
+	faction = "Neutral",
 }
 
 newEntity{
@@ -202,7 +202,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_spot = 4,
 	skill_listen = 3,
 	fly = true,
-	faction = "neutral",
+	faction = "Neutral",
 }
 
 newEntity{
@@ -255,7 +255,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_spot = 2,
 	skill_swim = 8,
 	skill_listen = 2,
-	faction = "neutral",
+	faction = "Neutral",
 }
 
 newEntity{
@@ -425,7 +425,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 	skill_hide = 4,
 	skill_listen = 4,
 	skill_spot = 4,
-	faction = "neutral",
+	faction = "Neutral",
 }
 
 newEntity{

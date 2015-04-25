@@ -22,7 +22,7 @@ newEntity{
 	type = "outsider",
 	body = { INVEN = 10 },
 	ai = "human_level", ai_state = { talent_in=3, },
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 	resolvers.wounds()
 }
 
@@ -119,7 +119,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	alignment = "lawful evil",
+	alignment = "Lawful Evil",
 }
 
 newEntity{
@@ -178,7 +178,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 --	movement_speed_bonus = 0.88,
 	movement_speed = 1.88,
 	combat_attackspeed = 1.88,
-	alignment = "chaotic evil",
+	alignment = "Chaotic Evil",
 }
 
 newEntity{
@@ -217,7 +217,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	combat = { dam= {2,6} },
 --	movement_speed_bonus = -0.66,
 	movement_speed = 0.33,
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 }
 
 newEntity{
@@ -265,7 +265,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 	fly = true,
 }
 
@@ -332,7 +332,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	combat = { dam= {1,4} },
 --	movement_speed_bonus = -0.66,
 	movement_speed = 0.33,
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 	fly = true,
 }
 
@@ -367,7 +367,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	alignment = "neutral evil",
+	alignment = "Neutral Evil",
 	fly = true,
 }
 
