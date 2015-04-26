@@ -281,9 +281,19 @@ end
     self:mouseTooltip(self.TOOLTIP_WOUNDS, s:drawColorStringBlended(self.font, "Wounds : #DARK_RED#"..player.wounds.."/"..player.max_wounds, w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(player.combat_bab or "0").." + Str bonus: "..player:getStrMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(player.combat_bab or "0").." + Dex bonus: "..player:getDexMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
 
+    --display attacks in a smart way!
+    local weapon = (player:getInven("MAIN_HAND") and player:getInven("MAIN_HAND")[1]) or player
+    if weapon and not weapon.ranged then
+        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Melee attack#LAST#: %d = %s"):format(player:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
+    else
+        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(player.combat_bab or "0").." + Str bonus: "..player:getStrMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
+    end
+    if weapon and weapon.ranged then
+        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Ranged attack#LAST#: %d = %s"):format(player:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
+    else
+        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(player.combat_bab or "0").." + Dex bonus: "..player:getDexMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
+    end
 
     h = 0
     w = self.w * 0.25
