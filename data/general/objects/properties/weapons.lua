@@ -1,5 +1,7 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
+
+local DamageType = require "engine.DamageType"
 
 newEntity {
 	name = " +1", suffix = true,
@@ -65,6 +67,118 @@ newEntity {
 	school = "evocation",
 	combat = {
 	magic_bonus = 5,
+	},
+}
+
+--Elemental
+newEntity{
+	name = "flaming ", prefix = true,
+	keywords = { flame=true},
+	level_range = {1, 10},
+	rarity = 5,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		melee_project={
+			[DamageType.FIRE] = {1, 6}
+		},
+	},
+}
+
+newEntity{
+	name = "frost ", prefix = true,
+	keywords = { frost=true},
+	level_range = {1, 10},
+	rarity = 5,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		melee_project={
+			[DamageType.COLD] = {1, 6}
+		},
+	},
+}
+
+newEntity{
+	name = "shock ", prefix = true,
+	keywords = { shock=true},
+	level_range = {1, 10},
+	rarity = 8,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		melee_project={
+			[DamageType.SONIC] = {1, 6}
+		},
+	},
+}
+
+--Elemental burst
+newEntity{
+	name = "flaming burst", prefix = true,
+	keywords = { flame=true},
+	level_range = {1, 10},
+	rarity = 15,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		melee_project={
+			[DamageType.FIRE] = {1, 6}
+		},
+		melee_project_on_crit = {
+			[DamageType.FIRE] = resolvers.burstdamage()
+		},
+	},
+}
+
+newEntity{
+	name = "icy burst", prefix = true,
+	keywords = { icy=true},
+	level_range = {1, 10},
+	rarity = 15,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		melee_project={
+			[DamageType.COLD] = {1, 6}
+		},
+		melee_project_on_crit = {
+			[DamageType.COLD] = resolvers.burstdamage()
+		},
+	},
+}
+
+newEntity{
+	name = "shocking burst", prefix = true,
+	keywords = { shocking=true},
+	level_range = {1, 10},
+	rarity = 15,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		melee_project={
+			[DamageType.ELECTRIC] = {1, 6}
+		},
+		melee_project_on_crit = {
+			[DamageType.ELECTRIC] = resolvers.burstdamage()
+		},
+	},
+}
+
+newEntity{
+	name = "thundering", prefix = true,
+	keywords = { thunder=true},
+	level_range = {1, 10},
+	rarity = 15,
+	cost = resolvers.value{platinum=800},
+	school = "evocation",
+	combat = {
+		melee_project={
+			[DamageType.SONIC] = {1, 6}
+		},
+		melee_project_on_crit = {
+			[DamageType.SONIC] = resolvers.burstdamage()
+		},
 	},
 }
 

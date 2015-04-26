@@ -897,6 +897,15 @@ function resolvers.calc.perks(t, e)
 	return {__resolver="equip", __resolve_last=true, t}
 end
 
+--For elemental burst egos
+function resolvers.burstdamage()
+	return {__resolver="burstdamage", __resolve_last=true, }
+end
+function resolvers.calc.burstdamage(t, e)
+	local burst = {1, 10}
+	if e.combat.critical == 3 then burst = {2, 10} end
+	if e.combat.critical == 4 then burst = {3,10} end
+end
 
 --Offspring stuff
 function resolvers.kid_sex()
