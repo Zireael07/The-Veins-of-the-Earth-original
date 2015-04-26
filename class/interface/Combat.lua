@@ -136,7 +136,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
    local d = rng.range(1,20)
    local hit = true
    local crit = false
-    local attack = (self.combat_bab or 0) + (self.combat_attack or 0)
+    local attack
 
     --log
     local attacklog = attacklog or ""
@@ -145,63 +145,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
     --First things first!
     self:breakStealth()
 
-
-   -- Proficiency penalties
-    if weapon and weapon.simple and not self:knowTalent(self.T_SIMPLE_WEAPON_PROFICIENCY) then
-        attack = (attack -4)
-        attacklog = attacklog.."-4 not proficient in simple weapons"
-    end
-
-   if weapon and weapon.martial and not self:knowTalent(self.T_MARTIAL_WEAPON_PROFICIENCY) then
-      attack = (attack -4)
-      attacklog = attacklog.."-4 not proficient in martial weapons"
-   end
-
-   -- Feat bonuses
-   if weapon and weapon.subtype and self:hasFocus(weapon.subtype) then
-       attack = (attack + 1)
-       attacklog = attacklog.."+1 weapon focus"
-   end
-
-   -- Stat bonuses
-   local stat_used = "str"
-
-   if weapon and weapon.ranged then
-      stat_used = "dex"
-   end
-
-    -- Finesse
-   if self:knowTalent(self.T_FINESSE) and weapon and not weapon.ranged then
-
-      local success = false
-
-        -- hack to get the armour check penalty of the shield.  Returns 4 instead of 10 for tower shields, and does not account for mithril bonuses.
-        local shield = self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1] and self:getInven("OFF_HAND")[1].subtype == "shield" and self:getInven("OFF_HAND")[1].wielder.combat_shield
-
-      if not weapon.light then
-            local a = {"rapier", "whip", "spiked chain"}
-            for _, w in pairs(a) do
-                if weapon.subtype == w then
-                    success = true
-                    break
-                end
-            end
-        else
-            success = true
-        end
-
-        -- final check if Finesse improves attack
-        if self:getStat("str") > self:getStat("dex") then
-            success = false
-        end
-
-        if success then
-            damagelog = damagelog.." Finesse"
-            stat_used = "dex"
-        end
-   end
-
-   attack = attack + (atkmod or 0) + (weapon and weapon.combat.magic_bonus or 0) + (self:getStat(stat_used)-10)/2 or 0
+   attack, attacklog = self:combatAttack(weapon)
 
    local ac = target:getAC()
 
@@ -739,4 +683,80 @@ function _M:provokeSingleAoO(target)
     if self.dead then end
 
     target:attack(self, true)
+end
+
+--Get attack mods for the character sheet
+function _M:combatAttack(weapon)
+    --log
+    local attacklog = attacklog or ""
+
+    local attack = (self.combat_bab or 0) + (self.combat_attack or 0)
+    if self.combat_bab and self == game.player then
+        attacklog = attacklog.." "..self.combat_bab.." BAB"
+    end
+
+    -- Proficiency penalties
+     if weapon and weapon.simple and not self:knowTalent(self.T_SIMPLE_WEAPON_PROFICIENCY) then
+         attack = (attack -4)
+         attacklog = attacklog.."-4 not proficient in simple weapons"
+     end
+
+    if weapon and weapon.martial and not self:knowTalent(self.T_MARTIAL_WEAPON_PROFICIENCY) then
+       attack = (attack -4)
+       attacklog = attacklog.."-4 not proficient in martial weapons"
+    end
+
+    -- Feat bonuses
+    if weapon and weapon.subtype and self:hasFocus(weapon.subtype) then
+        attack = (attack + 1)
+        attacklog = attacklog.."+1 weapon focus"
+    end
+
+    -- Stat bonuses
+    local stat_used = "str"
+
+    if weapon and weapon.ranged then
+       stat_used = "dex"
+    end
+
+     -- Finesse
+    if self:knowTalent(self.T_FINESSE) and weapon and not weapon.ranged then
+
+       local success = false
+
+         -- hack to get the armour check penalty of the shield.  Returns 4 instead of 10 for tower shields, and does not account for mithril bonuses.
+         local shield = self:getInven("OFF_HAND") and self:getInven("OFF_HAND")[1] and self:getInven("OFF_HAND")[1].subtype == "shield" and self:getInven("OFF_HAND")[1].wielder.combat_shield
+
+       if not weapon.light then
+             local a = {"rapier", "whip", "spiked chain"}
+             for _, w in pairs(a) do
+                 if weapon.subtype == w then
+                     success = true
+                     break
+                 end
+             end
+         else
+             success = true
+         end
+
+         -- final check if Finesse improves attack
+         if self:getStat("str") > self:getStat("dex") then
+             success = false
+         end
+
+         if success then
+             local dex = (self:getStat("dex")-10)/2
+             attacklog = attacklog.." "..dex.." Finesse"
+             stat_used = "dex"
+         end
+    end
+
+    if stat_used == "str" then
+        local str = (self:getStat("str")-10)/2
+        attacklog = attacklog.." "..str.." Str"
+    end
+
+    attack = attack + (atkmod or 0) + (weapon and weapon.combat.magic_bonus or 0) + (self:getStat(stat_used)-10)/2 or 0
+
+    return attack, attacklog
 end
