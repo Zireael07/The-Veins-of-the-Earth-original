@@ -3601,7 +3601,7 @@ function _M:kidTakeover(actor)
 	actor.descriptor.sex = resolvers.kid_sex()
 	actor.descriptor.race = actor.subtype:capitalize()
 	self:kidApplyRace(actor)
---	actor.descriptor.alignment = actor.alignment
+	actor.descriptor.alignment = actor.alignment
 
 	local class = rng.table(self.list_random_class)
 	actor.descriptor.class = class

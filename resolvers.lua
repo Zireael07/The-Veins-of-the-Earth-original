@@ -935,8 +935,6 @@ function resolvers.calc.kid_race(t, e)
 
 	--Purebreed
 	if player == npc then race = player end
---[[	if player == "Human" and npc == "Human" then race = "Human" end
-	if player == "Drow" and npc == "Drow" then race = "Drow" end]]
 
 	return race
 end
@@ -949,25 +947,24 @@ function resolvers.calc.kid_alignment(t, e)
 	local player = t[1]
 	local npc = t[2]
 
---	if npc == "neutral evil" and pla
 	if npc:isEvil() and player:isPlayerEvil() then
-		if rng.dice(1,3) == 1 then return "lawful evil" end
-		if rng.dice(1,3) == 2 then return "neutral evil" end
-		if rng.dice(1,3) == 3 then return "chaotic evil" end
+		if rng.dice(1,3) == 1 then return "Lawful Evil" end
+		if rng.dice(1,3) == 2 then return "Neutral Evil" end
+		if rng.dice(1,3) == 3 then return "Chaotic Evil" end
 	end
 
 	if npc:isEvil() and not player:isPlayerEvil() then
 		if npc:isLawful() and player:isPlayerLawful() then
-			if rng.dice(1,6) == 1 then return "lawful neutral"
-			else return "lawful evil" end
+			if rng.dice(1,6) == 1 then return "Lawful Neutral"
+			else return "Lawful Evil" end
 
 		elseif npc:isChaotic() and player:isPlayerChaotic() then
-			if rng.dice(1,4) == 1 then return "chaotic neutral"
-			else return "chaotic evil" end
+			if rng.dice(1,4) == 1 then return "Chaotic Neutral"
+			else return "Chaotic Evil" end
 
 		else
-			if rng.dice(1,6) < 4 then return "neutral evil"
-			else return "neutral" end
+			if rng.dice(1,6) < 4 then return "Neutral Evil"
+			else return "Neutral" end
 		end
 
 	else
