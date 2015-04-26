@@ -262,7 +262,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
     --account for randomly determined damage
       elseif type(dam) == "table" then
       local actual_dam = rng.dice(dam[1], dam[2])
-        if actual_dam > 0 then DamageType:get(typ).projector(target, self.x, self.y, typ, actual_dam) end
+        if actual_dam > 0 then DamageType:get(typ).projector(target, self.x, self.y, typ, {dam=actual_dam}) end
       elseif dam.dam and dam.dam > 0 then DamageType:get(typ).projector(target, self.x, self.y, typ, dam)
       end
     end
@@ -317,6 +317,20 @@ function _M:dealDamage(target, weapon, crit, sneak)
             dam = dam
         return end
 
+        --do the on crit stuff
+        if not target.dead and weapon and weapon.combat and weapon.combat.melee_project_on_crit then for typ, dam in pairs(weapon.combat.melee_project_on_crit) do
+            if type(dam) == "number" then
+                if dam > 0 then
+                    DamageType:get(typ).projector(self, target.x, target.y, typ, dam)
+                end
+            --account for randomly determined damage
+            elseif type(dam) == "table" then
+              local actual_dam = rng.dice(dam[1], dam[2])
+                if actual_dam > 0 then DamageType:get(typ).projector(self, target.x, target.y, typ, {dam=actual_dam}) end
+            end
+        end end
+
+
         --Fortification
 --[[    if target.fortification > 0 then
 
@@ -341,6 +355,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
         end]]
 
         if target:canBe("crit") then
+
           if target:knowTalent(T_ROLL_WITH_IT) then
             game.logSeen()
           --  game.log(("%s makes a critical attack, but the damage is reduced!"):format(self:getLogName():capitalize())) --end
@@ -368,6 +383,31 @@ function _M:dealDamage(target, weapon, crit, sneak)
       if weapon and self:isAlignedExtra(weapon, target) then
           dam = dam + rng.dice(2,6)
       end
+
+      -- Melee project
+  	if not target.dead and weapon and weapon.combat and weapon.combat.melee_project then for typ, dam in pairs(weapon.combat.melee_project) do
+          if type(dam) == "number" then
+              if dam > 0 then
+  			       DamageType:get(typ).projector(self, target.x, target.y, typ, dam)
+            end
+        --account for randomly determined damage
+          elseif type(dam) == "table" then
+            local actual_dam = rng.dice(dam[1], dam[2])
+              if actual_dam > 0 then DamageType:get(typ).projector(self, target.x, target.y, typ, {dam=actual_dam}) end
+        end
+  	end end
+
+  	if not target.dead then for typ, dam in pairs(self.melee_project) do
+          if type(dam) == "number" then
+              if dam > 0 then
+  			      DamageType:get(typ).projector(self, target.x, target.y, typ, dam)
+            end
+        --account for randomly determined damage
+          elseif type(dam) == "table" then
+            local actual_dam = rng.dice(dam[1], dam[2])
+                  if actual_dam > 0 then DamageType:get(typ).projector(self, target.x, target.y, typ, {dam=actual_dam}) end
+          end
+  	end end
 
     --Minimum 1 point of damage unless Damage Reduction works
     dam = math.max(1, dam)
