@@ -50,9 +50,9 @@ setDefaultProjector(function(src, x, y, type, dam)
 				if visible then -- don't log damage that the player doesn't know about
 				local source = src.__project_source or src
 					if src.__is_actor then
-						game.logSeen(target, "%s hits %s for %s%0.2f %s damage#LAST#.", src:getLogName():capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
+						game.logSeen(target, "%s hits %s for %s%d %s damage#LAST#.", src:getLogName():capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
 					else
-						game.logSeen(target, "%s hits %s for %s%0.2f %s damage#LAST#.", src.name:capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
+						game.logSeen(target, "%s hits %s for %s%d %s damage#LAST#.", src.name:capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
 					end
 			--[[	if src.turn_procs and src.turn_procs.is_crit then
 					game:delayedLogDamage(source, target, dam, ("#{bold}#%s%d %s#{normal}##LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), true)
