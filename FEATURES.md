@@ -70,7 +70,7 @@ FEATURES
 - object flavors
 - calendar
 - hunger counter and display
-- integrated most of Marson's Bosses AWOL functions and Marson UI; Marson's Autoexplore fixes
+- integrated most of Marson's Bosses AWOL functions and Marson UI; Marson's Autoexplore fixes; NPC Forgiveness
 - working in-game chat
 - auto-explore
 - shaders, including full FBO
