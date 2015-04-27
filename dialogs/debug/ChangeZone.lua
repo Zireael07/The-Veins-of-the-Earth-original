@@ -26,7 +26,7 @@ module(..., package.seeall, class.inherit(engine.ui.Dialog))
 
 function _M:init()
 	self:generateList()
-	engine.ui.Dialog.init(self, "Debug/Cheat! It's BADDDD!", 1, 1)
+	engine.ui.Dialog.init(self, "Debug change zone", 1, 1)
 
 	local list = List.new{width=400, height=500, scrollbar=true, list=self.list, fct=function(item) self:use(item) end}
 
@@ -61,6 +61,8 @@ function _M:use(item)
 	end), 1)
 end
 
+--NOTE: gold = worldmap; red = test; light blue = persistent
+
 function _M:generateList()
 	local list = {}
 
@@ -71,7 +73,14 @@ function _M:generateList()
 				setfenv(f, setmetatable({}, {__index=_G}))
 				local ok, z = pcall(f)
 				if ok then
-					list[#list+1] = {name=z.name, zone=add..dir, min=1, max=z.max_level}
+					local color
+					if z.worldmap == true then color = {255, 215, 0}
+					elseif z.name == "Tutorial" or z.name == "Arena" or z.name == "Encounters test" or z.name == "Xorn Lair" then
+						color = {201, 0, 0}
+					elseif z.persistent == "zone" then color = {81, 221, 255}
+					else color = {255, 255, 255} end
+
+					list[#list+1] = {name=z.name, color=color, zone=add..dir, min=1, max=z.max_level, worldmap=z.worldmap, persist=z.persistent}
 				end
 			end
 		end
