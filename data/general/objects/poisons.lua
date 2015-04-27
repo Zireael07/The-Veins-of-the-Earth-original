@@ -26,7 +26,7 @@ newEntity{
     use_simple = { name = "apply poison",
     use = function(self,who)
         who.poison = "black_adder"
-        return {used = true, destroy = true}  
+        return {used = true, destroy = true}
   end
   },
 }
@@ -45,7 +45,7 @@ newEntity{
         who.poison = "toadstool"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
@@ -62,7 +62,7 @@ newEntity{
         who.poison = "arsenic"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
@@ -96,12 +96,12 @@ newEntity{
         who.poison = "blackadder"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of small centipede poison",
+    name = "vial of small centipede poison",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -113,12 +113,12 @@ newEntity{
         who.poison = "small_centipede"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of bloodroot",
+    name = "vial of bloodroot",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -130,12 +130,12 @@ newEntity{
         who.poison = "bloodroot"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of greenblood oil",
+    name = "vial of greenblood oil",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -147,12 +147,12 @@ newEntity{
         who.poison = "greenblood"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of blue whinnis",
+    name = "vial of blue whinnis",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -164,12 +164,12 @@ newEntity{
         who.poison = "whinnis"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of medium spider venom",
+    name = "vial of medium spider venom",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -181,12 +181,12 @@ newEntity{
         who.poison = "medium_spider"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of large scorpion venom",
+    name = "vial of large scorpion venom",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -198,12 +198,12 @@ newEntity{
         who.poison = "large_scorpion"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of giant wasp poison",
+    name = "vial of giant wasp poison",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -215,7 +215,7 @@ newEntity{
         who.poison = "giantwasp"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 
@@ -223,7 +223,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of nitharit",
+    name = "vial of nitharit",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -240,7 +240,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of sassone",
+    name = "vial of sassone",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -252,12 +252,12 @@ newEntity{
         who.poison = "sassone"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of shadow essence",
+    name = "vial of shadow essence",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -269,12 +269,12 @@ newEntity{
         who.poison = "shadowessence"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of malyss root paste",
+    name = "vial of malyss root paste",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -286,7 +286,7 @@ newEntity{
         who.poison = "malyss"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
@@ -303,7 +303,7 @@ newEntity{
         who.poison = "terinav"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
@@ -320,7 +320,7 @@ newEntity{
         who.poison = "lichdust"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
@@ -337,7 +337,7 @@ newEntity{
         who.poison = "darkreaver"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
@@ -396,7 +396,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of ungol dust",
+    name = "vial of ungol dust",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -413,7 +413,7 @@ newEntity{
 
 newEntity{
     base = "BASE_VIAL",
-    name = "a vial of insanity mist",
+    name = "vial of insanity mist",
     unided_name = "a vial",
     identified = false,
     rarity = 15,
@@ -459,7 +459,7 @@ newEntity{
         who.poison = "wyvern"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
@@ -475,5 +475,5 @@ newEntity{
         who.poison = "deathblade"
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }

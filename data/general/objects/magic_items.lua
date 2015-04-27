@@ -142,7 +142,7 @@ game.scroll_materials = {"abbil", "abban","alae","alartae","akh","belbau","belbo
 
 newEntity{
     define_as = "BASE_SCROLL",
-    name = "scroll",
+    name = "scroll", instant_resolve = true,
     unided_name = "scroll",
     identified = false,
     level_range = {1, 10},
@@ -154,7 +154,6 @@ newEntity{
     display = "?", color=colors.WHITE,
     encumber = 0,
     multicharge = 50,
-    name = "a scroll", instant_resolve = true,
     desc = [[A scroll.]],
     egos = "/data/general/objects/properties/charged.lua", egos_chance = {suffix=100},
     resolvers.genericlast(function(e)
