@@ -661,10 +661,6 @@ function _M:isGood()
 	if what == "Neutral Good" then return true end
 	if what == "Chaotic Good" then return true end
 
---[[	if self.alignment and self.alignment == "lawful good" then return true end
-	if self.alignment and self.alignment == "neutral good" then return true end
-	if self.alignment and self.alignment == "chaotic good" then return true end]]
-
 	return false
 end
 
@@ -685,10 +681,6 @@ function _M:isEvil()
 	if what == "Neutral Evil" then return true end
 	if what == "Chaotic Evil" then return true end
 
---[[	if self.alignment and self.alignment == "lawful evil" then return true end
-	if self.alignment and self.alignment == "neutral evil" then return true end
-	if self.alignment and self.alignment == "chaotic evil" then return true end]]
-
 	return false
 end
 
@@ -701,10 +693,6 @@ function _M:isLawful()
 	if what == "Lawful Neutral" then return true end
 	if what == "Lawful Evil" then return true end
 
---[[	if self.alignment and self.alignment == "lawful good" then return true end
-	if self.alignment and self.alignment == "lawful neutral" then return true end
-	if self.alignment and self.alignment == "lawful evil" then return true end]]
-
 	return false
 end
 
@@ -716,9 +704,6 @@ function _M:isChaotic()
 	if what == "Chaotic Good" then return true end
 	if what == "Chaotic Neutral" then return true end
 	if what == "Chaotic Evil" then return true end
---[[	if self.alignment and self.alignment == "chaotic good" then return true end
-	if self.alignment and self.alignment == "chaotic neutral" then return true end
-	if self.alignment and self.alignment == "chaotic evil" then return true end]]
 
 	return false
 end
@@ -1218,6 +1203,27 @@ function _M:getStatForSpell(class)
     end
     return nil
 end
+
+function _M:getSpellDC(ab)
+	local dc = 10
+	if ab.level then dc = dc + ab.level end
+
+	local stat_used = "cha" --default for monsters
+	if self.classes then
+		if self.classes["Wizard"] and self:spellIsKind(ab, "arcane") then stat_used = "int" end
+		if self.classes["Ranger"] and self:spellIsKind(ab, "divine")then stat_used = "wis" end
+		if self.classes["Cleric"] and self:spellIsKind(ab, "divine") then stat_used = "wis" end
+		if self.classes["Druid"] and self:spellIsKind(ab, "divine") then stat_used = "wis" end
+		if self.classes["Bard"] and self:spellIsKind(ab, "arcane") then stat_used = "cha" end
+		if self.classes["Shaman"] and self:spellIsKind(ab, "divine") then stat_used = "cha" end
+		if self.classes["Sorcerer"] and self:spellIsKind(ab, "arcane") then stat_used = "cha" end
+	end
+
+	dc = dc + math.floor((self:getStat(stat_used)-10)/2)
+
+	return dc
+end
+
 
 --- Called before a talent is used
 -- Check the actor can cast it
