@@ -167,7 +167,9 @@ function _M:playerCounters()
   if not self.resting then
     if self:knowTalent(self.T_FASTING) then
       self.nutrition = self.nutrition - 0.33
-    else
+	elseif self.slow_digest then
+		self.nutrition = self.nutrition - 0.5
+	else
     self.nutrition = self.nutrition - 1
     end
   end
@@ -183,6 +185,8 @@ function _M:playerCounters()
     else
       if self:knowTalent(self.T_FASTING) then
       self.nutrition = self.nutrition - 0.16
+		elseif self.slow_digest then
+		self.nutrition = self.nutrition - 0.25
       else
       --Halve hunger rate when sleeping
       self.nutrition = self.nutrition - 0.5

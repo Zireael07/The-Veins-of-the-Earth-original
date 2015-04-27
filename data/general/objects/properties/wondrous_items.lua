@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 local Stats = require "engine.interface.ActorStats"
 local Talents = require "engine.interface.ActorTalents"
@@ -291,7 +291,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_STR] = 2, },
-  }, 
+  },
 }
 
 newEntity {
@@ -304,7 +304,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_STR] = 4, },
-  }, 
+  },
 }
 
 newEntity {
@@ -318,7 +318,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_STR] = 6, },
-  }, 
+  },
 }
 
 newEntity {
@@ -331,7 +331,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = 2, },
-  }, 
+  },
 }
 
 newEntity {
@@ -344,7 +344,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = 4, },
-  }, 
+  },
 }
 
 newEntity {
@@ -358,7 +358,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = 6, },
-  }, 
+  },
 }
 
 newEntity {
@@ -371,7 +371,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CON] = 2, },
-  }, 
+  },
 }
 
 newEntity {
@@ -384,7 +384,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CON] = 4, },
-  }, 
+  },
 }
 
 newEntity {
@@ -398,7 +398,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CON] = 6, },
-  }, 
+  },
 }
 
 newEntity {
@@ -411,7 +411,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_INT] = 2, },
-  }, 
+  },
 }
 
 newEntity {
@@ -424,7 +424,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_INT] = 4, },
-  }, 
+  },
 }
 
 newEntity {
@@ -438,7 +438,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_INT] = 6, },
-  }, 
+  },
 }
 
 newEntity {
@@ -451,7 +451,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_WIS] = 2, },
-  }, 
+  },
 }
 
 newEntity {
@@ -464,7 +464,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_WIS] = 4, },
-  }, 
+  },
 }
 
 newEntity {
@@ -478,7 +478,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_WIS] = 6, },
-  }, 
+  },
 }
 
 newEntity {
@@ -491,7 +491,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CHA] = 2, },
-  }, 
+  },
 }
 
 newEntity {
@@ -504,7 +504,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CHA] = 4, },
-  }, 
+  },
 }
 
 newEntity {
@@ -518,7 +518,7 @@ newEntity {
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_CHA] = 6, },
-  }, 
+  },
 }
 
 --For completeness
@@ -532,7 +532,7 @@ newEntity {
 	school = "evocation",  --per luckstone and Luckblade
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 2, },
-  }, 
+  },
 }
 
 newEntity {
@@ -545,7 +545,7 @@ newEntity {
 	school = "evocation",  --per luckstone and Luckblade
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 4, },
-  }, 
+  },
 }
 
 newEntity {
@@ -559,7 +559,7 @@ newEntity {
 	school = "evocation",  --per luckstone and Luckblade
 	wielder = {
     inc_stats = { [Stats.STAT_LUC] = 6, },
-  }, 
+  },
 }
 
 --Based on Incursion
@@ -713,7 +713,7 @@ newEntity {
 }
 
 --Originally cloaks only
-newEntity{ 
+newEntity{
 	name = " of arachnida", suffix = true,
 	level_range = {10, 30},
 	rarity = 5,
@@ -781,7 +781,7 @@ newEntity {
     		[Stats.STAT_DEX] = 1,
     		--resist ability damage
     	},
-  }, 
+  },
 }
 
 
@@ -821,6 +821,19 @@ newEntity {
 	},
 }
 
+--Halves nutrition loss rate
+newEntity{
+	name = " of slow digestion", suffix = true,
+	level_range = {1, 10},
+	rarity = 5,
+	cost = resolvers.value{platinum=200},
+	school = "transmutation", --a wild guess
+	wielder = {
+		slow_digest = 1,
+	}
+}
+
+
 --Curses
 newEntity{
 	name = " of clumsiness", suffix = true,
@@ -833,7 +846,7 @@ newEntity{
 	wielder = {
      inc_stats = { [Stats.STAT_DEX] = -4, },
      spell_fail = 20,
-  }, 
+  },
 }
 
 newEntity{
@@ -846,7 +859,7 @@ newEntity{
 	school = "transmutation",
 	wielder = {
      inc_stats = { [Stats.STAT_STR] = -2, },
-  }, 
+  },
 }
 
 newEntity{
@@ -859,7 +872,7 @@ newEntity{
 	school = "transmutation",
 	wielder = {
      inc_stats = { [Stats.STAT_STR] = -4, },
-  }, 
+  },
 }
 
 newEntity{
@@ -872,7 +885,7 @@ newEntity{
 	school = "transmutation",
 	wielder = {
     inc_stats = { [Stats.STAT_DEX] = -2, },
-  }, 
+  },
 }
 
 newEntity{
@@ -885,7 +898,7 @@ newEntity{
 	school = "transmutation",
 	wielder = {
     combat_armor=-1
-  }, 
+  },
 }
 
 newEntity{
@@ -898,7 +911,7 @@ newEntity{
 	school = "transmutation",
 	wielder = {
     combat_armor=-2
-  }, 
+  },
 }
 
 newEntity{
@@ -911,7 +924,7 @@ newEntity{
 	school = "transmutation",
 	wielder = {
     combat_armor=-3
-  }, 
+  },
 }
 
 newEntity{
@@ -924,7 +937,7 @@ newEntity{
 	school = "transmutation",
 	wielder = {
     combat_armor=-4
-  }, 
+  },
 }
 
 newEntity{
@@ -937,7 +950,7 @@ newEntity{
 	school = "transmutation",
 	wielder = {
     combat_armor=-5
-  }, 
+  },
 }
 
 newEntity{
