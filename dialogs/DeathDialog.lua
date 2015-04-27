@@ -94,8 +94,12 @@ end
 --- Restore resources
 function _M:restoreResources()
 	self.actor.life = self.actor.max_life
+	if self.actor.mana then
+		self.actor.mana = self.actor.max_mana
+	end
 	self.actor.power = self.actor.max_power
-
+	--restore wounds
+	self.actor.wounds = self.actor.max_wounds
 	self.actor.energy.value = game.energy_to_act
 end
 
