@@ -70,7 +70,7 @@ newArcaneSpell{
 
 		game.level.map:addEffect(self,
 			x, y, duration,
-			DamageType.GREASE, {dc=10},
+			DamageType.GREASE, {save_dc=self:getSpellDC(t)},
 			1.5,
 			5, nil,
 			engine.Entity.new{alpha=100, display='', color_br=200, color_bg=190, color_bb=30},

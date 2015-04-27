@@ -1,4 +1,4 @@
-newTalentType{ 
+newTalentType{
 	all_limited=true,
 	type="enchantment",
 	name="enchantment",
@@ -13,8 +13,8 @@ newArcaneSpell{
 	level = 1,
 	points = 1,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 5,
@@ -28,18 +28,20 @@ newArcaneSpell{
 
 		local duration = t.getDuration(self, t)
 
+		local save = self:getSpellDC(t)
+
 		--if target.type ~= "humanoid" then return nil end
 
 		if target.type == "humanoid" then
-			if target:willSave(13) then game.log("Target resists charm spell!")
+			if target:willSave(save) then game.log("Target resists charm spell!")
 			else target:setEffect(target.EFF_CHARM, duration, {}) end
 		end
-		
+
 		return true
 	end,
 	info = function(self, t)
 		return ([[You charm a single humanoid.]])
-	end,	
+	end,
 }
 
 newArcaneSpell{
@@ -49,8 +51,8 @@ newArcaneSpell{
 	level = 1,
 	points = 1,
 	cooldown = 0,
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 0,
@@ -60,6 +62,9 @@ newArcaneSpell{
 	end,
 	get_max_hd = function(self, t)
 		return 8
+	end,
+	getSave = function(self, t)
+		return self:getSpellDC(t)
 	end,
 	action = function(self, t)
 	local tg = self:getTalentTarget(t)
@@ -94,10 +99,12 @@ newArcaneSpell{
 			end
 		end
 
+		local save = t.getSave(self, t)
+
 		local duration = t.getDuration(self, t)
 		-- Apply sleep
 		for i, target in ipairs(final_targets) do
-			if not target:willSave(30) then -- @todo: do real dc  
+			if not target:willSave(save) then
 				target:setEffect(target.EFF_SLEEP, duration, {})
 			else
 				game.logSeen(target, "%s resist the sleep!", target.name)

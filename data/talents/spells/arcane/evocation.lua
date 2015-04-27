@@ -86,7 +86,7 @@ newArcaneSpell{
 			x, y, tg = unpack(v)
 			local damage = t.getDamage(self, t)
 			if x and y and tg then
-				self:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
+				self:projectile(tg, x, y, DamageType.FORCE, {dam=damage, save_dc=self:getSpellDC(t)})
 			end
 		end
 
@@ -142,7 +142,7 @@ newArcaneSpell{
 		for i=1, level do
 			damage = damage + rng.dice(1,4)
 		end
-		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})
+		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = self:getSpellDC(t)})
 		return true
 	end,
 	info = function(self, t)
@@ -224,7 +224,7 @@ newArcaneSpell{
 		local level = t.num_dice(self,t)
 		local damage = rng.dice(3,6)
 
-		self:project(tg, x, y, DamageType.FIRE, {dam=t.getDamage(self, t), save=true, save_dc = 15})
+		self:project(tg, x, y, DamageType.FIRE, {dam=t.getDamage(self, t), save=true, save_dc = self:getSpellDC(t)})
 		return true
 	end,
 	info = function(self, t)
@@ -258,7 +258,7 @@ newArcaneSpell{
 		if not x or not y then return nil end
 
 		local damage = rng.dice(3,6)
-		self:project(tg, x, y, DamageType.FIRE, {dam=t.getDamage(self, t), save=true, save_dc = 15})
+		self:project(tg, x, y, DamageType.FIRE, {dam=t.getDamage(self, t), save=true, save_dc = self:getSpellDC(t)})
 		return true
 	end,
 
