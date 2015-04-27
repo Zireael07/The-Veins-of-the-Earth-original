@@ -1948,12 +1948,14 @@ end
 
 --Saving throws, Sebsebeleb & Zireael
 function _M:reflexSave(dc)
+	if not dc or type(dc) ~= "number" then return end
+
 	local roll = rng.dice(1,20)
 	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + math.max(self:getDexMod(), self:getIntMod())
 
 	if self == game.player then
-		local s = ("Reflex save: %d roll + bonus = %d versus DC %d"):format(
-			roll, save, dc)--, success and "success" or "failure")
+		local s = ("Reflex save: %d roll + bonus %d = %d versus DC %d"):format(
+			roll, save, roll+save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
 
@@ -1977,12 +1979,14 @@ function _M:reflexSave(dc)
 end
 
 function _M:fortitudeSave(dc)
+	if not dc or type(dc) ~= "number" then return end
+
 	local roll = rng.dice(1,20)
 	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + math.max(self:getConMod(), self:getStrMod())
 
 	if self == game.player then
-		local s = ("Fortitude save: %d roll + bonus = %d versus DC %d"):format(
-			roll, save, dc)--, success and "success" or "failure")
+		local s = ("Fortitude save: %d roll + %d bonus = %d versus DC %d"):format(
+			roll, save, roll+save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
 
@@ -2005,12 +2009,14 @@ function _M:fortitudeSave(dc)
 end
 
 function _M:willSave(dc)
+	if not dc or type(dc) ~= "number" then return end
+
 	local roll = rng.dice(1,20)
 	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + math.max(self:getWisMod(), self:getChaMod())
 
 	if self == game.player then
-		local s = ("Will save: %d roll + bonus = %d versus DC %d"):format(
-			roll, save, dc)--, success and "success" or "failure")
+		local s = ("Will save: %d roll + %d bonus = %d versus DC %d"):format(
+			roll, save, roll+save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
 
