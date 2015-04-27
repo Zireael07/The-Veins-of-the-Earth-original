@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 local Talents = require "engine.interface.ActorTalents"
 
@@ -98,6 +98,7 @@ newEntity{ base = "BASE_RANGED",
     type = "weapon", subtype="bow",
     require = { talent = { Talents.T_LONGBOW_PROFICIENCY }, },
     display = "}", color=colors.UMBER,
+    moddable_tile = resolvers.moddable_tile("longbow"),
     encumber = 3,
     martial = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
@@ -125,6 +126,7 @@ newEntity{ base = "BASE_LBOW",
     rarity = 10,
     level_range = {1, 10},
     image = "tiles/longbow.png",
+    moddable_tile = resolvers.moddable_tile("composite_bow"),
 --    cost = 100,
     cost = resolvers.value{silver=225},
     combat = {
@@ -141,6 +143,7 @@ newEntity{ base = "BASE_RANGED",
     type = "weapon", subtype="bow",
     require = { talent = { Talents.T_SHORTBOW_PROFICIENCY }, },
     display = "}", color=colors.UMBER,
+    moddable_tile = resolvers.moddable_tile("shortbow"),
     encumber = 2,
     martial = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },

@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 local Talents = require "engine.interface.ActorTalents"
 
@@ -51,6 +51,7 @@ newEntity{ base = "BASE_EXOTIC",
     type = "weapon", subtype="axe",
     image = "tiles/battleaxe.png",
     display = "/", color=colors.SLATE,
+    moddable_tile = resolvers.moddable_tile("axe"),
     encumber = 6,
     rarity = 10,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
@@ -76,6 +77,7 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     type = "weapon", subtype="flail",
     image = "tiles/spiked_chain.png",
     display = "/", color=colors.SLATE,
+    moddable_tile = resolvers.moddable_tile("spiked_chain"),
     encumber = 10,
     rarity = 10,
     reach = true,
@@ -102,6 +104,7 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     type = "weapon", subtype="axe",
     image = "tiles/newtiles/doubleaxe.png",
     display = "/", color=colors.SLATE,
+    moddable_tile = resolvers.moddable_tile("double_axe"),
     encumber = 15,
     rarity = 10,
     double = true,
@@ -155,6 +158,7 @@ newEntity{ base = "BASE_EXOTIC_TWOHANDED",
     type = "weapon", subtype="axe",
     image = "tiles/newtiles/urgrosh.png",
     display = "/", color=colors.SLATE,
+    moddable_tile = resolvers.moddable_tile("double_axe"),
     encumber = 12,
     rarity = 12,
     double = true,

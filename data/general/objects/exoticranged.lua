@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 local Talents = require "engine.interface.ActorTalents"
 
@@ -23,6 +23,7 @@ newEntity{ base = "BASE_EXOTIC_RANGED",
     require = { talent = { Talents.T_HAND_CROSSBOW_PROFICIENCY }, },
     image = "tiles/crossbow_light.png",
     display = "}", color=colors.SLATE,
+    moddable_tile = resolvers.moddable_tile("hand_crossbow"),
     encumber = 2,
     rarity = 10,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
