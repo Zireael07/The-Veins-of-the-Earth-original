@@ -1,4 +1,4 @@
-newTalentType{ 
+newTalentType{
 	all_limited=true,
 	type="illusion",
 	name="illusion",
@@ -14,8 +14,8 @@ newArcaneSpell{
 	level = 1,
 	points = 1,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 0,
@@ -27,7 +27,7 @@ newArcaneSpell{
 
 	info = function(self, t)
 		return ([[You turn invisible.]])
-	end,	
+	end,
 }
 
 newArcaneSpell{
@@ -37,38 +37,46 @@ newArcaneSpell{
 	level = 1,
 	points = 1,
 	cooldown = 0,
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 8 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
 	range = 4,
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
 	end,
-	get_effect = function(self, t)
-		local d = require("mod.dialogs.BlindnessDeafness").new(t)
-
-		game:registerDialog(d)
-		
-		local co = coroutine.running()
-		d.unload = function() coroutine.resume(co, t.choice) end --This is currently bugged, only works if the player has already summoned,
-		if not coroutine.yield() then return nil end
-		return t.choice
+	getSave = function(self, t)
+		return self:getSpellDC(t)
 	end,
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
-		local choice = t.get_effect(self, t)
+		-- Choose effect
+		local result = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",{
+			{name="blindness", desc=""},
+			{name="deafness", desc=""},
+		}, function(result)
+			self:talentDialogReturn(result)
+			game:unregisterDialog(self:talentDialogGet())
+		end))
 
-		if choice == "Blindness" then
+		if not result then return nil end
+
+		local save = t.getSave(self, t)
+
+		if result == "blindness" then
 			if target:canBe("blind") then
-				target:setEffect(target.EFF_BLIND, t.getDuration(self, t), {})
+				if not target:fortitudeSave(save) then
+					target:setEffect(target.EFF_BLIND, t.getDuration(self, t), {})
+				end
 			end
-		elseif choice == "Deafness" then
+		elseif result == "deafness" then
 			if target:canBe("deaf") then
+				if not target:fortitudeSave(save) then
 				--target:setEffect(target.EFF_DEAF, t.getDuration(self, t), {})
+				end
 			end
 		else
 			return nil
@@ -79,7 +87,7 @@ newArcaneSpell{
 
 
 	info = function(self, t)
-		return ([[You blind the target for 5 turns]])
+		return ([[You blind the target for 5 turns.]])
 	end,
 
 }
