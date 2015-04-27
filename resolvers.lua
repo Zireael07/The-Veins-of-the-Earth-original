@@ -299,6 +299,8 @@ function resolvers.calc.moddable_tile(t, e)
 	local slot = t[1]
 	local r, r2
 	if slot == "cloak" then r = {"cloak_green"}
+	elseif slot == "helm" then r = {"helm_plume"}
+	elseif slot == "leather_cap" then r = {"cap_black1"}
 	elseif slot == "heavy" then
 		r = {"plate","half_plate","half_plate2","half_plate3"}
 		r2 = {"leg_armor01","leg_armor02","leg_armor03","leg_armor04"}
@@ -312,20 +314,42 @@ function resolvers.calc.moddable_tile(t, e)
 	elseif slot == "heavy_boots" then r = {"middle_gold"}
 	elseif slot == "gauntlets" then r = {"gauntlet_blue",}
 	elseif slot == "gloves" then r = {"glove_red", "glove_brown"}
+	--weapons start here
 	elseif slot == "sword" then r = {"short_sword_%s", "long_sword_%s"}
+	elseif slot == "dagger" then r = {"dagger_%s"}
+	elseif slot == "kukri" then r = {"kukri_%s"}
+	elseif slot == "sickle" then r = {"sickle"}
+	elseif slot == "dagger" then r = {"dagger_%s"}
+	--2h weapons
 	elseif slot == "greatsword" then r = {"great_sword"}
+	elseif slot == "greatclub" then r = {"greatclub"}
+	elseif slot == "spear" then r = {"spear1"}
+	elseif slot == "scythe" then r = {"scythe"}
+	elseif slot == "halberd" then r = {"halberd"}
+	elseif slot == "rapier" then r = {"rapier_%s"}
+	elseif slot == "scimitar" then r = {"scimitar_%s"}
 	elseif slot == "trident" then r = {"trident"}
+	--blunt 1h weapons
 	elseif slot == "whip" then r = {"whip_%s"}
 	elseif slot == "mace" then r = {"mace_%s", "mace2_%s", "mace3_%s"}
+	elseif slot == "morningstar" then r = {"morningstar_%s"}
+	elseif slot == "hammer" then r = {"hammer_%s"}
+	elseif slot == "club" then r = {"club_%s"}
+	elseif slot == "flail" then r = {"flail_ball", "flail_ball2"}
+	--axes
 	elseif slot == "handaxe" then r = {"hand_axe_%s"}
 	elseif slot == "axe" then r = {"war_axe_%s"}
 	elseif slot == "greataxe" then r = {"greataxe"}
-	elseif slot == "bow" then r = {"bow"}
+	--ranged weapons
+	elseif slot == "shortbow" then r = {"bow"}
+	elseif slot == "longbow" then r = {"bow_long"}
+	elseif slot == "composite_bow" then r = {"bow_composite"}
 	elseif slot == "crossbow" then r = {"crossbow"}
 	elseif slot == "sling" then r = {"sling"}
-	elseif slot == "dagger" then r = {"dagger_%s"}
-	elseif slot == "helm" then r = {"helm_plume"}
-	elseif slot == "leather_cap" then r = {"cap_black1"}
+	--exotics
+	elseif slot == "hand_crossbow" then r = {"crossbow_hand"}
+	elseif slot == "double_axe" then r = {"axe_double"}
+	elseif slot == "spiked_chain" then r = {"flail_spike"}
 	end
 
 	r = rng.table(r)
