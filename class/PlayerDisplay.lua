@@ -145,14 +145,24 @@ function _M:display()
     elseif player.nutrition < 2000 then self:makeTexture("#LIGHT_RED#Famished", x, h, 255, 255, 255)
     elseif player.nutrition < 2500 then self:makeTexture("#YELLOW#Hungry", x, h, 255, 255, 255)
     --Don't display anything if content
-    elseif player.nutrition < 3000 then --self:makeTexture("#DARK_RED#Fainting", x, h, 255, 255, 255)
+    elseif player.nutrition < 3000 then
     elseif player.nutrition < 3500 then self:makeTexture("#LIGHT_GREEN#Satiated", x, h, 255, 255, 255)
     elseif player.nutrition < 4000 then self:makeTexture("#DARK_GREEN#Bloated", x, h, 255, 255, 255)
     else end
 
     h = h + self.font_h
 
-    self:makeTexture(("Dungeon lvl: %d"):format(game.level.level), x, h, 240, 240, 170)
+    --inform the player it's a worldmap
+    if game.zone.worldmap then
+        self:makeTexture("World map", x, h, 240, 240, 170)
+    else
+        if game.zone.max_level > 1 and game.level.level then
+            self:makeTexture(("%s, dungeon lvl: %d"):format(game.zone.name, game.level.level), x, h, 240, 240, 170)
+        else
+            self:makeTexture(("%s"):format(game.zone.name), x, h, 240, 240, 170)
+        end
+    end
+
 
     h = h + self.font_h
 
