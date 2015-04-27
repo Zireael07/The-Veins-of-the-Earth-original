@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 --TO DO: Implement tooltips using mousezones
 
@@ -129,9 +129,9 @@ function _M:drawDialog(tab)
 		{left=self.t_leveltwo, top=self.c_tabs, ui=self.t_levelfour},
 		{top=self.t_leveltwo, ui=self.c_desc},
 	--	{top=self.c_spelllevels, ui=self.c_desc},
-		{top=self.c_desc,ui=self.spells[1]},
+		{top=self.t_leveltwo,ui=self.spells[1]},
 		{top=self.spells[1].h+170,ui=self.spells[2]},
-		{top=self.c_desc,ui=self.c_charges},
+		{top=self.t_leveltwo,ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
 		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info},
     }
@@ -152,9 +152,9 @@ function _M:drawDialog(tab)
 		{left=self.t_leveltwo, top=self.c_tabs, ui=self.t_levelfour},
 		{top=self.t_leveltwo, ui=self.c_desc},
 	--	{top=self.c_spelllevels, ui=self.c_desc},
-		{top=self.c_desc,ui=self.spells[3]},
+		{top=self.t_leveltwo,ui=self.spells[3]},
 		{top=self.spells[3].h+170,ui=self.spells[4]},
-		{top=self.c_desc,ui=self.c_charges},
+		{top=self.t_leveltwo,ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
 		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info},
     }
