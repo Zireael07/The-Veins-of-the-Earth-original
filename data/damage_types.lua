@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2014 Zireael
+-- Copyright (C) 2013-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -98,6 +98,7 @@ newDamageType{
 		if target then
 			local damage = dam.dam or dam
 			if target:fortitudeSave(dam.save_dc or 10) then
+				game.logSeen(target, "The target succeded on the saving throw.")
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -213,7 +214,7 @@ newDamageType{
 		--dam is the dc to beat
 		local target = game.level.map(x, y, Map.ACTOR)
 		if target then
-			if not target:reflexSave(dam.dc) then
+			if not target:reflexSave(dam.save_dc) then
 				target:setEffect(target.EFF_FELL, 1, {})
 			else
 				game.logSeen(target, "%s succeeds the saving throw!", target.name:capitalize())
