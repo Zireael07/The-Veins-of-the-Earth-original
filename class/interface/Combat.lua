@@ -275,31 +275,36 @@ function _M:dealDamage(target, weapon, crit, sneak)
         end end
 
 
-        --Fortification
---[[    if target.fortification > 0 then
-
-            if target.fortification == 1 then
-              local chance = rng.percent(25)
-              if chance then
-                  game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
-                  dam = dam
-                  return end
-            end
-            if target.fortification == 3 then
-              local chance = rng.percent(75)
-              if chance then
-                  game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
-                  dam = dam
-              return end
-            end
-            if target.fortification == 5 then
-              game.log(("%s's armor protects from the critical hit!"):format(self:getLogName():capitalize()))
-              dam = dam return end
-            end
-        end]]
 
         if target:canBe("crit") then
+            --check fortification first
+            if target.fortification > 0 then
 
+                if target.fortification == 1 then
+                    local chance = rng.percent(25)
+                    if chance then
+                        game.log(("%s's armor protects from the critical hit!"):format(target:getLogName():capitalize()))
+                        dam = dam
+                    else
+                        dam = dam * (weapon and weapon.combat.critical or 2)
+                    end
+                end
+                if target.fortification == 3 then
+                    local chance = rng.percent(75)
+                    if chance then
+                        game.log(("%s's armor protects from the critical hit!"):format(target:getLogName():capitalize()))
+                        dam = dam
+                    else
+                        dam = dam * (weapon and weapon.combat.critical or 2)
+                    end
+                end
+                if target.fortification == 5 then
+                  game.log(("%s's armor protects from the critical hit!"):format(target:getLogName():capitalize()))
+                  dam = dam
+                end
+            end
+
+            --check Roll with it
           if target:knowTalent(T_ROLL_WITH_IT) then
             game.logSeen()
           --  game.log(("%s makes a critical attack, but the damage is reduced!"):format(self:getLogName():capitalize())) --end
@@ -310,7 +315,8 @@ function _M:dealDamage(target, weapon, crit, sneak)
           end
         else
           --game.log("The target's lack of physiology prevents serious injury.")
-          dam = dam end
+          dam = dam
+        end
       end --end crit stuff
 
       --Favored enemy bonus
