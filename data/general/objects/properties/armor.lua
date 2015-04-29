@@ -1,10 +1,10 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 local DamageType = require "engine.DamageType"
 local Stats = require "engine.interface.ActorStats"
 
-newEntity { define_as = "EGO_PLUS_ONE",
+newEntity {
 	name = " +1", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
@@ -15,16 +15,9 @@ newEntity { define_as = "EGO_PLUS_ONE",
 	wielder = {
 		combat_magic_armor = 1,
 	},
-	resolve_data = {
-	all = {
-	wielder = {
-		combat_magic_armor = 1,
-	},
-	},
-},
 }
 
-newEntity { define_as = "EGO_PLUS_TWO",
+newEntity {
 	name = " +2", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
@@ -37,7 +30,7 @@ newEntity { define_as = "EGO_PLUS_TWO",
 	},
 }
 
-newEntity { define_as = "EGO_PLUS_THREE",
+newEntity {
 	name = " +3", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
@@ -50,7 +43,7 @@ newEntity { define_as = "EGO_PLUS_THREE",
 	},
 }
 
-newEntity { define_as = "EGO_PLUS_FOUR",
+newEntity {
 	name = " +4", suffix = true,
 	keywords = {bonus=true},
 	level_range = {10, 20},
@@ -64,7 +57,7 @@ newEntity { define_as = "EGO_PLUS_FOUR",
 	},
 }
 
-newEntity { define_as = "EGO_PLUS_FIVE",
+newEntity {
 	name = " +5", suffix = true,
 	keywords = {bonus=true},
 	level_range = {1, 10},
@@ -78,11 +71,11 @@ newEntity { define_as = "EGO_PLUS_FIVE",
 	},
 }
 
-newEntity { define_as = "EGO_MITHRIL",
+newEntity {
 	name = "mithril ", prefix = true,
 	keywords = {mithril=true},
 	level_range = {5, nil},
-	rarity = 7,
+	rarity = 20, --5% chance
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
 	wielder = {
@@ -92,11 +85,11 @@ newEntity { define_as = "EGO_MITHRIL",
 	}
 }
 
-newEntity { define_as = "EGO_ADAMANTINE",
+newEntity {
 	name = "adamantine ", prefix = true,
 	keywords = {adamantine=true},
 	level_range = {10, nil},
-	rarity = 5,
+	rarity = 20, --5% chance
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
 	wielder = {
@@ -105,11 +98,11 @@ newEntity { define_as = "EGO_ADAMANTINE",
 	}
 }
 
-newEntity { define_as = "EGO_DRAGONHIDE",
+newEntity {
 	name = "dragonhide ", prefix = true,
 	keywords = {dragonhide=true},
 	level_range = {20, nil},
-	rarity = 15,
+	rarity = 35,
 --	cost = 3500,
 	cost = resolvers.value{platinum=350},
 	wielder = {
@@ -121,7 +114,7 @@ newEntity { define_as = "EGO_DRAGONHIDE",
 }
 
 --Magic properties
-newEntity { define_as = "EGO_SHADOW",
+newEntity {
 	name = " of shadow", suffix = true,
 	keywords = {shadow=true},
 	level_range = {5, nil},
@@ -134,7 +127,7 @@ newEntity { define_as = "EGO_SHADOW",
 	}
 }
 
-newEntity { define_as = "EGO_IMP_SHADOW",
+newEntity {
 	name = " of improved shadow", suffix = true,
 	keywords = {shadow=true},
 	level_range = {10, nil},
@@ -148,7 +141,7 @@ newEntity { define_as = "EGO_IMP_SHADOW",
 	}
 }
 
-newEntity { define_as = "EGO_GREATER_SHADOW",
+newEntity {
 	name = " of greater shadow", suffix = true,
 	keywords = {shadow=true},
 	level_range = {15, nil},
@@ -162,7 +155,7 @@ newEntity { define_as = "EGO_GREATER_SHADOW",
 	}
 }
 
-newEntity { define_as = "EGO_SILENT",
+newEntity {
 	name = " of silent moves", suffix = true,
 	keywords = {silent=true},
 	level_range = {5, nil},
@@ -175,7 +168,7 @@ newEntity { define_as = "EGO_SILENT",
 	}
 }
 
-newEntity { define_as = "EGO_IMP_SILENT",
+newEntity {
 	name = " of improved silent moves", suffix = true,
 	keywords = {silent=true},
 	level_range = {10, nil},
@@ -583,24 +576,24 @@ newEntity {
 	name = "dwarven", prefix = true,
 --	keywords = {bonus=true},
 	level_range = {10, 30},
-	rarity = 15,
+	rarity = 35,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
 	wielder = {
-		
+
 		infravision = 1,
-		
+
     		inc_stats = { [Stats.STAT_STR] = 2,
     			[Stats.STAT_CON] = 2,
     		},
-   
-  }, 
+
+  },
 }
 
 newEntity{
 	name = " of elvenkind", suffix = true,
 	level_range = {10, 30},
-	rarity = 5,
+	rarity = 25,
 --	cost = 2500,
 	cost = resolvers.value{platinum=250},
 	wielder = {
@@ -609,16 +602,17 @@ newEntity{
 }
 
 --Spikes!!
---[[newEntity {
+newEntity {
 	name = "spiked ", prefix = true,
 	keywords = {spiked=true},
 	level_range = {1, nil},
-	rarity = 5,
+	rarity = 15,
 --	cost = 10,
 	cost = resolvers.value{silver=250},
 	encumber = 5,
 	wielder = {
-		on_melee_hit={[DamageType.PHYSICAL] = {1, 6}
+		on_melee_hit={
+			[DamageType.PHYSICAL] = {1, 6}
+		}
 	}
 }
-]]
