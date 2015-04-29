@@ -70,7 +70,15 @@ setDefaultProjector(function(src, x, y, type, dam)
 end)
 
 newDamageType{
-	name = "physical", type = "PHYSICAL",
+	name = "physical", type = "PHYSICAL", text_color = "#WHITE#",
+	projector = function(src, x, y, type, dam)
+		local target = game.level.map(x, y, Map.ACTOR) or src
+		if target then
+			local damage = dam.dam or dam
+			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
+			return realdam
+		end
+	end,
 	death_message = {"battered", "bludgeoned", "sliced", "maimed", "raked", "impaled", "dissected", "disemboweled", "decapitated", "stabbed", "pierced", "crushed", "shattered", "smashed", "skewered", "squished", "mauled", "splattered", "eviscerated"},
 }
 
