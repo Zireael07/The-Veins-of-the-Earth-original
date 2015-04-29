@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 local DamageType = require "engine.DamageType"
 
@@ -76,7 +76,7 @@ newEntity {
 	name = "mithril ", prefix = true,
 	keywords = {mithril=true},
 	level_range = {5, nil},
-	rarity = 7,
+	rarity = 20, --5% chance
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
 	wielder = {
@@ -90,7 +90,7 @@ newEntity {
 	name = "adamantine ", prefix = true,
 	keywords = {adamantine=true},
 	level_range = {10, nil},
-	rarity = 5,
+	rarity = 20, --5% chance
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
 	wielder = {
@@ -103,7 +103,7 @@ newEntity {
 	name = "dragonhide ", prefix = true,
 	keywords = {dragonhide=true},
 	level_range = {20, nil},
-	rarity = 15,
+	rarity = 35,
 	greater_ego = 1,
 --	cost = 3500,
 	cost = resolvers.value{platinum=350},
@@ -366,7 +366,7 @@ newEntity {
 }
 
 --Spikes!!
---[[newEntity {
+newEntity {
 	name = "spiked ", prefix = true,
 	keywords = {spiked=true},
 	level_range = {1, nil},
@@ -375,7 +375,8 @@ newEntity {
 	cost = resolvers.value{silver=150},
 	encumber = 5,
 	wielder = {
-		on_melee_hit={[DamageType.PHYSICAL] = {1, 6}
+		on_melee_hit={
+			[DamageType.PHYSICAL] = {1, 6}
+		}
 	}
 }
-]]
