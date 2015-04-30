@@ -278,7 +278,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
         if target:canBe("crit") then
             --check fortification first
-            if target.fortification > 0 then
+            if target.fortification and target.fortification > 0 then
 
                 if target.fortification == 1 then
                     local chance = rng.percent(25)
