@@ -16,7 +16,7 @@ newEntity{ base = "BASE_NPC_EARTH",
 	define_as = "BASE_NPC_XORN",
 	type = "outsider", subtype = "earth",
 	image = "tiles/xorn.png",
-	display = 'O', color=colors.LIGHT_BROWN,
+	display = 'K', color=colors.LIGHT_BROWN,
 
 	desc = [[An earthen creature.]],
 	uncommon_desc = [[Xorns are immune to cold and fire, and they are resistant to electricity. There are several different shapes and sizes of xorns. Some grow to tremendous size and are known as elder xorns. Xorns ignore most creatures (since they cannot digest meat), unless they carry substantial amounts of metal or stone on them.]],

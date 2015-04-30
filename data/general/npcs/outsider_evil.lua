@@ -78,7 +78,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 
 newEntity{
 	base = "BASE_NPC_BARGHEST",
-	name = "barghest", color=colors.BLACK,
+	name = "barghest", color=colors.PINK,
 	level_range = {5, 15}, exp_worth = 1200,
 	rarity = 10,
 	max_life = resolvers.rngavg(30,35),

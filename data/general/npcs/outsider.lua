@@ -52,7 +52,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_FORMIAN",
 	image = "tiles/ant.png",
-	display = 'O', color=colors.BROWN,
+	display = 'x', color=colors.BROWN,
 	desc = [[It looks like a cross between an ant and a centaur.]],
 
 	stats = { str=13, dex=14, con=13, int=6, wis=10, cha=9, luc=10 },
@@ -73,6 +73,9 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 newEntity{
 	base = "BASE_NPC_FORMIAN",
 	name = "formian worker",
+	desc = [[The lowest caste of the ant-like formians -- the outer-planar personification of lawful existance -- the worker appears as an ant
+      creature the size of a doberman. Their mentality is very limited, and they tend to be non-hostile unless attacked or provoked, though
+      they can easily panic when seperated from their superiors.]],
 	level_range = {1, 10}, exp_worth = 200,
 	rarity = 10,
 	max_life = resolvers.rngavg(3,7),
@@ -89,7 +92,9 @@ newEntity{
 --Poison 1d6 STR primary & sec DC 14
 newEntity{
 	base = "BASE_NPC_FORMIAN",
-	name = "formian warrior",
+	name = "formian warrior", color=colors.YELLOW,
+	desc = [[A humanoid ant-creature the size of a horse, the formian warrior is the absolute enforcement of outer-planar law, and
+      serves as the local militia across the planes of law and neutrality.]],
 	level_range = {1, 10}, exp_worth = 900,
 	rarity = 10,
 	max_life = resolvers.rngavg(25,30),
@@ -110,7 +115,8 @@ newEntity{
 --Poison 1d6 STR primary & sec DC 15
 newEntity{
 	base = "BASE_NPC_FORMIAN",
-	name = "formian taskmaster",
+	name = "formian taskmaster", color=colors.YELLOW,
+	desc = [[A humanoid ant-creature the size of a horse, the formian taskmaster assigns orders to the workers and warriors.]],
 	level_range = {5, 15}, exp_worth = 2000,
 	rarity = 10,
 	max_life = resolvers.rngavg(40,45),
@@ -136,8 +142,9 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_FORMIAN",
 	name = "formian myrmarch",
+	desc = [[Second only to the formian queen, the myrmarchs govern hives in the tens of formians.]],
 	level_range = {10, 15}, exp_worth = 3000,
-	rarity = 10,
+	rarity = 25,
 	max_life = resolvers.rngavg(100,105),
 	hit_die = 12,
 	challenge = 10,
@@ -347,7 +354,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	subtype = "fire",
 	name = "thoqqua",
 	image = "tiles/elemental_earth.png",
-	display = 'O', color=colors.DARK_BROWN,
+	display = 'K', color=colors.DARK_TAN,
 	desc = [[A creature of fire and earth.]],
 	common_desc = [[ese creatures are generally summoned from the Elemental Plane of Fire or, more rarely, the Elemental Plane of Earth. A thoqqua is so hot that its mere touch can ignite almost any material.]],
 	base_desc = [[This rocky, red-hot worm is a thoqqua. It can see in the dark and cannot be brought back by normal means. It burrows through earth and rock. It resists fire and takes double damage from cold.]],
@@ -490,7 +497,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 --breath weapon 1d8 Ref DC 12 half; spell-likes: 1/hour - blur; 1/day gust of wind DC 14
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "air mephit",
+	name = "air mephit", color=colors.LIGHT_BLUE,
 	combat_natural = 4,
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
@@ -501,7 +508,7 @@ newEntity{
 --breath weapon 1d4 & -4 AC & -2 attack for 3 rounds; spell-likes: 1/hour - blur; 1/day wind wall DC 15
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "dust mephit",
+	name = "dust mephit", color=colors.SLATE,
 	combat_natural = 4,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
@@ -512,7 +519,7 @@ newEntity{
 --breath weapon 1d8 Ref DC 13; spell-like: 1/day soften earth and stone; 1/hour enlarge person (self)
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "earth mephit",
+	name = "earth mephit", color=colors.SANDY_BROWN,
 	combat_natural = 7,
 	max_life = resolvers.rngavg(17,21),
 --	movement_speed_bonus = 0.33,
@@ -526,7 +533,7 @@ newEntity{
 --Spell-likes: 1/hour scorching ray DC 14; 1/day heat metal DC 14
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "fire mephit",
+	name = "fire mephit", color=colors.RED,
 	combat_natural = 5,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
@@ -540,7 +547,7 @@ newEntity{
 --Spell-likes: 1/hour magic missile; 1/day - chill metal DC 14
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "ice mephit",
+	name = "ice mephit", color=colors.LIGHT_STEEL_BLUE,
 	combat_natural = 5,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
@@ -552,7 +559,7 @@ newEntity{
 --Spell-likes: 1/day pyrotechnics
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "magma mephit",
+	name = "magma mephit", color=colors.DARK_RED,
 	combat_natural = 5,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
@@ -564,7 +571,7 @@ newEntity{
 --Spell-likes: 1/hour acid arrow, 1/day stinking cloud
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "ooze mephit",
+	name = "ooze mephit", color=colors.DARK_GREEN,
 	combat_natural = 6,
 	max_life = resolvers.rngavg(17,21),
 	skill_swim = 8,
@@ -579,7 +586,7 @@ newEntity{
 --Spell-likes: 1/hour - glitterdust; 1/day 2d8 rad 2 ball Fort DC 14 half
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "salt mephit",
+	name = "salt mephit", color=colors.WHITE,
 	combat_natural = 7,
 	max_life = resolvers.rngavg(17,21),
 --	movement_speed_bonus = 0.33,
@@ -593,7 +600,7 @@ newEntity{
 --Spell-likes: 1/hour - blur; 1/day 2d6 fire Ref DC 14 half in 3 sq radius
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "steam mephit",
+	name = "steam mephit", color=colors.DARK_GREY,
 	combat_natural = 5,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
@@ -604,7 +611,7 @@ newEntity{
 --swim 30 ft.; breath weapon 1d8 acid Ref DC 13 half; spell-likes: 1/hour - acid arrow; 1/day stinking cloud
 newEntity{
 	base = "BASE_NPC_MEPHIT",
-	name = "water mephit",
+	name = "water mephit", color=colors.BLUE,
 	combat_natural = 6,
 	max_life = resolvers.rngavg(17,21),
 	skill_swim = 8,

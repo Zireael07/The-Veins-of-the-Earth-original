@@ -305,8 +305,13 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
 --Spell-likes: 3/day—darkness, hallucinatory terrain (DC 18), knock, light; 1/day—charm person (DC 15), speak with animals, speak with plants.
 newEntity{ base = "BASE_NPC_CELESTIAL",
         define_as = "BASE_NPC_LILLEND",
-        color=colors.LIGHT_RED,
-        desc = [[An animated plant.]],
+        color=colors.LIGHT_GREEN,
+        desc = [[The lillend are a celestial breed from the wilder, more untamed areas of the upper planes. They are artisans, dancers,
+          singers and scholars -- fierce defenders of art in all its forms. They frequently serve the powers of light as translators,
+          linguists and sages.
+          A lillend has the head, torso and arms of a beautiful woman, serpentine lower body tapering off to a feathered tail and
+          great, hawklike wings. Their hair, wings and tail all have the same coloration -- a shifting, nearly hypnotic spectrum of
+          radiant greens, purples and violets.]],
         stats = { str=20, dex=17, con=15, int=14, wis=16, cha=18, luc=12 },
         combat = { dam= {2,6} },
         name = "lillend",
