@@ -27,18 +27,32 @@ CHANGELOG
 * bug fix - make the specific class resolver actually work
 * bug fix - fix the HP allotted by both random and specific class resolver
 * bug fix - don't show decimals in special damage messages
+* bug fix - assorted spelling fixes
+* bug fix - blindness/deafness now allows a save and uses the same TalentDialog code as other spells
+* bug fix - cheat resurrect now restores mana, if any, and wounds
 
 * added Symbola font and used it on map
 * new zones: temple, drow temple
-* new magic properties: weapons - bane corresponding to all monster types, aligned, elemental, elemental burst
-* new tiles: belt, girdle, club, helmet, mushroom,
+* new magic properties: weapons - bane corresponding to all monster types, aligned, elemental, elemental burst; wondrous items - of slow digestion
+* uncommented fortification code, spiked armor and shields egos
+* new item tiles: belt, girdle, club, helmet, mushroom, long composite bow, short composite bow, hand crossbow
+* new NPC tiles: drow noble male, phantom fungus
+* changed ASCII symbol for bullets
+* changed ASCII symbols for grick, azer, djinn, efreet, xorn
+* changed ASCII colors for lillend, barghest
+* changed ASCII symbols and colors for drider, will o'wisp, quasit, thoqqua
+* added distinctive colors to individual mephit and formian classes
+* added paperdoll graphics for almost all weapons (except double sword)
 * added tips on loading zone level
 * implemented the Luck stat
 * implemented Monkey Grip feat
+* implemented proper DC calculations for spells
 * random and default buttons in character creation screen
 * increase spellcaster classes skill points allotment to 4
 * ammo capacity is now randomized
 * some bags now limit what can be put in them (so an ammo belt will accept only ammo)
+* the HUD now informs you that you are on the worldmap or gives you the zone name itself for other zones
+* many dialog lists are now colored to help distinguish between good/bad/neutral options
 * character sheet now takes all attack modifiers into account when displaying your attack
 * the character screen now has a tab listing all effects you have
 * the player character can now have children of his/her own
