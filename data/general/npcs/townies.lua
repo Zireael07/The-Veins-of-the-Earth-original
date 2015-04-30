@@ -75,7 +75,7 @@ newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
 newEntity{
     base = "BASE_NPC_DROW_NOBLE",
     name = "male drow noble",
-    image = "tiles/newtiles/drow_noble_male.png",
+    image = "tiles/drow_noble_male.png",
 }
 
 newEntity{

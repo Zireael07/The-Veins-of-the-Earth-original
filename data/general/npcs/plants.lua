@@ -93,7 +93,7 @@ newEntity{ base = "BASE_NPC_FUNGI",
 --Constant greater invisibility
 newEntity{ base = "BASE_NPC_FUNGI",
 	define_as = "BASE_NPC_PHANTOM_FUNGI",
-	image = "tiles/phantom_fungi.png",
+	image = "tiles/fungi_phantom.png",
 	color=colors.VIOLET,
 	desc = [[A greenish silhouette of a fungus.]],
 	stats = { str=14, dex=10, con=16, int=2, wis=11, cha=9, luc=10 },
