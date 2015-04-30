@@ -3485,8 +3485,9 @@ function _M:generateKid(npc)
 	--make the kid
 	local NPC = require "mod.class.NPC"
 	kid = NPC.new{
-		name = "kid",
+		name = resolvers.kid_name(self.subtype:capitalize(), self.sex),
 		type = "humanoid",
+		sex = resolvers.kid_sex(),
 		subtype = resolvers.kid_race(self.descriptor.race, npc.subtype:capitalize()),
 		stats = { str=rng.dice(3,6), dex=rng.dice(3,6), con=rng.dice(3,6), int=rng.dice(3,6), wis=rng.dice(3,6), cha=rng.dice(3,6), luc=rng.dice(3,6)},
 		display = "h", color=colors.GOLD,

@@ -35,6 +35,8 @@ local Map = require "engine.Map"
 local Faction = require "engine.Faction"
 local DamageType = require "engine.DamageType"
 
+local NameGenerator = require "engine.NameGenerator"
+
 module(..., package.seeall, class.inherit(engine.Actor,
 	mod.class.interface.ActorSkills,
 	engine.interface.ActorTemporaryEffects,
@@ -102,6 +104,8 @@ function _M:init(t, no_default)
 	--Templates (NPC only)
 	self.template = self.template or nil
 	self.special = self.special or nil
+
+	self.sex = self.sex or "Neuter"
 
 	--Saves
 	self.will_save = self.will_save or 0
@@ -2836,7 +2840,9 @@ function _M:randomSpell()
 end
 
 --Name stuff
-function _M:randomName()
+function _M:randomName(race, sex, surname)
+local NameGenerator = require "engine.NameGenerator"
+
 local random_name = {
   --Expanded with some Incursion names that matched the theme
   human_male = {
@@ -2980,11 +2986,86 @@ local random_name = {
   rules = "$s $m$e",
   }
 }
-	local ng = NameGenerator.new(random_name.human_male)
 
-	return ng
+local name = "kid"
+
+	if not race then game.log("You can't generate name without race!") end
+	if not sex then game.log("you can't generate name without sex!") end
+
+	if race == "Human" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.human_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.human_male)
+			name = ng:generate() end
+	elseif race == "Half-Elf" or race == "Half-Drow" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.halfelf_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.halfelf_male)
+			name = ng:generate() end
+	elseif race == "Elf" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.elf_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.elf_male)
+			name = ng:generate() end
+	elseif race == "Half-Orc" or race == "Orc" or race == "Lizardfolk" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.halforc_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.halforc_male)
+			name = ng:generate() end
+	elseif race == "Dwarf" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.dwarf_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.dwarf_male)
+			name = ng:generate() end
+	elseif race == "Drow" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.drow_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.drow_male)
+			name = ng:generate() end
+	elseif race == "Duergar" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.duergar_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.duergar_male)
+			name = ng:generate() end
+	elseif race == "Deep gnome" or race == "Gnome" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.gnome_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.gnome_male)
+			name = ng:generate() end
+	elseif race == "Halfling" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.halfling_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.halfling_male)
+			name = ng:generate() end
+	elseif race == "Kobold" then
+		if sex == "Female" then
+			local ng = NameGenerator.new(random_name.kobold_female)
+			name = ng:generate()
+		else
+			local ng = NameGenerator.new(random_name.kobold_male)
+			name = ng:generate() end
+	end
+
+	return name
 end
-
 
 
 --- Setup minimap color for this entity

@@ -1005,3 +1005,19 @@ function resolvers.calc.kid_alignment(t, e)
 	end
 
 end
+
+function resolvers.kid_name(race, sex, surname)
+	return {__resolver="kid_name", race, sex, surname, __resolve_last=true, }
+end
+
+function resolvers.calc.kid_name(t, e)
+	local race = t[1]
+	local sex = t[2]
+
+	local name = "kid"
+
+	if t[1] and t[2] then name = e:randomName(t[1], t[2]) end
+
+	return name
+
+end
