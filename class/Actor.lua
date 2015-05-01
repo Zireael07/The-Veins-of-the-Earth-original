@@ -2848,6 +2848,8 @@ local name
 	if not race then print("[NAMEGEN] You can't generate name without race!") return end
 	if not sex then print("[NAMEGEN] You can't generate name without sex!") return end
 
+	print("[NAMEGEN] Generating name for ", race, sex)
+
 	if race == "Human" then
 		if sex == "Female" then
 			local namegen = NameGenerator.new(NameGenerator.human_female_def)
