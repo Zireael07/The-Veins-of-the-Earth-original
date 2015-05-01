@@ -1,5 +1,7 @@
 CHANGELOG
 
+0.27.0 - beta 8 - 01/05/2014
+
 * bug fix - no more artifacts dropping on dlvl 1
 * bug fix - init sound on loading game from a save
 * bug fix - give humanoid NPCs weapon proficiencies
@@ -39,7 +41,7 @@ CHANGELOG
 * new NPC tiles: drow noble male, phantom fungus
 * changed ASCII symbol for bullets
 * changed ASCII symbols for grick, azer, djinn, efreet, xorn
-* changed ASCII colors for lillend, barghest
+* changed ASCII colors for lillend, barghest, some vermin
 * changed ASCII symbols and colors for drider, will o'wisp, quasit, thoqqua
 * added distinctive colors to individual mephit and formian classes
 * added paperdoll graphics for almost all weapons (except double sword)
@@ -67,7 +69,7 @@ CHANGELOG
 * neutral NPCs who turned hostile due to attacks will slowly decay towards neutral again if not attacked
 * add specific class levels to sages, courtesans, guards
 * add more skill kits/update their descriptions
-* giant ant queen CR bumped up and brought closer to PF version; changed ASCII colors of some vermin
+* giant ant queen CR bumped up and brought closer to PF version
 * the player will now stop running automatically in some cases (chats, nasty stuff happening)
 * worldmap now uses its own sight range
 * code attacks of opportunity
