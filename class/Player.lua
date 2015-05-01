@@ -3485,7 +3485,7 @@ function _M:generateKid(npc)
 	--make the kid
 	local NPC = require "mod.class.NPC"
 	kid = NPC.new{
-		name = resolvers.kid_name(self.subtype:capitalize(), self.sex),
+		name = "kid",
 		type = "humanoid",
 		sex = resolvers.kid_sex(),
 		subtype = resolvers.kid_race(self.descriptor.race, npc.subtype:capitalize()),
@@ -3507,6 +3507,7 @@ function _M:generateKid(npc)
 		combat = { dam= {1,6} },
 	    faction = "neutral",
 	    open_door = true,
+		resolvers.kid_name(),
 		resolvers.wounds()
 	}
 
