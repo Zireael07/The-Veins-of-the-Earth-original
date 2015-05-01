@@ -51,7 +51,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_RAGE, true)
 
 			if actor == game.player then
-				if actor.descriptor.race == "Half-Orc" or actor.descriptor.race == "Orc" then
+				if actor.descriptor.race == "Half-orc" or actor.descriptor.race == "Orc" then
 			actor.max_life = actor.max_life + 14 + (actor:getCon()-10)/2
 			else
 			actor.max_life = actor.max_life + 12 + (actor:getCon()-10)/2 end
@@ -66,7 +66,7 @@ newBirthDescriptor {
 		actor:attr("reflex_save", 0.33)
 		actor:attr("will_save", 0.33)
 			if actor == game.player then
-				if actor.descriptor.race == "Half-Orc" or actor.descriptor.race == "Orc" then
+				if actor.descriptor.race == "Half-orc" or actor.descriptor.race == "Orc" then
 			--Favored class bonuses
 			actor.combat_attack = (actor.combat_attack or 0) + 1
 			actor.max_life = actor.max_life + 14 + (actor:getCon()-10)/2
@@ -149,7 +149,7 @@ newBirthDescriptor {
 			descriptor.learn_all_spells_of_level(actor, 1)
 
 			if actor == game.player then
-				if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
+				if actor.descriptor.race == "Half-elf" or actor.descriptor.race == "Gnome" then
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
 			else
 			actor.max_life = actor.max_life + 6 + (actor:getCon()-10)/2 end
@@ -171,7 +171,7 @@ newBirthDescriptor {
 		actor:attr("will_save", 0.5)
 
 		if actor == game.player then
-			if actor.descriptor.race == "Half-Elf" or actor.descriptor.race == "Gnome" then
+			if actor.descriptor.race == "Half-elf" or actor.descriptor.race == "Gnome" then
 				--Favored class bonuses
 				actor.combat_attack = (actor.combat_attack or 0) + 1
 				actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
@@ -612,7 +612,7 @@ newBirthDescriptor {
             end
 
 			if actor == game.player then
-				if actor:hasDescriptor{race="Drow", sex="Female"} or actor:hasDescriptor{race="Half-Drow"} then
+				if actor:hasDescriptor{race="Drow", sex="Female"} or actor:hasDescriptor{race="Half-drow"} then
 			actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 			else
 			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
@@ -634,7 +634,7 @@ newBirthDescriptor {
 		actor:attr("combat_bab", 0.75)
 
 		if actor == game.player then
-			if actor:hasDescriptor{race="Drow", sex="Female"} or actor:hasDescriptor{race="Half-Drow"} then
+			if actor:hasDescriptor{race="Drow", sex="Female"} or actor:hasDescriptor{race="Half-drow"} then
 		actor.combat_attack = (actor.combat_attack or 0) + 1
 		actor.max_life = actor.max_life + 10 + (actor:getCon()-10)/2
 		else
@@ -2237,7 +2237,7 @@ newBirthDescriptor {
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Arcane archer"] and actor.classes["Arcane archer"] >= 10 then return false end
-	--	if player.descriptor.race == "Elf" or player.descriptor.race == "Half-Elf" then
+	--	if player.descriptor.race == "Elf" or player.descriptor.race == "Half-elf" then
 	-- 	if actor:knowTalent(actor.T_WEAPON_FOCUS_BOW) then
 		if actor.combat_bab >= 6 then return true end
 

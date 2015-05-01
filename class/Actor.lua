@@ -2841,13 +2841,12 @@ end
 
 --Name stuff
 function _M:randomName(race, sex, surname)
---local NameGenerator = require "engine.NameGenerator"
 local NameGenerator = require "mod.class.NameGenerator"
 
 local name
 
-	if not race then game.log("You can't generate name without race!") end
-	if not sex then game.log("you can't generate name without sex!") end
+	if not race then print("[NAMEGEN] You can't generate name without race!") return end
+	if not sex then print("[NAMEGEN] You can't generate name without sex!") return end
 
 	if race == "Human" then
 		if sex == "Female" then
@@ -2856,7 +2855,7 @@ local name
 		else
 			local namegen = NameGenerator.new(NameGenerator.human_male_def)
 			name = namegen:generate() end
-	elseif race == "Half-Elf" or race == "Half-Drow" then
+	elseif race == "Half-elf" or race == "Half-drow" then
 		if sex == "Female" then
 			local namegen = NameGenerator.new(NameGenerator.halfelf_female_def)
 			name = namegen:generate()
@@ -2870,7 +2869,7 @@ local name
 		else
 			local namegen = NameGenerator.new(NameGenerator.elf_male_def)
 			name = namegen:generate() end
-	elseif race == "Half-Orc" or race == "Orc" or race == "Lizardfolk" then
+	elseif race == "Half-orc" or race == "Orc" or race == "Lizardfolk" then
 		if sex == "Female" then
 			local namegen = NameGenerator.new(NameGenerator.halforc_female_def)
 			name = namegen:generate()
@@ -2921,7 +2920,10 @@ local name
 			name = namegen:generate() end
 	end
 
+	if name == nil then print("[NAMEGEN] Name generation failed") end
+
 	return name
+
 end
 
 

@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -14,11 +14,10 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-local help = [[#GOLD#Feat points#SANDY_BROWN# are used to pick feats, which improve the character in various ways. #GOLD#Skill points#LAST#are used to improve the character's skills, as their name suggests.
-If you pick the #GOLD#favored class#LAST# later, you will gain +2 hit points per level and a +1 to attack. The latter bonus does not apply if you are a mage, however.
-#GOLD#ECL#LAST# means that your character will need more XP to level up (as though his or her level was equal to level + ECL).
- 
-#WHITE#]]
+--#GOLD#Feat points#SANDY_BROWN# are used to pick feats, which improve the character in various ways. #GOLD#Skill points#LAST#are used to improve the character's skills, as their name suggests.
+
+local help = [[#SANDY_BROWN#If you pick the #GOLD#favored class#LAST# later, you will gain +2 hit points per level and a +1 to attack. The latter bonus does not apply if you are a mage, however.
+#GOLD#ECL#LAST# means that your character will need more XP to level up (as though his or her level was equal to level + ECL).#WHITE#]]
 
 --Standard races
 newBirthDescriptor {
@@ -40,7 +39,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'race',
-	name = 'Half-Elf',
+	name = 'Half-elf',
 	desc = help..'A crossbreed of elf and human, they get the best of the two races.\n\n Cha +2. Diplomacy, Listen, Search, Spot +1. Favored class: Bard.',
 	stats = { cha = 2, },
 	copy_add = {
@@ -60,7 +59,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'race',
-	name = 'Half-Drow',
+	name = 'Half-drow',
 	desc = help..'A crossbreed of drow and human, they get the best of the two races.\n\n Cha +2. Listen, Spot, Search +1. Darkvision 2. Favored class: Cleric.',
 	stats = { cha = 2, },
 	copy_add = {
@@ -105,7 +104,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'race',
-	name = 'Half-Orc',
+	name = 'Half-orc',
 	desc = help..'A crossbreed of orc and human.\n\n Str +2 Int -2 Cha -2. Darkvision 3. Favored class: Barbarian.',
 	stats = { str = 2, int = -2, cha = -2, },
 	copy_add = {
@@ -213,7 +212,7 @@ newBirthDescriptor {
 	copy = {
 	moddable_tile_base = "drow_m.png",
 	starting_intro = "dark",
-	
+
 	}
 }
 
@@ -304,7 +303,7 @@ newBirthDescriptor{
 	}
 }
 
---Note: Wisdom bonus as opposed to penalty in SRD!!!
+--NOTE: Wisdom bonus as opposed to penalty in SRD!!!
 newBirthDescriptor{
 	type = 'race',
 	name = "Orc",
