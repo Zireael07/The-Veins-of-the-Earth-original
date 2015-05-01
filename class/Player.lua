@@ -3603,7 +3603,7 @@ function _M:kidTakeover(actor)
 	self:generateRandomClassTable()
 
 	--set descriptors
-	actor.descriptor.sex = resolvers.kid_sex()
+	actor.descriptor.sex = actor.sex
 	actor.descriptor.race = actor.subtype:capitalize()
 	self:kidApplyRace(actor)
 	actor.descriptor.alignment = actor.alignment
