@@ -885,7 +885,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --Scent, rend; brachiation feat; Bull strength, enlarge, cause fear spell-likes
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_BLOOD_APE",
-	--image =
+	image = "tiles/newtiles/blood_ape.png",
 	display = 'Y', color=colors.DARK_RED,
 	desc = [[A blood red large ape.]],
 

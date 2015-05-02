@@ -113,7 +113,8 @@ newEntity{
 --Acid sting 1d4
 newEntity{
 	base = "BASE_NPC_ANT",
-	name = "giant ant soldier", color=colors.BLACK,
+	image = "tiles/ant_soldier.png",
+	name = "giant ant soldier", color=colors.BLUE,
 	level_range = {5, 20}, exp_worth = 600,
 	rarity = 8,
 	max_life = resolvers.rngavg(10,13),
@@ -128,7 +129,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_ANT",
 	image = "tiles/ant_queen.png",
-	name = "giant ant queen", color=colors.DARK_BLUE, --let's make her stand out
+	name = "giant ant queen", color=colors.DARK_RED, --let's make her stand out
 	level_range = {5, 20}, exp_worth = 1500,
 	rarity = 14,
 	max_life = resolvers.rngavg(20,30),

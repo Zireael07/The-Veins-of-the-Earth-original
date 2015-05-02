@@ -81,6 +81,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow commoner",
+    image = "tiles/newtiles/drow_commoner.png",
     rarity = 2,
     resolvers.equipnoncursed{
         full_id=true,
@@ -91,6 +92,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow female courtesan",
+    image = "tiles/newtiles/drow_courtesan_female.png",
     max_life = resolvers.rngavg(5,10),
     rarity = 5,
     stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
@@ -119,6 +121,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow guard",
+    image = "tiles/npc/drow_fighter.png",
     max_life = resolvers.rngavg(15,20),
     rarity = 4,
 

@@ -51,7 +51,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 --Immunity to poison, petrification & cold
 newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_FORMIAN",
-	image = "tiles/ant.png",
+	image = "tiles/newtiles/formian.png",
 	display = 'x', color=colors.BROWN,
 	desc = [[It looks like a cross between an ant and a centaur.]],
 
