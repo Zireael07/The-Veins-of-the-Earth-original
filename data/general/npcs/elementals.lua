@@ -2,6 +2,7 @@
 --Zireael 2013-2015
 
 local Talents = require("engine.interface.ActorTalents")
+local DamageType = require "engine.DamageType"
 
 --Elementals do not drop corpses!
 
@@ -252,7 +253,7 @@ newEntity{
 	},
 }
 
---Immunity to fire, vulnerability to cold, fire damage on hit
+--vulnerability to cold, burn (catch fire for 1d4 rounds)
 newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_ELEMENTAL_FIRE",
 	image = "tiles/elemental_fire.png",
@@ -270,7 +271,9 @@ newEntity{ base = "BASE_NPC_ELEMENTAL",
 	combat_attackspeed = 1.66,
 	resolvers.talents{ [Talents.T_FINESSE]=1,
 	[Talents.T_DODGE]=1,
+	[Talents.T_FIRE_IMMUNITY]=1,
 	},
+	melee_project = { [DamageType.FIRE] = {1, 4} },
 }
 
 newEntity{
@@ -296,6 +299,7 @@ newEntity{
 	skill_listen = 3,
 	skill_spot = 9,
 	resolvers.talents{ [Talents.T_MOBILITY]=1, },
+	melee_project = { [DamageType.FIRE] = {1, 6} },
 }
 --Spring Attack
 newEntity{
@@ -313,6 +317,7 @@ newEntity{
 	skill_spot = 9,
 	combat_dr = 5,
 	resolvers.talents{ [Talents.T_MOBILITY]=1, },
+	melee_project = { [DamageType.FIRE] = {2, 6} },
 }
 --Spring Attack, Combat Reflexes
 newEntity{
@@ -333,6 +338,7 @@ newEntity{
 	[Talents.T_MOBILITY]=1,
 	[Talents.T_ALERTNESS]=1,
 	},
+	melee_project = { [DamageType.FIRE] = {2, 8} },
 }
 
 --Spring Attack, Combat Reflexes, Blind-Fight
@@ -354,6 +360,7 @@ newEntity{
 	[Talents.T_MOBILITY]=1,
 	[Talents.T_ALERTNESS]=1,
 	},
+	melee_project = { [DamageType.FIRE] = {2, 8} },
 }
 
 --Spring Attack, Combat Reflexes, Blind-Fight, Cleave
@@ -376,6 +383,7 @@ newEntity{
 	[Talents.T_ALERTNESS]=1,
 	[Talents.T_IRON_WILL]=1,
 	},
+	melee_project = { [DamageType.FIRE] = {2, 8} },
 }
 
 --Swim 90 ft.; drench, vortex
@@ -523,7 +531,7 @@ newEntity{
 	fly = true,
 }]]
 
---Immunity to fire, vulnerability to cold, melt weapons, combustion 1d8 fire for 1d4+2 rounds
+--vulnerability to cold, melt weapons, combustion 1d8 fire for 1d4+2 rounds
 newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_MAGMIN",
 	subtype = "fire",
@@ -546,4 +554,5 @@ newEntity{ base = "BASE_NPC_ELEMENTAL",
 	skill_climb = 1,
 	skill_spot = 3,
 	alignment = "Chaotic Neutral",
+	resolvers.talents{ [Talents.T_FIRE_IMMUNITY]=1, },
 }

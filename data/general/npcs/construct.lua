@@ -1,9 +1,10 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 --Constructs do NOT leave corpses
 
 local Talents = require("engine.interface.ActorTalents")
+local DamageType = require "engine.DamageType"
 
 local construct_desc = [[It can see in the dark. It is immune to mind-affecting effects, such as charms, compulsions or phantasms. It is immune to poison, sleep effects, paralysis, stunning, disease, death effects, and necromancy effects. It is immune to critical hits, ability damage, ability drain or energy drain. They do not eat, sleep or breathe.]]
 
@@ -177,7 +178,7 @@ newEntity{
 	},
 }
 
---3d6 sonic OR electricity on hit; Awesome Blow, Imp Bull Rush
+--Awesome Blow, Imp Bull Rush
 --Spell-likes: At will—air walk, dimension door, fear (DC 18), greater command (DC 19), greater dispel magic, mass inflict light wounds (DC 19), locate creature, true seeing; 1/day—chain lightning (DC 20), circle of death (DC 20), mark of justice, wall of force;
 newEntity{
 	base = "BASE_NPC_INEVITABLE",
@@ -196,6 +197,14 @@ newEntity{
 	skill_search = 9,
 	skill_sensemotive = 9,
 	skill_spot = 13,
+	resolvers.generic(function(e)
+		if rng.percent(50) then
+			e.melee_project = { [DamageType.SONIC] = {3, 6} }
+		else
+			e.melee_project = { [DamageType.ELECTRIC] = {3, 6} }
+		end
+	end),
+
 --	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
 --	[Talents.T_POWER_ATTACK]=1
 --	},
