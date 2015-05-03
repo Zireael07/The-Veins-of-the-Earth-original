@@ -5,6 +5,7 @@ local Talents = require("engine.interface.ActorTalents")
 
 --Outsiders do not drop corpses
 
+--vulnerability to cold
 newEntity{
 	define_as = "BASE_NPC_FIRE",
 	type = "outsider", subtype = "fire",
@@ -13,7 +14,6 @@ newEntity{
 	resolvers.wounds()
 }
 
---Immunity to fire, vulnerability to cold
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_AZER",
 	image = "tiles/npc/dwarf_fighter.png",
@@ -56,7 +56,7 @@ newEntity{
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1, },
 }
 
---1d6 fire damage on hit; immunity to fire, vulnerability to cold, plane shift, change shape
+--1d6 fire damage on hit; plane shift, change shape
 --Spell-likes: At will—detect magic, produce flame, pyrotechnics (DC 14), scorching ray (1 ray only); 3/day—invisibility, wall of fire (DC 16); 1/day—grant up to three wishes (to nongenies only), gaseous form, permanent image (DC 18).
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_EFREET",
@@ -99,7 +99,6 @@ newEntity{
 }
 
 --Fly 60 ft.; paralysis 3 sq 1d6 rounds Fort DC 13; improved grab, blood drain
---Immunity to fire, vulnerability to cold
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_RAST",
 	image = "tiles/elemental_fire.png",
@@ -130,7 +129,6 @@ newEntity{
 	fly = true,
 }
 
---Immunity to fire, vulnerability to cold
 --Constrict 1d4 + 1d6 fire, improved grab
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_SALAMANDER",
