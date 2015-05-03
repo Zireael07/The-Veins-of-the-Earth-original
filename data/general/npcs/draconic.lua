@@ -138,6 +138,7 @@ newEntity{
     movement_speed = 2,
     alignment = "Chaotic Evil",
     resolvers.talents{ [Talents.T_ACID_BREATH]=1 },
+    resolvers.dragon_agecategory(),
     resolvers.wounds()
 }
 
@@ -165,6 +166,7 @@ newEntity{
 	movement_speed = 1.33,
 	alignment = "Lawful Evil",
     resolvers.talents{ [Talents.T_ELECTRIC_BREATH]=1 },
+    resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
@@ -191,6 +193,7 @@ newEntity{
 	movement_speed = 1.33,
 	alignment = "Lawful Evil",
     resolvers.talents{ [Talents.T_ACID_BREATH_CONE]=1 },
+    resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
@@ -217,6 +220,7 @@ newEntity{
 	movement_speed = 1.33,
 	alignment = "Chaotic Evil",
     resolvers.talents{ [Talents.T_FIRE_BREATH]=1 },
+    resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
@@ -243,6 +247,7 @@ newEntity{
 	movement_speed = 1.33,
 	alignment = "Chaotic Evil",
     resolvers.talents{ [Talents.T_COLD_BREATH]=1 },
+    resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
@@ -270,6 +275,7 @@ newEntity{
 	movement_speed = 2,
 	alignment = "Chaotic Good",
     resolvers.talents{ [Talents.T_FIRE_BREATH_LINE]=1 },
+    resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
@@ -297,6 +303,7 @@ newEntity{
 	movement_speed = 1.33,
 	alignment = "Chaotic Good",
     resolvers.talents{ [Talents.T_ELECTRIC_BREATH]=1 },
+    resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
@@ -323,6 +330,7 @@ newEntity{
 	movement_speed = 1.33,
 	alignment = "Chaotic Good",
     resolvers.talents{ [Talents.T_ACID_BREATH]=1 },
+    resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
@@ -350,6 +358,7 @@ newEntity{
 	movement_speed = 1.33,
 	alignment = "Lawful Good",
     resolvers.talents{ [Talents.T_FIRE_BREATH]=1 },
+    resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
@@ -376,5 +385,6 @@ newEntity{
 	movement_speed = 1.33,
 	alignment = "Lawful Good",
     resolvers.talents{ [Talents.T_COLD_BREATH]=1 },
+    resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }

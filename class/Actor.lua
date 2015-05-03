@@ -106,6 +106,8 @@ function _M:init(t, no_default)
 	self.special = self.special or nil
 
 	self.sex = self.sex or "Neuter"
+	--Dragons only
+	self.age_cat = self.age_cat or nil
 
 	--Saves
 	self.will_save = self.will_save or 0
