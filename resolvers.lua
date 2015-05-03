@@ -873,7 +873,7 @@ function resolvers.calc.dragon_agecategory(t, e)
 	elseif rng.chance(30) then
 		choice = "wyrm"
 		cr_boost = 20
-	elseif rng.choice(35) then
+	elseif rng.chance(35) then
 		choice = "great wyrm"
 		cr_boost = 22
 	--we do nothing
