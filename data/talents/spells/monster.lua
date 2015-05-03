@@ -1,4 +1,4 @@
-newTalentType{ type="monster/monster", name = "monster", description = "Monster feats" }
+newTalentType{ type="monster/monster", name = "Active monster", description = "Monster abilities" }
 
 newTalent{
 	name = "Mind Blast",

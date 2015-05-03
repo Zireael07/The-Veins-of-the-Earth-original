@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -98,6 +98,7 @@ load("data/talents/spells/innate.lua")
 
 
 load("data/talents/spells/monster.lua")
+load("data/talents/monster.lua")
 
 load("data/talents/skills.lua")
 load("data/talents/special.lua")
