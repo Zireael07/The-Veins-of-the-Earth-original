@@ -1687,6 +1687,8 @@ function _M:canBe(what)
 	if what == "cold" and self.subtype == "angel" then return false end
 	if what == "electric" and self.subtype == "archon" then return false end
 
+	if what == "fire" and self.subtype == "fire" then return false end
+
 	return true
 end
 
