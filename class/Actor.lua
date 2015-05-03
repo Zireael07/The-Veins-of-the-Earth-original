@@ -1662,6 +1662,11 @@ function _M:canBe(what)
 	if what == "paralysis" and self:knowTalent(self.T_PARALYSIS_IMMUNITY) then return false end
 	if what == "confusion" and self:knowTalent(self.T_CONFUSION_IMMUNITY) then return false end
 
+	if what == "acid" and self:knowTalent(self.T_ACID_IMMUNITY) then return false end
+	if what == "cold" and self:knowTalent(self.T_COLD_IMMUNITY) then return false end
+	if what == "fire" and self:knowTalent(self.T_FIRE_IMMUNITY) then return false end
+	if what == "electric" and self:knowTalent(self.T_ELECTRIC_IMMUNITY) then return false end
+	if what == "crit" and self:knowTalent(self.T_CRIT_IMMUNITY) then return false end
 
 	if what == "crit" and self.type == "construct" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
 	if what == "poison" and self.type == "construct" or self.type == "elemental" or self.type == "ooze" or self.type == "plant" or self.type == "undead" then return false end
@@ -1680,7 +1685,7 @@ function _M:canBe(what)
 
 	if what == "acid" and self.subtype == "angel" then return false end
 	if what == "cold" and self.subtype == "angel" then return false end
-	if what == "electricity" and self.subtype == "archon" then return false end
+	if what == "electric" and self.subtype == "archon" then return false end
 
 	return true
 end
