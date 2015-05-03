@@ -459,3 +459,26 @@ function _M:wieldMelee()
     end
 
 end
+
+--Dragon stuff
+function _M:getBreathWeapon()
+	local dice
+	local dc
+
+	if not self.age_cat then return end
+
+	if self.age_cat == "wyrmling" then dice = 2 dc = 14 end
+	if self.age_cat == "very young" then dice = 4 dc = 16 end
+	if self.age_cat == "young" then dice = 6 dc = 18 end
+	if self.age_cat == "juvenile" then dice = 8 dc = 20 end
+	if self.age_cat == "young adult" then dice = 10 dc = 23 end
+	if self.age_cat == "adult" then dice = 12 dc = 25 end
+	if self.age_cat == "mature adult" then dice = 14 dc = 27 end
+	if self.age_cat == "old" then dice = 16 dc = 29 end
+	if self.age_cat == "very old" then dice = 18 dc = 31 end
+	if self.age_cat == "ancient" then dice = 20 dc = 33 end
+	if self.age_cat == "wyrm" then dice = 22 dc = 36 end
+	if self.age_cat == "great wyrm" then dice = 24 dc = 37 end
+
+	return dice, dc
+end
