@@ -378,7 +378,6 @@ newEntity {
 }
 
 
---immunity to cold
 --Summon undead  The undead arrive in 1d10 rounds and serve for 1 hour
 --Spell-likes: At will—contagion (DC 18), deeper darkness, detect magic, greater dispel magic, haste, see invisibility, and unholy blight (DC 18);
 newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
@@ -394,14 +393,14 @@ newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         combat_dr = 15,
         skill_diplomacy = 2,
         alignment = "Chaotic Evil",
+        resolvers.talents{ [Talents.T_COLD_IMMUNITY]=1, },
 }
 
 --Burrow 60 ft; tremorsense 6 squares;
 --Poison pri & sec 2d6 STR Fort DC 22; improved grab; swallow whole, energy drain; Blind-Fight, Imp Crit x2
 -- 9-16 shadows, 3-6 greater shadows, or 2-4 dread wraiths.
 --Spell-likes: 3/day—confusion (DC 18), hold monster (DC 19), invisibility; 1/day—cone of cold (DC 19), finger of death (DC 21), plane shift (DC 21).
-newEntity{
-        define_as = "BASE_NPC_NIGHTSHADE",
+newEntity{ base = "BASE_NPC_NIGHTSHADE",
         color=colors.DARK_BLUE,
         desc = [[An undead horror the color of night with a stinging tail.]],
         name = "nightcrawler",
@@ -421,17 +420,16 @@ newEntity{
         skill_spellcraft = 30,
         skill_spot = 27,
         resolvers.talents{ [Talents.T_IRON_WILL]=1,
---        [Talents.T_POWER_ATTACK]=1,
+        [Talents.T_POWER_ATTACK]=1,
         [Talents.T_COMBAT_CASTING]=1,
         },
 }
 
---Fly 20 ft; immunity to cold; fear 4 squares Will DC 24
+--Fly 20 ft; fear 4 squares Will DC 24
 --Cleave, Imp Disarm, Quicken Spell-like (unholy blight)
 --Summon undead -  7-12 shadows, 2-5 greater shadows, or 1-2 dread wraiths.
 --Spell-likes: 3/day—confusion (DC 18), hold monster (DC 19), invisibility; 1/day—cone of cold (DC 19), finger of death (DC 21), plane shift (DC 21).
-newEntity{
-        define_as = "BASE_NPC_NIGHTSHADE",
+newEntity{ base = "BASE_NPC_NIGHTSHADE",
         display = 'U', color=colors.BLUE,
         desc = [[An undead human-shaped horror the color of night.]],
         stats = { str=38, dex=14, con=1, int=20, wis=20, cha=18, luc=6 },
@@ -452,17 +450,16 @@ newEntity{
         skill_sensemotive = 24,
         skill_spellcraft = 27,
         skill_spot = 25,
---[[       resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
-        [Talents.T_COMBAT_EXPERTISE]=1
-        },]]
+        resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
+--        [Talents.T_COMBAT_EXPERTISE]=1
+        },
 }
 
---Fly 60 ft; immunity to cold; magic drain [item] Fort DC 22
+--Fly 60 ft; magic drain [item] Fort DC 22
 --Imp Crit, Combat Reflexes
 --Summon undead -  5-12 shadows, 2-4 greater shadows, or 1 dread wraith.
 --Spell-likes: at will- invisibility; 3/day—cone of cold (DC 19), confusion (DC 18), hold monster (DC 19); 1/day—finger of death (DC 21), mass hold monster (DC 23), plane shift (DC 21).
-newEntity{
-        define_as = "BASE_NPC_NIGHTSHADE",
+newEntity{ base = "BASE_NPC_NIGHTSHADE",
         color=colors.BLACK,
         desc = [[An undead bat-shaped horror the color of night.]],
         stats = { str=31, dex=18, con=1, int=18, wis=20, cha=18, luc=6 },
@@ -483,5 +480,5 @@ newEntity{
         skill_sensemotive = 24,
         skill_spellcraft = 27,
         skill_spot = 25,
-        resolvers.talents{ [Talents.T_DODGE]=1 },
+        resolvers.talents{ [Talents.T_DODGE]=1,  },
 }

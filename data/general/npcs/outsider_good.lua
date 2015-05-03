@@ -268,8 +268,8 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         },
 }
 
---wields holy greatsword +4 ; immunity to electricity & petrification; protective aura (+4 to AC and +4 to saves vs evil creatures in 2 sq radius)
--- Improved Disarm, Improved Trip; cast as Clr14; AL CG
+--wields holy greatsword +4; immunity to petrification; protective aura (+4 to AC and +4 to saves vs evil creatures in 2 sq radius)
+-- Improved Disarm, Improved Trip; cast as Clr14;
 --Spell-likes: At will—aid, charm monster (DC 17), color spray (DC 14), comprehend languages, continual flame, cure light wounds (DC 14), dancing lights, detect evil, detect thoughts (DC 15), disguise self, dispel magic, hold monster (DC 18), greater invisibility (self only), major image (DC 16), see invisibility, greater teleport (self plus 50 pounds of objects only); 1/day—chain lightning (DC 19), prismatic spray (DC 20), wall of force.
 newEntity{ base = "BASE_NPC_CELESTIAL",
         define_as = "BASE_NPC_GHAELE",
@@ -295,13 +295,14 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         skill_sensemotive = 13,
         skill_spot = 13,
         alignment = "Chaotic Good",
+        resolvers.talents{ [Talents.T_ELECTRIC_IMMUNITY]=1, },
         resists = {
                 [DamageType.COLD] = 10,
                 [DamageType.FIRE] = 10,
         },
 }
 
---Fly 70 ft.; immunity to poison; constrict 2d6; improved grab; cast spells as Brd6; Extend Spell
+--Fly 70 ft.; constrict 2d6; improved grab; cast spells as Brd6; Extend Spell
 --Spell-likes: 3/day—darkness, hallucinatory terrain (DC 18), knock, light; 1/day—charm person (DC 15), speak with animals, speak with plants.
 newEntity{ base = "BASE_NPC_CELESTIAL",
         define_as = "BASE_NPC_LILLEND",
@@ -335,6 +336,8 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
         combat_attackspeed = 2.33,
         fly = true,
         alignment = "Chaotic Good",
-        resolvers.talents{ [Talents.T_COMBAT_CASTING]=1 },
+        resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
+        [Talents.T_POISON_IMMUNITY]=1,
+        },
         resists = { [DamageType.FIRE] = 10 },
 }

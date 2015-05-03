@@ -15,7 +15,7 @@ newEntity{
 }
 
 
---Constrict, entangle; camouflage, immunity to electricity
+--Constrict, entangle; camouflage
 newEntity{ base = "BASE_NPC_PLANT",
 	define_as = "BASE_NPC_ASSAVINE",
 	display = 'P', color=colors.DARK_GREEN,
@@ -35,6 +35,7 @@ newEntity{ base = "BASE_NPC_PLANT",
 	combat_natural = 6,
 --	movement_speed_bonus = -0.88,
 	movement_speed = 0.22,
+	resolvers.talents{ [Talents.T_ELECTRIC_IMMUNITY]=1, },
 	resists = {
         [DamageType.FIRE] = 10,
         [DamageType.COLD] = 10,
@@ -134,7 +135,8 @@ newEntity{ base = "BASE_NPC_PLANT",
 	alignment = "Neutral",
 	resists = { [DamageType.FIRE] = 10 },
 	resolvers.talents{ [Talents.T_IRON_WILL]=1,
---	[Talents.T_POWER_ATTACK]=1,
+	[Talents.T_POWER_ATTACK]=1,
+	[Talents.T_ELECTRIC_IMMUNITY]=1,
 	},
 	uncommon_desc = [[Shambling mounds become incredibly active during powerful thunderstorms and can survive direct strikes from lightning.]],
 	common_desc = [[ Shambling mounds are immune to electricity and resistant to fire. They are virtually silent and invisible in their natural environment.]],
@@ -145,7 +147,7 @@ newEntity{ base = "BASE_NPC_PLANT",
 newEntity{ base = "BASE_NPC_PLANT",
 	define_as = "BASE_NPC_TENDRICULOS",
 	display = 'P', color=colors.VIOLET,
-	desc = [[A shambling mass of rotting vegetation.]],
+	desc = [[A green hillock of sharp vegetation.]],
 
 	stats = { str=28, dex=9, con=22, int=3, wis=8, cha=3, luc=10 },
 	combat = { dam= {2,8} },

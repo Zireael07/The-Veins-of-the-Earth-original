@@ -12,7 +12,7 @@ newEntity{
 	resolvers.wounds()
 }
 
---Improved grab, ink cloud, no flanking bonuses for enemies; immunity to acid and cold
+--Improved grab, ink cloud, no flanking bonuses for enemies;
 --Blind-Fight feat
 newEntity{ base = "BASE_NPC_WATER",
 	define_as = "BASE_NPC_TOJANIDA",
@@ -29,7 +29,10 @@ newEntity{ base = "BASE_NPC_WATER",
 	skill_hide = 10,
 	skill_knowledge = 6,
 	skill_swim = 8,
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_DODGE]=1,
+	[Talents.T_ACID_IMMUNITY]=1,
+	[Talents.T_COLD_IMMUNITY]=1,
+	},
 	resists = {
         [DamageType.FIRE] = 10,
         [DamageType.ELECTRIC] = 10,

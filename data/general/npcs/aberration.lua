@@ -110,7 +110,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	image = "tiles/ettercap.png",
 	display = "X", color=colors.BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
-    desc = [[A small creature.]],
+    desc = [[These vicious little predators lurk underground, grabbing whatever prey happens by with their long arms.]],
 
 	stats = { str=16, dex=14, con=13, int=4, wis=13, cha=7, luc=8 },
 	combat = { dam= {1,3} },
@@ -282,8 +282,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	skill_spot = 5,
 }
 
---Burrow 10 ft.; Immunity to acid, tremorsense 4 squares, stone shape
---Toughness, Power Attack
+--Burrow 10 ft.; tremorsense 4 squares, stone shape; Toughness
 newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_DELVER",
 	subtype = "delver",
@@ -308,6 +307,9 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	skill_movesilently = 16,
 	skill_spot = 18,
 	skill_survival = 12,
+	resolvers.talents{ [Talents.T_POWER_ATTACK] = 1,
+			[Talents.T_ACID_IMMUNITY]=1
+	},
 }
 
 --Blindsight 6 squares; immune to gaze attacks, visual effects, illusions, +4 to saves against sonic effects
@@ -392,8 +394,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	alignment = "Neutral",
 }
 
---Swim 20 ft.; gibbering 4 squares spread DC 13 Will or confusion for 1d2 rounds; improved grab, swallow whole; AL N
---Immune to critical hits & flanking
+--Swim 20 ft.; gibbering 4 squares spread DC 13 Will or confusion for 1d2 rounds; improved grab, swallow whole;
 newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_GIBBERING_MOUTHER",
 	subtype = "gibbering",
@@ -416,6 +417,8 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	combat_dr = 5,
 --	movement_speed_bonus = -0.66,
 	movement_speed = 0.33,
+	alignment = "Neutral",
+	resolvers.talents{ [Talents.T_CRIT_IMMUNITY]=1 }, --and flanking
 }
 
 --Climb 20 ft., scent
@@ -448,7 +451,6 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
---Immunity to acid
 newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_MIMIC",
 	subtype = "shapechanger",
@@ -471,7 +473,9 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	skill_spot = 7,
 --	movement_speed_bonus = -0.90,
 	movement_speed = 0.1,
-	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+			[Talents.T_ACID_IMMUNITY]=1,
+	},
 }
 
 --Alternate form, scent, tremorsense 60 ft.; +4 Fort and Ref
@@ -614,8 +618,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	rarity = 20,
 }
 
---Poison, 2d4 min sleep Fort DC 16; cast spells as Sor7
---Immunity to poison, resistance to charm +2
+--Poison, 2d4 min sleep Fort DC 16; cast spells as Sor7; resistance to charm +2
 newEntity{ base = "BASE_NPC_NAGA",
 	name = "dark naga", color=colors.BLACK,
 	level_range = {10, nil}, exp_worth = 2400,
@@ -635,7 +638,8 @@ newEntity{ base = "BASE_NPC_NAGA",
 	alignment = "Lawful Evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_DODGE]=1,
-	[Talents.T_COMBAT_CASTING]=1
+	[Talents.T_COMBAT_CASTING]=1,
+	[Talents.T_POISON_IMMUNITY]=1,
 	},
 	specialist_desc = [[Most dark nagas speak Infernal and Common, but they can also read thoughts as easily as a wizard reads a book.]],
 	uncommon_desc = [[A dark naga’s fangs and the stinger in its tail both deliver a debilitating venom that can plunge its victim into a nightmare-wracked coma for several minutes.]],
