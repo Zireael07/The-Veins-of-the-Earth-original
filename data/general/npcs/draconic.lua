@@ -5,7 +5,7 @@ local Talents = require("engine.interface.ActorTalents")
 
 local dragon_desc = [[It can see in the dark. It is immune to sleep effects and paralysis effects. It needs to eat, sleep and breathe.]]
 
---Scent; immunity to fire; breath weapon 12d6 fire Ref DC 21 half
+--Scent;
 newEntity{
         define_as = "BASE_NPC_DRAG_TURTLE",
         type = "dragon",
@@ -35,6 +35,9 @@ newEntity{
         skill_survival = 14,
         skill_swim = 13,
         alignment = "Neutral",
+        resolvers.talents{ [Talents.T_FIRE_IMMUNITY]=1,
+                [Talents.T_STEAM_BREATH]=1,
+        },
         resolvers.wounds()
 }
 
@@ -79,7 +82,6 @@ newEntity{
 }
 
 --Fly 60 ft; scent, improved grab
---Poison (wyvern poison 2d6 CON) Fort DC 17
 newEntity{
         define_as = "BASE_NPC_WYVERN",
         type = "dragon",
@@ -105,6 +107,7 @@ newEntity{
         skill_listen = 12,
         skill_movesilently = 10,
         skill_spot = 15,
+        poison = "wyvern",
 --        movement_speed_bonus = -0.33,
         movement_speed = 0.66,
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
@@ -114,7 +117,7 @@ newEntity{
 }
 
 --NOTE: True dragons start here
---Immunity to acid, water breathing
+--water breathing
 newEntity{
 	define_as = "BASE_NPC_DRAGON_BLACK",
 	type = "dragon",
@@ -137,12 +140,14 @@ newEntity{
     --TODO: skills
     movement_speed = 2,
     alignment = "Chaotic Evil",
-    resolvers.talents{ [Talents.T_ACID_BREATH]=1 },
+    resolvers.talents{ [Talents.T_ACID_BREATH]=1,
+            [Talents.T_ACID_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
     resolvers.wounds()
 }
 
---Immunity to electricity, create/destroy water
+--create/destroy water
 newEntity{
 	define_as = "BASE_NPC_DRAGON_BLUE",
 	type = "dragon",
@@ -165,7 +170,9 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Lawful Evil",
-    resolvers.talents{ [Talents.T_ELECTRIC_BREATH]=1 },
+    resolvers.talents{ [Talents.T_ELECTRIC_BREATH]=1,
+            [Talents.T_ELECTRIC_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
@@ -192,7 +199,9 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Lawful Evil",
-    resolvers.talents{ [Talents.T_ACID_BREATH_CONE]=1 },
+    resolvers.talents{ [Talents.T_ACID_BREATH_CONE]=1,
+            [Talents.T_ACID_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
@@ -219,12 +228,14 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Chaotic Evil",
-    resolvers.talents{ [Talents.T_FIRE_BREATH]=1 },
+    resolvers.talents{ [Talents.T_FIRE_BREATH]=1,
+            [Talents.T_FIRE_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
---Icewalking, immunity to cold, vulnerability to fire
+--Icewalking, vulnerability to fire
 newEntity{
 	define_as = "BASE_NPC_DRAGON_WHITE",
 	type = "dragon",
@@ -246,13 +257,15 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Chaotic Evil",
-    resolvers.talents{ [Talents.T_COLD_BREATH]=1 },
+    resolvers.talents{ [Talents.T_COLD_BREATH]=1,
+            [Talents.T_COLD_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
 --Metallic
---Immunity to fire, vulnerability to cold, speak with animals
+--vulnerability to cold, speak with animals
 newEntity{
 	define_as = "BASE_NPC_DRAGON_BRASS",
 	type = "dragon",
@@ -274,12 +287,14 @@ newEntity{
  	--TODO: skills
 	movement_speed = 2,
 	alignment = "Chaotic Good",
-    resolvers.talents{ [Talents.T_FIRE_BREATH_LINE]=1 },
+    resolvers.talents{ [Talents.T_FIRE_BREATH_LINE]=1,
+            [Talents.T_FIRE_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
---Immunity to electricity, water breathing, speak with animals
+--water breathing, speak with animals
 newEntity{
 	define_as = "BASE_NPC_DRAGON_BRONZE",
 	type = "dragon",
@@ -302,12 +317,14 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Chaotic Good",
-    resolvers.talents{ [Talents.T_ELECTRIC_BREATH]=1 },
+    resolvers.talents{ [Talents.T_ELECTRIC_BREATH]=1,
+            [Talents.T_ELECTRIC_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
---Immunity to acid, spider climb
+--spider climb
 newEntity{
 	define_as = "BASE_NPC_DRAGON_COPPER",
 	type = "dragon",
@@ -329,12 +346,14 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Chaotic Good",
-    resolvers.talents{ [Talents.T_ACID_BREATH]=1 },
+    resolvers.talents{ [Talents.T_ACID_BREATH]=1,
+            [Talents.T_ACID_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
---Immunity to fire, vulnerability to cold, water breathing
+--vulnerability to cold, water breathing
 newEntity{
 	define_as = "BASE_NPC_DRAGON_GOLD",
 	type = "dragon",
@@ -357,12 +376,14 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Lawful Good",
-    resolvers.talents{ [Talents.T_FIRE_BREATH]=1 },
+    resolvers.talents{ [Talents.T_FIRE_BREATH]=1,
+            [Talents.T_FIRE_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }
 
---Immunity to acid and cold, cloud walking, vulnerability to fire
+--cloud walking, vulnerability to fire
 newEntity{
 	define_as = "BASE_NPC_DRAGON_SILVER",
 	type = "dragon",
@@ -384,7 +405,10 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Lawful Good",
-    resolvers.talents{ [Talents.T_COLD_BREATH]=1 },
+    resolvers.talents{ [Talents.T_COLD_BREATH]=1,
+            [Talents.T_ACID_IMMUNITY]=1,
+            [Talents.T_COLD_IMMUNITY]=1,
+    },
     resolvers.dragon_agecategory(),
 	resolvers.wounds()
 }

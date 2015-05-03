@@ -1,5 +1,6 @@
 --Veins of the Earth
 --Zireael 2013-2015
+
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
@@ -38,7 +39,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	combat = { dam= {2,6} },
 }
 
---SR 19, black cloud (1 square ball, 2d6)
+--black cloud (1 square ball, 2d6)
 newEntity{
 	base = "BASE_NPC_ACHAIERAI",
 	name = "achaierai", color=colors.BLACK,
@@ -59,6 +60,7 @@ newEntity{
 	skill_movesilently = 8,
 	skill_sensemotive = 9,
 	skill_spot = 9,
+	spell_resistance = 19,
 }
 
 newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
@@ -120,6 +122,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
 	alignment = "Lawful Evil",
+	resolvers.talents{ [Talents.T_HELL_HOUND_BREATH]=1 },
 }
 
 newEntity{
@@ -200,7 +203,7 @@ newEntity{
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
---Immunity to fire, cold, charm, sleep and fear
+--Immunity to charm and fear
 --Demon fever bite Fort DC 18, 1d6 Con; change shape
 --Spell-likes: At will—detect chaos, detect evil, detect good, detect law, detect magic, ray of enfeeblement.
 newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
@@ -211,7 +214,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	uncommon_desc = [[Night hags resist spells and their iron-hard skin deflects most weapon blows, though magic weapions forged of cold iron can still pierce their defenses. A night hag’s bite carries a dangerous disease called demon fever.]],
 	common_desc = [[The connection between night hags and mortal hags is mere speculation. Night hags are native to the Gray Wastes of Hades, where they trade in mortal flesh and souls. They are immune to cold, fire, charm, sleep, and fear.]],
 	base_desc = [[This midnight-hued crone is a type of fiend called a night hag. Some scholars believe night hags are the ultimate stage of truly ancient and powerful mortal hags (such as green hags).
-	It can see in the dark and cannot be brought back to life by normal means. ]],
+	It can see in the dark and cannot be brought back to life by normal means.]],
 
 	stats = { str=19, dex=12, con=18, int=11, wis=15, cha=12, luc=12 },
 	combat = { dam= {2,6} },
@@ -244,6 +247,9 @@ newEntity{
 	[Talents.T_COMBAT_CASTING]=1,
 	[Talents.T_MM_INNATE]=1,
 	[Talents.T_SLEEP_INNATE]=1,
+	[Talents.T_FIRE_IMMUNITY]=1,
+	[Talents.T_COLD_IMMUNITY]=1,
+	[Talents.T_SLEEP_IMMUNITY]=1,
 	},
 }
 
