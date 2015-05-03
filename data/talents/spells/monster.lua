@@ -34,6 +34,72 @@ newTalent{
 	end,
 }
 
+--Dragon turtle
+newTalent{
+	name = "Cloud of steam", short_name = "STEAM_BREATH",
+	type = {"monster/monster", 1},
+	mode = 'activated',
+	is_spell = false,
+	points = 1,
+	cooldown = 4, --1d4 in SRD
+	tactical = { ATTACK = 2 },
+	range = 0,
+	radius = function(self, t)
+		return 5 --average until sizes get done
+	end,
+	target = function(self, t)
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+		if not x or not y then return nil end
+
+		local damage = rng.dice(12, 6)
+		local dc = 21
+
+		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc=dc})
+
+	end,
+	info = function(self, t)
+		return ([[A cone of superheated steam hits all creatures in range.]])
+	end,
+}
+
+newTalent{
+	name = "Fire breath", short_name = "HELL_HOUND_BREATH",
+	type = {"monster/monster", 1},
+	mode = 'activated',
+	is_spell = false,
+	points = 1,
+	cooldown = 5,
+	tactical = { ATTACK = 2 },
+	range = 0,
+	radius = function(self, t)
+		return 2 --average until sizes get done
+	end,
+	target = function(self, t)
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+
+		if not x or not y then return nil end
+
+		local damage = rng.dice(2, 6)
+		local dc = 13
+
+		self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc=dc})
+
+	end,
+	info = function(self, t)
+		return ([[A cone of fire hits all creatures in range.]])
+	end,
+}
+
+
 --Dragon breath weapons
 --NOTE: Both black dragon and copper dragon get it
 newTalent{
