@@ -3,7 +3,7 @@ newTalentType{ type="monster/passive", name = "monster", description = "Monster 
 --Immunities
 newTalent{
     name = "Acid Immunity",
-    type = {"special/special",1},
+    type = {"monster/passive",1},
     mode = "passive",
     points = 1,
     info = [[Makes you immune to acid.]],
@@ -13,7 +13,7 @@ newTalent{
 
 newTalent{
     name = "Cold Immunity",
-    type = {"special/special",1},
+    type = {"monster/passive",1},
     mode = "passive",
     points = 1,
     info = [[Makes you immune to cold.]],
@@ -23,7 +23,7 @@ newTalent{
 
 newTalent{
     name = "Fire Immunity",
-    type = {"special/special",1},
+    type = {"monster/passive",1},
     mode = "passive",
     points = 1,
     info = [[Makes you immune to fire.]],
@@ -33,7 +33,7 @@ newTalent{
 
 newTalent{
     name = "Electric Immunity",
-    type = {"special/special",1},
+    type = {"monster/passive",1},
     mode = "passive",
     points = 1,
     info = [[Makes you immune to electricity.]],
@@ -43,7 +43,7 @@ newTalent{
 
 newTalent{
     name = "Crit Immunity",
-    type = {"special/special",1},
+    type = {"monster/passive",1},
     mode = "passive",
     points = 1,
     info = [[Makes you immune to criticals.]],
