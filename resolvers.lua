@@ -1067,6 +1067,20 @@ function resolvers.calc.burstdamage(t, e)
 	if e.combat.critical == 4 then burst = {3,10} end
 end
 
+--Item creation
+function resolvers.creation_cost()
+	return {__resolver="creation_cost", __resolve_last=true, }
+end
+
+function resolvers.calc.creation_cost(t, e)
+	e.creation = {}
+	e.creation.gold_cost = e.cost/2
+	e.creation.xp_cost = e.cost * 0.04
+
+	print("[CREATION COST] Gold:"..e.creation.gold_cost.." XP:"..e.creation.xp_cost)
+end
+
+
 --Offspring stuff
 function resolvers.kid_sex()
 	return {__resolver="kid_sex",  }

@@ -14,6 +14,7 @@ newEntity {
 	combat = {
 	magic_bonus = 1,
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -27,6 +28,7 @@ newEntity {
 	combat = {
 	magic_bonus = 2,
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -40,6 +42,7 @@ newEntity {
 	combat = {
 	magic_bonus = 3,
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -54,6 +57,7 @@ newEntity {
 	combat = {
 	magic_bonus = 4,
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -68,6 +72,7 @@ newEntity {
 	combat = {
 	magic_bonus = 5,
 	},
+	resolvers.creation_cost(),
 }
 
 --Elemental
@@ -83,6 +88,7 @@ newEntity{
 			[DamageType.FIRE] = {1, 6}
 		},
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -97,6 +103,7 @@ newEntity{
 			[DamageType.COLD] = {1, 6}
 		},
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -111,6 +118,7 @@ newEntity{
 			[DamageType.SONIC] = {1, 6}
 		},
 	},
+	resolvers.creation_cost(),
 }
 
 --Elemental burst
@@ -129,6 +137,7 @@ newEntity{
 			[DamageType.FIRE] = resolvers.burstdamage()
 		},
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -146,6 +155,7 @@ newEntity{
 			[DamageType.COLD] = resolvers.burstdamage()
 		},
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -163,6 +173,7 @@ newEntity{
 			[DamageType.ELECTRIC] = resolvers.burstdamage()
 		},
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -180,6 +191,7 @@ newEntity{
 			[DamageType.SONIC] = resolvers.burstdamage()
 		},
 	},
+	resolvers.creation_cost(),
 }
 
 --Aligned
@@ -192,7 +204,8 @@ newEntity{
 	school = "evocation",
 	combat = {
 		aligned_anarchic = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -204,7 +217,8 @@ newEntity{
 	school = "evocation",
 	combat = {
 		aligned_axiomatic = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -216,7 +230,8 @@ newEntity{
 	school = "evocation",
 	combat = {
 		aligned_holy = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -228,7 +243,8 @@ newEntity{
 	school = "evocation",
 	combat = {
 		aligned_unholy = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 --Banes
@@ -242,7 +258,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_human = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -254,7 +271,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_dwarf = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -266,7 +284,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_elf = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -278,7 +297,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_drow = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -302,7 +322,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_halfling = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -314,7 +335,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_humanoid_aquatic = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -326,7 +348,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_gnoll = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -338,7 +361,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_goblinoid = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -350,7 +374,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_reptilian = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -362,7 +387,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_orc = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 --Monster type banes
@@ -375,7 +401,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_aberration = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -387,7 +414,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_animal = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -399,7 +427,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_construct = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -411,7 +440,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_dragon = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -423,7 +453,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_fey = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -435,7 +466,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_giant = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -447,7 +479,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_magical_beast = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -459,7 +492,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_monstrous_humanoid = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -471,7 +505,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_ooze = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -483,7 +518,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_plant = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -495,7 +531,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_undead = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity{
@@ -507,7 +544,8 @@ newEntity{
 	school = "conjuration",
 	combat = {
 		bane_vermin = true,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 --Curses

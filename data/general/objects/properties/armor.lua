@@ -15,6 +15,7 @@ newEntity {
 	wielder = {
 		combat_magic_armor = 1,
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -28,6 +29,7 @@ newEntity {
 	wielder = {
 		combat_magic_armor = 2,
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -41,6 +43,7 @@ newEntity {
 	wielder = {
 		combat_magic_armor = 3,
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -55,6 +58,7 @@ newEntity {
 	wielder = {
 		combat_magic_armor = 4,
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -69,6 +73,7 @@ newEntity {
 	wielder = {
 	combat_magic_armor = 5,
 	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -82,7 +87,8 @@ newEntity {
 		spell_fail = -10,
 		max_dex_bonus = 2,
 		armor_penalty = -3,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -95,7 +101,8 @@ newEntity {
 	wielder = {
 		combat_dr = 1,
 		armor_penalty = -1,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -110,7 +117,8 @@ newEntity {
 		[DamageType.FIRE] = 20,
 	},
 		armor_penalty = -1,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 --Magic properties
@@ -124,7 +132,8 @@ newEntity {
 	school = "illusion",
 	wielder = {
 		skill_bonus_hide = 5,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -138,7 +147,8 @@ newEntity {
 	school = "illusion",
 	wielder = {
 		skill_bonus_hide = 10,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -152,7 +162,8 @@ newEntity {
 	school = "illusion",
 	wielder = {
 		skill_bonus_hide = 15,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -165,7 +176,8 @@ newEntity {
 	school = "illusion",
 	wielder = {
 		skill_bonus_movesilently = 5,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -179,7 +191,8 @@ newEntity {
 	school = "illusion",
 	wielder = {
 		skill_bonus_movesilently = 10,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -193,7 +206,8 @@ newEntity {
 	school = "illusion",
 	wielder = {
 		skill_bonus_movesilently = 15,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -206,7 +220,8 @@ newEntity {
 	school = "conjuration",
 	wielder = {
 		skill_bonus_escapeartist = 5,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -220,7 +235,8 @@ newEntity {
 	school = "conjuration",
 	wielder = {
 		skill_bonus_escapeartist = 10,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -234,7 +250,8 @@ newEntity {
 	school = "conjuration",
 	wielder = {
 		skill_bonus_escapeartist = 15,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 --Spell resistance
@@ -249,7 +266,8 @@ newEntity {
 	school = "abjuration",
 	wielder = {
 		spell_resistance = 13
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -263,7 +281,8 @@ newEntity {
 	school = "abjuration",
 	wielder = {
 		spell_resistance = 15
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -277,7 +296,8 @@ newEntity {
 	school = "abjuration",
 	wielder = {
 		spell_resistance = 17
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -290,7 +310,8 @@ newEntity {
 	cost = resolvers.value{platinum=5000},
 	wielder = {
 		spell_resistance = 19
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 --Resistances
@@ -305,8 +326,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 10,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -321,8 +343,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 20,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -337,8 +360,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.FIRE] = 30,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 
@@ -353,8 +377,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.ACID] = 10,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -369,8 +394,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.ACID] = 20,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -385,8 +411,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.ACID] = 30,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -400,8 +427,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 10,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -416,8 +444,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 20,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -432,8 +461,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.COLD] = 30,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -447,8 +477,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.ELECTRIC] = 10,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -463,8 +494,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.ELECTRIC] = 20,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -479,8 +511,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.ELECTRIC] = 30,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -494,8 +527,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.SONIC] = 10,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -510,8 +544,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.SONIC] = 20,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -526,8 +561,9 @@ newEntity {
 	wielder = {
 		resists = {
 		[DamageType.SONIC] = 30,
+		},
 	},
-	}
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -540,7 +576,8 @@ newEntity {
 	school = "abjuration",
 	wielder = {
 		fortification = 1,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -549,11 +586,12 @@ newEntity {
 	level_range = {10, nil},
 	rarity = 10,
 --	cost = 9000,
-	cost = resolvers.value{platinum=9000},
+	cost = resolvers.value{platinum=900},
 	school = "abjuration",
 	wielder = {
 		fortification = 2,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 newEntity {
@@ -567,7 +605,8 @@ newEntity {
 	school = "abjuration",
 	wielder = {
 		fortification = 3,
-	}
+	},
+	resolvers.creation_cost(),
 }
 
 
@@ -580,14 +619,11 @@ newEntity {
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
 	wielder = {
-
 		infravision = 1,
-
     		inc_stats = { [Stats.STAT_STR] = 2,
     			[Stats.STAT_CON] = 2,
-    		},
-
-  },
+    	},
+  	},
 }
 
 newEntity{
@@ -614,5 +650,6 @@ newEntity {
 		on_melee_hit={
 			[DamageType.PHYSICAL] = {1, 6}
 		}
-	}
+	},
+	resolvers.creation_cost(),
 }
