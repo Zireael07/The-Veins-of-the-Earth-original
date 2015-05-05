@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
 --based on Zizzo's ToME 2 port
 
@@ -22,7 +22,7 @@ function _M:allowedEgosFor(o, good, side)
   local ret = {}
 
   local ok = false
-  
+
     --TO DO: Get the ego list for a base item ala ToME 4
 
     --Needs to be in the list
@@ -65,7 +65,7 @@ function _M:allowedEgosFor(o, good, side)
   return ret
 end
 
-function _M:tryAddEgos(o, good, pass2)
+--[[function _M:tryAddEgos(o, good, pass2)
     if o.force_ego then
     -- Slight Hack(TM) to save ourselves some time.
     self:placeForcedEgos(o)
@@ -82,10 +82,10 @@ function _M:tryAddEgos(o, good, pass2)
     -- Loosely enforce minimum ego depth
  --   local ok = e.level <= level or rng.chance(e.level - level)
     -- Check rarity
---[[    local mr = e.rarity[2]
+   local mr = e.rarity[2]
     mr = mr - game.player:getLuckScale(-math.floor(mr/2), math.floor(mr/2))
     ok = ok and rng.range(1, mr) >= e.rarity[1]
-    ]]
+
 
     if ok then
       -- We set the names here; after the parent Object:resolve() is done,
@@ -102,7 +102,7 @@ function _M:tryAddEgos(o, good, pass2)
     self:tryAddEgos(o, good, true)
   end
 
-end
+end]]
 
 function _M:placeForcedEgos(e)
     if not e.force_ego then return end
@@ -135,7 +135,7 @@ function _M:resolveEgos(o, last)
         o[k] = (o[k] or 0) + rng.range(1, math.abs(v)) * (v < 0 and -1 or 1)
       end
     end]]
-    
+
     o.egoed = true
 
 --    if e.rating then o.rating = (o.rating or 0) + e.rating end
@@ -144,4 +144,30 @@ function _M:resolveEgos(o, last)
   end
   -- Resolve any resolvers we just added.
   o:resolve(nil, last)
+end
+
+--For item creation (Zireael)
+function _M:generateEgoList(o)
+    local list = {}
+
+    game.log("Generating ego list for "..o.name)
+
+    --hackfix for the fact that o has no egos
+    for i, e in ipairs(game.zone.object_list) do
+        if e.name and e.rarity then
+            if e.name == o.name then
+                o.egos = e.egos
+            end
+        end
+    end
+
+    local object = o
+
+    for id, ego in ipairs(self:allowedEgosFor(object)) do
+
+        list[#list+1] = { name = ego.name, id=id, desc = "" }
+    end
+
+    list_choices = list
+    return list_choices
 end

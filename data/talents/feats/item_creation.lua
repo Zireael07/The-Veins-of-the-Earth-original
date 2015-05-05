@@ -1,8 +1,9 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
 newTalentType{ type="arcane/itemcreation", name = "Item Creation", description = "Item Creation" }
 
+local Ego = require 'mod.class.Ego'
 
 newFeat{
 	name = "Craft Arms and Armor",
@@ -33,19 +34,22 @@ newFeat{
 		--20/250 = 0,08
 		local xp_cost
 		local inven = game.player:getInven("INVEN")
+
 		local d d = self:showInventory("Improve which item?", inven, function(o) return o.type == "weapon" or o.type == "armor" end, function(o, item)
 
-				game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired bonus",{
-                {name="+1 bonus", desc=""},
-                {name="+2 bonus", desc=""},
-                {name="+3 bonus", desc=""},
-                {name="+4 bonus", desc=""},
-                {name="+5 bonus", desc=""},
-                },
+		--	local result = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired bonus",
+			game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired bonus",
+				Ego:generateEgoList(o),
+
                 function(result)
-            	--	game.log("Result: "..result)
-            	
-            		if result == "+1 bonus" then
+				--[[	self:talentDialogReturn(result)
+					game:unregisterDialog(self:talentDialogGet())
+				end))]]
+
+
+            		game.log("Result: "..result)
+
+            	--[[	if result == "+1 bonus" then
             		local gold_cost
             		local xp_cost
             		gold_cost = 500
@@ -63,7 +67,7 @@ newFeat{
                     else
                     --Deduct the costs
                     player.money = player.money - gold_cost
-                    player.exp = player.exp - xp_cost 
+                    player.exp = player.exp - xp_cost
                     --Apply bonus and update display
             		o.unided_name = o.unided_name.." +1"
                     o.magic_bonus = (o.magic_bonus or 0) + 1
@@ -71,7 +75,7 @@ newFeat{
                     end
                     end
 
-            		if result == "+2 bonus" then 
+            		if result == "+2 bonus" then
             		local gold_cost
             		local xp_cost
             		gold_cost = 4000
@@ -86,7 +90,7 @@ newFeat{
                     else
                     --Deduct the costs
                     player.money = player.money - gold_cost
-                    player.exp = player.exp - xp_cost    
+                    player.exp = player.exp - xp_cost
                     --Apply bonus and update display
                     o.unided_name = o.unided_name.." +2"
             		o.magic_bonus = (o.magic_bonus or 0) + 2
@@ -94,7 +98,7 @@ newFeat{
             		end
                     end
 
-            		if result == "+3 bonus" then 
+            		if result == "+3 bonus" then
             		gold_cost = 9000
             		xp_cost = gold_cost * 0.08
                     local player = game.player
@@ -107,15 +111,15 @@ newFeat{
                     else
                         --Deduct the costs
                         player.money = player.money - gold_cost
-                        player.exp = player.exp - xp_cost    
+                        player.exp = player.exp - xp_cost
                         --Apply bonus and update display
                         o.unided_name = o.unided_name.." +3"
             			o.magic_bonus = (o.magic_bonus or 0) + 3
-            			o.name = o.name.." +3"	
+            			o.name = o.name.." +3"
             		 end
             		end
 
-            		if result == "+4 bonus" then 
+            		if result == "+4 bonus" then
             		gold_cost = 16000
             		xp_cost = gold_cost * 0.08
                     local player = game.player
@@ -128,15 +132,15 @@ newFeat{
                     else
                         --Deduct the costs
                         player.money = player.money - gold_cost
-                        player.exp = player.exp - xp_cost    
+                        player.exp = player.exp - xp_cost
                         --Apply bonus and update display
                         o.unided_name = o.unided_name.." +4"
             			o.magic_bonus = (o.magic_bonus or 0) + 4
-            			o.name = o.name.." +4"	
+            			o.name = o.name.." +4"
             		 end
             		end
 
-            		if result == "+5 bonus" then 
+            		if result == "+5 bonus" then
             		gold_cost = 25000
             		xp_cost = gold_cost * 0.08
                     local player = game.player
@@ -149,13 +153,13 @@ newFeat{
                     else
                         --Deduct the costs
                         player.money = player.money - gold_cost
-                        player.exp = player.exp - xp_cost    
+                        player.exp = player.exp - xp_cost
                         --Apply bonus and update display
                         o.unided_name = o.unided_name.." +5"
             			o.magic_bonus = (o.magic_bonus or 0) + 5
-            			o.name = o.name.." +5"	
+            			o.name = o.name.." +5"
             		end
-            		end
+				end]]
 
             	end))
 
@@ -179,23 +183,20 @@ newFeat{
 	range = 0,
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
-        game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",{
-                {name="cure light wounds", desc=""},
-                {name="cure moderate wounds", desc=""},
-                {name="heal serious wounds", desc=""},
-                {name="bear endurance", desc=""},
-                {name="bull strength", desc=""},
-                },
+        game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",
+
+		Ego:generateEgoList(o),
+
                 function(result)
                 --  game.log("Result: "..result)
-                
+
                     if result == "cure light wounds" then
                     local gold_cost
                     local xp_cost
                     gold_cost = 50
                     --used a different formula
                     xp_cost = gold_cost * 0.04
-        
+
                     local player = game.player
                     --Check player gold and XP
                     if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -218,19 +219,19 @@ newFeat{
                         who:heal(rng.dice(1,8) + 5)
                         return {used = true, destroy = true}
                         end
-                        } 
+                        }
                         o.unided_name = "potion of cure light wounds"
 
                     end
                     end
-                    
+
                         if result == "cure moderate wounds" then
                         local gold_cost
                         local xp_cost
                         gold_cost = 375
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -266,7 +267,7 @@ newFeat{
                         gold_cost = 50
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -302,7 +303,7 @@ newFeat{
                         gold_cost = 50
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -330,7 +331,7 @@ newFeat{
                         o.unided_name = "potion of bear endurance"
 
                     end
-                    end   
+                    end
 
                 if result == "bull strength" then
 
@@ -339,7 +340,7 @@ newFeat{
                         gold_cost = 50
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -367,7 +368,7 @@ newFeat{
                         o.unided_name = "potion of bull strength"
 
                     end
-                    end   
+                    end
 
                 end))
 
@@ -388,23 +389,19 @@ newFeat{
 	range = 0,
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
-             game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",{
-                {name="cure light wounds", desc=""},
-                {name="cure moderate wounds", desc=""},
-                {name="heal serious wounds", desc=""},
-                {name="bear endurance", desc=""},
-                {name="bull strength", desc=""},
-                },
+             game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",
+
+			Ego:generateEgoList(o),
                 function(result)
                 --  game.log("Result: "..result)
-                
+
                     if result == "cure light wounds" then
                     local gold_cost
                     local xp_cost
                     gold_cost = 50
                     --used a different formula
                     xp_cost = gold_cost * 0.04
-        
+
                     local player = game.player
                     --Check player gold and XP
                     if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -427,19 +424,19 @@ newFeat{
                         who:heal(rng.dice(1,8) + 5)
                         return {used = true, destroy = true}
                         end
-                        } 
+                        }
                         o.unided_name = "wand of cure light wounds"
 
                     end
                     end
-                    
+
                         if result == "cure moderate wounds" then
                         local gold_cost
                         local xp_cost
                         gold_cost = 375
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -475,7 +472,7 @@ newFeat{
                         gold_cost = 50
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -511,7 +508,7 @@ newFeat{
                         gold_cost = 50
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -539,7 +536,7 @@ newFeat{
                         o.unided_name = "wand of bear endurance"
 
                     end
-                    end   
+                    end
 
                 if result == "bull strength" then
 
@@ -548,7 +545,7 @@ newFeat{
                         gold_cost = 50
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -576,7 +573,7 @@ newFeat{
                         o.unided_name = "wand of bull strength"
 
                     end
-                    end   
+                    end
 
                 end))
 
@@ -597,23 +594,19 @@ newFeat{
 	range = 0,
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
-             game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",{
-                {name="cure light wounds", desc=""},
-                {name="cure moderate wounds", desc=""},
-                {name="heal serious wounds", desc=""},
-                {name="bear endurance", desc=""},
-                {name="bull strength", desc=""},
-                },
+             game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",
+				Ego:generateEgoList(o),
+			
                 function(result)
                 --  game.log("Result: "..result)
-                
+
                     if result == "cure light wounds" then
                     local gold_cost
                     local xp_cost
                     gold_cost = 50
                     --used a different formula
                     xp_cost = gold_cost * 0.04
-        
+
                     local player = game.player
                     --Check player gold and XP
                     if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -636,19 +629,19 @@ newFeat{
                         who:heal(rng.dice(1,8) + 5)
                         return {used = true, destroy = true}
                         end
-                        } 
+                        }
                         o.unided_name = "scroll of cure light wounds"
 
                     end
                     end
-                    
+
                         if result == "cure moderate wounds" then
                         local gold_cost
                         local xp_cost
                         gold_cost = 375
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -684,7 +677,7 @@ newFeat{
                         gold_cost = 50
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -720,7 +713,7 @@ newFeat{
                         gold_cost = 50
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -748,7 +741,7 @@ newFeat{
                         o.unided_name = "scroll of bear endurance"
 
                     end
-                    end   
+                    end
 
                 if result == "bull strength" then
 
@@ -757,7 +750,7 @@ newFeat{
                         gold_cost = 50
                         --used a different formula
                         xp_cost = gold_cost * 0.04
-        
+
                         local player = game.player
                         --Check player gold and XP
                         if (player.money or 0) < gold_cost then game.log("You don't have enough gold") --end
@@ -785,7 +778,7 @@ newFeat{
                         o.unided_name = "scroll of bull strength"
 
                     end
-                    end   
+                    end
 
                 end))
 
