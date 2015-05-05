@@ -6,6 +6,7 @@ local TextzoneList = require "engine.ui.TextzoneList"
 module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init(title, choices, func)
+	if not choices then return game.log("No choices!") end
 	self.title = title
 	self.list = choices
 	self.func = func
