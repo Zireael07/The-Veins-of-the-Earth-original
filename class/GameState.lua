@@ -485,6 +485,7 @@ function _M:entityFilterAlter(zone, level, type, filter)
 
 		--handle tier rarities first and WBL calculations second
 		local chance = rng.float(0, 100)
+		local cost = filter.cost
 		if chance < 5 then --see Incursion
 			if cost and cost > 20000 or not cost then
 				print("[VEINS ENTITY FILTER] selected unique")
@@ -495,6 +496,20 @@ function _M:entityFilterAlter(zone, level, type, filter)
 				print("[VEINS ENTITY FILTER] rejecting unique due to cost")
 				filter.not_properties = filter.not_properties or {}
 				filter.not_properties[#filter.not_properties+1] = "unique"
+
+				if cost and cost > 15000 or not cost then
+					print("[VEINS ENTITY FILTER] rejecting unique due to cost, trying GE")
+					filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego", "cursed"}, } }}
+				elseif cost and cost > 10000 or not cost then
+					print("[VEINS ENTITY FILTER] rejecting unique due to cost, trying single Greater")
+					filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
+				elseif cost and cost > 750 or not cost then
+					print("[VEINS ENTITY FILTER] rejecting unique due to cost, trying single Ego")
+					filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego", "cursed"}, } } }
+				else
+					print("[VEINS ENTITY FILTER] rejecting magic due to cost, selected basic")
+					filter.ego_chance = -1000
+				end
 			end
 		elseif chance < 15 then --10% chance for great
 			print("[VEINS ENTITY FILTER] selected Double Greater")
@@ -502,6 +517,18 @@ function _M:entityFilterAlter(zone, level, type, filter)
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			if cost and cost > 20000 or not cost then
 				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, properties={"greater_ego"} } } }
+			elseif cost and cost > 15000 or not cost then
+				print("[VEINS ENTITY FILTER] rejecting DG due to cost, trying GE")
+				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego", "cursed"}, } }}
+			elseif cost and cost > 10000 or not cost then
+				print("[VEINS ENTITY FILTER] rejecting DG due to cost, trying single Greater")
+				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
+			elseif cost and cost > 750 or not cost then
+				print("[VEINS ENTITY FILTER] rejecting DG due to cost, trying single Ego")
+				filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego", "cursed"}, } } }
+			else
+				print("[VEINS ENTITY FILTER] rejecting magic due to cost, selected basic")
+				filter.ego_chance = -1000
 			end
 		--no excellent items are cursed
 		elseif chance < 25 then --10% chance for excellent
@@ -510,6 +537,15 @@ function _M:entityFilterAlter(zone, level, type, filter)
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			if cost and cost > 15000 or not cost then
 				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, }, {ego_chance=100, not_properties={"greater_ego", "cursed"}, } }}
+			elseif cost and cost > 10000 or not cost then
+				print("[VEINS ENTITY FILTER] rejecting GE due to cost, trying single Greater")
+				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
+			elseif cost and cost > 750 or not cost then
+				print("[VEINS ENTITY FILTER] rejecting GE due to cost, trying single Ego")
+				filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego", "cursed"}, } } }
+			else
+				print("[VEINS ENTITY FILTER] rejecting magic due to cost, selected basic")
+				filter.ego_chance = -1000
 			end
 		elseif chance < 40 then --15% chance for rare
 			print("[VEINS ENTITY FILTER] selected Greater")
@@ -517,6 +553,12 @@ function _M:entityFilterAlter(zone, level, type, filter)
 			filter.not_properties[#filter.not_properties+1] = "unique"
 			if cost and cost > 10000 or not cost then
 				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
+			elseif cost and cost > 750 or not cost then
+				print("[VEINS ENTITY FILTER] rejecting Greater due to cost, trying single Ego")
+				filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego", "cursed"}, } } }
+			else
+				print("[VEINS ENTITY FILTER] rejecting magic due to cost, selected basic")
+				filter.ego_chance = -1000
 			end
 
 		--assume no greater egos are curses
@@ -532,7 +574,17 @@ function _M:entityFilterAlter(zone, level, type, filter)
 				else
 					filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego", "cursed"}, }, {ego_chance=100, not_properties={"greater_ego", "cursed"}, } }}
 				end
+			elseif cost and cost > 10000 or not cost then
+				print("[VEINS ENTITY FILTER] rejecting DE due to cost, trying Greater")
+				filter.ego_chance={tries = { {ego_chance=100, properties={"greater_ego"}, } } }
+			elseif cost and cost > 750 or not cost then
+				print("[VEINS ENTITY FILTER] rejecting DE due to cost, trying single Ego")
+				filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego", "cursed"}, } } }
+			else
+				print("[VEINS ENTITY FILTER] rejecting magic due to cost, selected basic")
+				filter.ego_chance = -1000
 			end
+		--	end
 		elseif chance < 95 then --35% chance for magical
 			print("[VEINS ENTITY FILTER] selected Ego")
 			filter.not_properties = filter.not_properties or {}
@@ -545,6 +597,7 @@ function _M:entityFilterAlter(zone, level, type, filter)
 					filter.ego_chance={tries = { {ego_chance=100, not_properties={"greater_ego", "cursed"}, } } }
 				end
 			else
+				print("[VEINS ENTITY FILTER] rejecting magic due to cost, selected basic")
 				filter.ego_chance = -1000
 			end
 		else --mundane 5% of the time
@@ -578,6 +631,7 @@ end
 function _M:entityFilter(zone, e, filter, entity_type)
 	if entity_type == "object" then
 		if filter.cost then
+			if not e.cost then return true end
 			--Force resolve cost first
 			if type(e.cost) == "table" and e.cost.__resolver then e.cost = resolvers.calc[e.cost.__resolver](e.cost, e) end
 
