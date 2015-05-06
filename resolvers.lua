@@ -1069,15 +1069,20 @@ end
 
 --Item creation
 function resolvers.creation_cost()
-	return {__resolver="creation_cost", __resolve_last=true, }
+	return {__resolver="creation_cost", }
 end
 
 function resolvers.calc.creation_cost(t, e)
-	e.creation = {}
-	e.creation.gold_cost = e.cost/2
-	e.creation.xp_cost = e.cost * 0.04
+	--Force resolve cost first
+	if type(e.cost) == "table" and e.cost.__resolver then e.cost = resolvers.calc[e.cost.__resolver](e.cost, e) end
 
-	print("[CREATION COST] Gold:"..e.creation.gold_cost.." XP:"..e.creation.xp_cost)
+	e.creation = {}
+	--NOTE: Count in gold not in coppers
+	local cost = e.cost/200
+	e.creation.gold_cost = cost/2
+	e.creation.xp_cost = cost * 0.04
+
+	print("[CREATION COST] Ego "..e.name.." Gold:"..e.creation.gold_cost.." XP:"..e.creation.xp_cost)
 end
 
 
