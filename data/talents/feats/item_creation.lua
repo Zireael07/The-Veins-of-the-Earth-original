@@ -39,15 +39,17 @@ newFeat{
 
 		--	local result = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired bonus",
 			game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired bonus",
-				Ego:generateEgoList(o),
+			Ego:generateItemCreationEgos(o),
 
-                function(result)
-				--[[	self:talentDialogReturn(result)
+                function(result, item)
+			--[[		self:talentDialogReturn(result)
 					game:unregisterDialog(self:talentDialogGet())
 				end))]]
 
+--            		game.log("Result: "..result)
 
-            		game.log("Result: "..result)
+					game.zone:applyEgo(o, item.ego, "object")
+
 
             	--[[	if result == "+1 bonus" then
             		local gold_cost
@@ -172,7 +174,7 @@ newFeat{
 	end,
 }
 
---These craft new items
+--NOTE: These craft new items
 newFeat{
 	name = "Brew Potion",
 	type = {"arcane/itemcreation", 1},
@@ -184,13 +186,14 @@ newFeat{
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
         game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",
+		Ego:generateItemCreationEgos(o),
 
-		Ego:generateEgoList(o),
-
-                function(result)
+                function(result, item)
                 --  game.log("Result: "..result)
 
-                    if result == "cure light wounds" then
+				game.zone:applyEgo(o, item.ego, "object")
+
+            --[[        if result == "cure light wounds" then
                     local gold_cost
                     local xp_cost
                     gold_cost = 50
@@ -368,7 +371,7 @@ newFeat{
                         o.unided_name = "potion of bull strength"
 
                     end
-                    end
+                    end]]
 
                 end))
 
@@ -390,12 +393,14 @@ newFeat{
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
              game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",
+			Ego:generateItemCreationEgos(o),
+                function(result, item)
+                  game.log("Result: "..result)
 
-			Ego:generateEgoList(o),
-                function(result)
-                --  game.log("Result: "..result)
+				game.zone:applyEgo(o, item.ego, "object")
 
-                    if result == "cure light wounds" then
+
+                --[[    if result == "cure light wounds" then
                     local gold_cost
                     local xp_cost
                     gold_cost = 50
@@ -573,7 +578,7 @@ newFeat{
                         o.unided_name = "wand of bull strength"
 
                     end
-                    end
+                    end]]
 
                 end))
 
@@ -595,12 +600,13 @@ newFeat{
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
              game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",
-				Ego:generateEgoList(o),
-			
-                function(result)
-                --  game.log("Result: "..result)
+			Ego:generateItemCreationEgos(o),
 
-                    if result == "cure light wounds" then
+                function(result, item)
+                --  game.log("Result: "..result)
+				game.zone:applyEgo(o, item.ego, "object")
+
+                --[[   if result == "cure light wounds" then
                     local gold_cost
                     local xp_cost
                     gold_cost = 50
@@ -778,7 +784,7 @@ newFeat{
                         o.unided_name = "scroll of bull strength"
 
                     end
-                    end
+                    end]]
 
                 end))
 

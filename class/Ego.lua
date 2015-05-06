@@ -146,13 +146,16 @@ function _M:resolveEgos(o, last)
   o:resolve(nil, last)
 end
 
---For item creation (Zireael)
+--New functions (Zireael)
+--Get list of all egos, no frills, no separating into prefixes/affixes unlike CreateItem
 function _M:generateEgoList(o)
     local list = {}
 
     game.log("Generating ego list for "..o.name)
 
     --hackfix for the fact that o has no egos
+    --NOTE: relies on zone list therefore will differ by zone
+    --NOTE: doesn't work for items whose name doesn't equal base name due to e.g. resolvers
     for i, e in ipairs(game.zone.object_list) do
         if e.name and e.rarity then
             if e.name == o.name then
@@ -165,9 +168,43 @@ function _M:generateEgoList(o)
 
     for id, ego in ipairs(self:allowedEgosFor(object)) do
 
-        list[#list+1] = { name = ego.name, id=id, desc = "" }
+        list[#list+1] = { name = ego.name, id=id, desc = "", ego=ego }
     end
 
     list_choices = list
     return list_choices
+end
+
+function _M:generateItemCreationEgos(o)
+    local list = {}
+    local base_list = self:generateEgoList(o)
+
+    for i, ego in ipairs(base_list) do
+        local name = ego.name
+        local color
+        local desc = ""
+    --    game.log("Ego: "..ego.name)
+
+        --check that it is craftable (has defined costs)
+    --[[    if ego and ego.creation and ego.creation.gold_cost and ego.creation.xp_cost then
+            local gold_cost = ego.creation.gold_cost
+            local xp_cost = ego.creation.xp_cost
+
+            game.log("Approved egos:"..ego.name)
+            --color-code
+            if (game.player.money or 0) > gold_cost then color = {255, 255, 255}
+            else color = {255, 215, 0} desc = "Not enough gold" end
+            if (game.player.exp or 0) > xp_cost then color = {255, 255, 255}
+            else color = {81, 221, 255} desc = "Not enough XP" end]]
+
+            --don't show egos we already have
+            if not game.zone:getEgoByName(o, name) then
+                list[#list+1] = { name = name, color=color, id=id, desc = desc, ego=ego }
+            end
+    --    end
+    end
+
+    list_choices = list
+    return list_choices
+
 end
