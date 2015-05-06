@@ -479,7 +479,9 @@ function _M:entityFilterAlter(zone, level, type, filter)
 		end
 
 		--no single item on a level/in a NPC inventory should cost more than 1/2 total WBL
---		filter.cost = cost/2
+		if cost then
+			filter.cost = cost/2
+		end
 
 		--handle tier rarities first and WBL calculations second
 		local chance = rng.float(0, 100)
@@ -573,10 +575,13 @@ function _M:entityFilterAlter(zone, level, type, filter)
 	return filter
 end
 
-function _M:entityFilter(zone, e, filter, type)
-	if type == "object" then
+function _M:entityFilter(zone, e, filter, entity_type)
+	if entity_type == "object" then
 		if filter.cost then
-			if e.cost > filter.cost then return false end
+			--Force resolve cost first
+			if type(e.cost) == "table" and e.cost.__resolver then e.cost = resolvers.calc[e.cost.__resolver](e.cost, e) end
+
+			if (e.cost or 0) > filter.cost then return false end
 		end
 
 	return true
