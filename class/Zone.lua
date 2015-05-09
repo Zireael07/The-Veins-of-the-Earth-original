@@ -21,7 +21,7 @@ local Map = require "engine.Map"
 local Dialog = require "mod.class.patch.Dialog"
 local Astar = require "engine.Astar"
 local forceprint = print
-local print = function() end
+--local print = function() end
 
 module(..., package.seeall, class.inherit(Zone))
 
@@ -227,11 +227,10 @@ end
 function _M:okToGenerate(e, type, level, base_lev, max_ood_lev, filter, rarity_field)
     if type == 'actor' then
         return e[rarity_field] and e.level_range and (not filter or filter(e))
-    --    return e[rarity_field] and e.challenge <= level.level + 5 and (not filter or filter(e))
 
     elseif type == 'object' then
-        return e[rarity_field] and e.level_range and (not filter or filter(e))
-    else
+	return e[rarity_field] and e.level_range and e.level_range[1] <= max_ood_lev and (not filter or filter(e))
+	else
     -- From the original Zone:computeRarities()
     return e[rarity_field] and e.level_range and (not filter or filter(e))
   end
