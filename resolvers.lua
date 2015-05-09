@@ -1073,16 +1073,19 @@ function resolvers.creation_cost()
 end
 
 function resolvers.calc.creation_cost(t, e)
+--	if not e.name == 
+	if not e.egoed then return 0 end
 	--Force resolve cost first
 	if type(e.cost) == "table" and e.cost.__resolver then e.cost = resolvers.calc[e.cost.__resolver](e.cost, e) end
 
 	e.creation = {}
 	--NOTE: Count in gold not in coppers
-	local cost = e.cost/200
+	local cost
+	if e.cost and e.cost > 0 then cost = e.cost/200 end
 	e.creation.gold_cost = cost/2
 	e.creation.xp_cost = cost * 0.04
 
-	print("[CREATION COST] Ego "..e.name.." Gold:"..e.creation.gold_cost.." XP:"..e.creation.xp_cost)
+	print("[CREATION COST] Ego: "..e.name.." Gold:"..e.creation.gold_cost.." XP:"..e.creation.xp_cost)
 end
 
 

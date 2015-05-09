@@ -25,6 +25,14 @@ local print = function() end
 
 module(..., package.seeall, class.inherit(Zone))
 
+--Don't merge creation cost tables
+_M:addEgoRule("object", function(dvalue, svalue, key, dst, src, rules, state)
+	if key == "creation" then return end
+	if key == "gold_cost" then return end
+	if key == "xp_cost" then return end
+	return true
+end)
+
 --- Called when the zone file is loaded
 function _M:onLoadZoneFile(basedir)
 	-- Load events if they exist
