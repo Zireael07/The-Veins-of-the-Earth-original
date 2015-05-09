@@ -183,10 +183,11 @@ function _M:generateItemCreationEgos(o)
         local name = ego.name
         local color
         local desc = ""
-    --    game.log("Ego: "..ego.name)
+        game.log("Ego: "..ego.name)
 
         --check that it is craftable (has defined costs)
     --[[    if ego and ego.creation and ego.creation.gold_cost and ego.creation.xp_cost then
+
             local gold_cost = ego.creation.gold_cost
             local xp_cost = ego.creation.xp_cost
 
@@ -198,7 +199,7 @@ function _M:generateItemCreationEgos(o)
             else color = {81, 221, 255} desc = "Not enough XP" end]]
 
             --don't show egos we already have
-            if not game.zone:getEgoByName(o, name) then
+            if not game.zone:getEgoByName(o, name) and not ego.cursed then
                 list[#list+1] = { name = name, color=color, id=id, desc = desc, ego=ego }
             end
     --    end
