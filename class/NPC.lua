@@ -467,7 +467,7 @@ function _M:getBreathWeapon()
 
 	if not self.age_cat then return end
 
-	if self.age_cat == "wyrmling" then dice = 2 dc = 14 end
+	if self.age_cat == "hatchling" then dice = 2 dc = 14 end
 	if self.age_cat == "very young" then dice = 4 dc = 16 end
 	if self.age_cat == "young" then dice = 6 dc = 18 end
 	if self.age_cat == "juvenile" then dice = 8 dc = 20 end
@@ -479,6 +479,11 @@ function _M:getBreathWeapon()
 	if self.age_cat == "ancient" then dice = 20 dc = 33 end
 	if self.age_cat == "wyrm" then dice = 22 dc = 36 end
 	if self.age_cat == "great wyrm" then dice = 24 dc = 37 end
+
+	--Failsafe
+	if not dice or not dc then game.log("Wrong age category defined!")
+		dice = 2 dc = 14
+	end
 
 	return dice, dc
 end
