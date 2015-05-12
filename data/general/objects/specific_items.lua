@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 --Specific magic items, such as Holy Avenger or Dragonshield
 
@@ -17,7 +17,7 @@ newEntity{
     unique=true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     desc = "An ornate sword.\n\n Damage 1d8+2. Threat range 18-20.",
-    level_range = {1, 10},
+    level_range = {22, nil},
 --    cost = 120630,
     cost = resolvers.value{platinum=12060},
     combat = {
@@ -45,8 +45,9 @@ newEntity{
     martial = true,
     unique=true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
-    level_range = {1, 10},
---    cost = 12,
+    level_range = {18, nil},
+--    cost = 60312,
+    cost = resolvers.value{platinum=6030},
     combat = {
         dam = {1,8},
         critical = 3,
@@ -76,7 +77,7 @@ newEntity{
     unique=true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     desc = "A flaming sword.\n\n Damage 1d8+1. Threat range 18-20.",
-    level_range = {1, 10},
+    level_range = {15, nil},
 --    cost = 20715,
     cost = resolvers.value{platinum=2070},
     combat = {
@@ -103,7 +104,7 @@ newEntity{
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "Luckblade",
     unided_name = "shortsword",
-    level_range = {1, 10},
+    level_range = {15, nil},
 --    cost = 22010,
     cost = resolvers.value{platinum=2200},
     combat = {
@@ -133,7 +134,7 @@ newEntity{
     unique=true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     desc = "An ornate sword.\n\n Damage 1d8+2. Threat range 18-20.",
-    level_range = {1, 10},
+    level_range = {15, nil},
 --    cost = 23060,
     cost = resolvers.value{platinum=2300},
     combat = {
@@ -168,7 +169,7 @@ newEntity{
     desc = "A white curved longbow.\n\n Damage 1d10+2. Critical x3. Range 11",
 
     rarity = 50,
-    level_range = {1, 10},
+    level_range = {16, nil},
 --    cost = 25600,
     cost = resolvers.value{platinum=2560},
     combat = {
@@ -194,7 +195,7 @@ newEntity{
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     name = "Sunblade",
     unided_name = "shortsword",
-    level_range = {1, 10},
+    level_range = {18, nil},
 --    cost = 50335,
     cost = resolvers.value{platinum=5040},
     combat = {
@@ -227,7 +228,7 @@ newEntity{
     unique=true,
     combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
     desc = "An ornate sword.\n\n Damage 1d8+1. Threat range 18-20.",
-    level_range = {1, 10},
+    level_range = {15, nil},
 --    cost = 22315,
     cost = resolvers.value{platinum=2230},
     combat = {
