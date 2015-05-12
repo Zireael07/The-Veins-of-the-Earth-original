@@ -438,6 +438,9 @@ local wealth = function(zone, level, lev, what)
 		end
 	end
 
+	--safeguard
+	if not what or type(what)~="string" then what = "boss" end
+
 	print("[VEINS ENTITY FILTER] making wealth table for", what, lev)
 	return wealth_by_level[what][lev]
 end
