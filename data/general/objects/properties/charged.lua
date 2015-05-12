@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
 local Stats = require "engine.interface.ActorStats"
 local Talents = require "engine.interface.ActorTalents"
@@ -7,7 +7,7 @@ local Talents = require "engine.interface.ActorTalents"
 --ID
 newEntity{
 	name = " of identify", suffix = true,
-	level_range = {1, 10},
+	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -27,7 +27,7 @@ end
 --Targeted spells
 newEntity{
 	name = " of magic missile", suffix = true,
-	level_range = {1, 10},
+	level_range = {3, nil},
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -41,7 +41,7 @@ newEntity{
 
         local damage = rng.dice(1,4)+1
 
-        who:projectile(tg, x, y, DamageType.FORCE, {dam=damage})    
+        who:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
         game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
 end
 },
@@ -49,7 +49,7 @@ end
 
 newEntity{
     name = " of burning hands", suffix = true,
-    level_range = {1, 10},
+	level_range = {3, nil},
     rarity = 5,
     cost = resolvers.value{platinum=450},
     school = "evocation",
@@ -62,7 +62,7 @@ newEntity{
 
         local damage = rng.dice(1,4)+1
 
-        self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})    
+        self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15})
         game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
 end
 },
@@ -85,7 +85,7 @@ end
 
         local damage = rng.dice(1,4)+1
 
-        who:projectile(tg, x, y, DamageType.FORCE, {dam=damage})    
+        who:projectile(tg, x, y, DamageType.FORCE, {dam=damage})
         game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
 end
 },
@@ -96,7 +96,7 @@ end
 --Buffs
 newEntity{
 	name = " of bear endurance", suffix = true,
-	level_range = {1, 10},
+	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -112,7 +112,7 @@ end
 
 newEntity{
 	name = " of bull strength", suffix = true,
-	level_range = {1, 10},
+	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -128,7 +128,7 @@ end
 
 newEntity{
 	name = " of cat's grace", suffix = true,
-	level_range = {1, 10},
+	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -144,7 +144,7 @@ end
 
 newEntity{
 	name = " of fox cunning", suffix = true,
-	level_range = {1, 10},
+	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -160,7 +160,7 @@ end
 
 newEntity{
 	name = " of owl wisdom", suffix = true,
-	level_range = {1, 10},
+	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -176,7 +176,7 @@ end
 
 newEntity{
 	name = " of eagle splendor", suffix = true,
-	level_range = {1, 10},
+	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -192,7 +192,7 @@ end
 
 newEntity{
     name = " of mage armor", suffix = true,
-    level_range = {1, 10},
+	level_range = {3, nil},
     rarity = 5,
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -208,7 +208,7 @@ end
 
 newEntity{
     name = " of levitation", suffix = true,
-    level_range = {1, 10},
+    level_range = {3, nil},
     rarity = 15,
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -224,7 +224,7 @@ end
 
 newEntity{
     name = " of flying", suffix = true,
-    level_range = {1, 10},
+    level_range = {9, nil},
     rarity = 15,
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -240,7 +240,7 @@ end
 
 newEntity{
     name = " of haste", suffix = true,
-    level_range = {1, 10},
+    level_range = {9, nil},
     rarity = 25,
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
@@ -256,7 +256,7 @@ end
 
 newEntity{
     name = " of expeditious retreat", suffix = true,
-    level_range = {1, 10},
+    level_range = {1, nil},
     rarity = 15,
 --  cost = 4500,
     cost = resolvers.value{platinum=450},

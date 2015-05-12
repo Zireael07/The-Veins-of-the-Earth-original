@@ -6,7 +6,7 @@ local DamageType = require "engine.DamageType"
 newEntity {
 	name = " +1", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
+	level_range = {5, nil},
 	rarity = 8,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
@@ -20,8 +20,8 @@ newEntity {
 newEntity {
 	name = " +2", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 8,
+	level_range = {11, nil},
+	rarity = 28,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
@@ -34,8 +34,8 @@ newEntity {
 newEntity {
 	name = " +3", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 8,
+	level_range = {14, nil},
+	rarity = 25,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
 	school = "evocation",
@@ -48,8 +48,8 @@ newEntity {
 newEntity {
 	name = " +4", suffix = true,
 	keywords = {bonus=true},
-	level_range = {10, 20},
-	rarity = 10,
+	level_range = {16, nil},
+	rarity = 30,
 	greater_ego = 1,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
@@ -63,8 +63,8 @@ newEntity {
 newEntity {
 	name = " +5", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 15,
+	level_range = {18, nil},
+	rarity = 45,
 	greater_ego = 1,
 --	cost = 50000,
 	cost = resolvers.value{platinum=5000},
@@ -79,7 +79,7 @@ newEntity {
 newEntity{
 	name = "flaming ", prefix = true,
 	keywords = { flame=true},
-	level_range = {1, 10},
+	level_range = {11, nil},
 	rarity = 5,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
@@ -94,7 +94,7 @@ newEntity{
 newEntity{
 	name = "frost ", prefix = true,
 	keywords = { frost=true},
-	level_range = {1, 10},
+	level_range = {11, nil},
 	rarity = 5,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
@@ -109,7 +109,7 @@ newEntity{
 newEntity{
 	name = "shock ", prefix = true,
 	keywords = { shock=true},
-	level_range = {1, 10},
+	level_range = {11, nil},
 	rarity = 8,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
@@ -125,7 +125,7 @@ newEntity{
 newEntity{
 	name = "flaming burst", prefix = true,
 	keywords = { flame=true},
-	level_range = {1, 10},
+	level_range = {11, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
@@ -143,7 +143,7 @@ newEntity{
 newEntity{
 	name = "icy burst", prefix = true,
 	keywords = { icy=true},
-	level_range = {1, 10},
+	level_range = {11, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
@@ -161,7 +161,7 @@ newEntity{
 newEntity{
 	name = "shocking burst", prefix = true,
 	keywords = { shocking=true},
-	level_range = {1, 10},
+	level_range = {11, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
@@ -179,7 +179,7 @@ newEntity{
 newEntity{
 	name = "thundering", prefix = true,
 	keywords = { thunder=true},
-	level_range = {1, 10},
+	level_range = {11, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
@@ -198,8 +198,8 @@ newEntity{
 newEntity{
 	name = "anarchic ", prefix = true,
 	keywords = {aligned=true},
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {11, nil},
+	rarity = 10,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
 	combat = {
@@ -211,8 +211,8 @@ newEntity{
 newEntity{
 	name = "axiomatic ", prefix = true,
 	keywords = {aligned=true},
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {11, nil},
+	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
 	combat = {
@@ -225,7 +225,7 @@ newEntity{
 	name = "holy ", prefix = true,
 	keywords = {aligned=true},
 	level_range = {1, 10},
-	rarity = 5,
+	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
 	combat = {
@@ -237,7 +237,7 @@ newEntity{
 newEntity{
 	name = "unholy ", prefix = true,
 	keywords = {aligned=true},
-	level_range = {1, 10},
+	level_range = {11, nil},
 	rarity = 5,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
@@ -252,7 +252,7 @@ newEntity{
 newEntity{
 	name = "human bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -265,7 +265,7 @@ newEntity{
 newEntity{
 	name = "dwarf bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -278,7 +278,7 @@ newEntity{
 newEntity{
 	name = "elf bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -291,7 +291,7 @@ newEntity{
 newEntity{
 	name = "drow bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -304,7 +304,7 @@ newEntity{
 newEntity{
 	name = "gnome bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 25,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -316,7 +316,7 @@ newEntity{
 newEntity{
 	name = "halfling bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 25,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -329,7 +329,7 @@ newEntity{
 newEntity{
 	name = "aquatic humanoids bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -342,7 +342,7 @@ newEntity{
 newEntity{
 	name = "gnoll bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -355,7 +355,7 @@ newEntity{
 newEntity{
 	name = "goblinoid bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -368,7 +368,7 @@ newEntity{
 newEntity{
 	name = "reptilian bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -381,7 +381,7 @@ newEntity{
 newEntity{
 	name = "orc bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 15,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -395,7 +395,7 @@ newEntity{
 newEntity{
 	name = "aberration bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 10,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -408,7 +408,7 @@ newEntity{
 newEntity{
 	name = "animal bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 10,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -421,8 +421,8 @@ newEntity{
 newEntity{
 	name = "construct bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
-	rarity = 10,
+	level_range = {6, nil},
+	rarity = 20,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
 	combat = {
@@ -434,8 +434,8 @@ newEntity{
 newEntity{
 	name = "dragon bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
-	rarity = 20,
+	level_range = {6, nil},
+	rarity = 30,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
 	combat = {
@@ -447,8 +447,8 @@ newEntity{
 newEntity{
 	name = "fey bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
-	rarity = 10,
+	level_range = {6, nil},
+	rarity = 18,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
 	combat = {
@@ -460,7 +460,7 @@ newEntity{
 newEntity{
 	name = "giant bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 10,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -473,7 +473,7 @@ newEntity{
 newEntity{
 	name = "magical beast bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 10,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -486,7 +486,7 @@ newEntity{
 newEntity{
 	name = "monstrous humanoid bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 10,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -499,7 +499,7 @@ newEntity{
 newEntity{
 	name = "ooze bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 10,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -512,8 +512,8 @@ newEntity{
 newEntity{
 	name = "plant bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
-	rarity = 10,
+	level_range = {6, nil},
+	rarity = 18,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
 	combat = {
@@ -525,7 +525,7 @@ newEntity{
 newEntity{
 	name = "undead bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 10,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -538,7 +538,7 @@ newEntity{
 newEntity{
 	name = "vermin bane ", prefix = true,
 	keywords = {bane=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 10,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -578,7 +578,7 @@ newEntity {
 newEntity {
 	name = " -3", suffix = true,
 	keywords = {cursed=true},
-	level_range = {1, 10},
+	level_range = {5, 10},
 	rarity = 14,
 	cursed = true,
 	cost = 0,

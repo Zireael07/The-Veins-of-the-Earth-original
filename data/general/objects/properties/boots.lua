@@ -8,7 +8,7 @@ load("data/general/objects/properties/wondrous_items.lua")
 
 newEntity{
     name = " of striding and springing", suffix = true,
-    level_range = {1, 10},
+    level_range = {10, nil},
     rarity = 10,
     cost = resolvers.value{platinum=500},
     school = "transmutation",
@@ -20,7 +20,7 @@ newEntity{
 
 newEntity{
     name = " of dodging", suffix = true,
-    level_range = {1, 10},
+    level_range = {10, nil},
     rarity = 10,
     cost = resolvers.value{platinum=500},
     school = "transmutation",

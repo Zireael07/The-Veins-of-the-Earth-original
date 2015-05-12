@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2015
 
 local Stats = require "engine.interface.ActorStats"
 local Talents = require "engine.interface.ActorTalents"
@@ -9,22 +9,22 @@ newEntity{
 	name = " of cure light wounds", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
---	cost = 300,
-    cost = resolvers.value{gold=300},
+--	cost = 50,
+    cost = resolvers.value{gold=50},
     school = "conjuration",
     use_simple = { name = "quaff",
     use = function(self,who)
         who:heal(rng.dice(1,8) + 5)
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
 	name = " of cure moderate wounds", suffix = true,
-	level_range = {1, 10},
+	level_range = {2, 10},
 	rarity = 10,
---	cost = 750,
+--	cost = 300,
     cost = resolvers.value{gold=750},
     school = "conjuration",
     use_simple = { name = "quaff",
@@ -32,22 +32,22 @@ newEntity{
         who:heal(rng.dice(2,8) + 5)
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
 	name = " of heal serious wounds", suffix = true,
-	level_range = {1, 10},
+	level_range = {5, 10},
 	rarity = 15,
 --	cost = 1200,
-    cost = resolvers.value{gold=120},
+    cost = resolvers.value{gold=1200},
     school = "conjuration",
     use_simple = { name = "quaff",
     use = function(self,who)
         who:heal(rng.dice(2,8) + 5)
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 newEntity{
@@ -62,7 +62,7 @@ newEntity{
         who:heal(who.max_life*0.5)
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 --EVIL!!
@@ -77,17 +77,17 @@ newEntity{
         who:heal(-who.max_life*0.1)
         return {used = true, destroy = true}
   end
-  }, 
+  },
 }
 
 
 --Buffs
 newEntity{
 	name = " of bear endurance", suffix = true,
-	level_range = {1, 10},
+	level_range = {3, 10},
 	rarity = 15,
---	cost = 4500,
-    cost = resolvers.value{gold=4500},
+--	cost = 300,
+    cost = resolvers.value{gold=300},
     school = "transmutation",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -100,10 +100,10 @@ end
 
 newEntity{
 	name = " of bull strength", suffix = true,
-	level_range = {1, 10},
+	level_range = {3, 10},
 	rarity = 15,
---	cost = 4500,
-    cost = resolvers.value{gold=4500},
+--	cost = 300,
+    cost = resolvers.value{gold=300},
     school = "transmutation",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -116,10 +116,10 @@ end
 
 newEntity{
 	name = " of cat's grace", suffix = true,
-	level_range = {1, 10},
+	level_range = {3, 10},
 	rarity = 15,
---	cost = 4500,
-    cost = resolvers.value{gold=4500},
+--	cost = 300,
+    cost = resolvers.value{gold=300},
     school = "transmutation",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -132,10 +132,10 @@ end
 
 newEntity{
 	name = " of fox cunning", suffix = true,
-	level_range = {1, 10},
-	rarity = 5,
---	cost = 4500,
-    cost = resolvers.value{gold=4500},
+	level_range = {3, 10},
+	rarity = 15,
+--	cost = 300,
+    cost = resolvers.value{gold=300},
     school = "transmutation",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -148,10 +148,10 @@ end
 
 newEntity{
 	name = " of owl wisdom", suffix = true,
-	level_range = {1, 10},
-	rarity = 5,
---    cost = 4500,
-    cost = resolvers.value{gold=4500},
+	level_range = {3, 10},
+	rarity = 15,
+--    cost = 300,
+    cost = resolvers.value{gold=300},
     school = "transmutation",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -164,10 +164,10 @@ end
 
 newEntity{
 	name = " of eagle splendor", suffix = true,
-	level_range = {1, 10},
-	rarity = 5,
---	cost = 4500,
-    cost = resolvers.value{gold=4500},
+	level_range = {3, 10},
+	rarity = 15,
+--	cost = 300,
+    cost = resolvers.value{gold=300},
     school = "transmutation",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -182,8 +182,8 @@ newEntity{
 	name = " of mage armor", suffix = true,
 	level_range = {1, 10},
 	rarity = 5,
---	cost = 4500,
-    cost = resolvers.value{gold=4500},
+--	cost = 50,
+    cost = resolvers.value{gold=50},
     school = "conjuration",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -196,10 +196,10 @@ end
 
 newEntity{
     name = " of levitation", suffix = true,
-    level_range = {1, 10},
+    level_range = {2, 10},
     rarity = 15,
---  cost = 4500,
-    cost = resolvers.value{gold=4500},
+--  cost = 300,
+    cost = resolvers.value{gold=300},
     school = "transmutation",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -212,10 +212,10 @@ end
 
 newEntity{
     name = " of flying", suffix = true,
-    level_range = {1, 10},
-    rarity = 15,
---  cost = 4500,
-    cost = resolvers.value{gold=4500},
+    level_range = {4, 10},
+    rarity = 25,
+--  cost = 750,
+    cost = resolvers.value{gold=750},
     school = "transmutation",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -228,10 +228,10 @@ end
 
 newEntity{
     name = " of haste", suffix = true,
-    level_range = {1, 10},
+    level_range = {3, 10},
     rarity = 25,
---  cost = 4500,
-    cost = resolvers.value{gold=4500},
+--  cost = 750,
+    cost = resolvers.value{gold=750},
     school = "transmutation",
     use_simple = { name = "quaff",
     use = function(self, who)
@@ -275,7 +275,7 @@ end
 
 newEntity{
     name = " of hold", suffix = true,
-    level_range = {1, 10},
+    level_range = {2, 10},
     rarity = 5,
     cost = 0,
     school = "enchantment",

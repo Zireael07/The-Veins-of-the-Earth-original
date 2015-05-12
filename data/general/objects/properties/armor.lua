@@ -7,7 +7,7 @@ local Stats = require "engine.interface.ActorStats"
 newEntity {
 	name = " +1", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
+	level_range = {4, nil},
 	rarity = 5,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
@@ -21,8 +21,8 @@ newEntity {
 newEntity {
 	name = " +2", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 8,
+	level_range = {8, nil},
+	rarity = 10,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
 	school = "abjuration",
@@ -35,8 +35,8 @@ newEntity {
 newEntity {
 	name = " +3", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 8,
+	level_range = {12, nil},
+	rarity = 18,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "abjuration",
@@ -49,7 +49,7 @@ newEntity {
 newEntity {
 	name = " +4", suffix = true,
 	keywords = {bonus=true},
-	level_range = {10, 20},
+	level_range = {14, nil},
 	rarity = 10,
 	greater_ego = 1,
 	school = "abjuration",
@@ -64,7 +64,7 @@ newEntity {
 newEntity {
 	name = " +5", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
+	level_range = {15, nil},
 	greater_ego = 1,
 	rarity = 15,
 	school = "abjuration",
@@ -79,7 +79,7 @@ newEntity {
 newEntity {
 	name = "mithril ", prefix = true,
 	keywords = {mithril=true},
-	level_range = {5, nil},
+	level_range = {4, nil},
 	rarity = 20, --5% chance
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
@@ -94,7 +94,7 @@ newEntity {
 newEntity {
 	name = "adamantine ", prefix = true,
 	keywords = {adamantine=true},
-	level_range = {10, nil},
+	level_range = {4, nil},
 	rarity = 20, --5% chance
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
@@ -108,7 +108,7 @@ newEntity {
 newEntity {
 	name = "dragonhide ", prefix = true,
 	keywords = {dragonhide=true},
-	level_range = {20, nil},
+	level_range = {10, nil},
 	rarity = 35,
 --	cost = 3500,
 	cost = resolvers.value{platinum=350},
@@ -125,7 +125,7 @@ newEntity {
 newEntity {
 	name = " of shadow", suffix = true,
 	keywords = {shadow=true},
-	level_range = {5, nil},
+	level_range = {8, nil},
 	rarity = 8,
 --	cost = 3750,
 	cost = resolvers.value{platinum=375},
@@ -169,7 +169,7 @@ newEntity {
 newEntity {
 	name = " of silent moves", suffix = true,
 	keywords = {silent=true},
-	level_range = {5, nil},
+	level_range = {8, nil},
 	rarity = 8,
 --	cost = 3750,
 	cost = resolvers.value{platinum=375},
@@ -213,7 +213,7 @@ newEntity {
 newEntity {
 	name = "slick ", prefix = true,
 	keywords = {slick=true},
-	level_range = {5, nil},
+	level_range = {8, nil},
 	rarity = 8,
 --	cost = 3750,
 	cost = resolvers.value{platinum=375},
@@ -258,7 +258,7 @@ newEntity {
 newEntity {
 	name = " of spell resistance 13", suffix = true,
 	keywords = {spellres=true},
-	level_range = {10, nil},
+	level_range = {12, nil},
 	greater_ego = 1,
 	rarity = 15,
 --	cost = 8000,
@@ -273,7 +273,7 @@ newEntity {
 newEntity {
 	name = " of spell resistance 15", suffix = true,
 	keywords = {spellres=true},
-	level_range = {15, nil},
+	level_range = {14, nil},
 	greater_ego = 1,
 	rarity = 15,
 --	cost = 16000,
@@ -288,7 +288,7 @@ newEntity {
 newEntity {
 	name = " of spell resistance 17", suffix = true,
 	keywords = {spellres=true},
-	level_range = {15, nil},
+	level_range = {16, nil},
 	greater_ego = 1,
 	rarity = 17,
 --	cost = 32000,
@@ -303,7 +303,7 @@ newEntity {
 newEntity {
 	name = " of spell resistance 19", suffix = true,
 	keywords = {spellres=true},
-	level_range = {20, nil},
+	level_range = {18, nil},
 	greater_ego = 1,
 	rarity = 20,
 --	cost = 50000,
@@ -318,7 +318,7 @@ newEntity {
 newEntity {
 	name = " of fire resistance", suffix = true,
 	keywords = {fireres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -334,7 +334,7 @@ newEntity {
 newEntity {
 	name = " of improved fire resistance", suffix = true,
 	keywords = {fireres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	greater_ego = 1,
 	rarity = 15,
 --	cost = 42000,
@@ -351,7 +351,7 @@ newEntity {
 newEntity {
 	name = " of greater fire resistance", suffix = true,
 	keywords = {fireres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	greater_ego = 1,
 	rarity = 20,
 --	cost = 66000,
@@ -369,7 +369,7 @@ newEntity {
 newEntity {
 	name = " of acid resistance", suffix = true,
 	keywords = {acidres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -385,7 +385,7 @@ newEntity {
 newEntity {
 	name = " of improved acid resistance", suffix = true,
 	keywords = {acidres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	greater_ego = 1,
 	rarity = 15,
 --	cost = 42000,
@@ -402,7 +402,7 @@ newEntity {
 newEntity {
 	name = " of greater acid resistance", suffix = true,
 	keywords = {acidres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	greater_ego = 1,
 	rarity = 20,
 --	cost = 66000,
@@ -419,7 +419,7 @@ newEntity {
 newEntity {
 	name = " of cold resistance", suffix = true,
 	keywords = {coldres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -435,7 +435,7 @@ newEntity {
 newEntity {
 	name = " of improved cold resistance", suffix = true,
 	keywords = {coldres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	greater_ego = 1,
 	rarity = 15,
 --	cost = 42000,
@@ -452,7 +452,7 @@ newEntity {
 newEntity {
 	name = " of greater cold resistance", suffix = true,
 	keywords = {coldres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	greater_ego = 1,
 	rarity = 20,
 --	cost = 66000,
@@ -469,7 +469,7 @@ newEntity {
 newEntity {
 	name = " of electricity resistance", suffix = true,
 	keywords = {electres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -485,7 +485,7 @@ newEntity {
 newEntity {
 	name = " of improved electricity resistance", suffix = true,
 	keywords = {electres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	greater_ego = 1,
 	rarity = 15,
 --	cost = 42000,
@@ -502,7 +502,7 @@ newEntity {
 newEntity {
 	name = " of greater electricity resistance", suffix = true,
 	keywords = {electres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	greater_ego = 1,
 	rarity = 20,
 --	cost = 66000,
@@ -519,7 +519,7 @@ newEntity {
 newEntity {
 	name = " of sonic resistance", suffix = true,
 	keywords = {sonicres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -535,7 +535,7 @@ newEntity {
 newEntity {
 	name = " of improved sonic resistance", suffix = true,
 	keywords = {sonicres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	greater_ego = 1,
 	rarity = 15,
 --	cost = 42000,
@@ -552,7 +552,7 @@ newEntity {
 newEntity {
 	name = " of greater sonic resistance", suffix = true,
 	keywords = {sonicres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	rarity = 20,
 	greater_ego = 1,
 --	cost = 66000,
@@ -569,8 +569,8 @@ newEntity {
 newEntity {
 	name = " of light fortification", suffix = true,
 	keywords = {fortification=true},
-	level_range = {1, nil},
-	rarity = 5,
+	level_range = {4, nil},
+	rarity = 10,
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
 	school = "abjuration",
@@ -583,8 +583,8 @@ newEntity {
 newEntity {
 	name = " of moderate fortification", suffix = true,
 	keywords = {fortification=true},
-	level_range = {10, nil},
-	rarity = 10,
+	level_range = {12, nil},
+	rarity = 15,
 --	cost = 9000,
 	cost = resolvers.value{platinum=900},
 	school = "abjuration",
@@ -597,8 +597,8 @@ newEntity {
 newEntity {
 	name = " of heavy fortification", suffix = true,
 	keywords = {fortification=true},
-	level_range = {15, nil},
-	rarity = 15,
+	level_range = {16, nil},
+	rarity = 25,
 	greater_ego = 1,
 --	cost = 25000,
 	cost = resolvers.value{platinum=2500},
@@ -612,9 +612,9 @@ newEntity {
 
 --Based on Angband's
 newEntity {
-	name = "dwarven", prefix = true,
+	name = "dwarven ", prefix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {11, 30},
 	rarity = 35,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
@@ -628,7 +628,7 @@ newEntity {
 
 newEntity{
 	name = " of elvenkind", suffix = true,
-	level_range = {10, 30},
+	level_range = {7, 30},
 	rarity = 25,
 --	cost = 2500,
 	cost = resolvers.value{platinum=250},
@@ -641,7 +641,7 @@ newEntity{
 newEntity {
 	name = "spiked ", prefix = true,
 	keywords = {spiked=true},
-	level_range = {1, nil},
+	level_range = {2, nil},
 	rarity = 15,
 --	cost = 10,
 	cost = resolvers.value{silver=250},

@@ -6,7 +6,7 @@ local DamageType = require "engine.DamageType"
 newEntity {
 	name = " +1", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
+	level_range = {4, nil},
 	rarity = 5,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
@@ -19,7 +19,7 @@ newEntity {
 newEntity {
 	name = " +2", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
+	level_range = {8, nil},
 	rarity = 8,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
@@ -32,8 +32,8 @@ newEntity {
 newEntity {
 	name = " +3", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 8,
+	level_range = {12, nil},
+	rarity = 18,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "abjuration",
@@ -45,7 +45,7 @@ newEntity {
 newEntity {
 	name = " +4", suffix = true,
 	keywords = {bonus=true},
-	level_range = {10, 20},
+	level_range = {14, nil},
 	greater_ego = 1,
 	rarity = 10,
 --	cost = 32000,
@@ -59,7 +59,7 @@ newEntity {
 newEntity {
 	name = " +5", suffix = true,
 	keywords = {bonus=true},
-	level_range = {1, 10},
+	level_range = {15, nil},
 	greater_ego = 1,
 	rarity = 15,
 --	cost = 50000,
@@ -75,7 +75,7 @@ newEntity {
 newEntity {
 	name = "mithril ", prefix = true,
 	keywords = {mithril=true},
-	level_range = {5, nil},
+	level_range = {4, nil},
 	rarity = 20, --5% chance
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
@@ -89,7 +89,7 @@ newEntity {
 newEntity {
 	name = "adamantine ", prefix = true,
 	keywords = {adamantine=true},
-	level_range = {10, nil},
+	level_range = {4, nil},
 	rarity = 20, --5% chance
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
@@ -119,7 +119,7 @@ newEntity {
 newEntity {
 	name = " of fire resistance", suffix = true,
 	keywords = {fireres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -134,7 +134,7 @@ newEntity {
 newEntity {
 	name = " of improved fire resistance", suffix = true,
 	keywords = {fireres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	rarity = 15,
 	greater_ego = 1,
 --	cost = 42000,
@@ -150,7 +150,7 @@ newEntity {
 newEntity {
 	name = " of greater fire resistance", suffix = true,
 	keywords = {fireres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	rarity = 20,
 	greater_ego = 1,
 --	cost = 66000,
@@ -167,7 +167,7 @@ newEntity {
 newEntity {
 	name = " of acid resistance", suffix = true,
 	keywords = {acidres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -182,7 +182,7 @@ newEntity {
 newEntity {
 	name = " of improved acid resistance", suffix = true,
 	keywords = {acidres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	rarity = 15,
 	greater_ego = 1,
 --	cost = 42000,
@@ -198,7 +198,7 @@ newEntity {
 newEntity {
 	name = " of greater acid resistance", suffix = true,
 	keywords = {acidres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	rarity = 20,
 	greater_ego = 1,
 --	cost = 66000,
@@ -214,7 +214,7 @@ newEntity {
 newEntity {
 	name = " of cold resistance", suffix = true,
 	keywords = {coldres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -229,7 +229,7 @@ newEntity {
 newEntity {
 	name = " of improved cold resistance", suffix = true,
 	keywords = {coldres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	rarity = 15,
 	greater_ego = 1,
 --	cost = 42000,
@@ -245,7 +245,7 @@ newEntity {
 newEntity {
 	name = " of greater cold resistance", suffix = true,
 	keywords = {coldres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	rarity = 20,
 	greater_ego = 1,
 --	cost = 66000,
@@ -261,7 +261,7 @@ newEntity {
 newEntity {
 	name = " of electricity resistance", suffix = true,
 	keywords = {electres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -276,7 +276,7 @@ newEntity {
 newEntity {
 	name = " of improved electricity resistance", suffix = true,
 	keywords = {electres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	rarity = 15,
 	greater_ego = 1,
 --	cost = 42000,
@@ -292,7 +292,7 @@ newEntity {
 newEntity {
 	name = " of greater electricity resistance", suffix = true,
 	keywords = {electres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	rarity = 20,
 	greater_ego = 1,
 --	cost = 66000,
@@ -308,7 +308,7 @@ newEntity {
 newEntity {
 	name = " of sonic resistance", suffix = true,
 	keywords = {sonicres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -323,7 +323,7 @@ newEntity {
 newEntity {
 	name = " of improved sonic resistance", suffix = true,
 	keywords = {sonicres=true},
-	level_range = {15, nil},
+	level_range = {17, nil},
 	rarity = 15,
 	greater_ego = 1,
 --	cost = 42000,
@@ -339,7 +339,7 @@ newEntity {
 newEntity {
 	name = " of greater sonic resistance", suffix = true,
 	keywords = {sonicres=true},
-	level_range = {18, nil},
+	level_range = {19, nil},
 	rarity = 20,
 	greater_ego = 1,
 --	cost = 66000,
@@ -356,7 +356,7 @@ newEntity {
 newEntity {
 	name = "darkwood ", prefix = true,
 	keywords = {darkwood=true},
-	level_range = {10, nil},
+	level_range = {3, nil},
 	rarity = 5,
 --	cost = 500,
 	cost = resolvers.value{gold=500},

@@ -8,7 +8,7 @@ local Talents = require "engine.interface.ActorTalents"
 newEntity {
 	name = " of natural armor +1", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
+	level_range = {6, nil},
 	rarity = 5,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
@@ -21,8 +21,8 @@ newEntity {
 newEntity {
 	name = " of natural armor +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {11, nil},
+	rarity = 15,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
 	school = "transmutation",
@@ -34,8 +34,8 @@ newEntity {
 newEntity {
 	name = " of natural armor +3", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {14, nil},
+	rarity = 15,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -47,9 +47,9 @@ newEntity {
 newEntity {
 	name = " of natural armor +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 20},
+	level_range = {16, 20},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 15,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "transmutation",
@@ -61,9 +61,9 @@ newEntity {
 newEntity {
 	name = " of natural armor +5", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {18, 30},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 15,
 --	cost = 50000,
 	cost = resolvers.value{platinum=5000},
 	school = "transmutation",
@@ -75,7 +75,7 @@ newEntity {
 newEntity {
 	name = " of protection +1", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
+	level_range = {6, 10},
 	rarity = 5,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
@@ -88,7 +88,7 @@ newEntity {
 newEntity {
 	name = " of protection +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
+	level_range = {11, nil},
 	rarity = 5,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
@@ -101,8 +101,8 @@ newEntity {
 newEntity {
 	name = " of protection +3", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {14, nil},
+	rarity = 15,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "abjuration",
@@ -114,9 +114,9 @@ newEntity {
 newEntity {
 	name = " of protection +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 20},
+	level_range = {16, 20},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 15,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "abjuration",
@@ -128,7 +128,7 @@ newEntity {
 newEntity {
 	name = " of protection +5", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {18, 30},
 	greater_ego = 1,
 	rarity = 5,
 --	cost = 50000,
@@ -144,8 +144,8 @@ newEntity {
 newEntity {
 	name = " of armor +1", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {6, 10},
+	rarity = 15,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
 	school = "conjuration",
@@ -157,8 +157,8 @@ newEntity {
 newEntity {
 	name = " of armor +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {11, nil},
+	rarity = 15,
 --	cost = 8000,
 	cost = resolvers.value{platinum=800},
 	school = "conjuration",
@@ -170,8 +170,8 @@ newEntity {
 newEntity {
 	name = " of armor +3", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {14, nil},
+	rarity = 15,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "conjuration",
@@ -183,9 +183,9 @@ newEntity {
 newEntity {
 	name = " of armor +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 20},
+	level_range = {16, 20},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 15,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "conjuration",
@@ -197,9 +197,9 @@ newEntity {
 newEntity {
 	name = " of armor +5", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {18, 30},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 15,
 --	cost = 50000,
 	cost = resolvers.value{platinum=5000},
 	school = "conjuration",
@@ -210,7 +210,7 @@ newEntity {
 
 newEntity{
 	name = " of resistance +1", suffix = true,
-	level_range = {1, 10},
+	level_range = {4, 10},
 	rarity = 5,
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
@@ -224,7 +224,7 @@ newEntity{
 
 newEntity{
 	name = " of resistance +2", suffix = true,
-	level_range = {1, 10},
+	level_range = {8, 10},
 	rarity = 5,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
@@ -238,8 +238,8 @@ newEntity{
 
 newEntity{
 	name = " of resistance +3", suffix = true,
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {12, nil},
+	rarity = 15,
 --	cost = 9000,
 	cost = resolvers.value{platinum=900},
 	school = "abjuration",
@@ -252,8 +252,8 @@ newEntity{
 
 newEntity{
 	name = " of resistance +4", suffix = true,
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {14, nil},
+	rarity = 15,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "abjuration",
@@ -267,8 +267,8 @@ newEntity{
 
 newEntity{
 	name = " of resistance +5", suffix = true,
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {15, nil},
+	rarity = 15,
 --	cost = 25000,
 	cost = resolvers.value{platinum=2500},
 	school = "abjuration",
@@ -284,8 +284,8 @@ newEntity{
 newEntity {
 	name = " of ogre strength +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {8, 30},
+	rarity = 10,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
 	school = "transmutation",
@@ -297,8 +297,8 @@ newEntity {
 newEntity {
 	name = " of giant strength +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 10,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -310,9 +310,9 @@ newEntity {
 newEntity {
 	name = " of giant strength +6", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {16, 30},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 15,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "transmutation",
@@ -324,8 +324,8 @@ newEntity {
 newEntity {
 	name = " of Dexterity +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {8, 30},
+	rarity = 10,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
 	school = "transmutation",
@@ -337,8 +337,8 @@ newEntity {
 newEntity {
 	name = " of Dexterity +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 10,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -350,9 +350,9 @@ newEntity {
 newEntity {
 	name = " of Dexterity +6", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {16, 30},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 10,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "transmutation",
@@ -364,8 +364,8 @@ newEntity {
 newEntity {
 	name = " of health +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {8, 30},
+	rarity = 10,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
 	school = "transmutation",
@@ -377,8 +377,8 @@ newEntity {
 newEntity {
 	name = " of health +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 10,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -390,9 +390,9 @@ newEntity {
 newEntity {
 	name = " of health +6", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {16, 30},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 10,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "transmutation",
@@ -404,8 +404,8 @@ newEntity {
 newEntity {
 	name = " of Intelligence +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {8, 30},
+	rarity = 10,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
 	school = "transmutation",
@@ -417,8 +417,8 @@ newEntity {
 newEntity {
 	name = " of Intelligence +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 10,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -430,9 +430,9 @@ newEntity {
 newEntity {
 	name = " of Intelligence +6", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {16, 30},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 10,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "transmutation",
@@ -444,8 +444,8 @@ newEntity {
 newEntity {
 	name = " of Wisdom +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {8, 30},
+	rarity = 10,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
 	school = "transmutation",
@@ -457,8 +457,8 @@ newEntity {
 newEntity {
 	name = " of Wisdom +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 10,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -470,9 +470,9 @@ newEntity {
 newEntity {
 	name = " of Wisdom +6", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {16, 30},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 10,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "transmutation",
@@ -484,8 +484,8 @@ newEntity {
 newEntity {
 	name = " of Charisma +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {8, 30},
+	rarity = 10,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
 	school = "transmutation",
@@ -497,8 +497,8 @@ newEntity {
 newEntity {
 	name = " of Charisma +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 10,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -510,9 +510,9 @@ newEntity {
 newEntity {
 	name = " of Charisma +6", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {16, 30},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 10,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "transmutation",
@@ -525,8 +525,8 @@ newEntity {
 newEntity {
 	name = " of Providence +2", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {8, 30},
+	rarity = 20,
 --	cost = 4000,
 	cost = resolvers.value{platinum=400},
 	school = "evocation",  --per luckstone and Luckblade
@@ -538,8 +538,8 @@ newEntity {
 newEntity {
 	name = " of Providence +4", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 20,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "evocation",  --per luckstone and Luckblade
@@ -551,9 +551,9 @@ newEntity {
 newEntity {
 	name = " of Providence +6", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {16, 30},
 	greater_ego = 1,
-	rarity = 5,
+	rarity = 20,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
 	school = "evocation",  --per luckstone and Luckblade
@@ -565,7 +565,7 @@ newEntity {
 --Based on Incursion
 newEntity{
 	name = " of the Endless Wave", suffix = true,
-	level_range = {10, 30},
+	level_range = {16, 30},
 	rarity = 5,
 --	cost = 32000,
 	cost = resolvers.value{platinum=3200},
@@ -578,7 +578,7 @@ newEntity{
 
 newEntity{
 	name = " of Detection", suffix = true,
-	level_range = {10, 30},
+	level_range = {14, 30},
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
@@ -593,7 +593,7 @@ newEntity{
 
 newEntity{
 	name = " of the Eagle", suffix = true,
-	level_range = {10, 30},
+	level_range = {14, 30},
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
@@ -606,8 +606,8 @@ newEntity{
 
 newEntity{
 	name = " of the Soul", suffix = true,
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 13,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -619,7 +619,7 @@ newEntity{
 
 newEntity{
 	name = " of the Mantis", suffix = true,
-	level_range = {10, 30},
+	level_range = {14, 30},
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
@@ -632,8 +632,8 @@ newEntity{
 
 newEntity{
 	name = " of the Spur", suffix = true,
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 7,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -646,7 +646,7 @@ newEntity{
 
 newEntity{
 	name = " of Stability", suffix = true,
-	level_range = {10, 30},
+	level_range = {14, 30},
 	rarity = 5,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
@@ -659,8 +659,8 @@ newEntity{
 
 newEntity{
 	name = " of Contortion", suffix = true,
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 10,
 --	cost = 16000,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
@@ -673,7 +673,7 @@ newEntity{
 
 newEntity{
 	name = " of Magical Aptitude", suffix = true,
-	level_range = {10, 30},
+	level_range = {11, 30},
 	rarity = 5,
 --	cost = 7500,
 	cost = resolvers.value{platinum=750},
@@ -687,7 +687,7 @@ newEntity{
 newEntity {
 	name = " of the Winterlands", suffix = true,
 --	keywords = {coldres=true},
-	level_range = {10, nil},
+	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
 	cost = resolvers.value{platinum=1800},
@@ -702,8 +702,8 @@ newEntity {
 
 newEntity {
 	name = " of the Druid", suffix = true,
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 15,
 --	cost = 14000,
 	cost = resolvers.value{platinum=1400},
 	school = "transmutation",
@@ -715,8 +715,8 @@ newEntity {
 --Originally cloaks only
 newEntity{
 	name = " of arachnida", suffix = true,
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {14, 30},
+	rarity = 15,
 --	cost = 14000,
 	cost = resolvers.value{platinum=1400},
 	school = "transmutation",
@@ -731,8 +731,8 @@ newEntity{
 	name = " of Elvenkind", suffix = true,
 	image = "tiles/elven_cloak.png",
     display = "♠", color=colors.GREEN,
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {7, 30},
+	rarity = 15,
 --	cost = 2500,
 	cost = resolvers.value{platinum=250},
 	school = "illusion",
@@ -743,8 +743,8 @@ newEntity{
 
 newEntity{
 	name = " of the Bat", suffix = true,
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {16, 30},
+	rarity = 25,
 --	cost = 26000,
 	cost = resolvers.value{platinum=2600},
 	school = "transmutation",
@@ -756,8 +756,8 @@ newEntity{
 
 newEntity{
 	name = " of spell resistance 21", suffix = true,
-	level_range = {10, 30},
-	rarity = 5,
+	level_range = {20, 30},
+	rarity = 8,
 --	cost = 90000,
 	cost = resolvers.value{platinum=9000},
 	school = "abjuration",
@@ -770,7 +770,7 @@ newEntity{
 newEntity {
 	name = " of the Hin", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {10, 30},
+	level_range = {16, 30},
 	greater_ego = 1,
 	rarity = 10,
 --	cost = 32000,
@@ -790,7 +790,7 @@ newEntity {
 newEntity {
 	name = " of identify", suffix = true,
 	level_range = {1, 10},
-	rarity = 5,
+	rarity = 15,
 --	cost = 4500,
 	cost = resolvers.value{platinum=450},
 	school = "divination",
@@ -811,8 +811,8 @@ end
 newEntity {
 	name = " of brightness", suffix = true,
 --	keywords = {bonus=true},
-	level_range = {1, 10},
-	rarity = 5,
+	level_range = {6, 10},
+	rarity = 8,
 --	cost = 2000,
 	cost = resolvers.value{platinum=200},
 	school = "evocation",
@@ -824,7 +824,7 @@ newEntity {
 --Halves nutrition loss rate
 newEntity{
 	name = " of slow digestion", suffix = true,
-	level_range = {1, 10},
+	level_range = {5, 10},
 	rarity = 5,
 	cost = resolvers.value{platinum=200},
 	school = "transmutation", --a wild guess
@@ -956,7 +956,7 @@ newEntity{
 newEntity{
 	name = " of Frostbite", suffix = true,
 	keywords = {cursed=true},
-	level_range = {1,10},
+	level_range = {3,10},
 	rarity = 8,
 	cursed = true,
 	cost = 0,
@@ -972,7 +972,7 @@ newEntity{
 newEntity{
 	name = " of Fireburn", suffix = true,
 	keywords = {cursed=true},
-	level_range = {1,10},
+	level_range = {3,10},
 	rarity = 8,
 	cursed = true,
 	cost = 0,
