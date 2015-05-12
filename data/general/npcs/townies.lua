@@ -58,10 +58,10 @@ newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
 
     resolvers.equip{
         full_id=true,
-        { name = "chain shirt", not_properties={"cursed"}  },
-        { name = "light metal shield", not_properties={"cursed"}  },
-        { name = "rapier", not_properties={"cursed"}  },
-        { name = "bolts", not_properties={"cursed"}  },
+        { name = "chain shirt", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "light metal shield", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "rapier", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "bolts", not_properties={"cursed"}, veins_drops="npc", veins_level=4,  },
     },
     resolvers.inventory {
     full_id=true,
@@ -98,7 +98,7 @@ newEntity{
     stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
     resolvers.equipnoncursed{
         full_id=true,
-        { name = "dagger",  },
+        { name = "dagger", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
     },
     can_talk = "female_courtesan",
     resolvers.classes{Rogue=1},
@@ -112,7 +112,7 @@ newEntity{
     stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
     resolvers.equipnoncursed{
         full_id=true,
-        { name = "dagger",  },
+        { name = "dagger", veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
     },
     can_talk = "male_courtesan",
     resolvers.classes{Rogue=1},
@@ -127,14 +127,14 @@ newEntity{
 
     resolvers.equip{
         full_id=true,
-        { name = "chain shirt", not_properties={"cursed"}  },
-        { name = "light metal shield", not_properties={"cursed"}  },
-        { name = "rapier", not_properties={"cursed"}  },
-        { name = "bolts", not_properties={"cursed"}  },
+        { name = "chain shirt", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "light metal shield", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "rapier", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "bolts", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
     },
     resolvers.inventory {
     full_id=true,
-    { name = "hand crossbow", },
+    { name = "hand crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
     },
     resolvers.classes{Fighter=2},
 }
