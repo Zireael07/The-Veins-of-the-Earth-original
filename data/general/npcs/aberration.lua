@@ -99,8 +99,8 @@ newEntity{ base = "BASE_NPC_ATHACH",
 	},
 	resolvers.equip{
         full_id=true,
-        { name = "leather armor" },
-        { name = "morningstar" },
+        { name = "leather armor", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+        { name = "morningstar", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
     },
 }
 
@@ -229,8 +229,8 @@ newEntity{ base = "BASE_NPC_DRIDER",
 	},
 	resolvers.equip{
         full_id=true,
-        { name = "shortbow" },
-    	{ name = "arrows" },
+        { name = "shortbow", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+    	{ name = "arrows", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
         },
 }
 

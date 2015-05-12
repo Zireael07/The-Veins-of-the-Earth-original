@@ -173,8 +173,8 @@ newEntity{
 --	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "banded mail" },
-		{ name = "longsword" },
+		{ name = "banded mail", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "longsword", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -210,7 +210,7 @@ newEntity{
 --	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "full plate" },
+		{ name = "full plate", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -235,8 +235,8 @@ newEntity{
 	skill_spot = 6,
 	resolvers.equip{
 		full_id=true,
-		{ name = "plate armor" },
-		{ name = "spiked chain" },
+		{ name = "plate armor", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "spiked chain", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 

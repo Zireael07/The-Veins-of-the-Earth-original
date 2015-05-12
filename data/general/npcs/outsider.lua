@@ -237,14 +237,14 @@ newEntity{
 	},
 	resolvers.equip{
 	full_id=true,
-		{ name = "chain mail" },
-		{ name = "scimitar" },
-		{ name = "arrows" },
+		{ name = "chain mail", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "scimitar", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
 	{ name = "fresh corpse" },
-    { name = "longbow" },
+    { name = "longbow", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -453,13 +453,13 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "short sword" },
-		{ name = "short sword" },
-		{ name = "arrows" },
+		{ name = "short sword", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "short sword", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "longbow" },
+    { name = "longbow", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 

@@ -9,6 +9,8 @@ newEntity{
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	ai = "humanoid_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6} },
+	--Per SRD
+	resolvers.talents{[Talents.T_SIMPLE_WEAPON_PROFICIENCY] =1},
 	resolvers.wounds()
 }
 
@@ -67,13 +69,13 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	movement_speed = 0.66,
 	alignment = "Chaotic Evil",
 	resolvers.equip{
-		{ name = "studded leather" },
-		{ name = "buckler" },
-		{ name = "bolts" },
+		{ name = "studded leather", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "buckler", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow" },
+    { name = "light crossbow", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -157,11 +159,13 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	skill_hide = 12, --including stone bonus
 	skill_listen = 6,
 	skill_spot = 4,
-	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
+	resolvers.talents{ [Talents.T_ALERTNESS]=1,
+	[Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
+	},
 	resolvers.equip{
 	full_id=true,
-		{ name = "studded leather" },
-		{ name = "battleaxe" },
+		{ name = "studded leather", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "battleaxe", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -192,12 +196,12 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	alignment = "Lawful Evil",
 	resolvers.equip{
 	full_id=true,
-		{ name = "trident" },
-		{ name = "bolts" },
+		{ name = "trident", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="monster", veins_level=1, },
 	},
 	resolvers.inventory {
 --	full_id=true,
-	{ name = "heavy crossbow" },
+	{ name = "heavy crossbow", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -318,7 +322,7 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	},
 	resolvers.equip{
 	full_id=true,
-		{ name = "club" },
+		{ name = "club", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -353,8 +357,8 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	},
 	resolvers.equip{
 	full_id=true,
-		{ name = "shortbow" },
-		{ name = "arrows" },
+		{ name = "shortbow", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -378,9 +382,11 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	skill_listen = 7,
 	skill_search = 4,
 	skill_spot = 7,
-	resolvers.talents{ [Talents.T_POWER_ATTACK]=1 },
+	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
+	[Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1, --for the axe
+	},
 	resolvers.equip{
 	full_id=true,
-		{ name = "greataxe" },
+		{ name = "greataxe", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }

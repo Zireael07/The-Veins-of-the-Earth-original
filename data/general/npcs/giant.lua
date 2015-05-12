@@ -13,6 +13,9 @@ newEntity{
 	ai = "humanoid_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6}, },
 	alignment = "Chaotic Evil",
+	resolvers.talents{[Talents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
+		[Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
+	},
 	resolvers.wounds()
 }
 
@@ -43,13 +46,13 @@ newEntity{ base = "BASE_NPC_GIANT",
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "hide armor" },
-		{ name = "morningstar" },
-		{ name = "morningstar" },
+		{ name = "hide armor", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "morningstar", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "morningstar", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "javelin" },
+    { name = "javelin", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -81,12 +84,12 @@ newEntity{ base = "BASE_NPC_GIANT",
 	alignment = "Chaotic Evil",
 	resolvers.equip{
 		full_id=true,
-		{ name = "hide armor" },
-		{ name = "greatclub" },
+		{ name = "hide armor", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "greatclub", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "javelin" },
+    { name = "javelin", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -125,13 +128,13 @@ newEntity{ base = "BASE_NPC_GIANT",
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "chain shirt" },
-		{ name = "greatsword" },
-		{ name = "arrows" },
+		{ name = "chain shirt", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "greatsword", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "longbow" },
+    { name = "longbow", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 }
 

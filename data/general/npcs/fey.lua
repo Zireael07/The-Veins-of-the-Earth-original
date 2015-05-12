@@ -43,12 +43,12 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "dagger" },
-		{ name = "arrows" },
+		{ name = "dagger", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "shortbow" },
+	{ name = "shortbow", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 	faction = "good",
 	resolvers.wounds()
@@ -94,12 +94,12 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "dagger" },
-		{ name = "arrows" },
+		{ name = "dagger", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "shortbow" },
+	{ name = "shortbow", veins_drops="monster", veins_level=resolvers.npc_drops_level, },
 	},
 	faction = "good",
 	resolvers.wounds()

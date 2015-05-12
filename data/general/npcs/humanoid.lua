@@ -74,10 +74,10 @@ newEntity{
 	},
 	resolvers.equipnoncursed{
 		full_id=true,
-		{ name = "chain shirt",  },
-		{ name = "light metal shield",  },
-		{ name = "rapier",  },
-		{ name = "bolts",  },
+		{ name = "chain shirt", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "light metal shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "rapier", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -113,15 +113,15 @@ newEntity{
 	challenge = 1,
 	resolvers.equipnoncursed{
 		full_id=true,
-		{ name = "chain mail",  },
-		{ name = "light metal shield",  },
-		{ name = "long sword",  },
-		{ name = "arrows",  },
-		{ name = "torch"},
+		{ name = "chain mail", veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+		{ name = "light metal shield", veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+		{ name = "long sword", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="npc", veins_level=1, },
+		{ name = "torch", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "shortbow", not_properties={"cursed"} },
+    { name = "shortbow", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -154,10 +154,10 @@ newEntity{
 	},
 	resolvers.equipnoncursed{
 		full_id=true,
-		{ name = "scale mail",  },
-		{ name = "heavy metal shield",  },
-		{ name = "dwarven waraxe", },
-		{ name = "arrows",  },
+		{ name = "scale mail", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "heavy metal shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "dwarven waraxe", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -181,10 +181,10 @@ newEntity{
 	alignment = "Lawful Evil",
 	resolvers.equip{
 		full_id=true,
-		{ name = "chain mail",  },
-		{ name = "heavy metal shield",  },
-		{ name = "warhammer",  },
-		{ name = "bolts",  },
+		{ name = "chain mail", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "heavy metal shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "warhammer", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
@@ -225,15 +225,15 @@ newEntity{
 	skill_spot = 1,
 	resolvers.equipnoncursed{
 		full_id=true,
-		{ name = "chain shirt",  },
-		{ name = "heavy metal shield",   },
-		{ name = "long sword", },
-		{ name = "bolts", },
+		{ name = "chain shirt", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "heavy metal shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "long sword", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=1, },
 		{ name = "torch" },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow", not_properties={"cursed"} },
+    { name = "light crossbow", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	{ name = "food ration" },
 	},
 }
@@ -255,14 +255,14 @@ newEntity{
 	stats = { str=11, dex=13, con=12, int=10, wis=11, cha=4, luc=10 },
 	resolvers.equipnoncursed{
 		full_id=true,
-		{ name = "banded mail",   },
-		{ name = "buckler", },
-		{ name = "long sword",   },
-		{ name = "bolts", },
+		{ name = "banded mail", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "buckler", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "long sword", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow", not_properties={"cursed"}  },
+    { name = "light crossbow", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	{ name = "food ration" },
 	},
 }
@@ -295,15 +295,15 @@ newEntity{
 	challenge = 1/2,
 	resolvers.equipnoncursed{
 		full_id=true,
-		{ name = "studded leather",  },
-		{ name = "light metal shield",  },
-		{ name = "long sword",  },
-		{ name = "bolts",  },
+		{ name = "studded leather", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "light metal shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "long sword", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=1,  },
 		{ name = "torch" },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow", not_properties={"cursed"}  },
+    { name = "light crossbow", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	{ name = "food ration" },
 	},
 }
@@ -340,13 +340,13 @@ newEntity{
 	skill_swim = 1,
 	resolvers.equip{
 		full_id=true,
-		{ name = "studded leather",   },
-		{ name = "heavy metal shield", },
-		{ name = "club",  },
+		{ name = "studded leather", veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+		{ name = "heavy metal shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "club", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "javelin",  },
+    { name = "javelin", veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
 	{ name = "food ration" },
 	},
 }
@@ -379,12 +379,12 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	challenge = 1/2,
 	resolvers.equip{
 		full_id=true,
-		{ name = "short spear", },
-		{ name = "arrows",  },
+		{ name = "short spear", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "shortbow",  },
+    { name = "shortbow", veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
 	},
 }
 
@@ -397,13 +397,13 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	challenge = 1,
 	resolvers.equip{
 		full_id=true,
-		{ name = "arrows", },
-        { name = "shortbow",  },
-        { name = "leather armor", },
+        { name = "shortbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+        { name = "leather armor", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "short spear",  },
+	{ name = "short spear", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -434,13 +434,13 @@ newEntity{
 	challenge = 1,
 	resolvers.equip{
 		full_id=true,
-		{ name = "studded leather armor",  },
-		{ name = "falchion", },
-		{ name = "arrows",  },
+		{ name = "studded leather armor", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "falchion", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "shortbow",  },
+    { name = "shortbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -480,13 +480,13 @@ newEntity{
 	},
 	resolvers.equipnoncursed{
 		full_id=true,
-		{ name = "studded leather armor",  },
-		{ name = "rapier",  },
-		{ name = "bolts",  },
+		{ name = "studded leather armor", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "rapier", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow",  },
+    { name = "light crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	{ name = "food ration" },
 	},
 }
@@ -526,14 +526,14 @@ newEntity{
 	},
 	resolvers.equipnoncursed{
 		full_id=true,
-		{ name = "scale mail", },
-		{ name = "long sword", },
-		{ name = "heavy metal shield", },
-		{ name = "bolts", },
+		{ name = "scale mail", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "long sword", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "heavy metal shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=1,},
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "light crossbow", not_properties={"cursed"} },
+    { name = "light crossbow", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	{ name = "food ration" },
 	},
 }
@@ -569,9 +569,9 @@ newEntity{
 	challenge = 1/3,
 	resolvers.equip{
 		full_id=true,
-		{ name = "leather armor",  },
-		{ name = "light wooden shield",  },
-		{ name = "morningstar",  },
+		{ name = "leather armor", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "light wooden shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "morningstar", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -608,9 +608,9 @@ newEntity{
 	infravision = 3,
 	resolvers.equip{
 		full_id=true,
-		{ name = "leather armor", not_properties={"cursed"}  },
-		{ name = "light wooden shield", not_properties={"cursed"}  },
-		{ name = "morningstar", not_properties={"cursed"}  },
+		{ name = "leather armor", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "light wooden shield", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+		{ name = "morningstar", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
 	},
 --	resolvers.specialnpc(),
 	resolvers.templates()
@@ -646,14 +646,14 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "leather armor",  },
-		{ name = "heavy steel shield",  },
-		{ name = "battleaxe",  },
-		{ name = "arrows",  },
+		{ name = "leather armor", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "heavy steel shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "battleaxe", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "arrows", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
-	{ name = "shortbow",  },
+	{ name = "shortbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -682,13 +682,13 @@ newEntity{
 	skill_movesilently = 4,
 	resolvers.equip{
 		full_id=true,
-		{ name = "studded leather",  },
-		{ name = "light metal shield",  },
-		{ name = "long sword", },
+		{ name = "studded leather", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "light metal shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "long sword", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "javelin" },
+    { name = "javelin", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -721,11 +721,11 @@ newEntity{
 	skill_listen = 3,
 	resolvers.equip{
 		full_id=true,
-		{ name = "club" },
+		{ name = "club", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "javelin" },
+    { name = "javelin", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -762,12 +762,12 @@ newEntity{
 	resolvers.talents{ [Talents.T_SHOOT]=1, },
 	resolvers.equip{
 		full_id=true,
-		{ name = "light crossbow",  },
-		{ name = "bolts",  },
+		{ name = "light crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=1, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "long spear",  },
+    { name = "long spear", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 }
 
@@ -806,12 +806,12 @@ newEntity{
 	},
 	resolvers.equip{
 		full_id=true,
-		{ name = "leather armor",   },
-		{ name = "heavy crossbow", },
-		{ name = "bolts",  },
+		{ name = "leather armor", veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+		{ name = "heavy crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+		{ name = "bolts", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 	resolvers.inventory {
 	full_id=true,
-    { name = "trident", },
+    { name = "trident", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
 }
