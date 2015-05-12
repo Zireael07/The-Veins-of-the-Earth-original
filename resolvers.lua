@@ -1067,13 +1067,25 @@ function resolvers.calc.burstdamage(t, e)
 	if e.combat.critical == 4 then burst = {3,10} end
 end
 
+local function actor_final_level(e)
+	return e.challenge
+end
+
+function resolvers.npc_drops_level()
+	return {__resolver="drop_randart", __resolve_last=true, t}
+end
+
+function resolvers.calc.npc_drops_level()
+	return actor_final_level(e) or e.challenge
+end
+
 --Item creation
 function resolvers.creation_cost()
 	return {__resolver="creation_cost", }
 end
 
 function resolvers.calc.creation_cost(t, e)
---	if not e.name == 
+--	if not e.name ==
 	if not e.egoed then return 0 end
 	--Force resolve cost first
 	if type(e.cost) == "table" and e.cost.__resolver then e.cost = resolvers.calc[e.cost.__resolver](e.cost, e) end
