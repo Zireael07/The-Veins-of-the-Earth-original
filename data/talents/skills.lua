@@ -109,7 +109,7 @@ newTalent{
 	return true
 	end,
 	info = function(self, t)
-		return "Hides in shadows"
+		return "Hides in shadows."
 	end,
 }
 
@@ -176,7 +176,7 @@ newTalent{
 	end,
 
 	info = function(self, t)
-		return "Ride on your mount"
+		return "Ride on your mount."
 	end,
 }
 
@@ -282,7 +282,7 @@ newTalent{
 		return true
 	end,
 	info = function(self, t)
-		return "Talk to a sentient creature and attempt to befriend it"
+		return "Talk to a sentient creature and attempt to befriend it."
 	end,
 }
 
@@ -314,6 +314,50 @@ newTalent{
 		return true
 	end,
 	info = function(self, t)
-		return "Attempt to influence an animal"
+		return "Attempt to influence an animal."
 	end,
+}
+
+newTalent{
+    name = "Craft",
+    type = {"skill/skill",1},
+	mode = "activated",
+	points = 1,
+	cooldown = 20,
+    action = function(self, t)
+    -- Choose item
+    local result, dc = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired item",{
+        {name="arrows", desc="", dc=12},
+        {name="bolts", desc="", dc=15},
+        {name="dagger", desc="", dc=12},
+        {name="short sword", desc="", dc=15},
+        {name="long sword", desc="", dc=15},
+        {name="light crossbow", desc="", dc=15},
+        {name="shortbow", desc="", dc=12},
+        {name="longbow", desc="", dc=12},
+    }, function(result, item)
+        self:talentDialogReturn(result)
+        game:unregisterDialog(self:talentDialogGet())
+        dc = item.dc
+    --    game.log("DC is "..dc)
+    end))
+
+    if not result then return nil end
+
+    local check = self:skillCheck("craft", dc or 12)
+
+    if check then
+        o = game.zone:makeEntity(game.level, "object", {name=result}, nil, true)
+        if o then
+            game.zone:addEntity(game.level, o, "object", self.x, self.y)
+        end
+    else
+        game.log("You fail to make the "..result)
+    end
+
+        return true
+    end,
+    info = function(self, t)
+        return "Attempt to craft a mundane item."
+    end,
 }
