@@ -89,14 +89,14 @@ newEntity{
 newEntity{
 	define_as = "FLOOR",
 	type = "floor", subtype = "floor",
-	name = "floor", image = "tiles/floor.png",
+	name = "floor", image = "tiles/UT/worldmap_floor.png",
 	display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
 }
 
 newEntity{
 	define_as = "WALL",
 	type = "wall", subtype = "wall",
-	name = "wall", image = "tiles/wall.png",
+	name = "wall", image = "tiles/worldmap_wall.png",
 	display = '#', color=colors.BLACK, back_color={r=30, g=30, b=60},
 	always_remember = true,
 	does_block_move = true,
