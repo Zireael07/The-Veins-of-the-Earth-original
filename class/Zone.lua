@@ -171,7 +171,7 @@ function _M:computeRarities(type, list, level, filter, add_level, rarity_field)
 
     for i, e in ipairs(list) do
         if e[rarity_field] and e.level_range and (not filter or filter(e)) then
---          print("computing rarity of", e.name)
+          print("computing rarity of", e.name)
 
             --Safety catch by Zizzo
            if self:okToGenerate(e, type, level, base_lev, lev, filter, rarity_field) then
@@ -204,6 +204,9 @@ function _M:computeRarities(type, list, level, filter, add_level, rarity_field)
                 r.total = r.total + genprob
                 r[#r+1] = { e=e, genprob=r.total, level_diff = lev - level.level }
             end
+
+			else
+			print(("Entity(%30s) not ok to generate. Level range(%2d-%2s), current %2d"):format(e.name, e.level_range[1], e.level_range[2] or "--", lev))
 
             end
         end
@@ -244,7 +247,7 @@ function _M:checkFilter(e, filter, type)
     if not filter then return true end
     if filter.ignore and self:checkFilter(e, filter.ignore, type) then return false end
 
-    print("Checking filter", filter.type, filter.subtype, "::", e.type,e.subtype,e.name)
+--    print("Checking filter", filter.type, filter.subtype, "::", e.type,e.subtype,e.name)
     if filter.type and filter.type ~= e.type then return false end
     if filter.subtype and filter.subtype ~= e.subtype then return false end
     if filter.name and filter.name ~= e.name then return false end

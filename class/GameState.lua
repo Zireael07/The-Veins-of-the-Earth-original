@@ -638,7 +638,9 @@ function _M:entityFilter(zone, e, filter, entity_type)
 			--Force resolve cost first
 			if type(e.cost) == "table" and e.cost.__resolver then e.cost = resolvers.calc[e.cost.__resolver](e.cost, e) end
 
-			if (e.cost or 0) > filter.cost then return false end
+			if (e.cost or 0) > filter.cost then
+				print("Refused cost filter: ", filter.cost, "::", e.cost or 0)
+				return false end
 		end
 
 	return true
