@@ -1072,11 +1072,20 @@ local function actor_final_level(e)
 end
 
 function resolvers.npc_drops_level()
-	return {__resolver="drop_randart", __resolve_last=true, t}
+	return {__resolver="npc_drops_level", __resolve_last=true, t}
+	--return {__resolver="npc_drops_level", t}
 end
 
 function resolvers.calc.npc_drops_level()
-	return actor_final_level(e) or e.challenge
+	 local level
+
+		if type(actor_final_level(e)) == "number" then
+			level = actor_final_level(e)
+		else
+			level = e.challenge
+		end
+
+	return level
 end
 
 --Item creation
