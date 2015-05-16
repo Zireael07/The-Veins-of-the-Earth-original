@@ -171,7 +171,7 @@ function _M:computeRarities(type, list, level, filter, add_level, rarity_field)
 
     for i, e in ipairs(list) do
         if e[rarity_field] and e.level_range and (not filter or filter(e)) then
-          print("computing rarity of", e.name)
+        --  print("computing rarity of", e.name)
 
             --Safety catch by Zizzo
            if self:okToGenerate(e, type, level, base_lev, lev, filter, rarity_field) then
