@@ -52,7 +52,7 @@ newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
     base = "BASE_NPC_DROW_T",
     name = "female drow noble",
     image = "tiles/newtiles/drow_noble_female.png",
-    rarity = 3,
+    rarity = 6,
     max_life = resolvers.rngavg(13,15),
     stats = { str=13, dex=15, con=9, int=12, wis=13, cha=12, luc=10 },
 
@@ -76,6 +76,7 @@ newEntity{
     base = "BASE_NPC_DROW_NOBLE",
     name = "male drow noble",
     image = "tiles/drow_noble_male.png",
+    rarity = 5,
 }
 
 newEntity{
@@ -137,4 +138,68 @@ newEntity{
     { name = "hand crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
     },
     resolvers.classes{Fighter=2},
+}
+
+--Based on PF Monster Codex
+newEntity{
+    base = "BASE_NPC_DROW_T",
+    name = "drow house guard",
+    image = "tiles/UT/drow_house_guard.png",
+    stats = { str=14, dex=17, con=11, int=10, wis=12, cha=10, luc=10 },
+    max_life = resolvers.rngavg(20,25),
+    rarity = 8,
+    resolvers.equip{
+        full_id=true,
+        { name = "chain shirt", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "light metal shield", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "rapier", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "bolts", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+    },
+    resolvers.inventory {
+    full_id=true,
+    { name = "hand crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+    },
+    resolvers.classes{Fighter=3},
+}
+
+newEntity{
+    base = "BASE_NPC_DROW_T",
+    name = "drow house captain",
+    image = "tiles/UT/drow_house_guard.png",
+    stats = { str=14, dex=18, con=11, int=10, wis=12, cha=10, luc=10 },
+    max_life = resolvers.rngavg(50,55),
+    rarity = 10,
+    resolvers.equip{
+        full_id=true,
+        { name = "chain shirt", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "light metal shield", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "rapier", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "bolts", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+    },
+    resolvers.inventory {
+    full_id=true,
+    { name = "hand crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+    },
+    resolvers.classes{Fighter=7},
+}
+
+newEntity{
+    base = "BASE_NPC_DROW_T",
+    name = "drow priest",
+    image = "tiles/npc/drow_priest.png",
+    max_life = resolvers.rngavg(30,35),
+    rarity = 6,
+    stats = { str=10, dex=12, con=12, int=14, wis=18, cha=15, luc=12 },
+    resolvers.equip{
+        full_id=true,
+        { name = "full plate", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "heavy metal shield", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "light flail", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "bolts", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+    },
+    resolvers.inventory {
+    full_id=true,
+    { name = "hand crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+    },
+    resolvers.classes{Cleric=5},
 }
