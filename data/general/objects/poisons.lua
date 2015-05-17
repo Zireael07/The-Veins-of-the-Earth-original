@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 --Poison vials
 newEntity{
@@ -7,7 +7,7 @@ newEntity{
     slot = "INVEN",
     type = "vial", subtype = "vial",
     display = "!", color=colors.SLATE,
-    image = "tiles/poison_vial.png",
+    image = "tiles/object/poison_vial.png",
     encumber = 0,
     name = "a vial",
     desc = [[A vial.]],

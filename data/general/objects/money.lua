@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "copper coins",
-    image = "tiles/copper_coins.png",
+    image = "tiles/object/copper_coins.png",
  	color = colors.SANDY_BROWN,
     level_range = {1,20},
     desc = [[A pile of copper coins.]],
@@ -45,7 +45,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "silver coins",
-    image = "tiles/silver_coins.png",
+    image = "tiles/object/silver_coins.png",
  	color = colors.SILVER,
     level_range = {7,nil},
     desc = [[A pile of silver coins.]],
@@ -55,7 +55,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "gold coins",
-    image = "tiles/gold_coins.png",
+    image = "tiles/object/gold_coins.png",
  	color = colors.GOLD,
     level_range = {10,nil},
     desc = [[A pile of gold coins.]],
@@ -65,7 +65,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "platinum coins",
-    image = "tiles/platinum_coins.png",
+    image = "tiles/object/platinum_coins.png",
     color = colors.STEEL_BLUE,
     level_range = {15,nil},
     desc = [[A pile of platinum coins.]],
@@ -76,7 +76,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "adamantine coins",
-    image = "tiles/adamantine_coins.png",
+    image = "tiles/object/adamantine_coins.png",
     color = colors.LIGHT_GREEN,
     level_range = {10,nil},
     desc = [[A pile of adamantine coins.]],
@@ -86,7 +86,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "mithril coins",
-    image = "tiles/adamantine_coins.png",
+    image = "tiles/object/adamantine_coins.png",
     color = colors.LIGHT_BLUE,
     level_range = {12,nil},
     desc = [[A pile of mithril coins.]],
@@ -97,7 +97,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "garnets",
-    image = "tiles/red_jewels.png",
+    image = "tiles/object/red_jewels.png",
     color = colors.LIGHT_RED,
     level_range = {5,nil},
     desc = [[A pile of garnets.]],
@@ -107,7 +107,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "emeralds",
-    image = "tiles/red_jewels.png",
+    image = "tiles/object/red_jewels.png",
     color = colors.DARK_GREEN,
     level_range = {10,nil},
     desc = [[A pile of emeralds.]],
@@ -117,7 +117,7 @@ newEntity{
 newEntity{
     base = "BASE_MONEY",
     name = "sapphires",
-    image = "tiles/red_jewels.png",
+    image = "tiles/object/red_jewels.png",
     color = colors.DARK_BLUE,
     level_range = {5,nil},
     desc = [[A pile of sapphires.]],

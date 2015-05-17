@@ -1,12 +1,12 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 --Tools or kits
 newEntity{
     define_as = "BASE_TOOL",
     slot = "TOOL",
     type = "tool", subtype = "skill",
-    image = "tiles/kit.png",
+    image = "tiles/object/kit.png",
     display = "^", color=colors.YELLOW,
     encumber = 1,
     rarity = 10,

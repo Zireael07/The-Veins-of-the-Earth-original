@@ -6,7 +6,7 @@ newEntity{
     define_as = "BASE_FOOD",
     slot = "INVEN",
     type = "food",
-    image = "tiles/food.png",
+    image = "tiles/object/food.png",
     display = "%", color=colors.WHITE,
     encumber = 0,
     name = "Food",
@@ -17,7 +17,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "food ration",
-    image = "tiles/food.png",
+    image = "tiles/object/food.png",
     type = "food", subtype = "food",
     level_range = {1,10},
     cost = 5,
@@ -36,7 +36,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "spider bread", color=colors.BROWN,
-    image = "tiles/food.png",
+    image = "tiles/object/food.png",
     type = "food", subtype = "food",
     level_range = {1,10},
     cost = 15,
@@ -54,7 +54,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "beef jerky", color=colors.RED,
-    image = "tiles/meat.png",
+    image = "tiles/object/meat.png",
     type = "food", subtype = "food",
     level_range = {1,10},
     cost = 10,
@@ -112,7 +112,7 @@ newEntity{ define_as = "CORPSE",
 newEntity{
     base = "BASE_FOOD",
     name = "flask of water",
-    image = "tiles/flask.png",
+    image = "tiles/object/flask.png",
     type = "food", subtype = "water",
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
@@ -133,7 +133,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "stale rations",
-    image = "tiles/food.png",
+    image = "tiles/object/food.png",
     type = "food", subtype = "water",
     level_range = {1,10},
     cost = 2,
@@ -152,7 +152,7 @@ newEntity{
 newEntity{
     base = "BASE_FOOD",
     name = "stale water",
-    image = "tiles/flask.png",
+    image = "tiles/object/flask.png",
     type = "food", subtype = "water",
     display = "%", color=colors.AQUAMARINE,
     level_range = {1,10},
