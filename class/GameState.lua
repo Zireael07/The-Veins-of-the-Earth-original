@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013 - 2014 Zireael
+-- Copyright (C) 2013 - 2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -115,10 +115,46 @@ function _M:dayNightCycle()
 	map._map:setObscure(obscure[1] * (tint.r+0.2), obscure[2] * (tint.g+0.2), obscure[3] * (tint.b+0.2), obscure[4])
 end
 
---Taken from ToME, to be adjusted
+--Basic code taken from ToME, adjusted
 --------------------------------------------------------------
 -- Loot filters
 --------------------------------------------------------------
+
+--Values in gp, multiply by 200 to get coppers (base cost); Based on Magic Item Compendium
+local level_to_itemcost = {
+	[1/2] = 50,
+	[1] = 150,
+	[2] = 400,
+	[3] = 800,
+	[4] = 1300,
+	[5] = 1800,
+	[6] = 2300,
+	[7] = 3000,
+	[8] = 4000,
+	[9] = 5000,
+	[10] = 6500,
+	[11] = 8000,
+	[12] = 10000,
+	[13] = 13000,
+	[14] = 18000,
+	[15] = 25000,
+	[16] = 35000,
+	[17] = 48000,
+	[18] = 64000,
+	[19] = 80000,
+	[20] = 100000,
+	[21] = 120000,
+	[22] = 140000,
+	[23] = 160000,
+	[24] = 180000,
+	[25] = 200000,
+	[26] = 260000,
+	[27] = 240000,
+	[28] = 260000,
+	[29] = 280000,
+	[30] = 300000,
+}
+
 
 --PF/SRD values in gp (multiply by 10 to get silver or 200 to get coppers)
 local wealth_by_level = {
