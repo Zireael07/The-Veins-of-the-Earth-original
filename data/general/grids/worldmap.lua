@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2014
+-- Zireael 2014-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -96,7 +96,7 @@ newEntity{
 newEntity{
 	define_as = "WALL",
 	type = "wall", subtype = "wall",
-	name = "wall", image = "tiles/worldmap_wall.png",
+	name = "wall", image = "tiles/terrain/worldmap_wall.png",
 	display = '#', color=colors.BLACK, back_color={r=30, g=30, b=60},
 	always_remember = true,
 	does_block_move = true,

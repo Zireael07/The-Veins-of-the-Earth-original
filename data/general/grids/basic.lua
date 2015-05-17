@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ newEntity{
 	define_as = "UP",
 	type = "floor", subtype = "floor",
 	name = "previous level",
-	image = "tiles/stairs_up.png",
+	image = "tiles/terrain/stairs_up.png",
 	display = '<', color_r=255, color_g=255, color_b=0, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
@@ -43,7 +43,7 @@ newEntity{
 	define_as = "DOWN",
 	type = "floor", subtype = "floor",
 	name = "next level",
-	image = "tiles/stairs_down.png",
+	image = "tiles/terrain/stairs_down.png",
 	display = '>', color_r=255, color_g=255, color_b=0, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
@@ -54,7 +54,7 @@ newEntity{
 	define_as = "SHAFT_UP",
 	type = "floor", subtype = "floor",
 	name = "previous level",
-	image = "tiles/shaft_up.png",
+	image = "tiles/terrain/shaft_up.png",
 	display = '<', color_r=210, color_g=105, color_b=30, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
@@ -65,7 +65,7 @@ newEntity{
 	define_as = "SHAFT_DOWN",
 	type = "floor", subtype = "floor",
 	name = "next level",
-	image = "tiles/shaft_down.png",
+	image = "tiles/terrain/shaft_down.png",
 	display = '>', color_r=210, color_g=105, color_b=30, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
@@ -76,7 +76,7 @@ newEntity{
 newEntity{
 	define_as = "FLOOR",
 	type = "floor", subtype = "floor",
-	name = "floor", image = "tiles/floor.png",
+	name = "floor", image = "tiles/terrain/floor.png",
 	display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
 }
 
@@ -99,7 +99,7 @@ newEntity{
 newEntity{
 	define_as = "WALL",
 	type = "wall", subtype = "wall",
-	name = "wall", image = "tiles/wall.png",
+	name = "wall", image = "tiles/terrain/wall.png",
 	display = '#', color=colors.BLACK, back_color={r=30, g=30, b=60},
 	always_remember = true,
 	does_block_move = true,
@@ -120,14 +120,14 @@ newEntity{
 	base = "WALL",
 	define_as = "WALL_LIMESTONE",
 	display = '#', color=colors.LIGHT_GREEN, back_color=colors.DARK_GREY,
-	image = "tiles/limestone.png",
+	image = "tiles/terrain/limestone.png",
 }
 
 newEntity{
 	base = "WALL",
 	define_as = "WALL_MARBLE",
 	display = '#', color=colors.DARK_GREEN, back_color=colors.DARK_BLUE,
-	image = "tiles/marble.png",
+	image = "tiles/terrain/marble.png",
 }
 
 newEntity{
@@ -149,7 +149,7 @@ newEntity{
 	define_as = "GOLD_VEIN",
 	name = "gold vein",
 	display = '#', color=colors.YELLOW, back_color={r=30, g=30, b=60},
-	image = "tiles/veins.png",
+	image = "tiles/terrain/veins.png",
 }
 
 newEntity{
@@ -157,7 +157,7 @@ newEntity{
 	define_as = "DIAMOND_VEIN",
 	name = "diamond vein",
 	display = '#', color=colors.WHITE, back_color={r=30, g=30, b=60},
-	image = "tiles/veins.png",
+	image = "tiles/terrain/veins.png",
 }
 
 newEntity{
@@ -165,7 +165,7 @@ newEntity{
 	define_as = "MITHRIL_VEIN",
 	name = "mithril vein",
 	display = '#', color=colors.STEEL_BLUE, back_color={r=30, g=30, b=60},
-	image = "tiles/veins.png",
+	image = "tiles/terrain/veins.png",
 }
 
 newEntity{
@@ -173,7 +173,7 @@ newEntity{
 	define_as = "ADAMANT_VEIN",
 	name = "adamant vein",
 	display = '#', color=colors.DARK_SLATE, back_color={r=30, g=30, b=60},
-	image = "tiles/veins.png",
+	image = "tiles/terrain/veins.png",
 }
 
 --Inspired by Angband
@@ -182,7 +182,7 @@ newEntity{
 	name = "treasure vein",
 	define_as = "TREASURE_VEIN",
 	display = '#', color=colors.ORANGE, back_color={r=30, g=30, b=60},
-	image = "tiles/veins.png",
+	image = "tiles/terrain/veins.png",
 	dig = "FLOOR",
 }
 
@@ -207,7 +207,7 @@ newEntity{
 newEntity{
 	define_as = "DOOR",
 	type = "wall", subtype = "floor",
-	name = "oak door", image = "tiles/door.png",
+	name = "oak door", image = "tiles/terrain/door.png",
 	display = '+', color_r=238, color_g=154, color_b=77, back_color=colors.LIGHT_UMBER,
 	notice = true,
 	always_remember = true,
@@ -219,7 +219,7 @@ newEntity{
 
 newEntity{
 	define_as = "DOOR_OPEN",
-	name = "open door", image = "tiles/door_opened.png",
+	name = "open door", image = "tiles/terrain/door_opened.png",
 	display = "'", color_r=238, color_g=154, color_b=77, back_color=colors.DARK_GREY,
 	always_remember = true,
 	door_closed = "DOOR",
@@ -229,7 +229,7 @@ newEntity{
 newEntity{ base = "DOOR",
 	define_as = "LOCKED_DOOR",
 	name = "locked door",
-	image = "tiles/door.png",
+	image = "tiles/terrain/door.png",
 	display = '+', color_r=238, color_g=154, color_b=77, back_color=colors.LIGHT_UMBER,
 	notice = true,
 	always_remember = true,
@@ -242,7 +242,7 @@ newEntity{ base = "DOOR",
 			local check = game.player:skillCheck("openlock", 15)
 			if check then
 				game.log("You open the door!")
-			--[[	self.add_mos = {{image="tiles/chest_open.png", display_h=1, display_w=1, display_y=0, display_x=0}}
+			--[[	self.add_mos = {{image="tiles/terrain/chest_open.png", display_h=1, display_w=1, display_y=0, display_x=0}}
 				self:removeAllMOs()]]
 				self.opened = true
 				local g = game.zone:makeEntityByName(game.level, "terrain", "DOOR_OPEN")
@@ -254,7 +254,7 @@ newEntity{ base = "DOOR",
 			end
 			return true
 		end
-		
+
 		return false
 	end,
 }
@@ -303,7 +303,7 @@ newEntity{
 newEntity{
 	define_as = "WATER",
 	type = "floor", subtype = "water",
-	name = "water", image = "tiles/water.png",
+	name = "water", image = "tiles/terrain/water.png",
 	display = '~', color=colors.BLUE, back_color=colors.LIGHT_BLUE,
 	always_remember = true,
 	mindam = 1,
@@ -322,8 +322,8 @@ newEntity{
 newEntity{
 	define_as = "DEEP_WATER",
 	type = "floor", subtype = "water",
-	name = "deep water", 
-	image = "tiles/deep_water.png",
+	name = "deep water",
+	image = "tiles/terrain/deep_water.png",
 	display = '~', color=colors.BLUE, back_color=colors.DARK_BLUE,
 	always_remember = true,
 	mindam = 2,
@@ -343,7 +343,7 @@ newEntity{
 	define_as = "LAVA",
 	type = "floor", subtype = "lava",
 	name = "lava",
-	image = "tiles/lava.png",
+	image = "tiles/terrain/lava.png",
 	display = '~', color=colors.RED, back_color=DARK_GREY,
 	always_remember = true,
 	mindam = 2,
@@ -359,18 +359,18 @@ newEntity{
 newEntity{
 	define_as = "CHASM",
 	type = "floor", subtype = "chasm",
-	name = "chasm", 
-	image = "tiles/chasm.png",
+	name = "chasm",
+	image = "tiles/terrain/chasm.png",
 	display = '~', color_r=43, color_g=43, color_b=43, back_color=DARK_GREY,
 	on_stand = function(self, x, y, who)
 		if who == game.player then
 			local save1 = who:skillCheck("balance", 15)
 			local save2 = who:skillCheck("jump", 30)
-			
+
 			if not save1 then game:changeLevel(game.level.level + rng.dice(1,6))
-			elseif not save2 then game:changeLevel(game.level.level + rng.dice(1,6)) 
+			elseif not save2 then game:changeLevel(game.level.level + rng.dice(1,6))
 			else end
-		else 
+		else
 			if not who.fly then who:disappear() end
 		end
 	end
@@ -379,7 +379,7 @@ newEntity{
 newEntity{
 	define_as = "WEB",
 	type = "floor", subtype = "web",
-	name = "webbing", 
+	name = "webbing",
 	display = '#', color=colors.DARK_GREY, back_color=colors.GREY,
 	always_remember = true,
 }
@@ -387,21 +387,21 @@ newEntity{
 newEntity{
 	define_as = "ICE",
 	type = "floor", subtype = "ice",
-	name = "ice floor", 
+	name = "ice floor",
 	image = "tiles/UT/ice.png",
 	display = ' ', color=colors.STEEL_BLUE, back_color=colors.STEEL_BLUE,
 	always_remember = true,
 	on_stand = function(self, x, y, who)
         if who.fly or who:hasEffect(who.EFF_FELL) then return end
 		local save = who:skillCheck("balance", 10)
-		if not save then who:setEffect(who.EFF_FELL, 1, {}) end 
+		if not save then who:setEffect(who.EFF_FELL, 1, {}) end
 	end
 }
 
 newEntity{
 	define_as = "FUNGI",
 	type = "floor", subtype = "fungi",
-	name = "underground fungi", 
+	name = "underground fungi",
 	display = '#', color=colors.CHOCOLATE, back_color=colors.DARK_GREY,
 	always_remember = true,
 }
@@ -409,7 +409,7 @@ newEntity{
 newEntity{
 	define_as = "SAND",
 	type = "floor", subtype = "sand",
-	name = "sand", 
+	name = "sand",
 	image = "tiles/UT/sand.png",
 	display = ' ', color=colors.YELLOW, back_color=colors.YELLOW,
 	always_remember = true,
@@ -418,7 +418,7 @@ newEntity{
 newEntity{
 	define_as = "SWAMP",
 	type = "floor", subtype = "swamp",
-	name = "sand", 
+	name = "sand",
 	display = ' ', color=colors.UMBER, back_color=colors.DARK_GREEN,
 	always_remember = true,
 }
@@ -440,8 +440,8 @@ newEntity{
 newEntity{
 	define_as = "ALTAR",
 	type = "floor", subtype = "furniture",
-	name = "altar", 
-	image = "tiles/altar.png",
+	name = "altar",
+	image = "tiles/terrain/altar.png",
 	display = '&', color=colors.WHITE, back_color=colors.DARK_GREY,
 	always_remember = true,
 	is_altar = true,
@@ -451,103 +451,103 @@ newEntity{
 --Colors match deity message colors
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_AISWIN",
-	name = "altar to Aiswin", 
+	name = "altar to Aiswin",
 	color=colors.BLUE,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_ASHERATH",
-	name = "altar to Asherath", 
+	name = "altar to Asherath",
 	color=colors.TAN,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_EKLIAZEH",
-	name = "altar to Ekliazeh", 
+	name = "altar to Ekliazeh",
 	color=colors.SANDY_BROWN,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_ERICH",
-	name = "altar to Erich", 
+	name = "altar to Erich",
 	color=colors.PURPLE,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_ESSIAH",
-	name = "altar to Essiah", 
+	name = "altar to Essiah",
 	color=colors.PINK,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_HESANI",
-	name = "altar to Hesani", 
+	name = "altar to Hesani",
 	color=colors.YELLOW,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_IMMOTIAN",
-	name = "altar to Immotian", 
+	name = "altar to Immotian",
 	color=colors.GOLD,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_KHASRACH",
-	name = "altar to Khasrach", 
+	name = "altar to Khasrach",
 	color=colors.OLIVE_DRAB,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_KYSUL",
-	name = "altar to Kysul", 
+	name = "altar to Kysul",
 	color=colors.LIGHT_GREEN,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_MARA",
-	name = "altar to Mara", 
+	name = "altar to Mara",
 	color=colors.ANTIQUE_WHITE,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_MAEVE",
-	name = "altar to Maeve", 
+	name = "altar to Maeve",
 	color=colors.DARK_GREEN,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_SABIN",
-	name = "altar to Sabin", 
+	name = "altar to Sabin",
 	color=colors.LIGHT_BLUE,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_SEMIRATH",
-	name = "altar to Semirath", 
+	name = "altar to Semirath",
 	color=colors.ORCHID,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_XAVIAS",
-	name = "altar to Xavias", 
+	name = "altar to Xavias",
 	color=colors.DARK_SLATE_GRAY,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_XEL",
-	name = "altar to Xel", 
+	name = "altar to Xel",
 	color=colors.DARK_RED,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_ZURVASH",
-	name = "altar to Zurvash", 
+	name = "altar to Zurvash",
 	color=colors.CRIMSON,
 }
 
 newEntity{	base = "ALTAR",
 	define_as = "ALTAR_MULTITUDE",
-	name = "altar to Multitude", 
+	name = "altar to Multitude",
 	color=colors.SLATE,
 }
 
@@ -557,7 +557,7 @@ newEntity{
 	define_as = "CHEST",
 	type = "chest", subtype = "floor",
 	name = "chest",
-	add_mos = {{image="tiles/chest.png", display_h=1, display_w=1, display_y=0, display_x=0}},
+	add_mos = {{image="tiles/terrain/chest.png", display_h=1, display_w=1, display_y=0, display_x=0}},
 	always_remember = true,
 	force_clone = true,
 	block_move = function(self, x, y, who, act, couldpass)
@@ -567,7 +567,7 @@ newEntity{
 			if not who or not who.player or not act then return true end
 			if not rng.percent(20) then
 				game.log("You open the chest!")
-			--[[	self.add_mos = {{image="tiles/chest_open.png", display_h=1, display_w=1, display_y=0, display_x=0}}
+			--[[	self.add_mos = {{image="tiles/terrain/chest_open.png", display_h=1, display_w=1, display_y=0, display_x=0}}
 				self:removeAllMOs()]]
 				self.opened = true
 				o = game.zone:makeEntity(game.level, "object", {ego_chance=1000}, nil, true)
@@ -575,7 +575,7 @@ newEntity{
 			else
 				game.log("The chest was a mimic!")
 				local m = game.zone:makeEntity(game.level, "actor", {name="mimic"}, nil, true)
-				if m then 
+				if m then
 					m:resolve()
 					game.zone:addEntity(game.level, m, "actor", x, y)
 				end
@@ -587,7 +587,7 @@ newEntity{
 			end
 			return true
 		end
-		
+
 		return false
 	end,
 }

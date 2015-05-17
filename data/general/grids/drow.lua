@@ -19,7 +19,7 @@ newEntity{
 newEntity{
     define_as = "FLOOR",
     type = "floor", subtype = "floor",
-    name = "floor", image = "tiles/floor.png",
+    name = "floor", image = "tiles/terrain/floor.png",
     display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
 }
 
@@ -59,7 +59,7 @@ newEntity{
 
 newEntity{
     define_as = "DOOR_OPEN",
-    name = "open door", image = "tiles/door_opened.png",
+    name = "open door", image = "tiles/terrain/door_opened.png",
     display = "'", color_r=238, color_g=154, color_b=77, back_color=colors.DARK_GREY,
     always_remember = true,
     door_closed = "DOOR",
@@ -80,7 +80,7 @@ newEntity{
     base = "EXIT",
     define_as = "NOBLE_ENTRANCE",
     name = "building entrance",
-    image = "tiles/stairs_up.png",
+    image = "tiles/terrain/stairs_up.png",
     change_level = 1,
     change_zone = "noble compound",
 }
@@ -89,7 +89,7 @@ newEntity{
     base = "EXIT",
     define_as = "BROTHEL_ENTRANCE",
     name = "building entrance",
-    image = "tiles/stairs_up.png",
+    image = "tiles/terrain/stairs_up.png",
     change_level = 1,
     change_zone = "brothel",
 }
@@ -98,7 +98,7 @@ newEntity{
     base = "EXIT",
     define_as = "TAVERN_ENTRANCE",
     name = "building entrance",
-    image = "tiles/stairs_up.png",
+    image = "tiles/terrain/stairs_up.png",
     change_level = 1,
     change_zone = "tavern",
 }
@@ -107,7 +107,7 @@ newEntity{
     base = "EXIT",
     define_as = "EXIT_TOWN",
     name = "exit to town",
-    image = "tiles/stairs_up.png",
+    image = "tiles/terrain/stairs_up.png",
     change_level = 1,
     change_zone = "drow city",
 }
