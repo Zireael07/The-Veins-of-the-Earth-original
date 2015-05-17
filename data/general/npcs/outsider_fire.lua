@@ -16,7 +16,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_AZER",
-	image = "tiles/npc/dwarf_fighter.png",
+	image = "tiles/mobiles/npc/dwarf_fighter.png",
 	display = 'K', color=colors.FIREBRICK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A flamehaired dwarf wearing a metal kilt.]],

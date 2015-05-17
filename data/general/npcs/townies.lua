@@ -122,7 +122,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow guard",
-    image = "tiles/npc/drow_fighter.png",
+    image = "tiles/mobiles/npc/drow_fighter.png",
     max_life = resolvers.rngavg(15,20),
     rarity = 4,
 
@@ -186,7 +186,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow priest",
-    image = "tiles/npc/drow_priest.png",
+    image = "tiles/mobiles/npc/drow_priest.png",
     max_life = resolvers.rngavg(30,35),
     rarity = 6,
     stats = { str=10, dex=12, con=12, int=14, wis=18, cha=15, luc=12 },
