@@ -37,7 +37,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_DROW",
 	subtype = "drow",
-	image = "tiles/drow.png",
+	image = "tiles/mobiles/drow.png",
 	display = 'h', color=colors.BLACK,
 
 	desc = [[A dark silhouette.]],
@@ -89,7 +89,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_HUMAN",
 	subtype = "human",
-	image = "tiles/human.png",
+	image = "tiles/mobiles/human.png",
 	display = 'h', color=colors.WHITE,
 	desc = [[A lost human.]],
 
@@ -128,7 +128,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_DWARF",
 	subtype = "dwarf",
-	image = "tiles/mobiles/npc/dwarf_fighter.png",
+	image = "tiles/mobiles/mobiles/npc/dwarf_fighter.png",
 	display = 'h', color=colors.BROWN,
 	desc = [[A lost dwarf.]],
 
@@ -196,7 +196,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_GNOME",
 	subtype = "gnome",
-	image = "tiles/mobiles/npc/gnome_fighter.png",
+	image = "tiles/mobiles/mobiles/npc/gnome_fighter.png",
 	display = 'h', color=colors.BROWN,
 	desc = [[A lost gnome.]],
 	uncommon_desc = [[Gnomes are renowned for two traits: their sense of humor and their innate talents for arcane illusions. As a spell-like ability, any gnome can speak with burrowing mammals, and talented gnomes can produce dancing lights, ghost sound, and prestidigitation as well.]],
@@ -270,7 +270,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_HALFLING",
 	subtype = "halfling",
-	image = "tiles/mobiles/npc/halfling_fighter.png",
+	image = "tiles/mobiles/mobiles/npc/halfling_fighter.png",
 	display = 'h', color=colors.LIGHT_BROWN,
 	desc = [[A lost halfling.]],
 	uncommon_desc = [[Desipite their small stature, halflings are generally brave and good-natured. These nomadic smallfolk are widely traveled.]],
@@ -313,7 +313,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_LIZARDFOLK",
 	subtype = "reptilian",
-	image = "tiles/lizardfolk.png",
+	image = "tiles/mobiles/lizardfolk.png",
 	display = 'h', color=colors.DARK_GREEN,
 	desc = [[A scaly reptilian humanoid.]],
 
@@ -354,7 +354,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_KOBOLD",
 	subtype = "reptilian",
-	image = "tiles/kobold.png",
+	image = "tiles/mobiles/kobold.png",
 	display = "k", color=colors.WHITE,
     desc = [[Ugly and green!]],
 
@@ -410,7 +410,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_ORC",
 	subtype = "orc",
-	image = "tiles/orc.png",
+	image = "tiles/mobiles/orc.png",
 	display = 'o', color=colors.GREEN,
 	desc = [[An ugly orc.]],
 
@@ -448,7 +448,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_TIEFLING",
 	subtype = "planetouched",
-	image = "tiles/human.png",
+	image = "tiles/mobiles/human.png",
 	display = 'h', color=colors.RED,
 	desc = [[A horned tiefling.]],
 
@@ -495,7 +495,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_AASIMAR",
 	subtype = "planetouched",
-	image = "tiles/human.png",
+	image = "tiles/mobiles/human.png",
 	display = 'h', color=colors.GOLD,
 	desc = [[A beautiful humanoid.]],
 
@@ -543,7 +543,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_GOBLIN",
 	subtype = "goblinoid",
-	image = "tiles/goblin.png",
+	image = "tiles/mobiles/goblin.png",
 	display = 'g', color=colors.GREEN,
 	desc = [[A dirty goblin.]],
 
@@ -580,7 +580,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_BUGBEAR",
 	subtype = "goblinoid",
-	image = "tiles/goblin.png",
+	image = "tiles/mobiles/goblin.png",
 	display = 'g', color=colors.BROWN,
 	desc = [[A dirty hairy bugbear.]],
 
@@ -619,7 +619,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_GNOLL",
 	subtype = "gnoll",
-	image = "tiles/gnoll.png",
+	image = "tiles/mobiles/gnoll.png",
 	display = 'h', color=colors.BROWN,
 	desc = [[A dog-headed humanoid.]],
 
@@ -660,7 +660,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_HOBGOBLIN",
 	subtype = "goblinoid",
-	image = "tiles/goblin.png",
+	image = "tiles/mobiles/goblin.png",
 	display = 'g', color=colors.RED,
 	desc = [[A brutish goblinoid garbed in red, with reddish skin and dark hair.]],
 
@@ -696,7 +696,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_TROG",
 	subtype = "reptilian",
-	image = "tiles/goblin.png",
+	image = "tiles/mobiles/goblin.png",
 	display = 'h', color=colors.DARK_UMBER,
 	desc = [[A scaly reptilian humanoid.]],
 
@@ -735,7 +735,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_LOCATHAH",
 	type = "humanoid", subtype = "humanoid_aquatic",
-	image = "tiles/triton.png",
+	image = "tiles/mobiles/triton.png",
 	display = 'h', color=colors.DARK_BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly fish-like humanoid.]],
@@ -775,7 +775,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_MERFOLK",
 	subtype = "humanoid_aquatic",
-	image = "tiles/merfolk.png",
+	image = "tiles/mobiles/merfolk.png",
 	display = 'h', color=colors.DARK_BLUE,
 	desc = [[A scaly fish-like humanoid.]],
 

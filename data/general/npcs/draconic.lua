@@ -9,7 +9,7 @@ local dragon_desc = [[It can see in the dark. It is immune to sleep effects and 
 newEntity{
         define_as = "BASE_NPC_DRAG_TURTLE",
         type = "dragon",
-        image = "tiles/dragon_turtle.png",
+        image = "tiles/mobiles/dragon_turtle.png",
         display = 'D', color=colors.DARK_GREEN,
         body = { INVEN = 10 },
         desc = [[An immense turtle.]],
@@ -45,7 +45,7 @@ newEntity{
 newEntity{
         define_as = "BASE_NPC_PSEUDODRAGON",
         type = "dragon",
-        image = "tiles/pseudodragon.png",
+        image = "tiles/mobiles/pseudodragon.png",
         display = 'D', color=colors.LIGHT_GREEN,
         body = { INVEN = 10 },
         desc = [[A tiny draconic creature in shades of green.]],
@@ -122,7 +122,7 @@ newEntity{
 	define_as = "BASE_NPC_DRAGON_BLACK",
 	type = "dragon",
 	display = 'D', color=colors.BLACK,
-    image = "tiles/mobiles/dragon/dragon_black_wyrmling.png",
+    image = "tiles/mobiles/mobiles/dragon/dragon_black_wyrmling.png",
 	body = { INVEN = 10 },
 	desc = [[Black dragons are sometimes known as skull dragons because of their skeletal faces. Adding to the skeletal impression is the gradual deterioration of the hide around the base of the horn and the cheekbones. This deterioration increases with age and does not harm the dragon.
     On hatching, a black dragon's scales are thin, small, and glossy. As the dragon ages, they become larger, thicker, and duller, helping it camouflage itself in swamps and marshes.]],
@@ -152,7 +152,7 @@ newEntity{
 	define_as = "BASE_NPC_DRAGON_BLUE",
 	type = "dragon",
 	display = 'D', color=colors.BLUE,
-    image = "tiles/mobiles/dragon/dragon_blue_wyrmling.png",
+    image = "tiles/mobiles/mobiles/dragon/dragon_blue_wyrmling.png",
 	body = { INVEN = 10 },
 	desc = [[A blue dragon's scales vary in color from an iridescent azure to a deep indigo, polished to a glossy finish by blowing desert sands. The size of its scales increases little as the dragon ages, although they do become thicker and harder. Its hide tends to hum and crackle faintly with built-up static electricity. These effects intensify when the dragon is angry or about to attack, giving off an odor of ozone and sand.
     Their vibrant color makes blue dragons easy to spot in barren desert surroundings. However, they often burrow into the sand so only part of their heads are exposed.]],
@@ -181,7 +181,7 @@ newEntity{
 	define_as = "BASE_NPC_DRAGON_GREEN",
 	type = "dragon",
 	display = 'D', color=colors.GREEN,
-    image = "tiles/mobiles/dragon/dragon_green_wyrmling.png",
+    image = "tiles/mobiles/mobiles/dragon/dragon_green_wyrmling.png",
 	body = { INVEN = 10 },
 	desc = [[A wyrmling green dragon's scales are thin, very small, and a deep shade of green that appears nearly black.
     As the dragon ages, the scales grow larger and lighter, turning shades of forest, emerald, and olive green, which helps it blend in with its wooded surroundings.]],
@@ -210,7 +210,7 @@ newEntity{
 	define_as = "BASE_NPC_DRAGON_RED",
 	type = "dragon",
 	display = 'D', color=colors.RED,
-    image = "tiles/mobiles/dragon/dragon_red_wyrmling.png",
+    image = "tiles/mobiles/mobiles/dragon/dragon_red_wyrmling.png",
 	body = { INVEN = 10 },
 	desc = [[The small scales of a wyrmling red dragon are a bright glossy scarlet, making the dragon easily spotted by predators and hunters, so it stays underground and does not venture outside until it is more able to take care of itself. Toward the end of young age, the scales turn a deeper red, and the glossy texture is replaced by a smooth, dull finish. As the dragon grows older, the scales become large, thick, and as strong as metal.
     The neck frill and wings are an ash blue or purple-gray toward the edges, becoming darker with age. The pupils of a red dragon fade as it ages; the oldest red dragons have eyes that resemble molten lava orbs.]],
@@ -299,7 +299,7 @@ newEntity{
 	define_as = "BASE_NPC_DRAGON_BRONZE",
 	type = "dragon",
 	display = 'D', color=colors.TAN,
-    image = "tiles/mobiles/dragon/dragon_bronze_wyrmling.png",
+    image = "tiles/mobiles/mobiles/dragon/dragon_bronze_wyrmling.png",
 	body = { INVEN = 10 },
 	desc = [[A bronze wyrmling's scales are yellow tinged with green, showing only a hint of bronze. As the dragon approaches adulthood, its color deepens slowly to a darker, rich bronze tone. Very old dragons develop a blue-black tint to the edges of their scales.
     Powerful swimmers, they have webbed feet and smooth, flat scales. The pupils of its eyes fade as a dragon ages, until in the oldest the eyes resemble glowing green orbs.]],
@@ -358,7 +358,7 @@ newEntity{
 	define_as = "BASE_NPC_DRAGON_GOLD",
 	type = "dragon",
 	display = 'D', color=colors.GOLD,
-    image = "tiles/mobiles/dragon/dragon_gold_wyrmling.png",
+    image = "tiles/mobiles/mobiles/dragon/dragon_gold_wyrmling.png",
 	body = { INVEN = 10 },
 	desc = [[On hatching, a gold dragon's scales are dark yellow with golden metallic flecks. The flecks get larger as the dragon matures until, at the adult stage, the scales are completely golden.
     Gold dragons' faces are bewhiskered and sagacious; as they age, their pupils fade until the eyes resemble pools of molten gold.]],
@@ -388,7 +388,7 @@ newEntity{
 	define_as = "BASE_NPC_DRAGON_SILVER",
 	type = "dragon",
 	display = 'D', color=colors.ANTIQUE_WHITE,
-    image = "tiles/mobiles/dragon/dragon_silver_wyrmling.png",
+    image = "tiles/mobiles/mobiles/dragon/dragon_silver_wyrmling.png",
 	body = { INVEN = 10 },
 	desc = [[A silver wyrmling's scales are blue-gray with silver highlights. As the dragon approaches adulthood, its color gradually brightens until the individual scales are scarcely visible.]],
 	ai = "human_level", ai_state = { talent_in=3, },

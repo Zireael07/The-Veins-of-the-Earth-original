@@ -16,7 +16,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_AZER",
-	image = "tiles/mobiles/npc/dwarf_fighter.png",
+	image = "tiles/mobiles/mobiles/npc/dwarf_fighter.png",
 	display = 'K', color=colors.FIREBRICK,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A flamehaired dwarf wearing a metal kilt.]],
@@ -60,7 +60,7 @@ newEntity{
 --Spell-likes: At will—detect magic, produce flame, pyrotechnics (DC 14), scorching ray (1 ray only); 3/day—invisibility, wall of fire (DC 16); 1/day—grant up to three wishes (to nongenies only), gaseous form, permanent image (DC 18).
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_EFREET",
-	image = "tiles/djinn.png",
+	image = "tiles/mobiles/djinn.png",
 	display = 'J', color=colors.ORANGE,
 	body = { INVEN = 10 },
 	desc = [[A large humanoid clothed in red and seemingly hovering in air.]],
@@ -101,7 +101,7 @@ newEntity{
 --Fly 60 ft.; paralysis 3 sq 1d6 rounds Fort DC 13; improved grab, blood drain
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_RAST",
-	image = "tiles/elemental_fire.png",
+	image = "tiles/mobiles/elemental_fire.png",
 	display = 'O', color=colors.RED,
 	body = { INVEN = 10 },
 	desc = [[A large creature of fire.]],
@@ -132,7 +132,7 @@ newEntity{
 --Constrict 1d4 + 1d6 fire, improved grab
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_SALAMANDER",
-	image = "tiles/salamander.png",
+	image = "tiles/mobiles/salamander.png",
 	display = 'O', color=colors.LIGHT_RED,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A large creature of fire.]],

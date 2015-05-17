@@ -10,7 +10,7 @@ local angel_desc = [[It can see in the dark. It is immune to acid, cold and petr
 newEntity{
     define_as = "BASE_NPC_CELESTIAL",
     type = "outsider",
-    image = "tiles/angel.png",
+    image = "tiles/mobiles/angel.png",
     display = 'A', color=colors.WHITE,
     body = { INVEN = 10 },
     desc = [[A winged humanoid.]],

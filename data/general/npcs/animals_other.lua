@@ -4,7 +4,7 @@
 newEntity{
         define_as = "BASE_NPC_ROC",
         type = "animal",
-        image = "tiles/roc.png",
+        image = "tiles/mobiles/roc.png",
         display = 'b', color=colors.GOLD,
         body = { INVEN = 10 },
         desc = [[An immense bird.]],

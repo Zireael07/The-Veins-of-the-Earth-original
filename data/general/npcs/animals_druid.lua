@@ -30,7 +30,7 @@ local animal_desc = [[It has low Intelligence and is always neutral. It needs to
 newEntity{
 	define_as = "BASE_NPC_BABOON",
 	type = "animal",
-	image = "tiles/ape.png",
+	image = "tiles/mobiles/ape.png",
 	display = 'Y', color=colors.WHITE,
 	body = { INVEN = 10 },
 	desc = [[A large primate.]],
@@ -62,7 +62,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_CROCODILE",
 	type = "animal",
-	image = "tiles/crocodile.png",
+	image = "tiles/mobiles/crocodile.png",
 	display = 'r', color=colors.DARK_GREEN,
 	body = { INVEN = 10 },
 	desc = [[A large scaly predator.]],
@@ -94,7 +94,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_APE",
 	name = "ape",
-	image = "tiles/ape.png",
+	image = "tiles/mobiles/ape.png",
 	display = 'Y', color=colors.BLACK,
 	body = { INVEN = 10 },
 	desc = [[A large primate.]],
@@ -121,7 +121,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_MONKEY",
 	name = "monkey",
-	image = "tiles/ape.png",
+	image = "tiles/mobiles/ape.png",
 	display = 'Y', color=colors.SANDY_BROWN,
 	body = { INVEN = 10 },
 	desc = [[A small monkey.]],
@@ -147,7 +147,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_CHEETAH",
 	name = "cheetah",
-	image = "tiles/UT/tiger.png",
+	image = "tiles/mobiles/UT/tiger.png",
 	display = 'c', color=colors.YELLOW,
 	body = { INVEN = 10 },
 	desc = [[Cheetahs are swift feline predators of the plains. A cheetah is 3 to 5 feet long and weighs 110 to 130 pounds.]],
@@ -176,7 +176,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_LEOPARD",
 	name = "leopard",
---	image = "tiles/cat.png",
+--	image = "tiles/mobiles/cat.png",
 	display = 'c', color=colors.GOLD,
 	body = { INVEN = 10 },
 	desc = [[These cats have an elongate and muscular body. Their paws are broad and their ears are short. The coloration varies from the color of straw to grayish to even chestnut.]],
@@ -202,7 +202,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_TIGER",
 	name = "tiger",
-	image = "tiles/UT/tiger.png",
+	image = "tiles/mobiles/UT/tiger.png",
 	display = 'c', color=colors.ORANGE,
 	body = { INVEN = 10 },
 	desc = [[This powerful feline predator moves with a deadly grace, its reddish-orange fur slashed with black stripes.]],
@@ -231,7 +231,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_BOA",
 	name = "boa constrictor",
-	image = "tiles/constrictor.png",
+	image = "tiles/mobiles/constrictor.png",
 	display = 'R', color=colors.RED,
 	body = { INVEN = 10 },
 	desc = [[A large, coiled snake up to ten feet long, the boa constrictor is a carnivore that kills its prey by coiling around it and then crushing it to death.]],
@@ -258,7 +258,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_BOA",
 	name = "giant constrictor",
-	image = "tiles/constrictor.png",
+	image = "tiles/mobiles/constrictor.png",
 	display = 'R', color=colors.DARK_RED,
 	body = { INVEN = 10 },
 	desc = [[A large, coiled snake up to twenty feet long, the boa constrictor is a carnivore that kills its prey by coiling around it and then crushing it to death.]],

@@ -36,7 +36,7 @@ newEntity{
 --Scent; Endurance, Run feats
 newEntity{ base = "BASE_NPC_MOUNT",
 	define_as = "BASE_NPC_HORSE",
-	image = "tiles/horse_brown.png",
+	image = "tiles/mobiles/horse_brown.png",
 	display = 'q', color=colors.TAN,
 	desc = [[A large hoofed quadruped, often used as a mount.]],
 	stats = { str=16, dex=13, con=15, int=2, wis=12, cha=6, luc=2 },
@@ -111,7 +111,7 @@ newEntity{
 --Scent
 newEntity{ base = "BASE_NPC_MOUNT",
 	define_as = "BASE_NPC_RIDING_DOG",
-	image = "tiles/dog.png",
+	image = "tiles/mobiles/dog.png",
 	display = 'q', color=colors.SANDY_BROWN,
 	desc = [[A dog big enough to be used as a mount.]],
 
@@ -140,7 +140,7 @@ newEntity{
 --Scent, Endurance feat
 newEntity{ base = "BASE_NPC_MOUNT",
 	define_as = "BASE_NPC_PONY",
-	image = "tiles/horse_spotted.png",
+	image = "tiles/mobiles/horse_spotted.png",
 	display = 'q', color=colors.DARK_TAN,
 	desc = [[A small horse, under 5 feet tall at the shoulder, often used as a mount.]],
 
@@ -183,7 +183,7 @@ newEntity{
 --From Incursion
 newEntity{ base = "BASE_NPC_MOUNT",
 	define_as = "BASE_NPC_RIDING_LIZARD",
-	image = "tiles/lizard.png",
+	image = "tiles/mobiles/lizard.png",
 	display = 'R', color=colors.DARK_GREEN,
 	desc = [[A gecko the size of a horse, often used as a mount by the deep-dwelling races.]],
 

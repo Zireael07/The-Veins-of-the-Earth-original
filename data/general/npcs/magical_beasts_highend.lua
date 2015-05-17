@@ -20,7 +20,7 @@ newEntity{
 --Awesome Blow, Blind-Fight, Cleave, Great Cleave, Imp Bull Rush
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_TARRASQUE",
-	image = "tiles/eagle.png",
+	image = "tiles/mobiles/eagle.png",
 	display = 'B', color=colors.WHITE,
 	desc = [[A boar with razor sharp tusks.]],
 	stats = { str=45, dex=16, con=35, int=3, wis=14, cha=14, luc=14 },
@@ -51,7 +51,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --Pounce
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_SPHINX",
-	image = "tiles/sphinx.png",
+	image = "tiles/mobiles/sphinx.png",
 	display = 'B', color=colors.LIGHT_YELLOW,
 	desc = [[A resplendent feline-like creature with powerful claws.]],
 	stats = { str=25, dex=10, con=19, int=16, wis=17, cha=17, luc=12 },
@@ -162,7 +162,7 @@ newEntity{
 --Toughness
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_HYDRA",
-	image = "tiles/hydra.png",
+	image = "tiles/mobiles/hydra.png",
 	display = 'B', color=colors.WHITE,
 	desc = [[A multiheaded monstrosity.]],
 	stats = { str=17, dex=12, con=20, int=2, wis=10, cha=9, luc=10 },

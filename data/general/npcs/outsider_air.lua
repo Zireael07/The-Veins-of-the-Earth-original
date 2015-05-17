@@ -31,7 +31,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_AIR",
 	define_as = "BASE_NPC_ARROWHAWK",
 	type = "magical beast",
-	image = "tiles/eagle.png",
+	image = "tiles/mobiles/eagle.png",
 	display = 'e', color=colors.LIGHT_BLUE,
 	desc = [[A bird with shimmering feathers. By twisting its body and varying the cadence of its wingbeats, an arrowhawk can fly at top speed in any direction.
 	A juvenile arrowhawk (1 to 10 years old) is about 5 feet long from beak to tail, with the body accounting for about one-third of that length. Its wingspan is about 7 feet, and it weighs about 20 pounds.]],
@@ -111,7 +111,7 @@ newEntity{
 --Fly 50 ft., smoke form
 newEntity{ base = "BASE_NPC_AIR",
 	define_as = "BASE_NPC_BELKER",
---	image = "tiles/eagle.png",
+--	image = "tiles/mobiles/eagle.png",
 	display = 'E', color=colors.LIGHT_BLUE,
 	desc = [[A demonic humanoid composed of smoke.]],
 	uncommon_desc = [[Though not a demon, belkers are undeniably evil. However, they tend to be reclusive creatures that have no or little interest in the affairs of others. When belkers do show interest enough to communicate with others, they usually use the Auran language.]],
@@ -136,7 +136,7 @@ newEntity{ base = "BASE_NPC_AIR",
 --Spell-likes: invisibility (self only); 1/day— create food and water, create wine (as create water, but wine instead), major creation (created vegetable matter is permanent), persistent image (DC 17), wind walk.
 newEntity{ base = "BASE_NPC_AIR",
 	define_as = "BASE_NPC_DJINN",
---	image = "tiles/djinn.png",
+--	image = "tiles/mobiles/djinn.png",
 	display = 'J', color=colors.LIGHT_BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A large humanoid clothed in blue and seemingly hovering in air.]],

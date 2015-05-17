@@ -29,7 +29,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_RAT",
-	image = "tiles/rat.png",
+	image = "tiles/mobiles/rat.png",
 	display = 'r', color=colors.WHITE,
 	desc = [[A small rat.]],
 	common_desc = [[A dire rat spreads filth fever, a dangerous disease, with its sharp bite.]],
@@ -44,7 +44,7 @@ newEntity{ base = "BASE_NPC_ANIMAL",
 newEntity{
 	base = "BASE_NPC_RAT",
 	name = "dire rat", color=colors.WHITE,
-	image = "tiles/dire_rat.png",
+	image = "tiles/mobiles/dire_rat.png",
 	level_range = {1, 4}, exp_worth = 135,
 	rarity = 4,
 	max_life = resolvers.rngavg(3,7),
@@ -67,7 +67,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_SNAKE",
-	image = "tiles/snake.png",
+	image = "tiles/mobiles/snake.png",
 	display = 'z', color=colors.GREEN,
 	desc = [[A small snake.]],
 
@@ -112,7 +112,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_LIZARD",
-	image = "tiles/lizard.png",
+	image = "tiles/mobiles/lizard.png",
 	display = 'R', color=colors.GREEN,
 	desc = [[A small lizard.]],
 
@@ -137,7 +137,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_MONLIZARD",
-	image = "tiles/lizard.png",
+	image = "tiles/mobiles/lizard.png",
 	display = 'R', color=colors.DARK_GREEN,
 	desc = [[A large lizard.]],
 
@@ -163,7 +163,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_BAT",
-	image = "tiles/bat.png",
+	image = "tiles/mobiles/bat.png",
 	display = 'b', color=colors.BLACK,
 	desc = [[A large bat.]],
 	common_desc = [[Dire bats use echolocation to sense their surroundings. If deafened, they must rely on their weak vision instead.]],
@@ -191,7 +191,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_RAVEN",
-	image = "tiles/newtiles/raven.png",
+	image = "tiles/mobiles/newtiles/mobiles/raven.png",
 	display = 'b', color=colors.GREY,
 	desc = [[A large raven.]],
 	common_desc = [[Dire ravens are attracted to shiny baubles, and if attacked, instinctually try to peck out their opponents’ eyes.]],
@@ -217,7 +217,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_WOLF",
-	image = "tiles/UT/wolf.png",
+	image = "tiles/mobiles/UT/wolf.png",
 	display = 'd', color=colors.BLACK,
 	desc = [[A large wolf.]],
 
@@ -245,7 +245,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_TORTOISE",
 	subtype = "aquatic",
-	image = "tiles/tortoise.png",
+	image = "tiles/mobiles/tortoise.png",
 	display = 'B', color=colors.DARK_GREEN,
 	desc = [[A large tortoise.]],
 
@@ -272,7 +272,7 @@ newEntity{
 --Trip
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_HYENA",
-	image = "tiles/UT/wolf.png",
+	image = "tiles/mobiles/UT/wolf.png",
 	display = 'd', color=colors.TAN,
 	desc = [[This hyena is covered in shaggy, tan-colored fur with black and brown stripes.]],
 
@@ -302,7 +302,7 @@ newEntity{
 --Trip, Weapon Focus (bite)
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_HYENA_SHORTFACED",
-	image = "tiles/UT/wolf.png",
+	image = "tiles/mobiles/UT/wolf.png",
 	display = 'd', color=colors.DARK_TAN,
 	desc = [[Slightly larger than a normal hyena, this spotted canine has the same shorter forelimbs of that breed but with a blunt face and larger teeth.]],
 
@@ -332,7 +332,7 @@ newEntity{
 --Trip
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_JACKAL",
-	image = "tiles/UT/wolf.png",
+	image = "tiles/mobiles/UT/wolf.png",
 	display = 'd', color=colors.UMBER,
 	desc = [[Jackals are very vocal creatures. Yipping calls are made when the family gathers and are specific to individual families. Non-members do not recognize or respond to the calls of other families.
     Additionally, when threatened, these jackals make loud screaming vocalizations. When seriously wounded, the vocalizations change from screams to low croaks.]],
@@ -359,7 +359,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_MASTIFF",
-	image = "tiles/UT/wolf.png",
+	image = "tiles/mobiles/UT/wolf.png",
 	display = 'd', color=colors.DARK_UMBER,
 	desc = [[This vicious hunting dog may once have been the companion of a ranger or druid, but now it seems to have gone feral and recognizes no master other then its own hunger and survival instinct.]],
 
@@ -386,7 +386,7 @@ newEntity{
 --Scent, pounce, rake; cold resistance
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_CAVE_LION",
---	image = "tiles/UT/wolf.png",
+--	image = "tiles/mobiles/UT/wolf.png",
 	display = 'c', color=colors.SANDY_BROWN,
 	desc = [[This believed-extinct member of the cat family was a third larger in overall dimensions compared to the modern lion, and weighed perhaps half again as much.
 	They also hunted in prides, much like the modern lion.  Cave lions were well-adapted to cold climates, with a warm coat and larger body mass to preserve heat.]],
@@ -414,7 +414,7 @@ newEntity{
 --Scent; Run feat
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_HUGE_VIPER",
---	image = "tiles/snake.png",
+--	image = "tiles/mobiles/snake.png",
 	display = 'R', color=colors.LIGHT_GREEN,
 	desc = [[Generally considered a slow moving, somewhat placid animal, vipers are not considered aggressive unless provoked or hungry. If tampered with, it will generally puff up and give an extremely loud hiss.]],
 

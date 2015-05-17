@@ -18,7 +18,7 @@ newEntity{
 --Fly 100 ft.; whirlwind
 newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_ELEMENTAL_AIR",
-	image = "tiles/elemental_air.png",
+	image = "tiles/mobiles/elemental_air.png",
 	display = 'E', color=colors.WHITE,
 	desc = [[An air elemental.]],
 
@@ -140,7 +140,7 @@ newEntity{
 --Earth glide, push
 newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_ELEMENTAL_EARTH",
-	image = "tiles/elemental_earth.png",
+	image = "tiles/mobiles/elemental_earth.png",
 	display = 'E', color=colors.BROWN,
 	desc = [[An earth elemental.]],
 
@@ -256,7 +256,7 @@ newEntity{
 --vulnerability to cold, burn (catch fire for 1d4 rounds)
 newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_ELEMENTAL_FIRE",
-	image = "tiles/elemental_fire.png",
+	image = "tiles/mobiles/elemental_fire.png",
 	display = 'E', color=colors.RED,
 	desc = [[A fire elemental.]],
 
@@ -389,7 +389,7 @@ newEntity{
 --Swim 90 ft.; drench, vortex
 newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_ELEMENTAL_WATER",
-	image = "tiles/elemental_water.png",
+	image = "tiles/mobiles/elemental_water.png",
 	display = 'E', color=colors.BLUE,
 	desc = [[A water elemental.]],
 
@@ -509,7 +509,7 @@ newEntity{
 --[[newEntity{
 	define_as = "BASE_NPC_INVISIBLE_STALKER",
 	type = "elemental", subtype = "air",
---	image = "tiles/wraith.png",
+--	image = "tiles/mobiles/wraith.png",
 	display = "E", color=colors.DARK_GRAY,
 	body = { INVEN = 10 },]]
 --desc = [[An invisible creature.]],
@@ -535,7 +535,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_ELEMENTAL",
 	define_as = "BASE_NPC_MAGMIN",
 	subtype = "fire",
-	image = "tiles/elemental_fire.png",
+	image = "tiles/mobiles/elemental_fire.png",
 	display = "E", color=colors.DARK_RED,
 	desc = [[A small fiery being.]],
 

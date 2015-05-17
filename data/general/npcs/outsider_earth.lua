@@ -15,7 +15,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_EARTH",
 	define_as = "BASE_NPC_XORN",
 	type = "outsider", subtype = "earth",
-	image = "tiles/xorn.png",
+	image = "tiles/mobiles/xorn.png",
 	display = 'K', color=colors.LIGHT_BROWN,
 
 	desc = [[An earthen creature.]],

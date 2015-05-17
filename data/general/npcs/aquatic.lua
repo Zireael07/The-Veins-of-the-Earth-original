@@ -9,7 +9,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_KRAKEN",
 	type = "magical beast", subtype = "aquatic"
---	image = "tiles/kraken.png",
+--	image = "tiles/mobiles/kraken.png",
 	display = 'B', color=colors.DARK_BLUE,
 	body = { INVEN = 10 },
 	desc = [[An immense kraken.]],

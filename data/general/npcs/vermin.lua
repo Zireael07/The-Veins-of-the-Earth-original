@@ -12,7 +12,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_SPIDER",
-	image = "tiles/spider.png",
+	image = "tiles/mobiles/spider.png",
 	display = 'r', color=colors.BROWN,
 	desc = [[A small spider.]],
 
@@ -89,7 +89,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_ANT",
-	image = "tiles/ant.png",
+	image = "tiles/mobiles/ant.png",
 	display = 'a', color=colors.BLACK,
 	desc = [[This ant has a glossy black carapace, a stinger dripping with acid and razor-sharp pincers. It is about the size of a man.]],
 
@@ -113,7 +113,7 @@ newEntity{
 --Acid sting 1d4
 newEntity{
 	base = "BASE_NPC_ANT",
-	image = "tiles/ant_soldier.png",
+	image = "tiles/mobiles/ant_soldier.png",
 	name = "giant ant soldier", color=colors.BLUE,
 	level_range = {5, 20}, exp_worth = 600,
 	rarity = 8,
@@ -128,7 +128,7 @@ newEntity{
 --1d2 STR poison
 newEntity{
 	base = "BASE_NPC_ANT",
-	image = "tiles/ant_queen.png",
+	image = "tiles/mobiles/ant_queen.png",
 	name = "giant ant queen", color=colors.DARK_RED, --let's make her stand out
 	level_range = {5, 20}, exp_worth = 1500,
 	rarity = 14,
@@ -142,7 +142,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_CENTIPEDE",
-	image = "tiles/centipede.png",
+	image = "tiles/mobiles/centipede.png",
 	display = 'w', color=colors.BROWN,
 	desc = [[A giant centipede.]],
 
@@ -250,7 +250,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_SCORPION",
-	image = "tiles/scorpion.png",
+	image = "tiles/mobiles/scorpion.png",
 	display = 'w', color=colors.TAN,
 	desc = [[A giant scorpion.]],
 
@@ -332,7 +332,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_FBEETLE",
-	image = "tiles/beetle.png",
+	image = "tiles/mobiles/beetle.png",
 	display = 'x', color=colors.FIREBRICK,
 	desc = [[A giant fire beetle.]],
 	stats = { str=10, dex=10, con=11, int=1, wis=10, cha=7, luc=12 },
@@ -354,7 +354,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_SBEETLE",
-	image = "tiles/beetle.png",
+	image = "tiles/mobiles/beetle.png",
 	display = 'x', color=colors.DARK_GREEN,
 	desc = [[A giant stag beetle.]],
 	stats = { str=23, dex=10, con=17, int=1, wis=10, cha=9, luc=12 },
