@@ -19,7 +19,7 @@ newEntity{
 newEntity{
     define_as = "FLOOR",
     type = "floor", subtype = "floor",
-    name = "floor", image = "tiles/terrain/floor.png",
+    name = "floor", image = "tiles/UT/floor_cobblestone.png",
     display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
 }
 
