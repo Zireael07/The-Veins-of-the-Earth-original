@@ -1,5 +1,23 @@
 CHANGELOG
 
+* bug fix - made fire outsiders straight out immune to fire
+* bug fix - wyvern now has poison
+* bug fix - tendriculos and choker have proper descriptions
+* bug fix - rejecting filters due to exceeding cost led to no filters being applied at all when creating loot
+* bug fix - take into account item level ranges when creating loot
+* bug fix - adjust item levels and rarities since some were out of whack with the item's real power
+* bug fix - NPCs and monsters now drop level-appropriate gear
+* bug fix - cost filters now operate on the baseline price in coppers (i.e. what e.cost is expressed in)
+
+* new monsters: succubus, incubus; dragons (complete with age categories and breath weapons)
+* new NPCs: drow house guard, drow house captain, drow priest
+* new tiles: blood ape, formian, giant ant soldier, giant ant queen, will-o-wisp, grick, spectral panther; drow female noble, drow commoner, drow house guard; floor, worldmap floor, worldmap wall; glaive
+* gave breath weapons to hell hound, dragon turtle
+* gave immunities to delver, gibbering mouther, mimic, nagas; ghaele, lillend; tojanida; assasin vine, shambling mound, tendriculos; fire elementals, magmin; night hag
+* marut and fire elementals now deal additional damage on hit
+* implement Craft skill
+* item creation feats now pick from all possible egos
+
 0.27.0 - beta 8 - 01/05/2014
 
 * bug fix - no more artifacts dropping on dlvl 1
