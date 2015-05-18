@@ -25,7 +25,7 @@ newEntity{ define_as = "BASE_NPC_DROW_T",
     name = "drow townie",
     display = 'h', color=colors.BLACK,
     subtype = "drow",
-    image = "tiles/mobiles/newtiles/mobiles/drow_rogue.png",
+    image = "tiles/new/drow_rogue.png",
 
     level_range = {1, nil}, exp_worth = 400,
     max_life = resolvers.rngavg(3,5),
@@ -51,7 +51,7 @@ newEntity{ define_as = "BASE_NPC_DROW_T",
 newEntity{ define_as = "BASE_NPC_DROW_NOBLE",
     base = "BASE_NPC_DROW_T",
     name = "female drow noble",
-    image = "tiles/mobiles/newtiles/mobiles/drow_noble_female.png",
+    image = "tiles/new/drow_noble_female.png",
     rarity = 6,
     max_life = resolvers.rngavg(13,15),
     stats = { str=13, dex=15, con=9, int=12, wis=13, cha=12, luc=10 },
@@ -82,7 +82,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow commoner",
-    image = "tiles/mobiles/newtiles/mobiles/drow_commoner.png",
+    image = "tiles/new/drow_commoner.png",
     rarity = 2,
     resolvers.equipnoncursed{
         full_id=true,
@@ -93,7 +93,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow female courtesan",
-    image = "tiles/mobiles/newtiles/mobiles/drow_courtesan_female.png",
+    image = "tiles/new/drow_courtesan_female.png",
     max_life = resolvers.rngavg(5,10),
     rarity = 5,
     stats = { str=8, dex=16, con=10, int=14, wis=9, cha=19, luc=10 },
@@ -122,7 +122,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow guard",
-    image = "tiles/mobiles/mobiles/npc/drow_fighter.png",
+    image = "tiles/mobiles/npc/drow_fighter.png",
     max_life = resolvers.rngavg(15,20),
     rarity = 4,
 
@@ -144,7 +144,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow house guard",
-    image = "tiles/mobiles/UT/drow_house_guard.png",
+    image = "tiles/UT/drow_house_guard.png",
     stats = { str=14, dex=17, con=11, int=10, wis=12, cha=10, luc=10 },
     max_life = resolvers.rngavg(20,25),
     rarity = 8,
@@ -165,7 +165,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow house captain",
-    image = "tiles/mobiles/UT/drow_house_guard.png",
+    image = "tiles/UT/drow_house_guard.png",
     stats = { str=14, dex=18, con=11, int=10, wis=12, cha=10, luc=10 },
     max_life = resolvers.rngavg(50,55),
     rarity = 10,
@@ -186,7 +186,7 @@ newEntity{
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow priest",
-    image = "tiles/mobiles/mobiles/npc/drow_priest.png",
+    image = "tiles/mobiles/npc/drow_priest.png",
     max_life = resolvers.rngavg(30,35),
     rarity = 6,
     stats = { str=10, dex=12, con=12, int=14, wis=18, cha=15, luc=12 },

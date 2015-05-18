@@ -8,7 +8,7 @@ newEntity{
     define_as = "EXIT",
     type = "floor", subtype = "floor",
     name = "exit to worldmap",
-    image = "tiles/newtiles/worldmap_stairs_up.png",
+    image = "tiles/new/worldmap_stairs_up.png",
     display = '<', color_r=255, color_g=0, color_b=255, back_color=colors.DARK_GREY,
     notice = true,
     always_remember = true,
@@ -26,7 +26,7 @@ newEntity{
 newEntity{
     define_as = "WALL",
     type = "wall", subtype = "wall",
-    name = "wall", image = "tiles/newtiles/drow_wall.png",
+    name = "wall", image = "tiles/new/drow_wall.png",
     display = '#', color=colors.BLACK, back_color={r=30, g=30, b=60},
     always_remember = true,
     does_block_move = true,
@@ -40,7 +40,7 @@ newEntity{
     base = "WALL",
     name = "faerie lantern",
     define_as = "FAERIE_TORCH",
-    image = "tiles/newtiles/faerie_lantern.png",
+    image = "tiles/new/faerie_lantern.png",
     display = '#', color=colors.GREEN, back_color = {r=30, g=30, b=60},
 }
 
@@ -48,7 +48,7 @@ newEntity{
 newEntity{
     define_as = "DOOR",
     type = "wall", subtype = "floor",
-    name = "door", image = "tiles/newtiles/door_drow.png",
+    name = "door", image = "tiles/new/door_drow.png",
     display = '+', color_r=238, color_g=154, color_b=77, back_color=colors.LIGHT_UMBER,
     notice = true,
     always_remember = true,
@@ -71,7 +71,7 @@ newEntity{
     define_as = "MOSS",
     type = "floor", subtype = "vegetation",
     name = "luminescent moss",
-    image = "tiles/newtiles/moss.png",
+    image = "tiles/new/moss.png",
     display = '¤', color_r=52, color_g=222, color_b=137, back_color=colors.GREY,
 }
 

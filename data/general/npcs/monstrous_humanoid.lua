@@ -17,7 +17,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	define_as = "BASE_NPC_CENTAUR",
 	name = "centaur",
-	image = "tiles/mobiles/newtiles/mobiles/centaur.png",
+	image = "tiles/new/centaur.png",
 	display = 'q', color=colors.LIGHT_BROWN,
 	desc = [[A proud centaur.]],
 

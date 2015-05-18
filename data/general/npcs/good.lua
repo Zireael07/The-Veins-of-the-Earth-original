@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2014
+--Zireael 2013-2015
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -19,7 +19,7 @@ newEntity{
 --Spell-likes: detect evil at will, 1/day greater teleport, cure moderate wounds; 3/day cure light wounds
 newEntity{ base = "BASE_NPC_GOOD",
     define_as = "BASE_NPC_UNICORN",
-    image = "tiles/mobiles/newtiles/mobiles/unicorn.png",
+    image = "tiles/new/unicorn.png",
     display = 'q', color=colors.WHITE,
     desc = [[A beautiful unicorn.]],
     stats = { str=20, dex=17, con=21, int=10, wis=21, cha=24, luc=18 },

@@ -105,7 +105,7 @@ newEntity{ base = "BASE_NPC_DEMON",
 newEntity{ base = "BASE_NPC_DEMON",
 	define_as = "BASE_NPC_SUCCUBUS",
 	display = 'ū', color=colors.PURPLE,
-    image = "tiles/mobiles/newtiles/mobiles/succubus.png",
+    image = "tiles/new/succubus.png",
 	name = "succubus",
 	sex = "Female",
     desc = [[Appearing to mortals as breathtakingly beautiful, demure women of great magnetism and sensuality, succubi and incubi are the
@@ -142,7 +142,7 @@ newEntity{ base = "BASE_NPC_DEMON",
 
 newEntity{ base = "BASE_NPC_SUCCUBUS",
 	name = "incubus",
-    image = "tiles/mobiles/newtiles/mobiles/incubus.png",
+    image = "tiles/new/incubus.png",
 	sex = "Male",
     desc = [[Appearing to mortals as breathtakingly beautiful, demure men of great magnetism and sensuality, succubi and incubi are the
       social agents and sexual predators of the tanar'ri. They procure favors from powerful mortals, move unseen among the highest levels

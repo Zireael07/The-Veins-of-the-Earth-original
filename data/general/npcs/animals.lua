@@ -191,7 +191,7 @@ newEntity{
 
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_RAVEN",
-	image = "tiles/mobiles/newtiles/mobiles/raven.png",
+	image = "tiles/new/raven.png",
 	display = 'b', color=colors.GREY,
 	desc = [[A large raven.]],
 	common_desc = [[Dire ravens are attracted to shiny baubles, and if attacked, instinctually try to peck out their opponents’ eyes.]],

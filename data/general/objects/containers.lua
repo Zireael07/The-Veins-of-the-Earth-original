@@ -1,10 +1,10 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 newEntity{
 	define_as = "BASE_CONTAINER",
 	type = "container", subtype = "container",
-	image = "tiles/newtiles/bag.png",
+	image = "tiles/new/bag.png",
 	display = "Δ", color=colors.SLATE,
 	unided_name = "bag",
 	name = "bag",

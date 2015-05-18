@@ -9,7 +9,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_NPC_NYMPH",
 	type = "fey",
-	image = "tiles/mobiles/newtiles/mobiles/nymph.png",
+	image = "tiles/new/nymph.png",
 	display = 'f', color=colors.DARK_GREEN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A beautiful nymph.]],

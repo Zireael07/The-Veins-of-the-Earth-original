@@ -19,7 +19,7 @@ newEntity{
 	define_as = "EXIT",
 	type = "floor", subtype = "floor",
 	name = "exit to worldmap",
-	image = "tiles/newtiles/worldmap_stairs_up.png",
+	image = "tiles/new/worldmap_stairs_up.png",
 	display = '<', color_r=255, color_g=0, color_b=255, back_color=colors.DARK_GREY,
 	notice = true,
 	always_remember = true,
@@ -198,7 +198,7 @@ newEntity{
 	base = "WALL",
 	name = "faerie lantern",
 	define_as = "FAERIE_TORCH",
-	image = "tiles/newtiles/faerie_lantern.png",
+	image = "tiles/new/faerie_lantern.png",
 	display = '#', color=colors.GREEN, back_color = {r=30, g=30, b=60},
 }
 
@@ -262,21 +262,21 @@ newEntity{ base = "DOOR",
 --Taken from Incursion
 newEntity{ base = "DOOR",
 	define_as = "DOOR_IRON",
-	name = "iron door", image = "tiles/newtiles/door_iron.png",
+	name = "iron door", image = "tiles/new/door_iron.png",
 	display = '+', color=colors.DARK_GREY, back_color=colors.SLATE,
 	door_opened = "DOOR_OPEN",
 }
 
 newEntity{ base = "DOOR",
 	define_as = "DOOR_DARKWOOD",
-	name = "darkwood door", image = "tiles/newtiles/door_darkwood.png",
+	name = "darkwood door", image = "tiles/new/door_darkwood.png",
 	display = '+', color=colors.DARK_GREY, back_color=colors.DARK_BROWN,
 	door_opened = "DOOR_OPEN",
 }
 
 newEntity{ base = "DOOR",
 	define_as = "DOOR_WARDED",
-	name = "warded oak door", image = "tiles/newtiles/door_warded.png",
+	name = "warded oak door", image = "tiles/new/door_warded.png",
 	display = '+', color=colors.VIOLET, back_color=colors.DARK_BROWN,
 	door_opened = "DOOR_OPEN",
 }
@@ -288,7 +288,7 @@ newEntity{
 	define_as = "MOSS",
 	type = "floor", subtype = "vegetation",
 	name = "luminescent moss",
-	image = "tiles/newtiles/moss.png",
+	image = "tiles/new/moss.png",
 	display = '¤', color_r=52, color_g=222, color_b=137, back_color=colors.GREY,
 }
 
