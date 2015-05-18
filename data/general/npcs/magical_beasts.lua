@@ -908,7 +908,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --Ethereal phase, fear DC 13
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_SPECTRAL_PANTHER",
-	--image =
+	image = "tiles/UT/spectral_panther.png",
 	display = 'c', color=colors.GREY,
 	desc = [[Spectral panthers are mysterious creatures that feed on both the fear and the flesh of their prey.]],
 
