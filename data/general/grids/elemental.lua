@@ -74,7 +74,7 @@ newEntity{
 newEntity{
 	base = "FLOOR",
 	define_as = "EARTH_FLOOR",
-	name = "earth", image = "tiles/UT/earth.png",
+	name = "earth", image = "tiles/UT/earth_floor.png",
 	color=colors.SLATE, back_color=colors.UMBER,
 }
 
