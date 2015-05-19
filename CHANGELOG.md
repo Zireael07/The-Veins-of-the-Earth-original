@@ -9,9 +9,10 @@ CHANGELOG
 * bug fix - NPCs and monsters now drop level-appropriate gear
 * bug fix - cost filters now operate on the baseline price in coppers (i.e. what e.cost is expressed in)
 
+* new zones: Plane of Air, Plane of Earth, Plane of Fire, Plane of Water
 * new monsters: succubus, incubus; dragons (complete with age categories and breath weapons)
 * new NPCs: drow house guard, drow house captain, drow priest
-* new tiles: blood ape, formian, giant ant soldier, giant ant queen, will-o-wisp, grick, spectral panther; drow female noble, drow commoner, drow house guard; floor, worldmap floor, worldmap wall; glaive
+* new tiles: blood ape, formian, giant ant soldier, giant ant queen, will-o-wisp, grick, spectral panther; drow female noble, drow commoner, drow house guard; floor, worldmap floor, worldmap wall, cobblestone floor, water floor, water wall, fire floor, fire wall, earth, earth wall, air, cloud; glaive
 * gave breath weapons to hell hound, dragon turtle
 * gave immunities to delver, gibbering mouther, mimic, nagas; ghaele, lillend; tojanida; assasin vine, shambling mound, tendriculos; fire elementals, magmin; night hag
 * marut and fire elementals now deal additional damage on hit
