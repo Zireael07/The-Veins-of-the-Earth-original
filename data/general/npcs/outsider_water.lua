@@ -16,7 +16,7 @@ newEntity{
 --Blind-Fight feat
 newEntity{ base = "BASE_NPC_WATER",
 	define_as = "BASE_NPC_TOJANIDA",
-	image = "tiles/mobiles/UT/tojanida.png",
+	image = "tiles/mobiles/tojanida.png",
 	display = 'O', color=colors.LIGHT_BLUE,
 	body = { INVEN = 10 },
 	desc = [[A creature with seven stalks extending from the shell.]],
