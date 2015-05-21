@@ -80,6 +80,13 @@ newEntity{
 	display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
 }
 
+--Graphical variant
+newEntity{
+	base = "FLOOR",
+	define_as = "FLOOR_TILED",
+	image = "tiles/terrain/floor_tiled.png",
+}
+
 --Taken from Incursion
 newEntity{
 	base = "FLOOR",

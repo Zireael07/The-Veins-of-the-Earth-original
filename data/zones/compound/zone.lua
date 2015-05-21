@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2014
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ return {
 			tileset = {"5x5/base", "5x5/basic_rooms", "5x5/tunnel", "5x5/windy_tunnel", "5x5/new_rooms" },
 			tunnel_chance = 80,
 
-			['.'] = "FLOOR",
+			['.'] = "FLOOR_TILED",
 	--		['.'] = { "FLOOR", "MOSS", "CHASM", "WATER", }
 			['#'] = "WALL",
 	--		up = "UP",
@@ -56,7 +56,7 @@ return {
 			nb_npc = {10, 20},
 		--[[	class = "mod.class.generator.actor.OnSpots",
 				nb_spots = 2, on_spot_chance = 75,]]
-		
+
 		},
 		object = {
             class = "engine.generator.object.Random",
@@ -66,14 +66,14 @@ return {
 	levels =
 	{
 	--Place exit to worldmap on level 1
-		[1] = { 
-		generator = { map = { 
+		[1] = {
+		generator = { map = {
 		up = "EXIT",
 		},},
 	},
 	--No shaft up on level 2
-		[2] = { 
-		generator = { map = { 
+		[2] = {
+		generator = { map = {
 		up = "UP",
 		},},
 	},
