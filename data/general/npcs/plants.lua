@@ -115,6 +115,7 @@ newEntity{ base = "BASE_NPC_FUNGI",
 newEntity{ base = "BASE_NPC_PLANT",
 	define_as = "BASE_NPC_SHAMBLING_MOUND",
 	display = 'P', color=colors.UMBER,
+	image = "tiles/mobiles/shambling_mound.png",
 	desc = [[A shambling mass of rotting vegetation.]],
 
 	stats = { str=21, dex=10, con=17, int=7, wis=10, cha=9, luc=10 },
