@@ -20,7 +20,7 @@ local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
 	define_as = "BASE_NPC_OUTSIDER_EVIL",
-	type = "outsider",
+	type = "outsider", subtype = "evil",
 	body = { INVEN = 10 },
 	ai = "human_level", ai_state = { talent_in=3, },
 	alignment = "Neutral Evil",
@@ -173,7 +173,8 @@ newEntity{
 --Quill DC 16 Ref or -1 to attacks, saves and checks
 newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_HOWLER",
-	display = 'O', color=colors.BLACK,
+	image = "tiles/new/howler.png",
+	display = 'O', color=colors.RED,
 	desc = [[A large creature with a ring of spikes around its neck.]],
 
 	stats = { str=21, dex=17, con=15, int=6, wis=14, cha=8, luc=12 },
@@ -258,7 +259,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_NIGHTMARE",
 	subtype = "fire",
-	display = 'O', color=colors.FIREBRICK,
+	display = 'q', color=colors.FIREBRICK,
 	desc = [[A horse made of smoke, with flaming hooves.]],
 	specialist_desc = [[Nightmares, at will, can use astral projection and etherealness, as the spells.]],
 	uncommon_desc = [[Nightmares can fly and often serve as companions and steeds for powerful, evil individuals. Nightmares produce a thick, black smoke when enraged, granting it concealment, as well as blinding and choking opponents.]],
