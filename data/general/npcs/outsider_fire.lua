@@ -102,7 +102,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_FIRE",
 	define_as = "BASE_NPC_RAST",
 	image = "tiles/mobiles/elemental_fire.png",
-	display = 'O', color=colors.RED,
+	display = 'O', color=colors.FIREBRICK,
 	body = { INVEN = 10 },
 	desc = [[A large creature of fire.]],
 

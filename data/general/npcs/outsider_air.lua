@@ -18,7 +18,7 @@ local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
 	define_as = "BASE_NPC_AIR",
-	type = "outsider",
+	type = "outsider", subtype = "air",
 	body = { INVEN = 10 },
 	ai = "human_level", ai_state = { talent_in=3, ai_move = "move_astar", },
 	combat = { dam= {1,6} },
