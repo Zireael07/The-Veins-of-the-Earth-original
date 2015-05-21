@@ -272,7 +272,7 @@ newEntity{
 --Trip
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_HYENA",
-	image = "tiles/mobiles/UT/wolf.png",
+	image = "tiles/mobiles/UT/hyena.png",
 	display = 'd', color=colors.TAN,
 	desc = [[This hyena is covered in shaggy, tan-colored fur with black and brown stripes.]],
 
@@ -302,7 +302,7 @@ newEntity{
 --Trip, Weapon Focus (bite)
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_HYENA_SHORTFACED",
-	image = "tiles/mobiles/UT/wolf.png",
+	image = "tiles/mobiles/UT/hyena.png",
 	display = 'd', color=colors.DARK_TAN,
 	desc = [[Slightly larger than a normal hyena, this spotted canine has the same shorter forelimbs of that breed but with a blunt face and larger teeth.]],
 
@@ -332,7 +332,7 @@ newEntity{
 --Trip
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_JACKAL",
-	image = "tiles/mobiles/UT/wolf.png",
+	image = "tiles/mobiles/UT/jackal.png",
 	display = 'd', color=colors.UMBER,
 	desc = [[Jackals are very vocal creatures. Yipping calls are made when the family gathers and are specific to individual families. Non-members do not recognize or respond to the calls of other families.
     Additionally, when threatened, these jackals make loud screaming vocalizations. When seriously wounded, the vocalizations change from screams to low croaks.]],
@@ -414,7 +414,7 @@ newEntity{
 --Scent; Run feat
 newEntity{ base = "BASE_NPC_ANIMAL",
 	define_as = "BASE_NPC_HUGE_VIPER",
---	image = "tiles/mobiles/snake.png",
+	image = "tiles/UT/viper.png",
 	display = 'R', color=colors.LIGHT_GREEN,
 	desc = [[Generally considered a slow moving, somewhat placid animal, vipers are not considered aggressive unless provoked or hungry. If tampered with, it will generally puff up and give an extremely loud hiss.]],
 
