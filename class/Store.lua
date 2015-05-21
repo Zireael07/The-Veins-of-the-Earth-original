@@ -41,7 +41,7 @@ function _M:init(t, no_default)
 
 	Store.init(self, t, no_default)
 
-	self.name = self.name .. (" (Max buy %d gold)"):format(self.store.purse)
+	self.name = self.name .. (" (Max buy %d silver)"):format(self.store.purse/10)
 
 	if not self.store.actor_filter then
 		self.store.actor_filter = function(o)
@@ -74,7 +74,7 @@ end
 -- @param level the level to generate for (instance of type engine.Level)
 -- @param zone the zone to generate for
 function _M:loadup(level, zone, force_nb)
-	if not self:canRestock() then 
+	if not self:canRestock() then
 		print("[STORE] stocking up: cannot restock")
 		return end
 
@@ -223,7 +223,7 @@ end
 -- @param who the actor who interacts
 function _M:interact(who, name)
 	who:sortInven()
-	
+
   	Store.interact(self, who, name)
 
 --[[  local d = game.dialogs[#game.dialogs]
@@ -237,7 +237,7 @@ function _M:doBarter()
 	local list_buy = self.barter_list_buy
 	local list_sell = self.barter_list_sell
 
-	
+
 	for i, item in ipairs(list_buy) do
 		self:onBuy(who, o, item, nb, true)
 		self:transfer(self, who, item, nb)
@@ -267,15 +267,14 @@ function _M:formatStorePrice(o, what)
     local gold_rest = math.floor(gold_change/10)
 
     if self:getObjectPrice(o, what) > 2000 then
-        if (plat_rest or 0) > 0 then return "#ANTIQUE_WHITE#"..platinum.."#GOLD# "..plat_rest.."#LAST#"
-        else return "#ANTIQUE_WHITE#"..platinum.."#LAST#" end
+        if (plat_rest or 0) > 0 then return "#ANTIQUE_WHITE#"..platinum.."pp #GOLD# "..plat_rest.." gp #LAST#"
+        else return "#ANTIQUE_WHITE#"..platinum.." pp #LAST#" end
     elseif self:getObjectPrice(o, what) > 200 then
-        if (gold_rest or 0) > 0 then return "#GOLD#"..gold.."#LAST# "..gold_rest
-        else return "#GOLD#"..gold.."#LAST#" end
+        if (gold_rest or 0) > 0 then return "#GOLD#"..gold.." gp #LAST# "..gold_rest.." sp"
+        else return "#GOLD#"..gold.." gp #LAST#" end
     elseif self:getObjectPrice(o, what) > 10 then
-        if (silver_rest or 0) > 0 then return silver.." "..silver_rest
-        else return silver end
+        if (silver_rest or 0) > 0 then return silver.." sp "..silver_rest.." cp"
+        else return silver.." sp" end
     else return self:getObjectPrice(o, what)
     end
 end
-

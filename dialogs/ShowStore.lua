@@ -49,7 +49,7 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 
 	self.c_inven = Inventory.new{actor=actor_actor, inven=actor_inven, filter=actor_filter, width=math.floor(self.iw / 2 - 10), height=self.ih - 10,
 		columns={
-			{name="", width={20,"fixed"}, display_prop="char", sort="id"},
+			{name="", width={26,"fixed"}, display_prop="char", sort="id"},
 			{name="", width={24,"fixed"}, display_prop="object", direct_draw=function(item, x, y) item.object:toScreen(nil, x+4, y, 16, 16) end},
 			{name="Inventory", width=80, display_prop="name", sort="name"},
 			{name="Category", width=20, display_prop="cat", sort="cat"},
@@ -85,7 +85,7 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 
 	self.c_store = Inventory.new{actor=store_actor, inven=store_inven, filter=store_filter, width=math.floor(self.iw / 2 - 10), height=self.ih - 10, tabslist=false,
 		columns={
-			{name="", width={20,"fixed"}, display_prop="char", sort="id"},
+			{name="", width={26,"fixed"}, display_prop="char", sort="id"},
 			{name="", width={24,"fixed"}, display_prop="object", direct_draw=direct_draw},
 			{name="Store", width=80, display_prop="name"},
 			{name="Category", width=20, display_prop="cat"},
@@ -110,7 +110,7 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 		{bottom=self.c_buy.h + 10, ui=Separator.new{dir="vertical", size=self.iw - 10}},
 	--	{left=0, bottom=0, ui=self.c_buy_total},
 	--	{right=0, bottom=0, ui=self.c_sell_total},
-		
+
 	}
 
 	self.c_inven.c_inven.on_focus_change = function(ui_self, status) if status == true then self:select(ui_self.list[ui_self.sel]) end end
@@ -162,7 +162,7 @@ function _M:init(title, store_inven, actor_inven, store_filter, actor_filter, ac
 
 	self.key.any_key = function(sym)
 		-- Control resets the tooltip
-		if sym == self.key._LCTRL or sym == self.key._RCTRL then 
+		if sym == self.key._LCTRL or sym == self.key._RCTRL then
 			local ctrl = core.key.modState("ctrl")
 			if self.prev_ctrl ~= ctrl then self:select(self.cur_item, true) end
 			self.prev_ctrl = ctrl
@@ -187,7 +187,7 @@ function _M:on_register()
 end
 
 function _M:getStoreTitle()
-	return self.base_title..(" (Gold available: %0.2f)"):format(self.actor_actor.money)
+	return self.base_title..(" (Silver available: %d)"):format(self.actor_actor.money/10)
 end
 
 function _M:updateStore()
@@ -239,7 +239,7 @@ function _M:generateList()
 	if item.barter then
 		 return colors.LIGHT_RED
     end
-	end 
+	end
 
 	self.c_inven:generateList()
 	self.c_store:generateList()

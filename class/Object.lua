@@ -271,7 +271,7 @@ function _M:getTextualDesc()
     if self.desc then desc:add(self.desc) end
 
     --Requirements
-    self:getRequirementDesc(game.player)
+    self:getRequirementDesc(self, game.player)
 
     --Weapons
     if self.slot_forbid == "OFFHAND" then desc:add("You must wield this weapon with two hands.", true) end
@@ -364,14 +364,14 @@ function _M:formatPrice()
     local gold_rest = math.floor(gold_change/10)
 
     if self.cost > 2000 then
-        if (plat_rest or 0) > 0 then return "#ANTIQUE_WHITE#"..platinum.."#GOLD# "..plat_rest.."#LAST#"
-        else return "#ANTIQUE_WHITE#"..platinum.."#LAST#" end
+        if (plat_rest or 0) > 0 then return "#ANTIQUE_WHITE#"..platinum.." pp #GOLD# "..plat_rest.." gp #LAST#"
+        else return "#ANTIQUE_WHITE#"..platinum.." pp #LAST#" end
     elseif self.cost > 200 then
-        if (gold_rest or 0) > 0 then return "#GOLD#"..gold.."#LAST# "..gold_rest
-        else return "#GOLD#"..gold.."#LAST#" end
+        if (gold_rest or 0) > 0 then return "#GOLD#"..gold.." gp #LAST# "..gold_rest.." sp"
+        else return "#GOLD#"..gold.." gp #LAST#" end
     elseif self.cost > 10 then
-        if (silver_rest or 0) > 0 then return silver.." "..silver_rest
-        else return silver end
+        if (silver_rest or 0) > 0 then return silver.." sp "..silver_rest.." cp"
+        else return silver.." sp" end
     else return self.cost
     end
 end

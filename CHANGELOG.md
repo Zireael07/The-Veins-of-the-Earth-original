@@ -8,6 +8,7 @@ CHANGELOG
 * bug fix - adjust item levels and rarities since some were out of whack with the item's real power
 * bug fix - NPCs and monsters now drop level-appropriate gear
 * bug fix - cost filters now operate on the baseline price in coppers (i.e. what e.cost is expressed in)
+* bug fix - add currency symbols (pp, gp, sp) in item tooltips; display store purse in silver coins
 
 * new zones: Plane of Air, Plane of Earth, Plane of Fire, Plane of Water
 * new monsters: succubus, incubus; dragons (complete with age categories and breath weapons)
