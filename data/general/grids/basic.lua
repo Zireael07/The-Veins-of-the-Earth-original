@@ -269,7 +269,7 @@ newEntity{ base = "DOOR",
 --Taken from Incursion
 newEntity{ base = "DOOR",
 	define_as = "DOOR_IRON",
-	name = "iron door", image = "tiles/new/door_iron.png",
+	name = "iron door", image = "tiles/UT/door_iron.png",
 	display = '+', color=colors.DARK_GREY, back_color=colors.SLATE,
 	door_opened = "DOOR_OPEN",
 }
