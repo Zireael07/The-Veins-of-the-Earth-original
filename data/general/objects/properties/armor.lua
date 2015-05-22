@@ -4,6 +4,18 @@
 local DamageType = require "engine.DamageType"
 local Stats = require "engine.interface.ActorStats"
 
+newEntity{
+	name = "masterwork ", prefix = true,
+	keywords = {mwk=true},
+	level_range = {1, nil},
+	rarity = 2,
+	cost = resolvers.value{silver=100},
+	wielder = {
+	--	combat_armor_ac = 1,
+		armor_penalty = -1,
+	}
+}
+
 newEntity {
 	name = " +1", suffix = true,
 	keywords = {bonus=true},
@@ -14,6 +26,7 @@ newEntity {
 	school = "abjuration",
 	wielder = {
 		combat_magic_armor = 1,
+		armor_penalty = -1,
 	},
 	resolvers.creation_cost(),
 }
@@ -28,6 +41,7 @@ newEntity {
 	school = "abjuration",
 	wielder = {
 		combat_magic_armor = 2,
+		armor_penalty = -1,
 	},
 	resolvers.creation_cost(),
 }
@@ -42,6 +56,7 @@ newEntity {
 	school = "abjuration",
 	wielder = {
 		combat_magic_armor = 3,
+		armor_penalty = -1,
 	},
 	resolvers.creation_cost(),
 }
@@ -57,6 +72,7 @@ newEntity {
 	cost = resolvers.value{platinum=3200},
 	wielder = {
 		combat_magic_armor = 4,
+		armor_penalty = -1,
 	},
 	resolvers.creation_cost(),
 }
@@ -71,7 +87,8 @@ newEntity {
 --	cost = 50000,
 	cost = resolvers.value{platinum=5000},
 	wielder = {
-	combat_magic_armor = 5,
+		combat_magic_armor = 5,
+		armor_penalty = -1,
 	},
 	resolvers.creation_cost(),
 }

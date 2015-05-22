@@ -3,6 +3,17 @@
 
 local DamageType = require "engine.DamageType"
 
+newEntity{
+	name = "masterwork ", prefix = true,
+	keywords = {mwk=true},
+	level_range = {1, nil},
+	rarity = 2,
+	cost = resolvers.value{silver=100},
+	combat = {
+		magic_bonus = 1,
+	},
+}
+
 newEntity {
 	name = " +1", suffix = true,
 	keywords = {bonus=true},
