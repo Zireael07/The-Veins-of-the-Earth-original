@@ -331,6 +331,7 @@ newEntity{
 	define_as = "BASE_NPC_DRAGON_COPPER",
 	type = "dragon",
 	display = 'D', color=colors.DARK_TAN,
+    image = "tiles/new/dragon/dragon_copper_wyrmling.png",
 	body = { INVEN = 10 },
 	desc = [[At birth, a copper dragon's scales have a ruddy brown color with a metallic tint. As the dragon gets older, the scales become finer and more coppery, assuming a soft, warm gloss by young adult age. Very old dragons' scales pick up a green tint.
     A copper dragon's pupils fade with age, and the eyes of great wyrms resemble glowing turquoise orbs.]],
