@@ -447,6 +447,10 @@ local loot_mod = {
 end]]
 local wealth = function(zone, level, lev, what)
 	if zone.default_drops then return zone.default_drops end
+	if type(lev) ~="number" then lev = game.level.level end
+--	if lev ~= game.level.level then
+		print("[VEINS ENTITY FILTER] filter level ", lev, " level: ", game.level.level)
+--	end
 	local lev = lev or game.level.level
 
 	--account for Luck
@@ -458,7 +462,7 @@ local wealth = function(zone, level, lev, what)
 			print("[VEINS ENTITY FILTER] Low Luck effect", lvl)
 			lev = lvl
 		else
-			lev = game.level.level
+			lev = lev or game.level.level
 		end
 	end
 	--NOTE: 9 Luck does nothing
@@ -466,11 +470,11 @@ local wealth = function(zone, level, lev, what)
 		if rng.percent(20) then
 			local lucmod = game.player:getLucMod()
 			local lucroll = rng.dice(1,lucmod)
-			local lvl = game.level.level + lucroll
+			local lvl = lev or game.level.level + lucroll
 			print("[VEINS ENTITY FILTER] High Luck effect", lvl)
 			lev = lvl
 		else
-			lev = game.level.level
+			lev = lev or game.level.level
 		end
 	end
 
@@ -498,6 +502,18 @@ function _M:entityFilterAlter(zone, level, type, filter)
 
 	if filter.force_veins_drops or (not filter.veins and not filter.defined and not filter.special and not filter.unique and not filter.ego_chance and not filter.ego_filter and not filter.no_veins_drops) then
 		filter = table.clone(filter)
+
+		--Force resolve veins_level, if any, first
+		if filter.veins_level then
+			if _G.type(filter.veins_level) ~= "number" and _G.type(filter.veins_level) ~= "function" and filter.veins_level.__resolver then
+				filter.veins_level = resolvers.calc[filter.veins_level.__resolver](filter.veins_level, e)
+			end
+			if _G.type(filter.veins_level) == "function" then filter.veins_level = filter.veins_level() end
+
+			--if we don't have a number now, drop it
+			if _G.type(filter.veins_level) ~= "number" then filter.veins_level = nil end
+		end
+
 		filter.veins = wealth(zone, level, filter.veins_level or game.level.level, filter.veins_drops or "boss")
 	end
 
