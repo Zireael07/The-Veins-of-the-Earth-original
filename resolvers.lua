@@ -188,6 +188,7 @@ function resolvers.calc.store(t, e)
 	t = t[1]
 
 	e.store = game:getStore(t)
+--	e.store.store.filters.veins_level = 5 + e.challenge
 	print("[STORE] created for entity", t, e, e.name)
 
 	-- Delete the origin field
