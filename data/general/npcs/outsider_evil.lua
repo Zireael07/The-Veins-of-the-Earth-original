@@ -330,6 +330,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_OUTSIDER_EVIL",
 	define_as = "BASE_NPC_VARGOUILLE",
 	display = 'O', color=colors.UMBER,
+	image = "tiles/new/vargouille.png",
 	desc = [[A creature roughly the size of a human head.]],
 	uncommon_desc = [[Vargouilles can emit a terrible shriek that causes paralysis in its victims. The "kiss" of a vargouille on a paralyzed victim can cause a terrible transformation that slowly changes it into another vargouille. This transformation is slowed by sunlight or the daylight spell, but can only be reversed with remove disease.]],
 	common_desc = [[The bite of a vargouille contains a poison that cannot be healed except through the use of neutralize poison or heal.]],
