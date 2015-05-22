@@ -1472,7 +1472,7 @@ end
 --Add a random ego-ed item
 function _M:giveEgoAxe()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="battleaxe", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="battleaxe", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="battleaxe", ego_chance=1000}, 1, true)
@@ -1486,7 +1486,7 @@ end
 
 function _M:giveEgoRapier()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=1000}, 1, true)
@@ -1500,7 +1500,7 @@ end
 
 function _M:giveEgoSword()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=1000}, 1, true)
@@ -1514,7 +1514,7 @@ end
 
 function _M:giveEgoDagger()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="dagger", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="dagger", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="dagger", ego_chance=1000}, 1, true)
@@ -1528,7 +1528,7 @@ end
 
 function _M:giveEgoMorningstar()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=1000}, 1, true)
@@ -1542,10 +1542,10 @@ end
 
 function _M:giveEgoShortbow()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
-        o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=1000}, 1, true)
+        o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
         end
 
         game.zone:addEntity(game.level, o, "object")
@@ -1556,7 +1556,7 @@ end
 
 function _M:giveEgoLongbow()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="longbow", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="longbow", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="longbow", ego_chance=1000}, 1, true)
@@ -1570,7 +1570,7 @@ end
 
 function _M:giveEgoSling()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=1000}, 1, true)
@@ -1584,7 +1584,7 @@ end
 
 function _M:giveEgoLCrossbow()
     local inven = game.player:getInven("MAIN_HAND")
-    local o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=1000}, 1, true)
+    local o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=1000}, 1, true)
@@ -1598,7 +1598,7 @@ end
 
 function _M:giveEgoHCrossbow()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=1000}, 1, true)
@@ -1612,7 +1612,7 @@ end
 
 function _M:giveEgoChainmail()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=1000}, 1, true)
@@ -1626,7 +1626,7 @@ end
 
 function _M:giveEgoChainShirt()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=1000}, 1, true)
@@ -1640,7 +1640,7 @@ end
 
 function _M:giveEgoLeather()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=1000}, 1, true)
@@ -1654,7 +1654,7 @@ end
 
 function _M:giveEgoBreastplate()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=1000}, nil, true)
@@ -1668,7 +1668,7 @@ end
 
 function _M:giveEgoPlate()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         while o.cursed == true do
         o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=1000}, 1, true)
@@ -1683,7 +1683,7 @@ end
 --Actually give the starting items
 function _M:giveAxe()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="battleaxe", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="battleaxe", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1693,7 +1693,7 @@ end
 
 function _M:giveRapier()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="rapier", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1703,7 +1703,7 @@ end
 
 function _M:giveScimitar()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="scimitar", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="scimitar", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1713,7 +1713,7 @@ end
 
 function _M:giveSword()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="long sword", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1723,7 +1723,7 @@ end
 
 function _M:giveDagger()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="dagger", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="dagger", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1733,7 +1733,7 @@ end
 
 function _M:giveMorningstar()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="morningstar", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1743,7 +1743,7 @@ end
 
 function _M:giveLMace()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="light mace", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="light mace", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1753,7 +1753,7 @@ end
 
 function _M:giveHMace()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="heavy mace", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="heavy mace", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1763,7 +1763,7 @@ end
 
 function _M:giveSickle()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="sickle", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="sickle", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1773,7 +1773,7 @@ end
 
 function _M:giveStaff()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="quarterstaff", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="quarterstaff", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1783,7 +1783,7 @@ end
 
 function _M:giveHammer()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="warhammer", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="warhammer", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1793,7 +1793,7 @@ end
 
 function _M:giveSpear()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="short spear", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="short spear", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1803,7 +1803,7 @@ end
 
 function _M:giveScythe()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="scythe", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="scythe", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1813,7 +1813,7 @@ end
 
 function _M:giveShortbow()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="shortbow", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1823,7 +1823,7 @@ end
 
 function _M:giveLongbow()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="longbow", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="longbow", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1833,7 +1833,7 @@ end
 
 function _M:giveSling()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="sling", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("MAIN_HAND"), o)
@@ -1843,7 +1843,7 @@ end
 
 function _M:giveLCrossbow()
     local inven = game.player:getInven("MAIN_HAND")
-    local o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=-1000}, 1, true)
+    local o = game.zone:makeEntity(game.level, "object", {name="light crossbow", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject("MAIN_HAND", o)
@@ -1853,7 +1853,7 @@ end
 
 function _M:giveHCrossbow()
   local inven = game.player:getInven("MAIN_HAND")
-  local o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="heavy crossbow", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject("MAIN_HAND", o)
@@ -1862,7 +1862,7 @@ function _M:giveHCrossbow()
 end
 
 function _M:giveHandCrossbow()
-  local o = game.zone:makeEntity(game.level, "object", {name="hand crossbow", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="hand crossbow", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject("MAIN_HAND", o)
@@ -1872,7 +1872,7 @@ end
 
 function _M:giveChainmail()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="chain mail", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
@@ -1882,7 +1882,7 @@ end
 
 function _M:giveChainShirt()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="chain shirt", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
@@ -1892,7 +1892,7 @@ end
 
 function _M:giveLeather()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="studded leather", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
@@ -1902,7 +1902,7 @@ end
 
 function _M:givePadded()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="padded armor", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="padded armor", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
@@ -1912,7 +1912,7 @@ end
 
 function _M:giveBreastplate()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="breastplate", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
@@ -1922,7 +1922,7 @@ end
 
 function _M:givePlate()
   local inven = game.player:getInven("BODY")
-  local o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=-1000}, 1, true)
+  local o = game.zone:makeEntity(game.level, "object", {name="plate armor", ego_chance=-1000, ego_filter = {add_levels=10, not_properties={"cursed"},},}, 1, true)
       if o then
         game.zone:addEntity(game.level, o, "object")
         game.player:addObject(game.player:getInven("BODY"), o)
