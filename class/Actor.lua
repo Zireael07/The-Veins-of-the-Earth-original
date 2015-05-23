@@ -2568,7 +2568,7 @@ function _M:canWearObject(o, try_slot)
 	for id, inven in pairs(self.inven) do
 		if self.inven_def[id].is_worn and (not self.inven_def[id].infos or not self.inven_def[id].infos.etheral) then
 			for i, wo in ipairs(inven) do
-				print("check other objects: ", o.name, "other object ", wo.name, "forbids", wo.slot_forbid, "our slot ", try_slot or o.slot)
+			--	print("check other objects: ", o.name, "other object ", wo.name, "forbids", wo.slot_forbid, "our slot ", try_slot or o.slot)
 				if wo.slot_forbid and wo.slot_forbid == (try_slot or o.slot) then
 					print(" impossible => ", o.name, wo.name, "::", wo.slot_forbid, try_slot or o.slot)
 					return nil, "cannot use currently due to an other worn object"
@@ -2588,9 +2588,22 @@ end
 
 function _M:getMaxEncumbrance()
 	local add = 0
+	local base = self:getStr()
+	local bonus
+	local ret
+	--Muleback
+	if self.muleback then bonus = 8
+	else bonus = 0 end
+
+	base = base + (bonus or 0)
 	--Streamlined d20's encumbrance
-	if self:getStr() <= 10 then return math.floor(10*self:getStr())
-	else return math.ceil((10*self:getStr()) + (5*(self:getStr()-10))) end
+	if base <= 10 then ret = math.floor(10*base)
+	else ret = math.ceil((10*base) + (5*(base-10))) end
+
+	--Ant haul
+	if self.ant_haul then ret = ret*3 end
+
+	return ret
 end
 
 function _M:getEncumbrance()

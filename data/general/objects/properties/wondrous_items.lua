@@ -784,6 +784,28 @@ newEntity {
   },
 }
 
+--From PF, two ways to increase carrying capacity
+newEntity{
+	name = "muleback ", prefix = true,
+	level_range = {4, nil},
+	rarity = 4,
+	cost = resolvers.value{platinum=1000},
+	school = "transmutation",
+	wielder = {
+		muleback = 1,
+	},
+}
+
+newEntity{
+	name = " of heavyload", suffix = true,
+	level_range = {6, nil},
+	rarity = 10,
+	cost = resolvers.value{platinum=2000},
+	school = "transmutation",
+	wielder = {
+		ant_haul = 1,
+	},
+}
 
 
 --Casting spells

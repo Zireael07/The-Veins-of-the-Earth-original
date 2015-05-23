@@ -294,6 +294,19 @@ newEffect{
 	end,
 }
 
+newEffect{
+	name = "ANT_HAUL",
+	desc = "Triple carry capacity",
+	type = "mental",
+	status = "beneficial",
+	activate = function(self, eff)
+		eff.capacity = self:addTemporaryValue("ant_haul", 1)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("ant_haul", eff.capacity)
+	end,
+}
+
 --Buff spells, Zireael
 newEffect{
 	name = "BEAR_ENDURANCE",
