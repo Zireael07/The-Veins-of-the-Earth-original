@@ -90,7 +90,7 @@ newEntity{
     unided_name = "bracers",
     desc = [[A set of bracers.]],
     resolvers.flavored(),
-    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
+    egos = "/data/general/objects/properties/bracers.lua", egos_chance = { prefix=0, suffix=100},
 }
 
 --Cloaks
