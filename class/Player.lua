@@ -3442,11 +3442,25 @@ end
 function _M:onWear(o, inven_id)
     engine.interface.ActorInventory.onWear(self, o, inven_id)
 
+	-- Learn Talent
+	if o.wielder and o.wielder.learn_talent then
+		for tid, level in pairs(o.wielder.learn_talent) do
+			self:learnTalent(tid, level)
+		end
+	end
+
     self:updateModdableTile()
 end
 
 function _M:onTakeoff(o, inven_id)
     engine.interface.ActorInventory.onTakeoff(self, o, inven_id)
+
+	if o.wielder and o.wielder.learn_talent then
+		for tid, level in pairs(o.wielder.learn_talent) do
+		--	self:unlearnItemTalent(o, tid, level)
+			self:unlearnTalent(tid)
+		end
+	end
 
     self:updateModdableTile()
 end
