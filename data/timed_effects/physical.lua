@@ -88,6 +88,19 @@ newEffect{
 }
 
 
+newEffect{
+	name = "TRACKING",
+	desc = "Tracking",
+	type = "physical",
+	status = "neutral",
+	activate = function(self, eff)
+		self.sense = self:addTemporaryValue("heightened_senses", 2)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("heightened_senses", self.sense)
+	end,
+}
+
 -- Basic Conditions
 
 newEffect{

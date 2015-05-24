@@ -146,6 +146,7 @@ newBirthDescriptor{
     	[ActorTalents.T_ANIMAL_EMPATHY]=1,
     	[ActorTalents.T_MOUNT]=1,
 		[ActorTalents.T_CRAFT]=1,
+		[ActorTalents.T_TRACK]=1,
   	},
   talents_types = {
     ["special/special"] = {true, 0.0},

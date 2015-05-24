@@ -565,7 +565,19 @@ end
 
 --if not self:attr("blind") then
   --normal stuff
-  -- Apply lite from NPCs
+
+	--used by tracking
+	if self:attr("heightened_senses") then
+		local radius = (self.heightened_senses or 0)
+		local lite = math.max(self.lite, (self.infravision or 0))
+		self:computeFOV(radius + lite, "block_sight", function(x, y, dx, dy, sqdist)
+			if game.level.map(x, y, game.level.map.ACTOR) then
+				game.level.map.seens(x, y)
+			end
+		end, true, true, true)
+	end
+
+-- Apply lite from NPCs
   local uid, e = next(game.level.entities)
   while uid do
     if e ~= self and e.lite and e.lite > 0 and e.computeFOV then
@@ -575,7 +587,8 @@ end
   end
 
   -- Calculate our own FOV
-  self:computeFOV(self.lite, "block_sight", function(x, y, dx, dy, sqdist)
+	local lite = self.lite + (self.low_light_vision or 0)
+  	self:computeFOV(lite, "block_sight", function(x, y, dx, dy, sqdist)
       game.level.map:applyLite(x, y)
       game.level.map.remembers(x, y, true) -- Remember the tile
     end, true, true, true)

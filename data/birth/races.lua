@@ -80,13 +80,14 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'race',
 	name = 'Elf',
-	desc = help..'Elves are also called the Fair Folk.\n\n Dex +2 Con -2. Listen, Spot, Search +1. Darkvision 3. Favored class: Ranger.',
+	desc = help..'Elves are also called the Fair Folk.\n\n Dex +2 Con -2. Listen, Spot, Search +1. Low-light vision 2. Favored class: Ranger.',
 	stats = { dex = 2, con = -2, },
 	copy_add = {
-		infravision = 3,
+	--	infravision = 3,
 		skill_listen = 2,
 		skill_spot = 2,
 		skill_search = 2,
+		low_light_vision = 2,
 		talents = {
     	[ActorTalents.T_LONGBOW_PROFICIENCY]=1,
     	[ActorTalents.T_SHORTBOW_PROFICIENCY]=1,

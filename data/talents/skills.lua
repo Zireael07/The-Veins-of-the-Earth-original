@@ -361,3 +361,21 @@ newTalent{
         return "Attempt to craft a mundane item."
     end,
 }
+
+newTalent{
+    name = "Track",
+    type = {"skill/skill",1},
+	mode = "activated",
+	points = 1,
+	cooldown = 20,
+    action = function(self, t)
+        local check = self:skillCheck("survival", 10)
+        if check then
+            self:setEffect(self.EFF_TRACKING, 10, {})
+        end
+        return true
+    end,
+    info = function(self, t)
+        return "Attempt to track other creatures."
+    end,
+}
