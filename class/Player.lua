@@ -3377,7 +3377,8 @@ function _M:updateModdableTile()
     --Use racial dolls
     local doll = "default/tiles/player/racial_dolls/"
 
-	  self.image = doll..(self.moddable_tile_base or "human_m.png")
+	self.image = base.."shadow.png"
+
   	self.add_mos = {}
   	local add = self.add_mos
   	local i
@@ -3392,6 +3393,9 @@ function _M:updateModdableTile()
     end
   end]]
 
+	local basebody = doll..(self.moddable_tile_base or "human_m.png")
+	add[#add+1] = {image = basebody, auto_tall=1}
+
   if not self:attr("disarmed") then
     i = self.inven[self.INVEN_MAIN_HAND]; if i and i[1] and i[1].moddable_tile_back then
       add[#add+1] = {image = base..(i[1].moddable_tile_back):format("right")..".png", auto_tall=1}
@@ -3404,7 +3408,7 @@ function _M:updateModdableTile()
   i = self.inven[self.INVEN_CLOAK]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile):format("shoulder")..".png", auto_tall=1} end
   i = self.inven[self.INVEN_BOOTS]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
   i = self.inven[self.INVEN_BODY]; if i and i[1] and i[1].moddable_tile2 then add[#add+1] = {image = base..(i[1].moddable_tile2)..".png", auto_tall=1}
-  elseif not self:attr("moddable_tile_nude") then add[#add+1] = {image = base.."lower_body_01.png"} end
+  elseif not self:attr("moddable_tile_nude") then add[#add+1] = {image = base.."pants_l_white.png"} end
   i = self.inven[self.INVEN_BODY]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1}
   elseif not self:attr("moddable_tile_nude") then add[#add+1] = {image = base.."upper_body_01.png"} end
   i = self.inven[self.INVEN_HELM]; if i and i[1] and i[1].moddable_tile then add[#add+1] = {image = base..(i[1].moddable_tile)..".png", auto_tall=1} end
