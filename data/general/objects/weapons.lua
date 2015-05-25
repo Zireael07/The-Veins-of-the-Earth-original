@@ -8,6 +8,7 @@ newEntity{
     define_as = "BASE_WEAPON",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon",
+    addons = "/data/general/objects/properties/bonus_weapons.lua",
     egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 
@@ -15,6 +16,7 @@ newEntity{
     define_as = "BASE_WEAPON_TWOHANDED",
     slot = "MAIN_HAND", slot_forbid = "OFF_HAND",
     type = "weapon",
+    addons = "/data/general/objects/properties/bonus_weapons.lua",
     egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
 }
 

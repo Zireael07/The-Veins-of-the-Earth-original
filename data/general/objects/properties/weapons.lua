@@ -3,7 +3,7 @@
 
 local DamageType = require "engine.DamageType"
 
-load("data/general/objects/properties/bonus_weapons.lua")
+--load("data/general/objects/properties/bonus_weapons.lua")
 
 --Elemental
 newEntity{

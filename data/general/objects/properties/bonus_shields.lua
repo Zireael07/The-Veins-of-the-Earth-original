@@ -2,10 +2,11 @@
 --Zireael 2013-2015
 
 newEntity{
-	name = "masterwork ", prefix = true,
+	name = "masterwork ", prefix = true, addon=true,
 	keywords = {mwk=true},
 	level_range = {1, nil},
 	rarity = 2,
+	fake_ego = true,
 	cost = resolvers.value{silver=150},
 	wielder = {
 		armor_penalty = -1,
@@ -13,7 +14,7 @@ newEntity{
 }
 
 newEntity {
-	name = " +1", suffix = true,
+	name = " +1", suffix = true, addon=true,
 	keywords = {bonus=true},
 	level_range = {4, nil},
 	rarity = 5,
@@ -26,7 +27,7 @@ newEntity {
 }
 
 newEntity {
-	name = " +2", suffix = true,
+	name = " +2", suffix = true, addon=true,
 	keywords = {bonus=true},
 	level_range = {8, nil},
 	rarity = 8,
@@ -39,7 +40,7 @@ newEntity {
 }
 
 newEntity {
-	name = " +3", suffix = true,
+	name = " +3", suffix = true, addon=true,
 	keywords = {bonus=true},
 	level_range = {12, nil},
 	rarity = 18,
@@ -52,7 +53,7 @@ newEntity {
 }
 
 newEntity {
-	name = " +4", suffix = true,
+	name = " +4", suffix = true, addon=true,
 	keywords = {bonus=true},
 	level_range = {14, nil},
 	greater_ego = 1,
@@ -66,7 +67,7 @@ newEntity {
 }
 
 newEntity {
-	name = " +5", suffix = true,
+	name = " +5", suffix = true, addon=true,
 	keywords = {bonus=true},
 	level_range = {15, nil},
 	greater_ego = 1,

@@ -3,7 +3,7 @@
 
 local DamageType = require "engine.DamageType"
 
-load("data/general/objects/properties/bonus_shields.lua")
+--load("data/general/objects/properties/bonus_shields.lua")
 load("data/general/objects/properties/materials_shields.lua")
 
 --Resistances

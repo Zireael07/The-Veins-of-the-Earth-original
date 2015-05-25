@@ -4,7 +4,7 @@
 local DamageType = require "engine.DamageType"
 local Stats = require "engine.interface.ActorStats"
 
-load("data/general/objects/properties/bonus_armor.lua")
+--load("data/general/objects/properties/bonus_armor.lua")
 load("data/general/objects/properties/materials_armor.lua")
 
 --Magic properties

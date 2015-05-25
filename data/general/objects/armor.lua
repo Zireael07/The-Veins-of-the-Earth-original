@@ -4,6 +4,7 @@ newEntity{
     define_as = "BASE_ARMOR",
     slot = "BODY",
     type = "armor",
+    addons = "/data/general/objects/properties/bonus_armor.lua",
     egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 

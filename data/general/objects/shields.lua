@@ -11,6 +11,7 @@ newEntity{
     encumber = 5,
     name = "shield",
     desc = "A simple shield. Protects you from attacks.\n\n",
+    addons = "/data/general/objects/properties/bonus_shields.lua",
     egos = "/data/general/objects/properties/shields.lua", egos_chance = { prefix=30, suffix=70},
     }
 
