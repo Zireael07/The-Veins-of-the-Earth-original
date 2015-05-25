@@ -11,6 +11,7 @@ newEntity{
     encumber = 0,
     name = "Food",
     desc = [[Some food.]],
+    stacking = true,
 }
 
 
