@@ -9,15 +9,27 @@ CHANGELOG
 * bug fix - NPCs and monsters now drop level-appropriate gear
 * bug fix - cost filters now operate on the baseline price in coppers (i.e. what e.cost is expressed in)
 * bug fix - add currency symbols (pp, gp, sp) in item tooltips; display store purse in silver coins
+* bug fix - unify flavors capitalization
+* bug fix - add subtype to those outsiders which were missing it
+* bug fix - magic armor now reduces armor check penalty by 1 for being masterwork already
+* bug fix - wearing cloaks no longer messes up the player doll display
+* bug fix - feat granting items (e.g. boots of dodging) actually grant them
 
 * new zones: Plane of Air, Plane of Earth, Plane of Fire, Plane of Water
 * new monsters: succubus, incubus; dragons (complete with age categories and breath weapons)
 * new NPCs: drow house guard, drow house captain, drow priest
-* new tiles: blood ape, formian, giant ant soldier, giant ant queen, will-o-wisp, grick, spectral panther; drow female noble, drow commoner, drow house guard; floor, worldmap floor, worldmap wall, cobblestone floor, water floor, water wall, fire floor, fire wall, earth, earth wall, air, cloud; glaive
+* new magic item properties: masterwork (weapon/armor/shield), muleback, of heavyload; of powerful grip, of the Dervish, of neutralization, of grounding
+* new original tiles: blood ape, formian, howler, brass dragon, vargouille, bulette, cockatrice, copper dragon
+* new monster tiles: giant ant soldier, giant ant queen, will-o-wisp, grick, spectral panther, white dragon, tojanida, hag, sphinx, shambling mound, harpy, basilisk, behir, hyena, jackal, viper, ankheg, aranea, gray render, lamia, winter wolf, naga;
+* new NPC tiles: drow female noble, drow commoner, drow house guard;
+* new terrain tiles: chasm, tiled floor, iron door, drow door, worldmap floor, worldmap wall, cobblestone floor, water floor, water wall, fire floor, fire wall, earth, earth wall, air, cloud; glaive
+* change ASCII color for chaos beast, howler, rast
+* change ASCII symbol for nightmare
 * gave breath weapons to hell hound, dragon turtle
-* gave immunities to delver, gibbering mouther, mimic, nagas; ghaele, lillend; tojanida; assasin vine, shambling mound, tendriculos; fire elementals, magmin; night hag
+* gave immunities to delver, gibbering mouther, mimic, nagas; ghaele, lillend; tojanida; assassin vine, shambling mound, tendriculos; fire elementals, magmin; night hag
 * marut and fire elementals now deal additional damage on hit
-* implement Craft skill
+* implement low-light vision
+* implement Craft, Survival skills
 * item creation feats now pick from all possible egos
 
 0.27.0 - beta 8 - 01/05/2014
