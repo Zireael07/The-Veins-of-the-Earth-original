@@ -11,6 +11,7 @@ newEntity{
     combat = { dam= {1,6} },
     faction = "neutral",
     open_door = true,
+    show_portrait = true,
     resolvers.talents{ [Talents.T_SHOOT]=1,
     --give the simple weapon proficiency warrior/fighter/wizard class all have
     [Talents.T_SIMPLE_WEAPON_PROFICIENCY]=1,

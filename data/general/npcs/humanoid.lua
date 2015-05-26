@@ -24,6 +24,7 @@ newEntity{
 	ai = "humanoid_level", ai_state = { talent_in=3, ai_move="move_astar", },
 	combat = { dam= {1,6} },
 	open_door = true,
+	show_portrait = true,
 	resolvers.wounds(),
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	--assume all humanoids have at least warrior NPC class if not better
