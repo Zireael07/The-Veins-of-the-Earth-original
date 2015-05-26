@@ -9,7 +9,8 @@ newEntity{
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon",
     addons = "/data/general/objects/properties/bonus_weapons.lua",
-    egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/weapons.lua",
+    egos_chance = resolvers.ego_chance(), --egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{
@@ -17,7 +18,8 @@ newEntity{
     slot = "MAIN_HAND", slot_forbid = "OFF_HAND",
     type = "weapon",
     addons = "/data/general/objects/properties/bonus_weapons.lua",
-    egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/weapons.lua",
+    egos_chance = resolvers.ego_chance(), --egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_WEAPON",

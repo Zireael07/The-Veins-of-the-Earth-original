@@ -8,7 +8,8 @@ newEntity{
     type = "weapon",
     ranged = true,
     addons = "/data/general/objects/properties/bonus_weapons.lua",
-    egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/weapons.lua",
+    egos_chance = resolvers.ego_chance(), --egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_THROWN",

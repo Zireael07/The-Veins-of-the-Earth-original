@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2015
 
 newEntity{
     define_as = "BASE_WEAPON_REACH",
@@ -7,7 +7,9 @@ newEntity{
     type = "weapon",
     reach = true,
     addons = "/data/general/objects/properties/bonus_weapons.lua",
-    egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/weapons.lua",
+    egos_chance = resolvers.ego_chance(),
+    --egos_chance = { prefix=30, suffix=70},
 }
 
 

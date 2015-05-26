@@ -5,11 +5,12 @@ newEntity{
     slot = "BODY",
     type = "armor",
     addons = "/data/general/objects/properties/bonus_armor.lua",
-    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/armor.lua",
+    egos_chance = resolvers.ego_chance(), -- egos_chance = { prefix=30, suffix=70},
 }
 
 --Armors
-newEntity{
+newEntity{ base = "BASE_ARMOR",
     define_as = "BASE_LIGHT_ARMOR",
     slot = "BODY",
     type = "armor", subtype="light",
@@ -20,7 +21,7 @@ newEntity{
     rarity = 5,
     name = "light armor",
     desc = "A simple padded armor. Does not offer much protection.\n\n Light armor.",
-    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
+--    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
     }
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
@@ -95,7 +96,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_ARMOR",
     define_as = "BASE_MEDIUM_ARMOR",
     slot = "BODY",
     type = "armor", subtype="medium",
@@ -106,7 +107,7 @@ newEntity{
     rarity = 2,
     name = "medium armor",
     desc = "A suit of armour made of mail.\n\n Medium armor.",
-    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
+--    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
@@ -153,7 +154,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 	},
 }
 
-newEntity{
+newEntity{ base = "BASE_ARMOR",
     define_as = "BASE_HEAVY_ARMOR",
     slot = "BODY",
     type = "armor", subtype="heavy",
@@ -164,7 +165,7 @@ newEntity{
     rarity = 8,
     name = "heavy armor",
     desc = "A suit of armour made of plate.\n\n Heavy armor.",
-    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
+--    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_HEAVY_ARMOR",

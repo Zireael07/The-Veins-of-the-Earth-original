@@ -13,7 +13,8 @@ newEntity{
     exotic = true,
     require = { talent = { Talents.T_EXOTIC_WEAPON_PROFICIENCY }, },
     addons = "/data/general/objects/properties/bonus_weapons.lua",
-    egos = "/data/general/objects/properties/weapons.lua", egos_chance = { prefix=30, suffix=70},
+    egos = "/data/general/objects/properties/weapons.lua",
+    egos_chance = resolvers.ego_chance(), --egos_chance = { prefix=30, suffix=70},
 }
 
 newEntity{ base = "BASE_EXOTIC_RANGED",

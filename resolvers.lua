@@ -1068,6 +1068,16 @@ function resolvers.calc.burstdamage(t, e)
 	if e.combat.critical == 4 then burst = {3,10} end
 end
 
+--Limiting egos to +1 bonus arms/armor
+function resolvers.ego_chance()
+	return {__resolver="ego_chance", }
+end
+function resolvers.calc.ego_chance(t, e)
+	if not e.egoed then print("Not egoed, return false") return false
+	else print("Egoed, returning normal values") return { prefix=30, suffix=70} end
+end
+
+
 local function actor_final_level(e)
 	return e.challenge
 end
@@ -1077,7 +1087,7 @@ function resolvers.npc_drops_level()
 	--return {__resolver="npc_drops_level", t}
 end
 
-function resolvers.calc.npc_drops_level()
+function resolvers.calc.npc_drops_level(t, e)
 	 local level
 
 		if type(actor_final_level(e)) == "number" then
