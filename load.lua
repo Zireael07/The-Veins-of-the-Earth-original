@@ -233,6 +233,9 @@ Birther:loadDefinition("/data/birth/descriptors.lua")
 --Stores
 Store:loadStores("/data/general/stores/general.lua")
 
+-- Configure chat dialogs
+require("engine.dialogs.Chat").show_portraits = true
+
 -- Lore
 PlayerLore:loadDefinition("/data/lore/lore.lua")
 
