@@ -170,12 +170,18 @@ function _M:init(t, no_default)
 
 	self.last_attacker = nil
 
+	self.show_portrait = t.show_portrait or false
+
 	-- Use weapon damage actually
 	if not self:getInven("MAIN_HAND") or not self:getInven("OFF_HAND") then return end
 	if weapon then dam = weapon.combat.dam
 	end
 
 	self:resetCanSeeCache()
+
+	if self.show_portrait then
+		self:portraitGen()
+	end
 end
 
 --Taken from Qi Daozei
@@ -2948,6 +2954,22 @@ local name
 
 	return name
 
+end
+
+--Portrait generator
+function _M:portraitGen()
+	local path = "/data/gfx/portraits/"
+	local doll = path.."base.png"
+
+	if self.show_portrait == true then
+	self.portrait = doll
+
+--[[
+	add[#add+1] = {portrait = path.."eyebrows.png"}
+	add[#add+1] = {portrait = path.."nose.png"}
+	add[#add+1] = {portrait = path.."mouth.png"}
+	add[#add+1] = {portrait = path.."eyes_green.png"}]]
+	end
 end
 
 
