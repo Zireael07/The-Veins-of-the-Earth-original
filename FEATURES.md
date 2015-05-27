@@ -6,6 +6,7 @@ This is a T-Engine module, to learn more about T-Engine see te4.org
 
 - integrated most of Marson's Bosses AWOL functions and Marson UI; Marson's Autoexplore fixes; NPC Forgiveness
 - random worldmap different for every character
+- random portraits for humanoid NPCs
 - multiple dungeons, some of them persistent
 - towns and buildings
 - elemental planes
