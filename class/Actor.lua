@@ -2962,16 +2962,17 @@ function _M:portraitGen()
 	local doll = path.."base.png"
 
 	if self.show_portrait == true then
-	self.portrait = doll
+		self.portrait = doll
 
---[[
-	add[#add+1] = {portrait = path.."eyebrows.png"}
-	add[#add+1] = {portrait = path.."nose.png"}
-	add[#add+1] = {portrait = path.."mouth.png"}
-	add[#add+1] = {portrait = path.."eyes_green.png"}]]
+		local add = {}
+		add[#add+1] = {image=path.."eyebrows.png"}
+		add[#add+1] = {image=path.."eyes_brown.png"}
+		add[#add+1] = {image=path.."nose.png"}
+		add[#add+1] = {image=path.."mouth.png"}
+
+		self.portrait_table = add
 	end
 end
-
 
 --- Setup minimap color for this entity
 -- You may overload this method to customize your minimap
