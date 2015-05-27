@@ -2962,13 +2962,25 @@ function _M:portraitGen()
 	local doll = path.."base.png"
 
 	if self.show_portrait == true then
+
 		self.portrait = doll
 
+
+		local eyes = {"brown", "amber", "green", "red", "yellow"} --"black" }
+		local mouth = {"mouth", "mouth2"}
+
 		local add = {}
-		add[#add+1] = {image=path.."eyebrows.png"}
-		add[#add+1] = {image=path.."eyes_brown.png"}
-		add[#add+1] = {image=path.."nose.png"}
-		add[#add+1] = {image=path.."mouth.png"}
+		if self.subtype == "drow" then
+			add[#add+1] = {image=path.."eyebrows_drow.png"}
+		else
+			add[#add+1] = {image=path.."eyebrows.png"}
+		end
+
+		add[#add+1] = {image=path.."eyes_"..rng.table(eyes)..".png" }
+
+	--	add[#add+1] = {image=path.."nose.png"}
+
+		add[#add+1] = {image=path..rng.table(mouth)..".png"}
 
 		self.portrait_table = add
 	end
