@@ -2963,8 +2963,11 @@ function _M:portraitGen()
 
 	if self.show_portrait == true then
 
-		self.portrait = doll
+		if self.subtype == "drow" then
+			doll = path.."base_drow.png"
+		end
 
+		self.portrait = doll
 
 		local eyes = {"brown", "amber", "green", "red", "yellow"} --"black" }
 		local mouth = {"mouth", "mouth2"}
