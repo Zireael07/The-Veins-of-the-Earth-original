@@ -2969,6 +2969,7 @@ function _M:portraitGen()
 
 		self.portrait = doll
 
+		--Now the rest of the face
 		local eyes_light = {"amber", "seablue", "seagreen", "yellow"}
 		local eyes_medium = {"green", "blue", "gray"}
 		local eyes_dark = {"black", "brown"}
@@ -3007,6 +3008,20 @@ function _M:portraitGen()
 	--	add[#add+1] = {image=path.."nose.png"}
 
 		add[#add+1] = {image=path..rng.table(mouth)..".png"}
+
+		--Decor
+		if self.subtype == "dwarf" then
+			add[#add+1] = {image=path.."beard.png"}
+		end
+
+		if self.name:find("noble") then
+			add[#add+1] = {image=path.."necklace.png"}
+		end
+
+		if self.name:find("commoner") or self.name:find("courtesan") then
+			add[#add+1] = {image=path.."hood_base.png"}
+		end
+
 
 		self.portrait_table = add
 	end
