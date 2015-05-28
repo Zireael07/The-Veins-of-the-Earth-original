@@ -59,7 +59,7 @@ newTalent{
             local attackmod = 0
 
             --Use the ammo up!
-            if ammo and weapon.ammo_type and ammo.combat.capacity then
+            if ammo and weapon.ammo_type and ammo.combat.capacity and not ammo.infinite then
             ammo.combat.capacity = ammo.combat.capacity - 1
             end
 
@@ -68,7 +68,7 @@ newTalent{
 			end
 
             --if thrown then remove the item
-            if not weapon.ammo_type then
+            if not weapon.ammo_type and not weapon.returning then
                 self:removeObject(self:getInven("MAIN_HAND"), 1)
 			--	self:addObject(self.INVEN_INVEN, weapon)
 			--	self:sortInven()
