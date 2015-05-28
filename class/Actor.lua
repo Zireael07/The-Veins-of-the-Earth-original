@@ -2969,7 +2969,15 @@ function _M:portraitGen()
 
 		self.portrait = doll
 
-		local eyes = {"brown", "amber", "green", "red", "yellow"} --"black" }
+		local eyes_light = {"amber", "seablue", "seagreen", "yellow"}
+		local eyes_medium = {"green", "blue", "gray"}
+		local eyes_dark = {"black", "brown"}
+		local eyes_red = {"red", "pink"}
+
+		local eyes_dwarf = {}
+		local eyes_human = {}
+		local eyes_all = {}
+
 		local mouth = {"mouth", "mouth2"}
 
 		local add = {}
@@ -2979,7 +2987,22 @@ function _M:portraitGen()
 			add[#add+1] = {image=path.."eyebrows.png"}
 		end
 
-		add[#add+1] = {image=path.."eyes_"..rng.table(eyes)..".png" }
+		if self.subtype == "dwarf" then
+			table.append(eyes_dwarf, eyes_medium)
+			table.append(eyes_dwarf, eyes_dark)
+			add[#add+1] = {image=path.."eyes_"..rng.table(eyes_dwarf)..".png" }
+		elseif self.subtype == "human" then
+			table.append(eyes_human, eyes_light)
+			table.append(eyes_all, eyes_medium)
+			table.append(eyes_human, eyes_dark)
+			add[#add+1] = {image=path.."eyes_"..rng.table(eyes_human)..".png" }
+		else
+			table.append(eyes_all, eyes_light)
+			table.append(eyes_all, eyes_medium)
+			table.append(eyes_all, eyes_dark)
+			table.append(eyes_all, eyes_red)
+			add[#add+1] = {image=path.."eyes_"..rng.table(eyes_all)..".png" }
+		end
 
 	--	add[#add+1] = {image=path.."nose.png"}
 
