@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2014 Zireael
+-- Copyright (C) 2014-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 
 	Dialog.init(self, title or "Inventory", math.max(800, game.w * 0.8), math.max(600, game.h * 0.8))
 
-	
+
 	-- Add tooltips
 	self.on_select = function(item)
 			if item.last_display_x and item.object then
@@ -52,16 +52,14 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 		fct = function(item, button, event) self:use(item, button, event) end,
 		on_select = function(ui, inven, item, o) if ui.ui.last_display_x then self:select{last_display_x=ui.ui.last_display_x+ui.ui.w, last_display_y=ui.ui.last_display_y, object=o} end end,
 		actorWear = function(ui, wear_inven, wear_item, wear_o)
-			if ui:getItem() then 
-				local bi = self.equip_actor:getInven(ui.inven)
-				local ws = self.equip_actor:getInven(wear_o:wornInven())
-				local os = self.equip_actor:getObjectOffslot(wear_o)
-				if bi and ((ws and ws.id == bi.id) or (os and self.equip_actor:getInven(os).id == bi.id)) then
-					self.equip_actor:doTakeoff(ui.inven, ui.item, ui:getItem(), true, self.inven_actor)
-				end
+			local inven = ui.inven and self.equip_actor:getInven(ui.inven)
+			if inven and self.equip_actor:canWearObject(wear_o, inven.name) then
+				-- Force inventory and item
+				self.equip_actor:doWear(wear_inven, wear_item, wear_o, self.inven_actor, ui.inven, ui.item)
+				ui:forceUpdate()
+			else
+				self.equip_actor:doWear(wear_inven, wear_item, wear_o, self.inven_actor)
 			end
-			self.equip_actor:doWear(wear_inven, wear_item, wear_o, self.inven_actor)
-		--	self:generateList()
 			self.c_inven:generateList()
 		end
 	}
@@ -75,7 +73,7 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 		on_drag=function(item) self:onDrag(item) end,
 		on_drag_end=function() self:onDragTakeoff() end,
 		special_bg = function(item)
-			if item.object then 
+			if item.object then
 				local ok, err = self.inven_actor:canWearObject(item.object)
 				if not ok then return colors.DARK_RED end
 
@@ -86,7 +84,7 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 
 
 	self:generateList()
-	
+
 
 	local uis = {
 		{left=0, top=0, ui=self.c_doll},
@@ -100,18 +98,18 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 	self:setFocus(self.c_inven)
 	self:setupUI()
 
-	
+
 	self.key:reset()
 	engine.interface.PlayerHotkeys:bindAllHotkeys(self.key, function(i) self:defineHotkey(i) end)
 	self.key.any_key = function(sym)
 		-- Control resets the tooltip
-		if sym == self.key._LCTRL or sym == self.key._RCTRL then 
+		if sym == self.key._LCTRL or sym == self.key._RCTRL then
 			local ctrl = core.key.modState("ctrl")
 			if self.prev_ctrl ~= ctrl then self:select(self.cur_item, true) end
 			self.prev_ctrl = ctrl
 		end
 	end
-	
+
 	self.key:addCommands{
 		[{"_TAB","shift"}] = function() self:moveFocus(1) end,
 	}
