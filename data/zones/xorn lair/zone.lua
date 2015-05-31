@@ -46,21 +46,21 @@ return {
 			nb_tunnelers = 7,
 		},
 		object = {
-            class = "engine.generator.object.Random",
+            class = "mod.class.generator.object.Random",
             nb_object = {20, 30},
         },
 	},
 	levels =
 	{
 	--Place exit to worldmap on level 1
-		[1] = { 
-		generator = { map = { 
+		[1] = {
+		generator = { map = {
 		up = "EXIT",
 		},},
 	},
 	--No shaft up on level 2
-		[2] = { 
-		generator = { map = { 
+		[2] = {
+		generator = { map = {
 		up = "UP",
 		},},
 	},

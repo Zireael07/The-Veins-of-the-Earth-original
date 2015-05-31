@@ -18,7 +18,7 @@ local houses = { "House Baenre", "House Armgo", "House Tlabbar", "House Mizzrym"
 local pick = rng.tableRemove(houses)
 
 return {
---	name = "Drow Noble House",	
+--	name = "Drow Noble House",
 
 	name = pick.." Compound",
 	level_range = {1, 1},
@@ -48,21 +48,21 @@ return {
 			nb_spots = 5, on_spot_chance = 75,
 		},
 		object = {
-            class = "engine.generator.object.Random",
+            class = "mod.class.generator.object.Random",
             nb_object = {10, 20},
         },
 	},
 	levels =
 	{
 	--Place exit to town on level 1
-		[1] = { 
-		generator = { map = { 
+		[1] = {
+		generator = { map = {
 		up = "EXIT_TOWN",
 		},},
 	},
 	--No shaft up on level 2
-		[2] = { 
-		generator = { map = { 
+		[2] = {
+		generator = { map = {
 		up = "UP",
 		},},
 	},

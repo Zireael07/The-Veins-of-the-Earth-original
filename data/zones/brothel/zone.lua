@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2014
+-- Zireael 2014-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -43,21 +43,21 @@ return {
 			nb_spots = 2, on_spot_chance = 75,
 		},
 		object = {
-            class = "engine.generator.object.Random",
+            class = "mod.class.generator.object.Random",
             nb_object = {5, 10},
         },
 	},
 	levels =
 	{
 	--Place exit to town on level 1
-		[1] = { 
-		generator = { map = { 
+		[1] = {
+		generator = { map = {
 		up = "EXIT_TOWN",
 		},},
 	},
 	--No shaft up on level 2
-		[2] = { 
-		generator = { map = { 
+		[2] = {
+		generator = { map = {
 		up = "UP",
 		},},
 	},

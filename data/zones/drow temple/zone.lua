@@ -42,7 +42,7 @@ return {
 				nb_spots = 2, on_spot_chance = 75,]]
 		},
 		object = {
-            class = "engine.generator.object.Random",
+            class = "mod.class.generator.object.Random",
             nb_object = {20, 30},
         },
 	},

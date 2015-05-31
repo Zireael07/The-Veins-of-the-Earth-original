@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2014 Zireael
+-- Copyright (C) 2013-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -43,19 +43,19 @@ return {
 			filters = {{max_cr=4}},
 		},
 		object = {
-            class = "engine.generator.object.Random",
+            class = "mod.class.generator.object.Random",
             nb_object = {20, 30},
         },
 	},
 	levels =
 	{
 	--Place exit to worldmap on level 1
-		[1] = { 
-		generator = { map = { 
+		[1] = {
+		generator = { map = {
 		up = "EXIT",
 		},},
 	},
-	},	
+	},
 
 	post_process = function(level)
 		if level.level == 5 then world:gainAchievement("A dark start", game.player)
