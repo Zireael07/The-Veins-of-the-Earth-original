@@ -168,9 +168,13 @@ function _M:use(item, button, event)
 --[[	if self.c_inven.c_inven.scrollbar then
 		self.equip_actor.inv_scroll = self.c_inven.c_inven.scrollbar.pos or 0
 	end]]
+	local dont_end = false
+	if item and item.object then
+		dont_end = self.action(item.object, item.item)
+	end
 	if item then
 		if self.action(item.object, item.inven, item.item, button, event) then
-			game:unregisterDialog(self)
+			if not dont_end then game:unregisterDialog(self) end
 		end
 	end
 end
