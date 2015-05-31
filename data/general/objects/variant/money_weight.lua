@@ -23,14 +23,9 @@ newEntity{
 	identified = true,
     stacking = true,
 	desc = [[All that glitters is not gold; all that is gold does not glitter.]],
---[[	on_prepickup = function(self, who, id)
+	on_pickup = function(self, who)
 		who:incMoney(self.money_value)
-		game.logPlayer(who, "You pickup %d silver pieces.", self.money_value)
-		-- Remove from the map
-		game.level.map:removeObject(who.x, who.y, id)
-		return true
 	end,
-	auto_pickup = true,]]
 }
 
 newEntity{
@@ -40,8 +35,9 @@ newEntity{
  	color = colors.SANDY_BROWN,
     encumber = 0.022,
     level_range = {1,20},
-    desc = [[A pile of copper coins.]],
-    money_value = rng.range(2, 150),
+    desc = [[A copper coin.]],
+    money_value = 1,
+	generate_stack = rng.range(2, 150),
 }
 
 newEntity{
@@ -51,8 +47,9 @@ newEntity{
  	color = colors.SILVER,
     encumber = 0.02,
     level_range = {7,nil},
-    desc = [[A pile of silver coins.]],
-    money_value = rng.range(100, 950),
+    desc = [[A silver coin.]],
+    money_value = 10,
+	generate_stack = rng.range(10, 95),
 }
 
 newEntity{
@@ -62,8 +59,9 @@ newEntity{
  	color = colors.GOLD,
     encumber = 0.027,
     level_range = {10,nil},
-    desc = [[A pile of gold coins.]],
-    money_value = rng.range(200, 1500),
+    desc = [[A gold coin.]],
+    money_value = 200,
+	generate_stack = rng.range(1, 8),
 }
 
 newEntity{
@@ -73,20 +71,22 @@ newEntity{
     encumber = 0.028,
     color = colors.STEEL_BLUE,
     level_range = {15,nil},
-    desc = [[A pile of platinum coins.]],
-    money_value = rng.range(2000, 15000),
+    desc = [[A platinum coin.]],
+    money_value = 2000,
+	generate_stack = rng.range(1, 8),
 }
 
 --Based on Angband
-newEntity{
+--[[newEntity{
     base = "BASE_MONEY",
     name = "adamantine coins",
     image = "tiles/adamantine_coins.png",
     color = colors.LIGHT_GREEN,
     encumber = 0.028,
-    level_range = {10,nil},
-    desc = [[A pile of adamantine coins.]],
-    money_value = rng.range(4000, 15000),
+    level_range = {10,nil},]]
+--    desc = [[A pile of adamantine coins.]],
+--[[    money_value = rng.range(4000, 15000),
+	generate_stack = rng.range(1, 8),
 }
 
 newEntity{
@@ -95,10 +95,10 @@ newEntity{
     image = "tiles/adamantine_coins.png",
     color = colors.LIGHT_BLUE,
     encumber = 0.028,
-    level_range = {12,nil},
-    desc = [[A pile of mithril coins.]],
-    money_value = rng.range(4000, 35000),
-}
+    level_range = {12,nil},]]
+--    desc = [[A pile of mithril coins.]],
+--    money_value = rng.range(4000, 35000),
+--}
 
 
 --[[newEntity{

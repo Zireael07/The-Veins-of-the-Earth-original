@@ -570,5 +570,25 @@ function _M:generateListGame()
         end,
     }]]
 
+    local zone = Textzone.new{
+	        width = self.c_desc.w,
+	        height = self.c_desc.h,
+	        text = string.toTString [[Decide whether money has weight or not.
+
+	• #YELLOW#True#WHITE#: money has weight.
+	• #YELLOW#False#WHITE#: default, money is treated as weightless.]]
+    }
+	    list[#list+1] = {
+	        zone = zone,
+	        name = string.toTString"#GOLD##{bold}#Money weight#WHITE##{normal}#",
+	        status = function(item)
+	            return tostring(config.settings.veins.money_weight and "enabled" or "disabled")
+	        end, fct=function(item)
+	           config.settings.veins.money_weight = not config.settings.veins.money_weight
+	            game:saveSettings("veins.money_weight", ("veins.money_weight= %s\n"):format(tostring(config.settings.veins.money_weight)))
+	            self.c_list:drawItem(item)
+	        end,
+	    }
+
     self.list = list
 end
