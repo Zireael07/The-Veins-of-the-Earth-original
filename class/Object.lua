@@ -308,6 +308,8 @@ function _M:getTextualDesc()
 
     if self.cost and self.appraised == true then desc:add(("Price: %s"):format(self:formatPrice())) end
 
+--    if self.found then desc:add(self:foundInfo()) end
+    desc:add(self:foundInfo())
 
     if self:isIdentified() then
         if self.wielder then
@@ -482,6 +484,50 @@ function _M:on_prepickup(who, idx)
 --[[    local tt = self.subtype
     if who == game.player and tt.destroy then game.level.map:removeObject(who.x, who.y, idx) return true end
     if who == game.player and tt.no_pickup then return true end]]
+end
+
+--Taken from ToME 2 port, describe where it was found
+local function found_level_name(ff)
+  if ff.town_zone then
+    return ('the town of %s'):format(ff.zone_name)
+  end
+  if ff.level_name then
+    return ('%s in %s'):format(ff.level_name, ff.zone_name)
+  end
+  return ('level %d of %s'):format(ff.level, ff.zone_name)
+end
+
+function _M:foundInfo()
+    if self.found then
+      local ff = self.found
+      local str = ''
+      local it = self:getNumber() == 1 and 'it' or 'them'
+      local on = (ff.level_name or ff.town_zone) and 'in' or 'on'
+      if ff.type == 'birth' then
+        str = ('You began the game with %s.'):format(it)
+      elseif ff.type == 'floor' then
+        local floor_on = ff.town_zone and 'ground in' or 'floor '..on
+        str = ('You found %s on the %s %s.'):format(it, floor_on, found_level_name(ff))
+      elseif ff.type == 'mon_drop' then
+        str = ('You found %s in the remains of %s %s %s.'):format(it, ff.mon_name, on, found_level_name(ff))
+      elseif ff.type == 'vault' then
+        str = ('You found %s in a vault %s %s.'):format(it, on, found_level_name(ff))
+      elseif ff.type == 'rubble' then
+        str = ('You found %s buried under rubble %s %s.'):format(it, on, found_level_name(ff))
+      elseif ff.type == 'store_buy' then
+        str = ('You bought %s from the %s %s %s.'):format(it, ff.store_name, on, found_level_name(ff))
+      elseif ff.type == 'debug_dialog' then
+        str = ('You created %s from the debug dialog.'):format(it)
+      elseif ff.type == 'custom_with_level' then
+        str = (ff.custom .. ' %s %s.'):format(it, on, found_level_name(ff))
+      elseif ff.type == 'custom' then
+        str = ff.custom:format(it)
+      else
+        str = ("??? You found %s somewhere strange (type='%s')"):format(it, tostring(ff.type or '???'))
+      end
+      desc = '\n\n#{italic}##YELLOW#' .. str .. '#LAST##{normal}#'
+      return desc
+    end
 end
 
 --Flavor stuff (taken from ToME 2 by Zizzo)
