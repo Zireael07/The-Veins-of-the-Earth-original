@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael
+-- Zireael 2013-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -16,27 +16,24 @@
 
 local Talents = require "engine.interface.ActorTalents"
 
-local luck = (game.player:getLuc()-10)/2
-
-load("/data/general/objects/armor.lua") -- rarity(-luck))
+load("/data/general/objects/armor.lua")
 load("/data/general/objects/shields.lua")
 
-load("/data/general/objects/weapons.lua") --rarity(-luck))
-load("/data/general/objects/ranged.lua") --rarity(-luck))
-load("/data/general/objects/exotic.lua") --rarity(-luck))
-load("/data/general/objects/exoticranged.lua") --, rarity(-luck))
-load("/data/general/objects/reach.lua") --rarity(-luck))
+load("/data/general/objects/weapons.lua")
+load("/data/general/objects/ranged.lua")
+load("/data/general/objects/exotic.lua")
+load("/data/general/objects/exoticranged.lua")
+load("/data/general/objects/reach.lua")
 load("/data/general/objects/thrown.lua")
 
 load("/data/general/objects/consumables.lua")
 load("/data/general/objects/containers.lua")
 
-load("/data/general/objects/wondrous_items.lua") --, rarity(-luck))
-load("/data/general/objects/magic_items.lua") -- rarity(-luck))
+load("/data/general/objects/wondrous_items.lua")
+load("/data/general/objects/magic_items.lua")
 load("/data/general/objects/poisons.lua")
 
 load("/data/general/objects/pickaxes.lua")
-load("/data/general/objects/money.lua") -- rarity(-luck))
 load("/data/general/objects/lite.lua")
 load("/data/general/objects/tools.lua")
 
@@ -45,6 +42,13 @@ load("/data/general/objects/specific_items.lua")
 --Lore
 load("/data/general/objects/lore.lua")
 
+if config.settings.veins.money_weight then
+    load("/data/general/objects/variant/money_weight.lua")
+else
+    load("/data/general/objects/money.lua")
+end
+
+
 --Lore
 for i = 1, 7 do
 newEntity{ base = "BASE_LORE",
@@ -52,7 +56,7 @@ newEntity{ base = "BASE_LORE",
     name = "tattered paper scrap", lore="misc-"..i,
     desc = [[A paper scrap, left by an adventurer.]],
     rarity = false,
-    encumberance = 0,
+    encumber = 0,
 }
 end
 
@@ -66,4 +70,3 @@ newEntity{
     name = "bones",
     desc = [[Bones of some dead adventurer.]],
 }
-
