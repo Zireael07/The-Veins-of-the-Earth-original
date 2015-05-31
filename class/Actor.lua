@@ -929,6 +929,15 @@ function _M:die(src, death_note)
 		for i = #inven, 1, -1 do
 			local o = inven[i]
 			o.dropped_by = o.dropped_by or self.name
+			--Add info on where and by whom it was dropped (from ToME 2 port)
+			o.found = {
+				type = 'mon_drop',
+				mon_name = self.name,
+				zone_name = game.zone.name,
+				town_zone = game.zone.town,
+				level = game.level.level,
+				level_name = game.level.name,
+	      }
 			self:removeObject(inven, i, true)
 			game.level.map:addObject(dropx, dropy, o)
 		end

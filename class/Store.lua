@@ -13,9 +13,7 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
+
 
 require "engine.class"
 local Store = require "engine.Store"
@@ -165,7 +163,7 @@ function _M:doBuy(who, o, item, nb, store_dialog)
 				self:removeObject(self:getInven("INVEN"), item)
 				game.party:learnLore(o.lore)
 			else]]
-				self:transfer(self, who, item, nb)
+				self:transfer(self, who, item, nb, true)
 			self:onBuy(who, o, item, nb, false)
 			if store_dialog then store_dialog:updateStore() end
 		end end, "Buy", "Cancel")
@@ -180,7 +178,7 @@ function _M:doSell(who, o, item, nb, store_dialog)
 	if nb then
 		Dialog:yesnoPopup("Sell", ("Sell %d %s for %d gold"):format(nb, o:getName{do_color=true, no_count=true}, price), function(ok) if ok then
 			self:onSell(who, o, item, nb, true)
-			self:transfer(who, self, item, nb)
+			self:transfer(who, self, item, nb, false)
 			self:onSell(who, o, item, nb, false)
 			if store_dialog then store_dialog:updateStore() end
 		end end, "Sell", "Cancel")
@@ -231,6 +229,34 @@ function _M:interact(who, name)
     return self:getObjectPrice(o, 'buy')
   end]]
 
+end
+
+--Taken from ToME 2 port
+-- We replace the parent transfer() to insert/remove found{} info for
+-- transferred objects.  [We can't do this in onBuy()/onSell() because we
+-- need a ref to the object in dest for that.]
+function _M:transfer(src, dest, item, nb, buying)
+  local src_inven, dest_inven = src:getInven("INVEN"), dest:getInven("INVEN")
+  for i = 1, nb do
+    local o = src:removeObject(src_inven, item)
+    if buying then
+      -- Set found{} info
+      o.found = {
+	type = 'store_buy',
+	store_name = self.name,
+	level = game.level.level,
+	level_name = game.level.name,
+	zone_name = game.zone.name,
+	town_zone = game.zone.town,
+      }
+    else
+      -- Clear found{} info
+      o.found = nil
+    end
+    dest:addObject(dest_inven, o)
+  end
+  src:sortInven(src_inven)
+  dest:sortInven(dest_inven)
 end
 
 function _M:doBarter()
