@@ -3048,6 +3048,33 @@ function _M:setupMinimapInfo(mo, map)
 	end
 end
 
+function _M:getLanguages()
+	local list = {}
+
+    for i, n in pairs(self.languages) do
+        list[#list+1] = {
+            name = n
+        }
+    end
+
+	return list
+end
+
+function _M:speakLanguage(lg)
+	if type(lg) ~= "string" then return nil end
+
+	for i,t in pairs(self:getLanguages()) do
+		if t.name == lg then return true end
+	end
+	return false
+end
+
+function _M:speakSameLanguage(target)
+	for i, t in pairs(self:getLanguages()) do
+		if target:speakLanguage(t.name) then return true end
+		return false
+	end
+end
 
 --Add healthbars
 function _M:defineDisplayCallback()

@@ -1,5 +1,5 @@
--- TE4 - T-Engine 4
--- Copyright (C) 2009 - 2015 Nicolas Casalini
+-- Veins of the Earth
+-- Copyright (C) 2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -102,7 +102,50 @@ end
 
 --- Replace some keywords in the given text
 function _M:replace(text)
+	--languages
+	if not self.player:speakSameLanguage(self.npc) then
+		if self.npc:speakLanguage("Drow") then
+			text = self:drowLanguage(text)
+		else
+		--scramble text
+		text = [[Foreign gibberish]]
+		end
+	else
+		--apply dwarven accent always
+		if self.npc:speakLanguage("Dwarven") or self.player:speakLanguage("Dwarven") then
+			text = self:dwarvenAccent(text)
+		end
+	end
+
 	text = text:gsub("@playername@", self.player.name):gsub("@npcname@", self.npc.name)
 	text = text:gsub("@playerdescriptor.(.-)@", function(what) return self.player.descriptor["fake_"..what] or self.player.descriptor[what] end)
+	return text
+end
+
+--Scramble languages
+
+--Drow
+function _M:drowLanguage(text)
+	text = text:gsub(" welcome ", " vendui ")
+	text = text:gsub(" I ", " usstan ")
+	text = text:gsub(" the ", " lil ")
+	text = text:gsub(" no ", " nau ")
+	text = text:gsub(" do ", " xun ")
+	text = text:gsub(" cast ", " luth ")
+	text = text:gsub(" item ", " bol ")
+	return text
+end
+
+--Dwarven accent from FK
+function _M:dwarvenAccent(text)
+	text = text:gsub(" I ", " Ah ")
+	text = text:gsub(" do", " dae ")
+	text = text:gsub(" does ", " diz ")
+	text = text:gsub(" no ", " nae ")
+	text = text:gsub(" poor ", " puir ")
+	text = text:gsub(" too ", " tae ")
+	text = text:gsub(" with ", "wi' ")
+	text = text:gsub(" you ", " ye ")
+
 	return text
 end
