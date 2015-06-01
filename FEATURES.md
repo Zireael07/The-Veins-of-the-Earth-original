@@ -60,6 +60,7 @@ This is a T-Engine module, to learn more about T-Engine see te4.org
 - pre-made encounters of more than 1 monster
 - humanoid NPCs can now have character classes, random or defined
 - shopkeepers can now sell & buy items
+- humanoids have portraits
 - item identification in two stages, auto-destroying known cursed items
 - CR displayed in tooltips; monsters drop equipment and corpses
 - hp, exp, dungeon level on-screen display now with bars and color changing depending on the amount of HP left
@@ -77,6 +78,6 @@ This is a T-Engine module, to learn more about T-Engine see te4.org
 - object flavors
 - calendar
 - hunger counter and display
-- working in-game chat
+- working in-game chat, languages
 - auto-explore
 - shaders, including full FBO

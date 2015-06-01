@@ -14,16 +14,19 @@ CHANGELOG
 * bug fix - magic armor now reduces armor check penalty by 1 for being masterwork already
 * bug fix - wearing cloaks no longer messes up the player doll display
 * bug fix - feat granting items (e.g. boots of dodging) actually grant them
+* bug fix - drag-and-drop inventory sometimes not working
 
-* new zones: Plane of Air, Plane of Earth, Plane of Fire, Plane of Water
+* new zones: Plane of Air, Plane of Earth, Plane of Fire, Plane of Water; kobold warrens
 * new monsters: succubus, incubus; dragons (complete with age categories and breath weapons)
 * new NPCs: drow house guard, drow house captain, drow priest
-* new magic item properties: masterwork (weapon/armor/shield), muleback, of heavyload; of powerful grip, of the Dervish, of neutralization, of grounding
+* new magic item properties: masterwork (weapon/armor/shield), muleback, of heavyload; of powerful grip, of the Dervish, of neutralization, of grounding; efficient, of Maeve, returning;
 * new original tiles: blood ape, formian, howler, brass dragon, vargouille, bulette, cockatrice, copper dragon
 * new monster tiles: giant ant soldier, giant ant queen, will-o-wisp, grick, spectral panther, white dragon, tojanida, hag, sphinx, shambling mound, harpy, basilisk, behir, hyena, jackal, viper, ankheg, aranea, gray render, lamia, winter wolf, naga;
 * new NPC tiles: drow female noble, drow commoner, drow house guard;
 * new terrain tiles: chasm, tiled floor, iron door, drow door, worldmap floor, worldmap wall, cobblestone floor, water floor, water wall, fire floor, fire wall, earth, earth wall, air, cloud; glaive
 * humanoid NPCs now have portraits
+* implemented languages
+* add money weight switch
 * change ASCII color for chaos beast, howler, rast
 * change ASCII symbol for nightmare
 * gave breath weapons to hell hound, dragon turtle
@@ -32,6 +35,7 @@ CHANGELOG
 * implement low-light vision
 * implement Craft, Survival skills
 * item creation feats now pick from all possible egos
+* item's tooltip now tells you where you found it (from ToME 2 port)
 
 0.27.0 - beta 8 - 01/05/2014
 
