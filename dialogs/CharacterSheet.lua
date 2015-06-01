@@ -331,6 +331,7 @@ end
 
     h = h + self.font_h -- Adds an empty row
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Low-light vision: "..(player.low_light_vision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawStringBlended(self.font, "Darkvision : "..(player.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
@@ -466,6 +467,25 @@ function _M:drawKid()
 
     h = 0
     w = 0
+
+    s:drawColorStringBlended(self.font, "#CHOCOLATE#Languages: #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+
+    local list = {}
+
+    for i, n in pairs(player.languages) do
+        list[#list+1] = {
+            name = n
+        }
+    end
+
+    table.sort(list, function(a,b) return a.name < b.name end)
+
+    for i,t in ipairs(list) do
+        s:drawColorStringBlended(self.font, "#GOLD#"..t.name, w, h, 255, 255, 255, true) h = h + self.font_h
+    end
+
+    h = h + self.font_h -- Adds an empty row
+
 
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Offspring : #LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
 

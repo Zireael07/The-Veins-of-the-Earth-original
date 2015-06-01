@@ -46,6 +46,7 @@ newEntity{ define_as = "BASE_NPC_DROW_T",
     skill_search = 3,
     skill_spot = 2,
     alignment = "Neutral Evil",
+    languages = {"Undercommon", "Drow"},
 }
 
 

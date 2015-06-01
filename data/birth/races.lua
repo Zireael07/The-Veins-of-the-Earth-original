@@ -30,6 +30,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		languages = {"Common"},
 		resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -50,6 +51,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		languages = {"Common", "Elven"},
 		resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -70,6 +72,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		languages = {"Undercommon", "Drow", },
 		resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -95,6 +98,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		languages = {"Common", "Elven"},
 		moddable_tile_base = "elf_m.png",
 		resolvers.equip {
 			full_id=true,
@@ -114,6 +118,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		languages = {"Common", "Orcish"},
 		resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -135,6 +140,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		languages = {"Common", "Gnome"},
 		resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -161,6 +167,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		languages = {"Common", "Halfling"},
 		moddable_tile_base = "halfling_m.png",
 		resolvers.equip {
 			full_id=true,
@@ -180,6 +187,7 @@ newBirthDescriptor {
 	},
 	copy = {
 		starting_intro = "main",
+		languages = {"Common", "Dwarven"},
 		moddable_tile_base = "dwarf_m.png",
 		resolvers.equip {
 			full_id=true,
@@ -211,9 +219,9 @@ newBirthDescriptor {
 	}
 	},
 	copy = {
-	moddable_tile_base = "drow_m.png",
-	starting_intro = "dark",
-
+		moddable_tile_base = "drow_m.png",
+		starting_intro = "dark",
+		languages = {"Undercommon", "Drow"},
 	}
 }
 
@@ -232,6 +240,7 @@ newBirthDescriptor {
 	copy = {
 	starting_intro = "dark",
 	moddable_tile_base = "duergar_m.png",
+	languages = {"Undercommon", "Dwarven"},
 	talents = {
     [ActorTalents.T_INVISIBILITY_INNATE]=1,
 	}
@@ -256,6 +265,7 @@ newBirthDescriptor {
 	},
 	copy = {
 	starting_intro = "dark",
+	languages = {"Undercommon", "Gnome"},
 	}
 }
 
@@ -276,6 +286,7 @@ newBirthDescriptor{
 	copy = {
 	starting_intro = "main",
 	moddable_tile_base = "lizardfolk_m.png",
+	language = {"Undercommon"},
 	resolvers.equip {
 			full_id=true,
 			{ name="torch" },
@@ -301,6 +312,7 @@ newBirthDescriptor{
 	copy = {
 	moddable_tile_base = "kobold_m.png",
 	starting_intro = "dark",
+	languages = {"Undercommon"},
 	}
 }
 
@@ -317,5 +329,6 @@ newBirthDescriptor{
 	copy = {
 	moddable_tile_base = "orc_m.png",
 	starting_intro = "dark",
+	languages = {"Undercommon", "Orcish"},
 	}
 }

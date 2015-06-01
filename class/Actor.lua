@@ -105,6 +105,7 @@ function _M:init(t, no_default)
 	self.template = self.template or nil
 	self.special = self.special or nil
 
+	self.languages = {}
 	self.sex = self.sex or "Neuter"
 	--Dragons only
 	self.age_cat = self.age_cat or nil
