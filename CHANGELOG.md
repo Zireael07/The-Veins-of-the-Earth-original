@@ -16,9 +16,9 @@ CHANGELOG
 * bug fix - feat granting items (e.g. boots of dodging) actually grant them
 * bug fix - drag-and-drop inventory sometimes not working
 
-* new zones: Plane of Air, Plane of Earth, Plane of Fire, Plane of Water; kobold warrens
+* new zones: Plane of Air, Plane of Earth, Plane of Fire, Plane of Water; kobold warrens, bank
 * new monsters: succubus, incubus; dragons (complete with age categories and breath weapons)
-* new NPCs: drow house guard, drow house captain, drow priest
+* new NPCs: drow house guard, drow house captain, drow priest, drow banker
 * new magic item properties: masterwork (weapon/armor/shield), muleback, of heavyload; of powerful grip, of the Dervish, of neutralization, of grounding; efficient, of Maeve, returning;
 * new original tiles: blood ape, formian, howler, brass dragon, vargouille, bulette, cockatrice, copper dragon
 * new monster tiles: giant ant soldier, giant ant queen, will-o-wisp, grick, spectral panther, white dragon, tojanida, hag, sphinx, shambling mound, harpy, basilisk, behir, hyena, jackal, viper, ankheg, aranea, gray render, lamia, winter wolf, naga;

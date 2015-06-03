@@ -8,7 +8,7 @@ This is a T-Engine module, to learn more about T-Engine see te4.org
 - random worldmap different for every character
 - random portraits for humanoid NPCs
 - multiple dungeons, some of them persistent
-- towns and buildings
+- towns and buildings, e.g. noble houses, bank
 - elemental planes
 - death is not an end - you can continue adventuring as your child, if you had any
 - brand-new start-up screen and menu [standalone version only]
