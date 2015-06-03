@@ -83,6 +83,7 @@ function _M:init(t, no_default)
   self.speed = 0
   self.move_others = true
   self.class_points = 1 -- Spent on leveling classes, its 1 because it "spends" one when you birth
+  self.bank_money = 0
 
   --Timers :D
   self.nutrition = 3000
@@ -1350,6 +1351,18 @@ function _M:onAddObject(o)
 	end
 end
 
+--Player only bank stuff
+function _M:incBank(v)
+	self.bank_money = self.bank_money + v
+	if self.bank_money < 0 then self.bank_money = 0 end
+end
+
+--5% cut for storing
+function _M:bankCharge(v)
+	local charge = 0.05*v
+
+	return v-charge
+end
 
 --Level titles stuff
 function _M:dominantClass()

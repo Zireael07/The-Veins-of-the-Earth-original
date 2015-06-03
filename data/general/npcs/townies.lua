@@ -225,5 +225,6 @@ newEntity{
     full_id=true,
     { name = "hand crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
     },
+    can_talk = "banker",
     resolvers.classes{Fighter=2},
 }
