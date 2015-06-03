@@ -205,3 +205,25 @@ newEntity{
     },
     resolvers.classes{Cleric=5},
 }
+
+newEntity{
+    base = "BASE_NPC_DROW_T",
+    define_as = "BASE_NPC_DROW_BANK",
+    name = "drow banker",
+    image = "tiles/mobiles/npc/drow_fighter.png",
+    max_life = resolvers.rngavg(15,20),
+    rarity = 4,
+
+    resolvers.equip{
+        full_id=true,
+        { name = "chain shirt", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "light metal shield", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "rapier", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "bolts", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+    },
+    resolvers.inventory {
+    full_id=true,
+    { name = "hand crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+    },
+    resolvers.classes{Fighter=2},
+}
