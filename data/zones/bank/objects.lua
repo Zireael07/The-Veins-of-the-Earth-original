@@ -21,8 +21,8 @@ load("/data/general/objects/lore.lua")
 for i = 1, 7 do
 newEntity{ base = "BASE_LORE",
     define_as = "NOTE"..i,
-    name = "tattered paper scrap", lore="misc-"..i,
-    desc = [[A paper scrap, left by an adventurer.]],
+    name = "tattered paper scrap", lore="money-"..i,
+    desc = [[A paper scrap, left by someone.]],
     rarity = false,
     encumberance = 0,
 }
