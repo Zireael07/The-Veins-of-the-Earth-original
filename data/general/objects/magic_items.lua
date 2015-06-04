@@ -166,3 +166,17 @@ newEntity{
         e.unided_name = e.unided_name.." labeled "..game.object_material_types["scroll"]["scroll"][e.name]
     end),
 }
+
+--For the Self-Resurrect feat
+newEntity{
+    define_as = "RESURRECTION_DIAMOND",
+    name = "resurrection diamond",
+    unided_name = "diamond",
+    cost = 0,
+    slot = "INVEN",
+    type = "gem", subtype = "gem",
+    display = "*", color=colors.WHITE,
+    image = "tiles/object/diamond.lua",
+    encumber = 0,
+    desc = [[A perfect white diamond.]],
+}

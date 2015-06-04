@@ -189,3 +189,35 @@ newFeat{
     end,
     info = [[You receive a +2 bonus to the Craft skill. You can use the skill to craft magic armor or weapons as though you were a spellcaster.]],
 }
+
+--Based on a homebrew OGL feat "Autolife" from http://dnd-wiki.org
+newFeat{
+    name = "Self Resurrection",
+    type = {"class/general", 1},
+    is_feat = true,
+    points = 1,
+    mode = "activated",
+    require = {
+        talent = { Talents.T_CRAFT_WONDROUS_ITEM }
+    },
+    action = function(self, t)
+        if self.money < 300000 then
+            game.logPlayer(self, "You don't have enough gold!")
+        return true end
+        if self.exp < 12000 then
+            game.logPlayer(self, "You don't have enough exp!")
+        return true end
+
+        self:incMoney(-300000)
+        self:gainExp(-12000)
+
+        local o = game.zone:makeEntityByName(game.level, "object", "RESURRECTION_DIAMOND")
+        if o then
+            game.zone:addEntity(game.level, o, "object")
+            self:addObject(self:getInven("INVEN"), o)
+        end
+
+        return true
+    end,
+    info = [[You can self resurrect with the expense of 30 000 gold and 1200 XP by creating a resurrection diamond.]],
+}

@@ -151,7 +151,16 @@ function _M:use(item)
 		game:unregisterDialog(self)
 		self:placeNew(actor)
 		game.player:kidTakeover(actor)
+	elseif act == "self-resurrect" then
+		game.logPlayer(self.actor, "#LIGHT_RED#You use your resurrection crystal to come back to life!")
+		self:cleanActor()
+		self:restoreResources()
+		self:resurrectBasic()
+		--should only happen once per week
+		--remove the crystal
+		local crystal_o, crystal_item, crystal_inven_id = self.actor:findInAllInventories("resurrection diamond")
 
+		self.actor:removeObject(crystal_inven_id, crystal_item)
 
 	elseif act == "cheat" then
 		game.logPlayer(self.actor, "#LIGHT_BLUE#You resurrect! CHEATER !")
@@ -174,11 +183,14 @@ function _M:generateList()
 	--keep playing
 	if self.actor.kids and self.actor:hasKids() then
 		for i, e in ipairs(self.actor.kids) do
-			list[#list+1] = {name= "#LIGHT_BLUETake over as ".. e.name.." the "..e.alignment.." "..e.subtype.." STR "..e:getStr().." DEX "..e:getDex().." CON "..e:getCon().." INT "..e:getInt().." WIS "..e:getWis().." CHA "..e:getCha().." LUC "..e:getLuc().."#WHITE#",
+			list[#list+1] = {name= "#GOLD#Take over as ".. e.name.." the "..e.alignment.." "..e.subtype.." STR "..e:getStr().." DEX "..e:getDex().." CON "..e:getCon().." INT "..e:getInt().." WIS "..e:getWis().." CHA "..e:getCha().." LUC "..e:getLuc().."#WHITE#",
 			 action="kid "..e.name, actor = e }
 		end
 	end
 
+	if self.actor:findInAllInventories("resurrection diamond") then
+		list[#list+1] = {name="#LIGHT_RED#Use a resurrection diamond#WHITE#", action="self-resurrect"}
+	end
 	list[#list+1] = {name="#LIGHT_BLUE#Resurrect by cheating#WHITE#", action="cheat"}
 	--normal stuff
 	list[#list+1] = {name=(not profile.auth and "Message Log" or "Message/Chat log (allows to talk)"), action="log"}
