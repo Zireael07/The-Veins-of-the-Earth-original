@@ -197,7 +197,7 @@ function _M:mouseZones(t, no_new)
         for i, z in ipairs(t) do
             if not z.norestrict then
                 z.x = z.x + self.display_x + 5
-                z.y = z.y + self.display_y + 110 + 3
+                z.y = z.y + self.display_y + 80
             end
         end
     end
@@ -271,7 +271,7 @@ end
 
 
     h = h + self.font_h -- Adds an empty row
-    s:drawColorStringBlended(self.font, "#ANTIQUE_WHITE#Silver : "..(player.money or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_MONEY, s:drawColorStringBlended(self.font, "#ANTIQUE_WHITE#Money : "..(player.money or "Unknown").."/"..(player.bank_money or 0), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(player:getAC() or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
