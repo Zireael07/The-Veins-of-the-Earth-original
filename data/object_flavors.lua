@@ -46,7 +46,6 @@ newFlavorSet {
   type = 'potion',
   subtype = 'potion',
   values = {
---    { "Strangely Phosphorescent", colors.C_multi, 'tiles/flavor/pot_m.png' },
     { "azure", colors.BLUE, 'tiles/object/flavors/PotionAquamarine.png' },
     { "blue", colors.DARK_BLUE, 'tiles/object/flavors/PotionTallBlue.png' },
     { "blue speckled", colors.ROYAL_BLUE, 'tiles/object/flavors/PotionTallBlue.png' },
@@ -110,69 +109,53 @@ newFlavorSet {
     { "ivory white", colors.WHITE, 'tiles/object/flavors/PotionTallWhite.png' },
     { "sky blue", colors.BLUE, 'tiles/object/flavors/PotionAquamarine.png' },
   },
---[[  assigned = {
-    POT_WATER = { "Clear", colors.WHITE },
-    POT_APPLE_JUICE = { "Light Brown", colors.LIGHT_UMBER },
-    POT_SLIME_MOLD_JUICE = { "Icky Green", colors.GREEN },
-  }]]
 }
 
---[[newFlavorSet {
-  type = 'utility',
-  subtype = 'scroll',
-  pop_flavor = function(type, subtype)
-    local tiles = require('mod.class.tiles')
-    local fl_def = tiles.flavors_def[type][subtype]
-    -- The Adam Bolt tileset has four tiles for scrolls.  All the other
-    -- flavored-tiles tiles are keyed by color, but all scrolls are white,
-    -- so we choose one at random to assign to this flavor.
-    local tile = ('tiles/flavor/scroll_%d.png'):format(rng.range(1, 4))
-    -- Collect a list of titles we've already generated for comparision
-    -- to avoid collisions.
-    local seen = {}
-    local used = game.state.flavors_assigned[type][subtype]
-    for _, title in pairs(used) do seen[title] = true end
-    -- As per tiles1.c:flavor_init(), we assemble a list of one- or two-
-    -- syllable words, stopping before we exceed 15 characters.
-    while true do
-      local words = {}
-      local len = 0
-      while true do
-	local word = ''
-	local nsyl = rng.range(1,100) < 30 and 1 or 2
-	for _ = 1, nsyl do word = word..rng.table(fl_def.syllables) end
-	if #words > 0 and len + word:len() + 1 > 15 then break end
-	len = len + word:len() + (#words > 0 and 1 or 0)
-	words[#words+1] = word
-      end
-      local title = table.concat(words, ' ')
-      if not seen[title] then return { title, colors.WHITE, tile } end
-    end
-  end,
-  syllables = {
-    "a", "ab", "ag", "aks", "ala", "an", "ankh", "app",
-    "arg", "arze", "ash", "aus", "ban", "bar", "bat", "bek",
-    "bie", "bin", "bit", "bjor", "blu", "bot", "bu",
-    "byt", "comp", "con", "cos", "cre", "dalf", "dan",
-    "den", "der", "doe", "dok", "eep", "el", "eng", "er", "ere", "erk",
-    "esh", "evs", "fa", "fid", "flit", "for", "fri", "fu", "gan",
-    "gar", "glen", "gop", "gre", "ha", "he", "hyd", "i",
-    "ing", "ion", "ip", "ish", "it", "ite", "iv", "jo",
-    "kho", "kli", "klis", "la", "lech", "man", "mar",
-    "me", "mi", "mic", "mik", "mon", "mung", "mur", "nag", "nej",
-    "nelg", "nep", "ner", "nes", "nis", "nih", "nin", "o",
-    "od", "ood", "org", "orn", "ox", "oxy", "pay", "pet",
-    "ple", "plu", "po", "pot", "prok", "re", "rea", "rhov",
-    "ri", "ro", "rog", "rok", "rol", "sa", "san", "sat",
-    "see", "sef", "seh", "shu", "ski", "sna", "sne", "snik",
-    "sno", "so", "sol", "sri", "sta", "sun", "ta", "tab",
-    "tem", "ther", "ti", "tox", "trol", "tue", "turs", "u",
-    "ulk", "um", "un", "uni", "ur", "val", "viv", "vly",
-    "vom", "wah", "wed", "werg", "wex", "whon", "wun", "x",
-    "yerg", "yp", "zun", "tri", "blaa", "jah", "bul", "on",
-    "foo", "ju", "xuxu"
-  }
-}]]
+newFlavorSet{
+    type = "scroll",
+    subtype = "scroll",
+    values = {
+      { "ancient", colors.ANTIQUE_WHITE, 'tiles/object/flavors/PotionAquamarine.png' },
+      { "brittle", colors.WHITE, 'tiles/object/flavors/PotionTallBlue.png' },
+      { "calfskin", colors.WHITE, 'tiles/object/flavors/PotionTallBlue.png' },
+      { "canvas", colors.SANDY_BROWN, 'tiles/object/flavors/PotionTallGrey.png' },
+      { "cloth", colors.SANDY_BROWN, 'tiles/object/flavors/PotionShortBrown.png' },
+      { "cracked", colors.SANDY_BROWN, 'tiles/object/flavors/PotionShortBrown.png' },
+      { "crumbling", colors.WHITE, 'tiles/object/flavors/PotionTallWhite.png' },
+      { "crumpled", colors.WHITE, 'tiles/object/flavors/PotionLargeGreen.png' },
+      { "dragonhide", colors.LIGHT_GREEN, 'tiles/object/flavors/PotionTallWhite.png' },
+      { "faded", colors.LIGHT_UMBER, 'tiles/object/flavors/PotionLargeTan.png' },
+      { "flaking", colors.SANDY_BROWN, 'tiles/object/flavors/PotionRed.png' },
+      { "frayed", colors.WHITE, 'tiles/object/flavors/PotionAquamarine.png' },
+      { "glowing", colors.LIGHT_BLUE, 'tiles/object/flavors/PotionTallBlue.png' },
+      { "gold-trimmed", colors.YELLOW, 'tiles/object/flavors/PotionEmerald2.png' },
+      { "leathery", colors.SANDY_BROWN, 'tiles/object/flavors/PotionRed.png' },
+      { "mouldy", colors.DARK_GREEN, 'tiles/object/flavors/'},
+      { "orcskin", colors.LIGHT_GREEN, 'tiles/object/flavors/'},
+      { "ornate", colors.YELLOW, 'tiles/object/flavors/'},
+      { "painted", colors.LIGHT_UMBER, 'tiles/object/flavors/'},
+      { "parchment", colors.WHITE, 'tiles/object/flavors/'},
+      { "pigskin", colors.PINK, 'tiles/object/flavors/'},
+      { "ragged", colors.WHITE, 'tiles/object/flavors/'},
+      { "ratskin", colors.DARK_SLATE, 'tiles/object/flavors/'},
+      { "ribbon-tied", colors.YELLOW, 'tiles/object/flavors/'},
+      { "ripped", colors.WHITE, 'tiles/object/flavors/'},
+      { "rumpled", colors.WHITE, 'tiles/object/flavors/'},
+      { "rune-covered", colors.DARK_GREEN, 'tiles/object/flavors/'},
+      { "scribbled", colors.WHITE, 'tiles/object/flavors/'},
+      { "sheepskin", colors.WHITE, 'tiles/object/flavors/'},
+      { "silk", colors.ANTIQUE_WHITE, 'tiles/object/flavors/'},
+      { "smudged", colors.WHITE, 'tiles/object/flavors/'},
+      { "tattered", colors.WHITE, 'tiles/object/flavors/'},
+      { "tightly-knotted", colors.WHITE, 'tiles/object/flavors/'},
+      { "torn", colors.WHITE, 'tiles/object/flavors/'},
+      { "vellum", colors.SANDY_BROWN, 'tiles/object/flavors/'},
+      { "wax-sealed", colors.YELLOW, 'tiles/object/flavors/'},
+      { "wrinkled", colors.WHITE, 'tiles/object/flavors/'},
+      { "wormskin", colors.PINK, 'tiles/object/flavors/'},
+      { "yellowed", colors.YELLOW, 'tiles/object/flavors/'},
+},
+}
 
 newFlavorSet {
   type = 'wand',
