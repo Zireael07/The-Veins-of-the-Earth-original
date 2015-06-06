@@ -16,6 +16,7 @@ Contributors:
 - DarkGod
 - Castler
 - desophos
+- /u/Ozymandias79
 
 Key features:
 

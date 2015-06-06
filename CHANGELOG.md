@@ -24,9 +24,11 @@ CHANGELOG
 * new monster tiles: giant ant soldier, giant ant queen, will-o-wisp, grick, spectral panther, white dragon, tojanida, hag, sphinx, shambling mound, harpy, basilisk, behir, hyena, jackal, viper, ankheg, aranea, gray render, lamia, winter wolf, naga;
 * new NPC tiles: drow female noble, drow commoner, drow house guard;
 * new terrain tiles: chasm, tiled floor, iron door, drow door, worldmap floor, worldmap wall, cobblestone floor, water floor, water wall, fire floor, fire wall, earth, earth wall, air, cloud; glaive
-* humanoid NPCs now have portraits
+* humanoid NPCs now have portraits (kudos to /u/Ozymandias79)
 * implemented languages
+* implemented a way to self-resurrect within the normal rules
 * add money weight switch
+* new scroll flavors
 * change ASCII color for chaos beast, howler, rast
 * change ASCII symbol for nightmare
 * gave breath weapons to hell hound, dragon turtle
