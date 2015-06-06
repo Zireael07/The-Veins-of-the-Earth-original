@@ -2969,15 +2969,23 @@ end
 --Portrait generator
 function _M:portraitGen()
 	local path = "/data/gfx/portraits/"
+	local path_ozy = "/data/gfx/portraits/ozy/"
 	local doll = path.."base.png"
 
 	if self.show_portrait == true then
 
+		local base = {"base", "base2"}
+
 		if self.subtype == "drow" then
 			doll = path.."base_drow.png"
+		elseif self.subtype == "dwarf" then
+			doll = path_ozy.."dwarf_"..rng.table(base)..".png"
 		end
 
 		self.portrait = doll
+
+		--First things first
+		local add = {}
 
 		--Now the rest of the face
 		local eyes_light = {"amber", "seablue", "seagreen", "yellow"}
@@ -2985,23 +2993,37 @@ function _M:portraitGen()
 		local eyes_dark = {"black", "brown"}
 		local eyes_red = {"red", "pink"}
 
-		local eyes_dwarf = {}
+		local eyes_dwarf = {"1", "2", "3", "4"}
 		local eyes_human = {}
 		local eyes_all = {}
 
 		local mouth = {"mouth", "mouth2"}
 
-		local add = {}
+		--Hair colors
+		local color = {"black", "black2", "brown", "gray", "red", "white"}
+		local color_choice = rng.table(color)
+
+		--Hair
 		if self.subtype == "drow" then
-			add[#add+1] = {image=path.."eyebrows_drow.png"}
+			local drow_hair = {"1", "2", "3", "4"}
+			add[#add+1] = {image=path_ozy.."drow_hair"..rng.table(drow_hair)..".png"}
 		else
-			add[#add+1] = {image=path.."eyebrows.png"}
+	--	elseif self.subtype == "dwarf" then
+			add[#add+1] = {image=path_ozy.."hair_"..color_choice..".png"}
+	--	else
+		end
+
+
+		if self.subtype == "drow" then
+			add[#add+1] = {image=path_ozy.."eyebrows_drow.png"}
+		else
+			add[#add+1] = {image=path_ozy.."eyebrows_"..color_choice..".png"}
 		end
 
 		if self.subtype == "dwarf" then
-			table.append(eyes_dwarf, eyes_medium)
-			table.append(eyes_dwarf, eyes_dark)
-			add[#add+1] = {image=path.."eyes_"..rng.table(eyes_dwarf)..".png" }
+		--	table.append(eyes_dwarf, eyes_medium)
+		--	table.append(eyes_dwarf, eyes_dark)
+			add[#add+1] = {image=path_ozy.."eyes_dwarf"..rng.table(eyes_dwarf)..".png" }
 		elseif self.subtype == "human" then
 			table.append(eyes_human, eyes_light)
 			table.append(eyes_all, eyes_medium)
@@ -3015,23 +3037,44 @@ function _M:portraitGen()
 			add[#add+1] = {image=path.."eyes_"..rng.table(eyes_all)..".png" }
 		end
 
-	--	add[#add+1] = {image=path.."nose.png"}
-
-		add[#add+1] = {image=path..rng.table(mouth)..".png"}
-
-		--Decor
 		if self.subtype == "dwarf" then
-			add[#add+1] = {image=path.."beard.png"}
+			add[#add+1] = {image=path_ozy.."dwarf_nose.png"}
 		end
 
+		if self.subtype == "drow" then
+			add[#add+1] = {image=path_ozy.."drow_"..rng.table(mouth)..".png"}
+		elseif self.subtype == "dwarf" then
+			add[#add+1] = {image=path_ozy.."dwarf_"..rng.table(mouth)..".png"}
+		else
+			add[#add+1] = {image=path..rng.table(mouth)..".png"}
+		end
+
+
+		if self.subtype == "dwarf" then
+			add[#add+1] = {image=path_ozy.."dwarf_beard_"..color_choice..".png"}
+		end
+
+		--Decor
 		if self.name:find("noble") then
-			add[#add+1] = {image=path.."necklace.png"}
+			add[#add+1] = {image=path_ozy.."noble_outfit.png"}
 		end
 
 		if self.name:find("commoner") or self.name:find("courtesan") then
-			add[#add+1] = {image=path.."hood_base.png"}
+			add[#add+1] = {image=path_ozy.."hood_base.png"}
 		end
 
+		if self.name:find("shopkeeper") or self.name:find("sage") then
+			local glasses = {"1", "2"}
+			add[#add+1] = {image=path_ozy.."glasses"..rng.table(glasses)..".png"}
+		end
+
+		if self.name:find("sage") then
+			add[#add+1] = {image=path_ozy.."robes.png"}
+		end
+
+		if self.name:find("hireling") then
+			add[#add+1] = {image=path_ozy.."armor.png"}
+		end
 
 		self.portrait_table = add
 	end
