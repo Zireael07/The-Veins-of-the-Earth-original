@@ -752,14 +752,14 @@ function _M:combatAttack(weapon)
          end
 
          if success then
-             local dex = (self:getStat("dex")-10)/2
+             local dex = math.floor((self:getStat("dex")-10)/2)
              attacklog = attacklog.." "..dex.." Finesse"
              stat_used = "dex"
          end
     end
 
     if stat_used == "str" then
-        local str = (self:getStat("str")-10)/2
+        local str = math.floor((self:getStat("str")-10)/2)
         attacklog = attacklog.." "..str.." Str"
     end
 
