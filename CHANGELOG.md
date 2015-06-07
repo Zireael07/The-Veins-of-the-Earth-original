@@ -27,6 +27,7 @@ CHANGELOG
 * humanoid NPCs now have portraits (kudos to /u/Ozymandias79)
 * implemented languages
 * implemented a way to self-resurrect within the normal rules
+* implement item compare
 * add money weight switch
 * new scroll flavors
 * change ASCII color for chaos beast, howler, rast
@@ -36,6 +37,7 @@ CHANGELOG
 * marut and fire elementals now deal additional damage on hit
 * implement low-light vision
 * implement Craft, Survival skills
+* rogues now receive Weapon Finesse for free
 * item creation feats now pick from all possible egos
 * item's tooltip now tells you where you found it (from ToME 2 port)
 
