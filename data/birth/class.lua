@@ -1282,6 +1282,8 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 
+			actor:learnTalent(actor.T_FINESSE, true)
+
 			if actor == game.player then
 				if actor.descriptor.race == "Deep gnome" or actor.descriptor.race == "Kobold" then
 			--Favored class bonuses
