@@ -23,6 +23,7 @@ require "mod.class.interface.ObjectIdentify"
 local Stats = require("engine.interface.ActorStats")
 local Talents = require("engine.interface.ActorTalents")
 local DamageType = require("engine.DamageType")
+local ActorInventory = require ("engine.interface.ActorInventory")
 
 module(..., package.seeall, class.inherit(
     engine.Object,
@@ -262,16 +263,16 @@ end
 end
 
 --- Gets the full textual desc of the object without the name and requirements
-function _M:getTextualDesc()
+function _M:getTextualDesc(compare_with, use_actor)
+    use_actor = use_actor or game.player
+	compare_with = compare_with or {}
+
     local desc = tstring{}
 
     desc:add(true)
 
     --General stuff to be shown always
     if self.desc then desc:add(self.desc) end
-
-    --Requirements
-    self:getRequirementDesc(self, game.player)
 
     --Weapons
     if self.slot_forbid == "OFFHAND" then desc:add("You must wield this weapon with two hands.", true) end
@@ -282,51 +283,63 @@ function _M:getTextualDesc()
     if self.exotic then desc:add("This is an exotic weapon", true) end
 
 
-    local combat_desc = function(c)
-        if c.critical then desc:add(("Critical: x%d"):format(c.critical), true) end
-        if c.range then desc:add(("Range: %d"):format(c.range), true) end
+    local combat_desc = function(desc, c, compare_with, field)
+        self:compare_fields(desc, c, compare_with, field, "critical", "%+d", "Critical: ")
+        self:compare_fields(desc, c, compare_with, field, "range", "%+d", "Range: ")
     end
 
     if self.combat and self.combat.dam and type(self.combat.dam) == "table" then
         desc:add(("Damage: %dd%d"):format(self.combat.dam[1], self.combat.dam[2]), true)
+
+    --    self:compare_fields(desc, self, compare_with, "combat", "threat", self:combatThreat(), "Threatens a critical on a roll of: " )
         desc:add(("Threatens a critical on a roll of: %s"):format(self:formatThreat()), true)
     end
 
-    if self.combat then combat_desc(self.combat) end
+    if self.combat then combat_desc(desc, self, compare_with, "combat") end
 
-    local desc_worn = function(w)
+    local desc_worn = function(desc, w, compare_with, field)
+        w = w or {}
+        w = w[field] or {}
+
         --Armors
-        if w.combat_armor_ac then desc:add(("AC: +%d"):format(w.combat_armor_ac), true) end
-        if w.max_dex_bonus then desc:add(("Max Dex bonus to AC: %d"):format(w.max_dex_bonus), true) end
-        if w.spell_fail then desc:add(("Spell failure chance: %d"):format(w.spell_fail), true) end
-        if w.armor_penalty then desc:add(("Armor check penalty: %d"):format(w.armor_penalty), true) end
+        self:compare_fields(desc, w, compare_with, field, "combat_armor_ac", "%+d", "AC: ")
+        self:compare_fields(desc, w, compare_with, field, "max_dex_bonus", "%+d", "Max Dex bonus to AC: ")
+        self:compare_fields(desc, w, compare_with, field, "spell_fail", "%+d", "Spell failure chance: ", 1, true, true)
+        self:compare_fields(desc, w, compare_with, field, "armor_penalty", "%+d", "Armor check penalty: ", 1, true, true)
 
         --Weapons
-        if w.combat_parry then desc:add(("Parry bonus to AC: %d"):format(w.combat_parry), true) end
+        self:compare_fields(desc, w, compare_with, field, "combat_parry", "%+d", "Parry bonus to AC: ")
+
     end
-    if self.wielder then desc_worn(self.wielder) end
+
+    if self.wielder then
+        desc_worn(desc, self, compare_with, "wielder")
+    end
 
     if self.cost and self.appraised == true then desc:add(("Price: %s"):format(self:formatPrice())) end
 
---    if self.found then desc:add(self:foundInfo()) end
     desc:add(self:foundInfo())
 
     if self:isIdentified() then
         if self.wielder then
         --    desc:add({"color","SANDY_BROWN"}, "\nWhen equipped:", {"color", "LAST"}, true)
 
-        local desc_wielder = function(w)
-            if w.skill_bonus_hide then desc:add(("#GOLD#This armor grants a +%d bonus to Hide skill."):format(w.skill_bonus_hide or 0), true) end
-            if w.skill_bonus_movesilently then desc:add(("#GOLD#This armor grants a +%d bonus to Move Silently skill."):format(w.skill_bonus_movesilently or 0), true) end
-            if w.skill_bonus_escapeartist then desc:add(("#GOLD#This armor grants a +%d bonus to Escape Artist skill."):format(w.skill_bonus_escapeartist or 0), true) end
-            if w.spell_resistance then desc:add(("#GOLD#Spell resistance +%d"):format(w.spell_resistance or 0), true) end
-            if w.combat_magic_armor then desc:add(("#GOLD#This armor grants a +%d magic bonus to AC."):format(w.combat_magic_armor or 0), true) end
-            if w.combat_magic_shield then desc:add(("#GOLD#This shield grants a +%d magic bonus to AC."):format(w.combat_magic_shield or 0), true) end
-            if w.combat_natural then desc:add(("#GOLD#This item grants a +%d natural armor bonus to AC."):format(w.combat_natural or 0), true) end
-            if w.combat_protection then desc:add(("#GOLD#This item grants a +%d protection bonus to AC."):format(w.combat_protection or 0), true) end
+        local desc_wielder = function(desc, w, compare_with, field)
+            w = w or {}
+    		w = w[field] or {}
+
+            self:compare_fields(w, compare_with, field, "skill_bonus_hide", "%+d", "Hide skill bonus:")
+            self:compare_fields(w, compare_with, field, "skill_bonus_movesilently", "%+d", "Move Silently skill bonus:")
+            self:compare_fields(w, compare_with, field, "skill_bonus_escapeartist", "%+d", "Escape Artist skill bonus:")
+            self:compare_fields(w, compare_with, field, "spell_resistance", "%+d", "Spell resistance:")
+            self:compare_fields(w, compare_with, field, "combat_magic_armor", "%+d", "Armor magic bonus to AC:")
+            self:compare_fields(w, compare_with, field, "combat_magic_shield", "%+d", "Shield magic bonus to AC:")
+            self:compare_fields(w, compare_with, field, "combat_natural", "%+d", "Natural armor bonus to AC:")
+            self:compare_fields(w, compare_with, field, "combat_protection", "%+d", "Protection bonus to AC:")
+
         end
 
-        desc_wielder(self.wielder)
+        desc_wielder(desc, self, compare_with, "wielder")
         end
 
         --wands
@@ -339,17 +352,170 @@ function _M:getTextualDesc()
 end
 
 --- Gets the full desc of the object
-function _M:getDesc(name_param)
+function _M:getDesc(name_param, compare_with, never_compare, use_actor)
+    use_actor = use_actor or game.player
+    game.compare = {}
+
+    local slot_name = nil
+    local idx_desc = ''
+
+    if not never_compare and core.key.modState('ctrl') then
+      -- Ignore what the caller sent us and grab the currently selected
+      -- candidate out of the candidate list (rebuilding it if necessary).
+      if not (game.compare and game.compare.cands) then self:buildCandidateList() end
+      local cc = game.compare
+      if cc.idx > 0 then
+        compare_with = { cc.cands[cc.idx] }
+        slot_name = ActorInventory.inven_def[cc.slots[cc.idx]].name
+
+        if #cc.cands > 1 then
+  	idx_desc = ', '..cc.idx..' of '..#cc.cands
+        end
+      else
+        compare_with = {}
+      end
+    end
+
+
     local desc = tstring{}
     name_param = name_param or {}
     name_param.do_color = true
 
     desc:merge(self:getName(name_param):toTString())
+    desc:add({"color", "WHITE"}, true)
+	local reqs = self:getRequirementDesc(use_actor)
+	if reqs then
+		desc:merge(reqs)
+	end
 
-    desc:merge(self:getTextualDesc())
+--[[    local could_compare = false
+    if not name_param.force_compare and not core.key.modState("ctrl") then
+        if compare_with[1] then could_compare = true end
+        compare_with = {}
+    end]]
+
+    desc:add(true, true)
+    desc:merge(self:getTextualDesc(compare_with, use_actor))
+
+--    if could_compare and not never_compare then desc:add(true, {"font","italic"}, {"color","GOLD"}, "Press <control> to compare", {"color","LAST"}, {"font","normal"}) end
+
+if not never_compare and compare_with and compare_with[1] and (name_param.force_compare or core.key.modState('ctrl')) then
+  -- If we're comparing to something, add a note at the top specifying
+  -- what we're comparing with.
+  name_param.do_color = true
+  local pfx = tstring{{'color','GOLD'}, {'font','italic'}, '[vs. ', compare_with[1]:getName(name_param), ' (', (slot_name or '???'), idx_desc, ')]', {'font','normal'}, {'color','LAST'}, true, true}
+  pfx:merge(desc)
+  desc = pfx
+  if #game.compare.cands > 1 then
+    desc:add(true, {'font','italic'}, {'color','GOLD'}, 'Tap <shift> to cycle through comparison choices', {'color','LAST'}, {'font','normal'})
+  end
+end
 
     return desc
 end
+
+--From enhanced object compare by Zizzo
+function _M:buildCandidateList()
+  local gp = game.player
+
+  local main_inv = self:wornInven()
+  local offslot = gp:getObjectOffslot(self)
+  local off_inv = offslot and ActorInventory['INVEN_'..offslot]
+
+--[[  local cand_invs = {
+    [Inv.INVEN_MAINHAND] = {
+      Inv.INVEN_MAINHAND, Inv.INVEN_PSIONIC_FOCUS,
+      Inv.INVEN_QS_MAINHAND, Inv.INVEN_QS_PSIONIC_FOCUS,
+    },
+    [Inv.INVEN_OFFHAND] = { Inv.INVEN_OFFHAND, Inv.INVEN_QS_OFFHAND },
+    [Inv.INVEN_QUIVER] = { Inv.INVEN_QUIVER, Inv.INVEN_QS_QUIVER },
+  }]]
+
+  -- Vaguely Convoluted Hack(TM):  Accumulate all the inventory IDs we need
+  -- to loop over and sort them in defined order.
+  local acc1 = {}
+  if main_inv then acc1[main_inv] = true end
+  if off_inv then acc1[off_inv] = true end
+ -- for _, cand in ipairs(main_inv and cand_invs[main_inv] or {}) do acc1[cand] = true end
+ -- for _, cand in ipairs(off_inv and cand_invs[off_inv] or {}) do acc1[cand] = true end
+  local acc2 = {}
+  for k, v in pairs(acc1) do if v then acc2[#acc2+1] = k end end
+  table.sort(acc2)
+
+  -- Now build a candidate list by merging together all the candidate
+  -- inventories.
+  local cands = {}
+  local slots = {}
+  for _, inv in ipairs(acc2) do
+    local inven = gp:getInven(inv) or {}
+    table.mergeAppendArray(cands, inven)
+    for i = 1, #inven do
+      slots[#slots+1] = inv
+    end
+  end
+
+  game.compare = { cands=cands, slots=slots, idx=math.min(#cands, 1) }
+end
+
+
+--From ToME 4
+function _M:compare_fields(desc, item1, items, infield, field, outformat, text, mod, isinversed, isdiffinversed, add_table)
+		add_table = add_table or {}
+		mod = mod or 1
+		isinversed = isinversed or false
+		isdiffinversed = isdiffinversed or false
+		local ret = tstring{}
+		local added = 0
+		local add = false
+		ret:add(text)
+		local outformatres
+		local resvalue = ((item1[field] or 0) + (add_table[field] or 0)) * mod
+		local item1value = resvalue
+		if type(outformat) == "function" then
+			outformatres = outformat(resvalue, nil)
+		else outformatres = outformat:format(resvalue) end
+		if isinversed then
+			ret:add(((item1[field] or 0) + (add_table[field] or 0)) > 0 and {"color","RED"} or {"color","LIGHT_GREEN"}, outformatres, {"color", "LAST"})
+		else
+			ret:add(((item1[field] or 0) + (add_table[field] or 0)) < 0 and {"color","RED"} or {"color","LIGHT_GREEN"}, outformatres, {"color", "LAST"})
+		end
+		if item1[field] then
+			add = true
+		end
+		for i=1, #items do
+			if items[i][infield] and items[i][infield][field] then
+				if added == 0 then
+					ret:add(" (")
+				elseif added > 1 then
+					ret:add(" / ")
+				end
+				added = added + 1
+				add = true
+				if items[i][infield][field] ~= (item1[field] or 0) then
+					local outformatres
+					local resvalue = (items[i][infield][field] + (add_table[field] or 0)) * mod
+					if type(outformat) == "function" then
+						outformatres = outformat(item1value, resvalue)
+					else outformatres = outformat:format(item1value - resvalue) end
+					if isdiffinversed then
+						ret:add(items[i][infield][field] < (item1[field] or 0) and {"color","RED"} or {"color","LIGHT_GREEN"}, outformatres, {"color", "LAST"})
+					else
+						ret:add(items[i][infield][field] > (item1[field] or 0) and {"color","RED"} or {"color","LIGHT_GREEN"}, outformatres, {"color", "LAST"})
+					end
+				else
+					ret:add("-")
+				end
+			end
+		end
+		if added > 0 then
+			ret:add(")")
+		end
+		if add then
+			desc:merge(ret)
+			desc:add(true)
+		end
+end
+
 
 --Helper to display new prices
 --Note it omits any coppers unless the price is given in coppers
