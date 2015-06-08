@@ -42,9 +42,13 @@ function _M:init(title, equip_actor, filter, action, on_select, inven_actor)
 	self.on_select = function(item)
 			if item.last_display_x and item.object then
 			local x
-			game:tooltipDisplayAtMap(game.w*0.2, game.h*0.7, item.object:getDesc({do_color=true}, self.inven_actor:getInven(item.object:wornInven())))
+			if self.focus_ui and self.focus_ui.ui == self.c_inven then x = self.c_inven._last_ox - game.tooltip.w end
+			game:tooltipDisplayAtMap(x or item.last_display_x, item.last_display_y, item.object:getDesc({do_color=true}, self.equip_actor:getInven(item.object:wornInven()), nil, equip_actor))
 		elseif item.last_display_x and item.data and item.data.desc then
-			game:tooltipDisplayAtMap(game.w*0.2, game.h*0.7, item.data.desc, {up=true})
+			game:tooltipDisplayAtMap(item.last_display_x, item.last_display_y, item.data.desc, {up=true})
+		--[[	game:tooltipDisplayAtMap(game.w*0.2, game.h*0.7, item.object:getDesc({do_color=true}, self.inven_actor:getInven(item.object:wornInven())))
+		elseif item.last_display_x and item.data and item.data.desc then
+			game:tooltipDisplayAtMap(game.w*0.2, game.h*0.7, item.data.desc, {up=true})]]
 		end
 	end
 
@@ -168,13 +172,14 @@ function _M:use(item, button, event)
 --[[	if self.c_inven.c_inven.scrollbar then
 		self.equip_actor.inv_scroll = self.c_inven.c_inven.scrollbar.pos or 0
 	end]]
-	local dont_end = false
+--[[	local dont_end = false
 	if item and item.object then
 		dont_end = self.action(item.object, item.item)
-	end
+	end]]
 	if item then
 		if self.action(item.object, item.inven, item.item, button, event) then
-			if not dont_end then game:unregisterDialog(self) end
+			game:unregisterDialog(self)
+		--	if not dont_end then game:unregisterDialog(self) end
 		end
 	end
 end
