@@ -269,7 +269,7 @@ function _M:getTextualDesc(compare_with, use_actor)
 
     local desc = tstring{}
 
-    desc:add(true)
+--    desc:add(true)
 
     --General stuff to be shown always
     if self.desc then desc:add(self.desc) end
@@ -328,19 +328,57 @@ function _M:getTextualDesc(compare_with, use_actor)
             w = w or {}
     		w = w[field] or {}
 
-            self:compare_fields(w, compare_with, field, "skill_bonus_hide", "%+d", "Hide skill bonus:")
-            self:compare_fields(w, compare_with, field, "skill_bonus_movesilently", "%+d", "Move Silently skill bonus:")
-            self:compare_fields(w, compare_with, field, "skill_bonus_escapeartist", "%+d", "Escape Artist skill bonus:")
-            self:compare_fields(w, compare_with, field, "spell_resistance", "%+d", "Spell resistance:")
-            self:compare_fields(w, compare_with, field, "combat_magic_armor", "%+d", "Armor magic bonus to AC:")
-            self:compare_fields(w, compare_with, field, "combat_magic_shield", "%+d", "Shield magic bonus to AC:")
-            self:compare_fields(w, compare_with, field, "combat_natural", "%+d", "Natural armor bonus to AC:")
-            self:compare_fields(w, compare_with, field, "combat_protection", "%+d", "Protection bonus to AC:")
+            self:compare_fields(desc, w, compare_with, field, "skill_bonus_hide", "%+d", "Hide skill bonus:")
+            self:compare_fields(desc, w, compare_with, field, "skill_bonus_movesilently", "%+d", "Move Silently skill bonus:")
+            self:compare_fields(desc, w, compare_with, field, "skill_bonus_escapeartist", "%+d", "Escape Artist skill bonus:")
+            self:compare_fields(desc, w, compare_with, field, "spell_resistance", "%+d", "Spell resistance:")
+            self:compare_fields(desc, w, compare_with, field, "combat_magic_armor", "%+d", "Armor magic bonus to AC:")
+            self:compare_fields(desc, w, compare_with, field, "combat_magic_shield", "%+d", "Shield magic bonus to AC:")
+            self:compare_fields(desc, w, compare_with, field, "combat_natural", "%+d", "Natural armor bonus to AC:")
+            self:compare_fields(desc, w, compare_with, field, "combat_protection", "%+d", "Protection bonus to AC:")
+
+
+            -- Display learned talents
+    		local any_learn_talent = 0
+    		local learn_talents = {}
+    		for i, v in ipairs(compare_with or {}) do
+    			if v[field] and v[field].learn_talent then
+    				for tid, tl in pairs(v[field].learn_talent) do if tl > 0 then
+    					learn_talents[tid] = learn_talents[tid] or {}
+    					learn_talents[tid][1] = tl
+    					any_learn_talent = any_learn_talent + 1
+    				end end
+    			end
+    		end
+    		for tid, tl in pairs(w.learn_talent or {}) do if tl > 0 then
+    			learn_talents[tid] = learn_talents[tid] or {}
+    			learn_talents[tid][2] = tl
+    			any_learn_talent = any_learn_talent + 1
+    		end end
+    		if any_learn_talent > 0 then
+    			desc:add(("Talent%s granted: "):format(any_learn_talent > 1 and "s" or ""))
+    			for tid, tl in pairs(learn_talents) do
+    				local diff = (tl[2] or 0) - (tl[1] or 0)
+    				local name = Talents.talents_def[tid].name
+    				if diff ~= 0 then
+    					if tl[1] then
+    						desc:add(("+%d"):format(tl[2] or 0), diff < 0 and {"color","RED"} or {"color","LIGHT_GREEN"}, ("(+%d) "):format(diff), {"color","LAST"}, ("%s "):format(name))
+    					else
+    						desc:add({"color","LIGHT_GREEN"}, ("+%d"):format(tl[2] or 0),  {"color","LAST"}, (" %s "):format(name))
+    					end
+    				else
+    					desc:add({"color","WHITE"}, ("%+.2f(-) %s "):format(tl[2] or tl[1], name), {"color","LAST"})
+    				end
+    			end
+    			desc:add(true)
+    		end
 
         end
 
         desc_wielder(desc, self, compare_with, "wielder")
         end
+
+
 
         --wands
         if self.multicharge then desc:add(("%d charges remaining."):format(self.multicharge or 0), true) end
