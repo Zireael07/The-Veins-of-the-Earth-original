@@ -121,7 +121,7 @@ newEntity{
     cost = 5,
     stacking = true,
     desc = [[A flask of water. Good to quench your thirst.]],
-    use_simple = { name = "eat",
+    use_simple = { name = "drink",
     use = function(self,who)
         who.nutrition = who.nutrition + 100
         game.logPlayer(who, "%s drinks %s!", who.name:capitalize(), self:getName{no_count=true})
@@ -161,7 +161,7 @@ newEntity{
     rarity = 8,
     stacking = true,
     desc = [[You'd be better off not drinking this water.]],
-    use_simple = { name = "eat",
+    use_simple = { name = "drink",
     use = function(self,who)
         who.nutrition = who.nutrition + 0
         game.logPlayer(who, "%s drinks %s!", who.name:capitalize(), self:getName{no_count=true})
