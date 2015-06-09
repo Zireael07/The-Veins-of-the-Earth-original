@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013 Zireael
+-- Copyright (C) 2013-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -90,7 +90,8 @@ function _M:generateList()
   if self.object.iscontainer then list[#list+1] = {name="Take Out", action="takeout"} end
 
   if self.object.use_simple then
-    list[#list+1] = { name='Use', action='use' }
+      local use = self.object.use_simple.name:capitalize()
+    list[#list+1] = { name=use, action='use' }
   end
 
   if self.inven == self.actor.INVEN_INVEN and self.object.slot ~= "INVEN" then
