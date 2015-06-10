@@ -68,6 +68,13 @@ function _M:use(item)
   elseif item.action == 'takeoff' then
     self.actor:doTakeoff(self.inven, self.item, self.object)
     self.on_use(self.inven, self.item, self.object, true)
+
+    --Special stuff
+  elseif item.action == "butcher" then
+    self.actor:doButcher(self.inven, self.item)
+    self.on_use(self.inven, self.item, self.object, false)
+  elseif item.action == "throw" then
+    self.on_use(self.inven, self.item, self.object, false)
   --Container stuff
   elseif item.action == "putin" then
         self.actor:putIn(self.object, (self.object.filter or nil) )
@@ -92,6 +99,10 @@ function _M:generateList()
   if self.object.use_simple then
       local use = self.object.use_simple.name:capitalize()
     list[#list+1] = { name=use, action='use' }
+  end
+
+  if self.object.subtype == "corpse" then
+        list[#list+1] = { name = "Butcher", action='butcher'}
   end
 
   if self.inven == self.actor.INVEN_INVEN and self.object.slot ~= "INVEN" then

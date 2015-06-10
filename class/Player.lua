@@ -1318,6 +1318,51 @@ function _M:takeOut(bag)
   end)
 end
 
+--new
+function _M:doButcher(inven, item)
+	local o = self:getInven(inven) and self:getInven(inven)[item]
+
+	if o then
+
+		self:removeObject(inven, item, true)
+		game.logPlayer(self, "You butcher %s.", o:getName{do_colour=true, do_count=true})
+		self:checkEncumbrance()
+		self:sortInven(inven)
+
+		local chunk = game.zone:makeEntity(game.level, "object", {name="chunk of meat", ego_chance=-1000}, 1, true)
+		local chunk_stale = game.zone:makeEntity(game.level, "object", {name="chunk of stale meat", ego_chance=-1000}, 1, true)
+
+		if o.name:find("stale") then
+			local n = rng.dice(1,6)
+			while n > 0 do
+				game.zone:addEntity(game.level, chunk_stale, "object")
+				self:addObject(game.player:getInven("INVEN"), chunk_stale)
+				chunk_stale.pseudo_id = true
+				n = n-1
+				self:checkEncumbrance()
+				self:sortInven(inven)
+			end
+		else
+			local n = rng.dice(1,6)
+			while n > 0 do
+				game.zone:addEntity(game.level, chunk, "object")
+				self:addObject(game.player:getInven("INVEN"), chunk)
+				chunk_stale.pseudo_id = true
+				n = n-1
+				self:checkEncumbrance()
+				self:sortInven(inven)
+			end
+		end
+
+		self:useEnergy()
+	end
+
+	self:checkEncumbrance()
+	self:sortInven(inven)
+	self.changed = true
+
+end
+
 --Taken from ToME
 --- Call when an object is added
 function _M:onAddObject(o)
