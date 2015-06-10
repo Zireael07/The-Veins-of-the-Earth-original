@@ -11,7 +11,7 @@ newEntity{
     encumber = 0,
     name = "Food",
     desc = [[Some food.]],
-    stacking = true,
+--    stacking = true,
 }
 
 
@@ -43,6 +43,7 @@ newEntity{
     cost = 15,
     rarity = 15,
     desc == [[Spider bread, a favorite of the dark elves.]],
+    stacking = true,
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 150
@@ -60,6 +61,7 @@ newEntity{
     level_range = {1,10},
     cost = 10,
     rarity = 18,
+    stacking = true,
     desc = [[Beef jerky. Spoils slowly.]],
     use_simple = { name = "eat",
     use = function(self,who)
@@ -77,6 +79,7 @@ newEntity{ define_as = "FRESH_CORPSE",
     type = "food", subtype = "corpse",
     level_range = {1,10},
     cost = 0,
+    stacking = false,
     rarity = 14,
     encumber = 50,
     desc = [[A fresh corpse of some creature.]],
@@ -96,6 +99,7 @@ newEntity{ define_as = "CORPSE",
     type = "food", subtype = "corpse",
     level_range = {1,10},
     cost = 0,
+    stacking = false,
     rarity = 8,
     nutrition = 6,
     encumber = 50,
@@ -177,9 +181,44 @@ newEntity{
     type = "food", subtype = "corpse",
     level_range = {1,10},
     cost = 0,
+    stacking = false,
     rarity = 8,
     encumber = 50,
     desc = [[This corpse looks pretty stale.]],
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 0
+        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
+        return {used = true, destroy = true}
+  end
+  },
+}
+
+newEntity{ base = "BASE_FOOD",
+    define_as = "BASE_CHUNK",
+    name = "chunk of meat",
+    image = "tiles/object/meat.png",
+    type = "food", subtype = "meat",
+    level_range = {1, 10},
+    cost = 0,
+    rarity = 10,
+    stacking = true,
+    desc = [[This is a chunk of meat.]],
+    encumber = 10, --eyeballed
+    use_simple = { name = "eat",
+    use = function(self,who)
+        who.nutrition = who.nutrition + 15 --roughly 1/6 corpse nut
+        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
+        return {used = true, destroy = true}
+  end
+  },
+}
+
+newEntity{
+    base = "BASE_CHUNK",
+    name = "chunk of stale meat",
+    desc = [[This is a chunk of stale meat.]],
+    rarity = 12,
     use_simple = { name = "eat",
     use = function(self,who)
         who.nutrition = who.nutrition + 0
