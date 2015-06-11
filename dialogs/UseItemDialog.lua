@@ -74,6 +74,7 @@ function _M:use(item)
     self.actor:doButcher(self.inven, self.item)
     self.on_use(self.inven, self.item, self.object, false)
   elseif item.action == "throw" then
+      self.actor:doThrowPotion(self.object, self.item, self.inven)
     self.on_use(self.inven, self.item, self.object, false)
   --Container stuff
   elseif item.action == "putin" then
@@ -104,6 +105,10 @@ function _M:generateList()
   if self.object.subtype == "corpse" then
         list[#list+1] = { name = "Butcher", action='butcher'}
   end
+--[[  if self.object.type == "potion" then
+      list[#list+1] = { name = "Throw", action='throw'}
+  end]]
+
 
   if self.inven == self.actor.INVEN_INVEN and self.object.slot ~= "INVEN" then
     list[#list+1] = { name='Wear/wield', action='wear' }
