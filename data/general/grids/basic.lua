@@ -431,6 +431,15 @@ newEntity{
 }
 
 newEntity{
+	define_as = "MUD",
+	type = "floor", subtype = "mud",
+	image = "tiles/UT/mud.png",
+	name = "mud",
+	display = ' ', color=colors.DARK_UMBER, back_color=colors.UMBER,
+	always_remember = true,
+}
+
+newEntity{
 	define_as = "PILLAR",
 	type = "floor", subtype = "furniture",
 	name = "pillar",
