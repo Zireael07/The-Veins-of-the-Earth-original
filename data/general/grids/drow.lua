@@ -23,6 +23,13 @@ newEntity{
     display = ' ', color_r=255, color_g=255, color_b=255, back_color=colors.DARK_GREY,
 }
 
+--Graphical variant
+newEntity{
+	base = "FLOOR",
+	define_as = "FLOOR_TILED",
+	image = "tiles/terrain/floor_tiled.png",
+}
+
 newEntity{
     define_as = "WALL",
     type = "wall", subtype = "wall",
@@ -42,6 +49,14 @@ newEntity{
     define_as = "FAERIE_TORCH",
     image = "tiles/new/faerie_lantern.png",
     display = '#', color=colors.GREEN, back_color = {r=30, g=30, b=60},
+}
+
+newEntity{
+    base = "WALL",
+    name = "fountain",
+    define_as = "FOUNTAIN",
+    image = "tiles/terrain/fountain.png",
+    display = '⌠', color=colors.BLUE, back_color = {r=30, g=30, b=60},
 }
 
 --Doors

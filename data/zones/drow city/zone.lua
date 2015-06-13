@@ -69,6 +69,7 @@ return {
 		game:placeRandomLoreObject("NOTE"..level.level)
 
 		game:placeTerrainMulti("FAERIE_TORCH", 10)
+		game:placeTerrainMulti("FOUNTAIN", 8)
 
 		local spot = game.level:pickSpot{type="building", subtype="building"}
 		local g = game.zone:makeEntityByName(game.level, "terrain", "NOBLE_ENTRANCE")
