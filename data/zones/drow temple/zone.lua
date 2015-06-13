@@ -29,7 +29,7 @@ return {
 			arms_range = {0.7, 0.8},
 			nb_rooms = {8, 8},
 			['#'] = "WALL",
-			['.'] = "FLOOR",
+			['.'] = "FLOOR_TILED",
 			up = "UP",
 			down = "DOWN",
 			door = "DOOR",

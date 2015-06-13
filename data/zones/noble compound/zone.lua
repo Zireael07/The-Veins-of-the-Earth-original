@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2014
+-- Zireael 2014-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ return {
 			max_block_w = 15, max_block_h = 15,
 			max_building_w = 5, max_building_h = 5,
 
-			floor = "FLOOR",
+			floor = "FLOOR_TILED",
 			external_floor = "FLOOR",
 			wall = "WALL",
 			up = "UP",
