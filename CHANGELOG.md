@@ -1,12 +1,14 @@
 CHANGELOG
 
+Beta 9 - 0.28.0 - 14/06/2015
+
 * bug fix - made fire outsiders straight out immune to fire
 * bug fix - wyvern now has poison
 * bug fix - tendriculos and choker have proper descriptions
 * bug fix - rejecting filters due to exceeding cost led to no filters being applied at all when creating loot
 * bug fix - take into account item level ranges when creating loot
 * bug fix - adjust item levels and rarities since some were out of whack with the item's real power
-* bug fix - NPCs and monsters now drop level-appropriate gear
+* bug fix - NPCs and monsters should now drop level-appropriate gear
 * bug fix - cost filters now operate on the baseline price in coppers (i.e. what e.cost is expressed in)
 * bug fix - add currency symbols (pp, gp, sp) in item tooltips; display store purse in silver coins
 * bug fix - unify flavors capitalization
@@ -23,11 +25,13 @@ CHANGELOG
 * new original tiles: blood ape, formian, howler, brass dragon, vargouille, bulette, cockatrice, copper dragon
 * new monster tiles: giant ant soldier, giant ant queen, will-o-wisp, grick, spectral panther, white dragon, tojanida, hag, sphinx, shambling mound, harpy, basilisk, behir, hyena, jackal, viper, ankheg, aranea, gray render, lamia, winter wolf, naga;
 * new NPC tiles: drow female noble, drow commoner, drow house guard;
-* new terrain tiles: chasm, tiled floor, iron door, drow door, worldmap floor, worldmap wall, cobblestone floor, water floor, water wall, fire floor, fire wall, earth, earth wall, air, cloud; glaive
+* new terrain tiles: chasm, tiled floor, iron door, drow door, fountain, worldmap floor, worldmap wall, worldmap stairs up/down, worldmap ruins, barred door, cobblestone floor, water floor, water wall, fire floor, fire wall, earth, earth wall, air, cloud, mud;
+* new tiles: glaive
 * humanoid NPCs now have portraits (kudos to /u/Ozymandias79)
 * implemented languages
 * implemented a way to self-resurrect within the normal rules
 * implement item compare
+* implement butchering corpses
 * add money weight switch
 * new scroll flavors
 * change ASCII color for chaos beast, howler, rast
