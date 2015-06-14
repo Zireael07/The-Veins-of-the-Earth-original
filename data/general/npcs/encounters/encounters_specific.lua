@@ -48,13 +48,43 @@ newEntity{ base = "BASE_NPC_ENCOUNTER",
 
 newEntity{ base = "BASE_NPC_ENCOUNTER",
 	name = "mixed goblinoid warband",
-	rarity = 2,
+	rarity = 4,
 	challenge = 2,
 	encounter_escort = {
 	{ type="humanoid", name="goblin", number=3},
 	{ type="humanoid", name="orc warrior", number=1},
   	},
 }
+
+--Kobolds
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "kobold miners",
+	rarity = 2,
+	challenge = 2,
+	encounter_escort = {
+	{ type="humanoid", name="kobold", number=4},
+	{ type="humanoid", name="kobold warrior", number=1},
+  	},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "kobold ambush",
+	rarity = 2,
+	challenge = 1,
+	encounter_escort = {
+	{ type="humanoid", name="kobold", number=4},
+	},
+}
+
+newEntity{ base = "BASE_NPC_ENCOUNTER",
+	name = "kobold gang",
+	rarity = 4,
+	challenge = 2,
+	encounter_escort = {
+	{ type="humanoid", name="kobold", number=8},
+	},
+}
+
 
 --Vermin encounters
 newEntity{ base = "BASE_NPC_ENCOUNTER",
