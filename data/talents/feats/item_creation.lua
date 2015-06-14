@@ -185,6 +185,15 @@ newFeat{
 	range = 0,
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
+
+		--Create a base item
+		local o = game.zone:makeEntity(game.level, "object", {name="potion", ego_chance=-1000}, 1, true)
+		if o then
+		game.zone:addEntity(game.level, o, "object")
+		game.player:addObject(game.player:getInven("INVEN"), o)
+		o.pseudo_id = true
+		end
+		
         game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",
 		Ego:generateItemCreationEgos(o),
 
@@ -392,10 +401,19 @@ newFeat{
 	range = 0,
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
+		--Create a base item
+		local o = game.zone:makeEntity(game.level, "object", {name="wand", ego_chance=-1000}, 1, true)
+		if o then
+		game.zone:addEntity(game.level, o, "object")
+		game.player:addObject(game.player:getInven("INVEN"), o)
+		o.pseudo_id = true
+		end
+
              game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",
 			Ego:generateItemCreationEgos(o),
                 function(result, item)
                   game.log("Result: "..result)
+
 
 				game.zone:applyEgo(o, item.ego, "object")
 
@@ -599,6 +617,14 @@ newFeat{
 	range = 0,
 	action = function(self, t)
 		local inven = game.player:getInven("INVEN")
+		--Create a base item
+		local o = game.zone:makeEntity(game.level, "object", {name="scroll", ego_chance=-1000}, 1, true)
+		if o then
+		game.zone:addEntity(game.level, o, "object")
+		game.player:addObject(game.player:getInven("INVEN"), o)
+		o.pseudo_id = true
+		end
+
              game:registerDialog(require('mod.dialogs.GetChoice').new("Choose the desired effect",
 			Ego:generateItemCreationEgos(o),
 
@@ -810,3 +836,18 @@ newFeat{
         return "Craft magic staves."
     end,
 }]]
+
+newFeat{
+	name = "Craft Wondrous Item",
+	type = {"arcane/itemcreation", 1},
+    is_feat = true,
+    points = 1,
+    mode = "activated",
+    cooldown = 20,
+    range = 0,
+    action = function(self, t)
+	end,
+	info = function(self, t)
+        return "Craft magic items such as cloaks or belts."
+    end,
+}
