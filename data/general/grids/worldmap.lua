@@ -62,6 +62,7 @@ newEntity{
 newEntity{
 	base = "DOWN",
 	define_as = "DOWN_ARENA",
+	image = "tiles/terrain/gate-closed.png",
 	change_zone = "arena",
 	spot = "arena",
 	change_level = 1,
@@ -70,6 +71,7 @@ newEntity{
 newEntity{
 	base = "DOWN",
 	define_as = "DOWN_RUINS",
+	image = "tiles/terrain/worldmap_ruins.png",
 	change_zone = "town",
 	spot = "town",
 	change_level = 1,
