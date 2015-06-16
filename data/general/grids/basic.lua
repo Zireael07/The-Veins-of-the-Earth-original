@@ -209,6 +209,25 @@ newEntity{
 	display = '#', color=colors.GREEN, back_color = {r=30, g=30, b=60},
 }
 
+--Blocking stuff (essentially walls)
+newEntity{
+	define_as = "FUNGI",
+	base = "WALL",
+	type = "wall", subtype = "fungi",
+	name = "underground fungi",
+	display = '#', color=colors.CHOCOLATE, back_color=colors.DARK_GREY,
+	always_remember = true,
+}
+
+newEntity{
+	define_as = "TREE_UNDERGROUND",
+	base = "WALL",
+	type = "wall", subtype = "tree",
+	name = "underground tree",
+	image = "tiles/terrain/dungeon tree.png",
+	display = '#', color=colors.LIGHT_GREEN, back_color=colors.DARK_GREY,
+	always_remember = true,
+}
 
 --Doors
 newEntity{
@@ -403,14 +422,6 @@ newEntity{
 		local save = who:skillCheck("balance", 10)
 		if not save then who:setEffect(who.EFF_FELL, 1, {}) end
 	end
-}
-
-newEntity{
-	define_as = "FUNGI",
-	type = "floor", subtype = "fungi",
-	name = "underground fungi",
-	display = '#', color=colors.CHOCOLATE, back_color=colors.DARK_GREY,
-	always_remember = true,
 }
 
 newEntity{
