@@ -215,6 +215,7 @@ newEntity{
 	base = "WALL",
 	type = "wall", subtype = "fungi",
 	name = "underground fungi",
+	image = "tiles/UT/fungi.png",
 	display = '#', color=colors.CHOCOLATE, back_color=colors.DARK_GREY,
 	always_remember = true,
 }
