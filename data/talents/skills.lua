@@ -379,3 +379,46 @@ newTalent{
         return "Attempt to track other creatures."
     end,
 }
+
+newTalent{
+    name = "Pick pockets",
+    type = {"skill/skill",1},
+	mode = "activated",
+	points = 1,
+	cooldown = 20,
+    target = function(self, t)
+        return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+    end,
+    action = function(self, t)
+    	local tg = self:getTalentTarget(t)
+    	local x, y, target = self:getTarget(tg)
+    	if not x or not y or not target then return nil end
+
+        if target.type ~= "humanoid" and target.type ~= "monstrous_humanoid" then --and target.type
+            game.log("You can't pickpocket a creature that doesn't carry stuff.")
+        --we can pick pockets!
+        else
+            --if it has inventory items
+            if target:getInven("INVEN")[1] then
+                target:showInventory("Pick which item?", target:getInven("INVEN"), nil,
+                function(o, item)
+                    local check = self:skillCheck("pick_pocket", 10)
+                    if check then
+                        target:removeObject(target:getInven("INVEN"), item)
+                        self:addObject(self:getInven("INVEN"), item)
+                    else
+                        game.log("Failed the check, make target hostile")
+                    end
+                end)
+            else
+                --target has no inventory items
+                --maybe generate some gold instead?
+                game.log("Target has no items to pick")
+            end
+        end
+        return true
+    end,
+    info = function(self, t)
+        return "Attempt to pick pocket other creatures."
+    end,
+}
