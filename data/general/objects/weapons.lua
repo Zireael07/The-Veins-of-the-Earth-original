@@ -661,8 +661,8 @@ newEntity{ base = "BASE_WEAPON",
     cost = resolvers.value{silver=10}, --eyeballed
     require = {
         special = {
-            fct = function(self, t, offset)
-                if self.classes["Monk"] and self.classes["Monk"] > 0 then return true
+            fct = function(who, offset)
+                if who.classes and who.classes["Monk"] and who.classes["Monk"] > 0 then return true
                 else return false end
             end,
             desc = "Monk class",

@@ -227,8 +227,8 @@ newEntity{ base = "BASE_ARMOR",
     desc = [[A set of monk robes with a belt.]],
     require = {
         special = {
-            fct = function(self, t, offset)
-                if self.classes["Monk"] and self.classes["Monk"] > 0 then return true
+            fct = function(who, offset)
+                if who.classes and who.classes["Monk"] and who.classes["Monk"] > 0 then return true
                 else return false end
             end,
             desc = "Monk class",
@@ -249,8 +249,8 @@ newEntity{ base = "BASE_ARMOR",
     desc = [[Elaborate robes of the kind a mage might wear.]],
     require = {
         special = {
-            fct = function(self, t, offset)
-                if self:casterLevel("arcane") > 0 then return true
+            fct = function(who, offset)
+                if who:casterLevel("arcane") > 0 then return true
                 else return false end
             end,
             desc = "Ability to cast arcane spells",

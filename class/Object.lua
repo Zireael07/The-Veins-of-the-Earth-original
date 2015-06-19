@@ -50,6 +50,26 @@ function _M:init(t, no_default)
     engine.interface.ActorInventory.init(self, t)
 end
 
+--Let's show special reqs
+function _M:getRequirementDesc(who)
+    local base_getRequirementDesc = engine.Object.getRequirementDesc
+
+    local desc = base_getRequirementDesc(self, who)
+
+    local req = rawget(self, "require")
+    if type(req) == "function" then req = req(who) end
+	if not req then return nil end
+    --From ActorTalents
+    if req.special then
+		local c = (req.special.fct(who, offset)) and {"color", 0x00,0xff,0x00} or {"color", 0xff,0x00,0x00}
+		desc:add(c, ("- %s #WHITE#"):format(req.special.desc), true)
+	end
+
+
+    return desc
+end
+
+
 function _M:canAct()
     if self.power_regen or self.use_talent then return true end
     return false
