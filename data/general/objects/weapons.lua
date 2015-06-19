@@ -645,3 +645,27 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
         combat_parry = 4,
     },
 }
+
+newEntity{ base = "BASE_WEAPON",
+    define_as = "BASE_HANDWRAPS",
+    slot = "MAIN_HAND",
+    type = "weapon",
+    display = "_", color=colors.WHITE,
+    image = "tiles/new/handwraps.png",
+    encumber = 0,
+    rarity = 10,
+    combat = { sound = "actions/melee", sound_miss = "actions/melee_miss", },
+    desc = [[Those handwraps can enhance a monk's attack.]],
+    name = "handwraps",
+    level_range = {1, 10},
+    cost = resolvers.value{silver=10}, --eyeballed
+    require = {
+        special = {
+            fct = function(self, t, offset)
+                if self.classes["Monk"] and self.classes["Monk"] > 0 then return true
+                else return false end
+            end,
+            desc = "Monk class",
+            }
+        },
+}

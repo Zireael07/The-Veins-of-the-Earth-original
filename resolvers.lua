@@ -308,7 +308,10 @@ function resolvers.calc.moddable_tile(t, e)
 	elseif slot == "light" then
 		r = {"chainmail","chainmail3","leather_armour","leather_armour2","leather_armour3"}
 	--	r2 = {"lower_body_03","lower_body_04","lower_body_05","lower_body_06","lower_body_06",}
-	elseif slot == "robe" then r = {"monk_black","monk_blue","robe_green","robe_green_gold","robe_yellow"}
+	--robes
+	elseif slot == "archmage" then r = {"robe_green","robe_green_gold","robe_yellow", "robe_red_gold", "robe_brown"}
+	elseif slot == "monk" then r = {"monk_black","monk_blue"}
+	
 	elseif slot == "shield" then r = {"shield_kite2","shield_round1","shield_round2","shield_round3"}
 	elseif slot == "staff" then r = {"staff_plain", "staff_mage"}
 	elseif slot == "leather_boots" then r = {"middle_brown","middle_brown2","middle_brown3",}

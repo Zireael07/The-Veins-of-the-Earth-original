@@ -212,3 +212,48 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 		armor_penalty = 6
     },
 }
+
+--Robes
+newEntity{ base = "BASE_ARMOR",
+    name = "monk robes",
+    unided_name = "robes",
+    image = "tiles/new/monk_robes.png",
+    moddable_tile = resolvers.moddable_tile("monk"),
+    display = "(", color=colors.BLACK,
+    encumber = 1,
+    rarity = 15,
+    level_range = {1, 10},
+    cost = resolvers.value{silver=5},
+    desc = [[A set of monk robes with a belt.]],
+    require = {
+        special = {
+            fct = function(self, t, offset)
+                if self.classes["Monk"] and self.classes["Monk"] > 0 then return true
+                else return false end
+            end,
+            desc = "Monk class",
+            }
+        },
+}
+
+newEntity{ base = "BASE_ARMOR",
+    name = "archmage robes",
+    unided_name = "robes",
+    image = "tiles/object/robes.png",
+    moddable_tile = resolvers.moddable_tile("archmage"),
+    display = "(", color=colors.RED,
+    encumber = 1,
+    rarity = 15,
+    level_range = {10, 20},
+    cost = resolvers.value{gold=500},
+    desc = [[Elaborate robes of the kind a mage might wear.]],
+    require = {
+        special = {
+            fct = function(self, t, offset)
+                if self:casterLevel("arcane") > 0 then return true
+                else return false end
+            end,
+            desc = "Ability to cast arcane spells",
+            }
+        },
+}
