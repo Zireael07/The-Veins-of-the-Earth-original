@@ -18,11 +18,11 @@ function _M:init()
     Attack by bumping the enemies.
 
     Press #YELLOW#PageUp#LAST# or #YELLOW#PageDown#LAST# to scroll the hotbar pages, should you get so many spells that they don't fit on a single page.
-    #YELLOW#PageUp#LAST# and #YELLOW#PageDown#LAST# also double as scrolling descriptions if you don't have a mousewheel.
+    #YELLOW#PageUp#LAST# and #YELLOW#PageDown#LAST# also double for scrolling descriptions if you don't have a mousewheel.
 
     Press #YELLOW#'.'#LAST# (dot) to wait for a turn. It might be useful if you cannot move otherwise.
 
-    Press #YELLOW#ESC#LAST# to access the game menu.
+    Press #YELLOW#ESC#LAST# to access the game menu. Click "Graphics Mode" to bring up a menu where you can toggle tiles on/off.
     Press #YELLOW#'c'#LAST# to display character sheet.
     Press #YELLOW#'p'#LAST# to display level-up screen.
     Press #YELLOW#'m'#LAST# to display a list of your activable abilities (shoot, polearm & any spells you might have)
