@@ -93,6 +93,7 @@ load_tips = {
   { text = [[A divine patron may aid you in times of need. However, he or she might grow angry and smite you.]]},
   { text = [[Look out for altars to sacrifice creatures, their corpses and items on.]]},
   { text = [[You don't need an altar to pray to your divine patron.]]},
+  { text = [[Click "Graphics Mode" to bring up a menu where you can toggle tiles on/off.]]}
 }
 
 background_name = {
