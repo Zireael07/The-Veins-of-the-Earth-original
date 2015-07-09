@@ -70,6 +70,9 @@ function _M:use(item)
     self.on_use(self.inven, self.item, self.object, true)
 
     --Special stuff
+  elseif item.action == "eat" then
+    self.actor:doEatFood(self.inven, self.item)
+    self.on_use(self.inven, self.item, self.object, true)
   elseif item.action == "butcher" then
     self.actor:doButcher(self.inven, self.item)
     self.on_use(self.inven, self.item, self.object, false)
@@ -109,6 +112,13 @@ function _M:generateList()
       list[#list+1] = { name = "Throw", action='throw'}
   end]]
 
+  if self.object.type == "food" then
+      if self.object.subtype ~= "water" then
+          list[#list+1] = { name = "Eat", action='eat'}
+      else
+          list[#list+1] = { name = "Drink", action='eat'}
+      end
+  end
 
   if self.inven == self.actor.INVEN_INVEN and self.object.slot ~= "INVEN" then
     list[#list+1] = { name='Wear/wield', action='wear' }

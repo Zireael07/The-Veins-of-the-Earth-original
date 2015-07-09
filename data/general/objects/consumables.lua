@@ -11,6 +11,7 @@ newEntity{
     encumber = 0,
     name = "Food",
     desc = [[Some food.]],
+    base_nutrition = 1500,
 --    stacking = true,
 }
 
@@ -25,13 +26,7 @@ newEntity{
     rarity = 10,
     desc = [[Food rations, enough for a day or two.]],
     stacking = true,
-    use_simple = { name = "eat",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 200
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
+    nutrition = 1,
 }
 
 newEntity{
@@ -44,13 +39,7 @@ newEntity{
     rarity = 15,
     desc == [[Spider bread, a favorite of the dark elves.]],
     stacking = true,
-    use_simple = { name = "eat",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 150
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
+    nutrition = 1,
 }
 
 newEntity{
@@ -63,13 +52,7 @@ newEntity{
     rarity = 18,
     stacking = true,
     desc = [[Beef jerky. Spoils slowly.]],
-    use_simple = { name = "eat",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 150
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
+    nutrition = 1.5,
 }
 --Remains fresh for 10 turns
 newEntity{ define_as = "FRESH_CORPSE",
@@ -83,13 +66,7 @@ newEntity{ define_as = "FRESH_CORPSE",
     rarity = 14,
     encumber = 50,
     desc = [[A fresh corpse of some creature.]],
-    use_simple = { name = "eat",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 100
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
+    nutrition = 0.75,
 }
 
 newEntity{ define_as = "CORPSE",
@@ -101,16 +78,9 @@ newEntity{ define_as = "CORPSE",
     cost = 0,
     stacking = false,
     rarity = 8,
-    nutrition = 6,
+    nutrition = 0.5,
     encumber = 50,
     desc == [[A corpse of some creature.]],
-    use_simple = { name = "eat",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 60
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
 }
 
 --Drinks
@@ -124,14 +94,8 @@ newEntity{
     rarity = 8,
     cost = 5,
     stacking = true,
+    nutrition = 1,
     desc = [[A flask of water. Good to quench your thirst.]],
-    use_simple = { name = "drink",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 100
-        game.logPlayer(who, "%s drinks %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
 }
 
 --Stale foodstuffs
@@ -144,14 +108,8 @@ newEntity{
     cost = 2,
     rarity = 8,
     stacking = true,
+    nutrition = 0,
     desc = [[Food rations gone stale.]],
-    use_simple = { name = "eat",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 0
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
 }
 
 newEntity{
@@ -164,14 +122,8 @@ newEntity{
     cost = 2,
     rarity = 8,
     stacking = true,
+    nutrition = 0,
     desc = [[You'd be better off not drinking this water.]],
-    use_simple = { name = "drink",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 0
-        game.logPlayer(who, "%s drinks %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
 }
 
 newEntity{
@@ -184,14 +136,8 @@ newEntity{
     stacking = false,
     rarity = 8,
     encumber = 50,
+    nutrition = 0,
     desc = [[This corpse looks pretty stale.]],
-    use_simple = { name = "eat",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 0
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
 }
 
 newEntity{ base = "BASE_FOOD",
@@ -205,13 +151,7 @@ newEntity{ base = "BASE_FOOD",
     stacking = true,
     desc = [[This is a chunk of meat.]],
     encumber = 10, --eyeballed
-    use_simple = { name = "eat",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 15 --roughly 1/6 corpse nut
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
+    nutrition = 0.18, --1/6 corpse nutrition
 }
 
 newEntity{
@@ -219,11 +159,5 @@ newEntity{
     name = "chunk of stale meat",
     desc = [[This is a chunk of stale meat.]],
     rarity = 12,
-    use_simple = { name = "eat",
-    use = function(self,who)
-        who.nutrition = who.nutrition + 0
-        game.logPlayer(who, "%s eats %s!", who.name:capitalize(), self:getName{no_count=true})
-        return {used = true, destroy = true}
-  end
-  },
+    nutrition = 0,
 }

@@ -1379,6 +1379,35 @@ function _M:doThrowPotion(object, item, inven)
 
 end
 
+--Cleaner code
+function _M:incNutrition(v)
+	if not v or v < 0 then return end
+
+	self.nutrition = self.nutrition + v
+end
+
+function _M:doEatFood(inven, item)
+	local o = self:getInven(inven) and self:getInven(inven)[item]
+
+	if o then
+		if not o.base_nutrition then return end
+		local base = o.base_nutrition
+		local nut_mod = o.nutrition or 0
+		local nut = (base*nut_mod) or 0
+		self:removeObject(inven, item)
+		self:incNutrition(nut)
+
+		if o.subtype ~= "water" then
+			game.logPlayer(self, "You eat %s.", o:getName{do_colour=true, no_count=true})
+		else
+			game.logPlayer(self, "You drink %s.", o:getName{do_colour=true, no_count=true})
+		end
+
+		self:checkEncumbrance()
+		self:sortInven(inven)
+	end
+end
+
 --Taken from ToME
 --- Call when an object is added
 function _M:onAddObject(o)
