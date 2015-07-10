@@ -86,7 +86,7 @@ function _M:init()
     Ξ bracers
     - a wand
     ? a scroll
-    ! a potion
+    ¡ a potion
     ~ torch
     ℸ girdle
     ₵ helm
@@ -94,6 +94,7 @@ function _M:init()
 
     $ money
     % food or corpse
+    ! drink
 
     ( light armor
     ] medium armor

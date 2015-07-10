@@ -8,7 +8,7 @@ newEntity{
     slot = "INVEN",
     type = "potion", subtype = "potion",
     image = "tiles/object/potion.png",
-    display = "!", color=colors.RED,
+    display = "¡", color=colors.RED,
     name = "potion", instant_resolve = true,
     unided_name = "potion",
     identified = false,
