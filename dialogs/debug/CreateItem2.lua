@@ -18,13 +18,26 @@ function _M:init()
 
   Dialog.init(self, 'Create Object', 800, 600)
 
-  self:generateList()
+  self:generateListCategory()
+--  self:generateList()
 
+--new
+  self.c_category = List.new {
+  width = 100,
+  nb_items = 20,
+  display_prop = 'display',
+  list = self.list_category,
+  scrollbar = true,
+  fct = function(item) self:selectItem(item) end,--self:selectCategory(item) end,
+}
+
+--old
   self.c_items = List.new {
-    width = 350,
+    width = 200,
     nb_items = 20,
     display_prop = 'display',
-    list = self.list,
+    list = {},
+--    list = self.list,
     scrollbar = true,
     fct = function(item) self:selectItem(item) end,
   }
@@ -63,7 +76,8 @@ function _M:init()
 
 
   self:loadUI {
-    { left=0, top=0, ui=self.c_items},
+    {left=0, top=0, ui=self.c_category},
+    { left=self.c_category.w, top=0, ui=self.c_items},
     { left=0, top=self.c_items.h, ui=self.c_nitems },
     { right=0, top=0, ui=self.c_sfx_egos },
     { right=self.c_sfx_egos.w, top=0, ui=self.c_pfx_egos },
@@ -85,7 +99,7 @@ function _M:onRegister()
 end
 
 function _M:readyToCreate()
-  return self.sel_item and self.c_nitems.number
+  return self.sel_item and self.sel_item.e and self.c_nitems.number
 end
 
 function _M:updateButton()
@@ -103,19 +117,23 @@ function _M:setDisplayText(item, which)
 end
 
 function _M:selectItem(item)
-  if self.sel_item then
+  if self.sel_item and not self.sel_item.type then
     self:setDisplayText(self.sel_item, false)
     self.c_items:drawItem(self.sel_item)
   end
   self.sel_item = item
-  if self.sel_item then
+  if self.sel_item and not self.sel_item.type then
     self:setDisplayText(self.sel_item, true)
     self.c_items:drawItem(self.sel_item)
   end
   self:updateButton()
-  if not self.sel_item.unique then
+  if not self.sel_item.unique and not self.sel_item.type then
   self:setupEgoLists()
   end
+
+  if self.sel_item.type then
+      self:setupItems()
+ end
 end
 
 function _M:setupEgoLists()
@@ -179,16 +197,20 @@ function _M:createItem()
 end
 
 --Generate item list
-function _M:generateList()
+function _M:generateList(type)
     local list = {}
 
     for i, e in ipairs(game.zone.object_list) do
-        if e.name and e.rarity then
-            local display = (e.unique and '#ffd700#' or '#ffffff#') .. e.name .. '#LAST#'
+        if e.name and e.rarity and e.type then
+            if type and  _G.type(e.type) == "string" and e.type == type then
 
-            list[#list+1] = {name=e.name, display=display, base_display=display, unique=e.unique, e=e}
+                local display = (e.unique and '#ffd700#' or '#ffffff#') .. e.name .. '#LAST#'
+
+                list[#list+1] = {name=e.name, display=display, base_display=display, unique=e.unique, e=e}
+            end
         end
     end
+
     table.sort(list, function(a,b)
         if a.unique and not b.unique then return true
         elseif not a.unique and b.unique then return false end
@@ -203,4 +225,46 @@ function _M:generateList()
     list.chars = chars
 
     self.list = list
+end
+
+--Generate categories
+--Needs filter badly!!!
+function _M:generateListCategory()
+    local list = {}
+
+    for _, o in ipairs(game.zone.object_list) do
+        if o.type and _G.type(o.type) == "string" then
+            local name = o.type
+            local display = "#ffffff#".. name ..'#LAST'
+
+            list[#list+1] = {name=name, type=name, display=display, base_display=display, o=o}
+
+            --filter out duplicates
+        --    table.remove_duplicates(list, name)
+        end
+    end
+
+    table.sort(list, function(a,b) return a.name < b.name end)
+
+--[[    for i, t in ipairs(list) do
+        if t.name then game.log(t.name) end
+    end]]
+
+    self.list_category = list
+end
+
+
+function _M:setupItems()
+    if not self.sel_item or not self.sel_item.name then
+      self.c_items.list = {}
+      self.c_items:generate()
+      return
+    end
+
+    if self.sel_item and self.sel_item.name then
+        local type = self.sel_item.name
+        self:generateList(type)
+        self.c_items.list = self.list
+        self.c_items:generate()
+    end
 end
