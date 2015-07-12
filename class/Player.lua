@@ -84,6 +84,7 @@ function _M:init(t, no_default)
   self.move_others = true
   self.class_points = 1 -- Spent on leveling classes, its 1 because it "spends" one when you birth
   self.bank_money = 0
+  self.background_points = 2 --to account for lvl 1
 
   --Timers :D
   self.nutrition = 3000

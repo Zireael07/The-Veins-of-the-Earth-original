@@ -94,6 +94,7 @@ function _M:init(t, no_default)
 	--Skill ranks
 	self.max_skill_ranks = 4
 	self.cross_class_ranks = math.floor(self.max_skill_ranks/2)
+	self.background_points = 0
 
 	-- Default melee barehanded damage
 	self.combat = { dam = {1,4} }
@@ -2413,6 +2414,8 @@ function _M:levelup()
 
 	--Player only stuff
 	if self == game.player or game.party:hasMember(self) then
+		--gain background skill points (2 per level)
+		self.background_points = self.background_points + 2
 		--gain skill ranks
 		self.max_skill_ranks = self.max_skill_ranks + 1
 		--may level up class (player only)

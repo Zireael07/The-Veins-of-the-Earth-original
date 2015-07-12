@@ -24,6 +24,7 @@ function _M:newSkill(t)
     assert(t.desc, "no skill desc")
     t.stat = t.stat or "str"
     t.penalty = t.penalty or "no"
+	t.background = t.background or false
 
     self.skill_defs[t.name] = t
 	self.skill_defs[#self.skill_defs+1] = t
