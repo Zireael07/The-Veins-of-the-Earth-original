@@ -240,17 +240,20 @@ function _M:generateListCategory()
             list[#list+1] = {name=name, type=name, display=display, base_display=display, o=o}
 
             --filter out duplicates
-        --    table.remove_duplicates(list, name)
+            list_sorted = table.filter_list(list, name)
         end
     end
 
-    table.sort(list, function(a,b) return a.name < b.name end)
 
---[[    for i, t in ipairs(list) do
-        if t.name then game.log(t.name) end
-    end]]
+    if list_sorted ~= nil then
+        table.sort(list_sorted, function(a,b) return a.name < b.name end)
+        self.list_category = list_sorted
+    else
+        table.sort(list, function(a,b) return a.name < b.name end)
+        self.list_category = list
+    end
 
-    self.list_category = list
+
 end
 
 
