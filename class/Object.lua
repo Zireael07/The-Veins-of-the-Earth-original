@@ -71,15 +71,104 @@ end
 
 
 function _M:canAct()
-    if self.power_regen or self.use_talent then return true end
+   if self.power_regen or self.use_talent then return true end
+   if self.type == "lite" or self.subtype == "corpse" then return true end
     return false
 end
 
 function _M:act()
-    self:regenPower()
-    self:cooldownTalents()
-    self:useEnergy()
+    if self.power_regen or self.use_talent then
+        self:regenPower()
+        self:cooldownTalents()
+        self:useEnergy()
+    end
+    --special stuff
+    if self.subtype == "corpse" then self:decayCorpses() end
+    --once per player turn
+    if game.turn % 10 == 0 then
+        if self.type == "lite" then self:lightTurns() end
+    end
 end
+
+--Decay light
+function _M:lightTurns()
+--    game.log("Decaying light")
+    local inven = game.player:getInven("LITE")
+    local in_inv = game.player:findInInventoryByObject(inven, self) and true or false
+    if in_inv then
+    --    local full = self.fuel == self.max_fuel
+        self.fuel = self.fuel - 1
+
+        if self.fuel == 0 then self:removeObject(self:getInven("LITE")[1]) end
+    end
+end
+
+function _M:getPosition()
+    local x, y = self.x, self.y
+    local i = 1
+    local obj = game.level.map:getObject(x, y, i)
+    while obj do
+      if obj and obj.name == self.name then
+         pos = i
+      else
+        i = i + 1
+      end
+    --  obj = game.level.map:getObject(x, y, i)
+    end
+
+    return pos
+end
+
+--Decay corpses
+function _M:decayCorpses()
+    game.log("Decaying corpses")
+    if not self.freshness then return end
+    self.freshness = self.freshness - 1
+
+    if self.freshness == 0 then
+
+            local in_inv = game.player:findInAllInventoriesByObject(self) and true or false
+
+            if self.name:find("fresh") then
+                corpse = game.zone:makeEntity(game.level, "object", {name="corpse", ego_chance=-1000}, 1, true)
+                if self.victim then corpse.victim = self.victim end
+                game.zone:addEntity(game.level, corpse, "object")
+
+                --the player might carry one around
+                if in_inv then
+                    --drop and destroy
+                    o, item, inven = game.player:findInAllInventoriesByObject(self)
+                    local obj = game.player:removeObject(inven, item, true)
+                    game.player:addObject(player.INVEN_INVEN, corpse)
+                    game.player:sortInven(inven)
+                else
+                --    local i = self:getPosition()
+                --    game.level.map:removeObject(self.x, self.y, self)
+                end
+
+            elseif self.name:find("stale") then
+                --nothing!
+            else
+                corpse = game.zone:makeEntity(game.level, "object", {name="stale corpse", ego_chance=-1000}, 1, true)
+                if self.victim then corpse.victim = self.victim end
+                game.zone:addEntity(game.level, corpse, "object")
+
+                --the player might carry one around
+                if in_inv then
+                    --drop and destroy
+                    o, item, inven = game.player:findInAllInventoriesByObject(self)
+                    local obj = game.player:removeObject(inven, item, true)
+                    game.player:addObject(player.INVEN_INVEN, corpse)
+                    game.player:sortInven(inven)
+                else
+                --    local i = self:getPosition()
+                --    game.level.map:removeObject(self.x, self.y, self)
+                end
+            end
+    end
+end
+
+
 
 --- Setup minimap color for this entity
 -- You may overload this method to customize your minimap
@@ -123,6 +212,8 @@ function _M:descAttribute(attr)
     elseif attr == "COMBAT_AMMO" then
         local c = self.combat
         return c.capacity
+    elseif attr == "LITE" then
+        return self.fuel
     end
 end
 
@@ -201,6 +292,18 @@ function _M:getName(t)
         end]]
     end
 
+    --Does this even work?
+    name = name:gsub("~", ""):gsub("&", "a"):gsub("#([^#]+)#", function(attr)
+        return self:descAttribute(attr)
+    end)
+
+    if not t.no_add_name and self.add_name then --and self:isIdentified() then
+    name = name .. self.add_name:gsub("#([^#]+)#", function(attr)
+            return self:descAttribute(attr)
+        end)
+    end
+
+    --Do the pseudo-id after all else
     if not t.no_add_pseudo then
         if self.pseudo_id == true and self.identified == false and not t.force_id then --and self:getUnidentifiedName() then
             name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
@@ -217,17 +320,6 @@ function _M:getName(t)
                 end
             end
         end
-    end
-
-    --Does this even work?
-    name = name:gsub("~", ""):gsub("&", "a"):gsub("#([^#]+)#", function(attr)
-        return self:descAttribute(attr)
-    end)
-
-    if not t.no_add_name and self.add_name then --and self:isIdentified() then
-    name = name .. self.add_name:gsub("#([^#]+)#", function(attr)
-            return self:descAttribute(attr)
-        end)
     end
 
     if not t.do_color then

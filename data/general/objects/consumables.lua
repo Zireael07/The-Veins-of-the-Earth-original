@@ -58,7 +58,7 @@ newEntity{
     nutrition = 1.5,
 }
 
---Remains fresh for 10 turns; chance for intrinsic gains
+--Remains fresh for 12 hours; chance for intrinsic gains
 newEntity{ define_as = "FRESH_CORPSE",
     base = "BASE_FOOD",
     name = "fresh corpse", color=colors.GREEN,
@@ -69,11 +69,13 @@ newEntity{ define_as = "FRESH_CORPSE",
     stacking = false,
     rarity = 14,
     encumber = 50,
+    freshness = 10,
+--    freshness = game.calendar.HOUR*12,
     desc = [[A fresh corpse of some creature.]],
     nutrition = 0.75,
 }
 
---Survival test to avoid poisoning; chance for intrinsic gains
+--Survival test to avoid poisoning; chance for intrinsic gains;
 newEntity{ define_as = "CORPSE",
     base = "BASE_FOOD",
     name = "corpse", color=colors.RED,
@@ -85,6 +87,7 @@ newEntity{ define_as = "CORPSE",
     rarity = 8,
     nutrition = 0.5,
     encumber = 50,
+    freshness = game.calendar.DAY*5, --14 days to decay fully, 5 days to go stale
     desc == [[A corpse of some creature.]],
 }
 
@@ -128,6 +131,7 @@ newEntity{
     rarity = 8,
     encumber = 50,
     nutrition = 0,
+    freshness = game.calendar.DAY*9, --9 days to decay fully
     desc = [[This corpse looks pretty stale.]],
 }
 
@@ -322,7 +326,7 @@ newEntity{
 
 newEntity{ base = "BASE_DRINK",
     name = "flask of wine",
-    color = colors.RED,
+    display = "!", color = colors.RED,
     rarity = 15,
     cost = 10,
     desc = [[A flask of deep red wine.]],
@@ -331,7 +335,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "mug of ale",
-    color = colors.SANDY_BROWN,
+    display = "!", color = colors.SANDY_BROWN,
     cost = 6,
     desc = [[A mug of brownish ale.]],
     nutrition = 0.75,
@@ -340,7 +344,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "flask of blood",
-    color = colors.CRIMSON,
+    display = "!", color = colors.CRIMSON,
     cost = 0,
     desc = [[A flask of blood.]],
     nutrition = 0, --unless vampire
@@ -349,7 +353,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "flask of elf wine",
-    color = colors.LIGHT_GREEN,
+    display = "!", color = colors.LIGHT_GREEN,
     cost = 30, --3x normal wine
     nutrition = 1,
     rarity = 20,
@@ -357,7 +361,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "flask of drow wine",
-    color = colors.LIGHT_TAN,
+    display = "!", color = colors.LIGHT_TAN,
     cost = 40, --4x normal wine
     desc = [[Drow wine, made from fermented fungi.]],
     nutrition = 1,
@@ -366,7 +370,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "mug of beer",
-    color = colors.YELLOW,
+    display = "!", color = colors.YELLOW,
     cost = 4, --cheaper than water
     desc = [[A mug of beer.]],
     nutrition = 0.5,
@@ -375,7 +379,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "cup of milk",
-    color = colors.WHITE,
+    display = "!", color = colors.WHITE,
     cost = 4, --as beer
     desc = [[From a cow!]],
     nutrition = 1,
@@ -384,7 +388,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "cup of tea",
-    color = colors.DARK_TAN,
+    display = "!", color = colors.DARK_TAN,
     cost = 10,
     desc = [[A herbal beverage.]],
     nutrition = 1,
@@ -393,7 +397,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "cup of herbs",
-    color = colors.DARK_GREEN,
+    display = "!", color = colors.DARK_GREEN,
     cost = 15,
     desc = [[A mix of various herbs]],
     nutrition = 1,

@@ -150,20 +150,6 @@ function _M:act()
 end
 
 function _M:playerCounters()
-
---Count down lite turns
-  local lite = (self:getInven("LITE") and self:getInven("LITE")[1])
-
-  if lite and not lite.name == "everlasting torch" and self.lite_counter > 0 then --and not lite.name == "a lantern" then
-    self.lite_counter = self.lite_counter - 1
-  end
-
-  if lite and self.lite_counter == 0 then
-    self:removeObject(self:getInven("LITE")[1])
-    --[[Add burnt out torch
-    self:addObject]]
-  end
-
   --Count down nutrition
   local nutrition = self.nutrition
 
