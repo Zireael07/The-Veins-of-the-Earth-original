@@ -32,10 +32,10 @@ function _M:init(actor)
 	self:generateSpell()
 
 	local types = {}
-	if self.actor:casterLevel("arcane") > 0 then
+	if self.actor:casterLevel("arcane") > 0 and not self.actor.classes["Sorcerer"] then
 		types[#types+1]= {title="Arcane", kind="arcane"}
 	end
-	if self.actor:casterLevel("divine") > 0 then
+	if self.actor:casterLevel("divine") > 0 and not self.actor.classes["Shaman"] then
 		types[#types+1] = {title="Divine", kind="divine"}
 	end
 
@@ -73,15 +73,15 @@ function _M:init(actor)
 	self.c_info = TextzoneList.new{ scrollbar = true, width=200, height = self.ih }
 
 	--Better way of displaying spell level tabs
-	local spell_tabs = {}
-	spell_tabs[#spell_tabs+1]= {title="Levels 1-2", kind="leveltwo"}
+	local tabslist = {}
+	tabslist[#tabslist+1]= {title="Levels 1-2", kind="leveltwo"}
 
 
 	if (self.actor:getMaxMaxCharges()[3] or 0) > 0 then
-		spell_tabs[#spell_tabs+1]= {title="Levels 3-4", kind="levelfour"}
+		tabslist[#tabslist+1]= {title="Levels 3-4", kind="levelfour"}
 	end
 
---	self.c_spelllevels = Tabs.new{width=wide, tabs=spell_tabs, on_change=function(kind) self:switchLevels(kind) end}
+--	self.c_spelllevels = Tabs.new{width=wide, tabs=tabslist, on_change=function(kind) self:switchLevels(kind) end}
 
 	--Tabsception!
 	self.t_leveltwo = Tab.new {
