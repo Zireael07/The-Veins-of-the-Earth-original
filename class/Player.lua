@@ -991,12 +991,9 @@ end
 
 
 function _M:decipherRunesItem(o)
-    local can_rune = {}
---  o.runic == true if following words in flavor:
---"rune", "runic", "runed", "inscribed", "written", "symbol", "glyph", "engraved", "ancient", "script", "iconic",
-    if o.runic and not o.pseudo_id then
+	if not o.pseudo_id then
 
-      if self:skillCheck("decipherscript", 15) then
+      if self:skillCheck("decipher_script", 15) then
         o.pseudo_id = true
 
         game.logPlayer(self, ("By translating the runes, you discern that this is really %s!"):format(o.name))

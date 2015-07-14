@@ -754,6 +754,15 @@ end
 
 
 function _M:on_prepickup(who, idx)
+    --Recognize runes at first glance
+    if who == game.player and self.unided_name and self:isRunic(self) and self.pseudo_id == false then
+        if who:skillCheck("decipher_script", 15) then
+          o.pseudo_id = true
+
+          game.logPlayer(self, ("By translating the runes, you discern that this is really %s!"):format(self.name))
+        end
+    end
+
     --Auto-destroy cursed items
     if who == game.player and self.pseudo_id == false then
         local check = who:skillCheck("intuition", 10)
@@ -844,6 +853,21 @@ function _M:foundInfo()
       desc = '\n\n#{italic}##YELLOW#' .. str .. '#LAST##{normal}#'
       return desc
     end
+end
+
+local function n_find(o, what)
+    o.unided_name:find("^"..what)
+end
+
+function _M:isRunic(o)
+--if following words in flavor:
+--"rune", "runic", "runed", "inscribed", "written", "symbol", "glyph", "engraved", "ancient", "script", "iconic",
+if n_find(o, "runic") or n_find(o, "rune") or n_find(o, "runed")  or n_find(o, "symbol") or n_find(o, "glyph")
+or n_find(o, "inscribed") or n_find(o, "written") or n_find(o, "engraved") or n_find(o, "ancient") or n_find(o, "script") or n_find(o, "iconic") then
+
+return true end
+
+return false
 end
 
 --Flavor stuff (taken from ToME 2 by Zizzo)
