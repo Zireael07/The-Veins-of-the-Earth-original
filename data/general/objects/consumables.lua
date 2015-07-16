@@ -5,7 +5,7 @@
 newEntity{
     define_as = "BASE_FOOD",
     slot = "INVEN",
-    type = "food",
+    type = "food", subtype = "food",
     image = "tiles/object/food.png",
     display = "%", color=colors.WHITE,
     encumber = 1,
@@ -22,7 +22,7 @@ newEntity{
     base = "BASE_FOOD",
     name = "food ration",
     image = "tiles/object/food.png",
-    type = "food", subtype = "food",
+    type = "food", subtype = "ration",
     level_range = {1,10},
     cost = 5,
     rarity = 10,
@@ -103,20 +103,6 @@ newEntity{
     stacking = true,
     nutrition = 0,
     desc = [[Food rations gone stale.]],
-}
-
-newEntity{
-    base = "BASE_FOOD",
-    name = "stale water",
-    image = "tiles/object/flask.png",
-    type = "food", subtype = "water",
-    display = "!", color=colors.AQUAMARINE,
-    level_range = {1,10},
-    cost = 2,
-    rarity = 8,
-    stacking = true,
-    nutrition = 0,
-    desc = [[You'd be better off not drinking this water.]],
 }
 
 --No intrinsic
@@ -252,6 +238,7 @@ newEntity{ base = "BASE_FOOD",
 --More rations variety
 newEntity{ base = "BASE_FOOD",
     name = "large rations",
+    subtype = "ration",
     display = "%", color=colors.WHITE,
     nutrition = 2,
     encumber = 2,
@@ -309,7 +296,7 @@ newEntity{ base = "BASE_FOOD",
 newEntity{ base = "BASE_FOOD",
     define_as = "BASE_DRINK",
     image = "tiles/object/flask.png",
-    type = "food", subtype = "water",
+    type = "drink", subtype = "drink",
     display = "!", color=colors.AQUAMARINE,
     cost = 5,
     stacking = true,
@@ -322,6 +309,15 @@ newEntity{
     rarity = 8,
     cost = 5,
     desc = [[A flask of water. Good to quench your thirst.]],
+}
+
+newEntity{
+    base = "BASE_DRINK",
+    name = "stale water",
+    rarity = 10,
+    cost = 0,
+    nutrition = 0,
+    desc = [[You'd be better off not drinking this water.]],
 }
 
 newEntity{ base = "BASE_DRINK",

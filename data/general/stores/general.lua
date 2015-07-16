@@ -84,9 +84,9 @@ newEntity{
 		filters = {
 			{type="torch", id=true},
 			{type="container", id=true},
-			{type="food", subtype="food", id=true},
-			{type="food", subtype="food", id=true},
-			{type="food", subtype="food", id=true},
+			{type="food", subtype="ration", id=true},
+			{type="food", subtype="ration", id=true},
+			{type="food", subtype="ration", id=true},
 			{type="tool", id=true},
 			{type="tool", id=true},
 			{type="tool", id=true},
@@ -151,6 +151,50 @@ newEntity{
 		empty_before_restock = false,
 		filters = {
 			{type="lore", subtype="lore", id=true },
+		},
+	},
+}
+
+newEntity{
+	define_as = "FOOD",
+	name = "food shop",
+	display = "*", color=colors.DARK_GREEN,
+	store = {
+		purse = 100000,
+--		nb_fill = 20,
+		restock_after = 100,
+		empty_before_restock = false,
+		filters = {
+			{type="food", subtype="food", id=true},
+			{type="food", subtype="food", id=true},
+			{type="food", subtype="food", id=true},
+			{type="food", subtype="food", id=true, },
+			{type="food", subtype="food", id=true, },
+			{type="food", subtype="food", id=true },
+			{type="food", subtype="food", id=true},
+			{type="food", subtype="food", id=true},
+		},
+	},
+}
+
+newEntity{
+	define_as = "FOOD",
+	name = "tavern",
+	display = "*", color=colors.DARK_RED,
+	store = {
+		purse = 100000,
+--		nb_fill = 20,
+		restock_after = 100,
+		empty_before_restock = false,
+		filters = {
+			{type="drink", id=true},
+			{type="drink", id=true},
+			{type="drink", id=true},
+			{type="drink", id=true, },
+			{type="drink", id=true, },
+			{type="drink", id=true },
+			{type="drink", id=true},
+			{type="drink", id=true},
 		},
 	},
 }
