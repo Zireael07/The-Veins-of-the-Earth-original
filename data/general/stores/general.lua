@@ -178,7 +178,7 @@ newEntity{
 }
 
 newEntity{
-	define_as = "FOOD",
+	define_as = "DRINK",
 	name = "tavern",
 	display = "*", color=colors.DARK_RED,
 	store = {

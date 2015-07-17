@@ -228,3 +228,26 @@ newEntity{
     can_talk = "banker",
     resolvers.classes{Fighter=2},
 }
+
+--Town Shopkeeper
+local shops = {"ADVENTURER", "MAGIC", "POTION", "FOOD", "DRINK"}
+
+newEntity{ base= "BASE_NPC_DROW_T",
+    define_as = "BASE_NPC_CITY_SHOP",
+    name = "city seller",
+    rarity = 2,
+    can_talk = "shop",
+    resolvers.store(rng.table(shops)),
+
+    resolvers.equip{
+        full_id=true,
+        { name = "chain shirt", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "light metal shield", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "rapier", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+        { name = "bolts", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
+    },
+    resolvers.inventory {
+    full_id=true,
+    { name = "hand crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
+    },
+}
