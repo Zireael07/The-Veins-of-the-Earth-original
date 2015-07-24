@@ -466,16 +466,19 @@ function _M:describeFloor(x, y)
   if self.old_x == self.x and self.old_y == self.y then return end
 
   -- Auto-pickup stuff from floor.
-  local i = 1
-  local obj = game.level.map:getObject(x, y, i)
-  while obj do
-    if obj.auto_pickup and self:pickupFloor(i, true) then
-      -- Nothing to do.
-    else
-      i = i + 1
-    end
-    obj = game.level.map:getObject(x, y, i)
+  if self:getInven(self.INVEN_INVEN) and not self:attr("sleep") then
+          local i = 1
+          local obj = game.level.map:getObject(x, y, i)
+          while obj do
+            if obj.auto_pickup and self:pickupFloor(i, true) then
+              -- Nothing to do.
+            else
+              i = i + 1
+            end
+            obj = game.level.map:getObject(x, y, i)
+          end
   end
+	
 
   -- i is now one higher than the number of objects on the floor.
   -- TODO Prompt to pickup, probably controlled by a setting.
@@ -1077,6 +1080,10 @@ end
     if game.level.map:getObject(self.x, self.y, 2) then
 		local titleupdator = self:getEncumberTitleUpdater("Pickup")
 		local d d = self:showPickupFloor(titleupdator(), nil, function(o, item)
+		        if self:attr("sleep") then
+				game.logPlayer(self, "You cannot pick up items from the floor while asleep!")
+				return
+			end
 			local o = self:pickupFloor(item, true)
 			if o and type(o) == "table" then o.__new_pickup = true end
 			self.changed = true
@@ -1129,6 +1136,9 @@ end
 
 --Usable items
 function _M:playerUseItem(object, item, inven)
+        if self.no_inventory_access then return end
+	if not game.zone or game.zone.worldmap then game.logPlayer(self, "You cannot use items on the world map.") return end
+	
     local use_fct = function(o, inven, item)
         if not o then return end
         local co = coroutine.create(function()
