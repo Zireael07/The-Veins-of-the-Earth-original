@@ -86,7 +86,8 @@ newEffect{
 		eff.increase2 = self:addTemporaryValue("stat_increase_str", 1)
 	end,
 	deactivate = function(self, eff)
-		self:setEffect(self.EFF_FATIGUE, 5, {})
+		-- 6 rounds equal one minute; fatigue lasts for 5 mins = 30 rounds
+		self:setEffect(self.EFF_FATIGUE, 30, {})
 		self:removeTemporaryValue("stat_increase_dex", eff.increase)
 		self:removeTemporaryValue("stat_increase_str", eff.increase2)
 
