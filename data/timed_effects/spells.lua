@@ -63,6 +63,43 @@ newEffect{
 }
 
 newEffect{
+	name = "ENTANGLE",
+	desc = "Entangled",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is entangled!", "+Entangle" end,
+	on_lose = function(self, err) return "#Target# breaks free.", "-Entangle" end,
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_DEX]=-4, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
+		
+		eff.tmpid = self:addTemporaryValue("movement_speed_bonus", -0.50)
+		eff.attack = self:addTemporaryValue("combat_attack", -2)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("movement_speed_bonus", eff.tmpid)
+		self:removeTemporaryValue("combat_attack", eff.attack)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease)
+	end,
+}
+
+newEffect{
+	name = "PETRIFY",
+	desc = "Petrified",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is turned into stone!", "+Stone" end,
+	on_lose = function(self, err) return "#Target# is no longer petrified.", "-Stone" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("never_move", 1)
+    end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("never_move", eff.tmpid)
+	end,
+}
+
+newEffect{
 	name = "HOLD",
 	desc = "Paralyzed",
 	type = "physical",
