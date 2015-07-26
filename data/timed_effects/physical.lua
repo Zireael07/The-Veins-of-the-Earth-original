@@ -158,6 +158,30 @@ newEffect{
 	end
 }
 
+--Next stage
+newEffect{
+	name = "EXHAUSTION",
+	desc = "Exhausted",
+	long_desc = [["An exhausted moves at half speed and takes a -6 penalty to Strength and Dexterity. After 1 hours of complete rest, exhausted characters are now fatigued.]],
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is fatigued!", "+Fatigue" end,
+	on_lose = function(self, err) return "#Target# is no longer fatigued", "-Fatigue" end,
+	activate = function(self, eff)
+		local stat = { [Stats.STAT_STR]=-2, [Stats.STAT_DEX]=-2 }
+		self:effectTemporaryValue(eff, "inc_stats", stat)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+		eff.decrease2 = self:addTemporaryValue("stat_decrease_dex", 1)
+		eff.tmpid = self:addTemporaryValue("movement_speed_bonus", -0.50)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("stat_decrease_str", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease2)
+		self:removeTemporaryValue("movement_speed_bonus", eff.tmpid)
+	end
+}
+
+--Drop everything held
 newEffect{
 	name = "STUN",
 	desc = "Stunned",
@@ -199,3 +223,14 @@ newEffect{
 		self:removeTemporaryValue("will_save", eff.will)
 	end,
 }
+
+--Note: not the same as the knockdown effect
+--attacker: penalty -4 on attack and can't use ranged
+--defender: -4 to AC vs melee, +4 to AC vs ranged
+newEffect{
+	name = "PRONE",
+	desc = "Prone",
+	long_desc = [[The character is on the ground.]],
+	on_gain = function(self, err) return "#Target# falls to the ground!", "+Prone" end,
+	on_lose = function(self, err) return "#Target# stands up.", "-Prone" end,
+}	
