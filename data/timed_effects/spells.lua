@@ -6,6 +6,7 @@ local Particles = require "engine.Particles"
 
 --Various spell effects
 
+--Most basic spells
 newEffect{
 	name = "SLEEP",
 	desc = "Sleeping",
@@ -21,6 +22,22 @@ newEffect{
 	end,
 }
 
+newEffect{
+	name = "SLOW",
+	desc = "Slowed",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is slowed!", "+Slow" end,
+	on_lose = function(self, err) return "#Target# seems to speed up.", "-Slow" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("movement_speed_bonus", -0.50)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("movement_speed_bonus", eff.tmpid)
+	end,
+}
+
+--Not directly detrimental to targets
 newEffect{
 	name = "CHARM",
 	desc = "Charmed",
@@ -46,6 +63,7 @@ newEffect{
 	end,
 }
 
+--More complex spells
 newEffect{
 	name = "GHOUL_TOUCH",
 	desc = "Ghouled",
