@@ -261,7 +261,7 @@ function _M:act()
 	self:deathStuff()
 
 	--Poison timer
-	if self.poison_timer then self.poison_timer = self.poison_timer - 1 end
+	if self.poison_timer and not self:hasEffect(self.EFF_DELAY_POISON) then self.poison_timer = self.poison_timer - 1 end
 
 	-- check passive stuff. This should be in actbase I think but I cant get it to work
 	if self:knowTalent(self.T_BLOOD_VENGANCE) then
