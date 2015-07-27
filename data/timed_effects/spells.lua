@@ -241,6 +241,13 @@ newEffect{
 	status = "beneficial",
 }
 
+newEffect{
+	name = "DELAY_POISON",
+	desc = "Delay poison",
+	type = "physical",
+	status = "beneficial",
+}
+
 --Detect spells
 newEffect{
 	name = "DETECT_EVIL",
