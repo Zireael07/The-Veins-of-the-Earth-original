@@ -195,6 +195,22 @@ end
 }
 
 newEntity{
+	name = " of delay poison", suffix = true,
+	level_range = {1, 10},
+	rarity = 5,
+--	cost = 50,
+    cost = resolvers.value{gold=50},
+    school = "conjuration",
+    use_simple = { name = "quaff",
+    use = function(self, who)
+    who:setEffect(who.EFF_DELAY_POISON, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
     name = " of levitation", suffix = true,
     level_range = {2, 10},
     rarity = 15,
