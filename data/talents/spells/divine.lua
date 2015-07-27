@@ -659,6 +659,9 @@ newDivineSpell{
 		if self:isTalentActive(self.T_EXTEND) then return 8
 		else return 5 end
 	end,
+	getSave = function(self, t)
+		return self:getSpellDC(t)
+	end,
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
 	end,
@@ -668,8 +671,9 @@ newDivineSpell{
 		if not x or not y or not target then return nil end
 
 		local duration = t.getDuration(self, t)
+		local save = t.getSave(self, t)
 
-		if target:willSave(15) then game.log("Target resists the spell!")
+		if target:willSave(save) then game.log("Target resists the spell!")
 		else target:setEffect(target.EFF_SHAKEN, duration, {})
 		end
 
@@ -678,6 +682,46 @@ newDivineSpell{
 
 	info = function(self, t)
 		return ([[The target is afflicted with a feeling of doom, having a -2 penalty on attacks, saving throws and checks.]])
+	end,
+}
+
+newArcaneSpell{
+	name = "Entangle",
+	type = {"divine", 1},
+	display = { image = "entangle.png"},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+--	tactical = { BUFF = 2 },
+	range = 5,
+	radius = 3,
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
+		else return 5 end
+	end,
+	getSave = function(self, t)
+		return self:getSpellDC(t)
+	end,
+	target = function(self, t)
+		return {type="ball", range=self:getTalentRange(t), radius=self:getTalentRadius(t), talent = t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+		local _ _, _, _, x, y = self:canProject(tg, x, y)
+		if not x or not y then return nil end
+
+		local duration = t.getDuration(self, t)
+		local save = t.getSave(self, t)
+
+		if target:reflexSave(save) then game.log("Target resists the spell!") 
+			target:setEffect(target.EFF_SLOW, duration, {})
+		else target:setEffect(target.EFF_ENTANGLE, duration, {})
+		end
+	end,
+
+	info = function(self, t)
+		return ([[You make grass and weeds wrap around the target, ensnaring them. If they escape, they are still slowed]])
 	end,
 }
 
@@ -703,6 +747,69 @@ newDivineSpell{
 		return ([[You gain a +2 deflection bonus to AC.]])
 	end,
 }
+
+newDivineSpell{
+	name = "Delay Poison",
+	type = {"divine", 1},
+	mode = "activated",
+	level = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 960
+		else return 600 end --1 hr
+	end,
+	action = function(self, t)
+		if not self then return nil end
+		self:setEffect(self.EFF_DELAY_POISON, t.getDuration(self, t), {})
+
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[You gain a +2 deflection bonus to AC.]])
+	end,
+}
+
+newDivineSpell{
+	name = "Charm Animal",
+	type = {"divine", 1},
+	display = { image = "talents/charm_animal.png"},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	tactical = { BUFF = 2 },
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 8
+		else return 5 end
+	end,
+	range = 5,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = self:getTalentTarget(t)
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		local duration = t.getDuration(self, t)
+
+		local save = self:getSpellDC(t)
+
+		--if target.type ~= "animal" then return nil end
+
+		if target.type == "animal" then
+			if target:willSave(save) then game.log("Target resists charm spell!")
+			else target:setEffect(target.EFF_CHARM, duration, {}) end
+		end
+
+		return true
+	end,
+	info = function(self, t)
+		return ([[You charm a single animal.]])
+	end,
+}
+
 
 
 --"Animal buff" spells
