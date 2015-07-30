@@ -16,6 +16,24 @@ newEffect{
  on_lose = function(self, err) return "#Target# got up from the ground.", "-Bleed" end,
 } 
 
+--Dummy for concealment
+newEffect{
+	name = "BLIND",
+	desc = "Blinded",
+	long_desc = [[The character cannot see. He takes a -2 penalty to Armor Class and loses his Dexterity bonus to AC (if any).
+		All opponents are considered to have total concealment (50% miss chance) to the blinded character.]],
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# loses sight!", "+Blind" end,
+	on_lose = function(self, err) return "#Target# regains sight.", "-Blind" end,
+
+}
+
+--Confused
+--Cowering
+--Dazzled
+--Deafened
+
 --Conditions for below 0 hp
 newEffect{
 	name = "DISABLED",
@@ -49,6 +67,28 @@ newEffect{
 	end,
 }
 
+newEffect{
+	name = "ENTANGLE",
+	desc = "Entangled",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is entangled!", "+Entangle" end,
+	on_lose = function(self, err) return "#Target# breaks free.", "-Entangle" end,
+	activate = function(self, eff)
+		local inc = { [Stats.STAT_DEX]=-4, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
+		
+		eff.tmpid = self:addTemporaryValue("movement_speed_bonus", -0.50)
+		eff.attack = self:addTemporaryValue("combat_attack", -2)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("movement_speed_bonus", eff.tmpid)
+		self:removeTemporaryValue("combat_attack", eff.attack)
+		self:removeTemporaryValue("stat_decrease_dex", eff.decrease)
+	end,
+}
+
 --Next stage of fatigue
 newEffect{
 	name = "EXHAUSTION",
@@ -73,6 +113,23 @@ newEffect{
 }
 
 newEffect{
+	name = "FASCINATE",
+	desc = "Fascinated",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# is fascinated!", "+Fascinate" end,
+	on_lose = function(self, err) return "#Target# is no longer fascinated.", "-Fascinate" end,
+	activate = function(self, eff)
+		eff.listen = self:addTemporaryValue("skill_bonus_listen", -4)
+		eff.spot = self:addTemporaryValue("skill_bonus_spot", -4)
+    end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("skill_bonus_listen", eff.listen)
+		self:removeTemporaryValue("skill_bonus_spot", eff.spot)
+	end,
+}
+
+newEffect{
 	name = "FATIGUE",
 	desc = "Fatigued",
 	long_desc = [["A fatigued character can neither run nor charge and takes a -2 penalty to Strength and Dexterity. Doing anything that would normally cause fatigue causes the fatigued character to become exhausted. After 8 hours of complete rest, fatigued characters are no longer fatigued.]],
@@ -91,6 +148,58 @@ newEffect{
 		self:removeTemporaryValue("stat_decrease_dex", eff.decrease2)
 	end
 }
+
+--Helpless
+--Incorporeal
+
+--+2 attack against sighted, ignores their Dex mod to AC
+newEffect{
+	name = "INVISIBLE",
+	desc = "Invisible",
+	type = "physical",
+	status = "beneficial",
+	parameters = { power=1 },
+	on_gain = function(self, err) return "#Target# fades from sight!", "+Invisible" end,
+	on_lose = function(self, err) return "#Target# reappears!", "-Invisible" end,
+	activate = function(self, eff)
+		eff.invis = self:addTemporaryValue("stealth", eff.power)
+	--[[	if not self.shader then
+			eff.set_shader = true
+			self.shader = "invis_edge"
+			self:removeAllMOs()
+			game.level.map:updateMap(self.x, self.y)
+		end]]
+	end,
+	deactivate = function(self, eff)
+	--[[	if eff.set_shader then
+			self.shader = nil
+			self:removeAllMOs()
+			game.level.map:updateMap(self.x, self.y)
+		end]]
+		self:removeTemporaryValue("stealth", eff.invis)
+	end,
+}
+
+--Nauseated
+--Panicked
+--Paralyzed
+
+
+newEffect{
+	name = "PETRIFY",
+	desc = "Petrified",
+	type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is turned into stone!", "+Stone" end,
+	on_lose = function(self, err) return "#Target# is no longer petrified.", "-Stone" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("never_move", 1)
+    end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("never_move", eff.tmpid)
+	end,
+}
+
 
 --Note: not the same as the knockdown ("fell") effect
 --attacker: penalty -4 on attack and can't use ranged
@@ -126,6 +235,8 @@ newEffect{
 	end,
 }
 
+--Sickened
+--Staggered
 
 --Drop everything held
 newEffect{
@@ -146,7 +257,6 @@ newEffect{
 		self:removeTemporaryValue("never_move", eff.tmpid)
 	end
 }
-
 
 newEffect{
 	name = "UNCONSCIOUS",
