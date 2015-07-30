@@ -562,6 +562,65 @@ newEntity {
   },
 }
 
+--Pathfinder
+--ignores difficult terrain when charging, bull rushing etc.
+newEntity {
+	name = "minotaur ", prefix = true,
+--	keywords = {bonus=true},
+	level_range = {10, 30},
+	rarity = 10,
+	cost = resolvers.value{platinum=1100},
+	school = "transmutation",
+	wielder = {
+    inc_stats = { [Stats.STAT_STR] = 2, },
+  },
+}
+
+newEntity {
+	name = " of physical perfection +2", suffix = true,
+--	keywords = {bonus=true},
+	level_range = {10, 30},
+	rarity = 20,
+	cost = resolvers.value{platinum=1600},
+	school = "transmutation",
+	wielder = {
+    inc_stats = { [Stats.STAT_STR] = 2, 
+    		[Stats.STAT_DEX] = 2,
+    		[Stats.STAT_CON] = 2,
+    	},
+  },
+}
+
+newEntity {
+	name = " of physical perfection +4", suffix = true,
+--	keywords = {bonus=true},
+	level_range = {15, 30},
+	rarity = 25,
+	cost = resolvers.value{platinum=6400},
+	school = "transmutation",
+	wielder = {
+    inc_stats = { [Stats.STAT_STR] = 4, 
+    		[Stats.STAT_DEX] = 4,
+    		[Stats.STAT_CON] = 4,
+    	},
+  },
+}
+
+newEntity {
+	name = " of physical perfection +6", suffix = true,
+--	keywords = {bonus=true},
+	level_range = {20, 30},
+	rarity = 40,
+	cost = resolvers.value{platinum=14400},
+	school = "transmutation",
+	wielder = {
+    inc_stats = { [Stats.STAT_STR] = 6, 
+    		[Stats.STAT_DEX] = 6,
+    		[Stats.STAT_CON] = 6,
+    	},
+  },
+}
+
 --Based on Incursion
 newEntity{
 	name = " of the Endless Wave", suffix = true,
