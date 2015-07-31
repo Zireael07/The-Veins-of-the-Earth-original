@@ -14,7 +14,7 @@ newEffect{
  status = "detrimental",
  on_gain = function(self, err) return "#Target# is bleeding!", "+Bleed" end,
  on_lose = function(self, err) return "#Target# got up from the ground.", "-Bleed" end,
-} 
+}
 
 --Dummy for concealment
 newEffect{
@@ -78,7 +78,7 @@ newEffect{
 		local inc = { [Stats.STAT_DEX]=-4, }
 		self:effectTemporaryValue(eff, "inc_stats", inc)
 		eff.decrease = self:addTemporaryValue("stat_decrease_dex", 1)
-		
+
 		eff.tmpid = self:addTemporaryValue("movement_speed_bonus", -0.50)
 		eff.attack = self:addTemporaryValue("combat_attack", -2)
 	end,
@@ -207,6 +207,8 @@ newEffect{
 newEffect{
 	name = "PRONE",
 	desc = "Prone",
+    type = "physical",
+    status = "beneficial", --?
 	long_desc = [[The character is on the ground.]],
 	on_gain = function(self, err) return "#Target# falls to the ground!", "+Prone" end,
 	on_lose = function(self, err) return "#Target# stands up.", "-Prone" end,

@@ -1,3 +1,9 @@
+--Veins of the Earth
+--Zireael 2013-2015
+
+local Stats = require "engine.interface.ActorStats"
+local Particles = require "engine.Particles"
+
 --Talents
 --Sebsebeleb
 newEffect{

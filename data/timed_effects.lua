@@ -36,6 +36,7 @@ local getName = function(self)
 	end
 end
 
+load("/data/timed_effects/basic.lua")
 load("/data/timed_effects/special.lua")
 load("/data/timed_effects/physical.lua")
 load("/data/timed_effects/poisons.lua")
@@ -69,4 +70,3 @@ newEffect{
 		DamageType:get(DamageType.FORCE).projector(eff.src or self, self.x, self.y, DamageType.FORCE, eff.power)
 	end,
 }
-
