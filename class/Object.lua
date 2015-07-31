@@ -121,7 +121,7 @@ end
 
 --Decay corpses
 function _M:decayCorpses()
-    game.log("Decaying corpses")
+--    game.log("Decaying corpses")
     if not self.freshness then return end
     self.freshness = self.freshness - 1
 

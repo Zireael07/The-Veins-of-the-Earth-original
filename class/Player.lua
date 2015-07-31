@@ -478,13 +478,13 @@ function _M:describeFloor(x, y)
             obj = game.level.map:getObject(x, y, i)
           end
   end
-	
+
 
   -- i is now one higher than the number of objects on the floor.
   -- TODO Prompt to pickup, probably controlled by a setting.
-  if i == 2 then
+  if i and i == 2 then
     game.log('On floor:  %s', game.level.map:getObject(x, y, 1):getName())
-  elseif i > 2 then
+ elseif i and i > 2 then
     game.log('There are %d objects here.', i - 1)
   end
 end
@@ -1138,7 +1138,7 @@ end
 function _M:playerUseItem(object, item, inven)
         if self.no_inventory_access then return end
 	if not game.zone or game.zone.worldmap then game.logPlayer(self, "You cannot use items on the world map.") return end
-	
+
     local use_fct = function(o, inven, item)
         if not o then return end
         local co = coroutine.create(function()
