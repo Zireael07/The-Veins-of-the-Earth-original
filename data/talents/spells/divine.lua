@@ -685,7 +685,7 @@ newDivineSpell{
 	end,
 }
 
-newArcaneSpell{
+newDivineSpell{
 	name = "Entangle",
 	type = {"divine", 1},
 	display = { image = "entangle.png"},
@@ -714,7 +714,7 @@ newArcaneSpell{
 		local duration = t.getDuration(self, t)
 		local save = t.getSave(self, t)
 
-		if target:reflexSave(save) then game.log("Target resists the spell!") 
+		if target:reflexSave(save) then game.log("Target resists the spell!")
 			target:setEffect(target.EFF_SLOW, duration, {})
 		else target:setEffect(target.EFF_ENTANGLE, duration, {})
 		end
@@ -767,7 +767,7 @@ newDivineSpell{
 	end,
 
 	info = function(self, t)
-		return ([[You gain a +2 deflection bonus to AC.]])
+		return ([[You delay poison's onset.]])
 	end,
 }
 
