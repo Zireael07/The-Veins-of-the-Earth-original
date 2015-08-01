@@ -331,6 +331,20 @@ newDamageType{
 	end,
 }
 
+newDamageType{
+	name = "detect poison", type = "DETECT_POISON",
+	projector = function(src, x, y, type, dam)
+	local target = game.level.map(x, y, Map.ACTOR)
+	if target then
+		if target:isPoisoned() then
+			game.log("Target is poisoned")
+			target:setEffect(target.EFF_DETECT_POISON, 3, {})
+		else
+			game.log("Target is not poisoned")
+		end
+	end
+	end,
+}
 
 --Enable digging
 newDamageType{
