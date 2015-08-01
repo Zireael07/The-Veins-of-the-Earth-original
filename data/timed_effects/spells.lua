@@ -222,6 +222,23 @@ newEffect{
     end,
 }
 
+newEffect{
+	name = "DETECT_POISON",
+	desc = "Detected poison",
+	long_desc = [[The character is poisoned.]],
+	type = "mental",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is poisoned!", "+DetectPois" end,
+	on_lose = function(self, err) return "#Target# is no longer outlined.", "-DetectPois" end,
+	activate = function(self, eff)
+        eff.particle = self:addParticles(Particles.new("poisoned", 1))
+    end,
+    deactivate = function(self, eff)
+        self:removeParticles(eff.particle)
+    end,
+}
+
+
 --Dummies again
 newEffect{
 	name = "KNOW_ALIGNMENT",
@@ -249,6 +266,18 @@ newEffect{
     end,
 }
 
+newEffect{
+	name = "LONGSTRIDER",
+	desc = "Boost speed",
+	type = "mental",
+	status = "beneficial",
+	activate = function(self, eff)
+		eff.speed = self:addTemporaryValue("movement_speed", 0.33)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("movement_speed", eff.speed)
+	end,
+}
 
 newEffect{
 	name = "EXPEDITIOUS_RETREAT",

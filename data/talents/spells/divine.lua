@@ -772,6 +772,29 @@ newDivineSpell{
 }
 
 newDivineSpell{
+	name = "Longstrider",
+	type = {"divine", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	tactical = { BUFF = 2 },
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 960
+		else return 600 end
+	end,
+	range = 0,
+	action = function(self, t)
+	if not self then return nil end
+		self:setEffect(self.EFF_LONGSTRIDER, t.getDuration(self, t), {})
+		return true
+	end,
+
+	info = function(self, t)
+		return ([[You move quicker.]])
+	end
+}
+
+newDivineSpell{
 	name = "Charm Animal",
 	type = {"divine", 1},
 	display = { image = "talents/charm_animal.png"},
