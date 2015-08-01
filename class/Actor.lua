@@ -2711,9 +2711,18 @@ function _M:reactionToward(target)
     return v
 end
 
+function _M:isPoisoned()
+	for eff_id, p in pairs(self.tmp) do
+		local poison = false
+		if eff_id:find("^EFF_POISON_") then poison = true end
+
+		return poison
+	end
+end
+
 --is there a quicker way to do it?
 --From most dangerous to weakest
-function _M:isPoisoned()
+function _M:getPoison()
 	if self:hasEffect(self.EFF_POISON_EXTRASTRONG_CON) then return EFF_POISON_EXTRASTRONG_CON end
 	if self:hasEffect(self.EFF_POISON_DRAGON_BILE) then return EFF_POISON_DRAGON_BILE end
 	if self:hasEffect(self.EFF_POISON_STRONG_CON) then return EFF_POISON_STRONG_CON end
