@@ -448,7 +448,7 @@ newDivineSpell{
         local _ _, x, y, _, _ = self:canProject(tg, x, y)
 		if not x or not y then return nil end
 
-		local duration = t,getDuration(self, t)
+		local duration = t.getDuration(self, t)
 
 	--	self:project(tg, x, y, DamageType.DETECT_EVIL, damage, {type="evil"})
 		self:project(tg, x, y, DamageType.DETECT_EVIL, damage)
