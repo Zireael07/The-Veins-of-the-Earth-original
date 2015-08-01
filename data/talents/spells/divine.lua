@@ -752,7 +752,7 @@ newDivineSpell{
 	name = "Delay Poison",
 	type = {"divine", 1},
 	mode = "activated",
-	level = 1,
+	level = 2,
 	tactical = { BUFF = 2 },
 	range = 0,
 	getDuration = function(self, t)
