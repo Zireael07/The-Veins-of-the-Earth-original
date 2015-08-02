@@ -1601,7 +1601,7 @@ function _M:canSeeNoCache(actor, def, def_pct)
 	if actor ~= self and actor.attr and actor:attr("stealth") then
 		local check = self:opposedCheck("spot", actor, "hide")
 		if not check then
-			local check2 = self:opposedCheck("listen", actor, "movesilently")
+			local check2 = self:opposedCheck("listen", actor, "move_silently")
 			if check2 then return false, 100 end --we know where target is thanks to hearing
 			return false, 0
 		end
