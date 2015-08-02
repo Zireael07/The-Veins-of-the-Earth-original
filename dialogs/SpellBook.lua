@@ -116,6 +116,7 @@ function _M:switchLevels(tab)
 end
 
 function _M:drawDialog(tab)
+	local draw_start = self.c_tabs.h + self.t_leveltwo.h + 20
 
     if tab == "leveltwo" then
 
@@ -129,9 +130,9 @@ function _M:drawDialog(tab)
 		{left=self.t_leveltwo, top=self.c_tabs, ui=self.t_levelfour},
 		{top=self.t_leveltwo, ui=self.c_desc},
 	--	{top=self.c_spelllevels, ui=self.c_desc},
-		{top=self.t_leveltwo,ui=self.spells[1]},
-		{top=self.spells[1].h+170,ui=self.spells[2]},
-		{top=self.t_leveltwo,ui=self.c_charges},
+		{top=draw_start, ui=self.spells[1]},
+		{top=self.spells[1].h+155,ui=self.spells[2]},
+		{top=draw_start, ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
 		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info},
     }
@@ -152,9 +153,9 @@ function _M:drawDialog(tab)
 		{left=self.t_leveltwo, top=self.c_tabs, ui=self.t_levelfour},
 		{top=self.t_leveltwo, ui=self.c_desc},
 	--	{top=self.c_spelllevels, ui=self.c_desc},
-		{top=self.t_leveltwo,ui=self.spells[3]},
-		{top=self.spells[3].h+170,ui=self.spells[4]},
-		{top=self.t_leveltwo,ui=self.c_charges},
+		{top=draw_start, ui=self.spells[3]},
+		{top=self.spells[3].h+155,ui=self.spells[4]},
+		{top=draw_start, ui=self.c_charges},
 		{left=self.c_desc.w + 150, top=0, ui=self.c_spell},
 		{left=self.c_desc.w + 150 + self.c_spell.w, top=70, ui=self.c_info},
     }
@@ -211,7 +212,7 @@ function _M:drawGeneral(tab)
 		s:drawString(self.font, str, w, h, 255, 255, 255, true)
 
 		local ww = w
-		local hh = h
+		local hh = h --+ 10
 		for _, t in pairs(v) do
 			local p = game.player
 			local num = p:getCharges(t) or 0
