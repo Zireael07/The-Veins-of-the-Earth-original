@@ -41,6 +41,7 @@ end
 --Skill checks, Zireael
 function _M:getSkill(skill)
 	if (not skill) then return 0 end
+
 	local penalty_for_skill = { appraise = "no", balance = "yes", bluff = "no", climb = "yes", concentration = "no", craft = "no", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", ride = "no", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
 
 	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + self:getSkillMod(skill)
@@ -111,7 +112,12 @@ function _M:getSkillMod(skill)
 		stat_for_skill[s.id] = s.stat
 	end
 
-	return math.floor((self:getStat(stat_for_skill[skill])-10)/2)
+	if not stat_for_skill[skill] or stat_for_skill[skill] == nil then
+		game.log("Invalid skill "..skill.." requested, no stat") 
+		return 0
+	else
+		return math.floor((self:getStat(stat_for_skill[skill])-10)/2)
+	end
 end
 
 function _M:isSkillPenalty(skill)
