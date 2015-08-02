@@ -277,10 +277,10 @@ newDamageType{
 	local target = game.level.map(x, y, Map.ACTOR)
 	if target then
 		if target:isEvil() then
-		game.log("Target glows red briefly.")
-		target:setEffect(target.EFF_DETECT_EVIL, 3, {})
+			game.log("Target glows red briefly.")
+			target:setEffect(target.EFF_DETECT_EVIL, 3, {})
 		else
-		game.log("Target is not evil.")
+			game.log("Target is not evil.")
 		end
 	end
 	end,
@@ -291,11 +291,11 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 	local target = game.level.map(x, y, Map.ACTOR)
 	if target then
-		if target:isEvil() then
-		game.log("Target glows blue briefly.")
-		target:setEffect(target.EFF_DETECT_GOOD, 3, {})
+		if target:isGood() then
+			game.log("Target glows blue briefly.")
+			target:setEffect(target.EFF_DETECT_GOOD, 3, {})
 		else
-		game.log("Target is not good.")
+			game.log("Target is not good.")
 		end
 	end
 	end,
@@ -306,11 +306,11 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 	local target = game.level.map(x, y, Map.ACTOR)
 	if target then
-		if target:isEvil() then
-		game.log("Target glows green briefly.")
-		target:setEffect(target.EFF_DETECT_CHAOS, 3, {})
+		if target:isChaotic() then
+			game.log("Target glows green briefly.")
+			target:setEffect(target.EFF_DETECT_CHAOS, 3, {})
 		else
-		game.log("Target is not chaotic.")
+			game.log("Target is not chaotic.")
 		end
 	end
 	end,
@@ -321,11 +321,11 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 	local target = game.level.map(x, y, Map.ACTOR)
 	if target then
-		if target:isEvil() then
-		game.log("Target glows yellow briefly.")
-		target:setEffect(target.EFF_DETECT_LAW, 3, {})
+		if target:isLawful() then
+			game.log("Target glows yellow briefly.")
+			target:setEffect(target.EFF_DETECT_LAW, 3, {})
 		else
-		game.log("Target is not lawful.")
+			game.log("Target is not lawful.")
 		end
 	end
 	end,
