@@ -35,14 +35,14 @@ function _M:init(actor)
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Class select", game.w*0.4, game.h*0.6)
 
-    self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available class points: "..self.player.class_points}  
-    self.c_list = List.new{width=self.iw/2, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
-    self.c_desc = TextzoneList.new{width=self.iw/2-20, height = self.ih, text="Hello from description"}
+    self.c_points = Textzone.new{width=self.iw/2, height = 50, text = "Available class points: "..self.player.class_points}
+    self.c_list = List.new{width=self.iw/2, height = self.ih*0.9, scrollbar=true, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
+    self.c_desc = TextzoneList.new{width=self.iw/2-20, height = (self.ih*0.9), scrollbar=true, text="Hello from description"}
 
     self:loadUI{
         {left=0, top=0, ui = self.c_points},
         {left=0, top=50, ui=self.c_list},
-        {right=0, top=0, ui=self.c_desc}
+        {right=0, top=50, ui=self.c_desc}
     }
     self:setFocus(self.c_list)
     self:setupUI(false, true)
@@ -92,7 +92,7 @@ function _M:on_select(item,sel)
     --if item.info then self.c_desc.text = item.info end
     --if item.name and self.c_desc then self.c_desc.text = item.name end
     if self.c_desc then self.c_desc:switchItem(item, item.desc) end
-    self.selection = sel    
+    self.selection = sel
 end
 
 function _M:update()
@@ -140,13 +140,13 @@ function _M:generateList()
         --Can I level it?
         if not a.can_level == b.can_level then
             return a.can_level
-        end  
+        end
         --Prestige classes after normal classes
         if not a.prestige and b.prestige then return true
         elseif a.prestige and not b.prestige then return false end
-        if a.level == b.level then 
+        if a.level == b.level then
             return a.name < b.name
-        else 
+        else
             return a.level > b.level
         end
     end)
