@@ -190,7 +190,7 @@ function _M:drawGeneral(tab)
 	local w = 0
 	local h = 0
 
-	local font = core.display.newFont("/data/font/DroidSans-Bold.ttf", 12)
+	local font_spells = core.display.newFont("/data/font/DroidSans-Bold.ttf", 16)
 
 	for i, v in ipairs(self.list) do
 		--Account for first tab
@@ -218,7 +218,7 @@ function _M:drawGeneral(tab)
 			local num = p:getCharges(t) or 0
 			local max = p:getMaxCharges(t) or 0
 			local str = "#STEEL_BLUE#"..num.."#LIGHT_STEEL_BLUE#".."/".."#STEEL_BLUE#"..max
-			c:drawColorString(font, str, ww, hh, 255, 255, 255, true)
+			c:drawColorString(font_spells, str, ww, hh, 255, 255, 255, true)
 			ww = ww + self.spells[i].tile_w + self.spells[i].padding
 
 			--start drawing in the next line if spells wrap over
