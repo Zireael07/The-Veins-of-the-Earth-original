@@ -34,6 +34,7 @@ require 'mod.class.interface.ActorSkills'
 local Map = require "engine.Map"
 local Faction = require "engine.Faction"
 local DamageType = require "engine.DamageType"
+local Dialog = require "engine.ui.Dialog"
 
 --local NameGenerator = require "engine.NameGenerator"
 
@@ -2266,7 +2267,9 @@ function _M:incMaxCharges(tid, v, spell_list)
 
 	--Can the player have this many max charges for this type?
 	local a = self:getAllocatedCharges(spell_list, t.level)
-	if a + v > self:getMaxMaxCharges()[t.level] then return end
+	if a + v > self:getMaxMaxCharges()[t.level] then
+		Dialog:simplePopup("Max spells reached", "You can't memorize more spells!")
+		return end
 	self.max_charges[tid] = (self.max_charges[tid] or 0) + v
 	self:incAllocatedCharges(spell_list, t.level, v)
 end
