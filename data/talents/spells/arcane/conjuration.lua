@@ -380,12 +380,6 @@ newArcaneSpell{
 
 		game.logPlayer(self, ("Player summons a %s!"):format(result))
 
---[[		if t.creature then
-			game.logPlayer(self,("Player summons a %s!"):format(t.creature))
-		else
-			game.logPlayer(self,"Player doesn't summon a creature")
-		end]]
-
 		local creature = t.makeCreature(self, t, result)
 		game.zone:addEntity(game.level, creature, "actor", x, y)
 		return true
@@ -547,12 +541,6 @@ newArcaneSpell{
 		end
 
 		game.logPlayer(self, ("Player summons a %s!"):format(result))
-
---[[		if t.creature then
-			game.logPlayer(self,("Player summons a %s!"):format(t.creature))
-		else
-			game.logPlayer(self,"Player doesn't summon a creature")
-		end]]
 
 		local creature = t.makeCreature(self, t, result)
 		game.zone:addEntity(game.level, creature, "actor", x, y)
