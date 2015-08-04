@@ -143,11 +143,14 @@ Some spells are color-coded:
 Cyan/white - fly spells
 Brown/yellow - "animal buff" spells (e.g. Bull's Strength)
 Blue/yellow - cleric only spells
+Green - druid spells
+Gray/red - summon spells (gray/green for summon nature's ally)
+Pink/brown - polymorph spells
 
 
-It is imperative that the self.project line look like:
-a) self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = 15}) -> save DC defined
-b) self:projectile(tg, x, y, DamageType.ACID, {dam=damage}) -> default save DC
+It is imperative that the self.project line look like this:
+self:project(tg, x, y, DamageType.FIRE, {dam=damage, save=true, save_dc = self:getSpellDC(t)})
+This ensures the proper DCs are used.
 
 DamageType -> what it says on the tin. Special conditions, such as grease, are also coded as DamageType.
 
