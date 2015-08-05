@@ -255,7 +255,14 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
 			end
 
-			actor:learnTalentType("divine", true)
+			actor:learnTalentType("abjuration_divine", true)
+			actor:learnTalentType("conjuration_divine", true)
+			actor:learnTalentType("divination_divine", true)
+			actor:learnTalentType("enchantment_divine", true)
+			actor:learnTalentType("evocation_divine", true)
+			actor:learnTalentType("necromancy_divine", true)
+			actor:learnTalentType("transmutation_divine", true)
+
 			actor:learnTalentType("arcane_divine", true)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
