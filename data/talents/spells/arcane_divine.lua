@@ -2,7 +2,7 @@ newTalentType{ all_limited=true, spell_list = "arcane_divine", type="arcane_divi
 
 newArcaneDivineSpell{
 	name = "Cure Light Wounds",
-	type = {"divine", 1},
+	type = {"arcane_divine", 1},
 	display = { image = "talents/cure_light_wounds.png"},
 	mode = 'activated',
 	--require = ,
@@ -33,7 +33,7 @@ newArcaneDivineSpell{
 
 newArcaneDivineSpell{
 	name = "Cause Fear", short_name = "CAUSE_FEAR",
-	type = {"divine", 1},
+	type = {"arcane_divine", 1},
 	mode = "activated",
 	display = { image = "cause_fear.png"},
 	level = 1,
@@ -68,7 +68,7 @@ newArcaneDivineSpell{
 --Basic detects
 newArcaneDivineSpell{
 	name = "Detect Magic",
-	type = {"divine", 1},
+	type = {"arcane_divine", 1},
 	mode = 'activated',
 	level = 1,
 	points = 1,
@@ -103,7 +103,7 @@ newArcaneDivineSpell{
 
 newArcaneDivineSpell{
 	name = "Detect Poison",
-	type = {"divine", 1},
+	type = {"arcane_divine", 1},
 	mode = 'activated',
 	level = 1,
 	points = 1,
@@ -139,7 +139,7 @@ newArcaneDivineSpell{
 --"Animal buff" spells
 newArcaneDivineSpell{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE",
-	type = {"divine", 1},
+	type = {"arcane_divine", 1},
 	display = { image = "bear_endurance.png"},
 	mode = 'activated',
 	level = 2,
@@ -163,7 +163,7 @@ newArcaneDivineSpell{
 
 newArcaneDivineSpell{
 	name = "Bull's Strength", short_name = "BULL_STRENGTH",
-	type = {"divine", 1},
+	type = {"arcane_divine", 1},
 	display = { image = "bull_strength.png"},
 	mode = 'activated',
 	level = 2,
@@ -187,7 +187,7 @@ newArcaneDivineSpell{
 
 newArcaneDivineSpell{
 	name = "Eagle's Splendor", short_name = "EAGLE_SPLENDOR",
-	type = {"divine", 1},
+	type = {"arcane_divine", 1},
 	display = { image = "eagle_splendor.png"},
 	mode = 'activated',
 	level = 2,
@@ -211,7 +211,7 @@ newArcaneDivineSpell{
 
 newArcaneDivineSpell{
 	name = "Owl's Wisdom", short_name = "OWL_WISDOM",
-	type = {"divine", 1},
+	type = {"arcane_divine", 1},
 	display = { image = "owl_wisdom.png"},
 	mode = 'activated',
 	level = 2,
