@@ -1,13 +1,11 @@
 --Veins of the Earth
 --Zireael 2013-2015
 
-local help = '#GOLD#BAB#SANDY_BROWN# = Base Attack Bonus, required by some feats\n #GOLD#Fort#LAST#, #GOLD#Ref#LAST# and #GOLD#Will#LAST# are saving throws, used to protect you from danger (spells, terrain effects). The type of the saving throw used depends on the spell or effect involved.\n\n'
-
 -- Classes
 newBirthDescriptor {
 	type = 'class',
 	name = 'Barbarian',
-	desc = help..'#ORANGE#Raging warriors of the wilds.\n\n #LIGHT_BLUE#Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Swim, Survival.\n\n #WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.33, Ref +0.33, 4 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
+	desc = '#ORANGE#Raging warriors of the wilds.\n\n #LIGHT_BLUE#Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Swim, Survival.\n\n #WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.33, Ref +0.33, 4 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	rarity = 2,
 	copy = {
 	},
@@ -81,7 +79,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
-	desc = help..'#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Will +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Fort +0.33, Ref +0.5,  Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	desc = '#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Will +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Fort +0.33, Ref +0.5,  Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	copy = {
 	},
 	descriptor_choices =
@@ -191,7 +189,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Cleric',
-	desc = help..'#ORANGE#Clerics are masters of healing.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n  #WHITE#8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+	desc = '#ORANGE#Clerics are masters of healing.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n  #WHITE#8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 	rarity = 4,
 	copy = {
 	},
@@ -659,7 +657,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Druid',
-	desc = help..'#ORANGE#Clerics of nature.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Ride, Spot, Swim, Spellcraft, Survival.\n\n  #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+	desc = '#ORANGE#Clerics of nature.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Ride, Spot, Swim, Spellcraft, Survival.\n\n  #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 	rarity = 8,
 	copy = {
 	},
@@ -795,7 +793,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Fighter',
-	desc = help..'#ORANGE#Simple fighters, they hack away with their trusty weapon.\n\n #LIGHT_BLUE# Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Ride, Swim.\n\n  #WHITE#10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Ref +0.33, Will +0.33, 2 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
+	desc = '#ORANGE#Simple fighters, they hack away with their trusty weapon.\n\n #LIGHT_BLUE# Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Ride, Swim.\n\n  #WHITE#10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Ref +0.33, Will +0.33, 2 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	rarity = 2,
 	copy = {
 	},
@@ -870,7 +868,7 @@ newBirthDescriptor {
 newBirthDescriptor {
         type = 'class',
         name = 'Monk',
-        desc = help..'#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors.\n\n #LIGHT_BLUE#Class skills: Balance, Climb, Concentration, Craft, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble.\n\n #WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.5, Ref +0.5, 4 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+        desc = '#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors.\n\n #LIGHT_BLUE#Class skills: Balance, Climb, Concentration, Craft, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble.\n\n #WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.5, Ref +0.5, 4 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
 --[[        copy = {
                 resolvers.equip {
                         id=true,
@@ -945,7 +943,7 @@ newBirthDescriptor {
 newBirthDescriptor {
         type = 'class',
         name = 'Paladin',
-        desc = help..'#ORANGE#Holy warriors of the deities of good and law.\n\n #LIGHT_BLUE#Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Knowledge, Ride, Sense Motive.\n\n #WHITE#10 hit points per level, BAB +1, Fort +2 at first class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.33, Ref +0.33, 2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+        desc = '#ORANGE#Holy warriors of the deities of good and law.\n\n #LIGHT_BLUE#Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Knowledge, Ride, Sense Motive.\n\n #WHITE#10 hit points per level, BAB +1, Fort +2 at first class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.33, Ref +0.33, 2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
         copy = {
         },
         descriptor_choices =
@@ -1058,7 +1056,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Ranger',
-	desc = help..'#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n #LIGHT_BLUE# Class skills: Climb, Concentration, Craft, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Ride, Search, Spot, Swim, Survival.\n\n  #WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +0.5, Ref +0.5, Will +0.33, 6 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
+	desc = '#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n #LIGHT_BLUE# Class skills: Climb, Concentration, Craft, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Ride, Search, Spot, Swim, Survival.\n\n  #WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +0.5, Ref +0.5, Will +0.33, 6 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
 	rarity = 3,
 	copy = {
 		resolvers.inventory {
@@ -1240,7 +1238,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Rogue',
-	desc = help..'#ORANGE#Rogues are masters of tricks.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Craft, Diplomacy, Decipher Script, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic.\n\n  #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +0.5, Fort +0.33, Will +0.33, 8 skill points per level.\n\n #GOLD#DEX 13#LAST# to multiclass to this class.',
+	desc = '#ORANGE#Rogues are masters of tricks.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Craft, Diplomacy, Decipher Script, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic.\n\n  #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +0.5, Fort +0.33, Will +0.33, 8 skill points per level.\n\n #GOLD#DEX 13#LAST# to multiclass to this class.',
 	rarity = 3,
 	copy = {
 		resolvers.equip {
@@ -1348,7 +1346,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Sorcerer',
-	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Bluff, Concentration, Craft, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#CHA 16#LAST# to multiclass to this class.',
+	desc = '#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Bluff, Concentration, Craft, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#CHA 16#LAST# to multiclass to this class.',
 	rarity = 6,
 	copy = {
 		resolvers.inventory {
@@ -1442,7 +1440,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Wizard',
-	desc = help..'#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#INT 16#LAST# to multiclass to this class.',
+	desc = '#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#INT 16#LAST# to multiclass to this class.',
 	rarity = 5,
 	copy = {
 		resolvers.inventory {
@@ -1589,7 +1587,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Warlock',
-	desc = help..'#ORANGE#A spellcaster who needs no weapon.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n #WHITE#6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	desc = '#ORANGE#A spellcaster who needs no weapon.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n #WHITE#6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	rarity = 10,
 	copy = {
 	},
@@ -1644,7 +1642,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Shaman',
-	desc = help..'#ORANGE#A divine spellcaster who does not need to prepare spells.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n #WHITE#8 hit points per level, Fort +2, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	desc = '#ORANGE#A divine spellcaster who does not need to prepare spells.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n #WHITE#8 hit points per level, Fort +2, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
 	rarity = 10,
 	copy = {
 	},

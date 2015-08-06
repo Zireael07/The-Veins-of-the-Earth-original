@@ -87,6 +87,18 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     fct = function() end,
     on_change = function(s) if s then self:switchTo('optional') end end,
     }
+    --[[self.t_cosmetic = Tab.new{
+        title = 'Cosmetic',
+        default = false,
+        fct = function() end,
+        on_change = function(s) if s then self:switchTo('cosmetic') end end,
+    }]]
+    self.t_help = Tab.new{
+        title = 'Help',
+        default = false,
+        fct = function() end,
+        on_change = function(s) if s then self:switchTo('help') end end,
+    }
 
     self.vs = Separator.new { dir='vertical', size=self.iw }
 
@@ -211,6 +223,13 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
     self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
     self.c_background = List.new{width=self.iw/6, height = lists_height_opt, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
 
+    --HELP TAB
+    self.text = [[#SANDY_BROWN#Shortcuts for class descriptions#LAST#
+#GOLD#BAB#SANDY_BROWN# = Base Attack Bonus, required by some feats
+#GOLD#Fort#LAST#, #GOLD#Ref#LAST# and #GOLD#Will#LAST# are saving throws, used to protect you from danger (spells, terrain effects). The type of the saving throw used depends on the spell or effect involved.]]
+
+    self.c_help = Textzone.new{width=self.iw, height=self.ih - (self.t_general.h +15) - self.c_save.h -20, scrollbar=true, text = self.text}
+
     self:updateTab('all')
     self.t_stats:select()
 end
@@ -220,6 +239,8 @@ function _M:switchTo(tab)
     self.t_stats.selected = tab == 'stats'
     self.t_general.selected = tab == 'general'
     self.t_optional.selected = tab == 'optional'
+--    self.t_cosmetic.selected = tab == 'cosmetic'
+    self.t_help.selected = tab == 'help'
 
     self:drawDialog(tab)
 end
@@ -257,6 +278,7 @@ function _M:drawDialog(tab)
         {left=0, top=0, ui=self.t_stats},
         {left=self.t_stats, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_optional},
+        {left=self.t_optional, top=0, ui=self.t_help},
         {left=0, top=self.t_general, ui=self.vs },
         --First line (stats)
         {left=0, top=self.t_general.h + 15, ui=self.c_points},
@@ -290,6 +312,7 @@ function _M:drawDialog(tab)
         {left=0, top=0, ui=self.t_stats},
         {left=self.t_stats, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_optional},
+        {left=self.t_optional, top=0, ui=self.t_help},
         {left=0, top=self.t_general, ui=self.vs },
         -- First line
         {left=0, top=self.vs, ui=self.c_name},
@@ -332,6 +355,7 @@ function _M:drawDialog(tab)
         {left=0, top=0, ui=self.t_stats},
         {left=self.t_stats, top=0, ui=self.t_general},
         {left=self.t_general, top=0, ui=self.t_optional},
+        {left=self.t_optional, top=0, ui=self.t_help},
         {left=0, top=self.t_general, ui=self.vs },
 
         --First line (lists)
@@ -358,6 +382,49 @@ function _M:drawDialog(tab)
 
     self:updateUI()
     self:setupUI()
+
+--[[    elseif tab == "cosmetic" then
+        self:loadUI{
+        --Top line
+        {left=0, top=0, ui=self.t_stats},
+        {left=self.t_stats, top=0, ui=self.t_general},
+        {left=self.t_general, top=0, ui=self.t_optional},
+        {left=self.t_optional, top=0, ui=self.t_help},
+        {left=0, top=self.t_general, ui=self.vs },
+
+        --Buttons
+        {left=0, bottom=0, ui=self.c_cancel},
+        {left=self.c_cancel, bottom=0, ui=self.c_premade},
+        {left=self.c_premade, bottom=0, ui=self.c_default},
+        {left=self.c_default, bottom=0, ui=self.c_random},
+        {right=0, bottom=0, ui=self.c_save},
+        {left=0, bottom=self.c_save.h + 5, ui=Separator.new{dir="vertical", size=self.iw - 10}},
+    }]]
+
+    elseif tab == "help" then
+        self:loadUI{
+        --Top line
+        {left=0, top=0, ui=self.t_stats},
+        {left=self.t_stats, top=0, ui=self.t_general},
+        {left=self.t_general, top=0, ui=self.t_optional},
+        {left=self.t_optional, top=0, ui=self.t_help},
+        {left=0, top=self.t_general, ui=self.vs },
+        --Second line
+        {right=0, top=self.t_general.h + 15, ui=self.c_help},
+        --Buttons
+        {left=0, bottom=0, ui=self.c_cancel},
+        {left=self.c_cancel, bottom=0, ui=self.c_premade},
+        {left=self.c_premade, bottom=0, ui=self.c_default},
+        {left=self.c_default, bottom=0, ui=self.c_random},
+        {right=0, bottom=0, ui=self.c_save},
+        {left=0, bottom=self.c_save.h + 5, ui=Separator.new{dir="vertical", size=self.iw - 10}},
+    }
+
+--    self:setFocus(self.c_help)
+
+    self:updateUI()
+    self:setupUI()
+
     end
 end
 
