@@ -225,7 +225,11 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
     self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
 
     --HELP TAB
-    self.text = [[#SANDY_BROWN#Shortcuts for class descriptions#LAST#
+    self.text = [[#SANDY_BROWN#Race choice help#LAST#
+#SANDY_BROWN#If you pick the #GOLD#favored class#LAST# later, you will gain +2 hit points per level and a +1 to attack. The latter bonus does not apply if you are a mage, however.
+#GOLD#ECL#LAST# means that your character will need more XP to level up (as though his or her level was equal to level + ECL).#WHITE#
+
+    #SANDY_BROWN#Shortcuts for class descriptions#LAST#
 #GOLD#BAB#SANDY_BROWN# = Base Attack Bonus, required by some feats
 #GOLD#Fort#LAST#, #GOLD#Ref#LAST# and #GOLD#Will#LAST# are saving throws, used to protect you from danger (spells, terrain effects). The type of the saving throw used depends on the spell or effect involved.]]
 
