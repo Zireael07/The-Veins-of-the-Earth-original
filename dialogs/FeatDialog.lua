@@ -199,7 +199,7 @@ function _M:generateAvail()
 			--exclude some categories
 			if tt.type ~= "special/special" and tt.type ~= "arcane/arcane" and tt.type ~= "divine" and tt.type ~= "arcane_divine"
 				--exclude spells
-				and tt.type ~= "abjuration" and tt.type ~= "conjuration" and tt.type ~= "divination" and tt.type ~= "enchantment" and tt.type ~= "evocation" and tt.type ~= "illusion" and tt.type ~= "necromancy" and tt.type ~= "transmutation"
+				and tt.name ~= "abjuration" and tt.name ~= "conjuration" and tt.name ~= "divination" and tt.name ~= "enchantment" and tt.name ~= "evocation" and tt.name ~= "illusion" and tt.name ~= "necromancy" and tt.name ~= "transmutation"
 
 				--exclude class skills categories
 				and tt.type ~= "barbarian/barbarian" and tt.type ~= "cleric/cleric" and tt.type ~= "druid/druid" and tt.type ~= "eldritch/eldritch" and tt.type ~= "paladin/paladin" and tt.type ~= "ranger/ranger"
