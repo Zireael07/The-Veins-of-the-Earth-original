@@ -122,7 +122,11 @@ function _M:generateList()
             desc = desc.."\n#ORCHID#Prestige class#LAST#"
             prestige = true
         end
-        desc = desc.."\n\n"..d.desc
+
+        local core_desc = d.desc
+        if self:descText(d) then core_desc = self:descText(d) end
+        desc = desc.."\n\n"..core_desc
+
         if can_level then
             name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #LAST#"..d.name
         else
@@ -151,4 +155,10 @@ function _M:generateList()
         end
     end)
 
+end
+
+function _M:descText(t)
+	local player = self.actor
+	local d = t.desc(player,t)
+	return d
 end

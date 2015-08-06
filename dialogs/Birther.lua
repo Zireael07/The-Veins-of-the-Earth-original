@@ -113,8 +113,6 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     #CRIMSON#Red#LAST# is a bad choice!
     ]]}
 
-    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
-
     -- Buttons at the bottom of the screen
     self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
     self.c_save = Button.new{text="     Play!     ", fct=function() self:atEnd() end}
@@ -222,6 +220,9 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
     self:generateBackgrounds()
     self.c_background_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Background: #LAST#"}
     self.c_background = List.new{width=self.iw/6, height = lists_height_opt, nb_items=#self.list_background, list=self.list_background, fct=function(item) self:BackgroundUse(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
+
+    --common
+    self.c_desc = TextzoneList.new{width=self.iw - ((self.iw/6)*4)-20, height = self.ih*0.4, scrollbar=true, text="Hello from description"}
 
     --HELP TAB
     self.text = [[#SANDY_BROWN#Shortcuts for class descriptions#LAST#
@@ -762,12 +763,15 @@ end
 function _M:generateRaces()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.race) do
+        local desc = d.desc
+        if self:descText(d) then desc = self:descText(d) end
+
         if self:isDescriptorAllowed(d) then
           local color
           if self.sel_race and self.sel_race.name == d.name then color = {255, 215, 0}
           else color = {255, 255, 255} end
 
-          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
+          list[#list+1] = {name=d.name, color = color, desc=desc, d = d}
         end
     end
     self.list_race = list
@@ -776,6 +780,9 @@ end
 function _M:generateClasses()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.class) do
+        local desc = d.desc
+        if self:descText(d) then desc = self:descText(d) end
+
         if self:isDescriptorAllowed(d) then
           local color
             if self.sel_class and self.sel_class.name == d.name then color = {255, 215, 0}
@@ -785,7 +792,8 @@ function _M:generateClasses()
             elseif self.sel_race and self:isFavoredClass(d) then color = {81, 221, 255}
             else color = {255, 255, 255} end
 
-          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
+            list[#list+1] = {name=d.name, color = color, desc=desc, d = d}
+
         end
     end
     self.list_class = list
@@ -794,12 +802,15 @@ end
 function _M:generateAlignment()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.alignment) do
+        local desc = d.desc
+        if self:descText(d) then desc = self:descText(d) end
+
         if self:isDescriptorAllowed(d) then
           local color
           if self.sel_alignment and self.sel_alignment.name == d.name then color = {255, 215, 0}
           else color = {255, 255, 255} end
 
-          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
+          list[#list+1] = {name=d.name, color = color, desc=desc, d = d}
         end
     end
     self.list_alignment = list
@@ -1013,13 +1024,16 @@ end
 function _M:generateBackgrounds()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.background) do
+        local desc = d.desc
+        if self:descText(d) then desc = self:descText(d) end
+
         if self:isDescriptorAllowed(d) then
           local color
           if self.sel_background and self.sel_background.name == d.name then color = {255, 215, 0}
           elseif self.sel_class and self:isSuggestedBackground(d) then color = {81, 221, 255}
           else color = {255, 255, 255} end
 
-          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
+          list[#list+1] = {name=d.name, color = color, desc=desc, d = d}
         end
     end
     self.list_background = list
@@ -1044,12 +1058,15 @@ end
 function _M:generateDeities()
     local list = {}
     for i, d in ipairs(Birther.birth_descriptor_def.deity) do
+        local desc = d.desc
+        if self:descText(d) then desc = self:descText(d) end
+
         if self:isDescriptorAllowed(d) then
           local color
           if self.sel_deity and self.sel_deity.name == d.name then color = {255, 215, 0}
           else color = {255, 255, 255} end
 
-          list[#list+1] = {name=d.name, color = color, desc=d.desc, d = d}
+          list[#list+1] = {name=d.name, color = color, desc=desc, d = d}
         end
     end
     self.list_deity = list
@@ -1072,6 +1089,11 @@ function _M:DeityUse(item, sel)
     self:updateDeity()
 end
 
+function _M:descText(t)
+	local player = self.actor
+	local d = t.desc(player,t)
+	return d
+end
 
 
 -- Disable stuff from the base Birther
