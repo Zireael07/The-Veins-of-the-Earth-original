@@ -1869,49 +1869,6 @@ self:check("on_added_to_level", level, x, y)
 if self.type == "encounter" then self:die() end
 end
 
-
---Cross-class skills, Zireael
-function _M:crossClass(skill)
-	--List class skills for every class
-	local c_barbarian = { appraise = "no", balance = "no", bluff = "no", climb = "yes", concentration = "no", craft = "yes", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "yes", heal = "no", hide = "no", intimidate = "yes", intuition = "no", jump = "yes", knowledge = "no", listen = "yes", movesilently = "no", openlock = "no", pickpocket = "no", ride = "yes", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "yes", tumble = "no", usemagic = "no" }
-	local c_bard = { appraise = "yes", balance = "yes", bluff = "yes", climb = "yes", concentration = "yes", craft = "yes", diplomacy = "yes", disabledevice = "no", decipherscript = "yes", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "no", pickpocket = "yes", ride = "no", search = "no", sensemotive = "yes", spot = "no", swim = "yes", spellcraft = "yes", survival = "yes", tumble = "yes", usemagic = "yes" }
-	local c_cleric = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "no", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "no", search = "no", sensemotive = "no", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
-	local c_druid = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "yes", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "yes", movesilently = "no", openlock = "no", pickpocket = "no", ride = "yes", search = "no", sensemotive = "no", spot = "yes", swim = "yes", spellcraft = "yes", survival = "yes", tumble = "no", usemagic = "no" }
-	local c_fighter = { appraise = "no", balance = "no", bluff = "no", climb = "yes", concentration = "no", craft = "yes", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "yes", heal = "no", hide = "no", intimidate = "yes", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "yes", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "no", usemagic = "no" }
-	local c_monk = { appraise = "no", balance = "yes", bluff = "no", climb = "yes", concentration = "no", craft = "yes", diplomacy = "yes", disabledevice = "no", decipherscript = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "no", pickpocket = "no", ride = "no", search = "no", sensemotive = "yes", spot = "yes", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
-	local c_paladin = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "yes", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "yes", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "no", survival = "no", tumble = "no", usemagic = "no" }
-	local c_ranger = { appraise = "no", balance = "no", bluff = "no", climb = "yes", concentration = "yes", craft = "yes", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "yes", heal = "yes", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "no", pickpocket = "no", ride = "yes", search = "yes", sensemotive = "no", spot = "yes", swim = "yes", spellcraft = "no", survival = "yes", tumble = "no", usemagic = "no" }
-	local c_rogue = { appraise = "yes", balance = "yes", bluff = "yes", climb = "yes", concentration = "no", craft = "yes", diplomacy = "yes", disabledevice = "yes", decipherscript = "yes", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", movesilently = "yes", openlock = "yes", pickpocket = "yes", ride = "no", search = "yes", sensemotive = "yes", spot = "yes", swim = "no", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "yes" }
-	local c_sorcerer = { appraise = "no", balance = "no", bluff = "yes", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
-	local c_wizard = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
-	local c_warlock = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "no", handleanimal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", movesilently = "no", openlock = "no", pickpocket = "no", ride = "no", search = "no", sensemotive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", usemagic = "no" }
-
-	if (not skill) then return false end
-
-	if self.last_class and self.last_class == "Barbarian" and c_barbarian[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Bard" and c_bard[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Cleric" and c_cleric[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Druid" and c_druid[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Fighter" and c_fighter[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Monk" and c_monk[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Paladin" and c_paladin[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Ranger" and c_ranger[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Rogue" and c_rogue[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Sorcerer" and c_sorcerer[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Wizard" and c_wizard[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Warlock" and c_warlock[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Shaman" and c_cleric[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Shadowdancer" and c_rogue[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Assassin" and c_rogue[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Loremaster" and c_wizard[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Archmage" and c_wizard[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Blackguard" and c_paladin[skill] == "no" then return true end
-	if self.last_class and self.last_class == "Arcane archer" and c_ranger[skill] == "no" then return true end
-
-
-	return false
-end
-
 function _M:classFeat(tid)
 	local Talents = require "engine.interface.ActorTalents"
 
@@ -2492,8 +2449,10 @@ function _M:levelClass(name)
 
 	end
 
-	if d.class_desc and d.class_desc.skill_point then
-		local skill_point = math.max(1, d.class_desc.skill_point + self:getIntMod())
+--	if d.class_desc and d.class_desc.skill_point then
+	--	local skill_point = math.max(1, d.class_desc.skill_point + self:getIntMod())
+	if d.getSkillPoints(self, d) then
+		local skill_point = math.max(1, d.getSkillPoints(self, d) + self:getIntMod())
 		if self.level == 1 then skill_point = skill_point * 4 end
 		self:attr('skill_point', skill_point)
 	end

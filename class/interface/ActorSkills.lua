@@ -42,7 +42,7 @@ end
 function _M:getSkill(skill)
 	if (not skill) then return 0 end
 
-	local penalty_for_skill = { appraise = "no", balance = "yes", bluff = "no", climb = "yes", concentration = "no", craft = "no", diplomacy = "no", disabledevice = "no", decipherscript = "no", escapeartist = "yes", handleanimal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", movesilently = "yes", openlock = "no", pickpocket = "yes", ride = "no", search = "no", sensemotive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", usemagic = "no" }
+	local penalty_for_skill = { appraise = "no", balance = "yes", bluff = "no", climb = "yes", concentration = "no", craft = "no", diplomacy = "no", disable_device = "no", decipher_script = "no", escape_artist = "yes", handle_animal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "no", jump = "yes", knowledge = "no", listen = "no", move_silently = "yes", open_lock = "no", pick_pocket = "yes", ride = "no", search = "no", sense_motive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", use_magic = "no" }
 
 	local check = (self:attr("skill_"..skill) or 0) + (self:attr("skill_bonus_"..skill) or 0) + self:getSkillMod(skill)
 
@@ -113,7 +113,7 @@ function _M:getSkillMod(skill)
 	end
 
 	if not stat_for_skill[skill] or stat_for_skill[skill] == nil then
-		game.log("Invalid skill "..skill.." requested, no stat") 
+		game.log("Invalid skill "..skill.." requested, no stat")
 		return 0
 	else
 		return math.floor((self:getStat(stat_for_skill[skill])-10)/2)
@@ -127,4 +127,99 @@ function _M:isSkillPenalty(skill)
 	end
 
 	return penalty_for_skill[skill] == "yes" and true or false
+end
+
+--Cross-class skills, Zireael
+function _M:crossClass(skill, class)
+	if (not skill) then return nil end
+
+	--List class skills for every class
+	local c_barbarian = { appraise = "no", balance = "no", bluff = "no", climb = "yes", concentration = "no", craft = "yes", diplomacy = "no", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "yes", heal = "no", hide = "no", intimidate = "yes", intuition = "no", jump = "yes", knowledge = "no", listen = "yes", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "yes", search = "no", sense_motive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "yes", tumble = "no", use_magic = "no" }
+	local c_bard = { appraise = "yes", balance = "yes", bluff = "yes", climb = "yes", concentration = "yes", craft = "yes", diplomacy = "yes", disable_device = "no", decipher_script = "yes", escape_artist = "yes", handle_animal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", move_silently = "yes", open_lock = "no", pick_pocket = "yes", ride = "no", search = "no", sense_motive = "yes", spot = "no", swim = "yes", spellcraft = "yes", survival = "yes", tumble = "yes", use_magic = "yes" }
+	local c_cleric = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "no", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "no", search = "no", sense_motive = "no", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", use_magic = "no" }
+	local c_druid = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "yes", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "yes", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "yes", search = "no", sense_motive = "no", spot = "yes", swim = "yes", spellcraft = "yes", survival = "yes", tumble = "no", use_magic = "no" }
+	local c_fighter = { appraise = "no", balance = "no", bluff = "no", climb = "yes", concentration = "no", craft = "yes", diplomacy = "no", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "yes", heal = "no", hide = "no", intimidate = "yes", intuition = "no", jump = "yes", knowledge = "no", listen = "no", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "yes", search = "no", sense_motive = "no", spot = "no", swim = "yes", spellcraft = "no", survival = "no", tumble = "no", use_magic = "no" }
+	local c_monk = { appraise = "no", balance = "yes", bluff = "no", climb = "yes", concentration = "no", craft = "yes", diplomacy = "yes", disable_device = "no", decipher_script = "no", escape_artist = "yes", handle_animal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", move_silently = "yes", open_lock = "no", pick_pocket = "no", ride = "no", search = "no", sense_motive = "yes", spot = "yes", swim = "yes", spellcraft = "no", survival = "no", tumble = "yes", use_magic = "no" }
+	local c_paladin = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "yes", heal = "yes", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "yes", search = "no", sense_motive = "yes", spot = "no", swim = "no", spellcraft = "no", survival = "no", tumble = "no", use_magic = "no" }
+	local c_ranger = { appraise = "no", balance = "no", bluff = "no", climb = "yes", concentration = "yes", craft = "yes", diplomacy = "no", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "yes", heal = "yes", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", move_silently = "yes", open_lock = "no", pick_pocket = "no", ride = "yes", search = "yes", sense_motive = "no", spot = "yes", swim = "yes", spellcraft = "no", survival = "yes", tumble = "no", use_magic = "no" }
+	local c_rogue = { appraise = "yes", balance = "yes", bluff = "yes", climb = "yes", concentration = "no", craft = "yes", diplomacy = "yes", disable_device = "yes", decipher_script = "yes", escape_artist = "yes", handle_animal = "no", heal = "no", hide = "yes", intimidate = "no", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", move_silently = "yes", open_lock = "yes", pick_pocket = "yes", ride = "no", search = "yes", sense_motive = "yes", spot = "yes", swim = "no", spellcraft = "no", survival = "no", tumble = "yes", use_magic = "yes" }
+	local c_sorcerer = { appraise = "no", balance = "no", bluff = "yes", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "no", search = "no", sense_motive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", use_magic = "no" }
+	local c_wizard = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "no", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "no", search = "no", sense_motive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", use_magic = "no" }
+	local c_warlock = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "no", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "no", search = "no", sense_motive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", use_magic = "no" }
+
+	local what
+	if class then what = class end
+	if self.last_class then what = self.last_class end
+
+	if what == "Barbarian" and c_barbarian[skill] == "no" then return true end
+	if what == "Bard" and c_bard[skill] == "no" then return true end
+	if what == "Cleric" and c_cleric[skill] == "no" then return true end
+	if what == "Druid" and c_druid[skill] == "no" then return true end
+	if what == "Fighter" and c_fighter[skill] == "no" then return true end
+	if what == "Monk" and c_monk[skill] == "no" then return true end
+	if what == "Paladin" and c_paladin[skill] == "no" then return true end
+	if what == "Ranger" and c_ranger[skill] == "no" then return true end
+	if what == "Rogue" and c_rogue[skill] == "no" then return true end
+	if what == "Sorcerer" and c_sorcerer[skill] == "no" then return true end
+	if what == "Wizard" and c_wizard[skill] == "no" then return true end
+	if what == "Warlock" and c_warlock[skill] == "no" then return true end
+	if what == "Shaman" and c_cleric[skill] == "no" then return true end
+	if what == "Shadowdancer" and c_rogue[skill] == "no" then return true end
+	if what == "Assassin" and c_rogue[skill] == "no" then return true end
+	if what == "Loremaster" and c_wizard[skill] == "no" then return true end
+	if what == "Archmage" and c_wizard[skill] == "no" then return true end
+	if what == "Blackguard" and c_paladin[skill] == "no" then return true end
+	if what == "Arcane archer" and c_ranger[skill] == "no" then return true end
+
+--[[	if self.last_class and self.last_class == "Barbarian" and c_barbarian[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Bard" and c_bard[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Cleric" and c_cleric[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Druid" and c_druid[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Fighter" and c_fighter[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Monk" and c_monk[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Paladin" and c_paladin[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Ranger" and c_ranger[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Rogue" and c_rogue[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Sorcerer" and c_sorcerer[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Wizard" and c_wizard[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Warlock" and c_warlock[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Shaman" and c_cleric[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Shadowdancer" and c_rogue[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Assassin" and c_rogue[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Loremaster" and c_wizard[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Archmage" and c_wizard[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Blackguard" and c_paladin[skill] == "no" then return true end
+	if self.last_class and self.last_class == "Arcane archer" and c_ranger[skill] == "no" then return true end
+]]
+
+	return false
+end
+
+
+
+function _M:isClassSkill(self, class)
+	local classed_skills = {}
+	for i, s in ipairs(_M.skill_defs) do
+		local skill = s.id
+		if not self:crossClass(skill, class) then
+			classed_skills[skill] = "yes"
+		else
+			classed_skills[skill] = "no"
+		end
+
+		return classed_skills[skill] == "yes" and true or false
+	end
+
+end
+
+function _M:getClassSkills(self, class)
+	list = {}
+	for i, s in ipairs(_M.skill_defs) do
+		local skill = s.id
+		if not self:crossClass(skill, class) then
+	--	if self:isClassSkill(self, class) then
+			list[#list+1] = skill
+		else end
+	end
+	return list
 end

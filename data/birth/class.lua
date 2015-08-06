@@ -5,7 +5,29 @@
 newBirthDescriptor {
 	type = 'class',
 	name = 'Barbarian',
-	desc = '#ORANGE#Raging warriors of the wilds.\n\n #LIGHT_BLUE#Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Swim, Survival.\n\n #WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.33, Ref +0.33, 4 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 4
+	end,
+	getClassSkills = function(self, t)
+		skills = "Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Swim, Survival."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#Raging warriors of the wilds."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +1, Fort +0.5, Will +0.33, Ref +0.33. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#STR 13#LAST# to multiclass to this class."
+
+		return d
+	end,
 	rarity = 2,
 	copy = {
 	},
@@ -24,9 +46,6 @@ newBirthDescriptor {
 			['Spellcaster'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
-	},
-	class_desc = {
-		skill_point = 4,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Barbarian"] and actor.descriptor.class == "Barbarian" then return true end
@@ -79,7 +98,29 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
-	desc = '#ORANGE#Musicians and gentlefolk.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic.\n\n	#WHITE#6 hit points per level, BAB +0, Ref +2, Will +2 at first class level. 24 skill points at 1st character level.\n\n BAB +0.75, Fort +0.33, Ref +0.5,  Will +0.5, 6 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 6
+	end,
+	getClassSkills = function(self, t)
+		skills = "Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#Musicians and gentlefolk."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#6 hit points per level, BAB +0, Ref +2, Will +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +0.75, Fort +0.33, Ref +0.5,  Will +0.5. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#CHA 13#LAST# to multiclass to this class."
+
+		return d
+	end,
 	copy = {
 	},
 	descriptor_choices =
@@ -98,9 +139,6 @@ newBirthDescriptor {
 			['Exotic fighter'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
-	},
-	class_desc = {
-		skill_point = 6,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Bard"] and actor.descriptor.class == "Bard" then return true end
@@ -189,7 +227,29 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Cleric',
-	desc = '#ORANGE#Clerics are masters of healing.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n  #WHITE#8 hit points per level. Fort +2, Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 4
+	end,
+	getClassSkills = function(self, t)
+		skills = "Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#Clerics are masters of healing."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#8 hit points per level, BAB +0, Fort +2, Will +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#WIS 13#LAST# to multiclass to this class."
+
+		return d
+	end,
 	rarity = 4,
 	copy = {
 	},
@@ -218,9 +278,6 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
-	},
-	class_desc = {
-		skill_point = 4,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Cleric"] and actor.descriptor.class == "Cleric" then return true end
@@ -657,7 +714,29 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Druid',
-	desc = '#ORANGE#Clerics of nature.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Ride, Spot, Swim, Spellcraft, Survival.\n\n  #WHITE#8 hit points per level. Fort +2 Will +2 at first class level. 8 skill points at 1st character level.\n\n BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33,  2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 4
+	end,
+	getClassSkills = function(self, t)
+		skills = "Concentration, Craft, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Ride, Spot, Swim, Spellcraft, Survival."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#Clerics of nature."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#8 hit points per level, BAB +0, Fort +2, Will +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#WIS 13#LAST# to multiclass to this class."
+
+		return d
+	end,
 	rarity = 8,
 	copy = {
 	},
@@ -699,9 +778,6 @@ newBirthDescriptor {
             ['Semirath'] = "disallow",
             ['Xavias'] = "disallow",
         },
-	},
-	class_desc = {
-		skill_point = 4,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Druid"] and actor.descriptor.class == "Druid" then return true end
@@ -793,7 +869,29 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Fighter',
-	desc = '#ORANGE#Simple fighters, they hack away with their trusty weapon.\n\n #LIGHT_BLUE# Class skills: Climb, Craft, Handle Animal, Intimidate, Jump, Ride, Swim.\n\n  #WHITE#10 hit points per level, BAB +1, Fort +2 at 1st class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Ref +0.33, Will +0.33, 2 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 2
+	end,
+	getClassSkills = function(self, t)
+		skills = "Climb, Craft, Handle Animal, Intimidate, Jump, Ride, Swim."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#Simple fighters, they hack away with their trusty weapon."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#10 hit points per level, BAB +1, Fort +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +1, Fort +0.5, Ref +0.33, Will +0.33. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#STR 13#LAST# to multiclass to this class."
+
+		return d
+	end,
 	rarity = 2,
 	copy = {
 	},
@@ -806,9 +904,6 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
-	},
-	class_desc = {
-		skill_point = 2,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Fighter"] and actor.descriptor.class == "Fighter" then return true end
@@ -868,7 +963,29 @@ newBirthDescriptor {
 newBirthDescriptor {
         type = 'class',
         name = 'Monk',
-        desc = '#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors.\n\n #LIGHT_BLUE#Class skills: Balance, Climb, Concentration, Craft, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble.\n\n #WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. 16 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.5, Ref +0.5, 4 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
+		getSkillPoints = function(self, t)
+			return 4
+		end,
+		getClassSkills = function(self, t)
+			skills = "Balance, Climb, Concentration, Craft, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble."
+
+			return skills
+		end,
+		desc = function(self, t)
+			local d
+			local desc = "#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors."
+			local skills = t.getSkillPoints(self, t)
+			local skills_first = skills*4
+			d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+			local skills_list = t.getClassSkills(self, t)
+			d = d..skills_list.."\n\n"
+			d = d.."#WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. "
+			d = d..skills_first.." skill points at 1st character level.\n\n"
+			d = d.."BAB +1, Fort +0.5, Will +0.5, Ref +0.5. "..skills.." skill points per level.\n\n"
+			d = d.."#GOLD#WIS 13#LAST# to multiclass to this class."
+
+			return d
+		end,
 --[[        copy = {
                 resolvers.equip {
                         id=true,
@@ -908,9 +1025,6 @@ newBirthDescriptor {
                     ['Zurvash'] = "disallow",
                 },
         },
-        class_desc = {
-            skill_point = 4,
-        },
         can_level = function(actor)
             if actor.classes and actor.classes["Monk"] and actor.descriptor.class == "Monk" then return true end
 
@@ -943,8 +1057,30 @@ newBirthDescriptor {
 newBirthDescriptor {
         type = 'class',
         name = 'Paladin',
-        desc = '#ORANGE#Holy warriors of the deities of good and law.\n\n #LIGHT_BLUE#Class skills: Concentration, Craft, Diplomacy, Handle Animal, Heal, Knowledge, Ride, Sense Motive.\n\n #WHITE#10 hit points per level, BAB +1, Fort +2 at first class level. 8 skill points at 1st character level.\n\n BAB +1, Fort +0.5, Will +0.33, Ref +0.33, 2 skill points per level.\n\n #GOLD#WIS 13#LAST# to multiclass to this class.',
-        copy = {
+		getSkillPoints = function(self, t)
+			return 2
+		end,
+		getClassSkills = function(self, t)
+			skills = "Concentration, Craft, Diplomacy, Handle Animal, Heal, Knowledge, Ride, Sense Motive."
+
+			return skills
+		end,
+		desc = function(self, t)
+			local d
+			local desc = "#ORANGE#Holy warriors of the deities of good and law."
+			local skills = t.getSkillPoints(self, t)
+			local skills_first = skills*4
+			d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+			local skills_list = t.getClassSkills(self, t)
+			d = d..skills_list.."\n\n"
+			d = d.."#WHITE#8 hit points per level, BAB +1, Fort +2 at first class level. "
+			d = d..skills_first.." skill points at 1st character level.\n\n"
+			d = d.."BAB +1, Fort +0.5, Will +0.33, Ref +0.33. "..skills.." skill points per level.\n\n"
+			d = d.."#GOLD#WIS 13#LAST# to multiclass to this class."
+
+			return d
+		end,
+		copy = {
         },
         descriptor_choices =
         {
@@ -978,9 +1114,6 @@ newBirthDescriptor {
                 ['Xel'] = "disallow",
                 ['Zurvash'] = "disallow",
                 },
-        },
-        class_desc = {
-            skill_point = 2,
         },
         can_level = function(actor)
             if actor.classes and actor.classes["Paladin"] and actor.descriptor.class == "Paladin" then return true end
@@ -1056,7 +1189,29 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Ranger',
-	desc = '#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic.\n\n #LIGHT_BLUE# Class skills: Climb, Concentration, Craft, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Ride, Search, Spot, Swim, Survival.\n\n  #WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. 24 skill points at 1st character level. \n\n BAB +1, Fort +0.5, Ref +0.5, Will +0.33, 6 skill points per level.\n\n #GOLD#STR 13#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 6
+	end,
+	getClassSkills = function(self, t)
+		skills = "Climb, Concentration, Craft, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Ride, Search, Spot, Swim, Survival."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +1, Fort +0.5, Ref +0.5, Will +0.33. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#STR 13#LAST# to multiclass to this class."
+
+		return d
+	end,
 	rarity = 3,
 	copy = {
 		resolvers.inventory {
@@ -1074,9 +1229,6 @@ newBirthDescriptor {
 		{
 			['Magical thief'] = "disallow",
 		}
-	},
-	class_desc = {
-		skill_point = 6,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Ranger"] and actor.descriptor.class == "Ranger" then return true end
@@ -1238,7 +1390,29 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Rogue',
-	desc = '#ORANGE#Rogues are masters of tricks.\n\n #LIGHT_BLUE# Class skills: Appraise, Balance, Bluff, Climb, Craft, Diplomacy, Decipher Script, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic.\n\n  #WHITE#6 hit points per level, Ref +2 at first class level. 32 skill points at 1st character level.\n\n BAB +0.75, Ref +0.5, Fort +0.33, Will +0.33, 8 skill points per level.\n\n #GOLD#DEX 13#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 8
+	end,
+	getClassSkills = function(self, t)
+		skills = "Appraise, Balance, Bluff, Climb, Craft, Diplomacy, Decipher Script, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#Rogues are masters of tricks."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#6 hit points per level, BAB +0, Ref +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +0.75, Ref +0.5, Fort +0.33, Will +0.33. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#DEX 13#LAST# to multiclass to this class."
+
+		return d
+	end,
 	rarity = 3,
 	copy = {
 		resolvers.equip {
@@ -1268,9 +1442,6 @@ newBirthDescriptor {
 			['Exotic fighter'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
-	},
-	class_desc = {
-		skill_point = 8,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Rogue"] and actor.descriptor.class == "Rogue" then return true end
@@ -1346,8 +1517,30 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Sorcerer',
-	desc = '#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Bluff, Concentration, Craft, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#CHA 16#LAST# to multiclass to this class.',
 	rarity = 6,
+	getSkillPoints = function(self, t)
+		return 2
+	end,
+	getClassSkills = function(self, t)
+		skills = "Bluff, Concentration, Craft, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#Masters of arcane magic."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#4 hit points per level, BAB +0, Will +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#CHA 16#LAST# to multiclass to this class."
+
+		return d
+	end,
 	copy = {
 		resolvers.inventory {
 			id=true,
@@ -1361,9 +1554,6 @@ newBirthDescriptor {
     ["arcane/metamagic"] = {true, 0.0},
     ["arcane/reserve"] = {true, 0.0},
     },
---[[	talents_types = {
-		["arcane/arcane"] = {true, 0.0},
-	},]]
 	descriptor_choices =
 	{
 		--Prevent game-breaking combos due to 1 BAB requirement of some feats
@@ -1376,9 +1566,6 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
-	},
-	class_desc = {
-		skill_point = 2,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Sorcerer"] and actor.descriptor.class == "Sorcerer" then return true end
@@ -1440,7 +1627,29 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Wizard',
-	desc = '#ORANGE#Masters of arcane magic.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n  #WHITE#4 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#INT 16#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 4
+	end,
+	getClassSkills = function(self, t)
+		skills = "Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#Masters of arcane magic."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#4 hit points per level, BAB +0, Will +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#INT 16#LAST# to multiclass to this class."
+
+		return d
+	end,
 	rarity = 5,
 	copy = {
 		resolvers.inventory {
@@ -1468,9 +1677,6 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
-	},
-	class_desc = {
-		skill_point = 4,
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Wizard"] and actor.descriptor.class == "Wizard" then return true end
@@ -1587,7 +1793,29 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Warlock',
-	desc = '#ORANGE#A spellcaster who needs no weapon.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft.\n\n #WHITE#6 hit points per level, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 2
+	end,
+	getClassSkills = function(self, t)
+		skills = "Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#A spellcaster who needs no weapon."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#6 hit points per level, BAB +0, Will +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#CHA 13#LAST# to multiclass to this class."
+
+		return d
+	end,
 	rarity = 10,
 	copy = {
 	},
@@ -1603,9 +1831,6 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
-	},
-	class_desc = {
-		skill_point = 2,
 	},
 	can_level = function(actor)
 	if actor.classes and actor.classes["Warlock"] and actor.descriptor.class == "Warlock" then return true end
@@ -1642,7 +1867,29 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Shaman',
-	desc = '#ORANGE#A divine spellcaster who does not need to prepare spells.\n\n #LIGHT_BLUE# Class skills: Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft.\n\n #WHITE#8 hit points per level, Fort +2, Will +2 at first character level. 8 skill points at 1st class level.\n\n BAB +0.5, Will +0.5, Ref +0.33, Fort +0.5, 2 skill points per level.\n\n #GOLD#CHA 13#LAST# to multiclass to this class.',
+	getSkillPoints = function(self, t)
+		return 4
+	end,
+	getClassSkills = function(self, t)
+		skills = "Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft."
+
+		return skills
+	end,
+	desc = function(self, t)
+		local d
+		local desc = "#ORANGE#A divine spellcaster who does not need to prepare spells."
+		local skills = t.getSkillPoints(self, t)
+		local skills_first = skills*4
+		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
+		local skills_list = t.getClassSkills(self, t)
+		d = d..skills_list.."\n\n"
+		d = d.."#WHITE#8 hit points per level, BAB +0, Fort +2, Will +2 at first class level. "
+		d = d..skills_first.." skill points at 1st character level.\n\n"
+		d = d.."BAB +0.5, Will +0.5, Ref +0.33, Fort +0.5. "..skills.." skill points per level.\n\n"
+		d = d.."#GOLD#CHA 13#LAST# to multiclass to this class."
+
+		return d
+	end,
 	rarity = 10,
 	copy = {
 	},
@@ -1669,9 +1916,6 @@ newBirthDescriptor {
 			['Magical thief'] = "disallow",
 			['Two weapon fighter'] = 'disallow',
 		}
-	},
-	class_desc = {
-		skill_point = 4,
 	},
 	can_level = function(actor)
 	if actor.classes and actor.classes["Shaman"] and actor.descriptor.class == "Shaman" then return true end
@@ -2082,6 +2326,9 @@ newBirthDescriptor {
 	type = 'class',
 	prestige = true,
 	name = 'Shadowdancer',
+	getSkillPoints = function(self, t)
+		return 6
+	end,
 	desc = [[Requires Move Silently 8 ranks and Hide 10 ranks.
 
 	Skilled rogues who can summon shades and hide in plain sight.]],
@@ -2091,9 +2338,6 @@ newBirthDescriptor {
 
 		return false
 	end,
-	class_desc = {
-		skill_point = 6,
-	},
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
 		actor:attr("reflex_save", 2)
@@ -2136,9 +2380,9 @@ newBirthDescriptor {
 	desc = [[Requires Move Silently 8 ranks and Hide 8 ranks.
 
 	Evil backstabbers who want to kill just for the fun of it.]],
-	class_desc = {
-		skill_point = 6,
-	},
+	getSkillPoints = function(self, t)
+		return 6
+	end,
 	can_level = function(actor)
 		if actor.classes and actor.classes["Assassin"] and actor.classes["Assassin"] >= 10 then return false end
 	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
@@ -2188,9 +2432,9 @@ newBirthDescriptor {
 	desc = [[Requires BAB +6. Hide 6 ranks, Knowledge 2 ranks.
 
 	Worshippers of evil powers.]],
-	class_desc = {
-		skill_point = 6,
-	},
+	getSkillPoints = function(self, t)
+		return 6
+	end,
 	can_level = function(actor)
 		if actor.classes and actor.classes["Blackguard"] and actor.classes["Blackguard"] >= 10 then return false end
 	--	if player.descriptor.alignment == "Neutral Evil" or player.descriptor.alignment == "Lawful Evil" or player.descriptor.alignment == "Chaotic Evil" then
@@ -2239,9 +2483,9 @@ newBirthDescriptor {
 	desc = [[Requires BAB +6.
 
 	Elven archers who fuel their arrows with magic.]],
-	class_desc = {
-		skill_point = 4,
-	},
+	getSkillPoints = function(self, t)
+		return 4
+	end,
 	can_level = function(actor)
 		if actor.classes and actor.classes["Arcane archer"] and actor.classes["Arcane archer"] >= 10 then return false end
 	--	if player.descriptor.race == "Elf" or player.descriptor.race == "Half-elf" then
@@ -2288,9 +2532,9 @@ newBirthDescriptor {
 	desc = [[Requires Knowledge 12 ranks.
 
 	The most knowledgeable mages the world knows.]],
-	class_desc = {
-		skill_point = 4,
-	},
+	getSkillPoints = function(self, t)
+		return 4
+	end,
 	can_level = function(actor)
 		if actor.classes and actor.classes["Loremaster"] and actor.classes["Loremaster"] >= 10 then return false end
 --		if actor:knowTalent(actor.T_SKILL_FOCUS_KNOWLEDGE)
@@ -2334,9 +2578,9 @@ newBirthDescriptor {
 	desc = [[Requires Knowledge 15 ranks, Spellcraft 15 ranks.
 
 	The best mages the world knows.]],
-	class_desc = {
-		skill_point = 4,
-	},
+	getSkillPoints = function(self, t)
+		return 4
+	end,
 	can_level = function(actor)
 		if actor.classes and actor.classes["Archmage"] and actor.classes["Archmage"] >= 5 then return false end
 --		if actor:knowTalent(actor.T_SKILL_FOCUS_SPELLCRAFT)
