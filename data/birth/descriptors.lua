@@ -196,7 +196,11 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'alignment',
   name = 'Lawful Good',
-  desc = [[You are Lawful Good. Lawful spells will not harm you. Good characters will not be hostile.]],
+  desc = function(self, t)
+	  d = "You are "..t.name.."."
+	  d = d.." Lawful spells will not harm you. Good characters will not be hostile."
+	  return d
+  end,
   descriptor_choices =
   {
     domains =
@@ -210,7 +214,11 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'alignment',
   name = 'Neutral Good',
-  desc = [[You are Neutral Good. Good characters will not be hostile.]],
+  desc = function(self, t)
+	  d = "You are "..t.name.."."
+	  d = d.." Good characters will not be hostile."
+	  return d
+  end,
   descriptor_choices =
   {
     domains =
@@ -223,7 +231,11 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'alignment',
   name = 'Chaotic Good',
-  desc = [[You are Neutral Good. Chaotic spells will not harm you. Good characters will not be hostile.]],
+  desc = function(self, t)
+	  d = "You are "..t.name.."."
+	  d = d.." Chaotic spells will not harm you. Good characters will not be hostile."
+	  return d
+  end,
   descriptor_choices =
   {
     domains =
@@ -237,7 +249,11 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'alignment',
   name = 'Lawful Neutral',
-  desc = [[You are Lawful Neutral. Lawful spells will not harm you.]],
+  desc = function(self, t)
+	d = "You are "..t.name.."."
+	d = d.." Lawful spells will not harm you."
+	return d
+  end,
   descriptor_choices =
   {
     domains =
@@ -252,7 +268,10 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'alignment',
   name = 'Neutral',
-  desc = [[You are Neutral.]],
+  desc = function(self, t)
+	d = "You are "..t.name.."."
+	return d
+  end,
   descriptor_choices =
   {
     domains =
@@ -268,7 +287,11 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'alignment',
   name = 'Chaotic Neutral',
-  desc = [[You are Chaotic Neutral. Chaotic spells will not harm you.]],
+  desc = function(self, t)
+  d = "You are "..t.name.."."
+  d = d.." Chaotic spells will not harm you."
+  return d
+  end,
   descriptor_choices =
   {
     domains =
@@ -283,7 +306,11 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'alignment',
   name = 'Lawful Evil',
-  desc = [[You are Lawful Evil. Lawful spells will not harm you. Evil characters will not be hostile.]],
+  desc = function(self, t)
+  d = "You are "..t.name.."."
+  d = d.." Lawful spells will not harm you. Evil characters will not be hostile."
+  return d
+  end,
   copy = {
     faction = "players_evil",
   },
@@ -292,6 +319,28 @@ newBirthDescriptor {
     domains =
     {
       ['Good'] = "disallow",
+      ['Chaos'] = "disallow",
+    }
+  },
+}
+
+newBirthDescriptor {
+  type = 'alignment',
+  name = 'Neutral Evil',
+  desc = function(self, t)
+  d = "You are "..t.name.."."
+  d = d.." Evil characters will not be hostile."
+  return d
+  end,
+  copy = {
+    faction = "players_evil",
+  },
+  descriptor_choices =
+  {
+    domains =
+    {
+      ['Good'] = "disallow",
+      ['Law'] = "disallow",
       ['Chaos'] = "disallow",
     }
   },
@@ -300,7 +349,11 @@ newBirthDescriptor {
 newBirthDescriptor {
   type = 'alignment',
   name = 'Chaotic Evil',
-  desc = [[You are Chaotic Evil. Chaotic spells will not harm you. Evil characters will not be hostile.]],
+  desc = function(self, t)
+  d = "You are "..t.name.."."
+  d = d.." Chaotic spells will not harm you. Evil characters will not be hostile."
+  return d
+  end,
   copy = {
     faction = "players_evil",
   },
@@ -314,23 +367,6 @@ newBirthDescriptor {
   },
 }
 
-newBirthDescriptor {
-  type = 'alignment',
-  name = 'Neutral Evil',
-  desc = [[You are Neutral Evil. Evil characters will not be hostile.]],
-  copy = {
-    faction = "players_evil",
-  },
-  descriptor_choices =
-  {
-    domains =
-    {
-      ['Good'] = "disallow",
-      ['Law'] = "disallow",
-      ['Chaos'] = "disallow",
-    }
-  },
-}
 
 load('/data/birth/races.lua')
 load('/data/birth/class.lua')
