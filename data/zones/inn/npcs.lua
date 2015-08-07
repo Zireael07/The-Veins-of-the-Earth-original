@@ -27,13 +27,12 @@ load("/data/general/npcs/townies.lua")
 
 newEntity{
     base = "BASE_NPC_DROW_T",
-    name = "drow tavernkeeper",
+    name = "drow innkeeper",
     rarity = 2,
     resolvers.equipnoncursed{
         full_id=true,
         { name = "chain shirt" },
         { name = "long sword",  },
     },
-    can_talk = "shop",
-    resolvers.store("DRINK"),
+    can_talk = "innkeeper",
 }

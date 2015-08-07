@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2014-2015
+-- Copyright (C) 2013 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -14,26 +14,7 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
---Encounters are dummy npcs
---load("/data/general/npcs/encounters/encounters_generic.lua")
---load("/data/general/npcs/encounters/encounters_specific.lua")
-
---Neutrals
-load("/data/general/npcs/neutral.lua")
-
-load("/data/general/npcs/townies.lua")
-
---TODO: Neutral vermin, animals, elementals, fiends
-
-newEntity{
-    base = "BASE_NPC_DROW_T",
-    name = "drow tavernkeeper",
-    rarity = 2,
-    resolvers.equipnoncursed{
-        full_id=true,
-        { name = "chain shirt" },
-        { name = "long sword",  },
-    },
-    can_talk = "shop",
-    resolvers.store("DRINK"),
-}
+load("/data/general/traps/store.lua")
+load("/data/general/traps/general.lua")
+load("/data/general/traps/random.lua")
+load("/data/general/traps/magical.lua")
