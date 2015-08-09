@@ -95,6 +95,7 @@ function _M:init(t, no_default)
 	--Skill ranks
 	self.max_skill_ranks = 4
 	self.cross_class_ranks = math.floor(self.max_skill_ranks/2)
+	self.skill_point = 0
 	self.background_points = 0
 
 	-- Default melee barehanded damage
@@ -2469,10 +2470,11 @@ function _M:levelClass(name)
 
 	end
 
---	if d.class_desc and d.class_desc.skill_point then
-	--	local skill_point = math.max(1, d.class_desc.skill_point + self:getIntMod())
+	local skill_point = 1
+
 	if d.getSkillPoints(self, d) then
-		local skill_point = math.max(1, d.getSkillPoints(self, d) + self:getIntMod())
+		local count = (d.getSkillPoints(self, d) + self:getIntMod())
+		local skill_point = math.max(1, count)
 		if self.level == 1 then skill_point = skill_point * 4 end
 		self:attr('skill_point', skill_point)
 	end
