@@ -675,7 +675,7 @@ function _M:provokeAoO(x, y)
         	if dist <= 2 and not act.madeAoO then --TODO: or 3 and wielding a polearm
                 local weapon = (act:getInven("MAIN_HAND") and act:getInven("MAIN_HAND")[1]) or self
                 if not weapon.ranged then
-                    act:logCombat(self, ("%s makes an attack of opportunity!"):format(act:getLogName():capitalize()))
+                    act:logCombat(act, ("%s makes an attack of opportunity!"):format(act:getLogName():capitalize()))
                     act:attack(self, true)
                     act.madeAoO = true
                 end

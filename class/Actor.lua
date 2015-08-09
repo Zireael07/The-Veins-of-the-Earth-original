@@ -346,7 +346,7 @@ function _M:move(x, y, force)
 				game.log("Checking for AoO: ox %d, oy %d, x %d, y %d", ox, oy, x, y)
 			end]]
 
-			if self:doesProvokeAoO(ox, oy) then self:provokeAoO(ox, oy) end
+			if self:doesProvokeAoO(ox, oy, x, y) then self:provokeAoO(ox, oy) end
 		end
 
 		if not force and moved and (self.x ~= ox or self.y ~= oy) and not self.did_energy then
@@ -1196,17 +1196,32 @@ function _M:isThreatened()
     return false
 end
 
-function _M:doesProvokeAoO(x, y)
+--Helper
+function _M:isMovingTowards(ox, oy, x, y, target)
+	dist_old = core.fov.distance(ox, oy, target.x, target.y)
+	dist = core.fov.distance(x, y, target.x, target.y)
+
+	if dist_old > dist then return true end
+
+	return false
+
+end
+
+function _M:doesProvokeAoO(ox, oy, x, y)
 --	if not self.x then return nil end
 	if self.dead then return nil end
 
 	for i, act in ipairs(self.fov.actors_dist) do
+	--	local dist = math.floor(math.sqrt(self.fov.actors[act] and self.fov.actors[act].sqdist or 1))
+	--	dist_old = core.fov.distance(ox, oy, act.x, act.y)
 		dist = core.fov.distance(x, y, act.x, act.y)
         if act ~= self and act:reactionToward(self) < 0 and not act.dead then
-			--NOTE: needs to be 2 to trigger even though it doesn't seem logical
-			if dist <= 2 --TODO: or 3 and wielding a polearm
-			then return true
-        	else return false end
+		--[[	--NOTE: needs to be 2 to trigger even though it doesn't seem logical
+			if dist <= 2 --TODO: or 3 and wielding a polearm]]
+			if not self:isMovingTowards(ox, oy, x, y, act) then game.log(("%s is moving away!"):format(self.name:capitalize()))
+				if dist <=2 then return true
+	        	else return false end
+			end
     	end
     end
 
