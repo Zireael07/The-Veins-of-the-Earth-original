@@ -579,6 +579,12 @@ function _M:colorPersonalReaction()
 	end
 end
 
+function _M:getType()
+	local type = self.type:gsub("_", "[ ]")
+
+	if self.type == "humanoid" then type = self.type.." ("..self.subtype:gsub("_", "[ ]")..")" end
+	return type
+end
 
 function _M:tooltip()
 	local ts = tstring{}
@@ -587,9 +593,8 @@ function _M:tooltip()
 
 	ts:add({"color", "GOLD"}, ("%s "):format(self:templateName()), {"color", "WHITE"}) ts:add(self.name, {"color", "WHITE"}) ts:add((" %s"):format(self:className()), true)
 
-	if self.type == "humanoid" then ts:add(self.type.." ("..self.subtype..")", true)
-	else ts:add(self.type, true)
-	end
+	ts:add({"color", "WHITE"}, ("%s "):format(self:getType()), {"color", "WHITE"}, true)
+
 
 	if self.life < 0 then ts:add({"color", 255, 0, 0}, "HP: unknown", {"color", "WHITE"}, true)
 	else ts:add({"color", 255, 0, 0}, ("HP: %d (%d%%)"):format(self.life, self.life * 100 / self.max_life), {"color", "WHITE"}, true)
