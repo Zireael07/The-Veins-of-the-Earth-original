@@ -63,3 +63,43 @@ newFeat{
     fighter = true,
     info = [[Your armor check penalty is reduced by 1/3.]],
 }
+
+newFeat{
+    name = "Arcane Armor Training",
+    type = {"class/combat", 1},
+    require = {
+        talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY },
+        special = {
+            fct = function(self, t, offset)
+            --CL 3
+            if self:casterLevel("arcane") > 3 then return true
+            else return false end
+            end,
+            desc = "Caster level 3",
+        }
+    },
+    points = 1,
+    mode = "passive",
+    fighter = true,
+    info = [[Your armor spell failure is reduced by 10%.]],
+}
+
+newFeat{
+    name = "Arcane Armor Mastery",
+    type = {"class/combat", 1},
+    require = {
+        talent = { Talents.T_MEDIUM_ARMOR_PROFICIENCY, Talents.T_ARCANE_ARMOR_TRAINING },
+        special = {
+            fct = function(self, t, offset)
+            --CL 7
+            if self:casterLevel("arcane") > 7 then return true
+            else return false end
+            end,
+            desc = "Caster level 7",
+        }
+    },
+    points = 1,
+    mode = "passive",
+    fighter = true,
+    info = [[Your armor spell failure is reduced by 20%.]],
+}

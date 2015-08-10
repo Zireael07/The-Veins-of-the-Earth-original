@@ -1363,12 +1363,12 @@ function _M:preUseTalent(ab, silent, fake)
 	--Spell failure!
 	if tt_def.all_limited and not fake then
 
-		if self.classes and self.classes["Wizard"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then
+		if self.classes and self.classes["Wizard"] and self:getSpellFailure() > 0 and rng.percent(self.spell_fail) then
 			game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!")
 			self:useEnergy()
 			return false
 		end
-		if self.classes and self.classes["Sorcerer"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then
+		if self.classes and self.classes["Sorcerer"] and self:getSpellFailure() > 0 and rng.percent(self.spell_fail) then
 			game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!")
 			self:useEnergy()
 			return false
@@ -1378,7 +1378,7 @@ function _M:preUseTalent(ab, silent, fake)
 			if armor and armor.subtype == "light" and self:knowTalent(self.T_ARMORED_CASTER_LIGHT) then
 				game.logPlayer(self, "You ignore your light armor as you cast")
 			else
-				if (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then
+				if self:getSpellFailure() > 0 and rng.percent(self.spell_fail) then
 				game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!")
 				self:useEnergy()
 				return false
@@ -2378,6 +2378,22 @@ function _M:spellIsKind(t, kind)
 	if not t.is_spell then return false end
 	if not t.spell_kind[kind] then return false end
 	return true
+end
+
+function _M:getSpellFailure()
+	local fail = self.spell_fail or 0
+
+	if self:knowTalent(self.T_ARCANE_ARMOR_TRAINING) then
+		local adjust = ((self.spell_fail or 0) - 10)
+		fail = math.max(0, adjust)
+	end
+
+	if self:knowTalent(self.T_ARCANE_ARMOR_MASTERY) then
+		local adjust = ((self.spell_fail or 0) - 20)
+		fail = math.max(0, adjust)
+	end
+
+	return fail
 end
 
 function _M:levelPassives()
