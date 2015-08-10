@@ -304,10 +304,10 @@ end
 
 function _M:updateClass()
     local sel = self.selection
-    self:generateList() -- Slow! Should just update the one changed and sort again
-    self.c_points.text = "Available class points: "..self.player.class_points
-    self.c_points:generate()
-    self.c_class_list.list = self.list
+    self:generateClassList() -- Slow! Should just update the one changed and sort again
+    self.c_class_points.text = "Available class points: "..self.player.class_points
+    self.c_class_points:generate()
+    self.c_class_list.list = self.class_list
     self.c_class_list:generate()
     if sel then self.c_class_list:select(sel) end
 end
