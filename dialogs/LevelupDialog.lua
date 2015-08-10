@@ -42,7 +42,7 @@ function _M:init(actor)
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Level Up: "..self.actor.name, math.max(game.w * 0.7, 950), game.h*0.8, nil, nil, font)
 
---    self.c_desc = SurfaceZone.new{width=self.iw, height=self.ih,alpha=0}
+    self.c_surface = SurfaceZone.new{width=self.iw, height=self.ih*0.9,alpha=0}
 
     self.vs = Separator.new{dir="vertical", size=self.iw}
     self.c_accept = Button.new{text="Accept",fct=function() self:onEnd("accept") end}
@@ -232,11 +232,13 @@ function _M:drawDialog(tab)
             {left=self.t_skills, top=0, ui=self.t_stats},
             {left=0, top=self.t_classes.h, ui=self.vs},
             {left=0, top=start, ui=self.c_stats},
+            {left=0, top=start + self.c_stats.h, ui=self.c_surface},
             {right=0, top=start, ui=self.c_desc},
             {left=0, bottom=0, ui=self.c_accept},
         }
 
         self:setupUI()
+        self:drawGeneral()
 
     end
 
@@ -262,14 +264,14 @@ end
 --General stuff
 function _M:drawGeneral()
     local player = self.actor
-    local s = self.c_desc.s
+    local s = self.c_surface.s
 
     s:erase(0,0,0,0)
 
-    local h = 0
+    local h = 10
     local w = 0
 
-    h = 0
+    h = 10
     w = 0
 
     h = h + self.font_h -- Adds an empty row
@@ -279,15 +281,14 @@ function _M:drawGeneral()
     s:drawColorStringBlended(self.font, "Available feat points: #GOLD#"..(player.feat_point or 0), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Available stat points: #GOLD#"..(player.stat_point or 0), w, h, 255, 255, 255, true) h = h + self.font_h
 
-    h = 0
+    h = 50
     w = self.w * 0.25
     -- start on second column
-    s:drawColorStringBlended(self.font, "You can use the buttons below to pick your #ORANGE#skills#LAST# or #ORANGE#feats#LAST#.", w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "You can also use the #ORANGE#class#LAST# button to choose the class you advance.", w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "You can use the tabs to pick your #ORANGE#class#LAST#, #ORANGE#skills#LAST# or #ORANGE#feats#LAST#.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Note that you are not limited to advancing a single class.", w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "You need to advance a class in order to receive any bonuses from gaining a level.", w, h, 255, 255, 255, true) h = h + self.font_h
+--    s:drawColorStringBlended(self.font, "You need to advance a class in order to receive any bonuses from gaining a level.", w, h, 255, 255, 255, true) h = h + self.font_h
 
-    self.c_desc:generate()
+    self.c_surface:generate()
     self.changed = false
 end
 
