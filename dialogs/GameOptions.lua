@@ -32,12 +32,13 @@ function _M:init(gameplay)
 	self.c_desc = Textzone.new{width=math.floor(self.iw / 2 - 10), height=self.ih, text=""}
 
     self.gameplay = gameplay
+	local tabs = {}
+	tabs[#tabs+1] = {title="UI", kind="ui"}
+	tabs[#tabs+1] = {title="Fonts", kind="fonts"}
 
-    local tabs = {
-            {title="UI", kind="ui"},
-            {title="Fonts", kind="fonts"},
-            {title="Gameplay", kind="game"},
-    }
+	if self.gameplay == true then
+		tabs[#tabs+1] = {title="Gameplay", kind="game"}
+	end
 
 
 	self.c_tabs = Tabs.new{width=self.iw - 5, tabs=tabs, on_change=function(kind) self:switchTo(kind) end}
@@ -589,6 +590,27 @@ function _M:generateListGame()
 	            self.c_list:drawItem(item)
 	        end,
 	    }
+
+		local zone = Textzone.new{
+		        width = self.c_desc.w,
+		        height = self.c_desc.h,
+		        text = string.toTString [[Decide how often feats are gained.
+
+		• #YELLOW#True#WHITE#: one feat every two levels.
+		• #YELLOW#False#WHITE#: default, one feat every three levels.]]
+	    }
+		    list[#list+1] = {
+		        zone = zone,
+		        name = string.toTString"#GOLD##{bold}#Pathfinder feats#WHITE##{normal}#",
+		        status = function(item)
+		            return tostring(config.settings.veins.pathfinder_feat and "enabled" or "disabled")
+		        end, fct=function(item)
+		           config.settings.veins.pathfinder_feat = not config.settings.veins.pathfinder_feat
+		            game:saveSettings("veins.pathfinder_feat", ("veins.pathfinder_feat= %s\n"):format(tostring(config.settings.veins.pathfinder_feat)))
+		            self.c_list:drawItem(item)
+		        end,
+		    }
+
 
     self.list = list
 end

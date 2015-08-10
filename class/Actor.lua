@@ -2402,8 +2402,13 @@ function _M:levelup()
 		--may level up class (player only)
 		self.class_points = self.class_points + 1
 
-		--feat points given every 3 levels. Classes may give additional feat points.
-		if self.level % 3 == 0 then self.feat_point = (self.feat_point or 0) + 1 end
+		--feat points given every 3 levels by default. Classes may give additional feat points.
+
+		if config.settings.veins.pathfinder_feat == true then
+			if self.level % 2 == 0 then self.feat_point = (self.feat_point or 0) + 1 end
+		else
+			if self.level % 3 == 0 then self.feat_point = (self.feat_point or 0) + 1 end
+		end
 
 		--stat point gained every 4 levels
 		if self.level % 4 == 0 then self.stat_point = (self.stat_point or 0) + 1 end
@@ -2448,7 +2453,7 @@ function _M:levelup()
 		if self.level == 50 then world:gainAchievement("LEVEL_50", self) end]]
 	end
 
-	if self == game.player and game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player)) end
+	if self == game.player and game then game:registerDialog(require("mod.dialogs.LevelupDialog").new(game.player)) end
 
 end
 

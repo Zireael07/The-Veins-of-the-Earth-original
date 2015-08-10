@@ -67,7 +67,7 @@ if not config.settings.veins.defensive_roll then config.settings.veins.defensive
 if not config.settings.veins.spellbooks then config.settings.veins.spellbooks = false end
 if not config.settings.veins.training then config.settings.veins.training = false end
 if not config.settings.veins.money_weight then config.settings.veins.money_weight = false end
-
+if not config.settings.veins.pathfinder_feat then config.settings.veins.pathfinder_feat = false end
 
 --UI stuff
 require("engine.ui.Base").ui_conf = {
