@@ -34,7 +34,7 @@ newDivineSpell{
 		local duration = t.getDuration(self, t)
 		local save = t.getSave(self, t)
 
-		if target:reflexSave(save) then game.log("Target resists the spell!")
+		if target and target:reflexSave(save) then game.log("Target resists the spell!")
 			target:setEffect(target.EFF_SLOW, duration, {})
 		else target:setEffect(target.EFF_ENTANGLE, duration, {})
 		end
