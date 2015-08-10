@@ -1,11 +1,11 @@
-newTalentType{ 
+newTalentType{
 	all_limited=true,
 	type="divination",
 	name="divination",
 	description = "divination blahblah"
 }
 
-newArcaneSpell{	
+newArcaneSpell{
 	name = "Identify",
 	type = {"divination", 1},
 	mode = 'activated',
@@ -35,8 +35,8 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 15 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 15
 		else return 10 end
 	end,
 	range = 0,
@@ -62,8 +62,8 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 15 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 15
 		else return 10 end
 	end,
 	range = 0,
@@ -81,6 +81,24 @@ newArcaneSpell{
 	end,
 }
 
+--Metamagic doesn't apply
+newArcaneSpell{
+	name = "True Strike",
+	type = {"divination", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 0,
+	action = function(self, t)
+		self:setEffect(self.EFF_TRUE_STRIKE, 1, {})
+		return true
+	end,
+	info = function(self, t)
+		return ([[Gain a large bonus to the next attack.]])
+	end,
+}
+
 newArcaneSpell{
 	name = "Know Alignment",
 	type = {"divination", 1},
@@ -89,8 +107,8 @@ newArcaneSpell{
 	points = 1,
 	cooldown = 0,
 	tactical = { BUFF = 2 },
-	getDuration = function(self, t)  
-		if self:isTalentActive(self.T_EXTEND) then return 15 
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 15
 		else return 10 end
 	end,
 	range = 0,
@@ -126,7 +144,7 @@ newArcaneSpell{
 }
 
 --Seb's original identify, renamed and shuffled to a higher level
-newArcaneSpell{	
+newArcaneSpell{
 	name = "Improved Identify",
 	type = {"divination", 1},
 	mode = 'activated',
@@ -149,4 +167,3 @@ newArcaneSpell{
 		return ([[Identifies items in your inventory]])
 	end,
 }
-

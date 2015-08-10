@@ -343,6 +343,21 @@ newEffect{
 	end,
 }
 
+newEffect{
+	name = "TRUE_STRIKE",
+	desc = "True strike",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# is inspired!", "+Inspire" end,
+	on_lose = function(self, err) return "#Target# is no longer inspired.", "-Inspire" end,
+	activate = function(self, eff)
+		eff.attack = self:addTemporaryValue("combat_attack", 20)
+    end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("combat_attack", eff.attack)
+	end,
+}
+
 --Buff spells, Zireael
 newEffect{
 	name = "BEAR_ENDURANCE",
