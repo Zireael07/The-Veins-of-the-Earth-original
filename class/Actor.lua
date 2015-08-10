@@ -1373,10 +1373,17 @@ function _M:preUseTalent(ab, silent, fake)
 			self:useEnergy()
 			return false
 		end
-		if self.classes and self.classes["Bard"] and (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then
-			game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!")
-			self:useEnergy()
-			return false
+		if self.classes and self.classes["Bard"] then
+			local armor = self:getInven("BODY")[1]
+			if armor and armor.subtype == "light" and self:knowTalent(self.T_ARMORED_CASTER_LIGHT) then
+				game.logPlayer(self, "You ignore your light armor as you cast")
+			else
+				if (self.spell_fail or 0) > 0 and rng.percent(self.spell_fail) then
+				game.logPlayer(self, "You armor hinders your spellcasting! Your spell fails!")
+				self:useEnergy()
+				return false
+				end
+			end
 		end
 	end
 

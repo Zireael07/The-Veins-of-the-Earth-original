@@ -47,3 +47,13 @@ newTalent{
 		return ([[You add half your level to your knowledge checks.]])
 	end,
 }
+
+newTalent{
+	name = "Armored Caster Light",
+	type = {"bard/bard", 1},
+	mode = 'passive',
+	points = 1,
+	info = function(self, t)
+		return ([[You ignore spell failure for light armor.]])
+	end,
+}

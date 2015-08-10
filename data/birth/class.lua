@@ -167,6 +167,7 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
 			actor:learnTalent(actor.T_BARDIC_MUSIC, true)
 			actor:learnTalent(actor.T_BARDIC_KNOWLEDGE, true)
+			actor:learnTalent(actor.T_ARMORED_CASTER_LIGHT, true)
 
 			--Don't give spellbook to NPCs
 			if actor == game.player then
