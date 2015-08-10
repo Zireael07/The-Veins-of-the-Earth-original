@@ -172,7 +172,7 @@ function _M:drawDialog(tab)
             {left=0, top=start + 5, ui=self.c_class_points},
             {left=0, top=start + 50, ui=self.c_class_list},
             {right=0, top=start + 50, ui=self.c_desc},
-            {left=0, bottom=0, ui=self.c_accept},
+        --    {left=0, bottom=0, ui=self.c_accept},
         }
 
         self:setupUI()
@@ -196,7 +196,7 @@ function _M:drawDialog(tab)
     		{left=250, top=start + tree_start, ui=self.c_avail},
     		{left=500, top=start + tree_start, ui=self.c_barred},
     		{left=750, top=start + tree_start, ui=self.c_desc},
-            {left=0, bottom=0, ui=self.c_accept},
+        --    {left=0, bottom=0, ui=self.c_accept},
         }
         self:hideButton()
 
@@ -217,7 +217,7 @@ function _M:drawDialog(tab)
             {left=self.c_skills_list.w + 5, top=start + self.c_skill_points.h + 5, ui=self.c_background},
             {left=self.c_skills_list.w + 5, top=start + self.c_skill_points.h + 25, ui=self.c_list_background},
     		{right=0, top=start + self.c_skill_points.h + 5, ui=self.c_desc},
-            {left=0, bottom=0, ui=self.c_accept},
+        --    {left=0, bottom=0, ui=self.c_accept},
         }
 
         self:setupUI()
@@ -234,7 +234,7 @@ function _M:drawDialog(tab)
             {left=0, top=start, ui=self.c_stats},
             {left=0, top=start + self.c_stats.h, ui=self.c_surface},
             {right=0, top=start, ui=self.c_desc},
-            {left=0, bottom=0, ui=self.c_accept},
+        --    {left=0, bottom=0, ui=self.c_accept},
         }
 
         self:setupUI()
@@ -299,7 +299,7 @@ function _M:useClass(item)
 
     self.player:levelClass(item.real_name)
 
-    self:update()
+    self:updateClass()
 end
 
 function _M:updateClass()
@@ -390,7 +390,7 @@ function _M:useSkill(item)
             else
                 self.player.background_points = self.player.background_points - 1
             end
-    		self:update()
+    		self:updateSkills()
 		end
 	else
 
@@ -405,7 +405,7 @@ function _M:useSkill(item)
         else
             self.player.background_points = self.player.background_points - 1
         end
-		self:update()
+		self:updateSkills()
 		end
 	end
 	end
@@ -532,7 +532,7 @@ function _M:useFeat(item)
 		local learned = self.player:learnTalent(item.talent.id) --returns false if not learned due to requirements
 		if learned then
 			self.player.feat_point = self.player.feat_point - 1
-			self:update()
+			self:updateFeats()
 		end
 	end
 end
