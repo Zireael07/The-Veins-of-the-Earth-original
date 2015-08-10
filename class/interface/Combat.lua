@@ -73,6 +73,13 @@ function _M:attackTarget(target, noenergy)
         return
       end
 
+      --Protection from Alignment prevents attacking
+      if self.summoner
+      and target:hasEffect(target.EFF_PROTECT_LAW) or target:hasEffect(target.EFF_PROTECT_EVIL) or target:hasEffect(target.EFF_PROTECT_GOOD) or target:hasEffect(target.EFF_PROTECT_CHAOS)
+       then
+          self:logCombat(self, ("%s hesitates."):format(self:getLogName():capitalize()))
+        return
+     end
 
       -- add in modifiers
       local attackmod = 0
@@ -92,6 +99,27 @@ function _M:attackTarget(target, noenergy)
          if offweapon.light or weapon.double then attackmod = attackmod + 2 attacklog=attacklog.." dual-wielding light" end
          if self:knowTalent(self.T_TWO_WEAPON_FIGHTING) then attackmod = attackmod + 2 attacklog = attacklog.." TWF" end
       end
+
+        --Protection from alignments AC penalty
+        if target:hasEffect(target.EFF_PROTECT_EVIL) and self:isEvil() then
+            attackmod = attackmod - 2
+            attacklog = attacklog.." ProtEvil"
+        end
+
+        if target:hasEffect(target.EFF_PROTECT_GOOD) and self:isGood() then
+            attackmod = attackmod - 2
+            attacklog = attacklog.." ProtGood"
+        end
+
+        if target:hasEffect(target.EFF_PROTECT_CHAOS) and self:isChaotic() then
+            attackmod = attackmod - 2
+            attacklog = attacklog.." ProtChaos"
+        end
+
+        if target:hasEffect(target.EFF_PROTECT_LAW) and self:isLawful() then
+            attackmod = attackmod - 2
+            attacklog = attacklog.." ProtLaw"
+        end
 
       self:attackRoll(target, weapon, attackmod, strmod, attacklog, damagelog, false)
 

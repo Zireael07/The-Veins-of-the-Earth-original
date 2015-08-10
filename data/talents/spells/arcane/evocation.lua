@@ -86,7 +86,12 @@ newArcaneSpell{
 			x, y, tg = unpack(v)
 			local damage = t.getDamage(self, t)
 			if x and y and tg then
+				local target_act = game.level.map(x, y, Map.ACTOR)
+				if target_act:hasEffect(target_act.EFF_SHIELD) then
+					game.logSeen(target_act, ("%s shield repels the missiles!"):format(target_act.name:capitalize()))
+				else
 				self:projectile(tg, x, y, DamageType.FORCE, {dam=damage, save_dc=self:getSpellDC(t)})
+				end
 			end
 		end
 

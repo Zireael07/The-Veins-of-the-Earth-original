@@ -33,7 +33,28 @@ newArcaneSpell{
 		return true
 	end,
 	info = function(self, t)
-
 		return ([[An invisible but tangible field of force surrounds the target, providing a +4 armor bonus to AC.]])
+	end,
+}
+
+newArcaneSpell{
+	name = "Shield",
+	type = {"abjuration", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	tactical = { BUFF = 2 },
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 15
+		else return 10 end
+	end,
+	range = 0,
+	action = function(self, t)
+		if not self then return nil end
+		self:setEffect(self.EFF_SHIELD, t.getDuration(self, t), {})
+		return true
+	end,
+	info = function(self, t)
+		return ([[An invisible shield of force hovers in front of you, providing a +4 shield bonus to AC and negating magic missiles.]])
 	end,
 }

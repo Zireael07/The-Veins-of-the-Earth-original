@@ -136,6 +136,58 @@ newArcaneDivineSpell{
 	end,
 }
 
+--Protection Spells
+newArcaneDivineSpell{
+	name = "Protection from Alignment",
+	type = {"arcane_divine", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 1,
+	requires_target = true,
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 15
+		else return 10 end
+	end,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = {type="hit", range=self:getTalentRange(t), nowarning=true}
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		-- Choose effect
+		local result = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired alignment to ward from",{
+			{name="evil", desc=""},
+			{name="good", desc=""},
+			{name="chaos", desc=""},
+			{name="law", desc=""},
+		}, function(result)
+			self:talentDialogReturn(result)
+			game:unregisterDialog(self:talentDialogGet())
+		end))
+
+			if not result then return nil end
+
+		--[[	if result then
+				local effect = "EFF_PROTECT_"..result:upper()
+				target:setEffect(self.effect, t.getDuration(self, t), {})
+				end]]
+
+			if result == "evil" then target:setEffect(self.EFF_PROTECT_EVIL, t.getDuration(self, t), {}) end
+			if result == "good" then target:setEffect(self.EFF_PROTECT_GOOD, t.getDuration(self, t), {}) end
+			if result == "chaos" then target:setEffect(self.EFF_PROTECT_CHAOS, t.getDuration(self, t), {}) end
+			if result == "law" then target:setEffect(self.EFF_PROTECT_LAW, t.getDuration(self, t), {}) end
+
+		return true
+	end,
+	info = function(self, t)
+		return ([[You create a magical ward which repels a certain alignment.]])
+	end,
+}
+
 --"Animal buff" spells
 newArcaneDivineSpell{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE",

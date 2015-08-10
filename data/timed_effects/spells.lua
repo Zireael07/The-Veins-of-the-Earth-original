@@ -238,6 +238,42 @@ newEffect{
     end,
 }
 
+--Protection spells
+newEffect{
+	name = "PROTECT_EVIL",
+	desc = "Protection from evil",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# feels safer!", "+ProtEvil" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtEvil" end,
+}
+
+newEffect{
+	name = "PROTECT_GOOD",
+	desc = "Protection from good",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# feels safer!", "+ProtGood" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtGood" end,
+}
+
+newEffect{
+	name = "PROTECT_CHAOS",
+	desc = "Protection from chaos",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# feels safer!", "+ProtChaos" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtChaos" end,
+}
+
+newEffect{
+	name = "PROTECT_LAW",
+	desc = "Protection from law",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "#Target# feels safer!", "+ProtLaw" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtLaw" end,
+}
 
 --Dummies again
 newEffect{
@@ -408,6 +444,18 @@ newEffect{
 	on_lose = function(self, err) return "The field around #Target# seems to dissipate", "-Mage Armor" end,
 	activate = function(self, eff)
 		self:effectTemporaryValue(eff, "combat_armor_ac", 4)
+	end,
+}
+
+newEffect{
+	name = "SHIELD",
+	desc = "Shield",
+	type = "mental",
+	status = "beneficial",
+	on_gain = function(self, err) return "A shield of force appears by #target#", "+Shield" end,
+	on_lose = function(self, err) return "#Target#'s magical shield vanishes", "-Shield" end,
+	activate = function(self, eff)
+		self:effectTemporaryValue(eff, "combat_shield", 4)
 	end,
 }
 
