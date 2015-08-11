@@ -4,23 +4,33 @@ CHANGELOG
 * bug fix - prevent picking up items when asleep
 * bug fix - opposed Move Silently check no longer bugs out; introduced a safeguard against further skill misspellings
 * bug fix - detect x spells now work properly
+* bug fix - reducing copy&paste errors in descriptions
+* bug fix - limit attacks of opportunity to moving away
+* bug fix - no more negative skillpoints upon gaining a level
+* bug fix - gameplay tab in options is now properly hidden after game starts
 
 * new tiles: fungi, handwraps, monk robes
-* new zones: cave grove, fungi maze, fungi forest; goblin barracks
-* new spells: entangle, charm animal, delay poison, longstrider, detect poison, detect magic
+* new zones: inn; cave grove, fungi maze, fungi forest; goblin barracks
+* new spells: entangle, charm animal, delay poison, longstrider, detect poison, detect magic, shield, protection from alignment, true strike
 * new NPCs: city seller (can sell from most of the shops defined except armor/weaponsmith and library)
 * new magic item properties: minotaur, of physical perfection
 * new items: handwraps, monk robes, archmage robes; a lot of consumables (foods, drinks)
+* new feats: Arcane Armor Training, Arcane Armor Mastery
+* bards now ignore spell failure from light armor
 * implement Pick Pockets, Decipher Script skill
 * split skills into adventuring and background per PF variant rule
+* new variant rule: Pathfinder feats - every two levels instead of every three levels
 * implement entangled, exhausted, petrified, prone conditions
 * move mage armor spell to abjuration school
 * overhaul nutrition system
 * items display special requirements
 * change potions and drinks ASCII symbols
 * change bear endurance, summon creature icons
+* implement menu buttons on hotbar, especially useful for spellcasters; skills/spells no longer get auto-added to the bar 
 * spellbook now shows a pop-up if you can't memorize a spell due to exceeding limits
 * spellbook shows school in descriptions (except for spells which are both arcane and divine in nature)
+* level up screen is now tabbed instead of using buttons to go to various parts (skills, feats)
+* patch Birther class to allow dynamic (i.e. function) descriptions (like talents)
 * shuffled character creation class help to a separate tab
 * torches now show the amount of fuel left in them and count down properly; corpses rot (but are not removed properly)
 * update help screen to cover switching tiles on/off
