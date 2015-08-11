@@ -75,6 +75,15 @@ function _M:skillCheck(skill, dc, silent)
 		game.log(s)
 	end
 
+	--XP prize
+	if success then
+		if self:crossClass(skill) then
+			self:gainExp(5)
+		else
+			self:gainExp(10)
+		end
+	end
+
 	return success
 end
 
