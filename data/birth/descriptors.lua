@@ -136,6 +136,10 @@ newBirthDescriptor{
 		},
   	},
   	talents = {
+		--menu talents
+		[ActorTalents.T_ATTACK]=1,
+		[ActorTalents.T_SKILLS]=1,
+		--basic talents
     	[ActorTalents.T_SHOOT]=1,
     	[ActorTalents.T_PRAYER]=1,
     	[ActorTalents.T_POLEARM]=1,
@@ -148,6 +152,7 @@ newBirthDescriptor{
 		[ActorTalents.T_CRAFT]=1,
 		[ActorTalents.T_TRACK]=1,
 		[ActorTalents.T_PICK_POCKETS]=1,
+
   	},
   talents_types = {
     ["special/special"] = {true, 0.0},

@@ -171,7 +171,9 @@ newBirthDescriptor {
 
 			--Don't give spellbook to NPCs
 			if actor == game.player then
-			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+				actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+				--Get the spells menu
+				actor:learnTalent(actor.T_SPELLS, true)
 			end
 
 			actor:learnTalentType("abjuration")
@@ -310,7 +312,9 @@ newBirthDescriptor {
 
 			--Don't give spellbook to NPCs
 			if actor == game.player then
-			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+				actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+				--Get the spells menu
+				actor:learnTalent(actor.T_SPELLS, true)
 			end
 
 			actor:learnTalentType("abjuration_divine", true)
@@ -807,7 +811,9 @@ newBirthDescriptor {
 
 			--Don't give spellbook to NPCs
 			if actor == game.player then
-			actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+				actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+				--Get the spells menu
+				actor:learnTalent(actor.T_SPELLS, true)
 			end
 
 			actor:learnTalentType("divine")
@@ -1162,8 +1168,10 @@ newBirthDescriptor {
             if level == 5 then
             	--Don't give spellbook to NPCs
 				if actor == game.player then
-            	--Get spellbook
-            	actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+	            	--Get spellbook
+	            	actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+					--Get the spells menu
+					actor:learnTalent(actor.T_SPELLS, true)
             	end
 
             	actor:learnTalentType("divine")
@@ -1356,8 +1364,10 @@ newBirthDescriptor {
 		if level == 5 then
 			--Don't give spellbook to NPCs
 			if actor == game.player then
-			--Get spellbook
-            actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+				--Get spellbook
+	            actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+				--Get the spells menu
+				actor:learnTalent(actor.T_SPELLS, true)
         	end
 
 			actor:learnTalentType("divine")
@@ -1603,6 +1613,8 @@ newBirthDescriptor {
 
             --Get the spell points
             actor:learnTalent(actor.T_SPELL_POINTS_POOL, true)
+			--Get the spells menu
+			actor:learnTalent(actor.T_SPELLS, true)
 
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 
@@ -1699,7 +1711,9 @@ newBirthDescriptor {
 		if level == 1 then
 			--Don't give spellbook to NPCs
 			if actor == game.player then
-			actor:learnTalent(actor.T_SHOW_SPELLBOOK)
+				actor:learnTalent(actor.T_SHOW_SPELLBOOK)
+				--Get the spells menu
+				actor:learnTalent(actor.T_SPELLS, true)
 			end
 
 			actor:attr("will_save", 2)
@@ -1949,6 +1963,9 @@ newBirthDescriptor {
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+
+			--Get the spells menu
+			actor:learnTalent(actor.T_SPELLS, true)
 
             --Get the spell points
             actor:learnTalent(actor.T_SPELL_POINTS_POOL, true)
