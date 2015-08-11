@@ -64,6 +64,7 @@ newTalent{
 	name = "Stealth", image = "talents/stealth.png",
 	type = {"skill/skill",1},
 	mode = "sustained",
+    no_auto_hotkey = true,
 	points = 1,
 	cooldown = 20,
 	on_pre_use = function(self, t, silent)
@@ -117,6 +118,7 @@ newTalent{
 	name = "Mount", image = "talents/mount.png",
 	type = {"skill/skill",1},
 	mode = "sustained",
+    no_auto_hotkey = true,
 	points = 1,
 	cooldown = 0,
 	range = 1,
@@ -184,6 +186,7 @@ newTalent{
 newTalent{
     name = "Jump", image = "talents/jump.png",
 	type = {"skill/skill",1},
+    no_auto_hotkey = true,
 	mode = "activated",
 	points = 1,
 	cooldown = 0,
@@ -222,6 +225,7 @@ newTalent{
 newTalent{
     name = "Intimidate", image = "talents/intimidate.png",
     type = {"skill/skill",1},
+    no_auto_hotkey = true,
 	mode = "activated",
 	points = 1,
 	cooldown = 0,
@@ -252,6 +256,7 @@ newTalent{
 newTalent{
 	name = "Diplomacy", image = "talents/diplomacy.png",
 	type = {"skill/skill",1},
+    no_auto_hotkey = true,
 	mode = "activated",
 	points = 1,
 	cooldown = 20,
@@ -289,6 +294,7 @@ newTalent{
 newTalent{
 	name = "Animal Empathy", image = "talents/animal_empathy.png",
 	type = {"skill/skill",1},
+    no_auto_hotkey = true,
 	mode = "activated",
 	points = 1,
 	cooldown = 20,
@@ -321,6 +327,7 @@ newTalent{
 newTalent{
     name = "Craft",
     type = {"skill/skill",1},
+    no_auto_hotkey = true,
 	mode = "activated",
 	points = 1,
 	cooldown = 20,
@@ -365,6 +372,7 @@ newTalent{
 newTalent{
     name = "Track",
     type = {"skill/skill",1},
+    no_auto_hotkey = true,
 	mode = "activated",
 	points = 1,
 	cooldown = 20,
@@ -383,6 +391,7 @@ newTalent{
 newTalent{
     name = "Pick pockets",
     type = {"skill/skill",1},
+    no_auto_hotkey = true,
 	mode = "activated",
 	points = 1,
 	cooldown = 20,

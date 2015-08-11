@@ -50,6 +50,7 @@ newArcaneSpell = function(t)
 	if not t.mana then t.mana = 1 end
 	t.spell_kind = {arcane=true}
 	t.show_in_spellbook = true
+	t.no_auto_hotkey = true
 	return newTalent(t)
 end
 
@@ -59,6 +60,7 @@ newDivineSpell = function(t)
 	if not t.mana then t.mana = 1 end
 	t.spell_kind = {divine=true}
 	t.show_in_spellbook = true
+	t.no_auto_hotkey = true
 	return newTalent(t)
 end
 
@@ -68,6 +70,7 @@ newArcaneDivineSpell = function(t)
 	if not t.mana then t.mana = 1 end
 	t.spell_kind = {divine=true, arcane=true}
 	t.show_in_spellbook = true
+	t.no_auto_hotkey = true
 	return newTalent(t)
 end
 
