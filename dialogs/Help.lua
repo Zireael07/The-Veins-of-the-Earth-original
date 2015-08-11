@@ -14,7 +14,8 @@ function _M:init()
     self.text=[[
     CONTROLS
     Use #YELLOW#arrow keys#LAST# or mouse to move. Press #YELLOW#Shift + direction#LAST# to run. The mouse wheel scrolls the log.
-    Click on a spell or skill in the hotbar to use it. Alternately, you can use the hotkeys (displayed on the bar). Use the mouse to target skills or ranged attacks.
+    Click on the sword icon to bring up a list of attacks. Click on the expander icon to bring up a list of skills. Click on the crescent icon to see spells.
+    Click on a spell or skill in the menu or on the hotbar to use it. Alternately, you can use the hotkeys (displayed on the bar). Use the mouse to target skills or ranged attacks.
     Attack by bumping the enemies.
 
     Press #YELLOW#PageUp#LAST# or #YELLOW#PageDown#LAST# to scroll the hotbar pages, should you get so many spells that they don't fit on a single page.
@@ -25,7 +26,7 @@ function _M:init()
     Press #YELLOW#ESC#LAST# to access the game menu. Click "Graphics Mode" to bring up a menu where you can toggle tiles on/off.
     Press #YELLOW#'c'#LAST# to display character sheet.
     Press #YELLOW#'p'#LAST# to display level-up screen.
-    Press #YELLOW#'m'#LAST# to display a list of your activable abilities (shoot, polearm & any spells you might have)
+    Press #YELLOW#'m'#LAST# to display a full list of your activable abilities and to decide which ones should be present on your hotbar.
     Press #YELLOW#'r'#LAST# to rest.
     Press #YELLOW#'i'#LAST# to display inventory screen.
     Press #YELLOW#'g'#LAST# to pick up items.
