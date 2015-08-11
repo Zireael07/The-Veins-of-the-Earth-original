@@ -104,7 +104,7 @@ function _M:generateList(type)
 	for j, t in pairs(self.actor.talents_def) do
 		if self.actor:knowTalent(t.id) and not t.hide and t.mode ~= "passive" then
             local tt = game.player:getTalentTypeFrom(t.type[1])
-            if type and ((type ~= "spell" and tt.type == type) or (type == "spell" and t.is_spell)) then
+            if type and ((type ~= "spells" and tt.type == type) or (type == "spells" and t.is_spell)) then
 
 			local nodes = talents
 			local status = tstring{{"color", "LIGHT_GREEN"}, "Talents"}
