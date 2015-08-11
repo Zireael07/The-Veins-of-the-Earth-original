@@ -235,16 +235,22 @@ newTalent{
 		return {type="ball", range=self:getTalentRange(t), selffire=false, radius=self:getTalentRadius(t), talent=t}
 	end,
     action = function(self, t)
-		local tg = self:getTalentTarget(t)
-		local x, y, target = self:getTarget(tg)
-        if not x or not y or not target then return nil end
+        local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+		local _ _, _, _, x, y = self:canProject(tg, x, y)
+		if not x or not y then return nil end
 
-        local check = 15 + target.will_save
-        local super = 25 + target.will_save
+        self:project(tg, x, y, function(tx, ty)
+			local target = game.level.map(tx, ty, Map.ACTOR)
+			if not target or target == self then return end
 
-        if self:skillCheck("intimidate", super, true) then target:setEffect(target.EFF_FEAR, 5, {})
-        elseif self:skillCheck("intimidate", check) then target:setEffect(target.EFF_SHAKEN, 5, {})
-        else end
+            local check = 15 + target.will_save
+            local super = 25 + target.will_save
+
+            if self:skillCheck("intimidate", super, true) then target:setEffect(target.EFF_FEAR, 5, {})
+            elseif self:skillCheck("intimidate", check) then target:setEffect(target.EFF_SHAKEN, 5, {})
+            else end
+		end)
 
         return true
     end,
