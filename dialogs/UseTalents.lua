@@ -31,8 +31,8 @@ local confirmMark = require("engine.Entity").new({image="ui/chat-icon.png"})
 local autoMark = require("engine.Entity").new({image = "/ui/hotkeys/mainmenu.png"})
 
 -- generate talent status separately to enable quicker refresh of Dialog
-local function TalentStatus(who,t) 
-	local status = tstring{{"color", "LIGHT_GREEN"}, "Active"} 
+local function TalentStatus(who,t)
+	local status = tstring{{"color", "LIGHT_GREEN"}, "Active"}
 	if who:isTalentCoolingDown(t) then
 		status = tstring{{"color", "LIGHT_RED"}, who:isTalentCoolingDown(t).." turns"}
 	elseif not who:preUseTalent(t, true, true) then
@@ -42,13 +42,13 @@ local function TalentStatus(who,t)
 	elseif t.mode == "passive" then
 		status = tstring{{"color", "LIGHT_BLUE"}, "Passive"}
 	end
-	if who:isTalentAuto(t.id) then 
+	if who:isTalentAuto(t.id) then
 		status:add(autoMark:getDisplayString())
 	end
-	if who:isTalentConfirmable(t.id) then 
+	if who:isTalentConfirmable(t.id) then
 		status:add(confirmMark:getDisplayString())
 	end
-	return tostring(status) 
+	return tostring(status)
 end
 
 function _M:init(actor)
@@ -286,7 +286,8 @@ function _M:generateList()
 
 	-- Generate lists of all talents by category
 	for j, t in pairs(self.actor.talents_def) do
-		if self.actor:knowTalent(t.id) and not (t.hide and t.mode == "passive") then
+	--	if self.actor:knowTalent(t.id) and not (t.hide and t.mode == "passive") then
+		if self.actor:knowTalent(t.id) and not t.hide then
 			local nodes = (t.mode == "sustained" and sustains) or (t.mode =="passive" and passives) or actives
 			if self.actor:isTalentCoolingDown(t) then
 				nodes = cooldowns
@@ -298,7 +299,7 @@ function _M:generateList()
 				nodes = passives
 			end
 			local status = TalentStatus(self.actor,t)
-			
+
 			-- Pregenerate icon with the Tiles instance that allows images
 			if t.display_entity then t.display_entity:getMapObjects(game.uiset.hotkeys_display_icons.tiles, {}, 1) end
 
