@@ -102,6 +102,7 @@ load("data/talents/monster.lua")
 
 load("data/talents/skills.lua")
 load("data/talents/special.lua")
+load("data/talents/menu.lua")
 
 load("data/talents/class features/barbarian.lua")
 load("data/talents/class features/bard.lua")
