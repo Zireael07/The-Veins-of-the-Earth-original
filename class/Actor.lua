@@ -583,7 +583,7 @@ end
 function _M:getType()
 	local type = self.type:gsub("_", "[ ]")
 
-	if self.type == "humanoid" then type = self.type.." ("..self.subtype:gsub("_", "[ ]")..")" end
+	if self.type == "humanoid" then type = self.type.." ("..self.subtype:gsub("_", " ")..")" end
 	return type
 end
 
@@ -743,7 +743,16 @@ end
 --Death & dying related stuff
 function _M:deathStuff(value, src)
 --Wounds system (a combination of SRD & PF)
-if (self.life - (value or 0)) >= 0 then return end
+if (self.life - (value or 0)) >= 0 then
+
+	--award XP
+	if (value or 0) > 0 then
+		--half original XP value divided by value%
+		local hp_perc = value /self.max_life
+		local xp = math.round(self:worthExp(killer)*hp_perc)
+		src:gainExp(xp)
+	end
+	return end
 
 --Out of life (vitality points)
 if ((self.life or 0) - (value or 0) < 0) then
@@ -1224,7 +1233,7 @@ function _M:doesProvokeAoO(ox, oy, x, y)
         if act ~= self and act:reactionToward(self) < 0 and not act.dead then
 		--[[	--NOTE: needs to be 2 to trigger even though it doesn't seem logical
 			if dist <= 2 --TODO: or 3 and wielding a polearm]]
-			if not self:isMovingTowards(ox, oy, x, y, act) then game.log(("%s is moving away!"):format(self.name:capitalize()))
+			if not self:isMovingTowards(ox, oy, x, y, act) then --game.log(("%s is moving away!"):format(self.name:capitalize()))
 				if dist <=2 then return true
 	        	else return false end
 			end
@@ -1606,11 +1615,15 @@ function _M:worthExp(target)
 
 	if not exp_worth_chart[cr] then
         local new_cr = math.ceil(cr)
-        return exp_worth_chart[new_cr]
+		if exp_worth_chart[new_cr] then
+        	return exp_worth_chart[new_cr]/2
+		else
+			return 0
+		end
 
     --standard
     else
-	return exp_worth_chart[cr]
+	return exp_worth_chart[cr]/2
     end
 end
 
