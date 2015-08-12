@@ -46,7 +46,7 @@ newEntity{
 	max_life = resolvers.rngavg(15,20),
 	hit_die = 3,
 	challenge = 3,
-	combat_natural = 11,
+	combat_natural = 10,
 	skill_escapeartist = 6,
 	skill_listen = 6,
 	skill_search = 6,
