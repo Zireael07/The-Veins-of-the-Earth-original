@@ -29,10 +29,89 @@ newEffect{
 
 }
 
---Confused
---Cowering
---Dazzled
---Deafened
+-- attribute changes from Inc
+newEffect{
+    name = "CONFUSED",
+    desc = "Confused",
+    long_desc = [[The character is confused.]],
+    type = "mental",
+    status = "detrimental",
+    on_gain = function(self, err) return "#Target# is confused!", "+Confuse" end,
+	on_lose = function(self, err) return "#Target# regains clarity of mind.", "-Confuse" end,
+    activate = function(self, eff)
+        local inc = { [Stats.STAT_INT]=-4, [Stats.STAT_WIS]=-4 }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.decrease = self:addTemporaryValue("stat_decrease_int", 1)
+        eff.decrease2 = self:addTemporaryValue("stat_decrease_wis", 1)
+    end,
+    deactivate = function(self, eff)
+        self:removeTemporaryValue("stat_decrease_int", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_wis", eff.decrease2)
+    end,
+}
+
+
+newEffect{
+    name = "COWERING",
+    desc = "Cowering",
+    long_desc = [[The character is frozen in fear and can take no actions.]],
+    type = "physical",
+    status = "detrimental",
+    on_gain = function(self, err) return "#Target# is cowering in fear!", "+Cower" end,
+	on_lose = function(self, err) return "#Target# regained some courage.", "-Cower" end,
+    activate = function(self, eff)
+		local dexmod = self:getDexMod()
+		eff.tmpid = self:addTemporaryValue("never_move", 1)
+		self:effectTemporaryValue(eff, "combat_untyped", -2)
+		self:effectTemporaryValue(eff, "combat_untyped", -dexmod)
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("never_move", eff.tmpid)
+	end
+}
+
+--Usually 1 turn
+newEffect{
+    name = "DAZED",
+    desc = "Dazed",
+    type = "physical",
+	status = "detrimental",
+	on_gain = function(self, err) return "#Target# is dazed!", "+Daze" end,
+	on_lose = function(self, err) return "#Target# got their wits back.", "-Daze" end,
+    activate = function(self, eff)
+        eff.tmpid = self:addTemporaryValue("never_move", 1)
+    end,
+    deactivate = function(self, eff)
+        self:removeTemporaryValue("never_move", eff.tmpid)
+    end,
+}
+
+--1 on Spot and Search
+newEffect{
+    name = "DAZZLE",
+    desc = "Dazzled",
+    type = "physical",
+	status = "detrimental",
+    on_gain = function(self, err) return "#Target# is dazzled!", "+Dazzled" end,
+	on_lose = function(self, err) return "#Target# can see normally again.", "-Dazzled" end,
+    activate = function(self, eff)
+        eff.attack = self:addTemporaryValue("combat_attack", -1)
+    end,
+    deactivate = function(self, eff)
+        self:removeTemporaryValue("combat_attack", eff.attack)
+    end,
+}
+
+--20% spell failure when casting not Still spells; fails all Listen checks
+newEffect{
+    name = "DEAF",
+    desc = "Deafened",
+    type = "physical",
+	status = "detrimental",
+    on_gain = function(self, err) return "#Target# is deafened!", "+Deaf" end,
+	on_lose = function(self, err) return "#Target# can hear normally again.", "-Deaf" end,
+}
+
 
 --Conditions for below 0 hp
 newEffect{
@@ -240,6 +319,7 @@ newEffect{
 --Sickened
 --Staggered
 
+--stat penalties from Inc
 --Drop everything held
 newEffect{
 	name = "STUN",
@@ -250,13 +330,20 @@ newEffect{
 	on_gain = function(self, err) return "#Target# is stunned!", "+Stun" end,
 	on_lose = function(self, err) return "#Target# is no longer stunned", "-Stun" end,
 	activate = function(self, eff)
+        local inc = { [Stats.STAT_DEX]=-6, }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.decrease = self:addTemporaryValue("stat_decrease_con", 1)
+
 		local dexmod = self:getDexMod()
 		eff.tmpid = self:addTemporaryValue("never_move", 1)
 		self:effectTemporaryValue(eff, "combat_untyped", -2)
-		self:effectTemporaryValue(eff, "combat_untyped", -dexmod)
+        if dexmod > 0 then
+		    self:effectTemporaryValue(eff, "combat_untyped", -dexmod)
+        end
 	end,
 	deactivate = function(self, eff)
 		self:removeTemporaryValue("never_move", eff.tmpid)
+        self:removeTemporaryValue("stat_decrease_con", eff.decrease)
 	end
 }
 

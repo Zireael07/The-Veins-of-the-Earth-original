@@ -53,6 +53,58 @@ newEffect{
 	end,
 }
 
+--Hunger
+newEffect{
+	name = "HUNGRY",
+	desc = "Hungry",
+	type = "physical",
+	status = "neutral",
+	activate = function(self, eff)
+        local inc = { [Stats.STAT_STR]=-1, [Stats.STAT_CON]=-1 }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+        eff.decrease2 = self:addTemporaryValue("stat_decrease_con", 1)
+    end,
+    deactivate = function(self, eff)
+        self:removeTemporaryValue("stat_decrease_str", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease2)
+    end,
+}
+
+newEffect{
+	name = "STARVING",
+	desc = "Starving",
+	type = "physical",
+	status = "neutral",
+	activate = function(self, eff)
+        local inc = { [Stats.STAT_STR]=-2, [Stats.STAT_CON]=-2 }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+        eff.decrease2 = self:addTemporaryValue("stat_decrease_con", 1)
+    end,
+    deactivate = function(self, eff)
+        self:removeTemporaryValue("stat_decrease_str", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease2)
+    end,
+}
+
+newEffect{
+	name = "WEAK",
+	desc = "Weak",
+	type = "physical",
+	status = "neutral",
+	activate = function(self, eff)
+        local inc = { [Stats.STAT_STR]=-4, [Stats.STAT_CON]=-4 }
+		self:effectTemporaryValue(eff, "inc_stats", inc)
+		eff.decrease = self:addTemporaryValue("stat_decrease_str", 1)
+        eff.decrease2 = self:addTemporaryValue("stat_decrease_con", 1)
+    end,
+    deactivate = function(self, eff)
+        self:removeTemporaryValue("stat_decrease_str", eff.decrease)
+		self:removeTemporaryValue("stat_decrease_con", eff.decrease2)
+    end,
+}
+
 newEffect{
 	name = "TRACKING",
 	desc = "Tracking",
