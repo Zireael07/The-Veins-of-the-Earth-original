@@ -750,7 +750,9 @@ if (self.life - (value or 0)) >= 0 then
 		--half original XP value divided by value%
 		local hp_perc = value /self.max_life
 		local xp = math.round(self:worthExp(killer)*hp_perc)
-		src:gainExp(xp)
+		if src then
+			src:gainExp(xp)
+		end
 	end
 	return end
 
