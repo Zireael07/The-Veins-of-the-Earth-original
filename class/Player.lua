@@ -87,7 +87,7 @@ function _M:init(t, no_default)
   self.background_points = 2 --to account for lvl 1
 
   --Timers :D
-  self.nutrition = 3000
+  self.nutrition = 5000
   self.lite_counter = 5000
   self.pseudo_id_counter = 10
   self.id_counter = 50
@@ -142,6 +142,7 @@ function _M:act()
 
   self:playerCounters()
 
+  self:checkNutrition()
 
   -- Resting ? Running ? Otherwise pause
   if not self:restStep() and not self:runStep() and self.player then
@@ -851,6 +852,23 @@ function _M:cityRest()
 
 	--reset the ignore wound feat flag
 	self.ignored_wound = false
+end
+
+--Apply effects from hunger
+--see PlayerDisplay line 140 for values
+function _M:checkNutrition()
+	if self.nutrition > 3000 then
+		if self:hasEffect(self.EFF_HUNGRY) then self:removeEffect(self.EFF_HUNGRY, true) end
+	end
+	if self.nutrition < 3000 then self:setEffect(self.EFF_HUNGRY, 1000, {}) end
+	if self.nutrition < 2000 then
+		self:setEffect(self.EFF_STARVING, 1000, {})
+		if self:hasEffect(self.EFF_HUNGRY) then self:removeEffect(self.EFF_HUNGRY, true) end
+	end
+	if self.nutrition < 1500 then
+		self:setEffect(self.EFF_WEAK, 1000, {})
+		if self:hasEffect(self.EFF_STARVING) then self:removeEffect(self.EFF_STARVING, true) end
+	end
 end
 
 --- Can we continue running?
