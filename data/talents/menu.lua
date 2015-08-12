@@ -8,6 +8,7 @@ newTalent{
 	cooldown = 0,
 	range = 0,
     no_npc_use = true,
+	no_energy = true,
     hide = true,
 	action = function(self, t)
         local talent = self:talentDialog(require("mod.dialogs.TalentMenu").new(self, "special/special"))
@@ -36,6 +37,7 @@ newTalent{
 	points = 1,
 	cooldown = 0,
 	range = 0,
+	no_energy = true,
     no_npc_use = true,
     hide = true,
 	action = function(self, t)
@@ -65,6 +67,7 @@ newTalent{
 	points = 1,
 	cooldown = 0,
 	range = 0,
+	no_energy = true,
     no_npc_use = true,
     hide = true,
 	action = function(self, t)
