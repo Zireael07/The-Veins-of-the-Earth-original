@@ -226,7 +226,7 @@ newArcaneSpell{
 
 		if not x or not y then return nil end
 
-		local level = t.num_dice(self,t)
+	--	local level = t.num_dice(self,t)
 		local damage = rng.dice(3,6)
 
 		self:project(tg, x, y, DamageType.FIRE, {dam=t.getDamage(self, t), save=true, save_dc = self:getSpellDC(t)})
