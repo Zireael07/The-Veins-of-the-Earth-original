@@ -275,6 +275,87 @@ newEffect{
 	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtLaw" end,
 }
 
+--Protection from elements
+newEffect{
+	name = "PROTECT_ACID",
+	desc = "Protection from acid",
+	type = "mental",
+	status = "beneficial",
+	parameters = { power=1 },
+	on_gain = function(self, err) return "#Target# feels safer!", "+ProtAcid" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtAcid" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("resists", {[DamageType.ACID]=eff.power})
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("resists", eff.tmpid)
+	end,
+}
+
+newEffect{
+	name = "PROTECT_COLD",
+	desc = "Protection from cold",
+	type = "mental",
+	status = "beneficial",
+	parameters = { power=1 },
+	on_gain = function(self, err) return "#Target# feels safer!", "+ProtCold" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtCold" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("resists", {[DamageType.COLD]=eff.power})
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("resists", eff.tmpid)
+	end,
+}
+
+newEffect{
+	name = "PROTECT_FIRE",
+	desc = "Protection from fire",
+	type = "mental",
+	status = "beneficial",
+	parameters = { power=1 },
+	on_gain = function(self, err) return "#Target# feels safer!", "+ProtFire" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtFire" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("resists", {[DamageType.FIRE]=eff.power})
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("resists", eff.tmpid)
+	end,
+}
+
+newEffect{
+	name = "PROTECT_ELECTRIC",
+	desc = "Protection from electricity",
+	type = "mental",
+	status = "beneficial",
+	parameters = { power=1 },
+	on_gain = function(self, err) return "#Target# feels safer!", "+ProtElec" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtElec" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("resists", {[DamageType.ELECTRIC]=eff.power})
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("resists", eff.tmpid)
+	end,
+}
+
+newEffect{
+	name = "PROTECT_SONIC",
+	desc = "Protection from sonic",
+	type = "mental",
+	status = "beneficial",
+	parameters = { power=1 },
+	on_gain = function(self, err) return "#Target# feels safer!", "+ProtSonic" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-ProtSonic" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("resists", {[DamageType.SONIC]=eff.power})
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("resists", eff.tmpid)
+	end,
+}
+
 --Dummies again
 newEffect{
 	name = "KNOW_ALIGNMENT",

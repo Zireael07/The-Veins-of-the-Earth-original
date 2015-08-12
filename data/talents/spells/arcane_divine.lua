@@ -188,6 +188,168 @@ newArcaneDivineSpell{
 	end,
 }
 
+--based on Inc: +1 DR per 2 caster levels max 5
+newArcaneDivineSpell{
+	name = "Endure Elements",
+	type = {"arcane_divine", 1},
+	mode = 'activated',
+	level = 1,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 1,
+	requires_target = true,
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 150
+		else return 100 end
+	end,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = {type="hit", range=self:getTalentRange(t), nowarning=true}
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		-- Choose effect
+		local result = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired energy type to ward from",{
+			{name="acid", desc=""},
+			{name="cold", desc=""},
+			{name="fire", desc=""},
+			{name="electricity", desc=""},
+			{name="sonic", desc=""}
+		}, function(result)
+			self:talentDialogReturn(result)
+			game:unregisterDialog(self:talentDialogGet())
+		end))
+
+			if not result then return nil end
+
+		--[[	if result then
+				local effect = "EFF_PROTECT_"..result:upper()
+				target:setEffect(self.effect, t.getDuration(self, t), {power=10})
+				end]]
+
+			if result == "acid" then target:setEffect(self.EFF_PROTECT_ACID, t.getDuration(self, t), {power=3}) end
+			if result == "cold" then target:setEffect(self.EFF_PROTECT_COLD, t.getDuration(self, t), {power=3}) end
+			if result == "fire" then target:setEffect(self.EFF_PROTECT_FIRE, t.getDuration(self, t), {power=3}) end
+			if result == "electricity" then target:setEffect(self.EFF_PROTECT_ELECTRIC, t.getDuration(self, t), {power=3}) end
+			if result == "sonic" then target:setEffect(self.EFF_PROTECT_SONIC, t.getDuration(self, t), {power=3}) end
+
+		return true
+	end,
+	info = function(self, t)
+		return ([[You create a minor magical ward which protects from a certain element.]])
+	end,
+}
+
+
+newArcaneDivineSpell{
+	name = "Resist Energy",
+	type = {"arcane_divine", 1},
+	mode = 'activated',
+	level = 2,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 1,
+	requires_target = true,
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 150
+		else return 100 end
+	end,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = {type="hit", range=self:getTalentRange(t), nowarning=true}
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		-- Choose effect
+		local result = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired energy type to ward from",{
+			{name="acid", desc=""},
+			{name="cold", desc=""},
+			{name="fire", desc=""},
+			{name="electricity", desc=""},
+			{name="sonic", desc=""}
+		}, function(result)
+			self:talentDialogReturn(result)
+			game:unregisterDialog(self:talentDialogGet())
+		end))
+
+			if not result then return nil end
+
+		--[[	if result then
+				local effect = "EFF_PROTECT_"..result:upper()
+				target:setEffect(self.effect, t.getDuration(self, t), {power=10})
+				end]]
+
+			if result == "acid" then target:setEffect(self.EFF_PROTECT_ACID, t.getDuration(self, t), {power=10}) end
+			if result == "cold" then target:setEffect(self.EFF_PROTECT_COLD, t.getDuration(self, t), {power=10}) end
+			if result == "fire" then target:setEffect(self.EFF_PROTECT_FIRE, t.getDuration(self, t), {power=10}) end
+			if result == "electricity" then target:setEffect(self.EFF_PROTECT_ELECTRIC, t.getDuration(self, t), {power=10}) end
+			if result == "sonic" then target:setEffect(self.EFF_PROTECT_SONIC, t.getDuration(self, t), {power=10}) end
+
+		return true
+	end,
+	info = function(self, t)
+		return ([[You create a magical ward which protects from a certain element.]])
+	end,
+}
+
+newArcaneDivineSpell{
+	name = "Protection From Energy",
+	type = {"arcane_divine", 1},
+	mode = 'activated',
+	level = 3,
+	points = 1,
+	tactical = { BUFF = 2 },
+	range = 1,
+	requires_target = true,
+	getDuration = function(self, t)
+		if self:isTalentActive(self.T_EXTEND) then return 150
+		else return 100 end
+	end,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+	action = function(self, t)
+		local tg = {type="hit", range=self:getTalentRange(t), nowarning=true}
+		local x, y, target = self:getTarget(tg)
+		if not x or not y or not target then return nil end
+
+		-- Choose effect
+		local result = self:talentDialog(require('mod.dialogs.GetChoice').new("Choose the desired energy type to ward from",{
+			{name="acid", desc=""},
+			{name="cold", desc=""},
+			{name="fire", desc=""},
+			{name="electricity", desc=""},
+			{name="sonic", desc=""}
+		}, function(result)
+			self:talentDialogReturn(result)
+			game:unregisterDialog(self:talentDialogGet())
+		end))
+
+			if not result then return nil end
+
+		--[[	if result then
+				local effect = "EFF_PROTECT_"..result:upper()
+				target:setEffect(self.effect, t.getDuration(self, t), {power=10})
+				end]]
+
+			if result == "acid" then target:setEffect(self.EFF_PROTECT_ACID, t.getDuration(self, t), {power=15}) end
+			if result == "cold" then target:setEffect(self.EFF_PROTECT_COLD, t.getDuration(self, t), {power=15}) end
+			if result == "fire" then target:setEffect(self.EFF_PROTECT_FIRE, t.getDuration(self, t), {power=15}) end
+			if result == "electricity" then target:setEffect(self.EFF_PROTECT_ELECTRIC, t.getDuration(self, t), {power=15}) end
+			if result == "sonic" then target:setEffect(self.EFF_PROTECT_SONIC, t.getDuration(self, t), {power=15}) end
+
+		return true
+	end,
+	info = function(self, t)
+		return ([[You create a magical ward which protects from a certain element.]])
+	end,
+}
+
+
 --"Animal buff" spells
 newArcaneDivineSpell{
 	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE",
