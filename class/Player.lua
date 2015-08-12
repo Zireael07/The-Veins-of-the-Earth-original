@@ -151,41 +151,7 @@ function _M:act()
 end
 
 function _M:playerCounters()
-  --Count down nutrition
-  local nutrition = self.nutrition
-
-  if not self.resting then
-    if self:knowTalent(self.T_FASTING) then
-      self.nutrition = self.nutrition - 0.33
-	elseif self.slow_digest then
-		self.nutrition = self.nutrition - 0.5
-	else
-    self.nutrition = self.nutrition - 1
-    end
-  end
-
-  if self.resting then
-    --1/5th normal rate for elves
-    if self:hasDescriptor{race="Drow"} or self:hasDescriptor{race="Elf"} then
-      if self:knowTalent(self.T_FASTING) then
-        self.nutrition = self.nutrition - 0.06
-      else
-        self.nutrition = self.nutrition - 0.2
-      end
-    else
-      if self:knowTalent(self.T_FASTING) then
-      self.nutrition = self.nutrition - 0.16
-		elseif self.slow_digest then
-		self.nutrition = self.nutrition - 0.25
-      else
-      --Halve hunger rate when sleeping
-      self.nutrition = self.nutrition - 0.5
-      end
-    end
-  end
-
- --Cap nutrition
- if self.nutrition == 1 then self.nutrition = 1 end
+	self:decreaseNutrition(1)
 
    --Resilient feat
   if self:knowTalent(self.T_RESILLIENT) and not self.resting then
@@ -410,7 +376,9 @@ function _M:move(x, y, force)
 	--Worldmap passage of time
 	if game.zone.worldmap and not force then
 		-- Cheat with time
-		game.turn = game.turn + 1000
+		local change = 1000
+		game.turn = game.turn + change
+		self:decreaseNutrition(change/10)
 	end
 
   -- Remember not to describe this grid again.
@@ -852,6 +820,47 @@ function _M:cityRest()
 
 	--reset the ignore wound feat flag
 	self.ignored_wound = false
+end
+
+function _M:decreaseNutrition(turns)
+	--paranoia
+	if not turns then turns = 1 end
+
+	--Count down nutrition
+	local nutrition = self.nutrition
+
+	if not self.resting then
+	  if self:knowTalent(self.T_FASTING) then
+		self:incNutrition(-0.33*turns)
+	  elseif self.slow_digest then
+		  self:incNutrition(-0.5*turns)
+	  else
+	  	self:incNutrition(-1*turns)
+	  end
+	end
+
+	if self.resting then
+	  --1/5th normal rate for elves
+	  if self:hasDescriptor{race="Drow"} or self:hasDescriptor{race="Elf"} then
+		if self:knowTalent(self.T_FASTING) then
+		  self:incNutrition(-0.06*turns)
+		else
+		  self:incNutrition(-0.2*turns)
+		end
+	  else
+		if self:knowTalent(self.T_FASTING) then
+		self:incNutrition(-0.16*turns)
+		  elseif self.slow_digest then
+		  self:incNutrition(-0.25*turns)
+		else
+		--Halve hunger rate when sleeping
+		self:incNutrition(-0.5*turns)
+		end
+	  end
+	end
+
+   --Cap nutrition
+   if self.nutrition == 1 then self.nutrition = 1 end
 end
 
 --Apply effects from hunger
@@ -1393,7 +1402,7 @@ end
 
 --Cleaner code
 function _M:incNutrition(v)
-	if not v or v < 0 then return end
+	if not v then return end
 
 	self.nutrition = self.nutrition + v
 end
