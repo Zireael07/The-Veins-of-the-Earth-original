@@ -1631,6 +1631,9 @@ newBirthDescriptor {
 
 		-- Sorcerers gain a caster level every level
 		actor:incCasterLevel("arcane", 1)
+		--Refresh max spell pts
+		actor.mana = actor:setMaxSpellPts()
+		actor.max_mana = actor:setMaxSpellPts()
 
 		-- At each even level past level 2 we gain a spell level
 		if level % 2 == 0 then
@@ -1958,7 +1961,15 @@ newBirthDescriptor {
 			actor:attr("fortitude_save", 2)
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 
-			actor:learnTalentType("divine")
+			actor:learnTalentType("abjuration_divine", true)
+			actor:learnTalentType("conjuration_divine", true)
+			actor:learnTalentType("divination_divine", true)
+			actor:learnTalentType("enchantment_divine", true)
+			actor:learnTalentType("evocation_divine", true)
+			actor:learnTalentType("necromancy_divine", true)
+			actor:learnTalentType("transmutation_divine", true)
+
+			actor:learnTalentType("arcane_divine", true)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
@@ -2336,6 +2347,9 @@ newBirthDescriptor {
 
 		--Gain a caster level every level
 		actor:incCasterLevel("divine", 1)
+		--Refresh max spell pts
+		actor.mana = actor:setMaxSpellPts()
+		actor.max_mana = actor:setMaxSpellPts()
 		end
 	end,
 }
