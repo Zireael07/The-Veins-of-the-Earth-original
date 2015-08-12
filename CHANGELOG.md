@@ -8,10 +8,15 @@ CHANGELOG
 * bug fix - limit attacks of opportunity to moving away
 * bug fix - no more negative skillpoints upon gaining a level
 * bug fix - gameplay tab in options is now properly hidden after game starts
+* bug fix - Intimidate now works as intended
+* bug fix - reduce tojanida AC
+* bug fix - hunger now increases on the worldmap
+* bug fix - no more Lua error on using Ignizzar's fire spell
+* bug fix - sorcerer/shaman spell points now update when gaining a level
 
 * new tiles: fungi, handwraps, monk robes
 * new zones: inn; cave grove, fungi maze, fungi forest; goblin barracks
-* new spells: entangle, charm animal, delay poison, longstrider, detect poison, detect magic, shield, protection from alignment, true strike
+* new spells: entangle, charm animal, delay poison, longstrider, detect poison, detect magic, shield, protection from alignment, true strike, endure elements, resist energy, protection from energy,
 * new NPCs: city seller (can sell from most of the shops defined except armor/weaponsmith and library)
 * new magic item properties: minotaur, of physical perfection
 * new items: handwraps, monk robes, archmage robes; a lot of consumables (foods, drinks)
@@ -20,13 +25,14 @@ CHANGELOG
 * implement Pick Pockets, Decipher Script skill
 * split skills into adventuring and background per PF variant rule
 * new variant rule: Pathfinder feats - every two levels instead of every three levels
-* implement entangled, exhausted, petrified, prone conditions
+* implement confused, cowering, dazed, dazzled, deafened, entangled, exhausted, petrified, prone conditions
 * move mage armor spell to abjuration school
 * overhaul nutrition system
+* more ways to earn XP - dealing hp damage, making successful skill checks
 * items display special requirements
 * change potions and drinks ASCII symbols
 * change bear endurance, summon creature icons
-* implement menu buttons on hotbar, especially useful for spellcasters; skills/spells no longer get auto-added to the bar 
+* implement menu buttons on hotbar, especially useful for spellcasters; skills/spells no longer get auto-added to the bar
 * spellbook now shows a pop-up if you can't memorize a spell due to exceeding limits
 * spellbook shows school in descriptions (except for spells which are both arcane and divine in nature)
 * level up screen is now tabbed instead of using buttons to go to various parts (skills, feats)
