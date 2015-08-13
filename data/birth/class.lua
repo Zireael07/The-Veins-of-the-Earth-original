@@ -1764,7 +1764,7 @@ newBirthDescriptor {
 				}, function(result)
 					actor:learnTalentType("abjuration")
 					actor:learnTalentType("abjuration_both")
-					if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then actor:learnTalentType("conjuration") actor:learnTalentType("conjuration_both") end
+					if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then actor:learnTalentType("conjuration") end --actor:learnTalentType("conjuration_both") end
 					if result ~= "Necromancy" then actor:learnTalentType("divination") actor:learnTalentType("divination_both") end
 					if result ~= "Illusion" then actor:learnTalentType("enchantment") end
 					actor:learnTalentType("evocation")
@@ -1997,15 +1997,11 @@ newBirthDescriptor {
 			actor:attr("fortitude_save", 2)
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 
-			actor:learnTalentType("abjuration_divine", true)
-			actor:learnTalentType("conjuration_divine", true)
-			actor:learnTalentType("divination_divine", true)
-			actor:learnTalentType("enchantment_divine", true)
-			actor:learnTalentType("evocation_divine", true)
-			actor:learnTalentType("necromancy_divine", true)
-			actor:learnTalentType("transmutation_divine", true)
+			local all_schools = {"abjuration_divine", "conjuration_divine", "divination_divine", "enchantment_divine", "evocation_divine", "necromancy_divine", "transmutation_divine"  }
+			descriptor.learn_talent_types(actor, all_schools)
 
-			actor:learnTalentType("arcane_divine", true)
+			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
+			descriptor.learn_talent_types(actor, both_schools)
 
 			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
 			actor:learnTalent(actor.T_MEDIUM_ARMOR_PROFICIENCY, true)
