@@ -391,8 +391,14 @@ function _M:dealDamage(target, weapon, crit, sneak)
     --Minimum 1 point of damage unless Damage Reduction works
     dam = math.max(1, dam)
 
+
+    if dam > 0 then
+      local damtype = DamageType.PHYSICAL
+      DamageType:get(damtype).projector(self, target.x, target.y, damtype, math.max(0, dam))
+    end
+
     --No negative damage with DR/-
-    local reduced_dam = dam - (target.combat_dr or 0)
+--    local reduced_dam = dam - (target.combat_dr or 0)
 
     --Account for magic weapons piercing DR
     if target.combat_dr and target.combat_dr_tohit then
@@ -404,7 +410,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
     end
 
 
-    dam = math.max(0, reduced_dam)
+--    dam = math.max(0, reduced_dam)
 
     --Player makes Listen checks if s/he can't see it happen
     local visible, srcSeen, tgtSeen = game:logVisible(self, target)
@@ -423,9 +429,6 @@ function _M:dealDamage(target, weapon, crit, sneak)
         end
     end
 
-
-
-
     --Poison target
     if self.poison and not target.dead and target:canBe("poison") then
       local poison = self.poison
@@ -433,13 +436,13 @@ function _M:dealDamage(target, weapon, crit, sneak)
       self:logCombat(target, ("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name))
     end
 
-    target:takeHit(dam, self)
-    --add a hint regarding DR
+    target:takeHit(dam, self, {damtype=damtype})
+--[[    --add a hint regarding DR
     if target.combat_dr and target.combat_dr > 0 then
       self:logCombat(target, ("%s deals %d damage to %s (damage reduction %d)!"):format(self:getLogName():capitalize(), dam, target.name, target.combat_dr))
     else
       self:logCombat(target, ("%s deals %d damage to %s!"):format(self:getLogName():capitalize(), dam, target.name))
-    end
+    end]]
 end
 
 

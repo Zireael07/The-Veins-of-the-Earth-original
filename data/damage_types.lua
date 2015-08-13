@@ -44,6 +44,9 @@ setDefaultProjector(function(src, x, y, type, dam)
 				dam = dam + (dam * inc / 100)
 			end
 
+			local dead
+			dead, dam = target:takeHit(dam, src, {damtype=type})
+
 			-- Log damage for later
 			if not DamageType:get(type).hideMessage then
 				local visible, srcSeen, tgtSeen = game:logVisible(src, target)
@@ -74,7 +77,7 @@ newDamageType{
 	projector = function(src, x, y, type, dam)
 		local target = game.level.map(x, y, Map.ACTOR) or src
 		if target then
-			local damage = dam.dam or dam
+			local damage = dam --or dam.dam
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
 			return realdam
 		end
