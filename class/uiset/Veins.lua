@@ -79,7 +79,7 @@ function _M:activate()
 --    profile.chat:enableFading(config.settings.tome.log_fade or 3)
     profile.chat:enableDisplayChans(false)
 
-  
+
 --    self.npcs_display = ActorsSeenDisplay.new(nil, 216, game.h - text_display_h, game.w - 216, text_display_h, "/data/gfx/ui/talents-list.png", font_mono, size_mono)
     self.npcs_display = ActorsSeenDisplay.new(nil, 216, game.h - text_display_h, game.w - 216, text_display_h, "/data/gfx/ui/talents-list.png", font_mono, size_mono)
     self.npcs_display:setColumns(3)
@@ -135,7 +135,7 @@ function _M:resizeIconsHotkeysToolbar()
 --    self.hotkeys_display_icons:enableShadow(0.6)
 
     if game.inited then
-        game:resizeMapViewport(game.w - 216, self.map_h_stop - 16, 216, 0)
+    --    game:resizeMapViewport(game.w - 216, self.map_h_stop - 16, 216, 0)
         self.logdisplay.display_y = self.logdisplay.display_y + self.map_h_stop - oldstop
         profile.chat.display_y = profile.chat.display_y + self.map_h_stop - oldstop
         self.npcs_display_y = self.npcs_display_y + self.map_h_stop - oldstop
@@ -151,7 +151,9 @@ end
 
 function _M:getMapSize()
     local w, h = core.display.size()
-    return 216, 0, w - 216, (self.map_h_stop or 80) - 16
+    return 220, 0, w - 220, h
+    --changing h leads to map distortion
+--    return 220, 0, w - 220, (h - 100)
 end
 
 --------------------------------------------------------------
@@ -414,7 +416,7 @@ function _M:setupMouse(mouse)
     -- Tooltip over the player pane
 --[[   mouse:registerZone(self.player_display.display_x, self.player_display.display_y, self.player_display.w, self.player_display.h - self.icons.h, function(button, mx, my, xrel, yrel, bx, by, event)
         self.player_display.mouse:delegate(button, mx, my, xrel, yrel, bx, by, event)
-    end)]] 
+    end)]]
     -- Move using the minimap
     mouse:registerZone(0, 0, 200, 200, function(button, mx, my, xrel, yrel, bx, by, event)
         if button == "left" and not xrel and not yrel and event == "button" then

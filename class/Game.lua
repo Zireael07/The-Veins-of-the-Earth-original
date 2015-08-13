@@ -301,11 +301,7 @@ end
 --Taken from ToME 4
 
 function _M:getMapSize()
---	return self.uiset:getMapSize()
-	local w, h = core.display.size()
-	return 200, 0, w - 200, h
---	return 0, 0, w, h
---	return 216, 0, w - 216, h
+	return self.uiset:getMapSize()
 end
 
 function _M:setupDisplayMode(reboot, mode)
@@ -387,7 +383,7 @@ function _M:setupDisplayMode(reboot, mode)
 
 		self:createFBOs()
 
---		self:resizeMapViewport(self.w - 216, self.h - 16, 216, 0)
+--		self:resizeMapViewport(self.w - 216, self.h - 52, 216, 0)
 
 --[[		-- Create the framebuffer
 		self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
@@ -769,7 +765,8 @@ end
 
 -- output a message to the log based on the visibility of an actor to the player
 function _M.logSeen(e, style, ...)
-	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end
+--	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end
+	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e) and game.player:canReallySee(e)) then game.log(style, ...) end
 end
 
 -- determine whether an action between 2 actors should produce a message in the log and if the player
