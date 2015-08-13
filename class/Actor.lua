@@ -52,6 +52,14 @@ module(..., package.seeall, class.inherit(engine.Actor,
 	engine.interface.ActorQuest,
 	mod.class.interface.Combat))
 
+-- Dont save the can_see_cache
+_M._no_save_fields.can_see_cache = true
+
+-- Use distance maps
+_M.__do_distance_map = true
+
+_M.__is_actor = true
+
 function _M:init(t, no_default)
 	-- Define some basic combat stats
 	self.combat_dr = 0
@@ -409,7 +417,8 @@ end
 
 --NOTE: Monkey patch for log+flyer problems
 function _M:setEffect(eff_id, dur, p, silent)
-	local visible, srcSeen = game:logVisible(self)  -- should a message be displayed?
+	---- special case: unpositioned source uses target parameters (for timed effects on target)
+	local visible, srcSeen, tgtSeen = game:logVisible(self, self)  -- should a message be displayed?
 
 	if visible then
     	engine.interface.ActorTemporaryEffects.setEffect(self, eff_id, dur, p, silent)
