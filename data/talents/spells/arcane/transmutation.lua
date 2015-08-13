@@ -1,7 +1,4 @@
-newTalentType{
-	all_limited=true,
-	type="transmutation",
-	name="transmutation",
+newTalentType{ all_limited=true, type="transmutation", name="transmutation",
 	description = "focuses on manipulating matter and bodies"
 }
 
@@ -67,107 +64,7 @@ newArcaneSpell{
 	end,
 }
 
-
---Arcane versions of buff spells
---Need to stay because specialization
-newArcaneSpell{
-	name = "Bear's Endurance", short_name = "BEAR_ENDURANCE_ARCANE",
-	type = {"transmutation", 1},
-	display = { image = "talents/bear_endurance.png"},
-	image = "talents/bear_endurance.png",
-	mode = 'activated',
-	level = 2,
-	points = 1,
-	tactical = { BUFF = 2 },
-	getDuration = function(self, t)
-		if self:isTalentActive(self.T_EXTEND) then return 8
-		else return 5 end
-	end,
-	range = 0,
-	action = function(self, t)
-		if not self then return nil end
-		self:setEffect(self.EFF_BEAR_ENDURANCE, t.getDuration(self, t), {})
-		return true
-	end,
-	info = function(self, t)
-		return ([[You increase your Constitution by +4.]])
-	end,
-}
-
-newArcaneSpell{
-	name = "Bull's Strength", short_name = "BULL_STRENGTH_ARCANE",
-	type = {"transmutation", 1},
-	display = { image = "talents/bull_strength.png"},
-	image = "talents/bull_strength.png",
-	mode = 'activated',
-	level = 2,
-	points = 1,
-	tactical = { BUFF = 2 },
-	getDuration = function(self, t)
-		if self:isTalentActive(self.T_EXTEND) then return 8
-		else return 5 end
-	end,
-	range = 0,
-	action = function(self, t)
-		if not self then return nil end
-		self:setEffect(self.EFF_BULL_STRENGTH, t.getDuration(self, t), {})
-		return true
-	end,
-	info = function(self, t)
-		return ([[You increase your Strength by +4.]])
-	end,
-}
-
-newArcaneSpell{
-	name = "Eagle's Splendor", short_name = "EAGLE_SPLENDOR_ARCANE",
-	type = {"transmutation", 1},
-	display = { image = "talents/eagle_splendor.png"},
-	image = "talents/eagle_splendor.png",
-	mode = 'activated',
-	level = 2,
-	points = 1,
-	tactical = { BUFF = 2 },
-	getDuration = function(self, t)
-		if self:isTalentActive(self.T_EXTEND) then return 8
-		else return 5 end
-	end,
-	range = 0,
-	action = function(self, t)
-		if not self then return nil end
-		self:setEffect(self.EFF_EAGLE_SPLENDOR, t.getDuration(self, t), {})
-		return true
-	end,
-
-	info = function(self, t)
-		return ([[You increase your Charisma by +4.]])
-	end,
-}
-
-newArcaneSpell{
-	name = "Owl's Wisdom", short_name = "OWL_WISDOM_ARCANE",
-	type = {"transmutation", 1},
-	display = { image = "talents/owl_wisdom.png"},
-	image = "talents/owl_wisdom.png",
-	mode = 'activated',
-	level = 2,
-	points = 1,
-	tactical = { BUFF = 2 },
-	getDuration = function(self, t)
-		if self:isTalentActive(self.T_EXTEND) then return 8
-		else return 5 end
-	end,
-	range = 0,
-	action = function(self, t)
-	if not self then return nil end
-	self:setEffect(self.EFF_OWL_WISDOM, t.getDuration(self, t), {})
-		return true
-	end,
-
-	info = function(self, t)
-		return ([[You increase your Wisdom by +4.]])
-	end,
-}
-
+--Wizards only
 newArcaneSpell{
 	name = "Cat's Grace",
 	type = {"transmutation", 1},
