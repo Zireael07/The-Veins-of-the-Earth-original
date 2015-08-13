@@ -483,7 +483,7 @@ end
 -- Precompute FOV form, for speed
 local fovdist = {}
 for i = 0, 30 * 30 do
-  fovdist[i] = math.max((20 - math.sqrt(i)) / 14, 0.6)
+  fovdist[i] = math.max((20 - math.sqrt(i)) / 17, 0.6)
 end
 local wild_fovdist = {}
 for i = 0, 10 * 10 do
@@ -573,7 +573,7 @@ end
 end
 
 --- Called before taking a hit, overload mod.class.Actor:onTakeHit() to stop resting and running
-function _M:onTakeHit(value, src)
+function _M:onTakeHit(value, src, death_note)
   self:runStop("taken damage")
   self:restStop("taken damage")
   local ret = mod.class.Actor.onTakeHit(self, value, src, death_note)
@@ -648,7 +648,7 @@ function _M:die(src, death_note)
         }
       end
       msg = msg:format(
-        game.player.name, game.player.level, game.player.descriptor.race:lower(), game.player.descriptor.class:lower(),
+        game.player.name:capitalize(), game.player.level, game.player.descriptor.race:lower(), game.player.descriptor.class:lower(),
         death_mean or "battered",
         srcname,
         src.name == top_killer and " (yet again)" or "",
