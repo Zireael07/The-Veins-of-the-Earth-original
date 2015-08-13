@@ -309,9 +309,7 @@ function _M:generateSpell()
 			local d = "#GOLD#"..t.name.."#LAST#\n"
 			--show school
 			local tt = player:getTalentTypeFrom(t.type[1])
-			if not tt.name == "arcane/divine" then
-				d = d.."#CHOCOLATE#"..tt.name.."#LAST#\n"
-			end
+			d = d.."#CHOCOLATE#"..tt.name.."#LAST#\n"
 			d = d..t.info(player,t)
 			list[#list+1] = {name=t.name, color = color, desc=d, data=t, image=t.image }
 		end
