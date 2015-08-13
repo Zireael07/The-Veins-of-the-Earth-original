@@ -184,7 +184,8 @@ newBirthDescriptor {
 			local all_schools = {"abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation" }
 			descriptor.learn_talent_types(actor, all_schools)
 
-			actor:learnTalentType("arcane_divine")
+			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
+			descriptor.learn_talent_types(actor, both_schools)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
@@ -325,7 +326,8 @@ newBirthDescriptor {
 			local all_schools = {"abjuration_divine", "conjuration_divine", "divination_divine", "enchantment_divine", "evocation_divine", "necromancy_divine", "transmutation_divine"  }
 			descriptor.learn_talent_types(actor, all_schools)
 
-			actor:learnTalentType("arcane_divine", true)
+			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
+			descriptor.learn_talent_types(actor, both_schools)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
@@ -824,7 +826,8 @@ newBirthDescriptor {
 			local all_schools = {"abjuration_divine", "conjuration_divine", "divination_divine", "enchantment_divine", "evocation_divine", "necromancy_divine", "transmutation_divine"  }
 			descriptor.learn_talent_types(actor, all_schools)
 
-			actor:learnTalentType("arcane_divine", true)
+			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
+			descriptor.learn_talent_types(actor, both_schools)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
@@ -1189,6 +1192,9 @@ newBirthDescriptor {
 				local all_schools = {"abjuration_divine", "conjuration_divine", "divination_divine", "enchantment_divine", "evocation_divine", "necromancy_divine", "transmutation_divine"  }
 				descriptor.learn_talent_types(actor, all_schools)
 
+				local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
+				descriptor.learn_talent_types(actor, both_schools)
+
             	descriptor.learn_all_spells_of_level(actor, 0)
 				descriptor.learn_all_spells_of_level(actor, 1)
 
@@ -1390,6 +1396,9 @@ newBirthDescriptor {
 
 			local all_schools = {"abjuration_divine", "conjuration_divine", "divination_divine", "enchantment_divine", "evocation_divine", "necromancy_divine", "transmutation_divine"  }
 			descriptor.learn_talent_types(actor, all_schools)
+
+			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
+			descriptor.learn_talent_types(actor, both_schools)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
@@ -1628,7 +1637,8 @@ newBirthDescriptor {
 			local all_schools = {"abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation" }
 			descriptor.learn_talent_types(actor, all_schools)
 
-			actor:learnTalentType("arcane_divine", true)
+			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
+			descriptor.learn_talent_types(actor, both_schools)
 
             --Get the spell points
             actor:learnTalent(actor.T_SPELL_POINTS_POOL, true)
@@ -1753,13 +1763,15 @@ newBirthDescriptor {
 					{name="Transmutation", desc="Restricts Conjuration"}
 				}, function(result)
 					actor:learnTalentType("abjuration")
-					if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then actor:learnTalentType("conjuration") end
-					if result ~= "Necromancy" then actor:learnTalentType("divination") end
+					actor:learnTalentType("abjuration_both")
+					if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then actor:learnTalentType("conjuration") actor:learnTalentType("conjuration_both") end
+					if result ~= "Necromancy" then actor:learnTalentType("divination") actor:learnTalentType("divination_both") end
 					if result ~= "Illusion" then actor:learnTalentType("enchantment") end
 					actor:learnTalentType("evocation")
 					if result ~= "Divination" and result ~= "Enchantment" then actor:learnTalentType("illusion") end
 					actor:learnTalentType("necromancy")
-					if result ~= "Conjuration" then actor:learnTalentType("transmutation") end
+					actor:learnTalentType("necromancy_both")
+					if result ~= "Conjuration" then actor:learnTalentType("transmutation") actor:learnTalentType("transmutation_both") end
 
 					-- Now that we know our schools, learn spells
 					descriptor.learn_all_spells_of_level(actor, 0)
