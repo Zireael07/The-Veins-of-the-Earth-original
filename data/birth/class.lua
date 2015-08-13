@@ -148,6 +148,11 @@ newBirthDescriptor {
 		if actor:getCha() >= 13 then return true end
 		return false
 	end,
+	learn_talent_types = function(actor, t)
+		for k,v in pairs(t) do
+			actor:learnTalentType(v)
+		end
+	end,
 	learn_all_spells_of_level = function(actor, level)
 		for tid, _ in pairs(actor.talents_def) do
 			t = actor:getTalentFromId(tid)
@@ -176,14 +181,9 @@ newBirthDescriptor {
 				actor:learnTalent(actor.T_SPELLS, true)
 			end
 
-			actor:learnTalentType("abjuration")
-			actor:learnTalentType("conjuration")
-			actor:learnTalentType("divination")
-			actor:learnTalentType("enchantment")
-			actor:learnTalentType("illusion")
-			actor:learnTalentType("transmutation")
-			actor:learnTalentType("evocation")
-			actor:learnTalentType("necromancy")
+			local all_schools = {"abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation" }
+			descriptor.learn_talent_types(actor, all_schools)
+
 			actor:learnTalentType("arcane_divine")
 
 			descriptor.learn_all_spells_of_level(actor, 0)
@@ -290,6 +290,11 @@ newBirthDescriptor {
 		if actor:getWis() >= 13 then return true end
 		return false
 	end,
+	learn_talent_types = function(actor, t)
+		for k,v in pairs(t) do
+			actor:learnTalentType(v)
+		end
+	end,
 	learn_all_spells_of_level = function(actor, level)
 		for tid, _ in pairs(actor.talents_def) do
 			t = actor:getTalentFromId(tid)
@@ -317,13 +322,8 @@ newBirthDescriptor {
 				actor:learnTalent(actor.T_SPELLS, true)
 			end
 
-			actor:learnTalentType("abjuration_divine", true)
-			actor:learnTalentType("conjuration_divine", true)
-			actor:learnTalentType("divination_divine", true)
-			actor:learnTalentType("enchantment_divine", true)
-			actor:learnTalentType("evocation_divine", true)
-			actor:learnTalentType("necromancy_divine", true)
-			actor:learnTalentType("transmutation_divine", true)
+			local all_schools = {"abjuration_divine", "conjuration_divine", "divination_divine", "enchantment_divine", "evocation_divine", "necromancy_divine", "transmutation_divine"  }
+			descriptor.learn_talent_types(actor, all_schools)
 
 			actor:learnTalentType("arcane_divine", true)
 
@@ -792,6 +792,11 @@ newBirthDescriptor {
 		if actor:getWis() >= 13 then return true end
 		return false
 	end,
+	learn_talent_types = function(actor, t)
+		for k,v in pairs(t) do
+			actor:learnTalentType(v)
+		end
+	end,
 	learn_all_spells_of_level = function(actor, level)
 		for tid, _ in pairs(actor.talents_def) do
 			t = actor:getTalentFromId(tid)
@@ -816,7 +821,9 @@ newBirthDescriptor {
 				actor:learnTalent(actor.T_SPELLS, true)
 			end
 
-			actor:learnTalentType("divine")
+			local all_schools = {"abjuration_divine", "conjuration_divine", "divination_divine", "enchantment_divine", "evocation_divine", "necromancy_divine", "transmutation_divine"  }
+			descriptor.learn_talent_types(actor, all_schools)
+
 			actor:learnTalentType("arcane_divine", true)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
@@ -1130,6 +1137,11 @@ newBirthDescriptor {
             if actor:getWis() >= 13 then return true end
             return false
         end,
+		learn_talent_types = function(actor, t)
+			for k,v in pairs(t) do
+				actor:learnTalentType(v)
+			end
+		end,
         learn_all_spells_of_level = function(actor, level)
 			for tid, _ in pairs(actor.talents_def) do
 				t = actor:getTalentFromId(tid)
@@ -1174,7 +1186,8 @@ newBirthDescriptor {
 					actor:learnTalent(actor.T_SPELLS, true)
             	end
 
-            	actor:learnTalentType("divine")
+				local all_schools = {"abjuration_divine", "conjuration_divine", "divination_divine", "enchantment_divine", "evocation_divine", "necromancy_divine", "transmutation_divine"  }
+				descriptor.learn_talent_types(actor, all_schools)
 
             	descriptor.learn_all_spells_of_level(actor, 0)
 				descriptor.learn_all_spells_of_level(actor, 1)
@@ -1246,6 +1259,11 @@ newBirthDescriptor {
 
 		if actor:getStr() >= 13 then return true end
 		return false
+	end,
+	learn_talent_types = function(actor, t)
+		for k,v in pairs(t) do
+			actor:learnTalentType(v)
+		end
 	end,
 	learn_all_spells_of_level = function(actor, level)
 		for tid, _ in pairs(actor.talents_def) do
@@ -1370,7 +1388,8 @@ newBirthDescriptor {
 				actor:learnTalent(actor.T_SPELLS, true)
         	end
 
-			actor:learnTalentType("divine")
+			local all_schools = {"abjuration_divine", "conjuration_divine", "divination_divine", "enchantment_divine", "evocation_divine", "necromancy_divine", "transmutation_divine"  }
+			descriptor.learn_talent_types(actor, all_schools)
 
 			descriptor.learn_all_spells_of_level(actor, 0)
 			descriptor.learn_all_spells_of_level(actor, 1)
@@ -1586,6 +1605,11 @@ newBirthDescriptor {
 		if actor:getCha() >= 16 then return true end
 		return false
 	end,
+	learn_talent_types = function(actor, t)
+		for k,v in pairs(t) do
+			actor:learnTalentType(v)
+		end
+	end,
 	learn_all_spells_of_level = function(actor, level)
 		for tid, _ in pairs(actor.talents_def) do
 			t = actor:getTalentFromId(tid)
@@ -1601,14 +1625,9 @@ newBirthDescriptor {
 
 			actor:attr("will_save", 2)
 
-			actor:learnTalentType("abjuration")
-			actor:learnTalentType("conjuration")
-			actor:learnTalentType("divination")
-			actor:learnTalentType("enchantment")
-			actor:learnTalentType("illusion")
-			actor:learnTalentType("transmutation")
-			actor:learnTalentType("evocation")
-			actor:learnTalentType("necromancy")
+			local all_schools = {"abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation" }
+			descriptor.learn_talent_types(actor, all_schools)
+
 			actor:learnTalentType("arcane_divine", true)
 
             --Get the spell points
@@ -1942,6 +1961,11 @@ newBirthDescriptor {
 
 		if actor:getCha() >= 13 then return true end
 		return false
+	end,
+	learn_talent_types = function(actor, t)
+		for k,v in pairs(t) do
+			actor:learnTalentType(v)
+		end
 	end,
 	learn_all_spells_of_level = function(actor, level)
 		for tid, _ in pairs(actor.talents_def) do
