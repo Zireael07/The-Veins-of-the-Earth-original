@@ -750,7 +750,7 @@ end
 
 --End of desc stuff
 --Death & dying related stuff
-function _M:deathStuff(value, src)
+function _M:deathStuff(value, src, death_note)
 --Wounds system (a combination of SRD & PF)
 if (self.life - (value or 0)) >= 0 then
 
@@ -778,7 +778,6 @@ if ((self.life or 0) - (value or 0) < 0) then
 	self.life = 0
 
 	self.wounds = self.wounds - (value_remaining or 0)
---	game.logSeen("Wounds:"..self.wounds.." Hit taken:"..value_remaining)
 
 	--we're tired
 	self:setEffect(self.EFF_FATIGUE, 1, {})
@@ -803,7 +802,10 @@ if ((self.life or 0) - (value or 0) < 0) then
 		local ps = self:getParticlesList()
 		for i, p in ipairs(ps) do self:removeParticles(p) end
 
-		self:die(src)
+		--Add a log message on death
+		game.logSeen(self, "#{bold}#%s killed %s!#{normal}#", src.name:capitalize(), self.name)
+		if not death_note then death_note = DamageType.PHYSICAL end
+		self:die(src, death_note)
 	end
 end
 
@@ -899,7 +901,7 @@ function _M:onTakeHit(value, src, death_note)
 	if self.on_takehit then value = self:check("on_takehit", value, src, death_note) end
 
 	--Death & dying related stuff
-	self:deathStuff(value, src)
+	self:deathStuff(value, src, death_note)
 
 	return value
 end
@@ -988,7 +990,10 @@ function _M:die(src, death_note)
 		end
 	end
 
-
+	--Add a log message on death
+	if src then
+		game.logSeen(self, "#{bold}#%s killed %s!#{normal}#", src.name:capitalize(), self.name)
+	end
 
 	if self ~= game.player and dropx == game.player.x and dropy == game.player.y then
 		game.log('You feel something roll beneath your feet.')
