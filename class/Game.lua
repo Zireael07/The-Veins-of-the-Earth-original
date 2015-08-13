@@ -100,6 +100,9 @@ function _M:run()
 
 	self.uiset:activate()
 
+	self.delayed_log_damage = {}
+	self.delayed_log_messages = {}
+
 	local flysize = veins.fonts.flying.size or 16
 	self.tooltip = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
 	self.tooltip2 = Tooltip.new(veins.fonts.tooltip.style, veins.fonts.tooltip.size, {255,255,255}, {30,30,30,255})
@@ -172,9 +175,6 @@ function _M:newGame()
 
 	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment', 'deity'}, function()
 
---[[     	--Display game options
-        self:registerDialog(require("mod.dialogs.GameOptions").new(true))]]
-
 
    	    game:changeLevel(1, "tunnels")
         print("[PLAYER BIRTH] resolve...")
@@ -210,7 +210,6 @@ function _M:newGame()
         end, quickbirth, game.w*0.6, game.h*0.6)
 
     game:registerDialog(birth)
---end
 
 end
 
@@ -419,6 +418,7 @@ function _M:createFBOs()
 			underwater = Shader.new("main_fbo/underwater"),
 			motionblur = Shader.new("main_fbo/motionblur"),
 			blur = Shader.new("main_fbo/blur"),
+			line_grids = Shader.new("main_fbo/line_grids"),
 		}
 		self.posteffects_use = { self.fbo_shader.shad }]]
 		if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end
@@ -749,6 +749,18 @@ function _M:tick()
         engine.Game.tick(self)
     end
 
+    -- Check damages to log
+--	self:displayDelayedLogMessages()
+--	self:displayDelayedLogDamage()
+
+	if self.tick_loopback then
+		self.tick_loopback = nil
+		return self:tick()
+	end
+
+	if savefile_pipe.saving then self.player.changed = true end
+	if self.on_tick_end and #self.on_tick_end > 0 then return false end -- Force a new tick
+
     if self.creating_player then return true end
     -- When paused (waiting for player input) we return true: this means we wont be called again until an event wakes us
     if self.paused and not savefile_pipe.saving then return true end
@@ -766,7 +778,7 @@ end
 -- output a message to the log based on the visibility of an actor to the player
 function _M.logSeen(e, style, ...)
 --	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end
-	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e) and game.player:canReallySee(e)) then game.log(style, ...) end
+	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e) and game.player:canReallySee(e) and game.player:hasLOS(x,y)) then game.log(style, ...) end
 end
 
 -- determine whether an action between 2 actors should produce a message in the log and if the player
@@ -1575,4 +1587,19 @@ function _M:placeTerrain(define)
 	if tries < 100 then
 		self.zone:addEntity(self.level, l, "terrain", x, y)
 	end
+end
+
+-- get a text-compatible texture (icon) for an entity
+function _M:getGenericTextTiles(en)
+	local disp = en
+	if not disp then return "" end
+	if not en.getDisplayString then
+		if en.display_entity and en.display_entity.getDisplayString then
+			disp = en.display_entity
+		else
+			return ""
+		end
+	end
+	disp:getMapObjects(game.uiset.hotkeys_display_icons.tiles, {}, 1)
+	return tostring((disp:getDisplayString() or ""):toTString())
 end
