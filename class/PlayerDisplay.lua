@@ -15,6 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require "engine.class"
+local Mouse = require "engine.Mouse"
 
 module(..., package.seeall, class.make)
 
@@ -26,17 +27,30 @@ function _M:init(x, y, w, h, bgcolor, font, size)
     self.w, self.h = w, h
     self.bgcolor = bgcolor
     self.font = core.display.newFont(font, size)
+    self.fontbig = core.display.newFont(font, size * 2)
+    self.mouse = Mouse.new()
+    self.tex_cache = {textures={}, texture_bars={}}
     self:resize(x, y, w, h)
+end
+
+local function glTexFromArgs(tex, tw, th, _, _, w, h)
+    return {_tex = tex, _tex_w = tw, _tex_h = th, w=w, h=h}
 end
 
 --- Resize the display area
 function _M:resize(x, y, w, h)
     self.display_x, self.display_y = x, y
+    self.mouse.delegate_offset_x = x
+    self.mouse.delegate_offset_y = y
     self.w, self.h = w, h
     self.font_h = self.font:lineSkip()
     self.font_w = self.font:size(" ")
-    self.bars_x = self.font_w * 6
+    self.bars_x = self.font_w * 15
     self.bars_w = self.w - self.bars_x - 5
+
+--    self.bg = glTexFromArgs(core.display.loadImage("/data/gfx/ui/player-display.png"):glTexture())
+
+
     self.surface = core.display.newSurface(w, h)
     self.surface_line = core.display.newSurface(w, self.font_h)
     self.texture = self.surface:glTexture()
@@ -45,42 +59,63 @@ function _M:resize(x, y, w, h)
 end
 
 function _M:makeTexture(text, x, y, r, g, b, max_w)
-    local s = self.surface_line
-    s:erase(0, 0, 0, 0)
-    s:drawColorStringBlended(self.font, text, 0, 0, r, g, b, true, max_w)
+    max_w = max_w or self.w
+    -- Check for cache
+    local cached = self.tex_cache.textures[text]
+    local cached_ok = cached and cached.r == r and cached.g == g and cached.b == b and cached.max_w == max_w
+    if not cached_ok then
+        local item = self.font:draw(text, max_w, r, g, b, true)[1]
+        item = {r=r, g=g, b=b, max_w = max_w, item}
+        self.tex_cache.textures[text] = item 
+        cached = item
+    end
+    self.items[#self.items+1] = {cached[1], x=x, y=y}
 
-    local item = { s:glTexture() }
-    item.x = x
-    item.y = y
-    item.w = self.w
-    item.h = self.font_h
-    self.items[#self.items+1] = item
+    return self.w, self.font_h, x, y
+end
 
-    return item.w, item.h, item.x, item.y
+local function samecolor(c1, c2)
+    return (c1 == c2) or (c1.r == c2.r and c1.g == c2.g and c1.b == c2.b)
 end
 
 function _M:makeTextureBar(text, nfmt, val, max, reg, x, y, r, g, b, bar_col, bar_bgcol)
-    local s = self.surface_line
-    s:erase(0, 0, 0, 0)
-    s:erase(bar_bgcol.r, bar_bgcol.g, bar_bgcol.b, 255, self.bars_x, h, self.bars_w, self.font_h)
-    s:erase(bar_col.r, bar_col.g, bar_col.b, 255, self.bars_x, h, self.bars_w * val / max, self.font_h)
+    local cached = self.tex_cache.texture_bars[text]
+    -- it's a bunch of number comparisons so it's sufficiently fast for jit
+    local cached_ok = cached and (nfmt == cached.nfmt) and (val == cached.val) and (max == cached.max) and (reg == cached.reg) and
+        (r == cached.r) and (g == cached.g) and (b == cached.b) and samecolor(bar_col, cached.bar_col) and samecolor(bar_bgcol, cached.bar_bgcol)
+    if not cached_ok then
+        local items = {}
+        local text_w = self.font:size(text)
+        items[#items+1] = function(disp_x, disp_y)
+            core.display.drawQuad(disp_x + self.bars_x, disp_y, self.bars_w, self.font_h, bar_bgcol.r, bar_bgcol.g, bar_bgcol.b, 255)
+        end
+        items[#items+1] = function(disp_x, disp_y)
+            core.display.drawQuad(disp_x + self.bars_x, disp_y, self.bars_w * val / max, self.font_h, bar_col.r, bar_col.g, bar_col.b, 255)
+        end
+        items[#items+1] = {self.font:draw(text, self.w, r, g, b, true)[1], x=0, y=0}
+        items[#items+1] = {self.font:draw((nfmt or "%d/%d"):format(val, max), self.w, r, g, b, true)[1], x=self.bars_x + 3, y=0}
 
-    s:drawColorStringBlended(self.font, text, 0, 0, r, g, b, true)
-    local text_w = self.font:size(text)
-    s:drawColorStringBlended(self.font, (nfmt or "%d/%d"):format(val, max), self.bars_x + text_w*0.75, 0, r, g, b)
-    if reg and reg ~= 0 then
-        local reg_txt = (" (%s%.2f)"):format((reg > 0 and "+") or "",reg)
-        local reg_txt_w = self.font:size(reg_txt)
-        s:drawColorStringBlended(self.font, reg_txt, self.bars_x + self.bars_w - reg_txt_w - 3, 0, r, g, b)
+        if reg and reg ~= 0 then
+            local reg_txt = (" (%s%.2f)"):format((reg > 0 and "+") or "",reg)
+            local reg_txt_w = self.font:size(reg_txt)
+     --   s:drawColorStringBlended(self.font, reg_txt, self.bars_x + self.bars_w - reg_txt_w - 3, 0, r, g, b)
+     --       local reg_txt = (" (%s%.2f)"):format((reg > 0 and "+") or "",reg)
+     --       local tex = self.font:draw(reg_txt, self.w, r, g, b, true)[1]
+            items[#items+1] = {tex, x = self.bars_x + self.bars_w - self.font:size(reg_txt) - 3, y=0}
+        end
+        cached = {nfmt=nfmt, val=val, max=max, reg=reg, r=r, g=g, b=b, bar_col=bar_col, bar_bgcol=bar_bgcol, items}
+        self.tex_cache.texture_bars[text] = cached
     end
-    local item = { s:glTexture() }
-    item.x = x
-    item.y = y
-    item.w = self.w
-    item.h = self.font_h
-    self.items[#self.items+1] = item
+    local items = cached[1]
+    for i = 1,#items do
+        if type(items[i]) == "table" then
+            self.items[#self.items+1] = {items[i][1], x=x+items[i].x, y=y+items[i].y}
+        else
+            self.items[#self.items+1] = function(dx, dy) return items[i](dx + x, dy + y) end
+        end
+    end
 
-    return item.w, item.h, item.x, item.y
+    return self.w, self.font_h, x, y
 end
 
 -- Displays the stats
@@ -88,6 +123,7 @@ function _M:display()
     local player = game.player
     if not player or not player.changed or not game.level then return end
 
+    self.mouse:reset()
     self.items = {}
 
     local h = 6
@@ -107,6 +143,7 @@ function _M:display()
 
     if (player.class_points or 0) > 0 or (player.feat_point or 0) > 0 or (player.stat_point or 0) > 0 then
         self:makeTexture("#LIGHT_GREEN#Level up!", x, h, 255, 255, 255)
+        self.items[#self.items].glow = true
     --    local glow = (1+math.sin(core.game.getTime() / 500)) / 2 * 100 + 120
     --    pf_levelup[1]:toScreenFull(50, 800, pf_levelup[6], pf_levelup[7], pf_levelup[2], pf_levelup[3], 1, 1, 1, glow / 255)
     --    pf_levelup[1]:toScreenFull(70, 800, pf_levelup[6], pf_levelup[7], pf_levelup[2], pf_levelup[3])
@@ -181,20 +218,18 @@ end
 function _M:toScreen(nb_keyframes)
     self:display()
 
-    core.display.drawQuad(self.display_x, self.display_y, self.w, self.h, 0, 0, 0, 0)
-
+ --   self.bg._tex:toScreen(self.display_x, self.display_y, self.w, self.h)
     for i = 1, #self.items do
         local item = self.items[i]
         if type(item) == "table" then
+            local glow = 255
             if item.glow then
-                local glow = (1+math.sin(core.game.getTime() / 500)) / 2 * 100 + 120
-                item[1]:toScreenFull(self.display_x + item.x, self.display_y + item.y, item.w, item.h, item[2], item[3], 1, 1, 1, glow / 255)
-            else
-                item[1]:toScreenFull(self.display_x + item.x, self.display_y + item.y, item.w, item.h, item[2], item[3])
+                glow = (1+math.sin(core.game.getTime() / 500)) / 2 * 100 + 120
             end
+            local tex = item[1]
+            tex._tex:toScreenFull(self.display_x + item.x, self.display_y + item.y, tex.w, tex.h, tex._tex_w, tex._tex_h, 1, 1, 1, glow / 255)
         else
             item(self.display_x, self.display_y)
         end
     end
-
 end
