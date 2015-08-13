@@ -110,7 +110,7 @@ newAI("swap_weapons", function(self)
                         self:wieldMelee()
                     end]]
                     if weapon and weapon.ranged then
-                        game.log("Trying to wield melee weapon")
+                --        game.logSeen(self, "AI trying to wield melee weapon")
                         self:wieldMelee()
                     end
                 end
@@ -118,7 +118,7 @@ newAI("swap_weapons", function(self)
                 if self:getInven("QUIVER") and self:getInven("MAIN_HAND") then
                     local weapon = self:getInven("MAIN_HAND")[1]
                     if weapon and not weapon.ranged then
-                        game.log("Trying to wield ranged weapon")
+                --        game.logSeen(self, "AI trying to wield ranged weapon")
                         self:wieldRanged()
                     end
                 end
