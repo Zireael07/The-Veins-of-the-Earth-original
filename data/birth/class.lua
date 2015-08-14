@@ -150,20 +150,6 @@ newBirthDescriptor {
 		if actor:getCha() >= 13 then return true end
 		return false
 	end,
-	learn_talent_types = function(actor, t)
-		for k,v in pairs(t) do
-			actor:learnTalentType(v)
-		end
-	end,
-	learn_all_spells_of_level = function(actor, level)
-		for tid, _ in pairs(actor.talents_def) do
-			t = actor:getTalentFromId(tid)
-			tt = actor:getTalentTypeFrom(t.type[1])
-			if actor:spellIsKind(t, "arcane") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-				actor:learnTalent(t.id)
-			end
-		end
-	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
 			actor:attr("will_save", 2)
@@ -189,8 +175,8 @@ newBirthDescriptor {
 			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
 			descriptor.learn_talent_types(actor, both_schools)
 
-			descriptor.learn_all_spells_of_level(actor, 0)
-			descriptor.learn_all_spells_of_level(actor, 1)
+			descriptor.learn_all_spells_of_level(actor, "arcane", 0)
+			descriptor.learn_all_spells_of_level(actor, "arcane", 1)
 
 			if actor == game.player then
 				if actor.descriptor.race == "Half-elf" or actor.descriptor.race == "Gnome" then
@@ -206,7 +192,7 @@ newBirthDescriptor {
 		--Learn a new spell tier every 3rd level
 		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
-			descriptor.learn_all_spells_of_level(actor, spell_level)
+			descriptor.learn_all_spells_of_level(actor, "arcane", spell_level)
 		end
 
 		actor:attr("combat_bab", 0.75)
@@ -231,8 +217,7 @@ newBirthDescriptor {
 	end,
 }
 
-
-newBirthDescriptor {
+newBirthDescriptor{
 	type = 'class',
 	category = "caster",
 	name = 'Cleric',
@@ -294,20 +279,6 @@ newBirthDescriptor {
 		if actor:getWis() >= 13 then return true end
 		return false
 	end,
-	learn_talent_types = function(actor, t)
-		for k,v in pairs(t) do
-			actor:learnTalentType(v)
-		end
-	end,
-	learn_all_spells_of_level = function(actor, level)
-		for tid, _ in pairs(actor.talents_def) do
-			t = actor:getTalentFromId(tid)
-			tt = actor:getTalentTypeFrom(t.type[1])
-			if actor:spellIsKind(t, "divine") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-				actor:learnTalent(t.id)
-			end
-		end
-	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
 			actor:attr("fortitude_save", 2)
@@ -332,8 +303,8 @@ newBirthDescriptor {
 			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
 			descriptor.learn_talent_types(actor, both_schools)
 
-			descriptor.learn_all_spells_of_level(actor, 0)
-			descriptor.learn_all_spells_of_level(actor, 1)
+			descriptor.learn_all_spells_of_level(actor, "divine", 0)
+			descriptor.learn_all_spells_of_level(actor, "divine", 1)
 
 
 			actor:learnTalent(actor.T_LAY_ON_HANDS, true)
@@ -699,7 +670,7 @@ newBirthDescriptor {
 		--Learn a new spell tier every 3rd level
 		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
-			descriptor.learn_all_spells_of_level(actor, spell_level)
+			descriptor.learn_all_spells_of_level(actor, "divine", spell_level)
 		end
 
 		actor:attr("will_save", 0.5)
@@ -798,20 +769,6 @@ newBirthDescriptor {
 		if actor:getWis() >= 13 then return true end
 		return false
 	end,
-	learn_talent_types = function(actor, t)
-		for k,v in pairs(t) do
-			actor:learnTalentType(v)
-		end
-	end,
-	learn_all_spells_of_level = function(actor, level)
-		for tid, _ in pairs(actor.talents_def) do
-			t = actor:getTalentFromId(tid)
-			tt = actor:getTalentTypeFrom(t.type[1])
-			if actor:spellIsKind(t, "divine") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-				actor:learnTalent(t.id)
-			end
-		end
-	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
 			actor:attr("fortitude_save", 2)
@@ -833,8 +790,8 @@ newBirthDescriptor {
 			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
 			descriptor.learn_talent_types(actor, both_schools)
 
-			descriptor.learn_all_spells_of_level(actor, 0)
-			descriptor.learn_all_spells_of_level(actor, 1)
+			descriptor.learn_all_spells_of_level(actor, "divine", 0)
+			descriptor.learn_all_spells_of_level(actor, "divine", 1)
 
 			if actor == game.player then
 				if actor:hasDescriptor{race="Lizardfolk"} then
@@ -857,12 +814,7 @@ newBirthDescriptor {
 		--Learn a new spell tier every 3rd level
 		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
-			for tid, _ in pairs(actor.talents_def) do
-				t = actor:getTalentFromId(tid)
-				if t.type[1] == "divine" and t.level == spell_level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-					actor:learnTalent(t.id)
-				end
-			end
+			descriptor.learn_all_spells_of_level(actor, "divine", spell_level)
 		end
 
 		actor:attr("will_save", 0.5)
@@ -1147,20 +1099,6 @@ newBirthDescriptor {
             if actor:getWis() >= 13 then return true end
             return false
         end,
-		learn_talent_types = function(actor, t)
-			for k,v in pairs(t) do
-				actor:learnTalentType(v)
-			end
-		end,
-        learn_all_spells_of_level = function(actor, level)
-			for tid, _ in pairs(actor.talents_def) do
-				t = actor:getTalentFromId(tid)
-				tt = actor:getTalentTypeFrom(t.type[1])
-				if actor:spellIsKind(t, "divine") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-					actor:learnTalent(t.id)
-				end
-			end
-		end,
         on_level = function(actor, level, descriptor)
             if level == 1 then
                 actor:attr("fortitude_save", 2)
@@ -1182,7 +1120,7 @@ newBirthDescriptor {
             --Learn a new spell tier every 3rd level starting from lvl 5
 			if level >= 5 and level % 3 == 0 then
 				local spell_level = ((level-5) / 3) + 1
-				descriptor.learn_all_spells_of_level(actor, spell_level)
+				descriptor.learn_all_spells_of_level(actor, "divine", spell_level)
 			end
 
 			--Level-specific bonuses
@@ -1202,8 +1140,8 @@ newBirthDescriptor {
 				local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
 				descriptor.learn_talent_types(actor, both_schools)
 
-            	descriptor.learn_all_spells_of_level(actor, 0)
-				descriptor.learn_all_spells_of_level(actor, 1)
+            	descriptor.learn_all_spells_of_level(actor, "divine", 0)
+				descriptor.learn_all_spells_of_level(actor, "divine", 1)
 
             	actor:learnTalent(actor.T_SUMMON_MOUNT, true)
             end
@@ -1273,20 +1211,6 @@ newBirthDescriptor {
 
 		if actor:getStr() >= 13 then return true end
 		return false
-	end,
-	learn_talent_types = function(actor, t)
-		for k,v in pairs(t) do
-			actor:learnTalentType(v)
-		end
-	end,
-	learn_all_spells_of_level = function(actor, level)
-		for tid, _ in pairs(actor.talents_def) do
-			t = actor:getTalentFromId(tid)
-			tt = actor:getTalentTypeFrom(t.type[1])
-			if actor:spellIsKind(t, "divine") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-				actor:learnTalent(t.id)
-			end
-		end
 	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
@@ -1389,7 +1313,7 @@ newBirthDescriptor {
 		--Learn a new spell tier every 3rd level starting from lvl 5
 		if level >= 5 and level % 3 == 0 then
 			local spell_level = ((level-5) / 3) + 1
-			descriptor.learn_all_spells_of_level(actor, spell_level)
+			descriptor.learn_all_spells_of_level(actor, "divine", spell_level)
 		end
 
 
@@ -1408,8 +1332,8 @@ newBirthDescriptor {
 			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
 			descriptor.learn_talent_types(actor, both_schools)
 
-			descriptor.learn_all_spells_of_level(actor, 0)
-			descriptor.learn_all_spells_of_level(actor, 1)
+			descriptor.learn_all_spells_of_level(actor, "divine", 0)
+			descriptor.learn_all_spells_of_level(actor, "divine", 1)
 		end
 
 		if level >= 5 then
@@ -1624,20 +1548,6 @@ newBirthDescriptor {
 		if actor:getCha() >= 16 then return true end
 		return false
 	end,
-	learn_talent_types = function(actor, t)
-		for k,v in pairs(t) do
-			actor:learnTalentType(v)
-		end
-	end,
-	learn_all_spells_of_level = function(actor, level)
-		for tid, _ in pairs(actor.talents_def) do
-			t = actor:getTalentFromId(tid)
-			tt = actor:getTalentTypeFrom(t.type[1])
-			if actor:spellIsKind(t, "arcane") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-				actor:learnTalent(t.id)
-			end
-		end
-	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
 		--	actor:attr("innate_casting_arcane", 1)
@@ -1657,8 +1567,8 @@ newBirthDescriptor {
 
 			actor:attr("max_life", 4 + (actor:getCon()-10)/2)
 
-			descriptor.learn_all_spells_of_level(actor, 0)
-			descriptor.learn_all_spells_of_level(actor, 1)
+			descriptor.learn_all_spells_of_level(actor, "arcane", 0)
+			descriptor.learn_all_spells_of_level(actor, "arcane", 1)
 		else
 			--Level >1, generic bonuses
 			actor:attr("will_save", 0.5)
@@ -1676,7 +1586,7 @@ newBirthDescriptor {
 
 		-- At each even level past level 2 we gain a spell level
 		if level % 2 == 0 then
-			descriptor.learn_all_spells_of_level(actor, math.floor(level / 2))
+			descriptor.learn_all_spells_of_level(actor, "arcane", math.floor(level / 2))
 		end
 	end,
 }
@@ -1740,15 +1650,6 @@ newBirthDescriptor {
 		if actor.classes and actor.classes["Wizard"] and actor.descriptor.class == "Wizard" then return true end
 		if actor:getInt() >= 16 then return true end
 		return false
-	end,
-	learn_all_spells_of_level = function(actor, level)
-		for tid, _ in pairs(actor.talents_def) do
-			t = actor:getTalentFromId(tid)
-			tt = actor:getTalentTypeFrom(t.type[1])
-			if actor:spellIsKind(t, "arcane") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-				actor:learnTalent(t.id)
-			end
-		end
 	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
@@ -1845,7 +1746,7 @@ newBirthDescriptor {
 
 		-- At each odd level we gain a spell level
 		if level % 2 == 1 then
-			descriptor.learn_all_spells_of_level(actor, math.floor(level / 2) + 1)
+			descriptor.learn_all_spells_of_level(actor, "arcane", math.floor(level / 2) + 1)
 		end
 	end,
 }
@@ -1987,20 +1888,6 @@ newBirthDescriptor {
 		if actor:getCha() >= 13 then return true end
 		return false
 	end,
-	learn_talent_types = function(actor, t)
-		for k,v in pairs(t) do
-			actor:learnTalentType(v)
-		end
-	end,
-	learn_all_spells_of_level = function(actor, level)
-		for tid, _ in pairs(actor.talents_def) do
-			t = actor:getTalentFromId(tid)
-			tt = actor:getTalentTypeFrom(t.type[1])
-			if actor:spellIsKind(t, "divine") and t.level == level and not actor:knowTalent(tid) and actor:canLearnTalent(t) then
-				actor:learnTalent(t.id)
-			end
-		end
-	end,
 	on_level = function(actor, level, descriptor)
 		if level == 1 then
 
@@ -2026,8 +1913,8 @@ newBirthDescriptor {
             --Get the spell points
             actor:learnTalent(actor.T_SPELL_POINTS_POOL, true)
 
-			descriptor.learn_all_spells_of_level(actor, 0)
-			descriptor.learn_all_spells_of_level(actor, 1)
+			descriptor.learn_all_spells_of_level(actor, "divine", 0)
+			descriptor.learn_all_spells_of_level(actor, "divine", 1)
 
 			if actor == game.player then
 
@@ -2379,7 +2266,7 @@ newBirthDescriptor {
 		--Learn a new spell tier every 3rd level
 		if level % 3 == 0 then
 			local spell_level = (level / 3) + 1
-			descriptor.learn_all_spells_of_level(actor, spell_level)
+			descriptor.learn_all_spells_of_level(actor, "divine", spell_level)
 		end
 
 		--Level >1, generic bonuses
