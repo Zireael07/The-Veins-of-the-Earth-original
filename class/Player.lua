@@ -49,6 +49,24 @@ if level==1 then return 1000
 else return 500*level*(level+1)/2 end
 end
 
+--Stuff for class descriptions which for some reason can't go in Birther or definitions themselves
+_M.bab_to_number = {
+	full = 1,
+	good = 0.75,
+	bad = 0.5,
+}
+
+_M.save_to_number = {
+	first = {
+		good = 2,
+		bad = 0,
+	},
+	other = {
+		good = 0.66,
+		bad = 0.33,
+	}
+}
+
 function _M:init(t, no_default)
 --ASCII stuff
   t.display=t.display or '@'
