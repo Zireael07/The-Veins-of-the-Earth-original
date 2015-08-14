@@ -226,13 +226,26 @@ function _M:drawDialog(tab)
 
 end
 
+_M.tabs_to_numbers = {
+	levelone = 1,
+	leveltwo = 2,
+	levelthree = 3,
+	levelfour = 4,
+}
+
+_M.numbers_to_tabs = {
+--	table.keys_to_values[tabs_to_numbers]
+	[1] = "levelone",
+	[2] = "leveltwo",
+	[3] = "levelthree",
+	[4] = "levelfour",
+}
+
 function _M:drawGeneral(tab)
-
 	self:generateCharges(tab)
-	for i=1,9 do
-		self.spells[i]:generate()
-	end
 
+	local i = tabs_to_numbers[tab]
+	self.spells[i]:generate()
 
 	self.changed = false
 end
@@ -253,8 +266,10 @@ function _M:onSpell(item, button)
 		p:incMaxCharges(item.data, v, self.spell_list)
 --        self.c_info.text = item.desc
 	end
---	self:generateCharges()
-	self:drawGeneral("levelone")
+
+	local spell_level = item.data.level
+	self:generateCharges(numbers_to_tabs[spell_level])
+--	self:drawGeneral("levelone")
 end
 
 function _M:onReset()
