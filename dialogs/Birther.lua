@@ -23,6 +23,7 @@ local CharacterVaultSave = require "engine.CharacterVaultSave"
 local TextzoneList = require "engine.ui.TextzoneList"
 local Separator = require "engine.ui.Separator"
 local List = require "engine.ui.List"
+local TreeList = require "engine.ui.TreeList"
 
 local NameGenerator = require "engine.NameGenerator"
 
@@ -200,6 +201,13 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
     local lists_height = self.ih - lists_top - self.c_save.h - 20
 
     self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
+
+--[[    self.c_tree = TreeList.new{width=self.iw/6, height = lists_height, tree=self.list_tree,
+    columns={
+		{width=100, display_prop="name"},
+	},
+    fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}
+]]
     self.c_class = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
 
     self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
@@ -331,7 +339,7 @@ function _M:drawDialog(tab)
         {left=0, top=self.c_race_text, ui=self.c_race},
         {left=self.c_race, top=lists_top, ui=self.c_class_text},
         {left=self.c_race, top=self.c_class_text, ui=self.c_class},
-
+    --    {left=self.c_race, top=self.c_class_text, ui=self.c_tree},
 
         --Instructions and description
         {right=0, top = self.t_general.h + 15, ui=self.c_legend },
@@ -755,6 +763,7 @@ end
 
 --Generate the lists
 function _M:generateLists()
+--    self:generateTree()
     self:generateClasses()
     self:generateRaces()
     self:generateBackgrounds()
@@ -779,6 +788,59 @@ function _M:generateRaces()
         end
     end
     self.list_race = list
+end
+
+function _M:generateTree()
+    local oldtree = {}
+	for i, t in ipairs(self.list_tree or {}) do oldtree[d.category] = t.shown end
+
+	local tree = {}
+	local newsel = nil
+    local categories = {}
+
+    for i, d in ipairs(Birther.birth_descriptor_def.class) do
+        if not d.prestige then
+        local nodes = {}
+
+        local desc = d.desc
+        if self:descText(d) then desc = self:descText(d) end
+
+        if self:isDescriptorAllowed(d) then
+        --    if not category[d.category] then
+    --    if self:isDescriptorAllowed(d) and not category[d.category] then
+        --[[  local color
+            if self.sel_class and self.sel_class.name == d.name then color = {255, 215, 0}
+            elseif self:isBadChoice(d) then color = {201, 0, 0}
+            elseif self:isNewbieSuggested(d) then color = {244, 164, 96}
+            elseif self:isSuggestedClass(d) then color = {0, 255, 0}
+            elseif self.sel_race and self:isFavoredClass(d) then color = {81, 221, 255}
+            else color = {255, 255, 255} end]]
+            categories[d.category] = categories[d.category] or {}
+            item = {name=d.name, id = d.name, pid = d.category, desc=desc, d = d}
+
+        --    nodes[#nodes+1] = item
+
+        --    nodes[#nodes+1] = {name=d.name, id = d.name, pid = d.category, desc=desc, d = d}
+            if self.sel_class and self.sel_class.id == d.name then newsel = nodes[#nodes] end
+
+            table.insert(categories[d.category], item)
+        --    end
+        end
+        end
+            for category, nodes in pairs(categories) do
+            tree[#tree+1] = {name = d.category, id = d.category, shown = oldtree[d.category], nodes = nodes} --desc=desc }
+            end
+    end
+    self.list_tree = tree
+
+    if self.c_tree then
+		self.c_tree.tree = self.list_tree
+		self.c_tree:generate()
+		if newsel then self:useClass(newsel)
+		else
+			self.sel_class = nil
+		end
+	end
 end
 
 function _M:generateClasses()
@@ -831,6 +893,10 @@ end
 
 function _M:ClassUse(item, sel)
     if not item then return end
+--[[    if item.nodes then
+		for i, item in ipairs(self.c_tree.tree) do if item.shown then self.c_tree:treeExpand(false, item) end end
+		self.c_class:treeExpand(nil, item)
+    end]]    
     self.sel_class = nil
     self:setDescriptor("class", item.name)
     self.sel_class = item

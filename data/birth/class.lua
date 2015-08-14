@@ -6,6 +6,7 @@ load("/data/birth/prestige.lua")
 -- Classes
 newBirthDescriptor {
 	type = 'class',
+	category = "martial",
 	name = 'Barbarian',
 	getSkillPoints = function(self, t)
 		return 4
@@ -100,6 +101,7 @@ newBirthDescriptor {
 newBirthDescriptor {
 	type = 'class',
 	name = 'Bard',
+	category = "casterhalf",
 	getSkillPoints = function(self, t)
 		return 6
 	end,
@@ -232,6 +234,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'class',
+	category = "caster",
 	name = 'Cleric',
 	getSkillPoints = function(self, t)
 		return 4
@@ -722,6 +725,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'class',
+	category = "caster",
 	name = 'Druid',
 	getSkillPoints = function(self, t)
 		return 4
@@ -887,6 +891,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'class',
+	category = "martial",
 	name = 'Fighter',
 	getSkillPoints = function(self, t)
 		return 2
@@ -981,6 +986,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
         type = 'class',
+		category = "martial",
         name = 'Monk',
 		getSkillPoints = function(self, t)
 			return 4
@@ -1075,6 +1081,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
         type = 'class',
+		category = "casterhalf",
         name = 'Paladin',
 		getSkillPoints = function(self, t)
 			return 2
@@ -1218,6 +1225,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'class',
+	category = "casterhalf",
 	name = 'Ranger',
 	getSkillPoints = function(self, t)
 		return 6
@@ -1430,6 +1438,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'class',
+	category = "martial",
 	name = 'Rogue',
 	getSkillPoints = function(self, t)
 		return 8
@@ -1557,6 +1566,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'class',
+	category = "caster",
 	name = 'Sorcerer',
 	rarity = 6,
 	getSkillPoints = function(self, t)
@@ -1673,6 +1683,7 @@ newBirthDescriptor {
 
 newBirthDescriptor {
 	type = 'class',
+	category = "caster",
 	name = 'Wizard',
 	getSkillPoints = function(self, t)
 		return 4
@@ -1843,6 +1854,7 @@ newBirthDescriptor {
 --Non-standard classes
 newBirthDescriptor {
 	type = 'class',
+	category = "martial", --?
 	name = 'Warlock',
 	getSkillPoints = function(self, t)
 		return 2
@@ -1917,6 +1929,7 @@ newBirthDescriptor {
 --Non-standard class
 newBirthDescriptor {
 	type = 'class',
+	category = "caster",
 	name = 'Shaman',
 	getSkillPoints = function(self, t)
 		return 4
