@@ -13,23 +13,18 @@ newBirthDescriptor {
 	end,
 	getClassSkills = function(self, t)
 		skills = "Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Swim, Survival."
-
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 12
+	end,
+	getSaves = function(self, t)
+		return {Fort="yes", Ref="no", Will="no" }
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#Raging warriors of the wilds."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#+33% movement speed. 12 hit points per level, BAB +1, Fort +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +1, Fort +0.5, Will +0.33, Ref +0.33. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#STR 13#LAST# to multiclass to this class."
-
-		return d
+		local special = "+33% movement speed."
+		return t.getDesc_class(self, t, desc, "full", special)
 	end,
 	rarity = 2,
 	copy = {
@@ -110,20 +105,15 @@ newBirthDescriptor {
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 6
+	end,
+	getSaves = function(self, t)
+		return {Fort="no", Ref="yes", Will="yes" }
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#Musicians and gentlefolk."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#6 hit points per level, BAB +0, Ref +2, Will +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +0.75, Fort +0.33, Ref +0.5,  Will +0.5. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#CHA 13#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "good")
 	end,
 	copy = {
 	},
@@ -229,20 +219,15 @@ newBirthDescriptor{
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 8
+	end,
+	getSaves = function(self, t)
+		return {Fort="yes", Ref="no", Will="yes" }
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#Clerics are masters of healing."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#8 hit points per level, BAB +0, Fort +2, Will +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#WIS 13#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "good")
 	end,
 	rarity = 4,
 	copy = {
@@ -368,20 +353,15 @@ newBirthDescriptor {
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 8
+	end,
+	getSaves = function(self, t)
+		return {Fort="yes", Ref="no", Will="yes"}
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#Clerics of nature."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#8 hit points per level, BAB +0, Fort +2, Will +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +0.75, Will +0.5, Fort +0.5, Ref +0.33. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#WIS 13#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "good")
 	end,
 	rarity = 8,
 	copy = {
@@ -515,20 +495,15 @@ newBirthDescriptor {
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 10
+	end,
+	getSaves = function(self, t)
+		return {Fort="yes", Ref="no", Will="no" }
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#Simple fighters, they hack away with their trusty weapon."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#10 hit points per level, BAB +1, Fort +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +1, Fort +0.5, Ref +0.33, Will +0.33. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#STR 13#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "full")
 	end,
 	rarity = 2,
 	copy = {
@@ -610,20 +585,15 @@ newBirthDescriptor {
 
 			return skills
 		end,
+		getHitPoints = function(self, t)
+			return 8
+		end,
+		getSaves = function(self, t)
+			return {Fort="yes", Ref="yes", Will="yes" }
+		end,
 		desc = function(self, t)
-			local d
 			local desc = "#ORANGE#Unarmed and without armor, they are nevertheless fearsome warriors."
-			local skills = t.getSkillPoints(self, t)
-			local skills_first = skills*4
-			d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-			local skills_list = t.getClassSkills(self, t)
-			d = d..skills_list.."\n\n"
-			d = d.."#WHITE#8 hit points per level, BAB +0, Fort +2 Ref +2 Will +2 at first class level. "
-			d = d..skills_first.." skill points at 1st character level.\n\n"
-			d = d.."BAB +1, Fort +0.5, Will +0.5, Ref +0.5. "..skills.." skill points per level.\n\n"
-			d = d.."#GOLD#WIS 13#LAST# to multiclass to this class."
-
-			return d
+			return t.getDesc_class(self, t, desc, "good")
 		end,
 --[[        copy = {
                 resolvers.equip {
@@ -705,20 +675,15 @@ newBirthDescriptor {
 
 			return skills
 		end,
+		getHitPoints = function(self, t)
+			return 8
+		end,
+		getSaves = function(self, t)
+			return {Fort="yes", Ref="no", Will="no" }
+		end,
 		desc = function(self, t)
-			local d
 			local desc = "#ORANGE#Holy warriors of the deities of good and law."
-			local skills = t.getSkillPoints(self, t)
-			local skills_first = skills*4
-			d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-			local skills_list = t.getClassSkills(self, t)
-			d = d..skills_list.."\n\n"
-			d = d.."#WHITE#8 hit points per level, BAB +1, Fort +2 at first class level. "
-			d = d..skills_first.." skill points at 1st character level.\n\n"
-			d = d.."BAB +1, Fort +0.5, Will +0.33, Ref +0.33. "..skills.." skill points per level.\n\n"
-			d = d.."#GOLD#WIS 13#LAST# to multiclass to this class."
-
-			return d
+			return t.getDesc_class(self, t, desc, "full")
 		end,
 		copy = {
         },
@@ -835,20 +800,15 @@ newBirthDescriptor {
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 8
+	end,
+	getSaves = function(self, t)
+		return {Fort="yes", Ref="yes", Will="no"}
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#Rangers are capable archers but are also trained in hand to hand combat and divine magic."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#8 hit points per level, BAB +1, Fort +2, Ref +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +1, Fort +0.5, Ref +0.5, Will +0.33. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#STR 13#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "full")
 	end,
 	rarity = 3,
 	copy = {
@@ -1034,20 +994,15 @@ newBirthDescriptor {
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 8
+	end,
+	getSaves = function(self, t)
+		return {Fort="no", Ref="yes", Will="no"}
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#Rogues are masters of tricks."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#6 hit points per level, BAB +0, Ref +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +0.75, Ref +0.5, Fort +0.33, Will +0.33. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#DEX 13#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "good")
 	end,
 	rarity = 3,
 	copy = {
@@ -1163,20 +1118,15 @@ newBirthDescriptor {
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 4
+	end,
+	getSaves = function(self, t)
+		return {Fort="no", Ref="no", Will="yes"}
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#Masters of arcane magic."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#4 hit points per level, BAB +0, Will +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#CHA 16#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "bad")
 	end,
 	copy = {
 		resolvers.inventory {
@@ -1265,20 +1215,15 @@ newBirthDescriptor {
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 4
+	end,
+	getSaves = function(self, t)
+		return {Fort="no", Ref="no", Will="yes"}
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#Masters of arcane magic."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#4 hit points per level, BAB +0, Will +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#INT 16#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "bad")
 	end,
 	rarity = 5,
 	copy = {
@@ -1427,20 +1372,15 @@ newBirthDescriptor {
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 6
+	end,
+	getSaves = function(self, t)
+		return {Fort="no", Ref="no", Will="yes"}
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#A spellcaster who needs no weapon."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#6 hit points per level, BAB +0, Will +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +0.5, Will +0.5, Ref +0.33, Fort +0.33. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#CHA 13#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "bad")
 	end,
 	rarity = 10,
 	copy = {
@@ -1502,20 +1442,15 @@ newBirthDescriptor {
 
 		return skills
 	end,
+	getHitPoints = function(self, t)
+		return 8
+	end,
+	getSaves = function(self, t)
+		return {Fort="yes", Ref="no", Will="yes"}
+	end,
 	desc = function(self, t)
-		local d
 		local desc = "#ORANGE#A divine spellcaster who does not need to prepare spells."
-		local skills = t.getSkillPoints(self, t)
-		local skills_first = skills*4
-		d = desc.."\n\n #LIGHT_BLUE#Class skills: "
-		local skills_list = t.getClassSkills(self, t)
-		d = d..skills_list.."\n\n"
-		d = d.."#WHITE#8 hit points per level, BAB +0, Fort +2, Will +2 at first class level. "
-		d = d..skills_first.." skill points at 1st character level.\n\n"
-		d = d.."BAB +0.5, Will +0.5, Ref +0.33, Fort +0.5. "..skills.." skill points per level.\n\n"
-		d = d.."#GOLD#CHA 13#LAST# to multiclass to this class."
-
-		return d
+		return t.getDesc_class(self, t, desc, "bad")
 	end,
 	rarity = 10,
 	copy = {
