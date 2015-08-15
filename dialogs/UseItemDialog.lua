@@ -54,6 +54,9 @@ function _M:init(center_mouse, actor, object, item, inven, on_use)
   }
 end
 
+
+--NOTE to self: on_use determines whether the inventory screen will close or not
+--Talk about non-intuitive stuff
 function _M:use(item)
   if not item then return end
   game:unregisterDialog(self)
@@ -64,21 +67,21 @@ function _M:use(item)
         self.on_use(self.inven, self.item, self.object, true)
   elseif item.action == 'wear' then
     self.actor:doWear(self.inven, self.item, self.object)
-    self.on_use(self.inven, self.item, self.object, true)
+    self.on_use(self.inven, self.item, self.object, false)
   elseif item.action == 'takeoff' then
     self.actor:doTakeoff(self.inven, self.item, self.object)
-    self.on_use(self.inven, self.item, self.object, true)
+    self.on_use(self.inven, self.item, self.object, false)
 
     --Special stuff
   elseif item.action == "eat" then
     self.actor:doEatFood(self.inven, self.item)
-    self.on_use(self.inven, self.item, self.object, true)
+    self.on_use(self.inven, self.item, self.object, false)
   elseif item.action == "butcher" then
     self.actor:doButcher(self.inven, self.item)
     self.on_use(self.inven, self.item, self.object, false)
   elseif item.action == "throw" then
       self.actor:doThrowPotion(self.object, self.item, self.inven)
-    self.on_use(self.inven, self.item, self.object, false)
+    self.on_use(self.inven, self.item, self.object, true)
   --Container stuff
   elseif item.action == "putin" then
         self.actor:putIn(self.object, (self.object.filter or nil) )
