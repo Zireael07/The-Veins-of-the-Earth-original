@@ -139,9 +139,9 @@ function _M:run()
 	engine.interface.GameTargeting.init(self)
 
 
-	self.inited = true
+	if self.level then self:setupDisplayMode() end
 
---	if self.level then self:setupDisplayMode() end
+	self.inited = true
 end
 
 --- Resize the hotkeys
@@ -304,6 +304,8 @@ function _M:getMapSize()
 end
 
 function _M:setupDisplayMode(reboot, mode)
+	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, nil, 22, true)
+	
 	if not mode or mode == "init" then
 		local gfx = config.settings.veins.gfx
 		self:saveSettings("veins.gfx", ('veins.gfx = {tiles=%q, size=%q, tiles_custom_dir=%q, tiles_custom_moddable=%s, tiles_custom_adv=%s}\n'):format(gfx.tiles, gfx.size, gfx.tiles_custom_dir or "", gfx.tiles_custom_moddable and "true" or "false", gfx.tiles_custom_adv and "true" or "false"))
@@ -334,12 +336,11 @@ function _M:setupDisplayMode(reboot, mode)
 		local do_bg = gfx.tiles == "ascii_full"
 		local _, _, tw, th = gfx.size:find("^([0-9]+)x([0-9]+)$")
 		tw, th = tonumber(tw), tonumber(th)
-		if not tw then tw, th = 64, 64 end
+		if not tw then tw, th = 32, 32 end
 		local pot_th = math.pow(2, math.ceil(math.log(th-0.1) / math.log(2.0)))
 		local fsize = math.floor( pot_th/th*(0.7 * th + 5) )
 
 		local map_x, map_y, map_w, map_h = self:getMapSize()
-	--	local map_x, map_y, map_w, map_h = self.uiset:getMapSize()
 
 		if th <= 20 then
 --			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/DroidSansFallback.ttf", pot_th, do_bg)
@@ -380,7 +381,7 @@ function _M:setupDisplayMode(reboot, mode)
 		end
 		self:setupMiniMap()
 
-		self:createFBOs()
+	--	self:createFBOs()
 
 --		self:resizeMapViewport(self.w - 216, self.h - 52, 216, 0)
 
@@ -388,7 +389,6 @@ function _M:setupDisplayMode(reboot, mode)
 		self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
 		if self.fbo then self.fbo_shader = Shader.new("main_fbo") if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end end
 		if self.player then self.player:updateMainShader() end]]
-
 	end
 end
 
@@ -963,8 +963,9 @@ function _M:displayMap(nb_keyframes)
 		if self.fbo then
 			self.fbo:use(true)
 				if self.level.data.background then self.level.data.background(self.level, 0, 0, nb_keyframes) end
+				map:display(0, 0, nb_keyframes, true)
 			--	map:display(0, 0, nb_keyframes, false, self.fbo)
-				map:display(0, 0, nb_keyframes, true, self.fbo)
+			--	map:display(0, 0, nb_keyframes, true, self.fbo)
 			--	if self.level.data.foreground then self.level.data.foreground(self.level, 0, 0, nb_keyframes) end
 			--	if self.level.data.weather_particle then self.state:displayWeather(self.level, self.level.data.weather_particle, nb_keyframes) end
 			--	if self.level.data.weather_shader then self.state:displayWeatherShader(self.level, self.level.data.weather_shader, map.display_x, map.display_y, nb_keyframes) end

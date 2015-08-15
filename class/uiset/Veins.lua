@@ -151,8 +151,8 @@ end
 
 function _M:getMapSize()
     local w, h = core.display.size()
-    return 220, 0, w - 220, h
-    --changing h leads to map distortion
+    return 220, 0, w - 220, math.floor(h*0.8)-20
+    --changing h leads to map distortion if fbo/shaders are on
 --    return 220, 0, w - 220, (h - 100)
 end
 
