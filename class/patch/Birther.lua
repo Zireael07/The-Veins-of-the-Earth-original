@@ -85,7 +85,7 @@ function _M:newBirthDescriptor(t)
 
 		if saves then
 			for k, e in pairs(saves) do
-				print("SAVES"..k.." "..e)
+			--	print("SAVES"..k.." "..e)
 				if (level and level == 1) and t.isGoodSave(self, t, k) then
 					str = str.." "..k.." +"..good_save_first
 				end
