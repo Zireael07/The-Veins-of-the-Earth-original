@@ -113,6 +113,7 @@ function _M:dayNightCycle()
 	end
 	map._map:setShown(shown[1] * (tint.r+0.4), shown[2] * (tint.g+0.4), shown[3] * (tint.b+0.4), shown[4])
 	map._map:setObscure(obscure[1] * (tint.r+0.2), obscure[2] * (tint.g+0.2), obscure[3] * (tint.b+0.2), obscure[4])
+	
 end
 
 --Basic code taken from ToME, adjusted

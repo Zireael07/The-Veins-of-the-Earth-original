@@ -140,6 +140,9 @@ UIBase.ui = "tweaked_simple"
 local size = 12
 UIBase.font = core.display.newFont("/data/font/DroidSansFallback.ttf", size)
 
+--test (original being { 0.6, 0.6, 0.6, 0.5 })
+Map:setObscure(0.1, 0.1, 0.1, 0.3)
+
 --Resolvers
 dofile('/mod/resolvers.lua')
 --Ported utility functions from ToME
