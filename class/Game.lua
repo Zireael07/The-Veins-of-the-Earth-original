@@ -305,7 +305,7 @@ end
 
 function _M:setupDisplayMode(reboot, mode)
 	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, nil, 22, true)
-	
+
 	if not mode or mode == "init" then
 		local gfx = config.settings.veins.gfx
 		self:saveSettings("veins.gfx", ('veins.gfx = {tiles=%q, size=%q, tiles_custom_dir=%q, tiles_custom_moddable=%s, tiles_custom_adv=%s}\n'):format(gfx.tiles, gfx.size, gfx.tiles_custom_dir or "", gfx.tiles_custom_moddable and "true" or "false", gfx.tiles_custom_adv and "true" or "false"))
@@ -1392,6 +1392,11 @@ function _M:setupCommands()
 		local Chat = require("mod.class.patch.UserChat")
 	--	local Chat = require("engine.UserChat")
 			Chat:talkBox()
+		end,
+
+		--From ToME
+		SHOW_MAP = function()
+			game:registerDialog(require("mod.dialogs.ShowMap").new())
 		end,
 
 		--From Marson's AWOL addon
