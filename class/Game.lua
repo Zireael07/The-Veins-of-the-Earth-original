@@ -381,14 +381,7 @@ function _M:setupDisplayMode(reboot, mode)
 		end
 		self:setupMiniMap()
 
-	--	self:createFBOs()
-
---		self:resizeMapViewport(self.w - 216, self.h - 52, 216, 0)
-
---[[		-- Create the framebuffer
-		self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
-		if self.fbo then self.fbo_shader = Shader.new("main_fbo") if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end end
-		if self.player then self.player:updateMainShader() end]]
+		self:createFBOs()
 	end
 end
 
@@ -410,7 +403,9 @@ function _M:createFBOs()
 	print("[GAME] Creating FBOs")
 
 	-- Create the framebuffer
-	self.fbo = core.display.newFBO(Map.viewport.width, Map.viewport.height)
+	--avoid distortion
+	self.fbo = core.display.newFBO(self.w - 200, self.h)
+
 	if self.fbo then
 		self.fbo_shader = Shader.new("main_fbo")
 	--[[	self.posteffects = {
@@ -422,7 +417,8 @@ function _M:createFBOs()
 		}
 		self.posteffects_use = { self.fbo_shader.shad }]]
 		if not self.fbo_shader.shad then self.fbo = nil self.fbo_shader = nil end
-		self.fbo2 = core.display.newFBO(Map.viewport.width, Map.viewport.height)
+		--avoid distortion
+		self.fbo2 = core.display.newFBO(self.w - 200, self.h)
 	end
 
 	if self.player then self.player:updateMainShader() end
@@ -434,12 +430,6 @@ function _M:createFBOs()
 		then core.particles.defineFramebuffer(self.fbo)
 	else core.particles.defineFramebuffer(nil) end
 
---	if self.target then self.target:enableFBORenderer("ui/targetshader.png", "target_fbo") end
-
---	Map:enableFBORenderer("target_fbo")
-
---	self.mm_fbo = core.display.newFBO(200, 200)
---	if self.mm_fbo then self.mm_fbo_shader = Shader.new("mm_fbo") if not self.mm_fbo_shader.shad then self.mm_fbo = nil self.mm_fbo_shader = nil end end
 end
 
 --Taken from ToME git
