@@ -931,13 +931,15 @@ function _M:runCheck(ignore_memory)
   end)
   if noticed then return false, noticed end
 
-  self:playerFOV()
+	game.level.map.clean_fov = true
+  	self:playerFOV()
 
   return engine.interface.PlayerRun.runCheck(self)
 end
 
 --- Called after running a step
 function _M:runMoved()
+	game.level.map.clean_fov = true
 	self:playerFOV()
 --[[	if self.running and self.running.explore then
 		game.level.map:particleEmitter(self.x, self.y, 1, "dust_trail")

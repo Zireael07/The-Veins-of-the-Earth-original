@@ -768,7 +768,7 @@ end
 -- output a message to the log based on the visibility of an actor to the player
 function _M.logSeen(e, style, ...)
 --	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e)) then game.log(style, ...) end
-	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e) and game.player:canReallySee(e) and game.player:hasLOS(x,y)) then game.log(style, ...) end
+	if e and e.player or (not e.dead and e.x and e.y and game.level and game.level.map.seens(e.x, e.y) and game.player:canSee(e) and game.player:canReallySee(e) and game.player:hasLOS(e.x,e.y)) then game.log(style, ...) end
 end
 
 -- determine whether an action between 2 actors should produce a message in the log and if the player
