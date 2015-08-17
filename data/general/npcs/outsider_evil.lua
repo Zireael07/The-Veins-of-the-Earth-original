@@ -85,7 +85,7 @@ newEntity{
 	rarity = 10,
 	max_life = resolvers.rngavg(30,35),
 	hit_die = 6,
-	challenge = 4,
+	challenge = 5, --Adjust a'la Incursion
 	infravision = 4,
 	combat_natural = 6,
 	combat_dr = 5,

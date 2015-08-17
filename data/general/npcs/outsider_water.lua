@@ -39,12 +39,13 @@ newEntity{ base = "BASE_NPC_WATER",
     },
 }
 
+--Bump them all up a'la Inc
 newEntity{
 	base = "BASE_NPC_TOJANIDA",
 	name = "juvenile tojanida",
 	level_range = {5, 15}, exp_worth = 900,
 	max_life = resolvers.rngavg(15,20),
-	hit_die = 3,
+	hit_die = 4,
 	challenge = 3,
 	combat_natural = 10,
 	skill_escapeartist = 6,
@@ -60,7 +61,7 @@ newEntity{
 	level_range = {5, 15}, exp_worth = 1500,
 	max_life = resolvers.rngavg(40,45),
 	hit_die = 7,
-	challenge = 5,
+	challenge = 8,
 	stats = { str=16, dex=13, con=15, int=10, wis=12, cha=9, luc=10 },
 	combat = { dam= {2,8} },
 	combat_natural = 12,
@@ -79,7 +80,7 @@ newEntity{
 	level_range = {10, nil}, exp_worth = 2700,
 	max_life = resolvers.rngavg(125,130),
 	hit_die = 7,
-	challenge = 9,
+	challenge = 10,
 	stats = { str=22, dex=13, con=19, int=10, wis=12, cha=9, luc=10 },
 	combat = { dam= {4,6} },
 	combat_natural = 13,

@@ -22,7 +22,7 @@ newEntity{
 	rarity = 20,
 	max_life = resolvers.rngavg(25,30),
 	hit_die = 6,
-	challenge = 7,
+	challenge = 8, -- Bump up per Incursion
 	alignment = "Chaotic Good",
 	infravision = 1,
 	combat_dr = 10,

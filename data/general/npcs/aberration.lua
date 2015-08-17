@@ -449,6 +449,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	skill_spot = 4,
 	combat_dr = 10,
 	combat_dr_tohit = 1,
+	alignment = "Neutral",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
 }
 
@@ -585,7 +586,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	rarity = 15,
 	max_life = resolvers.rngavg(40,45),
 	hit_die = 9,
-	challenge = 6,
+	challenge = 8, --bump up per Incursion
 	infravision = 4,
 	combat_protection = 10,
 	skill_bluff = 12,

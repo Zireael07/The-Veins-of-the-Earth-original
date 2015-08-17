@@ -352,6 +352,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 }
 
 --Burrow 20 ft; +2d6 fire on hit; tremorsense 4 squares; immunity to fire, vulnerability to cold
+--Bump up CR per Incursion
 newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_THOQQUA",
 	subtype = "fire",
@@ -368,7 +369,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	rarity = 10,
 	max_life = resolvers.rngavg(15,20),
 	hit_die = 3,
-	challenge = 2,
+	challenge = 3,
 	infravision = 4,
 	combat_natural = 7,
 	skill_listen = 4,
