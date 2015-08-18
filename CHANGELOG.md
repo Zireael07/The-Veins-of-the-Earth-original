@@ -1,3 +1,5 @@
+BETA 10 - 0.30.0
+
 CHANGELOG
 * bug fix - spellbook doesn't show a second tab if the second class happens to be shaman/sorcerer
 * bug fix - prevent using items on worldmap
@@ -13,6 +15,12 @@ CHANGELOG
 * bug fix - hunger now increases on the worldmap
 * bug fix - no more Lua error on using Ignizzar's fire spell
 * bug fix - sorcerer/shaman spell points now update when gaining a level
+* bug fix - more safeguards to visibility detection for log messages
+* bug fix - map no longer goes under hotbar (at the expense of disabling shaders)
+* bug fix - inventory screen no longer closes when doing most stuff
+* bug fix - adjust some CRs up, most notably ogres, to reduce early game difficulty
+* bug fix - restore log message when killing an NPC
+* bug fix - crafting items no longer shows curses as option
 
 * new tiles: fungi, handwraps, monk robes
 * new zones: inn; cave grove, fungi maze, fungi forest; goblin barracks
@@ -26,6 +34,8 @@ CHANGELOG
 * split skills into adventuring and background per PF variant rule
 * new variant rule: Pathfinder feats - every two levels instead of every three levels
 * implement confused, cowering, dazed, dazzled, deafened, entangled, exhausted, petrified, prone conditions
+* darken tiles outside FOV for better differentiation
+* implement level map screen
 * move mage armor spell to abjuration school
 * overhaul nutrition system
 * more ways to earn XP - dealing hp damage, making successful skill checks
@@ -34,9 +44,10 @@ CHANGELOG
 * change bear endurance, summon creature icons
 * implement menu buttons on hotbar, especially useful for spellcasters; skills/spells no longer get auto-added to the bar
 * spellbook now shows a pop-up if you can't memorize a spell due to exceeding limits
-* spellbook shows school in descriptions (except for spells which are both arcane and divine in nature)
+* spellbook shows school in descriptions
 * level up screen is now tabbed instead of using buttons to go to various parts (skills, feats)
 * patch Birther class to allow dynamic (i.e. function) descriptions (like talents)
+* generate class descriptions procedurally
 * shuffled character creation class help to a separate tab
 * torches now show the amount of fuel left in them and count down properly; corpses rot (but are not removed properly)
 * update help screen to cover switching tiles on/off
