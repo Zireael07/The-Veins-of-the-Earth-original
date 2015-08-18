@@ -164,7 +164,7 @@ function _M:setupEgoLists()
     local dst = ego.prefix and pfx_egos or ego.suffix and sfx_egos
     local item = { name = ego.name, id = id }
     table.insert(dst, item)
-    game.log("Inserted ego: "..item.name)
+--    game.log("Inserted ego: "..item.name)
   end
   self.ego_names = {}
   for _, item in ipairs(pfx_egos) do self:setDisplayText(item, 'prefix') end
