@@ -197,13 +197,13 @@ newEntity{
 	skill_search = 9,
 	skill_sensemotive = 9,
 	skill_spot = 13,
-	resolvers.generic(function(e)
+--[[	resolvers.generic(function(e)
 		if rng.percent(50) then
 			e.melee_project = { [DamageType.SONIC] = {3, 6} }
 		else
 			e.melee_project = { [DamageType.ELECTRIC] = {3, 6} }
 		end
-	end),
+	end),]]
 
 --	resolvers.talents{ [Talents.T_COMBAT_CASTING]=1,
 --	[Talents.T_POWER_ATTACK]=1
