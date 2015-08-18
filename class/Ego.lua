@@ -47,10 +47,23 @@ function _M:allowedEgosFor(o, good, side)
 	self.egos_def = self:loadList(o.egos, true)
 
     for _, e in ipairs(self.egos_def) do
-    local ok = true
+--    local ok = true
+    local ok = false
 
-    -- ... or it doesn't match the requested "goodness" or side...
---    ok = ok and (good == nil or (good and e.cost > 0 or e.cost <= 0))
+    --Force resolve cost first
+    if type(e.cost) == "table" and e.cost.__resolver then e.cost = resolvers.calc[e.cost.__resolver](e.cost, e) end
+
+    -- ... or it doesn't match the requested "goodness"
+    ok = ok and (good == nil or (good and e.cost > 0 or e.cost <= 0))
+
+    if good == nil then ok = true
+    else
+        if e.cost <= 0 then ok = false
+        else
+        ok = true
+        end
+    end
+    --or side...
     if side then
       ok = ok and e[side]
     elseif o.ego_names then
@@ -148,7 +161,7 @@ end
 
 --New functions (Zireael)
 --Get list of all egos, no frills, no separating into prefixes/affixes unlike CreateItem
-function _M:generateEgoList(o)
+function _M:generateEgoList(o, good)
     local list = {}
 
     game.log("Generating ego list for "..o.name)
@@ -166,7 +179,7 @@ function _M:generateEgoList(o)
 
     local object = o
 
-    for id, ego in ipairs(self:allowedEgosFor(object)) do
+    for id, ego in ipairs(self:allowedEgosFor(object, good)) do
 
         list[#list+1] = { name = ego.name, id=id, desc = "", ego=ego }
     end
@@ -177,7 +190,7 @@ end
 
 function _M:generateItemCreationEgos(o)
     local list = {}
-    local base_list = self:generateEgoList(o)
+    local base_list = self:generateEgoList(o, true)
 
     for i, ego in ipairs(base_list) do
         local name = ego.name
