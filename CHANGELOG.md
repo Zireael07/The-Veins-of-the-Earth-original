@@ -1,4 +1,4 @@
-BETA 10 - 0.30.0
+BETA 10 - 0.30.0 - 21/08/2015
 
 CHANGELOG
 * bug fix - spellbook doesn't show a second tab if the second class happens to be shaman/sorcerer
@@ -16,14 +16,14 @@ CHANGELOG
 * bug fix - no more Lua error on using Ignizzar's fire spell
 * bug fix - sorcerer/shaman spell points now update when gaining a level
 * bug fix - more safeguards to visibility detection for log messages
-* bug fix - map no longer goes under hotbar (at the expense of disabling shaders)
+* bug fix - map no longer goes under hotbar
 * bug fix - inventory screen no longer closes when doing most stuff
 * bug fix - adjust some CRs up, most notably ogres, to reduce early game difficulty
 * bug fix - restore log message when killing an NPC
 * bug fix - crafting items no longer shows curses as option
 
 * new tiles: fungi, handwraps, monk robes
-* new zones: inn; cave grove, fungi maze, fungi forest; goblin barracks
+* new zones: inn; drow outpost, drow metropolis, cave grove, fungi maze, fungi forest; goblin barracks
 * new spells: entangle, charm animal, delay poison, longstrider, detect poison, detect magic, shield, protection from alignment, true strike, endure elements, resist energy, protection from energy,
 * new NPCs: city seller (can sell from most of the shops defined except armor/weaponsmith and library)
 * new magic item properties: minotaur, of physical perfection
