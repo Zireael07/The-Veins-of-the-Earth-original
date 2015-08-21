@@ -86,6 +86,11 @@ return {
 		game.zone:addEntity(game.level, g, "terrain", spot.x, spot.y)
 		level.spots[#level.spots+1] = {x=spot.x, y=spot.y, type="zone-change", subtype="tavern"}
 
+		local spot = game.level:pickSpot{type="building", subtype="building"}
+		local g = game.zone:makeEntityByName(game.level, "terrain", "INN_ENTRANCE")
+		game.zone:addEntity(game.level, g, "terrain", spot.x, spot.y)
+		level.spots[#level.spots+1] = {x=spot.x, y=spot.y, type="zone-change", subtype="inn"}
+
 	end,
 
 	--Exiting buildings should now work
@@ -99,6 +104,8 @@ return {
       		return game.level:pickSpot{ type="zone-change", subtype="brothel" }
 		elseif from_zone.name == "Tavern" then
 			return game.level:pickSpot{ type="zone-change", subtype="tavern" }
+		elseif from_zone.name == "Inn" then
+			return game.level:pickSpot{ type="zone-change", subtype="inn" }
       	else
       		return nil
       	end
