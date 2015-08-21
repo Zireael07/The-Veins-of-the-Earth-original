@@ -87,6 +87,22 @@ newEntity{
 	change_level = 1,
 }
 
+newEntity{
+	base = "DOWN_DROWCITY",
+	define_as = "DOWN_DROWOUTPOST",
+	change_zone = "drow outpost",
+	spot = "drow_outpost",
+	change_level = 1,
+}
+
+newEntity{
+	base = "DOWN_DROWCITY",
+	define_as = "DOWN_DROWMETROPOLIS",
+	change_zone = "drow metropolis",
+	spot = "drow_metropolis",
+	change_level = 1,
+}
+
 --Other grids
 newEntity{
 	define_as = "FLOOR",

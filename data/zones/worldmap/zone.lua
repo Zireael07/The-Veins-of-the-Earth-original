@@ -58,6 +58,10 @@ return {
 
         game:placeDungeonEntrance("DOWN_DROWCITY")
 
+		game:placeDungeonEntrance("DOWN_DROWOUTPOST")
+
+		game:placeDungeonEntrance("DOWN_DROWMETROPOLIS")
+
         game:placeDungeonEntrance("DOWN_RUINS")
 
 
@@ -91,6 +95,14 @@ return {
       return nil
     elseif from_zone.name == "Tunnels" then
       return game.level:pickSpot{ type="zone-change", subtype="tunnels" }
+  	elseif from_zone.name == "Drow City" then
+		return game.level:pickSpot{ type="zone-change", subtype="drow_city" }
+	elseif from_zone.name == "Drow Outpost" then
+		return game.level:pickSpot{ type="zone-change", subtype="drow_outpost" }
+	elseif from_zone.name == "Drow Metropolis" then
+		return game.level:pickSpot{ type="zone-change", subtype="drow_metropolis" }
+	elseif from_zone.name == "Town" then
+		return game.level:pickSpot{ type="zone-change", subtype="town" }
     elseif from_zone.name == "Cavern" then
       return game.level:pickSpot{ type="zone-change", subtype="cavern" }
     elseif from_zone.name == "Arena" then
