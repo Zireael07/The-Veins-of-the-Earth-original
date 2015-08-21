@@ -16,6 +16,29 @@ newEntity{
     change_zone = "worldmap",
 }
 
+--Up/down for metropolis
+newEntity{
+	define_as = "UP",
+	type = "floor", subtype = "floor",
+	name = "previous level",
+	image = "tiles/terrain/stairs_up.png",
+	display = '<', color_r=255, color_g=255, color_b=0, back_color=colors.DARK_GREY,
+	notice = true,
+	always_remember = true,
+	change_level = -1,
+}
+
+newEntity{
+	define_as = "DOWN",
+	type = "floor", subtype = "floor",
+	name = "next level",
+	image = "tiles/terrain/stairs_down.png",
+	display = '>', color_r=255, color_g=255, color_b=0, back_color=colors.DARK_GREY,
+	notice = true,
+	always_remember = true,
+	change_level = 1,
+}
+
 newEntity{
     define_as = "FLOOR",
     type = "floor", subtype = "floor",
