@@ -398,6 +398,20 @@ function _M:move(x, y, force)
 		local change = 1000
 		game.turn = game.turn + change
 		self:decreaseNutrition(change/10)
+
+		if moved then
+			--Forage
+			local check = self:skillCheck("survival", 10)
+			if check then
+				self:incNutrition(1000)
+			end
+
+			--Hunt
+		--[[	local check = self:skillCheck("survival", 15)
+			if check then
+				self:incNutrition(2000)
+			end]]
+		end
 	end
 
   -- Remember not to describe this grid again.
