@@ -61,6 +61,36 @@ newEntity{
 
 newEntity{
 	base = "DOWN",
+	define_as = "DOWN_GROVE",
+	display = '>', color=colors.GREEN, back_color=colors.DARK_GREY,
+	image = "tiles/terrain/dungeon tree.png",
+	spot = "grove",
+	change_zone = "cave grove",
+	change_level = 1,
+}
+
+newEntity{
+	base = "DOWN",
+	define_as = "DOWN_FOREST",
+	display = '>', color=colors.CHOCOLATE, back_color=colors.DARK_GREY,
+	image = "tiles/UT/fungi.png",
+	spot = "forest",
+	change_zone = "fungi forest",
+	change_level = 1,
+}
+
+newEntity{
+	base = "DOWN",
+	define_as = "DOWN_MAZE",
+	display = '>', color=colors.CHOCOLATE, back_color=colors.DARK_GREY,
+	image = "tiles/UT/fungi.png",
+	spot = "fungi_maze",
+	change_zone = "fungi maze",
+	change_level = 1,
+}
+
+newEntity{
+	base = "DOWN",
 	define_as = "DOWN_ARENA",
 	image = "tiles/terrain/gate-closed.png",
 	change_zone = "arena",

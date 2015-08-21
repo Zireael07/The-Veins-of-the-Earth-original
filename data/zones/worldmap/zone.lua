@@ -48,6 +48,12 @@ return {
 		end
 
 		--put other dungeon entrances
+		game:placeDungeonEntrance("DOWN_GROVE")
+
+		game:placeDungeonEntrance("DOWN_FOREST")
+
+		game:placeDungeonEntrance("DOWN_MAZE")
+
 		game:placeDungeonEntrance("DOWN_CAVERN")
 
 		game:placeDungeonEntrance("DOWN_ARENA")
@@ -103,6 +109,12 @@ return {
 		return game.level:pickSpot{ type="zone-change", subtype="drow_metropolis" }
 	elseif from_zone.name == "Town" then
 		return game.level:pickSpot{ type="zone-change", subtype="town" }
+	elseif from_zone.name == "Cave Grove" then
+		return game.level:pickSpot{ type="zone-change", subtype="grove" }
+	elseif from_zone.name == "Fungi Maze" then
+		return game.level:pickSpot{ type="zone-change", subtype="fungi_maze" }
+	elseif from_zone.name == "Fungi Forest" then
+		return game.level:pickSpot{ type="zone-change", subtype="forest" }
     elseif from_zone.name == "Cavern" then
       return game.level:pickSpot{ type="zone-change", subtype="cavern" }
     elseif from_zone.name == "Arena" then
