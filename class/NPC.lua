@@ -28,6 +28,33 @@ function _M:init(t, no_default)
 	ActorAI.init(self, t)
 end
 
+function _M:resolve(t, last, on_entity, key_chain)
+  -- Dodgy Hack(TM):  resolve() calls itself, and we only want to do our
+  -- special stuff once at the top level.
+  if self.nested then
+    mod.class.Actor.resolve(self, t, last, on_entity, key_chain)
+    return
+  end
+  self.nested = true
+
+ --[[ local NPCEgo = require 'mod.class.NPCEgo'
+  if not last then
+    NPCEgo:tryAddEgo(self)
+    NPCEgo:applyEgo(self)
+  end]]
+
+  mod.class.Actor.resolve(self, t, last, on_entity, key_chain)
+
+  if last then
+    -- Clean these up behind ourself.
+    _M.resolve_flags = {}
+    -- This isn't getting handled right, and I can't figure out how to
+    -- disentangle it; ham-hand it manually here.
+    self.life = self.max_life
+  end
+  self.nested = nil
+end
+
 function _M:act()
     local player = game.player
 
