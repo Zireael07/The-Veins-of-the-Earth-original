@@ -356,6 +356,23 @@ newEffect{
 	end,
 }
 
+--Stoneskin
+newEffect{
+	name = "STONESKIN",
+	desc = "Protection from physical damage",
+	type = "mental",
+	status = "beneficial",
+--	parameters = { power=1 },
+	on_gain = function(self, err) return "#Target#'s skin turns to stone!", "+Stoneskin" end,
+	on_lose = function(self, err) return "#Target# no longer feels protected.", "-Stoneskin" end,
+	activate = function(self, eff)
+		eff.tmpid = self:addTemporaryValue("resists", {[DamageType.PHYSICAL]=10})
+	end,
+	deactivate = function(self, eff)
+		self:removeTemporaryValue("resists", eff.tmpid)
+	end,
+}
+
 --Dummies again
 newEffect{
 	name = "KNOW_ALIGNMENT",
