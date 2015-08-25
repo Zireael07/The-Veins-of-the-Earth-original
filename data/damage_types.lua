@@ -36,7 +36,38 @@ setDefaultProjector(function(src, x, y, type, dam)
 				end
 			end
 
-			--Damage increases
+			local damagelog = ""
+
+			-- d20 resistances - flat damage reduction
+			if dam > 0 and target.resists then
+				local dec = math.min(dam, (target.resists.all or 0) + (target.resists[type] or 0))
+				if dec > 0 then
+					damagelog = ("%s(%d resist)#LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dec)
+				end
+				dam = math.max(0, dam - dec)
+				print("[PROJECTOR] after flat damage resistance", dam)
+			end
+
+			-- Reduce damage with percentile resistance
+			if target.resists_perc then
+				local pen = 0
+				if src.resists_pen then pen = (src.resists_pen.all or 0) + (src.resists_pen[type] or 0) end
+				--[[local dominated = target:hasEffect(target.EFF_DOMINATED)
+				if dominated and dominated.src == src then pen = pen + (dominated.resistPenetration or 0) end
+				if target:attr("sleep") and src.attr and src:attr("night_terror") then pen = pen + src:attr("night_terror") end
+				]]
+				local res = target:combatGetResist(type)
+				pen = util.bound(pen, 0, 100)
+				if res > 0 then	res = res * (100 - pen) / 100 end
+				print("[PROJECTOR] res", res, (100 - res) / 100, " on dam", dam)
+				if res >= 100 then dam = 0
+				elseif res <= -100 then dam = dam * 2
+				else dam = dam * ((100 - res) / 100)
+				end
+			end
+			print("[PROJECTOR] after percentile resists dam", dam)
+
+			--Damage increases (vulnerabilities)
 			if src.inc_damage then
 				local inc
 				inc = (src.inc_damage.all or 0) + (src.inc_damage[type] or 0)
@@ -53,9 +84,9 @@ setDefaultProjector(function(src, x, y, type, dam)
 				if visible then -- don't log damage that the player doesn't know about
 				local source = src.__project_source or src
 					if src.__is_actor then
-						game.logSeen(target, "%s hits %s for %s%d %s damage#LAST#.", src:getLogName():capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
+						game.logSeen(target, "%s hits %s for %s%d %s damage %s#LAST#.", src:getLogName():capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name, damagelog)
 					else
-						game.logSeen(target, "%s hits %s for %s%d %s damage#LAST#.", src.name:capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name)
+						game.logSeen(target, "%s hits %s for %s%d %s damage %s#LAST#.", src.name:capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name, damagelog)
 					end
 			--[[	if src.turn_procs and src.turn_procs.is_crit then
 					game:delayedLogDamage(source, target, dam, ("#{bold}#%s%d %s#{normal}##LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), true)
