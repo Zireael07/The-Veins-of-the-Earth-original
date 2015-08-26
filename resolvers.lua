@@ -311,7 +311,7 @@ function resolvers.calc.moddable_tile(t, e)
 	--robes
 	elseif slot == "archmage" then r = {"robe_green","robe_green_gold","robe_yellow", "robe_red_gold", "robe_brown"}
 	elseif slot == "monk" then r = {"monk_black","monk_blue"}
-	
+
 	elseif slot == "shield" then r = {"shield_kite2","shield_round1","shield_round2","shield_round3"}
 	elseif slot == "staff" then r = {"staff_plain", "staff_mage"}
 	elseif slot == "leather_boots" then r = {"middle_brown","middle_brown2","middle_brown3",}
@@ -1086,14 +1086,14 @@ local function actor_final_level(e)
 end
 
 function resolvers.npc_drops_level()
-	return {__resolver="npc_drops_level", __resolve_last=true, t}
+	return {__resolver="npc_drops_level", __resolve_last=true}
 	--return {__resolver="npc_drops_level", t}
 end
 
 function resolvers.calc.npc_drops_level(t, e)
 	 local level
-
-		if type(actor_final_level(e)) == "number" then
+--	 print("Checking level - %s for %s (final level %d)", e.challenge, e.name, actor_final_level(e))
+		if e and _G.type(actor_final_level(e)) == "number" then
 			level = actor_final_level(e)
 		else
 			level = e.challenge
