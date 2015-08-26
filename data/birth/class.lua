@@ -1281,20 +1281,30 @@ newBirthDescriptor {
 					{name="Necromancy", desc="Restricts Divination"},
 					{name="Transmutation", desc="Restricts Conjuration"}
 				}, function(result)
+
+					if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then actor:learnTalentType("conjuration") end --actor:learnTalentType("conjuration_both") end
+					if result ~= "Necromancy" then
+						actor:learnTalentType("divination")
+						actor:learnTalentType("divination_both")
+					end
+					if result ~= "Illusion" then actor:learnTalentType("enchantment") end
+
+					if result ~= "Divination" and result ~= "Enchantment" then actor:learnTalentType("illusion") end
+
+					if result ~= "Conjuration" then
+						actor:learnTalentType("transmutation")
+						actor:learnTalentType("transmutation_both")
+					end
+
 					actor:learnTalentType("abjuration")
 					actor:learnTalentType("abjuration_both")
-					if result ~= "Abjuration" and result ~= "Evocation" and result ~= "Transmutation" then actor:learnTalentType("conjuration") end --actor:learnTalentType("conjuration_both") end
-					if result ~= "Necromancy" then actor:learnTalentType("divination") actor:learnTalentType("divination_both") end
-					if result ~= "Illusion" then actor:learnTalentType("enchantment") end
 					actor:learnTalentType("evocation")
-					if result ~= "Divination" and result ~= "Enchantment" then actor:learnTalentType("illusion") end
 					actor:learnTalentType("necromancy")
 					actor:learnTalentType("necromancy_both")
-					if result ~= "Conjuration" then actor:learnTalentType("transmutation") actor:learnTalentType("transmutation_both") end
 
 					-- Now that we know our schools, learn spells
-					descriptor.learn_all_spells_of_level(actor, 0)
-					descriptor.learn_all_spells_of_level(actor, 1)
+					descriptor.learn_all_spells_of_level(actor, "arcane", 0)
+					descriptor.learn_all_spells_of_level(actor, "arcane", 1)
 				end))
 
 				game:registerDialog(require('mod.dialogs.GetChoice').new("Choose a familiar", {
