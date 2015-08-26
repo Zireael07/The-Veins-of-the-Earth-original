@@ -235,7 +235,7 @@ function _M:okToGenerate(e, type, level, base_lev, max_ood_lev, filter, rarity_f
 	return e[rarity_field] and e.level_range and e.level_range[1] <= max_ood_lev and (not filter or filter(e))
 	else
     -- From the original Zone:computeRarities()
-    return e[rarity_field] and e.level_range and (not filter or filter(e))
+    return e[rarity_field] and e.level_range and e.level_range[1] <= max_ood_lev and (not filter or filter(e))
   end
 
 end
@@ -277,13 +277,19 @@ end
 
 --Backported from ToME git
 --Necessary to avoid Lua'ing
-local pick_ego = function(self, level, e, eegos, egos_list, type, picked_etype, etype, ego_filter)
+local pick_ego = function(self, level, e, eegos, egos_list, type, picked_etype, etype, ego_filter, add_levels)
     picked_etype[etype] = true
     if _G.type(etype) == "number" then etype = "" end
 
     local egos = e.egos and level:getEntitiesList(type.."/"..e.egos..":"..etype)
 
-    if not egos then egos = self:generateEgoEntities(level, type, etype, eegos, e.__CLASSNAME) end
+    if not egos then
+		if add_levels == nil then
+		egos = self:generateEgoEntities(level, type, etype, eegos, e.__CLASSNAME)
+		else
+			egos = self:generateEgoEntities(level, type, etype, eegos, e.__CLASSNAME, add_levels)
+		end
+	end
 
     if self.ego_filter then ego_filter = self.ego_filter(self, level, type, etype, e, ego_filter, egos_list, picked_etype) end
 
@@ -298,6 +304,22 @@ local pick_ego = function(self, level, e, eegos, egos_list, type, picked_etype, 
     if egos_list[#egos_list] then print("Picked ego", type.."/"..eegos..":"..etype, ":=>", egos_list[#egos_list].name) else print("Picked ego", type.."/"..eegos..":"..etype, ":=>", #egos_list) end
 end
 
+--- Compute posible egos for this list
+function _M:generateEgoEntities(level, type, etype, e_egos, e___CLASSNAME, add_level)
+	print("Generating specific ego list", type.."/"..e_egos..":"..etype)
+--[[	if add_level == nil then
+	print("Generating ego list, nil add_level")
+	else
+	print("Generating ego list, non-nil add_level")
+	end]]
+	local egos = self:getEgosList(level, type, e_egos, e___CLASSNAME)
+	if egos then
+		local egos_prob = self:computeRarities(type, egos, level, etype ~= "" and function(e) return e[etype] end or nil, add_level)
+		level:setEntitiesList(type.."/"..e_egos..":"..etype, egos_prob)
+		level:setEntitiesList(type.."/base/"..e_egos..":"..etype, egos)
+		return egos_prob
+	end
+end
 
 -- Applies a single ego to a (pre-resolved) entity
 -- May be in need to resolve afterwards
@@ -379,9 +401,80 @@ function _M:setEntityEgoList(e, list)
     return e
 end
 
+--- Picks and resolve an entity
+-- @param level a Level object to generate for
+-- @param type one of "object" "terrain" "actor" "trap"
+-- @param filter a filter table
+-- @param force_level if not nil forces the current level for resolvers to this one
+-- @param prob_filter if true a new probability list based on this filter will be generated, ensuring to find objects better but at a slightly slower cost (maybe)
+-- @return the fully resolved entity, ready to be used on a level. Or nil if a filter was given an nothing found
+function _M:makeEntity(level, type, filter, force_level, prob_filter)
+	resolvers.current_level = self.base_level + level.level - 1
+	if force_level then resolvers.current_level = force_level end
+
+	if prob_filter == nil then prob_filter = util.getval(self.default_prob_filter, self, type) end
+	if filter == nil then filter = util.getval(self.default_filter, self, level, type) end
+	if filter and self.alter_filter then filter = util.getval(self.alter_filter, self, level, type, filter) end
+
+	local e
+	-- No probability list, use the default one and apply filter
+	if not prob_filter then
+		local list = self:getEntities(level, type)
+		local tries = filter and filter.nb_tries or 500
+		-- CRUDE ! Brute force ! Make me smarter !
+		while tries > 0 do
+			e = self:pickEntity(list)
+			if e and self:checkFilter(e, filter, type) then break end
+			tries = tries - 1
+		end
+		if tries == 0 then return nil end
+	-- Generate a specific probability list, slower to generate but no need to "try and be lucky"
+	elseif filter then
+		local base_list = nil
+		if filter.base_list then
+			if _G.type(filter.base_list) == "table" then base_list = filter.base_list
+			else
+				local _, _, class, file = filter.base_list:find("(.*):(.*)")
+				if class and file then
+					base_list = require(class):loadList(file)
+				end
+			end
+		elseif type == "actor" then base_list = self.npc_list
+		elseif type == "object" then base_list = self.object_list
+		elseif type == "trap" then base_list = self.trap_list
+		else base_list = self:getEntities(level, type) if not base_list then return nil end end
+		local list = self:computeRarities(type, base_list, level, function(e) return self:checkFilter(e, filter, type) end, filter.add_levels, filter.special_rarity)
+		e = self:pickEntity(list)
+		print("[MAKE ENTITY] prob list generation", e and e.name, "from list size", #list)
+		if not e then return nil end
+	-- No filter
+	else
+		local list = self:getEntities(level, type)
+		local tries = filter and filter.nb_tries or 50 -- A little crude here too but we only check 50 times, this is simply to prevent duplicate uniques
+		while tries > 0 do
+			e = self:pickEntity(list)
+			if e and self:checkFilter(e, nil, type) then break end
+			tries = tries - 1
+		end
+		if tries == 0 then return nil end
+	end
+
+	if filter then e.force_ego = filter.force_ego end
+
+	if filter and self.post_filter then e = util.getval(self.post_filter, self, level, type, e, filter) or e end
+
+	e = self:finishEntity(level, type, e, (filter and filter.ego_filter) or (filter and filter.ego_chance), (filter and filter.add_levels))
+	e.__forced_level = filter and filter.add_levels
+
+	return e
+end
+
+
+
+
 --new FinishEntity backported from ToME git
 --- Finishes generating an entity
-function _M:finishEntity(level, type, e, ego_filter)
+function _M:finishEntity(level, type, e, ego_filter, add_levels)
     e = e:clone()
     e:resolve()
 
@@ -389,7 +482,7 @@ function _M:finishEntity(level, type, e, ego_filter)
     if not e.unique and e.addons then
         local egos_list = {}
 
-        pick_ego(self, level, e, e.addons, egos_list, type, {}, "addon", nil)
+        pick_ego(self, level, e, e.addons, egos_list, type, {}, "addon", nil, add_levels)
 
         if #egos_list > 0 then
             for ie, ego in ipairs(egos_list) do
