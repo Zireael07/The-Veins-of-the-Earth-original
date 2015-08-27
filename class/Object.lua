@@ -414,7 +414,7 @@ function _M:getTextualDesc(compare_with, use_actor)
         w = w[field] or {}
 
         --Armors
-        self:compare_fields(desc, w, compare_with, field, "combat_armor_ac", "%+d", "AC: ")
+        self:compare_fields(desc, w, compare_with, field, "combat_armor", "%+d", "AC: ")
         self:compare_fields(desc, w, compare_with, field, "max_dex_bonus", "%+d", "Max Dex bonus to AC: ")
         self:compare_fields(desc, w, compare_with, field, "spell_fail", "%+d", "Spell failure chance: ", 1, true, true)
         self:compare_fields(desc, w, compare_with, field, "armor_penalty", "%+d", "Armor check penalty: ", 1, true, true)

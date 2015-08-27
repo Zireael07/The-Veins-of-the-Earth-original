@@ -71,7 +71,7 @@ function _M:init(t, no_default)
 	self.combat_damage = 0
 
 	--Define AC types
-	self.combat_armor_ac = 0
+	self.combat_armor = 0
 	self.combat_magic_armor = 0
 	self.combat_shield = 0
 	self.combat_magic_shield = 0
@@ -592,7 +592,7 @@ function _M:colorPersonalReaction()
 end
 
 function _M:getType()
-	local type = self.type:gsub("_", "[ ]")
+	local type = self.type:gsub("_", " ")
 
 	if self.type == "humanoid" then type = self.type.." ("..self.subtype:gsub("_", " ")..")" end
 	return type
@@ -1957,21 +1957,28 @@ function _M:classFeat(tid)
 end
 
 --AC, Sebsebeleb & Zireael
-function _M:getAC()
+function _M:getAC(log)
+	--Add logging
+	local log_ac = ""
+
 	local dex_bonus = self:getDexMod()
 	--Splitting it up to avoid stuff like stacking rings of protection or bracers of armor + armor
 --	local base = self.combat_base_ac or 10
-	local armor = self.combat_armor_ac or 0
-	local shield = self.combat_shield or 0
-	local natural = self.combat_natural or 0
-	local magic_armor = self.combat_magic_armor or 0
-	local magic_shield = self.combat_magic_shield or 0
-	local dodge = self.combat_dodge or 0
-	local protection = self.combat_protection or 0
-	local untyped = self.combat_untyped or 0
-	local parry = self.combat_parry or 0
+	local ac_bonuses = 0
 
-	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end
+	local ac_bonuses_table = { "armor", "shield", "natural", "magic_armor", "magic_shield", "dodge", "protection", "untyped", "parry" }
+
+	for i, source in pairs(ac_bonuses_table) do
+		local value = self:attr("combat_"..source) or 0
+		local string = source:gsub("_", " ")
+		ac_bonuses = (ac_bonuses or 0) + value
+		game.log("Bonuses "..ac_bonuses)
+		if log == true and value > 0 then log_ac = log_ac..string:capitalize().." "..value.." " end
+	end
+
+	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus)
+		if log then log_ac = log_ac.."Dex "..dex_bonus.." " end
+	end
 
 	if self.combat_protection then protection = math.min(protection, 5) end
 
@@ -1979,17 +1986,21 @@ function _M:getAC()
 
 
 	--Shield Focus feat
-	if self.combat_shield and self:knowTalent(self.T_SHIELD_FOCUS) then shield = shield + 2 end
-
-	local ac_bonuses = armor + magic_armor + shield + magic_shield + natural + protection + dodge + parry
-
+	if self.combat_shield and self:knowTalent(self.T_SHIELD_FOCUS) then
+		 shield = shield + 2
+		 if log then log_ac = log_ac.."Shield Focus +2 " end
+	 end
 
 	if config.settings.veins.defensive_roll == true then
 		local roll = rng.dice(1,20)
 		return math.floor(roll + ac_bonuses + (dex_bonus or 0))
 	else
 
-	return math.floor(10 + ac_bonuses + (dex_bonus or 0))
+		if log == true then
+			return math.floor(10 + ac_bonuses + (dex_bonus or 0)), log_ac
+		else
+			return math.floor(10 + ac_bonuses + (dex_bonus or 0))
+		end
 	end
 end
 
