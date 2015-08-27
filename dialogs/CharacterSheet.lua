@@ -274,7 +274,9 @@ end
     self:mouseTooltip(self.TOOLTIP_MONEY, s:drawColorStringBlended(self.font, "#ANTIQUE_WHITE#Money : "..(player.money or "Unknown").."/"..(player.bank_money or 0), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(player:getAC() or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    ac, log_ac = player:getAC(true)
+
+    self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(ac or "Unknown").." ("..log_ac.." )", w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life).."/"..math.floor(player.max_life)), w, h, 255, 255, 255, true)) h = h + self.font_h
