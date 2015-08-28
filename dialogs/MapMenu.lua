@@ -67,6 +67,7 @@ function _M:use(item)
     elseif act == "order" then game.party:giveOrders(item.actor)
     elseif act == "change_level" then game.key:triggerVirtual("CHANGE_LEVEL")
     elseif act == "pickup" then game.key:triggerVirtual("PICKUP_FLOOR")
+    elseif act == "character_sheet" then game:registerDialog(require("mod.dialogs.CharacterSheet").new(item.actor))
     elseif act == "monster_info" then game:registerDialog(require("mod.dialogs.MonsterInfo").new(item.actor))
     elseif act == "inventory" then game.key:triggerVirtual("SHOW_INVENTORY")
     elseif act == "rest" then game.key:triggerVirtual("REST")
@@ -102,6 +103,7 @@ function _M:generateList()
 --    if a and config.settings.cheat then list[#list+1] = {name="Lua inspect", action="debug-inspect", color=colors.simple(colors.LIGHT_BLUE), actor=a} end
     if self.on_player then list[#list+1] = {name="Rest a while", action="rest", color=colors.simple(colors.ANTIQUE_WHITE)} end
     if self.on_player then list[#list+1] = {name="Inventory", action="inventory", color=colors.simple(colors.ANTIQUE_WHITE)} end
+    if a then list[#list+1] = {name="Inspect Creature", action="character_sheet", color=colors.simple(colors.ANTIQUE_WHITE), actor=a} end
     if a and player:canReallySee(a) then list[#list+1] = {name="Monster Info", action="monster_info", color=colors.simple(colors.ANTIQUE_WHITE), actor=a} end
 
     self.max = 0
