@@ -38,6 +38,11 @@ Items
 unided_name -> the name that is displayed before the item is identified
 cost -> the internal value is counted in copper pieces, while resolvers handle higher coinage (most equipment uses resolver.value{silver=x}, where x is the price in silver pieces)
 
+Prices
+1 pp = 10 gp = 200 sp = 2000 cp
+1 gp = 20 sp = 200 cp
+1 sp = 10 cp
+
 Egos
 Keywords are necessary for the tooltips to work.
 
