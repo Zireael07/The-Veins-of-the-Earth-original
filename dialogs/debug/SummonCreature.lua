@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2014 Zireael
+-- Copyright (C) 2013-2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ function _M:drawDialog(tab)
 		{left=0, top=self.t_enemies.h + 5, ui=self.c_enemies},
         {right=0, top=0, ui=self.c_desc}
     }
-    
+
     self:setupUI()
 
 
@@ -105,11 +105,11 @@ function _M:drawDialog(tab)
 		{left=0, top=self.t_enemies.h + 5, ui=self.c_neutral},
         {right=0, top=0, ui=self.c_desc}
     }
-    
+
     self:setupUI()
 
     end
-    
+
     if tab == "encounters" then
 
     self:loadUI{
@@ -119,7 +119,7 @@ function _M:drawDialog(tab)
         {left=0, top=self.t_enemies.h + 5, ui=self.c_encounter},
         {right=0, top=0, ui=self.c_desc}
     }
-    
+
     self:setupUI()
 
     end
@@ -144,7 +144,7 @@ end
 
 function _M:on_select(item,sel)
     if self.c_desc then self.c_desc:switchItem(item, item.desc) end
-    self.selection = sel    
+    self.selection = sel
 end
 
 
@@ -160,9 +160,10 @@ function _M:generateListEnemies()
 
 	for i, e in ipairs(game.zone.npc_list) do
 		if e.name ~= "unknown actor" and e.type ~= "encounter" and e.faction ~= "neutral" then
+			if e.rarity then
 			local color
             local player = game.player
-	
+
             if e.challenge > player.level then color = {178, 34, 34}
             elseif e.challenge < (player.level -4) then color = {0, 255, 0}
             elseif e.challenge < player.level then color = {50, 77, 12}
@@ -173,16 +174,17 @@ function _M:generateListEnemies()
 
 		list[#list+1] = {name=e.name, type=e.type, color=color, desc = d, challenge=e.challenge, unique=e.unique, faction=e.faction, e=e}
 		else end
+		end
 	end
-	
+
 	table.sort(list, function(a,b)
         --Sort by challenge
-        if a.challenge == b.challenge then 
+        if a.challenge == b.challenge then
             return a.name < b.name
-        else 
+        else
             return a.challenge < b.challenge
         end
-		
+
         --[[	if a.unique and not b.unique then return true
 		elseif not a.unique and b.unique then return false end]]
 	--	return a.name < b.name
@@ -203,6 +205,7 @@ function _M:generateListNeutral()
 
 	for i, e in ipairs(game.zone.npc_list) do
 		if e.name ~= "unknown actor" and e.faction == "neutral" then
+			if e.rarity then
 			local color
 			if e.type == "encounter" then color = {255, 215, 0}
 			elseif e.faction == "neutral" then color = {81, 221, 255}
@@ -210,16 +213,17 @@ function _M:generateListNeutral()
 
 		list[#list+1] = {name=e.name, type=e.type, color=color, challenge=e.challenge, unique=e.unique, faction=e.faction, e=e}
 		else end
+		end
 	end
-	
+
 	table.sort(list, function(a,b)
 		 --Sort by challenge
-        if a.challenge == b.challenge then 
+        if a.challenge == b.challenge then
             return a.name < b.name
-        else 
+        else
             return a.challenge < b.challenge
         end
-        
+
         --[[    if a.unique and not b.unique then return true
         elseif not a.unique and b.unique then return false end]]
     --  return a.name < b.name
@@ -240,6 +244,7 @@ function _M:generateListEncounter()
 
 	for i, e in ipairs(game.zone.npc_list) do
 		if e.name ~= "unknown actor" and e.type == "encounter" then
+			if e.rarity then
 			local color
 			if e.type == "encounter" then color = {255, 215, 0}
 			elseif e.faction == "neutral" then color = {81, 221, 255}
@@ -247,16 +252,17 @@ function _M:generateListEncounter()
 
 		list[#list+1] = {name=e.name, type=e.type, color=color, challenge=e.challenge, unique=e.unique, faction=e.faction, e=e}
 		else end
+		end
 	end
-	
+
 	table.sort(list, function(a,b)
 		 --Sort by challenge
-        if a.challenge == b.challenge then 
+        if a.challenge == b.challenge then
             return a.name < b.name
-        else 
+        else
             return a.challenge < b.challenge
         end
-        
+
         --[[    if a.unique and not b.unique then return true
         elseif not a.unique and b.unique then return false end]]
     --  return a.name < b.name
