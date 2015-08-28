@@ -18,7 +18,7 @@ module(..., package.seeall, class.inherit(Dialog, mod.class.interface.TooltipsDa
 function _M:init(actor)
     self.actor = actor
 
-    local player = game.player
+    local actor = game.player
 
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Character Sheet: "..self.actor.name, math.max(game.w * 0.7, 950), math.max(game.h*0.6, 550), nil, nil, font)
@@ -215,7 +215,7 @@ end
 
 --General tab
 function _M:drawGeneral()
-    local player = self.actor
+    local actor = self.actor
     local s = self.c_desc.s
 
     s:erase(0,0,0,0)
@@ -226,12 +226,12 @@ function _M:drawGeneral()
     h = 0
     w = 0
 
-    s:drawColorStringBlended(self.font, "#SLATE#Name : "..(player.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "#SLATE#Sex : "..(player.descriptor and player.descriptor.sex or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "#SLATE#Race : "..(player.descriptor and player.descriptor.race or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#Name : "..(actor.name or "Unnamed"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#Sex : "..(actor.descriptor and actor.descriptor.sex or "Unknown"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "#SLATE#Race : "..(actor.descriptor and actor.descriptor.race or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     --Automatically print out classes
-    if player == game.player then
+    if actor == game.player then
         local Birther = require "engine.Birther"
 
         local list = {}
@@ -264,43 +264,43 @@ function _M:drawGeneral()
 
     h = h + self.font_h -- Adds an empty row
 
-    if player == game.player then
-        s:drawColorStringBlended(self.font, "#LIGHT_GREEN#"..(player:levelTitles() or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+    if actor == game.player then
+        s:drawColorStringBlended(self.font, "#LIGHT_GREEN#"..(actor:levelTitles() or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
     end
 
     h = h + self.font_h -- Adds an empty row
-    self:mouseTooltip(self.TOOLTIP_LEVEL, s:drawColorStringBlended(self.font, "Character level: "..(player.level or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_EXP, s:drawColorStringBlended(self.font, "EXP : "..(player.exp.."/"..player:getExpChart(player.level+1)), w, h, 255, 255, 255, true)) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "ECL : "..(player.ecl or "N/A") , w, h, 255, 255, 255, true) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_LEVEL, s:drawColorStringBlended(self.font, "Character level: "..(actor.level or "Unknown"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_EXP, s:drawColorStringBlended(self.font, "EXP : "..(actor.exp.."/"..actor:getExpChart(actor.level+1)), w, h, 255, 255, 255, true)) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "ECL : "..(actor.ecl or "N/A") , w, h, 255, 255, 255, true) h = h + self.font_h
 
 
     h = h + self.font_h -- Adds an empty row
-    if player == game.player then
-        self:mouseTooltip(self.TOOLTIP_MONEY, s:drawColorStringBlended(self.font, "#ANTIQUE_WHITE#Money : "..(player.money or "Unknown").."/"..(player.bank_money or 0), w, h, 255, 255, 255, true)) h = h + self.font_h
+    if actor == game.player then
+        self:mouseTooltip(self.TOOLTIP_MONEY, s:drawColorStringBlended(self.font, "#ANTIQUE_WHITE#Money : "..(actor.money or "Unknown").."/"..(actor.bank_money or 0), w, h, 255, 255, 255, true)) h = h + self.font_h
     end
 
     h = h + self.font_h -- Adds an empty row
-    ac, log_ac = player:getAC(true)
+    ac, log_ac = actor:getAC(true)
 
     self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(ac or "Unknown").." ("..log_ac.." )", w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
-    self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(player.life).."/"..math.floor(player.max_life)), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_WOUNDS, s:drawColorStringBlended(self.font, "Wounds : #DARK_RED#"..player.wounds.."/"..player.max_wounds, w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(actor.life).."/"..math.floor(actor.max_life)), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_WOUNDS, s:drawColorStringBlended(self.font, "Wounds : #DARK_RED#"..actor.wounds.."/"..actor.max_wounds, w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
 
     --display attacks in a smart way!
-    local weapon = (player:getInven("MAIN_HAND") and player:getInven("MAIN_HAND")[1]) or player
+    local weapon = (actor:getInven("MAIN_HAND") and actor:getInven("MAIN_HAND")[1]) or actor
     if weapon and not weapon.ranged then
-        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Melee attack#LAST#: %d = %s"):format(player:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Melee attack#LAST#: %d = %s"):format(actor:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
     else
-        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(player.combat_bab or "0").." + Str bonus: "..player:getStrMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(actor.combat_bab or "0").." + Str bonus: "..actor:getStrMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
     end
     if weapon and weapon.ranged then
-        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Ranged attack#LAST#: %d = %s"):format(player:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Ranged attack#LAST#: %d = %s"):format(actor:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
     else
-        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(player.combat_bab or "0").." + Dex bonus: "..player:getDexMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(actor.combat_bab or "0").." + Dex bonus: "..actor:getDexMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
     end
 
     h = 0
@@ -308,58 +308,58 @@ function _M:drawGeneral()
     -- start on second column
 
         self:mouseTooltip(self.TOOLTIP_STATS, s:drawColorStringBlended(self.font, "#CHOCOLATE#Stats", w, h, 255, 255, 255, true)) h = h + self.font_h
-    if player == game.player then
-        self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(player:sheetColorStats('str').." #SANDY_BROWN#"..player:getStrMod().." #YELLOW#/"..player.train_str.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(player:sheetColorStats('dex').." #SANDY_BROWN#"..player:getDexMod().." #YELLOW#/"..player.train_dex.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_CON, s:drawColorStringBlended(self.font, "#SLATE#CON : #YELLOW#"..(player:sheetColorStats('con').." #SANDY_BROWN#"..player:getConMod().." #YELLOW#/"..player.train_con.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_INT, s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(player:sheetColorStats('int').." #SANDY_BROWN#"..player:getIntMod().." #YELLOW#/"..player.train_int.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_WIS, s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(player:sheetColorStats('wis').." #SANDY_BROWN#"..player:getWisMod().." #YELLOW#/"..player.train_wis.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_CHA, s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(player:sheetColorStats('cha').." #SANDY_BROWN#"..player:getChaMod().." #YELLOW#/"..player.train_cha.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_LUC, s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(player:sheetColorStats('luc').." #SANDY_BROWN#"..player:getLucMod().." #YELLOW#/"..player.train_luc.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    if actor == game.player then
+        self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(actor:sheetColorStats('str').." #SANDY_BROWN#"..actor:getStrMod().." #YELLOW#/"..actor.train_str.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(actor:sheetColorStats('dex').." #SANDY_BROWN#"..actor:getDexMod().." #YELLOW#/"..actor.train_dex.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_CON, s:drawColorStringBlended(self.font, "#SLATE#CON : #YELLOW#"..(actor:sheetColorStats('con').." #SANDY_BROWN#"..actor:getConMod().." #YELLOW#/"..actor.train_con.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_INT, s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(actor:sheetColorStats('int').." #SANDY_BROWN#"..actor:getIntMod().." #YELLOW#/"..actor.train_int.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_WIS, s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(actor:sheetColorStats('wis').." #SANDY_BROWN#"..actor:getWisMod().." #YELLOW#/"..actor.train_wis.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_CHA, s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(actor:sheetColorStats('cha').." #SANDY_BROWN#"..actor:getChaMod().." #YELLOW#/"..actor.train_cha.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_LUC, s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(actor:sheetColorStats('luc').." #SANDY_BROWN#"..actor:getLucMod().." #YELLOW#/"..actor.train_luc.."/#LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
     else
-        self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(player:sheetColorStats('str').." #SANDY_BROWN#"..player:getStrMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(player:sheetColorStats('dex').." #SANDY_BROWN#"..player:getDexMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_CON, s:drawColorStringBlended(self.font, "#SLATE#CON : #YELLOW#"..(player:sheetColorStats('con').." #SANDY_BROWN#"..player:getConMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_INT, s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(player:sheetColorStats('int').." #SANDY_BROWN#"..player:getIntMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_WIS, s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(player:sheetColorStats('wis').." #SANDY_BROWN#"..player:getWisMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_CHA, s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(player:sheetColorStats('cha').." #SANDY_BROWN#"..player:getChaMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
-        self:mouseTooltip(self.TOOLTIP_LUC, s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(player:sheetColorStats('luc').." #SANDY_BROWN#"..player:getLucMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_STR, s:drawColorStringBlended(self.font, "#SLATE#STR : #YELLOW#"..(actor:sheetColorStats('str').." #SANDY_BROWN#"..actor:getStrMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_DEX, s:drawColorStringBlended(self.font, "#SLATE#DEX : #YELLOW#"..(actor:sheetColorStats('dex').." #SANDY_BROWN#"..actor:getDexMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_CON, s:drawColorStringBlended(self.font, "#SLATE#CON : #YELLOW#"..(actor:sheetColorStats('con').." #SANDY_BROWN#"..actor:getConMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_INT, s:drawColorStringBlended(self.font, "#SLATE#INT : #YELLOW#"..(actor:sheetColorStats('int').." #SANDY_BROWN#"..actor:getIntMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_WIS, s:drawColorStringBlended(self.font, "#SLATE#WIS : #YELLOW#"..(actor:sheetColorStats('wis').." #SANDY_BROWN#"..actor:getWisMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_CHA, s:drawColorStringBlended(self.font, "#SLATE#CHA : #YELLOW#"..(actor:sheetColorStats('cha').." #SANDY_BROWN#"..actor:getChaMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
+        self:mouseTooltip(self.TOOLTIP_LUC, s:drawColorStringBlended(self.font, "#SLATE#LUC : #YELLOW#"..(actor:sheetColorStats('luc').." #SANDY_BROWN#"..actor:getLucMod().." #LAST#"), w, h, 255, 255, 255, true)) h = h + self.font_h
     end
 
 
     h = h + self.font_h -- Adds an empty row
     h = h + self.font_h -- Adds an empty row
-    local enc, max_enc = player:getEncumbrance(), player:getMaxEncumbrance()
-    if enc > max_enc * 0.33 then self:mouseTooltip(self.TOOLTIP_ENC, s:drawColorStringBlended(self.font, "Encumbrance : #YELLOW#"..(player:getEncumbrance()).."#LAST#/"..(player:getMaxEncumbrance()), w, h, 255, 255, 255, true)) h = h + self.font_h
-    elseif enc > max_enc * 0.66 then self:mouseTooltip(self.TOOLTIP_ENC, s:drawColorStringBlended(self.font, "Encumbrance : #RED#"..(player:getEncumbrance()).."#LAST#/"..(player:getMaxEncumbrance()), w, h, 255, 255, 255, true)) h = h + self.font_h
-    else self:mouseTooltip(self.TOOLTIP_ENC, s:drawColorStringBlended(self.font, "Encumbrance : "..(player:getEncumbrance()).."/"..(player:getMaxEncumbrance()), w, h, 255, 255, 255, true)) h = h + self.font_h end
+    local enc, max_enc = actor:getEncumbrance(), actor:getMaxEncumbrance()
+    if enc > max_enc * 0.33 then self:mouseTooltip(self.TOOLTIP_ENC, s:drawColorStringBlended(self.font, "Encumbrance : #YELLOW#"..(actor:getEncumbrance()).."#LAST#/"..(actor:getMaxEncumbrance()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    elseif enc > max_enc * 0.66 then self:mouseTooltip(self.TOOLTIP_ENC, s:drawColorStringBlended(self.font, "Encumbrance : #RED#"..(actor:getEncumbrance()).."#LAST#/"..(actor:getMaxEncumbrance()), w, h, 255, 255, 255, true)) h = h + self.font_h
+    else self:mouseTooltip(self.TOOLTIP_ENC, s:drawColorStringBlended(self.font, "Encumbrance : "..(actor:getEncumbrance()).."/"..(actor:getMaxEncumbrance()), w, h, 255, 255, 255, true)) h = h + self.font_h end
 
-    s:drawColorStringBlended(self.font, "Load penalty: "..(player.load_penalty or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Load penalty: "..(actor.load_penalty or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
 
-    s:drawColorStringBlended(self.font, "Speed bonus: +"..(player.movement_speed_bonus or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Speed bonus: +"..(actor.movement_speed_bonus or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
 
     h = 0
     w = self.w*0.5
     --start on third column
     h = h + self.font_h -- Adds an empty row
-    self:mouseTooltip(self.TOOLTIP_FORTITUDE, s:drawColorStringBlended(self.font, "Fortitude save: #SANDY_BROWN#"..((player.fortitude_save.." + "..math.max(player:getStrMod(), player:getConMod())) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_REFLEX, s:drawColorStringBlended(self.font, "Reflex bonus : #SANDY_BROWN#"..((player.reflex_save.." + "..math.max(player:getDexMod(), player:getIntMod())) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
-    self:mouseTooltip(self.TOOLTIP_WILL, s:drawColorStringBlended(self.font, "Will bonus : #SANDY_BROWN#"..((player.will_save.." + "..math.max(player:getWisMod(), player:getChaMod())) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_FORTITUDE, s:drawColorStringBlended(self.font, "Fortitude save: #SANDY_BROWN#"..((actor.fortitude_save.." + "..math.max(actor:getStrMod(), actor:getConMod())) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_REFLEX, s:drawColorStringBlended(self.font, "Reflex bonus : #SANDY_BROWN#"..((actor.reflex_save.." + "..math.max(actor:getDexMod(), actor:getIntMod())) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
+    self:mouseTooltip(self.TOOLTIP_WILL, s:drawColorStringBlended(self.font, "Will bonus : #SANDY_BROWN#"..((actor.will_save.." + "..math.max(actor:getWisMod(), actor:getChaMod())) or "0"), w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
     s:drawColorStringBlended(self.font, "#CHOCOLATE#Special qualities", w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawColorStringBlended(self.font, "Low-light vision: "..(player.low_light_vision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
-    s:drawStringBlended(self.font, "Darkvision : "..(player.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawColorStringBlended(self.font, "Low-light vision: "..(actor.low_light_vision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+    s:drawStringBlended(self.font, "Darkvision : "..(actor.infravision or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
 
     --Display deity and favor
-    if player == game.player then
-        s:drawColorStringBlended(self.font, "Deity : "..(player.descriptor.deity or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
-        s:drawColorStringBlended(self.font, "Favor : "..(player.favor or 0), w, h, 255, 255, 255, true) h = h + self.font_h
+    if actor == game.player then
+        s:drawColorStringBlended(self.font, "Deity : "..(actor.descriptor.deity or "None"), w, h, 255, 255, 255, true) h = h + self.font_h
+        s:drawColorStringBlended(self.font, "Favor : "..(actor.favor or 0), w, h, 255, 255, 255, true) h = h + self.font_h
     end
 
     h = 0
@@ -368,17 +368,17 @@ function _M:drawGeneral()
     self:mouseTooltip(self.TOOLTIP_FEAT, s:drawColorStringBlended(self.font, "#CHOCOLATE#Feats", w, h, 255, 255, 255, true)) h = h + self.font_h
     local list = {}
 
-        for j, t in pairs(player.talents_def) do
-          if player:knowTalent(t.id) and t.is_feat then
-                if player:classFeat(t.id) then name = "#GOLD#"..t.name
+        for j, t in pairs(actor.talents_def) do
+          if actor:knowTalent(t.id) and t.is_feat then
+                if actor:classFeat(t.id) then name = "#GOLD#"..t.name
                 else name = ("%s"):format(t.name) end
 
 
                 list[#list+1] = {
                     name = name,
                 --    name = ("%s"):format(t.name),
-                --    desc = player:getTalentFullDescription(t):toString(),
-                    desc = ("%s"):format(t.info(player,t)),
+                --    desc = actor:getTalentFullDescription(t):toString(),
+                    desc = ("%s"):format(t.info(actor,t)),
                 }
             end
         end
@@ -402,14 +402,14 @@ function _M:generateList()
     local list = {}
 
     for i, s in ipairs(ActorSkills.skill_defs) do
-        local player = game.player
+        local actor = game.player
         local name = s.name:capitalize().." ("..s.stat:upper()..")"
-        local total = player:colorSkill(s.id) or "0"
-        local ranks = player:attr("skill_"..s.id) or "0"
-        local bonus = player:attr("skill_bonus_"..s.id) or "0"
-        local stat = player:getSkillMod(s.id)
-        local acp = player:isSkillPenalty(s.id) and player:attr("armor_penalty") or "N/A"
-        local load = player:isSkillPenalty(s.id) and player:attr("load_penalty") or "N/A"
+        local total = actor:colorSkill(s.id) or "0"
+        local ranks = actor:attr("skill_"..s.id) or "0"
+        local bonus = actor:attr("skill_bonus_"..s.id) or "0"
+        local stat = actor:getSkillMod(s.id)
+        local acp = actor:isSkillPenalty(s.id) and actor:attr("armor_penalty") or "N/A"
+        local load = actor:isSkillPenalty(s.id) and actor:attr("load_penalty") or "N/A"
 
         list[#list+1] = {name=name, total=total, ranks=ranks, bonus=bonus, stat=stat, acp=acp, load=load}
     end
@@ -418,7 +418,7 @@ function _M:generateList()
 end
 
 function _M:drawEffect()
-    local player = self.actor
+    local actor = self.actor
     local s = self.c_eff.s
 
     s:erase(0,0,0,0)
@@ -434,8 +434,8 @@ function _M:drawEffect()
     --draw effect list
     local list = {}
 
-	for eff_id, p in pairs(player.tmp) do
-		local e = player.tempeffect_def[eff_id]
+	for eff_id, p in pairs(actor.tmp) do
+		local e = actor.tempeffect_def[eff_id]
 
 
     --    local eff_subtype = table.concat(table.keys(e.subtype), "/")
@@ -445,7 +445,7 @@ function _M:drawEffect()
 
         if e.long_desc then
             desc = ("#{bold}##GOLD#%s\n(%s)#WHITE##{normal}#\n"):format(name, e.type)..e.long_desc
-        --    desc = name.." "..e.type..e.long_desc(player, p)
+        --    desc = name.." "..e.type..e.long_desc(actor, p)
         else
         --    desc = name.." "..e.type
             desc = ("#{bold}##GOLD#%s\n(%s)#WHITE##{normal}#\n"):format(name, e.type)
@@ -478,7 +478,7 @@ self.changed = false
 end
 
 function _M:drawKid()
-    local player = self.actor
+    local actor = self.actor
     local s = self.c_cosmetic.s
 
     s:erase(0,0,0,0)
@@ -493,7 +493,7 @@ function _M:drawKid()
 
     local list = {}
 
-    for i, n in pairs(player.languages) do
+    for i, n in pairs(actor.languages) do
         list[#list+1] = {
             name = n
         }
@@ -512,7 +512,7 @@ function _M:drawKid()
 
     	local list = {}
 
-    	for i, e in pairs(player.kids) do
+    	for i, e in pairs(actor.kids) do
 
     		list[#list+1] = {
     			name = e.name,
@@ -543,5 +543,5 @@ end
 
 function _M:onKill()
     game:unregisterDialog(self)
-    game:registerDialog(require("mod.dialogs.KillCount").new(game.player))
+    game:registerDialog(require("mod.dialogs.KillCount").new(game.actor))
 end
