@@ -501,6 +501,20 @@ function _M:colorSkill(skill)
 	end
 end
 
+--Character sheet stuff
+function _M:sheetColorStats(stat)
+--Basic value without increases
+local basestat = self:getStat(stat, nil, nil, true)
+
+  --Case 1: stat temporarily increased by spells
+  if self:attr("stat_increase_"..stat) then return "#LIGHT_GREEN#"..self:getStat(stat).."#LAST#"
+  --Case 2: stat temporarily decreased (poisons etc.)
+  elseif self:attr("stat_decrease_"..stat) then return "#RED#"..self:getStat(stat).."#LAST#"
+  --Case 3: magic items permanent bonus
+  elseif self:getStat(stat) > basestat then return "#DARK_GREEN#"..self:getStat(stat).."#LAST#"
+  else return "#YELLOW#"..self:getStat(stat).."#LAST#" end
+
+end
 
 --Tooltip stuffs
 function _M:templateName()
@@ -1969,10 +1983,11 @@ function _M:getAC(log)
 	local ac_bonuses_table = { "armor", "shield", "natural", "magic_armor", "magic_shield", "dodge", "protection", "untyped", "parry" }
 
 	for i, source in pairs(ac_bonuses_table) do
+	--	local source = source
 		local value = self:attr("combat_"..source) or 0
 		local string = source:gsub("_", " ")
 		ac_bonuses = (ac_bonuses or 0) + value
-		game.log("Bonuses "..ac_bonuses)
+--		game.log("Bonuses "..ac_bonuses)
 		if log == true and value > 0 then log_ac = log_ac..string:capitalize().." "..value.." " end
 	end
 
@@ -1980,7 +1995,10 @@ function _M:getAC(log)
 		if log then log_ac = log_ac.."Dex "..dex_bonus.." " end
 	end
 
-	if self.combat_protection then protection = math.min(protection, 5) end
+	if self.combat_protection then
+		local protection = self.combat_protection
+		 protection = math.min(protection, 5)
+	 end
 
 --	if self.combat_parry then if not proficient with the weapon, deduct 4
 
