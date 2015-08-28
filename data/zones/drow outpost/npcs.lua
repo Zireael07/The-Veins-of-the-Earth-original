@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2014
+-- Zireael 2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -22,5 +22,9 @@
 load("/data/general/npcs/neutral.lua")
 
 load("/data/general/npcs/townies.lua")
+
+if config.settings.veins.training then
+    load("/data/general/npcs/variant/trainers.lua")
+end
 
 --TO DO: Neutral vermin, animals, elementals, fiends

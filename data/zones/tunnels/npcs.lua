@@ -22,3 +22,7 @@ load("/data/general/npcs/encounters/encounters_specific.lua")
 
 --Neutrals
 load("/data/general/npcs/neutral.lua")
+
+if config.settings.veins.training then
+    load("/data/general/npcs/variant/trainers.lua")
+end

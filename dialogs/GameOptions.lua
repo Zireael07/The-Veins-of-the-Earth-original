@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013 - 2014 Zireael
+-- Copyright (C) 2013 - 2015 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -610,6 +610,28 @@ function _M:generateListGame()
 		            self.c_list:drawItem(item)
 		        end,
 		    }
+
+   	local zone = Textzone.new{
+			        width = self.c_desc.w,
+			        height = self.c_desc.h,
+			        text = string.toTString [[Require training to gain levels, skills and feats.
+
+			• #YELLOW#True#WHITE#: training required.
+			• #YELLOW#False#WHITE#: standard d20 games automatic level-up]]
+   }
+			    list[#list+1] = {
+			        zone = zone,
+			        name = string.toTString"#GOLD##{bold}#Training variant#WHITE##{normal}#",
+			        status = function(item)
+			            return tostring(config.settings.veins.training and "enabled" or "disabled")
+			        end, fct=function(item)
+			            if self.gameplay then
+			            config.settings.veins.training = not config.settings.veins.training
+			            game:saveSettings("veins.training", ("veins.training= %s\n"):format(tostring(config.settings.veins.training)))
+			            self.c_list:drawItem(item)
+			            end
+			        end,
+			    }
 
 
     self.list = list
