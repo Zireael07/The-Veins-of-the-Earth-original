@@ -784,10 +784,13 @@ if (self.life - (value or 0)) >= 0 then
 --Out of life (vitality points)
 if ((self.life or 0) - (value or 0) < 0) then
 	local value_remaining = 0
+	if not death_note then death_note = DamageType.PHYSICAL end
 
 	--only leftover value goes into wounds
 	if (value or 0) > 0 then
 		value_remaining = math.max((value or 0) - (self.life or 0))
+		--log the wounds, too
+--		game.logSeen(self, "%s hits %s for %s%d %s wounds.#LAST#", src:getLogName():capitalize(), self:getLogName(), DamageType:get(death_note).text_color or "#aaaaaa#", value, DamageType:get(death_note).name)
 	end
 
 	--don't change vitality
@@ -1991,9 +1994,8 @@ function _M:getAC(log)
 		if log == true and value > 0 then log_ac = log_ac..string:capitalize().." "..value.." " end
 	end
 
-	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus)
-		if log then log_ac = log_ac.."Dex "..dex_bonus.." " end
-	end
+	if self.max_dex_bonus then dex_bonus = math.min(dex_bonus, self.max_dex_bonus) end
+	if log then log_ac = log_ac.."Dex "..dex_bonus.." " end
 
 	if self.combat_protection then
 		local protection = self.combat_protection
