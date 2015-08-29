@@ -99,7 +99,7 @@ function _M:lightTurns()
     --    local full = self.fuel == self.max_fuel
         self.fuel = self.fuel - 1
 
-        if (self.fuel or 0) == 0 then self:removeObject(self:getInven("LITE")[1]) end
+        if (self.fuel or 0) == 0 then game.player:removeObject(game.player:getInven("LITE")[1]) end
     end
 end
 
