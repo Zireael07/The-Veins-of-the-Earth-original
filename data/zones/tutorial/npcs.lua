@@ -37,6 +37,7 @@ newEntity{ base = "BASE_NPC_DROW", define_as = "TUTORIAL_NPC_GUIDE", image="tile
 		{ name = "rapier" },
 		{ name = "bolts" },
 	},
+	resolvers.wounds()
 }
 
 newEntity{ base = "BASE_NPC_SPIDER", define_as = "TUTORIAL_NPC_SPIDER",
@@ -57,7 +58,7 @@ newEntity{ define_as = "TUTORIAL_NPC_BOSS",
 
 	name = "drow scout", color=colors.VIOLET, unique=true,
 	type = "humanoid", subtype = "drow",
-	image = "tiles/npc/drow_fighter.png",
+	image = "tiles/mobiles/npc/drow_fighter.png",
 	display = 'h', color=colors.BLACK,
 	level_range = {1, nil}, exp_worth = 150,
 --	rarity = 3,
@@ -73,7 +74,7 @@ newEntity{ define_as = "TUTORIAL_NPC_BOSS",
 	open_door = true,
 
 	desc = [[This lithe, ebon-skinned humanoid is a dark elf, also known as a drow. This one looks quite powerful, beware!]],
-	
+
 	challenge = 1,
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_DARKNESS_INNATE]=1,
@@ -91,6 +92,7 @@ newEntity{ define_as = "TUTORIAL_NPC_BOSS",
 	{ name = "fresh corpse" },
 	{ name = "hand crossbow" },
 	},
+	resolvers.wounds(),
 
 	on_die = function(self, who)
 	--	game.player:resolveSource():setQuestStatus("tutorial", engine.Quest.COMPLETED)
