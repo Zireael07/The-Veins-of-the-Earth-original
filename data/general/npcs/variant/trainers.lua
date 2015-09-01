@@ -62,6 +62,6 @@ newEntity{ base = "BASE_NPC_TRAINER",
     name = "drow trainer",
     subtype = "drow",
     color=colors.BLACK,
-    image = "tiles/new/drow_fighter.png",
+    image = "tiles/mobiles/npc/drow_fighter.png",
     rarity = 5,
 }
