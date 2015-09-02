@@ -92,3 +92,67 @@ newEntity{
 	display = '¤', color_r=52, color_g=222, color_b=137, back_color={r=71, g=122, b=136},
 
 }
+
+newEntity{
+	define_as = "SHALLOW_WATER",
+	type = "floor", subtype = "water",
+	name = "water", image = "tiles/UT/shallow_water.png",
+	display = '~', color=colors.LIGHT_BLUE, back_color=colors.CYAN,
+	always_remember = true,
+}
+
+newEntity{
+	define_as = "WATER",
+	type = "floor", subtype = "water",
+	name = "water", image = "tiles/terrain/water.png",
+	display = '~', color=colors.BLUE, back_color=colors.LIGHT_BLUE,
+	always_remember = true,
+	mindam = 1,
+	maxdam = 4,
+	on_stand = function(self, x, y, who)
+		if who.fly then return end
+		local save = who:skillCheck("swim", 10)
+		if not save then
+			local DT = engine.DamageType
+			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.dice(self.mindam, self.maxdam))
+		 	if who == game.player and dam > 0 then game.logPlayer(who, "You start drowning!") end
+		end
+	end,
+}
+
+newEntity{
+	define_as = "DEEP_WATER",
+	type = "floor", subtype = "water",
+	name = "deep water",
+	image = "tiles/terrain/deep_water.png",
+	display = '~', color=colors.BLUE, back_color=colors.DARK_BLUE,
+	always_remember = true,
+	mindam = 2,
+	maxdam = 6,
+	on_stand = function(self, x, y, who)
+		if who.fly then return end
+		local save = who:skillCheck("swim", 15)
+		if not save then
+			local DT = engine.DamageType
+			local dam = DT:get(DT.WATER).projector(self, x, y, DT.WATER, rng.dice(self.mindam, self.maxdam))
+		 	if who == game.player and dam > 0 then game.logPlayer(who, "You start drowning!") end end
+	end
+}
+
+
+newEntity{
+	define_as = "LAVA",
+	type = "floor", subtype = "lava",
+	name = "lava",
+	image = "tiles/terrain/lava.png",
+	display = '~', color=colors.RED, back_color=DARK_GREY,
+	always_remember = true,
+	mindam = 2,
+	maxdam = 6,
+	on_stand = function(self, x, y, who)
+		if who.fly then return end
+		local DT = engine.DamageType
+		local dam = DT:get(DT.LAVA).projector(self, x, y, DT.LAVA, rng.dice(self.mindam, self.maxdam))
+		if who == game.player and dam > 0 then game.logPlayer(who, "The lava burns you!") end
+	end
+}
