@@ -16,7 +16,7 @@
 
 
 return {
-	name = "Cavern",
+	name = "Moss cavern",
 	level_range = {1, 1},
 	max_level = 1000,
 	decay = {300, 800},
@@ -24,7 +24,7 @@ return {
 --	persistent = "zone",
 	generator =  {
 		map = {
-			class = "mod.class.generator.map.Upperdark",
+			class = "mod.class.generator.map.MossyCavern",
 			edge_entrances = {4,6},
 			zoom = 10,
 			hurst = 0.2,
