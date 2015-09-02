@@ -25,6 +25,7 @@ return {
 		map = {
 			class = "engine.generator.map.Town",
 			building_chance = 80,
+			lshape_chance = 0,
 			max_building_w = 8, max_building_h = 8,
 			edge_entrances = {6,4},
 			floor = "FLOOR",
