@@ -82,6 +82,13 @@ newEntity{
     display = '⌠', color=colors.BLUE, back_color = {r=30, g=30, b=60},
 }
 
+newEntity{
+    base = "WALL",
+    define_as = "WALL_CITY",
+    image = "tiles/UT/wall_stone.png",
+    display = '#', color=colors.BLACK, back_color=colors.DARK_GREY,
+}
+
 --Doors
 newEntity{
     define_as = "DOOR",
@@ -102,6 +109,15 @@ newEntity{
     always_remember = true,
     door_closed = "DOOR",
 }
+
+
+--Gate
+newEntity{ base = "DOOR",
+    define_as = "GATE",
+    name = "gate", image = "tiles/terrain/gate_closed.png",
+    display = "+", color=colors.DARK_GREY, back_color={r=30, g=30, b=60},
+}
+
 
 -- Special stuff
 

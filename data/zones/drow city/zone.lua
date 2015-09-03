@@ -23,13 +23,16 @@ return {
 	persistent = "zone",
 	generator =  {
 		map = {
-			class = "engine.generator.map.Town",
+		--	class = "engine.generator.map.Town",
+			class = "mod.class.generator.map.TownWalled",
 			building_chance = 80,
 			lshape_chance = 0,
 			max_building_w = 8, max_building_h = 8,
 			edge_entrances = {6,4},
 			floor = "FLOOR",
 			external_floor = "FLOOR",
+			external_wall = "WALL_CITY",
+			gate = "GATE",
 			wall = "WALL",
 			up = "UP",
 			down = "DOWN",
