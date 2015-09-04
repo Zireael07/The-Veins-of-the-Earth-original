@@ -606,10 +606,29 @@ function _M:colorPersonalReaction()
 end
 
 function _M:getType()
-	local type = self.type:gsub("_", " ")
+	local type
+	if game.player.type_known[self.uid] then
+		type = self.type:gsub("_", " ")
 
-	if self.type == "humanoid" then type = self.type.." ("..self.subtype:gsub("_", " ")..")" end
+		if self.type == "humanoid" then type = self.type.." ("..self.subtype:gsub("_", " ")..")" end
+	else
+		type = "Unknown"
+	end
+
 	return type
+end
+
+function _M:getHealthState()
+	local perc = (self.life /self.max_life)*100
+
+	if perc == 100 then return "Uninjured"
+	elseif perc <= 90 then return "Healthy"
+	elseif perc <= 75 then return "Barely injured"
+	elseif perc <= 50 then return "Injured"
+	elseif perc <= 25 then return "Bloodied"
+	elseif perc <= 10 then return "Severely wounded"
+	else return "Nearly dead"
+	end
 end
 
 function _M:tooltip()
@@ -623,7 +642,12 @@ function _M:tooltip()
 
 
 	if self.life < 0 then ts:add({"color", 255, 0, 0}, "HP: unknown", {"color", "WHITE"}, true)
-	else ts:add({"color", 255, 0, 0}, ("HP: %d (%d%%)"):format(self.life, self.life * 100 / self.max_life), {"color", "WHITE"}, true)
+	else
+		if game.player.hp_known[self.uid] then
+			ts:add({"color", 255, 0, 0}, ("HP: %d (%d%%)"):format(self.life, self.life * 100 / self.max_life), {"color", "WHITE"}, true)
+		else
+			ts:add({"color", 255, 0, 0}, ("%s "):format(self:getHealthState()), {"color", "WHITE"}, true)
+		end
 	end
 
 	if game.player:hasEffect(game.player.EFF_DEATHWATCH) then
@@ -1702,7 +1726,7 @@ function _M:canSee(actor, def, def_pct)
 	self.can_see_cache[actor][s] = {res,chance}
 
 	-- Make sure the display updates
-	if self.player and type(def) == "nil" and actor._mo then actor._mo:onSeen(res) end
+	if self.player and _G.type(def) == "nil" and actor._mo then actor._mo:onSeen(res) end
 
 	return res, chance
 end

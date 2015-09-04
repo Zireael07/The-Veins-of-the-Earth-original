@@ -117,9 +117,13 @@ function _M:init(t, no_default)
   self.favored_enemy = {}
   self.last_class = {}
   self.all_kills = self.all_kills or {}
+  self.languages = {}
+
+  --Knowledge tracking
   self.all_seen = self.all_seen or {}
   self.special_known = self.special_known or {}
-  self.languages = {}
+  self.hp_known = self.hp_known or {}
+  self.type_known = self.type_known or {}
 
   --Divine stuff
   self.favor = 0
@@ -1012,17 +1016,25 @@ function _M:spottedMonsterXP()
         self.all_seen[act.name] = self.all_seen[act.name] or 0
         self.all_seen[act.name] = self.all_seen[act.name] + 1
 
-
-
-        --Plugged in: a silent Knowledge check to determine whether you know the specials
-        self:skillCheck("knowledge", 10+act.challenge, true)
-        self.special_known[act.uid] = true
         act.seen = true
 
         --Formula found on the net because I suck at Maths
         local x = self.all_seen[act.name]
         local y = 100-(x*25)
         if y > 0 then self:gainExp(y) end
+
+		--Plugged in: a silent Knowledge check to determine whether you know the specials
+        self:skillCheck("knowledge", 10+act.challenge, true)
+        self.special_known[act.uid] = true
+
+		--determine if we know opponent hp
+		self:skillCheck("heal", 10, true)
+		self.hp_known[act.uid] = true
+
+		--do we know enemy type?
+		self:skillCheck("knowledge", 10)
+		self.type_known[act.uid] = true
+
       end
     end
 
