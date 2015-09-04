@@ -304,7 +304,8 @@ function _M:getMapSize()
 end
 
 function _M:setupDisplayMode(reboot, mode)
-	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, nil, 22, true)
+	--This is where we pick the font
+	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/TITUSCBZ.ttf", 24, true)
 
 	if not mode or mode == "init" then
 		local gfx = config.settings.veins.gfx
@@ -342,13 +343,15 @@ function _M:setupDisplayMode(reboot, mode)
 
 		local map_x, map_y, map_w, map_h = self:getMapSize()
 
-		if th <= 20 then
+	--[[	if th <= 20 then
 --			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/DroidSansFallback.ttf", pot_th, do_bg)
-			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/Symbola.ttf", pot_th, do_bg)
+		--	Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/Symbola.ttf", pot_th, do_bg)
+		--	print("[DISPLAY MODE] Font: symbola")
 		else
 		--	Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, nil, fsize, do_bg)
-			Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/Symbola.ttf", pot_th, do_bg)
-		end
+		--	Map:setViewPort(map_x, map_y, map_w, map_h, tw, th, "/data/font/Symbola.ttf", pot_th, do_bg)
+		--	print("[DISPLAY MODE] Font: symbola")
+		end]]
 
 		-- Show a count for stacked objects
 		Map.object_stack_count = true
