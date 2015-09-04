@@ -361,11 +361,12 @@ function _M:setupDisplayMode(reboot, mode)
  		end
 
 		Map.tiles.use_images = true
-		if gfx.tiles == "ascii" then
+	--[[	if gfx.tiles == "ascii" then
 			Map.tiles.use_images = false
 			Map.tiles.force_back_color = {r=0, g=0, b=0, a=255}
 			Map.tiles.no_moddable_tiles = true
-		elseif gfx.tiles == "ascii_full" then
+		else]]
+		if gfx.tiles == "ascii_full" then
 			Map.tiles.use_images = false
 			Map.tiles.no_moddable_tiles = true
 		elseif gfx.tiles == "default" then

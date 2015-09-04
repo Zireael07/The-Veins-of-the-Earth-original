@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2014
+-- Zireael 2014-2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -31,8 +31,8 @@ module(..., package.seeall, class.inherit(Dialog))
 tiles_packs = {
 	default = {name= "Modern", order=1},
 	ascii_full = {name= "ASCII with background", order=2},
-	ascii = {name= "ASCII", order=3},
-	customtiles = {name= "Custom Tileset", order=4},
+--	ascii = {name= "ASCII", order=3},
+	customtiles = {name= "Custom Tileset", order=3},
 }
 
 function _M:init()
