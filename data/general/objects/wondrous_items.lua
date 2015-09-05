@@ -206,3 +206,18 @@ newEntity{ base = "BASE_HELM",
     unided_name = "stone",
     desc = [[A small oblong stone.]],
 }
+
+newEntity{
+    type = "book", subtype = "book",
+    slot = "INVEN",
+    image = "tiles/UT/book.png",
+    display = "▣", color=colors.RED,
+    rarity = 5,
+    level_range = {15,nil}, --equal to lowest ego
+    identified = false,
+    name = "tome",
+    unided_name = "book",
+    desc = [[A thick book.]],
+--    addons = "/data/general/objects/properties/tomes.lua",
+    egos = "/data/general/objects/properties/tomes.lua", egos_chance={prefix=0, suffix=100},
+}
