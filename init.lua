@@ -19,7 +19,7 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "http://veins-of-the-earth.wikidot.com/"
-version = {0,30,0}
+version = {0,31,0}
 engine = {1,3,1,"te4"}
 description = [[
 #SANDY_BROWN# BETA 10#LAST#
