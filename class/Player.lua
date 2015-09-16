@@ -2119,7 +2119,7 @@ function _M:giveStartingEQ()
         then self:givePerkArmor()
       else self:giveChainmail() end
 
-    elseif class == "Bard" then
+  	elseif class == "Bard" or class == "Magus" then
       --Account for perk items
       if self.perk_item == "battleaxe" or self.perk_item == "rapier" or self.perk_item == "long sword" or self.perk_item == "dagger" or self.perk_item == "morningstar"
         --Ranged weapons

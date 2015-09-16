@@ -1553,3 +1553,93 @@ newBirthDescriptor {
 		end
 	end,
 }
+
+newBirthDescriptor {
+	type = 'class',
+	name = 'Magus',
+	category = "casterhalf",
+	getSkillPoints = function(self, t)
+		return 4
+	end,
+	getClassSkills = function(self, t)
+		skills = "Appraise, Climb, Concentration, Craft, Handle Animal, Intimidate, Intuition, Knowledge, Listen, Ride, Spellcraft, Spot, Survival, Swim, Use Magic."
+
+		return skills
+	end,
+	getHitPoints = function(self, t)
+		return 8
+	end,
+	getSaves = function(self, t)
+		return {Fort="yes", Ref="no", Will="yes" }
+	end,
+	desc = function(self, t)
+		local desc = "#ORANGE#Those who blend martial ability and magical prowess."
+		return t.getDesc_class(self, t, desc, "good")
+	end,
+	copy = {
+	},
+	descriptor_choices =
+	{
+		--Prevent game-breaking combos due to 1 BAB requirement of some feats
+		background =
+		{
+			['Master of one'] = "disallow",
+			['Fencing duelist'] = "disallow",
+			['Exotic fighter'] = "disallow",
+			['Two weapon fighter'] = 'disallow',
+		}
+	},
+	can_level = function(actor)
+		if actor.classes and actor.classes["Magus"] and actor.descriptor.class == "Magus" then return true end
+
+		if actor:getInt() >= 13 then return true end
+		return false
+	end,
+	on_level = function(actor, level, descriptor)
+		if level == 1 then
+			actor:attr("will_save", 2)
+			actor:attr("fort_save", 2)
+
+			actor:learnTalent(actor.T_LIGHT_ARMOR_PROFICIENCY, true)
+			actor:learnTalent(actor.T_SIMPLE_WEAPON_PROFICIENCY, true)
+			actor:learnTalent(actor.T_MARTIAL_WEAPON_PROFICIENCY, true)
+			actor:learnTalent(actor.T_ARMORED_CASTER_LIGHT, true)
+
+			--Don't give spellbook to NPCs
+			if actor == game.player then
+				actor:learnTalent(actor.T_SHOW_SPELLBOOK, true)
+				--Get the spells menu
+				actor:learnTalent(actor.T_SPELLS, true)
+			end
+
+			local all_schools = {"abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation" }
+			descriptor.learn_talent_types(actor, all_schools)
+
+			local both_schools = {"abjuration_both", "conjuration_both", "divination_both", "necromancy_both", "transmutation_both"}
+			descriptor.learn_talent_types(actor, both_schools)
+
+			descriptor.learn_all_spells_of_level(actor, "arcane", 0)
+			descriptor.learn_all_spells_of_level(actor, "arcane", 1)
+
+			actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2
+
+		--Any level higher than 1
+		else
+
+		--Learn a new spell tier every 3rd level
+		if level % 3 == 0 then
+			local spell_level = (level / 3) + 1
+			descriptor.learn_all_spells_of_level(actor, "arcane", spell_level)
+		end
+
+		actor:attr("combat_bab", 0.75)
+		actor:attr("fortitude_save", 0.5)
+		actor:attr("reflex_save", 0.33)
+		actor:attr("will_save", 0.5)
+
+		actor.max_life = actor.max_life + 8 + (actor:getCon()-10)/2 end
+
+		--Gain a caster level every level
+		actor:incCasterLevel("arcane", 1)
+	end,
+}

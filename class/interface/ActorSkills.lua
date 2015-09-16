@@ -155,6 +155,7 @@ function _M:crossClass(skill, class)
 	local c_sorcerer = { appraise = "no", balance = "no", bluff = "yes", climb = "no", concentration = "yes", craft = "yes", diplomacy = "yes", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "no", search = "no", sense_motive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", use_magic = "no" }
 	local c_wizard = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "no", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "no", search = "no", sense_motive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", use_magic = "no" }
 	local c_warlock = { appraise = "no", balance = "no", bluff = "no", climb = "no", concentration = "yes", craft = "yes", diplomacy = "no", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "no", heal = "no", hide = "no", intimidate = "no", intuition = "yes", jump = "no", knowledge = "yes", listen = "no", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "no", search = "no", sense_motive = "yes", spot = "no", swim = "no", spellcraft = "yes", survival = "no", tumble = "no", use_magic = "no" }
+	local c_magus = { appraise = "yes", balance = "no", bluff = "no", climb = "yes", concentration = "yes", craft = "yes", diplomacy = "no", disable_device = "no", decipher_script = "no", escape_artist = "no", handle_animal = "yes", heal = "no", hide = "no", intimidate = "yes", intuition = "yes", jump = "yes", knowledge = "yes", listen = "yes", move_silently = "no", open_lock = "no", pick_pocket = "no", ride = "yes", search = "no", sense_motive = "no", spot = "yes", swim = "yes", spellcraft = "yes", survival = "yes", tumble = "no", use_magic = "yes" }
 
 	local what
 	if class then what = class end
@@ -171,8 +172,11 @@ function _M:crossClass(skill, class)
 	if what == "Rogue" and c_rogue[skill] == "no" then return true end
 	if what == "Sorcerer" and c_sorcerer[skill] == "no" then return true end
 	if what == "Wizard" and c_wizard[skill] == "no" then return true end
+	--Non-standard classes
 	if what == "Warlock" and c_warlock[skill] == "no" then return true end
 	if what == "Shaman" and c_cleric[skill] == "no" then return true end
+	if what == "Magus" and c_magus[skill] == "no" then return true end
+	--Prestige classes
 	if what == "Shadowdancer" and c_rogue[skill] == "no" then return true end
 	if what == "Assassin" and c_rogue[skill] == "no" then return true end
 	if what == "Loremaster" and c_wizard[skill] == "no" then return true end

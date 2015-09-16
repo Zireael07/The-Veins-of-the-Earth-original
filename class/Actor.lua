@@ -1982,7 +1982,7 @@ function _M:classFeat(tid)
 	local f_paladin = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_HEAVY_ARMOR_PROFICIENCY = "yes", T_SHIELD_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes", T_MARTIAL_WEAPON_PROFICIENCY = "yes" }
 	local f_ranger = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes", T_MARTIAL_WEAPON_PROFICIENCY = "yes" }
 	local f_rogue = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_MEDIUM_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes" }
-
+	local f_magus = { T_LIGHT_ARMOR_PROFICIENCY = "yes", T_SIMPLE_WEAPON_PROFICIENCY = "yes", T_MARTIAL_WEAPON_PROFICIENCY = "yes" }
 
 	if self.classes and self.classes["Barbarian"] and f_barbarian[tid] == "yes" then return true end
 	if self.classes and self.classes["Bard"] and f_bard[tid] == "yes" then return true end
@@ -1993,6 +1993,7 @@ function _M:classFeat(tid)
 	if self.classes and self.classes["Paladin"] and f_paladin[tid] == "yes" then return true end
 	if self.classes and self.classes["Ranger"] and f_ranger[tid] == "yes" then return true end
 	if self.classes and self.classes["Rogue"] and f_rogue[tid] == "yes" then return true end
+	if self.classes and self.classes["Magus"] and f_magus[tid] == "yes" then return true end
 
 	return false
 end
