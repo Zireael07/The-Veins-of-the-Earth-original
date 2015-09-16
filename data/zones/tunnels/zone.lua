@@ -101,8 +101,12 @@ return {
 	},
 
 	post_process = function(level)
-		-- Put lore near the up stairs
-		game:placeRandomLoreObject("NOTE"..rng.dice(1,6))
-
+		if level.level == 1 then
+			-- Place a lore note on each level
+			game:placeRandomLoreObject("NOTE"..level.level)
+		else
+			-- Put lore near the up stairs
+			game:placeRandomLoreObject("NOTE"..(rng.dice(1,7)+1))
+		end
 	end,
 }

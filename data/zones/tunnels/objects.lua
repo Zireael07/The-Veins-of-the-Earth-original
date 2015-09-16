@@ -50,7 +50,7 @@ end
 
 
 --Lore
-for i = 1, 7 do
+for i = 1, 8 do
 newEntity{ base = "BASE_LORE",
     define_as = "NOTE"..i,
     name = "tattered paper scrap", lore="misc-"..i,
