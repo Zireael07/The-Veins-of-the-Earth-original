@@ -27,7 +27,7 @@ In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
 You are an adventurer in a world of immense sunless corridors and tunnels. How long can you survive?
 
 ***
-Please use either the built-in #LIGHT_RED#report error function#LAST# (remember to fill in "what I was doing" field) or report any bugs on ToME 4 forums.
+Please report any bugs you encounter by contacting me (see below).
 
 Liked it? Disliked? Wished for a feature? Let me know - there are multiple ways to contact me, including GitHub, ModDB, Roguetemple forums, Bay12 forums and others.
 
