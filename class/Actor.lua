@@ -1472,7 +1472,11 @@ function _M:postUseTalent(ab, ret)
 	--remove charge
 	if tt_def.all_limited then self:incCharges(ab, -1) end
 
-	self:useEnergy()
+	if self:spellIsKind(ab, "arcane") and self:isTalentActive(self.T_SPELL_COMBAT) then --and self.classes and self.classes["Magus"]
+		--do nothing
+	else
+		self:useEnergy()
+	end
 
 	--If Sorcerer/Shaman, use spell points
 	if self.classes and (self.classes["Sorcerer"] or self.classes["Shaman"]) then
