@@ -305,7 +305,7 @@ end
 
 function _M:setupDisplayMode(reboot, mode)
 	--This is where we pick the font
-	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/TITUSCBZ.ttf", 24, true)
+	Map:setViewPort(200, 20, self.w - 200, math.floor(self.h * 0.80) - 20, 32, 32, "/data/font/TITUSCBZ.TTF", 24, true)
 
 	if not mode or mode == "init" then
 		local gfx = config.settings.veins.gfx
