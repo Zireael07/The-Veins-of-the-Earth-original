@@ -77,13 +77,13 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
     }
 
     self.t_general = Tab.new {
-    title = 'General (m/m/m)',
+    title = 'General (m/m)',
     default = true,
     fct = function() end,
     on_change = function(s) if s then self:switchTo('general') end end,
     }
     self.t_optional = Tab.new {
-    title = 'Optional (m/m)',
+    title = 'Other (m/m/m)',
     default = false,
     fct = function() end,
     on_change = function(s) if s then self:switchTo('optional') end end,
@@ -116,7 +116,7 @@ function _M:init(title, actor, order, at_end, quickbirth, w, h)
 
     -- Buttons at the bottom of the screen
     self.c_premade = Button.new{text="Load premade", fct=function() self:loadPremadeUI() end}
-    self.c_save = Button.new{text="     Play!     ", fct=function() self:atEnd() end}
+    self.c_save = Button.new{text="Next", fct=function() self:nextStep() end}  --self:atEnd() end}
     self.c_cancel = Button.new{text="Cancel", fct=function() self:cancel() end}
 
     --STATS TAB
@@ -256,6 +256,25 @@ function _M:switchTo(tab)
     self.t_help.selected = tab == 'help'
 
     self:drawDialog(tab)
+end
+
+function _M:updateButton()
+    local ok = self.c_name.text:len() >= 2
+    for _, type in ipairs(self.order) do
+      if not self.descriptors_by_type[type] then
+        ok = false
+        break;
+      end
+    end
+
+    if not ok then
+        self.c_save.title = "Next"
+        self.c_save:generate()
+    else
+        self.c_save.title = "     Play!     "
+        self.c_save:generate()
+    end
+
 end
 
 --From ToME 2 by Zizzo
@@ -449,8 +468,9 @@ function _M:updateDescriptors()
     table.insert(self.descriptors, self.birth_descriptor_def.sex[self.descriptors_by_type.sex])
     table.insert(self.descriptors, self.birth_descriptor_def.race[self.descriptors_by_type.race])
     table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])
-    table.insert(self.descriptors, self.birth_descriptor_def.alignment[self.descriptors_by_type.alignment])
+
     --Tab 2
+    table.insert(self.descriptors, self.birth_descriptor_def.alignment[self.descriptors_by_type.alignment])
     table.insert(self.descriptors, self.birth_descriptor_def.background[self.descriptors_by_type.background])
     table.insert(self.descriptors, self.birth_descriptor_def.deity[self.descriptors_by_type.deity])
 end
@@ -466,14 +486,15 @@ function _M:setDescriptor(key, val)
 end
 
 function _M:updateUI()
-  local ok = self.c_name.text:len() >= 2
+    self:updateButton()
+--[[  local ok = self.c_name.text:len() >= 2
   for _, type in ipairs(self.order) do
     if not self.descriptors_by_type[type] then
       ok = false
       break;
     end
   end
-  self:toggleDisplay(self.c_save, ok)
+  self:toggleDisplay(self.c_save, ok)]]
 end
 
 function _M:isDescriptorAllowed(d, ignore_type)
@@ -506,6 +527,19 @@ end
 
 
 --GENERAL tab stuff
+function _M:nextStep()
+    local ok = self.c_name.text:len() >= 2
+
+    if not ok then self:drawDialog("general") end
+
+    if not self.descriptors_by_type.sex or not self.descriptors_by_type.race or not self.descriptors_by_type.class then
+        self:drawDialog("general")
+    elseif not self.descriptors_by_type.alignment or not self.descriptors_by_type.background or not self.descriptors_by_type.deity then
+        self:drawDialog("optional")
+    else
+        self:atEnd()
+    end
+end
 
 --To do at end/on finish
 function _M:atEnd()
