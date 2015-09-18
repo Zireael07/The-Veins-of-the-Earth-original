@@ -668,3 +668,16 @@ function _M:spellIsKind(t, kind)
 	if not t.spell_kind[kind] then return false end
 	return true
 end
+
+function _M:spellCastingSpeed()
+    local speed
+    if self:isTalentActive(self.QUICKEN) then
+        speed = 0.1
+    else
+    --    speed = math.max(self.combat_spellspeed, 0.1)
+        speed = 1
+    end
+    return speed
+
+--	return 1 / math.max(self.combat_spellspeed, 0.1)
+end

@@ -1459,6 +1459,41 @@ function _M:preUseTalent(ab, silent, fake)
 	return true
 end
 
+function _M:getSpeed(speed_type)
+	local speed
+
+	if speed_type == "spell" then speed = self:spellCastingSpeed()
+	elseif speed_type == "movement" then speed = self:combatMovementSpeed()
+	elseif speed_type == "standard" then speed = 1
+	end
+
+	return speed or 1
+end
+
+function _M:getTalentSpeedType(t)
+	if t.speed then
+		return util.getval(t.speed, self, t)
+	elseif self:isSpell(t) then
+		return "spell"
+	else
+		return "standard"
+	end
+end
+
+function _M:getTalentSpeed(t)
+	local speed_type = self:getTalentSpeedType(t)
+	local speed = self:getSpeed(speed_type)
+
+	if self:isTalentActive(self.SPELL_COMBAT) and self:spellIsKind(t, "arcane") then
+		speed = 0.1
+	end	
+
+--	local hd = {"Actor:getTalentSpeed", talent = t, speed_type = speed_type, speed = speed,}
+--	if self:triggerHook(hd) then speed = hd.speed end
+
+	return speed
+end
+
 --- Called before a talent is used
 -- Check if it must use a turn, mana, stamina, ...
 -- @param ab the talent (not the id, the table)
@@ -1472,10 +1507,8 @@ function _M:postUseTalent(ab, ret)
 	--remove charge
 	if tt_def.all_limited then self:incCharges(ab, -1) end
 
-	if self:spellIsKind(ab, "arcane") and self:isTalentActive(self.T_SPELL_COMBAT) then --and self.classes and self.classes["Magus"]
-		--do nothing
-	else
-		self:useEnergy()
+	if not util.getval(ab.no_energy, self, ab) then
+		self:useEnergy(self:getTalentSpeed(ab) * game.energy_to_act)
 	end
 
 	--If Sorcerer/Shaman, use spell points

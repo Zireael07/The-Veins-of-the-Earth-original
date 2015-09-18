@@ -369,7 +369,7 @@ function _M:giveStartingSpells()
 
   end
 
-  if self.descriptor.class == "Wizard" then --or self.descriptor.class == "Sorcerer" then
+  if self.descriptor.class == "Wizard" or self.descriptor.class == "Magus" then --or self.descriptor.class == "Sorcerer" then
     self:setCharges(self.T_MAGIC_MISSILE, 2)
     self:setCharges(self.T_MAGE_ARMOR, 1)
   end
@@ -440,7 +440,8 @@ function _M:tooltip()
   ts:add({"color", "WHITE"}, ("INT %s "):format(self:colorStats('int'))) ts:add({"color", "WHITE"}, ("WIS %s "):format(self:colorStats('wis'))) ts:add({"color", "WHITE"}, ("CHA %s"):format(self:colorStats('cha')), true)
 
   --Debugging speed stuff
---[[  ts:add(("Game turn: %s"):format(game.turn/10), true)
+--[[  ts:add(("Casting speed: %s"):format(self:spellCastingSpeed()))
+  ts:add(("Game turn: %s"):format(game.turn/10), true)
 
   ts:add(("Global speed: %d"):format(self.global_speed or 1), true)
 
