@@ -2,6 +2,7 @@
 --Zireael 2015
 
 require 'engine.class'
+local Dialog = require "engine.ui.Dialog"
 
 --Handle actor skills
 module(..., package.seeall, class.make)
