@@ -1,6 +1,32 @@
-BETA 10 - 0.30.0 - 21/08/2015
-
 CHANGELOG
+
+BETA 10.5 - 0.31.0 - 19/09/2015
+
+* bug fix - enforce life being equal to max_life when initing a NPC
+* bug fix - fix wizard not getting his spells
+* bug fix - use elevated level for addons pick (e.g. in stores)
+* bug fix - give wounds to the tutorial boss (kudos to guessingo on Bay12 forums)
+* bug fix - restore use of provided fonts in the ASCII display
+* bug fix - fix dungeon level display for areas with long names
+* two small Lua fixes from DarkGod (one affecting only Linux/Mac)
+* bug fix - restore the confirmation pop-up in level up dialog
+
+* new class - magus
+* new spells: stoneskin
+* new items: tome of gainful exercise, tome of understanding, tome of bodily health etc.
+* new lore: a guaranteed piece tells you about the worldmap & other areas
+* new zones: flooded cavern, lava cavern
+* add two new fonts, remove the ASCII without backgrounds option
+* character creation screen: the "Next" button brings you to the tab you need to check if something is missing
+* bring resists in line with d20 and log them
+* show AC sources in character sheet
+* more use for Knowledge and Heal skills
+* tutorial improvements - make opponents less dangerous, less numerous, replace some water with shallow water
+* no more L-shaped buildings in the city; the city is now walled and gated
+* new debug option - monster character sheet
+
+
+BETA 10 - 0.30.0 - 21/08/2015
 * bug fix - spellbook doesn't show a second tab if the second class happens to be shaman/sorcerer
 * bug fix - prevent using items on worldmap
 * bug fix - prevent picking up items when asleep
