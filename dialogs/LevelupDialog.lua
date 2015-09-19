@@ -145,9 +145,42 @@ on_change = function(s) if s then self:switchTo('stats') end end,
         end
     }
 
-    self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
+  --  self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
+  --Taken from ToME 4
+    self.key:addBinds{
+        EXIT = function()
+            if self.actor.class_points~=self.actor_dup.class_points 
+                or self.actor.feat_point~=self.actor_dup.feat_point
+                or self.actor.skill_point~=self.actor_dup.skill_point
+                or self.actor.fighter_bonus~=self.actor_dup.fighter_bonus
+                or self.actor.stat_point~=self.actor_dup.stat_point
+                then
+                self:yesnocancelPopup("Finish","Do you accept changes?", function(yes, cancel)
+                if cancel then
+                    return nil
+                else
+                    if yes then ok = true else ok = true self:cancel() end
+                end
+                if ok then
+                    game:unregisterDialog(self)
+                    self.actor_dup = {}
+                    if self.on_finish then self.on_finish() end
+                end
+                end)
+            else
+                game:unregisterDialog(self)
+                self.actor_dup = {}
+                if self.on_finish then self.on_finish() end
+            end
+        end,
+    }
+
 
     self.t_stats:select()
+end
+
+function _M:cancel()
+    restore(self.actor, self.actor_dup)
 end
 
 function _M:switchTo(tab)
