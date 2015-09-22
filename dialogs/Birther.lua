@@ -202,13 +202,13 @@ Press #00FF00#Reset#FFFFFF# to return stats to the base values if you wish to tr
 
     self.c_class_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Class: #LAST#"}
 
---[[   self.c_tree = TreeList.new{width=self.iw/6, height = lists_height, tree=self.list_tree,
+   self.c_tree = TreeList.new{width=self.iw/6, height = lists_height, tree=self.list_tree,
     columns={
 		{width=100, display_prop="name"},
 	},
     fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}
-]]
-    self.c_class = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
+
+--    self.c_class = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_class, list=self.list_class, fct=function(item) self:ClassUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true}--self:on_select(item,sel) end}
 
     self.c_race_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Race: #LAST#"}
     self.c_race = List.new{width=self.iw/6, height = lists_height, nb_items=#self.list_race, list=self.list_race, fct=function(item) self:RaceUse(item) end, select=function(item,sel) self:updateDesc(item) end, scrollbar=true} --self:on_select(item,sel) end}
@@ -357,8 +357,8 @@ function _M:drawDialog(tab)
         {left=0, top=lists_top, ui=self.c_race_text},
         {left=0, top=self.c_race_text, ui=self.c_race},
         {left=self.c_race, top=lists_top, ui=self.c_class_text},
-        {left=self.c_race, top=self.c_class_text, ui=self.c_class},
-    --    {left=self.c_race, top=self.c_class_text, ui=self.c_tree},
+    --    {left=self.c_race, top=self.c_class_text, ui=self.c_class},
+        {left=self.c_race, top=self.c_class_text, ui=self.c_tree},
 
         --Instructions and description
         {right=0, top = self.t_general.h + 15, ui=self.c_legend },
@@ -467,7 +467,11 @@ function _M:updateDescriptors()
     table.insert(self.descriptors, self.birth_descriptor_def.base[self.descriptors_by_type.base])
     table.insert(self.descriptors, self.birth_descriptor_def.sex[self.descriptors_by_type.sex])
     table.insert(self.descriptors, self.birth_descriptor_def.race[self.descriptors_by_type.race])
-    table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])
+--    table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])
+    if self.descriptors_by_type.subclass then
+        table.insert(self.descriptors, self.birth_descriptor_def.class[self.descriptors_by_type.class])
+        table.insert(self.descriptors, self.birth_descriptor_def.subclass[self.descriptors_by_type.subclass])
+    end
 
     --Tab 2
     table.insert(self.descriptors, self.birth_descriptor_def.alignment[self.descriptors_by_type.alignment])
@@ -507,7 +511,7 @@ function _M:isDescriptorAllowed(d, ignore_type)
 
     local allowed = true
     local type = d.type
-    print("[BIRTHER] checking allowance for ", d.name)
+    print("[BIRTHER] checking allowance for ", d.name, d.type, "::", table.serialize(ignore_type, nil, true))
     for j, od in ipairs(self.descriptors) do
             if od.descriptor_choices and od.descriptor_choices[type] then
                 local what = util.getval(od.descriptor_choices[type][d.name], self) or util.getval(od.descriptor_choices[type].__ALL__, self)
@@ -563,7 +567,8 @@ function _M:makeDefault()
     self:setDescriptor("race", "Human")
 --    self:RaceUse(1)
     self:updateRaces()
-    self:setDescriptor("class", "Fighter")
+    self:setDescriptor("class", "Martial")
+    self:setDescriptor("subclass", "Fighter")
     self:updateClasses()
     self:setDescriptor("alignment", "Lawful Good")
     self:updateAlignment()
@@ -586,6 +591,7 @@ function _M:randomHero()
     --nil all descriptors you might have
     self.descriptors_by_type.race = nil
     self.descriptors_by_type.class = nil
+    self.descriptors_by_type.subclass = nil
     self.descriptors_by_type.alignment = nil
     self.descriptors_by_type.deity = nil
     self.descriptors_by_type.background = nil
@@ -696,9 +702,10 @@ end
 
 function _M:updateClasses()
     local sel = self.selection
-    self:generateClasses()
-    self.c_class.list = self.list_class
-    self:regenerateList(self.c_class)
+    self:generateTree()
+    self.c_tree.tree = self.list_tree
+--    self:regenerateList(self.c_class)
+    self.c_tree:generate()
     self:updateTab('general')
 end
 
@@ -797,8 +804,7 @@ end
 
 --Generate the lists
 function _M:generateLists()
---    self:generateTree()
-    self:generateClasses()
+    self:generateTree()
     self:generateRaces()
     self:generateBackgrounds()
     self:generateAlignment()
@@ -825,62 +831,60 @@ function _M:generateRaces()
 end
 
 function _M:generateTree()
-    local oldtree = {}
-	for i, t in ipairs(self.list_tree or {}) do oldtree[d.category] = t.shown end
+	local oldtree = {}
+	for i, t in ipairs(self.all_classes or {}) do oldtree[t.id] = t.shown end
 
 	local tree = {}
 	local newsel = nil
-    local categories = {}
-    local nodes = {}
+	for i, d in ipairs(self.birth_descriptor_def.class) do
+		if self:isDescriptorAllowed(d, {subclass=true}) then
+			local nodes = {}
+            --[[  local color
+                if self.sel_class and self.sel_class.name == d.name then color = {255, 215, 0}
+                elseif self:isBadChoice(d) then color = {201, 0, 0}
+                elseif self:isNewbieSuggested(d) then color = {244, 164, 96}
+                elseif self:isSuggestedClass(d) then color = {0, 255, 0}
+                elseif self.sel_race and self:isFavoredClass(d) then color = {81, 221, 255}
+                else color = {255, 255, 255} end]]
 
-    for i, d in ipairs(Birther.birth_descriptor_def.class) do
-        if not d.prestige then
+			for si, sd in ipairs(self.birth_descriptor_def.subclass) do
+				if d.descriptor_choices.subclass[sd.name] == "allow" and self:isDescriptorAllowed(sd, {subclass=true, class=true}) then
+						local old = self.descriptors_by_type.subclass
+						self.descriptors_by_type.subclass = nil
+						local how = self:isDescriptorAllowed(sd, {class=true})
+						self.descriptors_by_type.subclass = old
+                        local desc = sd.desc
+                        if self:descText(sd) then desc = self:descText(sd) end
+					--[[	if how == "nolore" and self.descriptors_by_type.subrace then
+							desc = "#CRIMSON#Playing this class with the race you selected does not make much sense lore-wise. You can still do it but might miss on some special quests/...#WHITE#\n" .. desc
+						end]]
+						nodes[#nodes+1] = { name = sd.display_name, basename=sd.display_name, id=sd.name, pid=d.name, desc=desc, def=sd }
+						if self.sel_class and self.sel_class.id == sd.name then newsel = nodes[#nodes] end
+				--	end
+				end
+			end
 
-        local desc = d.desc
-        if self:descText(d) then desc = self:descText(d) end
+                local desc = d.desc
+                if self:descText(d) then desc = self:descText(d) end
 
-        if self:isDescriptorAllowed(d) then
-        --    if not category[d.category] then
-    --    if self:isDescriptorAllowed(d) and not category[d.category] then
-        --[[  local color
-            if self.sel_class and self.sel_class.name == d.name then color = {255, 215, 0}
-            elseif self:isBadChoice(d) then color = {201, 0, 0}
-            elseif self:isNewbieSuggested(d) then color = {244, 164, 96}
-            elseif self:isSuggestedClass(d) then color = {0, 255, 0}
-            elseif self.sel_race and self:isFavoredClass(d) then color = {81, 221, 255}
-            else color = {255, 255, 255} end]]
+				tree[#tree+1] = { name = tstring{{"font", "italic"}, {"color", "LIGHT_SLATE"}, d.display_name, {"font", "normal"}}, id=d.name, shown=oldtree[d.name], nodes = nodes, desc=desc }
+		end
+	end
 
-            item = {name=d.name, sortname = d.name, id = d.name, pid = d.category, desc=desc, d = d}
-            categories[d.category] = categories[d.category] or {}
-            table.insert(categories[d.category], item)
-        --    nodes[#nodes+1] = item
-
-        --    nodes[#nodes+1] = {name=d.name, id = d.name, pid = d.category, desc=desc, d = d}
-        --    if self.sel_class and self.sel_class.id == d.name then newsel = nodes[#nodes] end
-
-
-        --    end
-        end
-        end
-            for category, nodes in pairs(categories) do
-            tree[#tree+1] = {name = d.category, sortname = category, id = d.category,
-            shown = true,
-        --    shown = oldtree[d.category],
-            nodes = nodes} --desc=desc }
-            end
-    end
-
-    table.sort(tree, function(a, b) return a.sortname < b.sortname end)
-
-    self.list_tree = tree
-
-    if self.c_tree then
+	self.list_tree = tree
+	if self.c_tree then
 		self.c_tree.tree = self.list_tree
 		self.c_tree:generate()
-		if newsel then self:useClass(newsel)
+		if newsel then self:ClassUse(newsel)
 		else
 			self.sel_class = nil
+			self:setDescriptor("class", nil)
+			self:setDescriptor("subclass", nil)
 		end
+	--[[	if tree[1].id == "None" then
+			self:classUse(tree[1], 1)
+			self:classUse(tree[1].nodes[1], 2)
+		end]]
 	end
 end
 
@@ -934,14 +938,23 @@ end
 
 function _M:ClassUse(item, sel)
     if not item then return end
---[[    if item.nodes then
+    if item.nodes then
 		for i, item in ipairs(self.c_tree.tree) do if item.shown then self.c_tree:treeExpand(false, item) end end
-		self.c_class:treeExpand(nil, item)
-    end]]
+		self.c_tree:treeExpand(nil, item)
+    elseif item.basename then
+		if self.sel_class then
+			self.sel_class.name = self.sel_class.basename
+			self.c_tree:drawItem(self.sel_class)
+		end
+    end
     self.sel_class = nil
-    self:setDescriptor("class", item.name)
+
+    self:setDescriptor("class", item.pid)
+    self:setDescriptor("subclass", item.id)
     self.sel_class = item
-    self:updateClasses()
+    self.sel_class.name = tstring{{"color","GOLD"}, self.sel_class.basename:toString(), {"font","normal"}}
+    self.c_tree:drawItem(item)
+--    self:updateClasses()
     self:updateBackgrounds()
     self:updateAlignment()
     self:updateDeity()

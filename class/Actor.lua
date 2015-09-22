@@ -1486,7 +1486,7 @@ function _M:getTalentSpeed(t)
 
 	if self:isTalentActive(self.SPELL_COMBAT) and self:spellIsKind(t, "arcane") then
 		speed = 0.1
-	end	
+	end
 
 --	local hd = {"Actor:getTalentSpeed", talent = t, speed_type = speed_type, speed = speed,}
 --	if self:triggerHook(hd) then speed = hd.speed end
@@ -2285,7 +2285,7 @@ end
 
 function _M:levelClass(name)
 	local birther = require "engine.Birther"
-	local d = birther:getBirthDescriptor("class", name)
+	local d = birther:getBirthDescriptor("subclass", name)
 
 	if not d then end
 

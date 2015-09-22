@@ -173,7 +173,7 @@ function _M:newGame()
 
 	self.creating_player = true
 
-	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'background', 'alignment', 'deity'}, function()
+	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'subclass', 'background', 'alignment', 'deity'}, function()
 
 
    	    game:changeLevel(1, "tunnels")
