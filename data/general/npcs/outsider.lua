@@ -3,6 +3,8 @@
 
 --Outsiders (except janni) do not drop corpses
 
+local outsider_desc = "It can see in the dark and cannot be brought back to life by normal means."
+
 local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
@@ -45,7 +47,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	specialist_desc = [[A victim of a chaos beast’s touch does not immediately die from the transformation. A shapechange or stoneskin spell can stop the process temporarily, but a restoration, heal, or greater restoration spell is needed to remove the affliction.]],
 	uncommon_desc = [[A chaos beast can cause very little damage. However, its touch is damaging to corporeal creatures, causing them to melt into an amorphous mass, slowing going into shock and eventually becoming a chaos beast themselves. They are completely immune to transmutation.]],
 	common_desc = [[Much like their home plane of Limbo, chaos beasts have no set form. Instead, they constantly shift and alter their bodies, and there’s no telling what one might look like.]],
-	base_desc = [[ This amorphous, revolting creature is a chaos beast. It can see in the dark and cannot be brought back to life by normal means.]],
+	base_desc = "This amorphous, revolting creature is a chaos beast."..outsider_desc.."",
 }
 
 --Immunity to poison, petrification & cold
@@ -55,6 +57,10 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	subtype = "lawful",
 	display = 'x', color=colors.BROWN,
 	desc = [[It looks like a cross between an ant and a centaur.]],
+	specialist_desc = [[Some types of formian have special abilities not common among their kind. A group of workers working together have the ability to heal a creature's wounds or mend an object, taskmasters can dominate creatures with their spell-like abilities and myrmarchs can use charm monster, clairaudience/clairvoyance, detect chaos, detect thoughts, dictum, magic circle against chaos, greater teleport and order's wrath. Queen's have an even larger array of spell-like abilities, being able to use calm emotions, charm monster, clairaudience/clairvoyance, detect chaos, detect thoughts, dictum, divination, hold monster, magic circle against chaos, order's wrath, shield of law and true seeing. Queens can also cast spells as a 17th level sorcerer.]],
+	uncommon_desc = [[Formians have a range of natural weapons depending on their type, including claws, bite and stinger. The stinger of a formian carries a poison that can drain the physical abilities of a victim. Some formians employ crafted weapons as well. The queen of a hive cannot move, however, and is so immobile as to have no combat skills at all.]],
+	common_desc = [[Like most hive creatures, there are different types of formians, each with its own task within the hive colony and each one bigger, more dangerous and higher ranking than the former. These are: worker, warrior, taskmaster, myrmarch and queen. Queens and myrmarchs speak formian and common, and workers can communicate some simply ideas through body language. All formians can communicate with each other through their hive mind, a telepathic-like link that connects all formians to the rest of their hive. Queens and taskmasters also have the ability to communicate telepathically with any creature.]],
+	base_desc = "Though looking much like a giant ant, this creature is in fact a formian, an intelligent, extraplanar hive creature from the plane of Mechanus.",
 
 	stats = { str=13, dex=14, con=13, int=6, wis=10, cha=9, luc=10 },
 	combat = { dam= {1,4} },
@@ -209,6 +215,10 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	display = 'J', color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A large humanoid clothed in gray and seemingly hovering in air.]],
+	specialist_desc = [[The janni are able to travel, with companions, to all the Inner Elemental planes, the Astral Plane, and the Material Plane; but while on the Inner Elemental planes they can only survive the for a couple of days, without help from other sources.]],
+	uncommon_desc = [[The janni can change their size, and they are resistant to fire damage]],
+	common_desc = [[Janni possesses spell-like abilities which it uses to aid itself; it can also communicate using telepathy.]],
+	base_desc = "This regal looking creature is a janni genie. "..outsider_desc.."",
 
 	stats = { str=16, dex=15, con=12, int=14, wis=15, cha=13, luc=12 },
 	combat = { dam= {1,6} },
@@ -329,6 +339,11 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	image = "tiles/mobiles/wolf.png",
 	display = 'd', color=colors.DARK_GRAY,
 	desc = [[A big dog made of shadow.]],
+	specialist_desc = [[A shadow mastiff’s howl is positively terrifying to most creatures other than most fiends.]],
+	uncommon_desc = [[Shadow mastiffs possess an eerie cunning, and they can slip into the shadows, disappearing from view. Bright lights, such as daylight, can reveal the mastiff’s presence.]],
+	common_desc = [[Shadow hounds snap at foes with their powerful jaws. When they bite an opponent, they try to twist the creature to the ground.]],
+	base_desc = "This ebon hound is a shadow mastiff, a creature native to the Plane of Shadow.",
+
 	stats = { str=17, dex=13, con=17, int=4, wis=12, cha=13, luc=10 },
 	combat = { dam= {1,6} },
 
@@ -360,7 +375,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	image = "tiles/mobiles/elemental_earth.png",
 	display = 'K', color=colors.DARK_TAN,
 	desc = [[A creature of fire and earth.]],
-	common_desc = [[ese creatures are generally summoned from the Elemental Plane of Fire or, more rarely, the Elemental Plane of Earth. A thoqqua is so hot that its mere touch can ignite almost any material.]],
+	common_desc = [[These creatures are generally summoned from the Elemental Plane of Fire or, more rarely, the Elemental Plane of Earth. A thoqqua is so hot that its mere touch can ignite almost any material.]],
 	base_desc = [[This rocky, red-hot worm is a thoqqua. It can see in the dark and cannot be brought back by normal means. It burrows through earth and rock. It resists fire and takes double damage from cold.]],
 
 	stats = { str=15, dex=13, con=13, int=6, wis=12, cha=10, luc=10 },
@@ -431,6 +446,10 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	display = 'O', color=colors.BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
 	desc = [[A four-armed ethereal beast.]],
+	specialist_desc = [[Xill can see in the dark and very few spells can penetrate its rather strong spell resistance. Xill live in a totallitarian society, whether it be barbaric or civilized, the strongest xill is the leader and any who oppose him are dealt with in the most extreme manner. Xill rarely communicate with any non-xill considering them to be nothing more than a host for their eggs.]],
+	uncommon_desc = [[Once a xill has a creature in its grasp it bites, paralyzing the victim whereupon the xill lays its eggs in the creature. If there are threats around, the xill will shift the victim to the etheral plane with its planeswalking ability, then lay its eggs.]],
+	common_desc = [[Xill will almost always wait on the Ethereal Plane until their intended victims are within melee range, then shift to the material plane and attack with weapons in two of their arms, and attempt to grab the opponent with the other two. Xill speak Infernal.]],
+	base_desc = "This vaugely humanoid creature which looks both reptilian and insectile at the same time is in fact a xill from the Ethereal Plane. These creatures are known for their brutality and malevolence. "..outsider_desc.."",
 
 	stats = { str=15, dex=16, con=15, int=12, wis=12, cha=11, luc=10 },
 	combat = { dam= {1,4} },

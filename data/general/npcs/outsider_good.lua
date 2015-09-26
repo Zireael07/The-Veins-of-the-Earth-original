@@ -194,6 +194,11 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
                 [DamageType.COLD] = 10,
                 [DamageType.SONIC] = 10,
         },
+
+        specialist_desc = [[Avoral guardinals can cause nearby foes to become terribly frightened.]],
+        uncommon_desc = [[Avorals take less damage from most weapons, only silver weapons or weapons imbued with the power of evil deal damage normally.]],
+        common_desc = [[Avorals possess spell-like abilities used in battle. Avorals are also resistant to magical spells.]],
+        base_desc = "This celestial creature is an avoral guardinal from Elysium.",
 }
 
 --Roar 4 sq cone holy word + 2d6 sonic; pounce; improved grab; rake 1d6;
@@ -227,6 +232,11 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
                 [DamageType.SONIC] = 10,
                 [DamageType.COLD] = 10,
         },
+
+        specialist_desc = [[Leonal guardinals are constantly surrounded by a protective aura that protects them from evil creatures.]],
+        uncommon_desc = [[Leonals take less damage from most weapons, only silver weapons imbued with the power of evil deal damage normally.]],
+        common_desc = [[A leonal's loud roar severely harms evil creatures; they also possess spell-like abilities used in battle.]],
+        base_desc = "This angelic creature is a leonal guardinal from Elysium. ",
 }
 
 
@@ -266,6 +276,11 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
                 [DamageType.FIRE] = 10,
                 [DamageType.COLD] = 10,
         },
+
+        specialist_desc = [[Bralanis have the use of certain spell-like abilities, namely - blur, charm person, gust of wind, mirror image and wind wall (all at will); and lightning bolt and cure serious wounds (each twice per day).]],
+        uncommon_desc = [[In combat, bralanis favour weapons such as the scimitar and composite longbow, and these weapons are often enchanted with holy energy. In addition to their natural form, bralanis can assue the shape of a whirlwind or zephyr of dust, snow or sand. When in its whirlwind form, a bralani can attack with a line-effect blast of wind.]],
+        common_desc = [[The wildest and most feral of their kind, bralanis exemplify passion in its most chaotic form. Though resilient to most forms of physical damage, bralanis are vulnerable to weapons made of cold iron or those tainted by evil. Bralanis speak Celestial, Infernal and Draconic, but can communicate with most creatures because of their tongues ability.]],
+        base_desc = "This short and stocky elf-like creature is in fact a bralani, an eladrin celestial native to the plane of Arborea.",
 }
 
 --wields holy greatsword +4; immunity to petrification; protective aura (+4 to AC and +4 to saves vs evil creatures in 2 sq radius)
@@ -300,6 +315,16 @@ newEntity{ base = "BASE_NPC_CELESTIAL",
                 [DamageType.COLD] = 10,
                 [DamageType.FIRE] = 10,
         },
+
+        --[[
+        In its true form, a ghaele is an incandescent ball of heavenly light. In this form, it can fly and emit rays of light that sear its foes. However, by the ancient rules of their kind, ghaeles must never reveal their true nature to the mortals they help, lest they be banished from the Material Plane for a year and a day.
+        A ghaele has a variety of powerful spell-like abilities, including aid, chain lightning, charm monster, color spray, comprehend languages, continual flame, cure light wounds, dancing lights, detect evil, detect thoughts, disguise self, dispel magic, hold monster, major image, prismatic spray, see invisibility, and wall of force. They can also turn themselves invisible or teleport at will.
+        ]]
+
+        specialist_desc = [[A ghaele continually emits raw celestial energy, unseen yet powerful. Evil creatures’ attacks are less effective within a ghaele’s aura. A ghaele’s penetrating gaze strikes fear into the hearts of evil creatures — and can even strike some of its lesser minions dead.]],
+        uncommon_desc = [[Ghaeles are the knights-errant of the eladrins. They secretly work among mortals, helping them muster defenses against the many threats of evil. Ghaeles are innately powerful divine spellcasters, and often wield powerful, opalescent magic weapons. Through a form of telepathy, ghaeles can speak with any creature that has a language.]],
+        common_desc = [[Eladrins hail from the upper plane of Arborea. They seek out goodly mortals and protect them from evil forces. This result reveals all eladrin traits. Ghaeles speak Celestial, Infernal, and Draconic.]],
+        base_desc = "This noble, elf-like entity is actually a ghaele, a type of celestial called eladrins.",
 }
 
 --Fly 70 ft.; constrict 2d6; improved grab; cast spells as Brd6; Extend Spell
