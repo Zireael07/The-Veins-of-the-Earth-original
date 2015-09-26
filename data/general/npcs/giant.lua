@@ -3,7 +3,7 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
-local giant_desc = [[It is proficient with simple and martial weapons, as well as any armor it wears. It has to eat, sleep and breathe.]]
+local giant_desc = [[It is proficient with simple and martial weapons, as well as any armor it wears. It has to eat, sleep and breathe. It speaks Giant.]]
 
 newEntity{
 	define_as = "BASE_NPC_GIANT",
@@ -25,6 +25,9 @@ newEntity{ base = "BASE_NPC_GIANT",
 	image = "tiles/mobiles/ettin.png",
 	color=colors.LIGHT_GRAY,
     desc = [[A two-headed giant.]],
+	uncommon_desc = [[Ettins have good senses and can see well in poor light conditions. They typically use ambushes to initiate combat, but then fight relentlessly until all enemies are dead. Ettins virtually never bathe and their stench is so strong that they almost always ambush from downwind to avoid being detected.]],
+	common_desc = [[Though not particularly intelligent, ettins are skilled and cunning fighters. They are supremely strong and can fight very effectively with two weapons as each head controls one of its arms. Ettins speak a pidgin language of their own made up of a mix of Orc, Goblin and Giant.]],
+	base_desc = "This two-headed giant is an ettin, a vicious and unpredictable nocturnal hunter. "..giant_desc.."",
 
 	stats = { str=23, dex=8, con=15, int=6, wis=10, cha=11, luc=8 },
 	name = "ettin",
@@ -144,6 +147,10 @@ newEntity{ base = "BASE_NPC_GIANT",
 	display = "T", color=colors.GREEN,
 	image = "tiles/mobiles/troll.png",
     desc = [[A regenerating ugly brute.]],
+	specialist_desc = [[Trolls come in many different varieties, which have adapted to many different environments, including the humongous mountain troll and the aquatic scrag.]],
+	uncommon_desc = [[A troll quickly regenerates most forms of damage, and can even regrow or reattach severed body parts. However, a troll cannot regenerate fire or acid damage.]],
+	common_desc = [[A troll is a fearless combatant with a ravenous appetite for raw flesh. Trolls have a strong sense of smell and can see in the dark.]],
+	base_desc = "This gangly, rubbery, greenish humanoid is a troll. "..giant_desc.."",
 
 	stats = { str=23, dex=14, con=23, int=6, wis=9, cha=6, luc=8 },
 	name = "troll",

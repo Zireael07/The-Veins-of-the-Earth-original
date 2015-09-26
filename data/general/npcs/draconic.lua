@@ -13,6 +13,9 @@ newEntity{
         display = 'D', color=colors.DARK_GREEN,
         body = { INVEN = 10 },
         desc = [[An immense turtle.]],
+        uncommon_desc = [[Dragon turtles are extremely territorial, attacking anything that threatens its home or resembles a potential meal — which is just about anything smaller than themselves. They can capsize smaller vessels simply by surfacing beneath them.]],
+        common_desc = [[A dragon turtle is so named both for its draconic appearance and its ability to breathe a cone of superheated steam whilst submerged.]],
+        base_desc = [[This massive, well-armored tortoise is a dragon turtle.]],
 
         ai = "human_level", ai_state = { talent_in=3, },
         stats = { str=27, dex=10, con=21, int=12, wis=13, cha=12, luc=10 },
@@ -126,7 +129,12 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[Black dragons are sometimes known as skull dragons because of their skeletal faces. Adding to the skeletal impression is the gradual deterioration of the hide around the base of the horn and the cheekbones. This deterioration increases with age and does not harm the dragon.
     On hatching, a black dragon's scales are thin, small, and glossy. As the dragon ages, they become larger, thicker, and duller, helping it camouflage itself in swamps and marshes.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[Black dragons are particularly fond of coins, going to great lengths to discover the location of hordes of these items, whether they are silver, gold, or platinum.]],
+    uncommon_desc = [[Older dragons have a variety of magical powers, such as darkness, insect plague, and corrupt water. Unlike many creatures, black dragons can use these abilities while submerged.]],
+    common_desc = [[Black dragons make their lairs in warm marshes and submerged caves. These lairs often carry an acrid smell, a hint at the dragon’s highly acidic breath weapon.]],
+    base_desc = "This black, skeletal reptile is a black dragon, sometimes known as a skull dragon. "..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=11, dex=10, con=13, int=8, wis=11, cha=8, luc=10 },
     combat = { dam= {1,4} },
     name = "black dragon",
@@ -156,7 +164,12 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[A blue dragon's scales vary in color from an iridescent azure to a deep indigo, polished to a glossy finish by blowing desert sands. The size of its scales increases little as the dragon ages, although they do become thicker and harder. Its hide tends to hum and crackle faintly with built-up static electricity. These effects intensify when the dragon is angry or about to attack, giving off an odor of ozone and sand.
     Their vibrant color makes blue dragons easy to spot in barren desert surroundings. However, they often burrow into the sand so only part of their heads are exposed.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[Blue dragons are hard to spot when buried beneath the sand, but stand out easily when above ground. When flying, however, they blend in with the desert sky almost perfectly. They use this to their advantage, preferring to attack prey from surprise.]],
+    uncommon_desc = [[Blue dragons develop natural illusions as they mature, such as ventriloquism and mirage arcana. They can also perfectly mimic any sound they hear.]],
+    common_desc = [[Blue dragons live in hot desert environments, where they often lie in wait beneath the sand. They aggressively defend their territory with a powerful line of lightning breath.]],
+    base_desc = "This horned, ozone-scented creature is a blue dragon."..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=13, dex=10, con=13, int=10, wis=11, cha=10, luc=10 },
     combat = { dam= {1,4} },
     name = "blue dragon",
@@ -185,7 +198,12 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[A wyrmling green dragon's scales are thin, very small, and a deep shade of green that appears nearly black.
     As the dragon ages, the scales grow larger and lighter, turning shades of forest, emerald, and olive green, which helps it blend in with its wooded surroundings.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[Green dragons show an interest in the society and abilities of those it captures, as well as local events and, of course, the location of treasure. They also enjoy evoking fear in weak creatures.]],
+    uncommon_desc = [[Older, more powerful green dragons can control humanoids and plants alike with abilities like suggestion and command plants. They can use these abilities freely while submerged in water.]],
+    common_desc = [[Green dragons make their lairs in old forests, particularly those with larger trees. A stinging odor of chlorine lingers in such regions. They possess a single breath weapon, a cone of acidic gas.]],
+    base_desc = "This crested, reptilian creature is a green dragon. "..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=13, dex=10, con=13, int=10, wis=11, cha=10, luc=10 },
     combat = { dam= {1,4} },
     name = "green dragon",
@@ -214,7 +232,12 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[The small scales of a wyrmling red dragon are a bright glossy scarlet, making the dragon easily spotted by predators and hunters, so it stays underground and does not venture outside until it is more able to take care of itself. Toward the end of young age, the scales turn a deeper red, and the glossy texture is replaced by a smooth, dull finish. As the dragon grows older, the scales become large, thick, and as strong as metal.
     The neck frill and wings are an ash blue or purple-gray toward the edges, becoming darker with age. The pupils of a red dragon fade as it ages; the oldest red dragons have eyes that resemble molten lava orbs.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[Although powerful, red dragons are extremely confident in their own abilities and waste no time considering the strength of their opponent. They can sometimes be tricked into making brash decisions in this manner.]],
+    uncommon_desc = [[Older red dragons gain several magical abilities, although most of these are subtle such as discern location and find the path.]],
+    common_desc = [[A red dragon’s lair is usually an enormous cave beneath the earth, sometimes near a lake of magma or the heart of a volcano. These lairs quickly fill with the dragon’s sulfurous scent, and shimmers with the heat of its intense fiery breath.]],
+    base_desc = "This reptilian beast, which smells of smoke, is a red dragon."..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=17, dex=10, con=15, int=10, wis=11, cha=10, luc=10 },
     combat = { dam= {1,4} },
     name = "red dragon",
@@ -244,7 +267,12 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[The scales of a wyrmling white dragon glisten like mirrors.
     As the dragon ages, the sheen disappears, and by very old age, scales of pale blue and light gray are mixed in with the white.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[White dragons like to hoard diamonds within ice-covered caverns so that the gems are reflected all about them. The oldest white dragons often use control weather to fortify these hidden stashes.]],
+    uncommon_desc = [[As a white dragon ages, it masters several abilities dealing with bitter wind and cold weather, like freezing fog and wall of ice. From the time they are born, they can climb up any icy surface with ease.]],
+    common_desc = [[White dragons lair beneath the snow and ice of their tundra homes, away from the sun. Their sole breath weapon is a cone of cold.]],
+    base_desc = "This snow-colored reptile is a white dragon. "..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=17, dex=10, con=15, int=10, wis=11, cha=10, luc=10 },
     combat = { dam= {1,4} },
     name = "white dragon",
@@ -275,7 +303,12 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[At birth, a brass dragon's scales are a dull, mottled brown. As the dragon gets older, the scales become more brassy until they reach a warm, burnished appearance. The grand head-plates of a brass dragon are smooth and metallic, and it sports bladed chin horns that grow sharper with age.
     Wings and frills are mottled green toward the edges, darkening with age. As the dragon grows older, its pupils fade until the eyes resemble molten metal orbs.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[Although good-natured, brass dragons have an insatiable thirst for conversation and will sometimes bury sleeping creature in the sand if they refuse to chat with the dragon. They do not enjoy combat and prefer to avoid it if possible.]],
+    uncommon_desc = [[Mature brass dragons have several abilities ranging from suggestion to control weather. The eldest brass dragons can summon djinni to their aid.]],
+    common_desc = [[Brass dragons live in deserts and enjoy bathing in the sun and conversing with passers-by. They often come into conflict with blue dragons. Brass dragons have two types of breath weapons, a line of fire and a cone of sleep.]],
+    base_desc = "This reptilian creature with a massive head plate is a brass dragon. "..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=11, dex=10, con=13, int=10, wis=11, cha=10, luc=10 },
     combat = { dam= {1,4} },
     name = "brass dragon",
@@ -305,7 +338,12 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[A bronze wyrmling's scales are yellow tinged with green, showing only a hint of bronze. As the dragon approaches adulthood, its color deepens slowly to a darker, rich bronze tone. Very old dragons develop a blue-black tint to the edges of their scales.
     Powerful swimmers, they have webbed feet and smooth, flat scales. The pupils of its eyes fade as a dragon ages, until in the oldest the eyes resemble glowing green orbs.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[Bronze dragons dislike killing, usually attempting to bribe or force away any threat rather than fight. If attacked by vessels, they usually try to disable rather than destroy the ship.]],
+    uncommon_desc = [[Bronze dragons are masters of the sea, which manifests itself in abilities like control water and fog cloud. Great wyrms can also use control weather.]],
+    common_desc = [[Although they lair near deep bodies of fresh or salt water, a bronze dragon’s lair is always dry. They possess two types of breath weapons, a line of lightning and a cone of repulsion gas.]],
+    base_desc = "This crested dragon, which smells of the ocean wind, is a bronze dragon. "..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=13, dex=10, con=13, int=14, wis=15, cha=14, luc=10 },
     combat = { dam= {1,4} },
     name = "bronze dragon",
@@ -335,7 +373,12 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[At birth, a copper dragon's scales have a ruddy brown color with a metallic tint. As the dragon gets older, the scales become finer and more coppery, assuming a soft, warm gloss by young adult age. Very old dragons' scales pick up a green tint.
     A copper dragon's pupils fade with age, and the eyes of great wyrms resemble glowing turquoise orbs.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[Copper dragons enjoy pranks, jokes, and riddles. They rarely attack creatures that can tell them an amusing story or joke that it hasn’t heard before.]],
+    uncommon_desc = [[In combat, copper dragons attempt to even the odds with abilities like stone shape, transmute rock to mud, and wall of stone.]],
+    common_desc = [[Copper dragons nest in warm hills, which often brings them into conflict with the larger red dragons. They can use two breath weapons, a line of acid and a cone of slow gas.]],
+    base_desc = "This reddish, metallic reptile is a copper dragon. "..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=13, dex=10, con=13, int=14, wis=15, cha=14, luc=10 },
     combat = { dam= {1,4} },
     name = "copper dragon",
@@ -365,7 +408,12 @@ newEntity{
 	body = { INVEN = 10 },
 	desc = [[On hatching, a gold dragon's scales are dark yellow with golden metallic flecks. The flecks get larger as the dragon matures until, at the adult stage, the scales are completely golden.
     Gold dragons' faces are bewhiskered and sagacious; as they age, their pupils fade until the eyes resemble pools of molten gold.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[Gold dragons have an intolerance of evil rivaling that of a paladin. They often appoint themselves with the task of spreading good, often going on crusades against all manner of vile creatures.]],
+    uncommon_desc = [[As they age, gold dragons gain several abilities, such as sunburst, detect gems, and bless. The oldest dragons can use foresight to see into the future.]],
+    common_desc = [[Unlike most true dragons, gold dragons have no preferred habitat, as long as it’s made out of stone. They can breathe either a cone of fire or a cone of weakening gas.]],
+    base_desc = "This glistening, sailed creature is a gold dragon. "..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=17, dex=10, con=15, int=14, wis=15, cha=14, luc=10 },
     combat = { dam= {1,4} },
     name = "gold dragon",
@@ -394,7 +442,12 @@ newEntity{
     image = "tiles/mobiles/dragon/dragon_silver_wyrmling.png",
 	body = { INVEN = 10 },
 	desc = [[A silver wyrmling's scales are blue-gray with silver highlights. As the dragon approaches adulthood, its color gradually brightens until the individual scales are scarcely visible.]],
-	ai = "human_level", ai_state = { talent_in=3, },
+    specialist_desc = [[Most silver dragons take up human guise in favor of their own forms, and they have a taste for human cooking. They often form alliances and even long-lasting friendships with the lesser-lived races.]],
+    uncommon_desc = [[Silver dragons possess two types of breath weapons, a cone of cold and a cone of paralyzing gas. Older specimens can also use abilities like reverse gravity and control weather to even the playing field.]],
+    common_desc = [[Silver dragons prefer lairs on secluded mountains, or even in the clouds; in the latter case, they use magically created earth for storing treasure and their young. They often come into conflict with red dragons, winning with the help of their allies.]],
+    base_desc = "This frilled, sleek reptile is a silver dragon. "..dragon_desc.."",
+
+    ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=13, dex=10, con=13, int=14, wis=15, cha=14, luc=10 },
     combat = { dam= {1,4} },
     name = "silver dragon",
