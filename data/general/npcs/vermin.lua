@@ -1,6 +1,8 @@
 --Veins of the Earth
 --Zireael 2013-2015
 
+local vermin_desc = ""
+
 newEntity{
 	define_as = "BASE_NPC_VERMIN",
 	type = "vermin",
@@ -15,6 +17,9 @@ newEntity{ base = "BASE_NPC_VERMIN",
 	image = "tiles/mobiles/spider.png",
 	display = 'r', color=colors.BROWN,
 	desc = [[A small spider.]],
+	uncommon_desc = [[Monstrous spiders come in all shapes and sizes, but most can be grouped into one of two types - hunters and web-spinners. Hunters are fast, expert jumpers and have keen eyesight. Web-spinners can launch a web attack to trap their foes and are experts at remaining unnoticed when in their silky lairs.]],
+	common_desc = [[Like some of their smaller kin, monstrous spiders have a nasty poisonous bite. They can also spin webs of surprisingly strong and difficult to spot silk. Generally, the larger the spider the nastier the poison and the stronger its webs.]],
+	base_desc = "This eight-legged beast is a monstrous spider, an aggressive cousin of the more common, smaller arachnid. "..vermin_desc.."",
 
 	stats = { str=3, dex=17, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,3} },
@@ -92,6 +97,9 @@ newEntity{ base = "BASE_NPC_VERMIN",
 	image = "tiles/mobiles/ant.png",
 	display = 'a', color=colors.BLACK,
 	desc = [[This ant has a glossy black carapace, a stinger dripping with acid and razor-sharp pincers. It is about the size of a man.]],
+	uncommon_desc = [[Despite their size, giant ants can still climb virtually any surface capable of supporting their weight. To permanently eliminate a hive of giant ants, its queen must be slain or removed; all other members of the hive are expendable.]],
+	common_desc = [[Like common ants, the giant ants within a hive are born into various castes. Most hive members are either workers or soldiers, who exist solely to serve the hive and its singular queen. Both workers and soldiers can defend themselves with dangerous bites, but soldiers are particularly aggressive. Soldiers attack by clamping onto a victim with their jaws and then repeatedly strike with an acidic stinger in their abdomen.]],
+	base_desc = "This giant insect is an overgrown variety of the common ant. "..vermin_desc.."",
 
 	stats = { str=10, dex=10, con=10, int=1, wis=11, cha=9, luc=10 },
 	combat = { dam= {1,6} },
@@ -145,6 +153,9 @@ newEntity{ base = "BASE_NPC_VERMIN",
 	image = "tiles/mobiles/centipede.png",
 	display = 'w', color=colors.BROWN,
 	desc = [[A giant centipede.]],
+	uncommon_desc = [[Monstrous centipedes can grow to truly enormous sizes. Larger centipedes have more potent venom. Even the largest monstrous centipedes can skitter along walls or ceilings as well as they can across a floor.]],
+	common_desc = [[Monstrous centipedes typically attack anything that might be food. The venom they inject with their bite can slowly paralyze their prey, leaving the creature helpless while the centipede feeds.]],
+	base_desc = "This skittering creature is a monstrously large centipede. "..vermin_desc.."",
 
 	stats = { str=1, dex=15, con=10, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,3} },
@@ -253,6 +264,10 @@ newEntity{ base = "BASE_NPC_VERMIN",
 	image = "tiles/mobiles/scorpion.png",
 	display = 'w', color=colors.TAN,
 	desc = [[A giant scorpion.]],
+	specialist_desc = [[Monstrous scorpions can reach truly enormous sizes. Larger scorpions have more potent venom.]],
+	uncommon_desc = [[A monstrous scorpion attacks by clutching its prey with its pincers, then quickly jabs the creature with the stinger at the end of its arching tail. A scorpion’s venom can be deadly in larger doses.]],
+	common_desc = [[Monstrous scorpions feed on creatures smaller than themselves, but they will attack anything that approaches them. They usually charge their prey.]],
+	base_desc = "This clawed arachnid is a monstrously oversized scorpion. "..vermin_desc.."",
 
 	stats = { str=3, dex=10, con=14, int=1, wis=10, cha=2, luc=10 },
 	combat = { dam= {1,2} },
@@ -350,6 +365,8 @@ newEntity{
 	hit_die = 1,
 	challenge = 1/3,
 	combat_natural = 6,
+	common_desc = [[A fire beetle has a particularly nasty bite. Due to its bulk, it cannot fly or skitter up walls. Harvested glands retain their luminescence for several days, and are highly prized by miners and others who work underground.]],
+	base_desc = "This oversized insect is a giant fire beetle. These scavengers have two luminescent glands just above their eyes which emit a red glow like burning embers, illuminating an area about six paces across. "..vermin_desc.."",
 }
 
 newEntity{ base = "BASE_NPC_VERMIN",
@@ -371,4 +388,7 @@ newEntity{
 	hit_die = 7,
 	challenge = 4,
 	combat_natural = 10,
+	uncommon_desc = [[A giant stag beetle is a lumbering creature that often simply tramples right over threats smaller than itself.]],
+	common_desc = [[Giant stag beetles are herbivores with ravenous appetites. Left unchecked, they can devour entire fields of crops. They attack only if they feel threatened. Due to their bulk, they cannot fly or skitter up walls.]],
+	base_desc = "This hulking insect is a giant stag beetle, which takes its name from its antlerlike, chitinous horns. "..vermin_desc.."",
 }

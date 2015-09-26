@@ -5,6 +5,7 @@ local Talents = require("engine.interface.ActorTalents")
 local DamageType = require "engine.DamageType"
 
 --Elementals do not drop corpses!
+local elemental_desc = ""
 
 newEntity{
 	define_as = "BASE_NPC_ELEMENTAL",
@@ -21,6 +22,10 @@ newEntity{ base = "BASE_NPC_ELEMENTAL",
 	image = "tiles/mobiles/elemental_air.png",
 	display = 'E', color=colors.WHITE,
 	desc = [[An air elemental.]],
+	specialist_desc = [[Air elementals grow larger and more powerful over the course of their centuries-long existence. “Larval” elementals, called elementites, travel in swarms. The largest air elementals, called monoliths and primal elementals, are the size of tornados.]],
+	uncommon_desc = [[More powerful air elementals are generally resistant to physical harm. An air elemental can transform itself into a vortex of whirling winds, picking up foes and battering them while they hang suspended in the air.]],
+	common_desc = [[An air elemental batters foes with its forceful winds. Its mastery over the air around it allows it to keep airborne foes off balance, helping it avoid their attacks.]],
+	base_desc = "This creature is an air elemental, a living manifestation of wind and air. Air elementals speak Auran. "..elemental_desc.."",
 
 	stats = { str=10, dex=17, con=10, int=4, wis=11, cha=11, luc=10 },
 	combat = { dam= {1,4} },
@@ -143,6 +148,10 @@ newEntity{ base = "BASE_NPC_ELEMENTAL",
 	image = "tiles/mobiles/elemental_earth.png",
 	display = 'E', color=colors.BROWN,
 	desc = [[An earth elemental.]],
+	specialist_desc = [[Earth elementals grow larger and more powerful over the course of their centuries-long existence. “Larval” elementals, called elementites, travel in swarms. The largest earth elementals, the monoliths and primal elementals, are the size of mountains.]],
+	uncommon_desc = [[More powerful earth elementals are generally resistant to physical harm. An earth elemental can glide through earth and stone (but not metal) as easily as a fish swims through water. An earth elemental can also use its solid mass to shove foes with a particularly effective bull rush. Casting move earth on an area containing a burrowing earth elemental can stun the creature and fling it back several paces.]],
+	common_desc = [[An earth elemental pummels foes with its stony fists. Its mastery over the earth makes its attacks more effective when both it and its opponent are touching the ground.]],
+	base_desc = "This creature is an earth elemental, a living manifestation of soil and stone. Earth elementals speak Terran. "..elemental_desc.."",
 
 	stats = { str=17, dex=8, con=13, int=4, wis=11, cha=11, luc=10 },
 	combat = { dam= {1,6} },
@@ -259,6 +268,10 @@ newEntity{ base = "BASE_NPC_ELEMENTAL",
 	image = "tiles/mobiles/elemental_fire.png",
 	display = 'E', color=colors.RED,
 	desc = [[A fire elemental.]],
+	specialist_desc = [[Fire elementals grow larger and more powerful over the course of their centuries-long existence. “Larval” elementals, called elementites, travel in swarms. The largest fire elmentals, the monoliths and primal elementals, are the size of forest fires.]],
+	uncommon_desc = [[Fire elementals are immune to fire, and more powerful elementals are generally resistant to physical harm. However, they are vulnerable to cold and cannot enter water or any nonflammable liquid.]],
+	common_desc = [[A fire elemental bashes foes with its fists. In addition to the sheer strength of its blows, its living flames burn whatever it touches.]],
+	base_desc = "This creature is an fire elemental, a living manifestation of roaring flames. A fire elemental speaks Ignan. "..elemental_desc.."",
 
 	stats = { str=10, dex=13, con=10, int=4, wis=11, cha=11, luc=10 },
 	combat = { dam= {1,4} },
@@ -392,6 +405,10 @@ newEntity{ base = "BASE_NPC_ELEMENTAL",
 	image = "tiles/mobiles/elemental_water.png",
 	display = 'E', color=colors.BLUE,
 	desc = [[A water elemental.]],
+	specialist_desc = [[Water elementals grow larger and more powerful over the course of their centuries-long existence. “Larval” elementals, called elementites, travel in swarms. The largest water elementals, the monoliths and primal elementals, are the size of tidal waves.]],
+	uncommon_desc = [[More powerful water elementals are generally resistant to physical harm. A water elemental can transform itself into a small whirlpool, sucking foes to the bottom and battering them with its rushing currents.]],
+	common_desc = [[A water elemental batters foes with its fist-like waves. Its mastery over water makes its attacks more effective if both it and its opponent are touching water. However, a water elemental’s attacks are much less effective if either it or its foe are touching the ground. It can easily overturn watercraft smaller than itself, and its touch extinguishes open flames.]],
+	base_desc = "This creature is a water elemental, a living manifestation of flowing water. A water elemental speaks Aquan. "..elemental_desc.."",
 
 	stats = { str=14, dex=10, con=13, int=4, wis=11, cha=11, luc=10 },
 	combat = { dam= {1,6} },
