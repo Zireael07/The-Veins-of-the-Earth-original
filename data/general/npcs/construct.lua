@@ -41,6 +41,10 @@ newEntity{
 	challenge = 10,
 	combat_dr = 10,
 	combat_natural = 13,
+	specialist_desc = [[The elemental spirit animating a clay golem is only tenuously controlled by its master. The longer a clay golem fights, the greater the chance that it will fly into a berserk frenzy, attacking all that stands before it — even its master. Once per day, a clay golem can haste itself in combat.]],
+	uncommon_desc = [[A clay golem flails at foes with its powerful fists. The cursed wounds it deals do not heal naturally, and may disrupt magical healing. Move earth repels a clay golem, and an earthquake spell momentarily stops it in its tracks. Both spells also damage the golem. Rather than dealing damage, magical acid actually repairs a clay golem.]],
+	common_desc = [[A clay golem is immune to almost all forms of magic, and its solid body deflects most attacks. However, adamantine weapons can prove effective. A disintegrate spell slightly damages a clay golem and slows it for a few moments.]], --This result also reveals the procedure for creating clay golems.
+	base_desc = "This crudely shaped clay figure is a clay golem. "..construct_desc.."",
 }
 
 newEntity{
@@ -55,6 +59,10 @@ newEntity{
 	combat_natural = 10,
 	stats = { str=21, dex=9, con=1, int=1, wis=11, cha=1, luc=10 },
 	combat = { dam= {2,8} },
+	specialist_desc = [[The elemental spirit animating a flesh golem is only tenuously controlled by its master. The longer a flesh golem fights, the greater the chance that it will fly into a berserk frenzy, attacking all that stands before it — even its master. However, its master can forcefully talk the golem back into submission.]],
+	uncommon_desc = [[A flesh golem flails at foes with its powerful fists. Rather than dealing damage, magical electricity actually repairs a flesh golem and breaks any slow effect currently affecting it.]],
+	common_desc = [[A flesh golem is immune to almost all forms of magic, and its unnatural flesh deflects most minor attacks. However, adamantine weapons can prove effective, and magical cold and fire slow the creature for several moments.]],
+	base_desc = "This hideous, humanoid composite of crudely stitched-together body parts is a flesh golem. "..construct_desc.."", --also the ritual
 }
 
 --Breath weapon 1 sq 1d4 Con pri, 3d4 Con sec Fort DC 19
@@ -70,6 +78,10 @@ newEntity{
 	combat_natural = 23,
 	stats = { str=33, dex=9, con=1, int=1, wis=11, cha=1, luc=10 },
 	combat = { dam= {2,10} },
+	specialist_desc = [[An iron golem can spew a cone of lethal poisonous gas at nearby foes. The golem is affected normally by magical rust effects, such as a rusting grasp spell.]],
+	uncommon_desc = [[Rather than damaging it, magical fire actually repairs an iron golem and breaks any slow effect currently affecting it.]],
+	common_desc = [[An iron golem attacks by smashing foes with its powerful fists. It is immune to almost all forms of magic, and its ironclad body deflects most attacks. However, adamantine weapons can prove effective, and electricity slows the creature for a few moments.]],
+	base_desc = "This massive metal figure is an iron golem. "..construct_desc.."",
 }
 
 --Slow cooldown 2
@@ -84,6 +96,10 @@ newEntity{
 	combat_natural = 19,
 	stats = { str=29, dex=9, con=1, int=1, wis=11, cha=1, luc=10 },
 	combat = { dam= {2,10} },
+	specialist_desc = [[A stone golem can slow a nearby opponent every few moments without having to pause in its attacks.]],
+	uncommon_desc = [[A stone golem attacks by smashing foes with its powerful fists. A transmute mud to rock spell repairs a stone golem of all damage it has suffered. Casting stone to flesh on a stone golem doesn’t actually damage it, but does drastically weaken its defenses against attacks and magic for a few seconds.]],
+	common_desc = [[A stone golem is immune to almost all forms of magic, and its rocky body deflects most attacks. However, adamantine weapons can prove effective, and a transmute rock to mud spell slows the creature for a few moments.]], --This result also reveals the procedure for creating stone golems.
+	base_desc = "This walking statue is a stone golem. "..construct_desc.."",
 }
 
 --Slow cooldown 2
