@@ -115,6 +115,8 @@ newEntity{
 	infravision = 1,
 	--Brachiation feat from Incursion
 	resolvers.talents{ [Talents.T_ALERTNESS]=1, },
+	common_desc = [[Apes are omnivorous, but primarily feed on fruit and plants. However, they are powerfully built and highly territorial, and can pose a danger to intruders. Before an ape attacks, however, it usually displays seemingly violent acts of aggression, hoping to scare off the interloper.]],
+	base_desc = [[This hairy, heavyset primate is an ape.]],
 }
 
 --Can be a familiar
@@ -125,6 +127,9 @@ newEntity{
 	display = 'Y', color=colors.SANDY_BROWN,
 	body = { INVEN = 10 },
 	desc = [[A small monkey.]],
+	uncommon_desc = [[Some breeds are known to defecate and throw the excrement at those they feel threatened by as a defense mechanism.]],
+	common_desc = [[Though deceptively cute, these animals can be quite strong and vicious when roused, biting viciously. Monkeys are omnivores that feed predominantly on fruit and insects although some breeds are known to prefer small animals as a source of food.]],
+	base_desc = [[This furry mammal with a remarkably human build and features is in fact a monkey.]],
 
 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
 	stats = { str=5, dex=17, con=10, int=2, wis=12, cha=5, luc=10 },
