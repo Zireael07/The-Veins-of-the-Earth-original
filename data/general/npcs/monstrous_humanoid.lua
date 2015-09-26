@@ -87,6 +87,9 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	image = "tiles/mobiles/doppelganger.png",
 	display = 'h', color=colors.LIGHT_SLATE,
 	desc = [[A thin grayish humanoid.]],
+	uncommon_desc = [[A doppelganger can continuously read the surface thoughts of the people around it. It uses this ability to help stay in character. A rare variant is the greater doppelganger, which can literally consume minds.]],
+	common_desc = [[A doppelganger can perfectly mimic the form of any Small or Medium humanoid, including specific individuals. Doppelgangers often work together in clans, secretly helping each other maintain their stolen identities.]],
+	base_desc = "This featureless humanoid is a doppelganger, a creature that can perfectly mimic other people.",
 
 	stats = { str=12, dex=13, con=12, int=13, wis=12, cha=13, luc=12 },
 	level_range = {5, nil}, exp_worth = 900,
@@ -112,6 +115,10 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	image = "tiles/UT/gargoyle.png",
 	display = 'Y', color=colors.GRAY,
 	desc = [[A winged stone statue with a hideous snout.]],
+	specialist_desc = [[Several subraces of gargoyle exist, including the aquatic kapoacinth.]],
+	uncommon_desc = [[A gargoyle’s stony hide deflects most minor blows, but magic weapons can pierce its defenses.]],
+	common_desc = [[Gargoyles can perch indefinitely without moving, easily passing themselves off as grotesque statues until victims come near. A gargoyle possesses only a dim intelligence, but it speaks Terran and Common.]],
+	base_desc = "This monstrous, animate statue is a living creature called a gargoyle.",
 	stats = { str=15, dex=14, con=18, int=6, wis=11, cha=7, luc=12 },
 	combat = { dam= {1,4} },
 
@@ -146,6 +153,10 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	image = "tiles/mobiles/human.png",
 	display = 'h', color=colors.DARK_GRAY,
 	desc = [[A dull gray humanoid with a flat skin on its face.]],
+	uncommon_desc = [[Grimlocks hunt in packs. They prefer their meat fresh, raw, and, ideally, human. They are extremely xenophobic, but will sometimes band together under the command of a more powerful creature that promises them the brutal power they crave.]],
+	common_desc = [[Grimlocks are completely blind, but their senses of smell and hearing are so acute they can nearby foes nearly as if they were sighted creatures. Their enhanced senses leave them vulnerable to sonic- and scent-based attacks, however, and disrupting these senses can leave them disoriented.]],
+	base_desc = "The shallow, empty eye sockets in this gray humanoid’s face mark it as a grimlock, a savage subterranean hunter. Grimlocks speak their own language and Common.",
+
 	stats = { str=15, dex=13, con=13, int=10, wis=8, cha=6, luc=8 },
 	combat = { dam= {1,4} },
 
@@ -170,6 +181,7 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 }
 
 --Swim 60 ft., rake 1d4, blindsense 30 ft, light sensitivity
+--Reveal monstrous humanoid & aquatic at base_desc
 newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	define_as = "BASE_NPC_SAHUAGIN",
 	subtype = "aquatic",
@@ -179,6 +191,11 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	desc = [[A blue-green scaly creature with a humanoid build and a shark's head.]],
 	stats = { str=14, dex=13, con=12, int=14, wis=13, cha=9, luc=10 },
 	combat = { dam= {1,4} },
+
+	specialist_desc = [[Sahuagin are prone to physical mutation. About one in two hundred has four arms instead of two. Near aquatic elf communities, about one in one hundred sahuagin looks just like an aquatic elf; these creatures are called malenti.]],
+	uncommon_desc = [[Sahuagin can't survive long out of water, nor can they stand freshwater. Their eyes are sensitive to bright light.]],
+	common_desc = [[Sahuagin fight with their sharp claws and teeth, as well as weapons, particularly tridents and nets. When wounded, they sometimes fly into a frenzy, attacking madly until its opponent dies.]],
+	base_desc = [[This fish-like monster is a sahuagin, a water-dwelling creature.]],
 
 	level_range = {5, nil}, exp_worth = 600,
 	rarity = 15,
@@ -238,6 +255,11 @@ newEntity{
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1 },
+
+	specialist_desc = [[Annis are often masters of foul magical arts. When they form coveys with at least two other hags, they pool their power, gaining the ability to use animate dead, bestow curse, control weather, dream, forcecage, mind blank, mirage arcana, polymorph, veil, and vision as spell-like abilities. Hag coveys can also create hag’s eyes, magical gems through which the hags can scry at will.]],
+	uncommon_desc = [[Annis can use disguise self and fog cloud several times a day as spell-like abilities. They enjoy posing as common folk to lure hapless victims into their clutches. Like all hags, they are scheming creatures that despise natural beauty. An annis is resistant to magic.]],
+	common_desc = [[An annis has a ravenous appetite for humanoid flesh. They attack with their razor-sharp talons and iron-hard teeth. If they get a foe in their clutches, they can brutally tear through the victim’s flesh. An annis’ dense hide resists minor cuts, but bludgeoning weapons can prove effective.]],
+	base_desc = "This towering, hideous, blue-skinned crone is an annis, a physically powerful form of hag. Hags usually speak Giant and Common.",
 }
 
 --Swim 30 ft.; 2d4 STR damage Fort DC 16
@@ -264,6 +286,11 @@ newEntity{
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	[Talents.T_COMBAT_CASTING]=1
 	},
+
+	specialist_desc = [[Green hags are often masters of foul magical arts. When they form coveys with at least two other hags, they pool their power, gaining the ability to use animate dead, bestow curse, control weather, dream, forcecage, mind blank, mirage arcana, polymorph, veil, and vision as spell-like abilities. Hag coveys can also create hag’s eyes, magical gems through which the hags can scry at will.]],
+	uncommon_desc = [[Green hags have several powerful spell-like abilities, including dancing lights, disguise self, ghost sound, invisibility, pass without trace, tongues, and water breathing. They enjoy posing as common folk to lure hapless victims into their clutches. Like all hags, they are scheming creatures that despise natural beauty. A green hag is resistant to magic.]],
+	common_desc = [[A green hag has a ravenous appetite for humanoid flesh. Despite their strength, they prefer to use stealth and trickery against their foes. Green hags can mimic the sounds of nearly any animal they’ve ever heard. These hags also know how to sap a creature’s strength simply by clutching it in just the right spot.]],
+	base_desc = "This hideous green crone is a green hag, a twisted creature found in the deepest swamps. Hags usually speak Giant and Common.",
 }
 
 --2d6 STR damage in FOV; Toughness
@@ -286,6 +313,11 @@ newEntity{
 	combat = { dam= {1,4} },
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
 	},
+
+	specialist_desc = [[Sea hags are often masters of foul magical arts. When they form coveys with at least two other hags, they pool their power, gaining the ability to use animate dead, bestow curse, control weather, dream, forcecage, mind blank, mirage arcana, polymorph, veil, and vision as spell-like abilities. Hag coveys can also create hag’s eyes, magical gems through which the hags can scry at will.]],
+	uncommon_desc = [[Several times a day, a sea hag can cast her evil eye on another creature, addling its mind with fear for three days. Some victims are even struck dead from fright on the spot. Assuming the victim survives, remove curse or dispel evil can end the effect. Sea hags enjoy posing as common folk to lure hapless victims into their clutches. Like all hags, they are scheming creatures that despise natural beauty. A sea hag is resistant to magic.]],
+	common_desc = [[Sea hags are so hideous that the mere sight of their faces can cause opponents to go weak at the knees. They prefer direct attacks, slashing their enemies to ribbons with their long claws. A sea hag can survive comfortably both above and below the water’s surface.]],
+	base_desc = "This oozing, jaundiced crone is a sea hag, a twisted creature native to the oceans or stagnant lakes. Hags usually speak Giant and Common.",
 }
 
 --captivating song
