@@ -2287,7 +2287,10 @@ function _M:levelClass(name)
 	local birther = require "engine.Birther"
 	local d = birther:getBirthDescriptor("subclass", name)
 
-	if not d then end
+	if not d then
+		game.log("Class "..name.." not found")
+		return
+	end
 
 	if not name then end
 

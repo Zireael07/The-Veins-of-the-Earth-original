@@ -269,7 +269,7 @@ end
 --Birth stuff
 function _M:onBirth()
   --Finish the character
-  self:levelClass(self.descriptor.class)
+  self:levelClass(self.descriptor.subclass)
   self:giveStartingEQ()
 
   self:giveStartingSpells()
@@ -1515,7 +1515,7 @@ function _M:dominantClass()
     local list = {}
     local player = game.player
 
-  for i, d in ipairs(Birther.birth_descriptor_def.class) do
+  for i, d in ipairs(Birther.birth_descriptor_def.subclass) do
 
     local level = player.classes[d.name] or 0
         if level > 0 then
@@ -3799,7 +3799,7 @@ function _M:kidTakeover(actor)
 	actor.descriptor.alignment = actor.alignment
 
 	local class = rng.table(self.list_random_class)
-	actor.descriptor.class = class
+	actor.descriptor.subclass = class
 	actor:levelClass(class.name)
 
 
