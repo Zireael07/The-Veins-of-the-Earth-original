@@ -16,6 +16,7 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
+local outsider_desc = "It can see in the dark and cannot be brought back to life by normal means."
 --Outsiders drop no corpses (except barghests)
 
 newEntity{
