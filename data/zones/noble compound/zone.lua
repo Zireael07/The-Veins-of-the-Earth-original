@@ -32,9 +32,9 @@ return {
 			max_block_w = 15, max_block_h = 15,
 			max_building_w = 5, max_building_h = 5,
 
-			floor = "FLOOR_TILED",
+			floor = "FLOOR_BUILDING",
 			external_floor = "FLOOR",
-			wall = "WALL",
+			wall = "WALL_NOBLE",
 			up = "UP",
 			down = "DOWN",
 			door = "DOOR",

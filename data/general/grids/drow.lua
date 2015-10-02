@@ -53,6 +53,13 @@ newEntity{
 	image = "tiles/terrain/floor_tiled.png",
 }
 
+--For buildings
+newEntity{
+    base = "FLOOR",
+    define_as = "FLOOR_BUILDING",
+    image = "tiles/terrain/floor_building.png",
+}
+
 newEntity{
     define_as = "WALL",
     type = "wall", subtype = "wall",
@@ -64,6 +71,12 @@ newEntity{
     block_sight = true,
     air_level = -20,
     dig = "FLOOR",
+}
+
+newEntity{
+    base = "WALL",
+    define_as = "WALL_NOBLE",
+    image = "tiles/terrain/wall_noble.png",
 }
 
 newEntity{
