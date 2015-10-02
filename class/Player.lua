@@ -364,17 +364,17 @@ function _M:equipAllItems()
 end
 
 function _M:giveStartingSpells()
-  if self.descriptor.class == "Cleric" then --or self.descriptor.class == "Shaman" then
+  if self.descriptor.subclass == "Cleric" then --or self.descriptor.subclass == "Shaman" then
     self:setCharges(self.T_CURE_LIGHT_WOUNDS, 2)
 
   end
 
-  if self.descriptor.class == "Wizard" or self.descriptor.class == "Magus" then --or self.descriptor.class == "Sorcerer" then
+  if self.descriptor.subclass == "Wizard" or self.descriptor.subclass == "Magus" then --or self.descriptor.subclass == "Sorcerer" then
     self:setCharges(self.T_MAGIC_MISSILE, 2)
     self:setCharges(self.T_MAGE_ARMOR, 1)
   end
 
-  if self.descriptor.class == "Bard" then
+  if self.descriptor.subclass == "Bard" then
     self:setCharges(self.T_MAGIC_MISSILE, 2)
   end
 
@@ -671,7 +671,7 @@ function _M:die(src, death_note)
         }
       end
       msg = msg:format(
-        game.player.name:capitalize(), game.player.level, game.player.descriptor.race:lower(), game.player.descriptor.class:lower(),
+        game.player.name:capitalize(), game.player.level, game.player.descriptor.race:lower(), game.player.descriptor.subclass:lower(),
         death_mean or "battered",
         srcname,
         src.name == top_killer and " (yet again)" or "",
@@ -681,7 +681,7 @@ function _M:die(src, death_note)
     else
       msg = "%s the level %d %s %s %s on level %s of %s."
       msg = msg:format(
-        game.player.name, game.player.level, game.player.descriptor.race:lower(), game.player.descriptor.class:lower(),
+        game.player.name, game.player.level, game.player.descriptor.race:lower(), game.player.descriptor.subclass:lower(),
         death_note.special_death_msg,
         game.level.level, game.zone.name
       )
@@ -1045,10 +1045,10 @@ end
 --Auto ID stuff
 
 function _M:setCountID()
-  if self.descriptor.class == "Rogue" then self.pseudo_id_counter = rng.range(5,10)
-  elseif self.descriptor.class == "Fighter" or self.descriptor.class == "Barbarian" then self.pseudo_id_counter = rng.range(5,15)
-  elseif self.descriptor.class == "Ranger" or self.descriptor.class == "Paladin" or self.descriptor.class == "Monk" or self.descriptor.class == "Warlock" or self.descriptor.class == "Cleric" then self.pseudo_id_counter = rng.range(10, 20)
-  elseif self.descriptor.class == "Wizard" or self.descriptor.class == "Sorcerer" then self.pseudo_id_counter = rng.range(15, 25)
+  if self.descriptor.subclass == "Rogue" then self.pseudo_id_counter = rng.range(5,10)
+  elseif self.descriptor.subclass == "Fighter" or self.descriptor.subclass == "Barbarian" then self.pseudo_id_counter = rng.range(5,15)
+  elseif self.descriptor.subclass == "Ranger" or self.descriptor.subclass == "Paladin" or self.descriptor.subclass == "Monk" or self.descriptor.subclass == "Warlock" or self.descriptor.subclass == "Cleric" then self.pseudo_id_counter = rng.range(10, 20)
+  elseif self.descriptor.subclass == "Wizard" or self.descriptor.subclass == "Sorcerer" then self.pseudo_id_counter = rng.range(15, 25)
   end
 end
 
@@ -2102,7 +2102,7 @@ function _M:givePlate()
 end
 
 function _M:giveStartingEQ()
-  local class = game.player.descriptor.class
+  local class = game.player.descriptor.subclass
   local race = game.player.descriptor.race
 --  local item = self:randomItem()
     if class == "Barbarian" then
