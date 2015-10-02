@@ -149,7 +149,7 @@ on_change = function(s) if s then self:switchTo('stats') end end,
   --Taken from ToME 4
     self.key:addBinds{
         EXIT = function()
-            if self.actor.class_points~=self.actor_dup.class_points 
+            if self.actor.class_points~=self.actor_dup.class_points
                 or self.actor.feat_point~=self.actor_dup.feat_point
                 or self.actor.skill_point~=self.actor_dup.skill_point
                 or self.actor.fighter_bonus~=self.actor_dup.fighter_bonus
@@ -351,7 +351,7 @@ function _M:generateClassList()
 
     local list = {}
 
-    for i, d in ipairs(Birther.birth_descriptor_def.class) do
+    for i, d in ipairs(Birther.birth_descriptor_def.subclass) do
         local level = self.player.classes[d.name] or 0
         local can_level = d.can_level(self.player)
         local prestige = false

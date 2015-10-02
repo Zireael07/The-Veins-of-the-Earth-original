@@ -110,7 +110,7 @@ function _M:generateList()
 
     local list = {}
 
-    for i, d in ipairs(Birther.birth_descriptor_def.class) do
+    for i, d in ipairs(Birther.birth_descriptor_def.subclass) do
         local level = self.player.classes[d.name] or 0
         local can_level = d.can_level(self.player)
         local prestige = false
