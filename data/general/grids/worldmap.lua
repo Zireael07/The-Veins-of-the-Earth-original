@@ -29,11 +29,20 @@ newEntity{
 
 newEntity{
 	base = "DOWN",
+	define_as = "DOWN_START",
+	spot = "small_tunnels",
+	change_zone = "small tunnels",
+	change_level = 1,
+}
+
+newEntity{
+	base = "DOWN",
 	define_as = "DOWN_TUNNELS",
 	spot = "tunnels",
 	change_zone = "tunnels",
 	change_level = 1,
 }
+
 
 newEntity{
 	base = "DOWN",

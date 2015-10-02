@@ -36,18 +36,20 @@ return {
 
 	post_process = function(level)
 		-- put starting dungeon entrance
-		local l1 = game.zone:makeEntityByName(level, "terrain", "DOWN_TUNNELS")
+		local l1 = game.zone:makeEntityByName(level, "terrain", "DOWN_START")
 
 		if l1 then
 			local x, y = game.level.default_up.x, game.level.default_up.y
 			game.zone:addEntity(level, l1, "terrain", x, y)
-			level.spots[#level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="zone-change", subtype="tunnels"}
+			level.spots[#level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="zone-change", subtype="small_tunnels"}
 			print("Placed dungeon entrance", l1.change_zone, x, y)
 		else
-		print("Tunnels entrance not found")
+		print("Starting area entrance not found")
 		end
 
 		--put other dungeon entrances
+		game:placeDungeonEntrance("DOWN_TUNNELS")
+
 		game:placeDungeonEntrance("DOWN_GROVE")
 
 		game:placeDungeonEntrance("DOWN_FOREST")
@@ -99,8 +101,10 @@ return {
 	entry_point = function(_, _, from_zone)
     if not from_zone then
       return nil
-    elseif from_zone.name == "Tunnels" then
-      return game.level:pickSpot{ type="zone-change", subtype="tunnels" }
+  	elseif from_zone.name == "Small tunnels" then
+      return game.level:pickSpot{ type="zone-change", subtype="small_tunnels" }
+  elseif from_zone.name == "Tunnels" then
+	  return game.level:pickSpot{ type="zone-change", subtype="tunnels" }
   	elseif from_zone.name == "Drow City" then
 		return game.level:pickSpot{ type="zone-change", subtype="drow_city" }
 	elseif from_zone.name == "Drow Outpost" then
