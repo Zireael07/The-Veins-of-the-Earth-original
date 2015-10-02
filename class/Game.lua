@@ -505,7 +505,7 @@ function _M:registerHighscore()
 
 	local details = {
 		level = player.level,
-		role = player.descriptor.class,
+		role = player.descriptor.subclass,
 		name = player.name,
 		world = "Veins",
 		where = self.zone and self.zone.name or "???",
@@ -543,14 +543,14 @@ end
 
 function _M:getVaultDescription(e)
 	return {
-		name = ([[%s the %s %s]]):format(e.name, e.descriptor.race, e.descriptor.class),
+		name = ([[%s the %s %s]]):format(e.name, e.descriptor.race, e.descriptor.subclass),
 		descriptors = e.descriptor,
 
 		description = ([[%s %s %s %s. AL %s
 STR %s DEX %s CON %s INT %s WIS %s CHA %s LUC %s
 Perk: %s
 Deity: %s]]):format(
-		e.name, e.descriptor.sex, e.descriptor.race, e.descriptor.class, e.descriptor.alignment,
+		e.name, e.descriptor.sex, e.descriptor.race, e.descriptor.subclass, e.descriptor.alignment,
 		e:colorHighStats('str'), e:colorHighStats('dex'), e:colorHighStats('con'), e:colorHighStats('int'), e:colorHighStats('wis'), e:colorHighStats('cha'), e:colorHighStats('luc'),
 		e.perk,
 		e.descriptor.deity

@@ -36,7 +36,7 @@ function _M:init(actor)
 
 	self.text = ([[%s the %s %s
 
-%s]]):format(actor.name, actor.descriptor.race, actor.descriptor.class,
+%s]]):format(actor.name, actor.descriptor.race, actor.descriptor.subclass,
 	game.calendar:getTimeDate(game.turn)
 	)
 
