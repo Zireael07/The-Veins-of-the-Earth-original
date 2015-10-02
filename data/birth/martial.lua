@@ -59,7 +59,7 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		if actor.classes and actor.classes["Barbarian"] and actor.descriptor.class == "Barbarian" then return true end
+		if actor.classes and actor.classes["Barbarian"] and actor.descriptor.subclass == "Barbarian" then return true end
 
 		if actor:getStr() >= 13 then return true end
 		return false
@@ -141,7 +141,7 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		if actor.classes and actor.classes["Fighter"] and actor.descriptor.class == "Fighter" then return true end
+		if actor.classes and actor.classes["Fighter"] and actor.descriptor.subclass == "Fighter" then return true end
 
 		if actor:getStr() >= 13 then return true end
 		return false
@@ -256,7 +256,7 @@ newBirthDescriptor {
                 },
         },
         can_level = function(actor)
-            if actor.classes and actor.classes["Monk"] and actor.descriptor.class == "Monk" then return true end
+            if actor.classes and actor.classes["Monk"] and actor.descriptor.subclass == "Monk" then return true end
 
             if actor:getWis() >= 13 then return true end
             return false
@@ -336,7 +336,7 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		if actor.classes and actor.classes["Rogue"] and actor.descriptor.class == "Rogue" then return true end
+		if actor.classes and actor.classes["Rogue"] and actor.descriptor.subclass == "Rogue" then return true end
 
 		if actor:getDex() >= 13 then return true end
 		return false
@@ -445,7 +445,7 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-	if actor.classes and actor.classes["Warlock"] and actor.descriptor.class == "Warlock" then return true end
+	if actor.classes and actor.classes["Warlock"] and actor.descriptor.subclass == "Warlock" then return true end
 
 		if actor:getCha() >= 13 then return true end
 		return false

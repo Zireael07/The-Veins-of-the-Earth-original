@@ -70,7 +70,7 @@ newBirthDescriptor{
 		}
 	},
 	can_level = function(actor)
-		if actor.classes and actor.classes["Cleric"] and actor.descriptor.class == "Cleric" then return true end
+		if actor.classes and actor.classes["Cleric"] and actor.descriptor.subclass == "Cleric" then return true end
 
 		if actor:getWis() >= 13 then return true end
 		return false
@@ -216,7 +216,7 @@ newBirthDescriptor {
         },
 	},
 	can_level = function(actor)
-		if actor.classes and actor.classes["Druid"] and actor.descriptor.class == "Druid" then return true end
+		if actor.classes and actor.classes["Druid"] and actor.descriptor.subclass == "Druid" then return true end
 
 		if actor:getWis() >= 13 then return true end
 		return false
@@ -341,7 +341,7 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		if actor.classes and actor.classes["Sorcerer"] and actor.descriptor.class == "Sorcerer" then return true end
+		if actor.classes and actor.classes["Sorcerer"] and actor.descriptor.subclass == "Sorcerer" then return true end
 
 		if actor:getCha() >= 16 then return true end
 		return false
@@ -439,7 +439,7 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-		if actor.classes and actor.classes["Wizard"] and actor.descriptor.class == "Wizard" then return true end
+		if actor.classes and actor.classes["Wizard"] and actor.descriptor.subclass == "Wizard" then return true end
 		if actor:getInt() >= 16 then return true end
 		return false
 	end,
@@ -603,7 +603,7 @@ newBirthDescriptor {
 		}
 	},
 	can_level = function(actor)
-	if actor.classes and actor.classes["Shaman"] and actor.descriptor.class == "Shaman" then return true end
+	if actor.classes and actor.classes["Shaman"] and actor.descriptor.subclass == "Shaman" then return true end
 
 		if actor:getCha() >= 13 then return true end
 		return false
