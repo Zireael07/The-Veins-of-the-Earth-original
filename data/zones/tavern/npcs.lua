@@ -21,7 +21,7 @@
 --Neutrals
 load("/data/general/npcs/neutral.lua")
 
-load("/data/general/npcs/townies.lua")
+load("/data/general/npcs/townies_drow.lua")
 
 --TODO: Neutral vermin, animals, elementals, fiends
 
