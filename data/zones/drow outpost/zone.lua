@@ -23,7 +23,7 @@ return {
 	persistent = "zone",
 	generator =  {
 		map = {
-			class = "engine.generator.map.TownWalled",
+			class = "mod.class.generator.map.TownWalled",
 			building_chance = 80,
 			max_building_w = 8, max_building_h = 8,
 			edge_entrances = {6,4},
