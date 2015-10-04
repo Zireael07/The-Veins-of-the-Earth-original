@@ -39,7 +39,7 @@ return {
 			--Nothing special
 			{"simple", 5}, {"circle", 5}, {"circle2", 5}, {"circle3", 5}, {"pilar", 10}, {"pilar2", 10}, {"pilar3", 10}, {"pilar4", 10}, {"rhomboid", 3}, {"rhomboid2", 3},
 			--Special rooms
-			{"chasm1", 2}, {"chasm2", 2}, {"chasm3", 2}, {"big_moss1", 20}, {"big_moss2", 20}, {"marble", 10}, {"moss_patch1", 30}, {"moss_patch2", 30}, {"moss_pilar1", 40}, {"moss_pilar2", 40}, {"moss_pilar3", 40}, {"ritual", 5}, {"temple", 5}, {"treasure_room", 20}, {"veins", 20}, {"waterfilled_pilar", 7},
+			{"big_moss1", 20}, {"big_moss2", 20}, {"marble", 10}, {"moss_patch1", 30}, {"moss_patch2", 30}, {"moss_pilar1", 40}, {"moss_pilar2", 40}, {"moss_pilar3", 40}, {"ritual", 5}, {"temple", 5}, {"treasure_room", 20}, {"veins", 20}, {"waterfilled_pilar", 7},
 			--Additional stairs
 			{"pilar_stairs", 6}, {"pilar_stairs2", 5}, {"pilar_stairs3", 2}
 			},
