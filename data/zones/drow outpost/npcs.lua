@@ -27,4 +27,7 @@ if config.settings.veins.training then
     load("/data/general/npcs/variant/trainers.lua")
 end
 
---TO DO: Neutral vermin, animals, elementals, fiends
+--Neutral vermin, elementals, fiends
+load("/data/general/npcs/vermin.lua", function(e) e.faction = "neutral" end, rarity(1))
+load("/data/general/npcs/elementals.lua", function(e) e.faction = "neutral" end, rarity(18))
+load("/data/general/npcs/outsider_evil.lua", function(e) e.faction = "neutral" end, rarity(20))

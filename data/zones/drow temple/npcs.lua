@@ -19,4 +19,7 @@ load("/data/general/npcs/neutral.lua", rarity(5))
 
 load("/data/general/npcs/townies_drow.lua", rarity(0))
 
---TODO: Neutral vermin, elementals, fiends
+--Neutral vermin, elementals, fiends
+load("/data/general/npcs/vermin.lua", function(e) e.faction = "neutral" end, rarity(1))
+load("/data/general/npcs/elementals.lua", function(e) e.faction = "neutral" end, rarity(4))
+load("/data/general/npcs/outsider_evil.lua", function(e) e.faction = "neutral" end, rarity(2))
