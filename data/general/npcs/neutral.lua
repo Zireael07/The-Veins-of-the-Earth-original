@@ -124,6 +124,45 @@ newEntity{ define_as = "BASE_NPC_DWARF_NEUTRAL",
     base_desc = [[This short, stocky humanoid is a dwarf. It can see in the dark.]],
 }
 
+newEntity{ define_as = "BASE_NPC_ELF_NEUTRAL",
+    base = "BASE_NPC_NEUTRAL",
+    name = "neutral elf",
+    display = 'h', color=colors.LIGHT_GREEN,
+    image = "tiles/new/elf_fighter.png",
+    subtype = "elf",
+    level_range = {1, 5}, exp_worth = 400,
+    max_life = resolvers.rngavg(5,8),
+    stats = { str=11, dex=13, con=10, int=10, wis=9, cha=9, luc=10 },
+
+    hit_die = 1,
+    languages = {"Common", "Elven"},
+    alignment = "Chaotic Good",
+    challenge = 1,
+    low_light_vision = 2,
+    skill_listen = 2,
+    skill_search = 3,
+    skill_spot = 2,
+    desc = [[A shady silhouette.]],
+    specialist_desc = [[Elves do not sleep or dream, and are immune to sleep effects. Instead, they refresh themselves by entering a meditative reverie for a few hours a night. Numerous elven subraces exist, with the high elf being most common. Elves can also interbreed with humans, producing half-elves.]],
+    uncommon_desc = [[An elf has sharp senses, heightened by their attunement to the natural world. Elves see well in dim light and can often sense hidden doors just by passing near them.]],
+    common_desc = [[Elves live in harmony with nature and are talented arcanists. Compared to humans, they are dextrous but relatively frail. Culturally, elves receive extensive training with the sword and bow as they mature.]],
+    base_desc = [[This willowy humanoid is an elf, a civilized race of nonhumans renowned for their artistry and extreme longevity. They speak both Elven and Common. Some elves also learn other racial languages.]],
+
+    resolvers.equip{
+        full_id=true,
+        { name = "chainmail", not_properties={"cursed"}, veins_drops={"npc"}, add_levels=2, veins_level=resolvers.npc_drops_level  },
+        { name = "light metal shield", not_properties={"cursed"}, veins_drops={"npc"}, add_levels=2, veins_level=resolvers.npc_drops_level  },
+        { name = "longsword", not_properties={"cursed"}, veins_drops={"npc"}, add_levels=2, veins_level=resolvers.npc_drops_level  },
+        { name = "arrows", not_properties={"cursed"}, veins_drops={"npc"}, add_levels=2, veins_level=resolvers.npc_drops_level  },
+        { name = "torch" },
+    },
+    resolvers.inventory {
+    full_id=true,
+    { name = "longbow",  },
+    { name = "food ration" },
+    },
+}
+
 --Shopkeepers
 newEntity{ define_as = "BASE_NPC_DROW_SHOP",
     base = "BASE_NPC_DROW_NEUTRAL",
@@ -166,13 +205,22 @@ newEntity{
     resolvers.classes{wizard=3},
 }
 
-
 newEntity{
     define_as = "BASE_NPC_HUMAN_SAGE",
     base = "BASE_NPC_HUMAN_NEUTRAL",
     name = "human sage",
     image = "tiles/new/human_mage.png",
     rarity = 5,
+    can_talk = "sage",
+    resolvers.classes{wizard=2},
+}
+
+newEntity{
+    define_as = "BASE_NPC_ELF_SAGE",
+    base = "BASE_NPC_ELF_NEUTRAL",
+    name = "human sage",
+    image = "tiles/new/elf_mage.png",
+    rarity = 15,
     can_talk = "sage",
     resolvers.classes{wizard=2},
 }
@@ -192,6 +240,16 @@ newEntity{
     name = "drow healer",
     image = "tiles/mobiles/npc/drow_priest.png",
     rarity = 10,
+    can_talk = "healer",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1  },
+    resolvers.classes{cleric=3}
+}
+
+newEntity{
+    base = "BASE_NPC_ELF_NEUTRAL",
+    name = "elf healer",
+    image = "tiles/new/elf_priest.png",
+    rarity = 15,
     can_talk = "healer",
     resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1  },
     resolvers.classes{cleric=3}
@@ -232,6 +290,16 @@ newEntity{
     display = "@", color=colors.SANDY_BROWN,
     image = "tiles/mobiles/npc/dwarf_fighter.png",
     name = "dwarf hireling",
+    resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1  },
+    max_life = resolvers.rngavg(15,18),
+    can_talk = "hireling",
+}
+
+newEntity{
+    base = "BASE_NPC_ELF_NEUTRAL",
+    display = "@", color=colors.LIGHT_GREEN,
+    image = "tiles/new/elf_fighter.png",
+    name = "elf hireling",
     resolvers.talents{ [Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1  },
     max_life = resolvers.rngavg(15,18),
     can_talk = "hireling",
