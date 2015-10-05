@@ -18,8 +18,8 @@
 --load("/data/general/npcs/encounters/encounters_generic.lua")
 --load("/data/general/npcs/encounters/encounters_specific.lua")
 
-load("/data/general/npcs/elementals.lua")
+load("/data/general/npcs/elementals.lua", function(e) if e.rarity and e.name and (e.name:find("water") or e.name:find("air")) then e.rarity=nil end end, rarity(5))
 
-load("/data/general/npcs/ooze.lua") --don't need to breathe
+load("/data/general/npcs/ooze.lua", rarity(10)) --don't need to breathe
 
-load("/data/general/npcs/outsider_earth.lua")
+load("/data/general/npcs/outsider_earth.lua", rarity(0))

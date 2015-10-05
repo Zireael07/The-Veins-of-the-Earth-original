@@ -19,8 +19,8 @@
 --load("/data/general/npcs/encounters/encounters_specific.lua")
 
 
-load("/data/general/npcs/elementals.lua")
+load("/data/general/npcs/elementals.lua", function(e) if e.rarity and e.name and (e.name:find("earth") or e.name:find("fire")) then e.rarity=nil end end, rarity(5))
 
-load("/data/general/npcs/ooze.lua") --don't need to breathe
+load("/data/general/npcs/ooze.lua", rarity(10)) --don't need to breathe
 
-load("/data/general/npcs/outsider_water.lua") --don't need to breathe
+load("/data/general/npcs/outsider_water.lua", rarity(0)) --don't need to breathe

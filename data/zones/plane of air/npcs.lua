@@ -18,11 +18,10 @@
 --load("/data/general/npcs/encounters/encounters_generic.lua")
 --load("/data/general/npcs/encounters/encounters_specific.lua")
 
-load("/data/general/npcs/elementals.lua")
+load("/data/general/npcs/elementals.lua", function(e) if e.rarity and e.name and e.name:find("earth") then e.rarity=nil end end, rarity(5))
 
-load("/data/general/npcs/outsider_evil.lua")
-load("/data/general/npcs/outsider_good.lua")
+load("/data/general/npcs/outsider_evil.lua", rarity(10))
+load("/data/general/npcs/outsider_good.lua", rarity(15))
 
-load("/data/general/npcs/outsider_air.lua")
-load("/data/general/npcs/outsider_fire.lua")
-load("/data/general/npcs/outsider_water.lua")
+load("/data/general/npcs/outsider_air.lua", rarity(0))
+load("/data/general/npcs/outsider_fire.lua", rarity(2))
