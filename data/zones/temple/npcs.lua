@@ -19,8 +19,8 @@
 --load("/data/general/npcs/encounters/encounters_specific.lua")
 
 --Neutrals
-load("/data/general/npcs/neutral.lua")
+load("/data/general/npcs/neutral.lua", rarity(1))
 
-load("/data/general/npcs/townies_drow.lua")
+load("/data/general/npcs/townies_drow.lua", rarity(3))
 
 --TODO: Neutral vermin, animals, elementals,

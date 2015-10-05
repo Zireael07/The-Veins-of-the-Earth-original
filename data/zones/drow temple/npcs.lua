@@ -15,8 +15,8 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 --Neutrals
-load("/data/general/npcs/neutral.lua")
+load("/data/general/npcs/neutral.lua", rarity(5))
 
-load("/data/general/npcs/townies_drow.lua")
+load("/data/general/npcs/townies_drow.lua", rarity(0))
 
 --TODO: Neutral vermin, elementals, fiends
