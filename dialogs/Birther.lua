@@ -617,7 +617,9 @@ function _M:randomHero()
     local background = rng.table(self.list_background)
     self:BackgroundUse(background)
 
-    self:randomName()
+    if game.player_name == nil then
+        self:randomName()
+    end
     self:atEnd()
 end
 
