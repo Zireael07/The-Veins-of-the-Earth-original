@@ -46,6 +46,7 @@ return {
 			class = "mod.class.generator.actor.OnSpots",
 			nb_npc = {20, 30},
 			nb_spots = 5, on_spot_chance = 75,
+		--	post_generation = function(e) e.faction=pick end,
 		},
 		object = {
             class = "mod.class.generator.object.Random",
