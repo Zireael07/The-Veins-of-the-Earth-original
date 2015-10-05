@@ -599,8 +599,17 @@ function _M:randomHero()
     --randomize them
     local race = rng.table(self.list_race)
     self:RaceUse(race)
-    local class = rng.table(self.list_class)
+
+    -- Random class
+    local class, class_id = rng.table(self.list_tree)
     self:ClassUse(class)
+
+	if class then
+		local subclass, subclass_id = nil
+		repeat subclass, subclass_id = rng.table(self.list_tree[class_id].nodes)
+		until not subclass.locked
+		self:ClassUse(subclass)
+	end
     local alignment = rng.table(self.list_alignment)
     self:AlignmentUse(alignment)
     local deity = rng.table(self.list_deity)
@@ -832,7 +841,7 @@ end
 
 function _M:generateTree()
 	local oldtree = {}
-	for i, t in ipairs(self.all_classes or {}) do oldtree[t.id] = t.shown end
+	for i, t in ipairs(self.list_tree or {}) do oldtree[t.id] = t.shown end
 
 	local tree = {}
 	local newsel = nil
@@ -946,7 +955,7 @@ function _M:ClassUse(item, sel)
 			self.sel_class.name = self.sel_class.basename
 			self.c_tree:drawItem(self.sel_class)
 		end
-    end
+
     self.sel_class = nil
 
     self:setDescriptor("class", item.pid)
@@ -958,6 +967,7 @@ function _M:ClassUse(item, sel)
     self:updateBackgrounds()
     self:updateAlignment()
     self:updateDeity()
+    end
 end
 
 function _M:AlignmentUse(item, sel)
