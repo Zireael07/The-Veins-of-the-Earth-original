@@ -27,4 +27,8 @@ if config.settings.veins.training then
     load("/data/general/npcs/variant/trainers.lua")
 end
 
---TO DO: Neutral animals, fey, plants
+--Neutral animals, fey, plants
+load("/data/general/npcs/animals.lua", function(e) e.faction = "neutral" end, rarity(2))
+load("/data/general/npcs/plants.lua", function(e) e.faction = "neutral" end, rarity(4))
+load("/data/general/npcs/fey.lua", function(e) e.faction = "neutral" end, rarity(8))
+load("/data/general/npcs/elementals.lua", function(e) e.faction = "neutral" end, rarity(10))
