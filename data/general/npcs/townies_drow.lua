@@ -92,6 +92,16 @@ newEntity{
     },
 }
 
+--Child: +2 bonus to Dexterity and a –2 penalty to Strength, Constitution, and Wisdom
+newEntity{
+    base = "BASE_NPC_DROW_T",
+    name = "drow child",
+    image = "tiles/new/drow_child.png",
+    rarity = 4,
+    challenge = 1/2,
+    stats = { str=9, dex=15, con=8, int=12, wis=8, cha=10, luc=10 },
+}
+
 newEntity{
     base = "BASE_NPC_DROW_T",
     name = "drow female courtesan",

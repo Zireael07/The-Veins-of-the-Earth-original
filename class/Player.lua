@@ -3680,6 +3680,7 @@ function _M:generateKid(npc)
 		subtype = resolvers.kid_race(self.descriptor.race, npc.subtype:capitalize()),
 		stats = { str=rng.dice(3,6), dex=rng.dice(3,6), con=rng.dice(3,6), int=rng.dice(3,6), wis=rng.dice(3,6), cha=rng.dice(3,6), luc=rng.dice(3,6)},
 		display = "h", color=colors.GOLD,
+		image = "tiles/new/drow_child.png",
 		max_life = resolvers.rngavg(5,10),
 		challenge = 1,
 		hit_die = 1,
@@ -3726,7 +3727,7 @@ function _M:generateRandomClassTable()
 	local Birther = require "engine.Birther"
 	local list = {}
 
-	for i, d in ipairs(Birther.birth_descriptor_def.class) do
+	for i, d in ipairs(Birther.birth_descriptor_def.subclass) do
 		if not d.prestige then
 			list[#list+1] = {name=d.name, desc=d.desc, d = d}
 		end
