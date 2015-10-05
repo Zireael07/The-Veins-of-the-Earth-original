@@ -1177,22 +1177,25 @@ function _M:setupCommands()
 		CHANGE_LEVEL = function()
 			local e = self.level.map(self.player.x, self.player.y, Map.TERRAIN)
 			if self.player:enoughEnergy() and e.change_level then
-				--Implement min_depth
+			--[[	--Implement min_depth
 				local days = math.floor(self.turn / game.calendar.DAY) + (game.calendar.start_day - 1)
 				local min_depth = math.max(1, days/3)
 				local level = self.level.level
 				if level + e.change_level < min_depth then
 					game.logPlayer(self.player, "#SANDY_BROWN#You cannot ascend higher.#LAST#")
 					level = min_depth
-				end
-				if rng.percent(75) then
-					level = level + e.change_level
-					self.player:gainExp(math.floor(level*50))
-				else
-					level = level + 0.001
-					game.logPlayer(self.player, "#SANDY_BROWN#You feel like you have not delved much further.#LAST#")
+				end]]
+				if self:isHorizontalChange(e) then
+					if rng.percent(75) then
+						level = level + e.change_level
+						self.player:gainExp(math.floor(level*50))
+					else
+						level = level + 0.001
+						game.logPlayer(self.player, "#SANDY_BROWN#You feel like you have not delved much further.#LAST#")
 
+					end
 				end
+
 				self:changeLevel(e.change_zone and e.change_level or level, e.change_zone)
 			else
 				self.log("There is no way out of this level here.")
@@ -1587,6 +1590,12 @@ function _M:placeTerrain(define)
 	if tries < 100 then
 		self.zone:addEntity(self.level, l, "terrain", x, y)
 	end
+end
+
+--For changing levels
+function _M:isHorizontalChange(e)
+	if self.zone.max_level > 900 and not e.change_zone then return true end
+	return false
 end
 
 -- get a text-compatible texture (icon) for an entity
