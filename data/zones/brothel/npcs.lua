@@ -21,6 +21,6 @@
 --Neutrals
 load("/data/general/npcs/neutral.lua", rarity(5))
 
-load("/data/general/npcs/townies_drow.lua", rarity(0))
+load("/data/general/npcs/townies_drow.lua", function(e) if e.rarity and e.name and e.name:find("courtesan") then e.rarity=1 end end, rarity(0))
 
 --TO DO: Neutral vermin, animals, elementals, fiends
