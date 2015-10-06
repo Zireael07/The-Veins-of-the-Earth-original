@@ -142,6 +142,7 @@ newEntity{
 	define_as = "WALL_WARDED",
 	name = "warded wall",
 	display = '#', color=colors.VIOLET, back_color={r=30, g=30, b=60},
+	image = "tiles/new/wall_warded.png",
 }
 
 newEntity{
