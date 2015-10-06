@@ -72,6 +72,9 @@ return {
 
         game:placeDungeonEntrance("DOWN_RUINS")
 
+		game:placeDungeonEntrance("DOWN_TOWER")
+
+		game:placeDungeonEntrance("DOWN_ELVEN")
 
 	--[[	local l2 = game.zone:makeEntityByName(level, "terrain", "DOWN_CAVERN")
 
@@ -127,6 +130,10 @@ return {
       return game.level:pickSpot{ type="zone-change", subtype="compound" }
     elseif from_zone.name == "Labirynth" then
       return game.level:pickSpot{ type="zone-change", subtype="labirynth" }
+    elseif from_zone.name == "Wizard Tower" then
+	  return game.level:pickSpot{ type="zone-change", subtype="tower" }
+    elseif from_zone.name == "Elven Outpost" then
+	  return game.level:pickSpot{ type="zone-change", subtype="elven" }  
     else
       return nil
     end

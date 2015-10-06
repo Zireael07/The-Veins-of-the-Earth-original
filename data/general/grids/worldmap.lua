@@ -142,6 +142,26 @@ newEntity{
 	change_level = 1,
 }
 
+newEntity{
+	base = "DOWN",
+	define_as = "DOWN_TOWER",
+	display = '>', color=colors.VIOLET, back_color=colors.SLATE,
+	image = "tiles/new/worldmap_warded.png",
+	spot = "tower",
+	change_zone = "wizard tower",
+	change_level = 1,
+}
+
+newEntity{
+	base = "DOWN",
+	define_as = "DOWN_ELVEN",
+	display = '>', color=colors.LIGHT_GREEN, back_color=colors.SLATE,
+	image = "tiles/new/worldmap_elven.png",
+	spot = "elven",
+	change_zone = "elven outpost",
+	change_level = 1,
+}
+
 --Other grids
 newEntity{
 	define_as = "FLOOR",
