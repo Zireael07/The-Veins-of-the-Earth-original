@@ -1547,7 +1547,7 @@ function _M:placeDungeonEntrance(define)
 	if type(define) == "table" then define = rng.table(define) end
 	local l = self.zone:makeEntityByName(self.level, "terrain", define)
 	if not l then
-		print("Dungeon entrance not found", l.change_zone)
+		print("Dungeon entrance not found", define)
 		return end
 
 	local x, y = rng.range(2, self.level.map.w-2), rng.range(2, self.level.map.h-2)
