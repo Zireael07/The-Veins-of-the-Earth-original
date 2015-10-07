@@ -84,5 +84,10 @@ return {
 		-- Put lore near the up stairs
 		game:placeRandomLoreObject("NOTE"..level.level)
 
+		game:placeDungeonEntrance("PORTAL_FIRE")
+		game:placeDungeonEntrance("PORTAL_AIR")
+		game:placeDungeonEntrance("PORTAL_WATER")
+		game:placeDungeonEntrance("PORTAL_EARTH")
+
 	end,
 }
