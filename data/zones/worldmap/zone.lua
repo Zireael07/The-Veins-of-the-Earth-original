@@ -48,55 +48,22 @@ return {
 		end
 
 		--put other dungeon entrances
-		game:placeDungeonEntrance("DOWN_TUNNELS")
+		local to_place = {
+			--debug
+			"DOWN_ARENA",
+			--various generators
+			"DOWN_TUNNELS", "DOWN_CAVERN", "DOWN_COMPOUND", "DOWN_LABIRYNTH",
+			--tree/fungi
+			"DOWN_GROVE", "DOWN_FOREST", "DOWN_MAZE",
+			--city
+			"DOWN_DROWCITY", "DOWN_DROWOUTPOST", "DOWN_DROWMETROPOLIS", "DOWN_RUINS",
+			--special
+			"DOWN_TOWER",
+			--endgame
+			"DOWN_ELVEN"
+	 	}
 
-		game:placeDungeonEntrance("DOWN_GROVE")
-
-		game:placeDungeonEntrance("DOWN_FOREST")
-
-		game:placeDungeonEntrance("DOWN_MAZE")
-
-		game:placeDungeonEntrance("DOWN_CAVERN")
-
-		game:placeDungeonEntrance("DOWN_ARENA")
-
-		game:placeDungeonEntrance("DOWN_COMPOUND")
-
-		game:placeDungeonEntrance("DOWN_LABIRYNTH")
-
-        game:placeDungeonEntrance("DOWN_DROWCITY")
-
-		game:placeDungeonEntrance("DOWN_DROWOUTPOST")
-
-		game:placeDungeonEntrance("DOWN_DROWMETROPOLIS")
-
-        game:placeDungeonEntrance("DOWN_RUINS")
-
-		game:placeDungeonEntrance("DOWN_TOWER")
-
-		game:placeDungeonEntrance("DOWN_ELVEN")
-
-	--[[	local l2 = game.zone:makeEntityByName(level, "terrain", "DOWN_CAVERN")
-
-		if l2 then
-			local x, y = rng.range(2, (game.level.map.w/2)-1), rng.range(2, (game.level.map.h/2)-1)
-
-			local tries = 0
-			while (game.level.map:checkEntity(x, y, Map.TERRAIN, "block_move") or game.level.map(x, y, Map.OBJECT) or game.level.map.room_map[x][y].special) and tries < 100 do
-				x, y = rng.range(2, (game.level.map.w/2)-1), rng.range(2, (game.level.map.h/2)-1)
-				tries = tries + 1
-			end
-			if tries < 100 then
-				game.zone:addEntity(level, l2, "terrain", x, y)
-				level.spots[#level.spots+1] = {x=x, y=y, check_connectivity="entrance", type="zone-change", subtype="cavern"}
-				print("Placed dungeon entrance", l2.change_zone, x, y)
-			else
-				level.force_recreate = true
-			end
-		else
-			print("Cavern entrance not found")
-		end]]
-
+		game:placeWorldmapEntrances(to_place)
 
 	end,
 
@@ -133,7 +100,7 @@ return {
     elseif from_zone.name == "Wizard Tower" then
 	  return game.level:pickSpot{ type="zone-change", subtype="tower" }
     elseif from_zone.name == "Elven Outpost" then
-	  return game.level:pickSpot{ type="zone-change", subtype="elven" }  
+	  return game.level:pickSpot{ type="zone-change", subtype="elven" }
     else
       return nil
     end

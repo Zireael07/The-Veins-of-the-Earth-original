@@ -1566,6 +1566,12 @@ function _M:placeDungeonEntrance(define)
 	end
 end
 
+function _M:placeWorldmapEntrances(t)
+	for k,v in pairs(t) do
+		self:placeDungeonEntrance(v)
+	end
+end
+
 function _M:placeTerrainMulti(define, n)
 	while n > 0 do
 		self:placeTerrain(define)
