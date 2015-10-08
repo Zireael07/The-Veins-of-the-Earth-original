@@ -1494,7 +1494,7 @@ function _M:playSoundNear(who, name)
 	end
 end
 
-
+--NOTE: Placement stuff begins here
 --Based on ToME 4
 --- Create a random lore object and place it close to entrance
 function _M:placeRandomLoreObject(define)
@@ -1597,6 +1597,17 @@ function _M:placeTerrain(define)
 		self.zone:addEntity(self.level, l, "terrain", x, y)
 	end
 end
+
+function _M:placeTerrainOnSpots(define, tries)
+	while tries > 0 do
+		local spot = game.level:pickSpot{type="building", subtype="building"}
+		local g = game.zone:makeEntityByName(game.level, "terrain", define)
+		game.zone:addEntity(game.level, g, "terrain", spot.x, spot.y)
+
+		tries = tries - 1
+	end
+end
+
 
 --For changing levels
 function _M:isHorizontalChange(e)

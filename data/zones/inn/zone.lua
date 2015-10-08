@@ -70,7 +70,8 @@ return {
 
 		game:placeTerrainMulti("FAERIE_TORCH", 10)
 
---		game:placeTerrain("FAERIE_TORCH")
+		game:placeTerrainOnSpots("BED", 2)
+		game:placeTerrainOnSpots("TABLE", 3)
 
 	end,
 }

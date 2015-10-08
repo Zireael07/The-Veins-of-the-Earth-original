@@ -69,8 +69,7 @@ return {
 		game:placeRandomLoreObject("NOTE"..level.level)
 
 		game:placeTerrainMulti("FAERIE_TORCH", 10)
-
---		game:placeTerrain("FAERIE_TORCH")
+		game:placeTerrainOnSpots("TABLE", 6)
 
 	end,
 }
