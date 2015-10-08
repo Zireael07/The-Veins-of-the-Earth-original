@@ -61,6 +61,18 @@ newEntity{
 }
 
 newEntity{
+    base = "FLOOR",
+    define_as = "TABLE",
+    image = "tiles/terrain/table.png",
+}
+
+newEntity{
+    base = "FLOOR",
+    define_as = "BED",
+    image = "tiles/terrain/bed.png",
+}
+
+newEntity{
     define_as = "WALL",
     type = "wall", subtype = "wall",
     name = "wall", image = "tiles/new/drow_wall.png",
