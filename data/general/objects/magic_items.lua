@@ -51,6 +51,7 @@ newEntity{
     rarity = 10,
     type = "scroll", subtype = "tattoo",
     display = "?", color=colors.RED,
+    image = "tiles/new/tattoo.png",
     encumber = 0,
     desc = [[A tattoo.]],
 }
@@ -67,7 +68,7 @@ newEntity{
     rarity = 10,
     slot = "INVEN",
     type = "wand", subtype = "rod",
-    image = "tiles/object/wand.png",
+    image = "tiles/object/rod.png",
     display = "-", color=colors.GREEN,
     encumber = 0,
     desc = [[A rod.]],
