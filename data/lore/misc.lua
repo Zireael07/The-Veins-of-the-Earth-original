@@ -19,7 +19,7 @@ end
 
 
 newLore{
-	id = "misc-8",
+	id = "misc-1",
 	category = "misc",
 	name = "Beware",
 	lore = "Beware the "..monster.."! They "..rng.table(possibility).." "..ability(monster).."."
@@ -122,11 +122,4 @@ newLore{
 	category = "misc",
 	name = "I was here",
 	lore = [[I was here]],
-}
-
-newLore{
-	id = "misc-1",
-	category = "misc",
-	name = "World",
-	lore = [[This wild tangle of tunnels is not everything. Try to find an exit. There is an entire world to explore - rumors say there are whole cities of darkskins out there!]],
 }

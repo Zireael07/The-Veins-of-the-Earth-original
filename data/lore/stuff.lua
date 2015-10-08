@@ -11,3 +11,10 @@ newLore{
 
     We take a 5% cut when depositing.]],
 }
+
+newLore{
+	id = "start-1",
+	category = "misc",
+	name = "World",
+	lore = [[This wild tangle of tunnels is not everything. Try to find an exit. There is an entire world to explore - rumors say there are whole cities of darkskins out there!]],
+}

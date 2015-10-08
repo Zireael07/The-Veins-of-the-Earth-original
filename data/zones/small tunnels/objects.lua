@@ -50,7 +50,16 @@ end
 
 
 --Lore
-for i = 1, 8 do
+newEntity{ base = "BASE_LORE",
+    define_as = "NOTE1",
+    lore = "start-1",
+    desc = [[A paper scrap, left by an adventurer.]],
+    rarity = false,
+    encumber = 0,
+}
+
+
+for i = 2, 8 do
 newEntity{ base = "BASE_LORE",
     define_as = "NOTE"..i,
     name = "tattered paper scrap", lore="misc-"..i,
