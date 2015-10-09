@@ -19,10 +19,10 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "http://veins-of-the-earth.wikidot.com/"
-version = {0,31,0}
+version = {0,32,0}
 engine = {1,3,1,"te4"}
 description = [[
-#SANDY_BROWN# BETA 10.5#LAST#
+#SANDY_BROWN# BETA 11#LAST#
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
 You are an adventurer in a world of immense sunless corridors and tunnels. How long can you survive?
 
