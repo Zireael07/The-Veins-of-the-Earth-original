@@ -63,13 +63,17 @@ newEntity{
 newEntity{
     base = "FLOOR",
     define_as = "TABLE",
+    type = "floor", subtype = "furniture",
     image = "tiles/terrain/table.png",
+    display = ' ', color=colors.LIGHT_UMBER, back_color=UMBER,
 }
 
 newEntity{
     base = "FLOOR",
     define_as = "BED",
+    type = "floor", subtype = "furniture",
     image = "tiles/terrain/bed.png",
+    display = '#', color=colors.RED, back_color=colors.UMBER,
 }
 
 newEntity{
