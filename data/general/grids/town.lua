@@ -95,7 +95,7 @@ newEntity{
     base = "WALL",
     name = "fountain",
     define_as = "FOUNTAIN",
-    image = "tiles/terrain/fountain.png",
+    image = "tiles/new/fountain.png",
     display = '⌠', color=colors.BLUE, back_color = {r=30, g=30, b=60},
 }
 

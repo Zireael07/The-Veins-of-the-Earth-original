@@ -216,7 +216,7 @@ newEntity{
 	base = "WALL",
 	type = "wall", subtype = "fungi",
 	name = "underground fungi",
-	image = "tiles/UT/fungi.png",
+	image = "tiles/new/fungi.png",
 	display = '#', color=colors.CHOCOLATE, back_color=colors.DARK_GREY,
 	always_remember = true,
 }
@@ -226,7 +226,7 @@ newEntity{
 	base = "WALL",
 	type = "wall", subtype = "tree",
 	name = "underground tree",
-	image = "tiles/terrain/dungeon tree.png",
+	image = "tiles/new/dungeon tree.png",
 	display = '#', color=colors.LIGHT_GREEN, back_color=colors.DARK_GREY,
 	always_remember = true,
 }
@@ -388,7 +388,7 @@ newEntity{
 	define_as = "CHASM",
 	type = "floor", subtype = "chasm",
 	name = "chasm",
-	image = "tiles/terrain/chasm.png",
+	image = "tiles/new/chasm.png",
 	display = '~', color_r=43, color_g=43, color_b=43, back_color=DARK_GREY,
 	on_stand = function(self, x, y, who)
 		if who == game.player then
