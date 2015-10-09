@@ -1,0 +1,4 @@
+Tiles in the subfolders are made by Daniel E. Gervais and released under Creative Commons BY-3.0 license.
+Tiles in the /UT folder are taken from UT32 (made by Buzzkill) with contributions by Thapper, Shockbolt, NPPAngband and PowerWyrm.
+Tiles in the /new folder are recolors/edits by Zireael and/or Ozymandias79. Faerie lantern based on thresh lantern by imrevned from Deviant Art.
+Tiles in the /player folder are from DCSS, released under CC0. The drow tiles are edited by Zireael.
