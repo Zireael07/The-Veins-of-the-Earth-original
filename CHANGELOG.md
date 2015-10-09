@@ -1,5 +1,20 @@
 CHANGELOG
 
+* bug fix - correct generator path for drow outpost
+* bug fix - typos in drow lore entry
+* bug fix - "not delved much further" triggering for zone changes and/or non-infinite zones
+* bug fix - worldmap info lore piece spawning in all zones
+
+* new tiles: noble wall, building floor; worldmap floor, worldmap walls, elven floor, elven wall, drow child, warded wall, air portal, earth portal, fire portal, water portal, 2 worldmap entrance variations, altar; tattoo, wand, rod, beer, biscuit, wine, meat ration, throwing dagger, throwing axe, shortsword, sickle, water flask, drow wine, elven wine, blood, bed, table; chasm
+* new zones: small tunnels, elven outpost, wizard tower
+* new NPCs: elf sage, elf healer, elf hireling, elf guard, drow child
+* new splash screen by Ozymandias79
+* change starting zone to small tunnels
+* skew the generator in drow city areas towards generating more drow; neutral vermin, elementals, fiends roaming the city; the brothel should now have more courtesans
+* skew the generators in Elemental Planes towards outsiders of the element and forbid opposing elementals
+* classes shown in character creation in a tree form
+* add lore entries to those monsters that were missing them
+
 BETA 10.5 - 0.31.0 - 19/09/2015
 
 * bug fix - enforce life being equal to max_life when initing a NPC
