@@ -25,6 +25,7 @@ require "engine.interface.ActorStats"
 require "engine.interface.ActorTalents"
 require 'engine.interface.ActorInventory'
 require "engine.interface.ActorResource"
+require "engine.interface.BloodyDeath"
 require "engine.interface.ActorFOV"
 require 'engine.interface.ActorQuest'
 require "mod.class.interface.Combat"
@@ -50,6 +51,7 @@ module(..., package.seeall, class.inherit(engine.Actor,
 	engine.interface.ActorTalents,
 	engine.interface.ActorInventory,
 	engine.interface.ActorResource,
+	engine.interface.BloodyDeath,
 	engine.interface.ActorFOV,
 	engine.interface.ActorQuest,
 	mod.class.interface.Combat))
@@ -142,6 +144,9 @@ function _M:init(t, no_default)
 	--Resources (don't regen)
 	t.spell_regen = t.spell_regen or 0
 	t.psi_regen = t.psi_regen or 0
+
+	--Cosmetic
+	t.blood_color = t.blood_color or colors.RED
 
 	--Actually initiate some basic engine stuff
 	engine.Actor.init(self, t, no_default)
@@ -1041,6 +1046,8 @@ function _M:die(src, death_note)
 	if self ~= game.player and dropx == game.player.x and dropy == game.player.y then
 		game.log('You feel something roll beneath your feet.')
 	end
+
+	if rng.percent(33) then self:bloodyDeath() end
 
 	-- Register kills for hiscores
 	if killer and killer == game.player then
