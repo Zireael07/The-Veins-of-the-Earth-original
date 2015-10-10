@@ -11,6 +11,7 @@ newEntity{
 	type = "outsider", subtype = "fire",
 	ai = "human_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6} },
+	blood_color = colors.ORANGE,
 	resolvers.wounds()
 }
 

@@ -26,6 +26,7 @@ newEntity{
 	combat_attackspeed = 1.66,
 	infravision = 4,
 	combat_dr = 5,
+	blood_color = colors.BLUE,
 	resolvers.wounds(),
 	resolvers.talents{ [Talents.T_RAGE]=1 },
 }

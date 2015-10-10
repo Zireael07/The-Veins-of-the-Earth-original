@@ -9,6 +9,7 @@ newEntity{
 	type = "outsider", subtype = "earth",
 	ai = "human_level", ai_state = { talent_in=3, },
 	alignment = "Neutral",
+	blood_color = colors.UMBER,
 	resolvers.wounds()
 }
 

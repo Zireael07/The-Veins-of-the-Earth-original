@@ -16,6 +16,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	rarity = 15,
 	alignment = "Neutral",
+	blood_color = colors.BLACK,
 	resolvers.wounds()
 }
 

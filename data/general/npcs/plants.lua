@@ -11,6 +11,7 @@ newEntity{
 	body = { INVEN = 10 },
 	ai = "animal_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6} },
+	blood_color = colors.LIGHT_GREEN,
 	resolvers.wounds()
 }
 

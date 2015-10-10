@@ -25,6 +25,7 @@ newEntity{
 	body = { INVEN = 10 },
 	ai = "human_level", ai_state = { talent_in=3, },
 	alignment = "Neutral Evil",
+	blood_color = colors.BLACK,
 	resolvers.wounds()
 }
 

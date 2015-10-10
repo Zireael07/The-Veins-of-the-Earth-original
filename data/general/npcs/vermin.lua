@@ -9,6 +9,7 @@ newEntity{
 	body = { INVEN = 10 },
 	ai = "animal_level", ai_state = { talent_in=3, },
 	faction = "vermin",
+	blood_color = colors.GREY,
 	resolvers.wounds()
 }
 

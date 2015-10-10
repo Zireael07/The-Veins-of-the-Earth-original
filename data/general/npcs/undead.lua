@@ -11,6 +11,7 @@ newEntity{
     define_as = "BASE_NPC_UNDEAD",
     type = "undead",
     ai = "animal_level", ai_state = { talent_in=3, },
+    blood_color = colors.GREY,
     resolvers.wounds()
 }
 

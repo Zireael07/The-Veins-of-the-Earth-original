@@ -20,6 +20,7 @@ newEntity{
     rarity = 15,
     infravision = 4,
     faction = "good",
+    blood_color = colors.WHITE,
     resolvers.wounds()
 }
 
