@@ -246,6 +246,9 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
     else
     self:dealDamage(target, weapon, crit, false) end
   end
+
+    --Visuals
+    if hit then game.level.map:particleEmitter(target.x, target.y, 1, "melee_attack", {color=target.blood_color}) end
 end
 
 
