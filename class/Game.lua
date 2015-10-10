@@ -1177,6 +1177,7 @@ function _M:setupCommands()
 		CHANGE_LEVEL = function()
 			local e = self.level.map(self.player.x, self.player.y, Map.TERRAIN)
 			if self.player:enoughEnergy() and e.change_level then
+				level = self.level.level + e.change_level
 			--[[	--Implement min_depth
 				local days = math.floor(self.turn / game.calendar.DAY) + (game.calendar.start_day - 1)
 				local min_depth = math.max(1, days/3)
