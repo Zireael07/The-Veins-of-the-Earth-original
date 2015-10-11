@@ -148,6 +148,13 @@ function _M:init(t, no_default)
 	--Cosmetic
 	t.blood_color = t.blood_color or colors.RED
 
+	--stuff
+	self.seen_by = function(self, who)
+		if not who == game.player or self == game.player then return end
+		game.logSeen(self, ("#SANDY_BROWN#%s comes into view!#WHITE#"):format(self.name:capitalize()))
+		self.seen_by = nil
+	end
+
 	--Actually initiate some basic engine stuff
 	engine.Actor.init(self, t, no_default)
 	engine.interface.ActorTemporaryEffects.init(self, t)
