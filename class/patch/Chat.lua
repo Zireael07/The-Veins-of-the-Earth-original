@@ -108,7 +108,7 @@ function _M:replace(text)
 			text = self:drowLanguage(text)
 		else
 		--scramble text
-		text = [[Foreign gibberish]]
+		text = self:scramble(text)
 		end
 	else
 		--apply dwarven accent always
@@ -123,6 +123,18 @@ function _M:replace(text)
 end
 
 --Scramble languages
+--ROT13 function from luausers.org 2004/10/21 Philippe Lhoste
+function _M:scramble(text)
+  local byte_a, byte_A = string.byte('a'), string.byte('A')
+  return (string.gsub(t, "[%a]",
+      function (char)
+        local offset = (char < 'a') and byte_A or byte_a
+        local b = string.byte(char) - offset -- 0 to 25
+        b = math.mod(b  + 13, 26) + offset -- Rotate
+        return string.char(b)
+      end
+    ))
+end
 
 --Drow
 function _M:drowLanguage(text)
@@ -133,6 +145,8 @@ function _M:drowLanguage(text)
 	text = text:gsub(" do ", " xun ")
 	text = text:gsub(" cast ", " luth ")
 	text = text:gsub(" item ", " bol ")
+
+--	self:scramble(text)
 	return text
 end
 
