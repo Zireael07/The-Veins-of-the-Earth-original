@@ -1219,6 +1219,10 @@ function _M:setupCommands()
 			self:saveGame()
 		end,
 
+		SHOW_QUESTS = function()
+			self:registerDialog(require("engine.dialogs.ShowQuests").new(self.party:findMember{main=true}))
+		end,
+
 		SHOW_CHARACTER_SHEET = function()
 			self:registerDialog(require("mod.dialogs.CharacterSheet").new(self.player))
 		end,
