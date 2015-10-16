@@ -25,6 +25,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	open_door = true,
 	show_portrait = true,
+	emote_anger = "I will kill you!",
 	resolvers.wounds(),
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	--assume all humanoids have at least warrior NPC class if not better
@@ -386,6 +387,7 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	skill_search = 1,
 	skill_movesilently = 1,
 	hit_die = 4,
+	emote_anger = "Me kill you!",
 --	resolvers.specialnpc(),
 	resolvers.templates()
 }
@@ -396,6 +398,7 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	rarity = 6,
 	max_life = resolvers.rngavg(5,9),
 	challenge = 1/2,
+	emote_anger = "Me kill you!",
 	resolvers.equip{
 		full_id=true,
 		{ name = "short spear", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
@@ -465,6 +468,7 @@ newEntity{
 	full_id=true,
     { name = "shortbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
+	emote_anger = "Me kill you!",
 }
 
 --Planetouched
@@ -600,6 +604,7 @@ newEntity{
 		{ name = "light wooden shield", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 		{ name = "morningstar", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
+	anger_emote = "Me kill you!",
 }
 
 
@@ -639,6 +644,7 @@ newEntity{
 		{ name = "light wooden shield", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
 		{ name = "morningstar", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
 	},
+	anger_emote = "Me kill you!",
 --	resolvers.specialnpc(),
 	resolvers.templates()
 }
@@ -686,6 +692,7 @@ newEntity{
 	full_id=true,
 	{ name = "shortbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
+	anger_emote = "Me kill you!",
 }
 
 newEntity{ base = "BASE_NPC_HUMANOID",
@@ -724,6 +731,7 @@ newEntity{
 	full_id=true,
     { name = "javelin", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
+	anger_emote = "Me kill you!",
 }
 
 --stench 3 sq Fort DC 13 or sickened; Multiattack, Weapon Focus
@@ -764,6 +772,7 @@ newEntity{
 	full_id=true,
     { name = "javelin", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	},
+	anger_emote = "Me kill you!",
 }
 
 

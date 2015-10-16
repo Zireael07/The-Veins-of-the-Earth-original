@@ -10,6 +10,7 @@ newEntity{
 	ai = "animal_level", ai_state = { talent_in=3, },
 	faction = "vermin",
 	blood_color = colors.GREY,
+	emote_anger = "*click*",
 	resolvers.wounds()
 }
 

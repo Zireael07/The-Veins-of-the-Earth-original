@@ -12,6 +12,7 @@ newEntity{
     combat = { dam= {1,6} },
     alignment = "Neutral Good",
     faction = "good",
+    emote_anger = "I shall smite you!",
     resolvers.wounds()
 }
 

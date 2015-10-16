@@ -630,8 +630,17 @@ function _M:getType()
 	return type
 end
 
+function _M:getEmote(type)
+	local emote
+
+	if not self["emote_"..type] then emote = "" game.log("No emote of type "..type)
+	else emote = self["emote_"..type] end
+
+	return emote
+end
+
 function _M:getHealthState()
-	local perc = (self.life /self.max_life)*100
+	local perc = self.life * 100 / self.max_life
 
 	if perc == 100 then return "Uninjured"
 	elseif perc <= 90 then return "Healthy"
@@ -683,6 +692,8 @@ function _M:tooltip()
 	ts:add(("Faction reaction: %s"):format(self:colorFaction()), true)
 
 	ts:add(("Personal reaction: %s"):format(self:colorPersonalReaction()), true)
+
+	ts:add(("Emote: %s"):format(self:getEmote("anger")), true)
 
 	--Debugging speed stuff
 --	ts:add(("Game turn: %s"):format(game.turn/10), true)

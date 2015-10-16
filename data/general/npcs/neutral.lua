@@ -12,6 +12,7 @@ newEntity{
     faction = "neutral",
     open_door = true,
     show_portrait = true,
+    emote_anger = "I shall kill you!",
     resolvers.talents{ [Talents.T_SHOOT]=1,
     --give the simple weapon proficiency warrior/fighter/wizard class all have
     [Talents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
