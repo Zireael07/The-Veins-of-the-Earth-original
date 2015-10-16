@@ -192,8 +192,9 @@ function _M:checkAngered(src, set, value, turns)
 
     if not was_hostile and self:reactionToward(src) < 0 then
 		self.reaction_actor.turns = math.max(self.reaction_actor.turns or 0, 5)
-        if self.anger_emote then
-            self:doEmote(self.anger_emote:gsub("@himher@", src.female and "her" or "him"), 30)
+        if self.emote_anger then
+			self:doEmote(self.emote_anger, 30)
+        --    self:doEmote(self.anger_emote:gsub("@himher@", src.female and "her" or "him"), 30)
         end
     end
 end
@@ -315,6 +316,7 @@ end
 --- Simple emote
 function _M:doEmote(text, dur, color)
     self:setEmote(Emote.new(text, dur, color))
+	print("[EMOTE] Text: ", text)
 end
 
 
