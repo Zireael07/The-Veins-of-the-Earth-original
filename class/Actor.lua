@@ -643,11 +643,11 @@ function _M:getHealthState()
 	local perc = self.life * 100 / self.max_life
 
 	if perc == 100 then return "Uninjured"
-	elseif perc <= 90 then return "Healthy"
-	elseif perc <= 75 then return "Barely injured"
-	elseif perc <= 50 then return "Injured"
-	elseif perc <= 25 then return "Bloodied"
-	elseif perc <= 10 then return "Severely wounded"
+	elseif perc >= 75 then return "Healthy"
+	elseif perc >= 50 then return "Barely injured"
+	elseif perc >= 25  then return "Injured"
+	elseif perc >= 10 then return "Bloodied"
+	elseif perc >= 1 then return "Severely wounded"
 	else return "Nearly dead"
 	end
 end
