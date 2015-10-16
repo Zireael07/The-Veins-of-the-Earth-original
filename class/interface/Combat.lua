@@ -50,7 +50,14 @@ end
 
 --Lukep's combat patch
 function _M:attackTarget(target, noenergy)
-   if self.combat then
+    --Yell stuff
+    if not self.player then
+        local emote = self:getEmote("anger")
+    --    self:doEmote(emote, 30)
+        self:logCombat(self, ("%s yells: "..emote):format(self:getLogName():capitalize()))
+    end
+
+    if self.combat then
        --log text
        local attacklog = ""
        local damagelog = ""
