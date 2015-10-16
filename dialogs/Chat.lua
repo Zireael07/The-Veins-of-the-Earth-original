@@ -152,7 +152,7 @@ function _M:generateList()
 	local nb = 1
 	for i, a in ipairs(self.chat:get(self.cur_id).answers) do
 		if not a.fallback and (not a.cond or a.cond(self.npc, self.player)) then
-			list[#list+1] = { name=string.char(string.byte('a')+nb-1)..") "..self.chat:replace(a[1]), answer=i, color=a.color}
+			list[#list+1] = { name=string.char(string.byte('a')+nb-1)..") "..self.chat:replace(a[1], self.player), answer=i, color=a.color}
 			list.chars[string.char(string.byte('a')+nb-1)] = #list
 			nb = nb + 1
 		end
@@ -160,7 +160,7 @@ function _M:generateList()
 	if #list == 0 then
 		for i, a in ipairs(self.chat:get(self.cur_id).answers) do
 			if a.fallback and (not a.cond or a.cond(self.npc, self.player)) then
-				list[#list+1] = { name=string.char(string.byte('a')+nb-1)..") "..self.chat:replace(a[1]), answer=i, color=a.color}
+				list[#list+1] = { name=string.char(string.byte('a')+nb-1)..") "..self.chat:replace(a[1], self.player), answer=i, color=a.color}
 				list.chars[string.char(string.byte('a')+nb-1)] = #list
 				nb = nb + 1
 			end
@@ -168,7 +168,7 @@ function _M:generateList()
 	end
 	self.list = list
 
-	self.text = self.chat:replace(self.chat:get(self.cur_id).text)
+	self.text = self.chat:replace(self.chat:get(self.cur_id).text, self.npc)
 
 	if self.chat:get(self.cur_id).action then
 		self.chat:get(self.cur_id).action(self.npc, self.player)

@@ -101,10 +101,10 @@ function _M:get(id)
 end
 
 --- Replace some keywords in the given text
-function _M:replace(text)
+function _M:replace(text, actor)
 	--languages
 	if not self.player:speakSameLanguage(self.npc) then
-		if self.npc:speakLanguage("Drow") then
+		if actor == self.npc and self.npc:speakLanguage("Drow") then
 			text = self:drowLanguage(text)
 		else
 		--scramble text
@@ -112,7 +112,7 @@ function _M:replace(text)
 		end
 	else
 		--apply dwarven accent always
-		if self.npc:speakLanguage("Dwarven") or self.player:speakLanguage("Dwarven") then
+		if actor:speakLanguage("Dwarven") then
 			text = self:dwarvenAccent(text)
 		end
 	end
