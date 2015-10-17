@@ -163,6 +163,10 @@ function _M:generateList()
 				list[#list+1] = { name=string.char(string.byte('a')+nb-1)..") "..self.chat:replace(a[1], self.player), answer=i, color=a.color}
 				list.chars[string.char(string.byte('a')+nb-1)] = #list
 				nb = nb + 1
+			else
+				list[#list+1] = { name=string.char(string.byte('a')+nb-1)..") [Leave]", answer=i, color=a.color }
+				list.chars[string.char(string.byte('a')+nb-1)] = #list
+				nb = nb + 1
 			end
 		end
 	end
