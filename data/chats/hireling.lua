@@ -73,7 +73,7 @@ newChat{ id="cost",
         return true
         end
         },
-        {[[We go.]], action = function(npc, player)
+        {[[We go.]], skill = "diplomacy", action = function(npc, player)
         if player:skillCheck("diplomacy", 15) then return "hire" end
         --   cost = 3
         return "sorry" end,
@@ -82,7 +82,7 @@ newChat{ id="cost",
         return true
         end
         },
-        {[[Fine. Let's head out.]], action = function(npc, player)
+        {[[Fine. Let's head out.]], skill = "diplomacy", action = function(npc, player)
         if player:skillCheck("diplomacy", 15) then return "hire" end
         --   cost = 3
         return "sorry" end,
@@ -128,7 +128,7 @@ newChat{ id="sorry",
 newChat{ id="double",
     text = [[That's a whole different matter. 6 gp per day it is.]],
     answers = {
-    {[[Great, let's go!]], action = function(npc, player)
+    {[[Great, let's go!]], skill = "diplomacy", action = function(npc, player)
         if player:skillCheck("diplomacy", 10) then
         --    cost = 6
             return "hire2" end

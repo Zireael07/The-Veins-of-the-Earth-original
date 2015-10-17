@@ -152,7 +152,11 @@ function _M:generateList()
 	local nb = 1
 	for i, a in ipairs(self.chat:get(self.cur_id).answers) do
 		if not a.fallback and (not a.cond or a.cond(self.npc, self.player)) then
-			list[#list+1] = { name=string.char(string.byte('a')+nb-1)..") "..self.chat:replace(a[1], self.player), answer=i, color=a.color}
+			--show skills
+			local text = a[1]
+			if a.skill then text = "#SANDY_BROWN# ["..a.skill:capitalize().."]#LAST# "..text end
+
+			list[#list+1] = { name=string.char(string.byte('a')+nb-1)..") "..self.chat:replace(text, self.player), answer=i, color=a.color}
 			list.chars[string.char(string.byte('a')+nb-1)] = #list
 			nb = nb + 1
 		end
