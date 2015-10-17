@@ -126,7 +126,7 @@ end
 --ROT13 function from luausers.org 2004/10/21 Philippe Lhoste
 function _M:scramble(text)
   local byte_a, byte_A = string.byte('a'), string.byte('A')
-  return (string.gsub(t, "[%a]",
+  return (string.gsub(text, "[%a]",
       function (char)
         local offset = (char < 'a') and byte_A or byte_a
         local b = string.byte(char) - offset -- 0 to 25
@@ -134,6 +134,23 @@ function _M:scramble(text)
         return string.char(b)
       end
     ))
+end
+
+--Based on string.bookCapitalize
+function _M:postProcess(text)
+	local words = text:split(' ')
+
+	for i = 1, #words do
+		local word = words[i]
+
+		-- Don't scramble certain words
+		if word ~= "vendui" and word ~= "usstan" and word ~= "lil" and word ~= "nau" and word ~= "xun" and word ~= "luth" and word ~= "bol"
+		then
+			words[i] = self:scramble(word)
+		end
+	end
+
+	return table.concat(words, " ")
 end
 
 --Drow
@@ -146,7 +163,7 @@ function _M:drowLanguage(text)
 	text = text:gsub(" cast ", " luth ")
 	text = text:gsub(" item ", " bol ")
 
---	self:scramble(text)
+	text = self:postProcess(text)
 	return text
 end
 
