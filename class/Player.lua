@@ -554,7 +554,8 @@ end
 	if self:attr("heightened_senses") then
 		local radius = (self.heightened_senses or 0)
 		local lite = math.max(self.lite, (self.infravision or 0))
-		self:computeFOV(radius + lite, "block_sight", function(x, y, dx, dy, sqdist)
+		local bonus = math.max(1, radius + lite)
+		self:computeFOV(bonus, "block_sight", function(x, y, dx, dy, sqdist)
 			if game.level.map(x, y, game.level.map.ACTOR) then
 				game.level.map.seens(x, y)
 			end
@@ -574,6 +575,13 @@ end
 	local lite = self.lite + (self.low_light_vision or 0)
   	self:computeFOV(lite, "block_sight", function(x, y, dx, dy, sqdist)
       game.level.map:applyLite(x, y)
+	  --color it appropriately
+	  if self:attr("lite") and self.lite >= 1 then
+		  local map = game.level.map
+	  	  local shown = map.color_shown
+		  local tint = { r= 0.82, g = 0.75, b = 0.1}
+		  map._map:setShown(shown[1] * (tint.r+0.4), shown[2] * (tint.g+0.4), shown[3] * (tint.b+0.4), shown[4])
+  	  end
       game.level.map.remembers(x, y, true) -- Remember the tile
     end, true, true, true)
 
