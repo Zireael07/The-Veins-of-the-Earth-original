@@ -194,24 +194,25 @@ function _M:playerCounters()
 
   end
 
---Maybe do it every five turns only?
---	if game.turn % 5 == 0 then
+	--dependent on XP tick
 	--ID counters
 	 local inven = game.player:getInven("INVEN")
 
 	 --Don't count down ID when resting
-	 if not self.resting then
+	 if not self.resting and self:xpTick() then
 	 self.id_counter = self.id_counter - 1
 	 self.pseudo_id_counter = self.pseudo_id_counter - 1
 	  end
 
   --Deity counters
   if self.descriptor.deity ~= "None" and not self.resting then
-    self.god_pulse_counter = self.god_pulse_counter - 1
+	if self:xpTick() then
+		self.god_pulse_counter = self.god_pulse_counter - 1
 
-    if self.anger > 0 then
-    self.god_anger_counter = self.god_anger_counter - 1
-    end
+	    if self.anger > 0 then
+	    self.god_anger_counter = self.god_anger_counter - 1
+	    end
+	end
 
   end
 
@@ -241,32 +242,31 @@ function _M:playerCounters()
     --Exercise LUC by being deep in dungeon
     --Inc compares depth to our CR
   	end
---	end
 
-	--Stuff every turn
-	if self.pseudo_id_counter == 0 then --and inven > 0 then
-	self:pseudoID()
-	self:setCountID()
+	--Stuff every xp tick
+	if self:xpTick() then
+
+		if self.pseudo_id_counter == 0 then --and inven > 0 then
+		self:pseudoID()
+		self:setCountID()
+		end
+
+		if self.id_counter == 0 then
+		self:autoID()
+		self.id_counter = 50
+		end
+
+
+		if self.god_pulse_counter == 0 then
+	      self:godPulse()
+	      self:setGodPulse()
+	    end
+
+	    if self.god_anger_counter == 0 then
+	      self:godAnger()
+	    end
 	end
-
-	if self.id_counter == 0 then
-	self:autoID()
-	self.id_counter = 50
-	end
-
-
-	if self.god_pulse_counter == 0 then
-      self:godPulse()
-      self:setGodPulse()
-    end
-
-    if self.god_anger_counter == 0 then
-      self:godAnger()
-    end
-
 end
-
-
 
 --Birth stuff
 function _M:onBirth()
@@ -1053,6 +1053,10 @@ end
 
 
 --Auto ID stuff
+function _M:xpTick()
+	if self.exp ~= self.old_exp then return true end
+	return false
+end
 
 function _M:setCountID()
   if self.descriptor.subclass == "Rogue" then self.pseudo_id_counter = rng.range(5,10)
