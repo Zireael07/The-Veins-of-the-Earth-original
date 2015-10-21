@@ -145,6 +145,13 @@ function _M:use(item)
 		game:registerDialog(require("mod.dialogs.CharacterSheet").new(self.actor))
 	elseif act == "log" then
 		game:registerDialog(require("mod.dialogs.ShowChatLog").new("Message Log", 0.6, game.uiset.logdisplay, profile.chat))
+	elseif act == "deity" then
+		--resurrect
+		self:cleanActor()
+		self:restoreResources()
+		self:resurrectBasic()
+		--divine stuff
+		game.player:godResurrect()
 	elseif act:find("^kid") then
 		local actor = item.actor
 
@@ -181,6 +188,10 @@ function _M:generateList()
 	end)
 
 	--keep playing
+	if self.actor.descriptor.deity and self.actor:godWillRaise() then
+		list[#list+1] = {name="#LIGHT_GREEN#Return to life#WHITE#", action="deity"}
+	end
+
 	if self.actor.kids and self.actor:hasKids() then
 		for i, e in ipairs(self.actor.kids) do
 			list[#list+1] = {name= "#GOLD#Take over as ".. e.name.." the "..e.alignment.." "..e.subtype.." STR "..e:getStr().." DEX "..e:getDex().." CON "..e:getCon().." INT "..e:getInt().." WIS "..e:getWis().." CHA "..e:getCha().." LUC "..e:getLuc().."#WHITE#",

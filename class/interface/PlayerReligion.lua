@@ -52,6 +52,8 @@ function _M:divineMessage(deity, message, desc)
   local string
   local color = ""
 
+  if message == "raise" then string = "A voice speaks into the darkness: |I offer you a second chance to find glory in my name!|#LAST#" end
+
   if deity == "Aiswin" then
     color = "#BLUE#"
     if message == "anger" then string = "The air grows sharply cold, and all the hairs on the back of your neck stand up straight!" end
@@ -1148,4 +1150,73 @@ function _M:pray()
 
   self:divineAid()
 
+end
+
+
+--Called by DeathDialog
+function _M:godWillRaise()
+    local deity = self.descriptor.deity
+
+    local min_raise_level = {
+        Aiswin = 3,
+        Asherath = nil,
+        Ekliazeh = 8,
+        Erich = 8,
+        Essiah = 8,
+        Hesani = 5,
+        Immotian = 6,
+        Khasrach = 7,
+        Kysul = 8,
+        Mara = 3,
+        Maeve = 6,
+        Sabin = 7,
+        Semirath = 7,
+        Xavias = 6,
+        Xel = 7,
+        Zurvash = 8,
+        Multitude = 9,
+    }
+
+    --not atheist
+    if self:isFollowing("None") then return false end
+    if not min_raise_level[deity] then return false end
+
+    if self:isAnathema() or self:isForsaken() then return false end
+    --if penalty + resurrection cost > 100 then return false end
+    --if god.anger > math.max(3,tolerance value) then return false end
+
+    if self.level < min_raise_level[deity] then return false end
+
+    if self:getCon() < 3 then return false end
+
+    return true
+end
+
+local resurrection_cost = {
+    Aiswin = 6,
+    Asherath = nil,
+    Ekliazeh = 20,
+    Erich = 15,
+    Essiah = 15,
+    Hesani = 10,
+    Immotian = 7,
+    Khasrach = 20,
+    Kysul = 30,
+    Mara = 3,
+    Maeve = 6,
+    Sabin = 14,
+    Semirath = 12,
+    Xavias = 10,
+    Xel = 15,
+    Zurvash = 20,
+    Multitude = 7,
+}
+
+function _M:godResurrect()
+    local deity = self.descriptor.deity
+    self:divineMessage(deity, "raise")
+
+    --increase favor penalty by resurrection cost
+    --lose a level
+    --lose 1 Con
 end
