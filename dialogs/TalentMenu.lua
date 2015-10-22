@@ -44,7 +44,12 @@ end
 function _M:init(actor, type)
 	self.actor = actor
 	actor.hotkey = actor.hotkey or {}
-	Dialog.init(self, type.. " talent menu", game.w * 0.6, game.h * 0.8)
+	local title = "Attack"
+	if type == "spells" then title = "Spells"
+	elseif type == "skill/skill" then title = "Skills"
+	end
+
+	Dialog.init(self, title.. " talent menu", game.w * 0.6, game.h * 0.8)
 
 	local vsep = Separator.new{dir="horizontal", size=self.ih - 10}
 	self.c_tut = Textzone.new{width=math.floor(self.iw / 2 - vsep.w / 2), height=1, auto_height=true, no_color_bleed=true, text=[[
@@ -112,7 +117,7 @@ function _M:generateList(type)
 
 	-- Generate lists of all talents by category
 	for j, t in pairs(self.actor.talents_def) do
-		if self.actor:knowTalent(t.id) and not t.hide and t.mode ~= "passive" then
+		if self.actor:knowTalent(t.id) and self.actor:preUseTalent(t, true, true) and not t.hide and t.mode ~= "passive" then
             local tt = game.player:getTalentTypeFrom(t.type[1])
             if type and ((type ~= "spells" and tt.type == type) or (type == "spells" and t.is_spell)) then
 
