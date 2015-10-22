@@ -30,6 +30,13 @@ module(..., package.seeall, class.inherit(Dialog))
 -- generate talent status separately to enable quicker refresh of Dialog
 local function TalentStatus(who,t)
 	local status = tstring{{"color", "LIGHT_GREEN"}, "Active"}
+	if who:isTalentCoolingDown(t) then
+		status = tstring{{"color", "LIGHT_RED"}, who:isTalentCoolingDown(t).." turns"}
+	elseif not who:preUseTalent(t, true, true) then
+		status = tstring{{"color", "GREY"}, "Unavailable"}
+	elseif t.mode == "sustained" then
+		status = who:isTalentActive(t.id) and tstring{{"color", "YELLOW"}, "Sustaining"} or tstring{{"color", "LIGHT_GREEN"}, "Sustain"}
+	end
 
 	return tostring(status)
 end
@@ -37,7 +44,7 @@ end
 function _M:init(actor, type)
 	self.actor = actor
 	actor.hotkey = actor.hotkey or {}
-	Dialog.init(self, "Talent Menu", game.w * 0.6, game.h * 0.8)
+	Dialog.init(self, type.. " talent menu", game.w * 0.6, game.h * 0.8)
 
 	local vsep = Separator.new{dir="horizontal", size=self.ih - 10}
 	self.c_tut = Textzone.new{width=math.floor(self.iw / 2 - vsep.w / 2), height=1, auto_height=true, no_color_bleed=true, text=[[
@@ -50,6 +57,9 @@ Choose the talent you want to use.
 	local cols = {
 		{name="", width={40,"fixed"}, display_prop="char"},
 		{name="Talent", width=80, display_prop="name"},
+		{name="Status", width=20, display_prop=function(item)
+			if item.talent then return TalentStatus(actor, actor:getTalentFromId(item.talent)) else return "" end
+		end},
 	}
 	self.c_list = TreeList.new{width=math.floor(self.iw / 2 - vsep.w / 2), height=self.ih - 10, all_clicks=true, scrollbar=true, columns=cols, tree=self.list, fct=function(item, sel, button) self:use(item, button) end, select=function(item, sel) self:select(item) end}
 	self.c_list.cur_col = 2
@@ -107,7 +117,7 @@ function _M:generateList(type)
             if type and ((type ~= "spells" and tt.type == type) or (type == "spells" and t.is_spell)) then
 
 			local nodes = talents
-			local status = tstring{{"color", "LIGHT_GREEN"}, "Talents"}
+			local status = TalentStatus(self.actor,t)
 
 			-- Pregenerate icon with the Tiles instance that allows images
 			if t.display_entity then t.display_entity:getMapObjects(game.uiset.hotkeys_display_icons.tiles, {}, 1) end
