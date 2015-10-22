@@ -55,83 +55,83 @@ newBirthDescriptor{
       	{ name="flask of water" },
     	},
     	starting_intro = "main",
-		--NOTE: attempt to use the starting equipment resolver
+		--NOTE: new starting equipment resolver
 		resolvers.startingeq{
 			Barbarian = {
-				["Drow"] = "scimitar", --"chain mail"
-				["Halfling"] = "long sword", --"chain mail"
-				["Gnome"] = "long sword", --"chain mail"
-				["Elf"] = "long sword", --"chain mail"
-				["Half-Elf"] = "long sword", --"chain mail"
-				["general"] = "battleaxe", --"chain mail",
+				["Drow"] = {id=true, {name="scimitar", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Halfling"] = {id=true, {name="long sword", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Gnome"] = {id=true, {name="long sword"}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Elf"] = {id=true, {name="long sword"}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Half-Elf"] = {id=true, {name="long sword"}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["general"] = {id=true, {name="battleaxe"}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
 			},
 			Bard = {
-				["Halfling"] = "dagger", --"chain shirt"
-				["Gnome"] = "dagger",
-				["Elf"] = "long sword",
-				["Drow"] = "scimitar",
-				["Human"] = "rapier",
-				["Half-Elf"] = "rapier",
-				["Dwarf"] = "light mace",
-				["Duergar"] = "light mace",
+				["Halfling"] = {id=true, {name="dagger", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain shirt", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Gnome"] = {id=true, {name="dagger", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain shirt", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Elf"] = {id=true, {name="long sword", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain shirt", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Drow"] = {id=true, {name="scimitar", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain shirt", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Human"] = {id=true, {name="rapier", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain shirt", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Half-Elf"] = {id=true, {name="rapier", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain shirt", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Dwarf"] = {id=true, {name="light mace", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain shirt", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Duergar"] = {id=true, {name="light mace", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain shirt", ego_chance=-1000, not_properties = {"cursed"}}},
 			},
 			Cleric = {
-				["Halfling"] = "light mace", --"chain mail"
-				["Gnome"] = "light mace",
-				["general"] = "heavy mace",
+				["Halfling"] = {id=true, {name="light mace", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Gnome"] = {id=true, {name="light mace", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["general"] = {id=true, {name="heavy mace", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
 			},
 			Shaman = {
-				["Halfling"] = "light mace", --"chain mail"
-				["Gnome"] = "light mace",
-				["general"] = "heavy mace",
+				["Halfling"] = {id=true, {name="light mace", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Gnome"] = {id=true, {name="light mace", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["general"] = {id=true, {name="heavy mace", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
 			},
 			Druid = {
-				["Halfling"] = "sickle", --"padded armor"
-				["Gnome"] = "sickle",
-				["Human"] = "quarterstaff",
-				["Half-Elf"] = "quarterstaff",
-				["Dwarf"] = "scythe",
-				["Duergar"] = "scythe",
-				["general"] = "scimitar",
+				["Halfling"] = {id=true, {name="sickle", ego_chance=-1000, not_properties = {"cursed"}}, {name="padded armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Gnome"] = {id=true, {name="sickle", ego_chance=-1000, not_properties = {"cursed"}}, {name="padded armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Human"] = {id=true, {name="quarterstaff", ego_chance=-1000, not_properties = {"cursed"}}, {name="padded armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Half-Elf"] = {id=true, {name="quarterstaff", ego_chance=-1000, not_properties = {"cursed"}}, {name="padded armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Dwarf"] = {id=true, {name="scythe", ego_chance=-1000, not_properties = {"cursed"}}, {name="padded armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Duergar"] = {id=true, {name="scythe", ego_chance=-1000, not_properties = {"cursed"}}, {name="padded armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["general"] = {id=true, {name="scimitar", ego_chance=-1000, not_properties = {"cursed"}}, {name="padded armor", ego_chance=-1000, not_properties = {"cursed"}}},
 			},
 			Fighter = {
-				["Drow"] = { id=true, {name = "scimitar"}, {name = "chain mail"}, },
-				["Half-Orc"] = { id=true, {name = "battleaxe"}, {name = "chain mail"}, },
-				["general"] = { id=true, {name = "longsword"}, },
+				["Drow"] = { id=true, {name = "scimitar", ego_chance=-1000, not_properties = {"cursed"}}, {name = "chain mail", ego_chance=-1000, not_properties = {"cursed"}}, },
+				["Half-Orc"] = { id=true, {name = "battleaxe", ego_chance=-1000, not_properties = {"cursed"}}, {name = "chain mail", ego_chance=-1000, not_properties = {"cursed"}}, },
+				["general"] = { id=true, {name = "long sword", ego_chance=-1000, not_properties = {"cursed"}}, {name = "chain mail", ego_chance=-1000, not_properties = {"cursed"}}, },
 			},
 			Monk = {},
 			Paladin = {
-				["Halfling"] = "short sword", --"chain mail"
-				["Gnome"] = "short sword",
-				["Dwarf"] = "warhammer",
-				["general"] = "long sword" --lance when mounts are in
+				["Halfling"] = { id=true, {name = "short sword", ego_chance=-1000, not_properties = {"cursed"}}, {name ="chain mail", ego_chance=-1000, not_properties = {"cursed"}} },
+				["Gnome"] = { id=true, {name = "short sword", ego_chance=-1000, not_properties = {"cursed"}}, {name ="chain mail", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Dwarf"] = { id=true, {name = "warhammer", ego_chance=-1000, not_properties = {"cursed"}}, {name ="chain mail", ego_chance=-1000, not_properties = {"cursed"}} },
+				["general"] = { id=true, {name = "long sword", ego_chance=-1000, not_properties = {"cursed"}}, {name ="chain mail", ego_chance=-1000, not_properties = {"cursed"}}} --lance when mounts are in
 			},
 			Ranger = {
-				["Halfling"] = "short spear", --"leather armor"
-				["Gnome"] = "short spear",
-				["Half-Orc"] = "short spear",
-				["Drow"] = "scimitar",
-				["Dwarf"] = "warhammer",
-				["Duergar"] = "warhammer",
-				["general"] = "long sword",
+				["Halfling"] = {id=true, {name="short spear", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Gnome"] = {id=true, {name="short spear", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Half-Orc"] = {id=true, {name="short spear", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Drow"] = {id=true, {name="scimitar", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Dwarf"] = {id=true, {name="warhammer", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Duergar"] = {id=true, {name="warhammer", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["general"] = {id=true, {name="long sword", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
 			},
 			Rogue = {
-				["Halfling"] = "light crossbow",
-				["Gnome"] = "light crossbow",
-				["Drow"] = "hand crossbow",
-				["Elf"] = "longbow",
-				["general"] = "shortbow",
+				["Halfling"] = {id=true, {name="light crossbow", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Gnome"] = {id=true, {name="light crossbow", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Drow"] = {id=true, {name="hand crossbow", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Elf"] = {id=true,{name="longbow", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
+				["general"] = {id=true, {name="shortbow", ego_chance=-1000, not_properties = {"cursed"}}, {name="leather armor", ego_chance=-1000, not_properties = {"cursed"}}},
 			},
 			Sorcerer = {
-				["general"] = "dagger",
+				["general"] = {id=true, {name="dagger", ego_chance=-1000, not_properties = {"cursed"}} },
 			},
 			Wizard = {
-				["Halfling"] = "dagger",
-				["Gnome"] = "dagger",
-				["general"] = "quarterstaff",
+				["Halfling"] = {id=true, {name="dagger", ego_chance=-1000, not_properties = {"cursed"}}},
+				["Gnome"] = {id=true, {name="dagger", ego_chance=-1000, not_properties = {"cursed"}}},
+				["general"] = {id=true, {name="quarterstaff", ego_chance=-1000, not_properties = {"cursed"}}},
 			},
 			Warlock = {
-				["general"] = "long sword" --chain shirt
+				["general"] = {id=true, {name="long sword", ego_chance=-1000, not_properties = {"cursed"}}, {name="chain shirt", ego_chance=-1000, not_properties = {"cursed"}}}
 			},
 		},
   	},
