@@ -57,7 +57,7 @@ newBirthDescriptor{
     	starting_intro = "main",
 		--NOTE: attempt to use the starting equipment resolver
 		resolvers.startingeq{
-			["Barbarian"] = {
+			Barbarian = {
 				["Drow"] = "scimitar", --"chain mail"
 				["Halfling"] = "long sword", --"chain mail"
 				["Gnome"] = "long sword", --"chain mail"
@@ -65,7 +65,7 @@ newBirthDescriptor{
 				["Half-Elf"] = "long sword", --"chain mail"
 				["general"] = "battleaxe", --"chain mail",
 			},
-			["Bard"] = {
+			Bard = {
 				["Halfling"] = "dagger", --"chain shirt"
 				["Gnome"] = "dagger",
 				["Elf"] = "long sword",
@@ -75,17 +75,17 @@ newBirthDescriptor{
 				["Dwarf"] = "light mace",
 				["Duergar"] = "light mace",
 			},
-			["Cleric"] = {
+			Cleric = {
 				["Halfling"] = "light mace", --"chain mail"
 				["Gnome"] = "light mace",
 				["general"] = "heavy mace",
 			},
-			["Shaman"] = {
+			Shaman = {
 				["Halfling"] = "light mace", --"chain mail"
 				["Gnome"] = "light mace",
 				["general"] = "heavy mace",
 			},
-			["Druid"] = {
+			Druid = {
 				["Halfling"] = "sickle", --"padded armor"
 				["Gnome"] = "sickle",
 				["Human"] = "quarterstaff",
@@ -94,19 +94,19 @@ newBirthDescriptor{
 				["Duergar"] = "scythe",
 				["general"] = "scimitar",
 			},
-			["Fighter"] = {
+			Fighter = {
 				["Drow"] = { id=true, {name = "scimitar"}, {name = "chain mail"}, },
 				["Half-Orc"] = { id=true, {name = "battleaxe"}, {name = "chain mail"}, },
 				["general"] = { id=true, {name = "longsword"}, },
 			},
-			["Monk"] = {},
-			["Paladin"] = {
+			Monk = {},
+			Paladin = {
 				["Halfling"] = "short sword", --"chain mail"
 				["Gnome"] = "short sword",
 				["Dwarf"] = "warhammer",
 				["general"] = "long sword" --lance when mounts are in
 			},
-			["Ranger"] = {
+			Ranger = {
 				["Halfling"] = "short spear", --"leather armor"
 				["Gnome"] = "short spear",
 				["Half-Orc"] = "short spear",
@@ -115,22 +115,22 @@ newBirthDescriptor{
 				["Duergar"] = "warhammer",
 				["general"] = "long sword",
 			},
-			["Rogue"] = {
+			Rogue = {
 				["Halfling"] = "light crossbow",
 				["Gnome"] = "light crossbow",
 				["Drow"] = "hand crossbow",
 				["Elf"] = "longbow",
 				["general"] = "shortbow",
 			},
-			["Sorcerer"] = {
+			Sorcerer = {
 				["general"] = "dagger",
 			},
-			["Wizard"] = {
+			Wizard = {
 				["Halfling"] = "dagger",
 				["Gnome"] = "dagger",
 				["general"] = "quarterstaff",
 			},
-			["Warlock"] = {
+			Warlock = {
 				["general"] = "long sword" --chain shirt
 			},
 		},

@@ -1025,29 +1025,33 @@ function resolvers.startingeq(t)
 end
 --- Actually resolve the equipment creation
 function resolvers.calc.startingeq(t, e)
-	local class = e.descriptor.class
+	local class = e.descriptor.subclass
 	local race = e.descriptor.race
-	local classtable = t[class]
 
-	--TODO: Why the *bleep* is this still empty?
 	local racetable = {} --= t[class]["general"]
 
-	if t[class] then
+--	print("[STARTING EQ] subclass is "..class)
+--	print("[STARTING EQ] race is ".. race)
 
-	 	if classtable[race] then
+	t = t[1]
+
+	if t[class] then
+	 	if t[class][race] then
 			racetable = t[class][race]
 		else
-			racetable = classtable["general"]
+			racetable = t[class]["general"]
 		end
-	end
 
-			for i, filter in ipairs(racetable) do
+		--[[	for i, filter in ipairs(racetable) do
+				print("[STARTING EQ] item number ".. i)
 				filter.not_properties = filter.not_properties or {}
 				filter.not_properties[#filter.not_properties+1] = "cursed"
 			end
 
-			return {__resolver="equip", __resolve_last=true, racetable}
-
+			return {__resolver="equip", __resolve_last=true, racetable}]]
+			local def = racetable
+			return {__resolver="equipnoncursed", __resolve_last=true, def }
+	end
 end
 
 function resolvers.perks()
