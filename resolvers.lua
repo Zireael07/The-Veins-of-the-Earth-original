@@ -1041,17 +1041,34 @@ function resolvers.calc.startingeq(t, e)
 		else
 			racetable = t[class]["general"]
 		end
-
-		--[[	for i, filter in ipairs(racetable) do
-				print("[STARTING EQ] item number ".. i)
-				filter.not_properties = filter.not_properties or {}
-				filter.not_properties[#filter.not_properties+1] = "cursed"
-			end
-
-			return {__resolver="equip", __resolve_last=true, racetable}]]
-			local def = racetable
-			return {__resolver="equipnoncursed", __resolve_last=true, def }
 	end
+
+	for i, filter in ipairs(racetable) do
+			--[[	filter.not_properties = filter.not_properties or {}
+				filter.not_properties[#filter.not_properties+1] = "cursed"
+				return {__resolver="equip", __resolve_last=true, racetable}]]
+
+			--code dup out the wazoo since we don't have recursive resolvers yet
+			local def = racetable
+				print("Starting inventory resolver", e.name, e.filter, filter.type, filter.subtype)
+				local o
+				if not filter.defined then
+					o = game.zone:makeEntity(game.level, "object", filter, nil, true)
+				else
+					o = game.zone:makeEntityByName(game.level, "object", filter.defined)
+
+				end
+				if o then
+		--			print("Zone made us an inventory according to filter!", o:getName())
+					e:addObject(def.inven and e:getInven(def.inven) or e.INVEN_INVEN, o)
+					game.zone:addEntity(game.level, o, "object")
+
+					if def.id then o:identify(def.id) end
+				end
+			end
+			e:sortInven()
+			-- Delete the origin field
+			return nil
 end
 
 function resolvers.perks()
