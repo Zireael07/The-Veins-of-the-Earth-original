@@ -131,7 +131,7 @@ end
 function _M:onDrag(item)
 	if item and item.talent then
 		local t = self.actor:getTalentFromId(item.talent)
---		if t.mode == "passive" then return end
+		if t.mode == "passive" then return end
 		local s = t.display_entity:getEntityFinalSurface(nil, 64, 64)
 		local x, y = core.mouse.get()
 		game.mouse:startDrag(x, y, s, {kind="talent", id=t.id}, function(drag, used)
@@ -286,8 +286,8 @@ function _M:generateList()
 
 	-- Generate lists of all talents by category
 	for j, t in pairs(self.actor.talents_def) do
-	--	if self.actor:knowTalent(t.id) and not (t.hide and t.mode == "passive") then
-		if self.actor:knowTalent(t.id) and not t.hide then
+		if self.actor:knowTalent(t.id) and not (t.hide and t.mode == "passive") then
+	--	if self.actor:knowTalent(t.id) and not t.hide then
 			local nodes = (t.mode == "sustained" and sustains) or (t.mode =="passive" and passives) or actives
 			if self.actor:isTalentCoolingDown(t) then
 				nodes = cooldowns
