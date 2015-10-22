@@ -231,62 +231,12 @@ function _M:generateList()
 	local list = {}
 	local letter = 1
 
---[[
-	for i, tt in ipairs(self.actor.talents_types_def) do
-		local cat = tt.type:gsub("/.*", "")
-		local where = #list
-		local added = false
-		local nodes = {}
-
-		-- Find all talents of this school
-		for j, t in ipairs(tt.talents) do
-			if self.actor:knowTalent(t.id) and t.mode ~= "passive" then
-				local typename = "talent"
-				local status = tstring{{"color", "LIGHT_GREEN"}, "Active"}
-				if self.actor:isTalentCoolingDown(t) then status = tstring{{"color", "LIGHT_RED"}, self.actor:isTalentCoolingDown(t).." turns"}
-				elseif t.mode == "sustained" then status = self.actor:isTalentActive(t.id) and tstring{{"color", "YELLOW"}, "Sustaining"} or tstring{{"color", "LIGHT_GREEN"}, "Sustain"} end
-				nodes[#nodes+1] = {
-					char=self:makeKeyChar(letter),
-					name=t.name.." ("..typename..")",
-					status=status,
-					talent=t.id,
-					desc=self.actor:getTalentFullDescription(t),
-					color=function() return {0xFF, 0xFF, 0xFF} end,
-					hotkey=function(item)
-						for i = 1, 12 * self.actor.nb_hotkey_pages do if self.actor.hotkey[i] and self.actor.hotkey[i][1] == "talent" and self.actor.hotkey[i][2] == item.talent then
-							return "H.Key "..i..""
-						end end
-						return ""
-					end,
-				}
-				list.chars[self:makeKeyChar(letter)] = nodes[#nodes]
-				added = true
-				letter = letter + 1
-			end
-		end
-
-		if added then
-			table.insert(list, where+1, {
-				char="",
-				name=tstring{{"font","bold"}, cat:capitalize().." / "..tt.name:capitalize(), {"font","normal"}},
-				type=tt.type,
-				color=function() return {0x80, 0x80, 0x80} end,
-				status="",
-				desc=tt.description,
-				nodes=nodes,
-				hotkey="",
-				shown=true,
-			})
-		end
-	end
-]]
-
 	local actives, sustains, sustained, unavailables, cooldowns, passives = {}, {}, {}, {}, {}, {}
 	local chars = {}
 
 	-- Generate lists of all talents by category
 	for j, t in pairs(self.actor.talents_def) do
-		if self.actor:knowTalent(t.id) and not (t.hide and t.mode == "passive") then
+		if self.actor:knowTalent(t.id) and not t.hide and t.mode ~= "passive" then
 	--	if self.actor:knowTalent(t.id) and not t.hide then
 			local nodes = (t.mode == "sustained" and sustains) or (t.mode =="passive" and passives) or actives
 			if self.actor:isTalentCoolingDown(t) then
@@ -326,13 +276,13 @@ function _M:generateList()
 	table.sort(sustained, function(a,b) return a.cname < b.cname end)
 	table.sort(cooldowns, function(a,b) return a.cname < b.cname end)
 	table.sort(unavailables, function(a,b) return a.cname < b.cname end)
-	table.sort(passives, function(a,b) return a.cname < b.cname end)
+--	table.sort(passives, function(a,b) return a.cname < b.cname end)
 	for i, node in ipairs(actives) do node.char = self:makeKeyChar(letter) chars[node.char] = node letter = letter + 1 end
 	for i, node in ipairs(sustains) do node.char = self:makeKeyChar(letter) chars[node.char] = node letter = letter + 1 end
 	for i, node in ipairs(sustained) do node.char = self:makeKeyChar(letter) chars[node.char] = node letter = letter + 1 end
 	for i, node in ipairs(cooldowns) do node.char = self:makeKeyChar(letter) chars[node.char] = node letter = letter + 1 end
 	for i, node in ipairs(unavailables) do node.char = self:makeKeyChar(letter) chars[node.char] = node letter = letter + 1 end
-	for i, node in ipairs(passives) do node.char = "" end
+--	for i, node in ipairs(passives) do node.char = "" end
 
 	list = {
 		{ char='', name=('#{bold}#Activable talents#{normal}#'):toTString(), status='', hotkey='', desc="All activable talents you can currently use.", color=function() return colors.simple(colors.LIGHT_GREEN) end, nodes=actives, shown=true },
@@ -340,7 +290,7 @@ function _M:generateList()
 		{ char='', name=('#{bold}#Sustained talents#{normal}#'):toTString(), status='', hotkey='', desc="All sustainable talents you currently sustain, using them will de-activate them.", color=function() return colors.simple(colors.YELLOW) end, nodes=sustained, shown=true },
 		{ char='', name=('#{bold}#Cooling down talents#{normal}#'):toTString(), status='', hotkey='', desc="All talents you have used that are still cooling down.", color=function() return colors.simple(colors.LIGHT_RED) end, nodes=cooldowns, shown=true },
 		{ char='', name=('#{bold}#Unavailable talents#{normal}#'):toTString(), status='', hotkey='', desc="All talents you have that do not have enough resources, or satisfy other dependencies.", color=function() return colors.simple(colors.GREY) end, nodes=unavailables, shown=true },
-		{ char='', name=('#{bold}#Passive talents#{normal}#'):toTString(), status='', hotkey='', desc="All your passive talents, they are always active.", color=function() return colors.simple(colors.WHITE) end, nodes=passives, shown=true },
+--		{ char='', name=('#{bold}#Passive talents#{normal}#'):toTString(), status='', hotkey='', desc="All your passive talents, they are always active.", color=function() return colors.simple(colors.WHITE) end, nodes=passives, shown=true },
 		chars = chars,
 	}
 	self.list = list
