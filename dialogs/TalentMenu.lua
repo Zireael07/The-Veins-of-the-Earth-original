@@ -66,7 +66,7 @@ Choose the talent you want to use.
 			if item.talent then return TalentStatus(actor, actor:getTalentFromId(item.talent)) else return "" end
 		end},
 	}
-	self.c_list = TreeList.new{width=math.floor(self.iw / 2 - vsep.w / 2), height=self.ih - 10, all_clicks=true, scrollbar=true, columns=cols, tree=self.list, fct=function(item, sel, button) self:use(item, button) end, select=function(item, sel) self:select(item) end}
+	self.c_list = TreeList.new{width=math.floor(self.iw / 2 - vsep.w / 2), height=self.ih - 10, all_clicks=true, scrollbar=true, columns=cols, tree=self.list, fct=function(item, sel, button) self:use(item, button) end, select=function(item, sel) self:select(item) end,  on_drag=function(item, sel) self:onDrag(item) end}
 	self.c_list.cur_col = 2
 
 	self:loadUI{
@@ -85,6 +85,20 @@ end
 
 function _M:on_register()
 	game:onTickEnd(function() self.key:unicodeInput(true) end)
+end
+
+function _M:onDrag(item)
+	if item and item.talent then
+		local t = self.actor:getTalentFromId(item.talent)
+		if t.mode == "passive" then return end
+		local s = t.display_entity:getEntityFinalSurface(nil, 64, 64)
+		local x, y = core.mouse.get()
+		game.mouse:startDrag(x, y, s, {kind="talent", id=t.id}, function(drag, used)
+			local x, y = core.mouse.get()
+			game.mouse:receiveMouse("drag-end", x, y, true, nil, {drag=drag})
+			if drag.used then self.c_list:drawTree() end
+		end)
+	end
 end
 
 function _M:select(item)
