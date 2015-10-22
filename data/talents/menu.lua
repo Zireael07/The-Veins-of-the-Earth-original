@@ -15,13 +15,7 @@ newTalent{
 		if not talent then return nil end
 
         if talent then
-            local talent_id = self:getTalentFromId(talent)
-            if not self:knowTalent(talent_id) or not self:preUseTalent(talent_id, true, true) then
-				game.logPlayer(self, "#LIGHT_RED#You fail to use %s!", self:getTalentFromId(talent_id).name)
-			else
-			--	game.logPlayer(self, "#STEEL_BLUE#You use %s!", self:getTalentFromId(talent_id).name)
-                self:useTalent(talent)
-			end
+			self:useTalent(talent)
         end
         return true
 	end,
@@ -45,13 +39,7 @@ newTalent{
 		if not talent then return nil end
 
         if talent then
-            local talent_id = self:getTalentFromId(talent)
-            if not self:knowTalent(talent_id) or not self:preUseTalent(talent_id, true, true) then
-				game.logPlayer(self, "#LIGHT_RED#You fail to use %s!", self:getTalentFromId(talent_id).name)
-			else
-			--	game.logPlayer(self, "#STEEL_BLUE#You use %s!", self:getTalentFromId(talent_id).name)
-                self:useTalent(talent)
-			end
+			self:useTalent(talent)
         end
         return true
 	end,
@@ -75,13 +63,7 @@ newTalent{
 		if not talent then return nil end
 
         if talent then
-            local talent_id = self:getTalentFromId(talent)
-            if not self:knowTalent(talent_id) or not self:preUseTalent(talent_id, true, true) then
-				game.logPlayer(self, "#LIGHT_RED#You fail to use %s!", self:getTalentFromId(talent_id).name)
-			else
-			--	game.logPlayer(self, "#STEEL_BLUE#You use %s!", self:getTalentFromId(talent_id).name)
-                self:useTalent(talent)
-			end
+			self:useTalent(talent)
         end
         return true
 	end,
