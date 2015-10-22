@@ -1209,9 +1209,12 @@ function _M:setupCommands()
 			self.player:restInit()
 		end,
 
-		USE_TALENTS = function()
-			self.player:useTalents()
-		end,
+		USE_TALENTS --= function()
+			= not_world(function()
+				self:registerDialog(require("mod.dialogs.UseTalents").new(self.player))
+			end),
+		--	self.player:useTalents()
+	--	end,
 
 		LEVELUP = function()
 			self:registerDialog(require("mod.dialogs.LevelupDialog").new(self.player))
