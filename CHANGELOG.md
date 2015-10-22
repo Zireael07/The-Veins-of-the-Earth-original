@@ -4,6 +4,10 @@ CHANGELOG
 * bug fix - typos in drow lore entry
 * bug fix - "not delved much further" triggering for zone changes and/or non-infinite zones
 * bug fix - worldmap info lore piece spawning in all zones
+* bug fix - lore pieces not having names
+* bug fix - logic in health descriptions
+* bug fix - NPC FOV code erroneously marking stuff as seen for player's map code
+* bug fix - wolf, hyena, jackal, hell hound tiles not showing up
 
 * new tiles: noble wall, building floor; worldmap floor, worldmap walls, elven floor, elven wall, drow child, warded wall, air portal, earth portal, fire portal, water portal, 2 worldmap entrance variations, altar; tattoo, wand, rod, beer, biscuit, wine, meat ration, throwing dagger, throwing axe, shortsword, sickle, water flask, drow wine, elven wine, blood, bed, table; chasm
 * new zones: small tunnels, elven outpost, wizard tower
@@ -14,6 +18,14 @@ CHANGELOG
 * skew the generators in Elemental Planes towards outsiders of the element and forbid opposing elementals
 * classes shown in character creation in a tree form
 * add lore entries to those monsters that were missing them
+* implement being resurrected by your divine patron
+* implement xp tick
+* implement a proper starting equipment resolver
+* add a message when a monster enters your sight
+* torches light up your map on screen
+* add one-liners (aka emotes) to most monsters
+* add a scrambling function to chat
+* display skills used in chat
 
 BETA 10.5 - 0.31.0 - 19/09/2015
 
