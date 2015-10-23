@@ -1,5 +1,5 @@
 -- TE4 - T-Engine 4
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Copyright (C) 2009 - 2015 Nicolas Casalini
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -32,6 +32,8 @@ function _M:init(zone, map, level, data)
 	self.max_block_h = data.max_block_h or 20
 	self.max_building_w = data.max_building_w or 7
 	self.max_building_h = data.max_building_h or 7
+	self.margin_w = data.margin_w or 0
+	self.margin_h = data.margin_h or 0
 
 	RoomsLoader.init(self, data)
 end
@@ -55,10 +57,10 @@ function _M:addWall(vert, base, p1, p2)
 	for z, _ in pairs(ps) do
 		local x, y
 		if vert then x, y = base, z else x, y = z, base end
-		local nb = 
-			(game.level.map:checkEntity(x - 1, y, Map.TERRAIN, "block_move") and 1 or 0) + 
-			(game.level.map:checkEntity(x + 1, y, Map.TERRAIN, "block_move") and 1 or 0) + 
-			(game.level.map:checkEntity(x, y - 1, Map.TERRAIN, "block_move") and 1 or 0) + 
+		local nb =
+			(game.level.map:checkEntity(x - 1, y, Map.TERRAIN, "block_move") and 1 or 0) +
+			(game.level.map:checkEntity(x + 1, y, Map.TERRAIN, "block_move") and 1 or 0) +
+			(game.level.map:checkEntity(x, y - 1, Map.TERRAIN, "block_move") and 1 or 0) +
 			(game.level.map:checkEntity(x, y + 1, Map.TERRAIN, "block_move") and 1 or 0)
 		if nb ~= 2 then todel[#todel+1] = z end
 	end
@@ -66,7 +68,7 @@ function _M:addWall(vert, base, p1, p2)
 
 	for i = 1, #walls do
 		local w = walls[i]
-		if w.vert == vert and w.base == base then 
+		if w.vert == vert and w.base == base then
 			w.ps = table.minus_keys(w.ps, ps)
 		end
 	end
@@ -88,17 +90,18 @@ function _M:building(leaf, spots)
 
 	for i = leaf.rx, leaf.rx + leaf.w do for j = leaf.ry, leaf.ry + leaf.h do
 
-		self:placeRoom()
 		-- Abort if there is something already
 		if self.map:isBound(i, j) and self.map.room_map[i][j].room then return end
 	end end
 
-	for i = x1, x2 do for j = y1, y2 do
+		self:placeRoom(leaf)
+
+--[[	for i = x1, x2 do for j = y1, y2 do
 		if i == x1 or i == x2 or j == y1 or j == y2 then
 
-		self:placeRoom() end
+		self:placeRoom(leaf) end
 
-	end end
+	end end]]
 
 --[[			if not self.map.room_map[i][j].walled then self.map(i, j, Map.TERRAIN, self:resolve("wall")) end
 			self.map.room_map[i][j].walled = true
@@ -112,7 +115,7 @@ function _M:building(leaf, spots)
 		end
 	end end]]
 
-	local walls = {}
+--[[	local walls = {}
 	walls.up = self:addWall(false, y1, x1 + 1, x2 - 1)
 	walls.down = self:addWall(false, y2, x1 + 1, x2 - 1)
 	walls.left = self:addWall(true,  x1, y1 + 1, y2 - 1)
@@ -123,7 +126,7 @@ function _M:building(leaf, spots)
 	for i = #inner_grids, 1, -1 do
 		local g = inner_grids[i]
 		if door and (g.x == door.x or g.y == door.y) then table.remove(inner_grids, i) end
-	end
+	end]]
 
 	spots[#spots+1] = {x=math.floor((x1+x2)/2), y=math.floor((y1+y2)/2), type="building", subtype="building"}
 end
@@ -166,9 +169,9 @@ function _M:generate(lev, old_lev)
 	local spots = {}
 	self.spots = spots
 	self.walls = {}
-	self.rooms = {}
+--	self.rooms = {}
 
-	local bsp = BSP.new(self.map.w, self.map.h, self.max_block_w, self.max_block_h)
+	local bsp = BSP.new(self.map.w - self.margin_w, self.map.h - self.margin_h, self.max_block_w, self.max_block_h)
 	bsp:partition()
 
 	print("Building gen made ", #bsp.leafs, "blocks BSP leafs")
@@ -259,8 +262,8 @@ function _M:makeStairsSides(lev, old_lev, sides, spots)
 end
 
 
-function _M:placeRoom()
-	local nb_room = util.getval(self.data.nb_rooms or 10)
+function _M:placeRoom(leaf)
+	local nb_room = 1
 	local rooms = {}
 	while nb_room > 0 do
 		local rroom
@@ -273,14 +276,15 @@ function _M:placeRoom()
 			end
 		end
 
-		local r = self:placeRoomHelper(rroom, #rooms+1, lev, old_lev)
+	--	local r = self:roomAlloc(rroom, #rooms+1, lev, old_lev)
+		local r = self:placeRoomHelper(leaf, rroom, #rooms+1, lev, old_lev)
 		if r then rooms[#rooms+1] = r end
 		nb_room = nb_room - 1
 	end
 end
 
-function _M:placeRoomHelper(room, id, lev, old_lev, add_check)
-	room = RoomsLoader:roomGen(room, id, lev, old_lev)
+function _M:placeRoomHelper(leaf, room, id, lev, old_lev, add_check)
+	room = self:roomGen(room, id, lev, old_lev)
 	if not room then return end
 
 	local tries = 100
@@ -297,7 +301,7 @@ function _M:placeRoomHelper(room, id, lev, old_lev, add_check)
 		end
 
 		if ok and (not add_check or add_check(room, x, y)) then
-			local res = RoomsLoader:roomPlace(room, id, x, y)
+			local res = self:roomPlace(room, id, x, y)
 			if res then return res end
 		end
 		tries = tries - 1
