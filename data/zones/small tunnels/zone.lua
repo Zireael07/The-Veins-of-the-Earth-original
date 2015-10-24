@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2015
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@ return {
 	level_range = {1, 1},
 	max_level = 10,
 --	decay = {300, 800},
-	width = 100, height = 100,
+	width = 44, height = 44,
 --	persistent = "zone",
 	load_tips = {
 { text = [[Do not go in too deep.]] },
@@ -33,39 +33,17 @@ return {
 },
 	generator =  {
 		map = {
-			class = "mod.class.generator.map.Roomer",
-			nb_rooms = 10,
-			rooms = {
-			--Nothing special
-			{"simple", 5}, {"circle", 5}, {"circle2", 5}, {"circle3", 5}, {"pilar", 10}, {"pilar2", 10}, {"pilar3", 10}, {"pilar4", 10}, {"rhomboid", 3}, {"rhomboid2", 3},
-			--Special rooms
-			{"big_moss1", 20}, {"big_moss2", 20}, {"marble", 10}, {"moss_patch1", 30}, {"moss_patch2", 30}, {"moss_pilar1", 40}, {"moss_pilar2", 40}, {"moss_pilar3", 40}, {"ritual", 5}, {"temple", 5}, {"treasure_room", 20}, {"veins", 20}, {"waterfilled_pilar", 7},
-			--Additional stairs
-			{"pilar_stairs", 6}, {"pilar_stairs2", 5}, {"pilar_stairs3", 2}
-			},
-			lite_room_chance = 0,
-			door_chance = 1,
-			tunnel_change = 90,
-			tunnel_random = 40,
-			['.'] = "FLOOR",
-	--		['.'] = { "FLOOR", "MOSS", "CHASM", "WATER", }
-			['#'] = "WALL",
-	--		up = "UP",
-			up = {"UP", "SHAFT_UP"},
-	--		down = "DOWN",
-			down = { "DOWN", "SHAFT_DOWN" },
-			door = "DOOR",
-			['m'] = "MOSS",
-			['x'] = "CHASM",
-			['~'] = { "WATER", "WATER_DEEP" },
-			['l'] = "LAVA",
-			['i'] = "ICE",
-			['>'] = { "DOWN", "SHAFT_DOWN" },
-			['%'] = "WALL_MARBLE",
-			['^'] = "WALL_WARDED",
-			['&'] = "ALTAR",
-			['T'] = "CHEST",
-			['$'] = {"GOLD_VEIN", "DIAMOND_VEIN", "MITHRIL_VEIN", "ADAMANT_VEIN", "TREASURE_VEIN"},
+			class = 'mod.class.generator.map.T2DungeonLevel',
+	        floor = { weighted = { FLOOR={78,100}, MOSS={18,5} } },
+	        fill = { weighted = { WALL={34,100}, WALL_MARBLE={66,0} } },
+	        outer_wall = 'WALL',
+	        inner_wall = 'WALL',
+	        fill_step = 4,
+	        up = 'UP',
+	        down = 'DOWN',
+			flags = {
+	  	FLAT = true,
+	        },
 		},
 		actor = {
 		--	class = "mod.class.generator.actor.EncounterRandom",
