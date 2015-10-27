@@ -606,6 +606,10 @@ function _M:changeLevel(lev, zone)
 		return
 	end
 
+	--Safeguard
+	print('[GAME] changeLevel: default move')
+	self.player:move(self.level.default_up.x, self.level.default_up.y, true)
+
 	--From ToME 2 by Zizzo
 	local startxy = self.zone.entry_point and self.zone.entry_point(lev, old_lev, old_zone) or nil
   	if startxy then
@@ -618,6 +622,8 @@ function _M:changeLevel(lev, zone)
     	print('[GAME] changeLevel:  moving to level default_down')
     	self.player:move(self.level.default_down.x, self.level.default_down.y, true)
   	end
+
+
   	self.level:addEntity(self.player)
 
   	if self.zone.on_enter then
@@ -1178,8 +1184,6 @@ function _M:setupCommands()
 			local e = self.level.map(self.player.x, self.player.y, Map.TERRAIN)
 			if self.player:enoughEnergy() and e.change_level then
 				if self.player:attr("never_move") then self.log("You cannot currently leave the level.") return end
-
-				local level = self.level.level
 			--[[	--Implement min_depth
 				local days = math.floor(self.turn / game.calendar.DAY) + (game.calendar.start_day - 1)
 				local min_depth = math.max(1, days/3)
@@ -1189,6 +1193,7 @@ function _M:setupCommands()
 					level = min_depth
 				end]]
 				if self:isHorizontalChange(e) then
+					local level = self.level.level
 					if rng.percent(75) then
 						level = level + e.change_level
 						self.player:gainExp(math.floor(level*50))
@@ -1621,7 +1626,8 @@ end
 
 --For changing levels
 function _M:isHorizontalChange(e)
-	if self.zone.max_level > 900 and not e.change_zone then return true end
+	if self.zone.max_level > 900 and not e.change_zone then print("Horizontal change") return true end
+	print("Normal zone change")
 	return false
 end
 
