@@ -44,11 +44,7 @@ function _M:generate(lev, old_lev)
 		opens[i] = {}
 		for j = 0, self.map.h - 1 do
 			if noise[self.noise](noise, self.zoom * i / self.map.w, self.zoom * j / self.map.h, self.octave) > 0 then
-				if rng.chance(self.alt_chance) then -- Spawn alternate terrain
-					self.map(i, j, Map.TERRAIN, self:resolve("floor_alt"))
-				else
-					self.map(i, j, Map.TERRAIN, self:resolve("floor"))
-				end
+				self.map(i, j, Map.TERRAIN, self:resolve("floor", nil, false, lev))
 				opens[i][j] = #list+1
 				list[#list+1] = {x=i, y=j}
 			else
@@ -102,6 +98,7 @@ function _M:generate(lev, old_lev)
 				self.map(jn.x, jn.y, Map.TERRAIN, self:resolve("wall"))
 			end
 		end
+		self:dumpMap()
 	else
 		return self:generate(lev, old_lev)
 	end
@@ -274,4 +271,51 @@ function _M:makeStairsSides(lev, old_lev, sides, spots)
 	end
 
 	return ux, uy, dx, dy, spots
+end
+
+function _M:resolve(c, list, force, lev)
+  local res = force and c or self.data[c]
+  if type(res) == 'table' and type(res.weighted) == 'table' then
+    -- Roughly mimics init_feat_info() in src/generate.c
+    if not res.wgt_cache or (lev and res.wgt_cache.level ~= lev) then
+      -- Precompute a simple-lookup table from the provided weights to
+      -- speed things up.
+      res.wgt_cache = { level=lev }
+      local n = 0
+      for grid, wgt in pairs(res.weighted) do
+	local w = wgt
+	if type(w) == 'table' then
+	  w = w[1] + math.floor((w[2] - w[1]) * lev/self.zone.max_level)
+	end
+	for i = n+1, n+w do res.wgt_cache[i] = grid end
+	n = n + w
+      end
+    end
+    -- The parent method covers randomly selecting an entity type from a
+    -- table with uniform distribution, so we can just pass it our pre-
+    -- computed cache.
+    return engine.Generator.resolve(self, res.wgt_cache, list, true)
+  else
+    return engine.Generator.resolve(self, c, list, force)
+  end
+end
+
+function _M:dumpMap(note, annotations)
+  if note then print(note..':') end
+  local ra = {}
+  for sym, xys in pairs(annotations or {}) do
+    for _, xy in ipairs(xys) do
+      local key = xy.x..','..xy.y
+      ra[key] = ra[key] and '?' or sym
+    end
+  end
+
+  for y = 0, self.map.h - 1 do
+    local row = ''
+    for x = 0, self.map.w - 1 do
+      local g = self.map(x, y, Map.TERRAIN)
+      row = row .. (ra[x..','..y] or (g and g.display) or ' ')
+    end
+    print(row)
+  end
 end
