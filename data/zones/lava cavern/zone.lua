@@ -30,11 +30,10 @@ return {
 			hurst = 0.2,
 			alt_chance = 90,
 			min_floor = 200,
-			floor = "FLOOR",
+			floor = { weighted = { FLOOR={34,100}, LAVA={66,0} } },
 			wall = "WALL",
 			up = "FLOOR",
 			down = "DOWN",
-			floor_alt = "LAVA",
 		},
 		actor = {
 			class = "mod.class.generator.actor.Random",

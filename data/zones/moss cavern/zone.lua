@@ -24,12 +24,12 @@ return {
 --	persistent = "zone",
 	generator =  {
 		map = {
-			class = "mod.class.generator.map.MossyCavern",
+			class = "mod.class.generator.map.CavernAlternate",
 			edge_entrances = {4,6},
 			zoom = 10,
 			hurst = 0.2,
 			min_floor = 200,
-			floor = "FLOOR",
+			floor = { weighted = { FLOOR={34,100}, MOSS={66,0} } },
 			wall = "WALL",
 			up = "FLOOR",
 			down = "DOWN",
