@@ -159,7 +159,7 @@ function _M:layoutMap(lev, old_lev)
   -- Don't need these anymore.
   self.avoid = nil
   self.room_grid = nil
-  self.rooms = nil
+--  self.rooms = nil
   self.doors = nil
 
   self:set_level_boundaries(false)

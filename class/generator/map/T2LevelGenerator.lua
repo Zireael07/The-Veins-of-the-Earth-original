@@ -119,6 +119,14 @@ function _M:generate(lev, old_lev)
     self.spots[#self.spots+1] = { x=xy.x, y=xy.y, type='branch', subtype='down' }
   end
 
+  --Make spots in our rooms (Zireael)
+  -- Find out "interesting" spots
+  local rooms = self.rooms
+  local spots = self.spots
+  for i, r in ipairs(rooms) do
+      spots[#spots+1] = {x=rooms[i].cx, y=rooms[i].cy, type="room", subtype="room"} --subtype=rooms[i].room.name}
+  end
+
   -- Pick a random up stair and a random down stair for our entry points.
   stair_locs.up = stair_locs.up or {}
   stair_locs.down = stair_locs.down or {}
@@ -273,7 +281,7 @@ function _M:adjacent_corridors(x, y)
   local n = 0
   for _, cc in ipairs(self.cc) do
     local g = self.map(x+cc.x, y+cc.y, Map.TERRAIN)
-    if not self.map:checkEntity(x+cc.x, y+cc.y, Map.TERRAIN, 'wall') --g:floor_bold(x+cc.x, y+cc.y) 
+    if not self.map:checkEntity(x+cc.x, y+cc.y, Map.TERRAIN, 'wall') --g:floor_bold(x+cc.x, y+cc.y)
     and not self.is_floor[g.define_as] and not self.map.attrs(x+cc.x, y+cc.y, 'room') then
       n = n + 1
     end
@@ -381,7 +389,7 @@ function _M:is_safe_floor(x, y)
   return self.is_floor[g.define_as]
 end
 
-function _M:place_stuff(only_room, only_corr, num, feat, force, lev)
+--[[function _M:place_stuff(only_room, only_corr, num, feat, force, lev)
   for _ = 1, num do
     for _ = 1, 5000 do
       local x, y = rng.range(0, self.map.w - 1), rng.range(0, self.map.h - 1)
@@ -416,7 +424,7 @@ function _M:place_stuff(only_room, only_corr, num, feat, force, lev)
       end
     end
   end
-end
+end]]
 
 function _M:resolve(c, list, force, lev)
   local res = force and c or self.data[c]
