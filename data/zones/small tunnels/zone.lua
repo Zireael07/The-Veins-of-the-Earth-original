@@ -48,10 +48,10 @@ return {
 		actor = {
 		--	class = "mod.class.generator.actor.EncounterRandom",
 			class = "mod.class.generator.actor.Random",
-			nb_npc = {5, 10},
+			nb_npc = {10, 15},
 			--max cr filter is added to dlvl
 			--NOTE: critters (especially humanoid) might have higher CR due to resolvers
-			filters = {{max_cr=2}},
+			filters = {{max_cr=1}},
 		--[[	class = "mod.class.generator.actor.OnSpots",
 				nb_spots = 2, on_spot_chance = 75,]]
 
