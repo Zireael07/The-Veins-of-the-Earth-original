@@ -17,8 +17,8 @@
 load("/data/general/npcs/all.lua")
 
 --Encounters are dummy npcs
-load("/data/general/npcs/encounters/encounters_generic.lua")
-load("/data/general/npcs/encounters/encounters_specific.lua")
+--load("/data/general/npcs/encounters/encounters_generic.lua")
+--load("/data/general/npcs/encounters/encounters_specific.lua")
 
 --Neutrals
 load("/data/general/npcs/neutral.lua")
