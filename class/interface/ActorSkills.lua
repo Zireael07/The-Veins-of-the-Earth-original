@@ -115,6 +115,53 @@ function _M:opposedCheck(skill1, target, skill2)
 	return success
 end
 
+--Separate function b/c no roll and different logging
+function _M:takeTen(skill, dc, silent)
+	local success = false
+
+	local result = 10 + (self:getSkill(skill) or 0)
+
+	--Limit logging to the player
+	if not silent and self == game.player then
+		local who = self:getName()
+		local s = ("%s check for %s: 10 + bonus %d = %d vs DC %d -> %s"):format(
+			skill:capitalize(), who, self:getSkill(skill) or 0, result, dc, success and "#GREEN#success#LAST#" or "#RED#failure#LAST#")
+		game.log(s)
+	end
+
+	return success
+end
+
+
+function _M:staggeredCheck(skill, dc1, dc2, dc3)
+	local success = false
+
+	local d = rng.dice(1,20)
+	local result = d + (self:getSkill(skill) or 0)
+
+	if result > target3 then success = true ---do stuff
+	elseif result > target2 then success = true ---do stuff
+	elseif result > target1 then success = true ---do stuff
+	end
+
+	--Limit logging to the player
+	if not silent and self == game.player then
+		local who = self:getName()
+		local s = ("%s check for %s: dice roll %d + bonus %d = %d vs DC %d -> %s"):format(
+			skill:capitalize(), who, d, self:getSkill(skill) or 0, result, dc, success and "#GREEN#success#LAST#" or "#RED#failure#LAST#")
+		game.log(s)
+	end
+
+	--XP prize
+	if success then
+		if self:crossClass(skill) then
+			self:gainExp(10)
+		else
+			self:gainExp(20)
+		end
+	end
+end
+
 function _M:getSkillMod(skill)
 	local stat_for_skill = {}
 	for i, s in ipairs(_M.skill_defs) do
