@@ -21,18 +21,18 @@ function _M:init(actor)
     
     local x = rng.dice(1,20) + (player:getSkill("knowledge") or 0)
 
- if x > 25+actor.challenge then 
+ if player:takeTen("knowledge", (25+actor.challenge)) then 
     if actor.specialist_desc then self.text = "#LIGHT_BLUE#You know specialist stuff about the monster#LAST# \n"..actor.specialist_desc.." \n"..actor.uncommon_desc.." \n"..actor.common_desc.." \n"..actor.base_desc
     elseif actor.uncommon_desc then self.text = "#LIGHT_BLUE#You know specialist stuff about the monster#LAST# \n"..actor.uncommon_desc.." \n"..actor.common_desc.." \n"..actor.base_desc
     elseif actor.common_desc then self.text = "#LIGHT_BLUE#You know specialist stuff about the monster#LAST# \n"..actor.common_desc.." \n"..actor.base_desc
     else self.text = "#LIGHT_BLUE#You know specialist stuff about the monster"
     end
- elseif x > 20+actor.challenge then 
+ elseif player:takeTen("knowledge", (20+actor.challenge)) then 
     if actor.uncommon_desc then self.text = "#LIGHT_BLUE#You know uncommon stuff about the monster#LAST# \n"..actor.uncommon_desc.." \n"..actor.common_desc.." \n"..actor.base_desc
     elseif actor.common_desc and actor.base_desc then self.text = "#LIGHT_BLUE#You know uncommon stuff about the monster#LAST# \n"..actor.common_desc.." \n"..actor.base_desc
     else self.text = "#LIGHT_BLUE#You know uncommon stuff about the monster"
     end
- elseif x > 15+actor.challenge then
+ elseif player:takeTen("knowledge", (15+actor.challenge)) then
     if actor.common_desc and actor.base_desc then self.text = "#LIGHT_BLUE#You know obvious stuff about the monster#LAST# \n"..actor.common_desc.." \n"..actor.base_desc
     else self.text = "#LIGHT_BLUE#You know obvious stuff about the monster"
     end
