@@ -715,7 +715,7 @@ function _M:changeLevel(lev, zone)
 
 	--Day/night
 --	if self.level.data.day_night then self.state:dayNightCycle() end
-	self.state:dayNightCycle()
+--	self.state:dayNightCycle()
 
 	--Kill off clones automatically
 	for loc, tile in ipairs(game.level.map.map) do
