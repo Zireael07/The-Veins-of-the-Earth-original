@@ -1,5 +1,7 @@
 CHANGELOG
 
+BETA 11 - 0.32.0 - 28/11/2015
+
 * bug fix - correct generator path for drow outpost
 * bug fix - typos in drow lore entry
 * bug fix - "not delved much further" triggering for zone changes and/or non-infinite zones
@@ -10,10 +12,12 @@ CHANGELOG
 * bug fix - wolf, hyena, jackal, hell hound tiles not showing up
 
 * new tiles: noble wall, building floor; worldmap floor, worldmap walls, elven floor, elven wall, drow child, warded wall, air portal, earth portal, fire portal, water portal, 2 worldmap entrance variations, altar; tattoo, wand, rod, beer, biscuit, wine, meat ration, throwing dagger, throwing axe, shortsword, sickle, water flask, drow wine, elven wine, blood, bed, table; chasm
-* new zones: small tunnels, elven outpost, wizard tower
+* new zones: small tunnels, elven outpost, wizard tower, drow village
 * new NPCs: elf sage, elf healer, elf hireling, elf guard, drow child
 * new splash screen by Ozymandias79
-* change starting zone to small tunnels
+* import T2 port's dungeon generator by Zizzo
+* change starting zone to small tunnels, make it use the T2 generator
+* use the T2 weighting code in other generators
 * skew the generator in drow city areas towards generating more drow; neutral vermin, elementals, fiends roaming the city; the brothel should now have more courtesans
 * skew the generators in Elemental Planes towards outsiders of the element and forbid opposing elementals
 * classes shown in character creation in a tree form
@@ -21,6 +25,8 @@ CHANGELOG
 * implement being resurrected by your divine patron
 * implement xp tick
 * implement a proper starting equipment resolver
+* implement "take 10" rule
+* hotbar button menus no longer offer unusable talents; show talent status
 * add a message when a monster enters your sight
 * torches light up your map on screen
 * add one-liners (aka emotes) to most monsters
