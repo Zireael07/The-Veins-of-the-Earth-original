@@ -1183,6 +1183,7 @@ function _M:setupCommands()
 		CHANGE_LEVEL = function()
 			local e = self.level.map(self.player.x, self.player.y, Map.TERRAIN)
 			if self.player:enoughEnergy() and e.change_level then
+				local level = e.change_level
 				if self.player:attr("never_move") then self.log("You cannot currently leave the level.") return end
 			--[[	--Implement min_depth
 				local days = math.floor(self.turn / game.calendar.DAY) + (game.calendar.start_day - 1)
@@ -1193,18 +1194,16 @@ function _M:setupCommands()
 					level = min_depth
 				end]]
 				if self:isHorizontalChange(e) then
-					local level = self.level.level
 					if rng.percent(75) then
-						level = level + e.change_level
 						self.player:gainExp(math.floor(level*50))
 					else
-						level = level + 0.001
+						level = 0.001
 						game.logPlayer(self.player, "#SANDY_BROWN#You feel like you have not delved much further.#LAST#")
 
 					end
 				end
 
-				self:changeLevel(e.change_zone and e.change_level or level, e.change_zone)
+				self:changeLevel(e.change_zone and e.change_level or self.level.level + level, e.change_zone)
 			else
 				self.log("There is no way out of this level here.")
 			end
