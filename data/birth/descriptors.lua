@@ -152,6 +152,7 @@ newBirthDescriptor{
 		[ActorTalents.T_CRAFT]=1,
 		[ActorTalents.T_TRACK]=1,
 		[ActorTalents.T_PICK_POCKETS]=1,
+		[ActorTalents.T_THROW_POTION]=1,
 
   	},
   talents_types = {

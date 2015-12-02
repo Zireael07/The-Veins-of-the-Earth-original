@@ -204,6 +204,37 @@ newTalent{
     end,
 }
 
+newTalent{
+    name = "Throw potion",
+    type = {"skill/skill",1},
+    no_auto_hotkey = true,
+	mode = "activated",
+	points = 1,
+	cooldown = 0,
+    target = function(self, t)
+        return {type="hit", range=5, selffire=false, talent=t}
+    end,
+    action = function(self, t)
+    	local tg = self:getTalentTarget(t)
+    	local x, y, target = self:getTarget(tg)
+    	if not x or not y or not target then return nil end
+
+        self:showInventory("Throw which item?", self:getInven("INVEN"), function(o) return o.type == "potion" end,
+            function(o, item)
+				if not o.use_simple then return end
+
+				game.logPlayer(self, "%s throws a potion at %s!", self.name, target.name)
+
+				o:useObject(target)
+			--	o:useObject(self)
+            end)
+        return true
+    end,
+    info = function(self, t)
+        return "Throw potions at other creatures."
+    end,
+}
+
 
 --Resource pools
 newTalent{
