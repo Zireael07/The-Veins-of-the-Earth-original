@@ -205,48 +205,6 @@ newTalent{
 }
 
 
---Prayer
-newTalent{
-    name = "Prayer", image = "talents/prayer.png",
-    type = {"special/special",1},
-	no_auto_hotkey = true,
-    mode = "activated",
-    points = 1,
-    cooldown = 20,
-    range = 0,
-    no_npc_use = true,
-    action = function(self, t)
-        local player = game.player
-        local deity = player.descriptor.deity
-        if deity == "None" then game.logPlayer(self, "You have no god to pray to.") return end
-
-        --if altar give choice of your deity or altar deity
-        --local t = game.level.map(self.x, self.y, Map.TERRAIN) if t.is_altar then
-
-        --if altar to different deity, give convert option
-        --if altar to my deity, give bless items option
-
-        local result = self:talentDialog(require('mod.dialogs.GetChoice').new("How do you pray?", {
-            {name="Request aid", desc="Ask your deity for help"},
-            {name="Seek insight", desc="Not implemented yet"},
-        }, function(result)
-            self:talentDialogReturn(result)
-            game:unregisterDialog(self:talentDialogGet())
-        end))
-
-        if result == "Request aid" then
-            player:pray()
-        else
-            return nil
-        end
-
-        return true
-    end,
-    info = function(self, t )
-        return "Pray to a deity to receive various boons."
-    end,
-}
-
 --Resource pools
 newTalent{
     name = "Spell Points Pool",
