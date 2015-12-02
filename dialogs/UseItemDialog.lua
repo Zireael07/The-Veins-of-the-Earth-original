@@ -111,9 +111,6 @@ function _M:generateList()
   if self.object.subtype == "corpse" then
         list[#list+1] = { name = "Butcher", action='butcher'}
   end
---[[  if self.object.type == "potion" then
-      list[#list+1] = { name = "Throw", action='throw'}
-  end]]
 
   if self.object.type == "food" then
       list[#list+1] = { name = "Eat", action='eat'}
@@ -121,7 +118,7 @@ function _M:generateList()
   if self.object.type == "drink" then
       list[#list+1] = { name = "Drink", action='eat'}
   end
-  
+
   if self.inven == self.actor.INVEN_INVEN and self.object.slot ~= "INVEN" then
     list[#list+1] = { name='Wear/wield', action='wear' }
   end

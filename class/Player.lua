@@ -1431,22 +1431,6 @@ function _M:doButcher(inven, item)
 
 end
 
-function _M:doThrowPotion(object, item, inven)
-	if not object.use_simple then return end
-
-	game.logPlayer(self, "%s throws a potion!", self.name)
-
-
-	local tg = {type="hit", range=5}
-	local x, y, target = self:getTarget(tg)
-	if not x or not y or not target then return nil end
-
-	game.logPlayer(self, "%s throws a potion at %s!", self.name, target.name)
-
-	object.use_simple.use(self, target)
-
-end
-
 --Cleaner code
 function _M:incNutrition(v)
 	if not v then return end
