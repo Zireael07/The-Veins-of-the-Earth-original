@@ -14,7 +14,9 @@ newEntity{
     school = "conjuration",
     use_simple = { name = "quaff",
     use = function(self,who)
-        who:heal(rng.dice(1,8) + 5)
+		local d = rng.dice(1,8) + 5
+        who:heal(d)
+		game.logSeen(who, ("%s heals %d damage"):format(who.name:capitalize(), d))
         return {used = true, destroy = true}
   end
   },
@@ -29,22 +31,27 @@ newEntity{
     school = "conjuration",
     use_simple = { name = "quaff",
     use = function(self,who)
-        who:heal(rng.dice(2,8) + 5)
+		local d = rng.dice(2,8) + 5
+        who:heal(d)
+		game.logSeen(who, ("%s heals %d damage"):format(who.name:capitalize(), d))
         return {used = true, destroy = true}
   end
   },
 }
 
+--Heal a percentage
 newEntity{
-	name = " of heal serious wounds", suffix = true,
-	level_range = {5, 10},
-	rarity = 15,
---	cost = 1200,
-    cost = resolvers.value{gold=1200},
+	name = " of heal light wounds", suffix = true,
+	level_range = {1, 10},
+	rarity = 25,
+--	cost = 900,
+    cost = resolvers.value{gold=900},
     school = "conjuration",
     use_simple = { name = "quaff",
     use = function(self,who)
-        who:heal(rng.dice(2,8) + 5)
+		local d = who.max_life*0.1
+        who:heal(d)
+		game.logSeen(who, ("%s heals %d damage"):format(who.name:capitalize(), d))
         return {used = true, destroy = true}
   end
   },
@@ -59,7 +66,26 @@ newEntity{
     school = "conjuration",
     use_simple = { name = "quaff",
     use = function(self,who)
-        who:heal(who.max_life*0.5)
+		local d = who.max_life*0.3
+        who:heal(d)
+		game.logSeen(who, ("%s heals %d damage"):format(who.name:capitalize(), d))
+        return {used = true, destroy = true}
+  end
+  },
+}
+
+newEntity{
+	name = " of heal serious wounds", suffix = true,
+	level_range = {5, 10},
+	rarity = 15,
+--	cost = 1200,
+    cost = resolvers.value{gold=1200},
+    school = "conjuration",
+    use_simple = { name = "quaff",
+    use = function(self,who)
+		local d = who.max_life*0.5
+        who:heal(d)
+		game.logSeen(who, ("%s heals %d damage"):format(who.name:capitalize(), d))
         return {used = true, destroy = true}
   end
   },
@@ -74,12 +100,29 @@ newEntity{
     school = "necromancy",
     use_simple = { name = "quaff",
     use = function(self,who)
-        who:heal(-who.max_life*0.1)
+		local d = rng.dice(1,8) + 5
+        who:heal(-d)
+		game.logSeen(who, ("%s heals %d damage"):format(who.name:capitalize(), -d))
         return {used = true, destroy = true}
   end
   },
 }
 
+newEntity{
+	name = " of inflict moderate wounds", suffix = true,
+	level_range = {5, 15},
+	rarity = 10,
+	cost = 0,
+    school = "necromancy",
+    use_simple = { name = "quaff",
+    use = function(self,who)
+		local d = rng.dice(2,8) + 5
+        who:heal(-d)
+		game.logSeen(who, ("%s heals %d damage"):format(who.name:capitalize(), -d))
+        return {used = true, destroy = true}
+  end
+  },
+}
 
 --Buffs
 newEntity{
