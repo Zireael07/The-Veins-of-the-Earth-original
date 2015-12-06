@@ -1345,6 +1345,22 @@ function _M:getStatForSpell(class)
 	end
 end
 
+function _M:getSpellFocus(ab)
+	local player = game.player
+	local ret = 0
+	local tt = self:getTalentTypeFrom(ab.type[1])
+	if self:knowTalent(self.T_ABJURATION_SPELL_FOCUS) and tt.name == "abjuration" then ret = 2 end
+	if self:knowTalent(self.T_CONJURATION_SPELL_FOCUS) and tt.name == "conjuration" then ret = 2 end
+	if self:knowTalent(self.T_DIVINATION_SPELL_FOCUS) and tt.name == "divination" then ret = 2 end
+	if self:knowTalent(self.T_ENCHANTMENT_SPELL_FOCUS) and tt.name == "enchantment" then ret = 2 end
+	if self:knowTalent(self.T_EVOCATION_SPELL_FOCUS) and tt.name == "evocation" then ret = 2 end
+	if self:knowTalent(self.T_ILLUSION_SPELL_FOCUS) and tt.name == "illusion" then ret = 2 end
+	if self:knowTalent(self.T_NECROMANCY_SPELL_FOCUS) and tt.name == "necromancy" then ret = 2 end
+	if self:knowTalent(self.T_TRANSMUTATION_SPELL_FOCUS) and tt.name == "transmutation" then ret = 2 end
+
+	return ret
+end
+
 function _M:getSpellDC(ab)
 	local dc = 10
 	if ab.level then dc = dc + ab.level end
@@ -1361,6 +1377,8 @@ function _M:getSpellDC(ab)
 	end
 
 	dc = dc + math.floor((self:getStat(stat_used)-10)/2)
+
+	dc = dc + (self:getSpellFocus(ab) or 0)
 
 	return dc
 end

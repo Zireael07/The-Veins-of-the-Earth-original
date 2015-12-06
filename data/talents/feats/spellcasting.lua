@@ -60,3 +60,75 @@ newFeat{
         self.inc_damage = nil
     end
 }
+
+newFeat{
+    name = "Abjuration Spell Focus",
+    type = {"class/spellcasting", 1},
+    points = 1,
+    mode = "passive",
+    is_feat = true,
+    info = [[This feat increases the DC of your abjuration spells by 2.]],
+}
+
+newFeat{
+    name = "Conjuration Spell Focus",
+    type = {"class/spellcasting", 1},
+    points = 1,
+    mode = "passive",
+    is_feat = true,
+    info = [[This feat increases the DC of your conjuration spells by 2.]],
+}
+
+newFeat{
+    name = "Divination Spell Focus",
+    type = {"class/spellcasting", 1},
+    points = 1,
+    mode = "passive",
+    is_feat = true,
+    info = [[This feat increases the DC of your divination spells by 2.]],
+}
+
+newFeat{
+    name = "Enchantment Spell Focus",
+    type = {"class/spellcasting", 1},
+    points = 1,
+    mode = "passive",
+    is_feat = true,
+    info = [[This feat increases the DC of your enchantment spells by 2.]],
+}
+
+newFeat{
+    name = "Evocation Spell Focus",
+    type = {"class/spellcasting", 1},
+    points = 1,
+    mode = "passive",
+    is_feat = true,
+    info = [[This feat increases the DC of your evocation spells by 2.]],
+}
+
+newFeat{
+    name = "Illusion Spell Focus",
+    type = {"class/spellcasting", 1},
+    points = 1,
+    mode = "passive",
+    is_feat = true,
+    info = [[This feat increases the DC of your illusion spells by 2.]],
+}
+
+newFeat{
+    name = "Necromancy Spell Focus",
+    type = {"class/spellcasting", 1},
+    points = 1,
+    mode = "passive",
+    is_feat = true,
+    info = [[This feat increases the DC of your necromancy spells by 2.]],
+}
+
+newFeat{
+    name = "Transmutation Spell Focus",
+    type = {"class/spellcasting", 1},
+    points = 1,
+    mode = "passive",
+    is_feat = true,
+    info = [[This feat increases the DC of your transmutation spells by 2.]],
+}
