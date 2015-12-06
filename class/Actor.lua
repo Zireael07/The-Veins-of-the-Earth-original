@@ -1333,16 +1333,16 @@ end
 --Helper function for caster classes
 --DOESN'T WORK YET!!!
 function _M:getStatForSpell(class)
-    if self.classes and self.classes[class] then
-        if class == "Wizard" then return self:getInt() end
-        if class == "Ranger" then return self:getWis() end
-        if class == "Cleric" then return self:getWis() end
-        if class == "Bard" then return self:getCha() end
-        if class == "Shaman" then return self:getCha() end
-        if class == "Sorcerer" then return self:getCha() end
-        return nil
-    end
-    return nil
+	local stat_used = "cha" --default for monsters
+	if self.classes then
+		if self.classes["Wizard"] and self:spellIsKind(ab, "arcane") then stat_used = "int" end
+		if self.classes["Ranger"] and self:spellIsKind(ab, "divine")then stat_used = "wis" end
+		if self.classes["Cleric"] and self:spellIsKind(ab, "divine") then stat_used = "wis" end
+		if self.classes["Druid"] and self:spellIsKind(ab, "divine") then stat_used = "wis" end
+		if self.classes["Bard"] and self:spellIsKind(ab, "arcane") then stat_used = "cha" end
+		if self.classes["Shaman"] and self:spellIsKind(ab, "divine") then stat_used = "cha" end
+		if self.classes["Sorcerer"] and self:spellIsKind(ab, "arcane") then stat_used = "cha" end
+	end
 end
 
 function _M:getSpellDC(ab)
