@@ -420,7 +420,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
 
     if dam > 0 then
       local damtype = DamageType.PHYSICAL
-      DamageType:get(damtype).projector(self, target.x, target.y, damtype, math.max(0, dam))
+      DamageType:get(damtype).projector(self, target.x, target.y, damtype, math.max(1, dam))
     end
 
     --Player makes Listen checks if s/he can't see it happen
@@ -447,7 +447,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
       self:logCombat(target, ("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name))
     end
 
-    target:takeHit(dam, self, {damtype=damtype})
+--    target:takeHit(dam, self, {damtype=damtype})
 end
 
 
