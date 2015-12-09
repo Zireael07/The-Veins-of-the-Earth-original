@@ -836,14 +836,14 @@ if ((self.life or 0) - (value or 0) < 0) then
 	--only leftover value goes into wounds
 	if (value or 0) > 0 then
 		value_remaining = math.max((value or 0) - (self.life or 0))
-		--log the wounds, too
---		game.logSeen(self, "%s hits %s for %s%d %s wounds.#LAST#", src:getLogName():capitalize(), self:getLogName(), DamageType:get(death_note).text_color or "#aaaaaa#", value, DamageType:get(death_note).name)
 	end
 
 	--don't change vitality
 	self.life = 0
 
 	self.wounds = self.wounds - (value_remaining or 0)
+	--log the wounds, too
+	game.logSeen(self, "%s hits %s for %s wounds.#LAST#", src:getLogName():capitalize(), self:getLogName(), value_remaining)
 
 	--we're tired
 	self:setEffect(self.EFF_FATIGUE, 1, {})
