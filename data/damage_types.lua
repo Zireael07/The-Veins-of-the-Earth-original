@@ -82,7 +82,7 @@ setDefaultProjector(function(src, x, y, type, dam)
 			-- Log damage for later
 			if not DamageType:get(type).hideMessage then
 				local visible, srcSeen, tgtSeen = game:logVisible(src, target)
-				if visible then -- don't log damage that the player doesn't know about
+				if visible and dam > 0 then -- don't log damage that the player doesn't know about
 				local source = src.__project_source or src
 					if src.__is_actor then
 						game.logSeen(target, "%s hits %s for %s%d %s damage. %s#LAST#", src:getLogName():capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name, damagelog)
