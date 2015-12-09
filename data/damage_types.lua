@@ -23,19 +23,6 @@ setDefaultProjector(function(src, x, y, type, dam)
 	if target then
 
 		if dam > 0 then
-			local sx, sy = game.level.map:getTileToScreen(x, y)
-			if target:takeHit(dam, src) then
-				if src == game.player or target == game.player then
-					game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -3, "Kill!", {255,0,255})
-				end
-			else
-				if src == game.player then
-					game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -3, tostring(-math.ceil(dam)), {0,255,0})
-				elseif target == game.player then
-					game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -3, tostring(-math.ceil(dam)), {255,0,0})
-				end
-			end
-
 			local damagelog = ""
 
 			-- d20 resistances - flat damage reduction
@@ -77,6 +64,20 @@ setDefaultProjector(function(src, x, y, type, dam)
 
 			local dead
 			dead, dam = target:takeHit(dam, src, {damtype=type})
+
+			local sx, sy = game.level.map:getTileToScreen(x, y)
+			if dead then
+				if src == game.player or target == game.player then
+					game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -3, "Kill!", {255,0,255})
+				end
+			else
+				if src == game.player then
+					game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -3, tostring(-math.ceil(dam)), {0,255,0})
+				elseif target == game.player then
+					game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -3, tostring(-math.ceil(dam)), {255,0,0})
+				end
+			end
+
 
 			-- Log damage for later
 			if not DamageType:get(type).hideMessage then
