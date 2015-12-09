@@ -2115,6 +2115,7 @@ function _M:getAC(log)
 
 	--Shield Focus feat
 	if self.combat_shield and self:knowTalent(self.T_SHIELD_FOCUS) then
+		 local shield = self.combat_shield
 		 shield = shield + 2
 		 if log then log_ac = log_ac.."Shield Focus +2 " end
 	 end
