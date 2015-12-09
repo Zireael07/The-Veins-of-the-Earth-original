@@ -225,8 +225,16 @@ newTalent{
 
 				game.logPlayer(self, "%s throws a potion at %s!", self.name, target.name)
 
-				o:useObject(target)
-			--	o:useObject(self)
+				local weapon = self
+				local attacklog = ""
+		        local damagelog = ""
+
+				local hit, crit = self:attackRoll(target, weapon, attackmod, 1, attacklog, damagelog, true, true)
+				if hit then
+					o:useObject(target)
+				end
+
+				self:removeObject(self:getInven("INVEN"), item)
             end)
         return true
     end,
