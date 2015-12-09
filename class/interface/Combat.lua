@@ -168,7 +168,7 @@ function _M:attackTarget(target, noenergy)
    end
 end
 
-function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_sneak)
+function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_sneak, touch)
    local d = rng.range(1,20)
    local hit = true
    local crit = false
@@ -184,6 +184,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
    attack, attacklog = self:combatAttack(weapon)
 
    local ac = target:getAC()
+   if touch then ac = target:getAC(false, true) end
 
    -- Hit check
     if self:isConcealed(target) and rng.chance(self:isConcealed(target)) then
@@ -195,8 +196,12 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
     end
 
     -- log message
-    self:attackMessage(target, attacklog, d, attack, ac)
-
+    if touch then
+        self:attackMessage(target, hit, attacklog, d, attack, ac, "touch")
+    else
+    --    if weapon.ranged then end
+        self:attackMessage(target, hit, attacklog, d, attack, ac)
+    end
 
     -- Crit check
     local threat = 0 + (weapon and weapon.combat.threat or 0)
@@ -237,27 +242,35 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
 end
 
 
-function _M:attackMessage(target, attacklog, d, attack, ac)
+function _M:attackMessage(target, hit, attacklog, d, attack, ac, flag)
     if hit then
-    local chance = rng.dice(1,3)
-      if chance == 1 then
-          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      elseif chance == 2 then
-          self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else
-          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      end
+        if flag == "touch" then
+            self:logCombat(target, ("%s makes a touch attack, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+        else
 
+            local chance = rng.dice(1,3)
+              if chance == 1 then
+                  self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+              elseif chance == 2 then
+                  self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+              else
+                  self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+              end
+        end
     else
+        if flag == "touch" then
+            self:logCombat(target, ("%s makes a touch attack, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+        else
 
-    local chance = rng.dice(1,3)
-      if chance == 1 then
-          self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      elseif chance == 2 then
-          self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else
-        self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      end
+            local chance = rng.dice(1,3)
+              if chance == 1 then
+                  self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+              elseif chance == 2 then
+                  self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+              else
+                self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+              end
+        end
   end
 
 end
