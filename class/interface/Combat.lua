@@ -194,30 +194,8 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
     elseif d + attack < ac then hit = false
     end
 
-   -- log message
-    if hit then
-
-    local chance = rng.dice(1,3)
-      if chance == 1 then
-          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      elseif chance == 2 then
-          self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else
-          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      end
-
-    else
-
-    local chance = rng.dice(1,3)
-      if chance == 1 then
-          self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      elseif chance == 2 then
-          self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      else
-        self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
-      end
-
-    end
+    -- log message
+    self:attackMessage(target, attacklog, d, attack, ac)
 
 
     -- Crit check
@@ -258,6 +236,31 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
     if hit then game.level.map:particleEmitter(target.x, target.y, 1, "melee_attack", {color=target.blood_color}) end
 end
 
+
+function _M:attackMessage(target, attacklog, d, attack, ac)
+    if hit then
+    local chance = rng.dice(1,3)
+      if chance == 1 then
+          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      elseif chance == 2 then
+          self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      else
+          self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      end
+
+    else
+
+    local chance = rng.dice(1,3)
+      if chance == 1 then
+          self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      elseif chance == 2 then
+          self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      else
+        self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+      end
+  end
+
+end
 
 function _M:dealDamage(target, weapon, crit, sneak)
     local dam = rng.dice(weapon.combat.dam[1], weapon.combat.dam[2])
