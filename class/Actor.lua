@@ -2082,7 +2082,7 @@ function _M:classFeat(tid)
 end
 
 --AC, Sebsebeleb & Zireael
-function _M:getAC(log)
+function _M:getAC(log, touch)
 	--Add logging
 	local log_ac = ""
 
@@ -2091,7 +2091,12 @@ function _M:getAC(log)
 --	local base = self.combat_base_ac or 10
 	local ac_bonuses = 0
 
-	local ac_bonuses_table = { "armor", "shield", "natural", "magic_armor", "magic_shield", "dodge", "protection", "untyped", "parry" }
+	local ac_notfortouch = { "armor", "shield", "natural", "magic_armor", "magic_shield", }
+	local ac_bonuses_table = { "dodge", "protection", "untyped", "parry" }
+
+	if not touch then
+		table.append(ac_bonuses_table, ac_notfortouch)
+	end
 
 	for i, source in pairs(ac_bonuses_table) do
 	--	local source = source
