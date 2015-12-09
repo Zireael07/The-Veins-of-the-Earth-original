@@ -282,7 +282,7 @@ function _M:act()
 	--Check if stats aren't 0
 	self:zeroStats()
 	--Death
-	self:deathStuff()
+--	self:deathStuff()
 
 	--Poison timer
 	if self.poison_timer and not self:hasEffect(self.EFF_DELAY_POISON) then self.poison_timer = self.poison_timer - 1 end
@@ -813,54 +813,7 @@ end
 
 --End of desc stuff
 --Death & dying related stuff
-function _M:deathStuff(value, src, death_note)
---Wounds system (a combination of SRD & PF)
-if (self.life - (value or 0)) >= 0 then
-
-	--award XP
-	if (value or 0) > 0 then
-		--half original XP value divided by value%
-		local hp_perc = value /self.max_life
-		local xp = math.round(self:worthExp(killer)*hp_perc)
-		if src and src.__is_actor then
-			src:gainExp(xp)
-		end
-	end
-	return end
-
---Out of life (vitality points)
-if ((self.life or 0) - (value or 0) < 0) then
-	local value_remaining = 0
-	if not death_note then death_note = DamageType.PHYSICAL end
-
-	--only leftover value goes into wounds
-	if (value or 0) > 0 then
-		value_remaining = math.max((value or 0) - (self.life or 0))
-	end
-
-	--don't change vitality
-	self.life = 0
-
-	self.wounds = self.wounds - (value_remaining or 0)
-	--log the wounds, too
-	game.logSeen(self, "%s hits %s for %s wounds.#LAST#", src:getLogName():capitalize(), self:getLogName(), value_remaining)
-
-	--we're tired
-	self:setEffect(self.EFF_FATIGUE, 1, {})
-
-	--if we're healed, remove disabled status
-	if self.wounds > self.max_wounds/2 and self:hasEffect(self.EFF_DISABLED) then
-		self:removeEffect(self.EFF_DISABLED)
-	end
-
-	--if below threshold, we're disabled
-	if self.wounds <= self.max_wounds/2 then self:setEffect(self.EFF_DISABLED, 1, {}) end
-
-	--wounds can't go negative
-	if (self.wounds - (value_remaining or 0)) < 0 then self.wounds = 0 end
-
-	--if out of wounds, we're dead
-	if (self.wounds == 0 or (self.wounds - (value_remaining or 0)) == 0) and not self.dead then
+function _M:deathStuff(src, death_note)
 		--remove effects
 		if self:hasEffect(self.EFF_DISABLED) then self:removeEffect(self.EFF_DISABLED, true) end
 		if self:hasEffect(self.EFF_FATIGUE) then self:removeEffect(self.EFF_FATIGUE, true) end
@@ -869,10 +822,11 @@ if ((self.life or 0) - (value or 0) < 0) then
 		for i, p in ipairs(ps) do self:removeParticles(p) end
 
 		--Add a log message on death
-		game.logSeen(self, "#{bold}#%s killed %s!#{normal}#", src.name:capitalize(), self.name)
+		if src then
+			game.logSeen(self, "#{bold}#%s killed %s!#{normal}#", src.name:capitalize(), self.name)
+		end
 		if not death_note then death_note = DamageType.PHYSICAL end
 		self:die(src, death_note)
-	end
 end
 
 --Standard d20 rules follow
@@ -923,10 +877,9 @@ end
 		for i, p in ipairs(ps) do self:removeParticles(p) end
 
 		self:die(src) end]]
-end
 
 
-
+--- Called before taking a hit
 function _M:onTakeHit(value, src, death_note)
 	src = src or {}
 	if value <=0 then return 0 end
@@ -941,6 +894,44 @@ function _M:onTakeHit(value, src, death_note)
 	if self:hasEffect(self.EFF_FASCINATE) then
 		self:removeEffect(self.EFF_FASCINATE)
 		game.logSeen(self, "%s is no longer fascinated!", self:getLogName())
+	end
+
+	--award XP
+	if (value or 0) > 0 and self.life > 0 then
+		--half original XP value divided by value%
+		local hp_perc = value /self.max_life
+		local xp = math.round(self:worthExp(killer)*hp_perc)
+		if src and src.__is_actor then
+			src:gainExp(xp)
+		end
+	end
+
+	--Wounds system (a combination of SRD & PF)
+	if value > self.life and value > 0 then
+
+		local wounds_remaining = value - self.life
+		value = value - self.life
+		self.life = 0
+	--	value = 0
+		self.wounds = self.wounds - wounds_remaining
+
+		--log the wounds, too
+		game.logSeen(self, "%s hits %s for %s wounds.#LAST#", src:getLogName():capitalize(), self:getLogName(), wounds_remaining)
+
+		if self.life <= 1 then value = 0 end
+
+		wounds_remaining = 0
+		if self.wounds < self.max_wounds then
+			if self.wounds <= self.max_wounds/2 then
+				self:setEffect(self.EFF_DISABLED, 1, {})
+			else
+				self:setEffect(self.EFF_FATIGUE, 1, {})
+			end
+		end
+		--we're out of wounds, die
+		if self.wounds <= 0 and not self.dead then
+			self:deathStuff(src, death_note)
+		end
 	end
 
 	-- Split ?
@@ -965,9 +956,6 @@ function _M:onTakeHit(value, src, death_note)
 	end
 
 	if self.on_takehit then value = self:check("on_takehit", value, src, death_note) end
-
-	--Death & dying related stuff
-	self:deathStuff(value, src, death_note)
 
 	return value
 end
