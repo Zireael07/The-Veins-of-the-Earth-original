@@ -1,5 +1,17 @@
 CHANGELOG
 
+* bug fix - inability to use stairs (reported by Avagart)
+* bug fix - heal/inflict potions now print a message to log
+* bug fix - Shield Focus feat causing an error in AC code (reported by wobner @ GitP forums)
+* bug fix - log feedback when inflicting wounds
+* bug fix - wounds being applied thrice in a single round
+* bug fix - combat attack printout shows all the situational stuff (it was being overwritten by the generic)
+
+* implement throwing potions at enemies
+* implement touch AC and touch attacks
+* implement spell focus feats
+
+
 BETA 11 - 0.32.0 - 28/11/2015
 
 * bug fix - correct generator path for drow outpost
@@ -38,7 +50,7 @@ BETA 10.5 - 0.31.0 - 19/09/2015
 * bug fix - enforce life being equal to max_life when initing a NPC
 * bug fix - fix wizard not getting his spells
 * bug fix - use elevated level for addons pick (e.g. in stores)
-* bug fix - give wounds to the tutorial boss (kudos to guessingo on Bay12 forums)
+* bug fix - give wounds to the tutorial boss (reported by guessingo on Bay12 forums)
 * bug fix - restore use of provided fonts in the ASCII display
 * bug fix - fix dungeon level display for areas with long names
 * two small Lua fixes from DarkGod (one affecting only Linux/Mac)
@@ -513,7 +525,7 @@ Beta 9 - 0.28.0 - 14/06/2015
 * bug fix - party info not being saved leading to weird bugs [DarkGod]
 * bug fix - no lua errors on clicking spell names in spellbook
 * bug fix - no more silent lua errors due to an oversight in encumbrance logic
-* bug fix - check if item exists before trying to ID it (kudos to lucianogml for reporting)
+* bug fix - check if item exists before trying to ID it (reported by lucianogml)
 * bug fix - naming box in character creation now picks female names correctly
 * bug fix - perks not being cleared correctly
 * bug fix - skill points going into negatives if half-points are present
