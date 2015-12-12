@@ -109,7 +109,8 @@ function _M:attackTarget(target, noenergy)
 
         --Protection from alignments AC penalty
         if target:hasEffect(target.EFF_PROTECT_EVIL) and self:isEvil() then
-            attackmod = attackmod - 2
+    --        self:logCombat(self, ("%s is evil and attacked a protected target."):format(self:getLogName():capitalize()))
+            attackmod = attackmod -2
             attacklog = attacklog.." ProtEvil"
         end
 
@@ -176,12 +177,16 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
 
     --log
     local attacklog = attacklog or ""
+    local attacklog_add = attacklog_add or ""
     local damagelog = damagelog or ""
 
     --First things first!
     self:breakStealth()
 
-   attack, attacklog = self:combatAttack(weapon)
+   attack, attacklog_add = self:combatAttack(weapon)
+
+   attack = attack + atkmod
+   attacklog = attacklog.." "..attacklog_add
 
    local ac = target:getAC()
    if touch then ac = target:getAC(false, true) end
