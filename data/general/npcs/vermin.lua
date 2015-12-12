@@ -11,6 +11,7 @@ newEntity{
 	faction = "vermin",
 	blood_color = colors.GREY,
 	emote_anger = "*click*",
+	alignment = "Neutral",
 	resolvers.wounds()
 }
 
