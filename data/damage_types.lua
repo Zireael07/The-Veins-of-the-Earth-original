@@ -65,7 +65,7 @@ setDefaultProjector(function(src, x, y, type, dam)
 			local dead
 			dead, dam = target:takeHit(dam, src, {damtype=type})
 
-			local sx, sy = game.level.map:getTileToScreen(x, y)
+		--[[	local sx, sy = game.level.map:getTileToScreen(x, y)
 			if dead then
 				if src == game.player or target == game.player then
 					game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -3, "Kill!", {255,0,255})
@@ -76,7 +76,7 @@ setDefaultProjector(function(src, x, y, type, dam)
 				elseif target == game.player then
 					game.flyers:add(sx, sy, 30, (rng.range(0,2)-1) * 0.5, -3, tostring(-math.ceil(dam)), {255,0,0})
 				end
-			end
+			end]]
 
 
 			-- Log damage for later
@@ -84,11 +84,12 @@ setDefaultProjector(function(src, x, y, type, dam)
 				local visible, srcSeen, tgtSeen = game:logVisible(src, target)
 				if visible and dam > 0 then -- don't log damage that the player doesn't know about
 				local source = src.__project_source or src
-					if src.__is_actor then
+					game:delayedLogDamage(src, target, dam, ("%s%d %s#LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), false)
+				--[[	if src.__is_actor then
 						game.logSeen(target, "%s hits %s for %s%d %s damage. %s#LAST#", src:getLogName():capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name, damagelog)
 					else
 						game.logSeen(target, "%s hits %s for %s%d %s damage. %s#LAST#", src.name:capitalize(), target:getLogName(), DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name, damagelog)
-					end
+					end]]
 			--[[	if src.turn_procs and src.turn_procs.is_crit then
 					game:delayedLogDamage(source, target, dam, ("#{bold}#%s%d %s#{normal}##LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), true)
 				else
