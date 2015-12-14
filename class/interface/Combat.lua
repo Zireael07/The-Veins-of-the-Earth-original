@@ -84,7 +84,7 @@ function _M:attackTarget(target, noenergy)
       if self.summoner
       and target:hasEffect(target.EFF_PROTECT_LAW) or target:hasEffect(target.EFF_PROTECT_EVIL) or target:hasEffect(target.EFF_PROTECT_GOOD) or target:hasEffect(target.EFF_PROTECT_CHAOS)
        then
-          self:logCombat(self, ("%s hesitates."):format(self:getLogName():capitalize()))
+          self:logCombat(self, ("#Source# hesitates."))--:format(self:getLogName():capitalize()))
         return
      end
 
@@ -193,7 +193,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
 
    -- Hit check
     if self:isConcealed(target) and rng.chance(self:isConcealed(target)) then
-        self:logCombat(target, ("%s misses the target wildly!"):format(self:getLogName():capitalize()))
+        self:logCombat(target, ("#Source# misses the target wildly!"))--:format(self:getLogName():capitalize()))
         hit = false
     elseif d == 1 then hit = false
     elseif d == 20 then hit = true
@@ -250,30 +250,31 @@ end
 function _M:attackMessage(target, hit, attacklog, d, attack, ac, flag)
     if hit then
         if flag == "touch" then
-            self:logCombat(target, ("%s makes a touch attack, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+            self:logCombat(target, ("#Source# makes a touch attack, #GOLD#hitting#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
         else
 
             local chance = rng.dice(1,3)
-              if chance == 1 then
-                  self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+
+             if chance == 1 then
+                  self:logCombat(target, ("#Source# strikes low, #GOLD#hitting#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
               elseif chance == 2 then
-                  self:logCombat(target, ("%s strikes center, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+                  self:logCombat(target, ("#Source# strikes center, #GOLD#hitting#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
               else
-                  self:logCombat(target, ("%s strikes low, #GOLD#hitting#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+                  self:logCombat(target, ("#Source# strikes high, #GOLD#hitting#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
               end
         end
     else
         if flag == "touch" then
-            self:logCombat(target, ("%s makes a touch attack, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+            self:logCombat(target, ("#Source# makes a touch attack, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
         else
 
             local chance = rng.dice(1,3)
               if chance == 1 then
-                  self:logCombat(target, ("%s strikes low, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+                  self:logCombat(target, ("#Source# strikes low, #DARK_BLUE#missing#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
               elseif chance == 2 then
-                  self:logCombat(target, ("%s strikes center, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+                  self:logCombat(target, ("#Source# strikes center, #DARK_BLUE#missing#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
               else
-                self:logCombat(target, ("%s strikes high, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(self:getLogName():capitalize(), d, attack, d+attack, ac))
+                  self:logCombat(target, ("#Source# strikes high, #DARK_BLUE#missing#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
               end
         end
   end
@@ -300,7 +301,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
     --Sneak attack!
     if sneak and self:isTalentActive(self.T_STEALTH) and self.sneak_attack then
         local sneak_dam = rng.dice(self.sneak_attack, 6)
-        game.log(("%s makes a sneak attack!"):format(self:getLogName():capitalize()))
+        self:logCombat(self, ("#Source# makes a sneak attack!"))
         dam = dam + rng.dice(self.sneak_attack, 6)
 
         --TO DO: fortification
@@ -343,7 +344,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
                 if target.fortification == 1 then
                     local chance = rng.percent(25)
                     if chance then
-                        game.log(("%s's armor protects from the critical hit!"):format(target:getLogName():capitalize()))
+                        self:logCombat(target, ("#Target#'s armor protects from the critical hit!"))
                         dam = dam
                     else
                         dam = dam * (weapon and weapon.combat.critical or 2)
@@ -352,14 +353,14 @@ function _M:dealDamage(target, weapon, crit, sneak)
                 if target.fortification == 3 then
                     local chance = rng.percent(75)
                     if chance then
-                        game.log(("%s's armor protects from the critical hit!"):format(target:getLogName():capitalize()))
+                        self:logCombat(target, ("#Target#'s armor protects from the critical hit!"))
                         dam = dam
                     else
                         dam = dam * (weapon and weapon.combat.critical or 2)
                     end
                 end
                 if target.fortification == 5 then
-                  game.log(("%s's armor protects from the critical hit!"):format(target:getLogName():capitalize()))
+                  self:logCombat(target, ("#Target#'s armor protects from the critical hit!"))
                   dam = dam
                 end
             end
@@ -449,7 +450,7 @@ function _M:dealDamage(target, weapon, crit, sneak)
     if self.poison and not target.dead and target:canBe("poison") then
       local poison = self.poison
       self:applyPoison(poison, target)
-      self:logCombat(target, ("%s tries to poison %s"):format(self:getLogName():capitalize(), target.name))
+      self:logCombat(target, ("#Source# tries to poison #Target#"))--:format(self:getLogName():capitalize(), target.name))
     end
 
 --    target:takeHit(dam, self, {damtype=damtype})
@@ -463,18 +464,19 @@ function _M:applyPoison(poison, target)
   if not poison then return end
 
   if not target:canBe("poison") then
-    self:logCombat(target, "Target seems unaffected by poison")
+    self:logCombat(target, "#Target# seems unaffected by poison")
   end
 
   if target:fortitudeSave(poison_dc[poison]) then
-    self:logCombat(target, ("Target resists poison, DC %d"):format(poison_dc[poison]))
+    self:logCombat(target, ("#Target# resists poison, DC %d"):format(poison_dc[poison]))
 
   --Failed save, set timer for secondary damage
   else
     target.poison_timer = 10
-    if target == game.player then
+--[[    if target == game.player then
       game.log("You are poisoned!")
-    else game.log("Target is poisoned!") end
+    else game.log("Target is poisoned!") end]]
+    self:logCombat(target, "#Target# is poisoned!")
       --Failed save, time for primary poison damage
       if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MIDDLING_STR, 10, {}) end
       if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 10, {}, true) end
@@ -508,9 +510,10 @@ function _M:applyPoison(poison, target)
     --Timer's up!
     if target:fortitudeSave(poison_dc[poison]) then game.log(("Target resists poison, DC %d"):format(poison_dc[poison]))
     else
-     if target == game.player then --game.flashLog(game.flash.BAD, "You are poisoned!")
+        self:logCombat(target, "#Target# is poisoned!")
+    --[[ if target == game.player then --game.flashLog(game.flash.BAD, "You are poisoned!")
         game.log("You are poisoned!")
-      else game.log("Target is poisoned!") end
+      else game.log("Target is poisoned!") end]]
       --Secondary damage hits!
       if poison == "medium_spider" then target:setEffect(target.EFF_POISON_MEDIUM_STR, 20, {}, true) end
       if poison == "small_centipede" then target:setEffect(target.EFF_POISON_SMALL_CENTIPEDE, 20, {}, true) end
@@ -716,7 +719,7 @@ function _M:provokeAoO(x, y)
         	if dist <= 2 and not act.madeAoO then --TODO: or 3 and wielding a polearm
                 local weapon = (act:getInven("MAIN_HAND") and act:getInven("MAIN_HAND")[1]) or self
                 if not weapon.ranged then
-                    act:logCombat(act, ("%s makes an attack of opportunity!"):format(act:getLogName():capitalize()))
+                    act:logCombat(act, ("#Source# makes an attack of opportunity!"))--:format(act:getLogName():capitalize()))
                     act:attack(self, true)
                     act.madeAoO = true
                 end
