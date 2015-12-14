@@ -265,16 +265,16 @@ function _M:attackMessage(target, hit, attacklog, d, attack, ac, flag)
         end
     else
         if flag == "touch" then
-            self:logCombat(target, ("#Source# makes a touch attack, #DARK_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
+            self:logCombat(target, ("#Source# makes a touch attack, #LIGHT_BLUE#missing#LAST# the enemy! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
         else
 
             local chance = rng.dice(1,3)
               if chance == 1 then
-                  self:logCombat(target, ("#Source# strikes low, #DARK_BLUE#missing#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
+                  self:logCombat(target, ("#Source# strikes low, #LIGHT_BLUE#missing#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
               elseif chance == 2 then
-                  self:logCombat(target, ("#Source# strikes center, #DARK_BLUE#missing#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
+                  self:logCombat(target, ("#Source# strikes center, #LIGHT_BLUE#missing#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
               else
-                  self:logCombat(target, ("#Source# strikes high, #DARK_BLUE#missing#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
+                  self:logCombat(target, ("#Source# strikes high, #LIGHT_BLUE#missing#LAST# #target#! %d + %d = %d vs AC %d".." "..attacklog):format(d, attack, d+attack, ac))
               end
         end
   end
@@ -453,7 +453,6 @@ function _M:dealDamage(target, weapon, crit, sneak)
       self:logCombat(target, ("#Source# tries to poison #Target#"))--:format(self:getLogName():capitalize(), target.name))
     end
 
---    target:takeHit(dam, self, {damtype=damtype})
 end
 
 
