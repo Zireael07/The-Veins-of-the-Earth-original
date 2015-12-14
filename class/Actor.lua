@@ -342,32 +342,31 @@ function _M:move(x, y, force)
 
 	local ox, oy = self.x, self.y
 
-	 -- Never move, but allow attacking (from Qi Daozei)
-        if not force and self:attr("never_move_but_attack") then
-            -- NOTE: this asks the collision code to check for attacking - taken from ToME
-            if not game.level.map:checkAllEntities(x, y, "block_move", self, true) then
-                game.logPlayer(self, "You are unable to move!")
-            end
-            return false
-        end
-
 	if force or self:enoughEnergy() then
 
-		-- Check for confusion or random movement flag.
-		local rand_prob = self.ai_state and self.ai_state.random_move or 0
-		local rand_move = self:hasEffect(self.EFF_CONFUSED) or rng.range(1,100) <= rand_prob
-		if rand_move and self.x and self.y then
-			x, y = self.x + rng.range(-1,1), self.y + rng.range(-1,1)
+		-- Confused ?
+		if not force and self:attr("confused") then
+			if rng.percent(self:attr("confused")) then
+				x, y = self.x + rng.range(-1, 1), self.y + rng.range(-1, 1)
+			end
 		end
-
-		moved = engine.Actor.move(self, x, y, force)
+		-- Never move, but allow attacking (from Qi Daozei)
+           if not force and self:attr("never_move_but_attack") then
+               -- NOTE: this asks the collision code to check for attacking - taken from ToME
+               if not game.level.map:checkAllEntities(x, y, "block_move", self, true) then
+                   game.logPlayer(self, "You are unable to move!")
+               end
+               return false
+		   else
+			   moved = engine.Actor.move(self, x, y, force)
+		   end
 
 		--Attacks of opportunity
-		if not force and moved and (self.x ~= ox or self.y ~= oy) then
+		if not force and moved and ox and oy and (ox ~= self.x or oy ~= self.y) then
 			--logging
-		--[[	if self == game.player then
+			if self == game.player then
 				game.log("Checking for AoO: ox %d, oy %d, x %d, y %d", ox, oy, x, y)
-			end]]
+			end
 
 			if self:doesProvokeAoO(ox, oy, x, y) then self:provokeAoO(ox, oy) end
 		end
