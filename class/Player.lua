@@ -585,7 +585,7 @@ end
 		  map._map:setShown(shown[1] * (tint.r+0.4), shown[2] * (tint.g+0.4), shown[3] * (tint.b+0.4), shown[4])
   	  end
       game.level.map.remembers(x, y, true) -- Remember the tile
-    end, true, true, true)
+  end, true, false, true)
 
   --If our darkvision is better than our lite, check it.
   if (self:attr("infravision") or 0) > self.lite then
@@ -594,7 +594,7 @@ end
         game.level.map.seens(x, y, 0.75) -- If we only see due to darkvision, it looks dark
       end
       game.level.map.remembers(x, y, true)
-    end, true, true, true)
+  end, true, false, true)
   end
 
   --else (so that npcs may still target us while blind)
