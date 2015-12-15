@@ -363,11 +363,6 @@ function _M:move(x, y, force)
 
 		--Attacks of opportunity
 		if not force and moved and ox and oy and (ox ~= self.x or oy ~= self.y) then
-			--logging
-			if self == game.player then
-				game.log("Checking for AoO: ox %d, oy %d, x %d, y %d", ox, oy, x, y)
-			end
-
 			if self:doesProvokeAoO(ox, oy, x, y) then self:provokeAoO(ox, oy) end
 		end
 
