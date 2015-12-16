@@ -910,7 +910,7 @@ function _M:onTakeHit(value, src, death_note)
 		self.wounds = self.wounds - wounds_remaining
 
 		--log the wounds, too
-		game.logSeen(self, "%s hits %s for %s wounds.#LAST#", src:getLogName():capitalize(), self:getLogName(), wounds_remaining)
+		game:delayedLogMessage(src, self, "wounds", "#Source# hits #target# for %s wounds.#LAST#", math.floor(wounds_remaining))
 
 		if self.life <= 1 then value = 0 end
 
@@ -1179,7 +1179,7 @@ end
 function _M:gainExp(value)
 	self.changed = true
 	if self == game.player then
-		game.log("Gained "..value.." XP.")
+		game.log("#LIGHT_GREEN#Gained "..value.." XP.#LAST#")
 		self.old_exp = self.exp
 	end
 
@@ -1195,29 +1195,6 @@ function _M:gainExp(value)
 	end
 end
 
-
-function _M:levelupMsg()
-  -- Subclasses handle the actual mechanics of leveling up; here we just
-  -- print the message and add the flyer.
-	local stale = false
-	if self.level_hiwater then
-		stale = self.level_hiwater >= self.level
-		self.level_hiwater = math.max(self.level_hiwater, self.level)
-	end
-
-	--Add flash for player
-	if self == game.player then flash = game.flash.GOOD
-	else flash = game.flash.NEUTRAL end
-
-	game.logSeen(self, flash, "#00FFFF#%s %s level %d.#LAST#", self.name, stale and 'regains' or 'gains', self.level)
-	if self.x and self.y and game.level.map.seens(self.x, self.y) then
-		local sx, sy = game.level.map:getTileToScreen(self.x, self.y)
-		game.flyers:add(sx, sy, 80, 0.5, -2, 'LEVEL UP!', stale and {255, 0, 255} or {0, 255, 255})
-	end
-
-	-- Return true if this is the first time we've hit this level.
-	return not stale
-end
 
 function _M:attack(target)
 	self:bumpInto(target)
@@ -2300,8 +2277,8 @@ function _M:levelup()
 	if self.x and self.y and game.party:hasMember(self) and not self.silent_levelup then
 		local x, y = game.level.map:getTileToScreen(self.x, self.y)
 		game.flyers:add(x, y, 80, 0.5, -2, "LEVEL UP!", {0,255,255})
-		game.log("#00ffff#Welcome to level %d [%s].", self.level, self.name:capitalize())
-		if game.player ~= self then game.log = "Select "..self.name.. " in the party list and press G to use them." end
+		game.log("#{bold}##LIGHT_GREEN#Welcome to level %d [%s].#LAST##{normal}#", self.level, self.name:capitalize())
+		if game.player ~= self then game.log = "#00ffff#Select "..self.name.. " in the party list and press G to use them.#LAST#" end
 	end
 
 	--Level up achievements
