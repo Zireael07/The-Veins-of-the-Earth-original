@@ -2097,7 +2097,7 @@ function _M:getAC(log, touch)
 	end
 end
 
---Saving throws, Sebsebeleb & Zireael
+--Saving throws, saves, Sebsebeleb & Zireael
 function _M:reflexSave(dc)
 	if not dc or type(dc) ~= "number" then return end
 
@@ -2105,7 +2105,7 @@ function _M:reflexSave(dc)
 	local save = math.floor(self.level / 4) + (self:attr("reflex_save") or 0) + math.max(self:getDexMod(), self:getIntMod())
 
 	if self == game.player then
-		local s = ("Reflex save: %d roll + bonus %d = %d versus DC %d"):format(
+		local s = ("#STEEL_BLUE#Reflex save#LAST#: %d roll + bonus %d = %d versus DC %d"):format(
 			roll, save, roll+save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
@@ -2136,7 +2136,7 @@ function _M:fortitudeSave(dc)
 	local save = math.floor(self.level / 4) + (self:attr("fortitude_save") or 0) + math.max(self:getConMod(), self:getStrMod())
 
 	if self == game.player then
-		local s = ("Fortitude save: %d roll + %d bonus = %d versus DC %d"):format(
+		local s = ("#STEEL_BLUE#Fortitude save#LAST#: %d roll + %d bonus = %d versus DC %d"):format(
 			roll, save, roll+save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
@@ -2166,7 +2166,7 @@ function _M:willSave(dc)
 	local save = math.floor(self.level / 4) + (self:attr("will_save") or 0) + math.max(self:getWisMod(), self:getChaMod())
 
 	if self == game.player then
-		local s = ("Will save: %d roll + %d bonus = %d versus DC %d"):format(
+		local s = ("#STEEL_BLUE#Will save#LAST#: %d roll + %d bonus = %d versus DC %d"):format(
 			roll, save, roll+save, dc)--, success and "success" or "failure")
 		game.log(s)
 	end
