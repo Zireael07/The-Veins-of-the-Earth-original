@@ -1,5 +1,5 @@
 -- ToME - Tales of Maj'Eyal
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Copyright (C) 2009 - 2015 Nicolas Casalini
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -18,14 +18,18 @@
 -- darkgod@te4.org
 
 return {
-	frag = "textoutline",
+	frag = "objectsoutline",
 	vert = nil,
 	args = {
 		tex = { texture = 0 },
 		textSize = textSize or {1, 1},
 		intensity = intensity or 0.3,
 		outlineSize = outlineSize or {2, 2},
-		outlineColor = outlineColor or {0, 1, 0.5, 0.4},
+	--	outlineColor = outlineColor or {0, 1, 0.5, 0.4}, --greenish-blue (ToME default)
+	--	outlineColor = outlineColor or {1, 0, 0.5, 0.4}, --red
+	--	outlineColor = outlineColor or {0, 0.5, 1, 0.4}, --blue
+		outlineColor = outlineColor or {1, 1, 0.5, 0.4}, --yellow
+
 	},
 	clone = false,
 	permanent = true,
