@@ -1447,7 +1447,9 @@ function _M:setupMouse(reset)
 	if reset == nil or reset then self.mouse:reset() end
 
 	local cur_obj = nil
+	local cur_act = nil
 	local outline = Shader.new("objectsoutline").shad
+	local actor_outline = Shader.new("actoroutline").shad
 
 	self.mouse:registerZone(Map.display_x, Map.display_y, Map.viewport.width, Map.viewport.height, function(button, mx, my, xrel, yrel, bx, by, event, extra)
 
@@ -1460,6 +1462,17 @@ function _M:setupMouse(reset)
 				outline:uniTextSize(Map.tile_w, Map.tile_h)
 				o._mo:shader(outline)
 				cur_obj = o
+			end
+		end
+
+		--Actor outline
+		if core.shader.allow("adv") and actor_outline then
+			local a = self.level.map(tmx, tmy, Map.ACTOR)
+			if cur_act and cur_act._mo then cur_act._mo:shader(nil) end
+			if a and a._mo and not a.shader then
+				actor_outline:uniTextSize(Map.tile_w, Map.tile_h)
+				a._mo:shader(actor_outline)
+				cur_act = a
 			end
 		end
 
