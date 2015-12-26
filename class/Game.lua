@@ -1446,7 +1446,23 @@ end
 function _M:setupMouse(reset)
 	if reset == nil or reset then self.mouse:reset() end
 
+	local cur_obj = nil
+	local outline = Shader.new("objectsoutline").shad
+
 	self.mouse:registerZone(Map.display_x, Map.display_y, Map.viewport.width, Map.viewport.height, function(button, mx, my, xrel, yrel, bx, by, event, extra)
+
+		--Item outline
+		local tmx, tmy = game.level.map:getMouseTile(mx, my)
+		if core.shader.allow("adv") and outline then
+			local o = self.level.map(tmx, tmy, Map.OBJECT)
+			if cur_obj and cur_obj._mo then cur_obj._mo:shader(nil) end
+			if o and o._mo and not o.shader then
+				outline:uniTextSize(Map.tile_w, Map.tile_h)
+				o._mo:shader(outline)
+				cur_obj = o
+			end
+		end
+
 		-- Handle targeting
 		if self:targetMouse(button, mx, my, xrel, yrel, event) then return end
 
