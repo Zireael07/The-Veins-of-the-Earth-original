@@ -1,15 +1,21 @@
 CHANGELOG
 
+BETA 11.5 - 0.33.0 - 03/01/2016
+
 * bug fix - inability to use stairs (reported by Avagart)
 * bug fix - heal/inflict potions now print a message to log
 * bug fix - Shield Focus feat causing an error in AC code (reported by wobner @ GitP forums)
 * bug fix - log feedback when inflicting wounds
 * bug fix - wounds being applied thrice in a single round
 * bug fix - combat attack printout shows all the situational stuff (it was being overwritten by the generic)
+* bug fix - due to copy and paste error, actors in FOV weren't being stored for the player, which broke a lot of functions (such as a check for being able to hide, being threatened or triggering AoOs)
+* bug fix - the message for a powerful item on level never showed up due to bad logic
 
 * implement throwing potions at enemies
 * implement touch AC and touch attacks
 * implement spell focus feats
+* enable delayedLogMessages
+* add yellow highlight to items and red highlight to actors
 
 
 BETA 11 - 0.32.0 - 28/11/2015
