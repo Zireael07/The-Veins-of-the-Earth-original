@@ -6,7 +6,7 @@ local Talents = require "engine.interface.ActorTalents"
 
 --Standard
 newEntity{
-	name = " of cure light wounds", suffix = true,
+	name = " of cure light wounds", suffix = true, addon=true,
 	level_range = {1, 10},
 	rarity = 5,
 --	cost = 50,
@@ -23,7 +23,7 @@ newEntity{
 }
 
 newEntity{
-	name = " of cure moderate wounds", suffix = true,
+	name = " of cure moderate wounds", suffix = true, addon=true,
 	level_range = {2, 10},
 	rarity = 10,
 --	cost = 300,
@@ -41,7 +41,7 @@ newEntity{
 
 --Heal a percentage
 newEntity{
-	name = " of heal light wounds", suffix = true,
+	name = " of heal light wounds", suffix = true, addon=true,
 	level_range = {1, 10},
 	rarity = 25,
 --	cost = 900,
@@ -58,7 +58,7 @@ newEntity{
 }
 
 newEntity{
-	name = " of heal moderate wounds", suffix = true,
+	name = " of heal moderate wounds", suffix = true, addon=true,
 	level_range = {1, 10},
 	rarity = 25,
 --	cost = 900,
@@ -75,7 +75,7 @@ newEntity{
 }
 
 newEntity{
-	name = " of heal serious wounds", suffix = true,
+	name = " of heal serious wounds", suffix = true, addon=true,
 	level_range = {5, 10},
 	rarity = 15,
 --	cost = 1200,
@@ -93,7 +93,7 @@ newEntity{
 
 --EVIL!!
 newEntity{
-	name = " of inflict light wounds", suffix = true,
+	name = " of inflict light wounds", suffix = true, addon=true,
 	level_range = {1, 10},
 	rarity = 5,
 	cost = 0,
@@ -109,7 +109,7 @@ newEntity{
 }
 
 newEntity{
-	name = " of inflict moderate wounds", suffix = true,
+	name = " of inflict moderate wounds", suffix = true, addon=true,
 	level_range = {5, 15},
 	rarity = 10,
 	cost = 0,
@@ -126,7 +126,7 @@ newEntity{
 
 --Buffs
 newEntity{
-	name = " of bear endurance", suffix = true,
+	name = " of bear endurance", suffix = true, addon=true,
 	level_range = {3, 10},
 	rarity = 15,
 --	cost = 300,
@@ -142,7 +142,7 @@ end
 }
 
 newEntity{
-	name = " of bull strength", suffix = true,
+	name = " of bull strength", suffix = true, addon=true,
 	level_range = {3, 10},
 	rarity = 15,
 --	cost = 300,
@@ -158,7 +158,7 @@ end
 }
 
 newEntity{
-	name = " of cat's grace", suffix = true,
+	name = " of cat's grace", suffix = true, addon=true,
 	level_range = {3, 10},
 	rarity = 15,
 --	cost = 300,
@@ -174,7 +174,7 @@ end
 }
 
 newEntity{
-	name = " of fox cunning", suffix = true,
+	name = " of fox cunning", suffix = true, addon=true,
 	level_range = {3, 10},
 	rarity = 15,
 --	cost = 300,
@@ -190,7 +190,7 @@ end
 }
 
 newEntity{
-	name = " of owl wisdom", suffix = true,
+	name = " of owl wisdom", suffix = true, addon=true,
 	level_range = {3, 10},
 	rarity = 15,
 --    cost = 300,
@@ -206,7 +206,7 @@ end
 }
 
 newEntity{
-	name = " of eagle splendor", suffix = true,
+	name = " of eagle splendor", suffix = true, addon=true,
 	level_range = {3, 10},
 	rarity = 15,
 --	cost = 300,
@@ -222,7 +222,7 @@ end
 }
 
 newEntity{
-	name = " of mage armor", suffix = true,
+	name = " of mage armor", suffix = true, addon=true,
 	level_range = {1, 10},
 	rarity = 5,
 --	cost = 50,
@@ -238,7 +238,7 @@ end
 }
 
 newEntity{
-	name = " of delay poison", suffix = true,
+	name = " of delay poison", suffix = true, addon=true,
 	level_range = {1, 10},
 	rarity = 5,
 --	cost = 50,
@@ -254,7 +254,7 @@ end
 }
 
 newEntity{
-    name = " of levitation", suffix = true,
+    name = " of levitation", suffix = true, addon=true,
     level_range = {2, 10},
     rarity = 15,
 --  cost = 300,
@@ -270,7 +270,7 @@ end
 }
 
 newEntity{
-    name = " of flying", suffix = true,
+    name = " of flying", suffix = true, addon=true,
     level_range = {4, 10},
     rarity = 25,
 --  cost = 750,
@@ -286,7 +286,7 @@ end
 }
 
 newEntity{
-    name = " of haste", suffix = true,
+    name = " of haste", suffix = true, addon=true,
     level_range = {3, 10},
     rarity = 25,
 --  cost = 750,
@@ -303,7 +303,7 @@ end
 
 --Nasty!
 newEntity{
-	name = " of poison", suffix = true,
+	name = " of poison", suffix = true, addon=true,
 	level_range = {1, 10},
 	rarity = 5,
     cost = 0,
@@ -318,7 +318,7 @@ end
 }
 
 newEntity{
-    name = " of sleep", suffix = true,
+    name = " of sleep", suffix = true, addon=true,
     level_range = {1, 10},
     rarity = 5,
     cost = 0,
@@ -333,7 +333,7 @@ end
 }
 
 newEntity{
-    name = " of hold", suffix = true,
+    name = " of hold", suffix = true, addon=true,
     level_range = {2, 10},
     rarity = 5,
     cost = 0,

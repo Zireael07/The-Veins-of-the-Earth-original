@@ -6,7 +6,7 @@ local Talents = require "engine.interface.ActorTalents"
 
 --ID
 newEntity{
-	name = " of identify", suffix = true,
+	name = " of identify", suffix = true, addon=true,
 	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
@@ -26,7 +26,7 @@ end
 
 --Targeted spells
 newEntity{
-	name = " of magic missile", suffix = true,
+	name = " of magic missile", suffix = true, addon=true,
 	level_range = {3, nil},
 	rarity = 5,
 --	cost = 4500,
@@ -48,7 +48,7 @@ end
 }
 
 newEntity{
-    name = " of burning hands", suffix = true,
+    name = " of burning hands", suffix = true, addon=true,
 	level_range = {3, nil},
     rarity = 5,
     cost = resolvers.value{platinum=450},
@@ -95,7 +95,7 @@ end
 
 --Buffs
 newEntity{
-	name = " of bear endurance", suffix = true,
+	name = " of bear endurance", suffix = true, addon=true,
 	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
@@ -111,7 +111,7 @@ end
 }
 
 newEntity{
-	name = " of bull strength", suffix = true,
+	name = " of bull strength", suffix = true, addon=true,
 	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
@@ -127,7 +127,7 @@ end
 }
 
 newEntity{
-	name = " of cat's grace", suffix = true,
+	name = " of cat's grace", suffix = true, addon=true,
 	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
@@ -143,7 +143,7 @@ end
 }
 
 newEntity{
-	name = " of fox cunning", suffix = true,
+	name = " of fox cunning", suffix = true, addon=true,
 	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
@@ -159,7 +159,7 @@ end
 }
 
 newEntity{
-	name = " of owl wisdom", suffix = true,
+	name = " of owl wisdom", suffix = true, addon=true,
 	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
@@ -175,7 +175,7 @@ end
 }
 
 newEntity{
-	name = " of eagle splendor", suffix = true,
+	name = " of eagle splendor", suffix = true, addon=true,
 	level_range = {9, nil},
 	rarity = 5,
 --	cost = 4500,
@@ -191,7 +191,7 @@ end
 }
 
 newEntity{
-    name = " of mage armor", suffix = true,
+    name = " of mage armor", suffix = true, addon=true,
 	level_range = {3, nil},
     rarity = 5,
 --  cost = 4500,
@@ -207,7 +207,7 @@ end
 }
 
 newEntity{
-    name = " of delay poison", suffix = true,
+    name = " of delay poison", suffix = true, addon=true,
 	level_range = {3, nil},
     rarity = 5,
 --  cost = 4500,
@@ -223,7 +223,7 @@ end
 }
 
 newEntity{
-    name = " of levitation", suffix = true,
+    name = " of levitation", suffix = true, addon=true,
     level_range = {3, nil},
     rarity = 15,
 --  cost = 4500,
@@ -239,7 +239,7 @@ end
 }
 
 newEntity{
-    name = " of flying", suffix = true,
+    name = " of flying", suffix = true, addon=true,
     level_range = {9, nil},
     rarity = 15,
 --  cost = 4500,
@@ -255,7 +255,7 @@ end
 }
 
 newEntity{
-    name = " of haste", suffix = true,
+    name = " of haste", suffix = true, addon=true,
     level_range = {9, nil},
     rarity = 25,
 --  cost = 4500,
@@ -271,7 +271,7 @@ end
 }
 
 newEntity{
-    name = " of expeditious retreat", suffix = true,
+    name = " of expeditious retreat", suffix = true, addon=true,
     level_range = {1, nil},
     rarity = 15,
 --  cost = 4500,

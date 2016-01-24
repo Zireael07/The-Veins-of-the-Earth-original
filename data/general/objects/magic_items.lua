@@ -17,8 +17,9 @@ newEntity{
     encumber = 0,
     rarity = 5,
     desc = [[A potion.]],
+    addons = "/data/general/objects/properties/potions.lua", -- egos_chance = {suffix=100},
+--    egos = "/data/general/objects/properties/potions.lua", egos_chance = {suffix=100},
     resolvers.flavored(),
-    egos = "/data/general/objects/properties/potions.lua", egos_chance = {suffix=100},
 }
 
 --Mushrooms (should give nutrition in addition to potion effects)
@@ -92,7 +93,8 @@ newEntity{
     encumber = 0,
     multicharge = 50,
     desc = [[A wand.]],
-    egos = "/data/general/objects/properties/charged.lua", egos_chance = {suffix=100},
+    addons = "/data/general/objects/properties/charged.lua",
+--    egos = "/data/general/objects/properties/charged.lua", egos_chance = {suffix=100},
 }
 
 newEntity{
@@ -111,7 +113,8 @@ newEntity{
     multicharge = 50,
     resolvers.flavored(),
     desc = [[A scroll.]],
-    egos = "/data/general/objects/properties/charged.lua", egos_chance = {suffix=100},
+    addons = "/data/general/objects/properties/charged.lua",
+--    egos = "/data/general/objects/properties/charged.lua", egos_chance = {suffix=100},
 }
 
 --For the Self-Resurrect feat
