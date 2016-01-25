@@ -1,6 +1,15 @@
 --Veins of the Earth
 --Zireael 2013-2015
 
+--Dummy to prevent all weapons being at least mwk
+newEntity{
+	name = "", addon = true,
+	level_range = {1, nil},
+	cost = 0,
+	fake_ego = true,
+	rarity = 1,
+}
+
 newEntity{
 	name = "masterwork ", prefix = true, addon=true,
 	keywords = {mwk=true},
