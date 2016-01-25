@@ -304,6 +304,38 @@ local pick_ego = function(self, level, e, eegos, egos_list, type, picked_etype, 
     if egos_list[#egos_list] then print("Picked ego", type.."/"..eegos..":"..etype, ":=>", egos_list[#egos_list].name) else print("Picked ego", type.."/"..eegos..":"..etype, ":=>", #egos_list) end
 end
 
+--dup out the wazoo!
+local pick_force_ego = function(self, level, e, eegos, egos_list, type, picked_etype, etype, name)
+	local egos = e.egos and level:getEntitiesList(type.."/"..e.egos..":"..etype)
+
+    if not egos then
+		if add_levels == nil then
+		egos = self:generateEgoEntities(level, type, etype, eegos, e.__CLASSNAME)
+		else
+			egos = self:generateEgoEntities(level, type, etype, eegos, e.__CLASSNAME, add_levels)
+		end
+	end
+
+	--Pick the one whose name matches
+	egos_list[#egos_list+1] = self:pickNamedEntity(egos, name)
+
+	if egos_list[#egos_list] then print("Picked ego", type.."/"..eegos..":"..etype, ":=>", egos_list[#egos_list].name) else print("Picked ego", type.."/"..eegos..":"..etype, ":=>", #egos_list) end
+
+end
+
+function _M:pickNamedEntity(list, name)
+	if #list == 0 then return nil end
+	local r = rng.range(1, list.total)
+	for i = 1, #list do
+--		print("test", r, ":=:", list[i].genprob)
+		if list[i].e.name == name then
+--			print(" * select", list[i].e.name)
+			return list[i].e
+		end
+	end
+	return nil
+end
+
 --- Compute posible egos for this list
 function _M:generateEgoEntities(level, type, etype, e_egos, e___CLASSNAME, add_level)
 	print("Generating specific ego list", type.."/"..e_egos..":"..etype)
@@ -551,8 +583,12 @@ function _M:finishEntity(level, type, e, ego_filter, add_levels)
             local name = e.force_ego
             if _G.type(name) == "table" then name = rng.table(name) end
             print("Forcing ego", name)
-            local egos = level:getEntitiesList(type.."/base/"..e.egos..":")
-            egos_list = {egos[name]}
+			
+			pick_force_ego(self, level, e, e.egos, egos_list, type, {}, "", name)
+
+			--    local egos = level:getEntitiesList(type.."/base/"..e.egos..":")
+			--    egos_list = {egos[name]}
+
             e.force_ego = nil
         end
 
