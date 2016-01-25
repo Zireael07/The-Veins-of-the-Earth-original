@@ -53,6 +53,8 @@ newBirthDescriptor{
       	{ name="food ration" },
       	{ name="flask of water" },
       	{ name="flask of water" },
+		{ name="potion", force_addon = " of cure light wounds"},
+		{ name="potion"},
     	},
     	starting_intro = "main",
 		--NOTE: new starting equipment resolver
