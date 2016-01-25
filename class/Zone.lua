@@ -492,6 +492,7 @@ function _M:makeEntity(level, type, filter, force_level, prob_filter)
 	end
 
 	if filter then e.force_ego = filter.force_ego end
+	if filter then e.force_addon = filter.force_addon end
 
 	if filter and self.post_filter then e = util.getval(self.post_filter, self, level, type, e, filter) or e end
 
@@ -510,21 +511,39 @@ function _M:finishEntity(level, type, e, ego_filter, add_levels)
     e = e:clone()
     e:resolve()
 
-    -- Add "addon" properties, always
-    if not e.unique and e.addons then
-        local egos_list = {}
+	-- Add "addon" properties, always
+	if not e.unique and e.addons then
+	    local egos_list = {}
 
-        pick_ego(self, level, e, e.addons, egos_list, type, {}, "addon", nil, add_levels)
+	    if not e.force_addon then
+	        pick_ego(self, level, e, e.addons, egos_list, type, {}, "addon", nil, add_levels)
 
-        if #egos_list > 0 then
-            for ie, ego in ipairs(egos_list) do
-                self:applyEgo(e, ego, type)
-            end
-            -- Re-resolve with the (possibly) new resolvers
-            e:resolve()
-        end
-        e.addons = nil
-    end
+	    else
+	        --------------------------------------
+	        -- Forced ego
+	        --------------------------------------
+
+	        local name = e.force_addon
+	        if _G.type(name) == "table" then name = rng.table(name) end
+	        print("Forcing addon", name)
+
+	        pick_force_ego(self, level, e, e.addons, egos_list, type, {}, "addon", name)
+	    --    local egos = level:getEntitiesList(type.."/"..e.addons..":addon")
+	    --    local egos = level:getEntitiesList(type.."/base/"..e.addons..":")
+	    --    egos_list = {egos[name]}
+	        e.force_addon = nil
+	    end
+
+	    if #egos_list > 0 then
+	    --    print("Egos list bigger than 0")
+	        for ie, ego in ipairs(egos_list) do
+	            self:applyEgo(e, ego, type)
+	        end
+	        -- Re-resolve with the (possibly) new resolvers
+	        e:resolve()
+	    end
+	    e.addons = nil
+	end
 
     -- Add "ego" properties, sometimes
     if not e.unique and e.egos and (e.force_ego or e.egos_chance) then
@@ -583,7 +602,7 @@ function _M:finishEntity(level, type, e, ego_filter, add_levels)
             local name = e.force_ego
             if _G.type(name) == "table" then name = rng.table(name) end
             print("Forcing ego", name)
-			
+
 			pick_force_ego(self, level, e, e.egos, egos_list, type, {}, "", name)
 
 			--    local egos = level:getEntitiesList(type.."/base/"..e.egos..":")
