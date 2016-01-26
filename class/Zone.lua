@@ -27,10 +27,24 @@ module(..., package.seeall, class.inherit(Zone))
 
 --Don't merge creation cost tables
 _M:addEgoRule("object", function(dvalue, svalue, key, dst, src, rules, state)
-	if key == "creation" then return end
+--[[	if key == "creation" then return end
 	if key == "gold_cost" then return end
 	if key == "xp_cost" then return end
-	return true
+	return true]]
+	-- Only work on the use_simple keys.
+	if key ~= 'use_simple' then return end
+	-- If the special isn't a table, make it an empty one.
+	if type(dvalue) ~= 'table' then dvalue = {} end
+	if type(svalue) ~= 'table' then svalue = {} end
+	-- If the special is a single special, wrap it to allow multiple.
+	if dvalue.fct then dvalue = {dvalue} end
+	if svalue.fct then svalue = {svalue} end
+	-- Update
+	dst[key] = dvalue
+	-- Recurse with always append
+	rules = table.clone(rules)
+	table.insert(rules, 1, table.rules.append)
+	return table.rules.recurse(dvalue, svalue, key, dst, src, rules, state)
 end)
 
 --- Called when the zone file is loaded
