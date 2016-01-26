@@ -192,7 +192,11 @@ function _M:createItem()
     local qty = self.c_nitems.number
 
     local o = game.zone:makeEntity(game.level, "object", {name = self.sel_item.name, ego_chance=-1000}, nil, true)
-    o:setNumber(qty)
+
+    --sometimes filters prevent us from creating
+    if o then
+        o:setNumber(qty)
+    end
 
     if self.ego_names.prefix or self.ego_names.suffix then
         o.force_ego = {}
