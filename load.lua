@@ -70,7 +70,7 @@ if not config.settings.veins.money_weight then config.settings.veins.money_weigh
 if not config.settings.veins.pathfinder_feat then config.settings.veins.pathfinder_feat = false end
 
 --UI stuff
-require("engine.ui.Base").ui_conf = {
+--[[require("engine.ui.Base").ui_conf = {
 	tweaked_simple = {
 	--	frame_shadow = {x=15, y=15, a=0.5},
 		frame_shadow = nil,
@@ -133,9 +133,9 @@ require("engine.ui.Base").ui_conf = {
 	frame_oy1 = -16,
 	frame_oy2 = 16,
 }
-}
+}]]
 
-UIBase.ui = "tweaked_simple"
+--UIBase.ui = "tweaked_simple"
 
 local size = 12
 UIBase.font = core.display.newFont("/data/font/DroidSansFallback.ttf", size)
