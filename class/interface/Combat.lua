@@ -547,7 +547,7 @@ function _M:applyPoison(poison, target)
 end
 
 
-_M.fav_enemies = {
+local fav_enemies = {
   aberration = Talents.T_FAVORED_ENEMY_ABERRATION,
   animal = Talents.T_FAVORED_ENEMY_ANIMAL,
   construct = Talents.T_FAVORED_ENEMY_CONSTRUCT,
@@ -591,7 +591,7 @@ function _M:favoredEnemy(target)
     end
 end
 
-_M.focuses = {
+local focuses = {
   axe = Talents.T_WEAPON_FOCUS_AXE,
   battleaxe = Talents.T_WEAPON_FOCUS_BATTLEAXE,
   bow = Talents.T_WEAPON_FOCUS_BOW,
@@ -625,7 +625,7 @@ function _M:hasFocus(type)
 end
 
 
-_M.ImpCrit = {
+local ImpCrit = {
   axe = Talents.T_IMPROVED_CRIT_AXE,
   battleaxe = Talents.T_IMPROVED_CRIT_BATTLEAXE,
   bow = Talents.T_IMPROVED_CRIT_BOW,
