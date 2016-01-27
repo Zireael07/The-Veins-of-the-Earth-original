@@ -319,7 +319,7 @@ local pick_ego = function(self, level, e, eegos, egos_list, type, picked_etype, 
 end
 
 --dup out the wazoo!
-local pick_force_ego = function(self, level, e, eegos, egos_list, type, picked_etype, etype, name)
+local pick_force_ego = function(self, level, e, eegos, egos_list, type, picked_etype, etype, add_levels, name)
 	local egos = e.egos and level:getEntitiesList(type.."/"..e.egos..":"..etype)
 
     if not egos then
@@ -541,7 +541,7 @@ function _M:finishEntity(level, type, e, ego_filter, add_levels)
 	        if _G.type(name) == "table" then name = rng.table(name) end
 	        print("Forcing addon", name)
 
-	        pick_force_ego(self, level, e, e.addons, egos_list, type, {}, "addon", name)
+	        pick_force_ego(self, level, e, e.addons, egos_list, type, {}, "addon", add_levels, name)
 	    --    local egos = level:getEntitiesList(type.."/"..e.addons..":addon")
 	    --    local egos = level:getEntitiesList(type.."/base/"..e.addons..":")
 	    --    egos_list = {egos[name]}
@@ -617,7 +617,7 @@ function _M:finishEntity(level, type, e, ego_filter, add_levels)
             if _G.type(name) == "table" then name = rng.table(name) end
             print("Forcing ego", name)
 
-			pick_force_ego(self, level, e, e.egos, egos_list, type, {}, "", name)
+			pick_force_ego(self, level, e, e.egos, egos_list, type, {}, "", add_levels, name)
 
 			--    local egos = level:getEntitiesList(type.."/base/"..e.egos..":")
 			--    egos_list = {egos[name]}
