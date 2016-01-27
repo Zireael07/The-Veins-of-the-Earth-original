@@ -112,7 +112,7 @@ function _M:resizeIconsHotkeysToolbar()
 --    if config.settings.tome.hotkey_icons then h = (4 + config.settings.tome.hotkey_icons_size) * config.settings.tome.hotkey_icons_rows end
 
     local h
-   if game.show_npc_list then
+    if game.show_npc_list then
         h = self.npcs_display.h
     else
         --default icon size in Veins is 48 +8 margin
@@ -400,11 +400,18 @@ function _M:setupMouse(mouse)
                 game:tooltipDisplayAtMap(game.w, game.h, text)
             end,
             function(i, hk)
-                if button == "right" and hk[1] == "talent" then
-                    local d = require("mod.dialogs.UseTalents").new(game.player)
-                    d:use({talent=hk[2], name=game.player:getTalentFromId(hk[2]).name}, "right")
-                    return true
-                end
+                if button == "right" and hk and hk[1] == "talent" then
+					local d = require("mod.dialogs.UseTalents").new(game.player)
+					d:use({talent=hk[2], name=game.player:getTalentFromId(hk[2]).name}, "right")
+					return true
+				elseif button == "right" and hk and hk[1] == "inventory" then
+					Dialog:yesnoPopup("Unbind "..hk[2], "Remove this object from your hotkeys?", function(ret) if ret then
+						for i = 1, 12 * game.player.nb_hotkey_pages do
+							if game.player.hotkey[i] and game.player.hotkey[i][1] == "inventory" and game.player.hotkey[i][2] == hk[2] then game.player.hotkey[i] = nil end
+						end
+					end end)
+					return true
+				end
             end
         )
     end, nil, "hotkeys", true)
