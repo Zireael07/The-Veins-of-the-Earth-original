@@ -646,6 +646,15 @@ function _M:getHealthState()
 	end
 end
 
+function _M:displayHitChance()
+	-- returns player's weapon if you are armed, or unarmed combat.
+	local weapon = (game.player:getInven("MAIN_HAND") and game.player:getInven("MAIN_HAND")[1]) or game.player
+
+	local ac = self:getAC()
+	local attack = game.player:combatAttack(weapon)
+	return self:getHitChance(ac, attack)
+end
+
 function _M:tooltip()
 	local ts = tstring{}
 
@@ -700,8 +709,9 @@ function _M:tooltip()
 
 	ts:add(("Attack speed: %d"):format(self.combat_attackspeed or 1), true)
 
-	ts:add(("Attacks per round: %d"):format((self.movement_speed or 1)/(self.combat_attackspeed or 1)))
+	ts:add(("Attacks per round: %d"):format((self.movement_speed or 1)/(self.combat_attackspeed or 1)), true)
 
+	ts:add(("Hit chance: %d%%"):format(self:displayHitChance()), true)
 	return ts
 end
 

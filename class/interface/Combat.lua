@@ -821,3 +821,11 @@ function _M:combatAttack(weapon)
 
     return attack, attacklog
 end
+
+--Thanks to Tejon's excellent DPR calculator sheet
+function _M:getHitChance(ac, attack)
+    local roll = 21-ac+attack
+    local result = math.max(1, roll)
+    local count = math.min(19, result)
+    return math.floor(count*5) --we're adding the % in display
+end
