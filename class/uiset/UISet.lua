@@ -1,5 +1,5 @@
 -- ToME - Tales of Maj'Eyal
--- Copyright (C) 2009 - 2014 Nicolas Casalini
+-- Copyright (C) 2009 - 2016 Nicolas Casalini
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -18,10 +18,12 @@
 -- darkgod@te4.org
 
 require "engine.class"
+local Particles = require "engine.Particles"
 
 module(..., package.seeall, class.make)
 
 function _M:init()
+	self.particles = {}
 end
 
 function _M:activate()
@@ -37,7 +39,16 @@ end
 
 function _M:display(nb_keyframes)
 	-- Now the map, if any
-	game:displayMap(nb_keyframes)
+	--game:displayMap(nb_keyframes)
+	if next(self.particles) then
+		for p, pos in pairs(self.particles) do
+			if p.ps:isAlive() then
+				p.ps:toScreen(pos.x, pos.y, true, 1)
+			else
+				self.particles[p] = nil
+			end
+		end
+	end
 end
 
 function _M:setupMouse(mouse)
@@ -61,4 +72,9 @@ end
 
 function _M:isLocked()
 	return true
+end
+
+function _M:addParticle(x, y, name, args)
+	local p = Particles.new(name, 1, args)
+	self.particles[p] = {x=x, y=y}
 end

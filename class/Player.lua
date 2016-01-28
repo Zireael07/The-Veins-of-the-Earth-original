@@ -971,6 +971,21 @@ function _M:runStopped()
 	if obj then game.level.map.attrs(x, y, "obj_seen", true) end
 end
 
+--- Uses an hotkeyed talent
+-- This requires the ActorTalents interface to use talents and a method player:playerUseItem(o, item, inven) to use inventory objects
+function _M:activateHotkey(id)
+	-- Visual feedback to show which key was pressed
+	if game.uiset.hotkeys_display and game.uiset.hotkeys_display.clics and game.uiset.hotkeys_display.clics[id] and self.hotkey[id] then
+		local zone = game.uiset.hotkeys_display.clics[id]
+		game.uiset:addParticle(
+			game.uiset.hotkeys_display.display_x + zone[1] + zone[3] / 2, game.uiset.hotkeys_display.display_y + zone[2] + zone[4] / 2,
+			"hotkey_feedback", {w=zone[3], h=zone[4]}
+		)
+	end
+
+	return engine.interface.PlayerHotkeys.activateHotkey(self, id)
+end
+
 --- Activates a hotkey with a type "inventory" (taken from ToME 4)
 function _M:hotkeyInventory(name)
 	local find = function(name)
