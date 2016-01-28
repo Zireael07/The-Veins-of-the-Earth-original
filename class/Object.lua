@@ -401,7 +401,8 @@ function _M:getTextualDesc(compare_with, use_actor)
     end
 
     if self.combat and self.combat.dam and type(self.combat.dam) == "table" then
-        desc:add(("Damage: %dd%d"):format(self.combat.dam[1], self.combat.dam[2]), true)
+        desc:add(("Damage: %dd%d"):format(self.combat.dam[1], self.combat.dam[2]))--, true)
+        desc:add((" (average %d)"):format(self:getAverageDamageFromDice(self.combat.dam[1], self.combat.dam[2])), true)
 
     --    self:compare_fields(desc, self, compare_with, "combat", "threat", self:combatThreat(), "Threatens a critical on a roll of: " )
         desc:add(("Threatens a critical on a roll of: %s"):format(self:formatThreat()), true)
@@ -699,6 +700,15 @@ function _M:formatThreat()
     if self.combat.threat then threat = (20-self.combat.threat).."-20" end
 
     return threat
+end
+
+function _M:getAverageDamageFromDice(x, y)
+    local rolls = x --dice rolls
+    local sides = y
+    local max = x*y --dice rolls times dice sides
+    ---thank G-d for the internet
+    return ((sides + 1) / 2)*rolls
+--    return math.round(rng.avg(rolls, max, rolls))
 end
 
 function _M:tooltip(x, y)
