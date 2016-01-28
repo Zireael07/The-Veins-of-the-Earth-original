@@ -744,6 +744,17 @@ function _M:combatAttack(weapon)
     if self.combat_bab and self == game.player then
         attacklog = attacklog.." "..self.combat_bab.." BAB"
     end
+    if self.combat_attack > 0 and self == game.player then
+        attacklog = attacklog.." "..self.combat_attack.. " racial"
+    end
+
+    --Weapon bonus
+    if weapon and weapon.combat.magic_bonus then
+        --only if item ID'd
+        if weapon ~= self and weapon:isIdentified() then
+            attacklog = attacklog.." "..weapon.combat.magic_bonus.. " bonus"
+        end
+    end
 
     -- Proficiency penalties
      if weapon and weapon.simple and not self:knowTalent(self.T_SIMPLE_WEAPON_PROFICIENCY) then
@@ -806,7 +817,7 @@ function _M:combatAttack(weapon)
         attacklog = attacklog.." "..str.." Str"
     end
 
-    attack = attack + (atkmod or 0) + (weapon and weapon.combat.magic_bonus or 0) + (self:getStat(stat_used)-10)/2 or 0
+    attack = attack + (weapon and weapon.combat.magic_bonus or 0) + math.floor((self:getStat(stat_used)-10)/2) or 0
 
     return attack, attacklog
 end
