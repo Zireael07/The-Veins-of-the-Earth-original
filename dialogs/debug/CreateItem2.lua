@@ -196,17 +196,19 @@ function _M:createItem()
     --sometimes filters prevent us from creating
     if o then
         o:setNumber(qty)
+
+        if self.ego_names.prefix or self.ego_names.suffix then
+            o.force_ego = {}
+            for _, id in pairs(self.ego_names) do table.insert(o.force_ego, id) end
+        end
+
+        Ego:placeForcedEgos(o)
+
+        game.zone:addEntity(game.level, o, 'object', game.player.x, game.player.y)
+    	game.log('Created '..o.name)
+    else
+        game.log('Could not create the item')
     end
-
-    if self.ego_names.prefix or self.ego_names.suffix then
-        o.force_ego = {}
-        for _, id in pairs(self.ego_names) do table.insert(o.force_ego, id) end
-    end
-
-    Ego:placeForcedEgos(o)
-
-    game.zone:addEntity(game.level, o, 'object', game.player.x, game.player.y)
-	game.log('Created '..o.name)
 end
 
 function _M:treeUse(item, sel, v)
