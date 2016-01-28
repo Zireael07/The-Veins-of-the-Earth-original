@@ -35,7 +35,7 @@ local function stealthTest(self)
         if dist > 4 then break end
         if act ~= self and act:reactionToward(self) < 0 and not act:attr("blind") then --and (not act.fov or not act.fov.actors or act.fov.actors[self]) then
             local check1 = self:opposedCheck("hide", act, "spot")
-            local check2 = self:opposedCheck("movesilently", act, "listen")
+            local check2 = self:opposedCheck("move_silently", act, "listen")
 
             --if check1 and check2 then return true
             if check1 then return true
@@ -315,7 +315,7 @@ newTalent{
 
 		if target.type ~= "animal" then game.log("Animal Empathy only works on animals.") return nil end
 
-		local check = self:skillCheck("handleanimal", 15)
+		local check = self:skillCheck("handle_animal", 15)
 		if check then
 			--target:setPersonalReaction(game.player, 150) --makes it neutral
 			target.faction = "neutral"
