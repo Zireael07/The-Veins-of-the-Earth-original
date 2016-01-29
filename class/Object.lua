@@ -344,15 +344,21 @@ end
   ]]
 
   --- Gets the short name of the object
+  -- currently, this is only used by EquipDollFrame
   function _M:getShortName(t)
   	if not self.short_name then return self:getName({no_add_pseudo=true}) end
 
   	t = t or {}
   	local qty = self:getNumber()
+    local identified = t.force_id or self:isIdentified()
   	local name = self.short_name
 
-    if self.identified == false and not t.force_id and self:getUnidentifiedName() then
+    if not identified and self:getUnidentifiedName() then
         name = self:getUnidentifiedName()
+    elseif self.keywords and next(self.keywords) then
+		local k = table.keys(self.keywords)
+		table.sort(k)
+		name = name..", "..table.concat(k, ', ')
     end
 
     if not t.no_add_name and self.add_name then --and self:isIdentified() then
