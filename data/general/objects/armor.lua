@@ -24,7 +24,7 @@ newEntity{ base = "BASE_ARMOR",
     }
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
-    name = "cord armor",
+    name = "cord armor", short_name = "cord",
     image = "tiles/object/leather_armor.png",
     level_range = {1, 10},
     cost = 5,
@@ -39,7 +39,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
-    name = "padded armor",
+    name = "padded armor", short_name = "padded",
     image = "tiles/object/leather_armor.png",
     level_range = {1, 10},
     rarity = 8,
@@ -54,7 +54,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
-    name = "leather armor",
+    name = "leather armor", short_name = "leather",
     image = "tiles/object/leather_armor.png",
     level_range = {1, 10},
     rarity = 3,
@@ -69,7 +69,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 }
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
-    name = "studded leather",
+    name = "studded leather", short_name = "studded",
     image = "tiles/object/studded_armor.png",
     level_range = {1, 10},
     rarity = 9,
@@ -85,7 +85,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 
 
 newEntity{ base = "BASE_LIGHT_ARMOR",
-    name = "chain shirt",
+    name = "chain shirt", short_name = "chain",
     image = "tiles/object/chain_shirt.png",
     level_range = {1, 10},
     rarity = 10,
@@ -114,7 +114,7 @@ newEntity{ base = "BASE_ARMOR",
 }
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
-    name = "chain mail",
+    name = "chain mail", short_name = "mail",
     image = "tiles/object/chain_armor.png",
     level_range = {1, 10},
     rarity = 2,
@@ -129,7 +129,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 }
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
-    name = "scale mail",
+    name = "scale mail", short_name = "scale",
     image = "tiles/object/scale_armor.png",
     level_range = {1, 10},
     rarity = 4,
@@ -145,7 +145,7 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
 }
 
 newEntity{ base = "BASE_MEDIUM_ARMOR",
-    name = "breastplate",
+    name = "breastplate", short_name = "bplate",
     image = "tiles/object/breastplate.png",
     level_range = {1, 10},
     rarity = 8,
@@ -174,7 +174,7 @@ newEntity{ base = "BASE_ARMOR",
 }
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
-    name = "plate armor",
+    name = "plate armor", short_name = "plate",
     image = "tiles/object/plate_armor.png",
     level_range = {1, 10},
     rarity = 8,
@@ -189,7 +189,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 }
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
-    name = "full plate",
+    name = "full plate", short_name = "fplate",
     image = "tiles/object/full_plate.png",
     level_range = {1, 10},
     rarity = 15,
@@ -205,7 +205,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 }
 
 newEntity{ base = "BASE_HEAVY_ARMOR",
-    name = "banded mail",
+    name = "banded mail", short_name = "banded",
     unided_name = "banded mail",
     image = "tiles/object/banded_armor.png",
     level_range = {1, 10},
@@ -223,7 +223,7 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
 
 --Robes
 newEntity{ base = "BASE_ARMOR",
-    name = "monk robes",
+    name = "monk robes", short_name = "monk",
     unided_name = "robes",
     image = "tiles/new/monk_robes.png",
     moddable_tile = resolvers.moddable_tile("monk"),
@@ -245,7 +245,7 @@ newEntity{ base = "BASE_ARMOR",
 }
 
 newEntity{ base = "BASE_ARMOR",
-    name = "archmage robes",
+    name = "archmage robes", short_name = "robes",
     unided_name = "robes",
     image = "tiles/object/robes.png",
     moddable_tile = resolvers.moddable_tile("archmage"),
