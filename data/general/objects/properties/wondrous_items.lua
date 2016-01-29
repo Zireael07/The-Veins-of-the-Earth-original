@@ -7,7 +7,7 @@ local Talents = require "engine.interface.ActorTalents"
 
 newEntity {
 	name = " of natural armor +1", suffix = true,
---	keywords = {bonus=true},
+	keywords = {natural =true},
 	level_range = {6, nil},
 	rarity = 5,
 --	cost = 2000,
@@ -20,7 +20,7 @@ newEntity {
 
 newEntity {
 	name = " of natural armor +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {natural=true},
 	level_range = {11, nil},
 	rarity = 15,
 --	cost = 8000,
@@ -33,7 +33,7 @@ newEntity {
 
 newEntity {
 	name = " of natural armor +3", suffix = true,
---	keywords = {bonus=true},
+	keywords = {natural=true},
 	level_range = {14, nil},
 	rarity = 15,
 --	cost = 16000,
@@ -46,7 +46,7 @@ newEntity {
 
 newEntity {
 	name = " of natural armor +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {natural=true},
 	level_range = {16, 20},
 	greater_ego = 1,
 	rarity = 15,
@@ -60,7 +60,7 @@ newEntity {
 
 newEntity {
 	name = " of natural armor +5", suffix = true,
---	keywords = {bonus=true},
+	keywords = {natural=true},
 	level_range = {18, 30},
 	greater_ego = 1,
 	rarity = 15,
@@ -74,7 +74,7 @@ newEntity {
 
 newEntity {
 	name = " of protection +1", suffix = true,
---	keywords = {bonus=true},
+	keywords = {protect=true},
 	level_range = {6, 10},
 	rarity = 5,
 --	cost = 2000,
@@ -87,7 +87,7 @@ newEntity {
 
 newEntity {
 	name = " of protection +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {protect=true},
 	level_range = {11, nil},
 	rarity = 5,
 --	cost = 8000,
@@ -100,7 +100,7 @@ newEntity {
 
 newEntity {
 	name = " of protection +3", suffix = true,
---	keywords = {bonus=true},
+	keywords = {protect=true},
 	level_range = {14, nil},
 	rarity = 15,
 --	cost = 16000,
@@ -113,7 +113,7 @@ newEntity {
 
 newEntity {
 	name = " of protection +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {protect=true},
 	level_range = {16, 20},
 	greater_ego = 1,
 	rarity = 15,
@@ -127,7 +127,7 @@ newEntity {
 
 newEntity {
 	name = " of protection +5", suffix = true,
---	keywords = {bonus=true},
+	keywords = {protect=true},
 	level_range = {18, 30},
 	greater_ego = 1,
 	rarity = 5,
@@ -143,7 +143,7 @@ newEntity {
 -- Armor AC
 newEntity {
 	name = " of armor +1", suffix = true,
---	keywords = {bonus=true},
+	keywords = {armor=true},
 	level_range = {6, 10},
 	rarity = 15,
 --	cost = 2000,
@@ -156,7 +156,7 @@ newEntity {
 
 newEntity {
 	name = " of armor +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {armor=true},
 	level_range = {11, nil},
 	rarity = 15,
 --	cost = 8000,
@@ -169,7 +169,7 @@ newEntity {
 
 newEntity {
 	name = " of armor +3", suffix = true,
---	keywords = {bonus=true},
+	keywords = {armor=true},
 	level_range = {14, nil},
 	rarity = 15,
 --	cost = 16000,
@@ -182,7 +182,7 @@ newEntity {
 
 newEntity {
 	name = " of armor +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {armor=true},
 	level_range = {16, 20},
 	greater_ego = 1,
 	rarity = 15,
@@ -196,7 +196,7 @@ newEntity {
 
 newEntity {
 	name = " of armor +5", suffix = true,
---	keywords = {bonus=true},
+	keywords = {armor=true},
 	level_range = {18, 30},
 	greater_ego = 1,
 	rarity = 15,
@@ -210,6 +210,7 @@ newEntity {
 
 newEntity{
 	name = " of resistance +1", suffix = true,
+	keywords = {resist=true},
 	level_range = {4, 10},
 	rarity = 5,
 --	cost = 1000,
@@ -224,6 +225,7 @@ newEntity{
 
 newEntity{
 	name = " of resistance +2", suffix = true,
+	keywords = {resist=true},
 	level_range = {8, 10},
 	rarity = 5,
 --	cost = 4000,
@@ -238,6 +240,7 @@ newEntity{
 
 newEntity{
 	name = " of resistance +3", suffix = true,
+	keywords = {resist=true},
 	level_range = {12, nil},
 	rarity = 15,
 --	cost = 9000,
@@ -252,6 +255,7 @@ newEntity{
 
 newEntity{
 	name = " of resistance +4", suffix = true,
+	keywords = {resist=true},
 	level_range = {14, nil},
 	rarity = 15,
 --	cost = 16000,
@@ -267,6 +271,7 @@ newEntity{
 
 newEntity{
 	name = " of resistance +5", suffix = true,
+	keywords = {resist=true},
 	level_range = {15, nil},
 	rarity = 15,
 --	cost = 25000,
@@ -283,7 +288,7 @@ newEntity{
 --Stat boosts
 newEntity {
 	name = " of ogre strength +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Str=true},
 	level_range = {8, 30},
 	rarity = 10,
 --	cost = 4000,
@@ -296,7 +301,7 @@ newEntity {
 
 newEntity {
 	name = " of giant strength +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Str=true},
 	level_range = {14, 30},
 	rarity = 10,
 --	cost = 16000,
@@ -309,7 +314,7 @@ newEntity {
 
 newEntity {
 	name = " of giant strength +6", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Str=true},
 	level_range = {16, 30},
 	greater_ego = 1,
 	rarity = 15,
@@ -323,7 +328,7 @@ newEntity {
 
 newEntity {
 	name = " of Dexterity +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Dex=true},
 	level_range = {8, 30},
 	rarity = 10,
 --	cost = 4000,
@@ -336,7 +341,7 @@ newEntity {
 
 newEntity {
 	name = " of Dexterity +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Dex=true},
 	level_range = {14, 30},
 	rarity = 10,
 --	cost = 16000,
@@ -349,7 +354,7 @@ newEntity {
 
 newEntity {
 	name = " of Dexterity +6", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Dex=true},
 	level_range = {16, 30},
 	greater_ego = 1,
 	rarity = 10,
@@ -363,7 +368,7 @@ newEntity {
 
 newEntity {
 	name = " of health +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Con=true},
 	level_range = {8, 30},
 	rarity = 10,
 --	cost = 4000,
@@ -376,7 +381,7 @@ newEntity {
 
 newEntity {
 	name = " of health +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Con=true},
 	level_range = {14, 30},
 	rarity = 10,
 --	cost = 16000,
@@ -389,7 +394,7 @@ newEntity {
 
 newEntity {
 	name = " of health +6", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Con=true},
 	level_range = {16, 30},
 	greater_ego = 1,
 	rarity = 10,
@@ -403,7 +408,7 @@ newEntity {
 
 newEntity {
 	name = " of Intelligence +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Int=true},
 	level_range = {8, 30},
 	rarity = 10,
 --	cost = 4000,
@@ -416,7 +421,7 @@ newEntity {
 
 newEntity {
 	name = " of Intelligence +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Int=true},
 	level_range = {14, 30},
 	rarity = 10,
 --	cost = 16000,
@@ -429,7 +434,7 @@ newEntity {
 
 newEntity {
 	name = " of Intelligence +6", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Int=true},
 	level_range = {16, 30},
 	greater_ego = 1,
 	rarity = 10,
@@ -443,7 +448,7 @@ newEntity {
 
 newEntity {
 	name = " of Wisdom +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Wis=true},
 	level_range = {8, 30},
 	rarity = 10,
 --	cost = 4000,
@@ -456,7 +461,7 @@ newEntity {
 
 newEntity {
 	name = " of Wisdom +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Wis=true},
 	level_range = {14, 30},
 	rarity = 10,
 --	cost = 16000,
@@ -469,7 +474,7 @@ newEntity {
 
 newEntity {
 	name = " of Wisdom +6", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Wis=true},
 	level_range = {16, 30},
 	greater_ego = 1,
 	rarity = 10,
@@ -483,7 +488,7 @@ newEntity {
 
 newEntity {
 	name = " of Charisma +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Cha=true},
 	level_range = {8, 30},
 	rarity = 10,
 --	cost = 4000,
@@ -496,7 +501,7 @@ newEntity {
 
 newEntity {
 	name = " of Charisma +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Cha=true},
 	level_range = {14, 30},
 	rarity = 10,
 --	cost = 16000,
@@ -509,7 +514,7 @@ newEntity {
 
 newEntity {
 	name = " of Charisma +6", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Cha=true},
 	level_range = {16, 30},
 	greater_ego = 1,
 	rarity = 10,
@@ -524,7 +529,7 @@ newEntity {
 --For completeness
 newEntity {
 	name = " of Providence +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Luck=true},
 	level_range = {8, 30},
 	rarity = 20,
 --	cost = 4000,
@@ -537,7 +542,7 @@ newEntity {
 
 newEntity {
 	name = " of Providence +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Luck=true},
 	level_range = {14, 30},
 	rarity = 20,
 --	cost = 16000,
@@ -550,7 +555,7 @@ newEntity {
 
 newEntity {
 	name = " of Providence +6", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Luck=true},
 	level_range = {16, 30},
 	greater_ego = 1,
 	rarity = 20,
@@ -566,7 +571,7 @@ newEntity {
 --ignores difficult terrain when charging, bull rushing etc.
 newEntity {
 	name = "minotaur ", prefix = true,
---	keywords = {bonus=true},
+	keywords = {minotaur=true},
 	level_range = {10, 30},
 	rarity = 10,
 	cost = resolvers.value{platinum=1100},
@@ -578,13 +583,13 @@ newEntity {
 
 newEntity {
 	name = " of physical perfection +2", suffix = true,
---	keywords = {bonus=true},
+	keywords = {physperf=true},
 	level_range = {10, 30},
 	rarity = 20,
 	cost = resolvers.value{platinum=1600},
 	school = "transmutation",
 	wielder = {
-    inc_stats = { [Stats.STAT_STR] = 2, 
+    inc_stats = { [Stats.STAT_STR] = 2,
     		[Stats.STAT_DEX] = 2,
     		[Stats.STAT_CON] = 2,
     	},
@@ -593,13 +598,13 @@ newEntity {
 
 newEntity {
 	name = " of physical perfection +4", suffix = true,
---	keywords = {bonus=true},
+	keywords = {physperf=true},
 	level_range = {15, 30},
 	rarity = 25,
 	cost = resolvers.value{platinum=6400},
 	school = "transmutation",
 	wielder = {
-    inc_stats = { [Stats.STAT_STR] = 4, 
+    inc_stats = { [Stats.STAT_STR] = 4,
     		[Stats.STAT_DEX] = 4,
     		[Stats.STAT_CON] = 4,
     	},
@@ -608,13 +613,13 @@ newEntity {
 
 newEntity {
 	name = " of physical perfection +6", suffix = true,
---	keywords = {bonus=true},
+	keywords = {physperf=true},
 	level_range = {20, 30},
 	rarity = 40,
 	cost = resolvers.value{platinum=14400},
 	school = "transmutation",
 	wielder = {
-    inc_stats = { [Stats.STAT_STR] = 6, 
+    inc_stats = { [Stats.STAT_STR] = 6,
     		[Stats.STAT_DEX] = 6,
     		[Stats.STAT_CON] = 6,
     	},
@@ -624,6 +629,7 @@ newEntity {
 --Based on Incursion
 newEntity{
 	name = " of the Endless Wave", suffix = true,
+	keywords = {Wave=true},
 	level_range = {16, 30},
 	rarity = 5,
 --	cost = 32000,
@@ -637,6 +643,7 @@ newEntity{
 
 newEntity{
 	name = " of Detection", suffix = true,
+	keywords = {Detect=true},
 	level_range = {14, 30},
 	rarity = 5,
 --	cost = 16000,
@@ -652,6 +659,7 @@ newEntity{
 
 newEntity{
 	name = " of the Eagle", suffix = true,
+	keywords = {Eagle=true},
 	level_range = {14, 30},
 	rarity = 5,
 --	cost = 16000,
@@ -665,6 +673,7 @@ newEntity{
 
 newEntity{
 	name = " of the Soul", suffix = true,
+	keywords = {Soul=true},
 	level_range = {14, 30},
 	rarity = 13,
 --	cost = 16000,
@@ -678,6 +687,7 @@ newEntity{
 
 newEntity{
 	name = " of the Mantis", suffix = true,
+	keywords = {Mantis=true},
 	level_range = {14, 30},
 	rarity = 5,
 --	cost = 16000,
@@ -691,6 +701,7 @@ newEntity{
 
 newEntity{
 	name = " of the Spur", suffix = true,
+	keywords = {Spur=true},
 	level_range = {14, 30},
 	rarity = 7,
 --	cost = 16000,
@@ -705,6 +716,7 @@ newEntity{
 
 newEntity{
 	name = " of Stability", suffix = true,
+	keywords = {Stable=true},
 	level_range = {14, 30},
 	rarity = 5,
 --	cost = 16000,
@@ -718,6 +730,7 @@ newEntity{
 
 newEntity{
 	name = " of Contortion", suffix = true,
+	keywords = {Contort=true},
 	level_range = {14, 30},
 	rarity = 10,
 --	cost = 16000,
@@ -732,6 +745,7 @@ newEntity{
 
 newEntity{
 	name = " of Magical Aptitude", suffix = true,
+	keywords = {Magapt=true},
 	level_range = {11, 30},
 	rarity = 5,
 --	cost = 7500,
@@ -745,7 +759,7 @@ newEntity{
 
 newEntity {
 	name = " of the Winterlands", suffix = true,
---	keywords = {coldres=true},
+	keywords = {Winter=true},
 	level_range = {14, nil},
 	rarity = 10,
 --	cost = 18000,
@@ -761,6 +775,7 @@ newEntity {
 
 newEntity {
 	name = " of the Druid", suffix = true,
+	keywords = {Druid=true},
 	level_range = {14, 30},
 	rarity = 15,
 --	cost = 14000,
@@ -774,6 +789,7 @@ newEntity {
 --Originally cloaks only
 newEntity{
 	name = " of arachnida", suffix = true,
+	keywords = {arach=true},
 	level_range = {14, 30},
 	rarity = 15,
 --	cost = 14000,
@@ -788,6 +804,7 @@ newEntity{
 
 newEntity{
 	name = " of Elvenkind", suffix = true,
+	keywords = {Elven=true},
 	image = "tiles/elven_cloak.png",
     display = "♠", color=colors.GREEN,
 	level_range = {7, 30},
@@ -802,6 +819,7 @@ newEntity{
 
 newEntity{
 	name = " of the Bat", suffix = true,
+	keywords = {Bat=true},
 	level_range = {16, 30},
 	rarity = 25,
 --	cost = 26000,
@@ -815,6 +833,7 @@ newEntity{
 
 newEntity{
 	name = " of spell resistance 21", suffix = true,
+	keywords = {SR=true},
 	level_range = {20, 30},
 	rarity = 8,
 --	cost = 90000,
@@ -828,7 +847,7 @@ newEntity{
 
 newEntity {
 	name = " of the Hin", suffix = true,
---	keywords = {bonus=true},
+	keywords = {Hin=true},
 	level_range = {16, 30},
 	greater_ego = 1,
 	rarity = 10,
@@ -846,6 +865,7 @@ newEntity {
 --From PF, two ways to increase carrying capacity
 newEntity{
 	name = "muleback ", prefix = true,
+	keywords = {mule=true},
 	level_range = {4, nil},
 	rarity = 4,
 	cost = resolvers.value{platinum=1000},
@@ -857,6 +877,7 @@ newEntity{
 
 newEntity{
 	name = " of heavyload", suffix = true,
+	keywords = {load=true},
 	level_range = {6, nil},
 	rarity = 10,
 	cost = resolvers.value{platinum=2000},
@@ -870,6 +891,7 @@ newEntity{
 --Casting spells
 newEntity {
 	name = " of identify", suffix = true,
+	keywords = {ID=true},
 	level_range = {1, 10},
 	rarity = 15,
 --	cost = 4500,
@@ -891,7 +913,7 @@ end
 --Based on Angband
 newEntity {
 	name = " of brightness", suffix = true,
---	keywords = {bonus=true},
+	keywords = {bright=true},
 	level_range = {6, 10},
 	rarity = 8,
 --	cost = 2000,
@@ -905,6 +927,7 @@ newEntity {
 --Halves nutrition loss rate
 newEntity{
 	name = " of slow digestion", suffix = true,
+	keywords = {slowdigest=true},
 	level_range = {5, 10},
 	rarity = 5,
 	cost = resolvers.value{platinum=200},
