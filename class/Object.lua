@@ -512,6 +512,8 @@ end
 --- Gets the full desc of the object
 function _M:getDesc(name_param, compare_with, never_compare, use_actor)
     use_actor = use_actor or game.player
+
+    --compare stuff
     game.compare = {}
 
     local slot_name = nil
@@ -534,8 +536,13 @@ function _M:getDesc(name_param, compare_with, never_compare, use_actor)
       end
     end
 
-
+    --desc stuff starts here
     local desc = tstring{}
+
+    if self.__new_pickup then
+		desc:add({"font","bold"},{"color","SANDY_BROWN"},"Newly picked up",{"font","normal"},{"color","LAST"},true)
+	end
+
     name_param = name_param or {}
     name_param.do_color = true
 

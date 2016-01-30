@@ -1180,10 +1180,14 @@ end
 			d:used()
 		end)
     else
-        if self:pickupFloor(1, true) then
-            self:sortInven()
-            self:useEnergy()
-        end
+		if self:attr("sleep") then
+			return
+		end
+		local o = self:pickupFloor(1, true)
+		if o and type(o) == "table" then
+			self:useEnergy()
+			o.__new_pickup = true
+		end
     self.changed = true
     end
 end
