@@ -411,7 +411,8 @@ function _M:getTextualDesc(compare_with, use_actor)
         desc:add((" (average %d)"):format(self:getAverageDamageFromDice(self.combat.dam[1], self.combat.dam[2])), true)
 
     --    self:compare_fields(desc, self, compare_with, "combat", "threat", self:combatThreat(), "Threatens a critical on a roll of: " )
-        desc:add(("Threatens a critical on a roll of: %s"):format(self:formatThreat()), true)
+        desc:add(("Threatens a critical on a roll of: %s"):format(self:formatThreat()))--, true)
+        desc:add((" (%d%%)"):format(self:threatPercent()), true)
     end
 
     if self.combat then combat_desc(desc, self, compare_with, "combat") end
@@ -706,6 +707,17 @@ function _M:formatThreat()
     if self.combat.threat then threat = (20-self.combat.threat).."-20" end
 
     return threat
+end
+
+function _M:threatPercent()
+    --we're adding % in the display
+    local base = 5
+
+    if self.combat.threat then
+        local threat = self.combat.threat
+        base = base + threat*5
+    end
+    return base
 end
 
 function _M:getAverageDamageFromDice(x, y)
