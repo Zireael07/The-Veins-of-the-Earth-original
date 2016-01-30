@@ -236,6 +236,7 @@ function _M:getDisplayColor()
             else
             return {81, 221, 255}, "#LIGHT_BLUE#"
             end
+        --ID'd but no ego
         else return {255, 255, 255}, "#FFFFFF#"
         end
 
@@ -321,6 +322,11 @@ function _M:getName(t)
             end
         end
     end
+
+    --Tag!
+    if not t.no_add_name and self.__tagged then
+		name = name .. " #ORANGE#="..self.__tagged.."=#LAST#"
+	end
 
     if not t.do_color then
         if qty == 1 or t.no_count then return name

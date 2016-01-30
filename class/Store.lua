@@ -110,6 +110,7 @@ end
 -- @param nb number of items (if stacked) to sell
 -- @return true if allowed to sell
 function _M:trySell(who, o, item, nb)
+	if o.__tagged then return end
 	local price = self:getObjectPrice(o, "sell")
 	if price <= 0 or nb <= 0 then return end
 	price = math.min(price * nb, self.store.purse * nb)

@@ -1272,6 +1272,11 @@ function _M:playerUseItem(object, item, inven)
     )
 end
 
+--- Called upon dropping an object
+function _M:onDropObject(o)
+	if self.player then game.level.map.attrs(self.x, self.y, "obj_seen", true)
+	elseif game.level.map.attrs(self.x, self.y, "obj_seen") then game.level.map.attrs(self.x, self.y, "obj_seen", false) end
+end
 
 function _M:doDrop(inven, item, on_done, nb)
     if self.no_inventory_access then return end

@@ -58,43 +58,53 @@ end
 --NOTE to self: on_use determines whether the inventory screen will close or not
 --Talk about non-intuitive stuff
 function _M:use(item)
-  if not item then return end
-  game:unregisterDialog(self)
-  print('[USE ITEM] action='..item.action)
+    if not item then return end
+    game:unregisterDialog(self)
+    print('[USE ITEM] action='..item.action)
+    local act = item.action
 
-  if item.action == "use" then
+    if act == "use" then
         self.actor:playerUseItem(self.object, self.item, self.inven, self.on_use)
         self.on_use(self.inven, self.item, self.object, true)
-  elseif item.action == 'wear' then
-    self.actor:doWear(self.inven, self.item, self.object)
-    self.on_use(self.inven, self.item, self.object, false)
-  elseif item.action == 'takeoff' then
-    self.actor:doTakeoff(self.inven, self.item, self.object)
-    self.on_use(self.inven, self.item, self.object, false)
+    elseif act == 'wear' then
+        self.actor:doWear(self.inven, self.item, self.object)
+        self.on_use(self.inven, self.item, self.object, false)
+    elseif act == 'takeoff' then
+        self.actor:doTakeoff(self.inven, self.item, self.object)
+        self.on_use(self.inven, self.item, self.object, false)
 
     --Special stuff
-  elseif item.action == "eat" then
-    self.actor:doEatFood(self.inven, self.item)
-    self.on_use(self.inven, self.item, self.object, false)
-  elseif item.action == "butcher" then
-    self.actor:doButcher(self.inven, self.item)
-    self.on_use(self.inven, self.item, self.object, false)
-  elseif item.action == "throw" then
-      self.actor:doThrowPotion(self.object, self.item, self.inven)
-    self.on_use(self.inven, self.item, self.object, true)
-  --Container stuff
-  elseif item.action == "putin" then
+    elseif act == "eat" then
+        self.actor:doEatFood(self.inven, self.item)
+        self.on_use(self.inven, self.item, self.object, false)
+    elseif act == "butcher" then
+        self.actor:doButcher(self.inven, self.item)
+        self.on_use(self.inven, self.item, self.object, false)
+    elseif act == "throw" then
+        self.actor:doThrowPotion(self.object, self.item, self.inven)
+        self.on_use(self.inven, self.item, self.object, true)
+    --Container stuff
+    elseif act == "putin" then
         self.actor:putIn(self.object, (self.object.filter or nil) )
         self.on_use(self.inven, self.item, self.object, false)
-  elseif item.action == "takeout" then
+    elseif act == "takeout" then
         self.actor:takeOut(self.object)
         self.on_use(self.inven, self.item, self.object, false)
-  elseif item.action == 'drop' then
-    local on_use_cb = function()
-      self.on_use(self.inven, self.item, self.object, false)
+    elseif act == 'drop' then
+        local on_use_cb = function()
+            self.on_use(self.inven, self.item, self.object, false)
+        end
+        self.actor:doDrop(self.inven, self.item, on_use_cb)
+    elseif act == "untag" then
+        self.object.__tagged = nil
+        self.on_use(self.inven, self.item, self.object, false)
+    elseif act == "tag" then
+        local d = require("engine.dialogs.GetText").new("Tag object (tagged objects can not be destroyed or dropped)", "Tag:", 2, 25, function(tag) if tag then
+            self.object.__tagged = tag
+            self.on_use(self.inven, self.item, self.object, false)
+        end end)
+        game:registerDialog(d)
     end
-    self.actor:doDrop(self.inven, self.item, on_use_cb)
-  end
 end
 
 function _M:generateList()
@@ -129,6 +139,9 @@ function _M:generateList()
   if self.inven == self.actor.INVEN_INVEN then
     list[#list+1] = { name='Drop', action='drop' }
   end
+  --Tagging
+  if not self.object.__tagged then list[#list+1] = {name="Tag", action="tag"} end
+  if self.object.__tagged then list[#list+1] = {name="Untag", action="untag"} end
 
   self.max_w = 0
   self.max_h = 0
