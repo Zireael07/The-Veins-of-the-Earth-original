@@ -265,3 +265,16 @@ newEntity{ base = "BASE_ARMOR",
             }
         },
 }
+
+newEntity{ base = "BASE_ARMOR",
+    name = "rags", short_name = "rags",
+    unided_name = "rags",
+    image = "tiles/object/rags.png",
+    moddable_tile = resolvers.moddable_tile("monk"),
+    display = "(", color=colors.SLATE,
+    encumber = 1,
+    rarity = 10,
+    level_range = {1, 20},
+    cost = resolvers.value{silver=2},
+    desc = [[A much worn outfit, not much better than rags.]],
+}
