@@ -84,9 +84,9 @@ function _M:use(item)
         self.actor:doThrowPotion(self.object, self.item, self.inven)
         self.on_use(self.inven, self.item, self.object, true)
     --Container stuff
-    elseif act == "putin" then
+    --[[elseif act == "putin" then
         self.actor:putIn(self.object, (self.object.filter or nil) )
-        self.on_use(self.inven, self.item, self.object, false)
+        self.on_use(self.inven, self.item, self.object, false)]]
     elseif act == "takeout" then
         self.actor:takeOut(self.object)
         self.on_use(self.inven, self.item, self.object, false)
@@ -110,8 +110,8 @@ end
 function _M:generateList()
   local list = {}
 --Container stuff
-  if self.object.iscontainer then list[#list+1] = {name="Put In", action="use"} end
-  if self.object.iscontainer then list[#list+1] = {name="Take Out", action="takeout"} end
+--  if self.object.iscontainer then list[#list+1] = {name="Put in", action="use"} end
+  if self.object.iscontainer then list[#list+1] = {name="Take out", action="takeout"} end
 
   if self.object.use_simple then
       local use = self.object.use_simple.name:capitalize()
