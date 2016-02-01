@@ -14,12 +14,13 @@ newEntity{
 	iscontainer = true,
 }
 
+--The best container one can get
 newEntity{
 	base = "BASE_CONTAINER",
 	name = "bag of holding",
 	unided_name = "bag",
-	level_range = {1, nil},
-	rarity = 2,
+	level_range = {10, nil},
+	rarity = 20,
 --	cost = 2500,
 	cost = resolvers.value{platinum=2500},
 	--Based on Baldur's Gate bag of holding
@@ -39,8 +40,7 @@ newEntity{
 	filter = "ammo",
 --	cost = 1500,
 	cost = resolvers.value{platinum=1500},
-	--Based on Baldur's Gate bag of holding
-	body = { INVEN = 20 },
+	body = { INVEN = 5 },
 	use_simple = { name = "put in", use = function(self, who)
 		who:putIn(self, self.filter)
 		return {used=true}
@@ -55,8 +55,7 @@ newEntity{
 	rarity = 2,
 --	cost = 1500,
 	cost = resolvers.value{platinum=1500},
-	--Based on Baldur's Gate bag of holding
-	body = { INVEN = 20 },
+	body = { INVEN = 5 },
 	use_simple = { name = "put in", use = function(self, who)
 		who:putIn(self, self.filter)
 		return {used=true}
@@ -72,8 +71,39 @@ newEntity{
 	filter = "potion",
 --	cost = 1500,
 	cost = resolvers.value{platinum=1500},
-	--Based on Baldur's Gate bag of holding
-	body = { INVEN = 20 },
+	body = { INVEN = 5 },
+	use_simple = { name = "put in", use = function(self, who)
+		who:putIn(self, self.filter)
+		return {used=true}
+	end},
+}
+
+newEntity{
+	base = "BASE_CONTAINER",
+	name = "medium potion case",
+	unided_name = "bag",
+	level_range = {1, nil},
+	rarity = 10,
+	filter = "potion",
+--	cost = 1500,
+	cost = resolvers.value{platinum=1500},
+	body = { INVEN = 10 },
+	use_simple = { name = "put in", use = function(self, who)
+		who:putIn(self, self.filter)
+		return {used=true}
+	end},
+}
+
+newEntity{
+	base = "BASE_CONTAINER",
+	name = "large potion case",
+	unided_name = "bag",
+	level_range = {1, nil},
+	rarity = 10,
+	filter = "potion",
+--	cost = 1500,
+	cost = resolvers.value{platinum=1500},
+	body = { INVEN = 15 },
 	use_simple = { name = "put in", use = function(self, who)
 		who:putIn(self, self.filter)
 		return {used=true}
@@ -89,8 +119,7 @@ newEntity{
 	filter = "scroll",
 --	cost = 1500,
 	cost = resolvers.value{platinum=1500},
-	--Based on Baldur's Gate bag of holding
-	body = { INVEN = 20 },
+	body = { INVEN = 5 },
 	use_simple = { name = "put in", use = function(self, who)
 		who:putIn(self, self.filter)
 		return {used=true}
