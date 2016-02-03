@@ -185,7 +185,7 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
 
    attack, attacklog_add = self:combatAttack(weapon)
 
-   attack = attack + atkmod
+   attack = attack + (atkmod or 0)
    attacklog = attacklog.." "..attacklog_add
 
    local ac = target:getAC()
