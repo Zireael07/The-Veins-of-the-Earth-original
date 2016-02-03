@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2015 Zireael
+-- Copyright (C) 2013-2016 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -19,10 +19,10 @@ long_name = "The Veins of the Earth"
 short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "http://veins-of-the-earth.wikidot.com/"
-version = {0,33,0}
+version = {0,34,0}
 engine = {1,4,0,"te4"}
 description = [[
-#SANDY_BROWN# BETA 11.5#LAST#
+#SANDY_BROWN# BETA 12#LAST#
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
 You are an adventurer in a world of immense sunless corridors and tunnels. How long can you survive?
 
