@@ -1,6 +1,12 @@
 local Talents = require "engine.interface.ActorTalents"
 
 newEntity{
+    define_as = "BASE_OUTFIT",
+    slot = "BODY",
+    type = "armor",
+}
+
+newEntity{
     define_as = "BASE_ARMOR",
     slot = "BODY",
     type = "armor",
@@ -266,7 +272,7 @@ newEntity{ base = "BASE_ARMOR",
         },
 }
 
-newEntity{ base = "BASE_ARMOR",
+newEntity{ base = "BASE_OUTFIT",
     name = "rags", short_name = "rags",
     unided_name = "rags",
     image = "tiles/object/rags.png",
