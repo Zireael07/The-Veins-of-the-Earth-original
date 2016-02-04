@@ -9,7 +9,7 @@ newEntity{
     type = "potion", subtype = "potion",
     image = "tiles/object/potion.png",
     display = "¡", color=colors.RED,
-    name = "potion", instant_resolve = true,
+    name = "potion", --instant_resolve = true,
     unided_name = "potion",
     identified = false,
     cost = 0,

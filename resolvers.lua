@@ -989,9 +989,10 @@ end
 -- Assign a flavor to flavored objects that haven't had a flavor assigned
 -- to them, and adjust a flavored object's color and tile image
 function resolvers.flavored()
-  return { __resolver='flavored' }
+  return { __resolver='flavored', __resolve_last=true, }
 end
 function resolvers.calc.flavored(t, e)
+	if e.egoed then print("Flavoring egoed item") end
   local fl_def = e:isFlavored()
   if fl_def then
     local used = game.state.flavors_assigned[e.type][e.subtype]
@@ -1094,7 +1095,7 @@ end
 
 --Limiting egos to +1 bonus arms/armor
 function resolvers.ego_chance()
-	return {__resolver="ego_chance", }
+	return {__resolver="ego_chance",} --__resolve_last=true, }
 end
 function resolvers.calc.ego_chance(t, e)
 	if not e.egoed then print("Not egoed, return false") return false
