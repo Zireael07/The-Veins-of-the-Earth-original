@@ -925,7 +925,7 @@ function _M:onTakeHit(value, src, death_note)
 		if self.life <= 1 then value = 0 end
 
 		wounds_remaining = 0
-		if self.wounds < self.max_wounds then
+		if self.max_wounds and self.wounds < self.max_wounds then
 			if self.wounds <= self.max_wounds/2 then
 				self:setEffect(self.EFF_DISABLED, 1, {})
 			else
