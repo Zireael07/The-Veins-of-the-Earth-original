@@ -28,14 +28,13 @@ local function restore(dest, backup)
 end
 
 function _M:init(actor)
-    self.player = actor
     self.actor = actor
     self.actor_dup = actor:clone()
     self:generateList()
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
     Dialog.init(self, "Class select", game.w*0.4, game.h*0.6)
 
-    self.c_points = Textzone.new{width=self.iw/2, height = 50, text = "Available class points: "..self.player.class_points}
+    self.c_points = Textzone.new{width=self.iw/2, height = 50, text = "Available class points: "..self.actor.class_points}
     self.c_list = List.new{width=self.iw/2, height = self.ih*0.9, scrollbar=true, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end}
     self.c_desc = TextzoneList.new{width=self.iw/2-20, height = (self.ih*0.9), scrollbar=true, text="Hello from description"}
 
@@ -80,10 +79,10 @@ function _M:cancel()
 end
 
 function _M:use(item)
-    if self.player.class_points <= 0 then game.log("You need a class point") return end
+    if self.actor.class_points <= 0 then game.log("You need a class point") return end
     if not item.can_level then game.log("You don't fulfill all the requirements for this class") return end
 
-    self.player:levelClass(item.real_name)
+    self.actor:levelClass(item.real_name)
 
     self:update()
 end
@@ -98,7 +97,7 @@ end
 function _M:update()
     local sel = self.selection
     self:generateList() -- Slow! Should just update the one changed and sort again
-    self.c_points.text = "Available class points: "..self.player.class_points
+    self.c_points.text = "Available class points: "..self.actor.class_points
     self.c_points:generate()
     self.c_list.list = self.list
     self.c_list:generate()
@@ -111,8 +110,8 @@ function _M:generateList()
     local list = {}
 
     for i, d in ipairs(Birther.birth_descriptor_def.subclass) do
-        local level = self.player.classes[d.name] or 0
-        local can_level = d.can_level(self.player)
+        local level = self.actor.classes[d.name] or 0
+        local can_level = d.can_level(self.actor)
         local prestige = false
         local name = ""
 
@@ -135,9 +134,6 @@ function _M:generateList()
         table.insert(list, {name = name, desc = desc, level = level, real_name = d.name, can_level = can_level, prestige = prestige})
     end
 
-    local player = game.player
-
-
     self.list = list
 
     table.sort(self.list, function (a,b)
@@ -158,7 +154,7 @@ function _M:generateList()
 end
 
 function _M:descText(t)
-	local player = self.actor
-	local d = t.desc(player,t)
+	local actor = self.actor
+	local d = t.desc(actor,t)
 	return d
 end
