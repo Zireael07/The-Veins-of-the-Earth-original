@@ -28,13 +28,12 @@ local function restore(dest, backup)
 end
 
 function _M:init(actor)
-	self.player = actor
 	self.actor = actor
     self.actor_dup = actor:clone()
 	Dialog.init(self, "Skills", game.w*0.5, game.h*0.6)
 	self:generateLists()
 
-	self.c_points = Textzone.new{width=self.iw, auto_height=true, text = "Available skill points: #GOLD#"..self.player.skill_point.. " #LAST# Background skill points: #GOLD#"..self.player.background_points.." #LAST# Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."}
+	self.c_points = Textzone.new{width=self.iw, auto_height=true, text = "Available skill points: #GOLD#"..self.actor.skill_point.. " #LAST# Background skill points: #GOLD#"..self.actor.background_points.." #LAST# Max skill ranks: #GOLD#"..self.actor.max_skill_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."}
 	self.c_adventure = Textzone.new{width=self.iw/3, auto_height=true, text=[[Adventuring skills]]}
     self.c_background = Textzone.new{width=self.iw/3, auto_height=true, text=[[Background skills]]}
     self.c_list = List.new{width=self.iw/3, height=self.ih-self.c_points.h - 10, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
@@ -86,36 +85,36 @@ end
 
 function _M:use(item)
 	--check that we don't get negative values AFTER deducting a point
-	if (not item.background and (self.player.skill_point or 0) -1 >= 0)
-        or (item.background and (self.player.background_points or 0) -1 >= 0)
+	if (not item.background and (self.actor.skill_point or 0) -1 >= 0)
+        or (item.background and (self.actor.background_points or 0) -1 >= 0)
      then
 
 	--Cross class skills
-	if self.player:crossClass(item.skill) then
-		if (self.player:attr("skill_"..item.skill) or 0) < self.player.cross_class_ranks then
+	if self.actor:crossClass(item.skill) then
+		if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.cross_class_ranks then
 
 		--increase the skill by one
-		self.player:attr("skill_"..item.skill, 1)
+		self.actor:attr("skill_"..item.skill, 1)
 
             if not item.background then
-    		    self.player.skill_point = self.player.skill_point - 1
+    		    self.actor.skill_point = self.actor.skill_point - 1
             else
-                self.player.background_points = self.player.background_points - 1
+                self.actor.background_points = self.actor.background_points - 1
             end
     		self:update()
 		end
 	else
 
 	--Class skills
-	if (self.player:attr("skill_"..item.skill) or 0) < self.player.max_skill_ranks then
+	if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.max_skill_ranks then
 
 		--increase the skill by one
-		self.player:attr("skill_"..item.skill, 1)
+		self.actor:attr("skill_"..item.skill, 1)
 
         if not item.background then
-		    self.player.skill_point = self.player.skill_point - 1
+		    self.actor.skill_point = self.actor.skill_point - 1
         else
-            self.player.background_points = self.player.background_points - 1
+            self.actor.background_points = self.actor.background_points - 1
         end
 		self:update()
 		end
@@ -131,7 +130,7 @@ end
 function _M:update()
 	local sel = self.selection
 	self:generateLists() -- Slow! Should just update the one changed and sort again
-	self.c_points.text = "Available skill points: #GOLD#"..self.player.skill_point.." #LAST# Background skill points: #GOLD#"..self.player.background_points.." #LAST#Max skill ranks: #GOLD#"..self.player.max_skill_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."
+	self.c_points.text = "Available skill points: #GOLD#"..self.actor.skill_point.." #LAST# Background skill points: #GOLD#"..self.actor.background_points.." #LAST#Max skill ranks: #GOLD#"..self.actor.max_skill_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."
 	self.c_points:generate()
 	self.c_list.list = self.list
 	self.c_list:generate()
@@ -146,13 +145,12 @@ function _M:generateLists()
 end
 
 function _M:generateList()
-	local player = game.player
     local list = {}
 
     for i, s in ipairs(ActorSkills.skill_defs) do
         if not s.background then
             local skill = s.id
-        	local value = self.player:attr("skill_"..skill)
+        	local value = self.actor:attr("skill_"..skill)
      		local color = {255, 255, 255}
             local background = s.background
 
@@ -163,16 +161,16 @@ function _M:generateList()
                 d = d.."#STEEL_BLUE#Rogues only!#LAST#"
             end
 
-            if self.player:crossClass(skill) then
+            if self.actor:crossClass(skill) then
                 --show value in gold if it's maxed out
-                if (self.player:attr("skill_"..skill) or 0) == self.player.cross_class_ranks then
+                if (self.actor:attr("skill_"..skill) or 0) == self.actor.cross_class_ranks then
                     name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
                 else
                     name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
                 end
             else
                 --show value in gold if it's maxed out
-                if (self.player:attr("skill_"..skill) or 0) == self.player.max_skill_ranks then
+                if (self.actor:attr("skill_"..skill) or 0) == self.actor.max_skill_ranks then
                     name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
                 else
                     name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
@@ -188,13 +186,12 @@ function _M:generateList()
 end
 
 function _M:generateBackgroundList()
-    local player = game.player
     local list = {}
 
     for i, s in ipairs(ActorSkills.skill_defs) do
         if s.background then
             local skill = s.id
-        	local value = self.player:attr("skill_"..skill)
+        	local value = self.actor:attr("skill_"..skill)
      		local color = {255, 255, 255}
             local background = s.background
 
@@ -205,16 +202,16 @@ function _M:generateBackgroundList()
                 d = d.."#STEEL_BLUE#Rogues only!#LAST#"
             end
 
-            if self.player:crossClass(skill) then
+            if self.actor:crossClass(skill) then
                 --show value in gold if it's maxed out
-                if (self.player:attr("skill_"..skill) or 0) == self.player.cross_class_ranks then
+                if (self.actor:attr("skill_"..skill) or 0) == self.actor.cross_class_ranks then
                     name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
                 else
                     name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
                 end
             else
                 --show value in gold if it's maxed out
-                if (self.player:attr("skill_"..skill) or 0) == self.player.max_skill_ranks then
+                if (self.actor:attr("skill_"..skill) or 0) == self.actor.max_skill_ranks then
                     name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
                 else
                     name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
