@@ -89,12 +89,29 @@ function _M:use(item)
         or (item.background and (self.actor.background_points or 0) -1 >= 0)
      then
 
-	--Cross class skills
-	if self.actor:crossClass(item.skill) then
-		if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.cross_class_ranks then
+    	--Cross class skills
+    	if self.actor:crossClass(item.skill) then
+    		if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.cross_class_ranks then
 
-		--increase the skill by one
-		self.actor:attr("skill_"..item.skill, 1)
+    		--increase the skill by one
+    		self.actor:attr("skill_"..item.skill, 1)
+
+                if not item.background then
+        		    self.actor.skill_point = self.actor.skill_point - 1
+                else
+                    self.actor.background_points = self.actor.background_points - 1
+                end
+        		self:update()
+            else
+                self:simplePopup("Max skill points", "You cannot increase this skill further!")
+            end
+    	else
+
+    	--Class skills
+    	if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.max_skill_ranks then
+
+    		--increase the skill by one
+    		self.actor:attr("skill_"..item.skill, 1)
 
             if not item.background then
     		    self.actor.skill_point = self.actor.skill_point - 1
@@ -102,24 +119,14 @@ function _M:use(item)
                 self.actor.background_points = self.actor.background_points - 1
             end
     		self:update()
-		end
-	else
-
-	--Class skills
-	if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.max_skill_ranks then
-
-		--increase the skill by one
-		self.actor:attr("skill_"..item.skill, 1)
-
-        if not item.background then
-		    self.actor.skill_point = self.actor.skill_point - 1
         else
-            self.actor.background_points = self.actor.background_points - 1
+            self:simplePopup("Max skill points", "You cannot increase this skill further!")
         end
-		self:update()
-		end
-	end
-	end
+    end
+    else
+        self:simplePopup("Not enough skill points", "You need a skill point!")
+    end
+
 end
 
 function _M:on_select(item,sel)

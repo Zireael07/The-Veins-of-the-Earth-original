@@ -79,9 +79,13 @@ function _M:cancel()
 end
 
 function _M:use(item)
-    if self.actor.class_points <= 0 then game.log("You need a class point") return end
-    if not item.can_level then game.log("You don't fulfill all the requirements for this class") return end
-
+    if self.actor.class_points <= 0 then
+        self:simplePopup("Not enough class points", "You need a class point!")
+        return end
+    if not item.can_level then
+        self:simplePopup("Requirements not met", "You don't fulfill all the requirements for this class")
+        return end
+        
     self.actor:levelClass(item.real_name)
 
     self:update()
