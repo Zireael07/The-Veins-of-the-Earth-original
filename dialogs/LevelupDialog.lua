@@ -40,7 +40,7 @@ function _M:init(actor)
 
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
 
-    Dialog.init(self, "Level Up: "..self.actor.name, math.max(game.w * 0.7, 950), game.h*0.8, nil, nil, font)
+    Dialog.init(self, "Level Up: "..self:getTitle(), math.max(game.w * 0.7, 950), game.h*0.8, nil, nil, font)
 
     self.c_surface = SurfaceZone.new{width=self.iw, height=self.ih*0.9,alpha=0}
 
@@ -144,6 +144,8 @@ function _M:init(actor)
             self:updateDesc(item)
         end
     }
+
+    self.c_plan = Button.new{text="Plan", fct=function() self:onPlan() end}
 
   --  self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
   --Taken from ToME 4
@@ -267,11 +269,11 @@ function _M:drawDialog(tab)
             {left=0, top=start, ui=self.c_stats},
             {left=0, top=start + self.c_stats.h, ui=self.c_surface},
             {right=0, top=start, ui=self.c_desc},
-        --    {left=0, bottom=0, ui=self.c_plan},
+            {left=0, bottom=0, ui=self.c_plan},
         }
 
         self:setupUI()
-    --    self:hidePlan()
+        self:hidePlan()
         self:drawGeneral()
 
     end
@@ -848,4 +850,40 @@ end
 
 function _M:onEnd(result)
     game:unregisterDialog(self)
+end
+
+function _M:hidePlan()
+    local ok = not self.actor.planning
+    self:toggleDisplay(self.c_plan, ok)
+end
+
+function _M:getTitle()
+    if self.actor.planning == true then return self.actor.name.." [Plan]"
+    else return self.actor.name end
+end
+
+function _M:onPlan()
+    local LevelupDialog = require 'mod.dialogs.LevelupDialog'
+    game:unregisterDialog(self)
+
+    local high_lvl_dup = game.player:cloneFull()
+    -- Don't want this player swapped onto the map.
+    high_lvl_dup.x = nil
+    high_lvl_dup.y = nil
+    -- Nor do we want any level-up achievements.
+    high_lvl_dup.silent_levelup = true
+    --mark the fact we're planning
+    high_lvl_dup.planning = true
+
+    --Level-up the duplicate
+    high_lvl_dup:forceLevelup(3)
+    high_lvl_dup:gainExp(30000)
+
+    --set a baseline
+    self.dup_baseline = high_lvl_dup:cloneFull()
+
+    local d = LevelupDialog.new(high_lvl_dup)
+    d.actor_dup = self.dup_baseline
+
+    game:registerDialog(d)
 end
