@@ -20,22 +20,22 @@ newTalent{
 		local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
-			image = "tiles/horse_brown.png",
+			image = "tiles/mobiles/horse_brown.png",
 			name = "war horse mount", faction = self.faction,
 			desc = [[A large peaceful war horse.]],
 			--autolevel = "none",
 			never_anger = true,
-			
+
 			ai = "ally",
 			ai_state = { talent_in=1, ally_compassion=10},
 			ai_tactic = resolvers.tactic"default",
-			
+
 			stats = {str=0, dex=0, con=0, int=0, wis=0, cha=0, luc=0},
 			inc_stats = {
 				str = 18,
 				dex = 13,
 				con = 17,
-				int = 2, 
+				int = 2,
 				wis = 13,
 				cha = 6,
 				luc = 10,
@@ -48,6 +48,7 @@ newTalent{
 			combat = { dam={1,4}, atk=1, },
 			movement_speed_bonus = 0.66,
 			mount = true,
+			resolvers.wounds(),
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 1200, --2 hrs
@@ -55,27 +56,27 @@ newTalent{
 		}
 		return m
 		end
-		
+
 		if creature == "war pony" then
 			local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
-			image = "tiles/horse_spotted.png",
+			image = "tiles/mobiles/horse_spotted.png",
 			name = "war pony mount", faction = self.faction,
 			desc = [[A large peaceful war pony.]],
 			--autolevel = "none",
 			never_anger = true,
-			
+
 			ai = "ally",
 			ai_state = { talent_in=1, ally_compassion=10},
 			ai_tactic = resolvers.tactic"default",
-			
+
 			stats = {str=0, dex=0, con=0, int=0, wis=0, cha=0, luc=0},
 			inc_stats = {
 				str = 15,
 				dex = 13,
 				con = 14,
-				int = 2, 
+				int = 2,
 				wis = 13,
 				cha = 6,
 				luc = 10,
@@ -88,6 +89,7 @@ newTalent{
 			combat = { dam={1,6}, atk=1, },
 			movement_speed = 1.33,
 			mount = true,
+			resolvers.wounds(),
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 1200,  --2 hrs
@@ -121,8 +123,8 @@ newTalent{
 			return nil
 		end
 		if not x or not y then
-			game.logPlayer(self, "You cannot summon there.") 
-			return nil 
+			game.logPlayer(self, "You cannot summon there.")
+			return nil
 		end
 
 		game.logPlayer(self, ("Player summons a %s!"):format(result))

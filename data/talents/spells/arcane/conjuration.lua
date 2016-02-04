@@ -107,7 +107,7 @@ newArcaneSpell{
 		local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
-			image = "tiles/horse_brown.png",
+			image = "tiles/mobiles/horse_brown.png",
 			name = "light horse mount", faction = self.faction,
 			desc = [[A peaceful horse.]],
 			--autolevel = "none",
@@ -135,6 +135,7 @@ newArcaneSpell{
 			combat = { dam={1,4}, atk=1, },
 			movement_speed = 1.66,
 			mount = true,
+			resolvers.wounds(),
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 1200, --2 hrs
@@ -147,7 +148,7 @@ newArcaneSpell{
 			local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
-			image = "tiles/horse_spotted.png",
+			image = "tiles/mobiles/horse_spotted.png",
 			name = "pony mount", faction = self.faction,
 			desc = [[A large peaceful pony.]],
 			--autolevel = "none",
@@ -175,6 +176,7 @@ newArcaneSpell{
 			combat = { dam={1,3}, atk=1, },
 			movement_speed = 1.33,
 			mount = true,
+			resolvers.wounds(),
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 1200,  --2 hrs
@@ -239,7 +241,7 @@ newArcaneSpell{
 			local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
-			image = "tiles/horse_spotted.png",
+			image = "tiles/mobiles/horse_spotted.png",
 			name = "pony mount", faction = self.faction,
 			desc = [[A large peaceful pony.]],
 			--autolevel = "none",
@@ -267,6 +269,7 @@ newArcaneSpell{
 			combat = { dam={1,3}, atk=1, },
 			movement_speed = 1.33,
 			mount = true,
+			resolvers.wounds(),
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 10,
@@ -278,7 +281,7 @@ newArcaneSpell{
 			local m = NPC.new{
 			type = "animal", subtype = "rat",
 			display = "r", color=colors.LIGHT_GREEN,
-			image = "tiles/rat.png",
+			image = "tiles/mobiles/rat.png",
 			name = "dire rat", faction = self.faction,
 			desc = [[A large peaceful rat.]],
 			--autolevel = "none",
@@ -304,6 +307,7 @@ newArcaneSpell{
 
 			combat_base_ac = 10, combat_dr = 0, combat_natural = 2,
 			combat = { dam={1,3}, atk=1, },
+			resolvers.wounds(),
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 10,
@@ -315,7 +319,7 @@ newArcaneSpell{
 			local m = NPC.new{
 			type = "vermin", subtype = "spider",
 			display = "r", color=colors.LIGHT_GREEN,
-			image = "tiles/spider.png",
+			image = "tiles/mobiles/spider.png",
 			name = "small spider", faction = self.faction,
 			desc = [[A large peaceful spider.]],
 			--autolevel = "none",
@@ -342,6 +346,7 @@ newArcaneSpell{
 			combat_base_ac = 10, combat_dr = 0, combat_natural = 2,
 			combat = { dam={1,6}, atk=1, },
 			poison = "medium_spider",
+			resolvers.wounds(),
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 10,
@@ -407,7 +412,7 @@ newArcaneSpell{
 		local m = NPC.new{
 			type = "animal", subtype = "horse",
 			display = "q", color=colors.LIGHT_GREEN,
-			image = "tiles/horse_brown.png",
+			image = "tiles/mobiles/horse_brown.png",
 			name = "light horse mount", faction = self.faction,
 			desc = [[A peaceful horse.]],
 			--autolevel = "none",
@@ -435,6 +440,7 @@ newArcaneSpell{
 			combat = { dam={1,4}, atk=1, },
 			movement_speed = 1.66,
 			mount = true,
+			resolvers.wounds(),
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 10,
@@ -447,6 +453,7 @@ newArcaneSpell{
 		local m = NPC.new{
 			type = "animal", subtype = "wolf",
 			display = "q", color=colors.LIGHT_GREEN,
+			image = "tiles/mobiles/wolf.png",
 			name = "summoned wolf", faction = self.faction,
 			desc = [[A large peaceful wolf.]],
 			--autolevel = "none",
@@ -472,6 +479,7 @@ newArcaneSpell{
 
 			combat_base_ac = 10, combat_dr = 0,
 			combat = { dam={1,4}, atk=1, },
+			resolvers.wounds(),
 
 			summoner = self, summoner_gain_exp=true,
 			summon_time = 10,
