@@ -330,8 +330,12 @@ end
 
 --Classes
 function _M:useClass(item)
-    if self.actor.class_points <= 0 then game.log("You need a class point") return end
-    if not item.can_level then game.log("You don't fulfill all the requirements for this class") return end
+    if self.actor.class_points <= 0 then
+        self:simplePopup("Not enough class points", "You need a class point!")
+        return end
+    if not item.can_level then
+        self:simplePopup("Requirements not met", "You don't fulfill all the requirements for this class")
+        return end
 
     self.actor:levelClass(item.real_name)
 
@@ -413,12 +417,30 @@ function _M:useSkill(item)
         or (item.background and (self.actor.background_points or 0) -1 >= 0)
      then
 
-	--Cross class skills
-	if self.actor:crossClass(item.skill) then
-		if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.cross_class_ranks then
+    	--Cross class skills
+    	if self.actor:crossClass(item.skill) then
+    		if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.cross_class_ranks then
 
-		--increase the skill by one
-		self.actor:attr("skill_"..item.skill, 1)
+    		    --increase the skill by one
+    		    self.actor:attr("skill_"..item.skill, 1)
+
+                if not item.background then
+        		    self.actor.skill_point = self.actor.skill_point - 1
+                else
+                    self.actor.background_points = self.actor.background_points - 1
+                end
+        		self:updateSkills()
+                --end
+            else
+                self:simplePopup("Max skill points", "You cannot increase this skill further!")
+            end
+    	else
+
+    	--Class skills
+    	if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.max_skill_ranks then
+
+    		--increase the skill by one
+    		self.actor:attr("skill_"..item.skill, 1)
 
             if not item.background then
     		    self.actor.skill_point = self.actor.skill_point - 1
@@ -426,23 +448,13 @@ function _M:useSkill(item)
                 self.actor.background_points = self.actor.background_points - 1
             end
     		self:updateSkills()
-		end
-	else
-
-	--Class skills
-	if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.max_skill_ranks then
-
-		--increase the skill by one
-		self.actor:attr("skill_"..item.skill, 1)
-
-        if not item.background then
-		    self.actor.skill_point = self.actor.skill_point - 1
+    		--end
         else
-            self.actor.background_points = self.actor.background_points - 1
-        end
-		self:updateSkills()
-		end
-	end
+            self:simplePopup("Max skill points", "You cannot increase this skill further!")
+    	end
+    end
+    else
+        self:simplePopup("Not enough skill points", "You need a skill point!")
 	end
 end
 
