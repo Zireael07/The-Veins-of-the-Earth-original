@@ -207,6 +207,22 @@ newEntity{ base = "BASE_HELM",
     desc = [[A small oblong stone.]],
 }
 
+newEntity{ base = "BASE_HELM",
+    image = "tiles/object/circlet.png",
+    display = "₵", color=colors.SLATE,
+    rarity = 15,
+    name = "circlet", short_name = "circlet",
+    desc = [[A simple circlet.]],
+}
+
+newEntity{ base = "BASE_HELM",
+    image = "tiles/object/crown_golden.png",
+    display = "₵", color=colors.YELLOW,
+    rarity = 15,
+    name = "crown", short_name = "crown",
+    desc = [[A beautiful jewelled crown.]],
+}
+
 newEntity{
     type = "book", subtype = "book",
     slot = "INVEN",
