@@ -324,7 +324,7 @@ newEntity{
 
 newEntity{ base = "BASE_DRINK",
     name = "flask of wine",
-    image = "tiles/objects/wine.png",
+    image = "tiles/object/wine.png",
     display = "!", color = colors.RED,
     rarity = 15,
     cost = 10,
@@ -334,7 +334,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "mug of ale",
-    image = "tiles/objects/beer.png",
+    image = "tiles/object/beer.png",
     display = "!", color = colors.SANDY_BROWN,
     cost = 6,
     desc = [[A mug of brownish ale.]],
@@ -373,7 +373,7 @@ newEntity{ base = "BASE_DRINK",
 
 newEntity{ base = "BASE_DRINK",
     name = "mug of beer",
-    image = "tiles/objects/beer.png",
+    image = "tiles/object/beer.png",
     display = "!", color = colors.YELLOW,
     cost = 4, --cheaper than water
     desc = [[A mug of beer.]],
