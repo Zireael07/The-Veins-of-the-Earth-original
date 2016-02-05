@@ -311,6 +311,7 @@ function resolvers.calc.moddable_tile(t, e)
 	--robes
 	elseif slot == "archmage" then r = {"robe_green","robe_green_gold","robe_yellow", "robe_red_gold", "robe_brown"}
 	elseif slot == "monk" then r = {"monk_black","monk_blue"}
+	elseif slot == "rags" then r = {"robes"}
 
 	elseif slot == "shield" then r = {"shield_kite2","shield_round1","shield_round2","shield_round3"}
 	elseif slot == "staff" then r = {"staff_plain", "staff_mage"}
