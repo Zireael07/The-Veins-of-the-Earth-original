@@ -247,8 +247,12 @@ function _M:playerCounters()
 	if self:xpTick() then
 
 		if self.pseudo_id_counter == 0 then --and inven > 0 then
-		self:pseudoID()
-		self:setCountID()
+			--reward for high Intuition
+			if self.skill_intuition > 5 then
+				self:schoolID()
+			end
+			self:pseudoID()
+			self:setCountID()
 		end
 
 		if self.id_counter == 0 then
@@ -1118,16 +1122,17 @@ end
 function _M:schoolID()
     local can_id = {}
     self:inventoryApplyAll(function(inven, item, o)
-        if o.pseudo_id and not o.identified then
+        if not o.identified then --and o.pseudo_id then
             can_id[#can_id+1] = o
         end
     end)
 
     if #can_id == 0 then return end
 
-    if self:skillCheck("intuition", 15, true) then
+    if self:skillCheck("intuition", 15) then
         local o = rng.table(can_id)
         o.school_id = true
+		game.logPlayer(self, ("You feel that your %s has a magic school"):format(o:getUnidentifiedName()))
     end
 end
 
