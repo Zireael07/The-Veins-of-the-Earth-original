@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014-2015
+--Zireael 2014-2016
 
 local Stats = require "engine.interface.ActorStats"
 local Talents = require "engine.interface.ActorTalents"
@@ -221,6 +221,151 @@ newEntity{
 end
 },
 }
+
+newEntity{
+	name = " of protection from evil", suffix = true, addon=true,
+	level_range = {3, nil},
+	rarity = 5,
+--	cost = 450,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "read",
+    use = function(self, who)
+    who:setEffect(who.EFF_PROTECT_EVIL, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of protection from good", suffix = true, addon=true,
+	level_range = {3, nil},
+	rarity = 5,
+--	cost = 450,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "read",
+    use = function(self, who)
+    who:setEffect(who.EFF_PROTECT_GOOD, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of protection from chaos", suffix = true, addon=true,
+	level_range = {3, nil},
+	rarity = 5,
+--	cost = 450,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "read",
+    use = function(self, who)
+    who:setEffect(who.EFF_PROTECT_CHAOS, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of protection from law", suffix = true, addon=true,
+	level_range = {3, nil},
+	rarity = 5,
+--	cost = 450,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "read",
+    use = function(self, who)
+    who:setEffect(who.EFF_PROTECT_LAW, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of protection from acid", suffix = true, addon=true,
+	level_range = {3, nil},
+	rarity = 5,
+--	cost = 450,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "read",
+    use = function(self, who)
+    who:setEffect(who.EFF_PROTECT_ACID, 5, {power=3})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of protection from cold", suffix = true, addon=true,
+	level_range = {3, nil},
+	rarity = 5,
+--	cost = 450,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "read",
+    use = function(self, who)
+    who:setEffect(who.EFF_PROTECT_COLD, 5, {power=3})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of protection from fire", suffix = true, addon=true,
+	level_range = {3, nil},
+	rarity = 5,
+--	cost = 450,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "read",
+    use = function(self, who)
+    who:setEffect(who.EFF_PROTECT_FIRE, 5, {power=3})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of protection from electric", suffix = true, addon=true,
+	level_range = {3, nil},
+	rarity = 5,
+--	cost = 450,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "read",
+    use = function(self, who)
+    who:setEffect(who.EFF_PROTECT_ELECTRIC, 5, {power=3})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of protection from sonic", suffix = true, addon=true,
+	level_range = {3, nil},
+	rarity = 5,
+--	cost = 450,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "read",
+    use = function(self, who)
+    who:setEffect(who.EFF_PROTECT_SONIC, 5, {power=3})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
 
 newEntity{
     name = " of levitation", suffix = true, addon=true,
