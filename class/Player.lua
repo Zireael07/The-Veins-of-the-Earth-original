@@ -1097,7 +1097,7 @@ end
 function _M:pseudoID()
     local can_id = {}
     self:inventoryApplyAll(function(inven, item, o)
-        if not o.pseudo_id then
+        if not o.pseudo_id and not o.identified then
             can_id[#can_id+1] = o
         end
     end)
