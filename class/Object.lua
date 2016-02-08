@@ -972,6 +972,7 @@ function _M:identify(id)
 	self:forAllStack(function(so)
 		so.identified = id
         if so:isFlavored() then so:learnFlavor() end
+        if not so.pseudo_id then so.pseudo_id = true end
 	--[[	if so.id_by_type then
 			game.object_known_types = game.object_known_types or {}
 			game.object_known_types[so.type] = game.object_known_types[so.type] or {}
