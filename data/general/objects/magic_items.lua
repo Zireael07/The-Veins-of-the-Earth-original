@@ -11,6 +11,7 @@ newEntity{
     display = "¡", color=colors.RED,
     name = "potion", --instant_resolve = true,
     unided_name = "potion",
+    stacking = true,
     identified = false,
     cost = 0,
     level_range = {1,10},
