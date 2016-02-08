@@ -313,14 +313,8 @@ function _M:getName(t)
         end
 
         if self.school_id == true and self.identified == false and not t.force_id then
-            if self.schools then
+            if self.school then
                 name = ("%s {%s}"):format(name, self:getSchool())
-            else
-                if self.pseudo_id == true then
-                    name = ("%s {%s}"):format(name, self:getPseudoIdFeeling())
-                else
-                    name = self:getUnidentifiedName()
-                end
             end
         end
     end
