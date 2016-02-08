@@ -12,7 +12,7 @@ newEntity{
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "divination",
-    use_simple = { name = "identify",
+    use_simple = { name = "read",
     use = function(self, who)
         local inven = game.player:getInven("INVEN")
         local d d = who:showInventory("Identify which item?", inven, function(o) return not o.identified end, function(o, item)
@@ -32,7 +32,7 @@ newEntity{
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "evocation",
-    use_simple = { name = "magic missile",
+    use_simple = { name = "read",
     use = function(self, who)
         local tg = {type="bolt", range=5, display={display='*',color=colors.ORCHID}}
         local x, y = who:getTarget(tg)
@@ -53,7 +53,7 @@ newEntity{
     rarity = 5,
     cost = resolvers.value{platinum=450},
     school = "evocation",
-    use_simple = { name = "burning",
+    use_simple = { name = "read",
     use = function(self, who)
         local tg = {type="cone", range=0, radius=3, nolock = true, selffire=false, talent=t}
         local x, y = who:getTarget(tg)
@@ -76,7 +76,7 @@ end
     rarity = 5,
     cost = resolvers.value{platinum=450},
     school = "enchantment",
-    use_simple = { name = "sleep",
+    use_simple = { name = "read",
     use = function(self, who)
         local tg = {type="cone", range=0, radius=4, nolock = true, selffire=false, talent=t}
         local x, y = who:getTarget(tg)
@@ -101,7 +101,7 @@ newEntity{
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "conjuration",
-    use_simple = { name = "mage armor",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_MAGE_ARMOR, 5, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -117,7 +117,7 @@ newEntity{
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "conjuration",
-    use_simple = { name = "delay poison",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_DELAY_POISON, 5, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -278,7 +278,7 @@ newEntity{
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "levitation",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_LEVITATE, 6, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -294,7 +294,7 @@ newEntity{
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "bear endurance",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -310,7 +310,7 @@ newEntity{
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "bull strength",
+    use_simple = { name = "read",
     use = function(self, who)
        who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -326,7 +326,7 @@ newEntity{
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "cat grace",
+    use_simple = { name = "read",
     use = function(self, who)
        who:setEffect(who.EFF_CAT_GRACE, 5, {})
        game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -342,7 +342,7 @@ newEntity{
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "fox cunning",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -358,7 +358,7 @@ newEntity{
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "owl wisdom",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -374,7 +374,7 @@ newEntity{
 --	cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "eagle splendor",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -391,7 +391,7 @@ newEntity{
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "fly",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_FLY, 6, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -407,7 +407,7 @@ newEntity{
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "haste",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_HASTE, 6, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
@@ -423,7 +423,7 @@ newEntity{
 --  cost = 4500,
     cost = resolvers.value{platinum=450},
     school = "transmutation",
-    use_simple = { name = "expeditious retreat",
+    use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_EXPEDITIOUS_RETREAT, 6, {})
     game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
