@@ -159,6 +159,22 @@ function _M:resolveEgos(o, last)
   o:resolve(nil, last)
 end
 
+-- Returns true if the two provided Objects have the same egos applied to
+-- them.
+-- TODO We probably also need to check for some of the various random flags
+-- provided by some ego types.
+-- Static.
+function _M:sameEgos(o1, o2)
+  local en1, en2 = o1.ego_names, o2.ego_names
+  if not en1 and not en2 then return true end
+  if not en1 or not en2 then return false end
+  local same_pfx = (not en1.prefix and not en2.prefix) or
+		   (en1.prefix and en2.prefix and en1.prefix == en2.prefix)
+  local same_sfx = (not en1.suffix and not en2.suffix) or
+		   (en1.suffix and en2.suffix and en1.suffix == en2.suffix)
+  return same_pfx and same_sfx
+end
+
 --New functions (Zireael)
 --Get list of all egos, no frills, no separating into prefixes/affixes unlike CreateItem
 function _M:generateEgoList(o, good)

@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2013-2016
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -24,6 +24,8 @@ local Stats = require("engine.interface.ActorStats")
 local Talents = require("engine.interface.ActorTalents")
 local DamageType = require("engine.DamageType")
 local ActorInventory = require ("engine.interface.ActorInventory")
+--needed to compare egos
+local Ego = require 'mod.class.Ego'
 
 module(..., package.seeall, class.inherit(
     engine.Object,
@@ -962,4 +964,40 @@ function _M:newFlavorSet(t)
   else
     self.flavors_def[typ][sub] = t
   end
+end
+
+--Rewrite identify() to include learning flavors
+function _M:identify(id)
+	print("[Identify]", self.name, true)
+	self:forAllStack(function(so)
+		so.identified = id
+        if so:isFlavored() then so:learnFlavor() end
+	--[[	if so.id_by_type then
+			game.object_known_types = game.object_known_types or {}
+			game.object_known_types[so.type] = game.object_known_types[so.type] or {}
+			game.object_known_types[so.type][so.subtype] = game.object_known_types[so.type][so.subtype] or {}
+			game.object_known_types[so.type][so.subtype][so.name] = id
+		end]]
+	end)
+	self:check("on_identify")
+end
+
+-- Check that objects have same level of identification.
+function _M:same_identified(o)
+  if not self.identified and not o.identified then return true end
+  if not self.identified or not o.identified then return false end
+  return self.identified == o.identified
+end
+
+
+
+--- Can it stacks with others of its kind ?
+function _M:canStack(o)
+	if not self.stacking or not o.stacking then return false end
+	if  self.stacking == o.stacking then return true end
+    --Same ID levels
+    if not self:same_identified(o) then return false end
+    -- Require same egos
+    if not Ego:sameEgos(self, o) then return false end
+	return false
 end
