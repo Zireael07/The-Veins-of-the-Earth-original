@@ -95,102 +95,6 @@ end
 
 --Buffs
 newEntity{
-	name = " of bear endurance", suffix = true, addon=true,
-	level_range = {9, nil},
-	rarity = 5,
---	cost = 4500,
-    cost = resolvers.value{platinum=450},
-    school = "transmutation",
-    use_simple = { name = "bear endurance",
-    use = function(self, who)
-    who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
-    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
-    return {used = true, destroy = true}
-end
-},
-}
-
-newEntity{
-	name = " of bull strength", suffix = true, addon=true,
-	level_range = {9, nil},
-	rarity = 5,
---	cost = 4500,
-    cost = resolvers.value{platinum=450},
-    school = "transmutation",
-    use_simple = { name = "bull strength",
-    use = function(self, who)
-       who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
-       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
-    return {used = true, destroy = true}
-end
-},
-}
-
-newEntity{
-	name = " of cat's grace", suffix = true, addon=true,
-	level_range = {9, nil},
-	rarity = 5,
---	cost = 4500,
-    cost = resolvers.value{platinum=450},
-    school = "transmutation",
-    use_simple = { name = "cat grace",
-    use = function(self, who)
-       who:setEffect(who.EFF_CAT_GRACE, 5, {})
-       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
-    return {used = true, destroy = true}
-end
-},
-}
-
-newEntity{
-	name = " of fox cunning", suffix = true, addon=true,
-	level_range = {9, nil},
-	rarity = 5,
---	cost = 4500,
-    cost = resolvers.value{platinum=450},
-    school = "transmutation",
-    use_simple = { name = "fox cunning",
-    use = function(self, who)
-    who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
-    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
-    return {used = true, destroy = true}
-end
-},
-}
-
-newEntity{
-	name = " of owl wisdom", suffix = true, addon=true,
-	level_range = {9, nil},
-	rarity = 5,
---	cost = 4500,
-    cost = resolvers.value{platinum=450},
-    school = "transmutation",
-    use_simple = { name = "owl wisdom",
-    use = function(self, who)
-    who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
-    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
-    return {used = true, destroy = true}
-end
-},
-}
-
-newEntity{
-	name = " of eagle splendor", suffix = true, addon=true,
-	level_range = {9, nil},
-	rarity = 5,
---	cost = 4500,
-    cost = resolvers.value{platinum=450},
-    school = "transmutation",
-    use_simple = { name = "eagle splendor",
-    use = function(self, who)
-    who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
-    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
-    return {used = true, destroy = true}
-end
-},
-}
-
-newEntity{
     name = " of mage armor", suffix = true, addon=true,
 	level_range = {3, nil},
     rarity = 5,
@@ -382,6 +286,103 @@ newEntity{
 end
 },
 }
+
+newEntity{
+	name = " of bear endurance", suffix = true, addon=true,
+	level_range = {9, nil},
+	rarity = 5,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "bear endurance",
+    use = function(self, who)
+    who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of bull strength", suffix = true, addon=true,
+	level_range = {9, nil},
+	rarity = 5,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "bull strength",
+    use = function(self, who)
+       who:setEffect(who.EFF_BULL_STRENGTH, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of cat's grace", suffix = true, addon=true,
+	level_range = {9, nil},
+	rarity = 5,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "cat grace",
+    use = function(self, who)
+       who:setEffect(who.EFF_CAT_GRACE, 5, {})
+       game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of fox cunning", suffix = true, addon=true,
+	level_range = {9, nil},
+	rarity = 5,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "fox cunning",
+    use = function(self, who)
+    who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of owl wisdom", suffix = true, addon=true,
+	level_range = {9, nil},
+	rarity = 5,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "owl wisdom",
+    use = function(self, who)
+    who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
+newEntity{
+	name = " of eagle splendor", suffix = true, addon=true,
+	level_range = {9, nil},
+	rarity = 5,
+--	cost = 4500,
+    cost = resolvers.value{platinum=450},
+    school = "transmutation",
+    use_simple = { name = "eagle splendor",
+    use = function(self, who)
+    who:setEffect(who.EFF_BEAR_ENDURANCE, 5, {})
+    game.logSeen(who, "%s uses %s!", who.name:capitalize(), self:getName())
+    return {used = true, destroy = true}
+end
+},
+}
+
 
 newEntity{
     name = " of flying", suffix = true, addon=true,
