@@ -1256,6 +1256,7 @@ function _M:setupCommands()
 				{"Graphic Mode", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GraphicMode").new()) end},
 				"video",
 				{"Game Options", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.GameOptions").new(false)) end},
+				{"Credits", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.Credits").new()) end},
 				{"#RED#Debug Menu#LAST#", function() self:unregisterDialog(menu) self:registerDialog(require("mod.dialogs.debug.DebugMenu").new()) end},
 				"save",
 				"quit"
