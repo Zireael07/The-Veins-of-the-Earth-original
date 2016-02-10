@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2013-2016
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -201,7 +201,7 @@ newEntity{ base = "BASE_HELM",
     subtype = "ioun",
     image = "tiles/new/ioun_stone.png",
     display = "*", color=colors.RED,
-    rarity = 20,
+    rarity = 25,
     name = "ioun stone", short_name = "ioun",
     unided_name = "stone",
     desc = [[A small oblong stone.]],
@@ -212,14 +212,16 @@ newEntity{ base = "BASE_HELM",
     display = "₵", color=colors.SLATE,
     rarity = 15,
     name = "circlet", short_name = "circlet",
+    unided_name = "circlet",
     desc = [[A simple circlet.]],
 }
 
 newEntity{ base = "BASE_HELM",
     image = "tiles/object/crown_golden.png",
     display = "₵", color=colors.YELLOW,
-    rarity = 15,
+    rarity = 20,
     name = "crown", short_name = "crown",
+    unided_name = "circlet",
     desc = [[A beautiful jewelled crown.]],
 }
 
