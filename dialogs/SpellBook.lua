@@ -226,14 +226,14 @@ function _M:drawDialog(tab)
 
 end
 
-_M.tabs_to_numbers = {
+local tabs_to_numbers = {
 	levelone = 1,
 	leveltwo = 2,
 	levelthree = 3,
 	levelfour = 4,
 }
 
-_M.numbers_to_tabs = {
+local numbers_to_tabs = {
 --	table.keys_to_values[tabs_to_numbers]
 	[1] = "levelone",
 	[2] = "leveltwo",
