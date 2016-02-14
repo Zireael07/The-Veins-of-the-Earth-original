@@ -8,7 +8,7 @@ newArcaneDivineSpell{
 	mode = 'activated',
 	level = 1,
 	points = 1,
-	range = 1,
+	range = 0,
 	requires_target = true,
 	radius = 5,
 	getDuration = function(self, t)
@@ -16,7 +16,7 @@ newArcaneDivineSpell{
 		else return 5 end
 	end,
 	target = function(self, t)
-		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, talent=t}
+		return {type="cone", range=self:getTalentRange(t), radius=self:getTalentRadius(t), nolock = true, selffire=false, nowarning=true, talent=t}
 	end,
 	action = function(self, t)
 		local tg = self:getTalentTarget(t)
@@ -26,7 +26,7 @@ newArcaneDivineSpell{
 
 		local duration = t.getDuration(self, t)
 
-		self:project(tg, x, y, DamageType.DETECT_MAGIC, damage, {type="magic"})
+		self:project(tg, x, y, DamageType.DETECT_MAGIC, damage)--, {type="magic"})
 
 		return true
 	end,

@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2015 Zireael
+-- Copyright (C) 2013-2016 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ setDefaultProjector(function(src, x, y, type, dam)
 				if visible and dam > 0 then -- don't log damage that the player doesn't know about
 				local source = src.__project_source or src
 					game:delayedLogDamage(src, target, dam, ("%s%d %s#LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), false)
-					
+
 			--[[	if src.turn_procs and src.turn_procs.is_crit then
 					game:delayedLogDamage(source, target, dam, ("#{bold}#%s%d %s#{normal}##LAST#"):format(DamageType:get(type).text_color or "#aaaaaa#", dam, DamageType:get(type).name), true)
 				else
@@ -359,6 +359,28 @@ newDamageType{
 			target:setEffect(target.EFF_DETECT_POISON, 3, {})
 		else
 			game.log("Target is not poisoned")
+		end
+	end
+	end,
+}
+
+newDamageType{
+	name = "detect magic", type = "DETECT_MAGIC",
+	projector = function(src, x, y, type, dam)
+	local target = game.level.map(x, y, Map.ACTOR)
+	local object = game.level.map(x, y, Map.OBJECT)
+	if target then
+		if target:findInAllInventoriesBy("egoed", true) then
+	--	if target == src then
+			game.log("Target glows blue briefly.")
+	--		target:setEffect(target.EFF_DETECT_MAGIC, 3, {})
+		else
+			game.log("Target is not carrying magic.")
+		end
+	elseif object then
+		if object.egoed then
+			game.log("Object is magical")
+	--	object.detect_magic = true
 		end
 	end
 	end,
