@@ -132,7 +132,7 @@ newEntity{
 	rarity = 5,
 --	cost = 450,
     cost = resolvers.value{platinum=450},
-    school = "transmutation",
+    school = "abjuration",
     use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_PROTECT_EVIL, 5, {})
@@ -148,7 +148,7 @@ newEntity{
 	rarity = 5,
 --	cost = 450,
     cost = resolvers.value{platinum=450},
-    school = "transmutation",
+    school = "abjuration",
     use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_PROTECT_GOOD, 5, {})
@@ -164,7 +164,7 @@ newEntity{
 	rarity = 5,
 --	cost = 450,
     cost = resolvers.value{platinum=450},
-    school = "transmutation",
+    school = "abjuration",
     use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_PROTECT_CHAOS, 5, {})
@@ -180,7 +180,7 @@ newEntity{
 	rarity = 5,
 --	cost = 450,
     cost = resolvers.value{platinum=450},
-    school = "transmutation",
+    school = "abjuration",
     use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_PROTECT_LAW, 5, {})
@@ -196,7 +196,7 @@ newEntity{
 	rarity = 5,
 --	cost = 450,
     cost = resolvers.value{platinum=450},
-    school = "transmutation",
+    school = "abjuration",
     use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_PROTECT_ACID, 5, {power=3})
@@ -212,7 +212,7 @@ newEntity{
 	rarity = 5,
 --	cost = 450,
     cost = resolvers.value{platinum=450},
-    school = "transmutation",
+    school = "abjuration",
     use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_PROTECT_COLD, 5, {power=3})
@@ -228,7 +228,7 @@ newEntity{
 	rarity = 5,
 --	cost = 450,
     cost = resolvers.value{platinum=450},
-    school = "transmutation",
+    school = "abjuration",
     use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_PROTECT_FIRE, 5, {power=3})
@@ -244,7 +244,7 @@ newEntity{
 	rarity = 5,
 --	cost = 450,
     cost = resolvers.value{platinum=450},
-    school = "transmutation",
+    school = "abjuration",
     use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_PROTECT_ELECTRIC, 5, {power=3})
@@ -260,7 +260,7 @@ newEntity{
 	rarity = 5,
 --	cost = 450,
     cost = resolvers.value{platinum=450},
-    school = "transmutation",
+    school = "abjuration",
     use_simple = { name = "read",
     use = function(self, who)
     who:setEffect(who.EFF_PROTECT_SONIC, 5, {power=3})
