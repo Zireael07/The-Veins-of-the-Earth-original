@@ -1,5 +1,5 @@
--- ToME - Tales of Maj'Eyal
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Copyright (C) 2013-2016 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -157,7 +157,7 @@ function _M:doBuy(who, o, item, nb, store_dialog)
 	local price
 	nb, price = self:tryBuy(who, o, item, nb)
 	if nb then
-		Dialog:yesnoPopup("Buy", ("Buy %d %s for %d gold"):format(nb, o:getName{do_color=true, no_count=true}, price), function(ok) if ok then
+		Dialog:yesnoPopup("Buy", ("Buy %d %s for %d silver"):format(nb, o:getName{do_color=true, no_count=true}, price), function(ok) if ok then
 			self:onBuy(who, o, item, nb, true)
 			--[[ Learn lore ?
 			if who.player and o.lore then
@@ -177,7 +177,7 @@ function _M:doSell(who, o, item, nb, store_dialog)
 	local price
 	nb, price = self:trySell(who, o, item, nb)
 	if nb then
-		Dialog:yesnoPopup("Sell", ("Sell %d %s for %d gold"):format(nb, o:getName{do_color=true, no_count=true}, price), function(ok) if ok then
+		Dialog:yesnoPopup("Sell", ("Sell %d %s for %d silver"):format(nb, o:getName{do_color=true, no_count=true}, price), function(ok) if ok then
 			self:onSell(who, o, item, nb, true)
 			self:transfer(who, self, item, nb, false)
 			self:onSell(who, o, item, nb, false)
@@ -193,18 +193,21 @@ end
 -- @return a string (possibly multiline) describing the object
 function _M:descObject(who, what, o)
 	if what == "buy" then
-		local desc = tstring({"font", "bold"}, {"color", "GOLD"}, ("Buy for: %d gold (You have %d gold)"):format(self:getObjectPrice(o, "buy"), who.money), {"font", "normal"}, {"color", "LAST"}, true, true)
+		local desc = tstring({"font", "bold"}, {"color", "GOLD"}, ("Buy for: %d silver (You have %d silver)"):format(self:getObjectPrice(o, "buy"), who.money), {"font", "normal"}, {"color", "LAST"}, true, true)
 		desc:merge(o:getDesc())
 		return desc
 	else
-		local desc = tstring({"font", "bold"}, {"color", "GOLD"}, ("Sell for: %d gold (You have %d gold)"):format(self:getObjectPrice(o, "sell"), who.money), {"font", "normal"}, {"color", "LAST"}, true, true)
+		local desc = tstring({"font", "bold"}, {"color", "GOLD"}, ("Sell for: %d silver (You have %d silver)"):format(self:getObjectPrice(o, "sell"), who.money), {"font", "normal"}, {"color", "LAST"}, true, true)
 		desc:merge(o:getDesc())
 		return desc
 	end
 end
 
 function _M:getObjectPrice(o, what)
-	local v = o:getPrice() * util.getval(what == "buy" and self.store.sell_percent or self.store.buy_percent, self, o) / 100
+	local price = o:getPrice()
+	if not o.identified then price = price*0.66 end
+
+	local v = price * util.getval(what == "buy" and self.store.sell_percent or self.store.buy_percent, self, o) / 100
 	return math.floor(v) --math.ceil(v * 10) / 10
 end
 
@@ -260,25 +263,6 @@ function _M:transfer(src, dest, item, nb, buying)
   dest:sortInven(dest_inven)
 end
 
-function _M:doBarter()
-	local list_buy = self.barter_list_buy
-	local list_sell = self.barter_list_sell
-
-
-	for i, item in ipairs(list_buy) do
-		self:onBuy(who, o, item, nb, true)
-		self:transfer(self, who, item, nb)
-		self:onBuy(who, o, item, nb, false)
-		if store_dialog then store_dialog:updateStore() end
-	end
-
-	for i, item in ipairs(list_sell) do
-		self:onSell(who, o, item, nb, true)
-		self:transfer(self, who, item, nb)
-		self:onSell(who, o, item, nb, false)
-		if store_dialog then store_dialog:updateStore() end
-	end
-end
 
 --Format the price per Object:formatPrice()
 function _M:formatStorePrice(o, what)
@@ -304,4 +288,25 @@ function _M:formatStorePrice(o, what)
         else return silver.." sp" end
     else return self:getObjectPrice(o, what)
     end
+end
+
+--Doesn't work
+function _M:doBarter()
+	local list_buy = self.barter_list_buy
+	local list_sell = self.barter_list_sell
+
+
+	for i, item in ipairs(list_buy) do
+		self:onBuy(who, o, item, nb, true)
+		self:transfer(self, who, item, nb)
+		self:onBuy(who, o, item, nb, false)
+		if store_dialog then store_dialog:updateStore() end
+	end
+
+	for i, item in ipairs(list_sell) do
+		self:onSell(who, o, item, nb, true)
+		self:transfer(self, who, item, nb)
+		self:onSell(who, o, item, nb, false)
+		if store_dialog then store_dialog:updateStore() end
+	end
 end
