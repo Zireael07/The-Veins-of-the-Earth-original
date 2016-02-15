@@ -904,7 +904,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --From Incursion
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_PIRANHABIRD",
-	--image =
+	image = "tiles/UT/bird_piranha.png",
 	display = 'b', color=colors.LIGHT_GREEN,
 	desc = [[A magical hybrid of a piranha and a parrot, piranha birds are avian creatures with colorful plumes and bodies that resemble those of piranhas. They are sometimes encountered alone, but are most dangerous when they attack in swarms.]],
 
@@ -978,7 +978,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --Spell-likes: detect evil, faerie fire, protection from evil, cat's grace, spook, phantasmal force;
 newEntity{ base = "BASE_NPC_MAGBEAST",
 	define_as = "BASE_NPC_ELVEN_CAT",
-	--image = "tiles/mobiles/cat.png",
+	image = "tiles/new/elven_cat.png",
 	display = 'c', color=colors.LIGHT_SLATE,
 	desc = [[This unnaturally sleek cat has silvery fur.]],
 
