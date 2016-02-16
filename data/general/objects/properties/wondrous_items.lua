@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local Stats = require "engine.interface.ActorStats"
 local Talents = require "engine.interface.ActorTalents"
@@ -805,8 +805,10 @@ newEntity{
 newEntity{
 	name = " of Elvenkind", suffix = true,
 	keywords = {Elven=true},
-	image = "tiles/elven_cloak.png",
-    display = "♠", color=colors.GREEN,
+	shader = "dual_hue", shader_args = {hue_color1={0,1,0,1}, hue_color2={0,0.5,0,1}},
+--	image = "tiles/elven_cloak.png",
+--    display = "♠",
+	 color=colors.GREEN,
 	level_range = {7, 30},
 	rarity = 15,
 --	cost = 2500,

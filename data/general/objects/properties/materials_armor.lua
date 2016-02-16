@@ -1,11 +1,12 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 newEntity {
 	name = "mithril ", prefix = true,
 	keywords = {mithril=true},
 	level_range = {4, nil},
 	rarity = 20, --5% chance
+	shader = "dual_hue", shader_args = {hue_color1={0,0.8,0.8,1}, hue_color2={0.8,0.8,0.8,1}},
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
 	wielder = {
@@ -21,6 +22,7 @@ newEntity {
 	keywords = {adamantine=true},
 	level_range = {4, nil},
 	rarity = 20, --5% chance
+	shader = "dual_hue", shader_args = {hue_color1={0.2,0.2,0.2,1}, hue_color2={0,0,0,1}},
 --	cost = 1000,
 	cost = resolvers.value{platinum=100},
 	wielder = {
