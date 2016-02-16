@@ -314,7 +314,7 @@ function _M:generateListCategory()
             local display = "#ffffff#".. name ..'#LAST'
 
             if not hits[key] then
-      	         list[#list+1] = { name=key, filter={ type=o.type, subtype=o.subtype } }
+      	         list[#list+1] = { name=key, filter={ type=o.type,}} --subtype=o.subtype } }
       	         hits[key] = true
             end
         end
@@ -342,7 +342,7 @@ function _M:setupItems(item)
 
   local list = {}
   for _, o in ipairs(game.zone.object_list) do
-    if o.name and o.rarity and o.type == f.type and o.subtype == f.subtype then
+    if o.name and o.rarity and o.type == f.type then --and o.subtype == f.subtype then
         list[#list+1] = { name = o.name, tmpl = o, e=o}
     end
   end
