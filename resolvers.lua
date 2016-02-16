@@ -658,10 +658,10 @@ function resolvers.calc.templates(t, e)
 	elseif rng.chance(20) then
 		choice = "aqueous"
 		cr_boost = 2
-	elseif rng.chance(25) then
+	elseif rng.chance(55) then
 		choice = "three-eyed"
 		cr_boost = 3
-	elseif rng.chance(30) then
+	elseif rng.chance(80) then
 		choice = "pseudonatural"
 		cr_boost = 4
 	end
@@ -678,6 +678,8 @@ function resolvers.calc.templates(t, e)
 		e.template = "zombie"
 		e.display = "Z"
 		e.color=colors.WHITE
+		e.shader = "dual_hue"
+		e.shader_args = { hue_color1={0.2,0.2,0.2,1}, hue_color2={0.4,0.4,0.4,1} }
 		e.infravision = 3
 		e.challenge = e.challenge +1
 		e.combat = { dam= {1,6} }
@@ -685,12 +687,16 @@ function resolvers.calc.templates(t, e)
 		e.template = "skeleton"
 		e.display = "s"
 		e.color=colors.WHITE
+		e.shader = "dual_hue"
+		e.shader_args = { hue_color1={0.2,0.2,0.2,1}, hue_color2={0,1,1,1} }
 		e.infravision = 3
 		e.challenge = e.challenge +1
 		e.combat = { dam= {1,6} }
 	--DR 5/magic
 	elseif choice == "celestial" then
 		e.template = "celestial"
+		e.shader = "dual_hue"
+		e.shader_args = { hue_color1={0,0.8,0.8,1}, hue_color2={0,1,1,1} }
 		e.infravision = 3
 		e.spell_resistance = e.hit_die + 5
 		e.challenge = e.challenge +2
@@ -747,30 +753,35 @@ function resolvers.calc.templates(t, e)
 	 --Spell-likes: faerie fire, sleep, dimension door
 	 elseif choice == "half-fey" then
 	 	e.template = "half-fey"
+		e.color = colors.LIGHT_GREEN
 	 	e.infravision = 3
 	 	e.type = "fey"
 	 	e.challenge = e.challenge +2
 	 --Fire immunity, 1d10 fire aura
 	 elseif choice == "flame" then
 	 	--change color to red
+		e.color = colors.DARK_RED
 	 	e.type = "elemental"
 	 	e.challenge = e.challenge +2
 	 	e.template = "flame"
 	 --Str +4, Dex -2; AC +6; earthmeld, tremorsense 6 tiles
 	 elseif choice == "earthen" then
 	 	--change color to brown
+		e.color = colors.SANDY_BROWN
 	 	e.type = "elemental"
 	 	e.challenge = e.challenge +2
 	 	e.template = "earthen"
 	 --Dex +6, flight
 	 elseif choice == "gaseous" then
 	 	--change color to white
+		e.color = colors.WHITE
 	 	e.type = "elemental"
 	 	e.challenge = e.challenge +2
 	 	e.template = "gaseous"
 	 --1d4 slam + engulf DC 20
 	 elseif choice == "aqueous" then
 	 	--change color to blue
+		e.color = colors.DARK_BLUE
 	 	e.type = "elemental"
 	 	e.challenge = e.challenge +2
 	 	e.template = "aqueous"
@@ -786,6 +797,7 @@ function resolvers.calc.templates(t, e)
 	 --spell-likes: "true strike", "distance distortion", "evard's black tentacles", "displacement", "confusion";
 	 elseif choice == "pseudonatural" then
 	 	--change color to pink
+		e.color = colors.PINK
 	 	e.template = "pseudonatural"
 	 	e.challenge = e.challenge +4
 	 	e.combat_attack = e.combat_attack +2
