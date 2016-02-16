@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local DamageType = require "engine.DamageType"
 
@@ -13,6 +13,7 @@ newEntity{
 	rarity = 5,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
+	shader = "dual_hue", shader_args = {hue_color1={1,1,0,1}, hue_color2={1,0,0,1}},
 	combat = {
 		melee_project={
 			[DamageType.FIRE] = {1, 6}
@@ -28,6 +29,7 @@ newEntity{
 	rarity = 5,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
+	shader = "dual_hue", shader_args = {hue_color1={0,1,1,1}, hue_color2={0,0,1,1}},
 	combat = {
 		melee_project={
 			[DamageType.COLD] = {1, 6}
@@ -43,6 +45,7 @@ newEntity{
 	rarity = 8,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
+	shader = "dual_hue", shader_args = {hue_color1={0.5,0,1,1}, hue_color2={0,1,1,1}},
 	combat = {
 		melee_project={
 			[DamageType.SONIC] = {1, 6}
@@ -59,6 +62,7 @@ newEntity{
 	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
+	shader = "dual_hue", shader_args = {hue_color1={1,1,0,1}, hue_color2={1,0,0,1}},
 	combat = {
 		melee_project={
 			[DamageType.FIRE] = {1, 6}
@@ -77,6 +81,7 @@ newEntity{
 	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
+	shader = "dual_hue", shader_args = {hue_color1={0,1,1,1}, hue_color2={0,0,1,1}},
 	combat = {
 		melee_project={
 			[DamageType.COLD] = {1, 6}
@@ -95,6 +100,7 @@ newEntity{
 	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
+	shader = "dual_hue", shader_args = {hue_color1={1,1,0,1}, hue_color2={0,0,1,1}},
 	combat = {
 		melee_project={
 			[DamageType.ELECTRIC] = {1, 6}
@@ -113,6 +119,7 @@ newEntity{
 	rarity = 15,
 	cost = resolvers.value{platinum=800},
 	school = "evocation",
+	shader = "dual_hue", shader_args = {hue_color1={0.5,0,1,1}, hue_color2={0,1,1,1}},
 	combat = {
 		melee_project={
 			[DamageType.SONIC] = {1, 6}
