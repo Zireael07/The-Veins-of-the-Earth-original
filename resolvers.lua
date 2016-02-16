@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013-2015 Zireael
+-- Copyright (C) 2013-2016 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -305,9 +305,11 @@ function resolvers.calc.moddable_tile(t, e)
 	elseif slot == "heavy" then
 		r = {"plate","half_plate","half_plate2","half_plate3"}
 		r2 = {"leg_armor01","leg_armor02","leg_armor03","leg_armor04"}
-	elseif slot == "light" then
-		r = {"chainmail","chainmail3","leather_armour","leather_armour2","leather_armour3"}
+	elseif slot == "leather" then
+		r = {"leather_armour","leather_armour2","leather_armour3"}
 	--	r2 = {"lower_body_03","lower_body_04","lower_body_05","lower_body_06","lower_body_06",}
+	elseif slot == "mail" then
+		r = {"chainmail","chainmail3",}
 	--robes
 	elseif slot == "archmage" then r = {"robe_green","robe_green_gold","robe_yellow", "robe_red_gold", "robe_brown"}
 	elseif slot == "monk" then r = {"monk_black","monk_blue"}
