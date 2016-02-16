@@ -33,7 +33,7 @@ function _M:init(actor)
 	Dialog.init(self, "Skills", game.w*0.5, game.h*0.6)
 	self:generateLists()
 
-	self.c_points = Textzone.new{width=self.iw, auto_height=true, text = "Available skill points: #GOLD#"..self.actor.skill_point.. " #LAST# Background skill points: #GOLD#"..self.actor.background_points.." #LAST# Max skill ranks: #GOLD#"..self.actor.max_skill_ranks.."\n#LAST# Max cross class ranks: #GOLD#"..self.actor.cross_class_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."}
+	self.c_points = Textzone.new{width=self.iw, auto_height=true, text = "Available skill points: #GOLD#"..self.actor.skill_point.. " #LAST# Background skill points: #GOLD#"..self.actor.background_points.." #LAST# Max skill ranks: #GOLD#"..self.actor.max_skill_ranks.."\n#LAST# Max cross class ranks: #GOLD#"..(self.actor.max_skill_ranks/2).."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."}
 	self.c_adventure = Textzone.new{width=self.iw/3, auto_height=true, text=[[Adventuring skills]]}
     self.c_background = Textzone.new{width=self.iw/3, auto_height=true, text=[[Background skills]]}
     self.c_list = List.new{width=self.iw/3, height=self.ih-self.c_points.h - 10, nb_items=#self.list, list=self.list, fct=function(item) self:use(item) end, select=function(item,sel) self:on_select(item,sel) end, scrollbar=true}
@@ -91,7 +91,7 @@ function _M:use(item)
 
     	--Cross class skills
     	if self.actor:crossClass(item.skill) then
-    		if (self.actor:attr("skill_"..item.skill) or 0) < self.actor.cross_class_ranks then
+    		if (self.actor:attr("skill_"..item.skill) or 0) < (self.actor.max_skill_ranks/2) then
 
     		--increase the skill by one
     		self.actor:attr("skill_"..item.skill, 1)
@@ -137,7 +137,7 @@ end
 function _M:update()
 	local sel = self.selection
 	self:generateLists() -- Slow! Should just update the one changed and sort again
-	self.c_points.text = "Available skill points: #GOLD#"..self.actor.skill_point.." #LAST# Background skill points: #GOLD#"..self.actor.background_points.." #LAST#Max skill ranks: #GOLD#"..self.actor.max_skill_ranks.."\n#LAST# Max cross class ranks: #GOLD#"..self.actor.cross_class_ranks.."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."
+	self.c_points.text = "Available skill points: #GOLD#"..self.actor.skill_point.." #LAST# Background skill points: #GOLD#"..self.actor.background_points.." #LAST#Max skill ranks: #GOLD#"..self.actor.max_skill_ranks.."\n#LAST# Max cross class ranks: #GOLD#"..(self.actor.max_skill_ranks/2).."\n#LAST#Only skill ranks are displayed.\n Skills in blue are cross-class skills."
 	self.c_points:generate()
 	self.c_list.list = self.list
 	self.c_list:generate()
@@ -211,14 +211,14 @@ function _M:generateBackgroundList()
 
             if self.actor:crossClass(skill) then
                 --show value in gold if it's maxed out
-                if (self.actor:attr("skill_"..skill) or 0) == self.actor.cross_class_ranks then
+                if (self.actor:attr("skill_"..skill) or 0) >= self.actor.cross_class_ranks then
                     name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
                 else
                     name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
                 end
             else
                 --show value in gold if it's maxed out
-                if (self.actor:attr("skill_"..skill) or 0) == self.actor.max_skill_ranks then
+                if (self.actor:attr("skill_"..skill) or 0) >= self.actor.max_skill_ranks then
                     name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
                 else
                     name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
