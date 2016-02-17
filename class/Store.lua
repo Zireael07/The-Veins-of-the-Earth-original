@@ -30,7 +30,7 @@ function _M:loadStores(f)
 end
 
 function _M:init(t, no_default)
-	t.store.buy_percent = t.store.buy_percent or function(self, o) if o.type == "gem" then return 40 else return 5 end end
+	t.store.buy_percent = t.store.buy_percent or function(self, o) return 50 end
 	t.store.sell_percent = t.store.sell_percent or function(self, o) return 120 + 3 * (o.__store_level or 0) end -- Stores prices goes up with item level
 	t.store.nb_fill = t.store.nb_fill or 10
 	t.store.purse = t.store.purse or 20
@@ -277,16 +277,18 @@ function _M:formatStorePrice(o, what)
     local plat_rest = math.floor(plat_change/200)
     local gold_rest = math.floor(gold_change/10)
 
+	local color = "#WHITE#"
+
     if self:getObjectPrice(o, what) > 2000 then
-        if (plat_rest or 0) > 0 then return "#ANTIQUE_WHITE#"..platinum.."pp #GOLD# "..plat_rest.." gp #LAST#"
-        else return "#ANTIQUE_WHITE#"..platinum.." pp #LAST#" end
+        if (plat_rest or 0) > 0 then return color.."#ANTIQUE_WHITE#"..platinum.."pp #GOLD# "..plat_rest.." gp #LAST#"
+        else return color.."#ANTIQUE_WHITE#"..platinum.." pp #LAST#" end
     elseif self:getObjectPrice(o, what) > 200 then
-        if (gold_rest or 0) > 0 then return "#GOLD#"..gold.." gp #LAST# "..gold_rest.." sp"
-        else return "#GOLD#"..gold.." gp #LAST#" end
+        if (gold_rest or 0) > 0 then return color.."#GOLD#"..gold.." gp #LAST# "..gold_rest.." sp"
+        else return color.."#GOLD#"..gold.." gp #LAST#" end
     elseif self:getObjectPrice(o, what) > 10 then
-        if (silver_rest or 0) > 0 then return silver.." sp "..silver_rest.." cp"
-        else return silver.." sp" end
-    else return self:getObjectPrice(o, what)
+        if (silver_rest or 0) > 0 then return color..silver.." sp "..silver_rest.." cp"
+        else return color..silver.." sp" end
+    else return color..self:getObjectPrice(o, what)
     end
 end
 
