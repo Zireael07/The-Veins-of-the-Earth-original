@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2013-2016
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -106,7 +106,6 @@ function _M:init(t, no_default)
 
 	--Skill ranks
 	self.max_skill_ranks = 4
-	self.cross_class_ranks = math.floor(self.max_skill_ranks/2)
 	self.skill_point = 0
 	self.background_points = 0
 
@@ -1917,6 +1916,13 @@ function _M:on_set_temporary_effect(eff_id, e, p)
 	if self.player and not self.tmp[eff_id] then
 		p.__set_time = core.game.getTime()
 	end
+end
+
+--Deflect projectiles?
+
+--- Called when we have been projected upon and the DamageType is about to be called
+function _M:projected(tx, ty, who, t, x, y, damtype, dam, particles)
+	return false
 end
 
 --Make it available to all actors
