@@ -319,6 +319,7 @@ newBirthDescriptor {
 			id=true,
 			{ name="light crossbow", ego_chance=-1000},
 			{ name="bolts", ego_chance=-1000},
+			{ name="rags", ego_chance=-1000},
 		}
 	},
     talents_types = {
@@ -416,6 +417,7 @@ newBirthDescriptor {
 			id=true,
 			{ name="light crossbow", ego_chance=-1000},
 			{ name="bolts", ego_chance=-1000},
+			{ name="rags", ego_chance=-1000},
 		}
 
 	},
