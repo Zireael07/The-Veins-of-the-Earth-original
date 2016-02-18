@@ -494,7 +494,7 @@ function _M:generateSkillList()
 
             if self.actor:crossClass(skill) then
                 --show value in gold if it's maxed out
-                if (self.actor:attr("skill_"..skill) or 0) >= self.actor.cross_class_ranks then
+                if (self.actor:attr("skill_"..skill) or 0) >= (self.actor.max_skill_ranks/2) then
                     name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
                 else
                     name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
