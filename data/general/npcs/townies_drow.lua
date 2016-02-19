@@ -47,6 +47,7 @@ newEntity{ define_as = "BASE_NPC_DROW_T",
     skill_spot = 2,
     alignment = "Neutral Evil",
     languages = {"Undercommon", "Drow"},
+    emote_anger = "Oloth plynn d'jal!",
 }
 
 

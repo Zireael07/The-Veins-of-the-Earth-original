@@ -45,6 +45,7 @@ newEntity{ define_as = "BASE_NPC_ELF_T",
     skill_spot = 2,
     alignment = "Chaotic Good",
     languages = {"Common", "Elven"},
+    emote_anger = "Wrath of Maeve upon you!",
 }
 
 newEntity{

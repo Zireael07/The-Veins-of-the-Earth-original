@@ -58,6 +58,7 @@ newEntity{ define_as = "BASE_NPC_DROW_NEUTRAL",
     { name = "hand crossbow", },
     { name = "spider bread" },
     },
+    emote_anger = "Oloth plynn d'jal!",
 }
 
 newEntity{ define_as = "BASE_NPC_HUMAN_NEUTRAL",

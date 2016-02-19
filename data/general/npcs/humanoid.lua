@@ -86,6 +86,7 @@ newEntity{
 	{ name = "hand crossbow", not_properties={"cursed"}  },
 	{ name = "spider bread"},
 	},
+	emote_anger = "Oloth plynn d'jal!",
 }
 
 newEntity{ base = "BASE_NPC_HUMANOID",
@@ -387,7 +388,7 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	skill_search = 1,
 	skill_movesilently = 1,
 	hit_die = 4,
-	emote_anger = "Me kill you!",
+	emote_anger = "Kobold kill you!",
 --	resolvers.specialnpc(),
 	resolvers.templates()
 }
@@ -516,6 +517,7 @@ newEntity{
     { name = "light crossbow", veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	{ name = "food ration" },
 	},
+	emote_anger = "Damn you!",
 }
 
 --Daylight
@@ -563,6 +565,7 @@ newEntity{
     { name = "light crossbow", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level, },
 	{ name = "food ration" },
 	},
+	emote_anger = "To the Hells with you!",
 }
 
 
