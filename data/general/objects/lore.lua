@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014-2015
+--Zireael 2014-2016
 
 newEntity{
 	define_as = "BASE_LORE",
@@ -10,6 +10,10 @@ newEntity{
 	encumber = 0,
 	checkFilter = function(self) if self.lore and game.player.lore_known and game.player.lore_known[self.lore] then print('[LORE] refusing', self.lore) return false else return true end end,
 	desc = [[This parchment contains some lore.]],
+	use_simple = { name="read it", use = function(self, who, inven, item)
+		game.party:learnLore(self.lore)
+		return {used=true, id=true, destroy=true}
+	end}
 }
 
 newEntity{
@@ -21,4 +25,8 @@ newEntity{
 	encumber = 0,
 	checkFilter = function(self) if self.lore and game.player.lore_known and game.player.lore_known[self.lore] then print('[LORE] refusing', self.lore) return false else return true end end,
 	desc = [[This parchment contains some lore.]],
+	use_simple = { name="read it", use = function(self, who, inven, item)
+		game.party:learnLore(self.lore)
+		return {used=true, id=true, destroy=true}
+	end}
 }
