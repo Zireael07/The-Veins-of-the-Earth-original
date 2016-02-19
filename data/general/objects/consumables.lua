@@ -96,7 +96,7 @@ newEntity{
     base = "BASE_FOOD",
     name = "stale rations",
     image = "tiles/object/food.png",
-    type = "food", subtype = "water",
+    type = "food", subtype = "food",
     level_range = {1,10},
     cost = 2,
     rarity = 8,
