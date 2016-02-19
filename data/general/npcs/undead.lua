@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 --Undead don't drop corpses
 
@@ -12,6 +12,7 @@ newEntity{
     type = "undead",
     ai = "animal_level", ai_state = { talent_in=3, },
     blood_color = colors.GREY,
+    emote_anger = "*groan*",
     resolvers.wounds()
 }
 

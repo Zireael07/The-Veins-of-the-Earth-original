@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -12,6 +12,7 @@ newEntity{
 	ai = "human_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6} },
 	blood_color = colors.ORANGE,
+	emote_anger = "*crackle*",
 	resolvers.wounds()
 }
 

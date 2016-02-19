@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014-2015
+--Zireael 2014-2016
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -13,6 +13,7 @@ newEntity{
 	ai = "humanoid_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6}, },
 	alignment = "Chaotic Evil",
+	emote_anger = "Me smash you!",
 	resolvers.talents{[Talents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 		[Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
 	},

@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -38,6 +38,7 @@ newEntity{
         skill_survival = 14,
         skill_swim = 13,
         alignment = "Neutral",
+        emote_anger = "*roar*",
         resolvers.talents{ [Talents.T_FIRE_IMMUNITY]=1,
                 [Talents.T_STEAM_BREATH]=1,
         },
@@ -77,6 +78,7 @@ newEntity{
         skill_spot = 8,
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
         alignment = "Neutral Good",
+        emote_anger = "*hiss*",
         fly = true,
 --        movement_speed_bonus = 1,
         movement_speed = 2,
@@ -115,6 +117,7 @@ newEntity{
         movement_speed = 0.66,
         resolvers.talents{ [Talents.T_ALERTNESS]=1 },
         alignment = "Neutral",
+        emote_anger = "*roar*",
         fly = true,
         resolvers.wounds()
 }
@@ -148,6 +151,7 @@ newEntity{
     --TODO: skills
     movement_speed = 2,
     alignment = "Chaotic Evil",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_ACID_BREATH]=1,
             [Talents.T_ACID_IMMUNITY]=1,
     },
@@ -183,6 +187,7 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Lawful Evil",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_ELECTRIC_BREATH]=1,
             [Talents.T_ELECTRIC_IMMUNITY]=1,
     },
@@ -217,6 +222,7 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Lawful Evil",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_ACID_BREATH_CONE]=1,
             [Talents.T_ACID_IMMUNITY]=1,
     },
@@ -251,6 +257,7 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Chaotic Evil",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_FIRE_BREATH]=1,
             [Talents.T_FIRE_IMMUNITY]=1,
     },
@@ -286,6 +293,7 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Chaotic Evil",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_COLD_BREATH]=1,
             [Talents.T_COLD_IMMUNITY]=1,
     },
@@ -322,6 +330,7 @@ newEntity{
  	--TODO: skills
 	movement_speed = 2,
 	alignment = "Chaotic Good",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_FIRE_BREATH_LINE]=1,
             [Talents.T_FIRE_IMMUNITY]=1,
     },
@@ -357,6 +366,7 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Chaotic Good",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_ELECTRIC_BREATH]=1,
             [Talents.T_ELECTRIC_IMMUNITY]=1,
     },
@@ -392,6 +402,7 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Chaotic Good",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_ACID_BREATH]=1,
             [Talents.T_ACID_IMMUNITY]=1,
     },
@@ -427,6 +438,7 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Lawful Good",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_FIRE_BREATH]=1,
             [Talents.T_FIRE_IMMUNITY]=1,
     },
@@ -461,6 +473,7 @@ newEntity{
  	--TODO: skills
 	movement_speed = 1.33,
 	alignment = "Lawful Good",
+    emote_anger = "*roar*",
     resolvers.talents{ [Talents.T_COLD_BREATH]=1,
             [Talents.T_ACID_IMMUNITY]=1,
             [Talents.T_COLD_IMMUNITY]=1,

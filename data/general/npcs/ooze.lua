@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 --Oozes do not leave corpses
 local ooze_desc = ""
@@ -16,6 +16,7 @@ newEntity{
 	combat = { dam= {1,6} },
 	rarity = 15,
 	alignment = "Neutral",
+	emote_anger = "*slosh*",
 	blood_color = colors.BLACK,
 	resolvers.wounds()
 }

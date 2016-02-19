@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014-2015
+--Zireael 2014-2016
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -11,6 +11,7 @@ newEntity{
 	stats = { str=10, dex=10, con=10, int=10, wis=10, cha=10, luc=10 },
 	combat = { dam= {1,6} },
 	alignment = "Neutral",
+	emote_anger = "*hiss*",
 	resolvers.wounds()
 }
 
@@ -45,6 +46,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	image = "tiles/new/ankheg.png",
 	display = 'B', color=colors.DARK_UMBER,
 	desc = [[A large chitin-covered insect.]],
+	emote_anger = "*buzz*",
 	stats = { str=21, dex=10, con=17, int=1, wis=13, cha=6, luc=6 },
 	combat = { dam= {2,6} },
 	name = "ankheg",
@@ -147,6 +149,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	desc = [[A faintly shimmering canine.]],
 	stats = { str=10, dex=17, con=10, int=10, wis=13, cha=11, luc=12 },
 	name = "blink dog",
+	emote_anger = "*bark*",
 	level_range = {1, 20}, exp_worth = 600,
 	rarity = 10,
 	max_life = resolvers.rngavg(20,25),

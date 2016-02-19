@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ newEntity{
 	ai = "human_level", ai_state = { talent_in=3, ai_move = "move_astar", },
 	combat = { dam= {1,6} },
 	fly = true,
+	emote_anger = "*hiss*",
 	resolvers.wounds()
 }
 
