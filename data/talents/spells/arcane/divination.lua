@@ -16,9 +16,17 @@ newArcaneSpell{
 	range = 0,
 	requires_target = false,
 	action = function(self, t)
-		local inven = game.player:getInven("INVEN")
-		local d d = self:showInventory("Identify which item?", inven, function(o) return not o.identified end, function(o, item)
-			if o.identified == false then o.identified = true end
+		--take time
+		local hour = game.calendar.HOUR*1
+		self:restInit(hour, "identifying", "identified",
+			function(cnt, max) if cnt > max then ok = true end end,
+			function(finish)
+		--	if ok then
+				local inven = self:getInven("INVEN")
+				local d d = self:showInventory("Identify which item?", inven, function(o) return not o.identified end, function(o, item)
+					if o.identified == false then o.identified = true end
+				end)
+		--	end
 		end)
 		return true
 	end,
@@ -155,12 +163,18 @@ newArcaneSpell{
 	range = 0,
 	requires_target = false,
 	action = function(self, t)
-		local inven = game.player:getInven("INVEN")
-		for k, o in ipairs(inven) do
-			if  o.identified == false then
-				o.identified = true
-			end
-		end
+		--take time
+		local hour = game.calendar.HOUR*1
+		self:restInit(hour, "identifying", "identified",
+			function(cnt, max) if cnt > max then ok = true end end,
+			function(finish)
+				local inven = self:getInven("INVEN")
+				for k, o in ipairs(inven) do
+					if  o.identified == false then
+						o.identified = true
+					end
+				end
+			end)
 		return true
 	end,
 	info = function(self, t)
