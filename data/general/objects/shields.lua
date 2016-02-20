@@ -1,3 +1,6 @@
+--Veins of the Earth
+--Zireael 2013-2016
+
 local Talents = require "engine.interface.ActorTalents"
 
 --Shields
@@ -9,6 +12,7 @@ newEntity{
     require = { talent = { Talents.T_SHIELD_PROFICIENCY }, },
     moddable_tile = resolvers.moddable_tile("shield"),
     encumber = 5,
+    material = "steel",
     name = "shield",
     desc = "A simple shield. Protects you from attacks.\n\n",
     addons = "/data/general/objects/properties/bonus_shields.lua",
@@ -27,6 +31,7 @@ newEntity{ base = "BASE_SHIELD",
 		combat_shield = 1,
         spell_fail = 5
 	},
+    durability = 5,
 }
 
 newEntity{ base = "BASE_SHIELD",
@@ -40,6 +45,7 @@ newEntity{ base = "BASE_SHIELD",
 		combat_shield = 1,
         spell_fail = 5
 	},
+    durability = 7,
 }
 
 
@@ -54,6 +60,7 @@ newEntity{ base = "BASE_SHIELD",
 		combat_shield = 1,
         spell_fail = 5
 	},
+    durability = 10,
 }
 
 newEntity{ base = "BASE_SHIELD",
@@ -69,6 +76,8 @@ newEntity{ base = "BASE_SHIELD",
 		combat_shield = 2,
         spell_fail = 15
 	},
+    material = "wood",
+    durability = 15,
 }
 
 newEntity{ base = "BASE_SHIELD",
@@ -84,6 +93,7 @@ newEntity{ base = "BASE_SHIELD",
 		combat_shield = 2,
         spell_fail = 15
 	},
+    durability = 20,
 }
 
 
@@ -101,4 +111,5 @@ newEntity{ base = "BASE_SHIELD",
 		combat_shield = 4,
         spell_fail = 30
 	},
+    durability = 20,
 }
