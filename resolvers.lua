@@ -1117,6 +1117,12 @@ function resolvers.calc.ego_chance(t, e)
 	else print("Egoed, returning normal values") return { prefix=30, suffix=70} end
 end
 
+function resolvers.armor_durability()
+	return {__resolver="armor_durability",} --__resolve_last=true, }
+end
+function resolvers.calc.armor_durability(t, e)
+	return ((e.wielder.combat_armor or 0)*5)/10 --dunno why I have to divide by 10
+end
 
 local function actor_final_level(e)
 	return e.challenge
@@ -1138,6 +1144,8 @@ function resolvers.calc.npc_drops_level(t, e)
 
 	return level
 end
+
+
 
 --Item creation
 function resolvers.creation_cost()

@@ -1,9 +1,13 @@
+--Veins of the Earth 2013-2016
+--Zireael
+
 local Talents = require "engine.interface.ActorTalents"
 
 newEntity{
     define_as = "BASE_OUTFIT",
     slot = "BODY",
     type = "armor",
+    material = "leather",
 }
 
 newEntity{
@@ -12,6 +16,7 @@ newEntity{
     type = "armor",
     addons = "/data/general/objects/properties/bonus_armor.lua",
     egos = "/data/general/objects/properties/armor.lua",
+    durability = resolvers.armor_durability(),
     egos_chance = resolvers.ego_chance(), -- egos_chance = { prefix=30, suffix=70},
 }
 
@@ -24,6 +29,7 @@ newEntity{ base = "BASE_ARMOR",
     display = "(", color=colors.SLATE,
     require = { talent = { Talents.T_LIGHT_ARMOR_PROFICIENCY }, },
     encumber = 10,
+    material = "leather",
     name = "light armor",
     desc = "A simple padded armor. Does not offer much protection.\n\n Light armor.",
 --    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
@@ -105,6 +111,7 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
 		spell_fail = 20,
 		armor_penalty = 2
 	},
+    material = "steel",
 }
 
 newEntity{ base = "BASE_ARMOR",
@@ -116,6 +123,7 @@ newEntity{ base = "BASE_ARMOR",
     moddable_tile = resolvers.moddable_tile("mail"),
     encumber = 40,
     name = "medium armor",
+    material = "steel",
     desc = "A suit of armour made of mail.\n\n Medium armor.",
 --    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
@@ -176,6 +184,7 @@ newEntity{ base = "BASE_ARMOR",
     moddable_tile = resolvers.moddable_tile("heavy"),
     encumber = 50,
     name = "heavy armor",
+    material = "steel",
     desc = "A suit of armour made of plate.\n\n Heavy armor.",
 --    egos = "/data/general/objects/properties/armor.lua", egos_chance = { prefix=30, suffix=70},
 }
@@ -250,6 +259,7 @@ newEntity{ base = "BASE_ARMOR",
             desc = "Monk class",
             }
         },
+    material = "leather",
 }
 
 newEntity{ base = "BASE_ARMOR",
@@ -273,6 +283,7 @@ newEntity{ base = "BASE_ARMOR",
             desc = "Ability to cast arcane spells",
             }
         },
+    material = "leather",
 }
 
 newEntity{ base = "BASE_OUTFIT",
