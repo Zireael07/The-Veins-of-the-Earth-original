@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local Talents = require "engine.interface.ActorTalents"
 
@@ -8,6 +8,7 @@ newEntity{
     define_as = "BASE_WEAPON",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon",
+    material = "steel",
     addons = "/data/general/objects/properties/bonus_weapons.lua",
     egos = "/data/general/objects/properties/weapons.lua",
     egos_chance = resolvers.ego_chance(), --egos_chance = { prefix=30, suffix=70},
@@ -17,6 +18,7 @@ newEntity{
     define_as = "BASE_WEAPON_TWOHANDED",
     slot = "MAIN_HAND", slot_forbid = "OFF_HAND",
     type = "weapon",
+    material = "steel",
     addons = "/data/general/objects/properties/bonus_weapons.lua",
     egos = "/data/general/objects/properties/weapons.lua",
     egos_chance = resolvers.ego_chance(), --egos_chance = { prefix=30, suffix=70},
@@ -44,7 +46,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 4,
     },
-
+    durability = 2,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -68,6 +70,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 3,
     },
+    durability = 2,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -92,6 +95,8 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 4,
     },
+    material = "wood",
+    durability = 5,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -116,6 +121,7 @@ newEntity{ base = "BASE_WEAPON",
      wielder = {
         combat_parry = 3,
     },
+    durability = 6,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -141,6 +147,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 4,
     },
+    durability = 5,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -164,6 +171,8 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 1,
     },
+    material = "wood",
+    durability = 2,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -185,6 +194,7 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,8},
     },
+    durability = 5,
 }
 
 
@@ -209,6 +219,8 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     wielder = {
         combat_parry = 8,
     },
+    material = "wood",
+    durability = 7,
 }
 
 --Martial weapons
@@ -233,6 +245,7 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,4},
     },
+    durability = 5,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -259,6 +272,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 1,
     },
+    durability = 2,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -285,6 +299,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 3,
     },
+    durability = 2,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -312,6 +327,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 4,
     },
+    durability = 2,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -333,6 +349,7 @@ newEntity{ base = "BASE_WEAPON",
     combat = {
         dam = {1,6},
     },
+    durability = 5,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -359,6 +376,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 3,
     },
+    durability = 5,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -383,6 +401,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 5,
     },
+    durability = 10,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -409,6 +428,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 6,
     },
+    durability = 5,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -435,6 +455,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 5,
     },
+    durability = 5,
 }
 
 newEntity{ base = "BASE_WEAPON",
@@ -460,6 +481,7 @@ newEntity{ base = "BASE_WEAPON",
     wielder = {
         combat_parry = 3,
     },
+    durability = 10,
 }
 
 --Two-handed weapons
@@ -487,6 +509,7 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     wielder = {
         combat_parry = 3,
     },
+    durability = 10,
 }
 
 
@@ -514,6 +537,7 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     wielder = {
         combat_parry = 2,
     },
+    durability = 10,
 }
 
 --"Large club" in Incursion
@@ -540,6 +564,8 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     wielder = {
         combat_parry = 2,
     },
+    material = "wood",
+    durability = 7,
 }
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
@@ -566,6 +592,7 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     wielder = {
         combat_parry = 5,
     },
+    durability = 7,
 }
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
@@ -592,6 +619,7 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     wielder = {
         combat_parry = 2,
     },
+    durability = 10,
 }
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
@@ -618,6 +646,7 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     wielder = {
         combat_parry = 4,
     },
+    durability = 7,
 }
 
 newEntity{ base = "BASE_WEAPON_TWOHANDED",
@@ -644,12 +673,13 @@ newEntity{ base = "BASE_WEAPON_TWOHANDED",
     wielder = {
         combat_parry = 4,
     },
+    durability = 7,
 }
 
 newEntity{ base = "BASE_WEAPON",
     define_as = "BASE_HANDWRAPS",
     slot = "MAIN_HAND",
-    type = "weapon",
+    type = "weapon", subtype = "hand",
     display = "_", color=colors.WHITE,
     image = "tiles/new/handwraps.png",
     encumber = 0,
@@ -659,6 +689,8 @@ newEntity{ base = "BASE_WEAPON",
     name = "handwraps",
     level_range = {1, 10},
     cost = resolvers.value{silver=10}, --eyeballed
+    material = "leather",
+    durability = 5,
     require = {
         special = {
             fct = function(who, offset)

@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local Talents = require "engine.interface.ActorTalents"
 
@@ -11,6 +11,8 @@ newEntity{
     ammo_type = "arrow",
     slot = "MAIN_HAND",
     offslot = "SHOULDER",
+    material = "steel",
+    durability = 10,
     addons = "/data/general/objects/properties/bonus_weapons.lua",
     egos = "/data/general/objects/properties/weapons.lua",
     egos_chance = resolvers.ego_chance(), --egos_chance = { prefix=30, suffix=70},
@@ -87,6 +89,7 @@ newEntity{ base = "BASE_RANGED",
         dam = {1,4},
         range = 4,
     },
+    material = "leather",
 }
 
 
@@ -103,6 +106,7 @@ newEntity{ base = "BASE_RANGED",
     martial = true,
     combat = { sound = "actions/arrow", sound_miss = "actions/arrow", },
     desc = "A normal trusty bow.\n\n",
+    material = "wood",
 }
 
 newEntity{ base = "BASE_LBOW",
@@ -190,6 +194,8 @@ newEntity{ base = "BASE_RANGED",
     display = "{", color=colors.UMBER,
     ammo = true,
     egos = "/data/general/objects/properties/ammo.lua",
+    material = "steel",
+    durability = 2,
 }
 
 newEntity{ base = "BASE_AMMO",
@@ -207,6 +213,7 @@ newEntity{ base = "BASE_AMMO",
     combat = {
         capacity = resolvers.rngavground(2,20),
     },
+    material = "wood",
 }
 
 

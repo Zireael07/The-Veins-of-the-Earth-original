@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014-2015
+--Zireael 2014-2016
 
 local Talents = require "engine.interface.ActorTalents"
 
@@ -7,6 +7,7 @@ newEntity{
     define_as = "BASE_THROWN",
     type = "weapon",
     ranged = true,
+    material = "steel",
     addons = "/data/general/objects/properties/bonus_weapons.lua",
     egos = "/data/general/objects/properties/thrown.lua",
     egos_chance = resolvers.ego_chance(), --egos_chance = { prefix=30, suffix=70},
@@ -32,6 +33,8 @@ newEntity{ base = "BASE_THROWN",
         dam = {1,4},
         range = 2,
     },
+    material = "wood",
+    durability = 2,
 }
 
 newEntity{ base = "BASE_THROWN",
@@ -54,6 +57,7 @@ newEntity{ base = "BASE_THROWN",
         dam = {1,6},
         range = 3,
     },
+    durability = 5,
 }
 
 --More thrown weapons
@@ -77,6 +81,7 @@ newEntity{ base = "BASE_THROWN",
         dam = {1,6},
         range = 3,
     },
+    durability = 5,
 }
 
 newEntity{ base = "BASE_THROWN",
@@ -99,6 +104,7 @@ newEntity{ base = "BASE_THROWN",
         dam = {1,4},
         range = 3,
     },
+    durability = 5,
 }
 
 
@@ -125,6 +131,8 @@ newEntity{ base = "BASE_THROWN",
         dam = {1,4},
         range = 2,
     },
+    material = "leather",
+    durability = 5,
 }
 
 
@@ -149,6 +157,7 @@ newEntity{ base = "BASE_THROWN",
         dam = {1,2},
         range = 2,
     },
+    durability = 5,
 }
 
 newEntity{ base = "BASE_THROWN",
@@ -172,4 +181,5 @@ newEntity{ base = "BASE_THROWN",
         dam = {1,4}, --should be entangled
         range = 2,
     },
+    durability = 2,
 }

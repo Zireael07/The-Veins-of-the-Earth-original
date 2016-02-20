@@ -1,11 +1,13 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 newEntity{
     define_as = "BASE_WEAPON_REACH",
     slot = "MAIN_HAND", offslot = "OFF_HAND",
     type = "weapon",
     reach = true,
+    material = "steel",
+    durability = 10,
     addons = "/data/general/objects/properties/bonus_weapons.lua",
     egos = "/data/general/objects/properties/weapons.lua",
     egos_chance = resolvers.ego_chance(),
@@ -32,6 +34,7 @@ newEntity{ base = "BASE_WEAPON_REACH",
     combat = {
         dam = {1,8},
     },
+    durability = 7,
 }
 
 
@@ -56,6 +59,8 @@ newEntity{ base = "BASE_WEAPON_REACH",
         dam = {1,8},
         critical = 3,
     },
+    material = "wood",
+    durability = 10,
 }
 
 
