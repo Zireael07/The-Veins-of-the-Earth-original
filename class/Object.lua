@@ -94,7 +94,6 @@ end
 
 --Decay light
 function _M:lightTurns()
---    game.log("Decaying light")
     local inven = game.player:getInven("LITE")
     local in_inv = game.player:findInInventoryByObject(inven, self) and true or false
     if in_inv then
@@ -445,6 +444,9 @@ function _M:getTextualDesc(compare_with, use_actor)
 
     desc:add(self:foundInfo())
 
+    if self.material then desc:add(("Hardness: %d"):format(self:getHardness()), true) end
+    if self.durability then desc:add(("Durability: %d"):format(self:getDurability()), true) end
+
     if self:isIdentified() then
         if self.wielder then
         --    desc:add({"color","SANDY_BROWN"}, "\nWhen equipped:", {"color", "LAST"}, true)
@@ -503,10 +505,9 @@ function _M:getTextualDesc(compare_with, use_actor)
         desc_wielder(desc, self, compare_with, "wielder")
         end
 
-
-
         --wands
         if self.multicharge then desc:add(("%d charges remaining."):format(self.multicharge or 0), true) end
+
     else
         desc:add("\nUnidentified.")
     end
@@ -998,4 +999,20 @@ function _M:canStack(o)
     -- Require same egos
     if not Ego:sameEgos(self, o) then return false end
 	return false
+end
+
+--For item damage
+function _M:getMaterial()
+    return self.material or "unknown"
+end
+
+function _M:getHardness()
+    local hardness = 5
+    if self:getMaterial() == "wood" then hardness = 5
+    elseif self:getMaterial() == "steel" then hardness = 10 end
+    return hardness
+end
+
+function _M:getDurability()
+    return self.durability*10
 end
