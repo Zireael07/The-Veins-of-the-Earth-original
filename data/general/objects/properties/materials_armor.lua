@@ -15,6 +15,7 @@ newEntity {
 		armor_penalty = -3,
 	},
 	resolvers.creation_cost(),
+	resolvers.mithril_lighten()
 }
 
 newEntity {

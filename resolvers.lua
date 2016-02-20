@@ -1124,6 +1124,23 @@ function resolvers.calc.armor_durability(t, e)
 	return ((e.wielder.combat_armor or 0)*5)/10 --dunno why I have to divide by 10
 end
 
+function resolvers.mithril_lighten()
+	return {__resolver="mithril_lighten", __resolve_last=true, }
+end
+function resolvers.calc.mithril_lighten(t, e)
+	--let's make it lighter
+	e.encumber = e.encumber/2
+	--change category
+	local type = "light"
+	if e.subtype == "heavy" then type = "medium" end
+
+	e.subtype = type
+	--other
+	e.wielder.spell_fail = e.wielder.spell_fail - 10
+	e.wielder.max_dex_bonus = e.wielder.max_dex_bonus + 2
+	e.wielder.armor_penalty = math.max(0, e.wielder.armor_penalty - 3)
+end
+
 local function actor_final_level(e)
 	return e.challenge
 end
