@@ -1,5 +1,43 @@
 CHANGELOG
 
+* bug fix - potions/wands/scrolls without effects now never happen
+* bug fix - add dummy entry to lower odds of mwk+ items
+* bug fix - fix an engine bug preventing force_ego from working
+* bug fix - rare Lua error when debug creating an item which is blocked by level_range
+* bug fix - use_simple entry from ego not being merged with the parent item
+* bug fix - typos in handle animal and stealth skills
+* bug fix - ensure every randomly generated vial has poison
+* bug fix - character sheet BAB display forgot to describe some modifiers
+* bug fix - summoned critters not having wounds and their tiles not showing
+* bug fix - typo caused some consumables' and npc tiles to not show
+* bug fix - scrolls no longer leaking info about their effects
+* bug fix - trying to pseudo-ID already ID'ed items (e.g. starting items)
+* bug fix - cross class skills max rank not getting updated
+* bug fix - overzealous filters in debug create item
+* bug fix - mails having leather paperdoll look
+* bug fix - some items not having subtypes
+* bug fix - torches are properly removed from inventory when running out of fuel
+
+* update to T-Engine 1.4.0
+* new tiles: rags, crown, circlet; elven cat, piranha bird
+* new item: rags, crown, circlet
+* more potion and scroll types
+* potions now stack
+* use shaders for some egos
+* implement detect magic
+* identify spell now takes an hour to work
+* implement school-ID'ing if your Intuition is high enough
+* implement item hardness and durability
+* implement generating specific egoed items
+* all characters now start with a random potion and a potion of cure light wounds
+* item tooltips now display average damage and % chance to crit for weapons
+* item tooltips notify you of newly picked up items
+* increase flying text size based on sensible flying text addon
+* popup feedback for skill and class tabs of level up screen
+* shortened names displayed in the equipdoll, ToME 4 style
+* ability to tag items to prevent selling/dropping them
+* shops now pay 66% price for unided items
+
 BETA 11.5 - 0.33.0 - 03/01/2016
 
 * bug fix - inability to use stairs (reported by Avagart)
