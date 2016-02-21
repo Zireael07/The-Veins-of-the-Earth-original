@@ -7,7 +7,7 @@ local Talents = require "engine.interface.ActorTalents"
 newEntity{
     define_as = "BASE_SHIELD",
     slot = "OFF_HAND",
-    type = "armor", subtype="shield",
+    type = "shield", subtype="shield",
     display = ")", color=colors.SLATE,
     require = { talent = { Talents.T_SHIELD_PROFICIENCY }, },
     moddable_tile = resolvers.moddable_tile("shield"),
