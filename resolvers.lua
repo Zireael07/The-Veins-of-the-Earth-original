@@ -1121,7 +1121,11 @@ function resolvers.armor_durability()
 	return {__resolver="armor_durability",} --__resolve_last=true, }
 end
 function resolvers.calc.armor_durability(t, e)
-	return ((e.wielder.combat_armor or 0)*5)/10 --dunno why I have to divide by 10
+	if e and e.wielder then
+		return ((e.wielder.combat_armor or 0)*5)/10 --dunno why I have to divide by 10
+	else
+		return 5
+	end
 end
 
 function resolvers.mithril_lighten()
