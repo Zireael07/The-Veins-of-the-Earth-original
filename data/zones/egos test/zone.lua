@@ -18,6 +18,7 @@ return {
 	name = "Egos test",
 	level_range = {1, 1},
 	max_level = 1000,
+	max_cr = 1,
 	decay = {300, 800},
 	width = 44, height = 44,
 --	persistent = "zone",
