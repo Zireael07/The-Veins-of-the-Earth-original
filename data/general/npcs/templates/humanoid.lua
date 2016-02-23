@@ -76,7 +76,7 @@ newEntity { base = "BASE_EGO",
 	},
 }
  --Stat increases, spell-like abilities
-newEntity {
+newEntity { base = "BASE_EGO",
 	name = "half-celestial ", prefix = true, instant_resolve=true,
 	keywords = {celestial=true},
 	level_range = {5, nil},
@@ -93,7 +93,7 @@ newEntity {
 }
 
 --Stat increases, spell-like abilities, bite/claw
-newEntity {
+newEntity { base = "BASE_EGO",
 	name = "half-fiend ", prefix = true, instant_resolve=true,
 	keywords = {fiend=true},
 	level_range = {5, nil},
@@ -111,7 +111,7 @@ newEntity {
 }
 
 --Stat increases, breath weapon; bite/claw
-newEntity {
+newEntity { base = "BASE_EGO",
 	name = "half-dragon ", prefix = true, instant_resolve=true,
 	keywords = {dragon=true},
 	level_range = {5, nil},
@@ -125,3 +125,92 @@ newEntity {
 	[DamageType.ELECTRIC] = 10,
 	 }
 }
+
+--Str -4, Dex +4, Wis +4, Cha +4; Alertness, Dodge, Mobility, Finesse; Nature Sense
+--Spell-likes: faerie fire, sleep, dimension door
+newEntity{ base = "BASE_EGO",
+	name = "half-fey ", prefix = true, instant_resolve = true,
+	keywords = {fey=true},
+	level_range = {5, nil},
+	rarity = 10,
+
+	type = "fey",
+	infravision = 3,
+	challenge = 2,
+}
+
+--Elemental-y (from Incursion)
+--Fire immunity, 1d10 fire aura
+newEntity{ base = "BASE_EGO",
+	name = "flame ", prefix = true, instant_resolve = true,
+	keywords = {flame=true},
+	level_range = {5, nil},
+	rarity = 20,
+
+	type = "elemental",
+	color=colors.DARK_RED,
+	challenge = 2,
+}
+
+--Str +4, Dex -2; AC +6; earthmeld, tremorsense 6 tiles
+newEntity{ base = "BASE_EGO",
+	name = "earthen ", prefix = true, instant_resolve = true,
+	keywords = {earthen=true},
+	level_range = {5, nil},
+	rarity = 20,
+
+	type = "elemental",
+	color=colors.SANDY_BROWN,
+	challenge = 2,
+}
+
+--Dex +6, flight
+newEntity{ base="BASE_EGO",
+	name = "gaseous ", prefix = true, instant_resolve = true,
+	keywords = {gaseous=true},
+	level_range = {5, nil},
+	rarity = 20,
+
+	type = "elemental",
+	color=colors.WHITE,
+	challenge = 2,
+}
+
+newEntity{ base = "BASE_EGO",
+	name = "aqueous ", prefix = true, instant_resolve = true,
+	keywords = {aqueous=true},
+	level_range = {5, nil},
+	rarity = 20,
+
+	type = "elemental",
+	color=colors.DARK_BLUE,
+	challenge = 2,
+}
+
+--Special from Incursion
+--confusion DC 14 gaze; Spot +6 Search +6
+newEntity{ base = "BASE_EGO",
+	name = "three-eyed ", prefix = true, instant_resolve = true,
+	keywords = {eyed=true},
+	level_range = {15, nil},
+	rarity = 55,
+
+	challenge = 3,
+	infravision = 3,
+}
+
+--Dex +4, Int +8, Wis +6, Cha +4; Tentacles 1d8, devour, evasion, SR 35
+--spell-likes: "true strike", "distance distortion", "evard's black tentacles", "displacement", "confusion";
+newEntity{ base = "BASE_EGO",
+	name = "pseudonatural ", prefix = true, instant_resolve = true,
+	keywords = {pseudonatural=true},
+	level_range = {15, nil},
+	rarity = 80,
+
+	color=colors.PINK,
+	challenge = 4,
+	combat_attack = 2,
+	hit_die = 3,
+}
+
+--TODO: ethereal CR +3, incorporeal, only touch attacks
