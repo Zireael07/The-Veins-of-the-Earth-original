@@ -31,7 +31,6 @@ newEntity{
 	[Talents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 	[Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
 	},
-	--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{ base = "BASE_NPC_HUMANOID",
@@ -50,8 +49,7 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	infravision = 3,
 	combat_natural = 5,
 	hit_die = 2,
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50}, ego_filter = {{max_cr=1/2}}
+	npc_egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -116,6 +114,5 @@ newEntity{ base = "BASE_NPC_KOBOLD",
 	full_id=true,
     { name = "shortbow", veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
 	},
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
-	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50}, ego_filter = {max_cr=1/2}
+	npc_egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { prefix=50, suffix=80},
 }
