@@ -1,18 +1,25 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2016
 
 local Talents = require "engine.interface.ActorTalents"
 
---Damage reduction 5/magic
-newEntity {
-	name = "celestial ", prefix = true, instant_resolve=true,
-	keywords = {celestial=true},
-
+--Stuff that we're not modifying but needs to be explicitly set to zero to avoid getting OP
+newEntity{ define_as = "BASE_EGO",
 	max_life = 0,
 	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
 	defense = 0,
 	size = 0,
 	life_rating = 0,
+	movement_speed = 0,
+	combat_attackspeed = 0,
+}
+
+--Damage reduction 5/magic
+newEntity { base = "BASE_EGO",
+	name = "celestial ", prefix = true, instant_resolve=true,
+	keywords = {celestial=true},
+	shader = "dual_hue",
+	shader_args = { hue_color1={0,0.8,0.8,1}, hue_color2={0,1,1,1} },
 
 	level_range = {5, nil},
 	rarity = 10,
@@ -25,14 +32,9 @@ newEntity {
 	 }
 }
 
-newEntity {
+newEntity { base = "BASE_EGO",
 	name = "fiendish ", prefix = true, instant_resolve=true,
 	keywords = {fiendish=true},
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
 
 	level_range = {5, nil},
 	rarity = 10,
@@ -50,12 +52,6 @@ newEntity {
 	level_range = {5, nil},
 	rarity = 10,
 
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
-
 	infravision = 3,
 --	spell_resistance = hit_die + 10,
 	combat_natural = 1,
@@ -72,12 +68,6 @@ newEntity {
 	keywords = {fiend=true},
 	level_range = {5, nil},
 	rarity = 10,
-
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
 
 	infravision = 3,
 --	spell_resistance = hit_die + 10,
@@ -97,12 +87,6 @@ newEntity {
 	level_range = {5, nil},
 	rarity = 10,
 
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
-
 	infravision = 3,
 	combat_natural = 4,
 	challenge = 2,
@@ -112,38 +96,30 @@ newEntity {
 	 }
 }
 
-newEntity{
+newEntity{ base = "BASE_EGO",
 	name = " zombie", suffix = true, instant_resolve=true,
 	display = 'Z', color=colors.WHITE,
+	shader = "dual_hue",
+	shader_args = { hue_color1={0.2,0.2,0.2,1}, hue_color2={0.4,0.4,0.4,1} },
 	keywords = {undead=true},
 	level_range = {5, nil},
 	rarity = 5,
 	type = "undead",
-
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
 
 	infravision = 3,
 	challenge = 1,
 	combat = { dam= {1,6} },
 }
 
-newEntity{
+newEntity{ base = "BASE_EGO",
 	name = " skeleton", suffix = true, instant_resolve=true,
 	display = 's', color=colors.WHITE,
+	shader = "dual_hue",
+	shader_args = { hue_color1={0.2,0.2,0.2,1}, hue_color2={0,1,1,1} },
 	keywords = {undead=true},
 	level_range = {5, nil},
 	rarity = 5,
 	type = "undead",
-
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
 
 	infravision = 3,
 	challenge = 1,
@@ -158,12 +134,6 @@ newEntity{
 	keywords = {special=true},
 	level_range = {5, nil},
 	rarity = 10,
-
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
 
 	challenge = 2,
 --[[	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
@@ -180,12 +150,6 @@ newEntity{
 	level_range = {5, nil},
 	rarity = 10,
 
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
-
 	challenge = 2,
 	combat_attack = 2,
 --	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
@@ -200,12 +164,6 @@ newEntity{
 	level_range = {5, nil},
 	rarity = 10,
 
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
-
 	hit_die = 1,
 	combat_attack = 1,
 	challenge = 1,
@@ -217,12 +175,6 @@ newEntity{
 	keywords = {special=true},
 	level_range = {5, nil},
 	rarity = 10,
-
-	max_life = 0,
-	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
-	defense = 0,
-	size = 0,
-	life_rating = 0,
 
 	challenge = 2,
 	combat_attack = 2,
