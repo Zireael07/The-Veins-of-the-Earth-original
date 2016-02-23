@@ -47,33 +47,33 @@ function _M:allowedEgosFor(o, good, side)
 	self.egos_def = self:loadList(o.egos, true)
 
     for _, e in ipairs(self.egos_def) do
---    local ok = true
-    local ok = false
+    --    local ok = true
+        local ok = false
 
-    --Force resolve cost first
-    if type(e.cost) == "table" and e.cost.__resolver then e.cost = resolvers.calc[e.cost.__resolver](e.cost, e) end
+        --Force resolve cost first
+        if type(e.cost) == "table" and e.cost.__resolver then e.cost = resolvers.calc[e.cost.__resolver](e.cost, e) end
 
-    -- ... or it doesn't match the requested "goodness"
-    ok = ok and (good == nil or (good and e.cost > 0 or e.cost <= 0))
+        -- ... or it doesn't match the requested "goodness"
+        ok = ok and (good == nil or (good and e.cost > 0 or e.cost <= 0))
 
-    if good == nil then ok = true
-    else
-        if e.cost <= 0 then ok = false
+        if good == nil then ok = true
         else
-        ok = true
+            if e.cost <= 0 then ok = false
+            else
+            ok = true
+            end
         end
-    end
-    --or side...
-    if side then
-      ok = ok and e[side]
-    elseif o.ego_names then
-      -- ...or, if we didn't specify a side, the object already has an ego
-      -- on this ego's side.
-      if o.ego_names.prefix then ok = ok and not e.prefix end
-      if o.ego_names.suffix then ok = ok and not e.suffix end
-    end
+        --or side...
+        if side then
+          ok = ok and e[side]
+        elseif o.ego_names then
+          -- ...or, if we didn't specify a side, the object already has an ego
+          -- on this ego's side.
+          if o.ego_names.prefix then ok = ok and not e.prefix end
+          if o.ego_names.suffix then ok = ok and not e.suffix end
+        end
 
-    if ok then table.insert(ret, e) end
+        if ok then table.insert(ret, e) end
   end
   return ret
 end
