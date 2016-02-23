@@ -14,6 +14,36 @@ newEntity{ define_as = "BASE_EGO",
 	combat_attackspeed = 0,
 }
 
+newEntity{ base = "BASE_EGO",
+	name = " zombie", suffix = true, instant_resolve=true,
+	display = 'Z', color=colors.WHITE,
+	shader = "dual_hue",
+	shader_args = { hue_color1={0.2,0.2,0.2,1}, hue_color2={0.4,0.4,0.4,1} },
+	keywords = {undead=true},
+	level_range = {5, nil},
+	rarity = 5,
+	type = "undead",
+
+	infravision = 3,
+	challenge = 1,
+	combat = { dam= {1,6} },
+}
+
+newEntity{ base = "BASE_EGO",
+	name = " skeleton", suffix = true, instant_resolve=true,
+	display = 's', color=colors.WHITE,
+	shader = "dual_hue",
+	shader_args = { hue_color1={0.2,0.2,0.2,1}, hue_color2={0,1,1,1} },
+	keywords = {undead=true},
+	level_range = {5, nil},
+	rarity = 5,
+	type = "undead",
+
+	infravision = 3,
+	challenge = 1,
+	combat = { dam= {1,6} },
+}
+
 --Damage reduction 5/magic
 newEntity { base = "BASE_EGO",
 	name = "celestial ", prefix = true, instant_resolve=true,
@@ -94,34 +124,4 @@ newEntity {
 	[DamageType.COLD] = 10,
 	[DamageType.ELECTRIC] = 10,
 	 }
-}
-
-newEntity{ base = "BASE_EGO",
-	name = " zombie", suffix = true, instant_resolve=true,
-	display = 'Z', color=colors.WHITE,
-	shader = "dual_hue",
-	shader_args = { hue_color1={0.2,0.2,0.2,1}, hue_color2={0.4,0.4,0.4,1} },
-	keywords = {undead=true},
-	level_range = {5, nil},
-	rarity = 5,
-	type = "undead",
-
-	infravision = 3,
-	challenge = 1,
-	combat = { dam= {1,6} },
-}
-
-newEntity{ base = "BASE_EGO",
-	name = " skeleton", suffix = true, instant_resolve=true,
-	display = 's', color=colors.WHITE,
-	shader = "dual_hue",
-	shader_args = { hue_color1={0.2,0.2,0.2,1}, hue_color2={0,1,1,1} },
-	keywords = {undead=true},
-	level_range = {5, nil},
-	rarity = 5,
-	type = "undead",
-
-	infravision = 3,
-	challenge = 1,
-	combat = { dam= {1,6} },
 }
