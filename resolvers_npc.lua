@@ -12,7 +12,7 @@ end
 
 function resolvers.calc.specialnpc(t, e)
 	local choice
-	local cr_boost
+	local cr_boost = 0
 
 	--pick special template
 	if rng.chance(2) then
@@ -148,7 +148,7 @@ end
 
 function resolvers.calc.templates(t, e)
 	local choice
-	local cr_boost
+	local cr_boost = 0
 
 	if rng.chance(5) then
 		choice = "zombie"
@@ -342,7 +342,7 @@ end
 
 function resolvers.calc.animaltemplates(t, e)
 	local choice
-	local cr_boost
+	local cr_boost = 0
 
 	--STR +4 DEX + 2 CON +2 AC +3 attack +4 HD +4; immmune to fear
 	if rng.chance(5) then
@@ -385,7 +385,7 @@ end
 
 function resolvers.calc.dragon_agecategory(t, e)
 	local choice
-	local cr_boost
+	local cr_boost = 0
 
 	if rng.chance(2) then
 		choice = "very young"
