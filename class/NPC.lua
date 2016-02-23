@@ -37,11 +37,11 @@ function _M:resolve(t, last, on_entity, key_chain)
   end
   self.nested = true
 
- --[[ local NPCEgo = require 'mod.class.NPCEgo'
+  local NPCEgo = require 'mod.class.NPCEgo'
   if not last then
     NPCEgo:tryAddEgo(self)
-    NPCEgo:applyEgo(self)
-  end]]
+--    NPCEgo:applyEgo(self)
+  end
 
   mod.class.Actor.resolve(self, t, last, on_entity, key_chain)
 
