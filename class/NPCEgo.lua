@@ -12,6 +12,32 @@ module(..., package.seeall, class.inherit(Entity))
 
 _M.egos_def = {}
 
+--Original function based on ToME2 port
+function _M:okEgo(m, list)
+    if m.unique then return {} end
+    local ret = {}
+    if not list then return {} end
+
+    for _, e in ipairs(list) do
+        --don't worry about base
+        if not e.define_as then
+        local ok = true
+        --checkRarity takes care of prefix/suffix distinction
+
+        --check zone's max_cr
+        if game.zone.max_cr then
+            if m.challenge + e.challenge > game.zone.max_cr + game.level.level then
+                ok = false
+                print("Reject NPC ego due to CR cap")
+            end
+        end
+
+        if ok then table.insert(ret, e) end
+        end
+    end
+    return ret
+end
+
 --We're duplicating some of the T-Engine Zone code to achieve same results
 function _M:okToGenerate(e)
     return e[rarity_field] and e.level_range
@@ -60,8 +86,9 @@ function _M:pickEgo(m, list, egos_list, picked_etype, etype)
     picked_etype[etype] = true
     if _G.type(etype) == "number" then etype = "" end
 
+    --NOTE: here's why we needed a separate class for this s*it
     --here we do our own filtering
---    list = self:okEgo(m, list)
+    list = self:okEgo(m, list)
 
     egos = self:checkRarity(list, etype ~= "" and function(e) return e[etype] end or nil)
 
