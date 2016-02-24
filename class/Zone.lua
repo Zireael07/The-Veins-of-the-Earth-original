@@ -283,7 +283,7 @@ function _M:checkFilter(e, filter, type)
     --New filters
     if type == "actor" then
     --    if filter.challenge and (filter.challenge >= e.challenge or filter.challenge <= e.challenge) then return false end
-        if filter.max_cr and e.challenge >= (base_level or 0) + game.level.level + filter.max_cr then print("Refused max_cr", e.name, e.challenge) return false end
+        if filter.max_cr and e.challenge >= (base_level or 0) + game:getDunDepth() + filter.max_cr then print("Refused max_cr", e.name, e.challenge) return false end
     end
 
     return true

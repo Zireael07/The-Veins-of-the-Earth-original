@@ -113,7 +113,7 @@ function _M:dayNightCycle()
 	end
 	map._map:setShown(shown[1] * (tint.r+0.4), shown[2] * (tint.g+0.4), shown[3] * (tint.b+0.4), shown[4])
 	map._map:setObscure(obscure[1] * (tint.r+0.2), obscure[2] * (tint.g+0.2), obscure[3] * (tint.b+0.2), obscure[4])
-	
+
 end
 
 --Basic code taken from ToME, adjusted
@@ -448,22 +448,22 @@ local loot_mod = {
 end]]
 local wealth = function(zone, level, lev, what)
 	if zone.default_drops then return zone.default_drops end
-	if type(lev) ~="number" then lev = game.level.level end
---	if lev ~= game.level.level then
-		print("[VEINS ENTITY FILTER] filter level ", lev, " level: ", game.level.level)
+	if type(lev) ~="number" then lev = game:getDunDepth() end
+--	if lev ~= game:getDunDepth() then
+		print("[VEINS ENTITY FILTER] filter level ", lev, " level: ", game:getDunDepth())
 --	end
-	local lev = lev or game.level.level
+	local lev = lev or game:getDunDepth()
 
 	--account for Luck
 	if game.player:getLuc() < 9 then
 		if rng.percent(80) then
-			local minlvl = math.min(1, game.level.level)
+			local minlvl = math.min(1, game:getDunDepth())
 			local lucmod = game.player:getLucMod()
 			local lvl = math.max(lucmod, minlvl)
 			print("[VEINS ENTITY FILTER] Low Luck effect", lvl)
 			lev = lvl
 		else
-			lev = lev or game.level.level
+			lev = lev or game:getDunDepth()
 		end
 	end
 	--NOTE: 9 Luck does nothing
@@ -471,11 +471,11 @@ local wealth = function(zone, level, lev, what)
 		if rng.percent(20) then
 			local lucmod = game.player:getLucMod()
 			local lucroll = rng.dice(1,lucmod)
-			local lvl = lev or game.level.level + lucroll
+			local lvl = lev or game:getDunDepth() + lucroll
 			print("[VEINS ENTITY FILTER] High Luck effect", lvl)
 			lev = lvl
 		else
-			lev = lev or game.level.level
+			lev = lev or game:getDunDepth()
 		end
 	end
 
@@ -491,7 +491,7 @@ function _M:defaultEntityFilter(zone, level, type)
 
 	-- By default we dont apply special filters, but we always provide one so that entityFilter is called
 	return {
-		veins = wealth(zone, level, game.level.level, "boss"),
+		veins = wealth(zone, level, game:getDunDepth(), "boss"),
 	}
 end
 
@@ -515,7 +515,7 @@ function _M:entityFilterAlter(zone, level, type, filter)
 			if _G.type(filter.veins_level) ~= "number" then filter.veins_level = nil end
 		end
 
-		filter.veins = wealth(zone, level, filter.veins_level or game.level.level, filter.veins_drops or "boss")
+		filter.veins = wealth(zone, level, filter.veins_level or game:getDunDepth(), filter.veins_drops or "boss")
 	end
 
 	if filter.veins then

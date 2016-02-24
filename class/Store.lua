@@ -50,7 +50,7 @@ end
 
 --- Caleld when a new object is stocked
 function _M:stocked_object(o)
---	o.__store_level = game.zone.base_level + game.level.level - 1
+--	o.__store_level = game.zone.base_level + game:getDunDepth() - 1
 end
 
 --- Restock based on player level
@@ -248,7 +248,7 @@ function _M:transfer(src, dest, item, nb, buying)
       o.found = {
 	type = 'store_buy',
 	store_name = self.name,
-	level = game.level.level,
+	level = game:getDunDepth(),
 	level_name = game.level.name,
 	zone_name = game.zone.name,
 	town_zone = game.zone.town,

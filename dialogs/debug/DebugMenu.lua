@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2014 Zireael
+-- Copyright (C) 2014-2016 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ function _M:use(item)
 			end
 		end
 	elseif act == "change_level" then
-		game:registerDialog(GetQuantity.new("Zone: "..game.zone.name, "Level 1-"..game.zone.max_level, game.level.level, game.zone.max_level, function(qty)
+		game:registerDialog(GetQuantity.new("Zone: "..game.zone.name, "Level 1-"..game:getMaxDepth(), game:getDunDepth(), game:getMaxDepth(), function(qty)
 			game:changeLevel(qty)
 		end), 1)
 	elseif act == "gain-xp" then

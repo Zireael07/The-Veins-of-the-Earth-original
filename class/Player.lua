@@ -649,7 +649,7 @@ function _M:die(src, death_note)
 --  self:onPartyDeath(src, death_note)
 
     --Mark depth for bones
-    World:boneLevel(game.level.level)
+    World:boneLevel(game:getDunDepth())
 
     --Taken from onPartyDeath
     -- Die
@@ -690,14 +690,14 @@ function _M:die(src, death_note)
         srcname,
         src.name == top_killer and " (yet again)" or "",
         killermsg,
-        game.level.level, game.zone.name
+        game:getDunDepth(), game.zone.name
       )
     else
       msg = "%s the level %d %s %s %s on level %s of %s."
       msg = msg:format(
         game.player.name, game.player.level, game.player.descriptor.race:lower(), game.player.descriptor.subclass:lower(),
         death_note.special_death_msg,
-        game.level.level, game.zone.name
+        game:getDunDepth(), game.zone.name
       )
     end
 

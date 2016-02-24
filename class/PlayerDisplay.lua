@@ -191,10 +191,10 @@ function _M:display()
         self:makeTexture("World map", x, h, 240, 240, 170)
     else
         self:makeTexture(("%s"):format(game.zone.name), x, h, 240, 240, 170)
-        if game.zone.max_level > 1 and game.level.level then
+        if game:getMaxDepth() > 1 and game:getDunDepth() then
             h = h + self.font_h
-            
-            self:makeTexture(("dungeon lvl: %d"):format(math.floor(game.level.level)), x, h, 240, 240, 170)
+
+            self:makeTexture(("dungeon lvl: %d"):format(math.floor(game:getDunDepth())), x, h, 240, 240, 170)
         end
     end
 

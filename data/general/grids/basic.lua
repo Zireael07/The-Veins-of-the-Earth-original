@@ -395,8 +395,8 @@ newEntity{
 			local save1 = who:skillCheck("balance", 15)
 			local save2 = who:skillCheck("jump", 30)
 
-			if not save1 then game:changeLevel(game.level.level + rng.dice(1,6))
-			elseif not save2 then game:changeLevel(game.level.level + rng.dice(1,6))
+			if not save1 then game:changeLevel(game:getDunDepth() + rng.dice(1,6))
+			elseif not save2 then game:changeLevel(game:getDunDepth() + rng.dice(1,6))
 			else end
 		else
 			if not who.fly then who:disappear() end

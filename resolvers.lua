@@ -467,7 +467,7 @@ function resolvers.calc.class(t, e)
 	if class then
 	--safety check
 		if game.zone.max_cr then
-			if e.challenge + n > game.level.level + game.zone.max_cr then return end
+			if e.challenge + n > game:getDunDepth() + game.zone.max_cr then return end
 		end
 
 	e:giveLevels(class, n)

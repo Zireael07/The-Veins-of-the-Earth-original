@@ -26,7 +26,7 @@ function _M:okEgo(m, list)
 
         --check zone's max_cr
         if game.zone.max_cr then
-            if m.challenge + e.challenge > game.zone.max_cr + game.level.level then
+            if m.challenge + e.challenge > game.zone.max_cr + game:getDunDepth() then
                 ok = false
                 print("Reject NPC ego due to CR cap")
             end
@@ -41,11 +41,11 @@ end
 --We're duplicating some of the T-Engine Zone code to achieve same results
 function _M:okToGenerate(e)
     return e[rarity_field] and e.level_range
---    return e[rarity_field] and e.level_range and e.level_range[1] <= game.level.level
+--    return e[rarity_field] and e.level_range and e.level_range[1] <= game:getDunDepth()
 end
 
 function _M:checkRarity(list, filter)
-    local lev = game.level.level
+    local lev = game:getDunDepth()
     rarity_field = rarity_field or "rarity"
     local r = { total=0 }
 
@@ -58,7 +58,7 @@ function _M:checkRarity(list, filter)
 
                 if genprob > 0 then
                     r.total = r.total + genprob
-                    r[#r+1] = { e=e, genprob=r.total, level_diff = lev - game.level.level }
+                    r[#r+1] = { e=e, genprob=r.total, level_diff = lev - game:getDunDepth() }
                 end
 
     		else

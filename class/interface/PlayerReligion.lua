@@ -233,7 +233,7 @@ function _M:divineMessage(deity, message, desc)
     if message == "convert" then string = "" end
     if message == "bad sacrifice" then string = color.."|Thou dares to offer me the blood of mine own people?! SUFFER!|#LAST#" end
     --|Thou dares to offer me the blood of our allies?!|
-    --anger, changeLevel(10, math.max(game.level.level + ((self.anger -3)/5)))
+    --anger, changeLevel(10, math.max(game:getDunDepth() + ((self.anger -3)/5)))
     if message == "custom one" then string = color.."|Thou hast sinned against my way; now, prove thy loyalty in this trial by ordeal!|#LAST#" end
     --god pulse, summon a friendly orc(s)
     if message == "custom two" then string = color.."|Know always that our people have strength in numbers!|#LAST#" end
@@ -537,8 +537,8 @@ function _M:godPulse()
     --N: "The goddess shrugs, smiles warmly without condemnation at you, and vanishes."
   end
   if deity == "Hesani" then
-    if game.level.level > 1 and self.level < 12 then
-      if game.level.level > (self.level/2) then
+    if game:getDunDepth() > 1 and self.level < 12 then
+      if game:getDunDepth() > (self.level/2) then
         self:transgress("Hesani", 1, "lack of patience")
       end
     end
@@ -670,17 +670,17 @@ function _M:godAnger()
     end
 
     if deity == "Khasrach" then
-      if game.level.level > math.min(9, self.level+2) then
+      if game:getDunDepth() > math.min(9, self.level+2) then
         --retribution
       end
       self:divineMessage("Khasrach", "custom one")
       game.logPlayer(self, "You are cast down!")
 
-      local change = (10 - game.level.level)
+      local change = (10 - game:getDunDepth())
 
-      if game.level.level >= 10 then game:changeLevel(1)
+      if game:getDunDepth() >= 10 then game:changeLevel(1)
       else
---[[        if game.zone.max_level >= self.level.level + change then
+--[[        if game:getMaxDepth() >= game:getDunDepth() + change then
         game:changeLevel(change) end]]
       end
     end

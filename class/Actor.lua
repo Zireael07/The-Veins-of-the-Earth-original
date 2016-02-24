@@ -1023,7 +1023,7 @@ function _M:die(src, death_note)
 				mon_name = self.name,
 				zone_name = game.zone.name,
 				town_zone = game.zone.town,
-				level = game.level.level,
+				level = game:getDunDepth(),
 				level_name = game.level.name,
 	      }
 			self:removeObject(inven, i, true)
@@ -1951,8 +1951,8 @@ end
 function _M:addedToLevel(level, x, y)
 --Warning: got a loop once
 --Safeguards against overly high CR monsters
-if game.level.level == 1 then
-	if self.challenge > (game.level.level + 3) then
+if game:getDunDepth() == 1 then
+	if self.challenge > (game:getDunDepth() + 3) then
 
 		--Create new actor
 		local m = game.zone:makeEntity(game.level, "actor", f, nil, true)
@@ -1968,7 +1968,7 @@ if game.level.level == 1 then
 		game.level:removeEntity(self, true)
 	end
 else
-	if self.challenge > (game.level.level + 5) then
+	if self.challenge > (game:getDunDepth() + 5) then
 		--Create new actor
 		local m = game.zone:makeEntity(game.level, "actor", f, nil, true)
 
