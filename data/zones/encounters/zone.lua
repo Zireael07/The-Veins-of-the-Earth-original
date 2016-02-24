@@ -21,6 +21,9 @@ return {
 	decay = {300, 800},
 	width = 100, height = 100,
 --	persistent = "zone",
+load_tips = {
+{ text = [[Testing in progress...]] },
+},
 	generator =  {
 		map = {
 			class = "engine.generator.map.Roomer",

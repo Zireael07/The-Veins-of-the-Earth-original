@@ -23,6 +23,9 @@ return {
 	persistent = "zone",
 	no_level_connectivity = true,
 	no_autoexplore = true,
+	load_tips = {
+	{ text = [[Testing in progress...]] },
+	},
 	generator =  {
 		map = {
 			class = "mod.class.generator.map.Roomer",
