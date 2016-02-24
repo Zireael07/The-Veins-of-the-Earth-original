@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2013-2016
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ newEntity{
 	[Talents.T_SIMPLE_WEAPON_PROFICIENCY]=1,
 	[Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
 	},
-	--	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
+	npc_egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 --Playable races
@@ -58,9 +58,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	skill_search = 3,
 	skill_spot = 2,
 	hit_die = 1,
-	resolvers.specialnpc(),
-	resolvers.templates(),
---	resolvers.class()
 }
 
 newEntity{
@@ -102,9 +99,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 --	lite = 3,
 	hit_die = 1,
 	alignment = "Neutral Good",
-	resolvers.specialnpc(),
-	resolvers.templates(),
-	resolvers.class()
 }
 
 newEntity{
@@ -138,9 +132,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	ai = "dumb_talented_simple", ai_state = { talent_in=1, ai_move="move_complex", },
 	stats = { str=13, dex=11, con=14, int=10, wis=9, cha=6, luc=10 },
 	hit_die = 1,
-	resolvers.specialnpc(),
-	resolvers.templates(),
---	resolvers.class()
 }
 
 newEntity{
@@ -215,9 +206,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	stats = { str=11, dex=11, con=14, int=10, wis=9, cha=8, luc=10 },
 	hit_die = 1,
 	alignment = "Neutral Good",
-	resolvers.specialnpc(),
-	resolvers.templates(),
---	resolvers.class()
 }
 
 newEntity{
@@ -294,9 +282,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	stats = { str=11, dex=13, con=12, int=10, wis=9, cha=8, luc=12 },
 	hit_die = 1,
 	alignment = "Chaotic Good",
-	resolvers.specialnpc(),
-	resolvers.templates(),
-	resolvers.class()
 }
 
 newEntity{
@@ -340,9 +325,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	combat_natural = 5,
 	hit_die = 2,
 	resolvers.class(),
---	resolvers.specialnpc(),
-	resolvers.templates()
---	egos = "/data/general/npcs/templates/humanoid.lua", egos_chance = { suffix=50},
 }
 
 newEntity{
@@ -389,8 +371,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	skill_movesilently = 1,
 	hit_die = 4,
 	emote_anger = "Kobold kill you!",
---	resolvers.specialnpc(),
-	resolvers.templates()
 }
 
 newEntity{ base = "BASE_NPC_KOBOLD",
@@ -447,9 +427,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	skill_listen = 2,
 	skill_spot = 2,
 	hit_die = 1,
---	resolvers.specialnpc(),
---	resolvers.templates(),
---  	resolvers.class()
 }
 
 newEntity{
@@ -485,9 +462,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	infravision = 3,
 	skill_bluff = 6,
 	skill_hide = 4,
---	resolvers.specialnpc(),
---	resolvers.templates(),
-	resolvers.class()
 }
 
 newEntity{
@@ -536,9 +510,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	skill_heal = 4,
 	skill_listen = 2,
 	skill_spot = 2,
---[[	resolvers.specialnpc(),
-	resolvers.templates(),]]
-	resolvers.class(),
 }
 
 newEntity{
@@ -589,9 +560,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	skill_listen = 2,
 	skill_spot = 1,
 	hit_die = 1,
---	resolvers.specialnpc(),
---	resolvers.templates()
---	resolvers.class()
 }
 
 newEntity{
@@ -648,8 +616,6 @@ newEntity{
 		{ name = "morningstar", not_properties={"cursed"}, veins_drops="npc", veins_level=resolvers.npc_drops_level,  },
 	},
 	anger_emote = "Me kill you!",
---	resolvers.specialnpc(),
-	resolvers.templates()
 }
 
 newEntity{ base = "BASE_NPC_HUMANOID",
@@ -668,8 +634,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	skill_listen = 3,
 	skill_spot = 2,
 	hit_die = 2,
---	resolvers.specialnpc(),
---	resolvers.templates()
 }
 
 newEntity{
@@ -712,8 +676,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	infravision = 3,
 	alignment = "Lawful Evil",
 	hit_die = 1,
---	resolvers.specialnpc(),
---	resolvers.templates()
 }
 
 newEntity{
@@ -754,8 +716,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	combat_natural = 6,
 	alignment = "Chaotic Evil",
 	hit_die = 2,
---	resolvers.specialnpc()
---	resolvers.templates()
 }
 
 newEntity{
@@ -838,8 +798,6 @@ newEntity{ base = "BASE_NPC_HUMANOID",
 	combat_attackspeed = 1.9,
 	hit_die = 2,
 	open_door = true,
---	resolvers.specialnpc(),
---	resolvers.templates()
 }
 
 newEntity{
