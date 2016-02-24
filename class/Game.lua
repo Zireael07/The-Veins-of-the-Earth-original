@@ -88,7 +88,7 @@ end
 function _M:load()
 	Zone.alter_filter = function(zone, e, filter, type)
 	if filter.max_cr then
-			if e.challenge >= zone.base_level + game.level.level + filter.max_cr then return false end
+			if e.challenge >= zone.base_level + game:getDunDepth() + filter.max_cr then return false end
  	end
  	if filter.challenge then
  		if e.challenge >= filter.challenge or e.challenge <= filter.challenge then return false end
@@ -1530,6 +1530,16 @@ function _M:saveGame()
 	savefile_pipe:push(self.save_name, "game", self)
 	self.log("Saving game...")
 end
+
+--Getters for oft-used stuff
+function _M:getDunDepth()
+	return game.level.level
+end
+
+function _M:getMaxDepth()
+	return game.zone.max_level
+end
+
 
 --From ToME 4
 function _M:playSoundNear(who, name)
