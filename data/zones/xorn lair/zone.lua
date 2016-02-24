@@ -96,7 +96,7 @@ return {
 
 	last_worm_turn = 0,
 	on_turn = function(self)
-		if game.turn % 100 ~= 0 or game.level.level ~= 1 then return end
+		if game.turn % 100 ~= 0 or game:getDunDepth() ~= 1 then return end
 		if game.level.data.last_worm_turn > game.turn - 800 then return end
 
 --		for uid, e in pairs(game.level.entities) do if e.define_as == "SANDWORM_TUNNELER_HUGE" then return end end

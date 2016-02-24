@@ -1,5 +1,6 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2016
+
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
@@ -12,7 +13,6 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---Zireael
 
 require 'engine.class'
 local ActorRandom = require 'engine.generator.actor.Random'
@@ -34,7 +34,7 @@ function _M:generateOne()
 
 	--Handle encounters
 	while nb_encounters_made <= self.nb_encounters do
-	while m and not m.type == "encounter" and not m.challenge <= (game.level.level + 5) do
+	while m and not m.type == "encounter" and not m.challenge <= (game:getDunDepth() + 5) do
 		m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 	end
 	if m then
@@ -54,7 +54,7 @@ function _M:generateOne()
 	end
 
 	--Hack! No more CR 20 opponents on dungeon level 1
-	while m and not m.challenge <= (game.level.level + 5) do
+	while m and not m.challenge <= (game:getDunDepth() + 5) do
 		m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 	end
 	if m then

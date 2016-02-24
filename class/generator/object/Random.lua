@@ -57,8 +57,7 @@ function _M:generateOne()
 				type='floor',
 				zone_name = self.zone.name,
 				town_zone = self.zone.town,
-			--	level = lev,
-				level = game.level.level,
+				level = game:getDunDepth(),
 				level_name = game.level.name,
 			}
 		end

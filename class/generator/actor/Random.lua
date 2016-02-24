@@ -36,7 +36,7 @@ function _M:generateOne(distance_from)
     -- that distance of the player are forbidden.
     	local player, df = game.player, distance_from
 		while (self.map:checkEntity(x, y, Map.TERRAIN, "block_move") or (self.map.room_map[x][y] and self.map.room_map[x][y].special)
-			or (df and core.fov.distance(player.x, player.y, x, y) <= df)) 
+			or (df and core.fov.distance(player.x, player.y, x, y) <= df))
 		--	or (distance and core.fov.distance(self.level.default_up.x, self.level.default))
 			and tries < 10000 do
 			x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
@@ -55,8 +55,8 @@ end
 	if self.filters then f = self.filters[rng.range(1, #self.filters)] end
 	local m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 	--Special case: dlevel 1
-	if game.level.level == 1 then
-		while m and m.challenge < (game.level.level + 1) do
+	if game:getDunDepth() == 1 then
+		while m and m.challenge < (game:getDunDepth() + 1) do
 			m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 		end
 		if m then
@@ -73,8 +73,8 @@ end
 		end
 		end
 	--Special case: dlvl 2-5
-	elseif game.level.level == 2 or game.level.level == 3 or game.level.level == 4 or game.level.level == 5 then
-		while m and m.challenge <= (game.level.level + 2) do
+    elseif game:getDunDepth() == 2 or game:getDunDepth() == 3 or game:getDunDepth() == 4 or game:getDunDepth() == 5 then
+		while m and m.challenge <= (game:getDunDepth() + 2) do
 			m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 		end
 		if m then
@@ -94,9 +94,9 @@ end
 
 --	end
 	--Normal
-	else	
+	else
 	--Hack! No more CR 20 opponents on dungeon level 1
-	while m and m.challenge < (game.level.level + 5) do
+	while m and m.challenge < (game:getDunDepth() + 5) do
 		m = self.zone:makeEntity(self.level, "actor", f, nil, true)
 	end
 	if m then

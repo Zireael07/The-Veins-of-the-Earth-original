@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2016
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
@@ -35,8 +35,8 @@ function _M:generateOne()
 	if nb_encounters_made <= self.nb_encounters then
 		if m and m.type == "encounter" then
 			--Special case - dlvl 1
-			if game.level.level == 1 then
-				if m.challenge <= (game.level.level + 1) then
+			if game:getDunDepth() == 1 then
+				if m.challenge <= (game:getDunDepth() + 1) then
 					local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
 					local tries = 0
 					--No more spawning in walls!
@@ -51,8 +51,8 @@ function _M:generateOne()
 					end
 				end
 			--Special case: dlvl 2-5
-			elseif game.level.level == 2 or game.level.level == 3 or game.level.level == 4 or game.level.level == 5 then
-				if m.challenge <= (game.level.level + 2) then
+            elseif game:getDunDepth() == 2 or game:getDunDepth() == 3 or game:getDunDepth() == 4 or game:getDunDepth() == 5 then
+				if m.challenge <= (game:getDunDepth() + 2) then
 					local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
 					local tries = 0
 					--No more spawning in walls!
@@ -68,8 +68,8 @@ function _M:generateOne()
 				end
 
 			--Normal
-			else	
-				if m.challenge <= (game.level.level + 5) then
+			else
+				if m.challenge <= (game:getDunDepth() + 5) then
 				local x, y = rng.range(self.area.x1, self.area.x2), rng.range(self.area.y1, self.area.y2)
 				local tries = 0
 				--No more spawning in walls!
