@@ -539,3 +539,22 @@ newEntity {
 	},
 	resolvers.creation_cost(),
 }
+
+--From Incursion
+newEntity{
+	name = "graceful ", prefix = true,
+	keywords = {grace=true},
+	level_range = {5, nil},
+	rarity = 15,
+	cost = resolvers.value{platinum=250},
+	resolvers.graceful_armor()
+}
+
+newEntity{
+	name = "feather-light ", prefix = true,
+	keywords = {feather=true},
+	level_range = {5, nil},
+	rarity = 20,
+	cost = resolvers.value{platinum=250},
+	resolvers.featherlight()
+}

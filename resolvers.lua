@@ -609,8 +609,9 @@ function resolvers.calc.armor_durability(t, e)
 	end
 end
 
+--Special ego resolvers
 function resolvers.mithril_lighten()
-	return {__resolver="mithril_lighten", __resolve_last=true, }
+	return {__resolver="mithril_lighten", }--__resolve_last=true, }
 end
 function resolvers.calc.mithril_lighten(t, e)
 	--let's make it lighter
@@ -625,6 +626,22 @@ function resolvers.calc.mithril_lighten(t, e)
 	e.wielder.max_dex_bonus = e.wielder.max_dex_bonus + 2
 	e.wielder.armor_penalty = math.max(0, e.wielder.armor_penalty - 3)
 end
+
+function resolvers.graceful_armor()
+	return {__resolver="graceful_armor", }-- __resolve_last=true, }
+end
+function resolvers.calc.graceful_armor(t,e)
+	--Half acp
+	e.wielder.armor_penalty = math.floor(e.wielder.armor_penalty/2)
+end
+
+function resolvers.featherlight()
+	return {__resolver="featherlight", }-- __resolve_last=true, }
+end
+function resolvers.calc.featherlight(t, e)
+	e.encumber = e.encumber/4
+end
+
 
 local function actor_final_level(e)
 	return e.challenge
