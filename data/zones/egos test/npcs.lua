@@ -18,4 +18,4 @@
 --Neutrals
 --load("/data/general/npcs/neutral.lua")
 
-load("/data/general/npcs/humanoid_test.lua")
+load("/data/general/npcs/humanoid.lua")
