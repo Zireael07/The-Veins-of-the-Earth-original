@@ -176,6 +176,7 @@ newEntity{ base="BASE_EGO",
 	challenge = 2,
 }
 
+--1d4 slam + engulf DC 20
 newEntity{ base = "BASE_EGO",
 	name = "aqueous ", prefix = true, instant_resolve = true,
 	keywords = {aqueous=true},
