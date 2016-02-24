@@ -48,6 +48,7 @@ else
     load("/data/general/objects/money.lua")
 end
 
+load("/data/general/objects/gems.lua")
 
 --Lore
 newEntity{ base = "BASE_LORE",
