@@ -23,6 +23,7 @@ newEntity{ base = "BASE_EGO",
 	rarity = 10,
 
 	challenge = 2,
+	hit_die = 1,
 	resolvers.talents{ [Talents.T_POWER_ATTACK]=1,
 	[Talents.T_MARTIAL_WEAPON_PROFICIENCY]=1,
 	[Talents.T_LIGHT_ARMOR_PROFICIENCY]=1,
@@ -108,6 +109,7 @@ newEntity{ base = "BASE_EGO",
 	rarity = 10,
 
 	challenge = 2,
+	hit_die = 2,
 	combat_attack = 2,
 }
 
