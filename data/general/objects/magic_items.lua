@@ -127,7 +127,7 @@ newEntity{
     slot = "INVEN",
     type = "gem", subtype = "gem",
     display = "*", color=colors.ANTIQUE_WHITE,
-    image = "tiles/object/diamond.lua",
+    image = "tiles/UT/diamond.png",
     encumber = 0,
     desc = [[A perfect white diamond.]],
 }
