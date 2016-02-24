@@ -204,12 +204,12 @@ newFeat{
         if self.money < 300000 then
             game.logPlayer(self, "You don't have enough gold!")
         return true end
-        if self.exp < 12000 then
+        if self.exp < 1200 then
             game.logPlayer(self, "You don't have enough exp!")
         return true end
 
         self:incMoney(-300000)
-        self:gainExp(-12000)
+        self:gainExp(-1200)
 
         local o = game.zone:makeEntityByName(game.level, "object", "RESURRECTION_DIAMOND")
         if o then
