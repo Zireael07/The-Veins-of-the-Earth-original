@@ -5,7 +5,7 @@ local Talents = require "engine.interface.ActorTalents"
 
 --Stuff that we're not modifying but needs to be explicitly set to zero to avoid getting OP
 newEntity{ define_as = "BASE_EGO",
-	max_life = 0,
+--	max_life = 0,
 	stats = { str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0},
 	defense = 0,
 	size = 0,
