@@ -55,7 +55,7 @@ function resolvers.calc.specialnpc(t, e)
 
 	--safety check
 	if game.zone.max_cr then
-		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
+		if e.challenge + cr_boost > game.zone.max_cr + game:getDunDepth() then
 			choice = nil
 		end
 	end
@@ -196,7 +196,7 @@ function resolvers.calc.templates(t, e)
 
 	--safety check
 	if game.zone.max_cr then
-		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
+		if e.challenge + cr_boost > game.zone.max_cr + game:getDunDepth() then
 			choice = nil
 		end
 	end
@@ -357,7 +357,7 @@ function resolvers.calc.animaltemplates(t, e)
 
 	--safety check
 	if game.zone.max_cr then
-		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
+		if e.challenge + cr_boost > game.zone.max_cr + game:getDunDepth() then
 			choice = nil
 		end
 	end
@@ -429,7 +429,7 @@ function resolvers.calc.dragon_agecategory(t, e)
 
 	--safety check
 	if game.zone.max_cr then
-		if e.challenge + cr_boost > game.zone.max_cr + game.level.level then
+		if e.challenge + cr_boost > game.zone.max_cr + game:getDunDepth() then
 			choice = "hatchling"
 		end
 	end
