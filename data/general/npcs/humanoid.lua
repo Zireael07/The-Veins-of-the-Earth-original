@@ -583,7 +583,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_BUGBEAR",
 	subtype = "goblinoid",
-	image = "tiles/mobiles/goblin.png",
+	image = "tiles/UT/bugbear.png",
 	display = 'g', color=colors.BROWN,
 	desc = [[A dirty hairy bugbear.]],
 
@@ -703,7 +703,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_TROG",
 	subtype = "reptilian",
-	image = "tiles/mobiles/goblin.png",
+	image = "tiles/UT/trog.png",
 	display = 'h', color=colors.DARK_UMBER,
 	desc = [[A scaly reptilian humanoid.]],
 	uncommon_desc = [[ Any methods used to protect against or neutralize poison are also effective against the stench of troglodyte musk. Troglodytes live in fierce tribes, ruled by the most powerful among them. They often purposefully lair near more civilized humanoid settlements, preying upon their inhabitants and livestock and stealing steel tools and weapons, which troglodytes prize highly but cannot forge for themselves.]],
