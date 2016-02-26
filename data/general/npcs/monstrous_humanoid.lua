@@ -151,7 +151,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_MON_HUMANOID",
 	define_as = "BASE_NPC_GRIMLOCK",
 	name = "grimlock",
-	image = "tiles/mobiles/human.png",
+	image = "tiles/new/grimlock.png",
 	display = 'h', color=colors.DARK_GRAY,
 	desc = [[A dull gray humanoid with a flat skin on its face.]],
 	uncommon_desc = [[Grimlocks hunt in packs. They prefer their meat fresh, raw, and, ideally, human. They are extremely xenophobic, but will sometimes band together under the command of a more powerful creature that promises them the brutal power they crave.]],
