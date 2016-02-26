@@ -744,7 +744,7 @@ newEntity{
 newEntity{
 	define_as = "BASE_NPC_LOCATHAH",
 	type = "humanoid", subtype = "humanoid_aquatic",
-	image = "tiles/mobiles/triton.png",
+	image = "tiles/new/locathah.png",
 	display = 'h', color=colors.DARK_BLUE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
 	desc = [[A scaly fish-like humanoid.]],
@@ -784,7 +784,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_MERFOLK",
 	subtype = "humanoid_aquatic",
-	image = "tiles/mobiles/merfolk.png",
+	image = "tiles/UT/merfolk.png",
 	display = 'h', color=colors.DARK_BLUE,
 	desc = [[A scaly fish-like humanoid.]],
 	uncommon_desc = [[Merfolk also fashion crossbows that remain particularly effective underwater. Merfolk establish their communities in choice fishing grounds. Curiosity sometimes draws merfolk to nautical surface dwellers, but these liaisons do not always end well.]],

@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2013-2016
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -567,6 +567,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_SKUM",
 	subtype = "aquatic",
+	image = "tiles/mobiles/skum.png",
 	display = "X", color=colors.AQUA,
     desc = [[A humanoid with joined fingers and fins.]],
 
@@ -631,7 +632,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 newEntity{ base = "BASE_NPC_ABERRATION",
 	define_as = "BASE_NPC_NAGA",
 	subtype = "naga",
-	image = "tiles/mobiles/naga.png",
+	image = "tiles/UT/naga.png",
 	display = "n", color=colors.WHITE,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
     desc = [[A monster with a snakelike body and a human head.]],
