@@ -453,7 +453,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_TIEFLING",
 	subtype = "planetouched",
-	image = "tiles/mobiles/human.png",
+	image = "tiles/new/tiefling.png",
 	display = 'h', color=colors.RED,
 	desc = [[A horned tiefling.]],
 
@@ -498,7 +498,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_HUMANOID",
 	define_as = "BASE_NPC_AASIMAR",
 	subtype = "planetouched",
-	image = "tiles/mobiles/human.png",
+	image = "tiles/new/aasimar.png",
 	display = 'h', color=colors.GOLD,
 	desc = [[A beautiful humanoid.]],
 
