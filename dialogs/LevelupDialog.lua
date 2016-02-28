@@ -304,25 +304,26 @@ function _M:drawGeneral()
 
     s:erase(0,0,0,0)
 
-    local h = 10
+    local h = 2
     local w = 0
 
-    h = 10
-    w = 0
-
     h = h + self.font_h -- Adds an empty row
+    if actor.class_points > 0 then
+        s:drawColorStringBlended(self.font, "#LIGHT_GREEN#You have unspent class points! Spend them to receive level up bonuses!#LAST#", w, h, 255, 255, 255, true) h = h + self.font_h
+    end
     --Display any unused level-up stuff
     s:drawColorStringBlended(self.font, "Available skill points: #GOLD#"..(actor.skill_point.. " #LAST#Max skill ranks: #GOLD#"..actor.max_skill_ranks), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Available class points: #GOLD#"..(actor.class_points or 0), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Available feat points: #GOLD#"..(actor.feat_point or 0), w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Available stat points: #GOLD#"..(actor.stat_point or 0), w, h, 255, 255, 255, true) h = h + self.font_h
 
-    h = 50
-    w = self.w * 0.25
+    h = h + self.font_h -- Adds an empty row
+--    h = 50
+--    w = self.w * 0.25
     -- start on second column
+    s:drawColorStringBlended(self.font, "You #ORANGE#need#LAST# to advance a class in order to receive any bonuses from gaining a level.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "You can use the tabs to pick your #ORANGE#class#LAST#, #ORANGE#skills#LAST# or #ORANGE#feats#LAST#.", w, h, 255, 255, 255, true) h = h + self.font_h
     s:drawColorStringBlended(self.font, "Note that you are not limited to advancing a single class.", w, h, 255, 255, 255, true) h = h + self.font_h
---    s:drawColorStringBlended(self.font, "You need to advance a class in order to receive any bonuses from gaining a level.", w, h, 255, 255, 255, true) h = h + self.font_h
 
     self.c_surface:generate()
     self.changed = false
