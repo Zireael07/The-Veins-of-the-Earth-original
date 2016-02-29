@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 newBirthDescriptor{
 	type = "class",
@@ -25,7 +25,7 @@ newBirthDescriptor {
 		return 4
 	end,
 	getClassSkills = function(self, t)
-		skills = "Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Swim, Survival."
+		skills = "Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Spot, Swim, Survival."
 		return skills
 	end,
 	getHitPoints = function(self, t)
@@ -113,7 +113,7 @@ newBirthDescriptor {
 		return 2
 	end,
 	getClassSkills = function(self, t)
-		skills = "Climb, Craft, Handle Animal, Intimidate, Jump, Ride, Swim."
+		skills = "Climb, Craft, Handle Animal, Intimidate, Jump, Ride, Spot, Swim."
 
 		return skills
 	end,
