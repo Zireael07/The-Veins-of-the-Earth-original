@@ -357,8 +357,8 @@ end
     local identified = t.force_id or self:isIdentified()
   	local name = self.short_name
 
-    if not identified and self:getUnidentifiedName() then
-        name = self:getUnidentifiedName()
+    if not identified then
+        name = self.short_name
     elseif self.keywords and next(self.keywords) then
 		local k = table.keys(self.keywords)
 		table.sort(k)
