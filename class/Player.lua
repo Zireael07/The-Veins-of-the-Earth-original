@@ -1154,20 +1154,6 @@ function _M:autoID()
 end
 
 
---Get the fancy inventory title thing working
-function _M:getEncumberTitleUpdater(title)
-    return function()
-        local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()
-        local color = "#00ff00#"
-        if enc > max then color = "#ff0000#"
-        --Color-code medium and heavy load
-        elseif enc > max * 0.66 then color = "#ff8a00#"
-        elseif enc > max * 0.33 then color = "#fcff00#"
-        end
-        return ("%s - %sEncumbrance %d/%d"):format(title, color, enc, max)
-    end
-end
-
   --Inventory
   function _M:playerPickup()
     -- If 2 or more objects, display a pickup dialog, otherwise just picks up
@@ -1277,77 +1263,6 @@ function _M:playerUseItem(object, item, inven)
     )
 end
 
---- Called upon dropping an object
-function _M:onDropObject(o)
-	if self.player then game.level.map.attrs(self.x, self.y, "obj_seen", true)
-	elseif game.level.map.attrs(self.x, self.y, "obj_seen") then game.level.map.attrs(self.x, self.y, "obj_seen", false) end
-end
-
-function _M:doDrop(inven, item, on_done, nb)
-    if self.no_inventory_access then return end
-
-    local o = self:getInven(inven) and self:getInven(inven)[item]
-  if o and o.plot then
-    game.logPlayer(self, "You can not drop %s (plot item).", o:getName{do_colour=true})
-    return
-  end
-
-  if o and o.__tagged then
-    game.logPlayer(self, "You can not drop %s (tagged).", o:getName{do_colour=true})
-    return
-  end
-
-  if game.zone.worldmap then
-    Dialog:yesnoLongPopup("Warning", "You cannot drop items on the world map.\nIf you drop it, it will be lost forever.", 300, function(ret)
-      -- The test is reversed because the buttons are reversed, to prevent mistakes
-      if not ret then
-        local o = self:getInven(inven) and self:getInven(inven)[item]
-        if o and not o.plot then
-          if o:check("on_drop", self) then return end
-          local o = self:removeObject(inven, item, true)
-          game.logPlayer(self, "You destroy %s.", o:getName{do_colour=true, do_count=true})
-          self:checkEncumbrance()
-          self:sortInven()
-          self:useEnergy()
-          if on_done then on_done() end
-        elseif o then
-          game.logPlayer(self, "You can not destroy %s.", o:getName{do_colour=true})
-        end
-      end
-    end, "Cancel", "Destroy", true)
-    return
-  end
-
-  --item sacrifice
-  local t = game.level.map(self.x, self.y, Map.TERRAIN)
-  local o = self:getInven(inven) and self:getInven(inven)[item]
-
-    if t.is_altar then
-      if o and not o.plot then
-        PlayerReligion:itemSacrifice(o)
-        game.logPlayer(self, "You destroy %s.", o:getName{do_colour=true, do_count=true})
-        self:checkEncumbrance()
-        self:sortInven()
-        self:useEnergy()
-        if on_done then on_done() end
-      elseif o then
-          game.logPlayer(self, "You can not destroy %s.", o:getName{do_colour=true})
-      end
-      return
-    end
-
-  if nb == nil or nb >= self:getInven(inven)[item]:getNumber() then
-    self:dropFloor(inven, item, true, true)
-  else
-    for i = 1, nb do self:dropFloor(inven, item, true) end
-  end
-  self:checkEncumbrance()
-  self:sortInven(inven)
-  self:useEnergy()
-  self.changed = true
---  game:playSound("actions/drop")
-  if on_done then on_done() end
-end
 
 --[[function _M:doWear(inven, item, o)
     self:removeObject(inven, item, true)
@@ -1360,7 +1275,7 @@ end
     self:sortInven()
     self:useEnergy()
     self.changed = true
-end]]
+end
 
 function _M:doTakeoff(inven, item, o)
     if self:addObject(self.INVEN_INVEN, o) then
@@ -1371,7 +1286,7 @@ function _M:doTakeoff(inven, item, o)
     self:sortInven()
     self:useEnergy()
     self.changed = true
-end
+end]]
 
 --Container stuff, adapted from Gatecrashers
 function _M:putIn(bag, filter)

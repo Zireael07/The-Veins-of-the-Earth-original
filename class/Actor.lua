@@ -2979,6 +2979,156 @@ function _M:speakSameLanguage(target)
 	end
 end
 
+--Inventory
+
+--- Called upon dropping an object
+function _M:onDropObject(o)
+	if self.player then game.level.map.attrs(self.x, self.y, "obj_seen", true)
+	elseif game.level.map.attrs(self.x, self.y, "obj_seen") then game.level.map.attrs(self.x, self.y, "obj_seen", false) end
+end
+
+function _M:doDrop(inven, item, on_done, nb)
+    if self.no_inventory_access then return end
+
+    local o = self:getInven(inven) and self:getInven(inven)[item]
+  if o and o.plot then
+    game.logPlayer(self, "You can not drop %s (plot item).", o:getName{do_colour=true})
+    return
+  end
+
+  if o and o.__tagged then
+    game.logPlayer(self, "You can not drop %s (tagged).", o:getName{do_colour=true})
+    return
+  end
+
+  if game.zone.worldmap then
+    Dialog:yesnoLongPopup("Warning", "You cannot drop items on the world map.\nIf you drop it, it will be lost forever.", 300, function(ret)
+      -- The test is reversed because the buttons are reversed, to prevent mistakes
+      if not ret then
+        local o = self:getInven(inven) and self:getInven(inven)[item]
+        if o and not o.plot then
+          if o:check("on_drop", self) then return end
+          local o = self:removeObject(inven, item, true)
+          game.logPlayer(self, "You destroy %s.", o:getName{do_colour=true, do_count=true})
+          self:checkEncumbrance()
+          self:sortInven()
+          self:useEnergy()
+          if on_done then on_done() end
+        elseif o then
+          game.logPlayer(self, "You can not destroy %s.", o:getName{do_colour=true})
+        end
+      end
+    end, "Cancel", "Destroy", true)
+    return
+  end
+
+  --item sacrifice
+  local t = game.level.map(self.x, self.y, Map.TERRAIN)
+  local o = self:getInven(inven) and self:getInven(inven)[item]
+
+    if t.is_altar then
+      if o and not o.plot then
+        PlayerReligion:itemSacrifice(o)
+        game.logPlayer(self, "You destroy %s.", o:getName{do_colour=true, do_count=true})
+        self:checkEncumbrance()
+        self:sortInven()
+        self:useEnergy()
+        if on_done then on_done() end
+      elseif o then
+          game.logPlayer(self, "You can not destroy %s.", o:getName{do_colour=true})
+      end
+      return
+    end
+
+  if nb == nil or nb >= self:getInven(inven)[item]:getNumber() then
+    self:dropFloor(inven, item, true, true)
+  else
+    for i = 1, nb do self:dropFloor(inven, item, true) end
+  end
+  self:checkEncumbrance()
+  self:sortInven(inven)
+  self:useEnergy()
+  self.changed = true
+--  game:playSound("actions/drop")
+  if on_done then on_done() end
+end
+
+--- wear an object from an inventory
+--	@param inven = inventory id to take object from
+--	@param item = inventory slot to take from
+--	@param o = object to wear
+--	@param dst = actor holding object to be worn <self>
+--  @param force_inven = force wear to this inventory
+--  @param force_item = force wear to this inventory slot #
+function _M:doWear(inven, item, o, dst, force_inven, force_item)
+	if self.no_inventory_access then return end
+	dst = dst or self
+	if self:attr("sleep") then
+		game.logPlayer(self, "You cannot change your equipment while sleeping!")
+		return
+	end
+
+	dst:removeObject(inven, item, true)
+	local ro, rs = self:wearObject(o, true, true, force_inven, force_item) -- removed object and remaining stack if any
+	local added, slot
+	if ro then
+	--	if not self:attr("quick_wear_takeoff") or self:attr("quick_wear_takeoff_disable") then self:useEnergy() end
+	--	if self:attr("quick_wear_takeoff") then self:setEffect(self.EFF_SWIFT_HANDS_CD, 1, {}) self.tmp[self.EFF_SWIFT_HANDS_CD].dur = 0 end
+		if type(ro) == "table" then dst:addObject(inven, ro, true) end -- always give full stack back
+	else -- failed, add object back
+		dst:addObject(inven, o, true)
+	end
+	if type(rs) == "table" then
+		local rrs
+		repeat -- handles a case of stacking limits causing part of a stack to be discarded
+			rrs = rs
+			added, slot, rs = dst:addObject(inven, rs)
+		until not added or not rs
+		if not added then
+			game.logPlayer(self, "You had to drop %s due to lack of space.", rrs:getName{do_color = true})
+			if rrs and not game.zone.wilderness then game.level.map:addObject(self.x, self.y, rrs) end -- extra stack discarded in wilderness
+		end
+	end
+
+	dst:sortInven()
+	self.changed = true
+end
+
+---	Take off an item
+--	@param inven = inven id
+--	@param item = slot to remove from
+--	@param o = object to remove
+--	@param simple set true to skip equipment takeoff checks and energy use
+--	@param dst = actor to receive object (in dst.INVEN_INVEN)
+function _M:doTakeoff(inven, item, o)
+	if not self:canAddToInven(self.INVEN_INVEN) then return end
+
+	if self:attr("sleep") then
+		game.logPlayer(self, "You cannot change your equipment while sleeping!")
+		return
+	end
+	if self:takeoffObject(inven, item) then
+		self:addObject(self.INVEN_INVEN, o, true) --note: moves a whole stack
+	end
+
+	self:sortInven()
+	self.changed = true
+end
+
+--Get the fancy inventory title thing working
+function _M:getEncumberTitleUpdater(title)
+    return function()
+        local enc, max = self:getEncumbrance(), self:getMaxEncumbrance()
+        local color = "#00ff00#"
+        if enc > max then color = "#ff0000#"
+        --Color-code medium and heavy load
+        elseif enc > max * 0.66 then color = "#ff8a00#"
+        elseif enc > max * 0.33 then color = "#fcff00#"
+        end
+        return ("%s - %sEncumbrance %d/%d"):format(title, color, enc, max)
+    end
+end
+
 --Add healthbars
 function _M:defineDisplayCallback()
 	if not self._mo then return end
