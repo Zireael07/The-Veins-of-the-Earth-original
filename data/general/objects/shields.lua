@@ -35,7 +35,7 @@ newEntity{ base = "BASE_SHIELD",
 }
 
 newEntity{ base = "BASE_SHIELD",
-    name = "light wooden shield",
+    name = "light wooden shield", short_name = "l.wood",
     image = "tiles/object/shield_light_wooden.png",
     rarity = 6,
     level_range = {1, 10},
@@ -50,7 +50,7 @@ newEntity{ base = "BASE_SHIELD",
 
 
 newEntity{ base = "BASE_SHIELD",
-    name = "light steel shield",
+    name = "light steel shield", short_name = "l.steel",
     image = "tiles/object/shield_light_steel.png",
     rarity = 4,
     level_range = {1, 10},
@@ -64,7 +64,7 @@ newEntity{ base = "BASE_SHIELD",
 }
 
 newEntity{ base = "BASE_SHIELD",
-    name = "heavy wooden shield",
+    name = "heavy wooden shield", short_name = "h.wood",
     image = "tiles/object/shield_heavy_wooden.png",
     rarity = 8,
     level_range = {1, 10},
@@ -81,7 +81,7 @@ newEntity{ base = "BASE_SHIELD",
 }
 
 newEntity{ base = "BASE_SHIELD",
-    name = "heavy steel shield",
+    name = "heavy steel shield", short_name = "h.steel",
     image = "tiles/object/shield_heavy_steel.png",
     rarity = 10,
     level_range = {1, 10},
@@ -98,7 +98,7 @@ newEntity{ base = "BASE_SHIELD",
 
 
 newEntity{ base = "BASE_SHIELD",
-    name = "tower shield",
+    name = "tower shield", short_name = "tower",
     image = "tiles/object/shield_tower.png",
     rarity = 20,
     level_range = {1, 10},
