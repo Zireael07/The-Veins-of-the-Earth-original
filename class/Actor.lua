@@ -115,10 +115,6 @@ function _M:init(t, no_default)
 	--Can now get classes
 	self.classes = self.classes or {}
 
-	--Templates (NPC only)
-	self.template = self.template or nil
-	self.special = self.special or nil
-
 	self.languages = {}
 	self.sex = self.sex or "Neuter"
 	--Dragons only
@@ -239,9 +235,21 @@ end
 function _M:getName(t)
 	t = t or {}
 	local name = self.name
+
 	if t.indef_art then
 		name = (name:match('^[AEIOUaeiou]') and 'an ' or 'a ') .. name
 	end
+
+	if self.egoed then
+		if self ~= game.player then
+			if game.player.special_known[self.uid] then
+				local name = self.name
+			else
+				name = self.base_name
+			end
+		end
+	end
+
 	return name
 end
 
@@ -522,25 +530,6 @@ local basestat = self:getStat(stat, nil, nil, true)
 end
 
 --Tooltip stuffs
-function _M:templateName()
-	if self == game.player then end
-	if not self.special and not self.template then return "" end
-
-
-	if self.special ~= nil then
-		if game.player.special_known[self.uid] then return self.special
-		else return "" end
-
-		--return self.special
-	else return "" end
-	if self.template ~= nil then
-		if game.player.special_known[self.uid] then return self.template
-		else return "" end
-
---		return self.template
-	else return "" end
-end
-
 function _M:className()
 	if self == game.player then end
 	if self.classes and self.classes["Fighter"] then return "#LIGHT_BLUE#fighter#LAST#"
@@ -659,7 +648,7 @@ function _M:tooltip()
 
 	ts:add({"color", "WHITE"}, ("%s"):format(self:getDisplayString()), true)
 
-	ts:add({"color", "GOLD"}, ("%s "):format(self:templateName()), {"color", "WHITE"}) ts:add(self.name, {"color", "WHITE"}) ts:add((" %s"):format(self:className()), true)
+	ts:add({"color", "GOLD"}, ("%s"):format(self:getName()), {"color", "WHITE"}, true)
 
 	ts:add({"color", "WHITE"}, ("%s "):format(self:getType()), {"color", "WHITE"}, true)
 

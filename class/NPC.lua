@@ -39,7 +39,9 @@ function _M:resolve(t, last, on_entity, key_chain)
 
   local NPCEgo = require 'mod.class.NPCEgo'
   if not last then
-    NPCEgo:tryAddEgo(self)
+	  	--remember our unmodified name
+	  	self.base_name = self.name
+    	NPCEgo:tryAddEgo(self)
   end
 
   mod.class.Actor.resolve(self, t, last, on_entity, key_chain)
