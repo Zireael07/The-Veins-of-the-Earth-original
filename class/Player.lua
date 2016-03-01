@@ -1043,17 +1043,17 @@ function _M:spottedMonsterXP()
       act = self.fov.actors_dist[i]
       if act and self:reactionToward(act) < 0 and self:canReallySee(act) and not act.seen
         then self.all_seen = self.all_seen or {}
-        self.all_seen[act.name] = self.all_seen[act.name] or 0
-        self.all_seen[act.name] = self.all_seen[act.name] + 1
+        self.all_seen[act.base_name] = self.all_seen[act.base_name] or 0
+        self.all_seen[act.base_name] = self.all_seen[act.base_name] + 1
 
         act.seen = true
 
         --Formula found on the net because I suck at Maths
-        local x = self.all_seen[act.name]
+        local x = self.all_seen[act.base_name]
         local y = 100-(x*25)
         if y > 0 then self:gainExp(y) end
 
-		--Plugged in: a silent Knowledge check to determine whether you know the specials
+		--Plugged in: a silent Knowledge check to determine whether you know the egos
         self:skillCheck("knowledge", 10+act.challenge, true)
         self.special_known[act.uid] = true
 

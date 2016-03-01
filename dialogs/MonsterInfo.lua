@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2014
+--Zireael 2014-2016
 
 require "engine.class"
 
@@ -11,23 +11,23 @@ module(..., package.seeall, class.inherit(Dialog))
 
 function _M:init(actor)
     self.actor = actor
-    
+
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
-    Dialog.init(self, "Monster Info: "..actor.name, game.w * 0.3, game.h*0.3, nil, nil, font)
+    Dialog.init(self, "Monster Info: "..actor.base_name, game.w * 0.3, game.h*0.3, nil, nil, font)
 
     --Display in-character info
     local player = game.player
     local actor = self.actor
-    
+
     local x = rng.dice(1,20) + (player:getSkill("knowledge") or 0)
 
- if player:takeTen("knowledge", (25+actor.challenge)) then 
+ if player:takeTen("knowledge", (25+actor.challenge)) then
     if actor.specialist_desc then self.text = "#LIGHT_BLUE#You know specialist stuff about the monster#LAST# \n"..actor.specialist_desc.." \n"..actor.uncommon_desc.." \n"..actor.common_desc.." \n"..actor.base_desc
     elseif actor.uncommon_desc then self.text = "#LIGHT_BLUE#You know specialist stuff about the monster#LAST# \n"..actor.uncommon_desc.." \n"..actor.common_desc.." \n"..actor.base_desc
     elseif actor.common_desc then self.text = "#LIGHT_BLUE#You know specialist stuff about the monster#LAST# \n"..actor.common_desc.." \n"..actor.base_desc
     else self.text = "#LIGHT_BLUE#You know specialist stuff about the monster"
     end
- elseif player:takeTen("knowledge", (20+actor.challenge)) then 
+ elseif player:takeTen("knowledge", (20+actor.challenge)) then
     if actor.uncommon_desc then self.text = "#LIGHT_BLUE#You know uncommon stuff about the monster#LAST# \n"..actor.uncommon_desc.." \n"..actor.common_desc.." \n"..actor.base_desc
     elseif actor.common_desc and actor.base_desc then self.text = "#LIGHT_BLUE#You know uncommon stuff about the monster#LAST# \n"..actor.common_desc.." \n"..actor.base_desc
     else self.text = "#LIGHT_BLUE#You know uncommon stuff about the monster"
@@ -36,8 +36,8 @@ function _M:init(actor)
     if actor.common_desc and actor.base_desc then self.text = "#LIGHT_BLUE#You know obvious stuff about the monster#LAST# \n"..actor.common_desc.." \n"..actor.base_desc
     else self.text = "#LIGHT_BLUE#You know obvious stuff about the monster"
     end
- else 
-    if actor.base_desc then self.text = "#LIGHT_BLUE#You know basic stuff about the monster #LAST# \n"..actor.base_desc 
+ else
+    if actor.base_desc then self.text = "#LIGHT_BLUE#You know basic stuff about the monster #LAST# \n"..actor.base_desc
     else self.text = "#LIGHT_BLUE#You know basic stuff about the monster" end
 end
 
@@ -48,13 +48,13 @@ end
     self:loadUI{
         {left=0, top=0, ui=self.c_desc},
         {left=0, top=50, ui=self.c_text},
-        
+
     }
-    
+
     self:setupUI()
 
     self:drawDialog()
-    
+
     self.key:addBind("EXIT", function() cs_player_dup = game.player:clone() game:unregisterDialog(self) end)
 end
 
@@ -70,10 +70,10 @@ function _M:drawDialog()
 
     h = 0
     w = 0
-    
+
  --Display kills and seens
- s:drawColorStringBlended(self.font, "Number killed: #ORANGE# : "..(player.all_kills[actor.name] or 0), w, h, 255, 255, 255, true) h = h + self.font_h
- s:drawColorStringBlended(self.font, "Number seen: #GOLD# : "..(player.all_seen[actor.name] or 0), w, h, 255, 255, 255, true) h = h + self.font_h
+ s:drawColorStringBlended(self.font, "Number killed: #ORANGE# : "..(player.all_kills[actor.base_name] or 0), w, h, 255, 255, 255, true) h = h + self.font_h
+ s:drawColorStringBlended(self.font, "Number seen: #GOLD# : "..(player.all_seen[actor.base_name] or 0), w, h, 255, 255, 255, true) h = h + self.font_h
 
 
  h = h + self.font_h -- Adds an empty row

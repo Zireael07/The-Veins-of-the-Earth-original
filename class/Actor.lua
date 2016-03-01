@@ -1062,8 +1062,8 @@ function _M:die(src, death_note)
 
 	if killer and killer == player then
 		player.all_kills = player.all_kills or {}
-		player.all_kills[self.name] = player.all_kills[self.name] or 0
-		player.all_kills[self.name] = player.all_kills[self.name] + 1
+		player.all_kills[self.base_name] = player.all_kills[self.base_name] or 0
+		player.all_kills[self.base_name] = player.all_kills[self.base_name] + 1
 	end
 
 	--Divine reactions
