@@ -238,7 +238,7 @@ newFeat{
 }
 
 newFeat{
-    name = "Self-sufficient",
+    name = "Self Sufficient",
     type = {"class/skill", 1},
     is_feat = true,
     points = 1,
