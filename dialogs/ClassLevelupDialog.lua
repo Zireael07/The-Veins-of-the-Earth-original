@@ -27,8 +27,9 @@ local function restore(dest, backup)
     if game.level and dest.x then game.level.map:updateMap(dest.x, dest.y) end
 end
 
-function _M:init(actor)
+function _M:init(actor, npc)
     self.actor = actor
+    self.npc = npc
     self.actor_dup = actor:clone()
     self:generateList()
     self.font = core.display.newFont("/data/font/VeraMono.ttf", 12)
@@ -85,7 +86,10 @@ function _M:use(item)
     if not item.can_level then
         self:simplePopup("Requirements not met", "You don't fulfill all the requirements for this class")
         return end
-        
+    if item.npc_class < 1 then
+        self:simplePopup("Not offered", "You need to find a different trainer!")
+        return end
+
     self.actor:levelClass(item.real_name)
 
     self:update()
@@ -115,6 +119,7 @@ function _M:generateList()
 
     for i, d in ipairs(Birther.birth_descriptor_def.subclass) do
         local level = self.actor.classes[d.name] or 0
+        local npc_class = self.npc.classes[d.name] or 0
         local can_level = d.can_level(self.actor)
         local prestige = false
         local name = ""
@@ -130,12 +135,17 @@ function _M:generateList()
         if self:descText(d) then core_desc = self:descText(d) end
         desc = desc.."\n\n"..core_desc
 
-        if can_level then
-            name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #LAST#"..d.name
+        name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #LAST#"
+
+        if npc_class > 0 then
+            name = name.."#LIGHT_GREEN#"..d.name
+        elseif can_level then
+            name = name..d.name
         else
-            name = "#SLATE#(#LAST##AQUAMARINE#"..level.."#LAST##SLATE#) #DARK_GREY#"..d.name
+            name = name.."#DARK_GREY#"..d.name
         end
-        table.insert(list, {name = name, desc = desc, level = level, real_name = d.name, can_level = can_level, prestige = prestige})
+
+        table.insert(list, {name = name, desc = desc, level = level, real_name = d.name, can_level = can_level, prestige = prestige, npc_class = npc_class})
     end
 
     self.list = list
