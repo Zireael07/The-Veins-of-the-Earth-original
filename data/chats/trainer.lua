@@ -14,7 +14,7 @@ newChat{id="start",
             if price > player.money then require("engine.ui.Dialog"):simplePopup("Not enough money", "This costs 100 silver, you need more money.") return end
 
             player:incMoney(-price)
-            game:registerDialog(require("mod.dialogs.ClassLevelupDialog").new(player))
+            game:registerDialog(require("mod.dialogs.ClassLevelupDialog").new(player, npc))
 
 
         end, cond=function(npc, player)
@@ -27,7 +27,7 @@ newChat{id="start",
             if price > player.money then require("engine.ui.Dialog"):simplePopup("Not enough money", "This costs 600 silver, you need more money.") return end
 
             player:incMoney(-price)
-            game:registerDialog(require("mod.dialogs.SkillDialog").new(player))
+            game:registerDialog(require("mod.dialogs.SkillDialog").new(player, npc))
 
 
         end, cond=function(npc, player)
@@ -40,7 +40,7 @@ newChat{id="start",
             if price > player.money then require("engine.ui.Dialog"):simplePopup("Not enough money", "This costs 2800 silver, you need more money.") return end
 
             player:incMoney(-price)
-            game:registerDialog(require("mod.dialogs.FeatDialog").new(player))
+            game:registerDialog(require("mod.dialogs.FeatDialog").new(player, npc))
 
         end, cond=function(npc, player)
             if player.money < 100 then return end
