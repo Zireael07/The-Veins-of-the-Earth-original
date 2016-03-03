@@ -1,12 +1,7 @@
 --Veins of the Earth
---Zireael 2015
+--Zireael 2015-2016
 
 local Talents = require("engine.interface.ActorTalents")
-
---local class_table = { "barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "wizard", "warlock", "shaman" }
-local class_table = { "barbarian", "bard", "cleric", "druid", "fighter", "ranger", "rogue", "sorcerer", "wizard", "shaman" }
-local class_pick = rng.table(class_table)
-local resolve = {class_pick=4}
 
 newEntity{
     define_as = "BASE_NPC_TRAINER",
@@ -39,8 +34,7 @@ newEntity{
     { name = "shortbow", add_levels=4  },
     { name = "food ration" },
     },
-    resolvers.classes{fighter=2},
---    resolvers.classes{resolve}
+    resolvers.trainer_class(),
     can_talk = "trainer",
 
     resolvers.talents{ [Talents.T_SHOOT]=1,

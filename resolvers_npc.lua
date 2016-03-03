@@ -70,6 +70,37 @@ function resolvers.calc.class(t, e)
 	end
 end
 
+--Trainer variant
+function resolvers.trainer_class()
+ 	return {__resolver="trainer_class", __resolve_last=true}
+end
+
+function resolvers.calc.trainer_class(t, e)
+	local Birther = require("engine.Birther")
+
+	--local class_table = { "barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "wizard", "warlock", "shaman" }
+	local class_table = { "barbarian", "bard", "cleric", "druid", "fighter", "ranger", "rogue", "sorcerer", "wizard", "shaman" }
+	local class = rng.table(class_table)
+	class = class:capitalize()
+
+	local n = 2
+
+	if class then
+	--safety check
+		if game.zone.max_cr then
+			if e.challenge + n > game:getDunDepth() + game.zone.max_cr then return end
+		end
+
+	e:giveLevels(class, n)
+	e.challenge = e.challenge + n
+
+	e.max_life = e.max_life
+	e.life = e.max_life
+	print("[TRAINER] class", class)
+
+	end
+end
+
 --Special stuff
 function resolvers.specialnpc()
  	return {__resolver="specialnpc", __resolve_last=true}
