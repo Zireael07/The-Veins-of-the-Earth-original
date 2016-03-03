@@ -272,13 +272,17 @@ function _M:isClassSkill(class)
 
 end
 
-function _M:getClassSkills(class, cap)
+function _M:getClassSkills(class, capitalize)
 	list = {}
 	for i, s in ipairs(_M.skill_defs) do
 		local skill = s.name
 		if not self:crossClass(skill, class) then
 	--	if self:isClassSkill(self, class) then
-			list[#list+1] = skill
+			if capitalize then
+				list[#list+1] = skill:capitalize()
+			else
+				list[#list+1] = skill
+			end
 		else end
 	end
 	return list
