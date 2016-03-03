@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 newBirthDescriptor{
 	type = "class",
@@ -49,14 +49,6 @@ newBirthDescriptor {
 			['Lawful Neutral'] = "disallow",
 			['Lawful Evil'] = "disallow",
 		},
-		--Prevent game-breaking combos due to 1 BAB requirement of some feats
-		background =
-		{
-			['Master of one'] = "disallow",
-			['Fencing duelist'] = "disallow",
-			['Exotic fighter'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
-		}
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Bard"] and actor.descriptor.subclass == "Bard" then return true end
@@ -166,13 +158,6 @@ newBirthDescriptor {
                     ['Chaotic Evil'] = "disallow",
                     ['Lawful Neutral'] = "disallow",
                     ['Lawful Evil'] = "disallow",
-            },
-            --Prevent another game-breaking combo; why would anyone want a fighter/spellcaster is beyond me
-            background =
-            {
-                    ['Magical thief'] = "disallow",
-                    ['Spellcaster'] = "disallow",
-                    ['Two weapon fighter'] = 'disallow',
             },
             deity =
             {
@@ -288,11 +273,6 @@ newBirthDescriptor {
 	},
 	descriptor_choices =
 	{
-		--Prevent another game-breaking combo
-		background =
-		{
-			['Magical thief'] = "disallow",
-		}
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Ranger"] and actor.descriptor.subclass == "Ranger" then return true end
@@ -473,14 +453,6 @@ newBirthDescriptor {
 	},
 	descriptor_choices =
 	{
-		--Prevent game-breaking combos due to 1 BAB requirement of some feats
-		background =
-		{
-			['Master of one'] = "disallow",
-			['Fencing duelist'] = "disallow",
-			['Exotic fighter'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
-		}
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Magus"] and actor.descriptor.subclass == "Magus" then return true end

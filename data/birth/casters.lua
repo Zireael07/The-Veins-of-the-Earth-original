@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 newBirthDescriptor{
 	type = "class",
@@ -58,16 +58,6 @@ newBirthDescriptor{
 		domains = {
 			__ALL__ = "allow",
 		},
-		--Prevent game-breaking combos due to 1 BAB requirement of some feats
-		background =
-		{
-			['Master of one'] = "disallow",
-			['Fencing duelist'] = "disallow",
-			['Exotic fighter'] = "disallow",
-			--Prevent another game-breaking combo
-			['Magical thief'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
-		}
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Cleric"] and actor.descriptor.subclass == "Cleric" then return true end
@@ -190,16 +180,6 @@ newBirthDescriptor {
 			['Lawful Evil'] = "disallow",
 			['Chaotic Good'] = "disallow",
 			['Chaotic Evil'] = "disallow",
-		},
-		--Prevent game-breaking combos due to 1 BAB requirement of some feats
-		background =
-		{
-			['Master of one'] = "disallow",
-			['Fencing duelist'] = "disallow",
-			['Exotic fighter'] = "disallow",
-			--Prevent another game-breaking combo
-			['Magical thief'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
 		},
         deity =
         {
@@ -330,16 +310,6 @@ newBirthDescriptor {
     },
 	descriptor_choices =
 	{
-		--Prevent game-breaking combos due to 1 BAB requirement of some feats
-		background =
-		{
-			['Master of one'] = "disallow",
-			['Fencing duelist'] = "disallow",
-			['Exotic fighter'] = "disallow",
-			--Prevent another game-breaking combo
-			['Magical thief'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
-		}
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Sorcerer"] and actor.descriptor.subclass == "Sorcerer" then return true end
@@ -429,16 +399,6 @@ newBirthDescriptor {
     },
 	descriptor_choices =
 	{
-		--Prevent game-breaking combos due to 1 BAB requirement of some feats
-		background =
-		{
-			['Master of one'] = "disallow",
-			['Fencing duelist'] = "disallow",
-			['Exotic fighter'] = "disallow",
-			--Prevent another game-breaking combo
-			['Magical thief'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
-		}
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Wizard"] and actor.descriptor.subclass == "Wizard" then return true end
@@ -593,16 +553,6 @@ newBirthDescriptor {
             --Can't be atheists
             ['None'] = "disallow",
         },
-		--Prevent game-breaking combos due to 1 BAB requirement of some feats
-		background =
-		{
-			['Master of one'] = "disallow",
-			['Fencing duelist'] = "disallow",
-			['Exotic fighter'] = "disallow",
-			--Prevent another game-breaking combo
-			['Magical thief'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
-		}
 	},
 	can_level = function(actor)
 	if actor.classes and actor.classes["Shaman"] and actor.descriptor.subclass == "Shaman" then return true end

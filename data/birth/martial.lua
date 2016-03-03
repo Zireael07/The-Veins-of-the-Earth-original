@@ -50,13 +50,6 @@ newBirthDescriptor {
 			['Lawful Neutral'] = "disallow",
 			['Lawful Evil'] = "disallow",
 		},
-		--Prevent another game-breaking combo; why would anyone want a fighter/spellcaster is beyond me
-		background =
-		{
-			['Magical thief'] = "disallow",
-			['Spellcaster'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
-		}
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Barbarian"] and actor.descriptor.subclass == "Barbarian" then return true end
@@ -234,13 +227,6 @@ newBirthDescriptor {
                         ['Chaotic Neutral'] = "disallow",
                         ['Chaotic Evil'] = "disallow",
                 },
-                --Prevent another game-breaking combo; why would anyone want a fighter/spellcaster is beyond me
-                background =
-                {
-                        ['Magical thief'] = "disallow",
-                        ['Spellcaster'] = "disallow",
-                        ['Two weapon fighter'] = 'disallow',
-                },
                 deity =
                 {
                     --Can only follow Aiswin, Essiah, Hesani, Immotian, Kysul, Mara, Multitude, Xavias
@@ -326,14 +312,6 @@ newBirthDescriptor {
 			['Lawful Neutral'] = "disallow",
 			['Lawful Evil'] = "disallow",
 		},
-		--Prevent game-breaking combos due to 1 BAB requirement of some feats
-		background =
-		{
-			['Master of one'] = "disallow",
-			['Fencing duelist'] = "disallow",
-			['Exotic fighter'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
-		}
 	},
 	can_level = function(actor)
 		if actor.classes and actor.classes["Rogue"] and actor.descriptor.subclass == "Rogue" then return true end
@@ -433,16 +411,6 @@ newBirthDescriptor {
 	},
 	descriptor_choices =
 	{
-		--Prevent game-breaking combos due to 1 BAB requirement of some feats
-		background =
-		{
-			['Master of one'] = "disallow",
-			['Fencing duelist'] = "disallow",
-			['Exotic fighter'] = "disallow",
-			--Prevent another game-breaking combo
-			['Magical thief'] = "disallow",
-			['Two weapon fighter'] = 'disallow',
-		}
 	},
 	can_level = function(actor)
 	if actor.classes and actor.classes["Warlock"] and actor.descriptor.subclass == "Warlock" then return true end
