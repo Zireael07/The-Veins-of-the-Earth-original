@@ -5,6 +5,71 @@
 local Talents = require "engine.interface.ActorTalents"
 local DamageType = require "engine.DamageType"
 
+--NPC-related resolvers
+function resolvers.classes(list)
+	return {__resolver="classes", list, __resolve_last=true }
+end
+
+function resolvers.calc.classes(t, e)
+	local Birther = require("engine.Birther")
+--	local class = {}
+	local class_list = Birther.birth_descriptor_def.class
+
+	for class, n in pairs(t[1]) do
+		local class = class:capitalize()
+		print("[Classes] ".. class)
+		if not n then print("[Classes] No number of levels") end
+		if n <= 0 then print ("[Classes] Number of levels cannot be negative") end
+
+		print("[Classes] number of levels "..n)
+
+		local level = n
+		e:giveLevels(class, n)
+
+		e.challenge = e.challenge + level
+		e.max_life = e.max_life
+		e.life = e.max_life
+	end
+
+end
+
+function resolvers.class()
+ 	return {__resolver="class", __resolve_last=true}
+end
+
+
+function resolvers.calc.class(t, e)
+	local Birther = require("engine.Birther")
+	local class
+
+	local n = rng.dice(1,8)
+
+	if rng.chance(2) then class = "Fighter" --end
+	elseif rng.chance(4) then class = "Cleric" --end
+	elseif rng.chance(2) then class = "Barbarian"
+	elseif rng.chance(3) then class = "Rogue"
+	elseif rng.chance(3) then class = "Ranger"
+	elseif rng.chance(5) then class = "Wizard"
+ 	elseif rng.chance(6) then class = "Sorcerer"
+	elseif rng.chance(8) then class = "Druid" --end
+	elseif rng.chance(10) then class = "Warlock"
+	else end
+
+	if class then
+	--safety check
+		if game.zone.max_cr then
+			if e.challenge + n > game:getDunDepth() + game.zone.max_cr then return end
+		end
+
+	e:giveLevels(class, n)
+	e.challenge = e.challenge + n
+
+	e.max_life = e.max_life
+	e.life = e.max_life
+
+	end
+end
+
 --Special stuff
 function resolvers.specialnpc()
  	return {__resolver="specialnpc", __resolve_last=true}
