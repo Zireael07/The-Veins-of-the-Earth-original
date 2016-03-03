@@ -1,8 +1,9 @@
 --Veins of the Earth
---Zireael 2015
+--Zireael 2015-2016
 
 require 'engine.class'
 local Birther = require 'engine.Birther'
+local ActorSkills = require "mod.class.interface.ActorSkills"
 
 module(..., package.seeall, class.inherit(Birther))
 
@@ -32,7 +33,8 @@ function _M:newBirthDescriptor(t)
 			local skills = t.getSkillPoints(self, t)
 			local skills_first = skills*4
 			local bab = t.getBAB(self, t, bab)
-			local skills_list = t.getClassSkills(self, t)
+			local got_skills = ActorSkills:getClassSkills(t.name, true)
+			local skills_list = table.concatNice(got_skills, ", ")
 			local save_display_first = t.getSavesDisplay(self, t, 1)
 			local save_display = t.getSavesDisplay(self, t, nil)
 			local hp = t.getHitPoints(self, t)
