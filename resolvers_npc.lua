@@ -4,6 +4,7 @@
 
 local Talents = require "engine.interface.ActorTalents"
 local DamageType = require "engine.DamageType"
+local ActorSkills = require "mod.class.interface.ActorSkills"
 
 --NPC-related resolvers
 function resolvers.classes(list)
@@ -76,6 +77,7 @@ function resolvers.trainer_class()
 end
 
 function resolvers.calc.trainer_class(t, e)
+	--Step 1: pick a class
 	local Birther = require("engine.Birther")
 
 	--local class_table = { "barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "wizard", "warlock", "shaman" }
@@ -87,9 +89,9 @@ function resolvers.calc.trainer_class(t, e)
 
 	if class then
 	--safety check
-		if game.zone.max_cr then
+	--[[	if game.zone.max_cr then
 			if e.challenge + n > game:getDunDepth() + game.zone.max_cr then return end
-		end
+		end]]
 
 	e:giveLevels(class, n)
 	e.challenge = e.challenge + n
@@ -98,6 +100,22 @@ function resolvers.calc.trainer_class(t, e)
 	e.life = e.max_life
 	print("[TRAINER] class", class)
 
+	--Step 2: feats
+
+
+	--Step 3: skills
+	e.skills_train = {}
+	local skills = ActorSkills:getClassSkills(class)
+	local get_skills = {}
+		--pick 4
+		for i = 1, 4 do
+			get_skills[#get_skills+1] = rng.tableRemove(skills)
+			e.skills_train = table.reverse(get_skills)
+			--debug
+			for k, v in pairs(e.skills_train) do
+				print("[TRAINER] skills offered "..k.." "..v)
+			end
+		end
 	end
 end
 
