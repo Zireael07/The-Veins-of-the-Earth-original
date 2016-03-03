@@ -27,7 +27,8 @@ local function restore(dest, backup)
     if game.level and dest.x then game.level.map:updateMap(dest.x, dest.y) end
 end
 
-function _M:init(actor)
+function _M:init(actor, npc)
+    self.npc = npc
 	self.actor = actor
     self.actor_dup = actor:clone()
 	Dialog.init(self, "Skills", game.w*0.5, game.h*0.6)
@@ -88,8 +89,12 @@ function _M:use(item)
 	if (not item.background and (self.actor.skill_point or 0) -1 >= 0)
         or (item.background and (self.actor.background_points or 0) -1 >= 0)
      then
+         --Check that the npc offers it
+         if not item.offered then
+             self:simplePopup("Not offered", "You need to find a different trainer!")
+             return end
 
-    	--Cross class skills
+        --Cross class skills
     	if self.actor:crossClass(item.skill) then
     		if (self.actor:attr("skill_"..item.skill) or 0) < (self.actor.max_skill_ranks/2) then
 
@@ -160,6 +165,7 @@ function _M:generateList()
         	local value = self.actor:attr("skill_"..skill)
      		local color = {255, 255, 255}
             local background = s.background
+            local offered = self.npc.skills_train[s.name]
 
             local d = "#CHOCOLATE#"..s.name:capitalize().."#LAST#\n\n"
 
@@ -169,22 +175,34 @@ function _M:generateList()
             end
 
             if self.actor:crossClass(skill) then
+                if offered then
+                    name = "#LAST##SLATE#) #LAST##LIGHT_GREEN#"..s.name:capitalize()
+                else
+                    name = "#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
+                end
+
                 --show value in gold if it's maxed out
                 if (self.actor:attr("skill_"..skill) or 0) >= (self.actor.max_skill_ranks/2) then
-                    name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
+                    name = "#SLATE#(#LAST##GOLD#"..(value or 0)..name
                 else
-                    name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
+                    name = "#SLATE#(#LAST##ORANGE#"..(value or 0)..name
                 end
             else
+                if offered then
+                    name = "#LAST##SLATE#) #LAST##LIGHT_GREEN#"..s.name:capitalize()
+                else
+                    name = "#LAST##SLATE#) #LAST#"..s.name:capitalize()
+                end
+
                 --show value in gold if it's maxed out
                 if (self.actor:attr("skill_"..skill) or 0) >= self.actor.max_skill_ranks then
-                    name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
+                    name = "#SLATE#(#LAST##GOLD#"..(value or 0)..name
                 else
-                    name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
+                    name = "#SLATE#(#LAST##ORANGE#"..(value or 0)..name
                 end
             end
 
-        	list[#list+1] = {name=name, skill = skill, color = color, desc=d, background=background}
+        	list[#list+1] = {name=name, skill = skill, color = color, desc=d, background=background, offered = offered}
         end
     end
 
@@ -201,6 +219,7 @@ function _M:generateBackgroundList()
         	local value = self.actor:attr("skill_"..skill)
      		local color = {255, 255, 255}
             local background = s.background
+            local offered = self.npc.skills_train[s.name]
 
             local d = "#CHOCOLATE#"..s.name:capitalize().."#LAST#\n\n"
 
@@ -210,22 +229,33 @@ function _M:generateBackgroundList()
             end
 
             if self.actor:crossClass(skill) then
+                if offered then
+                    name = "#LAST##SLATE#) #LAST##LIGHT_GREEN#"..s.name:capitalize()
+                else
+                    name = "#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
+                end
                 --show value in gold if it's maxed out
                 if (self.actor:attr("skill_"..skill) or 0) >= (self.actor.max_skill_ranks/2) then
-                    name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
+                    name = "#SLATE#(#LAST##GOLD#"..(value or 0)..name
                 else
-                    name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST##LIGHT_BLUE#"..s.name:capitalize()
+                    name = "#SLATE#(#LAST##ORANGE#"..(value or 0)..name
                 end
             else
+                if offered then
+                    name = "#LAST##SLATE#) #LAST##LIGHT_GREEN#"..s.name:capitalize()
+                else
+                    name = "#LAST##SLATE#) #LAST#"..s.name:capitalize()
+                end
+
                 --show value in gold if it's maxed out
                 if (self.actor:attr("skill_"..skill) or 0) >= self.actor.max_skill_ranks then
-                    name = "#SLATE#(#LAST##GOLD#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
+                    name = "#SLATE#(#LAST##GOLD#"..(value or 0)..name
                 else
-                    name = "#SLATE#(#LAST##ORANGE#"..(value or 0).."#LAST##SLATE#) #LAST#"..s.name:capitalize()
+                    name = "#SLATE#(#LAST##ORANGE#"..(value or 0)..name
                 end
             end
 
-        	list[#list+1] = {name=name, skill = skill, color = color, desc=d, background=background}
+        	list[#list+1] = {name=name, skill = skill, color = color, desc=d, background=background, offered = offered}
         end
     end
 
