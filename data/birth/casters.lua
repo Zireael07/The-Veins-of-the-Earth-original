@@ -25,11 +25,6 @@ newBirthDescriptor{
 	getSkillPoints = function(self, t)
 		return 4
 	end,
-	getClassSkills = function(self, t)
-		skills = "Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft."
-
-		return skills
-	end,
 	getHitPoints = function(self, t)
 		return 8
 	end,
@@ -147,11 +142,6 @@ newBirthDescriptor {
 	name = 'Druid',
 	getSkillPoints = function(self, t)
 		return 4
-	end,
-	getClassSkills = function(self, t)
-		skills = "Concentration, Craft, Diplomacy, Handle Animal, Heal, Intuition, Knowledge, Listen, Ride, Spot, Swim, Spellcraft, Survival."
-
-		return skills
 	end,
 	getHitPoints = function(self, t)
 		return 8
@@ -279,11 +269,6 @@ newBirthDescriptor {
 	getSkillPoints = function(self, t)
 		return 2
 	end,
-	getClassSkills = function(self, t)
-		skills = "Bluff, Concentration, Craft, Diplomacy, Intuition, Knowledge, Sense Motive, Spellcraft."
-
-		return skills
-	end,
 	getHitPoints = function(self, t)
 		return 4
 	end,
@@ -365,11 +350,6 @@ newBirthDescriptor {
 	name = 'Wizard',
 	getSkillPoints = function(self, t)
 		return 4
-	end,
-	getClassSkills = function(self, t)
-		skills = "Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft."
-
-		return skills
 	end,
 	getHitPoints = function(self, t)
 		return 4
@@ -521,11 +501,6 @@ newBirthDescriptor {
 	name = 'Shaman',
 	getSkillPoints = function(self, t)
 		return 4
-	end,
-	getClassSkills = function(self, t)
-		skills = "Concentration, Craft, Diplomacy, Heal, Intuition, Knowledge, Spellcraft."
-
-		return skills
 	end,
 	getHitPoints = function(self, t)
 		return 8

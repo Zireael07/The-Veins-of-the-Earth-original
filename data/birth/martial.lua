@@ -24,10 +24,6 @@ newBirthDescriptor {
 	getSkillPoints = function(self, t)
 		return 4
 	end,
-	getClassSkills = function(self, t)
-		skills = "Climb, Craft, Handle Animal, Intimidate, Jump, Listen, Ride, Spot, Swim, Survival."
-		return skills
-	end,
 	getHitPoints = function(self, t)
 		return 12
 	end,
@@ -104,11 +100,6 @@ newBirthDescriptor {
 	name = 'Fighter',
 	getSkillPoints = function(self, t)
 		return 2
-	end,
-	getClassSkills = function(self, t)
-		skills = "Climb, Craft, Handle Animal, Intimidate, Jump, Ride, Spot, Swim."
-
-		return skills
 	end,
 	getHitPoints = function(self, t)
 		return 10
@@ -194,11 +185,6 @@ newBirthDescriptor {
 		getSkillPoints = function(self, t)
 			return 4
 		end,
-		getClassSkills = function(self, t)
-			skills = "Balance, Climb, Concentration, Craft, Diplomacy, Escape Artist, Hide, Jump, Knowledge, Listen, Move Silently, Sense Motive, Spot, Swim, Tumble."
-
-			return skills
-		end,
 		getHitPoints = function(self, t)
 			return 8
 		end,
@@ -275,11 +261,6 @@ newBirthDescriptor {
 	name = 'Rogue',
 	getSkillPoints = function(self, t)
 		return 8
-	end,
-	getClassSkills = function(self, t)
-		skills = "Appraise, Balance, Bluff, Climb, Craft, Diplomacy, Decipher Script, Disable Device, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Open Lock, Pick Pocket, Search, Sense Motive, Spot, Tumble, Use Magic."
-
-		return skills
 	end,
 	getHitPoints = function(self, t)
 		return 8
@@ -390,11 +371,6 @@ newBirthDescriptor {
 	name = 'Warlock',
 	getSkillPoints = function(self, t)
 		return 2
-	end,
-	getClassSkills = function(self, t)
-		skills = "Concentration, Craft, Intuition, Knowledge, Sense Motive, Spellcraft."
-
-		return skills
 	end,
 	getHitPoints = function(self, t)
 		return 6

@@ -24,11 +24,6 @@ newBirthDescriptor {
 	getSkillPoints = function(self, t)
 		return 6
 	end,
-	getClassSkills = function(self, t)
-		skills = "Appraise, Balance, Bluff, Climb, Concentration, Craft, Diplomacy, Decipher Script, Escape Artist, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Pick Pocket, Sense Motive, Swim, Spellcraft, Survival, Tumble, Use Magic."
-
-		return skills
-	end,
 	getHitPoints = function(self, t)
 		return 6
 	end,
@@ -128,11 +123,6 @@ newBirthDescriptor {
     name = 'Paladin',
 	getSkillPoints = function(self, t)
 		return 2
-	end,
-	getClassSkills = function(self, t)
-		skills = "Concentration, Craft, Diplomacy, Handle Animal, Heal, Knowledge, Ride, Sense Motive."
-
-		return skills
 	end,
 	getHitPoints = function(self, t)
 		return 8
@@ -245,11 +235,6 @@ newBirthDescriptor {
 	name = 'Ranger',
 	getSkillPoints = function(self, t)
 		return 6
-	end,
-	getClassSkills = function(self, t)
-		skills = "Climb, Concentration, Craft, Handle Animal, Heal, Hide, Intuition, Jump, Knowledge, Listen, Move Silently, Ride, Search, Spot, Swim, Survival."
-
-		return skills
 	end,
 	getHitPoints = function(self, t)
 		return 8
@@ -433,11 +418,6 @@ newBirthDescriptor {
 	name = 'Magus',
 	getSkillPoints = function(self, t)
 		return 4
-	end,
-	getClassSkills = function(self, t)
-		skills = "Appraise, Climb, Concentration, Craft, Handle Animal, Intimidate, Intuition, Knowledge, Listen, Ride, Spellcraft, Spot, Survival, Swim, Use Magic."
-
-		return skills
 	end,
 	getHitPoints = function(self, t)
 		return 8
