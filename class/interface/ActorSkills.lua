@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2015
+--Zireael 2015-2016
 
 require 'engine.class'
 
@@ -257,10 +257,10 @@ end
 
 
 
-function _M:isClassSkill(self, class)
+function _M:isClassSkill(class)
 	local classed_skills = {}
 	for i, s in ipairs(_M.skill_defs) do
-		local skill = s.id
+		local skill = s.name
 		if not self:crossClass(skill, class) then
 			classed_skills[skill] = "yes"
 		else
@@ -272,10 +272,10 @@ function _M:isClassSkill(self, class)
 
 end
 
-function _M:getClassSkills(self, class)
+function _M:getClassSkills(class, cap)
 	list = {}
 	for i, s in ipairs(_M.skill_defs) do
-		local skill = s.id
+		local skill = s.name
 		if not self:crossClass(skill, class) then
 	--	if self:isClassSkill(self, class) then
 			list[#list+1] = skill
