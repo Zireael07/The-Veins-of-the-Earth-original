@@ -25,7 +25,8 @@ local function restore(dest, backup)
 	if game.level and dest.x then game.level.map:updateMap(dest.x, dest.y) end
 end
 
-function _M:init(actor)
+function _M:init(actor, npc)
+	self.npc = npc
 	self.player = actor
 	self.actor = actor
 	self.actor_dup = actor:clone()
@@ -124,6 +125,10 @@ end
 
 
 function _M:use(item)
+	if not item.offered then
+		self:simplePopup("Not offered", "You need to find a different trainer!")
+		return end
+
 	if self.player.feat_point > 0 then
 		local t = item.talent
 		local tid = item.talent.id
@@ -168,6 +173,7 @@ function _M:update()
 	self.c_barred.tree = self.barred_feats
 	self.c_avail:generate()
 	self.c_barred:generate()
+	self.c_learned:generate()
 --	if sel then self.c_list:select(sel) end
 end
 
@@ -180,10 +186,16 @@ end
 function _M:talentTextBlock(t)
 	local player = self.actor
 	local d = "#GOLD#"..t.name.."#LAST#\n"
+	--inform about availability
+	local offered = self.npc.feats_train[t.id]
+	if offered then
+		d = d.."\n#LIGHT_GREEN#This feat is offered by the trainer!#LAST#\n\n"
+	end
 	-- Workaround for double newline bug in T-Engine's getTalentReqDesc
 	local s = player:getTalentReqDesc(t.id):toString():gsub('\n\n', '\n')
 	d = d..s.."\n#WHITE#"
 	d = d..t.info(player,t)
+
 	return d
 end
 
@@ -209,8 +221,11 @@ function _M:generateAvail()
 
 				for j, t in ipairs(tt.talents) do
 					if t.is_feat and player:canLearnTalent(t) and not player:knowTalent(t) then
+						local offered = self.npc.feats_train[t.id]
 						nodes[#nodes+1] = {
 							name = t.name,
+							tid = t.id,
+							offered = offered,
 							id = t.name,
 							pid = tt.name,
 							desc = self:talentTextBlock(t),
@@ -273,9 +288,12 @@ function _M:generateBarred()
 
 				for j, t in ipairs(tt.talents) do
 					if t.is_feat and not player:canLearnTalent(t) and not player:knowTalent(t) then
+						local offered = self.npc.feats_train[t.id]
 						nodes[#nodes+1] = {
 							name = t.name,
 							id = t.name,
+							tid = t.id,
+							offered = offered,
 							pid = tt.name,
 							desc = self:talentTextBlock(t),
 							talent = t,
