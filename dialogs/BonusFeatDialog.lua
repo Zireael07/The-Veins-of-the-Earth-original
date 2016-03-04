@@ -31,8 +31,8 @@ function _M:init(actor)
 	self.actor_dup = actor:clone()
 	Dialog.init(self, "Bonus Feats", math.max(900, game.w*0.8), game.h*0.6)
 	self:generateLists()
-	
-	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available fighter bonus feat points: "..self.player.fighter_bonus}	
+
+	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Available fighter bonus feat points: "..self.player.fighter_bonus}
 	self.c_learned_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Learned feats#LAST#"}
 	self.c_learned = SurfaceZone.new{width=250, height=self.ih*0.8,alpha=1.0}
 	self.c_avail_text = Textzone.new{auto_width=true, auto_height=true, text="#SANDY_BROWN#Available feats#LAST#"}
@@ -101,8 +101,8 @@ function _M:use(item)
 
 		-- Alright, lets learn it if we can
 		local learned = self.player:learnTalent(item.talent.id) --returns false if not learned due to requirements
-		if learned then 
-			self.player.fighter_bonus = self.player.fighter_bonus - 1 
+		if learned then
+			self.player.fighter_bonus = self.player.fighter_bonus - 1
 			self:update()
 		end
 	end
@@ -110,7 +110,7 @@ end
 
 function _M:on_select(item,sel)
 	if self.c_desc then self.c_desc:switchItem(item, item.desc) end
-	self.selection = sel	
+	self.selection = sel
 end
 
 function _M:update()
@@ -132,7 +132,7 @@ function _M:generateLists()
 end
 
 function _M:generateAvail()
-	local player = game.player
+	local player = self.actor
     local list = {}
     for tid, _ in pairs(player.talents_def) do
 		local t = player:getTalentFromId(tid)
@@ -157,14 +157,14 @@ function _M:generateAvail()
     end
     self.list_avail = list
     --Sort it alphabetically
-    table.sort(self.list_avail, function (a,b) 
+    table.sort(self.list_avail, function (a,b)
     		return a.name < b.name
     end)
 
 end
 
 function _M:generateBarred()
-	local player = game.player
+	local player = self.actor
     local list = {}
     for tid, _ in pairs(player.talents_def) do
 		local t = player:getTalentFromId(tid)
@@ -189,7 +189,7 @@ function _M:generateBarred()
     end
     self.list_barred = list
     --Sort it by whetever we have/can/cannot learn it, then alphabetically
-    table.sort(self.list_barred, function (a,b) 
+    table.sort(self.list_barred, function (a,b)
      		return a.name < b.name
     end)
 
@@ -229,7 +229,7 @@ function _M:drawDialog()
     w = 0
 
     local list = {}
-  
+
         for j, t in pairs(player.talents_def) do
           if player:knowTalent(t.id) and t.is_feat then
                 if player:classFeat(t.id) then name = "#GOLD#"..t.name
