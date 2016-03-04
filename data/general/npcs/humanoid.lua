@@ -166,6 +166,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_DWARF",
 	name = "duergar", color=colors.DARK_GRAY,
+	image = "tiles/new/duergar_fighter.png",
 	level_range = {1, 15}, exp_worth = 400,
 	rarity = 5,
 	max_life = resolvers.rngavg(5,10),
@@ -237,6 +238,7 @@ newEntity{
 newEntity{
 	base = "BASE_NPC_GNOME",
 	name = "deep gnome", color=colors.WHITE,
+	tiles = "tiles/new/deep_gnome_fighter.png",
 	level_range = {1, 15}, exp_worth = 400,
 	rarity = 8,
 	max_life = resolvers.rngavg(5,10),
