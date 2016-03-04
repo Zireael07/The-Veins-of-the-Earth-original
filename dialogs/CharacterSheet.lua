@@ -235,7 +235,7 @@ function _M:drawGeneral()
         local Birther = require "engine.Birther"
 
         local list = {}
-        for i, d in ipairs(Birther.birth_descriptor_def.class) do
+        for i, d in ipairs(Birther.birth_descriptor_def.subclass) do
 
         local level = game.player.classes[d.name] or 0
             if level > 0 then
@@ -280,15 +280,18 @@ function _M:drawGeneral()
     end
 
     h = h + self.font_h -- Adds an empty row
-    ac, log_ac = actor:getAC(true)
-
-    self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(ac or "Unknown").." ("..log_ac.." )", w, h, 255, 255, 255, true)) h = h + self.font_h
-
-    h = h + self.font_h -- Adds an empty row
     self:mouseTooltip(self.TOOLTIP_LIFE, s:drawColorStringBlended(self.font, "Hit Points : #RED#"..(math.floor(actor.life).."/"..math.floor(actor.max_life)), w, h, 255, 255, 255, true)) h = h + self.font_h
     self:mouseTooltip(self.TOOLTIP_WOUNDS, s:drawColorStringBlended(self.font, "Wounds : #DARK_RED#"..actor.wounds.."/"..actor.max_wounds, w, h, 255, 255, 255, true)) h = h + self.font_h
 
     h = h + self.font_h -- Adds an empty row
+    ac, log_ac = actor:getAC(true)
+    self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(ac or "Unknown").." ("..log_ac.." )", w, h, 255, 255, 255, true)) h = h + self.font_h
+
+
+    h = h + self.font_h -- Adds an empty row
+    h = h + self.font_h -- Adds an empty row
+--    h = h + self.font_h -- Adds an empty row
+--    h = h + self.font_h -- Adds an empty row
 
     --display attacks in a smart way!
     local weapon = (actor:getInven("MAIN_HAND") and actor:getInven("MAIN_HAND")[1]) or actor
