@@ -5,7 +5,7 @@ newTalent{
 	type = {"domains/nature", 1},
 	mode = 'passive',
 	points = 1,
-	is_feat = true,
+--	is_feat = true,
 
 	info = [[You follow a deity of nature.]],
 }

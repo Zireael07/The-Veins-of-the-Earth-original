@@ -7,12 +7,12 @@ newTalent{
 	require = {
 		special = {
 			fct = function(self, t, offset) return true end,
-			desc = "Blood Domain",		
+			desc = "Blood Domain",
 		},
 	},
-	acquired = "You received this feat because you have the Blood domain", 
+	acquired = "You received this feat because you have the Blood domain",
 	points = 1,
-	is_feat = true,
+--	is_feat = true,
 
 	info = [[While below 50% of your hp, you recieve a bonus of 2 strength]],
 }
