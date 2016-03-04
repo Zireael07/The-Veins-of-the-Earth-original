@@ -101,7 +101,24 @@ function resolvers.calc.trainer_class(t, e)
 	print("[TRAINER] class", class)
 
 	--Step 2: feats
+	local all_feats = {}
+	local get_feats = {}
+	e.feats_train = {}
 
+	for j, t in pairs(e.talents_def) do
+		if t.is_feat then
+			 all_feats[#all_feats+1] = t.id --{id=t.id, name=t.name}
+		end
+	end
+	for i = 1, 3 do
+		get_feats[#get_feats+1] = rng.tableRemove(all_feats)
+		e.feats_train = table.reverse(get_feats)
+
+		--debug
+		for k, v in pairs(e.feats_train) do
+			print("[TRAINER] feats offered "..k.." "..v)
+		end
+	end
 
 	--Step 3: skills
 	e.skills_train = {}
