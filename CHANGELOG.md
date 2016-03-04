@@ -17,17 +17,25 @@ CHANGELOG
 * bug fix - mails having leather paperdoll look
 * bug fix - some items not having subtypes
 * bug fix - torches are properly removed from inventory when running out of fuel
+* bug fix - resurrection diamond costing 10x too much exp
+* bug fix - monster info counts egoed monsters together with non-egoed; no longer leaks info
 
 * update to T-Engine 1.4.0
-* new tiles: rags, crown, circlet; elven cat, piranha bird
-* new item: rags, crown, circlet
+* new tiles: rags, crown, circlet; various gemstones; elven cat, locathah, grimlock, aasimar, tiefling; piranha bird, bugbear, trog, merfolk, skum; light wooden/light steel/heavy wooden shields; cord/padded/leather armor;
+* new item: rags, crown, circlet; gemstones
+* new magic properties: graceful (half ACP), featherlight (1/4 weight)
 * more potion and scroll types
 * potions now stack
+* a proper NPC egos implementation
 * use shaders for some egos
+* barbarians and fighters now get Spot as a class skill, just like Incursion
+* backgrounds reworked: now they give you a bonus feat only
+* trainer option improvements: class, skills, feats offered and dialogs respecting the limitations
 * implement detect magic
 * identify spell now takes an hour to work
 * implement school-ID'ing if your Intuition is high enough
 * implement item hardness and durability
+* mithril armors now have all the associated effects per SRD
 * implement generating specific egoed items
 * all characters now start with a random potion and a potion of cure light wounds
 * item tooltips now display average damage and % chance to crit for weapons
