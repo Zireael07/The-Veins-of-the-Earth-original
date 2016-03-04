@@ -50,6 +50,7 @@ newEntity{ base = "BASE_NPC_TRAINER",
     color=colors.WHITE,
     image = "tiles/new/human_fighter.png",
     rarity = 5,
+    emote_anger = "I will kill you!",
 }
 
 newEntity{ base = "BASE_NPC_TRAINER",
@@ -58,4 +59,5 @@ newEntity{ base = "BASE_NPC_TRAINER",
     color=colors.BLACK,
     image = "tiles/mobiles/npc/drow_fighter.png",
     rarity = 5,
+    emote_anger = "Oloth plynn d'jal!",
 }

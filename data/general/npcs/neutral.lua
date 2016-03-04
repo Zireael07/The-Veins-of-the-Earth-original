@@ -88,6 +88,7 @@ newEntity{ define_as = "BASE_NPC_HUMAN_NEUTRAL",
     { name = "shortbow",  },
     { name = "food ration" },
     },
+    emote_anger = "I will kill you!",
 }
 
 newEntity{ define_as = "BASE_NPC_DWARF_NEUTRAL",
@@ -124,6 +125,7 @@ newEntity{ define_as = "BASE_NPC_DWARF_NEUTRAL",
     uncommon_desc = [[Dwarves come off as gruff or even rude, but they are an extremely determined and honorable people. They look down upon those who flaunt their wealth and usually wear only one or two pieces of finery themselves, although dwarven jewelry tends to be exceedingly beautiful and well-crafted.]],
     common_desc = [[Dwarves build their kingdoms underground, carving them straight into the stone of mountainsides. They are naturally adept at working stone, and spend their days mining gems and precious metals from beneath the earth.]],
     base_desc = [[This short, stocky humanoid is a dwarf. It can see in the dark.]],
+    emote_anger = "I will kill you!",
 }
 
 newEntity{ define_as = "BASE_NPC_ELF_NEUTRAL",
@@ -163,6 +165,7 @@ newEntity{ define_as = "BASE_NPC_ELF_NEUTRAL",
     { name = "longbow",  },
     { name = "food ration" },
     },
+    emote_anger = "Maeve take you!",
 }
 
 --Shopkeepers
@@ -220,7 +223,7 @@ newEntity{
 newEntity{
     define_as = "BASE_NPC_ELF_SAGE",
     base = "BASE_NPC_ELF_NEUTRAL",
-    name = "human sage",
+    name = "elf sage",
     image = "tiles/new/elf_mage.png",
     rarity = 15,
     can_talk = "sage",
