@@ -2324,11 +2324,12 @@ function _M:levelClass(name)
 
 	if d.getSkillPoints(self, d) then
 		local count = (d.getSkillPoints(self, d) + self:getIntMod())
-		game.logPlayer(self, "Class skill points "..d.getSkillPoints(self, d).." Int mod "..self:getIntMod())
+	--	game.logPlayer(self, "Class skill points "..d.getSkillPoints(self, d).." Int mod "..self:getIntMod())
 		local skill_point = math.max(1, count)
-		game.logPlayer(self, "Skill point "..skill_point)
+	--	game.logPlayer(self, "Skill point "..skill_point)
 		if self.level == 1 then skill_point = skill_point * 4
-		game.logPlayer(self, "Post-mult: "..skill_point) end
+	--	game.logPlayer(self, "Post-mult: "..skill_point)
+		end
 		self:attr('skill_point', skill_point)
 	end
 
