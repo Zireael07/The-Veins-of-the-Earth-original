@@ -1,5 +1,7 @@
 CHANGELOG
 
+BETA 12 - 07/03/2016
+
 * bug fix - potions/wands/scrolls without effects now never happen
 * bug fix - add dummy entry to lower odds of mwk+ items
 * bug fix - fix an engine bug preventing force_ego from working
@@ -21,7 +23,7 @@ CHANGELOG
 * bug fix - monster info counts egoed monsters together with non-egoed; no longer leaks info
 
 * update to T-Engine 1.4.0
-* new tiles: rags, crown, circlet; various gemstones; elven cat, locathah, grimlock, aasimar, tiefling; piranha bird, bugbear, trog, merfolk, skum; light wooden/light steel/heavy wooden shields; cord/padded/leather armor;
+* new tiles: rags, crown, circlet; various gemstones; elven cat, locathah, grimlock, aasimar, tiefling, duergar, deep gnome, azer; piranha bird, bugbear, trog, merfolk, skum; light wooden/light steel/heavy wooden shields; cord/padded/leather armor;
 * new item: rags, crown, circlet; gemstones
 * new magic properties: graceful (half ACP), featherlight (1/4 weight)
 * more potion and scroll types
