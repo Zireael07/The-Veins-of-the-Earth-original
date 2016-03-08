@@ -239,3 +239,34 @@ newEntity{
 --    addons = "/data/general/objects/properties/tomes.lua",
     egos = "/data/general/objects/properties/tomes.lua", egos_chance={prefix=0, suffix=100},
 }
+
+--New low-level items
+newEntity{
+    type = "ring", subtype = "ring",
+    slot = "RING",
+    image = "tiles/object/ring_signet.png",
+    display = "σ", color=colors.YELLOW,
+    rarity = 5,
+    encumber = 0,
+    level_range = {1, nil},
+    identified = false,
+    name = "signet ring", short_name = "ring",
+    unided_name = "ring",
+    desc = [[A ring with a jewel and a mark of a noble.]],
+    --addons = "/data/general/objects/properties/"
+}
+
+newEntity{
+    slot = "AMULET", --this is a slotted version (cheaper)
+    type = "amulet", subtype = "amulet",
+    image = "tiles/object/amulet_insignia.png",
+    display = "♂", color=colors.SLATE,
+    encumber = 0,
+    rarity = 10,
+    level_range = {1,nil},
+    identified = false,
+    unided_name = "insignia",
+    name = "insignia", short_name = "insignia",
+    desc = [[An oval flat disk of slate gray stone with markings.]],
+    --addons = "/data/general/objects/properties/"
+}
