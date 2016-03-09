@@ -2390,6 +2390,11 @@ end
 function _M:canWearObject(o, try_slot)
 	local req = rawget(o, "require")
 
+	-- check if the slot matches dammit
+	if try_slot and try_slot ~= o.slot and try_slot ~= self:getObjectOffslot(o) then
+		return nil, "wrong equipment slot"
+	end
+
 	-- Check prerequisites
 	if req then
 		-- Obviously this requires the ActorStats interface
@@ -2425,7 +2430,7 @@ function _M:canWearObject(o, try_slot)
 	for id, inven in pairs(self.inven) do
 		if self.inven_def[id].is_worn and (not self.inven_def[id].infos or not self.inven_def[id].infos.etheral) then
 			for i, wo in ipairs(inven) do
-			--	print("check other objects: ", o.name, "other object ", wo.name, "forbids", wo.slot_forbid, "our slot ", try_slot or o.slot)
+			print("check slots: ", o.name, wo.name, "::", wo.slot_forbid, try_slot or o.slot)
 				if wo.slot_forbid and wo.slot_forbid == (try_slot or o.slot) then
 					print(" impossible => ", o.name, wo.name, "::", wo.slot_forbid, try_slot or o.slot)
 					return nil, "cannot use currently due to an other worn object"
