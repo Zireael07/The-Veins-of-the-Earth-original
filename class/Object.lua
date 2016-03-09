@@ -442,7 +442,7 @@ function _M:getTextualDesc(compare_with, use_actor)
 
     if self.cost and self.appraised == true then desc:add(("Price: %s"):format(self:formatPrice())) end
 
-    desc:add(self:foundInfo())
+    desc:add(self:foundInfo(), true)
 
     if self.material then desc:add(("Hardness: %d"):format(self:getHardness()), true) end
     if self.durability then desc:add(("Durability: %d"):format(self:getDurability()), true) end
@@ -703,7 +703,7 @@ function _M:formatPrice()
     local gold_rest = math.floor(gold_change/10)
 
     if self.cost > 2000 then
-        if (plat_rest or 0) > 0 then return "#ANTIQUE_WHITE#"..platinum.." pp #GOLD# "..plat_rest.." gp #LAST#"
+        if (plat_rest or 0) > 0 then return "#ANTIQUE_WHITE#"..platinum.." pp #LAST##GOLD# "..plat_rest.." gp #LAST#"
         else return "#ANTIQUE_WHITE#"..platinum.." pp #LAST#" end
     elseif self.cost > 200 then
         if (gold_rest or 0) > 0 then return "#GOLD#"..gold.." gp #LAST# "..gold_rest.." sp"
