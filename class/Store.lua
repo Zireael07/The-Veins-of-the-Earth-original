@@ -99,7 +99,7 @@ function _M:tryBuy(who, o, item, nb)
 	if who.money >= price * nb then
 		return nb, price * nb
 	else
-		Dialog:simplePopup("Not enough gold", "You do not have enough gold!")
+		Dialog:simplePopup("Not enough money", "You do not have enough money!")
 	end
 end
 
@@ -129,7 +129,7 @@ function _M:onBuy(who, o, item, nb, before)
 	local price = self:getObjectPrice(o, "buy")
 	if who.money >= price * nb then
 		who:incMoney(- price * nb)
-		game.log("Bought: %s for %d gold.", o:getName{do_color=true}, price * nb)
+		game.log("Bought: %s for %d silver.", o:getName{do_color=true}, price * nb)
 	end
 end
 
@@ -148,7 +148,7 @@ function _M:onSell(who, o, item, nb, before)
 	price = math.min(price * nb, self.store.purse * nb)
 	who:incMoney(price)
 	o:forAllStack(function(so) so.__force_store_forget = true end) -- Make sure the store does forget about it when it restocks
-	game.log("Sold: %s for %d gold.", o:getName{do_color=true}, price)
+	game.log("Sold: %s for %d silver.", o:getName{do_color=true}, price)
 end
 
 --- Override the default
@@ -280,7 +280,7 @@ function _M:formatStorePrice(o, what)
 	local color = "#WHITE#"
 
     if self:getObjectPrice(o, what) > 2000 then
-        if (plat_rest or 0) > 0 then return color.."#ANTIQUE_WHITE#"..platinum.."pp #GOLD# "..plat_rest.." gp #LAST#"
+        if (plat_rest or 0) > 0 then return color.."#ANTIQUE_WHITE#"..platinum.."pp #LAST##GOLD# "..plat_rest.." gp #LAST#"
         else return color.."#ANTIQUE_WHITE#"..platinum.." pp #LAST#" end
     elseif self:getObjectPrice(o, what) > 200 then
         if (gold_rest or 0) > 0 then return color.."#GOLD#"..gold.." gp #LAST# "..gold_rest.." sp"
