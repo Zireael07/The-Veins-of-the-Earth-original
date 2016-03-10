@@ -231,7 +231,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	infravision = 4,
 	skill_listen = 6,
 	skill_spot = 6,
-	resolvers.talents{ [Talents.T_DODGE]=1, },
+	resolvers.talents{ [Talents.T_MOBILITY]=1, },
 --	movement_speed_bonus = -0.33,
 	movement_speed = 0.66,
 	fly = true,
@@ -462,7 +462,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
 	fly = true,
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_MOBILITY]=1 },
 }
 
 --Scent, scare Will DC 13
@@ -521,7 +521,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --	movement_speed_bonus = 0.88,
 	movement_speed = 1.88,
 	combat_attackspeed = 1.88,
-	resolvers.talents{ [Talents.T_DODGE]=1,
+	resolvers.talents{ [Talents.T_MOBILITY]=1,
 	[Talents.T_MOBILITY]=1,
 	[Talents.T_IRON_WILL]=1,
 	},
@@ -809,7 +809,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 	skill_listen = 9,
 	skill_spot = 10,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_DODGE]=1
+	[Talents.T_MOBILITY]=1
 	},
 }
 

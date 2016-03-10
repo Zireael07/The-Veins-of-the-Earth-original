@@ -343,7 +343,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	skill_spot = 18,
 	skill_survival = 5,
 	alignment = "Neutral Evil",
-	resolvers.talents{ [Talents.T_DODGE]=1,
+	resolvers.talents{ [Talents.T_MOBILITY]=1,
 	},
 }
 
@@ -373,7 +373,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
 	alignment = "Neutral",
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_MOBILITY]=1 },
 }
 
 --Ethereal jaunt;
@@ -529,7 +529,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	skill_survival = 6,
 	alignment = "Chaotic Neutral",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_DODGE]=1,
+	[Talents.T_MOBILITY]=1,
 	[Talents.T_MOBILITY]=1
 	},
 }
@@ -626,7 +626,7 @@ newEntity{ base = "BASE_NPC_ABERRATION",
 	fly = true,
 	alignment = "Chaotic Evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_DODGE]=1 },
+	[Talents.T_MOBILITY]=1 },
 }
 
 newEntity{ base = "BASE_NPC_ABERRATION",
@@ -665,7 +665,7 @@ newEntity{ base = "BASE_NPC_NAGA",
 	skill_spot = 8,
 	alignment = "Lawful Evil",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_DODGE]=1,
+	[Talents.T_MOBILITY]=1,
 	[Talents.T_COMBAT_CASTING]=1,
 	[Talents.T_POISON_IMMUNITY]=1,
 	},
@@ -693,7 +693,7 @@ newEntity{ base = "BASE_NPC_NAGA",
 	skill_spot = 9,
 	alignment = "Lawful Good",
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_DODGE]=1,
+	[Talents.T_MOBILITY]=1,
 	[Talents.T_COMBAT_CASTING]=1
 	},
 }

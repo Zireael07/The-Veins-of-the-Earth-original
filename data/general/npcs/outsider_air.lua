@@ -168,7 +168,7 @@ newEntity{ base = "BASE_NPC_AIR",
 --	movement_speed_bonus = 0.33,
 	movement_speed = 1.33,
 	combat_attackspeed = 1.33,
-	resolvers.talents{ [Talents.T_DODGE]=1,
+	resolvers.talents{ [Talents.T_MOBILITY]=1,
 	[Talents.T_COMBAT_CASTING]=1,
 	},
 }

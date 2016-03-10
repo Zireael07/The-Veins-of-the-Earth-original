@@ -26,7 +26,7 @@ newEntity{
     school = "transmutation",
     wielder = {
         learn_talent = {
-            [Talents.T_DODGE] = 1,
+--            [Talents.T_DODGE] = 1,
             [Talents.T_MOBILITY] = 1,
         },
     },

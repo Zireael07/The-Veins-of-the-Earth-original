@@ -45,7 +45,7 @@ newEntity{
 	skill_spot = 9,
 	skill_swim  = 8,
 	resolvers.talents{ [Talents.T_FINESSE]=1,
-	[Talents.T_DODGE]=1,
+	[Talents.T_MOBILITY]=1,
 	[Talents.T_COMBAT_CASTING]=1
 	},
 	resolvers.equip{
@@ -96,7 +96,7 @@ newEntity{
 	combat_attackspeed = 1.33,
 	resolvers.talents{ [Talents.T_SHOOT]=1,
 	[Talents.T_ALERTNESS]=1,
-	[Talents.T_DODGE]=1,
+	[Talents.T_MOBILITY]=1,
 	[Talents.T_MOBILITY]=1
 	},
 	resolvers.equip{

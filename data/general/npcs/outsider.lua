@@ -116,7 +116,7 @@ newEntity{
 	skill_listen = 7,
 	skill_movesilently = 7,
 	skill_tumble = 9,
-	resolvers.talents{ [Talents.T_DODGE]=1, },
+	resolvers.talents{ [Talents.T_MOBILITY]=1, },
 }
 
 --Poison 1d6 STR primary & sec DC 15
@@ -141,7 +141,7 @@ newEntity{
 	skill_spot = 8,
 	skill_movesilently = 9,
 	skill_tumble = 9,
-	resolvers.talents{ [Talents.T_DODGE]=1, },
+	resolvers.talents{ [Talents.T_MOBILITY]=1, },
 }
 
 --Poison 2d6 DEX primary & sec DC 20, fast healing 2
@@ -170,7 +170,7 @@ newEntity{
 	skill_sensemotive = 15,
 	skill_spot = 15,
 	skill_tumble = 9,
-	resolvers.talents{ [Talents.T_DODGE]=1,
+	resolvers.talents{ [Talents.T_MOBILITY]=1,
 	[Talents.T_MOBILITY]=1
 	 },
 }
@@ -244,7 +244,7 @@ newEntity{
 	skill_spot = 9,
 	fly = true,
 	resists = { [DamageType.FIRE] = 10 },
-	resolvers.talents{ [Talents.T_DODGE]=1,
+	resolvers.talents{ [Talents.T_MOBILITY]=1,
 	[Talents.T_MOBILITY]=1,
 	},
 	resolvers.equip{
@@ -359,7 +359,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	skill_movesilently = 7,
 	skill_survival = 7,
 	skill_spot = 7,
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_MOBILITY]=1 },
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
@@ -527,7 +527,7 @@ newEntity{
 --	movement_speed_bonus = 1,
 	movement_speed = 2,
 	combat_attackspeed = 2,
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_MOBILITY]=1 },
 }
 
 --breath weapon 1d4 & -4 AC & -2 attack for 3 rounds; spell-likes: 1/hour - blur; 1/day wind wall DC 15
@@ -538,7 +538,7 @@ newEntity{
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_MOBILITY]=1 },
 }
 
 --breath weapon 1d8 Ref DC 13; spell-like: 1/day soften earth and stone; 1/hour enlarge person (self)
@@ -564,7 +564,7 @@ newEntity{
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
 	stats = { str=10, dex=13, con=10, int=6, wis=11, cha=15, luc=12 },
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_MOBILITY]=1 },
 }
 
 --immunity to cold, vulnerability to fire; 1d4 cold on hit
@@ -576,7 +576,7 @@ newEntity{
 	combat_natural = 5,
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_MOBILITY]=1 },
 }
 
 --immunity to fire, vulnerability to cold; change shape (lava dr 20 speed -0.80)
@@ -589,7 +589,7 @@ newEntity{
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
 	stats = { str=10, dex=13, con=10, int=6, wis=11, cha=15, luc=12 },
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_MOBILITY]=1 },
 }
 
 --swim 30 ft; breath weapon 1d4 acid Ref DC 12 half & -4 AC & -2 attack for 3 rounds
@@ -630,7 +630,7 @@ newEntity{
 --	movement_speed_bonus = 0.66,
 	movement_speed = 1.66,
 	combat_attackspeed = 1.66,
-	resolvers.talents{ [Talents.T_DODGE]=1 },
+	resolvers.talents{ [Talents.T_MOBILITY]=1 },
 }
 
 --swim 30 ft.; breath weapon 1d8 acid Ref DC 13 half; spell-likes: 1/hour - acid arrow; 1/day stinking cloud

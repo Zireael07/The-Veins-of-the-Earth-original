@@ -42,7 +42,7 @@ newEntity{ base = "BASE_NPC_MAGBEAST",
 --	movement_speed_bonus = -0.33,
 	movement_speed = 0.66,
 	resolvers.talents{ [Talents.T_ALERTNESS]=1,
-	[Talents.T_DODGE]=1,
+	[Talents.T_MOBILITY]=1,
 	[Talents.T_IRON_WILL]=1,
 --	[Talents.T_POWER_ATTACK]=1
 	},

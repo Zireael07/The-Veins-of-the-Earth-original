@@ -210,7 +210,7 @@ newEntity{ base = "BASE_NPC_UNDEAD_CORPO",
         skill_swim = 3,
         skill_spot = 15,
         alignment = "Chaotic Evil",
-        resolvers.talents{ [Talents.T_DODGE]=1,
+        resolvers.talents{ [Talents.T_MOBILITY]=1,
         [Talents.T_MOBILITY]=1,
         [Talents.T_ALERTNESS]=1 },
 }
@@ -276,7 +276,7 @@ newEntity{ base = "BASE_NPC_UNDEAD_INCORPO",
         skill_spot = 6,
         alignment = "Chaotic Evil",
         resolvers.talents{ [Talents.T_ALERTNESS]=1,
-        [Talents.T_DODGE]=1
+        [Talents.T_MOBILITY]=1
         },
 }
 
@@ -296,7 +296,7 @@ newEntity{
         skill_search = 5,
         skill_spot = 8,
         resolvers.talents{ [Talents.T_ALERTNESS]=1,
-        [Talents.T_DODGE]=1,
+        [Talents.T_MOBILITY]=1,
         [Talents.T_MOBILITY]=1
         },
 }
@@ -382,7 +382,7 @@ newEntity {
         skill_search = 19,
         skill_sensemotive = 19,
         skill_spot = 21,
-        resolvers.talents{ [Talents.T_DODGE]=1,
+        resolvers.talents{ [Talents.T_MOBILITY]=1,
         [Talents.T_MOBILITY]=1
         },
 }
@@ -495,5 +495,5 @@ newEntity{ base = "BASE_NPC_NIGHTSHADE",
         skill_sensemotive = 24,
         skill_spellcraft = 27,
         skill_spot = 25,
-        resolvers.talents{ [Talents.T_DODGE]=1,  },
+        resolvers.talents{ [Talents.T_MOBILITY]=1,  },
 }

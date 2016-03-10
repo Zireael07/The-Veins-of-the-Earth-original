@@ -351,7 +351,7 @@ newEntity{ base = "BASE_NPC_MON_HUMANOID",
 --	movement_speed_bonus = 1.33,
 	movement_speed = 2.33,
 	combat_attackspeed = 2.33,
-	resolvers.talents{ [Talents.T_DODGE]=1,
+	resolvers.talents{ [Talents.T_MOBILITY]=1,
 	[Talents.T_PERSUASIVE]=1
 	},
 	resolvers.equip{

@@ -40,7 +40,7 @@ newEntity{ base = "BASE_EGO",
 
     challenge = 1,
     hit_die = 1,
-    resolvers.talents{ [Talents.T_DODGE]=1,
+    resolvers.talents{ [Talents.T_MOBILITY]=1,
 	[Talents.T_LIGHT_ARMOR_PROFICIENCY]=1,
 	[Talents.T_MEDIUM_ARMOR_PROFICIENCY]=1,
 	},

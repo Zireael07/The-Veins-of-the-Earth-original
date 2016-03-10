@@ -145,7 +145,7 @@ newEntity{
 	hit_die = 1,
 	challenge = 1/4,
 	--Brachiation feat
-	resolvers.talents{ [Talents.T_DODGE]=1, },
+	resolvers.talents{ [Talents.T_MOBILITY]=1, },
 }
 
 --Scent; Dash, Run feats

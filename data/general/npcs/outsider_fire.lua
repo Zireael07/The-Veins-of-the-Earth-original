@@ -94,7 +94,7 @@ newEntity{
 	skill_sensemotive = 13,
 	skill_spellcraft = 13,
 	skill_spot = 13,
-	resolvers.talents{ [Talents.T_DODGE]=1,
+	resolvers.talents{ [Talents.T_MOBILITY]=1,
 	[Talents.T_COMBAT_CASTING]=1,
 	},
 	alignment = "Lawful Evil",
