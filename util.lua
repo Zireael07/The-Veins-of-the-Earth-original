@@ -7,6 +7,13 @@ function util.squareApply(x, y, w, h, fct)
     end end
 end
 
+--From Qi Daozei
+--- Rounds a number, rounding .5 away from 0.  See http://lua-users.org/wiki/SimpleRound
+function math.round_simple(num)
+    if num >= 0 then return math.floor(num+.5)
+    else return math.ceil(num-.5) end
+end
+
 --From StackOverflow via StarKeep
 function util.remove_duplicates(t)
 	local hash = {}
