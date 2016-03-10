@@ -102,13 +102,17 @@ newFeat{
 	info = [[You suffer no penalties for medium load. The penalty for heavy load is halved.]],
 }
 
+--Rolled Dodge and Mobility into one
 newFeat{
 	name = "Mobility",
 	type = {"class/general", 1},
 	is_perk = true,
 	fighter = true,
 	points = 1,
-	require = { talent = { Talents.T_DODGE }, },
+--	require = { talent = { Talents.T_DODGE }, },
+    require = {
+        stat = { dex = 13 }
+    },
 	mode = "passive",
 	info = [[This feat increases your AC by +4.]],
     on_learn = function(self, t)
@@ -118,6 +122,7 @@ newFeat{
     	self.combat_dodge = self.combat_dodge - 4
     end
 }
+
 
 newFeat{
     name = "Toughness",
