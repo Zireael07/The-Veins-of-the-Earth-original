@@ -119,6 +119,21 @@ newFeat{
     end
 }
 
+newFeat{
+    name = "Toughness",
+    type = {"class/general", 1},
+    fighter = true,
+    points = 1,
+    mode = "passive",
+    info = [[This feat increases your HP by 10%.]],
+    on_learn = function(self, t)
+        self.max_life = self.max_life * 1.1
+    end,
+    on_unlearn = function(self, t)
+    	self.max_life = self.max_life * 0.9
+    end
+}
+
 --Feats from Incursion to increase survivability
 newFeat{
     name = "Roll with It",
