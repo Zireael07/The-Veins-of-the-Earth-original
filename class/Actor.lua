@@ -587,7 +587,9 @@ function _M:colorFaction()
 		elseif factlevel < 0 then return "#LIGHT_RED#hostile#LAST#"
 		elseif factlevel > 0 then return "#LIGHT_GREEN#friendly#LAST#"
 		end
-	else end
+	else
+		return "No faction??"
+	end
 end
 
 function _M:colorPersonalReaction()
