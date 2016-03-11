@@ -682,6 +682,8 @@ function _M:tooltip()
 
 	ts:add({"color", "WHITE"}, self.desc, {"color", "WHITE"}, true)
 
+	ts:add(("Faction: %s"):format(self.faction or ""), true)
+
 	ts:add(("Faction reaction: %s"):format(self:colorFaction()), true)
 
 	ts:add(("Personal reaction: %s"):format(self:colorPersonalReaction()), true)
