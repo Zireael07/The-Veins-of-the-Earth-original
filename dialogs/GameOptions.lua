@@ -56,9 +56,15 @@ function _M:init(gameplay)
 	self.key:addBinds{
 		EXIT = function()
 			if self.needs_reboot then game:setupDisplayMode(true) end
+			if self.gameplay == true then --popup?
+			end	
 			game:unregisterDialog(self)
 		end,
 	}
+
+	if self.gameplay == true then
+		self:switchTo("game")
+	end
 end
 
 function _M:select(item)
