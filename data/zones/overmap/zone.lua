@@ -60,4 +60,7 @@ return {
       return nil
     end
   end,]]
+  	on_enter = function()
+		game:registerDialog(require("mod.dialogs.VictoryDialog").new())
+	end
 }
