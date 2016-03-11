@@ -14,13 +14,13 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-local houses = { "House Baenre", "House Armgo", "House Tlabbar", "House Mizzrym", "House Nasadra", "House Auvryndar", "House Aleanrahel" }
+local houses = { "baenre", "armgo", "tlabbar", "mizzrym", "nasadra", "auvryndar", "aleanrahel" }
 local pick = rng.tableRemove(houses)
 
 return {
 --	name = "Drow Noble House",
 
-	name = pick.." Compound",
+	name = "House "..pick:capitalize().." Compound",
 	level_range = {1, 1},
 	max_level = 1,
 --	decay = {300, 800},
@@ -46,7 +46,6 @@ return {
 			class = "mod.class.generator.actor.OnSpots",
 			nb_npc = {20, 30},
 			nb_spots = 5, on_spot_chance = 75,
-		--	post_generation = function(e) e.faction=pick end,
 		},
 		object = {
             class = "mod.class.generator.object.Random",
@@ -77,8 +76,15 @@ return {
 		game:placeTerrainMulti("FAERIE_TORCH", 10)
 
 --		game:placeTerrain("FAERIE_TORCH")
+		local pick = "baenre"
+		local name = game.zone.name
+		local split = name:split(' ')
+		if split[2] then
+			pick = split[2]:uncapitalize()
+			game.log("Split zone name "..pick)
+		end
 
-	--	for uid, e in pairs(level.entities) do e.faction = pick end
+		for uid, e in pairs(level.entities) do e.faction = pick end
 
 	end,
 }

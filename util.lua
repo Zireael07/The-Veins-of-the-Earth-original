@@ -14,6 +14,18 @@ function math.round_simple(num)
     else return math.ceil(num-.5) end
 end
 
+--From ToME2 port
+-- Reverse of T-Engine's string.capitalize().
+function string.uncapitalize(s)
+    if #s > 1 then
+        return s:sub(1, 1):lower() .. s:sub(2)
+    elseif #s == 1 then
+        return s:lower()
+    else
+        return s
+    end
+end
+
 --From StackOverflow via StarKeep
 function util.remove_duplicates(t)
 	local hash = {}
