@@ -109,8 +109,8 @@ newEntity{
 --Bracers
 newEntity{
     define_as = "BASE_BRACERS",
-    slot = "GLOVES",
-    type = "bracer", subtype = "bracer",
+    slot = "ARMS",
+    type = "bracers", subtype = "bracers",
     image = "tiles/new/bracers.png",
     display = "Ξ", color=colors.RED,
     encumber = 1,
@@ -123,6 +123,25 @@ newEntity{
     resolvers.flavored(),
     egos = "/data/general/objects/properties/bracers.lua", egos_chance = { prefix=0, suffix=100},
 }
+
+--Gloves
+newEntity{
+    define_as = "BASE_GLOVES",
+    slot = "GLOVES",
+    type = "gloves", subtype = "gloves",
+    image = "tiles/new/bracers.png",
+    display = "Ξ", color=colors.RED,
+    encumber = 1,
+    rarity = 18,
+    level_range = {4,nil},
+    identified = false,
+    name = "gloves", short_name = "glove",
+    unided_name = "glove",
+    desc = [[A pair of soft gloves.]],
+--    resolvers.flavored(),
+    egos = "/data/general/objects/properties/bracers.lua", egos_chance = { prefix=0, suffix=100},
+}
+
 
 --Cloaks
 newEntity{
@@ -213,6 +232,7 @@ newEntity{ base = "BASE_BELT",
     image = "tiles/object/belt.png",
 }
 
+--Helmets
 newEntity{ base = "BASE_MAGITEM",
     define_as = "BASE_HELM",
     slot = "HELM",
@@ -256,6 +276,7 @@ newEntity{ base = "BASE_HELM",
     desc = [[A beautiful jewelled crown.]],
 }
 
+--Tomes
 newEntity{
     type = "book", subtype = "book",
     slot = "INVEN",
