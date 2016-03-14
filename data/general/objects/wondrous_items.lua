@@ -232,6 +232,23 @@ newEntity{ base = "BASE_BELT",
     image = "tiles/object/belt.png",
 }
 
+--Greaves
+newEntity{
+    define_as = "BASE_GREAVES",
+    slot = "LEGS",
+    type = "legs", subtype = "legs",
+--    image = "tiles/object/belt_jewel.png",
+    display = "Д", color=colors.RED,
+    encumber = 1,
+    rarity = 15,
+    identified = false,
+    level_range = {4,nil},
+    name = "greaves", short_name = "greaves",
+    unided_name = "greaves",
+    desc = [[Thick metal greaves.]],
+    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=100},
+}
+
 --Helmets
 newEntity{ base = "BASE_MAGITEM",
     define_as = "BASE_HELM",

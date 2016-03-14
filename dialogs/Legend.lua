@@ -82,6 +82,7 @@ function _M:init()
     σ a ring
     ♂ an amulet
     ♠ a cloak
+    Д greaves
     ω boots
     Ξ bracers
     - a wand
