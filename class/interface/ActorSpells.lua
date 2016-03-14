@@ -669,6 +669,44 @@ function _M:spellIsKind(t, kind)
 	return true
 end
 
+function _M:getSpellFocus(ab)
+	local player = game.player
+	local ret = 0
+	local tt = self:getTalentTypeFrom(ab.type[1])
+	if self:knowTalent(self.T_ABJURATION_SPELL_FOCUS) and tt.name == "abjuration" then ret = 2 end
+	if self:knowTalent(self.T_CONJURATION_SPELL_FOCUS) and tt.name == "conjuration" then ret = 2 end
+	if self:knowTalent(self.T_DIVINATION_SPELL_FOCUS) and tt.name == "divination" then ret = 2 end
+	if self:knowTalent(self.T_ENCHANTMENT_SPELL_FOCUS) and tt.name == "enchantment" then ret = 2 end
+	if self:knowTalent(self.T_EVOCATION_SPELL_FOCUS) and tt.name == "evocation" then ret = 2 end
+	if self:knowTalent(self.T_ILLUSION_SPELL_FOCUS) and tt.name == "illusion" then ret = 2 end
+	if self:knowTalent(self.T_NECROMANCY_SPELL_FOCUS) and tt.name == "necromancy" then ret = 2 end
+	if self:knowTalent(self.T_TRANSMUTATION_SPELL_FOCUS) and tt.name == "transmutation" then ret = 2 end
+
+	return ret
+end
+
+function _M:getSpellDC(ab)
+	local dc = 10
+	if ab.level then dc = dc + ab.level end
+
+	local stat_used = "cha" --default for monsters
+	if self.classes then
+		if self.classes["Wizard"] and self:spellIsKind(ab, "arcane") then stat_used = "int" end
+		if self.classes["Ranger"] and self:spellIsKind(ab, "divine")then stat_used = "wis" end
+		if self.classes["Cleric"] and self:spellIsKind(ab, "divine") then stat_used = "wis" end
+		if self.classes["Druid"] and self:spellIsKind(ab, "divine") then stat_used = "wis" end
+		if self.classes["Bard"] and self:spellIsKind(ab, "arcane") then stat_used = "cha" end
+		if self.classes["Shaman"] and self:spellIsKind(ab, "divine") then stat_used = "cha" end
+		if self.classes["Sorcerer"] and self:spellIsKind(ab, "arcane") then stat_used = "cha" end
+	end
+
+	dc = dc + math.floor((self:getStat(stat_used)-10)/2)
+
+	dc = dc + (self:getSpellFocus(ab) or 0)
+
+	return dc
+end
+
 function _M:spellCastingSpeed()
     local speed
     if self:isTalentActive(self.QUICKEN) then
