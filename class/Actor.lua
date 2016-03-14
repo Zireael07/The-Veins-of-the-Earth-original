@@ -2607,7 +2607,7 @@ end
 function _M:randomFeat()
 	local chance = rng.dice(1,29)
 
-	if chance == 1 then self:learnTalent(self.T_DODGE, true)
+	if chance == 1 then self:learnTalent(self.T_MOBILITY, true)
 	elseif chance == 2 then self:learnTalent(self.T_FINESSE, true)
 	elseif chance == 3 then self:learnTalent(self.T_TOUGHNESS, true)
 	elseif chance == 4 then self:learnTalent(self.T_ACROBATIC, true)
