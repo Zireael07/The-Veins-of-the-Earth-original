@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2013-2016
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -179,28 +179,30 @@ ActorInventory:defineInventory("LITE", "Light source", true, "A light source all
 ActorInventory:defineInventory("TOOL", "Tool", true, "This is your readied tool, usually a shovel.", nil, {equipdoll_back="ui/equipdoll/tool_inv.png"})
 --For swapping weapons
 ActorInventory:defineInventory("SHOULDER", "Shouldered weapon", true, "This is your readied weapon, usually a ranged one.", nil, {equipdoll_back="ui/equipdoll/shoulder_inv.png"})
---For piecemeal armor
-ActorInventory:defineInventory("LEGS", "Legs armor", true, "This is the kind of armor you wear on your legs", nil, {equipdoll_back="ui/equipdoll/legs_inv.png"})
-ActorInventory:defineInventory("ARMS", "Arms armor", true, "This is the kind of armor you wear on your arms", nil, {equipdoll_back="ui/equipdoll/arms_inv.png"})
+--New
+ActorInventory:defineInventory("LEGS", "On legs", true, "Greaves are worn on your legs", nil, {equipdoll_back="ui/equipdoll/legs_inv.png"})
+ActorInventory:defineInventory("ARMS", "Around arms", true, "Bracers or bracelets are worn on your arms", nil, {equipdoll_back="ui/equipdoll/arms_inv.png"})
 
 ActorInventory.equipdolls = {
 	default = { w=48, h=48, itemframe="ui/equipdoll/itemframe48.png", itemframe_sel="ui/equipdoll/itemframe-sel48.png", ix=3, iy=3, iw=42, ih=42, doll_x=116, doll_y=168+64, list={
 		MAIN_HAND = {{weight=1, x=48, y=120}},
 		OFF_HAND = {{weight=2, x=48, y=192}},
 		BODY = {{weight=3, x=48, y=264}},
-		QUIVER = {{weight=4, x=48, y=336}},
+		QUIVER = {{weight=16, x=48, y=48}},
+		LEGS = {{weight=4, x=48, y=336}},
 		RING = {{weight=5, x=48, y=408}, {weight=6, x=120, y=408, text="bottom"}},
 		LITE = {{weight=7, x=192, y=408}},
 		TOOL = {{weight=8, x=264, y=408, text="bottom"}},
 		BOOTS = {{weight=9, x=264, y=336}},
 		BELT = {{weight=10, x=264, y=264}},
 		GLOVES = {{weight=11, x=264, y=192}},
-		CLOAK = {{weight=12, x=264, y=120}},
+		CLOAK = {{weight=17, x=264, y=48}},
+		ARMS = {{weight=12, x=264, y=120}},
 		AMULET = {{weight=13, x=192, y=48, text="topright"}},
 		HELM = {{weight=14, x=120, y=48, text="topleft"}},
 		SHOULDER = {{weight=15, x=120, y=120, text="bottom"}},
-		LEGS = {{weight=16, x=48, y=48}},
-		ARMS = {{weight=17, x=264, y=48}},
+
+
 	}},
 }
 
