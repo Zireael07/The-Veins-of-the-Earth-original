@@ -17,17 +17,21 @@ newArcaneDivineSpell{
 	target = function(self, t)
 		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
 	end,
+	getSave = function(self, t)
+		return self:getSpellDC(t)
+	end,
 	action = function (self, t)
 		local tg = self:getTalentTarget(t)
 		local x, y, target = self:getTarget(tg)
 		if not x or not y or not target then return nil end
 
 		local duration = t.getDuration(self, t)
+		local save = t.getSave(self, t)
 
-		if target:willSave(15) then
+		if target:willSave(save) then
 			game.log("Target resists the spell!")
 			target:setEffect(target.EFF_SHAKEN, 1, {})
-		else target:setEffect(target.EFF_FEAR, duration, {}) end
+		else target:setEffect(target.EFF_FEAR, duration, {range = 2, source = self}) end
 
 		return true
 	end,

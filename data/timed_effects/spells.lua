@@ -1,6 +1,7 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
+local Map = require "engine.Map"
 local Stats = require "engine.interface.ActorStats"
 local Particles = require "engine.Particles"
 
