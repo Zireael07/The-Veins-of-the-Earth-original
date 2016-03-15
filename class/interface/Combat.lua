@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2013-2016
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -831,7 +831,7 @@ function _M:getHitChance(ac, attack)
 end
 
 --AC, Sebsebeleb & Zireael
-function _M:getAC(log, touch)
+function _M:getAC(log, touch, location)
 	--Add logging
 	local log_ac = ""
 
@@ -849,7 +849,17 @@ function _M:getAC(log, touch)
 
 	for i, source in pairs(ac_bonuses_table) do
 	--	local source = source
+
 		local value = self:attr("combat_"..source) or 0
+
+        --Location variant
+        if config.settings.veins.body_parts == true then
+            --only armor is actually locational
+            if source == "armor" or source == "magic_armor" and location then
+                value = self:attr("combat_"..source.."_"..location)
+            end
+        end
+
 		local string = source:gsub("_", " ")
 		ac_bonuses = (ac_bonuses or 0) + value
 --		game.log("Bonuses "..ac_bonuses)
