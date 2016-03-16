@@ -855,8 +855,8 @@ function _M:getAC(log, touch, location)
         --Location variant
         if config.settings.veins.body_parts == true then
             --only armor is actually locational
-            if source == "armor" or source == "magic_armor" and location then
-                value = self:attr("combat_"..source.."_"..location)
+            if (source == "armor" or source == "magic_armor") and location ~= nil then
+                value = self:attr("combat_"..source.."_"..location) or 0
             end
         end
 
