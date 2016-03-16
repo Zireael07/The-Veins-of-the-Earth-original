@@ -16,6 +16,7 @@ newEntity{
     languages = {"Common", "Undercommon"},
 
     body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER = 1 },
+    body_parts = { torso=1, arms=1, legs=1, head=1 },
     ai = "humanoid_level", ai_state = { talent_in=1, ai_move="move_astar", },
     combat = { dam= {1,6} },
     faction = "neutral",

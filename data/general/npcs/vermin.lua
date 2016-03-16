@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local vermin_desc = ""
 
@@ -7,6 +7,7 @@ newEntity{
 	define_as = "BASE_NPC_VERMIN",
 	type = "vermin",
 	body = { INVEN = 10 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	ai = "animal_level", ai_state = { talent_in=3, },
 	faction = "vermin",
 	blood_color = colors.GREY,
@@ -265,6 +266,7 @@ newEntity{
 newEntity{ base = "BASE_NPC_VERMIN",
 	define_as = "BASE_NPC_SCORPION",
 	image = "tiles/mobiles/scorpion.png",
+	body_parts = { torso=1, arms=1, legs=1, head=1, tail=1 },
 	display = 'w', color=colors.TAN,
 	desc = [[A giant scorpion.]],
 	specialist_desc = [[Monstrous scorpions can reach truly enormous sizes. Larger scorpions have more potent venom.]],

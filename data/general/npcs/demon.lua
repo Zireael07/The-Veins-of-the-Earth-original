@@ -1,5 +1,5 @@
 ﻿--Veins of the Earth
---Zireael 2014-2015
+--Zireael 2014-2016
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -7,22 +7,23 @@ local demon_desc = [[It doesn't need to eat, sleep or breathe.]]
 
 --telepathy
 newEntity{
-  define_as = "BASE_NPC_DEMON",
-  type = "demon",
-  image = "tiles/mobiles/demon.png",
-  display = 'u', color=colors.UMBER,
-  rarity = 15,
-  body = { INVEN = 10 },
-  ai = "human_level", ai_state = { talent_in=3, },
-  alignment = "Chaotic Evil",
-  resists = { [DamageType.ACID] = 10,
-              [DamageType.COLD] = 10,
-              [DamageType.FIRE] = 10,
-  },
-  resolvers.talents{[Talents.T_POISON_IMMUNITY]=1,
-    [Talents.T_ELECTRIC_IMMUNITY]=1,
-  },
-  resolvers.wounds()
+    define_as = "BASE_NPC_DEMON",
+    type = "demon",
+    image = "tiles/mobiles/demon.png",
+    display = 'u', color=colors.UMBER,
+    rarity = 15,
+    body = { INVEN = 10 },
+    body_parts = { torso=1, arms=1, legs=1, head=1 },
+    ai = "human_level", ai_state = { talent_in=3, },
+    alignment = "Chaotic Evil",
+    resists = { [DamageType.ACID] = 10,
+        [DamageType.COLD] = 10,
+        [DamageType.FIRE] = 10,
+    },
+    resolvers.talents{[Talents.T_POISON_IMMUNITY]=1,
+        [Talents.T_ELECTRIC_IMMUNITY]=1,
+    },
+    resolvers.wounds()
 }
 
 --Protective slime 1d8 acid
@@ -110,6 +111,7 @@ newEntity{ base = "BASE_NPC_DEMON",
 newEntity{ base = "BASE_NPC_DEMON",
 	define_as = "BASE_NPC_SUCCUBUS",
 	display = 'ū', color=colors.PURPLE,
+    body_parts = { torso=1, arms=1, legs=1, head=1, wing=1 },
     image = "tiles/new/succubus.png",
 	name = "succubus",
 	sex = "Female",

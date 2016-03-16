@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ newEntity{
 	define_as = "BASE_NPC_OUTSIDER_EVIL",
 	type = "outsider", subtype = "evil",
 	body = { INVEN = 10 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	ai = "human_level", ai_state = { talent_in=3, },
 	alignment = "Neutral Evil",
 	blood_color = colors.BLACK,

@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -14,6 +14,7 @@ newEntity{
 	image = "tiles/new/nymph.png",
 	display = 'f', color=colors.DARK_GREEN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	desc = [[A beautiful nymph.]],
 	specialist_desc = [[Nymphs can also call upon the creatures of nature to defend her, and can dimension door away should she need to escape.]],
 	uncommon_desc = [[Nymphs can be mercurial and dangerous, but they are generally well-disposed to those they sees as the allies of nature, such as elves and druids. Nymphs are themselves innately powerful druidic spellcasters.]],
@@ -67,6 +68,7 @@ newEntity{
 	image = "tiles/mobiles/satyr.png",
 	display = 'f', color=colors.LIGHT_BROWN,
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1, QUIVER=1 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	desc = [[A humanoid with hooves for feet.]],
 
 	ai = "humanoid_level", ai_state = { talent_in=3, },

@@ -1,11 +1,12 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local Talents = require("engine.interface.ActorTalents")
 
 newEntity{
 	define_as = "BASE_NPC_EARTH",
 	body = { INVEN = 10 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	type = "outsider", subtype = "earth",
 	ai = "human_level", ai_state = { talent_in=3, },
 	alignment = "Neutral",

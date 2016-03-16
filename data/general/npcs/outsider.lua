@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 --Outsiders (except janni) do not drop corpses
 
@@ -11,6 +11,7 @@ newEntity{
 	define_as = "BASE_NPC_OUTSIDER",
 	type = "outsider", subtype = "outsider",
 	body = { INVEN = 10 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	ai = "human_level", ai_state = { talent_in=3, },
 	resolvers.wounds()
 }
@@ -494,6 +495,7 @@ newEntity{ base = "BASE_NPC_OUTSIDER",
 	define_as = "BASE_NPC_MEPHIT",
 	subtype = "mephit",
 	image = "tiles/mobiles/mephit.png",
+	body_parts = { torso=1, arms=1, legs=1, head=1, wing=1 },
 	display = 'M', color=colors.WHITE,
 	desc = [[A small winged creature.]],
 

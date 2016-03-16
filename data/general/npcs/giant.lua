@@ -10,6 +10,7 @@ newEntity{
 	type = "giant",
 	display = "H",
 	body = { INVEN = 10, MAIN_HAND = 1, OFF_HAND = 1, BODY = 1, HELM = 1 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	ai = "humanoid_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6}, },
 	alignment = "Chaotic Evil",

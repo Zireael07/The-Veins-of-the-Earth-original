@@ -11,6 +11,7 @@ newEntity{
 	image = "tiles/new/ooze.png",
 	display = 'j', color=colors.WHITE,
 	body = { INVEN = 10 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	ai = "animal_level", ai_state = { talent_in=3, },
 	stats = { str=17, dex=1, con=22, int=1, wis=1, cha=1, luc=10 },
 	combat = { dam= {1,6} },

@@ -10,6 +10,7 @@ newEntity{
 	define_as = "BASE_NPC_FIRE",
 	type = "outsider", subtype = "fire",
 	ai = "human_level", ai_state = { talent_in=3, },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	combat = { dam= {1,6} },
 	blood_color = colors.ORANGE,
 	emote_anger = "*crackle*",

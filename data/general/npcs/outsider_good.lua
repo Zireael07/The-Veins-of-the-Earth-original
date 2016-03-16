@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 --Celestials do not drop corpses
 
@@ -13,6 +13,7 @@ newEntity{
     image = "tiles/mobiles/angel.png",
     display = 'A', color=colors.WHITE,
     body = { INVEN = 10 },
+    body_parts = { torso=1, arms=1, legs=1, head=1, wing=1 },
     desc = [[A winged humanoid.]],
     ai = "human_level", ai_state = { talent_in=3, },
     stats = { str=10, dex=10, con=10, int=10, wis=10, cha=10, luc=12 },

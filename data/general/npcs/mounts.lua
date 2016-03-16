@@ -27,6 +27,7 @@ newEntity{
 	type = "animal",
 	body = { INVEN = 10 },
 	ai = "animal_level", ai_state = { talent_in=3, },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	combat = { dam= {1,6} },
 	alignment = "Neutral",
 	emote_anger = "*snort*",

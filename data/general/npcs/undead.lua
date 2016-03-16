@@ -11,6 +11,7 @@ newEntity{
     define_as = "BASE_NPC_UNDEAD",
     type = "undead",
     ai = "animal_level", ai_state = { talent_in=3, },
+    body_parts = { torso=1, arms=1, legs=1, head=1 },
     blood_color = colors.GREY,
     emote_anger = "*groan*",
     resolvers.wounds()

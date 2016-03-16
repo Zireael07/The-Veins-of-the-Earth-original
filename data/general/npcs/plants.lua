@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 local Talents = require("engine.interface.ActorTalents")
 
@@ -9,6 +9,7 @@ newEntity{
 	define_as = "BASE_NPC_PLANT",
 	type = "plant",
 	body = { INVEN = 10 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	ai = "animal_level", ai_state = { talent_in=3, },
 	combat = { dam= {1,6} },
 	blood_color = colors.LIGHT_GREEN,

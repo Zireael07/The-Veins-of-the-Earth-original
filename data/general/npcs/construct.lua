@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 --Constructs do NOT leave corpses
 
@@ -15,6 +15,7 @@ newEntity{
 	image = "tiles/mobiles/golem.png",
 	display = 'C', color=colors.WHITE,
 	body = { INVEN = 10 },
+	body_parts = { torso=1, arms=1, legs=1, head=1 },
 	desc = [[A hand-crafted servile creature.]],
 
 	ai = "animal_level", ai_state = { talent_in=3, },
