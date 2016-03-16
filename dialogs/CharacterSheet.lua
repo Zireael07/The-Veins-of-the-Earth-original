@@ -285,25 +285,22 @@ function _M:drawGeneral()
 
     h = h + self.font_h -- Adds an empty row
     ac, log_ac = actor:getAC(true)
+
+    --Handle locational AC
+    if config.settings.veins.body_parts then
+        local locations = { "torso", "arms", "legs", "head" }
+        list = {}
+
+        for i, location in pairs(locations) do
+            ac = actor:getAC(true, false, location) or 10
+            list[#list+1] = {loc=location, ac=ac}
+        end
+
+        for i, t in ipairs(list) do
+            self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, ("%s AC : %d"):format(t.loc, t.ac), w, h, 255, 255, 255, true)) h = h + self.font_h
+        end
+    else
     self:mouseTooltip(self.TOOLTIP_AC, s:drawColorStringBlended(self.font, "AC : "..(ac or "Unknown").." ("..log_ac.." )", w, h, 255, 255, 255, true)) h = h + self.font_h
-
-
-    h = h + self.font_h -- Adds an empty row
-    h = h + self.font_h -- Adds an empty row
---    h = h + self.font_h -- Adds an empty row
---    h = h + self.font_h -- Adds an empty row
-
-    --display attacks in a smart way!
-    local weapon = (actor:getInven("MAIN_HAND") and actor:getInven("MAIN_HAND")[1]) or actor
-    if weapon and not weapon.ranged then
-        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Melee attack#LAST#: %d = %s"):format(actor:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
-    else
-        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(actor.combat_bab or "0").." + Str bonus: "..actor:getStrMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
-    end
-    if weapon and weapon.ranged then
-        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Ranged attack#LAST#: %d = %s"):format(actor:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
-    else
-        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(actor.combat_bab or "0").." + Dex bonus: "..actor:getDexMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
     end
 
     h = 0
@@ -343,7 +340,24 @@ function _M:drawGeneral()
 
     s:drawColorStringBlended(self.font, "Speed bonus: +"..(actor.movement_speed_bonus or "0"), w, h, 255, 255, 255, true) h = h + self.font_h
 
+    h = h + self.font_h -- Adds an empty row
+    h = h + self.font_h -- Adds an empty row
+--    h = h + self.font_h -- Adds an empty row
+--    h = h + self.font_h -- Adds an empty row
 
+    --display attacks in a smart way!
+    local weapon = (actor:getInven("MAIN_HAND") and actor:getInven("MAIN_HAND")[1]) or actor
+    if weapon and not weapon.ranged then
+        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Melee attack#LAST#: %d = %s"):format(actor:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
+    else
+        self:mouseTooltip(self.TOOLTIP_ATTACK_MELEE, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Melee attack#LAST#: BAB "..(actor.combat_bab or "0").." + Str bonus: "..actor:getStrMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
+    end
+    if weapon and weapon.ranged then
+        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, ("#SANDY_BROWN#Ranged attack#LAST#: %d = %s"):format(actor:combatAttack(weapon)), w, h, 255, 255, 255, true)) h = h + self.font_h
+    else
+        self:mouseTooltip(self.TOOLTIP_ATTACK_RANGED, s:drawColorStringBlended(self.font, "#SANDY_BROWN#Ranged attack#LAST#: BAB: "..(actor.combat_bab or "0").." + Dex bonus: "..actor:getDexMod(), w, h, 255, 255, 255, true)) h = h + self.font_h
+    end
+    
     h = 0
     w = self.w*0.5
     --start on third column
