@@ -6,7 +6,11 @@ local loadIfNot = function(f)
 	load(f, entity_mod)
 end
 
-loadIfNot("/data/general/objects/armor.lua")
+if config.settings.veins.body_parts then
+	load("/data/general/objects/variant/body_parts_armor.lua")
+else
+	load("/data/general/objects/armor.lua")
+end
 loadIfNot("/data/general/objects/shields.lua")
 
 loadIfNot("/data/general/objects/weapons.lua")
@@ -20,6 +24,9 @@ loadIfNot("/data/general/objects/consumables.lua")
 loadIfNot("/data/general/objects/containers.lua")
 
 loadIfNot("/data/general/objects/wondrous_items.lua")
+if not config.settings.veins.body_parts then
+	load("/data/general/objects/more_wondrous.lua")
+end
 loadIfNot("/data/general/objects/magic_items.lua")
 loadIfNot("/data/general/objects/poisons.lua")
 
