@@ -106,12 +106,15 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     },
 }
 
-local function newArmor(base, name, rarity, location, slot, ac, display, image)
+
+--Actual item generation starts here
+local function newArmor(base, name, rarity, location, encumber, slot, ac, display, image)
     newEntity{ base = base,
         name = name,
         display = display,
         image = image,
         rarity = rarity,
+        encumber = encumber,
         slot = slot,
         wielder = {
             ["combat_armor_"..location] = ac,
@@ -119,27 +122,27 @@ local function newArmor(base, name, rarity, location, slot, ac, display, image)
     }
 end
 
-newArmor("BASE_LEATHER_ARMOR", "leather armor", 5, "torso", "BODY", 2)
-newArmor("BASE_CHAIN_MAIL", "chain mail", 12, "torso", "BODY", 5)
-newArmor("BASE_PLATE_ARMOR", "plate armor", 18, "torso", "BODY", 7)
+newArmor("BASE_LEATHER_ARMOR", "leather armor", 5, "torso", 10, "BODY", 2)
+newArmor("BASE_CHAIN_MAIL", "chain mail", 12, "torso", 40, "BODY", 5)
+newArmor("BASE_PLATE_ARMOR", "plate armor", 18, "torso", 50, "BODY", 7)
 
-newArmor("BASE_LEATHER_ARMOR", "leather bracers", 5, "arms", "ARMS", 2,
+newArmor("BASE_LEATHER_ARMOR", "leather bracers", 5, "arms", 2, "ARMS", 2,
 "Ξ", "tiles/new/bracers.png")
-newArmor("BASE_CHAIN_MAIL", "chain bracers", 12, "arms", "ARMS", 5,
+newArmor("BASE_CHAIN_MAIL", "chain bracers", 12, "arms", 8, "ARMS", 5,
 "Ξ", "tiles/new/bracers.png")
-newArmor("BASE_PLATE_ARMOR", "plate bracers", 18, "arms", "ARMS", 7,
+newArmor("BASE_PLATE_ARMOR", "plate bracers", 18, "arms", 10, "ARMS", 7,
 "Ξ", "tiles/new/bracers.png")
 
-newArmor("BASE_LEATHER_ARMOR", "leather greaves", 5, "legs", "LEGS", 2,
+newArmor("BASE_LEATHER_ARMOR", "leather greaves", 5, "legs", 2, "LEGS", 2,
 "Д")
-newArmor("BASE_CHAIN_MAIL", "chain greaves", 12, "legs", "LEGS", 5,
+newArmor("BASE_CHAIN_MAIL", "chain greaves", 12, "legs", 8, "LEGS", 5,
 "Д")
-newArmor("BASE_PLATE_ARMOR", "plate greaves", 18, "legs", "LEGS", 7,
+newArmor("BASE_PLATE_ARMOR", "plate greaves", 18, "legs", 10, "LEGS", 7,
 "Д")
 
-newArmor("BASE_LEATHER_ARMOR", "leather helmet", 5, "head", "HELM", 2,
+newArmor("BASE_LEATHER_ARMOR", "leather helmet", 5, "head", 1, "HELM", 2,
 "₵", "tiles/object/helmet_metal.png")
-newArmor("BASE_CHAIN_MAIL", "chain helmet", 12, "head", "HELM", 5,
+newArmor("BASE_CHAIN_MAIL", "chain helmet", 12, "head", 4, "HELM", 5,
 "₵", "tiles/object/helmet_metal.png")
-newArmor("BASE_PLATE_ARMOR", "plate helmet", 18, "head", "HELM", 7,
+newArmor("BASE_PLATE_ARMOR", "plate helmet", 18, "head", 8, "HELM", 7,
 "₵", "tiles/object/helmet_metal.png")
