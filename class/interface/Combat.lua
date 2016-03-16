@@ -191,6 +191,10 @@ function _M:attackRoll(target, weapon, atkmod, strmod, attacklog, damagelog, no_
    local ac = target:getAC()
    if touch then ac = target:getAC(false, true) end
 
+   if config.settings.veins.body_parts then
+       ac = target:getLocationAC()
+   end
+
    -- Hit check
     if self:isConcealed(target) and rng.chance(self:isConcealed(target)) then
         self:logCombat(target, ("#Source# misses the target wildly!"))--:format(self:getLogName():capitalize()))
@@ -987,4 +991,27 @@ function _M:willSave(dc)
 	end
 
 	return roll ~= 1 and (roll == 20 or roll + save > dc)
+end
+
+--Body parts code
+function _M:randomBodyPart()
+    local roll = rng.dice(1,20)
+
+    if roll >= 19 then return "head"
+    elseif roll >= 16 then return "wing"
+    elseif roll >= 12 then return "torso"
+    elseif roll >= 8 then return "legs"
+    elseif roll >= 5 then return "tail"
+    else return "arms"
+    end
+end
+
+function _M:getLocationAC()
+    local location
+    location = self:randomBodyPart()
+
+    if location == "wing" and not self.body_parts[wing] then location = self:randomBodyPart() end
+    if location == "tail" and not self.body_parts[tail] then location = self:randomBodyPart() end
+
+    return self:getAC(false, false, location)
 end
