@@ -564,14 +564,14 @@ function _M:generateListGame()
         end,
     }]]
 
---[[    local zone = Textzone.new{
+    local zone = Textzone.new{
         width = self.c_desc.w,
         height = self.c_desc.h,
         text = string.toTString [[Use body parts hitpoints instead of catch-all hit points pool.
 
 • #YELLOW#True#WHITE#: body parts system used.
 • #YELLOW#False#WHITE#: standard d20, abstract hitpoints total]]
---[[    }
+    }
     list[#list+1] = {
         zone = zone,
         name = string.toTString"#GOLD##{bold}#Body parts variant#WHITE##{normal}#",
@@ -582,7 +582,7 @@ function _M:generateListGame()
             game:saveSettings("veins.body_parts", ("veins.body_parts= %s\n"):format(tostring(config.settings.veins.body_parts)))
             self.c_list:drawItem(item)
         end,
-    }]]
+    }
 
     local zone = Textzone.new{
 	        width = self.c_desc.w,
