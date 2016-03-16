@@ -40,7 +40,6 @@ newEntity{ base = "BASE_LIGHT_ARMOR",
     name = "leather armor", short_name = "leather",
     image = "tiles/object/armor_leather.png",
     level_range = {1, 10},
-    rarity = 5,
 --    cost = 10,
     cost = resolvers.value{silver=150},
     desc = "A set of leather armor.\n\n Light armor.",
@@ -69,7 +68,6 @@ newEntity{ base = "BASE_MEDIUM_ARMOR",
     name = "chain mail", short_name = "mail",
     image = "tiles/object/chain_armor.png",
     level_range = {1, 10},
-    rarity = 12,
 --    cost = 150,
     cost = resolvers.value{platinum=2},
     wielder = {
@@ -98,7 +96,6 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     name = "plate armor", short_name = "plate",
     image = "tiles/object/plate_armor.png",
     level_range = {1, 10},
-    rarity = 18,
 --    cost = 600,
     cost = resolvers.value{silver=6500},
     wielder = {
@@ -109,9 +106,12 @@ newEntity{ base = "BASE_HEAVY_ARMOR",
     },
 }
 
-local function newArmor(base, name, location, slot, ac)
+local function newArmor(base, name, rarity, location, slot, ac, display, image)
     newEntity{ base = base,
         name = name,
+        display = display,
+        image = image,
+        rarity = rarity,
         slot = slot,
         wielder = {
             ["combat_armor_"..location] = ac,
@@ -119,18 +119,27 @@ local function newArmor(base, name, location, slot, ac)
     }
 end
 
-newArmor("BASE_LEATHER_ARMOR", "leather armor", "torso", "BODY", 2)
-newArmor("BASE_CHAIN_MAIL", "chain mail", "torso", "BODY", 5)
-newArmor("BASE_PLATE_ARMOR", "plate armor", "torso", "BODY", 7)
+newArmor("BASE_LEATHER_ARMOR", "leather armor", 5, "torso", "BODY", 2)
+newArmor("BASE_CHAIN_MAIL", "chain mail", 12, "torso", "BODY", 5)
+newArmor("BASE_PLATE_ARMOR", "plate armor", 18, "torso", "BODY", 7)
 
-newArmor("BASE_LEATHER_ARMOR", "leather bracers", "arms", "ARMS", 2)
-newArmor("BASE_CHAIN_MAIL", "chain bracers", "arms", "ARMS", 5)
-newArmor("BASE_PLATE_ARMOR", "plate bracers", "arms", "ARMS", 7)
+newArmor("BASE_LEATHER_ARMOR", "leather bracers", 5, "arms", "ARMS", 2,
+"Ξ", "tiles/new/bracers.png")
+newArmor("BASE_CHAIN_MAIL", "chain bracers", 12, "arms", "ARMS", 5,
+"Ξ", "tiles/new/bracers.png")
+newArmor("BASE_PLATE_ARMOR", "plate bracers", 18, "arms", "ARMS", 7,
+"Ξ", "tiles/new/bracers.png")
 
-newArmor("BASE_LEATHER_ARMOR", "leather greaves", "legs", "LEGS", 2)
-newArmor("BASE_CHAIN_MAIL", "chain greaves", "legs", "LEGS", 5)
-newArmor("BASE_PLATE_ARMOR", "plate greaves", "legs", "LEGS", 7)
+newArmor("BASE_LEATHER_ARMOR", "leather greaves", 5, "legs", "LEGS", 2,
+"Д")
+newArmor("BASE_CHAIN_MAIL", "chain greaves", 12, "legs", "LEGS", 5,
+"Д")
+newArmor("BASE_PLATE_ARMOR", "plate greaves", 18, "legs", "LEGS", 7,
+"Д")
 
-newArmor("BASE_LEATHER_ARMOR", "leather helmet", "head", "HELM", 2)
-newArmor("BASE_CHAIN_MAIL", "chain helmet", "head", "HELM", 5)
-newArmor("BASE_PLATE_ARMOR", "plate helmet", "head", "HELM", 7)
+newArmor("BASE_LEATHER_ARMOR", "leather helmet", 5, "head", "HELM", 2,
+"₵", "tiles/object/helmet_metal.png")
+newArmor("BASE_CHAIN_MAIL", "chain helmet", 12, "head", "HELM", 5,
+"₵", "tiles/object/helmet_metal.png")
+newArmor("BASE_PLATE_ARMOR", "plate helmet", 18, "head", "HELM", 7,
+"₵", "tiles/object/helmet_metal.png")
