@@ -86,6 +86,9 @@ function _M:init(t, no_default)
 	--for various stuff which isn't above
 	self.combat_untyped = 0
 
+	--Body parts
+	self.body_parts = self.body_parts or {}
+
 	--Define speed
 	self.movement_speed = 1
 	self.combat_attackspeed = 1
