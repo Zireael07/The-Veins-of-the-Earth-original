@@ -187,7 +187,7 @@ function _M:display()
     h = h + self.font_h
 
     --inform the player it's a worldmap
-    if game.zone.worldmap then
+--[[    if game.zone.worldmap then
         self:makeTexture("World map", x, h, 240, 240, 170)
     else
         self:makeTexture(("%s"):format(game.zone.name), x, h, 240, 240, 170)
@@ -196,7 +196,7 @@ function _M:display()
 
             self:makeTexture(("dungeon lvl: %d"):format(math.floor(game:getDunDepth())), x, h, 240, 240, 170)
         end
-    end
+    end]]
 
 
     h = h + self.font_h
