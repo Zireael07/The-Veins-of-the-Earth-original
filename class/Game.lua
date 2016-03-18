@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2013-2016
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -58,6 +58,7 @@ local Shader = require "engine.Shader" --required for fbo + prettiness
 local EntityTracker = require "mod.dialogs.debug.EntityTracker"
 local MapMenu = require "mod.dialogs.MapMenu"
 local Dialog = require "engine.ui.Dialog"
+local FontPackage = require "engine.FontPackage"
 
 local GameState = require "mod.class.GameState"
 
@@ -142,6 +143,8 @@ function _M:run()
 
 	if self.level then self:setupDisplayMode() end
 
+	self.zone_font = FontPackage:get("zone")
+
 	self.inited = true
 end
 
@@ -176,8 +179,8 @@ function _M:newGame()
 
 	local birth = Birther.new(nil, self.player, {"base", 'sex', 'race', 'class', 'subclass', 'background', 'alignment', 'deity'}, function()
 
-
-   	    game:changeLevel(1, "small tunnels")
+		--so that the resolvers have something to work with
+		game:changeLevel(1, "small tunnels")
         print("[PLAYER BIRTH] resolve...")
         game.player:resolve()
         game.player:resolve(nil, true)
@@ -196,7 +199,9 @@ function _M:newGame()
 		--Tutorial popup
         Dialog:yesnoPopup("Tutorial", "Go through the tutorial", function(ok)
 			if ok then game:changeLevel(1, "tutorial")
-			else end
+			else
+			--	game:changeLevel(1, "small tunnels")
+			end
 		end, "Yes", "No")
 
 
@@ -640,6 +645,7 @@ function _M:changeLevel(lev, zone)
 			self.level.map:addPathString(e:getPathString())
 		end
 	end
+	self.zone_name_s = nil
 
 	--Level feeling
 	local player = self.player
@@ -731,6 +737,31 @@ function _M:changeLevel(lev, zone)
 	end
 
 end
+
+--- Update the zone name, if needed (from ToME4)
+function _M:updateZoneName()
+	local name
+	if self.zone.display_name then
+		name = self.zone.display_name()
+	else
+		local lev = self.level.level
+		if self.level.data.reverse_level_display then lev = 1 + self.level.data.max_level - lev end
+		if self.zone.max_level == 1 then
+			name = self.zone.name
+		else
+			name = ("%s (%d)"):format(self.zone.name, lev)
+		end
+	end
+	if self.zone_name_s and self.old_zone_name == name then return end
+
+	local s = core.display.drawStringBlendedNewSurface(self.zone_font, name, unpack(colors.simple(colors.GOLD)))
+	self.zone_name_w, self.zone_name_h = s:getSize()
+	self.zone_name_s, self.zone_name_tw, self.zone_name_th = s:glTexture()
+	self.old_zone_name = name
+	print("Updating zone name", name)
+end
+
+
 
 function _M:getPlayer()
 	return self.player
@@ -994,7 +1025,7 @@ function _M:displayMap(nb_keyframes)
 		-- Handle ambient sounds
 	--	if self.level.data.ambient_bg_sounds then self.state:playAmbientSounds(self.level, self.level.data.ambient_bg_sounds, nb_keyframes) end
 
-	--	if not self.zone_name_s then self:updateZoneName() end
+		if not self.zone_name_s then self:updateZoneName() end
 
 		-- Display the targetting system if active
 		self.target:display()
