@@ -30,8 +30,8 @@ newTalent{
     tactical = { ATTACK = 1 },
     requires_target = true,
     on_pre_use = function (self, t, silent)
-        local weapon = self:getInven("MAIN_HAND")[1]
-        local ammo = self:getInven("QUIVER")[1]
+        local weapon = self:getInven("MAIN_HAND") and self:getInven("MAIN_HAND")[1]
+        local ammo = self:getInven("QUIVER") and self:getInven("QUIVER")[1]
 
         if not (weapon and weapon.combat and weapon.combat.range) then
             if not silent then game.log(("You need a ranged weapon to shoot")) end return nil end
