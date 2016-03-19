@@ -52,7 +52,7 @@ newEntity{
     unided_name = "insignia",
     name = "insignia", short_name = "insignia",
     desc = [[An oval flat disk of slate gray stone with markings.]],
-    --addons = "/data/general/objects/properties/"
+    egos = "/data/general/objects/properties/charged.lua", egos_chance = {prefix=0, suffix=80},
 }
 
 
