@@ -221,6 +221,50 @@ newTalent{
 	end,
 }
 
+newTalent{
+    name = "Climb", image = "talents/climb.png",
+    type = {"skill/skill",1},
+    no_auto_hotkey = true,
+	mode = "activated",
+	points = 1,
+	cooldown = 0,
+	range = 1,
+	target = function(self, t)
+		return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+	end,
+    action = function(self, t)
+        local tg = self:getTalentTarget(t)
+		local x, y = self:getTarget(tg)
+		if not x or not y then return nil end
+
+        local feat = game.level.map(x, y, Map.TERRAIN)
+        --Case 1: climbing a dungeon wall to scale the ceiling
+        --Case 2: grid with a climb DC set
+
+        if feat.climb_dc then
+            local dc = feat.climb_dc
+            if self:skillCheck("climb", dc) then
+                -- Target the desired location
+        		local tg = {type="hit", nolock=true, pass_terrain=true, nowarning=true, range=self:getTalentRange(t)+1}
+        		local exit_x, exit_y = self:getTarget(tg)
+        		if not exit_x or not exit_y then return nil end
+        		local _ _, exit_x, exit_y = self:canProject(tg, exit_x, exit_y)
+
+                self:teleportRandom(exit_x, exit_y, 0)
+            else
+                game.log("You slip and fall.")
+            end
+        else
+            game.log("You can't climb that!")
+        end
+        return true
+    end,
+    info = function(self, t)
+		return "Climb walls and structures!"
+	end,
+}
+
+
 --Social skills
 newTalent{
     name = "Intimidate", image = "talents/intimidate.png",
