@@ -87,6 +87,7 @@ newEntity{
     block_sight = true,
     air_level = -20,
     dig = "FLOOR",
+    climb_dc = 10,
 }
 
 newEntity{
@@ -108,6 +109,7 @@ newEntity{
     define_as = "WALL_CITY",
     image = "tiles/UT/wall_stone.png",
     display = '#', color=colors.BLACK, back_color=colors.DARK_GREY,
+    climb_dc = 20, --should be 30 according to PF
 }
 
 --Doors
