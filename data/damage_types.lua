@@ -90,7 +90,7 @@ end)
 newDamageType{
 	name = "physical", type = "PHYSICAL", text_color = "#WHITE#",
 	projector = function(src, x, y, type, dam)
-		local target = game.level.map(x, y, Map.ACTOR) or src
+		local target = game.level.map(x, y, Map.ACTOR) --or src
 		if target then
 			local damage = dam --or dam.dam
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -104,10 +104,11 @@ newDamageType{
 newDamageType{
 	name = "acid", type = "ACID", text_color = "#GREEN#",
 	projector = function(src, x, y, type, dam)
-		local target = game.level.map(x, y, Map.ACTOR) or src
+		local target = game.level.map(x, y, Map.ACTOR) --or src
 		if target then
 			local damage = dam.dam or dam
 			if target:reflexSave(dam.save_dc or 10) then
+				game.logSeen(target, "The target succeded on the saving throw.")
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -120,7 +121,7 @@ newDamageType{
 newDamageType{
 	name = "force", type = "FORCE", text_color = "#DARK_KHAKI#",
 	projector = function(src, x, y, type, dam)
-		local target = game.level.map(x, y, Map.ACTOR) or src
+		local target = game.level.map(x, y, Map.ACTOR) --or src
 		if target then
 			local damage = dam.dam or dam
 			if target:fortitudeSave(dam.save_dc or 10) then
@@ -137,10 +138,11 @@ newDamageType{
 newDamageType{
 	name = "fire", type = "FIRE", text_color = "#LIGHT_RED#",
 	projector = function(src, x, y, type, dam)
-		local target = game.level.map(x, y, Map.ACTOR) or src
+		local target = game.level.map(x, y, Map.ACTOR) --or src
 		if target then
 			local damage = dam.dam or dam
 			if target:reflexSave(dam.save_dc or 10) then
+				game.logSeen(target, "The target succeded on the saving throw.")
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -157,6 +159,7 @@ newDamageType{
 		if target then
 			local damage = dam
 			if target:fortitudeSave(10) then
+				game.logSeen(target, "The target succeded on the saving throw.")
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -173,6 +176,7 @@ newDamageType{
 		if target then
 			local damage = dam
 			if target:reflexSave(20) then
+				game.logSeen(target, "The target succeded on the saving throw.")
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -187,10 +191,11 @@ newDamageType{
 newDamageType{
 	name = "cold", type = "COLD", text_color = "#LIGHT_BLUE#",
 	projector = function(src, x, y, type, dam)
-		local target = game.level.map(x, y, Map.ACTOR) or src
+		local target = game.level.map(x, y, Map.ACTOR) --or src
 		if target then
 			local damage = dam.dam or dam
 			if target:fortitudeSave(dam.save_dc or 10) then
+				game.logSeen(target, "The target succeded on the saving throw.")
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -203,10 +208,11 @@ newDamageType{
 newDamageType{
 	name = "electricity", type = "ELECTRIC", text_color = "#GOLD#",
 	projector = function(src, x, y, type, dam)
-		local target = game.level.map(x, y, Map.ACTOR) or src
+		local target = game.level.map(x, y, Map.ACTOR) --or src
 		if target then
 			local damage = dam.dam or dam
 			if target:reflexSave(dam.save_dc or 10) then
+				game.logSeen(target, "The target succeded on the saving throw.")
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
@@ -219,10 +225,11 @@ newDamageType{
 newDamageType{
 	name = "sonic", type = "SONIC", text_color = "#TEAL#",
 	projector = function(src, x, y, type, dam)
-		local target = game.level.map(x, y, Map.ACTOR) or src
+		local target = game.level.map(x, y, Map.ACTOR) --or src
 		if target then
 			local damage = dam.dam or dam
 			if target:fortitudeSave(dam.save_dc or 10) then
+				game.logSeen(target, "The target succeded on the saving throw.")
 				damage = math.floor(damage / 2)
 			end
 			local realdam = DamageType.defaultProjector(src, x, y, type, damage)
