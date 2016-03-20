@@ -98,6 +98,8 @@ function _M:tooltip(x, y)
 	if self:check("block_move", x, y, game.player) then tstr:add({"color", "SANDY_BROWN"}, "Blocks movement", {"color", "LAST"}, true) end
 
 	if self:attr("dig") then tstr:add({"color", "SANDY_BROWN"}, "Diggable", {"color", "LAST"}, true) end
+
+--	tstr:add({"color", "YELLOW"}, ("Climb: %d"):format(self.climb_dc or 0), {"color", "LAST"}, true)
 --	if game.level.map.attrs(x, y, "no_teleport") then tstr:add({"color", "VIOLET"}, "Cannot teleport to this place", {"color", "LAST"}, true) end
 
 
