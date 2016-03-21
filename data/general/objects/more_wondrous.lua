@@ -26,7 +26,7 @@ newEntity{
     define_as = "BASE_GREAVES",
     slot = "LEGS",
     type = "legs", subtype = "legs",
---    image = "tiles/object/belt_jewel.png",
+    image = "tiles/new/greaves.png",
     display = "Д", color=colors.RED,
     encumber = 1,
     rarity = 15,

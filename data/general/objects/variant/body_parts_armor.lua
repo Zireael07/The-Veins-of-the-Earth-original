@@ -134,11 +134,11 @@ newArmor("BASE_PLATE_ARMOR", "plate bracers", 18, "arms", 10, "ARMS", 7,
 "Ξ", "tiles/new/bracers.png")
 
 newArmor("BASE_LEATHER_ARMOR", "leather greaves", 5, "legs", 2, "LEGS", 2,
-"Д")
+"Д", "tiles/new/greaves.png")
 newArmor("BASE_CHAIN_MAIL", "chain greaves", 12, "legs", 8, "LEGS", 5,
-"Д")
+"Д", "tiles/new/greaves.png")
 newArmor("BASE_PLATE_ARMOR", "plate greaves", 18, "legs", 10, "LEGS", 7,
-"Д")
+"Д", "tiles/new/greaves.png")
 
 newArmor("BASE_LEATHER_ARMOR", "leather helmet", 5, "head", 1, "HELM", 2,
 "₵", "tiles/object/helmet_metal.png")
