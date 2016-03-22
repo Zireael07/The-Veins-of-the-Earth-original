@@ -37,6 +37,7 @@ newEntity{
     name = "signet ring", short_name = "ring",
     unided_name = "ring",
     desc = [[A ring with a jewel and a mark of a noble.]],
+    egos = "/data/general/objects/properties/wondrous_items.lua", egos_chance = { prefix=0, suffix=80},
     --addons = "/data/general/objects/properties/"
 }
 
