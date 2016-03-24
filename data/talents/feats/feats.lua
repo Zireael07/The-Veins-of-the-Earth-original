@@ -114,12 +114,12 @@ newFeat{
         stat = { dex = 13 }
     },
 	mode = "passive",
-	info = [[This feat increases your AC by +4.]],
+	info = [[This feat increases your AC by +2.]],
     on_learn = function(self, t)
-        self.combat_dodge = (self.combat_dodge or 0) + 4
+        self.combat_dodge = (self.combat_dodge or 0) + 2
     end,
     on_unlearn = function(self, t)
-    	self.combat_dodge = self.combat_dodge - 4
+    	self.combat_dodge = self.combat_dodge - 2
     end
 }
 
