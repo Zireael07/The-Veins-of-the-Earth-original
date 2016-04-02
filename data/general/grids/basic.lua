@@ -267,7 +267,7 @@ newEntity{ base = "DOOR",
 		if not self.opened then
 			--block if not player
 			if not who or not who.player or not act then return true end
-			local check = game.player:skillCheck("openlock", 15)
+			local check = game.player:skillCheck("open_lock", 15)
 			if check then
 				game.log("You open the door!")
 			--[[	self.add_mos = {{image="tiles/terrain/chest_open.png", display_h=1, display_w=1, display_y=0, display_x=0}}
@@ -613,6 +613,28 @@ newEntity{
 					--TURN CHEST INTO FLOOR
 					game.zone:addEntity(game.level, g, "terrain", x, y)
 				end
+			end
+			return true
+		end
+
+		return false
+	end,
+}
+
+newEntity{ base = "CHEST",
+	define_as = "CHEST_LOCKED",
+	block_move = function(self, x, y, who, act, couldpass)
+		-- Open chest
+		if not self.opened then
+			--block if not player
+			if not who or not who.player or not act then return true end
+			if who:skillCheck("open_lock", 15) then
+				game.log("You open the chest!")
+				self.opened = true
+				o = game.zone:makeEntity(game.level, "object", {ego_chance=1000}, nil, true)
+				game.zone:addEntity(game.level, o, "object", x, y)
+			else
+				game.log("The chest is still locked!")
 			end
 			return true
 		end
