@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Zireael 2013-2015
+-- Zireael 2013-2016
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
