@@ -48,13 +48,13 @@ newEntity{
 
 newEntity{
 	define_as = "FLOOR",
-	name = "floor", image = "tiles/terrain/floor.png",
+	name = "floor", image = "tiles/new/floor_cave.png",
 	display = ' ', color_r=255, color_g=255, color_b=255, back_color={r=71, g=122, b=136},
 }
 
 newEntity{
 	define_as = "WALL",
-	name = "wall", image = "tiles/terrain/wall.png",
+	name = "wall", image = "tiles/UT/wall_cave.png",
 	display = '#', color_r=0, color_g=0, color_b=0, back_color={r=30, g=30, b=60},
 	always_remember = true,
 	does_block_move = true,
