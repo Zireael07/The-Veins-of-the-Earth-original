@@ -73,8 +73,11 @@ function _M:getLoadTips()
 end
 
 --- Asks the zone to generate a level of level "lev"
+-- @param game which `Game`?
 -- @param lev the level (from 1 to zone.max_level)
--- @return a Level object
+-- @param old_lev where are we leaving
+-- @param no_close pass to `leaveLevel`
+-- @return a `Level` object
 function _M:getLevel(game, lev, old_lev, no_close)
 	self:leaveLevel(no_close, lev, old_lev)
 
@@ -149,7 +152,7 @@ function _M:getLevel(game, lev, old_lev, no_close)
 		popup:done()
 	end
 
-	-- In any cases, make one if none was found
+	-- In any case, make one if none was found
 	if not level then
 		forceprint("Creating level", self.short_name, lev)
 		local popup = Dialog:simpleWaiterTip("Generating level", "Please wait while generating the level... ", self:getLoadTips(), nil, 10000)
@@ -453,7 +456,8 @@ end
 -- @param filter a filter table
 -- @param force_level if not nil forces the current level for resolvers to this one
 -- @param prob_filter if true a new probability list based on this filter will be generated, ensuring to find objects better but at a slightly slower cost (maybe)
--- @return the fully resolved entity, ready to be used on a level. Or nil if a filter was given an nothing found
+-- @return[1] nil if a filter was given an nothing found
+-- @return[2] the fully resolved entity, ready to be used on a level
 function _M:makeEntity(level, type, filter, force_level, prob_filter)
 	resolvers.current_level = self.base_level + level.level - 1
 	if force_level then resolvers.current_level = force_level end
