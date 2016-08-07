@@ -20,7 +20,7 @@ short_name = "veins"
 author = { "Zireael", "x" }
 homepage = "http://veins-of-the-earth.wikidot.com/"
 version = {0,35,0}
-engine = {1,4,5,"te4"}
+engine = {1,4,8,"te4"}
 description = [[
 #SANDY_BROWN# BETA 12.5#LAST#
 In DarkGod's words, #GOLD#"a fantasy d20-themed dungeon crawler"#LAST#.
