@@ -612,14 +612,10 @@ function _M:changeLevel(lev, zone)
 				afternicer = self.state:startEvents()
 			end
 		end
-	--[[self.zone:getLevel(self, lev, old_lev)
-	--mark zone as visited
-	self.visited_zones[self.zone.short_name] = true
-	world:seenZone(self.zone.short_name)]]
 
 
 	--Actually get the events to work
-	--if afternicer then afternicer() end
+	if afternicer then afternicer() end
 
 	--Anti stairscum
 	if self.level.last_turn and self.turn < self.level.last_turn + 10 then
