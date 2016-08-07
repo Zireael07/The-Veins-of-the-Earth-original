@@ -1,5 +1,23 @@
 CHANGELOG
 
+* bug fix - item getting equipped in weird slots
+* bug fix - display gameplay tab when starting game; add confirmation for settings
+* bug fix - errors when cause fear spell works on an enemy
+* bug fix - no more keeping old zone name displayed for 1 turn after changing
+* bug fix - no more superfluous saving throws in log with many spells
+
+* update to T-Engine 1.4.8
+* the game now counts level generation attempts and aborts after too many (default is 50)
+* the game now has a win condition
+* new zone: Vatic Wastes
+* new tiles: ring, signet ring, house insignia, greaves, cave floor, cave wall
+* new items: signet ring, house insignia, gloves, greaves
+* new item slots: bracers, legs; bracers are now won in the bracers slots
+* Iron Will etc. now scale with character level; restore Toughness as a separate feat; fold Dodge into Mobility
+* implement climbing, opening locks on chests and doors
+* NPCs in noble compound now have a correct faction
+* adjust many rarities
+
 BETA 12 - 07/03/2016
 
 * bug fix - potions/wands/scrolls without effects now never happen
