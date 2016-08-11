@@ -1,5 +1,7 @@
 newTalentType{ type="special/special", name = "special", description = "Special" }
 
+--Player-only stuff
+
 newTalent{
 	name = "Show Spellbook", image = "talents/spellbook.png",
 	type = {"special/special",1},
@@ -16,6 +18,32 @@ newTalent{
 	info = function(self, t )
 		return "Shows your spellbook. Use it to prepare your spells and then rest to memorize them."
 	end,
+}
+
+newTalent{
+    name = "Interact", image = "talents/interact.png",
+    type = {"special/special",1},
+    mode = "activated",
+    points = 1,
+    cooldown = 0,
+    range = 1,
+    target = function(self, t)
+        return {type="hit", range=self:getTalentRange(t), selffire=false, talent=t}
+    end,
+    no_npc_use = true,
+    action = function(self, t)
+        local tg = self:getTalentTarget(t)
+        local x, y = self:getTarget(tg)
+        if not x or not y then return nil end
+
+        local feat = game.level.map(x, y, Map.TERRAIN)
+
+        --call a grid's function
+        game.log("Interacting with ".. feat.name);
+    end,
+    info = function(self, t)
+        return "Allows you to interact with certain features of your environment."
+    end,
 }
 
 --Combat-related stuff

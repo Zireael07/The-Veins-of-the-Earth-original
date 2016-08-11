@@ -142,7 +142,8 @@ newBirthDescriptor{
 		[ActorTalents.T_ATTACK]=1,
 		[ActorTalents.T_SKILLS]=1,
 		--basic talents
-    	[ActorTalents.T_SHOOT]=1,
+    	[ActorTalents.T_INTERACT]=1,
+      [ActorTalents.T_SHOOT]=1,
     	[ActorTalents.T_PRAYER]=1,
     	[ActorTalents.T_POLEARM]=1,
     	[ActorTalents.T_STEALTH]=1,
