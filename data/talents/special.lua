@@ -39,7 +39,12 @@ newTalent{
         local feat = game.level.map(x, y, Map.TERRAIN)
 
         --call a grid's function
-        game.log("Interacting with ".. feat.name);
+        if feat.interact then
+            if type(feat.interact) == "function" then 
+                game.log("Interacting with ".. feat.name)
+                feat.interact(feat, x, y, self)
+            end
+        end
     end,
     info = function(self, t)
         return "Allows you to interact with certain features of your environment."

@@ -164,6 +164,7 @@ newEntity{ base = "BASE_FRUIT",
 }
 
 newEntity{ base = "BASE_FRUIT",
+    define_as = "APPLE",
     name = "apple",
     color = colors.DARK_GREEN,
 }

@@ -229,6 +229,11 @@ newEntity{
 	image = "tiles/new/dungeon tree.png",
 	display = '#', color=colors.LIGHT_GREEN, back_color=colors.DARK_GREY,
 	always_remember = true,
+	interact = function(self, x, y, who)
+		local apple = game.zone:makeEntityByName(game.level, "object", "APPLE")
+		if apple then who:addObject(who:getInven("INVEN"), apple) end
+		game.log("We got an apple from a tree")
+	end,
 }
 
 --Doors
