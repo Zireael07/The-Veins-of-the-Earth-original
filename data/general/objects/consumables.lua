@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael 2013-2015
+--Zireael 2013-2016
 
 --Consumables
 newEntity{
@@ -407,4 +407,21 @@ newEntity{ base = "BASE_DRINK",
     desc = [[A mix of various herbs]],
     nutrition = 1,
     rarity = 30,
+}
+
+--Special!
+newEntity{
+    name = "waterskin",
+    type = "drink", subtype = "drink",
+    desc = [[A waterskin made of stiff leather.]],
+    slot = "INVEN",
+    encumber = 1,
+    level_range = {1,10},
+    rarity = 10,
+    display = "!", color=colors.LIGHT_UMBER,
+    cost = 5,
+    identified = true,
+    --stacking = true,
+    nutrition = 1,
+    multicharge = 4,
 }
