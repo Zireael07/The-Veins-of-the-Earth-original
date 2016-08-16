@@ -1390,10 +1390,16 @@ function _M:doEatFood(inven, item)
 		local base = o.base_nutrition
 		local nut_mod = o.nutrition or 0
 		local nut = (base*nut_mod) or 0
-		self:removeObject(inven, item)
+    --account for charged items (waterskin)
+    if o.multicharge and o.multicharge == 0 then game.logPlayer(self, "Your waterskin is empty") return end
+    if o.multicharge and o.multicharge > 0 then
+      o.multicharge = o.multicharge -1
+    else
+		  self:removeObject(inven, item)
+    end
 		self:incNutrition(nut)
 
-		if o.subtype ~= "water" then
+		if o.subtype ~= "drink" then
 			game.logPlayer(self, "You eat %s.", o:getName{do_colour=true, no_count=true})
 		else
 			game.logPlayer(self, "You drink %s.", o:getName{do_colour=true, no_count=true})
