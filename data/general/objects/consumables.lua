@@ -415,13 +415,16 @@ newEntity{
     type = "drink", subtype = "drink",
     desc = [[A waterskin made of stiff leather.]],
     slot = "INVEN",
-    encumber = 1,
+    encumber = 3, --2 empty, assuming at least one portion is in
     level_range = {1,10},
     rarity = 10,
     display = "!", color=colors.LIGHT_UMBER,
+    image = "tiles/new/waterskin.png",
     cost = 5,
     identified = true,
     --stacking = true,
+    base_nutrition = 1500,
     nutrition = 1,
+    --holds 1/2 gallon while a character needs 1 gal/day
     multicharge = 4,
 }
