@@ -102,6 +102,20 @@ newEntity{
     define_as = "FOUNTAIN",
     image = "tiles/new/fountain.png",
     display = '⌠', color=colors.BLUE, back_color = {r=30, g=30, b=60},
+    interact = function(self, x, y, who)
+        if who:findInAllInventories("waterskin") then 
+            local skin_o, skin_item, skin_inven_id = who:findInAllInventories("waterskin")
+
+            if skin_o.multicharge and skin_o.multicharge >= 4 then
+                game.log("Your waterskin is full")
+            else
+                skin_o.multicharge = skin_o.multicharge + 1
+                game.log("You fill the waterskin from a fountain")
+            end
+        else
+            game.log("You don't have a waterskin to fill")
+        end
+    end,
 }
 
 newEntity{
