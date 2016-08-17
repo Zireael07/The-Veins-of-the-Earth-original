@@ -31,6 +31,7 @@ local DirectPath = require "engine.DirectPath"
 local World = require "mod.class.World"
 local PlayerLore = require "mod.class.interface.PlayerLore"
 local PlayerReligion = require "mod.class.interface.PlayerReligion"
+local PlayerJournal = require "mod.class.interface.PlayerJournal"
 --local NameGenerator = require "engine.NameGenerator"
 
 --- Defines the player
@@ -42,7 +43,8 @@ module(..., package.seeall, class.inherit(mod.class.Actor,
 					  engine.interface.PlayerMouse,
 					  engine.interface.PlayerHotkeys,
             mod.class.interface.PlayerExplore,
-			mod.class.interface.PlayerReligion,
+			      mod.class.interface.PlayerReligion,
+            mod.class.interface.PlayerJournal,
             mod.class.interface.PartyDeath,
             PlayerLore))
 
@@ -148,6 +150,8 @@ function _M:init(t, no_default)
 
   --kids
   self.kids = {}
+  --journal
+  self.journal = {}
 
   --timestamp for saved chars
   self.time = os.time()
