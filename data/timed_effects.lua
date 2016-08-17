@@ -67,6 +67,6 @@ newEffect{
 	on_gain = function(self, err) return "#Target# is enveloped by underground magical radiation!", "+Radiation" end,
 	on_lose = function(self, err) return "#Target# is free from the radiation.", "-Radiation" end,
 	on_timeout = function(self, eff)
-		DamageType:get(DamageType.FORCE).projector(eff.src or self, self.x, self.y, DamageType.FORCE, eff.power)
+		DamageType:get(DamageType.FORCE).projector(eff.src or self, self.x, self.y, DamageType.FORCE, {dam=eff.power, save_dc=10} )
 	end,
 }
