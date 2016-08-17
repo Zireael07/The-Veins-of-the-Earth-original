@@ -658,6 +658,9 @@ function _M:changeLevel(lev, zone)
 	end
 	self.zone_name_s = nil
 
+	--Journal
+	self.player:newJournalEntry("I reached level "..self:getDunDepth().." of ".. self.zone.name)
+
 	--Level feeling
 	local player = self.player
 	local feeling
@@ -1339,7 +1342,8 @@ function _M:setupCommands()
 		end,
 
 		SHOW_QUESTS = function()
-			self:registerDialog(require("engine.dialogs.ShowQuests").new(self.party:findMember{main=true}))
+			--self:registerDialog(require("engine.dialogs.ShowQuests").new(self.party:findMember{main=true}))
+			self:registerDialog(require("mod.dialogs.ShowJournal").new(self.player))
 		end,
 
 		SHOW_CHARACTER_SHEET = function()
