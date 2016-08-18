@@ -1,5 +1,5 @@
 --Veins of the Earth
---Zireael
+--Zireael 2013-2016
 
 --New stuff
 defineAction{
@@ -16,6 +16,12 @@ defineAction{
 	name = "Open help screen",
 }
 
+defineAction{
+	default = { "sym:_j:false:false:false:false" },
+	type = "SHOW_JOURNAL",
+	group = "actions",
+	name = "Show journal",
+}
 
 --Message log
 defineAction{

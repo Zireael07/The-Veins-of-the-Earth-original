@@ -1346,13 +1346,18 @@ function _M:setupCommands()
 		end,
 
 		SHOW_QUESTS = function()
-			--self:registerDialog(require("engine.dialogs.ShowQuests").new(self.party:findMember{main=true}))
-			self:registerDialog(require("mod.dialogs.ShowJournal").new(self.player))
+			self:registerDialog(require("engine.dialogs.ShowQuests").new(self.party:findMember{main=true}))
+			--self:registerDialog(require("mod.dialogs.ShowJournal").new(self.player))
 		end,
 
 		SHOW_CHARACTER_SHEET = function()
 			self:registerDialog(require("mod.dialogs.CharacterSheet").new(self.player))
 		end,
+
+		SHOW_JOURNAL = function()
+			self:registerDialog(require("mod.dialogs.ShowJournal").new(self.player))
+		end,
+
 
 		-- Exit the game
 		QUIT_GAME = function()
