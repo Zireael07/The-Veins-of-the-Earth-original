@@ -8,13 +8,16 @@ CHANGELOG
 
 * update to T-Engine 1.4.8
 * the game now counts level generation attempts and aborts after too many (default is 50)
+* quests: main quest, tutorial
+* achievement for completing either quest
 * the game now has a win condition
 * new zone: Vatic Wastes
 * new tiles: ring, signet ring, house insignia, greaves, cave floor, cave wall
-* new items: signet ring, house insignia, gloves, greaves
+* new items: signet ring, house insignia, gloves, greaves; waterskin
 * new item slots: bracers, legs; bracers are now won in the bracers slots
 * Iron Will etc. now scale with character level; restore Toughness as a separate feat; fold Dodge into Mobility
 * implement climbing, opening locks on chests and doors
+* a generic interact with environment button (e.g. get apples from a tree)
 * NPCs in noble compound now have a correct faction
 * adjust many rarities
 

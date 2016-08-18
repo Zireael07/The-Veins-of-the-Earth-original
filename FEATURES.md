@@ -60,7 +60,6 @@ This is a T-Engine module, to learn more about T-Engine see te4.org
 - pre-made encounters of more than 1 monster
 - humanoid NPCs can now have character classes, random or defined
 - shopkeepers can now sell & buy items
-- humanoids have portraits
 - item identification in two stages, auto-destroying known cursed items
 - CR displayed in tooltips; monsters drop equipment and corpses
 - hp, exp, dungeon level on-screen display now with bars and color changing depending on the amount of HP left
@@ -68,6 +67,7 @@ This is a T-Engine module, to learn more about T-Engine see te4.org
 - colored in-game help screen; legend screen; basic rules info
 - colored tooltips (color-coded relative monster stats and CR); colored log messages; item tooltips both on ground and in inventory
 - in-character monster info screen
+- quests, journal and achievements
 - terrain effects
 - rideable mounts
 - resting takes 8 hours, monsters respawn on rest
