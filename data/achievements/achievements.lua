@@ -74,3 +74,17 @@ newAchievement{
 	show = "full",
 	desc = [[Have a prestige class.]],
 }
+
+newAchievement{
+	id = "TUTORIAL_DONE",
+	name = "Beginner forays",
+	show = "full",
+	desc = [[Completed the tutorial.]],
+}
+
+newAchievement{
+	id = "WINNER",
+	name = "Winner",
+	show = "full",
+	desc = [[You have ascended to the surface and won!]],
+}
