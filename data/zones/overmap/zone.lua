@@ -61,6 +61,9 @@ return {
     end
   end,]]
   	on_enter = function()
+  		--finish main quest
+  		game.player:setQuestStatus("main_quest", engine.Quest.COMPLETED)
+  		--show victory dialog
 		game:registerDialog(require("mod.dialogs.VictoryDialog").new())
 	end
 }

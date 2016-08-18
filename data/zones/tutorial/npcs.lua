@@ -95,7 +95,7 @@ newEntity{ define_as = "TUTORIAL_NPC_BOSS",
 	resolvers.wounds(),
 
 	on_die = function(self, who)
-	--	game.player:resolveSource():setQuestStatus("tutorial", engine.Quest.COMPLETED)
+		game.player:resolveSource():setQuestStatus("tutorial", engine.Quest.COMPLETED)
 		local d = require("engine.dialogs.ShowText").new("Tutorial: Finish", "tutorial/done")
 		game:registerDialog(d)
 		game:changeLevel(1, "tunnels")

@@ -194,11 +194,15 @@ function _M:newGame()
         profile.chat:setupOnGame()
         game.player:onBirth()
 
+        --introduce to the game
         local d = require("engine.dialogs.ShowText").new("Welcome to Veins of the Earth", "intro-"..game.player.starting_intro, {name=game.player.name}, nil, nil, function()
+        self.player:grantQuest("main_quest")
 
 		--Tutorial popup
         Dialog:yesnoPopup("Tutorial", "Go through the tutorial", function(ok)
-			if ok then game:changeLevel(1, "tutorial")
+			if ok then 
+				game:changeLevel(1, "tutorial")
+				self.player:grantQuest("tutorial")
 			else
 			--	game:changeLevel(1, "small tunnels")
 			end
