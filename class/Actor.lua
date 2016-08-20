@@ -499,6 +499,30 @@ function _M:colorHighStats(stat)
 	else return "#WHITE#"..self:getStat(stat).."#LAST#" end
 end
 
+function _M:isStatEven(stat)
+	if self:getStat(stat) % 2 == 0 then return true end
+	return false
+end
+
+function _M:getStatBonus(stat)
+	local res
+	if self:isStatEven(stat) then 
+		res = self:getStat(stat) - 10
+	else
+		res = self:getStat(stat) - 9
+	end
+	return res
+end	
+
+function _M:getStatsBonuses()
+	self:getStatBonus('str')
+	self:getStatBonus('dex')
+	self:getStatBonus('con')
+	self:getStatBonus('int')
+	self:getStatBonus('wis')
+	self:getStatBonus('cha')
+end
+
 --Helpers to color skills
 --Incursion style
 function _M:colorSkill(skill)
@@ -679,6 +703,12 @@ function _M:tooltip()
 
 	ts:add({"color", "WHITE"}, ("INT %s "):format(self:colorStats('int'))) ts:add({"color", "WHITE"}, ("WIS %s "):format(self:colorStats('wis'))) ts:add({"color", "WHITE"}, ("CHA %s"):format(self:colorStats('cha')), true)
 
+	--debug
+	ts:add({"color", "LIGHT_GREEN"}, ("STR bonus %s "):format(self:getStatBonus('str'))) ts:add({"color", "LIGHT_GREEN"}, ("DEX bonus %s "):format(self:getStatBonus('dex'))) ts:add({"color", "LIGHT_GREEN"}, ("CON bonus %s"):format(self:getStatBonus('con')), true)
+
+	ts:add({"color", "LIGHT_GREEN"}, ("INT bonus %s "):format(self:getStatBonus('int'))) ts:add({"color", "LIGHT_GREEN"}, ("WIS bonus %s "):format(self:getStatBonus('wis'))) ts:add({"color", "LIGHT_GREEN"}, ("CHA bonus %s"):format(self:getStatBonus('cha')), true)
+
+	--CR & XP
 	ts:add({"color", "GOLD"}, ("CR: %s"):format(self:colorCR()), {"color", "WHITE"}, true)
 
     if self:worthExp(game.player) then ts:add({"color", "GOLD"}, ("XP: %d"):format(self:worthExp(game.player)), {"color", "WHITE"}, true) end
