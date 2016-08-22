@@ -29,14 +29,12 @@ newChat{id="start",
 
         --chance to get a kid
         if rng.dice(1,20) + player:getConMod() > 18 and not npc.pregnant then
+            game.log("Got a kid on the courtesan")
             npc.pregnant = true
-            kid = player:generateKid(npc)
-            player.kid_date = game.calendar:getDayOfYear(game.turn)
-
-            local x, y = util.findFreeGrid(player.x, player.y, 1, true, {[engine.Map.ACTOR]=true})
-            game.zone:addEntity(game.level, kid, "actor", x, y)
-            player:addKid(kid)
-
+            local kid = player:generateKid(npc)
+            game.kid = kid
+            player.kid_date = game.turn + game.calendar.HOUR * 10 --game.calendar.MONTH*6
+            game.log("Turn ".. game.turn.."kid turn " ..player.kid_date)
         end
     end,
     cond=function(npc, player)

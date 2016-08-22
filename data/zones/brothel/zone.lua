@@ -63,7 +63,31 @@ return {
 	},
 
 	},
+	on_turn = function(self)
+	--game.log("Brothel's on_turn")
+	local player = game.player
+	--do nothing if not actor turn
+	if game.turn % 10 ~= 0 then return end
+	
+	--if no date, do nothing
+	if not player.kid_date then return end
 
+	if game.turn >= player.kid_date then
+		game.log("Time to spawn kid")
+		--spawn kid
+		local x, y = util.findFreeGrid(player.x, player.y, 1, true, {[engine.Map.ACTOR]=true})
+		local kid = game.kid
+		if game.kid then
+			--game.log("[Brothel] We have a kid")
+			game.zone:addEntity(game.level, kid, "actor", x, y)
+		    player:addKid(kid)
+		end
+	    --set date to nil
+	    player.kid_date = nil
+    end
+
+
+	end,
 	post_process = function(level)
 		-- Put lore near the up stairs
 		game:placeRandomLoreObject("NOTE"..level.level)
