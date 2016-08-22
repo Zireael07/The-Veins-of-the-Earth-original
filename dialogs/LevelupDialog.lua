@@ -851,7 +851,8 @@ function _M:incStat(v, id)
 			return
 		end
 	end
-
+    local sel = self.sel
+    
 	self.actor:incStat(self.sel, v)
 	self.actor.stat_point = self.actor.stat_point - v
 
