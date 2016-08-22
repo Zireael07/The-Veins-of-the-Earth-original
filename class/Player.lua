@@ -2061,6 +2061,7 @@ function _M:generateKid(npc)
 	if self.descriptor.race == "Halfling" and not npc.subtype == "halfling" then return end
 	if self.descriptor.race == "Lizardfolk" and not npc.subtype == "lizardfolk" then return end
 	if self.descriptor.race == "Kobold" and not npc.subtype == "kobold" then return end
+  game.log("Generating a kid")
 
 	--make the kid
 	local NPC = require "mod.class.NPC"
@@ -2088,7 +2089,7 @@ function _M:generateKid(npc)
 		combat = { dam= {1,6} },
 	    faction = "neutral",
 	    open_door = true,
-		resolvers.kid_name(),
+		--resolvers.kid_name(),
 		resolvers.wounds()
 	}
 

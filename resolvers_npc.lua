@@ -496,7 +496,7 @@ end
 
 
 function resolvers.kid_name()
-	return {__resolver="kid_name_alt", __resolve_last=true, }
+	return {__resolver="kid_name", __resolve_last=true, }
 end
 
 function resolvers.calc.kid_name(t, e)
