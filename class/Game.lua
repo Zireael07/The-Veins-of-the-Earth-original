@@ -1320,6 +1320,8 @@ function _M:setupCommands()
 					end
 				end
 
+				--check
+				if e.change_level_check and e:change_level_check(self.player) then return end
 				self:changeLevel(e.change_zone and e.change_level or self.level.level + level, e.change_zone)
 			else
 				self.log("There is no way out of this level here.")
