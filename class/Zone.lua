@@ -187,6 +187,7 @@ function _M:computeRarities(type, list, level, filter, add_level, rarity_field)
     local lev = self:level_adjust_level(level, self, type) + (add_level or 0)
     lev = self:adjustComputeRaritiesLevel(level, type, lev)
 
+    if list then
     for i, e in ipairs(list) do
         if e[rarity_field] and e.level_range and (not filter or filter(e)) then
         --  print("computing rarity of", e.name)
@@ -240,6 +241,10 @@ function _M:computeRarities(type, list, level, filter, add_level, rarity_field)
         prev = ee.genprob
     end
     print("*DONE", r.total, tperc.."%")
+    else
+        print("NO LIST!!!")
+        return {}
+    end 
 
     return r
 
