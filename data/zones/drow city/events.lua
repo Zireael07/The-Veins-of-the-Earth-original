@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2013 Zireael
+-- Copyright (C) 2013-2016 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -17,6 +17,6 @@
 -- Nicolas Casalini "DarkGod"
 -- darkgod@te4.org
 
-return { --one_per_level=true,
-	{name="radiation", percent=100},
+return { one_per_level=true,
+	{name="noble test", percent=100},
 }
