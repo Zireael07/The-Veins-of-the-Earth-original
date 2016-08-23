@@ -14,7 +14,6 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-load("/data/general/traps/store.lua")
 load("/data/general/traps/general.lua")
 load("/data/general/traps/random.lua")
 load("/data/general/traps/magical.lua")
