@@ -148,9 +148,14 @@ function _M:init(t, no_default)
 
 	--stuff
 	self.seen_by = function(self, who)
-		if not who == game.player or self == game.player then return end
-		game.logSeen(self, ("#SANDY_BROWN#%s comes into view!#WHITE#"):format(self.name:capitalize()))
-		self.seen_by = nil
+		--if not who == game.player or self == game.player then return end
+		if not self.has_been_seen and who.player then
+			--if not self == game.player then
+				game.logSeen(self, ("#SANDY_BROWN#%s comes into view!#WHITE#"):format(self.name:capitalize()))
+				self.seen_by = nil
+				self.has_been_seen = true
+			--end
+		end
 	end
 
 	--Actually initiate some basic engine stuff
