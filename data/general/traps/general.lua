@@ -7,7 +7,7 @@ newEntity{ define_as = "TRAP_GENERAL",
 	dam = {1, 6}, damtype = DamageType.PHYSICAL,
 	triggered = function(self, x, y, who)
 	local damage = rng.dice(self.dam[1], self.dam[2])
-		self:projectile(who, x, y, self.damtype, damage)
+		self:project(who, x, y, self.damtype, damage)
 		return true
 	end,
 }
