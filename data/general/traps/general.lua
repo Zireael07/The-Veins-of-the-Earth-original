@@ -1,12 +1,13 @@
 --Veins of the Earth
---Copyright (C) 2013 Zireael
+--Copyright (C) 2013-2016 Zireael
 
 newEntity{ define_as = "TRAP_GENERAL",
 	type = "general", subtype="general", unided_name = "trap",
 	display = '^',
+	dam = {1, 6}, damtype = DamageType.PHYSICAL,
 	triggered = function(self, x, y, who)
-	local damage = rng.dice(dam[1], dam[2])
-		self:projectile(who, x, y, damtype, damage)
+	local damage = rng.dice(self.dam[1], self.dam[2])
+		self:projectile(who, x, y, self.damtype, damage)
 		return true
 	end,
 }
@@ -35,7 +36,7 @@ newEntity { base = "TRAP_GENERAL",
 
 newEntity { base = "TRAP_GENERAL",
 	name = "portcullis trap",
-	detect_dc = 20, ism_power = 20,
+	detect_dc = 20, disarm_dc = 20,
 	rarity = 10, level_range = {1,nil},
 	color=colors.UMBER,
 	message = "@Target@ is hit by a falling portcullis!",

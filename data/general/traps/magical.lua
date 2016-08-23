@@ -1,12 +1,12 @@
 --Veins of the Earth
---Copyright (C) 2013 Zireael
+--Copyright (C) 2013-2016 Zireael
 
 --Magical traps 
 newEntity{ define_as = "TRAP_MAGICAL",
 	type = "general", subtype="magical", unided_name = "trap",
 	display = '^',
 	triggered = function(self, x, y, who)
-		local damage = rng.dice(dam[1], dam[2])
+		local damage = rng.dice(self.dam[1], self.dam[2])
 		self:project(x, y, self.damtype, damage) --self.particles and {type=self.particles})
 		return true
 	end,
