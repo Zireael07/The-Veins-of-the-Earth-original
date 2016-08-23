@@ -70,7 +70,10 @@ function _M:canDisarm(x, y, who)
 
 	-- do we know how to disarm?
 	if who.skill_disabledevice ~=0 then
-		local check = who:skillCheck("disabledevice", self.disarm_dc)
+		if not self.disarm_dc then
+			game.log("Trap "..self.name.. " is missing disarm dc!")
+			return end
+		local check = who:skillCheck("disable_device", self.disarm_dc)
 		if check and (not self.faction or who:reactionToward(self) < 0) then
 			return true
 		end
