@@ -1444,6 +1444,15 @@ function _M:preUseTalent(ab, silent, fake)
 				end
 			end
 		end
+
+		--Riding (DC 10 + spell level)
+		if self:isTalentActive(self.T_MOUNT) then
+			if not self:skillCheck("concentration", (10 + ab.level)) then
+				game.logPlayer(self, "You are distracted by your mount! Your spell fails!")
+				self:useEnergy()
+				return false
+			end
+		end
 	end
 
 
