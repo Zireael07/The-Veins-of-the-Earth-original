@@ -65,9 +65,12 @@ return {
 			floor = "FLOOR",
 			widen_w = 1, widen_h = 1,
 		},
+		actor = {
+			nb_npc = {0, 0},
+		},
 		trap = {
 			class = "engine.generator.trap.Random",
- 			nb_trap = {4, 4},
+ 			nb_trap = {8, 8},
   		},
 		},
 	},
