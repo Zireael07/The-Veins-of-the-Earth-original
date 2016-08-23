@@ -883,3 +883,53 @@ function _M:startEvents()
 		if game.zone.events_by_level then game.zone.assigned_events = nil end
 	end
 end
+
+--Random noble house
+
+function _M:createRandomHouse(base)
+	base = base or {}
+	--game.log("Creating a random house, base is: "..base.name)
+
+	local houses = { "baenre", "armgo", "tlabbar", "mizzrym", "nasadra", "auvryndar", "aleanrahel" }
+	local pick = rng.tableRemove(houses)
+
+	local short_name = pick.."-noble-compound"
+
+	--lists
+	local npcs = mod.class.NPC:loadList("/data/zones/noble-compound/npcs.lua")
+	base.npc_list = npcs
+	base.object_list = mod.class.Object:loadList("/data/zones/noble-compound/objects.lua")
+	
+	local grids = mod.class.Grid:loadList("/data/zones/noble-compound/grids.lua")
+	base.grid_list = grids
+	
+
+	--read data
+	local zone = mod.class.Zone.new(short_name, base)
+
+	--edits
+	zone.name = "House "..pick:capitalize().." Compound"
+	game.log("Zone name is: "..zone.name)
+
+	return zone, short_name
+end
+
+function _M:getRandomHouse()
+	local compound
+	local dir = "noble-compound"
+	local base = "/data"
+
+	local f = loadfile(base.."/zones/"..dir.."/zone.lua")
+			game.log("Loading from file... ".. dir.."/zone.lua")
+			if f then
+				game.log("Zone file found for random house")
+				setfenv(f, setmetatable({}, {__index=_G}))
+				local ok, z = pcall(f)
+				if ok then
+					compound = z
+				end
+			end
+
+	local zone, short_name = self:createRandomHouse(compound)
+	return zone
+end
