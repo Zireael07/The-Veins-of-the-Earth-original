@@ -83,6 +83,8 @@ function _M:init()
 
 	--Moddable tiles
 	self.tiles_attachements = {}
+
+	self.numberzones = 0
 end
 
 --Thanks DG!

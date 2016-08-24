@@ -1,5 +1,5 @@
--- ToME - Tales of Maj'Eyal
--- Copyright (C) 2009, 2010, 2011, 2012, 2013 Nicolas Casalini
+-- Veins of the Earth
+-- Copyright (C) 2013-2016 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -13,25 +13,27 @@
 --
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
--- Nicolas Casalini "DarkGod"
--- darkgod@te4.org
+
 
 require "engine.class"
 require "engine.ui.Dialog"
 local List = require "engine.ui.List"
 local GetQuantity = require "engine.dialogs.GetQuantity"
+local Textzone = require "engine.ui.Textzone"
 
 module(..., package.seeall, class.inherit(engine.ui.Dialog))
 
 function _M:init()
 	self:generateList()
-	engine.ui.Dialog.init(self, "Debug change zone", 1, 1)
+	engine.ui.Dialog.init(self, "Debug change zone", 600, 400)
 
 	local list = List.new{width=400, height=500, scrollbar=true, list=self.list, fct=function(item) self:use(item) end}
+	self.c_points = Textzone.new{width=self.iw, height = 50, text = "Number of zones: "..game.numberzones}
+
 
 	self:loadUI{
-		{left=0, top=0, ui=list},
+		{left=0, top=0, ui=self.c_points},
+		{left=0, top=self.c_points, ui=list},
 	}
 	self:setupUI(true, true)
 
@@ -74,13 +76,16 @@ function _M:generateList()
 				local ok, z = pcall(f)
 				if ok then
 					local color
+					local name = z.name
 					if z.worldmap == true then color = {255, 215, 0}
 					elseif z.name == "Tutorial" or z.name == "Arena" or z.name == "Encounters test" or z.name == "Xorn Lair" then
 						color = {201, 0, 0}
 					elseif z.persistent == "zone" then color = {81, 221, 255}
 					else color = {255, 255, 255} end
 
-					list[#list+1] = {name=z.name, color=color, zone=add..dir, min=1, max=z.max_level, worldmap=z.worldmap, persist=z.persistent}
+					game.numberzones = game.numberzones + 1
+
+					list[#list+1] = {name=name, color=color, zone=add..dir, min=1, max=z.max_level, worldmap=z.worldmap, persist=z.persistent}
 				end
 			end
 		end
