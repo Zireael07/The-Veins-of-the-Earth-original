@@ -1,5 +1,5 @@
 -- Veins of the Earth
--- Copyright (C) 2014 Zireael
+-- Copyright (C) 2014-2016 Zireael
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -16,3 +16,16 @@
 
 
 load("/data/general/grids/drow.lua")
+
+--Random houses
+newEntity{
+    define_as = "HOUSE_ENTRANCE",
+    type = "floor", subtype = "floor",
+    name = "noble compound entrance",
+    image = "tiles/terrain/stairs_up.png",
+    display = '<', color_r=255, color_g=0, color_b=255, back_color=colors.DARK_GREY,
+    notice = true,
+    always_remember = true,
+    change_level = 1,
+    change_zone = game.state:getRandomHouse(),
+}
