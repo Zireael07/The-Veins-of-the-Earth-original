@@ -1,17 +1,23 @@
 CHANGELOG
 
+BETA 13 - 29/08/2016
+
 * bug fix - item getting equipped in weird slots
 * bug fix - display gameplay tab when starting game; add confirmation for settings
 * bug fix - errors when cause fear spell works on an enemy
 * bug fix - no more keeping old zone name displayed for 1 turn after changing
 * bug fix - no more superfluous saving throws in log with many spells
+* bug fix - Lua error when increasing stats on level up
+* bug fix - intro message was supposed to be colored but a typo rendered it all white
+* bug fix - warning message pops up in log every time you spot a monster, not just the very first one
+* bug fix - traps no longer throwing up errors
 
 * update to T-Engine 1.4.8
 * the game now counts level generation attempts and aborts after too many (default is 50)
 * quests: main quest, tutorial
 * achievement for completing either quest
 * the game now has a win condition
-* new zone: Vatic Wastes
+* new zones: Vatic Wastes, thieves guild
 * new tiles: ring, signet ring, house insignia, greaves, cave floor, cave wall
 * new items: signet ring, house insignia, gloves, greaves; waterskin
 * new item slots: bracers, legs; bracers are now won in the bracers slots
@@ -20,6 +26,7 @@ CHANGELOG
 * a generic interact with environment button (e.g. get apples from a tree)
 * NPCs in noble compound now have a correct faction
 * adjust many rarities
+* kids' spawn is now delayed
 
 BETA 12 - 07/03/2016
 
