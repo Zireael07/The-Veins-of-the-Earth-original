@@ -162,7 +162,7 @@ newEntity{
     name = "noble compound entrance",
     image = "tiles/terrain/stairs_up.png",
     change_level = 1,
-    change_zone = "noble compound",
+    change_zone = "noble-compound",
 }
 
 newEntity{
