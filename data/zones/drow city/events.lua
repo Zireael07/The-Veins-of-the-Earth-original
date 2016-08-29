@@ -18,5 +18,5 @@
 -- darkgod@te4.org
 
 return { one_per_level=true,
-	{name="noble test", percent=100},
+	--{name="noble test", percent=100},
 }

@@ -77,6 +77,7 @@ return {
 
 		local spot = game.level:pickSpot{type="building", subtype="building"}
 		local g = game.zone:makeEntityByName(game.level, "terrain", "NOBLE_ENTRANCE")
+		--local g = game.zone:makeEntityByName(game.level, "terrain", "HOUSE_ENTRANCE")
 		game.zone:addEntity(game.level, g, "terrain", spot.x, spot.y)
 		level.spots[#level.spots+1] = {x=spot.x, y=spot.y, type="zone-change", subtype="noble house"}
 
