@@ -871,16 +871,23 @@ function _M:startEvents()
 
 	return function()
 		print("Assigned events list")
-		table.print(game.zone.assigned_events)
+		
+		if not game.zone.assigned_events then
+			print("No events assigned")
+		else
+			table.print(game.zone.assigned_events)
+			if game.zone.assigned_events then
 
-		for i, e in ipairs(game.zone.assigned_events[game.level.level] or {}) do
-			local f, err = loadfile(self:eventBaseName("", e))
-			if not f then error(err) end
-			setfenv(f, setmetatable({level=game.level, zone=game.zone, event_id=e.name, Map=Map}, {__index=_G}))
-			f()
+			for i, e in ipairs(game.zone.assigned_events[game.level.level] or {}) do
+				local f, err = loadfile(self:eventBaseName("", e))
+				if not f then error(err) end
+				setfenv(f, setmetatable({level=game.level, zone=game.zone, event_id=e.name, Map=Map}, {__index=_G}))
+				f()
+			end
+			end
+			game.zone.assigned_events[game.level.level] = {}
+			if game.zone.events_by_level then game.zone.assigned_events = nil end
 		end
-		game.zone.assigned_events[game.level.level] = {}
-		if game.zone.events_by_level then game.zone.assigned_events = nil end
 	end
 end
 
